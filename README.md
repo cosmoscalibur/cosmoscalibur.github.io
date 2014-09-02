@@ -1,5 +1,5 @@
-cosmoscalibur.github.com
-========================
+cosmoscalibur.github.io
+=======================
 
 Este es el repositorio publico de mi nuevo sitio web.  
 Es el resultado de la migración de los 3 sitios siguientes (en orden de actividad):  
