@@ -1,45 +1,44 @@
-![Starry Night](https://fbcdn-sphotos-f-a.akamaihd.net/hphotos-ak-xfp1/v/t1.0-9/10955714_1540587479562263_6380475408937524760_n.jpg?oh=4750da0583a0dc6f1a49dc01673ce0b2&oe=5706E635&__gda__=1460206437_05e2fcc99b1045b53149a242ac10bc29 "Starry Night, obra que representa la unión que pretendida en este blog")
-cosmoscalibur.github.io
-=======================
+# Cosmoscalibur
 
-Este es el repositorio público de mi nuevo sitio web.  
-Es el resultado de la migración de los 3 sitios siguientes (en orden de actividad):  
-1. [Física Pasión](http://fisicapasion.blogspot.com): Mi blog personal dedicado a la divulgación de las ciencias y tecnología.  
-2. [La flecha temporal](http://laflechatemporal.blogspot.com): Mi blog de escritos personales (reflexiones, poesía, ...) y eventos culturales.  
-3. Mi sitio personal con mi información general (hoja de vida, proyectos, experiencia, entre otras cosas).
+Este es el repositorio público de mi sitio web, resultado de unir la temática de mis dos anteriores blogs y de un sitio personal de presentación (eliminado).  
 
-En la medida de lo posible, ire poblando este nuevo sitio (incluyendo la mayor parte de la información existente en los anteriores sitios) pero sin los 
-comentarios de antes.
-Pronto creare los _fan pages_ asociados, y ya esta la cuenta [disqus](http://www.disqus.com) para habilitar los comentarios.
+Los blogs en cuestión son:  
 
-Temas
------
-Sonará pretencioso, pero son las cosas que quisiera hablar (y aprender las que no se).
+1.  [Física Pasión](http://fisicapasion.blogspot.com): Mi blog personal dedicado a la divulgación de las ciencias y tecnología.  
+2.  [La flecha temporal](http://laflechatemporal.blogspot.com): Mi blog de escritos personales (reflexiones, poesía, ...) y eventos culturales.  
 
-### Desde Física Pasión
-* Ciencias (Física, Química, Matematicas, Astronomía, Geología, Biología, Medicina, Materiales).
-* Tecnología (Linux, Android, Windows, _gadgets_).
+Ambos serán migrados poco a poco (contenido y comentarios), y serán etiquetados con el nombre del blog original y enlazados a la publicación original (mientras existan los blogs originales).  
 
-### Desde La Flecha Temporal
-* Mis poemas y reflexiones.
-* Eventos culturales.
+Es posible que algunas publicaciones simplemente no las migre a criterio propio (poca relevancia, temáticas que no pienso continuar o pocas visitas).  
 
-### Mi sitio personal (removido original)
-* Hoja de vida.
-* Proyectos.
-* Aficiones.
-* Publicaciones.
+## Temas
 
-### Nuevo
-* Investigación (Herramientas para la investigación, Bases de datos, _Journals_, Bibliometría).
-* Programación (Bash, Python, C++, Fortran, Javascript, Octave, SQL).
-* Diseño (HTML5, CSS, XML, LaTeX, MarkDown, ReStructuredText).
-* Software Libre.
-* Actualidad (Ciencia, Tecnología y cultura).
-* Recomendaciones (Libros, articulos, peliculas, y por que no, videojuegos).
-* Docencia (Material para estudiantes de mis grupos de UdeM).
+Con la unión de dos blogs radicalmente diferentes pero que me reflejan, este nuevo [blog](cosmoscalibur.com) alojará publicaciones de ciencia, tecnología y cultura, pero tampoco dejaré atrás realidades y reflexiones que sean pertinentes como ciudadano (sin pretender una imposición de ideas claramente).  
 
-Por lo pronto los veo en las redes sociales:
-Twitter [@cosmoscalibur](http://www.twitter.com/cosmoscalibur)
-Facebook [cosmoscalibur](http://www.facebook.com/cosmoscalibur)
-Gplus [+cosmoscalibur](https://plus.google.com/101589342745553480499/posts).
+Además del blog, estará mi sitio personal como presentación de mi trayectoria, intereses y proyectos, y tal vez, algo biográfico.  
+
+## Lenguaje
+
+Soy colombiano, así que por supuesto mantendré el idioma de publicación principalmente en español. Se necesitan medios de divulgación de ciencia y tecnología en español que no sean solo copias de otros o traducciones sin contexto de los medios extranjeros y que sean activos (he visto morir muchos proyectos de este estilo, física pasión es ejemplo). Respecto a las otras temáticas no se discute el motivo, parto de que es claro.  
+
+_¿Significa que no habrán publicaciones en inglés?_ No, pero no serán mi prioridad. El diseño del blog contempla desde el principio la publicación eventual en inglés (no descarto eventualmente otros con fines de aprendizaje del lenguaje).  
+
+## Desarrollado con
+
+El sitio es generado con Nikola y alojado en GitHub (probablemente pruebe algunas opciones de servidor con HelioNet).  
+
+## Contacto y Redes
+
+Por lo pronto los veo en las redes sociales:  
+
++   Twitter [@cosmoscalibur](http://www.twitter.com/cosmoscalibur).  
++   Facebook [cosmoscalibur](http://www.facebook.com/cosmoscalibur).  
++   Google Plus [+cosmoscalibur](https://plus.google.com/101589342745553480499/posts).  
++   ResearchGate
++   LinkedIn
++   SlideShare
++   Issuu
+
+## Licencia
+
+El contenido de este blog se distribuye bajo licencia [CCBY40](https://creativecommons.org/licenses/by/4.0/deed.es) y el código asociado bajo [licencia MIT](LICENSE).  
