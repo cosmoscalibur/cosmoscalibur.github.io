@@ -245,7 +245,7 @@ TIMEZONE = "America/Bogota"
 # LOCALE_DEFAULT = locale to use for languages not mentioned in LOCALES; if
 # not set the default Nikola mapping is used.
 
-LOCALES = {"es": "es_CO.utf8", "en": "en_US.utf8"}
+LOCALES = {"es": "es_CO.utf8"}
 # LOCALE_FALLBACK = None
 # LOCALE_DEFAULT = None
 
@@ -1365,7 +1365,7 @@ UNSLUGIFY_TITLES = True
 
 # Put in global_context things you want available on all your templates.
 # It can be anything, data, functions, modules, etc.
-GLOBAL_CONTEXT = {}
+GLOBAL_CONTEXT = {'HACK_VARIANT': 'dark'}
 
 # Add functions here and they will be called with template
 # GLOBAL_CONTEXT as parameter when the template is about to be
