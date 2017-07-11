@@ -25,8 +25,8 @@ SITE_URL = "http://cosmoscalibur.com/"
 # This is the URL where Nikola's output will be deployed.
 # If not set, defaults to SITE_URL
 BASE_URL = "http://cosmoscalibur.com/"
-BLOG_EMAIL = "cosmoscalibur@gmail.com"
-BLOG_DESCRIPTION = {"es": "Ciencia, Tecnología y Cultura en un solo lugar.", "en": "Science, Technology and Cultural topics in one site."}  # (translatable)
+BLOG_EMAIL = "cosmoscalibur&#64;gmail.com"
+BLOG_DESCRIPTION = "Blog de ciencia, tecnología, cultural y literatura. Unir estos mundos no solo en un sitio sino en una historia." # (translatable)
 
 # Nikola is multilingual!
 #
@@ -93,7 +93,7 @@ DEFAULT_LANG = "es"
 # the path will be used as a prefix for the generated pages location
 TRANSLATIONS = {
     DEFAULT_LANG: "",
-    "en": "./en"
+    # "en": "./en"
     # Example for another language:
     # "es": "./es",
 }
@@ -135,19 +135,19 @@ TRANSLATIONS_PATTERN = "{path}.{lang}.{ext}"
 
 NAVIGATION_LINKS = {
     DEFAULT_LANG: (
-    ("/archivo.html", "Archivos"),
-    ("/categorias/index.html", "Etiquetas"),
-    ("/rss.html", "Fuente RSS")
+        ("/archivo.html", "Archivos"),
+        ("/categorias/index.html", "Etiquetas"),
+        ("/rss.html", "Fuente RSS")
     ),
-    "en": (
-        ("/archive.html", "Archives"),
-        ("/categories/index.html", "Tags"),
-        ("/rss.xml", "RSS feed"),
-    ),
+    # "en": (
+    #    ("/archive.html", "Archives"),
+    #    ("/categories/index.html", "Tags"),
+    #    ("/rss.xml", "RSS feed"),
+    # ),
 }
 
 # Name of the theme to use.
-THEME = "material-theme"
+THEME = "hack"
 
 # Primary color of your theme. This will be used to customize your theme and
 # auto-generate related colors in POSTS_SECTION_COLORS. Must be a HEX value.
@@ -188,10 +188,10 @@ THEME_COLOR = '#5670d4'
 #     )
 
 POSTS = (
-    ("posts/*.rst", "posts", "post.tmpl"),
-    ("posts/*.md", "posts", "post.tmpl"),
-    ("posts/*.txt", "posts", "post.tmpl"),
-    ("posts/*.html", "posts", "post.tmpl"),
+    ("posts/*.rst", "blog", "post.tmpl"),
+    ("posts/*.md", "blog", "post.tmpl"),
+    ("posts/*.txt", "blog", "post.tmpl"),
+    ("posts/*.html", "blog", "post.tmpl"),
 )
 PAGES = (
     ("pages/*.rst", "pages", "page.tmpl"),
@@ -312,7 +312,7 @@ COMPILERS = {
 # If this is set to False, then posts that are not translated to a language
 # LANG will not be visible at all in the pages in that language.
 # Formerly known as HIDE_UNTRANSLATED_POSTS (inverse)
-# SHOW_UNTRANSLATED_POSTS = True
+SHOW_UNTRANSLATED_POSTS = False
 
 # Nikola supports logo display.  If you have one, you can put the URL here.
 # Final output is <img src="LOGO_URL" id="logo" alt="BLOG_TITLE">.
