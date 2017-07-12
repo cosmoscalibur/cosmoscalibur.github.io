@@ -135,7 +135,13 @@ TRANSLATIONS_PATTERN = "{path}.{lang}.{ext}"
 
 NAVIGATION_LINKS = {
     DEFAULT_LANG: (
-        ("/archivo.html", "Archivos"),
+        (
+            (
+                ("/pag/presentacion/", "Presentación"),
+                ("/pag/contacto/", "Contacto"),
+            ), "Edward Villegas"
+        ),
+        ("/archivo.html", "Histórico"),
         ("/categorias/index.html", "Etiquetas"),
         ("/rss.html", "Fuente RSS")
     ),
@@ -192,12 +198,13 @@ POSTS = (
     ("posts/*.md", "blog", "post.tmpl"),
     ("posts/*.txt", "blog", "post.tmpl"),
     ("posts/*.html", "blog", "post.tmpl"),
+    ("posts/*.html", "blog", "post.tmpl"),
 )
 PAGES = (
-    ("pages/*.rst", "pages", "page.tmpl"),
-    ("pages/*.md", "pages", "page.tmpl"),
-    ("pages/*.txt", "pages", "page.tmpl"),
-    ("pages/*.html", "pages", "page.tmpl"),
+    ("pages/*.rst", "pag", "page.tmpl"),
+    ("pages/*.md", "pag", "page.tmpl"),
+    ("pages/*.txt", "pag", "page.tmpl"),
+    ("pages/*.html", "pag", "page.tmpl"),
 )
 
 
@@ -405,7 +412,7 @@ POSTS_SECTIONS = True
 # output / TRANSLATION[lang] / TAG_PATH / tag.html (list of posts for a tag)
 # output / TRANSLATION[lang] / TAG_PATH / tag.xml (RSS feed for a tag)
 # (translatable)
-# TAG_PATH = "categories"
+TAG_PATH = "categorias"
 
 # By default, the list of tags is stored in
 #     output / TRANSLATION[lang] / TAG_PATH / index.html
@@ -546,6 +553,11 @@ HIDDEN_CATEGORIES = []
 #    },
 # }
 
+AUTHOR_PAGES_DESCRIPTIONS = {
+    DEFAULT_LANG: {
+        "Edward Villegas": "Investigador y divulgador de ciencia por pasión. Por hobby programador linuxero, admirador del cielo y poeta. Me gusta Iron Man y Asimov.",
+        },
+    }
 
 # If you do not want to display an author publicly, you can mark it as hidden.
 # The author will not be displayed on the author list page and posts.
@@ -580,7 +592,7 @@ FRONT_INDEX_HEADER = {
 # output / TRANSLATION[lang] / ARCHIVE_PATH / YEAR / MONTH / index.html
 # output / TRANSLATION[lang] / ARCHIVE_PATH / YEAR / MONTH / DAY / index.html
 # ARCHIVE_PATH = ""
-# ARCHIVE_FILENAME = "archive.html"
+ARCHIVE_FILENAME = "archivo.html"
 
 # If ARCHIVES_ARE_INDEXES is set to True, each archive page which contains a list
 # of posts will contain the posts themselves. If set to False, it will be just a
@@ -1081,18 +1093,18 @@ PRETTY_URLS = False
 
 # Want to use KaTeX instead of MathJax? While KaTeX may not support every
 # feature yet, it's faster and the output looks better.
-# USE_KATEX = False
+USE_KATEX = True
 
 # KaTeX auto-render settings. If you want support for the $.$ syntax (wihch may
 # conflict with running text!), just use this config:
-# KATEX_AUTO_RENDER = """
-# delimiters: [
-#     {left: "$$", right: "$$", display: true},
-#     {left: "\\\[", right: "\\\]", display: true},
-#     {left: "$", right: "$", display: false},
-#     {left: "\\\(", right: "\\\)", display: false}
-# ]
-# """
+KATEX_AUTO_RENDER = """
+delimiters: [
+   {left: "$$", right: "$$", display: true},
+   {left: "\\\[", right: "\\\]", display: true},
+   {left: "$", right: "$", display: false},
+   {left: "\\\(", right: "\\\)", display: false}
+]
+"""
 
 # Do you want to customize the nbconversion of your IPython notebook?
 # IPYNB_CONFIG = {}
@@ -1217,6 +1229,20 @@ MARKDOWN_EXTENSIONS = ['markdown.extensions.fenced_code', 'markdown.extensions.c
 # </form>
 # <!-- End of custom search -->
 # """ % SITE_URL
+
+SEARCH_FORM = """
+<!-- Google custom search -->
+<form method="get" action="https://www.google.com/search" class="navbar-form navbar-right" role="search">
+<div class="form-group">
+<input type="text" name="q" class="form-control" placeholder="Search">
+</div>
+<button type="submit" class="btn btn-primary">
+<span class="glyphicon glyphicon-search"></span>
+</button>
+<input type="hidden" name="sitesearch" value="%s">
+</form>
+<!-- End of custom search -->
+""" % SITE_URL
 
 # Use content distribution networks for jQuery, twitter-bootstrap css and js,
 # and html5shiv (for older versions of Internet Explorer)
