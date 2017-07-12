@@ -5,7 +5,7 @@ STOP_RENDERING = runtime.STOP_RENDERING
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 10
-_modified_time = 1499824173.0059383
+_modified_time = 1499824593.7066426
 _enable_loop = True
 _template_filename = 'themes/carpet/templates/pagination_helper.tmpl'
 _template_uri = 'pagination_helper.tmpl'
@@ -27,8 +27,8 @@ def render_body(context,**pageargs):
 def render_page_navigation(context,current_page,page_links,prevlink,nextlink,prev_next_links_reversed,surrounding=5):
     __M_caller = context.caller_stack._push_frame()
     try:
-        abs = context.get('abs', UNDEFINED)
         enumerate = context.get('enumerate', UNDEFINED)
+        abs = context.get('abs', UNDEFINED)
         len = context.get('len', UNDEFINED)
         __M_writer = context.writer()
         __M_writer('\n<nav class="pagination is-centered">\n  <ul class="pagination-list page-navigation">\n')
@@ -54,6 +54,6 @@ def render_page_navigation(context,current_page,page_links,prevlink,nextlink,pre
 
 """
 __M_BEGIN_METADATA
-{"filename": "themes/carpet/templates/pagination_helper.tmpl", "source_encoding": "utf-8", "uri": "pagination_helper.tmpl", "line_map": {"48": 13, "34": 2, "35": 5, "36": 6, "37": 7, "38": 8, "39": 8, "40": 8, "41": 9, "42": 10, "43": 10, "44": 10, "45": 10, "46": 10, "47": 12, "16": 0, "49": 16, "21": 18, "55": 49, "27": 2}}
+{"line_map": {"48": 13, "34": 2, "35": 5, "36": 6, "37": 7, "38": 8, "39": 8, "40": 8, "41": 9, "42": 10, "43": 10, "44": 10, "45": 10, "46": 10, "47": 12, "16": 0, "49": 16, "21": 18, "55": 49, "27": 2}, "filename": "themes/carpet/templates/pagination_helper.tmpl", "uri": "pagination_helper.tmpl", "source_encoding": "utf-8"}
 __M_END_METADATA
 """

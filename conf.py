@@ -137,9 +137,10 @@ NAVIGATION_LINKS = {
     DEFAULT_LANG: (
         (
             (
-                ("/pag/presentacion/", "Presentación"),
-                ("/pag/contacto/", "Contacto"),
-            ), "Edward Villegas"
+                ("/pag/presentacion", "Presentación"),
+                ("/pag/contacto", "Contacto"),
+            ),
+            "Edward Villegas"
         ),
         ("/archivo.html", "Histórico"),
         ("/categorias/index.html", "Etiquetas"),

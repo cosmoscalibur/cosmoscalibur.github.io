@@ -5,7 +5,7 @@ STOP_RENDERING = runtime.STOP_RENDERING
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 10
-_modified_time = 1499824172.9313648
+_modified_time = 1499824593.6295028
 _enable_loop = True
 _template_filename = 'themes/carpet/templates/tag.tmpl'
 _template_uri = 'tag.tmpl'
@@ -28,24 +28,24 @@ def render_body(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
         __M_locals = __M_dict_builtin(pageargs=pageargs)
-        messages = context.get('messages', UNDEFINED)
-        parent = context.get('parent', UNDEFINED)
-        posts = context.get('posts', UNDEFINED)
-        generate_rss = context.get('generate_rss', UNDEFINED)
-        tag = context.get('tag', UNDEFINED)
-        translations = context.get('translations', UNDEFINED)
-        description = context.get('description', UNDEFINED)
         title = context.get('title', UNDEFINED)
         def extra_head():
             return render_extra_head(context._locals(__M_locals))
-        _link = context.get('_link', UNDEFINED)
-        sorted = context.get('sorted', UNDEFINED)
         len = context.get('len', UNDEFINED)
+        parent = context.get('parent', UNDEFINED)
         kind = context.get('kind', UNDEFINED)
+        _link = context.get('_link', UNDEFINED)
         def content():
             return render_content(context._locals(__M_locals))
-        subcategories = context.get('subcategories', UNDEFINED)
         date_format = context.get('date_format', UNDEFINED)
+        tag = context.get('tag', UNDEFINED)
+        subcategories = context.get('subcategories', UNDEFINED)
+        generate_rss = context.get('generate_rss', UNDEFINED)
+        description = context.get('description', UNDEFINED)
+        messages = context.get('messages', UNDEFINED)
+        posts = context.get('posts', UNDEFINED)
+        sorted = context.get('sorted', UNDEFINED)
+        translations = context.get('translations', UNDEFINED)
         __M_writer = context.writer()
         __M_writer('\n\n')
         if 'parent' not in context._data or not hasattr(context._data['parent'], 'extra_head'):
@@ -66,21 +66,21 @@ def render_body(context,**pageargs):
 def render_content(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
-        messages = context.get('messages', UNDEFINED)
-        posts = context.get('posts', UNDEFINED)
-        generate_rss = context.get('generate_rss', UNDEFINED)
-        tag = context.get('tag', UNDEFINED)
-        translations = context.get('translations', UNDEFINED)
-        description = context.get('description', UNDEFINED)
         title = context.get('title', UNDEFINED)
-        _link = context.get('_link', UNDEFINED)
-        sorted = context.get('sorted', UNDEFINED)
-        def content():
-            return render_content(context)
         len = context.get('len', UNDEFINED)
         kind = context.get('kind', UNDEFINED)
-        subcategories = context.get('subcategories', UNDEFINED)
+        _link = context.get('_link', UNDEFINED)
+        def content():
+            return render_content(context)
         date_format = context.get('date_format', UNDEFINED)
+        subcategories = context.get('subcategories', UNDEFINED)
+        tag = context.get('tag', UNDEFINED)
+        messages = context.get('messages', UNDEFINED)
+        description = context.get('description', UNDEFINED)
+        generate_rss = context.get('generate_rss', UNDEFINED)
+        posts = context.get('posts', UNDEFINED)
+        sorted = context.get('sorted', UNDEFINED)
+        translations = context.get('translations', UNDEFINED)
         __M_writer = context.writer()
         __M_writer('\n<article class="tagpage">\n  <header class="heading">\n    <h1 class="title is-1">')
         __M_writer(filters.html_escape(str(title)))
@@ -143,16 +143,16 @@ def render_content(context,**pageargs):
 def render_extra_head(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
-        parent = context.get('parent', UNDEFINED)
-        generate_rss = context.get('generate_rss', UNDEFINED)
-        tag = context.get('tag', UNDEFINED)
-        translations = context.get('translations', UNDEFINED)
+        len = context.get('len', UNDEFINED)
         def extra_head():
             return render_extra_head(context)
-        _link = context.get('_link', UNDEFINED)
-        sorted = context.get('sorted', UNDEFINED)
-        len = context.get('len', UNDEFINED)
+        parent = context.get('parent', UNDEFINED)
         kind = context.get('kind', UNDEFINED)
+        _link = context.get('_link', UNDEFINED)
+        tag = context.get('tag', UNDEFINED)
+        generate_rss = context.get('generate_rss', UNDEFINED)
+        sorted = context.get('sorted', UNDEFINED)
+        translations = context.get('translations', UNDEFINED)
         __M_writer = context.writer()
         __M_writer('\n    ')
         __M_writer(str(parent.extra_head()))
@@ -183,6 +183,6 @@ def render_extra_head(context,**pageargs):
 
 """
 __M_BEGIN_METADATA
-{"filename": "themes/carpet/templates/tag.tmpl", "source_encoding": "utf-8", "uri": "tag.tmpl", "line_map": {"128": 55, "129": 55, "130": 55, "131": 55, "132": 58, "133": 58, "134": 58, "135": 58, "136": 62, "137": 64, "143": 4, "178": 11, "27": 0, "157": 4, "158": 5, "159": 5, "160": 6, "161": 7, "162": 8, "163": 8, "164": 8, "165": 8, "166": 8, "167": 8, "168": 8, "169": 8, "170": 8, "171": 10, "172": 11, "173": 11, "174": 11, "175": 11, "176": 11, "177": 11, "50": 2, "55": 13, "184": 178, "60": 65, "66": 15, "85": 15, "86": 18, "87": 18, "88": 19, "89": 20, "90": 20, "91": 20, "92": 22, "93": 23, "94": 23, "95": 23, "96": 25, "97": 26, "98": 26, "99": 26, "100": 26, "101": 26, "102": 28, "103": 30, "104": 32, "105": 33, "106": 34, "107": 36, "108": 36, "109": 36, "110": 36, "111": 36, "112": 36, "113": 36, "114": 36, "115": 40, "116": 41, "117": 43, "118": 43, "119": 43, "120": 43, "121": 47, "122": 50, "123": 51, "124": 52, "125": 53, "126": 55, "127": 55}}
+{"line_map": {"128": 55, "129": 55, "130": 55, "131": 55, "132": 58, "133": 58, "134": 58, "135": 58, "136": 62, "137": 64, "143": 4, "178": 11, "27": 0, "157": 4, "158": 5, "159": 5, "160": 6, "161": 7, "162": 8, "163": 8, "164": 8, "165": 8, "166": 8, "167": 8, "168": 8, "169": 8, "170": 8, "171": 10, "172": 11, "173": 11, "174": 11, "175": 11, "176": 11, "177": 11, "50": 2, "55": 13, "184": 178, "60": 65, "66": 15, "85": 15, "86": 18, "87": 18, "88": 19, "89": 20, "90": 20, "91": 20, "92": 22, "93": 23, "94": 23, "95": 23, "96": 25, "97": 26, "98": 26, "99": 26, "100": 26, "101": 26, "102": 28, "103": 30, "104": 32, "105": 33, "106": 34, "107": 36, "108": 36, "109": 36, "110": 36, "111": 36, "112": 36, "113": 36, "114": 36, "115": 40, "116": 41, "117": 43, "118": 43, "119": 43, "120": 43, "121": 47, "122": 50, "123": 51, "124": 52, "125": 53, "126": 55, "127": 55}, "filename": "themes/carpet/templates/tag.tmpl", "uri": "tag.tmpl", "source_encoding": "utf-8"}
 __M_END_METADATA
 """
