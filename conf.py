@@ -26,7 +26,7 @@ SITE_URL = "http://cosmoscalibur.com/"
 # If not set, defaults to SITE_URL
 BASE_URL = "http://cosmoscalibur.com/"
 BLOG_EMAIL = "cosmoscalibur&#64;gmail.com"
-BLOG_DESCRIPTION = "Blog de ciencia, tecnología, cultural y literatura. Unir estos mundos no solo en un sitio sino en una historia." # (translatable)
+BLOG_DESCRIPTION = "Blog de ciencia, tecnología, cultura y literatura. Unir estos mundos no solo en un sitio sino en una historia." # (translatable)
 
 # Nikola is multilingual!
 #
@@ -556,7 +556,7 @@ HIDDEN_CATEGORIES = []
 
 AUTHOR_PAGES_DESCRIPTIONS = {
     DEFAULT_LANG: {
-        "Edward Villegas Pulgarin": "Investigador y divulgador de ciencia por pasión. Por hobby programador linuxero, admirador del cielo y poeta. Me gusta Iron Man y Asimov.",
+        "Edward Villegas Pulgarin": "Amante de la física y magia del universo. A veces escritor inspirado otras programador empedernido. Divulgador, Linuxero, LaTeXero y +ero.",
         },
     }
 
