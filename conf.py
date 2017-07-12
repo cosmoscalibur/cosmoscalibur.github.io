@@ -5,8 +5,6 @@ import time
 
 # !! This is the configuration of Nikola. !! #
 # !!  You should edit it to your liking.  !! #
-
-
 # ! Some settings can be different in different languages.
 # ! A comment stating (translatable) is used to denote those.
 # ! There are two ways to specify a translatable setting:
@@ -144,7 +142,7 @@ NAVIGATION_LINKS = {
         ),
         ("/archivo.html", "Histórico"),
         ("/categorias/index.html", "Etiquetas"),
-        ("/rss.html", "Fuente RSS")
+        ("/rss.xml", "Fuente RSS")
     ),
     # "en": (
     #    ("/archive.html", "Archives"),
