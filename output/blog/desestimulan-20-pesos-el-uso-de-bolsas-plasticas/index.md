@@ -32,16 +32,16 @@ Resulta que esos 20 pesos no se pueden resolver a favor del cliente (aplicando u
 
 Eso lleva a que los 20 pesos los asume el cliente, entregando la moneda de menor valor vigente, 50 pesos, y no puede esperar que se le devuelvan 30 pesos. Luego, se nos cobra 2.5 veces el impuesto realmente.  
 
-\[
+\\[
 50 - 20 = 30 \approx 0 \qquad \text{Nuestros vueltos.}
-\]
+\\]
 
 Así, si nos cobrán 20 pesos de impuesto verde nos estarían "robando" disimuladamente 30 pesos si solo requeríamos de una bolsa. Suponiendo una recolección del impuesto, es simple ver que por cada 5 bolsas sobre las cuales aplique el impuesto, el almacén debe entregar 100 pesos pero habrá ganado 150 pesos (los 30 pesos que no tenía como devolver en cada bolsa).  
 
-\[\begin{eqnarray}
+\\[\begin{eqnarray}
 20 \cdot 5 = 100 & \qquad & \text{Impuesto verde recolectado.} \\
 30 \cdot 5 = 150 & \qquad & \text{Queda para el almácen.}
-\end{eqnarray}\]
+\end{eqnarray}\\]
 
 ## Transacción con otros productos o múltiple bolsa
 
