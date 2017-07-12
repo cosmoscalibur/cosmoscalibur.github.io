@@ -5,7 +5,7 @@ STOP_RENDERING = runtime.STOP_RENDERING
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 10
-_modified_time = 1499824719.7885537
+_modified_time = 1499824813.8779502
 _enable_loop = True
 _template_filename = 'themes/carpet/templates/listing.tmpl'
 _template_uri = 'listing.tmpl'
@@ -32,16 +32,16 @@ def render_body(context,**pageargs):
         __M_locals = __M_dict_builtin(pageargs=pageargs)
         _import_ns = {}
         _mako_get_namespace(context, 'ui')._populate(_import_ns, ['bar'])
+        folders = _import_ns.get('folders', context.get('folders', UNDEFINED))
         code = _import_ns.get('code', context.get('code', UNDEFINED))
-        source_link = _import_ns.get('source_link', context.get('source_link', UNDEFINED))
+        title = _import_ns.get('title', context.get('title', UNDEFINED))
         def content():
             return render_content(context._locals(__M_locals))
-        messages = _import_ns.get('messages', context.get('messages', UNDEFINED))
-        folders = _import_ns.get('folders', context.get('folders', UNDEFINED))
-        ui = _mako_get_namespace(context, 'ui')
+        source_link = _import_ns.get('source_link', context.get('source_link', UNDEFINED))
         files = _import_ns.get('files', context.get('files', UNDEFINED))
+        messages = _import_ns.get('messages', context.get('messages', UNDEFINED))
         crumbs = _import_ns.get('crumbs', context.get('crumbs', UNDEFINED))
-        title = _import_ns.get('title', context.get('title', UNDEFINED))
+        ui = _mako_get_namespace(context, 'ui')
         __M_writer = context.writer()
         __M_writer('\n')
         __M_writer('\n')
@@ -60,16 +60,16 @@ def render_content(context,**pageargs):
     try:
         _import_ns = {}
         _mako_get_namespace(context, 'ui')._populate(_import_ns, ['bar'])
+        folders = _import_ns.get('folders', context.get('folders', UNDEFINED))
         code = _import_ns.get('code', context.get('code', UNDEFINED))
-        source_link = _import_ns.get('source_link', context.get('source_link', UNDEFINED))
+        title = _import_ns.get('title', context.get('title', UNDEFINED))
         def content():
             return render_content(context)
-        messages = _import_ns.get('messages', context.get('messages', UNDEFINED))
-        folders = _import_ns.get('folders', context.get('folders', UNDEFINED))
-        ui = _mako_get_namespace(context, 'ui')
+        source_link = _import_ns.get('source_link', context.get('source_link', UNDEFINED))
         files = _import_ns.get('files', context.get('files', UNDEFINED))
+        messages = _import_ns.get('messages', context.get('messages', UNDEFINED))
         crumbs = _import_ns.get('crumbs', context.get('crumbs', UNDEFINED))
-        title = _import_ns.get('title', context.get('title', UNDEFINED))
+        ui = _mako_get_namespace(context, 'ui')
         __M_writer = context.writer()
         __M_writer('\n')
         __M_writer(str(ui.bar(crumbs)))
@@ -111,6 +111,6 @@ def render_content(context,**pageargs):
 
 """
 __M_BEGIN_METADATA
-{"source_encoding": "utf-8", "line_map": {"74": 4, "75": 5, "76": 5, "77": 7, "78": 8, "79": 10, "80": 11, "81": 11, "82": 11, "83": 11, "84": 11, "85": 13, "86": 14, "87": 15, "88": 15, "89": 15, "90": 15, "91": 15, "92": 17, "29": 0, "94": 21, "95": 22, "96": 22, "97": 22, "98": 23, "99": 24, "100": 25, "101": 25, "102": 25, "93": 20, "104": 28, "105": 29, "106": 29, "103": 25, "46": 2, "47": 3, "112": 106, "52": 32, "23": 3, "58": 4}, "filename": "themes/carpet/templates/listing.tmpl", "uri": "listing.tmpl"}
+{"uri": "listing.tmpl", "line_map": {"74": 4, "75": 5, "76": 5, "77": 7, "78": 8, "79": 10, "80": 11, "81": 11, "82": 11, "83": 11, "84": 11, "85": 13, "86": 14, "87": 15, "88": 15, "89": 15, "90": 15, "91": 15, "92": 17, "29": 0, "94": 21, "95": 22, "96": 22, "97": 22, "98": 23, "99": 24, "100": 25, "101": 25, "102": 25, "93": 20, "104": 28, "105": 29, "106": 29, "103": 25, "46": 2, "47": 3, "112": 106, "52": 32, "23": 3, "58": 4}, "filename": "themes/carpet/templates/listing.tmpl", "source_encoding": "utf-8"}
 __M_END_METADATA
 """

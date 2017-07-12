@@ -5,12 +5,12 @@ STOP_RENDERING = runtime.STOP_RENDERING
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 10
-_modified_time = 1499824719.9458945
+_modified_time = 1499824814.116042
 _enable_loop = True
 _template_filename = 'themes/carpet/templates/gallery.tmpl'
 _template_uri = 'gallery.tmpl'
 _source_encoding = 'utf-8'
-_exports = ['extra_head', 'content', 'sourcelink']
+_exports = ['sourcelink', 'extra_head', 'content']
 
 
 def _mako_get_namespace(context, name):
@@ -20,11 +20,11 @@ def _mako_get_namespace(context, name):
         _mako_generate_namespaces(context)
         return context.namespaces[(__name__, name)]
 def _mako_generate_namespaces(context):
-    ns = runtime.TemplateNamespace('ui', context._clean_inheritance_tokens(), templateuri='crumbs.tmpl', callables=None,  calling_uri=_template_uri)
-    context.namespaces[(__name__, 'ui')] = ns
-
     ns = runtime.TemplateNamespace('comments', context._clean_inheritance_tokens(), templateuri='comments_helper.tmpl', callables=None,  calling_uri=_template_uri)
     context.namespaces[(__name__, 'comments')] = ns
+
+    ns = runtime.TemplateNamespace('ui', context._clean_inheritance_tokens(), templateuri='crumbs.tmpl', callables=None,  calling_uri=_template_uri)
+    context.namespaces[(__name__, 'ui')] = ns
 
 def _mako_inherit(template, context):
     _mako_generate_namespaces(context)
@@ -36,24 +36,24 @@ def render_body(context,**pageargs):
         _import_ns = {}
         _mako_get_namespace(context, 'ui')._populate(_import_ns, ['bar'])
         loop = __M_loop = runtime.LoopStack()
+        folders = _import_ns.get('folders', context.get('folders', UNDEFINED))
+        title = _import_ns.get('title', context.get('title', UNDEFINED))
+        site_has_comments = _import_ns.get('site_has_comments', context.get('site_has_comments', UNDEFINED))
+        def extra_head():
+            return render_extra_head(context._locals(__M_locals))
+        permalink = _import_ns.get('permalink', context.get('permalink', UNDEFINED))
         messages = _import_ns.get('messages', context.get('messages', UNDEFINED))
-        comments = _mako_get_namespace(context, 'comments')
         def sourcelink():
             return render_sourcelink(context._locals(__M_locals))
         ui = _mako_get_namespace(context, 'ui')
-        def extra_head():
-            return render_extra_head(context._locals(__M_locals))
-        parent = _import_ns.get('parent', context.get('parent', UNDEFINED))
-        post = _import_ns.get('post', context.get('post', UNDEFINED))
+        enable_comments = _import_ns.get('enable_comments', context.get('enable_comments', UNDEFINED))
+        photo_array = _import_ns.get('photo_array', context.get('photo_array', UNDEFINED))
         def content():
             return render_content(context._locals(__M_locals))
-        folders = _import_ns.get('folders', context.get('folders', UNDEFINED))
-        permalink = _import_ns.get('permalink', context.get('permalink', UNDEFINED))
+        comments = _mako_get_namespace(context, 'comments')
         crumbs = _import_ns.get('crumbs', context.get('crumbs', UNDEFINED))
-        site_has_comments = _import_ns.get('site_has_comments', context.get('site_has_comments', UNDEFINED))
-        photo_array = _import_ns.get('photo_array', context.get('photo_array', UNDEFINED))
-        title = _import_ns.get('title', context.get('title', UNDEFINED))
-        enable_comments = _import_ns.get('enable_comments', context.get('enable_comments', UNDEFINED))
+        post = _import_ns.get('post', context.get('post', UNDEFINED))
+        parent = _import_ns.get('parent', context.get('parent', UNDEFINED))
         __M_writer = context.writer()
         __M_writer('\n')
         __M_writer('\n')
@@ -73,6 +73,19 @@ def render_body(context,**pageargs):
         
 
         __M_writer('\n')
+        return ''
+    finally:
+        context.caller_stack._pop_frame()
+
+
+def render_sourcelink(context,**pageargs):
+    __M_caller = context.caller_stack._push_frame()
+    try:
+        _import_ns = {}
+        _mako_get_namespace(context, 'ui')._populate(_import_ns, ['bar'])
+        def sourcelink():
+            return render_sourcelink(context)
+        __M_writer = context.writer()
         return ''
     finally:
         context.caller_stack._pop_frame()
@@ -101,18 +114,18 @@ def render_content(context,**pageargs):
         _import_ns = {}
         _mako_get_namespace(context, 'ui')._populate(_import_ns, ['bar'])
         loop = __M_loop = runtime.LoopStack()
-        comments = _mako_get_namespace(context, 'comments')
-        messages = _import_ns.get('messages', context.get('messages', UNDEFINED))
+        folders = _import_ns.get('folders', context.get('folders', UNDEFINED))
+        photo_array = _import_ns.get('photo_array', context.get('photo_array', UNDEFINED))
+        title = _import_ns.get('title', context.get('title', UNDEFINED))
+        site_has_comments = _import_ns.get('site_has_comments', context.get('site_has_comments', UNDEFINED))
         def content():
             return render_content(context)
+        comments = _mako_get_namespace(context, 'comments')
         permalink = _import_ns.get('permalink', context.get('permalink', UNDEFINED))
-        folders = _import_ns.get('folders', context.get('folders', UNDEFINED))
-        ui = _mako_get_namespace(context, 'ui')
+        messages = _import_ns.get('messages', context.get('messages', UNDEFINED))
         crumbs = _import_ns.get('crumbs', context.get('crumbs', UNDEFINED))
-        site_has_comments = _import_ns.get('site_has_comments', context.get('site_has_comments', UNDEFINED))
-        photo_array = _import_ns.get('photo_array', context.get('photo_array', UNDEFINED))
         post = _import_ns.get('post', context.get('post', UNDEFINED))
-        title = _import_ns.get('title', context.get('title', UNDEFINED))
+        ui = _mako_get_namespace(context, 'ui')
         enable_comments = _import_ns.get('enable_comments', context.get('enable_comments', UNDEFINED))
         __M_writer = context.writer()
         __M_writer('\n')
@@ -172,21 +185,8 @@ def render_content(context,**pageargs):
         context.caller_stack._pop_frame()
 
 
-def render_sourcelink(context,**pageargs):
-    __M_caller = context.caller_stack._push_frame()
-    try:
-        _import_ns = {}
-        _mako_get_namespace(context, 'ui')._populate(_import_ns, ['bar'])
-        def sourcelink():
-            return render_sourcelink(context)
-        __M_writer = context.writer()
-        return ''
-    finally:
-        context.caller_stack._pop_frame()
-
-
 """
 __M_BEGIN_METADATA
-{"source_encoding": "utf-8", "line_map": {"128": 16, "129": 20, "130": 21, "131": 22, "132": 23, "133": 29, "134": 29, "135": 29, "136": 29, "137": 29, "138": 29, "139": 34, "140": 36, "141": 37, "142": 38, "145": 39, "146": 43, "147": 43, "148": 43, "149": 43, "150": 47, "23": 4, "152": 50, "153": 50, "26": 3, "155": 53, "156": 57, "154": 53, "158": 60, "159": 60, "32": 0, "162": 64, "163": 87, "164": 88, "165": 89, "166": 90, "167": 90, "168": 91, "169": 91, "151": 47, "157": 57, "58": 2, "59": 3, "60": 4, "65": 5, "175": 5, "70": 93, "75": 98, "81": 95, "90": 95, "91": 96, "92": 96, "98": 7, "188": 175, "118": 7, "119": 8, "120": 8, "121": 10, "122": 11, "123": 11, "124": 11, "125": 13, "126": 14, "127": 16}, "filename": "themes/carpet/templates/gallery.tmpl", "uri": "gallery.tmpl"}
+{"uri": "gallery.tmpl", "line_map": {"131": 7, "132": 8, "133": 8, "134": 10, "135": 11, "136": 11, "137": 11, "138": 13, "139": 14, "140": 16, "141": 16, "142": 20, "143": 21, "144": 22, "145": 23, "146": 29, "147": 29, "148": 29, "149": 29, "150": 29, "23": 3, "152": 34, "153": 36, "26": 4, "155": 38, "154": 37, "158": 39, "159": 43, "32": 0, "161": 43, "162": 43, "163": 47, "164": 47, "165": 50, "166": 50, "167": 53, "168": 53, "169": 57, "170": 57, "171": 60, "172": 60, "175": 64, "176": 87, "177": 88, "178": 89, "179": 90, "180": 90, "181": 91, "182": 91, "58": 2, "59": 3, "151": 29, "65": 5, "70": 93, "75": 98, "60": 4, "81": 5, "94": 95, "188": 182, "103": 95, "104": 96, "105": 96, "111": 7, "160": 43}, "filename": "themes/carpet/templates/gallery.tmpl", "source_encoding": "utf-8"}
 __M_END_METADATA
 """

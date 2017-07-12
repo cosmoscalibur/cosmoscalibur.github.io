@@ -5,12 +5,12 @@ STOP_RENDERING = runtime.STOP_RENDERING
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 10
-_modified_time = 1499824719.68044
+_modified_time = 1499824814.0208013
 _enable_loop = True
 _template_filename = 'themes/carpet/templates/post.tmpl'
 _template_uri = 'post.tmpl'
 _source_encoding = 'utf-8'
-_exports = ['extra_head', 'html_hero_body', 'content']
+_exports = ['html_hero_body', 'content', 'extra_head']
 
 
 
@@ -29,11 +29,11 @@ def _mako_get_namespace(context, name):
         _mako_generate_namespaces(context)
         return context.namespaces[(__name__, name)]
 def _mako_generate_namespaces(context):
-    ns = runtime.TemplateNamespace('comments', context._clean_inheritance_tokens(), templateuri='comments_helper.tmpl', callables=None,  calling_uri=_template_uri)
-    context.namespaces[(__name__, 'comments')] = ns
-
     ns = runtime.TemplateNamespace('helper', context._clean_inheritance_tokens(), templateuri='post_helper.tmpl', callables=None,  calling_uri=_template_uri)
     context.namespaces[(__name__, 'helper')] = ns
+
+    ns = runtime.TemplateNamespace('comments', context._clean_inheritance_tokens(), templateuri='comments_helper.tmpl', callables=None,  calling_uri=_template_uri)
+    context.namespaces[(__name__, 'comments')] = ns
 
     ns = runtime.TemplateNamespace('pheader', context._clean_inheritance_tokens(), templateuri='post_header.tmpl', callables=None,  calling_uri=_template_uri)
     context.namespaces[(__name__, 'pheader')] = ns
@@ -47,20 +47,20 @@ def render_body(context,**pageargs):
         __M_locals = __M_dict_builtin(pageargs=pageargs)
         title = context.get('title', UNDEFINED)
         helper = _mako_get_namespace(context, 'helper')
+        site_has_comments = context.get('site_has_comments', UNDEFINED)
         def content():
             return render_content(context._locals(__M_locals))
-        messages = context.get('messages', UNDEFINED)
-        comments = _mako_get_namespace(context, 'comments')
-        carpet__hero_post_title = context.get('carpet__hero_post_title', UNDEFINED)
         def extra_head():
             return render_extra_head(context._locals(__M_locals))
-        enable_comments = context.get('enable_comments', UNDEFINED)
-        site_has_comments = context.get('site_has_comments', UNDEFINED)
-        parent = context.get('parent', UNDEFINED)
-        post = context.get('post', UNDEFINED)
+        pheader = _mako_get_namespace(context, 'pheader')
         def html_hero_body():
             return render_html_hero_body(context._locals(__M_locals))
-        pheader = _mako_get_namespace(context, 'pheader')
+        comments = _mako_get_namespace(context, 'comments')
+        messages = context.get('messages', UNDEFINED)
+        post = context.get('post', UNDEFINED)
+        enable_comments = context.get('enable_comments', UNDEFINED)
+        carpet__hero_post_title = context.get('carpet__hero_post_title', UNDEFINED)
+        parent = context.get('parent', UNDEFINED)
         __M_writer = context.writer()
         __M_writer('\n')
         __M_writer('\n')
@@ -87,66 +87,14 @@ def render_body(context,**pageargs):
         context.caller_stack._pop_frame()
 
 
-def render_extra_head(context,**pageargs):
-    __M_caller = context.caller_stack._push_frame()
-    try:
-        def extra_head():
-            return render_extra_head(context)
-        post = context.get('post', UNDEFINED)
-        helper = _mako_get_namespace(context, 'helper')
-        parent = context.get('parent', UNDEFINED)
-        __M_writer = context.writer()
-        __M_writer('\n  ')
-        __M_writer(str(parent.extra_head()))
-        __M_writer('\n  \n')
-        if post.meta('keywords'):
-            __M_writer('    <meta name="keywords" content="')
-            __M_writer(filters.html_escape(str(post.meta('keywords'))))
-            __M_writer('">\n')
-        __M_writer('  \n')
-        if post.description():
-            __M_writer('    <meta name="description" content="')
-            __M_writer(filters.html_escape(str(post.description())))
-            __M_writer('">\n')
-        __M_writer('  \n  <meta name="author" content="')
-        __M_writer(filters.html_escape(str(post.author())))
-        __M_writer('">\n  \n')
-        if post.prev_post:
-            __M_writer('    <link rel="prev" href="')
-            __M_writer(str(post.prev_post.permalink()))
-            __M_writer('" title="')
-            __M_writer(filters.html_escape(str(post.prev_post.title())))
-            __M_writer('" type="text/html">\n')
-        __M_writer('  \n')
-        if post.next_post:
-            __M_writer('    <link rel="next" href="')
-            __M_writer(str(post.next_post.permalink()))
-            __M_writer('" title="')
-            __M_writer(filters.html_escape(str(post.next_post.title())))
-            __M_writer('" type="text/html">\n')
-        __M_writer('  \n')
-        if post.is_draft:
-            __M_writer('    <meta name="robots" content="noindex">\n')
-        __M_writer('  \n  ')
-        __M_writer(str(helper.open_graph_metadata(post)))
-        __M_writer('\n  ')
-        __M_writer(str(helper.twitter_card_information(post)))
-        __M_writer('\n  ')
-        __M_writer(str(helper.meta_translations(post)))
-        __M_writer('\n')
-        return ''
-    finally:
-        context.caller_stack._pop_frame()
-
-
 def render_html_hero_body(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
+        post = context.get('post', UNDEFINED)
         def html_hero_body():
             return render_html_hero_body(context)
-        carpet__hero_post_title = context.get('carpet__hero_post_title', UNDEFINED)
-        post = context.get('post', UNDEFINED)
         title = context.get('title', UNDEFINED)
+        carpet__hero_post_title = context.get('carpet__hero_post_title', UNDEFINED)
         parent = context.get('parent', UNDEFINED)
         __M_writer = context.writer()
         __M_writer('\n')
@@ -208,13 +156,13 @@ def render_html_hero_body(context,**pageargs):
 def render_content(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
-        messages = context.get('messages', UNDEFINED)
+        site_has_comments = context.get('site_has_comments', UNDEFINED)
+        helper = _mako_get_namespace(context, 'helper')
         def content():
             return render_content(context)
-        helper = _mako_get_namespace(context, 'helper')
-        comments = _mako_get_namespace(context, 'comments')
         pheader = _mako_get_namespace(context, 'pheader')
-        site_has_comments = context.get('site_has_comments', UNDEFINED)
+        comments = _mako_get_namespace(context, 'comments')
+        messages = context.get('messages', UNDEFINED)
         post = context.get('post', UNDEFINED)
         enable_comments = context.get('enable_comments', UNDEFINED)
         __M_writer = context.writer()
@@ -245,8 +193,60 @@ def render_content(context,**pageargs):
         context.caller_stack._pop_frame()
 
 
+def render_extra_head(context,**pageargs):
+    __M_caller = context.caller_stack._push_frame()
+    try:
+        post = context.get('post', UNDEFINED)
+        helper = _mako_get_namespace(context, 'helper')
+        def extra_head():
+            return render_extra_head(context)
+        parent = context.get('parent', UNDEFINED)
+        __M_writer = context.writer()
+        __M_writer('\n  ')
+        __M_writer(str(parent.extra_head()))
+        __M_writer('\n  \n')
+        if post.meta('keywords'):
+            __M_writer('    <meta name="keywords" content="')
+            __M_writer(filters.html_escape(str(post.meta('keywords'))))
+            __M_writer('">\n')
+        __M_writer('  \n')
+        if post.description():
+            __M_writer('    <meta name="description" content="')
+            __M_writer(filters.html_escape(str(post.description())))
+            __M_writer('">\n')
+        __M_writer('  \n  <meta name="author" content="')
+        __M_writer(filters.html_escape(str(post.author())))
+        __M_writer('">\n  \n')
+        if post.prev_post:
+            __M_writer('    <link rel="prev" href="')
+            __M_writer(str(post.prev_post.permalink()))
+            __M_writer('" title="')
+            __M_writer(filters.html_escape(str(post.prev_post.title())))
+            __M_writer('" type="text/html">\n')
+        __M_writer('  \n')
+        if post.next_post:
+            __M_writer('    <link rel="next" href="')
+            __M_writer(str(post.next_post.permalink()))
+            __M_writer('" title="')
+            __M_writer(filters.html_escape(str(post.next_post.title())))
+            __M_writer('" type="text/html">\n')
+        __M_writer('  \n')
+        if post.is_draft:
+            __M_writer('    <meta name="robots" content="noindex">\n')
+        __M_writer('  \n  ')
+        __M_writer(str(helper.open_graph_metadata(post)))
+        __M_writer('\n  ')
+        __M_writer(str(helper.twitter_card_information(post)))
+        __M_writer('\n  ')
+        __M_writer(str(helper.meta_translations(post)))
+        __M_writer('\n')
+        return ''
+    finally:
+        context.caller_stack._pop_frame()
+
+
 """
 __M_BEGIN_METADATA
-{"source_encoding": "utf-8", "line_map": {"16": 6, "32": 4, "35": 2, "38": 3, "44": 0, "65": 2, "66": 3, "67": 4, "68": 5, "69": 13, "74": 42, "79": 82, "84": 103, "90": 14, "99": 14, "100": 15, "101": 15, "102": 17, "103": 18, "104": 18, "105": 18, "106": 20, "107": 21, "108": 22, "109": 22, "110": 22, "111": 24, "112": 25, "113": 25, "114": 27, "115": 28, "116": 28, "117": 28, "118": 28, "119": 28, "120": 30, "121": 31, "122": 32, "123": 32, "124": 32, "125": 32, "126": 32, "127": 34, "128": 35, "129": 36, "130": 38, "131": 39, "132": 39, "133": 40, "134": 40, "135": 41, "136": 41, "142": 44, "152": 44, "153": 45, "154": 46, "155": 46, "156": 46, "157": 47, "158": 48, "159": 49, "160": 49, "161": 49, "162": 50, "163": 51, "164": 51, "165": 51, "166": 51, "167": 51, "168": 53, "169": 54, "170": 55, "171": 56, "172": 56, "173": 56, "174": 58, "175": 59, "176": 59, "177": 59, "178": 61, "179": 63, "180": 64, "181": 65, "182": 66, "183": 66, "184": 66, "185": 67, "186": 68, "187": 68, "188": 68, "189": 68, "190": 68, "191": 70, "192": 71, "193": 72, "194": 73, "195": 73, "196": 73, "197": 75, "198": 76, "199": 76, "200": 76, "201": 78, "202": 80, "208": 84, "221": 84, "222": 85, "223": 85, "224": 86, "225": 86, "226": 88, "227": 88, "228": 91, "229": 91, "230": 92, "231": 92, "232": 94, "233": 95, "234": 96, "235": 96, "236": 97, "237": 97, "238": 100, "239": 100, "240": 100, "241": 102, "242": 102, "248": 242}, "filename": "themes/carpet/templates/post.tmpl", "uri": "post.tmpl"}
+{"uri": "post.tmpl", "line_map": {"16": 6, "32": 2, "35": 4, "38": 3, "44": 0, "65": 2, "66": 3, "67": 4, "68": 5, "69": 13, "74": 42, "79": 82, "84": 103, "90": 44, "100": 44, "101": 45, "102": 46, "103": 46, "104": 46, "105": 47, "106": 48, "107": 49, "108": 49, "109": 49, "110": 50, "111": 51, "112": 51, "113": 51, "114": 51, "115": 51, "116": 53, "117": 54, "118": 55, "119": 56, "120": 56, "121": 56, "122": 58, "123": 59, "124": 59, "125": 59, "126": 61, "127": 63, "128": 64, "129": 65, "130": 66, "131": 66, "132": 66, "133": 67, "134": 68, "135": 68, "136": 68, "137": 68, "138": 68, "139": 70, "140": 71, "141": 72, "142": 73, "143": 73, "144": 73, "145": 75, "146": 76, "147": 76, "148": 76, "149": 78, "150": 80, "156": 84, "169": 84, "170": 85, "171": 85, "172": 86, "173": 86, "174": 88, "175": 88, "176": 91, "177": 91, "178": 92, "179": 92, "180": 94, "181": 95, "182": 96, "183": 96, "184": 97, "185": 97, "186": 100, "187": 100, "188": 100, "189": 102, "190": 102, "196": 14, "205": 14, "206": 15, "207": 15, "208": 17, "209": 18, "210": 18, "211": 18, "212": 20, "213": 21, "214": 22, "215": 22, "216": 22, "217": 24, "218": 25, "219": 25, "220": 27, "221": 28, "222": 28, "223": 28, "224": 28, "225": 28, "226": 30, "227": 31, "228": 32, "229": 32, "230": 32, "231": 32, "232": 32, "233": 34, "234": 35, "235": 36, "236": 38, "237": 39, "238": 39, "239": 40, "240": 40, "241": 41, "242": 41, "248": 242}, "filename": "themes/carpet/templates/post.tmpl", "source_encoding": "utf-8"}
 __M_END_METADATA
 """

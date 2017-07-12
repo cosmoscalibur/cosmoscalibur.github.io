@@ -19,4 +19,4 @@ Ingeniero físico con habilidades en modelización y simulación de fenómenos f
 Magíster en física aplicada con habilidades en desarrollo, planeación y ejecución de proyectos de investigación básica y aplicada, y vigilancia tecnológica.  
 Experiencia como consultor junior en tecnología, docente universitario y divulgador científico. La labor en divulgación de la ciencia, se ha desempeñado principalmente en astronomía y física. Experiencia en entornos linux como usuario y administrador.  
 
-![Edward Villegas Iron Man](reseña_evillegas.jpg)  
+![Edward Villegas Iron Man](https://scontent.feoh1-1.fna.fbcdn.net/v/t1.0-9/13428609_1085750741501717_2174915764846372241_n.jpg?oh=04ff3850212d8f8444ae9efff4940afd&oe=5A0B0D67)  

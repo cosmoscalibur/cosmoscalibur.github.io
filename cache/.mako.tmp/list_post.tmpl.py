@@ -5,7 +5,7 @@ STOP_RENDERING = runtime.STOP_RENDERING
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 10
-_modified_time = 1499824719.887474
+_modified_time = 1499824814.1550455
 _enable_loop = True
 _template_filename = 'themes/carpet/templates/list_post.tmpl'
 _template_uri = 'list_post.tmpl'
@@ -32,13 +32,13 @@ def render_body(context,**pageargs):
         __M_locals = __M_dict_builtin(pageargs=pageargs)
         _import_ns = {}
         _mako_get_namespace(context, 'archive_nav')._populate(_import_ns, ['*'])
-        messages = _import_ns.get('messages', context.get('messages', UNDEFINED))
+        title = _import_ns.get('title', context.get('title', UNDEFINED))
         def content():
             return render_content(context._locals(__M_locals))
-        posts = _import_ns.get('posts', context.get('posts', UNDEFINED))
         archive_nav = _mako_get_namespace(context, 'archive_nav')
+        posts = _import_ns.get('posts', context.get('posts', UNDEFINED))
         date_format = _import_ns.get('date_format', context.get('date_format', UNDEFINED))
-        title = _import_ns.get('title', context.get('title', UNDEFINED))
+        messages = _import_ns.get('messages', context.get('messages', UNDEFINED))
         __M_writer = context.writer()
         __M_writer('\n')
         __M_writer('\n\n')
@@ -57,13 +57,13 @@ def render_content(context,**pageargs):
     try:
         _import_ns = {}
         _mako_get_namespace(context, 'archive_nav')._populate(_import_ns, ['*'])
-        messages = _import_ns.get('messages', context.get('messages', UNDEFINED))
+        title = _import_ns.get('title', context.get('title', UNDEFINED))
         def content():
             return render_content(context)
-        posts = _import_ns.get('posts', context.get('posts', UNDEFINED))
         archive_nav = _mako_get_namespace(context, 'archive_nav')
+        posts = _import_ns.get('posts', context.get('posts', UNDEFINED))
         date_format = _import_ns.get('date_format', context.get('date_format', UNDEFINED))
-        title = _import_ns.get('title', context.get('title', UNDEFINED))
+        messages = _import_ns.get('messages', context.get('messages', UNDEFINED))
         __M_writer = context.writer()
         __M_writer('\n<article class="listpage">\n  <header class="heading">\n    <h1 class="title is-1">')
         __M_writer(filters.html_escape(str(title)))
@@ -97,6 +97,6 @@ def render_content(context,**pageargs):
 
 """
 __M_BEGIN_METADATA
-{"source_encoding": "utf-8", "line_map": {"68": 5, "69": 8, "70": 8, "71": 10, "72": 10, "73": 11, "74": 12, "75": 13, "76": 14, "77": 16, "78": 16, "79": 16, "80": 16, "81": 16, "82": 16, "83": 19, "84": 19, "85": 19, "86": 19, "23": 3, "88": 24, "89": 25, "90": 25, "91": 25, "92": 27, "29": 0, "98": 92, "43": 2, "44": 3, "49": 28, "55": 5, "87": 23}, "filename": "themes/carpet/templates/list_post.tmpl", "uri": "list_post.tmpl"}
+{"uri": "list_post.tmpl", "line_map": {"68": 5, "69": 8, "70": 8, "71": 10, "72": 10, "73": 11, "74": 12, "75": 13, "76": 14, "77": 16, "78": 16, "79": 16, "80": 16, "81": 16, "82": 16, "83": 19, "84": 19, "85": 19, "86": 19, "23": 3, "88": 24, "89": 25, "90": 25, "91": 25, "92": 27, "29": 0, "98": 92, "43": 2, "44": 3, "49": 28, "55": 5, "87": 23}, "filename": "themes/carpet/templates/list_post.tmpl", "source_encoding": "utf-8"}
 __M_END_METADATA
 """
