@@ -5,7 +5,7 @@ STOP_RENDERING = runtime.STOP_RENDERING
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 10
-_modified_time = 1499824005.2897775
+_modified_time = 1499824172.8326828
 _enable_loop = True
 _template_filename = 'themes/carpet/templates/base.tmpl'
 _template_uri = 'base.tmpl'
@@ -29,17 +29,17 @@ def _mako_get_namespace(context, name):
         _mako_generate_namespaces(context)
         return context.namespaces[(__name__, name)]
 def _mako_generate_namespaces(context):
-    ns = runtime.TemplateNamespace('annotations', context._clean_inheritance_tokens(), templateuri='annotation_helper.tmpl', callables=None,  calling_uri=_template_uri)
-    context.namespaces[(__name__, 'annotations')] = ns
-
     ns = runtime.TemplateNamespace('base', context._clean_inheritance_tokens(), templateuri='base_helper.tmpl', callables=None,  calling_uri=_template_uri)
     context.namespaces[(__name__, 'base')] = ns
+
+    ns = runtime.TemplateNamespace('footer', context._clean_inheritance_tokens(), templateuri='base_footer.tmpl', callables=None,  calling_uri=_template_uri)
+    context.namespaces[(__name__, 'footer')] = ns
 
     ns = runtime.TemplateNamespace('header', context._clean_inheritance_tokens(), templateuri='base_header.tmpl', callables=None,  calling_uri=_template_uri)
     context.namespaces[(__name__, 'header')] = ns
 
-    ns = runtime.TemplateNamespace('footer', context._clean_inheritance_tokens(), templateuri='base_footer.tmpl', callables=None,  calling_uri=_template_uri)
-    context.namespaces[(__name__, 'footer')] = ns
+    ns = runtime.TemplateNamespace('annotations', context._clean_inheritance_tokens(), templateuri='annotation_helper.tmpl', callables=None,  calling_uri=_template_uri)
+    context.namespaces[(__name__, 'annotations')] = ns
 
 def render_body(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
@@ -47,37 +47,37 @@ def render_body(context,**pageargs):
         __M_locals = __M_dict_builtin(pageargs=pageargs)
         _import_ns = {}
         _mako_get_namespace(context, 'base')._populate(_import_ns, ['*'])
-        _mako_get_namespace(context, 'header')._populate(_import_ns, ['*'])
         _mako_get_namespace(context, 'footer')._populate(_import_ns, ['*'])
-        carpet__content_prefix = _import_ns.get('carpet__content_prefix', context.get('carpet__content_prefix', UNDEFINED))
-        carpet__show_hero_title = _import_ns.get('carpet__show_hero_title', context.get('carpet__show_hero_title', UNDEFINED))
-        footer = _mako_get_namespace(context, 'footer')
-        carpet__show_hero = _import_ns.get('carpet__show_hero', context.get('carpet__show_hero', UNDEFINED))
-        blog_description = _import_ns.get('blog_description', context.get('blog_description', UNDEFINED))
+        _mako_get_namespace(context, 'header')._populate(_import_ns, ['*'])
         messages = _import_ns.get('messages', context.get('messages', UNDEFINED))
-        lang = _import_ns.get('lang', context.get('lang', UNDEFINED))
-        carpet__body_prefix = _import_ns.get('carpet__body_prefix', context.get('carpet__body_prefix', UNDEFINED))
-        def content():
-            return render_content(context._locals(__M_locals))
-        body_end = _import_ns.get('body_end', context.get('body_end', UNDEFINED))
+        footer = _mako_get_namespace(context, 'footer')
+        carpet__cookie_expiry = _import_ns.get('carpet__cookie_expiry', context.get('carpet__cookie_expiry', UNDEFINED))
         title = _import_ns.get('title', context.get('title', UNDEFINED))
-        template_hooks = _import_ns.get('template_hooks', context.get('template_hooks', UNDEFINED))
+        base = _mako_get_namespace(context, 'base')
+        carpet__content_prefix = _import_ns.get('carpet__content_prefix', context.get('carpet__content_prefix', UNDEFINED))
         carpet__cookie_path = _import_ns.get('carpet__cookie_path', context.get('carpet__cookie_path', UNDEFINED))
+        carpet__hero_size = _import_ns.get('carpet__hero_size', context.get('carpet__hero_size', UNDEFINED))
+        carpet__body_prefix = _import_ns.get('carpet__body_prefix', context.get('carpet__body_prefix', UNDEFINED))
+        body_end = _import_ns.get('body_end', context.get('body_end', UNDEFINED))
         carpet__cookie_message = _import_ns.get('carpet__cookie_message', context.get('carpet__cookie_message', UNDEFINED))
-        header = _mako_get_namespace(context, 'header')
-        carpet__hero_footer = _import_ns.get('carpet__hero_footer', context.get('carpet__hero_footer', UNDEFINED))
-        def extra_head():
-            return render_extra_head(context._locals(__M_locals))
-        blog_title = _import_ns.get('blog_title', context.get('blog_title', UNDEFINED))
+        carpet__content_suffix = _import_ns.get('carpet__content_suffix', context.get('carpet__content_suffix', UNDEFINED))
         set_locale = _import_ns.get('set_locale', context.get('set_locale', UNDEFINED))
         def extra_js():
             return render_extra_js(context._locals(__M_locals))
-        carpet__content_suffix = _import_ns.get('carpet__content_suffix', context.get('carpet__content_suffix', UNDEFINED))
+        blog_title = _import_ns.get('blog_title', context.get('blog_title', UNDEFINED))
+        carpet__hero_footer = _import_ns.get('carpet__hero_footer', context.get('carpet__hero_footer', UNDEFINED))
+        header = _mako_get_namespace(context, 'header')
+        blog_description = _import_ns.get('blog_description', context.get('blog_description', UNDEFINED))
         def html_hero_body():
             return render_html_hero_body(context._locals(__M_locals))
-        carpet__cookie_expiry = _import_ns.get('carpet__cookie_expiry', context.get('carpet__cookie_expiry', UNDEFINED))
-        base = _mako_get_namespace(context, 'base')
-        carpet__hero_size = _import_ns.get('carpet__hero_size', context.get('carpet__hero_size', UNDEFINED))
+        def extra_head():
+            return render_extra_head(context._locals(__M_locals))
+        template_hooks = _import_ns.get('template_hooks', context.get('template_hooks', UNDEFINED))
+        def content():
+            return render_content(context._locals(__M_locals))
+        carpet__show_hero = _import_ns.get('carpet__show_hero', context.get('carpet__show_hero', UNDEFINED))
+        carpet__show_hero_title = _import_ns.get('carpet__show_hero_title', context.get('carpet__show_hero_title', UNDEFINED))
+        lang = _import_ns.get('lang', context.get('lang', UNDEFINED))
         __M_writer = context.writer()
         __M_writer('\n')
         __M_writer('\n')
@@ -176,8 +176,8 @@ def render_content(context,**pageargs):
     try:
         _import_ns = {}
         _mako_get_namespace(context, 'base')._populate(_import_ns, ['*'])
-        _mako_get_namespace(context, 'header')._populate(_import_ns, ['*'])
         _mako_get_namespace(context, 'footer')._populate(_import_ns, ['*'])
+        _mako_get_namespace(context, 'header')._populate(_import_ns, ['*'])
         def content():
             return render_content(context)
         __M_writer = context.writer()
@@ -191,8 +191,8 @@ def render_extra_head(context,**pageargs):
     try:
         _import_ns = {}
         _mako_get_namespace(context, 'base')._populate(_import_ns, ['*'])
-        _mako_get_namespace(context, 'header')._populate(_import_ns, ['*'])
         _mako_get_namespace(context, 'footer')._populate(_import_ns, ['*'])
+        _mako_get_namespace(context, 'header')._populate(_import_ns, ['*'])
         def extra_head():
             return render_extra_head(context)
         __M_writer = context.writer()
@@ -207,15 +207,15 @@ def render_html_hero_body(context,**pageargs):
     try:
         _import_ns = {}
         _mako_get_namespace(context, 'base')._populate(_import_ns, ['*'])
-        _mako_get_namespace(context, 'header')._populate(_import_ns, ['*'])
         _mako_get_namespace(context, 'footer')._populate(_import_ns, ['*'])
-        title = _import_ns.get('title', context.get('title', UNDEFINED))
+        _mako_get_namespace(context, 'header')._populate(_import_ns, ['*'])
+        blog_title = _import_ns.get('blog_title', context.get('blog_title', UNDEFINED))
+        carpet__show_hero = _import_ns.get('carpet__show_hero', context.get('carpet__show_hero', UNDEFINED))
         def html_hero_body():
             return render_html_hero_body(context)
-        carpet__show_hero = _import_ns.get('carpet__show_hero', context.get('carpet__show_hero', UNDEFINED))
         blog_description = _import_ns.get('blog_description', context.get('blog_description', UNDEFINED))
-        blog_title = _import_ns.get('blog_title', context.get('blog_title', UNDEFINED))
         carpet__show_hero_title = _import_ns.get('carpet__show_hero_title', context.get('carpet__show_hero_title', UNDEFINED))
+        title = _import_ns.get('title', context.get('title', UNDEFINED))
         __M_writer = context.writer()
         __M_writer('\n')
         if carpet__show_hero:
@@ -248,8 +248,8 @@ def render_extra_js(context,**pageargs):
     try:
         _import_ns = {}
         _mako_get_namespace(context, 'base')._populate(_import_ns, ['*'])
-        _mako_get_namespace(context, 'header')._populate(_import_ns, ['*'])
         _mako_get_namespace(context, 'footer')._populate(_import_ns, ['*'])
+        _mako_get_namespace(context, 'header')._populate(_import_ns, ['*'])
         def extra_js():
             return render_extra_js(context)
         __M_writer = context.writer()
@@ -260,6 +260,6 @@ def render_extra_js(context,**pageargs):
 
 """
 __M_BEGIN_METADATA
-{"filename": "themes/carpet/templates/base.tmpl", "source_encoding": "utf-8", "uri": "base.tmpl", "line_map": {"261": 246, "16": 6, "32": 5, "35": 2, "38": 3, "41": 4, "44": 0, "82": 2, "83": 3, "84": 4, "85": 5, "86": 13, "87": 14, "88": 14, "89": 15, "90": 15, "95": 18, "96": 19, "97": 19, "98": 22, "99": 23, "100": 23, "101": 23, "102": 25, "103": 29, "104": 29, "105": 31, "106": 32, "107": 32, "108": 32, "109": 33, "110": 34, "111": 36, "112": 37, "113": 37, "118": 58, "119": 60, "120": 61, "121": 61, "122": 61, "123": 63, "124": 64, "125": 65, "126": 66, "127": 67, "128": 67, "129": 67, "130": 69, "131": 70, "132": 70, "133": 70, "134": 72, "135": 75, "136": 75, "137": 79, "138": 80, "139": 80, "140": 80, "141": 82, "146": 84, "147": 87, "148": 88, "149": 88, "150": 88, "151": 90, "152": 90, "153": 90, "154": 91, "155": 91, "156": 93, "157": 94, "158": 96, "159": 96, "164": 97, "165": 98, "166": 98, "167": 99, "168": 99, "174": 84, "189": 16, "199": 16, "205": 39, "220": 39, "221": 40, "222": 41, "223": 42, "224": 42, "225": 42, "226": 43, "227": 44, "228": 46, "229": 47, "230": 48, "231": 49, "232": 49, "233": 49, "234": 51, "235": 52, "236": 52, "237": 52, "238": 54, "239": 56, "240": 58, "246": 97}}
+{"filename": "themes/carpet/templates/base.tmpl", "source_encoding": "utf-8", "uri": "base.tmpl", "line_map": {"261": 246, "16": 6, "32": 2, "35": 4, "38": 3, "41": 5, "44": 0, "82": 2, "83": 3, "84": 4, "85": 5, "86": 13, "87": 14, "88": 14, "89": 15, "90": 15, "95": 18, "96": 19, "97": 19, "98": 22, "99": 23, "100": 23, "101": 23, "102": 25, "103": 29, "104": 29, "105": 31, "106": 32, "107": 32, "108": 32, "109": 33, "110": 34, "111": 36, "112": 37, "113": 37, "118": 58, "119": 60, "120": 61, "121": 61, "122": 61, "123": 63, "124": 64, "125": 65, "126": 66, "127": 67, "128": 67, "129": 67, "130": 69, "131": 70, "132": 70, "133": 70, "134": 72, "135": 75, "136": 75, "137": 79, "138": 80, "139": 80, "140": 80, "141": 82, "146": 84, "147": 87, "148": 88, "149": 88, "150": 88, "151": 90, "152": 90, "153": 90, "154": 91, "155": 91, "156": 93, "157": 94, "158": 96, "159": 96, "164": 97, "165": 98, "166": 98, "167": 99, "168": 99, "174": 84, "189": 16, "199": 16, "205": 39, "220": 39, "221": 40, "222": 41, "223": 42, "224": 42, "225": 42, "226": 43, "227": 44, "228": 46, "229": 47, "230": 48, "231": 49, "232": 49, "233": 49, "234": 51, "235": 52, "236": 52, "237": 52, "238": 54, "239": 56, "240": 58, "246": 97}}
 __M_END_METADATA
 """
