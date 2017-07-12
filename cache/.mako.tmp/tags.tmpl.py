@@ -5,7 +5,7 @@ STOP_RENDERING = runtime.STOP_RENDERING
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 10
-_modified_time = 1499824593.81373
+_modified_time = 1499824719.9270747
 _enable_loop = True
 _template_filename = 'themes/carpet/templates/tags.tmpl'
 _template_uri = 'tags.tmpl'
@@ -28,15 +28,15 @@ def render_body(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
         __M_locals = __M_dict_builtin(pageargs=pageargs)
-        title = context.get('title', UNDEFINED)
-        len = context.get('len', UNDEFINED)
-        items = context.get('items', UNDEFINED)
+        range = context.get('range', UNDEFINED)
+        messages = context.get('messages', UNDEFINED)
+        cat_items = context.get('cat_items', UNDEFINED)
         def content():
             return render_content(context._locals(__M_locals))
-        cat_items = context.get('cat_items', UNDEFINED)
-        range = context.get('range', UNDEFINED)
+        items = context.get('items', UNDEFINED)
         hidden_tags = context.get('hidden_tags', UNDEFINED)
-        messages = context.get('messages', UNDEFINED)
+        title = context.get('title', UNDEFINED)
+        len = context.get('len', UNDEFINED)
         cat_hierarchy = context.get('cat_hierarchy', UNDEFINED)
         __M_writer = context.writer()
         __M_writer('\n\n')
@@ -53,15 +53,15 @@ def render_body(context,**pageargs):
 def render_content(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
-        title = context.get('title', UNDEFINED)
-        len = context.get('len', UNDEFINED)
-        items = context.get('items', UNDEFINED)
+        range = context.get('range', UNDEFINED)
+        messages = context.get('messages', UNDEFINED)
+        cat_items = context.get('cat_items', UNDEFINED)
         def content():
             return render_content(context)
-        cat_items = context.get('cat_items', UNDEFINED)
-        range = context.get('range', UNDEFINED)
+        items = context.get('items', UNDEFINED)
         hidden_tags = context.get('hidden_tags', UNDEFINED)
-        messages = context.get('messages', UNDEFINED)
+        title = context.get('title', UNDEFINED)
+        len = context.get('len', UNDEFINED)
         cat_hierarchy = context.get('cat_hierarchy', UNDEFINED)
         __M_writer = context.writer()
         __M_writer('\n<article class="tagindex">\n  <header class="heading">\n    <h1 class="title is-1">')
@@ -108,6 +108,6 @@ def render_content(context,**pageargs):
 
 """
 __M_BEGIN_METADATA
-{"line_map": {"67": 4, "68": 7, "69": 7, "70": 11, "71": 12, "72": 13, "73": 13, "74": 13, "75": 15, "76": 16, "77": 17, "78": 19, "79": 19, "80": 19, "81": 19, "82": 19, "83": 20, "84": 21, "85": 23, "86": 24, "87": 25, "88": 26, "89": 30, "90": 31, "27": 0, "92": 35, "93": 38, "94": 39, "95": 40, "96": 41, "97": 42, "98": 42, "91": 35, "100": 42, "101": 42, "102": 45, "103": 47, "42": 2, "109": 103, "47": 50, "99": 42, "53": 4}, "filename": "themes/carpet/templates/tags.tmpl", "uri": "tags.tmpl", "source_encoding": "utf-8"}
+{"source_encoding": "utf-8", "line_map": {"67": 4, "68": 7, "69": 7, "70": 11, "71": 12, "72": 13, "73": 13, "74": 13, "75": 15, "76": 16, "77": 17, "78": 19, "79": 19, "80": 19, "81": 19, "82": 19, "83": 20, "84": 21, "85": 23, "86": 24, "87": 25, "88": 26, "89": 30, "90": 31, "27": 0, "92": 35, "93": 38, "94": 39, "95": 40, "96": 41, "97": 42, "98": 42, "91": 35, "100": 42, "101": 42, "102": 45, "103": 47, "42": 2, "109": 103, "47": 50, "99": 42, "53": 4}, "filename": "themes/carpet/templates/tags.tmpl", "uri": "tags.tmpl"}
 __M_END_METADATA
 """

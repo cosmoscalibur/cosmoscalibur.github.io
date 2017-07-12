@@ -5,12 +5,12 @@ STOP_RENDERING = runtime.STOP_RENDERING
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 10
-_modified_time = 1499824593.7562644
+_modified_time = 1499824719.7624214
 _enable_loop = True
 _template_filename = 'themes/carpet/templates/base_helper.tmpl'
 _template_uri = 'base_helper.tmpl'
 _source_encoding = 'utf-8'
-_exports = ['late_load_css', 'late_load_js', 'html_translations', 'preload_stylesheets', 'html_headstart', 'html_feedlinks', 'html_stylesheets']
+_exports = ['late_load_css', 'html_headstart', 'html_feedlinks', 'preload_stylesheets', 'html_stylesheets', 'late_load_js', 'html_translations']
 
 
 def render_body(context,**pageargs):
@@ -34,10 +34,10 @@ def render_body(context,**pageargs):
 def render_late_load_css(context):
     __M_caller = context.caller_stack._push_frame()
     try:
-        def html_stylesheets():
-            return render_html_stylesheets(context)
         def preload_stylesheets():
             return render_preload_stylesheets(context)
+        def html_stylesheets():
+            return render_html_stylesheets(context)
         __M_writer = context.writer()
         __M_writer('\n  ')
         __M_writer(str(preload_stylesheets()))
@@ -49,106 +49,38 @@ def render_late_load_css(context):
         context.caller_stack._pop_frame()
 
 
-def render_late_load_js(context):
-    __M_caller = context.caller_stack._push_frame()
-    try:
-        social_buttons_code = context.get('social_buttons_code', UNDEFINED)
-        carpet__late_load_css = context.get('carpet__late_load_css', UNDEFINED)
-        __M_writer = context.writer()
-        __M_writer('\n')
-        if carpet__late_load_css:
-            __M_writer('    <script>!function(e){"use strict";var t=function(t,n,r){function o(e){return i.body?e():void setTimeout(function(){o(e)})}function a(){d.addEventListener&&d.removeEventListener("load",a),d.media=r||"all"}var l,i=e.document,d=i.createElement("link");if(n)l=n;else{var s=(i.body||i.getElementsByTagName("head")[0]).childNodes;l=s[s.length-1]}var u=i.styleSheets;d.rel="stylesheet",d.href=t,d.media="only x",o(function(){l.parentNode.insertBefore(d,n?l:l.nextSibling)});var f=function(e){for(var t=d.href,n=u.length;n--;)if(u[n].href===t)return e();setTimeout(function(){f(e)})};return d.addEventListener&&d.addEventListener("load",a),d.onloadcssdefined=f,f(a),d};"undefined"!=typeof exports?exports.loadCSS=t:e.loadCSS=t}("undefined"!=typeof global?global:this),function(e){if(e.loadCSS){var t=loadCSS.relpreload={};if(t.support=function(){try{return e.document.createElement("link").relList.supports("preload")}catch(e){return!1}},t.poly=function(){for(var t=e.document.getElementsByTagName("link"),n=0;n<t.length;n++){var r=t[n];"preload"===r.rel&&"style"===r.getAttribute("as")&&(e.loadCSS(r.href,r),r.rel=null)}},!t.support()){t.poly();var n=e.setInterval(t.poly,300);e.addEventListener&&e.addEventListener("load",function(){t.poly(),e.clearInterval(n)}),e.attachEvent&&e.attachEvent("onload",function(){e.clearInterval(n)})}}}(this);</script>\n')
-        __M_writer('  ')
-        __M_writer(str(social_buttons_code))
-        __M_writer('\n')
-        return ''
-    finally:
-        context.caller_stack._pop_frame()
-
-
-def render_html_translations(context):
-    __M_caller = context.caller_stack._push_frame()
-    try:
-        _link = context.get('_link', UNDEFINED)
-        lang = context.get('lang', UNDEFINED)
-        abs_link = context.get('abs_link', UNDEFINED)
-        messages = context.get('messages', UNDEFINED)
-        sorted = context.get('sorted', UNDEFINED)
-        translations = context.get('translations', UNDEFINED)
-        __M_writer = context.writer()
-        __M_writer('\n<div class="level translations">\n')
-        for langname in sorted(translations):
-            if langname != lang:
-                __M_writer('      <div class="level-item has-text-centered">\n        <a href="')
-                __M_writer(str(abs_link(_link("root", None, langname))))
-                __M_writer('" rel="alternate" hreflang="')
-                __M_writer(str(langname))
-                __M_writer('">')
-                __M_writer(str(messages("LANGUAGE", langname)))
-                __M_writer('</a>\n      </div>\n')
-        __M_writer('</ul>\n')
-        return ''
-    finally:
-        context.caller_stack._pop_frame()
-
-
-def render_preload_stylesheets(context):
-    __M_caller = context.caller_stack._push_frame()
-    try:
-        has_custom_css = context.get('has_custom_css', UNDEFINED)
-        use_cdn = context.get('use_cdn', UNDEFINED)
-        needs_ipython_css = context.get('needs_ipython_css', UNDEFINED)
-        use_bundles = context.get('use_bundles', UNDEFINED)
-        __M_writer = context.writer()
-        __M_writer('\n')
-        if use_bundles:
-            if use_cdn:
-                __M_writer('    <link rel="preload" type="text/css" as="style" onload="this.rel=\'stylesheet\'"\n      href="/assets/css/all.css">\n')
-            else:
-                __M_writer('    <link rel="preload" type="text/css" as="style" onload="this.rel=\'stylesheet\'"\n      href="/assets/css/all-nocdn.css">\n')
-        else:
-            __M_writer('  <link rel="preload" type="text/css" as="style" onload="this.rel=\'stylesheet\'"\n    href="/assets/css/rst.css">\n  <link rel="preload" type="text/css" as="style" onload="this.rel=\'stylesheet\'"\n    href="/assets/css/code.css">\n  <link rel="preload" type="text/css" as="style" onload="this.rel=\'stylesheet\'"\n    href="/assets/css/font-awesome.css">\n  <link rel="preload" type="text/css" as="style" onload="this.rel=\'stylesheet\'"\n    href="/assets/css/styles.css">\n')
-            if has_custom_css:
-                __M_writer('    <link rel="preload" type="text/css" as="style" onload="this.rel=\'stylesheet\'"\n      href="/assets/css/custom.css">\n')
-        if needs_ipython_css:
-            __M_writer('  <link rel="preload" type="text/css" as="style" onload="this.rel=\'stylesheet\'"\n    href="/assets/css/ipython.min.css">\n  <link rel="preload" type="text/css" as="style" onload="this.rel=\'stylesheet\'"\n    href="/assets/css/nikola_ipython.css">\n')
-        return ''
-    finally:
-        context.caller_stack._pop_frame()
-
-
 def render_html_headstart(context):
     __M_caller = context.caller_stack._push_frame()
     try:
-        def html_feedlinks():
-            return render_html_feedlinks(context)
         comment_system = context.get('comment_system', UNDEFINED)
-        use_base_tag = context.get('use_base_tag', UNDEFINED)
-        mathjax_config = context.get('mathjax_config', UNDEFINED)
-        def html_stylesheets():
-            return render_html_stylesheets(context)
-        use_cdn = context.get('use_cdn', UNDEFINED)
         url_type = context.get('url_type', UNDEFINED)
-        is_rtl = context.get('is_rtl', UNDEFINED)
-        prevlink = context.get('prevlink', UNDEFINED)
-        twitter_card = context.get('twitter_card', UNDEFINED)
-        carpet__head_prefix = context.get('carpet__head_prefix', UNDEFINED)
-        blog_title = context.get('blog_title', UNDEFINED)
-        permalink = context.get('permalink', UNDEFINED)
+        comment_system_id = context.get('comment_system_id', UNDEFINED)
         def late_load_css():
             return render_late_load_css(context)
-        title = context.get('title', UNDEFINED)
-        favicons = context.get('favicons', UNDEFINED)
-        comment_system_id = context.get('comment_system_id', UNDEFINED)
-        extra_head_data = context.get('extra_head_data', UNDEFINED)
         abs_link = context.get('abs_link', UNDEFINED)
-        nextlink = context.get('nextlink', UNDEFINED)
-        description = context.get('description', UNDEFINED)
-        url_replacer = context.get('url_replacer', UNDEFINED)
-        lang = context.get('lang', UNDEFINED)
-        carpet__late_load_css = context.get('carpet__late_load_css', UNDEFINED)
-        use_open_graph = context.get('use_open_graph', UNDEFINED)
+        use_base_tag = context.get('use_base_tag', UNDEFINED)
+        twitter_card = context.get('twitter_card', UNDEFINED)
+        is_rtl = context.get('is_rtl', UNDEFINED)
+        prevlink = context.get('prevlink', UNDEFINED)
+        favicons = context.get('favicons', UNDEFINED)
         theme_color = context.get('theme_color', UNDEFINED)
+        extra_head_data = context.get('extra_head_data', UNDEFINED)
+        blog_title = context.get('blog_title', UNDEFINED)
+        def html_stylesheets():
+            return render_html_stylesheets(context)
+        nextlink = context.get('nextlink', UNDEFINED)
+        use_cdn = context.get('use_cdn', UNDEFINED)
+        mathjax_config = context.get('mathjax_config', UNDEFINED)
+        url_replacer = context.get('url_replacer', UNDEFINED)
+        permalink = context.get('permalink', UNDEFINED)
+        carpet__late_load_css = context.get('carpet__late_load_css', UNDEFINED)
+        description = context.get('description', UNDEFINED)
+        use_open_graph = context.get('use_open_graph', UNDEFINED)
+        def html_feedlinks():
+            return render_html_feedlinks(context)
+        lang = context.get('lang', UNDEFINED)
+        title = context.get('title', UNDEFINED)
+        carpet__head_prefix = context.get('carpet__head_prefix', UNDEFINED)
         __M_writer = context.writer()
         __M_writer('\n<!DOCTYPE html>\n<html ')
         __M_writer("prefix='")
@@ -249,12 +181,12 @@ def render_html_headstart(context):
 def render_html_feedlinks(context):
     __M_caller = context.caller_stack._push_frame()
     try:
-        len = context.get('len', UNDEFINED)
-        _link = context.get('_link', UNDEFINED)
-        generate_rss = context.get('generate_rss', UNDEFINED)
-        rss_link = context.get('rss_link', UNDEFINED)
-        generate_atom = context.get('generate_atom', UNDEFINED)
         sorted = context.get('sorted', UNDEFINED)
+        _link = context.get('_link', UNDEFINED)
+        rss_link = context.get('rss_link', UNDEFINED)
+        generate_rss = context.get('generate_rss', UNDEFINED)
+        generate_atom = context.get('generate_atom', UNDEFINED)
+        len = context.get('len', UNDEFINED)
         translations = context.get('translations', UNDEFINED)
         __M_writer = context.writer()
         __M_writer('\n')
@@ -291,13 +223,38 @@ def render_html_feedlinks(context):
         context.caller_stack._pop_frame()
 
 
+def render_preload_stylesheets(context):
+    __M_caller = context.caller_stack._push_frame()
+    try:
+        use_cdn = context.get('use_cdn', UNDEFINED)
+        use_bundles = context.get('use_bundles', UNDEFINED)
+        needs_ipython_css = context.get('needs_ipython_css', UNDEFINED)
+        has_custom_css = context.get('has_custom_css', UNDEFINED)
+        __M_writer = context.writer()
+        __M_writer('\n')
+        if use_bundles:
+            if use_cdn:
+                __M_writer('    <link rel="preload" type="text/css" as="style" onload="this.rel=\'stylesheet\'"\n      href="/assets/css/all.css">\n')
+            else:
+                __M_writer('    <link rel="preload" type="text/css" as="style" onload="this.rel=\'stylesheet\'"\n      href="/assets/css/all-nocdn.css">\n')
+        else:
+            __M_writer('  <link rel="preload" type="text/css" as="style" onload="this.rel=\'stylesheet\'"\n    href="/assets/css/rst.css">\n  <link rel="preload" type="text/css" as="style" onload="this.rel=\'stylesheet\'"\n    href="/assets/css/code.css">\n  <link rel="preload" type="text/css" as="style" onload="this.rel=\'stylesheet\'"\n    href="/assets/css/font-awesome.css">\n  <link rel="preload" type="text/css" as="style" onload="this.rel=\'stylesheet\'"\n    href="/assets/css/styles.css">\n')
+            if has_custom_css:
+                __M_writer('    <link rel="preload" type="text/css" as="style" onload="this.rel=\'stylesheet\'"\n      href="/assets/css/custom.css">\n')
+        if needs_ipython_css:
+            __M_writer('  <link rel="preload" type="text/css" as="style" onload="this.rel=\'stylesheet\'"\n    href="/assets/css/ipython.min.css">\n  <link rel="preload" type="text/css" as="style" onload="this.rel=\'stylesheet\'"\n    href="/assets/css/nikola_ipython.css">\n')
+        return ''
+    finally:
+        context.caller_stack._pop_frame()
+
+
 def render_html_stylesheets(context):
     __M_caller = context.caller_stack._push_frame()
     try:
-        has_custom_css = context.get('has_custom_css', UNDEFINED)
         use_cdn = context.get('use_cdn', UNDEFINED)
-        needs_ipython_css = context.get('needs_ipython_css', UNDEFINED)
         use_bundles = context.get('use_bundles', UNDEFINED)
+        needs_ipython_css = context.get('needs_ipython_css', UNDEFINED)
+        has_custom_css = context.get('has_custom_css', UNDEFINED)
         __M_writer = context.writer()
         __M_writer('\n')
         if use_bundles:
@@ -316,8 +273,51 @@ def render_html_stylesheets(context):
         context.caller_stack._pop_frame()
 
 
+def render_late_load_js(context):
+    __M_caller = context.caller_stack._push_frame()
+    try:
+        carpet__late_load_css = context.get('carpet__late_load_css', UNDEFINED)
+        social_buttons_code = context.get('social_buttons_code', UNDEFINED)
+        __M_writer = context.writer()
+        __M_writer('\n')
+        if carpet__late_load_css:
+            __M_writer('    <script>!function(e){"use strict";var t=function(t,n,r){function o(e){return i.body?e():void setTimeout(function(){o(e)})}function a(){d.addEventListener&&d.removeEventListener("load",a),d.media=r||"all"}var l,i=e.document,d=i.createElement("link");if(n)l=n;else{var s=(i.body||i.getElementsByTagName("head")[0]).childNodes;l=s[s.length-1]}var u=i.styleSheets;d.rel="stylesheet",d.href=t,d.media="only x",o(function(){l.parentNode.insertBefore(d,n?l:l.nextSibling)});var f=function(e){for(var t=d.href,n=u.length;n--;)if(u[n].href===t)return e();setTimeout(function(){f(e)})};return d.addEventListener&&d.addEventListener("load",a),d.onloadcssdefined=f,f(a),d};"undefined"!=typeof exports?exports.loadCSS=t:e.loadCSS=t}("undefined"!=typeof global?global:this),function(e){if(e.loadCSS){var t=loadCSS.relpreload={};if(t.support=function(){try{return e.document.createElement("link").relList.supports("preload")}catch(e){return!1}},t.poly=function(){for(var t=e.document.getElementsByTagName("link"),n=0;n<t.length;n++){var r=t[n];"preload"===r.rel&&"style"===r.getAttribute("as")&&(e.loadCSS(r.href,r),r.rel=null)}},!t.support()){t.poly();var n=e.setInterval(t.poly,300);e.addEventListener&&e.addEventListener("load",function(){t.poly(),e.clearInterval(n)}),e.attachEvent&&e.attachEvent("onload",function(){e.clearInterval(n)})}}}(this);</script>\n')
+        __M_writer('  ')
+        __M_writer(str(social_buttons_code))
+        __M_writer('\n')
+        return ''
+    finally:
+        context.caller_stack._pop_frame()
+
+
+def render_html_translations(context):
+    __M_caller = context.caller_stack._push_frame()
+    try:
+        sorted = context.get('sorted', UNDEFINED)
+        messages = context.get('messages', UNDEFINED)
+        _link = context.get('_link', UNDEFINED)
+        abs_link = context.get('abs_link', UNDEFINED)
+        lang = context.get('lang', UNDEFINED)
+        translations = context.get('translations', UNDEFINED)
+        __M_writer = context.writer()
+        __M_writer('\n<div class="level translations">\n')
+        for langname in sorted(translations):
+            if langname != lang:
+                __M_writer('      <div class="level-item has-text-centered">\n        <a href="')
+                __M_writer(str(abs_link(_link("root", None, langname))))
+                __M_writer('" rel="alternate" hreflang="')
+                __M_writer(str(langname))
+                __M_writer('">')
+                __M_writer(str(messages("LANGUAGE", langname)))
+                __M_writer('</a>\n      </div>\n')
+        __M_writer('</ul>\n')
+        return ''
+    finally:
+        context.caller_stack._pop_frame()
+
+
 """
 __M_BEGIN_METADATA
-{"line_map": {"16": 0, "21": 2, "22": 82, "23": 89, "24": 120, "25": 142, "26": 165, "27": 177, "28": 184, "34": 84, "42": 84, "43": 85, "44": 85, "45": 87, "46": 87, "52": 179, "58": 179, "59": 180, "60": 181, "61": 183, "62": 183, "63": 183, "69": 167, "79": 167, "80": 169, "81": 170, "82": 171, "83": 172, "84": 172, "85": 172, "86": 172, "87": 172, "88": 172, "89": 176, "95": 91, "103": 91, "104": 92, "105": 93, "106": 94, "107": 96, "108": 97, "109": 100, "110": 101, "111": 109, "112": 110, "113": 114, "114": 115, "120": 3, "153": 3, "154": 6, "155": 7, "156": 8, "157": 10, "158": 11, "159": 13, "160": 14, "161": 15, "162": 17, "163": 18, "164": 21, "165": 21, "166": 21, "167": 23, "168": 24, "169": 24, "170": 24, "171": 26, "172": 28, "173": 29, "174": 29, "175": 29, "176": 31, "177": 32, "178": 33, "179": 33, "180": 33, "181": 35, "182": 38, "183": 39, "184": 39, "185": 39, "186": 40, "187": 41, "188": 41, "189": 41, "190": 41, "191": 41, "192": 43, "193": 44, "194": 44, "195": 46, "196": 46, "197": 47, "198": 47, "199": 49, "200": 50, "201": 51, "202": 51, "203": 51, "204": 51, "205": 51, "206": 51, "207": 51, "208": 54, "209": 55, "210": 56, "211": 56, "212": 56, "213": 58, "214": 59, "215": 60, "216": 60, "217": 60, "218": 62, "219": 63, "220": 64, "221": 64, "222": 64, "223": 66, "224": 67, "225": 68, "226": 68, "227": 68, "228": 70, "229": 71, "230": 71, "231": 72, "232": 73, "233": 74, "234": 75, "235": 75, "236": 75, "237": 77, "238": 78, "239": 78, "240": 79, "241": 80, "242": 80, "243": 80, "249": 144, "260": 144, "261": 145, "262": 146, "263": 146, "264": 146, "265": 147, "266": 148, "267": 149, "268": 150, "269": 150, "270": 150, "271": 150, "272": 150, "273": 152, "274": 153, "275": 153, "276": 153, "277": 156, "278": 157, "279": 158, "280": 159, "281": 159, "282": 159, "283": 159, "284": 159, "285": 161, "286": 162, "287": 162, "288": 162, "294": 122, "302": 122, "303": 123, "304": 124, "305": 125, "306": 126, "307": 127, "308": 129, "309": 130, "310": 134, "311": 135, "312": 138, "313": 139, "319": 313}, "filename": "themes/carpet/templates/base_helper.tmpl", "uri": "base_helper.tmpl", "source_encoding": "utf-8"}
+{"source_encoding": "utf-8", "line_map": {"16": 0, "21": 2, "22": 82, "23": 89, "24": 120, "25": 142, "26": 165, "27": 177, "28": 184, "34": 84, "42": 84, "43": 85, "44": 85, "45": 87, "46": 87, "52": 3, "85": 3, "86": 6, "87": 7, "88": 8, "89": 10, "90": 11, "91": 13, "92": 14, "93": 15, "94": 17, "95": 18, "96": 21, "97": 21, "98": 21, "99": 23, "100": 24, "101": 24, "102": 24, "103": 26, "104": 28, "105": 29, "106": 29, "107": 29, "108": 31, "109": 32, "110": 33, "111": 33, "112": 33, "113": 35, "114": 38, "115": 39, "116": 39, "117": 39, "118": 40, "119": 41, "120": 41, "121": 41, "122": 41, "123": 41, "124": 43, "125": 44, "126": 44, "127": 46, "128": 46, "129": 47, "130": 47, "131": 49, "132": 50, "133": 51, "134": 51, "135": 51, "136": 51, "137": 51, "138": 51, "139": 51, "140": 54, "141": 55, "142": 56, "143": 56, "144": 56, "145": 58, "146": 59, "147": 60, "148": 60, "149": 60, "150": 62, "151": 63, "152": 64, "153": 64, "154": 64, "155": 66, "156": 67, "157": 68, "158": 68, "159": 68, "160": 70, "161": 71, "162": 71, "163": 72, "164": 73, "165": 74, "166": 75, "167": 75, "168": 75, "169": 77, "170": 78, "171": 78, "172": 79, "173": 80, "174": 80, "175": 80, "181": 144, "192": 144, "193": 145, "194": 146, "195": 146, "196": 146, "197": 147, "198": 148, "199": 149, "200": 150, "201": 150, "202": 150, "203": 150, "204": 150, "205": 152, "206": 153, "207": 153, "208": 153, "209": 156, "210": 157, "211": 158, "212": 159, "213": 159, "214": 159, "215": 159, "216": 159, "217": 161, "218": 162, "219": 162, "220": 162, "226": 91, "234": 91, "235": 92, "236": 93, "237": 94, "238": 96, "239": 97, "240": 100, "241": 101, "242": 109, "243": 110, "244": 114, "245": 115, "251": 122, "259": 122, "260": 123, "261": 124, "262": 125, "263": 126, "264": 127, "265": 129, "266": 130, "267": 134, "268": 135, "269": 138, "270": 139, "276": 179, "282": 179, "283": 180, "284": 181, "285": 183, "286": 183, "287": 183, "293": 167, "303": 167, "304": 169, "305": 170, "306": 171, "307": 172, "308": 172, "309": 172, "310": 172, "311": 172, "312": 172, "313": 176, "319": 313}, "filename": "themes/carpet/templates/base_helper.tmpl", "uri": "base_helper.tmpl"}
 __M_END_METADATA
 """

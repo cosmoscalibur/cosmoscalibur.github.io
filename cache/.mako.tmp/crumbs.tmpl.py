@@ -5,7 +5,7 @@ STOP_RENDERING = runtime.STOP_RENDERING
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 10
-_modified_time = 1499824593.9689155
+_modified_time = 1499824719.8215668
 _enable_loop = True
 _template_filename = 'themes/carpet/templates/crumbs.tmpl'
 _template_uri = 'crumbs.tmpl'
@@ -29,9 +29,9 @@ def render_bar(context,crumbs):
     __M_caller = context.caller_stack._push_frame()
     try:
         loop = __M_loop = runtime.LoopStack()
+        index_file = context.get('index_file', UNDEFINED)
         carpet__breadcrumb_home = context.get('carpet__breadcrumb_home', UNDEFINED)
         carpet__breadcrumb_separator = context.get('carpet__breadcrumb_separator', UNDEFINED)
-        index_file = context.get('index_file', UNDEFINED)
         __M_writer = context.writer()
         __M_writer('\n')
         if crumbs:
@@ -73,6 +73,6 @@ def render_bar(context,crumbs):
 
 """
 __M_BEGIN_METADATA
-{"line_map": {"64": 29, "65": 31, "68": 34, "74": 68, "16": 0, "21": 2, "22": 37, "28": 3, "36": 3, "37": 4, "38": 5, "39": 7, "42": 8, "43": 9, "44": 10, "45": 11, "46": 12, "47": 13, "48": 13, "49": 17, "50": 18, "51": 19, "52": 20, "53": 21, "54": 21, "55": 26, "56": 27, "57": 27, "58": 27, "59": 28, "60": 29, "61": 29, "62": 29, "63": 29}, "filename": "themes/carpet/templates/crumbs.tmpl", "uri": "crumbs.tmpl", "source_encoding": "utf-8"}
+{"source_encoding": "utf-8", "line_map": {"64": 29, "65": 31, "68": 34, "74": 68, "16": 0, "21": 2, "22": 37, "28": 3, "36": 3, "37": 4, "38": 5, "39": 7, "42": 8, "43": 9, "44": 10, "45": 11, "46": 12, "47": 13, "48": 13, "49": 17, "50": 18, "51": 19, "52": 20, "53": 21, "54": 21, "55": 26, "56": 27, "57": 27, "58": 27, "59": 28, "60": 29, "61": 29, "62": 29, "63": 29}, "filename": "themes/carpet/templates/crumbs.tmpl", "uri": "crumbs.tmpl"}
 __M_END_METADATA
 """

@@ -5,12 +5,12 @@ STOP_RENDERING = runtime.STOP_RENDERING
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 10
-_modified_time = 1499824593.7724802
+_modified_time = 1499824719.776548
 _enable_loop = True
 _template_filename = 'themes/carpet/templates/base_header.tmpl'
 _template_uri = 'base_header.tmpl'
 _source_encoding = 'utf-8'
-_exports = ['html_site_title', 'html_navigation_links', 'html_header', 'html_search', 'html_translation_header', 'html_site_header']
+_exports = ['html_search', 'html_header', 'html_site_header', 'html_navigation_links', 'html_translation_header', 'html_site_title']
 
 
 def _mako_get_namespace(context, name):
@@ -42,33 +42,88 @@ def render_body(context,**pageargs):
         context.caller_stack._pop_frame()
 
 
-def render_html_site_title(context):
+def render_html_search(context):
     __M_caller = context.caller_stack._push_frame()
     try:
         _import_ns = {}
         _mako_get_namespace(context, 'base')._populate(_import_ns, ['*'])
-        _link = _import_ns.get('_link', context.get('_link', UNDEFINED))
-        lang = _import_ns.get('lang', context.get('lang', UNDEFINED))
-        def html_site_header():
-            return render_html_site_header(context)
-        carpet__unlink_blog_brand = _import_ns.get('carpet__unlink_blog_brand', context.get('carpet__unlink_blog_brand', UNDEFINED))
-        abs_link = _import_ns.get('abs_link', context.get('abs_link', UNDEFINED))
+        search_form = _import_ns.get('search_form', context.get('search_form', UNDEFINED))
+        __M_writer = context.writer()
+        __M_writer('\n')
+        if search_form:
+            __M_writer('  <section class="hero is-primary">\n    <div class="hero-body">\n      <div class="container">\n        <div class="content searchform" role="search">  \n          ')
+            __M_writer(str(search_form))
+            __M_writer('\n        </div>\n      </div>\n    </div>\n  </section>\n')
+        return ''
+    finally:
+        context.caller_stack._pop_frame()
+
+
+def render_html_header(context):
+    __M_caller = context.caller_stack._push_frame()
+    try:
+        _import_ns = {}
+        _mako_get_namespace(context, 'base')._populate(_import_ns, ['*'])
+        show_blog_title = _import_ns.get('show_blog_title', context.get('show_blog_title', UNDEFINED))
+        def html_navigation_links():
+            return render_html_navigation_links(context)
+        def html_translation_header():
+            return render_html_translation_header(context)
+        logo_url = _import_ns.get('logo_url', context.get('logo_url', UNDEFINED))
+        translations = _import_ns.get('translations', context.get('translations', UNDEFINED))
+        template_hooks = _import_ns.get('template_hooks', context.get('template_hooks', UNDEFINED))
+        len = _import_ns.get('len', context.get('len', UNDEFINED))
+        def html_site_title():
+            return render_html_site_title(context)
+        __M_writer = context.writer()
+        __M_writer('\n<div class="hero-head">\n  <header  id="header" class="nav">\n    <div class="container">\n')
+        if logo_url or show_blog_title or len(translations) > 1:
+            __M_writer('      <div class="nav-left">\n        ')
+            __M_writer(str(html_site_title()))
+            __M_writer('\n        ')
+            __M_writer(str(html_translation_header()))
+            __M_writer('\n      </div>\n')
+        __M_writer('      ')
+        __M_writer(str(html_navigation_links()))
+        __M_writer('\n      ')
+        __M_writer(str(template_hooks['page_header']()))
+        __M_writer('\n    </div>\n  </header>\n</div>\n')
+        return ''
+    finally:
+        context.caller_stack._pop_frame()
+
+
+def render_html_site_header(context):
+    __M_caller = context.caller_stack._push_frame()
+    try:
+        _import_ns = {}
+        _mako_get_namespace(context, 'base')._populate(_import_ns, ['*'])
+        logo_url = _import_ns.get('logo_url', context.get('logo_url', UNDEFINED))
+        show_blog_title = _import_ns.get('show_blog_title', context.get('show_blog_title', UNDEFINED))
         blog_title = _import_ns.get('blog_title', context.get('blog_title', UNDEFINED))
         __M_writer = context.writer()
-        __M_writer('\n<div class="nav-item is-brand">\n  <h1 id="brand" class="site-header">\n')
-        if carpet__unlink_blog_brand:
-            __M_writer('      ')
-            __M_writer(str(html_site_header()))
-            __M_writer('\n')
-        else:
-            __M_writer('      <a href="')
-            __M_writer(str(abs_link(_link("root", None, lang))))
-            __M_writer('" title="')
+        __M_writer('\n')
+        if logo_url or show_blog_title:
+            __M_writer('  <span class="level is-mobile">\n')
+        __M_writer('\n')
+        if logo_url:
+            __M_writer('  <span class="level-item image is-24x24 site-image">\n    <img id="logo" class="site-logo" src="')
+            __M_writer(str(logo_url))
+            __M_writer('" alt="')
             __M_writer(filters.html_escape(str(blog_title)))
-            __M_writer('" rel="home">\n        ')
-            __M_writer(str(html_site_header()))
-            __M_writer('\n      </a>\n')
-        __M_writer('  </h1>\n</div>\n')
+            __M_writer('">\n  </span>\n')
+        __M_writer('\n')
+        if show_blog_title:
+            __M_writer('  <span id="blog-title" class="level-item site-title">')
+            __M_writer(filters.html_escape(str(blog_title)))
+            __M_writer('</span>\n')
+        elif logo_url:
+            __M_writer('  <span id="blog-title" class="level-item site-title visuallyhidden">')
+            __M_writer(filters.html_escape(str(blog_title)))
+            __M_writer('</span>\n')
+        __M_writer('\n')
+        if logo_url or show_blog_title:
+            __M_writer('  </span>\n')
         return ''
     finally:
         context.caller_stack._pop_frame()
@@ -79,14 +134,14 @@ def render_html_navigation_links(context):
     try:
         _import_ns = {}
         _mako_get_namespace(context, 'base')._populate(_import_ns, ['*'])
-        isinstance = _import_ns.get('isinstance', context.get('isinstance', UNDEFINED))
-        permalink = _import_ns.get('permalink', context.get('permalink', UNDEFINED))
-        template_hooks = _import_ns.get('template_hooks', context.get('template_hooks', UNDEFINED))
-        rel_link = _import_ns.get('rel_link', context.get('rel_link', UNDEFINED))
-        messages = _import_ns.get('messages', context.get('messages', UNDEFINED))
-        navigation_links = _import_ns.get('navigation_links', context.get('navigation_links', UNDEFINED))
-        lang = _import_ns.get('lang', context.get('lang', UNDEFINED))
         tuple = _import_ns.get('tuple', context.get('tuple', UNDEFINED))
+        messages = _import_ns.get('messages', context.get('messages', UNDEFINED))
+        rel_link = _import_ns.get('rel_link', context.get('rel_link', UNDEFINED))
+        permalink = _import_ns.get('permalink', context.get('permalink', UNDEFINED))
+        navigation_links = _import_ns.get('navigation_links', context.get('navigation_links', UNDEFINED))
+        template_hooks = _import_ns.get('template_hooks', context.get('template_hooks', UNDEFINED))
+        lang = _import_ns.get('lang', context.get('lang', UNDEFINED))
+        isinstance = _import_ns.get('isinstance', context.get('isinstance', UNDEFINED))
         __M_writer = context.writer()
         __M_writer('\n<!-- This "nav-toggle" hamburger menu is only visible on mobile -->\n<!-- You need JavaScript to toggle the "is-active" class on "nav-menu" -->\n<span id="nav-toggle-burger" class="nav-toggle">\n  <span></span>\n  <span></span>\n  <span></span>\n</span>\n<div id="menu" class="nav-right nav-menu">\n')
         for url, text in navigation_links[lang]:
@@ -141,66 +196,15 @@ def render_html_navigation_links(context):
         context.caller_stack._pop_frame()
 
 
-def render_html_header(context):
-    __M_caller = context.caller_stack._push_frame()
-    try:
-        _import_ns = {}
-        _mako_get_namespace(context, 'base')._populate(_import_ns, ['*'])
-        len = _import_ns.get('len', context.get('len', UNDEFINED))
-        template_hooks = _import_ns.get('template_hooks', context.get('template_hooks', UNDEFINED))
-        def html_site_title():
-            return render_html_site_title(context)
-        def html_navigation_links():
-            return render_html_navigation_links(context)
-        logo_url = _import_ns.get('logo_url', context.get('logo_url', UNDEFINED))
-        def html_translation_header():
-            return render_html_translation_header(context)
-        translations = _import_ns.get('translations', context.get('translations', UNDEFINED))
-        show_blog_title = _import_ns.get('show_blog_title', context.get('show_blog_title', UNDEFINED))
-        __M_writer = context.writer()
-        __M_writer('\n<div class="hero-head">\n  <header  id="header" class="nav">\n    <div class="container">\n')
-        if logo_url or show_blog_title or len(translations) > 1:
-            __M_writer('      <div class="nav-left">\n        ')
-            __M_writer(str(html_site_title()))
-            __M_writer('\n        ')
-            __M_writer(str(html_translation_header()))
-            __M_writer('\n      </div>\n')
-        __M_writer('      ')
-        __M_writer(str(html_navigation_links()))
-        __M_writer('\n      ')
-        __M_writer(str(template_hooks['page_header']()))
-        __M_writer('\n    </div>\n  </header>\n</div>\n')
-        return ''
-    finally:
-        context.caller_stack._pop_frame()
-
-
-def render_html_search(context):
-    __M_caller = context.caller_stack._push_frame()
-    try:
-        _import_ns = {}
-        _mako_get_namespace(context, 'base')._populate(_import_ns, ['*'])
-        search_form = _import_ns.get('search_form', context.get('search_form', UNDEFINED))
-        __M_writer = context.writer()
-        __M_writer('\n')
-        if search_form:
-            __M_writer('  <section class="hero is-primary">\n    <div class="hero-body">\n      <div class="container">\n        <div class="content searchform" role="search">  \n          ')
-            __M_writer(str(search_form))
-            __M_writer('\n        </div>\n      </div>\n    </div>\n  </section>\n')
-        return ''
-    finally:
-        context.caller_stack._pop_frame()
-
-
 def render_html_translation_header(context):
     __M_caller = context.caller_stack._push_frame()
     try:
         _import_ns = {}
         _mako_get_namespace(context, 'base')._populate(_import_ns, ['*'])
+        base = _mako_get_namespace(context, 'base')
         messages = _import_ns.get('messages', context.get('messages', UNDEFINED))
         len = _import_ns.get('len', context.get('len', UNDEFINED))
         translations = _import_ns.get('translations', context.get('translations', UNDEFINED))
-        base = _mako_get_namespace(context, 'base')
         __M_writer = context.writer()
         __M_writer('\n')
         if len(translations) > 1:
@@ -214,37 +218,33 @@ def render_html_translation_header(context):
         context.caller_stack._pop_frame()
 
 
-def render_html_site_header(context):
+def render_html_site_title(context):
     __M_caller = context.caller_stack._push_frame()
     try:
         _import_ns = {}
         _mako_get_namespace(context, 'base')._populate(_import_ns, ['*'])
-        logo_url = _import_ns.get('logo_url', context.get('logo_url', UNDEFINED))
+        carpet__unlink_blog_brand = _import_ns.get('carpet__unlink_blog_brand', context.get('carpet__unlink_blog_brand', UNDEFINED))
+        _link = _import_ns.get('_link', context.get('_link', UNDEFINED))
+        lang = _import_ns.get('lang', context.get('lang', UNDEFINED))
+        abs_link = _import_ns.get('abs_link', context.get('abs_link', UNDEFINED))
         blog_title = _import_ns.get('blog_title', context.get('blog_title', UNDEFINED))
-        show_blog_title = _import_ns.get('show_blog_title', context.get('show_blog_title', UNDEFINED))
+        def html_site_header():
+            return render_html_site_header(context)
         __M_writer = context.writer()
-        __M_writer('\n')
-        if logo_url or show_blog_title:
-            __M_writer('  <span class="level is-mobile">\n')
-        __M_writer('\n')
-        if logo_url:
-            __M_writer('  <span class="level-item image is-24x24 site-image">\n    <img id="logo" class="site-logo" src="')
-            __M_writer(str(logo_url))
-            __M_writer('" alt="')
+        __M_writer('\n<div class="nav-item is-brand">\n  <h1 id="brand" class="site-header">\n')
+        if carpet__unlink_blog_brand:
+            __M_writer('      ')
+            __M_writer(str(html_site_header()))
+            __M_writer('\n')
+        else:
+            __M_writer('      <a href="')
+            __M_writer(str(abs_link(_link("root", None, lang))))
+            __M_writer('" title="')
             __M_writer(filters.html_escape(str(blog_title)))
-            __M_writer('">\n  </span>\n')
-        __M_writer('\n')
-        if show_blog_title:
-            __M_writer('  <span id="blog-title" class="level-item site-title">')
-            __M_writer(filters.html_escape(str(blog_title)))
-            __M_writer('</span>\n')
-        elif logo_url:
-            __M_writer('  <span id="blog-title" class="level-item site-title visuallyhidden">')
-            __M_writer(filters.html_escape(str(blog_title)))
-            __M_writer('</span>\n')
-        __M_writer('\n')
-        if logo_url or show_blog_title:
-            __M_writer('  </span>\n')
+            __M_writer('" rel="home">\n        ')
+            __M_writer(str(html_site_header()))
+            __M_writer('\n      </a>\n')
+        __M_writer('  </h1>\n</div>\n')
         return ''
     finally:
         context.caller_stack._pop_frame()
@@ -252,6 +252,6 @@ def render_html_site_header(context):
 
 """
 __M_BEGIN_METADATA
-{"line_map": {"23": 2, "26": 0, "33": 2, "34": 19, "35": 33, "36": 55, "37": 69, "38": 113, "39": 122, "45": 57, "58": 57, "59": 60, "60": 61, "61": 61, "62": 61, "63": 62, "64": 63, "65": 63, "66": 63, "67": 63, "68": 63, "69": 64, "70": 64, "71": 67, "77": 71, "91": 71, "92": 80, "93": 81, "94": 82, "95": 82, "96": 82, "97": 83, "98": 84, "99": 85, "100": 85, "101": 85, "102": 85, "103": 85, "104": 85, "105": 85, "106": 85, "107": 85, "108": 86, "109": 87, "110": 87, "111": 87, "112": 87, "113": 87, "114": 87, "115": 87, "116": 90, "117": 91, "118": 92, "119": 92, "120": 92, "121": 92, "122": 92, "123": 92, "124": 92, "125": 92, "126": 92, "127": 93, "128": 94, "129": 94, "130": 94, "131": 94, "132": 94, "133": 94, "134": 94, "135": 98, "136": 98, "137": 99, "138": 99, "144": 4, "161": 4, "162": 8, "163": 9, "164": 10, "165": 10, "166": 11, "167": 11, "168": 14, "169": 14, "170": 14, "171": 15, "172": 15, "178": 21, "185": 21, "186": 22, "187": 23, "188": 27, "189": 27, "195": 115, "205": 115, "206": 116, "207": 117, "208": 118, "209": 118, "210": 119, "211": 119, "217": 35, "226": 35, "227": 36, "228": 37, "229": 39, "230": 40, "231": 41, "232": 42, "233": 42, "234": 42, "235": 42, "236": 45, "237": 46, "238": 47, "239": 47, "240": 47, "241": 48, "242": 49, "243": 49, "244": 49, "245": 51, "246": 52, "247": 53, "253": 247}, "filename": "themes/carpet/templates/base_header.tmpl", "uri": "base_header.tmpl", "source_encoding": "utf-8"}
+{"source_encoding": "utf-8", "line_map": {"23": 2, "26": 0, "33": 2, "34": 19, "35": 33, "36": 55, "37": 69, "38": 113, "39": 122, "45": 21, "52": 21, "53": 22, "54": 23, "55": 27, "56": 27, "62": 4, "79": 4, "80": 8, "81": 9, "82": 10, "83": 10, "84": 11, "85": 11, "86": 14, "87": 14, "88": 14, "89": 15, "90": 15, "96": 35, "105": 35, "106": 36, "107": 37, "108": 39, "109": 40, "110": 41, "111": 42, "112": 42, "113": 42, "114": 42, "115": 45, "116": 46, "117": 47, "118": 47, "119": 47, "120": 48, "121": 49, "122": 49, "123": 49, "124": 51, "125": 52, "126": 53, "132": 71, "146": 71, "147": 80, "148": 81, "149": 82, "150": 82, "151": 82, "152": 83, "153": 84, "154": 85, "155": 85, "156": 85, "157": 85, "158": 85, "159": 85, "160": 85, "161": 85, "162": 85, "163": 86, "164": 87, "165": 87, "166": 87, "167": 87, "168": 87, "169": 87, "170": 87, "171": 90, "172": 91, "173": 92, "174": 92, "175": 92, "176": 92, "177": 92, "178": 92, "179": 92, "180": 92, "181": 92, "182": 93, "183": 94, "184": 94, "185": 94, "186": 94, "187": 94, "188": 94, "189": 94, "190": 98, "191": 98, "192": 99, "193": 99, "199": 115, "209": 115, "210": 116, "211": 117, "212": 118, "213": 118, "214": 119, "215": 119, "221": 57, "234": 57, "235": 60, "236": 61, "237": 61, "238": 61, "239": 62, "240": 63, "241": 63, "242": 63, "243": 63, "244": 63, "245": 64, "246": 64, "247": 67, "253": 247}, "filename": "themes/carpet/templates/base_header.tmpl", "uri": "base_header.tmpl"}
 __M_END_METADATA
 """
