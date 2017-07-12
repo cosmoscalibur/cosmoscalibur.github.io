@@ -5,9 +5,9 @@ STOP_RENDERING = runtime.STOP_RENDERING
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 10
-_modified_time = 1499823164.7504592
+_modified_time = 1499824005.4387944
 _enable_loop = True
-_template_filename = '/usr/local/lib/python3.5/dist-packages/nikola/data/themes/base/templates/tags.tmpl'
+_template_filename = 'themes/carpet/templates/tags.tmpl'
 _template_uri = 'tags.tmpl'
 _source_encoding = 'utf-8'
 _exports = ['content']
@@ -28,15 +28,15 @@ def render_body(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
         __M_locals = __M_dict_builtin(pageargs=pageargs)
-        hidden_tags = context.get('hidden_tags', UNDEFINED)
         len = context.get('len', UNDEFINED)
+        hidden_tags = context.get('hidden_tags', UNDEFINED)
+        items = context.get('items', UNDEFINED)
         messages = context.get('messages', UNDEFINED)
+        range = context.get('range', UNDEFINED)
         def content():
             return render_content(context._locals(__M_locals))
         cat_hierarchy = context.get('cat_hierarchy', UNDEFINED)
-        items = context.get('items', UNDEFINED)
         title = context.get('title', UNDEFINED)
-        range = context.get('range', UNDEFINED)
         cat_items = context.get('cat_items', UNDEFINED)
         __M_writer = context.writer()
         __M_writer('\n\n')
@@ -53,54 +53,54 @@ def render_body(context,**pageargs):
 def render_content(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
-        hidden_tags = context.get('hidden_tags', UNDEFINED)
         len = context.get('len', UNDEFINED)
+        hidden_tags = context.get('hidden_tags', UNDEFINED)
+        items = context.get('items', UNDEFINED)
         messages = context.get('messages', UNDEFINED)
+        range = context.get('range', UNDEFINED)
         def content():
             return render_content(context)
         cat_hierarchy = context.get('cat_hierarchy', UNDEFINED)
-        items = context.get('items', UNDEFINED)
         title = context.get('title', UNDEFINED)
-        range = context.get('range', UNDEFINED)
         cat_items = context.get('cat_items', UNDEFINED)
         __M_writer = context.writer()
-        __M_writer('\n<article class="tagindex">\n    <header>\n        <h1>')
+        __M_writer('\n<article class="tagindex">\n  <header class="heading">\n    <h1 class="title is-1">')
         __M_writer(filters.html_escape(str(title)))
-        __M_writer('</h1>\n    </header>\n')
+        __M_writer('</h1>\n  </header>\n  <div class="columns">\n    <div class="column">\n')
         if cat_items:
             if items:
-                __M_writer('            <h2>')
+                __M_writer('      <h2 class="title is-2">')
                 __M_writer(str(messages("Categories")))
                 __M_writer('</h2>\n')
             for text, full_name, path, link, indent_levels, indent_change_before, indent_change_after in cat_hierarchy:
                 for i in range(indent_change_before):
-                    __M_writer('                <ul class="postlist">\n')
-                __M_writer('            <li><a class="reference" href="')
+                    __M_writer('        <ul class="postlist">\n')
+                __M_writer('          <li><a class="reference" href="')
                 __M_writer(str(link))
                 __M_writer('">')
                 __M_writer(str(text))
                 __M_writer('</a>\n')
                 if indent_change_after <= 0:
-                    __M_writer('                </li>\n')
+                    __M_writer('          </li>\n')
                 for i in range(-indent_change_after):
-                    __M_writer('                </ul>\n')
+                    __M_writer('        </ul>\n')
                     if i + 1 < len(indent_levels):
-                        __M_writer('                    </li>\n')
+                        __M_writer('          </li>\n')
             if items:
-                __M_writer('            <h2>')
+                __M_writer('    </div>\n  </div>\n  <div class="columns">\n    <div class="column">      \n      <h2 class="title is-2">')
                 __M_writer(str(messages("Tags")))
                 __M_writer('</h2>\n')
         if items:
             __M_writer('        <ul class="postlist">\n')
             for text, link in items:
                 if text not in hidden_tags:
-                    __M_writer('                <li><a class="reference listtitle" href="')
+                    __M_writer('            <li><a class="reference listtitle" href="')
                     __M_writer(str(link))
                     __M_writer('">')
                     __M_writer(filters.html_escape(str(text)))
                     __M_writer('</a></li>\n')
             __M_writer('        </ul>\n')
-        __M_writer('</article>\n')
+        __M_writer('    </div>\n  </div>\n</article>\n')
         return ''
     finally:
         context.caller_stack._pop_frame()
@@ -108,6 +108,6 @@ def render_content(context,**pageargs):
 
 """
 __M_BEGIN_METADATA
-{"filename": "/usr/local/lib/python3.5/dist-packages/nikola/data/themes/base/templates/tags.tmpl", "uri": "tags.tmpl", "source_encoding": "utf-8", "line_map": {"67": 4, "68": 7, "69": 7, "70": 9, "71": 10, "72": 11, "73": 11, "74": 11, "75": 13, "76": 14, "77": 15, "78": 17, "79": 17, "80": 17, "81": 17, "82": 17, "83": 18, "84": 19, "85": 21, "86": 22, "87": 23, "88": 24, "89": 28, "90": 29, "27": 0, "92": 29, "93": 32, "94": 33, "95": 34, "96": 35, "97": 36, "98": 36, "91": 29, "100": 36, "101": 36, "102": 39, "103": 41, "42": 2, "109": 103, "47": 42, "99": 36, "53": 4}}
+{"filename": "themes/carpet/templates/tags.tmpl", "source_encoding": "utf-8", "uri": "tags.tmpl", "line_map": {"67": 4, "68": 7, "69": 7, "70": 11, "71": 12, "72": 13, "73": 13, "74": 13, "75": 15, "76": 16, "77": 17, "78": 19, "79": 19, "80": 19, "81": 19, "82": 19, "83": 20, "84": 21, "85": 23, "86": 24, "87": 25, "88": 26, "89": 30, "90": 31, "27": 0, "92": 35, "93": 38, "94": 39, "95": 40, "96": 41, "97": 42, "98": 42, "91": 35, "100": 42, "101": 42, "102": 45, "103": 47, "42": 2, "109": 103, "47": 50, "99": 42, "53": 4}}
 __M_END_METADATA
 """
