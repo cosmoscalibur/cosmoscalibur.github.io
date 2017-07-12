@@ -2,7 +2,7 @@
 .. title: ¿Desestimulan 20 pesos el uso de bolsas plásticas?
 .. slug: desestimulan-20-pesos-el-uso-de-bolsas-plasticas
 .. date: 2017-07-12 10:32:52 UTC-05:00
-.. tags: Impuesto verde,Bolsas plásticas,Colombia,Medio ambiente
+.. tags: Impuesto verde,Bolsas plásticas,Colombia,Medio ambiente,mathjax
 .. category: Opinión
 .. link:
 .. description: Opinión personal sobre la afección del impuesto verde sobre las bolsas plásticas en Colombia
