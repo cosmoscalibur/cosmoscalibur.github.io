@@ -5,21 +5,12 @@ STOP_RENDERING = runtime.STOP_RENDERING
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 10
-_modified_time = 1499824813.8988113
+_modified_time = 1499825576.7241383
 _enable_loop = True
-_template_filename = 'themes/carpet/templates/base.tmpl'
+_template_filename = '/usr/local/lib/python3.5/dist-packages/nikola/data/themes/bootstrap3/templates/base.tmpl'
 _template_uri = 'base.tmpl'
 _source_encoding = 'utf-8'
-_exports = ['html_hero_body', 'content', 'extra_head', 'extra_js']
-
-
-
-import re
-def lower(text):
-  # remove all non-alphabet chars from string
-  regex = re.compile('[^a-zA-Z0-9]')
-  result = regex.sub('', text)
-  return result.lower()
+_exports = ['belowtitle', 'sourcelink', 'content', 'extra_js', 'extra_head']
 
 
 def _mako_get_namespace(context, name):
@@ -29,14 +20,8 @@ def _mako_get_namespace(context, name):
         _mako_generate_namespaces(context)
         return context.namespaces[(__name__, name)]
 def _mako_generate_namespaces(context):
-    ns = runtime.TemplateNamespace('annotations', context._clean_inheritance_tokens(), templateuri='annotation_helper.tmpl', callables=None,  calling_uri=_template_uri)
-    context.namespaces[(__name__, 'annotations')] = ns
-
-    ns = runtime.TemplateNamespace('footer', context._clean_inheritance_tokens(), templateuri='base_footer.tmpl', callables=None,  calling_uri=_template_uri)
-    context.namespaces[(__name__, 'footer')] = ns
-
-    ns = runtime.TemplateNamespace('header', context._clean_inheritance_tokens(), templateuri='base_header.tmpl', callables=None,  calling_uri=_template_uri)
-    context.namespaces[(__name__, 'header')] = ns
+    ns = runtime.TemplateNamespace('notes', context._clean_inheritance_tokens(), templateuri='annotation_helper.tmpl', callables=None,  calling_uri=_template_uri)
+    context.namespaces[(__name__, 'notes')] = ns
 
     ns = runtime.TemplateNamespace('base', context._clean_inheritance_tokens(), templateuri='base_helper.tmpl', callables=None,  calling_uri=_template_uri)
     context.namespaces[(__name__, 'base')] = ns
@@ -46,42 +31,41 @@ def render_body(context,**pageargs):
     try:
         __M_locals = __M_dict_builtin(pageargs=pageargs)
         _import_ns = {}
-        _mako_get_namespace(context, 'footer')._populate(_import_ns, ['*'])
-        _mako_get_namespace(context, 'header')._populate(_import_ns, ['*'])
+        _mako_get_namespace(context, 'notes')._populate(_import_ns, ['*'])
         _mako_get_namespace(context, 'base')._populate(_import_ns, ['*'])
-        blog_description = _import_ns.get('blog_description', context.get('blog_description', UNDEFINED))
-        carpet__cookie_expiry = _import_ns.get('carpet__cookie_expiry', context.get('carpet__cookie_expiry', UNDEFINED))
-        carpet__hero_size = _import_ns.get('carpet__hero_size', context.get('carpet__hero_size', UNDEFINED))
-        title = _import_ns.get('title', context.get('title', UNDEFINED))
+        show_blog_title = _import_ns.get('show_blog_title', context.get('show_blog_title', UNDEFINED))
+        _link = _import_ns.get('_link', context.get('_link', UNDEFINED))
         def extra_head():
             return render_extra_head(context._locals(__M_locals))
-        carpet__show_hero = _import_ns.get('carpet__show_hero', context.get('carpet__show_hero', UNDEFINED))
-        set_locale = _import_ns.get('set_locale', context.get('set_locale', UNDEFINED))
-        carpet__content_suffix = _import_ns.get('carpet__content_suffix', context.get('carpet__content_suffix', UNDEFINED))
+        def belowtitle():
+            return render_belowtitle(context._locals(__M_locals))
+        logo_url = _import_ns.get('logo_url', context.get('logo_url', UNDEFINED))
+        body_end = _import_ns.get('body_end', context.get('body_end', UNDEFINED))
+        show_sourcelink = _import_ns.get('show_sourcelink', context.get('show_sourcelink', UNDEFINED))
+        annotations = _import_ns.get('annotations', context.get('annotations', UNDEFINED))
+        translations = _import_ns.get('translations', context.get('translations', UNDEFINED))
+        notes = _mako_get_namespace(context, 'notes')
+        date_fanciness = _import_ns.get('date_fanciness', context.get('date_fanciness', UNDEFINED))
+        def sourcelink():
+            return render_sourcelink(context._locals(__M_locals))
         messages = _import_ns.get('messages', context.get('messages', UNDEFINED))
-        footer = _mako_get_namespace(context, 'footer')
-        header = _mako_get_namespace(context, 'header')
-        lang = _import_ns.get('lang', context.get('lang', UNDEFINED))
-        carpet__body_prefix = _import_ns.get('carpet__body_prefix', context.get('carpet__body_prefix', UNDEFINED))
+        base = _mako_get_namespace(context, 'base')
+        js_date_format = _import_ns.get('js_date_format', context.get('js_date_format', UNDEFINED))
+        abs_link = _import_ns.get('abs_link', context.get('abs_link', UNDEFINED))
         blog_title = _import_ns.get('blog_title', context.get('blog_title', UNDEFINED))
-        carpet__hero_footer = _import_ns.get('carpet__hero_footer', context.get('carpet__hero_footer', UNDEFINED))
-        carpet__cookie_message = _import_ns.get('carpet__cookie_message', context.get('carpet__cookie_message', UNDEFINED))
+        template_hooks = _import_ns.get('template_hooks', context.get('template_hooks', UNDEFINED))
+        search_form = _import_ns.get('search_form', context.get('search_form', UNDEFINED))
+        lang = _import_ns.get('lang', context.get('lang', UNDEFINED))
         def content():
             return render_content(context._locals(__M_locals))
-        def html_hero_body():
-            return render_html_hero_body(context._locals(__M_locals))
-        base = _mako_get_namespace(context, 'base')
-        carpet__cookie_path = _import_ns.get('carpet__cookie_path', context.get('carpet__cookie_path', UNDEFINED))
+        len = _import_ns.get('len', context.get('len', UNDEFINED))
         def extra_js():
             return render_extra_js(context._locals(__M_locals))
-        carpet__show_hero_title = _import_ns.get('carpet__show_hero_title', context.get('carpet__show_hero_title', UNDEFINED))
-        template_hooks = _import_ns.get('template_hooks', context.get('template_hooks', UNDEFINED))
-        body_end = _import_ns.get('body_end', context.get('body_end', UNDEFINED))
-        carpet__content_prefix = _import_ns.get('carpet__content_prefix', context.get('carpet__content_prefix', UNDEFINED))
+        set_locale = _import_ns.get('set_locale', context.get('set_locale', UNDEFINED))
+        post = _import_ns.get('post', context.get('post', UNDEFINED))
+        content_footer = _import_ns.get('content_footer', context.get('content_footer', UNDEFINED))
+        momentjs_locales = _import_ns.get('momentjs_locales', context.get('momentjs_locales', UNDEFINED))
         __M_writer = context.writer()
-        __M_writer('\n')
-        __M_writer('\n')
-        __M_writer('\n')
         __M_writer('\n')
         __M_writer('\n')
         __M_writer(str(set_locale(lang)))
@@ -94,74 +78,81 @@ def render_body(context,**pageargs):
 
         __M_writer('\n')
         __M_writer(str(template_hooks['extra_head']()))
-        __M_writer('\n</head>\n<body>\n')
-        if carpet__body_prefix:
-            __M_writer('  ')
-            __M_writer(str(carpet__body_prefix))
-            __M_writer('\n')
-        __M_writer('<script type="text/javascript">\n  // Detect JS support\n  document.body.className = document.body.className + " js_enabled";\n</script>\n<a href="#content" class="sr-only sr-only-focusable">')
+        __M_writer('\n</head>\n<body>\n<a href="#content" class="sr-only sr-only-focusable">')
         __M_writer(str(messages("Skip to main content")))
-        __M_writer('</a>\n<div id="container">\n')
-        if carpet__hero_size:
-            __M_writer('    <section class="hero is-primary ')
-            __M_writer(str(carpet__hero_size))
-            __M_writer('">\n')
-        else:
-            __M_writer('    <section class="hero is-primary">\n')
-        __M_writer('    <!-- Hero header: will stick at the top -->\n    ')
-        __M_writer(str(header.html_header()))
-        __M_writer('\n    <!-- Hero content: will be in the middle -->\n    ')
-        if 'parent' not in context._data or not hasattr(context._data['parent'], 'html_hero_body'):
-            context['self'].html_hero_body(**pageargs)
+        __M_writer('</a>\n\n<!-- Menubar -->\n\n<nav class="navbar navbar-inverse navbar-static-top">\n    <div class="container"><!-- This keeps the margins nice -->\n        <div class="navbar-header">\n            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-navbar" aria-controls="bs-navbar" aria-expanded="false">\n            <span class="sr-only">')
+        __M_writer(str(messages("Toggle navigation")))
+        __M_writer('</span>\n            <span class="icon-bar"></span>\n            <span class="icon-bar"></span>\n            <span class="icon-bar"></span>\n            </button>\n            <a class="navbar-brand" href="')
+        __M_writer(str(abs_link(_link("root", None, lang))))
+        __M_writer('">\n')
+        if logo_url:
+            __M_writer('                <img src="')
+            __M_writer(str(logo_url))
+            __M_writer('" alt="')
+            __M_writer(filters.html_escape(str(blog_title)))
+            __M_writer('" id="logo">\n')
+        __M_writer('\n')
+        if show_blog_title:
+            __M_writer('                <span id="blog-title">')
+            __M_writer(filters.html_escape(str(blog_title)))
+            __M_writer('</span>\n')
+        __M_writer('            </a>\n        </div><!-- /.navbar-header -->\n        <div class="collapse navbar-collapse" id="bs-navbar" aria-expanded="false">\n            <ul class="nav navbar-nav">\n                ')
+        __M_writer(str(base.html_navigation_links()))
+        __M_writer('\n                ')
+        __M_writer(str(template_hooks['menu']()))
+        __M_writer('\n            </ul>\n')
+        if search_form:
+            __M_writer('                ')
+            __M_writer(str(search_form))
+            __M_writer('\n')
+        __M_writer('\n            <ul class="nav navbar-nav navbar-right">\n                ')
+        if 'parent' not in context._data or not hasattr(context._data['parent'], 'belowtitle'):
+            context['self'].belowtitle(**pageargs)
         
 
-        __M_writer('\n    <!-- Hero footer: will stick at the bottom -->\n')
-        if carpet__hero_footer:
-            __M_writer('      ')
-            __M_writer(str(carpet__hero_footer))
+        __M_writer('\n')
+        if show_sourcelink:
+            __M_writer('                    ')
+            if 'parent' not in context._data or not hasattr(context._data['parent'], 'sourcelink'):
+                context['self'].sourcelink(**pageargs)
+            
+
             __M_writer('\n')
-        __M_writer('  </section>\n')
-        if carpet__cookie_message:
-            __M_writer('  <div id="cookie-message" class="section section-cookie"\n')
-            if carpet__cookie_path:
-                __M_writer('      data-cookie-path="')
-                __M_writer(filters.html_escape(str(carpet__cookie_path)))
-                __M_writer('"\n')
-            if carpet__cookie_expiry:
-                __M_writer('      data-cookie-expiry="')
-                __M_writer(filters.html_escape(str(carpet__cookie_expiry)))
-                __M_writer('"\n')
-            __M_writer('  >\n    <div class="notification">\n      <button id="cookie-close" class="delete"></button>\n      ')
-            __M_writer(str(carpet__cookie_message))
-            __M_writer('\n    </div>\n  </div>\n')
-        if carpet__content_prefix:
-            __M_writer('    ')
-            __M_writer(str(carpet__content_prefix))
-            __M_writer('\n')
-        __M_writer('  <main id="content" class="section section-main">\n    <div class="container">\n      ')
+        __M_writer('                ')
+        __M_writer(str(template_hooks['menu_alt']()))
+        __M_writer('\n            </ul>\n        </div><!-- /.navbar-collapse -->\n    </div><!-- /.container -->\n</nav>\n\n<!-- End of Menubar -->\n\n<div class="container" id="content" role="main">\n    <div class="body-content">\n        <!--Body content-->\n        <div class="row">\n            ')
+        __M_writer(str(template_hooks['page_header']()))
+        __M_writer('\n            ')
         if 'parent' not in context._data or not hasattr(context._data['parent'], 'content'):
             context['self'].content(**pageargs)
         
 
-        __M_writer('\n    </div>\n  </main>\n')
-        if carpet__content_suffix:
-            __M_writer('    ')
-            __M_writer(str(carpet__content_suffix))
-            __M_writer('\n')
-        __M_writer('  ')
-        __M_writer(str(header.html_search()))
-        __M_writer('\n  ')
-        __M_writer(str(footer.html_footer()))
-        __M_writer('\n</div>\n')
-        if carpet__cookie_message:
-            __M_writer('<script async src="/assets/js/cookie-message.js"></script>\n')
+        __M_writer('\n        </div>\n        <!--End of body content-->\n\n        <footer id="footer">\n            ')
+        __M_writer(str(content_footer))
+        __M_writer('\n            ')
+        __M_writer(str(template_hooks['page_footer']()))
+        __M_writer('\n        </footer>\n    </div>\n</div>\n\n')
         __M_writer(str(base.late_load_js()))
-        __M_writer('\n')
+        __M_writer('\n    <script>$(\'a.image-reference:not(.islink) img:not(.islink)\').parent().colorbox({rel:"gal",maxWidth:"100%",maxHeight:"100%",scalePhotos:true});</script>\n    <!-- fancy dates -->\n    <script>\n    moment.locale("')
+        __M_writer(str(momentjs_locales[lang]))
+        __M_writer('");\n    fancydates(')
+        __M_writer(str(date_fanciness))
+        __M_writer(', ')
+        __M_writer(str(js_date_format))
+        __M_writer(');\n    </script>\n    <!-- end fancy dates -->\n    ')
         if 'parent' not in context._data or not hasattr(context._data['parent'], 'extra_js'):
             context['self'].extra_js(**pageargs)
         
 
         __M_writer('\n')
+        if annotations and post and not post.meta('noannotations'):
+            __M_writer('        ')
+            __M_writer(str(notes.code()))
+            __M_writer('\n')
+        elif not annotations and post and post.meta('annotations'):
+            __M_writer('        ')
+            __M_writer(str(notes.code()))
+            __M_writer('\n')
         __M_writer(str(body_end))
         __M_writer('\n')
         __M_writer(str(template_hooks['body_end']()))
@@ -171,42 +162,38 @@ def render_body(context,**pageargs):
         context.caller_stack._pop_frame()
 
 
-def render_html_hero_body(context,**pageargs):
+def render_belowtitle(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
         _import_ns = {}
-        _mako_get_namespace(context, 'footer')._populate(_import_ns, ['*'])
-        _mako_get_namespace(context, 'header')._populate(_import_ns, ['*'])
+        _mako_get_namespace(context, 'notes')._populate(_import_ns, ['*'])
         _mako_get_namespace(context, 'base')._populate(_import_ns, ['*'])
-        blog_description = _import_ns.get('blog_description', context.get('blog_description', UNDEFINED))
-        title = _import_ns.get('title', context.get('title', UNDEFINED))
-        blog_title = _import_ns.get('blog_title', context.get('blog_title', UNDEFINED))
-        carpet__show_hero = _import_ns.get('carpet__show_hero', context.get('carpet__show_hero', UNDEFINED))
-        def html_hero_body():
-            return render_html_hero_body(context)
-        carpet__show_hero_title = _import_ns.get('carpet__show_hero_title', context.get('carpet__show_hero_title', UNDEFINED))
+        def belowtitle():
+            return render_belowtitle(context)
+        translations = _import_ns.get('translations', context.get('translations', UNDEFINED))
+        len = _import_ns.get('len', context.get('len', UNDEFINED))
+        base = _mako_get_namespace(context, 'base')
         __M_writer = context.writer()
         __M_writer('\n')
-        if carpet__show_hero:
-            if title:
-                __M_writer('          <div class="hero-body hero-')
-                __M_writer(filters.trim(filters.html_escape(lower(str(title)))))
-                __M_writer('">\n')
-            else:
-                __M_writer('          <div class="hero-body">\n')
-            if carpet__show_hero_title:
-                __M_writer('          <div class="container has-text-centered">\n')
-                if blog_title:
-                    __M_writer('              <p class="title">')
-                    __M_writer(filters.html_escape(str(blog_title)))
-                    __M_writer('</p>\n')
-                if blog_description:
-                    __M_writer('              <p class="subtitle">')
-                    __M_writer(filters.html_escape(str(blog_description)))
-                    __M_writer('</p>\n')
-                __M_writer('          </div>\n')
-            __M_writer('        </div>\n')
-        __M_writer('    ')
+        if len(translations) > 1:
+            __M_writer('                    <li>')
+            __M_writer(str(base.html_translations()))
+            __M_writer('</li>\n')
+        __M_writer('                ')
+        return ''
+    finally:
+        context.caller_stack._pop_frame()
+
+
+def render_sourcelink(context,**pageargs):
+    __M_caller = context.caller_stack._push_frame()
+    try:
+        _import_ns = {}
+        _mako_get_namespace(context, 'notes')._populate(_import_ns, ['*'])
+        _mako_get_namespace(context, 'base')._populate(_import_ns, ['*'])
+        def sourcelink():
+            return render_sourcelink(context)
+        __M_writer = context.writer()
         return ''
     finally:
         context.caller_stack._pop_frame()
@@ -216,11 +203,24 @@ def render_content(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
         _import_ns = {}
-        _mako_get_namespace(context, 'footer')._populate(_import_ns, ['*'])
-        _mako_get_namespace(context, 'header')._populate(_import_ns, ['*'])
+        _mako_get_namespace(context, 'notes')._populate(_import_ns, ['*'])
         _mako_get_namespace(context, 'base')._populate(_import_ns, ['*'])
         def content():
             return render_content(context)
+        __M_writer = context.writer()
+        return ''
+    finally:
+        context.caller_stack._pop_frame()
+
+
+def render_extra_js(context,**pageargs):
+    __M_caller = context.caller_stack._push_frame()
+    try:
+        _import_ns = {}
+        _mako_get_namespace(context, 'notes')._populate(_import_ns, ['*'])
+        _mako_get_namespace(context, 'base')._populate(_import_ns, ['*'])
+        def extra_js():
+            return render_extra_js(context)
         __M_writer = context.writer()
         return ''
     finally:
@@ -231,8 +231,7 @@ def render_extra_head(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
         _import_ns = {}
-        _mako_get_namespace(context, 'footer')._populate(_import_ns, ['*'])
-        _mako_get_namespace(context, 'header')._populate(_import_ns, ['*'])
+        _mako_get_namespace(context, 'notes')._populate(_import_ns, ['*'])
         _mako_get_namespace(context, 'base')._populate(_import_ns, ['*'])
         def extra_head():
             return render_extra_head(context)
@@ -243,23 +242,8 @@ def render_extra_head(context,**pageargs):
         context.caller_stack._pop_frame()
 
 
-def render_extra_js(context,**pageargs):
-    __M_caller = context.caller_stack._push_frame()
-    try:
-        _import_ns = {}
-        _mako_get_namespace(context, 'footer')._populate(_import_ns, ['*'])
-        _mako_get_namespace(context, 'header')._populate(_import_ns, ['*'])
-        _mako_get_namespace(context, 'base')._populate(_import_ns, ['*'])
-        def extra_js():
-            return render_extra_js(context)
-        __M_writer = context.writer()
-        return ''
-    finally:
-        context.caller_stack._pop_frame()
-
-
 """
 __M_BEGIN_METADATA
-{"uri": "base.tmpl", "line_map": {"261": 246, "16": 6, "32": 5, "35": 4, "38": 3, "41": 2, "44": 0, "82": 2, "83": 3, "84": 4, "85": 5, "86": 13, "87": 14, "88": 14, "89": 15, "90": 15, "95": 18, "96": 19, "97": 19, "98": 22, "99": 23, "100": 23, "101": 23, "102": 25, "103": 29, "104": 29, "105": 31, "106": 32, "107": 32, "108": 32, "109": 33, "110": 34, "111": 36, "112": 37, "113": 37, "118": 58, "119": 60, "120": 61, "121": 61, "122": 61, "123": 63, "124": 64, "125": 65, "126": 66, "127": 67, "128": 67, "129": 67, "130": 69, "131": 70, "132": 70, "133": 70, "134": 72, "135": 75, "136": 75, "137": 79, "138": 80, "139": 80, "140": 80, "141": 82, "146": 84, "147": 87, "148": 88, "149": 88, "150": 88, "151": 90, "152": 90, "153": 90, "154": 91, "155": 91, "156": 93, "157": 94, "158": 96, "159": 96, "164": 97, "165": 98, "166": 98, "167": 99, "168": 99, "174": 39, "189": 39, "190": 40, "191": 41, "192": 42, "193": 42, "194": 42, "195": 43, "196": 44, "197": 46, "198": 47, "199": 48, "200": 49, "201": 49, "202": 49, "203": 51, "204": 52, "205": 52, "206": 52, "207": 54, "208": 56, "209": 58, "215": 84, "230": 16, "240": 16, "246": 97}, "filename": "themes/carpet/templates/base.tmpl", "source_encoding": "utf-8"}
+{"uri": "base.tmpl", "source_encoding": "utf-8", "filename": "/usr/local/lib/python3.5/dist-packages/nikola/data/themes/bootstrap3/templates/base.tmpl", "line_map": {"23": 3, "26": 2, "29": 0, "69": 2, "70": 3, "71": 4, "72": 4, "73": 5, "74": 5, "79": 8, "80": 9, "81": 9, "82": 12, "83": 12, "84": 20, "85": 20, "86": 25, "87": 25, "88": 26, "89": 27, "90": 27, "91": 27, "92": 27, "93": 27, "94": 29, "95": 30, "96": 31, "97": 31, "98": 31, "99": 33, "100": 37, "101": 37, "102": 38, "103": 38, "104": 40, "105": 41, "106": 41, "107": 41, "108": 43, "113": 49, "114": 50, "115": 51, "120": 51, "121": 53, "122": 53, "123": 53, "124": 65, "125": 65, "130": 66, "131": 71, "132": 71, "133": 72, "134": 72, "135": 77, "136": 77, "137": 81, "138": 81, "139": 82, "140": 82, "141": 82, "142": 82, "147": 85, "148": 86, "149": 87, "150": 87, "151": 87, "152": 88, "153": 89, "154": 89, "155": 89, "156": 91, "157": 91, "158": 92, "159": 92, "165": 45, "177": 45, "178": 46, "179": 47, "180": 47, "181": 47, "182": 49, "188": 51, "202": 66, "216": 85, "230": 6, "239": 6, "245": 239}}
 __M_END_METADATA
 """
