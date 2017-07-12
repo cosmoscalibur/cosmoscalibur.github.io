@@ -17,7 +17,7 @@ import time
 
 
 # Data about this site
-BLOG_AUTHOR = "Edward Y. Villegas"  # (translatable)
+BLOG_AUTHOR = "Edward Villegas Pulgarin"  # (translatable)
 BLOG_TITLE = "Cosmoscalibur"  # (translatable)
 # This is the main URL for your site. It will be used
 # in a prominent link. Don't forget the protocol (http/https)!
@@ -140,7 +140,7 @@ NAVIGATION_LINKS = {
                 ("/pag/presentacion", "Presentación"),
                 ("/pag/contacto", "Contacto"),
             ),
-            "Edward Villegas"
+            "Edward Villegas Pulgarin"
         ),
         ("/archivo.html", "Histórico"),
         ("/categorias/index.html", "Etiquetas"),
@@ -556,7 +556,7 @@ HIDDEN_CATEGORIES = []
 
 AUTHOR_PAGES_DESCRIPTIONS = {
     DEFAULT_LANG: {
-        "Edward Villegas": "Investigador y divulgador de ciencia por pasión. Por hobby programador linuxero, admirador del cielo y poeta. Me gusta Iron Man y Asimov.",
+        "Edward Villegas Pulgarin": "Investigador y divulgador de ciencia por pasión. Por hobby programador linuxero, admirador del cielo y poeta. Me gusta Iron Man y Asimov.",
         },
     }
 

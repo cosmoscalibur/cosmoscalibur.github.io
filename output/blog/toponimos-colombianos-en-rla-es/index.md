@@ -7,7 +7,7 @@
 .. link:
 .. description: Aporte al proyecto RLA-ES con los topónimos colombianos para la localización del diccionario es_CO.
 .. type: text
-.. author: Edward Villegas
+.. author: Edward Villegas Pulgarin
 -->
 
 Primero, saludo después de un tiempo largo de ausencia. Por diversos motivos el blog tuve que dejarlo en el olvido pero hoy lo reanudo. El como volví merece una publicación posterior.  

@@ -7,7 +7,7 @@
 .. link:
 .. description:
 .. type: text
-.. author: Edward Villegas
+.. author: Edward Villegas Pulgarin
 -->
 
 Investigador y divulgador de ciencia por pasión. Por hobby programador linuxero, admirador del cielo y poeta. Me gusta Iron Man y Asimov.  

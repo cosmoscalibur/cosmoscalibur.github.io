@@ -5,7 +5,7 @@ STOP_RENDERING = runtime.STOP_RENDERING
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 10
-_modified_time = 1499828235.6403987
+_modified_time = 1499831821.3895814
 _enable_loop = True
 _template_filename = '/usr/local/lib/python3.5/dist-packages/nikola/data/themes/bootstrap3/templates/tags.tmpl'
 _template_uri = 'tags.tmpl'
@@ -30,13 +30,13 @@ def render_body(context,**pageargs):
         __M_locals = __M_dict_builtin(pageargs=pageargs)
         def content():
             return render_content(context._locals(__M_locals))
-        len = context.get('len', UNDEFINED)
-        cat_hierarchy = context.get('cat_hierarchy', UNDEFINED)
-        title = context.get('title', UNDEFINED)
-        items = context.get('items', UNDEFINED)
         cat_items = context.get('cat_items', UNDEFINED)
         messages = context.get('messages', UNDEFINED)
+        len = context.get('len', UNDEFINED)
+        items = context.get('items', UNDEFINED)
+        cat_hierarchy = context.get('cat_hierarchy', UNDEFINED)
         hidden_tags = context.get('hidden_tags', UNDEFINED)
+        title = context.get('title', UNDEFINED)
         range = context.get('range', UNDEFINED)
         __M_writer = context.writer()
         __M_writer('\n\n')
@@ -55,13 +55,13 @@ def render_content(context,**pageargs):
     try:
         def content():
             return render_content(context)
-        len = context.get('len', UNDEFINED)
-        cat_hierarchy = context.get('cat_hierarchy', UNDEFINED)
-        title = context.get('title', UNDEFINED)
-        items = context.get('items', UNDEFINED)
         cat_items = context.get('cat_items', UNDEFINED)
         messages = context.get('messages', UNDEFINED)
+        len = context.get('len', UNDEFINED)
+        items = context.get('items', UNDEFINED)
+        cat_hierarchy = context.get('cat_hierarchy', UNDEFINED)
         hidden_tags = context.get('hidden_tags', UNDEFINED)
+        title = context.get('title', UNDEFINED)
         range = context.get('range', UNDEFINED)
         __M_writer = context.writer()
         __M_writer('\n<h1>')
@@ -107,6 +107,6 @@ def render_content(context,**pageargs):
 
 """
 __M_BEGIN_METADATA
-{"source_encoding": "utf-8", "filename": "/usr/local/lib/python3.5/dist-packages/nikola/data/themes/bootstrap3/templates/tags.tmpl", "uri": "tags.tmpl", "line_map": {"67": 4, "68": 5, "69": 5, "70": 6, "71": 7, "72": 8, "73": 8, "74": 8, "75": 10, "76": 11, "77": 12, "78": 14, "79": 14, "80": 14, "81": 14, "82": 14, "83": 15, "84": 16, "85": 18, "86": 19, "87": 20, "88": 21, "89": 25, "90": 26, "27": 0, "92": 26, "93": 29, "94": 30, "95": 31, "96": 32, "97": 33, "98": 33, "91": 26, "100": 33, "101": 33, "102": 36, "42": 2, "108": 102, "47": 38, "99": 33, "53": 4}}
+{"uri": "tags.tmpl", "source_encoding": "utf-8", "filename": "/usr/local/lib/python3.5/dist-packages/nikola/data/themes/bootstrap3/templates/tags.tmpl", "line_map": {"67": 4, "68": 5, "69": 5, "70": 6, "71": 7, "72": 8, "73": 8, "74": 8, "75": 10, "76": 11, "77": 12, "78": 14, "79": 14, "80": 14, "81": 14, "82": 14, "83": 15, "84": 16, "85": 18, "86": 19, "87": 20, "88": 21, "89": 25, "90": 26, "27": 0, "92": 26, "93": 29, "94": 30, "95": 31, "96": 32, "97": 33, "98": 33, "91": 26, "100": 33, "101": 33, "102": 36, "42": 2, "108": 102, "47": 38, "99": 33, "53": 4}}
 __M_END_METADATA
 """
