@@ -38,11 +38,12 @@ Eso lleva a que los 20 pesos los asume el cliente, entregando la moneda de menor
 
 Así, si nos cobrán 20 pesos de impuesto verde nos estarían "robando" disimuladamente 30 pesos si solo requeríamos de una bolsa. Suponiendo una recolección del impuesto, es simple ver que por cada 5 bolsas sobre las cuales aplique el impuesto, el almacén debe entregar 100 pesos pero habrá ganado 150 pesos (los 30 pesos que no tenía como devolver en cada bolsa).
 
-.. math::
+\[
    \begin{eqnarray}
    20 \cdot 5 = 100 & \qquad & \text{Impuesto verde recolectado.} \\
    30 \cdot 5 = 150 & \qquad & \text{Queda para el almácen.}
    \end{eqnarray}
+   \]
 
 Transacción con otros productos o múltiple bolsa
 ------------------------------------------------
