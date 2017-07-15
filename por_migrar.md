@@ -9,7 +9,7 @@ A continuación se listan las publicaciones pendientes de migración.
 
 ## Publicaciones
 
-+   2011 a 2013.  
++   2011 (Imagenes de puntos cuánticos) a 2013.  
 
 # La Flecha Temporal
 
