@@ -18,7 +18,6 @@ EteRNA es un juego con fundamento científico, que cubre los principios de dise
 Los puntajes asignados, o mas bien, el criterio de superación del reto es dado según si el diseño virtual de ARN del jugador podría ser obtenido en la vida real. Durante el juego, podemos notar algunos parametros que se visualizan en la parte superior izquierda, que corresponde a la energía de la estructura y de los loops que esta presenta. Esta información, de naturaleza física nos puede ir dando idea que tan próximos estamos a nuestro objetivo (aunque su interpretación para llegar a la estructura no es trivial, y aun estoy en esas). Por el momento, solo les puedo decir, que acorde a la física, si el valor de energía es negativo nos encontramos con una estructura que con alta probabilidad es posible y ademas estable.
 
 Pero el juego no para aquí, si amerita llamarse así a esto. Semanalmente, en las competencias de laboratorio (nivel accesible con ), los que sean escogidos como mejores diseños serán llevados a síntesis en los laboratorios de bioquímica, con el fin de observar si dicha síntesis es posible. Así que de paso, no solo los participantes están jugando, compitidiendo por sel el #1 en el ranking mundial, sino que también están haciendo ciencia, contribuyendo a los investigadores con posibles secuencias de ARN que puedan ser estudiadas en el laboratorio (de ahi que la metodología de puntuación tenga la mayor rigurosidad posible).
-Los dejo para que participen un poco de esto, `aquí <|web|>`_.
+Los dejo para que participen un poco de esto, `aquí <http://www.eternagame.org/web/>`_.
 
-.. [#eterna] `EteRNA Game web <|web|>`_.
-.. |web| replace:: http://www.eternagame.org/web/
+.. [#eterna] `EteRNA Game web <http://www.eternagame.org/web/>`_.
