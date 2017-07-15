@@ -2,8 +2,8 @@
 .. title: Nuestra nariz más vieja que los pies
 .. slug: nuestra-nariz-mas-vieja-que-los-pies
 .. date: 2010-12-17 20:59:26 UTC-05:00
-.. tags: Física,Relatividad general,Curiosidades
-.. category: Física pasión, Ciencia
+.. tags: Física,Relatividad general,Curiosidades,Física pasión,Ciencia
+.. category: 
 .. link:
 .. description:
 .. type: text

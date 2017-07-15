@@ -2,8 +2,8 @@
 .. title: Pensando en el grafeno
 .. slug: pensando-en-el-grafeno
 .. date: 2010-12-10 01:44:45 UTC-05:00
-.. tags: Física,Grafeno,Materiales,Estado sólido
-.. category: Física pasión, Ciencia
+.. tags: Física,Grafeno,Materiales,Estado sólido,Física pasión,Ciencia
+.. category: 
 .. link:
 .. description:
 .. type: text

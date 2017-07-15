@@ -140,8 +140,8 @@ NAVIGATION_LINKS = {
             ),
             "Edward Villegas Pulgarin"
         ),
-        ("/archivo.html", "Histórico"),
-        ("/categorias/index.html", "Etiquetas"),
+        ("/archive.html", "Histórico"),
+        ("/tags/index.html", "Etiquetas"),
         ("/rss.xml", "Fuente RSS")
     ),
     # "en": (
@@ -411,7 +411,7 @@ POSTS_SECTIONS = True
 # output / TRANSLATION[lang] / TAG_PATH / tag.html (list of posts for a tag)
 # output / TRANSLATION[lang] / TAG_PATH / tag.xml (RSS feed for a tag)
 # (translatable)
-TAG_PATH = "categorias"
+TAG_PATH = "tags"
 
 # By default, the list of tags is stored in
 #     output / TRANSLATION[lang] / TAG_PATH / index.html
@@ -591,7 +591,7 @@ FRONT_INDEX_HEADER = {
 # output / TRANSLATION[lang] / ARCHIVE_PATH / YEAR / MONTH / index.html
 # output / TRANSLATION[lang] / ARCHIVE_PATH / YEAR / MONTH / DAY / index.html
 # ARCHIVE_PATH = ""
-ARCHIVE_FILENAME = "archivo.html"
+ARCHIVE_FILENAME = "archive.html"
 
 # If ARCHIVES_ARE_INDEXES is set to True, each archive page which contains a list
 # of posts will contain the posts themselves. If set to False, it will be just a

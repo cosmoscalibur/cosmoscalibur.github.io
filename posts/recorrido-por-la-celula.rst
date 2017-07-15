@@ -1,8 +1,8 @@
 .. title: Recorrido por la célula
 .. slug: recorrido-por-la-celula
 .. date: 2010-12-12 15:22:55 UTC-05:00
-.. tags: Biología,Animación,Célula
-.. category: Física pasión, Ciencia
+.. tags: Biología,Animación,Célula,Física pasión,Ciencia
+.. category: 
 .. link:
 .. description:
 .. type: text

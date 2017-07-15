@@ -1,12 +1,18 @@
 La migración se realiza en orden temporal del más viejo al más nuevo, salvo que no se pueda por incluir elementos no compatibles directamente en markdown.  
 A continuación se listan las publicaciones pendientes de migración.  
 
-Páginas:  
+# Física Pasión
+
+## Páginas  
 
 +   Bases de datos y repositorios http://fisicapasion.blogspot.com.co/p/bases-de-datos-y-repositorios.html pensar diseño o múltiples publicaciones.  
 
-2010:  
+## Publicaciones
 
-+   Recorrido por la célula http://fisicapasion.blogspot.com.co/2010/12/recorrido-por-la-celula.html. Video.  
++   2011 a 2013.  
 
-2011 a 2013.
+# La Flecha Temporal
+
+## Publicaciones
+
++   Todos.
