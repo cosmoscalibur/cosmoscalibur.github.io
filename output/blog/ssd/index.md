@@ -3,7 +3,7 @@
 .. slug: ssd
 .. date: 2010-12-11 10:23:06 UTC-05:00
 .. tags: Disco duro,Estado sólido,Tecnología
-.. category: Física pasión
+.. category: Física pasión, Tecnología
 .. link:
 .. description:
 .. type: text

@@ -3,7 +3,7 @@
 .. slug: toponimos-colombianos-en-rla-es
 .. date: 2017-07-11 18:19:13 UTC-05:00
 .. tags: Español,Topónimos,RLA-ES,Diccionario,Corrector de ortografía,Libre,Colombia
-.. category: Contribuciones
+.. category: Contribuciones,Tecnología
 .. link:
 .. description: Aporte al proyecto RLA-ES con los topónimos colombianos para la localización del diccionario es_CO.
 .. type: text

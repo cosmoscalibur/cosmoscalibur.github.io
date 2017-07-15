@@ -2,8 +2,8 @@
 .. title: Pensando en el grafeno
 .. slug: pensando-en-el-grafeno
 .. date: 2010-12-10 01:44:45 UTC-05:00
-.. tags: Física,Grafeno,Materiales
-.. category: Física pasión
+.. tags: Física,Grafeno,Materiales,Estado sólido
+.. category: Física pasión, Ciencia
 .. link:
 .. description:
 .. type: text
@@ -17,6 +17,6 @@ Este material tiene muchas características muy peculiares, que atraen el inter�
 
 Desde la investigación mas teórica, un punto interesante es los comportamientos relativistas que presenta a pesar de su poco peso (los comportamientos relativistas son característicos de estructuras de pesos atómicos altos).  
 
-Si desean seguir noticias relacionadas con este tema, pueden hacerlo en http://graphenetimes.com/.  
+Si desean seguir noticias relacionadas con este tema, pueden hacerlo en [Graphene Times](http://graphenetimes.com/).  
 
 __Actualización (12 de julio de 2017):__ Para quienes estén interesados en el documento generado como trabajo de grado, pueden consultar [Modelización y Simulación Numérica de Efectos de Confinamiento en el Grafeno](https://www.researchgate.net/publication/258566488_Modelizacion_y_Simulacion_Numerica_de_Efectos_de_Confinamiento_en_el_Grafeno).  

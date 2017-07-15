@@ -3,10 +3,10 @@ A continuación se listan las publicaciones pendientes de migración.
 
 Páginas:  
 
-+   Bases de datos y repositorios http://fisicapasion.blogspot.com.co/p/bases-de-datos-y-repositorios.html  
++   Bases de datos y repositorios http://fisicapasion.blogspot.com.co/p/bases-de-datos-y-repositorios.html pensar diseño o múltiples publicaciones.  
 
 2010:  
 
-+   Recorrido por la célula http://fisicapasion.blogspot.com.co/2010/12/recorrido-por-la-celula.html.  
++   Recorrido por la célula http://fisicapasion.blogspot.com.co/2010/12/recorrido-por-la-celula.html. Video.  
 
-2011 en adelante.
+2011 a 2013.

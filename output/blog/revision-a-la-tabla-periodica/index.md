@@ -3,7 +3,7 @@
 .. slug: revision-a-la-tabla-periodica
 .. date: 2010-12-22 14:17:51 UTC-05:00
 .. tags: Ciencia,Química,Tabla periódica
-.. category: Física pasión
+.. category: Física pasión, Ciencia
 .. link:
 .. description:
 .. type: text
