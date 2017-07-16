@@ -22,7 +22,7 @@ BLOG_TITLE = "Cosmoscalibur"  # (translatable)
 SITE_URL = "http://cosmoscalibur.com/"
 # This is the URL where Nikola's output will be deployed.
 # If not set, defaults to SITE_URL
-BASE_URL = "http://cosmoscalibur.com/"
+# BASE_URL = "http://cosmoscalibur.com/"
 BLOG_EMAIL = "cosmoscalibur&#64;gmail.com"
 BLOG_DESCRIPTION = "Blog de ciencia, tecnología, cultura y literatura. Unir estos mundos no solo en un sitio sino en una historia." # (translatable)
 
@@ -485,7 +485,7 @@ HIDDEN_TAGS = ['mathjax']
 # using a forward slash ('/') to separate paths. Use a backslash ('\') to escape
 # a forward slash or a backslash (i.e. '\//\\' is a path specifying the
 # subcategory called '\' of the top-level category called '/').
-CATEGORY_ALLOW_HIERARCHIES = False
+CATEGORY_ALLOW_HIERARCHIES = True
 # If CATEGORY_OUTPUT_FLAT_HIERARCHY is set to True, the output written to output
 # contains only the name of the leaf category and not the whole path.
 CATEGORY_OUTPUT_FLAT_HIERARCHY = False

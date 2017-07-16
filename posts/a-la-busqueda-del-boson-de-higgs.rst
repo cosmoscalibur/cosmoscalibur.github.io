@@ -7,6 +7,7 @@
 .. description:
 .. type: text
 .. author: Edward Villegas Pulgarin
+.. updated: 2012-11-28 15:02:47 UTC-05:00
 
 Este mes de febrero los investigadores del LHC_ del CERN han renovado su búsqueda de uno de los misterios mas elusivos del universo, el bosón de Higgs.
 El bosón de Higgs es una hipotética partícula predicha por el modelo estándar de la física de partículas (la única de dicho modelo sin confirmación experimental) de gran energía y que cumple con la función de dotar de masa a las demás partículas existentes.
@@ -18,7 +19,7 @@ En el LHC hay dos detectores encargados de la función de detección del bosón 
 .. _LHC: http://home.cern/topics/large-hadron-collider
 
 .. important:: Actualización
-   **14 de julio de 2017**: El 4 de julio de 2012 se reportó oficialmente el descubrimiento del bosón de Higgs. Vea la nota :doc:`pos-higgsteria`.
+   **28 de noviembre de 2012**: El 4 de julio de 2012 se reportó oficialmente el descubrimiento del bosón de Higgs. Vea la nota :doc:`pos-higgsteria`.
 
 **Fuentes**
 
