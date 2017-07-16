@@ -1,13 +1,13 @@
-.. title: De partículas
+.. title: De Partículas
 .. slug: de-particulas
-.. date: 2011-04-10 18:14:48 UTC-05:00
-.. tags: Amor,Partículas,Poesía
-.. category: Migración/La Flecha Temporal
-.. link:
+.. date: 2011-04-10 23:14:00
+.. tags: Amor,Partículas,Poesía,Escritos,Literatura
 .. description:
+.. category: Migración/La Flecha Temporal
 .. type: text
 .. author: Edward Villegas Pulgarin
 
+| Esta publicación ha sido migrada a
 | En la inmensidad cósmica
 | fuertes interacciones se ocurren cada instante
 | liberando no solo inconmensurables cantidades de energía radiante
@@ -33,7 +33,7 @@
 | sucederá el final.
 
 | Cuantas veces cruzaras esto?
-| Tal vez un par de veces ...
-| ... por unidad de tiempo,
+| Tal vez un par de veces...
+| ...por unidad de tiempo,
 | hasta que encuentres esa partícula elemental
 | para formar un mesón estable.
