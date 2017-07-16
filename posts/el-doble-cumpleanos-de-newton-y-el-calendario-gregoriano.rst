@@ -1,7 +1,7 @@
 .. title: El doble cumpleaños de Newton y el calendario gregoriano
 .. slug: el-doble-cumpleanos-de-newton-y-el-calendario-gregoriano
 .. date: 2013-01-04 21:57:00
-.. tags: Isaac Newton,Calendario Gregoriano,Calendario Juliano,Física,Historia,Ciencia,draft
+.. tags: Isaac Newton,Calendario Gregoriano,Calendario Juliano,Física,Historia,Ciencia
 .. description:
 .. category: Migración/Física Pasión
 .. type: text
@@ -17,7 +17,7 @@ enseñan en las clases de física de colegio y de primeros semestres de
 universidad.
 
 Esta curiosidad de la doble celebración se debe al cambio de
-calendario ocurrido a raíz de la bula papal de Gregorio XIII \ *Inter
+calendario ocurrido a raíz de la bula papal de Gregorio XIII *Inter
 Gravissimas*, que revoco el calendario juliano usado desde la
 instauración por Julio Cesar, y promovió el uso del calendario
 gregoriano. Este cambio de calendario buscaba ajustar el desfase del
@@ -49,24 +49,30 @@ era el 4 de enero de 1643.
 Como apunte adicional, Inglaterra no adoptaría el calendario
 gregoriano hasta 1752.
 
-| **Referencias**
+**Fuentes**
 
-| `Isaac Newton <http://es.wikipedia.org/wiki/Isaac_Newton>`__.
+1. `Isaac Newton <http://es.wikipedia.org/wiki/Isaac_Newton>`__.
 Wikipedia en español.
-| `Julian Calendar <http://en.wikipedia.org/wiki/Julian_calendar>`__.
+
+2. `Julian Calendar <http://en.wikipedia.org/wiki/Julian_calendar>`__.
 Wikipedia in english.
-| `Gregorian
+
+3. `Gregorian
 Calendar <http://en.wikipedia.org/wiki/Gregorian_calendar>`__.
 Wikipedia in english.
-| `The Julian
+
+4. `The Julian
 Calendar <http://www.timeanddate.com/calendar/julian-calendar.html>`__.
 Time and Date.
-| `The Gregorian
+
+5. `The Gregorian
 Calendar <http://www.timeanddate.com/calendar/gregorian-calendar.html>`__.
 Time and Date.
-| `Inter
+
+6. `Inter
 gravissimas <http://en.wikisource.org/wiki/Inter_gravissimas>`__.
 Wikisources.
-| `The calendar
+
+7. `The calendar
 reform <http://www.luxinarcana.org/en/documenti/curiosita/la-riforma-del-calendario/>`__. Lux
 in arcana - The Vatican Secret Archives reveals itself.

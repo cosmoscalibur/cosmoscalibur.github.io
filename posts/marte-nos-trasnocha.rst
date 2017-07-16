@@ -46,18 +46,16 @@ terror <https://www.youtube.com/watch?v=OHwUrxzrvtg>`__
 (véanlo ustedes).
 
 .. youtube:: OHwUrxzrvtg
-:align: center
+   :align: center
 
-**Más información**
-#. Mars Science Laboratory. `NASA
-JPL <http://mars.jpl.nasa.gov/msl/>`__.
+**Fuentes**
 
-#. Transmisión NASA JPL. `USTREAM <http://www.ustream.tv/nasajpl>`__.
+1. Mars Science Laboratory. `NASA JPL <http://mars.jpl.nasa.gov/msl/>`__.
 
-#. Seven minutes of terror.
-`Youtube <https://www.youtube.com/watch?v=OHwUrxzrvtg>`__.
+2. Transmisión NASA JPL. `USTREAM <http://www.ustream.tv/nasajpl>`__.
 
-#. `NASA TV <http://mars.jpl.nasa.gov/msl/multimedia/nasatv/>`__.
+3. Seven minutes of terror. `Youtube <https://www.youtube.com/watch?v=OHwUrxzrvtg>`__.
 
-#. Mars Science Laboratory.
-`Wikipedia <http://en.wikipedia.org/wiki/Mars_Science_Laboratory>`__.
+4. `NASA TV <http://mars.jpl.nasa.gov/msl/multimedia/nasatv/>`__.
+
+5. Mars Science Laboratory. `Wikipedia <http://en.wikipedia.org/wiki/Mars_Science_Laboratory>`__.

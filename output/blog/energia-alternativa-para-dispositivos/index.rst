@@ -1,7 +1,7 @@
 .. title: Energía alternativa para dispositivos móviles
 .. slug: energia-alternativa-para-dispositivos
 .. date: 2011-07-07 02:08:00
-.. tags: Materiales,Energía,Tecnología,draft
+.. tags: Materiales,Energía,Tecnología
 .. description:
 .. category: Migración/Física Pasión
 .. type: text
@@ -11,18 +11,21 @@ Las fuentes de energía son parte vital de los sistemas que actualmente
 nos rodean... que si no la hay, bueno, desde las grandes estructuras
 hechas por hombre hasta las complejas formas de vida se degradarían,
 dejarían de funcionar y simplemente sucumben.
+
 Pero particularmente nos interesa la energía para nuestros diseños, la
 "vida artificial", los sistemas eléctricos y electrónicos. A diario
 cargamos (tanto de portar como de suministrar energía) toda clase de
 dispositivos móviles, pero es algo que bajo circunstancias de una vida
 de total movilidad tal vez pueda caer en algo incluso olvidemos
 y después lamentamos llevar una simple pantalla negra.
+
 Ademas de poder dar una mayor comodidad a la hora de cargar nuestros
 dispositivos móviles no solo por el tiempo muerto que implica (estar
 en un mismo punto durante el tiempo de carga) y evitar la dependencia
 de esos búlticos con patas para enchufar al sistema eléctrico y la
 dependencia de puntos de conexión, se investiga en maneras de
 suministrar energía a nuestros dispositivos de manera "portátil".
+
 ¿Como? Existen materiales que pueden aprovechar ciertas condiciones
 del medio para transformar sus estímulos en energía eléctrica,
 utilizable para los dispositivos. Ejemplo son las celdas fotovoltaicas
@@ -36,6 +39,7 @@ conducir electricidad. Sin embargo el tamaño requerido evita para
 suplir las necesidades de dispositivos móviles inhabilita su uso (aún
 algunas veces en algo parecido las encuentro, las calculadores de
 bolsillo).
+
 Pero se pueden tener materiales que aprovechen otras condiciones del
 medio, solo por recurrir a la ciencia ficción, recordemos el
 extraordinario material de la película *The Core*,  llamado inoctenio
@@ -50,7 +54,12 @@ celular, IPod, BlackBerry y otros similares, sino también marcapasos,
 computadores portátiles y otros "pequeños" dispositivos). Este tipo de
 materiales son los piezoeléctricos.
 
-|image0|\ Los materiales piezoeléctricos son materiales cristalinos
+.. image:: http://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/SchemaPiezo.gif/220px-SchemaPiezo.gif
+   :width: 200px
+   :height: 200px
+   :align: center
+
+Los materiales piezoeléctricos son materiales cristalinos
 que al ser sometidos a tensiones mecánicas (la presión por ejemplo)
 producen polarización eléctrica que se refleja en la aparición de una
 diferencia de potencial entre las superficies del material y
@@ -64,27 +73,12 @@ da la presión.
 
 **Fuentes**
 
-1. Nanotechnology pushes battery life to
-eternity. \ `Physorg <http://www.physorg.com/news/2011-06-nanotechnology-battery-life-eternity.html>`__ Junio
-21 de 2011
+1. Nanotechnology pushes battery life to eternity. `Physorg <http://www.physorg.com/news/2011-06-nanotechnology-battery-life-eternity.html>`__ Junio 21 de 2011.
 
-2. Madhu Bhaskaran et al, Energy Materials: Nanoscale Characterization
-of Energy Generation from Piezoelectric Thin Films. \ *Advanced
-Functional Materials* **21**\ (12) 2165 (2011). `DOI:
-10.1002/adfm.201190041 <http://onlinelibrary.wiley.com/doi/10.1002/adfm.201190041/abstract>`__
+2. Madhu Bhaskaran et al, Energy Materials: Nanoscale Characterization of Energy Generation from Piezoelectric Thin Films. \ *Advanced Functional Materials* **21** (12) 2165 (2011). `DOI:10.1002/adfm.201190041 <http://onlinelibrary.wiley.com/doi/10.1002/adfm.201190041/abstract>`__.
 
-3. `The Core <http://en.wikipedia.org/wiki/The_Core>`__ y
-`Unobtainium <http://en.wikipedia.org/wiki/Unobtainium>`__, Wiki.
-Fecha de consulta: Julio 6 de 2011
+3. `The Core <http://en.wikipedia.org/wiki/The_Core>`__ y `Unobtainium <http://en.wikipedia.org/wiki/Unobtainium>`__, Wiki. Fecha de consulta: Julio 6 de 2011.
 
-4. `Panel
-fotovoltaico <http://es.wikipedia.org/wiki/Panel_fotovoltaico>`__,
-Wiki. Fecha de consulta: Julio 6 de 2011
-5.
-`Piezoelectricity <http://en.wikipedia.org/wiki/Piezoelectricity>`__,
-Wiki. Fecha de consulta: Julio 6 de 2011
+4. `Panel fotovoltaico <http://es.wikipedia.org/wiki/Panel_fotovoltaico>`__, Wiki. Fecha de consulta: Julio 6 de 2011.
 
-.. |image0| image:: http://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/SchemaPiezo.gif/220px-SchemaPiezo.gif
-:width: 200px
-:height: 200px
-:target: http://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/SchemaPiezo.gif/220px-SchemaPiezo.gif
+5. `Piezoelectricity <http://en.wikipedia.org/wiki/Piezoelectricity>`__, Wiki. Fecha de consulta: Julio 6 de 2011.

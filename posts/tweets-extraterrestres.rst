@@ -22,7 +22,10 @@ Polansky no publico sino durante 2009 (ajusto 442 tweets y 44950
 seguidores), en cambio Massimino continua bastante activo en la red con
 mas de un millón de seguidores y ajustando prontamente los 900 tweets.
 
-|image0|
+.. image:: http://graphics8.nytimes.com/images/2010/01/22/technology/bits-tweetspace/blogSpan.jpg
+   :width: 320px
+   :height: 208px
+   :align: center
 
 Sin embargo, podríamos considerar esto como trampa. El 23 de enero de
 2010 NASA anunciaba en su cuenta oficial (@NASA) la llegada de internet
@@ -46,34 +49,29 @@ otro empleado gubernamental en tierra.
 
 1. `NASA
 People <http://www.nasa.gov/topics/people/features/massimino_tweet.html>`__ Mike
-Massimino Becomes the First to 'Tweet' From Space (May 13, 2009)
+Massimino Becomes the First to 'Tweet' From Space (May 13, 2009).
 
 2.
 `CNN <http://articles.cnn.com/2009-05-13/tech/twitter.space_1_twitter-user-tweet-hubble-space-telescope?_s=PM:TECH>`__ NASA
-astronaut first to 'tweet' from space (May 13, 2009)
+astronaut first to 'tweet' from space (May 13, 2009).
 
 3. `@NASA <https://twitter.com/#!/NASA/status/3123921726>`__ status
-(August 4, 2009)
+(August 4, 2009).
 
 4.
 `cuentatwitter.com <http://cuentatwitter.com/noticias-twitter-el-primer-tweet-desde-el-espacio>`__ El
-Primer Tweet desde el Espacio (23 de Enero de 2010)
+Primer Tweet desde el Espacio (23 de Enero de 2010).
 
 5. `fayerwayer <http://www.fayerwayer.com/2010/01/astronauta-manda-el-primer-tweet-en-vivo-desde-el-espacio/>`__ El
-primer tweet en vivo desde el espacio (22 de Enero de 2010)
+primer tweet en vivo desde el espacio (22 de Enero de 2010).
 
 6. `PC
 World <http://www.pcworld.com/article/187512/the_first_tweet_from_space_and_other_twitter_firsts.html>`__ The
-First Tweet From Space and Other Twitter Firsts (January 22, 2010)
+First Tweet From Space and Other Twitter Firsts (January 22, 2010).
 
 7.
 `Bits <http://bits.blogs.nytimes.com/2010/01/22/first-tweet-from-space/>`__ First
-Tweet From Space (January 22, 2010)
+Tweet From Space (January 22, 2010).
 
 8. `Wikipedia <http://es.wikipedia.org/wiki/Banda_ku>`__ Banda Ku (8 de
-Septiembre de 2010)
-
-.. |image0| image:: http://graphics8.nytimes.com/images/2010/01/22/technology/bits-tweetspace/blogSpan.jpg
-:width: 320px
-:height: 208px
-:target: http://graphics8.nytimes.com/images/2010/01/22/technology/bits-tweetspace/blogSpan.jpg
+Septiembre de 2010).

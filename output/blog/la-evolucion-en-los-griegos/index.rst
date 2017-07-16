@@ -1,7 +1,7 @@
 .. title: La evolución en los griegos
 .. slug: la-evolucion-en-los-griegos
 .. date: 2012-05-13 20:07:00
-.. tags: Astrobiología,Evolución,Griegos,Historia,Ciencia,draft
+.. tags: Astrobiología,Evolución,Griegos,Historia,Ciencia
 .. description:
 .. category: Migración/Física Pasión
 .. type: text
@@ -39,6 +39,7 @@ creador a partir de los elementales, a partir del cual la naturaleza
 formada es inmutable, tesis aristotélica (pensamiento que más
 tarde influenciaría el concepto inicial del origen en muchas
 religiones, la tesis creacionista).
+
 Probablemente, el primer concepto "moderno" de evolución biológica y
 muy adelantado a su época, surgió del pensamiento de Anaximándro de
 Mileto, para quien la vida debió surgir del agua de seres envueltos de
@@ -55,14 +56,8 @@ solidificación se encargaba de dejar expuestos los restos de la vida
 del ciclo anterior. Identificando en este último, las primeras ideas
 de evolución geológica a partir de la observación de fósiles.
 
-**Referencias**
+**Fuentes**
 
-1. `Early models of
-evolution <http://biology.clc.uc.edu/courses/bio106/earlymod.htm>`__.
-Biology 106 Course at Clerment College.
-
-2. `Arche <http://en.wikipedia.org/wiki/Arche>`__. Wikipedia (english
-version).
-
-3. `History of evolution <http://www.iep.utm.edu/evolutio/>`__.
-Internet Encyclopedia of Phylosophy.
+1. `Early models of evolution <http://biology.clc.uc.edu/courses/bio106/earlymod.htm>`__. Biology 106 Course at Clerment College.
+2. `Arche <http://en.wikipedia.org/wiki/Arche>`__. Wikipedia (english version).
+3. `History of evolution <http://www.iep.utm.edu/evolutio/>`__. Internet Encyclopedia of Phylosophy.

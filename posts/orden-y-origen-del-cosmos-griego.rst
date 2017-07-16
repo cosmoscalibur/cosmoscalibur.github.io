@@ -11,7 +11,7 @@ Segundo artículo basado en mi charla de "Cosmogonía y cosmología griega"
 de astronomía en el parque de `+Planetario Jesús Emilio Ramírez
 González <http://plus.google.com/106401720425500095803>`__ (`+Parque
 Explora <http://plus.google.com/114863977465169963907>`__) en el Parque
-de los Deseos del 14 de mayo de 2013.
+de los Deseos del 14 de mayo de 2013 (el primero fue :doc:`cosmogonia-griega`).
 
 Tales de Mileto, el primer filosofo griego, incorporó las primeras
 nociones no mitológicas a la descripción y explicación del mundo, he
@@ -75,13 +75,8 @@ fijas es tan distante que es imposible detectar paralaje.
 
 **Fuentes**
 
-`The cosmological ideas among the
-Greeks <http://articles.adsabs.harvard.edu//full/1916PA.....24..358M/0000358.000.html>`__.
-Hector MacPherson, Popular Astronomy, Vol. 24, p.358 (1916).
+1. `The cosmological ideas among the Greeks <http://articles.adsabs.harvard.edu//full/1916PA.....24..358M/0000358.000.html>`__. Hector MacPherson, Popular Astronomy, Vol. 24, p.358 (1916).
 
-`La evolución en los
-griegos <http://fisicapasion.blogspot.com/2012/05/la-evolucion-en-los-griegos.html>`__.
-Blog Física pasion de Edward Villegas, Mayo 13 de 2012.
+2. :doc:`la-evolucion-en-los-griegos`. Cosmoscalibur, Mayo 13 de 2012.
 
-`Arche <http://en.wikipedia.org/wiki/Arche>`__. Wikipedia (english
-version). June 18, 2013.
+3. `Arche <http://en.wikipedia.org/wiki/Arche>`__. Wikipedia (english version). June 18, 2013.

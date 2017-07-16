@@ -57,7 +57,10 @@ distintas mediciones gravimétricas de la Tierra y mediciones sobre la
 distorsión del espacio-tiempo. Su misión principal: validar la teoría
 general relatividad y el gravitomágnetismo.
 
-|image0|
+.. image:: http://upload.wikimedia.org/wikipedia/commons/9/9f/Gravity_Probe_B_Confirms_the_Existence_of_Gravitomagnetism.jpg
+   :width: 320px
+   :height: 204px
+   :align: center
 
 El gravitomágnetismo, contrario a su nombre, no se trata de un
 efecto magnético producido por la masa (como ocurre en el
@@ -81,7 +84,7 @@ error en el espesor).
 ¿Por que ser una esfera perfecta? el giroscópo es el instrumento
 encargado de medir los desplazamientos angulares provocados por la
 distorsión del espacio-tiempo rotando, pero ademas el efecto
-gravitomagnetico la hará girar también. Ya que el giro de la esfera es
+gravitomágnetico la hará girar también. Ya que el giro de la esfera es
 primordial en la medición, si la esfera fuese algo ovoide o elipsoide
 por acudir a un ejemplo (um, dejemoslo en un huevo) aparecerían efectos
 adicionales que intervendrían en su giro, afectando los resultados de la
@@ -90,13 +93,13 @@ compleja).
 
 La misión, dada por concluida en el mes de mayo, revelo resultados
 positivos para la relatividad general tanto el efecto de curvatura de la
-masa terrestre como la rotación provocada por el gravitomagnetismo
+masa terrestre como la rotación provocada por el gravitomágnetismo
 terrestre.
 
 **Fuentes**
 
 1. Gravity Probe B confirma la existencia de
-gravitomagnetismo. \ `Observatorio.info <http://observatorio.info/2011/05/gravity-probe-b-confirma-la-existencia-de-gravitomagnetismo/>`__
+gravitomagnetismo. `Observatorio.info <http://observatorio.info/2011/05/gravity-probe-b-confirma-la-existencia-de-gravitomagnetismo/>`__
 Mayo 10 de 2011
 
 2. Gravity Probe B, the relativity mission. `NASA
@@ -112,16 +115,10 @@ Stanford <http://einstein.stanford.edu/highlights/status1.html#PRLpaper>`__ May
 5. Gravitomagnetism.
 `Wiki <http://en.wikipedia.org/wiki/Gravitomagnetism>`__
 
-6. NASA Announces Results of Epic Space-Time Experiment. \ `NASA Science
+6. NASA Announces Results of Epic Space-Time Experiment. `NASA Science
 News <http://science.nasa.gov/science-news/science-at-nasa/2011/04may_epic/>`__ Mayo
 4 de 2011
 
 7. In search of Gravitomagnetism. `NASA Science
 News <http://science.nasa.gov/science-news/science-at-nasa/2004/19apr_gravitomagnetism/>`__
 Abril 20 de 2004.
-
-.. |image0| image:: http://upload.wikimedia.org/wikipedia/commons/9/9f/Gravity_Probe_B_Confirms_the_Existence_of_Gravitomagnetism.jpg
-   :width: 320px
-   :height: 204px
-   :target: http://upload.wikimedia.org/wikipedia/commons/9/9f/Gravity_Probe_B_Confirms_the_Existence_of_Gravitomagnetism.jpg
-   :align: center

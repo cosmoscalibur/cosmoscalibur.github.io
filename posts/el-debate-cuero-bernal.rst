@@ -158,40 +158,35 @@ trabajo particular o del tópico de trabajo.
 La tabla a continuación muestra un resumen de los indicadores de la
 contienda (pero incluye autocitaciones en la mención de factor de
 impacto e índice *h*).
-|
+
 +-------------------------+-----------------+-----------------+
-| Indicador  | Cuero  | Bernal  |
+| Indicador               | Cuero           | Bernal          |
 +-------------------------+-----------------+-----------------+
-| Primera publicación  | 1980  | 1995  |
+| Primera publicación     | 1980            | 1995            |
 +-------------------------+-----------------+-----------------+
-| Publicaciones  | 22  | 21  |
+| Publicaciones           | 22              | 21              |
 +-------------------------+-----------------+-----------------+
-| Citaciones  | 341  | 179  |
+| Citaciones              | 341             | 179             |
 +-------------------------+-----------------+-----------------+
-| Desde 1996  | 101  | 179  |
+| Desde 1996              | 101             | 179             |
 +-------------------------+-----------------+-----------------+
-| Indice h  | 5  | 7  |
+| Indice h                | 5               | 7               |
 +-------------------------+-----------------+-----------------+
-| Búsquedas  | 1120  | 15856  |
+| Búsquedas               | 1120            | 15856           |
 +-------------------------+-----------------+-----------------+
-| Artículo más citado  | 34  | 65  |
+| Artículo más citado     | 34              | 65              |
 +-------------------------+-----------------+-----------------+
-| Rango temporal (años)  | 33  | 18  |
+| Rango temporal (años)   | 33              | 18              |
 +-------------------------+-----------------+-----------------+
-| Citaciones por año  | 10.3333333333  | 9.9444444444  |
+| Citaciones por año      | 10.3333333333   | 9.9444444444    |
 +-------------------------+-----------------+-----------------+
-| Factor de impacto  | 15.5  | 8.5238095238  |
+| Factor de impacto       | 15.5            | 8.5238095238    |
 +-------------------------+-----------------+-----------------+
-| IF 1996  | 5.9411764706  | 10.5294117647  |
+| IF 1996                 | 5.9411764706    | 10.5294117647   |
 +-------------------------+-----------------+-----------------+
-| Artículos citados  | 6  | 13  |
+| Artículos citados       | 6               | 13              |
 +-------------------------+-----------------+-----------------+
 
-.. [#if] Por facilidad en este post, he flexibilizado la definición de
-*Factor de impacto* ya que en Scopus no esta automatizado consultar
-las citaciones en un periodo de tiempo asociada a publicaciones en el
-mismo periodo de tiempo, que es como se calcula el factor de impacto.
-Así que solo he considerado citaciones totales en el periodo de tiempo
-entre las publicaciones de cualquier momento.
-.. [#mas] Andrew Ellington, quien en Scopus registra 329 documentos con
-13285 citaciones e índice \ *h* de 51 en el periodo 1996-2013.
+.. [#if] Por facilidad en este post, he flexibilizado la definición de *Factor de impacto* ya que en Scopus no esta automatizado consultar las citaciones en un periodo de tiempo asociada a publicaciones en el mismo periodo de tiempo, que es como se calcula el factor de impacto. Así que solo he considerado citaciones totales en el periodo de tiempo entre las publicaciones de cualquier momento.
+
+.. [#mas] Andrew Ellington, quien en Scopus registra 329 documentos con 13285 citaciones e índice *h* de 51 en el periodo 1996-2013.

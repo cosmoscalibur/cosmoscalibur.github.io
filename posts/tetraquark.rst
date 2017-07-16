@@ -25,7 +25,7 @@ partículas formadas por pares de quarks (quark y antiquark, pero no
 necesariamente el respectivo antiquark) y bariones formados por 3
 quarks. Es aquí donde la noticia toma tanta importancia, mostrando una
 nueva variedad de hadrones, como el recién descubierto (aún en estudios
-preliminares) Z:sub:`c`(3900).
+preliminares) Z\ :sub:`c`\ (3900).
 
 La literatura nos referencia este tetraquark como una partícula tipo
 charmonium, que corresponden a un tipo especial de mesones en los que se
@@ -40,25 +40,25 @@ partículas.
 
 **Fuentes**
 
-`Two collider research teams find evidence of new particle
+1. `Two collider research teams find evidence of new particle
 Zc(3900) <http://phys.org/news/2013-06-collider-teams-evidence-particle-z3900.html>`__.
 Physorg June 18, 2013.
 
-`Observation of the Charged Hadron Zc(3900) at sqrt(s)=4170
+2. `Observation of the Charged Hadron Zc(3900) at sqrt(s)=4170
 MeV <http://arxiv.org/abs/1304.3036>`__. T. Xiao, S. Dobbs, A.
 Tomaradze, Kamal K. Seth. ArXiv. April 10, 2013.
 
-`Z\_c(3900) - what is inside? <http://arxiv.org/abs/1304.0380>`__ M.B.
+3. `Zc(3900) - what is inside? <http://arxiv.org/abs/1304.0380>`__ M.B.
 Voloshin. ArXiv. April 1, 2013.
 
-`Quarkonium <http://en.wikipedia.org/wiki/Quarkonium>`__. Wikipedia
+4. `Quarkonium <http://en.wikipedia.org/wiki/Quarkonium>`__. Wikipedia
 (english version). June 18, 2013.
 
-`Meson <http://en.wikipedia.org/wiki/Meson>`__. Wikipedia (english
+5. `Meson <http://en.wikipedia.org/wiki/Meson>`__. Wikipedia (english
 version). June 18, 2013.
 
-`Hadron <http://en.wikipedia.org/wiki/Hadron>`__. Wikipedia (english
+6. `Hadron <http://en.wikipedia.org/wiki/Hadron>`__. Wikipedia (english
 version). June 18, 2013.
 
-`Baryon <http://en.wikipedia.org/wiki/Baryon>`__. Wikipedia (english
+7. `Baryon <http://en.wikipedia.org/wiki/Baryon>`__. Wikipedia (english
 version). June 18, 2013.

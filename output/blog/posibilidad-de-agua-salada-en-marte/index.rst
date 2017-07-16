@@ -13,8 +13,6 @@ apasiona aprovechando la imagen que expuse en la sesiones del `Club
 Orión del Parque
 Explora <http://www.facebook.com/groups/376416784920/>`__.
 
-|image0|
-
 En el mes de Mayo, la sonda Mars Reconnaissance Orbiter (MRO) tomo una
 serie de imágenes sobre el sector del Cráter Newton en el hemisferio sur
 del planeta Marte que tras un análisis de imágenes para la composición
@@ -24,7 +22,12 @@ la detección de posibles cuerpos como rocas, dunas o sedimentos que
 hallan cambiado de posición, se encuentran con algo realmente
 sorprendente.
 
-|image1|\ El hallazgo fue realizado por el equipo de Alfred McEwen,
+.. image:: http://1.bp.blogspot.com/-GYb7rNzE9io/TnYj8MpMJyI/AAAAAAAACCY/1bNe2HYcZ_k/s320/Crater_Newton.JPG
+   :width: 320px
+   :height: 171px
+   :align: center
+
+El hallazgo fue realizado por el equipo de Alfred McEwen,
 geologo planetario del Lunar and Planetary Laboratory de Arizona State
 University, como trabajo de uno de sus proyectos de investigación sobre
 el planeta Marte, HiRISE (High Resolution Image Science Experiment),
@@ -60,61 +63,36 @@ la configuración del terreno superficial causando la modificación de la
 configuración de algunos elementos como piedras, polvo y otros que
 provoquen la observación de los surcos, al igual que el efecto de
 humidificación. Otra posible hipótesis es la presencia de material
-arcilloso, lo cual igualmente implica la existencia de agua (Al2O3 ·
-2SiO2 · H2O).
+arcilloso, lo cual igualmente implica la existencia de agua (Al\ :sub:`2`\ O\ :sub:`3`\  ·
+2SiO\ :sub:`2`\  · H\ :sub:`2`\ O).
 
 Para su confirmación final habrá que esperar las próximas misiones a
 Marte que irán a las zonas identificadas con cambios estacionales.
 
 **Referencias**
 
-1. HiRISE. Seasonal flows on warm martian slopes. Science, 5 Aug 2011.
-(`HiRISE <http://hirise.lpl.arizona.edu/sim/science-2011-aug-4.php>`__;
-`Science <http://www.sciencemag.org/content/333/6043/740>`__).
+1. HiRISE. Seasonal flows on warm martian slopes. Science, 5 Aug 2011. (`HiRISE <http://hirise.lpl.arizona.edu/sim/science-2011-aug-4.php>`__; `Science <http://www.sciencemag.org/content/333/6043/740>`__).
 
-2. Discovery News. \ `TRICKLE OF SALT WATER -- ON
-MARS <http://news.discovery.com/space/mars-salt-water-surface-110804.html>`__.
-Aug 4, 2011.
+2. Discovery News. `TRICKLE OF SALT WATER -- ON MARS <http://news.discovery.com/space/mars-salt-water-surface-110804.html>`__. Aug 4, 2011.
 
-3. UANews. \ `Briny Water May be at Work in Seasonal Flows on
-Mars <http://uanews.org/node/41010>`__. Aug 4, 2011.
+3. UANews. `Briny Water May be at Work in Seasonal Flows on Mars <http://uanews.org/node/41010>`__. Aug 4, 2011.
 
-4. NASA Missions. Mars Reconnaissance Orbiter,
-`Multimedia <http://www.nasa.gov/mission_pages/MRO/multimedia/pia14472.html>`__.
+4. NASA Missions. Mars Reconnaissance Orbiter, `Multimedia <http://www.nasa.gov/mission_pages/MRO/multimedia/pia14472.html>`__.
 
-5. Jet Propulsion Laboratory. \ `Mars Reconnaissance
-Orbiter <http://mars.jpl.nasa.gov/mro/>`__.
+5. Jet Propulsion Laboratory. `Mars Reconnaissance Orbiter <http://mars.jpl.nasa.gov/mro/>`__.
 
-6. Wikipedia (english version). \ `Mars Reconnaissance
-Orbiter <http://en.wikipedia.org/wiki/Mars_Reconnaissance_Orbiter>`__.
+6. Wikipedia (english version). `Mars Reconnaissance Orbiter <http://en.wikipedia.org/wiki/Mars_Reconnaissance_Orbiter>`__.
 
-7. NASA Missions. \ `Mars Reconnaissance
-Orbiter <http://www.nasa.gov/mission_pages/MRO/main/index.html>`__.
+7. NASA Missions. `Mars Reconnaissance Orbiter <http://www.nasa.gov/mission_pages/MRO/main/index.html>`__.
 
 8. `Google Mars <http://www.google.com/mars/>`__.
 
-9. Solar System Exploration. `Mars: Fact and
-Figures <http://solarsystem.nasa.gov/planets/profile.cfm?Object=Mars&Display=Facts&System=Metric>`__.
+9. Solar System Exploration. `Mars: Fact and Figures <http://solarsystem.nasa.gov/planets/profile.cfm?Object=Mars&Display=Facts&System=Metric>`__.
 
-10. Wikipedia (english version).
-`Mars <http://en.wikipedia.org/wiki/Mars>`__.
+10. Wikipedia (english version). `Mars <http://en.wikipedia.org/wiki/Mars>`__.
 
-11. Wikipedia (english version). `Climate of
-Mars <http://en.wikipedia.org/wiki/Climate_of_Mars#Temperature>`__.
+11. Wikipedia (english version). `Climate of Mars <http://en.wikipedia.org/wiki/Climate_of_Mars#Temperature>`__.
 
-12. Wikipedia (english version).
-`Clay <http://en.wikipedia.org/wiki/Clay>`__.
+12. Wikipedia (english version). `Clay <http://en.wikipedia.org/wiki/Clay>`__.
 
-13. Wikipedia (versión en español).
-`Arcilla <http://es.wikipedia.org/wiki/Arcilla>`__.
-
-.. |image0| image:: http://upload.wikimedia.org/wikipedia/commons/5/50/A_sonda_MOR_e_a_acao_de_seus_instrumentos.jpg
-   :width: 320px
-   :height: 235px
-   :target: http://upload.wikimedia.org/wikipedia/commons/5/50/A_sonda_MOR_e_a_acao_de_seus_instrumentos.jpg
-   :align: center
-.. |image1| image:: http://1.bp.blogspot.com/-GYb7rNzE9io/TnYj8MpMJyI/AAAAAAAACCY/1bNe2HYcZ_k/s320/Crater_Newton.JPG
-   :width: 320px
-   :height: 171px
-   :target: http://1.bp.blogspot.com/-GYb7rNzE9io/TnYj8MpMJyI/AAAAAAAACCY/1bNe2HYcZ_k/s1600/Crater_Newton.JPG
-   :align: center
+13. Wikipedia (versión en español). `Arcilla <http://es.wikipedia.org/wiki/Arcilla>`__.

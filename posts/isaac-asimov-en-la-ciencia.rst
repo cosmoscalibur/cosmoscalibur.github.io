@@ -1,7 +1,7 @@
 .. title: Asimov en la ciencia
 .. slug: asimov-en-la-ciencia
 .. date: 2013-01-18 02:06:00
-.. tags: Ciencia Ficción,Historia,Isaac Asimov,Ciencia,Literatura,draft
+.. tags: Ciencia Ficción,Historia,Isaac Asimov,Ciencia,Literatura
 .. description:
 .. category: Migración/Física Pasión
 .. type: text
@@ -12,7 +12,7 @@ escritor de ciencia ficción y misterio (esta ultima temática menos
 conocida por el común) y como un gran divulgador de la ciencia, también
 fue un científico.
 
-Isaac Asimov, o la forma literal rusa \ *Isaak Yudovich
+Isaac Asimov, o la forma literal rusa *Isaak Yudovich
 Ozimov*, nació el 2 de enero de 1920 en Petrovichi, Rusia. Asimov obtuvo
 titulo de pregrado, maestría y doctorado en química de la *Columbia
 University* en la ciudad de Nueva York. Recordando un poco,
@@ -31,7 +31,7 @@ textos de carácter formal y científico, como el más conocido de estos
 "*Modern Biology*" (1961). Igualmente publico otros textos científicos,
 como "*Biochemistry and Human Metabolism*" (1952), el primer texto que
 no era ciencia ficción, en compañía de 2 de sus colegas de trabajo de
-la \ *Boston University School of Medicine* y "*The Human Body*"
+la *Boston University School of Medicine* y "*The Human Body*"
 (1963). Y en la sección "*Letters*" de la revista *Science* también fue
 contribuyente frente a debates de gran impacto en la década de los 60 y
 70 en biología.

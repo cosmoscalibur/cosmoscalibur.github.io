@@ -1,7 +1,7 @@
 .. title: Viendo carga molecular
 .. slug: viendo-carga-molecular
 .. date: 2012-02-28 11:22:00
-.. tags: AFM,Microscopía,Nanotecnología
+.. tags: AFM,Microscopía,Nanotecnología,Tecnología,mathjax
 .. description:
 .. category: Migración/Física Pasión
 .. type: text
@@ -22,7 +22,7 @@ de interés experimentando repulsión/atracción conforme nos acercamos. 
 Esta fuerza sobre la punta no es medida directamente pero se establece
 a través de la medición de la deflección de la ménsula en el cual se
 apoya la punta y se obtiene usando el modelo de resortes (Ley de Hooke)
-*F=-kz*, donde *k* corresponde a la constante de resorte de la ménsula
+:math:`F=-kz`, donde :math:`k` corresponde a la constante de resorte de la ménsula
 (asociada a sus propiedades elásticas, como el modulo de Young). Usando
 esta fuerza junto con la curva de calibración de fuerza vs distancia del
 instrumento, es posible reconstruir (estas técnicas no nos permiten
@@ -64,24 +64,14 @@ mapa de color, y por último se realizan suavizados de la imagen.
 
 **Referencias**
 
-#. `Scientists image the charge distribution within a single molecule
-for the first
-time <http://www.physorg.com/news/2012-02-scientists-image-molecule.html>`__.
-Physorg. February 22, 2012.
+1. `Scientists image the charge distribution within a single molecule for the first time <http://www.physorg.com/news/2012-02-scientists-image-molecule.html>`__. Physorg. February 22, 2012.
 
-#. `Atomic force
-microscopy <http://en.wikipedia.org/wiki/Atomic_force_microscopy>`__.
-Wikipedia.
+2. `Atomic force microscopy <http://en.wikipedia.org/wiki/Atomic_force_microscopy>`__. Wikipedia.
 
-#. `Atomic Force
-Microscopy <http://www.nanoscience.com/education/AFM.html>`__.
-Nanoscience.
+3. `Atomic Force Microscopy <http://www.nanoscience.com/education/AFM.html>`__. Nanoscience.
 
-#. `Scanning tunneling
-microscope <http://en.wikipedia.org/wiki/Scanning_tunneling_microscope>`__.
-Wikipedia.
+4. `Scanning tunneling microscope <http://en.wikipedia.org/wiki/Scanning_tunneling_microscope>`__. Wikipedia.
 
 .. |image0| image:: http://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Rastertunnelmikroskop-schema_es.svg/400px-Rastertunnelmikroskop-schema_es.svg.png
-:width: 320px
-:height: 257px
-:target: http://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Rastertunnelmikroskop-schema_es.svg/400px-Rastertunnelmikroskop-schema_es.svg.png
+   :width: 320px
+   :height: 257px

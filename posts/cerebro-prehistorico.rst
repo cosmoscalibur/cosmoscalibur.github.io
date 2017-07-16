@@ -1,7 +1,7 @@
 .. title: Cerebro prehistórico
 .. slug: cerebro-prehistorico
 .. date: 2011-07-06 23:05:00
-.. tags: Cerebro,Antropología,Ciencia,draft
+.. tags: Cerebro,Antropología,Ciencia
 .. description:
 .. category: Migración/Física Pasión
 .. type: text
@@ -25,7 +25,10 @@ publicación en Journal of Archaeologist Science (allí encontraran
 referencia a otros hallazgos realizados desde 1960 de órganos blandos
 conservados).
 
-|image0|
+.. image:: http://i.dailymail.co.uk/i/pix/2011/03/29/article-0-0B60F9A900000578-443_468x314.jpg
+   :width: 320px
+   :height: 214px
+   :align: center
 
 ¿Pero que hace especial esto? Como comencé en la introducción, el
 cerebro es un órgano blando delicado que empieza un proceso de
@@ -47,7 +50,12 @@ las circunstancias adecuadas, permanecer en servicio después de la
 expectativa normal de éste” según Glen Doran jefe del departamento de
 antropología de la Universidad de Florida.
 
-|image1|\ ¿Y que preservo el cerebro? El individuo al que pertenece este
+.. image:: http://blogs.tudiscovery.com/.a/6a010535f2c8a4970c0147e3cf4b02970b-800wi
+   :width: 320px
+   :height: 249px
+   :align: center
+
+¿Y que preservo el cerebro? El individuo al que pertenece este
 cerebro, es un hombre de la edad de hierro, de hace aproximadamente 2600
 a 2700 años, de 25 a 46 años de edad. Este hombre fue ahorcado y
 decapitado (un cuerpo sin cabeza fue encontrado en las cercanías), y
@@ -63,28 +71,23 @@ En la imagen, pedazo del cerebro encontrado.
 
 1. Sonia O'Connor et al, Exceptional preservation of a prehistoric human
 brain from Heslington, Yorkshire, UK Journal of Archaeological Science
-38(7) 1641-1654 (2011)
- `doi:10.1016/j.jas.2011.02.030 <http://www.sciencedirect.com/science/article/pii/S0305440311000690>`__
-(`FullText <http://www.academia.dk/BiologiskAntropologi/Tafonomi/PDF/Brains/Britains_Oldest_Brain.pdf>`__)
+38(7) 1641-1654 (2011) `doi:10.1016/j.jas.2011.02.030 <http://www.sciencedirect.com/science/article/pii/S0305440311000690>`__
+(`FullText <http://www.academia.dk/BiologiskAntropologi/Tafonomi/PDF/Brains/Britains_Oldest_Brain.pdf>`__).
+
 2. Cerebro prehistórico humano encontrado en un pozo. `Discovery Channel
 Noticias <http://blogs.tudiscovery.com/noticias/2011/04/cerebro-prehist%C3%B3rico-humano-encontrado-en-un-pozo.html?campaign=twdni1>`__
-Julio 4 de 2011
+Julio 4 de 2011.
+
 3. Mind-boggling discovery: Perfectly preserved brain of Iron Age man
 unearthed in York. \ `Daily Mail - Science &
 Tech <http://www.dailymail.co.uk/sciencetech/article-1371012/Scientists-discover-worlds-oldest-brains-belonging-Iron-Age-man-ritual-killing.html>`__ Marzo
-29 de 2011
+29 de 2011.
+
 4. The masters of our minds: Meet the brain scientists battling to
 preserve our sanity. \ `Daily
 Mail <http://www.dailymail.co.uk/home/moslive/article-1330570/Brain-scientists-battling-preserve-sanity-MS-Alzheimers-Parkinsons.html>`__\  Noviembre
-20 de 2010
+20 de 2010.
+
 5. Archaeologists In York Find UK's Oldest Preserved Human
 Brain. \ `Culture24 <http://www.culture24.org.uk/history+%26+heritage/archaeology/art63321>`__ Diciembre
-11 de 2008
-.. |image0| image:: http://i.dailymail.co.uk/i/pix/2011/03/29/article-0-0B60F9A900000578-443_468x314.jpg
-:width: 320px
-:height: 214px
-:target: http://i.dailymail.co.uk/i/pix/2011/03/29/article-0-0B60F9A900000578-443_468x314.jpg
-.. |image1| image:: http://blogs.tudiscovery.com/.a/6a010535f2c8a4970c0147e3cf4b02970b-800wi
-:width: 320px
-:height: 249px
-:target: http://blogs.tudiscovery.com/.a/6a010535f2c8a4970c0147e3cf4b02970b-800wi
+11 de 2008.

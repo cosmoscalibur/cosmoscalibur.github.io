@@ -1,7 +1,7 @@
 .. title: Cantante virtual sensación
 .. slug: cantante-virtual-sensacion
 .. date: 2012-09-25 00:13:00
-.. tags: Síntesis de voz,Entretenimiento,Manga,Geek,Tecnología,draft
+.. tags: Síntesis de voz,Entretenimiento,Manga,Geek,Tecnología
 .. description:
 .. category: Migración/Física Pasión
 .. type: text
@@ -12,7 +12,12 @@ Gibson es su obra *Idoru* que en japones significa "ídolo", una
 cantante totalmente virtual se encuentra en el top de ventas de las
 listas japonesas, y ademas da increíbles conciertos a sus seguidores.
 
-|image0|\ Se trata de la cantante virtual japonesa Hatsune Miku de 19
+.. image:: http://1.bp.blogspot.com/_flIcOAUpj50/TG7BBnPqO2I/AAAAAAAAALU/TVHS6VzdY14/s320/hatsune-miku.jpg
+   :width: 320px
+   :height: 240px
+   :align: center
+
+Se trata de la cantante virtual japonesa Hatsune Miku de 19
 años (nació el 31 de agosto de 2007 teniendo 16 años). Su voz, es el
 patrón de voz de la actriz japonesa Saki Fujita, sintetizada por un
 programa de computadora llamado Vocaloid.
@@ -32,21 +37,21 @@ Como esta, existen varios cantantes virtuales tanto femeninos como
 masculinos, de lengua inglesa o japonesa, así como dúos como el formado
 por Rin (femenino) y Len (masculino) de lengua japonesa.
 
-Aquí, les dejo una muestra.
+Aquí, les dejo una muestra del concierto en vivo del 10 de junio de 2013 (enlace actualizado).
 
-.. youtube:: DTXO7KGHtjI
-:align: center
+.. youtube:: jhl5afLEKdo
+   :align: center
 
-**Ver más**
-*`Hatsune Miku <http://en.wikipedia.org/wiki/Hatsune_Miku>`__*.
+**Fuentes**
+
+1. `Hatsune Miku <http://en.wikipedia.org/wiki/Hatsune_Miku>`__.
 Wikipedia (english version).
-*`Hatsune Miku <http://vocaloid.wikia.com/wiki/Hatsune_Miku>`__*.
+
+2. `Hatsune Miku <http://vocaloid.wikia.com/wiki/Hatsune_Miku>`__.
 Vocaloid Wikia (english version).
-`*Vocaloid* <http://www.vocaloid.com/en/>`__. Vocaloid YAMAHA (english
+
+3. `Vocaloid <http://www.vocaloid.com/en/>`__. Vocaloid YAMAHA (english
 version).
-*`Vocaloid <http://en.wikipedia.org/wiki/Vocaloid>`__*. Wikipedia
+
+4. `Vocaloid <http://en.wikipedia.org/wiki/Vocaloid>`__. Wikipedia
 (english version).
-.. |image0| image:: http://1.bp.blogspot.com/_flIcOAUpj50/TG7BBnPqO2I/AAAAAAAAALU/TVHS6VzdY14/s320/hatsune-miku.jpg
-:width: 320px
-:height: 240px
-:target: http://www.youtube.com/watch?v=DTXO7KGHtjI&feature=player_embedded
