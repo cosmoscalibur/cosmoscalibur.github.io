@@ -1,20 +1,20 @@
 .. title: El último tránsito de Venus
 .. slug: el-ultimo-transito-de-venus
 .. date: 2012-02-26 15:58:00
-.. tags: Tránsito,Venus,Astronomía,Ciencia,Planetas
+.. tags: Tránsito,Venus,Astronomía,Ciencia,Planetas,draft
 .. description:
 .. category: Migración/Física Pasión
 .. type: text
 .. author: Edward Villegas Pulgarin
 
 Retomando el blog después de cierto tiempo de abandono por diversos
-  motivos, volvemos con las cosas que nos gustan, ciencia, tecnología y
-  otras curiosidades *geeks*.
+motivos, volvemos con las cosas que nos gustan, ciencia, tecnología y
+otras curiosidades *geeks*.
 
 No es que el mundo se acabe el 21 de diciembre de 2012, pero
-  desafortunadamente nuestras vidas son efímeras mientras no conozcamos
-  el elipsir de la vida eterna y nuestro compañero de viaje cósmico nos
-  deleita con poca frecuencia cruzando el magnifico disco solar.
+desafortunadamente nuestras vidas son efímeras mientras no conozcamos
+el elipsir de la vida eterna y nuestro compañero de viaje cósmico nos
+deleita con poca frecuencia cruzando el magnifico disco solar.
 
 +--------------------------------------------------------------------------+
 | |image0|  |
@@ -68,29 +68,29 @@ elementos como lentes de eclipse, filtro de soldadura #14 y proyectores.
 **Referencias**
 
 | 1. `Transit of
-  Venus <http://en.wikipedia.org/wiki/Transit_of_Venus>`__. Wikipedia.
+Venus <http://en.wikipedia.org/wiki/Transit_of_Venus>`__. Wikipedia.
 | 2. `Transit of Venus <http://www.transitofvenus.org/>`__.
-  Transitofvenus.org
+Transitofvenus.org
 | 3. `Transits of Venus, Fifteen millennium
-  catalog <http://transit.savage-garden.org/en/VenusCatalog.htmlhttp://transit.savage-garden.org/en/VenusCatalog.html>`__.
-  Transits page.
+catalog <http://transit.savage-garden.org/en/VenusCatalog.htmlhttp://transit.savage-garden.org/en/VenusCatalog.html>`__.
+Transits page.
 | 4. \ `The 2012 transit of
-  Venus <http://eclipse.gsfc.nasa.gov/OH/transit12.html>`__. NASA
-  Eclipse website.
+Venus <http://eclipse.gsfc.nasa.gov/OH/transit12.html>`__. NASA
+Eclipse website.
 | 5. `Local transit
-  times <http://transitofvenus.nl/wp/where-when/local-transit-times/>`__.
-  Transit of Venus.
+times <http://transitofvenus.nl/wp/where-when/local-transit-times/>`__.
+Transit of Venus.
 | 6. `Transmisión por
-  livestream <http://www.livestream.com/swansiliguri>`__. SKY WATCHERS
-  ASSOCIATION OF NORTH BENGAL (SWAN). (Transmisión desde las 17:00 hora
-  colombiana).
+livestream <http://www.livestream.com/swansiliguri>`__. SKY WATCHERS
+ASSOCIATION OF NORTH BENGAL (SWAN). (Transmisión desde las 17:00 hora
+colombiana).
 .. |image0| image:: http://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Venustransit_2004-06-08_07-44.jpg/200px-Venustransit_2004-06-08_07-44.jpg
-  :target: http://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Venustransit_2004-06-08_07-44.jpg/200px-Venustransit_2004-06-08_07-44.jpg
+:target: http://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Venustransit_2004-06-08_07-44.jpg/200px-Venustransit_2004-06-08_07-44.jpg
 .. |image1| image:: http://eclipse.gsfc.nasa.gov/OH/tran/TOV2012-Fig02.png
-  :width: 295px
-  :height: 320px
-  :target: http://eclipse.gsfc.nasa.gov/OH/tran/TOV2012-Fig02.png
+:width: 295px
+:height: 320px
+:target: http://eclipse.gsfc.nasa.gov/OH/tran/TOV2012-Fig02.png
 .. |image2| image:: http://eclipse.gsfc.nasa.gov/OH/tran/TOV2012-Fig01.png
-  :width: 320px
-  :height: 184px
-  :target: http://eclipse.gsfc.nasa.gov/OH/tran/TOV2012-Fig01.png
+:width: 320px
+:height: 184px
+:target: http://eclipse.gsfc.nasa.gov/OH/tran/TOV2012-Fig01.png

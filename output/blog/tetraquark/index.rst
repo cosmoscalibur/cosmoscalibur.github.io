@@ -6,7 +6,6 @@
 .. category: Migración/Física Pasión
 .. type: text
 .. author: Edward Villegas Pulgarin
-  :name: atención
 
 Bueno, resulta que el mundo de la física de partículas viene en un
 continuo agitar, y nuevos datos y modelos surgen a partir de los
@@ -26,7 +25,7 @@ partículas formadas por pares de quarks (quark y antiquark, pero no
 necesariamente el respectivo antiquark) y bariones formados por 3
 quarks. Es aquí donde la noticia toma tanta importancia, mostrando una
 nueva variedad de hadrones, como el recién descubierto (aún en estudios
-preliminares) Z\_c(3900).
+preliminares) Z:sub:`c`(3900).
 
 La literatura nos referencia este tetraquark como una partícula tipo
 charmonium, que corresponden a un tipo especial de mesones en los que se

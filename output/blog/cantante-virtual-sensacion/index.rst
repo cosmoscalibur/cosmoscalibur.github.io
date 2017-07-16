@@ -1,7 +1,7 @@
 .. title: Cantante virtual sensación
 .. slug: cantante-virtual-sensacion
 .. date: 2012-09-25 00:13:00
-.. tags: Síntesis de voz,Entretenimiento,Manga,Geek,Tecnología
+.. tags: Síntesis de voz,Entretenimiento,Manga,Geek,Tecnología,draft
 .. description:
 .. category: Migración/Física Pasión
 .. type: text
@@ -35,7 +35,7 @@ por Rin (femenino) y Len (masculino) de lengua japonesa.
 Aquí, les dejo una muestra.
 
 .. youtube:: DTXO7KGHtjI
-   :align: center
+:align: center
 
 **Ver más**
 *`Hatsune Miku <http://en.wikipedia.org/wiki/Hatsune_Miku>`__*.
@@ -47,6 +47,6 @@ version).
 *`Vocaloid <http://en.wikipedia.org/wiki/Vocaloid>`__*. Wikipedia
 (english version).
 .. |image0| image:: http://1.bp.blogspot.com/_flIcOAUpj50/TG7BBnPqO2I/AAAAAAAAALU/TVHS6VzdY14/s320/hatsune-miku.jpg
-  :width: 320px
-  :height: 240px
-  :target: http://www.youtube.com/watch?v=DTXO7KGHtjI&feature=player_embedded
+:width: 320px
+:height: 240px
+:target: http://www.youtube.com/watch?v=DTXO7KGHtjI&feature=player_embedded

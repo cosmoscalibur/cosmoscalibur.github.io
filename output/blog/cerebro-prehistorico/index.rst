@@ -1,7 +1,7 @@
 .. title: Cerebro prehistórico
 .. slug: cerebro-prehistorico
 .. date: 2011-07-06 23:05:00
-.. tags: Cerebro,Antropología,Ciencia
+.. tags: Cerebro,Antropología,Ciencia,draft
 .. description:
 .. category: Migración/Física Pasión
 .. type: text
@@ -81,10 +81,10 @@ Mail <http://www.dailymail.co.uk/home/moslive/article-1330570/Brain-scientists-b
 Brain. \ `Culture24 <http://www.culture24.org.uk/history+%26+heritage/archaeology/art63321>`__ Diciembre
 11 de 2008
 .. |image0| image:: http://i.dailymail.co.uk/i/pix/2011/03/29/article-0-0B60F9A900000578-443_468x314.jpg
-  :width: 320px
-  :height: 214px
-  :target: http://i.dailymail.co.uk/i/pix/2011/03/29/article-0-0B60F9A900000578-443_468x314.jpg
+:width: 320px
+:height: 214px
+:target: http://i.dailymail.co.uk/i/pix/2011/03/29/article-0-0B60F9A900000578-443_468x314.jpg
 .. |image1| image:: http://blogs.tudiscovery.com/.a/6a010535f2c8a4970c0147e3cf4b02970b-800wi
-  :width: 320px
-  :height: 249px
-  :target: http://blogs.tudiscovery.com/.a/6a010535f2c8a4970c0147e3cf4b02970b-800wi
+:width: 320px
+:height: 249px
+:target: http://blogs.tudiscovery.com/.a/6a010535f2c8a4970c0147e3cf4b02970b-800wi

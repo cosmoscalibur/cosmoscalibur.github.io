@@ -1,7 +1,7 @@
 .. title: El planeta de Einstein
 .. slug: el-planeta-de-einstein
 .. date: 2013-06-02 22:29:00
-.. tags: Exoplanetas,Astronomía,Kepler-76b,Relatividad especial,Ciencia,Planetas
+.. tags: Exoplanetas,Astronomía,Kepler-76b,Relatividad especial,Ciencia,Planetas,draft
 .. description:
 .. category: Migración/Física Pasión
 .. type: text
@@ -62,6 +62,6 @@ Aviv University News. May 13 2013.
 beaming <http://en.wikipedia.org/wiki/Relativistic_beaming>`__.
 Wikipedia (english).
 .. |image0| image:: http://english.tau.ac.il/sites/default/files/styles/reaserch_main_image_580_x_330/public/planet580.jpg
-  :width: 320px
-  :height: 182px
-  :target: http://english.tau.ac.il/sites/default/files/styles/reaserch_main_image_580_x_330/public/planet580.jpg
+:width: 320px
+:height: 182px
+:target: http://english.tau.ac.il/sites/default/files/styles/reaserch_main_image_580_x_330/public/planet580.jpg

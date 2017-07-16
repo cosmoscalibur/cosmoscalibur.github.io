@@ -31,16 +31,16 @@ la información a través del monitor de nuestro pc) la topografía de una
 superficie, y en este caso particular la estructura molecular en sí.
 
 +--------------------------+
-| |image0|  |
+| |image0|                 |
 +--------------------------+
-| Esquemático de un STM.  |
+| Esquemático de un STM.   |
 +--------------------------+
 
 La técnica usada, resultado de la modificación de la anterior,
-denominada KPFM (Kelvin probe force microscopy),
+denominada KPFM (*Kelvin probe force microscopy*),
 es sensible adicionalmente a la carga. Esto se logra ya que la
-adaptación realizada esta basada en el uso de un STM (Scanning Tunneling
-Microscopy, o Microscopía de Efecto Túnel) la cual aplica una diferencia
+adaptación realizada esta basada en el uso de un STM (*Scanning Tunneling
+Microscopy*, o Microscopía de Efecto Túnel) la cual aplica una diferencia
 de potencial al montaje, volviendo este sensible a las
 propiedades eléctricas y conductivas de la muestra. Esta técnica esta
 basada en el efecto de tunelamiento de la mecánica cuántica, que en este
@@ -65,23 +65,23 @@ mapa de color, y por último se realizan suavizados de la imagen.
 **Referencias**
 
 #. `Scientists image the charge distribution within a single molecule
-  for the first
-  time <http://www.physorg.com/news/2012-02-scientists-image-molecule.html>`__.
-  Physorg. February 22, 2012.
+for the first
+time <http://www.physorg.com/news/2012-02-scientists-image-molecule.html>`__.
+Physorg. February 22, 2012.
 
 #. `Atomic force
-  microscopy <http://en.wikipedia.org/wiki/Atomic_force_microscopy>`__.
-  Wikipedia.
+microscopy <http://en.wikipedia.org/wiki/Atomic_force_microscopy>`__.
+Wikipedia.
 
 #. `Atomic Force
-  Microscopy <http://www.nanoscience.com/education/AFM.html>`__.
-  Nanoscience.
-  
+Microscopy <http://www.nanoscience.com/education/AFM.html>`__.
+Nanoscience.
+
 #. `Scanning tunneling
-  microscope <http://en.wikipedia.org/wiki/Scanning_tunneling_microscope>`__.
-  Wikipedia.
+microscope <http://en.wikipedia.org/wiki/Scanning_tunneling_microscope>`__.
+Wikipedia.
 
 .. |image0| image:: http://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Rastertunnelmikroskop-schema_es.svg/400px-Rastertunnelmikroskop-schema_es.svg.png
-  :width: 320px
-  :height: 257px
-  :target: http://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Rastertunnelmikroskop-schema_es.svg/400px-Rastertunnelmikroskop-schema_es.svg.png
+:width: 320px
+:height: 257px
+:target: http://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Rastertunnelmikroskop-schema_es.svg/400px-Rastertunnelmikroskop-schema_es.svg.png

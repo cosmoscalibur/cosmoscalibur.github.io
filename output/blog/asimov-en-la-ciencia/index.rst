@@ -1,7 +1,7 @@
 .. title: Asimov en la ciencia
-.. slug: isaac-asimov-en-la-ciencia
+.. slug: asimov-en-la-ciencia
 .. date: 2013-01-18 02:06:00
-.. tags: Ciencia Ficción,Historia,Isaac Asimov,Ciencia,Literatura
+.. tags: Ciencia Ficción,Historia,Isaac Asimov,Ciencia,Literatura,draft
 .. description:
 .. category: Migración/Física Pasión
 .. type: text
@@ -36,12 +36,17 @@ la \ *Boston University School of Medicine* y "*The Human Body*"
 contribuyente frente a debates de gran impacto en la década de los 60 y
 70 en biología.
 
-`Isaac Asimov <http://en.wikipedia.org/wiki/Isaac_Asimov>`__. Wikipedia
+**Fuentes**:
+
+1. `Isaac Asimov <http://en.wikipedia.org/wiki/Isaac_Asimov>`__. Wikipedia
 in english.
-`Biography for Isaac Asimov <http://www.imdb.com/name/nm0001920/bio>`__.
+
+2. `Biography for Isaac Asimov <http://www.imdb.com/name/nm0001920/bio>`__.
 IMDb.
-`Isaac Asimov <http://www.biography.com/people/isaac-asimov-9190737>`__.
+
+3. `Isaac Asimov <http://www.biography.com/people/isaac-asimov-9190737>`__.
 Biography True Story.
-`Isaac Asimov
+
+4. `Isaac Asimov
 Biography <http://www.notablebiographies.com/An-Ba/Asimov-Isaac.html#ixzz2Hp8BaOVW>`__.
 Notable Biographies.

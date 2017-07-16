@@ -121,6 +121,7 @@ News <http://science.nasa.gov/science-news/science-at-nasa/2004/19apr_gravitomag
 Abril 20 de 2004.
 
 .. |image0| image:: http://upload.wikimedia.org/wikipedia/commons/9/9f/Gravity_Probe_B_Confirms_the_Existence_of_Gravitomagnetism.jpg
-  :width: 320px
-  :height: 204px
-  :target: http://upload.wikimedia.org/wikipedia/commons/9/9f/Gravity_Probe_B_Confirms_the_Existence_of_Gravitomagnetism.jpg
+   :width: 320px
+   :height: 204px
+   :target: http://upload.wikimedia.org/wikipedia/commons/9/9f/Gravity_Probe_B_Confirms_the_Existence_of_Gravitomagnetism.jpg
+   :align: center

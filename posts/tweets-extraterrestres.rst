@@ -1,7 +1,7 @@
 .. title: Tweets extraterrestres
 .. slug: tweets-extraterrestres
 .. date: 2011-07-26 23:46:00
-.. tags: NASA,Twitter,ISS
+.. tags: NASA,Twitter,ISS,Exploración espacial,Tecnología
 .. description:
 .. category: Migración/Física Pasión
 .. type: text
@@ -74,6 +74,6 @@ Tweet From Space (January 22, 2010)
 Septiembre de 2010)
 
 .. |image0| image:: http://graphics8.nytimes.com/images/2010/01/22/technology/bits-tweetspace/blogSpan.jpg
-  :width: 320px
-  :height: 208px
-  :target: http://graphics8.nytimes.com/images/2010/01/22/technology/bits-tweetspace/blogSpan.jpg
+:width: 320px
+:height: 208px
+:target: http://graphics8.nytimes.com/images/2010/01/22/technology/bits-tweetspace/blogSpan.jpg

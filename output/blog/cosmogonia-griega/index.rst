@@ -1,7 +1,7 @@
 .. title: Cosmogonía griega
 .. slug: cosmogonia-griega
 .. date: 2013-05-26 23:10:00
-.. tags: Cosmogonía,Griegos,Mitología,Ciencia,Historia
+.. tags: Cosmogonía,Griegos,Mitología,Ciencia,Historia,draft
 .. description:
 .. category: Migración/Física Pasión
 .. type: text
@@ -55,14 +55,14 @@ Legends <http://www.dk.co.uk/nf/Book/BookDisplay/0,,9781405335522,00.html>`__.
 Philip Wilkinson. Dorling Kindersley, London 2009.
 Articulos Wikipedia enlazados.
 .. |image0| image:: http://2.bp.blogspot.com/-UkTmjytTfyY/UaKViPf8ozI/AAAAAAAAFw0/7P4hSEvI_OA/s200/ofion.png
-  :width: 105px
-  :height: 200px
-  :target: http://2.bp.blogspot.com/-UkTmjytTfyY/UaKViPf8ozI/AAAAAAAAFw0/7P4hSEvI_OA/s1600/ofion.png
+:width: 105px
+:height: 200px
+:target: http://2.bp.blogspot.com/-UkTmjytTfyY/UaKViPf8ozI/AAAAAAAAFw0/7P4hSEvI_OA/s1600/ofion.png
 .. |image1| image:: http://4.bp.blogspot.com/-YFwf7spYRMw/UaKV5eZ0ZQI/AAAAAAAAFw8/pTKlYdccXGE/s200/urano+y+gea.jpg
-  :width: 200px
-  :height: 146px
-  :target: http://4.bp.blogspot.com/-YFwf7spYRMw/UaKV5eZ0ZQI/AAAAAAAAFw8/pTKlYdccXGE/s1600/urano+y+gea.jpg
+:width: 200px
+:height: 146px
+:target: http://4.bp.blogspot.com/-YFwf7spYRMw/UaKV5eZ0ZQI/AAAAAAAAFw8/pTKlYdccXGE/s1600/urano+y+gea.jpg
 .. |image2| image:: http://3.bp.blogspot.com/-VIIQXq1xZNg/UaKWFIvDhhI/AAAAAAAAFxE/iMoqFKyviaM/s320/universo+biblia.jpg
-  :width: 320px
-  :height: 212px
-  :target: http://3.bp.blogspot.com/-VIIQXq1xZNg/UaKWFIvDhhI/AAAAAAAAFxE/iMoqFKyviaM/s1600/universo+biblia.jpg
+:width: 320px
+:height: 212px
+:target: http://3.bp.blogspot.com/-VIIQXq1xZNg/UaKWFIvDhhI/AAAAAAAAFxE/iMoqFKyviaM/s1600/universo+biblia.jpg
