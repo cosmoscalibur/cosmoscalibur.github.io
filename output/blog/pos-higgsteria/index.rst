@@ -7,7 +7,6 @@
 .. description:
 .. type: text
 .. author: Edward Villegas Pulgarin
-.. previewimage: http://www.nature.com/polopoly_fs/7.7452.1352981975!/image/Higgs%20SCi.png_gen/derivatives/landscape_300/Higgs%20SCi.png
 
 A pesar del tiempo transcurrido desde el anuncio oficial del CERN, el 4 de Julio de 2012, sobre el descubrimiento de un nuevo bosón masivo que sería candidato al tan elusivo bosón de Higgs, el tema sigue dando de que hablar.
 

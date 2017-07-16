@@ -1,13 +1,12 @@
 .. title: A la búsqueda del bosón de Higgs
 .. slug: a-la-busqueda-del-boson-de-higgs
 .. date: 2011-02-21 21:37:27 UTC-05:00
-.. tags: Bosón de Higgs,Física,Física pasión,LHC,Ciencia,Física de partículas
-.. category:
+.. tags: Bosón de Higgs,Física,LHC,Ciencia,Física de partículas
+.. category: Migración/Física Pasión
 .. link:
 .. description:
 .. type: text
 .. author: Edward Villegas Pulgarin
-.. updated: 2012-11-28 15:02:47 UTC-05:00
 
 Este mes de febrero los investigadores del LHC_ del CERN han renovado su búsqueda de uno de los misterios mas elusivos del universo, el bosón de Higgs.
 El bosón de Higgs es una hipotética partícula predicha por el modelo estándar de la física de partículas (la única de dicho modelo sin confirmación experimental) de gran energía y que cumple con la función de dotar de masa a las demás partículas existentes.

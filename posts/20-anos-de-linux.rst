@@ -1,8 +1,8 @@
 .. title: 20 años de Linux
 .. slug: 20-anos-de-linux
 .. date: 2011-04-10 12:53:10 UTC-05:00
-.. tags: Linux,Tecnología,Software libre,Física pasión
-.. category:
+.. tags: Linux,Tecnología,Software libre
+.. category: Migración/Física Pasión
 .. link:
 .. description:
 .. type: text

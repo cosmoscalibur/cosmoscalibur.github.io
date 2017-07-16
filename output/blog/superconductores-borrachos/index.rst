@@ -1,8 +1,8 @@
 .. title: Superconductores borrachos
 .. slug: superconductores-borrachos
 .. date: 2011-01-11 11:49:49 UTC-05:00
-.. tags: Materiales,Estado sólido,Física pasión,Alcohol,Superconductores,Ciencia,mathjax
-.. category:
+.. tags: Materiales,Estado sólido,Alcohol,Superconductores,Ciencia,mathjax
+.. category: Migración/Física Pasión
 .. link:
 .. description:
 .. type: text

@@ -1,8 +1,8 @@
 .. title: Imágenes de puntos cuánticos
 .. slug: imagenes-de-puntos-cuanticos
 .. date: 2011-02-22 22:56:41 UTC-05:00
-.. tags: Física,Fotónica,Puntos cuánticos,Físicapasión,Tecnología
-.. category:
+.. tags: Física,Fotónica,Puntos cuánticos,Tecnología
+.. category: Migración/Física Pasión
 .. link:
 .. description:
 .. type: text

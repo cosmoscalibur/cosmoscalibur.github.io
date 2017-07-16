@@ -1,8 +1,8 @@
 .. title: EteRNA
 .. slug: eterna
 .. date: 2011-01-15 18:53:25 UTC-05:00
-.. tags: Biología,ARN,Investigación,Juegos,Simulación,Física pasión,Ciencia
-.. category:
+.. tags: Biología,ARN,Investigación,Juegos,Simulación,Ciencia
+.. category: Migración/Física Pasión
 .. link:
 .. description:
 .. type: text

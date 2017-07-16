@@ -2,8 +2,8 @@
 .. title: SSD
 .. slug: ssd
 .. date: 2010-12-11 10:23:06 UTC-05:00
-.. tags: Disco duro,Estado sólido,Física pasión,Tecnología
-.. category: 
+.. tags: Disco duro,Estado sólido,Tecnología
+.. category: Migración/Física Pasión
 .. link:
 .. description:
 .. type: text

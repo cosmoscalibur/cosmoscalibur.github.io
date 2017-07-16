@@ -2,8 +2,8 @@
 .. title: Calculan masa del agujero negro más grande
 .. slug: calculan-masa-del-agujero-negro-mas-grande
 .. date: 2011-01-30 14:15:17 UTC-05:00
-.. tags: Agujeros negros,Astronomía,Física pasión,Ciencia
-.. category:
+.. tags: Agujeros negros,Astronomía,Ciencia
+.. category: Migración/Física Pasión
 .. link:
 .. description:
 .. type: text

@@ -2,8 +2,8 @@
 .. title: Sueños
 .. slug: suenos
 .. date: 2011-01-03 12:22:41 UTC-05:00
-.. tags: Flecha temporal,Escritos,Literatura
-.. category:
+.. tags: Escritos,Literatura
+.. category: Migración/La Flecha Temporal
 .. link:
 .. description:
 .. type: text

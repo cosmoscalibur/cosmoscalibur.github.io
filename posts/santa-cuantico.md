@@ -2,8 +2,8 @@
 .. title: Santa cuántico
 .. slug: santa-cuantico
 .. date: 2010-12-21 18:48:09 UTC-05:00
-.. tags: Física,Navidad,Santa Claus,Física pasión,Ciencia
-.. category: 
+.. tags: Física,Navidad,Santa Claus,Ciencia
+.. category: Migración/Física Pasión
 .. link:
 .. description:
 .. type: text

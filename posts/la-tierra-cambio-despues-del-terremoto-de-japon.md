@@ -2,8 +2,8 @@
 .. title: La Tierra cambio después del terremoto de Japón
 .. slug: la-tierra-cambio-despues-del-terremoto-de-japon
 .. date: 2011-03-13 20:24:49 UTC-05:00
-.. tags: Terremoto,Japón,Alerta nuclear,Geofísica,Física pasión,Ciencia
-.. category:
+.. tags: Terremoto,Japón,Alerta nuclear,Geofísica,Ciencia
+.. category: Migración/Física Pasión
 .. link:
 .. description:
 .. type: text

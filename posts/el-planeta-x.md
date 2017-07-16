@@ -2,8 +2,8 @@
 .. title: El planeta X
 .. slug: el-planeta-x
 .. date: 2011-02-20 18:44:33 UTC-05:00
-.. tags: Astronomía,Planeta X,Sistema solar,Ciencia,Física pasión
-.. category:
+.. tags: Astronomía,Planeta X,Sistema solar,Ciencia
+.. category: Migración/Física Pasión
 .. link:
 .. description:
 .. type: text

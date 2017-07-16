@@ -2,8 +2,8 @@
 .. title: Revisión a la tabla periódica
 .. slug: revision-a-la-tabla-periodica
 .. date: 2010-12-22 14:17:51 UTC-05:00
-.. tags: Química,Tabla periódica,Física pasión,Ciencia
-.. category: 
+.. tags: Química,Tabla periódica,Ciencia
+.. category: Migración/Física Pasión
 .. link:
 .. description:
 .. type: text
