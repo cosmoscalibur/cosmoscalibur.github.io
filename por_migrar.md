@@ -9,10 +9,10 @@ A continuación se listan las publicaciones pendientes de migración.
 
 ## Publicaciones
 
-+   2011 (Imagenes de puntos cuánticos) a 2013.  
++   Junio de 2011 a 2013.  
 
 # La Flecha Temporal
 
 ## Publicaciones
 
-+   Tui+yo a metaforas de un agujero negro.
++   Febrero de 2011 a 2015.
