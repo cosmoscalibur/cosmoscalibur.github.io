@@ -1,5 +1,229 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/" version="2.0"><channel><title>Cosmoscalibur (Publicaciones sobre Tecnología)</title><link>http://cosmoscalibur.com/</link><description></description><atom:link rel="self" href="http://cosmoscalibur.com/tags/tecnologia.xml" type="application/rss+xml"></atom:link><language>es</language><copyright>Contents © 2017 &lt;a href="mailto:cosmoscalibur&amp;#64;gmail.com"&gt;Edward Villegas Pulgarin&lt;/a&gt; </copyright><lastBuildDate>Sun, 16 Jul 2017 05:21:06 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>20 años de Linux</title><link>http://cosmoscalibur.com/blog/20-anos-de-linux/index.html</link><dc:creator>Edward Villegas Pulgarin</dc:creator><description>&lt;div&gt;&lt;p&gt;Hace 20 años, Linus Torvalds tomo la decisión de compartir su sistema operativo con el mundo. No mucho después, decidió licenciar este bajo &lt;em&gt;General Public Licence&lt;/em&gt; (GPL). Este momento histórico cambio todo en el mundo en la historia de la computación.&lt;/p&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/" version="2.0"><channel><title>Cosmoscalibur (Publicaciones sobre Tecnología)</title><link>http://cosmoscalibur.com/</link><description></description><atom:link href="http://cosmoscalibur.com/tags/tecnologia.xml" type="application/rss+xml" rel="self"></atom:link><language>es</language><copyright>Contents © 2017 &lt;a href="mailto:cosmoscalibur&amp;#64;gmail.com"&gt;Edward Villegas Pulgarin&lt;/a&gt; </copyright><lastBuildDate>Sun, 16 Jul 2017 20:46:10 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Con calma para SteamOS</title><link>http://cosmoscalibur.com/blog/con-calma-para-steamos/index.html</link><dc:creator>Edward Villegas Pulgarin</dc:creator><description>&lt;div&gt;&lt;p&gt;Bueno, es un poco raro que sin escribir hace mucho, lo primero que
+escriba sea del mundo linux que del mundo de la ciencia y
+particularmente de la física que es mi especialidad. Pero resulta que a
+veces es un poco más fácil escribir sobre cosas que no toque justificar
+tanto.&lt;/p&gt;
+&lt;p&gt;Soy usuario linux desde 2009, usando la distro Ubuntu con escritorio
+gnome. Pero hace algún tiempo empece a comprar juegos en &lt;a class="reference external" href="https://www.humblebundle.com/"&gt;Humble
+Bundle&lt;/a&gt;. Muy buenos titulos,
+excelentes gráficos y en otros excelentes historias, multiplataforma,
+mejor dicho un paraíso &lt;em&gt;gamer&lt;/em&gt; y al mejor precio (créanme! máximo he
+pagado 15 dolares por 10 títulos en varias plataformas y sus audios).
+Parte de estos títulos son de la corporación
+&lt;a class="reference external" href="http://www.valvesoftware.com/"&gt;Valve&lt;/a&gt;, desarrolladora de la
+plataforma de videojuegos &lt;a class="reference external" href="http://store.steampowered.com/"&gt;Steam&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Pero donde esta la gracia de este post... bueno, quienes saben de Steam
+un poco más allá de sus juegos, sabrán del proyecto
+&lt;a class="reference external" href="http://store.steampowered.com/livingroom/SteamOS/?l=spanish"&gt;SteamOS&lt;/a&gt;.
+Valve ahora apuesta al desarrollo de un sistema operativo exclusivo para
+&lt;em&gt;gamers&lt;/em&gt; optimizado para su plataforma. Se posee doble escritorio, uno
+para la plataforma de juegos y otro para un escritorio linux tradicional
+con gnome basado en Debian 7. En teoría todo lo que funcione en Debian 7
+y Ubuntu 12.04 les funcionaría en SteamOS.&lt;/p&gt;
+&lt;p&gt;Y contrario a como encontrarán en otros posts en internet (en inglés, no
+hay por el momento en otros idiomas, o no que yo viera), comenzare por
+una advertencia. A Valve no le interesa el problema de compatibilidad, y
+por ello no empezaron un sistema operativo desde cero. La recomendación
+de la tarjeta gráfica es NVIDIA (que están de hecho participando en el
+proyecto), otras tarjetas según afirman funcionan pero puede presentar
+problemas. Ese fue mi caso, la pantalla después de la instalación quedo
+negra y por más truco de foros no revivió. Así que les recomiendo solo
+intentarlo si poseen tarjeta NVIDIA. La restricción que indican de
+espacio en disco realmente no es restrictiva, con menos solo implica
+menos juegos. Igualmente, si desean conservar otro sistema operativo (si
+distro anterior o windows) el arranque múltiple esta aún en fase
+experimental y de hecho grub no identificará algunas veces sus sistemas
+anteriores (en mi caso, fue como si no tuviera instalado nada antes pero
+si reconoce la tabla de partición). Paquetes de uso cotidiano deberán
+instalarlos con el gestor (como esta basado en Debian encontrarán APT) y
+frente a compatibilidad con dispositivos android modernos no podremos
+hacer nada, más que probar suerte con compilar manualmente bibliotecas
+como &lt;a class="reference external" href="http://libmtp.sourceforge.net/"&gt;libmtp&lt;/a&gt; para usuarios de
+android 4 (¡que en &lt;a class="reference external" href="http://www.ubuntu.com/download/desktop"&gt;Ubuntu
+14.04&lt;/a&gt; ya esta integrado!).&lt;/p&gt;
+&lt;p&gt;Nuevamente un paso más anterior (o que ni siquiera esta junto en otros
+posts)... si no quieren arriesgarse a instalar el sistema completo y
+perder sus sistemas operativos anteriores, es posible instalar el
+escritorio Steam para probar con más cuidado antes de dar el paso
+completo, siempre y cuando nuestro sistema operativo sea Debian o uno
+basado en él. Instalamos el cliente Steam (a través de APT &lt;em&gt;apt-get
+install -y steam&lt;/em&gt; o descargando el
+&lt;a class="reference external" href="http://media.steampowered.com/client/installer/steam.deb"&gt;paquete&lt;/a&gt;
+de la página oficial). Luego debemos instalar los paquetes del
+&lt;a class="reference external" href="http://repo.steampowered.com/steamos/pool/main/s/steamos-compositor/"&gt;compositor&lt;/a&gt; y
+el &lt;a class="reference external" href="http://repo.steampowered.com/steamos/pool/main/s/steamos-modeswitch-inhibitor/"&gt;modeswitch
+inhibitor&lt;/a&gt; (como
+sabremos doble click y usar el centro de software o &lt;em&gt;dpkg -i *.deb&lt;/em&gt;).
+Esto nos permitirá probar un poco Steam pero no con todas las
+funcionalidades (los juegos Steam que no son linux no funcionarán), lo
+que es equivalente a que solo instalemos el cliente.&lt;/p&gt;
+&lt;p&gt;Para terminar solo quiero comentar que me pareció algo genial del
+instalador (lo único que puse ver) la opción de tomar pantallazos
+durante la instalación, archivos que quedan guardados en
+&lt;em&gt;/var/log/*png&lt;/em&gt;. Aún así, quien quiera correr riesgos, puede descargar
+la versión 1.0 beta update 96 en el &lt;a class="reference external" href="http://repo.steampowered.com/download/"&gt;repositorio
+oficial&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Para seguir todos los anuncios oficiales te sugiero revisar
+&lt;a class="reference external" href="http://steamcommunity.com/groups/steamuniverse#announcements"&gt;aquí&lt;/a&gt;.&lt;/p&gt;&lt;/div&gt;</description><category>Juegos</category><category>Linux</category><category>SteamOS</category><category>Tecnología</category><guid>http://cosmoscalibur.com/blog/con-calma-para-steamos/index.html</guid><pubDate>Sun, 20 Apr 2014 23:21:00 GMT</pubDate></item><item><title>Cantante virtual sensación</title><link>http://cosmoscalibur.com/blog/cantante-virtual-sensacion/index.html</link><dc:creator>Edward Villegas Pulgarin</dc:creator><description>&lt;div&gt;&lt;p&gt;Como toda una historia futurista y ciencia ficción, como la de William
+Gibson es su obra &lt;em&gt;Idoru&lt;/em&gt; que en japones significa "ídolo", una
+cantante totalmente virtual se encuentra en el top de ventas de las
+listas japonesas, y ademas da increíbles conciertos a sus seguidores.&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://cosmoscalibur.com/blog/cantante-virtual-sensacion/index.html#id1"&gt;&lt;span class="problematic" id="id2"&gt;|image0|&lt;/span&gt;&lt;/a&gt;Se trata de la cantante virtual japonesa Hatsune Miku de 19
+años (nació el 31 de agosto de 2007 teniendo 16 años). Su voz, es el
+patrón de voz de la actriz japonesa Saki Fujita, sintetizada por un
+programa de computadora llamado Vocaloid.&lt;/p&gt;
+&lt;p&gt;Vocaloid es un programa diseñado en trabajo conjunto por un equipo
+español de la Universidad Pompeu Fabra y la Corporación Yamaha. El
+programa sintetiza la voz de un cantante partiendo de la letra y la
+melodía. Este sintetizador de voz esta diseñado principalmente para
+crear canciones J-Pop, que son las canciones de los dibujos animados
+japoneses.&lt;/p&gt;
+&lt;p&gt;El 9 marzo de 2010, Hatsune Miku dio un concierto espectacular a sus
+seguidores ... su primera aparición en vivo y con músicos de verdad.
+Antes, solo lo hacia en pantallas.&lt;/p&gt;
+&lt;p&gt;Como esta, existen varios cantantes virtuales tanto femeninos como
+masculinos, de lengua inglesa o japonesa, así como dúos como el formado
+por Rin (femenino) y Len (masculino) de lengua japonesa.&lt;/p&gt;
+&lt;p&gt;Aquí, les dejo una muestra.&lt;/p&gt;
+&lt;div class="youtube-video align-center"&gt;
+&lt;iframe width="425" height="344" src="https://www.youtube.com/embed/DTXO7KGHtjI?rel=0&amp;amp;hd=1&amp;amp;wmode=transparent"&gt;&lt;/iframe&gt;
+&lt;/div&gt;&lt;p&gt;&lt;strong&gt;Ver más&lt;/strong&gt;
+&lt;em&gt;`Hatsune Miku &amp;lt;http://en.wikipedia.org/wiki/Hatsune_Miku&amp;gt;`__&lt;/em&gt;.
+Wikipedia (english version).
+&lt;em&gt;`Hatsune Miku &amp;lt;http://vocaloid.wikia.com/wiki/Hatsune_Miku&amp;gt;`__&lt;/em&gt;.
+Vocaloid Wikia (english version).
+&lt;a class="reference external" href="http://www.vocaloid.com/en/"&gt;*Vocaloid*&lt;/a&gt;. Vocaloid YAMAHA (english
+version).
+&lt;em&gt;`Vocaloid &amp;lt;http://en.wikipedia.org/wiki/Vocaloid&amp;gt;`__&lt;/em&gt;. Wikipedia
+(english version).
+.. &lt;a href="http://cosmoscalibur.com/blog/cantante-virtual-sensacion/index.html#id3"&gt;&lt;span class="problematic" id="id4"&gt;|image0|&lt;/span&gt;&lt;/a&gt; image:: &lt;a class="reference external" href="http://1.bp.blogspot.com/_flIcOAUpj50/TG7BBnPqO2I/AAAAAAAAALU/TVHS6VzdY14/s320/hatsune-miku.jpg"&gt;http://1.bp.blogspot.com/_flIcOAUpj50/TG7BBnPqO2I/AAAAAAAAALU/TVHS6VzdY14/s320/hatsune-miku.jpg&lt;/a&gt;&lt;/p&gt;
+&lt;div class="system-message"&gt;
+&lt;p class="system-message-title"&gt;System Message: ERROR/3 (&lt;tt class="docutils"&gt;&amp;lt;string&amp;gt;&lt;/tt&gt;, line 41)&lt;/p&gt;
+Unexpected indentation.&lt;/div&gt;
+&lt;blockquote&gt;
+&lt;table class="docutils field-list" frame="void" rules="none"&gt;
+&lt;col class="field-name"&gt;
+&lt;col class="field-body"&gt;
+&lt;tbody valign="top"&gt;
+&lt;tr class="field"&gt;&lt;th class="field-name"&gt;width:&lt;/th&gt;&lt;td class="field-body"&gt;320px&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class="field"&gt;&lt;th class="field-name"&gt;height:&lt;/th&gt;&lt;td class="field-body"&gt;240px&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class="field"&gt;&lt;th class="field-name"&gt;target:&lt;/th&gt;&lt;td class="field-body"&gt;&lt;a class="reference external" href="http://www.youtube.com/watch?v=DTXO7KGHtjI&amp;amp;feature=player_embedded"&gt;http://www.youtube.com/watch?v=DTXO7KGHtjI&amp;amp;feature=player_embedded&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/blockquote&gt;
+&lt;div class="system-messages section"&gt;
+&lt;h2&gt;Docutils System Messages&lt;/h2&gt;
+&lt;div class="system-message" id="id1"&gt;
+&lt;p class="system-message-title"&gt;System Message: ERROR/3 (&lt;tt class="docutils"&gt;&amp;lt;string&amp;gt;&lt;/tt&gt;, line 6); &lt;em&gt;&lt;a href="http://cosmoscalibur.com/blog/cantante-virtual-sensacion/index.html#id2"&gt;backlink&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+Undefined substitution referenced: "image0".&lt;/div&gt;
+&lt;div class="system-message" id="id3"&gt;
+&lt;p class="system-message-title"&gt;System Message: ERROR/3 (&lt;tt class="docutils"&gt;&amp;lt;string&amp;gt;&lt;/tt&gt;, line 31); &lt;em&gt;&lt;a href="http://cosmoscalibur.com/blog/cantante-virtual-sensacion/index.html#id4"&gt;backlink&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+Undefined substitution referenced: "image0".&lt;/div&gt;
+&lt;/div&gt;&lt;/div&gt;</description><category>Entretenimiento</category><category>Geek</category><category>Manga</category><category>Síntesis de voz</category><category>Tecnología</category><guid>http://cosmoscalibur.com/blog/cantante-virtual-sensacion/index.html</guid><pubDate>Tue, 25 Sep 2012 05:13:00 GMT</pubDate></item><item><title>Energía alternativa para dispositivos móviles</title><link>http://cosmoscalibur.com/blog/energia-alternativa-para-dispositivos/index.html</link><dc:creator>Edward Villegas Pulgarin</dc:creator><description>&lt;div&gt;&lt;dl class="docutils"&gt;
+&lt;dt&gt;Las fuentes de energía son parte vital de los sistemas que actualmente&lt;/dt&gt;
+&lt;dd&gt;nos rodean... que si no la hay, bueno, desde las grandes estructuras
+hechas por hombre hasta las complejas formas de vida se degradarían,
+dejarían de funcionar y simplemente sucumben.&lt;/dd&gt;
+&lt;dt&gt;Pero particularmente nos interesa la energía para nuestros diseños, la&lt;/dt&gt;
+&lt;dd&gt;"vida artificial", los sistemas eléctricos y electrónicos. A diario
+cargamos (tanto de portar como de suministrar energía) toda clase de
+dispositivos móviles, pero es algo que bajo circunstancias de una vida
+de total movilidad tal vez pueda caer en algo incluso olvidemos
+y después lamentamos llevar una simple pantalla negra.&lt;/dd&gt;
+&lt;dt&gt;Ademas de poder dar una mayor comodidad a la hora de cargar nuestros&lt;/dt&gt;
+&lt;dd&gt;dispositivos móviles no solo por el tiempo muerto que implica (estar
+en un mismo punto durante el tiempo de carga) y evitar la dependencia
+de esos búlticos con patas para enchufar al sistema eléctrico y la
+dependencia de puntos de conexión, se investiga en maneras de
+suministrar energía a nuestros dispositivos de manera "portátil".&lt;/dd&gt;
+&lt;dt&gt;¿Como? Existen materiales que pueden aprovechar ciertas condiciones&lt;/dt&gt;
+&lt;dd&gt;del medio para transformar sus estímulos en energía eléctrica,
+utilizable para los dispositivos. Ejemplo son las celdas fotovoltaicas
+(comúnmente denominados paneles solares, aunque esto abarca a muchas
+otras tecnologías), constituidos de cristales de silicio, un material
+semiconductor en el que esta basado gran parte de la electrónica que
+conocemos. Los fotones (partículas de luz) al incidir sobre la
+superficie de la celda impactan con electrones del silicio, estos
+absorben su energía y pueden ser liberados del átomo, pudiendo así
+conducir electricidad. Sin embargo el tamaño requerido evita para
+suplir las necesidades de dispositivos móviles inhabilita su uso (aún
+algunas veces en algo parecido las encuentro, las calculadores de
+bolsillo).&lt;/dd&gt;
+&lt;dt&gt;Pero se pueden tener materiales que aprovechen otras condiciones del&lt;/dt&gt;
+&lt;dd&gt;medio, solo por recurrir a la ciencia ficción, recordemos el
+extraordinario material de la película &lt;em&gt;The Core&lt;/em&gt;,  llamado inoctenio
+(Unobtainium), un metal capaz de convertir la la energía absorbida de
+la fuertes presiones y altas temperaturas en energía eléctrica (sin
+contar, que eso a su vez, lo hacia aun mas resistente). Bueno, un
+material así y a gran escala como sucede en la película sería
+maravilloso, pero aun no lo tenemos. Por el momento, solo se ve luz
+frente a un material a nanoescala que podría ser la revolución en
+fuentes de energía para distintas tecnología móviles (no solo el
+celular, IPod, BlackBerry y otros similares, sino también marcapasos,
+computadores portátiles y otros "pequeños" dispositivos). Este tipo de
+materiales son los piezoeléctricos.&lt;/dd&gt;
+&lt;dt&gt;&lt;a class="reference external" href="http://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/SchemaPiezo.gif/220px-SchemaPiezo.gif"&gt;&lt;img alt="image0" src="http://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/SchemaPiezo.gif/220px-SchemaPiezo.gif" style="width: 200px; height: 200px;"&gt;&lt;/a&gt;Los materiales piezoeléctricos son materiales cristalinos&lt;/dt&gt;
+&lt;dd&gt;que al ser sometidos a tensiones mecánicas (la presión por ejemplo)
+producen polarización eléctrica que se refleja en la aparición de una
+diferencia de potencial entre las superficies del material y
+acumulación de carga eléctrica en la misma. Esta tensión mecánica
+podría ser producida por la presión sanguínea, la presión al pisar el
+suelo con nuestros zapatos al caminar o trotar, la presión de los
+dedos sobre pantallas táctiles y cualquier otro esfuerzo/presión
+que ejerzamos en nuestras actividades diarias, que se insertarían como
+delgados recubrimientos del cristal sobre los elementos en los que se
+da la presión.&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;p&gt;&lt;strong&gt;Fuentes&lt;/strong&gt;&lt;/p&gt;
+&lt;dl class="docutils"&gt;
+&lt;dt&gt;1. Nanotechnology pushes battery life to&lt;/dt&gt;
+&lt;dd&gt;eternity. &lt;a class="reference external" href="http://www.physorg.com/news/2011-06-nanotechnology-battery-life-eternity.html"&gt;Physorg&lt;/a&gt; Junio
+21 de 2011&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;ol class="arabic simple" start="2"&gt;
+&lt;li&gt;Madhu Bhaskaran et al, Energy Materials: Nanoscale Characterization&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="system-message"&gt;
+&lt;p class="system-message-title"&gt;System Message: WARNING/2 (&lt;tt class="docutils"&gt;&amp;lt;string&amp;gt;&lt;/tt&gt;, line 63)&lt;/p&gt;
+Enumerated list ends without a blank line; unexpected unindent.&lt;/div&gt;
+&lt;blockquote&gt;
+of Energy Generation from Piezoelectric Thin Films. &lt;em&gt;Advanced
+Functional Materials&lt;/em&gt; &lt;strong&gt;21&lt;/strong&gt;(12) 2165 (2011). &lt;a class="reference external" href="http://onlinelibrary.wiley.com/doi/10.1002/adfm.201190041/abstract"&gt;DOI:
+10.1002/adfm.201190041&lt;/a&gt;&lt;/blockquote&gt;
+&lt;ol class="arabic simple" start="3"&gt;
+&lt;li&gt;&lt;a class="reference external" href="http://en.wikipedia.org/wiki/The_Core"&gt;The Core&lt;/a&gt; y&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="system-message"&gt;
+&lt;p class="system-message-title"&gt;System Message: WARNING/2 (&lt;tt class="docutils"&gt;&amp;lt;string&amp;gt;&lt;/tt&gt;, line 68)&lt;/p&gt;
+Enumerated list ends without a blank line; unexpected unindent.&lt;/div&gt;
+&lt;blockquote&gt;
+&lt;a class="reference external" href="http://en.wikipedia.org/wiki/Unobtainium"&gt;Unobtainium&lt;/a&gt;, Wiki.
+Fecha de consulta: Julio 6 de 2011&lt;/blockquote&gt;
+&lt;ol class="arabic" start="4"&gt;
+&lt;li&gt;&lt;p class="first"&gt;&lt;a href="http://cosmoscalibur.com/blog/energia-alternativa-para-dispositivos/index.html#id1"&gt;&lt;span class="problematic" id="id2"&gt;`&lt;/span&gt;&lt;/a&gt;Panel&lt;/p&gt;
+&lt;div class="system-message" id="id1"&gt;
+&lt;p class="system-message-title"&gt;System Message: WARNING/2 (&lt;tt class="docutils"&gt;&amp;lt;string&amp;gt;&lt;/tt&gt;, line 71); &lt;em&gt;&lt;a href="http://cosmoscalibur.com/blog/energia-alternativa-para-dispositivos/index.html#id2"&gt;backlink&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Inline interpreted text or phrase reference start-string without end-string.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="system-message"&gt;
+&lt;p class="system-message-title"&gt;System Message: WARNING/2 (&lt;tt class="docutils"&gt;&amp;lt;string&amp;gt;&lt;/tt&gt;, line 72)&lt;/p&gt;
+Enumerated list ends without a blank line; unexpected unindent.&lt;/div&gt;
+&lt;blockquote&gt;
+fotovoltaico &amp;lt;&lt;a class="reference external" href="http://es.wikipedia.org/wiki/Panel_fotovoltaico"&gt;http://es.wikipedia.org/wiki/Panel_fotovoltaico&lt;/a&gt;&amp;gt;`__,
+Wiki. Fecha de consulta: Julio 6 de 2011&lt;/blockquote&gt;
+&lt;div class="system-message"&gt;
+&lt;p class="system-message-title"&gt;System Message: WARNING/2 (&lt;tt class="docutils"&gt;&amp;lt;string&amp;gt;&lt;/tt&gt;, line 74)&lt;/p&gt;
+Block quote ends without a blank line; unexpected unindent.&lt;/div&gt;
+&lt;ol class="arabic simple" start="5"&gt;
+&lt;li&gt;&lt;a class="reference external" href="http://en.wikipedia.org/wiki/Piezoelectricity"&gt;Piezoelectricity&lt;/a&gt;,
+Wiki. Fecha de consulta: Julio 6 de 2011&lt;/li&gt;
+&lt;/ol&gt;&lt;/div&gt;</description><category>Energía</category><category>Materiales</category><category>Tecnología</category><guid>http://cosmoscalibur.com/blog/energia-alternativa-para-dispositivos/index.html</guid><pubDate>Thu, 07 Jul 2011 07:08:00 GMT</pubDate></item><item><title>20 años de Linux</title><link>http://cosmoscalibur.com/blog/20-anos-de-linux/index.html</link><dc:creator>Edward Villegas Pulgarin</dc:creator><description>&lt;div&gt;&lt;p&gt;Hace 20 años, Linus Torvalds tomo la decisión de compartir su sistema operativo con el mundo. No mucho después, decidió licenciar este bajo &lt;em&gt;General Public Licence&lt;/em&gt; (GPL). Este momento histórico cambio todo en el mundo en la historia de la computación.&lt;/p&gt;
 &lt;p&gt;Hoy, Linux es el proyecto colaborativo mas grande en la historia de la computación, lo cual significa que el aniversario número 20 de Linux es una oportunidad para que la comunidad llegue a unirse en la celebración de este gran acontecimiento y contribuir a definir como serán los próximos 20 años de linux.&lt;/p&gt;
 &lt;p&gt;Hoy Linux se encuentra en todas partes: en su teléfono, su televisor, su computador, en las películas, en su carro y muchos otros lugares. Esta en cualquier lugar porque es para todos.&lt;/p&gt;
 &lt;p&gt;A continuación, el video de &lt;cite&gt;The Linux Foundation &amp;lt;https://www.linuxfoundation.org&amp;gt;&lt;/cite&gt; con motivo a los 20 años de Linux.&lt;/p&gt;

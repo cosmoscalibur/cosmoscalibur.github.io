@@ -1,7 +1,7 @@
 .. title: Mala hierba
 .. slug: mala-hierba
 .. date: 2012-10-03 22:17:00
-.. tags:
+.. tags: Poesía,Escritos,Literatura
 .. description:
 .. category: Migración/La Flecha Temporal
 .. type: text
