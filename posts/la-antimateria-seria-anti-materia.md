@@ -25,5 +25,6 @@ Así que la interacción gravitacional entre la materia y la antimateria sería 
 Pero esto implica mas que eso... de confirmarse observaciones de presencia de antimateria en los vacíos observados en las distribuciones galácticas esto permitiría explicar la aceleración del universo ¡sin recurrir a la energía oscura y a la materia oscura! Por ahora es prematuro afirmarlo, pero esto ya nos podría cuestionar la existencia de las dos últimas.  
 
 __Fuentes__:  
+
 +   [Antimatter gravity could explain Universe's expansion](https://phys.org/news/2011-04-antimatter-gravity-universe-expansion.html). Physorg. 13 de abril de 2011.  
 +   M. Villata. “CPT symmetry and antimatter gravity in general relativity.” EPL (Europhysics Letters), 94 (2011) 20001 ([arXiv:1103.4937 [gr-qc]](https://arxiv.org/abs/1103.4937)). __DOI__: [10.1209/0295-5075/94/20001](http://iopscience.iop.org/article/10.1209/0295-5075/94/20001/meta).  

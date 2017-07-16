@@ -22,5 +22,6 @@ La teoría de Nemesis normalmente ha sido descartada, pero las cosas parecen ind
 Los datos, provenientes de la misión [WISE](http://wise.ssl.berkeley.edu/) (_Wide-Field Infrared Survey Explorer_) están siendo analizados y esperando de la confirmación de este gigante gaseoso.  
 
 __Fuentes__:  
+
 +   [About that giant planet possibly hiding in the outer solar system…](https://phys.org/news/2011-02-giant-planet-possibly-outer-solar.html). Physorg. 17 de febrero de 2011.  
 +   [Up telescope! Search begins for giant new planet](http://www.independent.co.uk/news/science/up-telescope-search-begins-for-giant-new-planet-2213119.html). Independet. 13 de febrero de 2011.  

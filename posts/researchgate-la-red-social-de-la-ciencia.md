@@ -27,6 +27,7 @@ ResearchGate reúne mas de 1100 grupos de ciencia creados sobre la red social y 
 Al igual que cualquier red social, también se ubica una foto de perfil, información de ubicación pero a partir de ahí las cosas cambian... gustos académicos, libros favoritos, habilidades en tecnologáas de la información y habilidades técnicas, estudias, trabajos de investigación, publicaciones, asesores, intereses de investigación, interesado en (aquí, si se busca compañero de discusiones, asesor, co-investigador) y afiliaciones entre otras cosas de interés académico.  
 
 __Fuentes__:  
+
 +   Lluís Codina. Ciencia 2.0: Redes sociales y aplicaciones en línea para académicos [online](https://www.upf.edu/hipertextnet/numero-7/ciencia-2-0.html). "Hipertext.net", núm. 7, 2009.  
-+   [Wikipedia ResearchGate](https://en.wikipedia.org/wiki/ResearchGate) (english version).  
++   [Wikipedia ResearchGate](https://en.wikipedia.org/wiki/ResearchGate).  
 +   [ResearchGate](https://www.researchgate.net/) Scientific Network.  
