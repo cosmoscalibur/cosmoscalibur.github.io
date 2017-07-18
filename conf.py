@@ -348,7 +348,7 @@ WRITE_TAG_CLOUD = False
 
 # Generate pages for each section. The site must have at least two sections
 # for this option to take effect. It wouldn't build for just one section.
-POSTS_SECTIONS = True
+POSTS_SECTIONS = False
 
 # Setting this to False generates a list page instead of an index. Indexes
 # are the default and will apply GENERATE_ATOM if set.
@@ -510,20 +510,22 @@ CATEGORY_OUTPUT_FLAT_HIERARCHY = False
 # Set descriptions for category pages to make them more interesting. The
 # default is no description. The value is used in the meta description
 # and displayed underneath the category list or index page’s title.
-# CATEGORY_PAGES_DESCRIPTIONS = {
-#    DEFAULT_LANG: {
-#        "blogging": "Meta-blog posts about blogging about blogging.",
-#        "open source": "My contributions to my many, varied, ever-changing, and eternal libre software projects."
-#    },
-# }
+CATEGORY_PAGES_DESCRIPTIONS = {
+   DEFAULT_LANG: {
+       "Migración": "Estas son las publicaciones migradas a partir de mis antiguos blogs.",
+       "Física Pasión": "Mis publicaciones de ciencia y tecnología migradas del blog [inactivo] Física Pasión.",
+       "La Flecha Temporal": "Mis poemas, ensayos y reflexiones migrados del blog [inactivo] La Flecha Temporal."
+   },
+}
 
 # Set special titles for category pages. The default is "Posts about CATEGORY".
-# CATEGORY_PAGES_TITLES = {
-#    DEFAULT_LANG: {
-#        "blogging": "Meta-posts about blogging",
-#        "open source": "Posts about open source software"
-#    },
-# }
+CATEGORY_PAGES_TITLES = {
+   DEFAULT_LANG: {
+       "Migración": "Mis viejos blogs",
+       "Física Pasión": "Blog Física Pasión",
+       "La Flecha Temporal": "Blog La Flecha Temporal"
+   },
+}
 
 # If you do not want to display a category publicly, you can mark it as hidden.
 # The category will not be displayed on the category list page.
