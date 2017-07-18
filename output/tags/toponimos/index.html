@@ -7,9 +7,9 @@
 <link href="../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
 <meta name="theme-color" content="#5670d4">
 <meta name="generator" content="Nikola (getnikola.com)">
-<link rel="alternate" type="application/rss+xml" title="RSS for tag Topónimos (es)" href="../toponimos.xml">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="../../rss.xml">
 <link rel="canonical" href="http://cosmoscalibur.github.io/tags/toponimos/index.html">
-<!--[if lt IE 9]><script src="../../assets/js/html5.js"></script><![endif]--><link rel="alternate" type="application/rss+xml" title="RSS for tag Topónimos (es)" href="../toponimos.xml">
+<!--[if lt IE 9]><script src="../../assets/js/html5.js"></script><![endif]--><link rel="alternate" type="application/rss+xml" title="RSS for tag Topónimos" href="../toponimos.xml">
 </head>
 <body>
 <a href="#content" class="sr-only sr-only-focusable">Ir al contenido principal</a>
@@ -108,66 +108,21 @@
         <div class="row">
             
             
-
-    
-    
-
-
-    <header><h1>Publicaciones sobre Topónimos</h1>
-    </header><div class="postindex">
-    <article class="h-entry post-text"><header><h1 class="p-name entry-title"><a href="../../blog/toponimos-colombianos-en-rla-es/index.html" class="u-url">Topónimos colombianos en RLA-ES</a></h1>
+<article class="tagpage"><header><h1>Publicaciones sobre Topónimos</h1>
         <div class="metadata">
-            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
-                Edward Villegas Pulgarin
-            </span></p>
-            <p class="dateline"><a href="../../blog/toponimos-colombianos-en-rla-es/index.html" rel="bookmark"><time class="published dt-published" datetime="2017-07-11T18:19:13-05:00" title="2017-07-11 18:19">2017-07-11 18:19</time></a></p>
-                <p class="commentline">
+            
+            <p class="feedlink">
+                    <a href="../toponimos.xml" type="application/rss+xml">Canal RSS</a>
+            </p>
+
+        </div>
         
-    <a href="../../blog/toponimos-colombianos-en-rla-es/index.html#disqus_thread" data-disqus-identifier="cache/posts/toponimos-colombianos-en-rla-es.html">Comments</a>
 
-
-        </p>
-</div>
-    </header><div class="p-summary entry-summary">
-    <div>
-<p>Primero, saludo después de un tiempo largo de ausencia. Por diversos motivos el blog tuve que dejarlo en el olvido pero hoy lo reanudo. El como volví merece una publicación posterior.</p>
-<p>En esta ocasión quiero contarles de una contribución que me aprobaron el día de ayer en el proyecto "Recursos Lingüísticos Abiertos del Español" y de paso, sobre el proyecto en si mismo que me parece bastante interesante.</p>
-<div class="section" id="el-proyecto">
-<h2>El proyecto</h2>
-<p>Resulta que finalizando mayo buscaba sobre proyectos que implicarán procesamiento de texto y lenguaje natural, por diversos motivos (aprender, prácticar y hacer una propuesta a una estudiante). En esa búsqueda me tope por casualidad con el proyecto <a class="reference external" href="https://github.com/sbosio/rla-es">Recursos Lingüisticos Abiertos del Español</a> que es liderado por Santiago Bosio (<a class="reference external" href="https://github.com/sbosio">@sbosio</a> en github).</p>
-<p>Este proyecto ha aportado diversas localizaciones del español en proyectos como LibreOffice, OpenOffice y Mozilla (proyectos que usan Hunspell para la corrección de ortografía). Y de paso, indirectamente había sido la fuente del diccionario para mis editores de texto plano (TeXMaker, Atom y ReText), pues no uso los que vienen por defecto en la distribución de Ubuntu sino que descomprimo la extensión de LibreOffice y tomo los archivos <code>dic</code> y <code>aff</code> (con el fin de tener versiones más recientes).</p>
-<p>Aunque por si mismo el proyecto no era lo que buscaba, vi la oportunidad no solo de usar una versión actualizada del diccionario sin esperar las liberaciones de versión (y sus respectivas subidas a los proyectos), sino una oportunidad de contribuir en la localización de Colombia.</p>
-</div>
-<div class="section" id="la-contribucion">
-<h2>La contribución</h2>
-<p>En el reporte <a class="reference external" href="https://github.com/sbosio/rla-es/issues/81">#81</a> del repositorio de github, se propuso como mejora agregar los topónimos de las localizaciones que aún no tuvieran dicha información. La localización de Colombia era uno de esos casos, y efectivamente una necesidad como colombiano para hacer algunos documentos en los que requiera mención a entes territoriales (y cuantos estudiantes en sus clases de geografía colombiana).</p>
-<p>Con esta necesidad y el ánimo de aportar por primera vez a un proyecto existente (a través del <a class="reference external" href="https://github.com/fisicatyc">semillero de física teórica y computacional</a> ya lo había hecho, pero finalmente es algo que cofundé), inicie la búsqueda de la fuente de insumos para esta tarea.</p>
-<p>Así encontré <a class="reference external" href="https://geoportal.dane.gov.co/v2/?page=elementoHistoricoDivipola">DIVIPOLA</a>, que es la Codificación de la División Político-administrativa de Colombia. En ella, se pueden consultar los reportes históricos de la división nacional en entes territoriales para descargar y afortunadamente en un formato "amigable" (excel). Y aquí comenzo el trabajo, usando herramientas libres claro esta, que fueron <code>soffice</code> (la interface de comandos de LibreOffice) para la conversión del archivo de excel a texto plano (en específico a un archivo de valores separados por coma -CSV-) y las utilidades <code>tail,</code> <code>cut,</code> <code>tr</code> y <code>sed</code> para la manipulación del texto como la extracción de las columnas de datos necesarias, eliminación de números (cardinales y romanos), eliminación de palabras comunes (ya que no aportan al diccionario), eliminación de signos y conversión a minúsculas con mayúscula inicial. Y por supuesto, <code>git</code> para el control de versiones.</p>
-<p>No haré detalle técnico más allá de la mención anterior, pero si quieres ver como se hace (es un buen ejercicio), dejé constancia en el repositorio de como se hace el proceso como referencia para un futuro mantenimiento (<a class="reference external" href="https://github.com/sbosio/rla-es/tree/master/ortograf/palabras/toponimos/l10n/es_CO">ver explicación</a>).</p>
-<p>Finalmente en el reporte <a class="reference external" href="https://github.com/sbosio/rla-es/pull/120">#120</a> realice la solicitud de inclusión (<em>pull request (PR)</em>) y unida (<em>merged</em>) al ramal principal el 10 de julio de 2017, y espera ver la luz oficialmente en la versión 2.3 de RLA-ES (sin fecha programada aún).</p>
-<p>¡Corrección de topónimos colombianos a la mano! Claro, faltan accidentes geográficos, pero es el primer paso. Espero poder aportar a la localización mucho más y al proyecto en general.</p>
-</div>
-<div class="section" id="uso">
-<h2>Uso</h2>
-<p>Una vez sea liberada la versión 2.3, estará disponible a traves de las extensiones de los proyectos y de la página de <a class="reference external" href="https://github.com/sbosio/rla-es/releases">releases de RLA-ES</a>. Por ahora, es necesario generar el archivo descargando (o clonando) el proyecto y siguiendo las instrucciones dadas en la <a class="reference external" href="https://github.com/sbosio/rla-es/wiki/Generar-diccionario-corrector">wiki del proyecto</a> (para la localización de Colombia, debemos usar <code>es_CO).</code></p>
-<p>Finalmente, para poderlo usar en nuestros editores de texto plano (si, diccionario para nuestros documentos de LaTeX y MarkDown), debes seguir las indicaciones finales de la sección de la wiki (que se resúmen en descomprimir el archivo generado).</p>
-<p><strong>Fuentes</strong>:</p>
-<ul class="simple">
+    </header><ul class="postlist">
 <li>
-<a class="reference external" href="https://github.com/sbosio/rla-es">sbosio/rla-es</a>: Proyecto original.</li>
-<li>
-<a class="reference external" href="https://github.com/cosmoscalibur/rla-es">cosmoscalibur/rla-es</a>: Mi derivación (<em>fork</em>) del proyecto para hacer las contribuciones.</li>
-</ul>
-</div>
-</div>
-    </div>
-    </article>
-</div>
-
-
-
-        
-       <script>var disqus_shortname="cosmoscalibur";(function(){var a=document.createElement("script");a.async=true;a.src="https://"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());</script>
+<time class="listdate" datetime="2017-07-11T18:19:13-05:00" title="2017-07-11 18:19">2017-07-11 18:19</time><a href="../../blog/toponimos-colombianos-en-rla-es/index.html" class="listtitle">Topónimos colombianos en RLA-ES</a><a></a>
+</li>
+        </ul></article>
 </div>
         <!--End of body content-->
 
