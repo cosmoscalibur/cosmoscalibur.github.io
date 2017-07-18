@@ -5,12 +5,12 @@ STOP_RENDERING = runtime.STOP_RENDERING
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 10
-_modified_time = 1500352264.6349728
+_modified_time = 1500352584.2951043
 _enable_loop = True
 _template_filename = '/usr/local/lib/python3.5/dist-packages/nikola/data/themes/base/templates/post_helper.tmpl'
 _template_uri = 'post_helper.tmpl'
 _source_encoding = 'utf-8'
-_exports = ['meta_translations', 'html_tags', 'open_graph_metadata', 'html_pager', 'twitter_card_information', 'mathjax_script']
+_exports = ['meta_translations', 'html_tags', 'html_pager', 'open_graph_metadata', 'mathjax_script', 'twitter_card_information']
 
 
 def _mako_get_namespace(context, name):
@@ -65,8 +65,8 @@ def render_meta_translations(context,post):
 def render_html_tags(context,post):
     __M_caller = context.caller_stack._push_frame()
     try:
-        _link = context.get('_link', UNDEFINED)
         hidden_tags = context.get('hidden_tags', UNDEFINED)
+        _link = context.get('_link', UNDEFINED)
         __M_writer = context.writer()
         __M_writer('\n')
         if post.tags:
@@ -84,15 +84,45 @@ def render_html_tags(context,post):
         context.caller_stack._pop_frame()
 
 
+def render_html_pager(context,post):
+    __M_caller = context.caller_stack._push_frame()
+    try:
+        messages = context.get('messages', UNDEFINED)
+        __M_writer = context.writer()
+        __M_writer('\n')
+        if post.prev_post or post.next_post:
+            __M_writer('        <ul class="pager hidden-print">\n')
+            if post.prev_post:
+                __M_writer('            <li class="previous">\n                <a href="')
+                __M_writer(str(post.prev_post.permalink()))
+                __M_writer('" rel="prev" title="')
+                __M_writer(filters.html_escape(str(post.prev_post.title())))
+                __M_writer('">')
+                __M_writer(str(messages("Previous post")))
+                __M_writer('</a>\n            </li>\n')
+            if post.next_post:
+                __M_writer('            <li class="next">\n                <a href="')
+                __M_writer(str(post.next_post.permalink()))
+                __M_writer('" rel="next" title="')
+                __M_writer(filters.html_escape(str(post.next_post.title())))
+                __M_writer('">')
+                __M_writer(str(messages("Next post")))
+                __M_writer('</a>\n            </li>\n')
+            __M_writer('        </ul>\n')
+        return ''
+    finally:
+        context.caller_stack._pop_frame()
+
+
 def render_open_graph_metadata(context,post):
     __M_caller = context.caller_stack._push_frame()
     try:
-        lang = context.get('lang', UNDEFINED)
         url_replacer = context.get('url_replacer', UNDEFINED)
+        use_open_graph = context.get('use_open_graph', UNDEFINED)
         permalink = context.get('permalink', UNDEFINED)
+        lang = context.get('lang', UNDEFINED)
         abs_link = context.get('abs_link', UNDEFINED)
         blog_title = context.get('blog_title', UNDEFINED)
-        use_open_graph = context.get('use_open_graph', UNDEFINED)
         __M_writer = context.writer()
         __M_writer('\n')
         if use_open_graph:
@@ -130,31 +160,14 @@ def render_open_graph_metadata(context,post):
         context.caller_stack._pop_frame()
 
 
-def render_html_pager(context,post):
+def render_mathjax_script(context,post):
     __M_caller = context.caller_stack._push_frame()
     try:
-        messages = context.get('messages', UNDEFINED)
+        math = _mako_get_namespace(context, 'math')
         __M_writer = context.writer()
+        __M_writer('\n    ')
+        __M_writer(str(math.math_scripts_ifpost(post)))
         __M_writer('\n')
-        if post.prev_post or post.next_post:
-            __M_writer('        <ul class="pager hidden-print">\n')
-            if post.prev_post:
-                __M_writer('            <li class="previous">\n                <a href="')
-                __M_writer(str(post.prev_post.permalink()))
-                __M_writer('" rel="prev" title="')
-                __M_writer(filters.html_escape(str(post.prev_post.title())))
-                __M_writer('">')
-                __M_writer(str(messages("Previous post")))
-                __M_writer('</a>\n            </li>\n')
-            if post.next_post:
-                __M_writer('            <li class="next">\n                <a href="')
-                __M_writer(str(post.next_post.permalink()))
-                __M_writer('" rel="next" title="')
-                __M_writer(filters.html_escape(str(post.next_post.title())))
-                __M_writer('">')
-                __M_writer(str(messages("Next post")))
-                __M_writer('</a>\n            </li>\n')
-            __M_writer('        </ul>\n')
         return ''
     finally:
         context.caller_stack._pop_frame()
@@ -191,21 +204,8 @@ def render_twitter_card_information(context,post):
         context.caller_stack._pop_frame()
 
 
-def render_mathjax_script(context,post):
-    __M_caller = context.caller_stack._push_frame()
-    try:
-        math = _mako_get_namespace(context, 'math')
-        __M_writer = context.writer()
-        __M_writer('\n    ')
-        __M_writer(str(math.math_scripts_ifpost(post)))
-        __M_writer('\n')
-        return ''
-    finally:
-        context.caller_stack._pop_frame()
-
-
 """
 __M_BEGIN_METADATA
-{"line_map": {"23": 2, "26": 0, "31": 2, "32": 12, "33": 24, "34": 41, "35": 70, "36": 86, "37": 91, "43": 4, "51": 4, "52": 5, "53": 6, "54": 7, "55": 8, "56": 8, "57": 8, "58": 8, "59": 8, "65": 14, "71": 14, "72": 15, "73": 16, "74": 17, "75": 18, "76": 19, "77": 19, "78": 19, "79": 19, "80": 19, "81": 22, "87": 43, "97": 43, "98": 44, "99": 45, "100": 45, "101": 45, "102": 46, "103": 46, "104": 47, "105": 47, "106": 48, "107": 49, "108": 49, "109": 49, "110": 50, "111": 51, "112": 51, "113": 51, "114": 53, "115": 54, "116": 54, "117": 54, "118": 56, "119": 61, "120": 62, "121": 62, "122": 62, "123": 64, "124": 65, "125": 66, "126": 66, "127": 66, "133": 26, "138": 26, "139": 27, "140": 28, "141": 29, "142": 30, "143": 31, "144": 31, "145": 31, "146": 31, "147": 31, "148": 31, "149": 34, "150": 35, "151": 36, "152": 36, "153": 36, "154": 36, "155": 36, "156": 36, "157": 39, "163": 72, "168": 72, "169": 73, "170": 74, "171": 74, "172": 74, "173": 75, "174": 76, "175": 76, "176": 76, "177": 77, "178": 78, "179": 78, "180": 78, "181": 80, "182": 81, "183": 81, "184": 81, "185": 82, "186": 83, "187": 83, "188": 83, "194": 89, "199": 89, "200": 90, "201": 90, "207": 201}, "filename": "/usr/local/lib/python3.5/dist-packages/nikola/data/themes/base/templates/post_helper.tmpl", "source_encoding": "utf-8", "uri": "post_helper.tmpl"}
+{"uri": "post_helper.tmpl", "source_encoding": "utf-8", "line_map": {"23": 2, "26": 0, "31": 2, "32": 12, "33": 24, "34": 41, "35": 70, "36": 86, "37": 91, "43": 4, "51": 4, "52": 5, "53": 6, "54": 7, "55": 8, "56": 8, "57": 8, "58": 8, "59": 8, "65": 14, "71": 14, "72": 15, "73": 16, "74": 17, "75": 18, "76": 19, "77": 19, "78": 19, "79": 19, "80": 19, "81": 22, "87": 26, "92": 26, "93": 27, "94": 28, "95": 29, "96": 30, "97": 31, "98": 31, "99": 31, "100": 31, "101": 31, "102": 31, "103": 34, "104": 35, "105": 36, "106": 36, "107": 36, "108": 36, "109": 36, "110": 36, "111": 39, "117": 43, "127": 43, "128": 44, "129": 45, "130": 45, "131": 45, "132": 46, "133": 46, "134": 47, "135": 47, "136": 48, "137": 49, "138": 49, "139": 49, "140": 50, "141": 51, "142": 51, "143": 51, "144": 53, "145": 54, "146": 54, "147": 54, "148": 56, "149": 61, "150": 62, "151": 62, "152": 62, "153": 64, "154": 65, "155": 66, "156": 66, "157": 66, "163": 89, "168": 89, "169": 90, "170": 90, "176": 72, "181": 72, "182": 73, "183": 74, "184": 74, "185": 74, "186": 75, "187": 76, "188": 76, "189": 76, "190": 77, "191": 78, "192": 78, "193": 78, "194": 80, "195": 81, "196": 81, "197": 81, "198": 82, "199": 83, "200": 83, "201": 83, "207": 201}, "filename": "/usr/local/lib/python3.5/dist-packages/nikola/data/themes/base/templates/post_helper.tmpl"}
 __M_END_METADATA
 """
