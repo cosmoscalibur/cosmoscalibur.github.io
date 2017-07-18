@@ -7,9 +7,9 @@
 <link href="../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
 <meta name="theme-color" content="#5670d4">
 <meta name="generator" content="Nikola (getnikola.com)">
-<link rel="alternate" type="application/rss+xml" title="RSS" href="../../rss.xml">
+<link rel="alternate" type="application/rss+xml" title="RSS for tag Software libre (es)" href="../software-libre.xml">
 <link rel="canonical" href="http://cosmoscalibur.github.io/tags/software-libre/index.html">
-<!--[if lt IE 9]><script src="../../assets/js/html5.js"></script><![endif]--><link rel="alternate" type="application/rss+xml" title="RSS for tag Software libre" href="../software-libre.xml">
+<!--[if lt IE 9]><script src="../../assets/js/html5.js"></script><![endif]--><link rel="alternate" type="application/rss+xml" title="RSS for tag Software libre (es)" href="../software-libre.xml">
 </head>
 <body>
 <a href="#content" class="sr-only sr-only-focusable">Ir al contenido principal</a>
@@ -108,24 +108,90 @@
         <div class="row">
             
             
-<article class="tagpage"><header><h1>Publicaciones sobre Software libre</h1>
+
+    
+    
+
+
+    <header><h1>Publicaciones sobre Software libre</h1>
+    </header><div class="postindex">
+    <article class="h-entry post-text"><header><h1 class="p-name entry-title"><a href="../../blog/toponimos-colombianos-en-rla-es/index.html" class="u-url">Topónimos colombianos en RLA-ES</a></h1>
         <div class="metadata">
-            
-            <p class="feedlink">
-                    <a href="../software-libre.xml" type="application/rss+xml">Canal RSS</a>
-            </p>
-
-        </div>
+            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
+                Edward Villegas Pulgarin
+            </span></p>
+            <p class="dateline"><a href="../../blog/toponimos-colombianos-en-rla-es/index.html" rel="bookmark"><time class="published dt-published" datetime="2017-07-11T18:19:13-05:00" title="2017-07-11 18:19">2017-07-11 18:19</time></a></p>
+                <p class="commentline">
         
+    <a href="../../blog/toponimos-colombianos-en-rla-es/index.html#disqus_thread" data-disqus-identifier="cache/posts/toponimos-colombianos-en-rla-es.html">Comments</a>
 
-    </header><ul class="postlist">
+
+        </p>
+</div>
+    </header><div class="p-summary entry-summary">
+    <div>
+<p>Primero, saludo después de un tiempo largo de ausencia. Por diversos motivos el blog tuve que dejarlo en el olvido pero hoy lo reanudo. El como volví merece una publicación posterior.</p>
+<p>En esta ocasión quiero contarles de una contribución que me aprobaron el día de ayer en el proyecto "Recursos Lingüísticos Abiertos del Español" y de paso, sobre el proyecto en si mismo que me parece bastante interesante.</p>
+<div class="section" id="el-proyecto">
+<h2>El proyecto</h2>
+<p>Resulta que finalizando mayo buscaba sobre proyectos que implicarán procesamiento de texto y lenguaje natural, por diversos motivos (aprender, prácticar y hacer una propuesta a una estudiante). En esa búsqueda me tope por casualidad con el proyecto <a class="reference external" href="https://github.com/sbosio/rla-es">Recursos Lingüisticos Abiertos del Español</a> que es liderado por Santiago Bosio (<a class="reference external" href="https://github.com/sbosio">@sbosio</a> en github).</p>
+<p>Este proyecto ha aportado diversas localizaciones del español en proyectos como LibreOffice, OpenOffice y Mozilla (proyectos que usan Hunspell para la corrección de ortografía). Y de paso, indirectamente había sido la fuente del diccionario para mis editores de texto plano (TeXMaker, Atom y ReText), pues no uso los que vienen por defecto en la distribución de Ubuntu sino que descomprimo la extensión de LibreOffice y tomo los archivos <code>dic</code> y <code>aff</code> (con el fin de tener versiones más recientes).</p>
+<p>Aunque por si mismo el proyecto no era lo que buscaba, vi la oportunidad no solo de usar una versión actualizada del diccionario sin esperar las liberaciones de versión (y sus respectivas subidas a los proyectos), sino una oportunidad de contribuir en la localización de Colombia.</p>
+</div>
+<div class="section" id="la-contribucion">
+<h2>La contribución</h2>
+<p>En el reporte <a class="reference external" href="https://github.com/sbosio/rla-es/issues/81">#81</a> del repositorio de github, se propuso como mejora agregar los topónimos de las localizaciones que aún no tuvieran dicha información. La localización de Colombia era uno de esos casos, y efectivamente una necesidad como colombiano para hacer algunos documentos en los que requiera mención a entes territoriales (y cuantos estudiantes en sus clases de geografía colombiana).</p>
+<p>Con esta necesidad y el ánimo de aportar por primera vez a un proyecto existente (a través del <a class="reference external" href="https://github.com/fisicatyc">semillero de física teórica y computacional</a> ya lo había hecho, pero finalmente es algo que cofundé), inicie la búsqueda de la fuente de insumos para esta tarea.</p>
+<p>Así encontré <a class="reference external" href="https://geoportal.dane.gov.co/v2/?page=elementoHistoricoDivipola">DIVIPOLA</a>, que es la Codificación de la División Político-administrativa de Colombia. En ella, se pueden consultar los reportes históricos de la división nacional en entes territoriales para descargar y afortunadamente en un formato "amigable" (excel). Y aquí comenzo el trabajo, usando herramientas libres claro esta, que fueron <code>soffice</code> (la interface de comandos de LibreOffice) para la conversión del archivo de excel a texto plano (en específico a un archivo de valores separados por coma -CSV-) y las utilidades <code>tail,</code> <code>cut,</code> <code>tr</code> y <code>sed</code> para la manipulación del texto como la extracción de las columnas de datos necesarias, eliminación de números (cardinales y romanos), eliminación de palabras comunes (ya que no aportan al diccionario), eliminación de signos y conversión a minúsculas con mayúscula inicial. Y por supuesto, <code>git</code> para el control de versiones.</p>
+<p>No haré detalle técnico más allá de la mención anterior, pero si quieres ver como se hace (es un buen ejercicio), dejé constancia en el repositorio de como se hace el proceso como referencia para un futuro mantenimiento (<a class="reference external" href="https://github.com/sbosio/rla-es/tree/master/ortograf/palabras/toponimos/l10n/es_CO">ver explicación</a>).</p>
+<p>Finalmente en el reporte <a class="reference external" href="https://github.com/sbosio/rla-es/pull/120">#120</a> realice la solicitud de inclusión (<em>pull request (PR)</em>) y unida (<em>merged</em>) al ramal principal el 10 de julio de 2017, y espera ver la luz oficialmente en la versión 2.3 de RLA-ES (sin fecha programada aún).</p>
+<p>¡Corrección de topónimos colombianos a la mano! Claro, faltan accidentes geográficos, pero es el primer paso. Espero poder aportar a la localización mucho más y al proyecto en general.</p>
+</div>
+<div class="section" id="uso">
+<h2>Uso</h2>
+<p>Una vez sea liberada la versión 2.3, estará disponible a traves de las extensiones de los proyectos y de la página de <a class="reference external" href="https://github.com/sbosio/rla-es/releases">releases de RLA-ES</a>. Por ahora, es necesario generar el archivo descargando (o clonando) el proyecto y siguiendo las instrucciones dadas en la <a class="reference external" href="https://github.com/sbosio/rla-es/wiki/Generar-diccionario-corrector">wiki del proyecto</a> (para la localización de Colombia, debemos usar <code>es_CO).</code></p>
+<p>Finalmente, para poderlo usar en nuestros editores de texto plano (si, diccionario para nuestros documentos de LaTeX y MarkDown), debes seguir las indicaciones finales de la sección de la wiki (que se resúmen en descomprimir el archivo generado).</p>
+<p><strong>Fuentes</strong>:</p>
+<ul class="simple">
 <li>
-<time class="listdate" datetime="2017-07-11T18:19:13-05:00" title="2017-07-11 18:19">2017-07-11 18:19</time><a href="../../blog/toponimos-colombianos-en-rla-es/index.html" class="listtitle">Topónimos colombianos en RLA-ES</a><a></a>
-</li>
-            <li>
-<time class="listdate" datetime="2011-04-10T12:53:10-05:00" title="2011-04-10 12:53">2011-04-10 12:53</time><a href="../../blog/20-anos-de-linux/index.html" class="listtitle">20 años de Linux</a><a></a>
-</li>
-        </ul></article>
+<a class="reference external" href="https://github.com/sbosio/rla-es">sbosio/rla-es</a>: Proyecto original.</li>
+<li>
+<a class="reference external" href="https://github.com/cosmoscalibur/rla-es">cosmoscalibur/rla-es</a>: Mi derivación (<em>fork</em>) del proyecto para hacer las contribuciones.</li>
+</ul>
+</div>
+</div>
+    </div>
+    </article><article class="h-entry post-text"><header><h1 class="p-name entry-title"><a href="../../blog/20-anos-de-linux/index.html" class="u-url">20 años de Linux</a></h1>
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
+                Edward Villegas Pulgarin
+            </span></p>
+            <p class="dateline"><a href="../../blog/20-anos-de-linux/index.html" rel="bookmark"><time class="published dt-published" datetime="2011-04-10T12:53:10-05:00" title="2011-04-10 12:53">2011-04-10 12:53</time></a></p>
+                <p class="commentline">
+        
+    <a href="../../blog/20-anos-de-linux/index.html#disqus_thread" data-disqus-identifier="cache/posts/20-anos-de-linux.html">Comments</a>
+
+
+        </p>
+</div>
+    </header><div class="p-summary entry-summary">
+    <div>
+<p>Hace 20 años, Linus Torvalds tomo la decisión de compartir su sistema operativo con el mundo. No mucho después, decidió licenciar este bajo <em>General Public Licence</em> (GPL). Este momento histórico cambio todo en el mundo en la historia de la computación.</p>
+<p>Hoy, Linux es el proyecto colaborativo mas grande en la historia de la computación, lo cual significa que el aniversario número 20 de Linux es una oportunidad para que la comunidad llegue a unirse en la celebración de este gran acontecimiento y contribuir a definir como serán los próximos 20 años de linux.</p>
+<p>Hoy Linux se encuentra en todas partes: en su teléfono, su televisor, su computador, en las películas, en su carro y muchos otros lugares. Esta en cualquier lugar porque es para todos.</p>
+<p>A continuación, el video de <cite>The Linux Foundation &lt;https://www.linuxfoundation.org&gt;</cite> con motivo a los 20 años de Linux.</p>
+<div class="youtube-video align-center">
+<iframe width="425" height="344" src="https://www.youtube.com/embed/5ocq6_3-nEw?rel=0&amp;hd=1&amp;wmode=transparent"></iframe>
+</div>
+</div>
+    </div>
+    </article>
+</div>
+
+
+
+        
+       <script>var disqus_shortname="cosmoscalibur";(function(){var a=document.createElement("script");a.async=true;a.src="https://"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());</script>
 </div>
         <!--End of body content-->
 
