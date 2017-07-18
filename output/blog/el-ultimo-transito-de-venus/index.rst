@@ -57,7 +57,7 @@ orbital entre Venus y la Tierra la cual esta entre 8:13 y 243:395.
 | Zona de visibilidad del tránsito de 2012.   |
 +---------------------------------------------+
 
-La mejor zona de observación del tránsito sera el océano pacifico ( :( )
+La mejor zona de observación del tránsito sera el océano pacifico
 , y para quienes tenga la oportunidad económica en `Tahiti se celebrara
 este tránsito <http://www.venus-tahiti2012.org.pf/en/Welcome.html>`__.
 Sin embargo, en nuestra ubicación podremos apreciar solo la primera hora
