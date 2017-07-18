@@ -513,8 +513,8 @@ CATEGORY_OUTPUT_FLAT_HIERARCHY = False
 CATEGORY_PAGES_DESCRIPTIONS = {
    DEFAULT_LANG: {
        "Migración": "Estas son las publicaciones migradas a partir de mis antiguos blogs.",
-       "Física Pasión": "Mis publicaciones de ciencia y tecnología migradas del blog [inactivo] Física Pasión.",
-       "La Flecha Temporal": "Mis poemas, ensayos y reflexiones migrados del blog [inactivo] La Flecha Temporal."
+       "Migración/Física Pasión": "Mis publicaciones de ciencia y tecnología migradas del blog [inactivo] Física Pasión.",
+       "Migración/La Flecha Temporal": "Mis poemas, ensayos y reflexiones migrados del blog [inactivo] La Flecha Temporal."
    },
 }
 
@@ -522,8 +522,8 @@ CATEGORY_PAGES_DESCRIPTIONS = {
 CATEGORY_PAGES_TITLES = {
    DEFAULT_LANG: {
        "Migración": "Mis viejos blogs",
-       "Física Pasión": "Blog Física Pasión",
-       "La Flecha Temporal": "Blog La Flecha Temporal"
+       "Migración/Física Pasión": "Blog Física Pasión",
+       "Migración/La Flecha Temporal": "Blog La Flecha Temporal"
    },
 }
 
