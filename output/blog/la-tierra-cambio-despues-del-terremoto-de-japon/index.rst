@@ -1,4 +1,3 @@
-<!--
 .. title: La Tierra cambio después del terremoto de Japón
 .. slug: la-tierra-cambio-despues-del-terremoto-de-japon
 .. date: 2011-03-13 20:24:49 UTC-05:00
@@ -8,7 +7,6 @@
 .. description:
 .. type: text
 .. author: Edward Villegas Pulgarin
--->
 
 Tal vez el título de la publicación dice poco, porque la Tierra siempre esta en un cambio continuo así no lo percibamos. Constantemente la masa de la Tierra aumenta por la deposición sobre ella de toneladas de material cósmico, como por ejemplo, el material de meteoros, meteoritos, aerolitos y otros durante las lluvias de estrellas. Así mismo, las interacciones gravitacionales con la luna y el sol deforman (despreciable) la superficie terrestre y frenan la rotación terrestre. Las placas tectónicas se desplazan, hunden y alzan continuamente. Pero bajo ciertos fenómenos, estos cambios son mas apreciables.  
 
@@ -20,11 +18,11 @@ Estos movimientos han desplazado la posición geográfica de Japón 2.4m. Pero a
 
 Richard Gross, geofísico de la NASA, ha calculado que la rotación de la Tierra se acelero, disminuyendo el día en 1.6 microsegundos (para comparar, el movimiento que origino el Tsunami de Sumatra en 2004 disminuyo el día en 6.8 microsegundos).  
 
-Adicional a estos cambios, fallas en el suministro eléctrico en tres plantas de energía nuclear a causa del movimiento de tierra, las han dejado en estado de alerta, pues el sistema de refrigeración de estas no ha funcionado. La magnitud de lo que podría suceder recuerda el incidente nuclear de Chernóbil en la antigua Unión Soviética (en la hoy Ucrania). Tras un incidente de estos, la radiación del material nuclear es expuesta al exterior, provocando daños en la salud humana, malformaciones, cancer, y efectos devastadores sobre el ambiente.  
+Adicional a estos cambios, fallas en el suministro eléctrico en tres plantas de energía nuclear a causa del movimiento de tierra, las han dejado en estado de alerta, pues el sistema de refrigeración de estas no ha funcionado. La magnitud de lo que podría suceder recuerda el incidente nuclear de Chernóbil en la antigua Unión Soviética (en la hoy Ucrania). Tras un incidente de estos, la radiación del material nuclear es expuesta al exterior, provocando daños en la salud humana, malformaciones, cáncer, y efectos devastadores sobre el ambiente.  
 
-__Fuentes__:  
+**Fuentes**:  
 
-+   _M 9.1 - near the east coast of Honshu, Japan_. [USGS](https://earthquake.usgs.gov/earthquakes/eventpage/official20110311054624120_30#executive). Publicado el 11 de marzo de 2011. Actualizado el 11 de julio de 2016. Última consulta el 15 de julio de 2017.  
-+   _Scientists already making discoveries in wake of Japan's temblor_. [Physorg](https://phys.org/news/2011-03-scientists-discoveries-japan-temblor.html). 12 de marzo de 2011.  
-+   _Quake moved Japan by 8 feet: USGS_. [Physorg](https://phys.org/news/2011-03-quake-japan-feet-usgs.html). 13 de marzo de 2011.  
-+   _Japan quake causes day to get a wee bit shorter_. [Physorg](https://phys.org/news/2011-03-japan-quake-day-wee-bit.html). 12 de marzo de 2011.  
+1. _M 9.1 - near the east coast of Honshu, Japan_. `USGS <https://earthquake.usgs.gov/earthquakes/eventpage/official20110311054624120_30#executive>`_. Publicado el 11 de marzo de 2011. Actualizado el 11 de julio de 2016. Última consulta el 15 de julio de 2017.  
+2. _Scientists already making discoveries in wake of Japan's temblor_. `Physorg <https://phys.org/news/2011-03-scientists-discoveries-japan-temblor.html>`_. 12 de marzo de 2011.  
+3. _Quake moved Japan by 8 feet: USGS_. `Physorg <https://phys.org/news/2011-03-quake-japan-feet-usgs.html>`_. 13 de marzo de 2011.  
+4. _Japan quake causes day to get a wee bit shorter_. `Physorg <https://phys.org/news/2011-03-japan-quake-day-wee-bit.html>`_. 12 de marzo de 2011.  

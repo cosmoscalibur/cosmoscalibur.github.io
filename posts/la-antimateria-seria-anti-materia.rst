@@ -1,4 +1,3 @@
-<!--
 .. title: La antimateria sería anti-materia
 .. slug: la-antimateria-seria-anti-materia
 .. date: 2011-04-13 12:01:31 UTC-05:00
@@ -8,11 +7,12 @@
 .. description:
 .. type: text
 .. author: Edward Villegas Pulgarin
--->
 
 La antimateria sería verdaderamente anti-materia.  
 
-![Representación gráfica de la la antimateria y la simetría CPT](http://www2.mpq.mpg.de/~haensch/antihydrogen/mirror.gif)
+.. image:: http://www2.mpq.mpg.de/~haensch/antihydrogen/mirror.gif
+   :align: center
+   :alt: Representación gráfica de la la antimateria y la simetría CPT
 
 Probablemente suene extraño esto, pero no lo es. La antimateria había sido hasta el momento mas materia, común y corriente pero que cumplía con ser los compañeros de carga contraria a lo que denominamos como materia (la materia común). Es decir, hasta este punto, no había nada raro.  
 La antimateria adicionalmente se podía interpretar como la imagen en un espejo de las partículas, es decir, una antipartícula viajando es lo mismo que la correspondiente partícula viajando en el sentido contrario pero hacia atrás en el tiempo (aquí empieza lo importante).  
@@ -24,7 +24,7 @@ La respuesta es sí. Dicha equivalencia proviene de algo llamado simetría CPT (
 Así que la interacción gravitacional entre la materia y la antimateria sería repulsiva.  
 Pero esto implica mas que eso... de confirmarse observaciones de presencia de antimateria en los vacíos observados en las distribuciones galácticas esto permitiría explicar la aceleración del universo ¡sin recurrir a la energía oscura y a la materia oscura! Por ahora es prematuro afirmarlo, pero esto ya nos podría cuestionar la existencia de las dos últimas.  
 
-__Fuentes__:  
+**Fuentes**  
 
-+   [Antimatter gravity could explain Universe's expansion](https://phys.org/news/2011-04-antimatter-gravity-universe-expansion.html). Physorg. 13 de abril de 2011.  
-+   M. Villata. “CPT symmetry and antimatter gravity in general relativity.” EPL (Europhysics Letters), 94 (2011) 20001 ([arXiv:1103.4937 [gr-qc]](https://arxiv.org/abs/1103.4937)). __DOI__: [10.1209/0295-5075/94/20001](http://iopscience.iop.org/article/10.1209/0295-5075/94/20001/meta).  
+1. `Antimatter gravity could explain Universe's expansion <https://phys.org/news/2011-04-antimatter-gravity-universe-expansion.html>`_. Physorg. 13 de abril de 2011.  
+2. M. Villata. “CPT symmetry and antimatter gravity in general relativity.” EPL (Europhysics Letters), 94 (2011) 20001 (`arXiv:1103.4937 [gr-qc] <https://arxiv.org/abs/1103.4937>`_). __DOI__: `10.1209/0295-5075/94/20001 <http://iopscience.iop.org/article/10.1209/0295-5075/94/20001/meta>`_.  

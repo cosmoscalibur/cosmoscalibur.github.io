@@ -1,5 +1,5 @@
 .. title: Deus an Amor
-.. slug: deus-amor
+.. slug: deus-an-amor
 .. date: 2011-01-30 20:37:00
 .. tags: Amor,Dios,Poesía,Escritos,Literatura
 .. description:

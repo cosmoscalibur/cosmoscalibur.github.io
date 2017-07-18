@@ -18,3 +18,4 @@ Hoy Linux se encuentra en todas partes: en su teléfono, su televisor, su comput
 A continuación, el video de `The Linux Foundation <https://www.linuxfoundation.org>` con motivo a los 20 años de Linux.
 
 .. youtube:: 5ocq6_3-nEw
+   :align: center

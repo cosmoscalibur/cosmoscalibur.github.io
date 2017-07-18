@@ -19,10 +19,10 @@ BLOG_AUTHOR = "Edward Villegas Pulgarin"  # (translatable)
 BLOG_TITLE = "Cosmoscalibur"  # (translatable)
 # This is the main URL for your site. It will be used
 # in a prominent link. Don't forget the protocol (http/https)!
-SITE_URL = "http://cosmoscalibur.com/"
+SITE_URL = "http://cosmoscalibur.github.io/"
 # This is the URL where Nikola's output will be deployed.
 # If not set, defaults to SITE_URL
-# BASE_URL = "http://cosmoscalibur.com/"
+BASE_URL = "http://cosmoscalibur.github.io/"
 BLOG_EMAIL = "cosmoscalibur&#64;gmail.com"
 BLOG_DESCRIPTION = "Blog de ciencia, tecnología, cultura y literatura. Unir estos mundos no solo en un sitio sino en una historia." # (translatable)
 
@@ -136,13 +136,26 @@ NAVIGATION_LINKS = {
         (
             (
                 ("/pag/presentacion", "Presentación"),
+                ("/pag/experiencia", "Experiencia"),
+                ("/pag/formacion", "Formación"),
+                ("/pag/portafolio", "Portafolio"),
+                ("/pag/publicaciones", "Publicaciones"),
+                ("/pag/hoja-de-vida", "Hoja de vida"),
                 ("/pag/contacto", "Contacto"),
             ),
             "Edward Villegas Pulgarin"
         ),
-        ("/archive.html", "Histórico"),
-        ("/tags/index.html", "Etiquetas"),
-        ("/rss.xml", "Fuente RSS")
+        (
+            (
+                ("/", "Cosmoscalibur"),
+                ("/tags/cat_migracion", "Mis viejos blogs"),
+                ("/tags/index.html", "Etiquetas"),
+                ("/archive.html", "Histórico del blog"),
+            ),
+            "Blog"
+        ),
+        ("/pag/contribuye", "Contribuir"),
+        ("/rss.xml", "Fuente RSS"),
     ),
     # "en": (
     #    ("/archive.html", "Archives"),

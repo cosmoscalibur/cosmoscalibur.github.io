@@ -1,4 +1,3 @@
-<!--
 .. title: Revisión a la tabla periódica
 .. slug: revision-a-la-tabla-periodica
 .. date: 2010-12-22 14:17:51 UTC-05:00
@@ -8,7 +7,6 @@
 .. description:
 .. type: text
 .. author: Edward Villegas Pulgarin
--->
 
 Nuestros conocimientos sobre la naturaleza y universo que nos rodean cambian constantemente, y exigen su continua y periódica revisión y actualización, por las diversas necesidades para las áreas académicas, de investigación e industriales.  
 
