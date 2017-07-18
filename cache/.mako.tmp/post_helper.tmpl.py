@@ -5,12 +5,12 @@ STOP_RENDERING = runtime.STOP_RENDERING
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 10
-_modified_time = 1500353537.5142968
+_modified_time = 1500354182.5601387
 _enable_loop = True
 _template_filename = '/usr/local/lib/python3.5/dist-packages/nikola/data/themes/base/templates/post_helper.tmpl'
 _template_uri = 'post_helper.tmpl'
 _source_encoding = 'utf-8'
-_exports = ['mathjax_script', 'html_tags', 'open_graph_metadata', 'html_pager', 'meta_translations', 'twitter_card_information']
+_exports = ['mathjax_script', 'html_tags', 'open_graph_metadata', 'meta_translations', 'html_pager', 'twitter_card_information']
 
 
 def _mako_get_namespace(context, name):
@@ -78,12 +78,12 @@ def render_html_tags(context,post):
 def render_open_graph_metadata(context,post):
     __M_caller = context.caller_stack._push_frame()
     try:
-        lang = context.get('lang', UNDEFINED)
-        abs_link = context.get('abs_link', UNDEFINED)
-        permalink = context.get('permalink', UNDEFINED)
-        url_replacer = context.get('url_replacer', UNDEFINED)
         blog_title = context.get('blog_title', UNDEFINED)
+        lang = context.get('lang', UNDEFINED)
         use_open_graph = context.get('use_open_graph', UNDEFINED)
+        permalink = context.get('permalink', UNDEFINED)
+        abs_link = context.get('abs_link', UNDEFINED)
+        url_replacer = context.get('url_replacer', UNDEFINED)
         __M_writer = context.writer()
         __M_writer('\n')
         if use_open_graph:
@@ -121,6 +121,28 @@ def render_open_graph_metadata(context,post):
         context.caller_stack._pop_frame()
 
 
+def render_meta_translations(context,post):
+    __M_caller = context.caller_stack._push_frame()
+    try:
+        len = context.get('len', UNDEFINED)
+        lang = context.get('lang', UNDEFINED)
+        sorted = context.get('sorted', UNDEFINED)
+        translations = context.get('translations', UNDEFINED)
+        __M_writer = context.writer()
+        __M_writer('\n')
+        if len(translations) > 1:
+            for langname in sorted(translations):
+                if langname != lang and ((not post.skip_untranslated) or post.is_translation_available(langname)):
+                    __M_writer('                <link rel="alternate" hreflang="')
+                    __M_writer(str(langname))
+                    __M_writer('" href="')
+                    __M_writer(str(post.permalink(langname)))
+                    __M_writer('">\n')
+        return ''
+    finally:
+        context.caller_stack._pop_frame()
+
+
 def render_html_pager(context,post):
     __M_caller = context.caller_stack._push_frame()
     try:
@@ -146,28 +168,6 @@ def render_html_pager(context,post):
                 __M_writer(str(messages("Next post")))
                 __M_writer('</a>\n            </li>\n')
             __M_writer('        </ul>\n')
-        return ''
-    finally:
-        context.caller_stack._pop_frame()
-
-
-def render_meta_translations(context,post):
-    __M_caller = context.caller_stack._push_frame()
-    try:
-        lang = context.get('lang', UNDEFINED)
-        translations = context.get('translations', UNDEFINED)
-        sorted = context.get('sorted', UNDEFINED)
-        len = context.get('len', UNDEFINED)
-        __M_writer = context.writer()
-        __M_writer('\n')
-        if len(translations) > 1:
-            for langname in sorted(translations):
-                if langname != lang and ((not post.skip_untranslated) or post.is_translation_available(langname)):
-                    __M_writer('                <link rel="alternate" hreflang="')
-                    __M_writer(str(langname))
-                    __M_writer('" href="')
-                    __M_writer(str(post.permalink(langname)))
-                    __M_writer('">\n')
         return ''
     finally:
         context.caller_stack._pop_frame()
@@ -206,6 +206,6 @@ def render_twitter_card_information(context,post):
 
 """
 __M_BEGIN_METADATA
-{"uri": "post_helper.tmpl", "filename": "/usr/local/lib/python3.5/dist-packages/nikola/data/themes/base/templates/post_helper.tmpl", "line_map": {"23": 2, "26": 0, "31": 2, "32": 12, "33": 24, "34": 41, "35": 70, "36": 86, "37": 91, "43": 89, "48": 89, "49": 90, "50": 90, "56": 14, "62": 14, "63": 15, "64": 16, "65": 17, "66": 18, "67": 19, "68": 19, "69": 19, "70": 19, "71": 19, "72": 22, "78": 43, "88": 43, "89": 44, "90": 45, "91": 45, "92": 45, "93": 46, "94": 46, "95": 47, "96": 47, "97": 48, "98": 49, "99": 49, "100": 49, "101": 50, "102": 51, "103": 51, "104": 51, "105": 53, "106": 54, "107": 54, "108": 54, "109": 56, "110": 61, "111": 62, "112": 62, "113": 62, "114": 64, "115": 65, "116": 66, "117": 66, "118": 66, "124": 26, "129": 26, "130": 27, "131": 28, "132": 29, "133": 30, "134": 31, "135": 31, "136": 31, "137": 31, "138": 31, "139": 31, "140": 34, "141": 35, "142": 36, "143": 36, "144": 36, "145": 36, "146": 36, "147": 36, "148": 39, "154": 4, "162": 4, "163": 5, "164": 6, "165": 7, "166": 8, "167": 8, "168": 8, "169": 8, "170": 8, "176": 72, "181": 72, "182": 73, "183": 74, "184": 74, "185": 74, "186": 75, "187": 76, "188": 76, "189": 76, "190": 77, "191": 78, "192": 78, "193": 78, "194": 80, "195": 81, "196": 81, "197": 81, "198": 82, "199": 83, "200": 83, "201": 83, "207": 201}, "source_encoding": "utf-8"}
+{"uri": "post_helper.tmpl", "source_encoding": "utf-8", "line_map": {"23": 2, "26": 0, "31": 2, "32": 12, "33": 24, "34": 41, "35": 70, "36": 86, "37": 91, "43": 89, "48": 89, "49": 90, "50": 90, "56": 14, "62": 14, "63": 15, "64": 16, "65": 17, "66": 18, "67": 19, "68": 19, "69": 19, "70": 19, "71": 19, "72": 22, "78": 43, "88": 43, "89": 44, "90": 45, "91": 45, "92": 45, "93": 46, "94": 46, "95": 47, "96": 47, "97": 48, "98": 49, "99": 49, "100": 49, "101": 50, "102": 51, "103": 51, "104": 51, "105": 53, "106": 54, "107": 54, "108": 54, "109": 56, "110": 61, "111": 62, "112": 62, "113": 62, "114": 64, "115": 65, "116": 66, "117": 66, "118": 66, "124": 4, "132": 4, "133": 5, "134": 6, "135": 7, "136": 8, "137": 8, "138": 8, "139": 8, "140": 8, "146": 26, "151": 26, "152": 27, "153": 28, "154": 29, "155": 30, "156": 31, "157": 31, "158": 31, "159": 31, "160": 31, "161": 31, "162": 34, "163": 35, "164": 36, "165": 36, "166": 36, "167": 36, "168": 36, "169": 36, "170": 39, "176": 72, "181": 72, "182": 73, "183": 74, "184": 74, "185": 74, "186": 75, "187": 76, "188": 76, "189": 76, "190": 77, "191": 78, "192": 78, "193": 78, "194": 80, "195": 81, "196": 81, "197": 81, "198": 82, "199": 83, "200": 83, "201": 83, "207": 201}, "filename": "/usr/local/lib/python3.5/dist-packages/nikola/data/themes/base/templates/post_helper.tmpl"}
 __M_END_METADATA
 """
