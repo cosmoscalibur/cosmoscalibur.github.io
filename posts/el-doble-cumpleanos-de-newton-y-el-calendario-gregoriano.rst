@@ -1,7 +1,7 @@
 .. title: El doble cumpleaños de Newton y el calendario gregoriano
 .. slug: el-doble-cumpleanos-de-newton-y-el-calendario-gregoriano
 .. date: 2013-01-04 21:57:00
-.. tags: Isaac Newton,Calendario Gregoriano,Calendario Juliano,Física,Historia,Ciencia
+.. tags: Isaac Newton,Calendario Gregoriano,Calendario Juliano,Física,Historia,Ciencia,Cumpleaños
 .. description:
 .. category: Migración/Física Pasión
 .. type: text
