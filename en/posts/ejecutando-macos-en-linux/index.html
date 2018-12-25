@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article# " lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="description" content="Esta publicación describe de manera básica el proceso de instalación de macOS en una máquina virtual en un entorno Linux. Se indica el sitio de descarga de la imagen del sistema operativo que corresponde a una variante denominada hackintosh.">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ejecutando macOS en Linux | Cosmoscalibur</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.11.0/baguetteBox.min.css" integrity="sha256-cKiyvRKpm8RaTdU71Oq2RUVgvfWrdIXjvVdQF2oZ1Y4=" crossorigin="anonymous">
+<link href="../../../assets/css/all.css" rel="stylesheet" type="text/css">
+<link href="../../../assets/css/ipython.min.css" rel="stylesheet" type="text/css">
+<link href="../../../assets/css/nikola_ipython.css" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900" rel="stylesheet">
+<meta name="theme-color" content="#5670d4">
+<meta name="generator" content="Nikola (getnikola.com)">
+<link rel="alternate" type="application/rss+xml" title="RSS (en)" href="../../rss.xml">
+<link rel="alternate" type="application/rss+xml" title="RSS (es)" href="../../../rss.xml">
+<link rel="canonical" href="http://cosmoscalibur.github.io/en/posts/ejecutando-macos-en-linux/">
+<!--[if lt IE 9]><script src="https://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]--><meta name="author" content="Edward Villegas Pulgarin">
+<link rel="prev" href="../problemas-de-audio-en-moto-g5/" title="Problemas de audio en Moto G5" type="text/html">
+<link rel="next" href="../la-experiencia-de-pycon-colombia-2018/" title="La experiencia de PyCon Colombia 2018" type="text/html">
+<meta property="og:site_name" content="Cosmoscalibur">
+<meta property="og:title" content="Ejecutando macOS en Linux">
+<meta property="og:url" content="http://cosmoscalibur.github.io/en/posts/ejecutando-macos-en-linux/">
+<meta property="og:description" content="Esta publicación describe de manera básica el proceso de instalación de macOS en una máquina virtual en un entorno Linux. Se indica el sitio de descarga de la imagen del sistema operativo que correspo">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2018-01-18T22:16:55-05:00">
+<meta property="article:tag" content="emulación">
+<meta property="article:tag" content="hackintosh">
+<meta property="article:tag" content="linux">
+<meta property="article:tag" content="macos">
+<meta property="article:tag" content="máquina virtual">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="@cosmoscalibur">
+<meta name="twitter:creator" content="@edwardyvillegas">
+<link rel="alternate" hreflang="es" href="../../../posts/ejecutando-macos-en-linux/">
+</head>
+<body>
+<a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
+
+<!-- Header and menu bar -->
+<div class="container">
+      <header class="blog-header py-3"><div class="row nbb-header align-items-center">
+          <div class="col-md-3 col-xs-2 col-sm-2" style="width: auto;">
+            <button class="navbar-toggler navbar-light bg-light nbb-navbar-toggler" type="button" data-toggle="collapse" data-target=".bs-nav-collapsible" aria-controls="bs-navbar" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse bs-nav-collapsible bootblog4-search-form-holder">
+                
+<!-- DuckDuckGo custom search -->
+<form method="get" id="search" action="https://duckduckgo.com/" class="navbar-form pull-left">
+<input type="hidden" name="sites" value="http://cosmoscalibur.com/"><input type="hidden" name="k8" value="#444444"><input type="hidden" name="k9" value="#D51920"><input type="hidden" name="kt" value="h"><input type="text" name="q" maxlength="255" placeholder="Search…" class="span2" style="margin-top: 4px;"><input type="submit" value="DuckDuckGo Search" style="visibility: hidden;">
+</form>
+<!-- End of custom search -->
+
+            </div>
+        </div>
+          <div class="col-md-6 col-xs-10 col-sm-10 bootblog4-brand" style="width: auto;">
+            <a class="navbar-brand blog-header-logo text-dark" href="http://cosmoscalibur.github.io/en/">
+
+            <span id="blog-title">Cosmoscalibur</span>
+        </a>
+          </div>
+            <div class="col-md-3 justify-content-end align-items-center bs-nav-collapsible collapse flex-collapse bootblog4-right-nav">
+            <nav class="navbar navbar-light bg-white"><ul class="navbar-nav bootblog4-right-nav">
+<li class="nav-item"><a href="http://cosmoscalibur.github.io/" rel="alternate" hreflang="es" class="nav-link">Español</a></li>
+
+                    
+                    
+
+                    
+            </ul></nav>
+</div>
+    </div>
+</header><nav class="navbar navbar-expand-md navbar-light bg-white static-top"><div class="collapse navbar-collapse bs-nav-collapsible" id="bs-navbar">
+            <ul class="navbar-nav nav-fill d-flex w-100">
+<li class="nav-item">
+<a href="../../archive.html" class="nav-link">Archive</a>
+                </li>
+<li class="nav-item">
+<a href="../../categories/" class="nav-link">Tags</a>
+                </li>
+<li class="nav-item">
+<a href="../../rss.xml" class="nav-link">RSS feed</a>
+
+                
+            </li>
+</ul>
+</div>
+<!-- /.navbar-collapse -->
+</nav>
+</div>
+
+<div class="container" id="content" role="main">
+    <div class="body-content">
+        <!--Body content-->
+        
+        
+<article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title" itemprop="headline name"><a href="." class="u-url">Ejecutando macOS en Linux</a></h1>
+
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
+                    Edward Villegas Pulgarin
+            </span></p>
+            <p class="dateline">
+            <a href="." rel="bookmark">
+            <time class="published dt-published" datetime="2018-01-18T22:16:55-05:00" itemprop="datePublished" title="2018-01-18 22:16">2018-01-18 22:16</time></a>
+            </p>
+                <p class="commentline">
+        
+    <a href="#disqus_thread" data-disqus-identifier="cache/posts/ejecutando-macos-en-linux.html">Comments</a>
+
+
+            
+
+        </p>
+</div>
+        
+
+    </header><div class="e-content entry-content" itemprop="articleBody text">
+    <div>
+<p>Debo admitirlo, no me gusta Mac y sigue sin gustarme, pero en múltiples ocasiones se hace necesario poder disponer de un Mac al igual que de un Windows para efectos de pruebas o de correr software específico cuando no hay de otra. Por este caso me di a la tarea de buscar como lograr ejecutar macOS en mi equipo Asus que posee Linux instalado de la forma más fácil posible. A continuación, como ejecutar macOS (específicamente hackintosh) en tu equipo Linux (el procedimiento aplica también para Windows).</p>
+<p><strong>Requisitos</strong>: Conexión a internet estable, disco duro con más de 100 GB disponibles, RAM superior a 6 GB, procesador de más de dos núcleos (preferible Intel) y mucho tiempo.</p>
+<!-- TEASER_END -->
+<div class="section" id="contexto">
+<h2>Contexto</h2>
+<p>Creo que no hay necesidad pero no hay que dar por obvias las cosas. El primer punto al respecto de esto es que macOS en si mismo es "imposible" de piratear porque el sistema operativo esta ligado al hardware. Así, la única manera de obtener e instalar macOS es tener un equipo Mac. El tema se resuelve entonces a través de una modificación del sistema operativo que da origen a iPC, OSX86 o Hackintosh, una variación del sistema que permite llevar macOS a equipos tradicionales (PC).</p>
+<p>El cómo se logra esto es elaborado y la verdad no veo interés en comentarlo pues es el camino difícil, pero solo para resumir diré que el punto inicial es que hay que tener un equipo Mac en el cual se ejecutan una serie de rutinas para extraer los directorios del sistema y recrear los llamados del sistema operativo a una forma entendible por los procesadores x86-64. La forma sencilla es encontrar de donde obtener ya la imagen del sistema operativo lista. Pero como podrán ver al googlear no solo un poco sino mucho, todo esta dicho para quienes tienen Mac pero no para los mortales que no lo tenemos.</p>
+</div>
+<div class="section" id="descarga">
+<h2>Descarga</h2>
+<p>La verdad, creo que este es el punto más difícil y misterioso del proceso de lograr la instalación de macOS (modificado). La razón de esta dificultad no solo se asocia a la dificultad sino al tema legal (con Windows no sucede así pues la imagen misma del sistema operativo es gratuita y el problema es conseguir la licencia -salvo que no te importe el mensaje de copia no original y la ausencia de actualizaciones-).</p>
+<p>Después de muchos fracasos en descargas (largas descargas) que me llevaban a depender de Mac, encontré dos opciones listas para usar que correspondían a imágenes para máquina virtual (específicamente para VMWare/VirtualBox). Difíciles de encontrar, recurren a descarga por enlace magnético y hay pocos pares de descarga lo cual llega a un tiempo largo de descarga.</p>
+<p>Necesitas para esto un cliente torrent (si usas Linux probablemente tendrás por defecto transmission o si usas windows puedes instalar BitTorrent, µTorrent o FrostWire), una buena conexión a internet y mucha paciencia. El enlace magnético lo obtendrás de <a class="reference external" href="https://thepiratebay.org/torrent/17986715/MacOS_Sierra_10.12_VirtualBox_VMWare_Virtual_Image_Preinstalled">The Pirate Bay</a> dando clic en donde dice <em>GET THIS TORRENT</em> (hay un símbolo de un imán al lado izquierdo). Una vez lo hagas y si tienes correctamente instalado el cliente torrent, este se abrirá (o el navegador solicitará permiso de abrirlo).</p>
+<p>Ahora te esperan unas 12 horas de descarga (en mi caso el pico máximo de velocidad que recuerdo fue de 120 kB y el mínimo fueron ratos donde no habían pares de descarga).</p>
+</div>
+<div class="section" id="maquina-virtual">
+<h2>Máquina Virtual</h2>
+<p>Mi recomendación es no intentar la instalación directa en el equipo (para empezar, no pude encontrar una imagen para ello). El proceso de instalación directo tiene sus pasos malucos y al parecer el soporte es básicamente es para equipos con procesadores Intel (lo demás se hace con más trucos de lo normal y para posiblemente perder el tiempo). Así, la mejor opción es una máquina virtual, si fallas solo perdiste tiempo pero sigues con un sistema operativo funcional montado para trabajar o dispersar.</p>
+<p>En Linux me parece mucho más natural usar QEMU (usando la interfaz de Virt-Manager) pero desafortunadamente este no tiene el soporte necesario y nuevamente, nos llenamos de trucos bajo la manga si queremos hacerlo funcionar de esa manera. Por ahora, QEMU es la mejor opción en Linux si deseas virtualizar Windows u otra distribución linux, pero no macOS (tiene que ver con el arranque, QEMU mantiene el sistema anterior -<em>LEGACY</em>- de arranque de OSX). Así las cosas, una conversión de formato de la imagen no sirve (lo intenté).</p>
+<p>Necesariamente necesitas de VMWare o de VirtualBox. En mi caso, y es la opción más simple desde Linux, podemos usar VirtualBox (esta en los repositorios de varias distribuciones) y en Windows, igual por ser gratuito te lo recomiendo (<a class="reference external" href="https://www.virtualbox.org/wiki/Downloads">descargar</a>).</p>
+</div>
+<div class="section" id="instalacion">
+<h2>Instalación</h2>
+<p>Nuestro primer paso es descomprimir el archivo que descargamos (un archivo <code>rar</code>). De los archivos que encontrarás solo es necesario el archivo con extensión <code>vmdk</code> (puedes renombrar el archivo si deseas). Ahora abrimos VirtualBox y seleccionamos el botón de nuevo.</p>
+<p>Ahora vamos a seleccionar el sistema operativo, indicando como se ve en la imagen y luego asignamos la RAM deseada (2 GB son el mínimo del sistema pero hayq ue considerar que además es una máquina virtual, lo cual conviene asignar más para un comportamiento más fluido) considerando que debes dejar al menos 2 GB disponibles para el sistema operativo del equipo.</p>
+<div class="figure align-center">
+<img alt="Selección del sistema operativo" src="https://lh3.googleusercontent.com/YZidzbC6DFnWvn3Yqb2eBsR0kc9R1qCpwkhHXps0HMbSieD4caWezb2Rg1uhzaFOcrZHA3BKQvf4cTM5txZ_ke09hSimTZSz65CXr8P_28dAaIedqWcuCJuMwYZgQQkdU2yvjtQaBMH_NmVlDsD9f6dKFqPjpk3YsYUBg-GgaMMhlS6O473DW2cQ3yuubT3ioWneyejObXf_c9hs_5ZBD4o-ucD7Bf18mDm1ypZfY1yQf_n729S8JUSpR-cOFznmiFEPVN62SRYwtoM9xuFK913W6pmqNpRr5AUksJPPKa7dl_bssJkxlJnaS-NmEZi76AU8CKjAGzpLUP1P44C-Oqry4K0nr-VGqP0ict6MutkbXWYhKknjSmi_f8KrVx0DLsrtGhDJcD0fCA1dNaOEwMzu-C7g-bcb9EbXtEgH5qRJJNoe0xsIb25wiYo4gsv7ibMT7X8DseMwgwIx5Kr1RWxd4h2n27s72ORbHU7-cCrc7dnBQu1Df523mtbL_l0caNa_3uy-wKZeFiJQ4e08yvjcK46IzXxU9ilSIqDp0E7AP4v990XPGGECfeTqQYvSP8dLPvn8AmX1za08GwfGeJJlOfSIkRYHTdygyA=w577-h425-no?pageId=101589342745553480499"><p class="caption">Selección del sistema operativo y versión a instalar.</p>
+</div>
+<p>Finalmente debemos indicar que se creara a partir de una imagen de disco existente y seleccionamos el símbolo de carpeta para buscar el archivo <code>vmdk</code>.</p>
+<div class="figure align-center">
+<img alt="Selección de disco existente" src="https://lh3.googleusercontent.com/gJA9H6jQprdKjdNLwyeq8GMy0TnFihCGsK3fXYuA1hqKqs6ikd8EG9aWikZ1qfPt_UElt1JUUGBHTe-wSVpNAocWZkK7HnAGjc-ftuh_M8nqvqOYJx9-N2yebwWAlxVnM_Glsm-ea9PrEJSHHriyEDQogHnUmYHUf0QdIOvuhhr1J9nRPSGq3I-mWKbZNK0d4m982TlS-vMLobe6hMzar9fJ7R8I2P8XPivalkoHM4a_n3nMThS3jvggwJpHiKQ1OECRSiZOVxifIJPlHdX04NbbI11nzV4_9Jz75Zim-gNctPXgZaJFb0TX2NFY-KDvFc_vuHMyH9cm6H88aBNxzkls9t3CkugPHfT6Cnsyf3sgIMrPFCCI-JdgFUsr0oAf0gmuNlJyNGBi1W6l4HRFFNGFwiVszwQP37UdqHRXMQsfG8Llkfy3LzTxFXb-WTyXcJXKGBoLzm6RyjTJPUEPIOcH4fv2u-6U5tSOT9qUeL4uMUQ0HFUqib7DkFy4ksTQBPEbQjIgKwcaN91mRSFSYpvxF_ZoIn5Rxjoe8pLq64fGQziGbHYrfwqY3zX-wFQVD-p7re48Ie9sJwjzXNf60gZia50CfC8a0w9xOA=w572-h425-no?pageId=101589342745553480499"><p class="caption">Selección de crear máquina virtual a partir de disco existente.</p>
+</div>
+<p>Aquí hemos creado ya la máquina en si misma pero debemos configurar antes un par de cosas. En configuración de la máquina debemos ir a la sección de sistema (<em>system</em>) y luego placa madre (<em>Motherboard</em>) y habilitar las características extendidas (<em>Extended features</em>) y elegir <em>USB Tablet</em> en el puntero (<em>Pointing device</em>). En la misma sección vamos a la pestaña de procesador (<em>Processor</em>) e indicamos al menos 2 CPU. Por último, en la sección de monitor (<em>Display</em>) vamos a la pestaña <em>Screen</em> y asignamos 128 MB a la memoria de video (<em>Video Memory</em>).</p>
+<p>Ahora, pasamos a la consola (powershell o CMD en Windows) y ejecutamos lo siguiente (si es Windows hay que poner <code>VBoxManage.exe</code> estando en el directorio de VirtualBox -<code>cd "C:Program FilesOracleVirtualBox"</code>-):</p>
+<pre class="code bash"><a name="rest_code_e42d3e26c7224b99b68d4a4ffb37bd1d-1"></a>VBoxManage.exe modifyvm <span class="s2">"macos"</span> --cpuidset <span class="m">00000001</span> 000106e5 <span class="m">00100800</span> 0098e3fd bfebfbff
+<a name="rest_code_e42d3e26c7224b99b68d4a4ffb37bd1d-2"></a>VBoxManage setextradata <span class="s2">"macos"</span> <span class="s2">"VBoxInternal/Devices/efi/0/Config/DmiSystemProduct"</span> <span class="s2">"iMac11,3"</span>
+<a name="rest_code_e42d3e26c7224b99b68d4a4ffb37bd1d-3"></a>VBoxManage setextradata <span class="s2">"macos"</span> <span class="s2">"VBoxInternal/Devices/efi/0/Config/DmiSystemVersion"</span> <span class="s2">"1.0"</span>
+<a name="rest_code_e42d3e26c7224b99b68d4a4ffb37bd1d-4"></a>VBoxManage setextradata <span class="s2">"macos"</span> <span class="s2">"VBoxInternal/Devices/efi/0/Config/DmiBoardProduct"</span> <span class="s2">"Iloveapple"</span>
+<a name="rest_code_e42d3e26c7224b99b68d4a4ffb37bd1d-5"></a>VBoxManage setextradata <span class="s2">"macos"</span> <span class="s2">"VBoxInternal/Devices/smc/0/Config/DeviceKey"</span> <span class="s2">"ourhardworkbythesewordsguardedpleasedontsteal(c)AppleComputerInc"</span>
+<a name="rest_code_e42d3e26c7224b99b68d4a4ffb37bd1d-6"></a>VBoxManage setextradata <span class="s2">"macos"</span> <span class="s2">"VBoxInternal/Devices/smc/0/Config/GetKeyFromRealSMC"</span> <span class="m">1</span>
+</pre>
+<p>Tras esto estamos listos para encender la máquina virtual e instalar el sistema operativo en ella (nombre, usuario, contraseña, idioma, teclado). Lo único problemático aquí es que tendrás problema con el teclado pues esta pensado para los teclados Mac. Como cualquier instalación de sistema operativo es algo lento y más considerando que es una máquina virtual.</p>
+<div class="figure align-center">
+<img alt="Selección de idioma en macOS." src="https://lh3.googleusercontent.com/4pUM9zRUHvadbxEqTxP0ChqUY8PIbLpli8QTe0MhUchr1t-YSaOL34rlBWuJPiNlN9bu-YZbc-NobHQTkFsstjxANiw6wbsdDu2vJY2b52PdQFfSydcofwHt0tZiyWY5hSf2pnUVsWArZ3h0DEXJFl3wQIH03MLPj2eY1hT3r2rLq0qYCPMyCqpHJrbA9hogF74jbfrfMwj0OSG-YzOdF4nRH-5WKN_cAc_4rUQRSSfa367h2DcHRzsfMsq4WLWREJoMyE-BeQnVXh4dbZke4u6E-c-u7Zei31YStQRGW5fKCegvF1QmlG34ofIc-YaGcHBWJWesGrN7z9zuxNUQz1Mjqx7reVQhauHlLneMGB9wJGc7eDxlx2XjMx3C-omhiP0dfqNfp3Lnq41a_ZxevISpm3v3L88WhM6VBGBNkpF4x3-kxGovJ-irp3LUz1if05W1kmaVzHgwUbR8OPamO6bkNmWHRxjpZdXC1cRfrL5uHqb40B2QYIuqikwWDzKV1u3PYvi_uFHHJOoeEEDk2GdoZQYla25RPiHyS5RDwVsweBZig-By2VOwJCKoXB1rdBDSR3nUlvMa7qdQf91p5MT06be_EQ74BRpKmg=w1593-h896-no?pageId=101589342745553480499"><p class="caption">Selección de idioma en macOS.</p>
+</div>
+</div>
+<div class="section" id="despues">
+<h2>Después</h2>
+<p>No soy usuario Mac y mi propósito de hacer esto era muy específico, validar compatibilidad de códigos que uso, desarrollo o contribuyo. Pero en este mismo sentido, algo que recomiendo hacer, es instalar <a class="reference external" href="https://brew.sh/index_es.html">Homebrew</a> con el fin de tener listo nuestro macOS para pruebas y poder instalar distintos paquetes comunes a la hora de programar.</p>
+<p>Para ello debes abrir la consola que encontrarás en aplicaciones y ejecutar lo siguiente:</p>
+<pre class="code bash"><a name="rest_code_68acf2fb64094e7caead6883914715bd-1"></a>ruby -e <span class="s2">"</span><span class="k">$(</span>curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install<span class="k">)</span><span class="s2">"</span>
+</pre>
+<p>Tendrás que tener paciencia pues el proceso me tomó 45 minutos (en foros reportan la instalación de <em>homebrew</em> de casi 2 horas) y necesitas estar pendiente pues hay dos solicitudes de tu contraseña.</p>
+<div class="figure align-center">
+<img alt="Instalación de homebrew en macOS" src="https://lh3.googleusercontent.com/Pvn6D-PrK_txoUeelj0eDJ1E7rXZErv4oz4CBSfGfm4K7HLR0uL0GJv5VsF95yTDDGSzTJtTnb74djPvcnB9oIGCb1FYKg-S6xbeOIBRmCkgAi9RXXohgs5Xk11OIr3A3dKkByXb1GB4u3DT2ClcTwq-EvxO5US_4Zd6TMeSboYVU61N22LUdMpwanRenNAHEMqJ1qTfc20QXbJ4UWOY8WEs3X1LmRwoFzNJYSa2QV4K9YGMtMEMOY-O4LVdApo9mxWuGtHNBjPkC9iJ0ydVwT7h64cB1WArQyo7vDCkQ3md0cQC3kPlF5HgX25TwbT7_02YU0bJfVOkMht06PkhkQWWck8aRobI-oaHlE9E04b4glT_p-qXHcNXkTqMreLEpC61YeJ_U_R6SNMN0E07dHrEy-_Ci0EuAy-R5ikX0Bm5cS1NGIi3c6vh4OjvqNwniN4MMLUhUSL8GHmsuVxiTatNG6oJUavTJwX4K7DlwgV30J7DCiyZShIdHPndEEoL2yUPWX0eMUsCGscDjmY4Em14YaKa95etIYvXZWfKoA4svKxXE15O0xWk3eZUYKQhBSWMkUMFMEm9m1PDzUun6PVA20YWCxblFWo74Q=w1593-h896-no?pageId=101589342745553480499"><p class="caption">Instalación por consola de homebrew en macOS.</p>
+</div>
+<p>Una vez instalado, puedes aprovechar a dejar listo python (actualiza la versión por defecto e instala el gestor pip). Igualmente es conveniente instalar otros paquetes de uso común por otras aplicaciones .</p>
+<pre class="code bash"><a name="rest_code_60077b17a6c84464a59f083398ebe117-1"></a>brew install pkg-config <span class="c1"># Ayuda a determinar la lista de paquetes existentes</span>
+<a name="rest_code_60077b17a6c84464a59f083398ebe117-2"></a>brew install python3 <span class="c1"># Python3 no viene por defecto</span>
+<a name="rest_code_60077b17a6c84464a59f083398ebe117-3"></a>brew install python2 <span class="c1"># Actualiza la versión existente. En ambos casos se instala pip (pip2 y pip3)</span>
+<a name="rest_code_60077b17a6c84464a59f083398ebe117-4"></a>brew install freetype <span class="c1"># Requerido para la manipulación de fuentes -por ejemplo en matplotlib-</span>
+<a name="rest_code_60077b17a6c84464a59f083398ebe117-5"></a>brew install libpng <span class="c1"># Requerido para la manipulación de imágenes png -por ejemplo en matplotlib-</span>
+<a name="rest_code_60077b17a6c84464a59f083398ebe117-6"></a>brew install pygtk <span class="c1"># Binding de GTK para python. Interfaces en pygtk son comunes.</span>
+</pre>
+</div>
+</div>
+    </div>
+    <aside class="postpromonav"><nav><ul itemprop="keywords" class="tags">
+<li><a class="tag p-category" href="../../categories/emulacion/" rel="tag">emulación</a></li>
+            <li><a class="tag p-category" href="../../categories/hackintosh/" rel="tag">hackintosh</a></li>
+            <li><a class="tag p-category" href="../../categories/linux/" rel="tag">linux</a></li>
+            <li><a class="tag p-category" href="../../categories/macos/" rel="tag">macos</a></li>
+            <li><a class="tag p-category" href="../../categories/maquina-virtual/" rel="tag">máquina virtual</a></li>
+        </ul>
+<ul class="pager hidden-print">
+<li class="previous">
+                <a href="../problemas-de-audio-en-moto-g5/" rel="prev" title="Problemas de audio en Moto G5">Previous post</a>
+            </li>
+            <li class="next">
+                <a href="../la-experiencia-de-pycon-colombia-2018/" rel="next" title="La experiencia de PyCon Colombia 2018">Next post</a>
+            </li>
+        </ul></nav></aside><section class="comments hidden-print"><h2>Comments</h2>
+        
+        
+        <div id="disqus_thread"></div>
+        <script>
+        var disqus_shortname ="cosmoscalibur",
+            disqus_url="http://cosmoscalibur.github.io/en/posts/ejecutando-macos-en-linux/",
+        disqus_title="Ejecutando macOS en Linux",
+        disqus_identifier="cache/posts/ejecutando-macos-en-linux.html",
+        disqus_config = function () {
+            this.language = "en";
+        };
+        (function() {
+            var dsq = document.createElement('script'); dsq.async = true;
+            dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+</noscript>
+    <a href="https://disqus.com" class="dsq-brlink" rel="nofollow">Comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+        </section></article><script>var disqus_shortname="cosmoscalibur";(function(){var a=document.createElement("script");a.async=true;a.src="https://"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());</script><!--End of body content--><footer id="footer">
+            Contents © 2018         <a href="mailto:cosmoscalibur@gmail.com">Edward Villegas-Pulgarin</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
+<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+<img alt="Creative Commons License BY-NC-SA" style="border-width:0; margin-bottom:12px;" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"></a>
+            
+        </footer>
+</div>
+</div>
+
+
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js" integrity="sha256-EGs9T1xMHdvM1geM8jPpoo8EZ1V1VRsmcJz8OByENLA=" crossorigin="anonymous"></script><script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.11.0/baguetteBox.min.js" integrity="sha256-yQGjQhFs3LtyiN5hhr3k9s9TWZOh/RzCkD3gwwCKlkg=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js" integrity="sha256-VrmtNHAdGzjNsUNtWYG55xxE9xDTz4gF63x/prKXKH0=" crossorigin="anonymous"></script><script src="../../../assets/js/all.js"></script><!-- fancy dates --><script>
+    moment.locale("en");
+    fancydates(0, "YYYY-MM-DD HH:mm");
+    </script><!-- end fancy dates --><script>
+    baguetteBox.run('div#content', {
+        ignoreClass: 'islink',
+        captions: function(element) {
+            return element.getElementsByTagName('img')[0].alt;
+    }});
+    </script>
+</body>
+</html>
