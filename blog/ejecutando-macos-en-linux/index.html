@@ -152,12 +152,12 @@
 </div>
 <p>Aquí hemos creado ya la máquina en si misma pero debemos configurar antes un par de cosas. En configuración de la máquina debemos ir a la sección de sistema (<em>system</em>) y luego placa madre (<em>Motherboard</em>) y habilitar las características extendidas (<em>Extended features</em>) y elegir <em>USB Tablet</em> en el puntero (<em>Pointing device</em>). En la misma sección vamos a la pestaña de procesador (<em>Processor</em>) e indicamos al menos 2 CPU. Por último, en la sección de monitor (<em>Display</em>) vamos a la pestaña <em>Screen</em> y asignamos 128 MB a la memoria de video (<em>Video Memory</em>).</p>
 <p>Ahora, pasamos a la consola (powershell o CMD en Windows) y ejecutamos lo siguiente (si es Windows hay que poner <code>VBoxManage.exe</code> estando en el directorio de VirtualBox -<code>cd "C:Program FilesOracleVirtualBox"</code>-):</p>
-<pre class="code bash"><a name="rest_code_8816cf28f8204c49be618002e27c8bcf-1"></a>VBoxManage.exe modifyvm <span class="s2">"macos"</span> --cpuidset <span class="m">00000001</span> 000106e5 <span class="m">00100800</span> 0098e3fd bfebfbff
-<a name="rest_code_8816cf28f8204c49be618002e27c8bcf-2"></a>VBoxManage setextradata <span class="s2">"macos"</span> <span class="s2">"VBoxInternal/Devices/efi/0/Config/DmiSystemProduct"</span> <span class="s2">"iMac11,3"</span>
-<a name="rest_code_8816cf28f8204c49be618002e27c8bcf-3"></a>VBoxManage setextradata <span class="s2">"macos"</span> <span class="s2">"VBoxInternal/Devices/efi/0/Config/DmiSystemVersion"</span> <span class="s2">"1.0"</span>
-<a name="rest_code_8816cf28f8204c49be618002e27c8bcf-4"></a>VBoxManage setextradata <span class="s2">"macos"</span> <span class="s2">"VBoxInternal/Devices/efi/0/Config/DmiBoardProduct"</span> <span class="s2">"Iloveapple"</span>
-<a name="rest_code_8816cf28f8204c49be618002e27c8bcf-5"></a>VBoxManage setextradata <span class="s2">"macos"</span> <span class="s2">"VBoxInternal/Devices/smc/0/Config/DeviceKey"</span> <span class="s2">"ourhardworkbythesewordsguardedpleasedontsteal(c)AppleComputerInc"</span>
-<a name="rest_code_8816cf28f8204c49be618002e27c8bcf-6"></a>VBoxManage setextradata <span class="s2">"macos"</span> <span class="s2">"VBoxInternal/Devices/smc/0/Config/GetKeyFromRealSMC"</span> <span class="m">1</span>
+<pre class="code bash"><a name="rest_code_9f30fd6622f94fe9bcd79230d929e969-1"></a>VBoxManage.exe modifyvm <span class="s2">"macos"</span> --cpuidset <span class="m">00000001</span> 000106e5 <span class="m">00100800</span> 0098e3fd bfebfbff
+<a name="rest_code_9f30fd6622f94fe9bcd79230d929e969-2"></a>VBoxManage setextradata <span class="s2">"macos"</span> <span class="s2">"VBoxInternal/Devices/efi/0/Config/DmiSystemProduct"</span> <span class="s2">"iMac11,3"</span>
+<a name="rest_code_9f30fd6622f94fe9bcd79230d929e969-3"></a>VBoxManage setextradata <span class="s2">"macos"</span> <span class="s2">"VBoxInternal/Devices/efi/0/Config/DmiSystemVersion"</span> <span class="s2">"1.0"</span>
+<a name="rest_code_9f30fd6622f94fe9bcd79230d929e969-4"></a>VBoxManage setextradata <span class="s2">"macos"</span> <span class="s2">"VBoxInternal/Devices/efi/0/Config/DmiBoardProduct"</span> <span class="s2">"Iloveapple"</span>
+<a name="rest_code_9f30fd6622f94fe9bcd79230d929e969-5"></a>VBoxManage setextradata <span class="s2">"macos"</span> <span class="s2">"VBoxInternal/Devices/smc/0/Config/DeviceKey"</span> <span class="s2">"ourhardworkbythesewordsguardedpleasedontsteal(c)AppleComputerInc"</span>
+<a name="rest_code_9f30fd6622f94fe9bcd79230d929e969-6"></a>VBoxManage setextradata <span class="s2">"macos"</span> <span class="s2">"VBoxInternal/Devices/smc/0/Config/GetKeyFromRealSMC"</span> <span class="m">1</span>
 </pre>
 <p>Tras esto estamos listos para encender la máquina virtual e instalar el sistema operativo en ella (nombre, usuario, contraseña, idioma, teclado). Lo único problemático aquí es que tendrás problema con el teclado pues esta pensado para los teclados Mac. Como cualquier instalación de sistema operativo es algo lento y más considerando que es una máquina virtual.</p>
 <div class="figure align-center">
@@ -168,19 +168,19 @@
 <h2>Después</h2>
 <p>No soy usuario Mac y mi propósito de hacer esto era muy específico, validar compatibilidad de códigos que uso, desarrollo o contribuyo. Pero en este mismo sentido, algo que recomiendo hacer, es instalar <a class="reference external" href="https://brew.sh/index_es.html">Homebrew</a> con el fin de tener listo nuestro macOS para pruebas y poder instalar distintos paquetes comunes a la hora de programar.</p>
 <p>Para ello debes abrir la consola que encontrarás en aplicaciones y ejecutar lo siguiente:</p>
-<pre class="code bash"><a name="rest_code_4ff25e4960f94af58cfac2ecac5672af-1"></a>ruby -e <span class="s2">"</span><span class="k">$(</span>curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install<span class="k">)</span><span class="s2">"</span>
+<pre class="code bash"><a name="rest_code_ffed21be26c948a488d4368cbfed54a8-1"></a>ruby -e <span class="s2">"</span><span class="k">$(</span>curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install<span class="k">)</span><span class="s2">"</span>
 </pre>
 <p>Tendrás que tener paciencia pues el proceso me tomó 45 minutos (en foros reportan la instalación de <em>homebrew</em> de casi 2 horas) y necesitas estar pendiente pues hay dos solicitudes de tu contraseña.</p>
 <div class="figure align-center">
 <img alt="Instalación de homebrew en macOS" src="https://lh3.googleusercontent.com/Pvn6D-PrK_txoUeelj0eDJ1E7rXZErv4oz4CBSfGfm4K7HLR0uL0GJv5VsF95yTDDGSzTJtTnb74djPvcnB9oIGCb1FYKg-S6xbeOIBRmCkgAi9RXXohgs5Xk11OIr3A3dKkByXb1GB4u3DT2ClcTwq-EvxO5US_4Zd6TMeSboYVU61N22LUdMpwanRenNAHEMqJ1qTfc20QXbJ4UWOY8WEs3X1LmRwoFzNJYSa2QV4K9YGMtMEMOY-O4LVdApo9mxWuGtHNBjPkC9iJ0ydVwT7h64cB1WArQyo7vDCkQ3md0cQC3kPlF5HgX25TwbT7_02YU0bJfVOkMht06PkhkQWWck8aRobI-oaHlE9E04b4glT_p-qXHcNXkTqMreLEpC61YeJ_U_R6SNMN0E07dHrEy-_Ci0EuAy-R5ikX0Bm5cS1NGIi3c6vh4OjvqNwniN4MMLUhUSL8GHmsuVxiTatNG6oJUavTJwX4K7DlwgV30J7DCiyZShIdHPndEEoL2yUPWX0eMUsCGscDjmY4Em14YaKa95etIYvXZWfKoA4svKxXE15O0xWk3eZUYKQhBSWMkUMFMEm9m1PDzUun6PVA20YWCxblFWo74Q=w1593-h896-no?pageId=101589342745553480499"><p class="caption">Instalación por consola de homebrew en macOS.</p>
 </div>
 <p>Una vez instalado, puedes aprovechar a dejar listo python (actualiza la versión por defecto e instala el gestor pip). Igualmente es conveniente instalar otros paquetes de uso común por otras aplicaciones .</p>
-<pre class="code bash"><a name="rest_code_4e8cb3de422c4e20b8a061a4f26e442b-1"></a>brew install pkg-config <span class="c1"># Ayuda a determinar la lista de paquetes existentes</span>
-<a name="rest_code_4e8cb3de422c4e20b8a061a4f26e442b-2"></a>brew install python3 <span class="c1"># Python3 no viene por defecto</span>
-<a name="rest_code_4e8cb3de422c4e20b8a061a4f26e442b-3"></a>brew install python2 <span class="c1"># Actualiza la versión existente. En ambos casos se instala pip (pip2 y pip3)</span>
-<a name="rest_code_4e8cb3de422c4e20b8a061a4f26e442b-4"></a>brew install freetype <span class="c1"># Requerido para la manipulación de fuentes -por ejemplo en matplotlib-</span>
-<a name="rest_code_4e8cb3de422c4e20b8a061a4f26e442b-5"></a>brew install libpng <span class="c1"># Requerido para la manipulación de imágenes png -por ejemplo en matplotlib-</span>
-<a name="rest_code_4e8cb3de422c4e20b8a061a4f26e442b-6"></a>brew install pygtk <span class="c1"># Binding de GTK para python. Interfaces en pygtk son comunes.</span>
+<pre class="code bash"><a name="rest_code_d9596ba8c5224b21a94d9a2fe3fb9d9e-1"></a>brew install pkg-config <span class="c1"># Ayuda a determinar la lista de paquetes existentes</span>
+<a name="rest_code_d9596ba8c5224b21a94d9a2fe3fb9d9e-2"></a>brew install python3 <span class="c1"># Python3 no viene por defecto</span>
+<a name="rest_code_d9596ba8c5224b21a94d9a2fe3fb9d9e-3"></a>brew install python2 <span class="c1"># Actualiza la versión existente. En ambos casos se instala pip (pip2 y pip3)</span>
+<a name="rest_code_d9596ba8c5224b21a94d9a2fe3fb9d9e-4"></a>brew install freetype <span class="c1"># Requerido para la manipulación de fuentes -por ejemplo en matplotlib-</span>
+<a name="rest_code_d9596ba8c5224b21a94d9a2fe3fb9d9e-5"></a>brew install libpng <span class="c1"># Requerido para la manipulación de imágenes png -por ejemplo en matplotlib-</span>
+<a name="rest_code_d9596ba8c5224b21a94d9a2fe3fb9d9e-6"></a>brew install pygtk <span class="c1"># Binding de GTK para python. Interfaces en pygtk son comunes.</span>
 </pre>
 </div>
 </div>
@@ -222,7 +222,7 @@
 
 
         </section></article><script>var disqus_shortname="cosmoscalibur";(function(){var a=document.createElement("script");a.async=true;a.src="https://"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());</script><!--End of body content--><footer id="footer">
-            Contents © 2018         <a href="mailto:cosmoscalibur@gmail.com">Edward Villegas Pulgarin</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
+            Contents © 2019         <a href="mailto:cosmoscalibur@gmail.com">Edward Villegas Pulgarin</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
 <img alt="Creative Commons License BY-NC-SA" style="border-width:0; margin-bottom:12px;" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"></a>
             
