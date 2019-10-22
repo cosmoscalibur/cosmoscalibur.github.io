@@ -3,7 +3,7 @@
 &lt;a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"&gt;
 &lt;img alt="Creative Commons License BY-NC-SA"
 style="border-width:0; margin-bottom:12px;"
-src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"&gt;&lt;/a&gt;</copyright><lastBuildDate>Tue, 22 Oct 2019 02:19:39 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Recuperar el arranque de tu Moto G5 en Linux</title><link>https://cosmoscalibur.github.io/blog/recuperar-el-arranque-de-tu-moto-g5-en-linux/</link><dc:creator>Edward Villegas-Pulgarin</dc:creator><description>&lt;div&gt;&lt;p&gt;Recientemente, aunque cambié a un Moto G7, pensaba restaurar el celular de
+src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"&gt;&lt;/a&gt;</copyright><lastBuildDate>Tue, 22 Oct 2019 02:54:13 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Recuperar el arranque de tu Moto G5 en Linux</title><link>https://cosmoscalibur.github.io/blog/recuperar-el-arranque-de-tu-moto-g5-en-linux/</link><dc:creator>Edward Villegas-Pulgarin</dc:creator><description>&lt;div&gt;&lt;p&gt;Recientemente, aunque cambié a un Moto G7, pensaba restaurar el celular de
 fábrica pero salió mal el proceso (no siempre es fácil si pretendes eliminar
 el acceso a &lt;a class="reference external" href="https://www.xda-developers.com/root/"&gt;administrador&lt;/a&gt; -&lt;em&gt;root&lt;/em&gt;- y
 el &lt;em&gt;recovery&lt;/em&gt; personalizado -&lt;a class="reference external" href="https://twrp.me/about/"&gt;TWRP&lt;/a&gt;-).&lt;/p&gt;
@@ -24,8 +24,8 @@ Linux pero por lo mismo dependerá de cual usemos.&lt;/p&gt;
 18.04, compartiendo mucho de la base de paquetes en sus repositorios. Así,
 en ambos casos, podremos proceder a instalar de la misma manera el SDK de
 Android, ADB, Fastboot y Platform Tools.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_3b17d9f78f054dba84e6e255c8740b35-1"&gt;&lt;/a&gt;sudo apt install -y android-sdk android-tools-fastboot android-tools-adb \
-&lt;a name="rest_code_3b17d9f78f054dba84e6e255c8740b35-2"&gt;&lt;/a&gt;android-sdk-platform-tools
+&lt;pre class="code text"&gt;&lt;a name="rest_code_d4481e027a8b4b0a8026271ab896691e-1"&gt;&lt;/a&gt;sudo apt install -y android-sdk android-tools-fastboot android-tools-adb \
+&lt;a name="rest_code_d4481e027a8b4b0a8026271ab896691e-2"&gt;&lt;/a&gt;android-sdk-platform-tools
 &lt;/pre&gt;&lt;/div&gt;
 &lt;div class="section" id="descargar-rom-de-fabrica"&gt;
 &lt;h2&gt;Descargar &lt;em&gt;ROM&lt;/em&gt; de fábrica&lt;/h2&gt;
@@ -51,13 +51,13 @@ soltar.&lt;/li&gt;
 &lt;p&gt;En este momento, hemos ingresado al modo &lt;em&gt;fastboot&lt;/em&gt; (o &lt;em&gt;bootloader&lt;/em&gt;).
 Conectamos el cable USB tanto al celular como a nuestro computador.&lt;/p&gt;
 &lt;p&gt;Podemos probar que todo vaya bien abriendo una terminal y ejecutando&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_30b0e6995cbd4d54a885d3a7a791851b-1"&gt;&lt;/a&gt;fastboot devices
+&lt;pre class="code text"&gt;&lt;a name="rest_code_3d2295e386c24e2bbce7124e9b41773d-1"&gt;&lt;/a&gt;fastboot devices
 &lt;/pre&gt;&lt;p&gt;Y sabremos que funciona si muestra una secuencia alfanumérica y luego la
 palabra &lt;em&gt;fastboot&lt;/em&gt;. En mi caso es:&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_ec01f4acb6324a62a2fb8ccb965b83f2-1"&gt;&lt;/a&gt;ZY3224RNMN   fastboot
+&lt;pre class="code text"&gt;&lt;a name="rest_code_caf5d5d3be584834b1ea7c03884d7fa8-1"&gt;&lt;/a&gt;ZY3224RNMN   fastboot
 &lt;/pre&gt;&lt;p&gt;Algunas veces puede fallar por permisos, en cuyo caso deberías probar la
 ejecución con permiso de administrador.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_3213de745a644ada8725dbf87b0ac41d-1"&gt;&lt;/a&gt;sudo fastboot devices
+&lt;pre class="code text"&gt;&lt;a name="rest_code_1d54b6b013e6439e8bb9f4d8f42adbbe-1"&gt;&lt;/a&gt;sudo fastboot devices
 &lt;/pre&gt;&lt;/div&gt;
 &lt;div class="section" id="instalar-sistema-operativo"&gt;
 &lt;h2&gt;Instalar sistema operativo&lt;/h2&gt;
@@ -67,33 +67,33 @@ operativo (algunos exploradores de archivos admiten poseen la opción de abrir
 la terminal en el directorio abierto en el explorador o puedes moverte en la
 terminal con el comando &lt;code&gt;cd&lt;/code&gt;).&lt;/p&gt;
 &lt;p&gt;Una vez ubicados en el directorio desde la terminal, procedemos a ejecutar&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_54b52f15f4694188b239052cdf420f34-1"&gt;&lt;/a&gt;fastboot getvar max-sparse-size
-&lt;a name="rest_code_54b52f15f4694188b239052cdf420f34-2"&gt;&lt;/a&gt;fastboot oem fb_mode_set
-&lt;a name="rest_code_54b52f15f4694188b239052cdf420f34-3"&gt;&lt;/a&gt;fastboot flash partition gpt.bin
-&lt;a name="rest_code_54b52f15f4694188b239052cdf420f34-4"&gt;&lt;/a&gt;fastboot flash bootloader bootloader.img
-&lt;a name="rest_code_54b52f15f4694188b239052cdf420f34-5"&gt;&lt;/a&gt;fastboot flash modem NON-HLOS.bin
-&lt;a name="rest_code_54b52f15f4694188b239052cdf420f34-6"&gt;&lt;/a&gt;fastboot flash fsg fsg.mbn
-&lt;a name="rest_code_54b52f15f4694188b239052cdf420f34-7"&gt;&lt;/a&gt;fastboot erase modemst1
-&lt;a name="rest_code_54b52f15f4694188b239052cdf420f34-8"&gt;&lt;/a&gt;fastboot erase modemst2
-&lt;a name="rest_code_54b52f15f4694188b239052cdf420f34-9"&gt;&lt;/a&gt;fastboot flash dsp adspso.bin
-&lt;a name="rest_code_54b52f15f4694188b239052cdf420f34-10"&gt;&lt;/a&gt;fastboot flash logo logo.bin
-&lt;a name="rest_code_54b52f15f4694188b239052cdf420f34-11"&gt;&lt;/a&gt;fastboot flash boot boot.img
-&lt;a name="rest_code_54b52f15f4694188b239052cdf420f34-12"&gt;&lt;/a&gt;fastboot flash recovery recovery.img
-&lt;a name="rest_code_54b52f15f4694188b239052cdf420f34-13"&gt;&lt;/a&gt;fastboot flash system system.img_sparsechunk.0
-&lt;a name="rest_code_54b52f15f4694188b239052cdf420f34-14"&gt;&lt;/a&gt;fastboot flash system system.img_sparsechunk.1
-&lt;a name="rest_code_54b52f15f4694188b239052cdf420f34-15"&gt;&lt;/a&gt;fastboot flash system system.img_sparsechunk.2
-&lt;a name="rest_code_54b52f15f4694188b239052cdf420f34-16"&gt;&lt;/a&gt;fastboot flash system system.img_sparsechunk.3
-&lt;a name="rest_code_54b52f15f4694188b239052cdf420f34-17"&gt;&lt;/a&gt;fastboot flash system system.img_sparsechunk.4
-&lt;a name="rest_code_54b52f15f4694188b239052cdf420f34-18"&gt;&lt;/a&gt;fastboot flash system system.img_sparsechunk.5
-&lt;a name="rest_code_54b52f15f4694188b239052cdf420f34-19"&gt;&lt;/a&gt;fastboot flash system system.img_sparsechunk.6
-&lt;a name="rest_code_54b52f15f4694188b239052cdf420f34-20"&gt;&lt;/a&gt;fastboot flash system system.img_sparsechunk.7
-&lt;a name="rest_code_54b52f15f4694188b239052cdf420f34-21"&gt;&lt;/a&gt;fastboot flash system system.img_sparsechunk.8
-&lt;a name="rest_code_54b52f15f4694188b239052cdf420f34-22"&gt;&lt;/a&gt;fastboot flash oem oem.img
-&lt;a name="rest_code_54b52f15f4694188b239052cdf420f34-23"&gt;&lt;/a&gt;fastboot erase cache
-&lt;a name="rest_code_54b52f15f4694188b239052cdf420f34-24"&gt;&lt;/a&gt;fastboot erase userdata
-&lt;a name="rest_code_54b52f15f4694188b239052cdf420f34-25"&gt;&lt;/a&gt;fastboot erase DDR
-&lt;a name="rest_code_54b52f15f4694188b239052cdf420f34-26"&gt;&lt;/a&gt;fastboot oem fb_mode_clear
-&lt;a name="rest_code_54b52f15f4694188b239052cdf420f34-27"&gt;&lt;/a&gt;fastboot reboot
+&lt;pre class="code text"&gt;&lt;a name="rest_code_0d8ee93e1fb04f8faee4787277fca633-1"&gt;&lt;/a&gt;fastboot getvar max-sparse-size
+&lt;a name="rest_code_0d8ee93e1fb04f8faee4787277fca633-2"&gt;&lt;/a&gt;fastboot oem fb_mode_set
+&lt;a name="rest_code_0d8ee93e1fb04f8faee4787277fca633-3"&gt;&lt;/a&gt;fastboot flash partition gpt.bin
+&lt;a name="rest_code_0d8ee93e1fb04f8faee4787277fca633-4"&gt;&lt;/a&gt;fastboot flash bootloader bootloader.img
+&lt;a name="rest_code_0d8ee93e1fb04f8faee4787277fca633-5"&gt;&lt;/a&gt;fastboot flash modem NON-HLOS.bin
+&lt;a name="rest_code_0d8ee93e1fb04f8faee4787277fca633-6"&gt;&lt;/a&gt;fastboot flash fsg fsg.mbn
+&lt;a name="rest_code_0d8ee93e1fb04f8faee4787277fca633-7"&gt;&lt;/a&gt;fastboot erase modemst1
+&lt;a name="rest_code_0d8ee93e1fb04f8faee4787277fca633-8"&gt;&lt;/a&gt;fastboot erase modemst2
+&lt;a name="rest_code_0d8ee93e1fb04f8faee4787277fca633-9"&gt;&lt;/a&gt;fastboot flash dsp adspso.bin
+&lt;a name="rest_code_0d8ee93e1fb04f8faee4787277fca633-10"&gt;&lt;/a&gt;fastboot flash logo logo.bin
+&lt;a name="rest_code_0d8ee93e1fb04f8faee4787277fca633-11"&gt;&lt;/a&gt;fastboot flash boot boot.img
+&lt;a name="rest_code_0d8ee93e1fb04f8faee4787277fca633-12"&gt;&lt;/a&gt;fastboot flash recovery recovery.img
+&lt;a name="rest_code_0d8ee93e1fb04f8faee4787277fca633-13"&gt;&lt;/a&gt;fastboot flash system system.img_sparsechunk.0
+&lt;a name="rest_code_0d8ee93e1fb04f8faee4787277fca633-14"&gt;&lt;/a&gt;fastboot flash system system.img_sparsechunk.1
+&lt;a name="rest_code_0d8ee93e1fb04f8faee4787277fca633-15"&gt;&lt;/a&gt;fastboot flash system system.img_sparsechunk.2
+&lt;a name="rest_code_0d8ee93e1fb04f8faee4787277fca633-16"&gt;&lt;/a&gt;fastboot flash system system.img_sparsechunk.3
+&lt;a name="rest_code_0d8ee93e1fb04f8faee4787277fca633-17"&gt;&lt;/a&gt;fastboot flash system system.img_sparsechunk.4
+&lt;a name="rest_code_0d8ee93e1fb04f8faee4787277fca633-18"&gt;&lt;/a&gt;fastboot flash system system.img_sparsechunk.5
+&lt;a name="rest_code_0d8ee93e1fb04f8faee4787277fca633-19"&gt;&lt;/a&gt;fastboot flash system system.img_sparsechunk.6
+&lt;a name="rest_code_0d8ee93e1fb04f8faee4787277fca633-20"&gt;&lt;/a&gt;fastboot flash system system.img_sparsechunk.7
+&lt;a name="rest_code_0d8ee93e1fb04f8faee4787277fca633-21"&gt;&lt;/a&gt;fastboot flash system system.img_sparsechunk.8
+&lt;a name="rest_code_0d8ee93e1fb04f8faee4787277fca633-22"&gt;&lt;/a&gt;fastboot flash oem oem.img
+&lt;a name="rest_code_0d8ee93e1fb04f8faee4787277fca633-23"&gt;&lt;/a&gt;fastboot erase cache
+&lt;a name="rest_code_0d8ee93e1fb04f8faee4787277fca633-24"&gt;&lt;/a&gt;fastboot erase userdata
+&lt;a name="rest_code_0d8ee93e1fb04f8faee4787277fca633-25"&gt;&lt;/a&gt;fastboot erase DDR
+&lt;a name="rest_code_0d8ee93e1fb04f8faee4787277fca633-26"&gt;&lt;/a&gt;fastboot oem fb_mode_clear
+&lt;a name="rest_code_0d8ee93e1fb04f8faee4787277fca633-27"&gt;&lt;/a&gt;fastboot reboot
 &lt;/pre&gt;&lt;p&gt;Muy bien, hemos terminado de instalar (si no hemos tenido ejecuciones
 fallidas). Para iniciar el celular, con la tecla de volumen buscamos &lt;em&gt;restart&lt;/em&gt;
 y luego presionamos el botón de encendido. En este momento, es como si
@@ -250,10 +250,10 @@ total), 6 puntos son triángulos de lado de 3 puntos (3 vértices que son
 compartidos y 3 que se encuentran en medio de los lados -uno en cada lado-) y el
 10 son lados de 4 puntos (3 vértices compartidos, 2 puntos en cada lado y 1
 punto interior del triángulo ya que se acumula el triángulo anterior).&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_f63520d966aa4ed4a9ac155e710efd9a-1"&gt;&lt;/a&gt;.   .      .           .
-&lt;a name="rest_code_f63520d966aa4ed4a9ac155e710efd9a-2"&gt;&lt;/a&gt;   . .    . .         . .
-&lt;a name="rest_code_f63520d966aa4ed4a9ac155e710efd9a-3"&gt;&lt;/a&gt;         . . .       . . .
-&lt;a name="rest_code_f63520d966aa4ed4a9ac155e710efd9a-4"&gt;&lt;/a&gt;                    . . . .
+&lt;pre class="code text"&gt;&lt;a name="rest_code_84884672117a4fcab7a4841fd305b064-1"&gt;&lt;/a&gt;.   .      .           .
+&lt;a name="rest_code_84884672117a4fcab7a4841fd305b064-2"&gt;&lt;/a&gt;   . .    . .         . .
+&lt;a name="rest_code_84884672117a4fcab7a4841fd305b064-3"&gt;&lt;/a&gt;         . . .       . . .
+&lt;a name="rest_code_84884672117a4fcab7a4841fd305b064-4"&gt;&lt;/a&gt;                    . . . .
 &lt;/pre&gt;&lt;p&gt;Desde la forma matemática, los números triangulares son las sumas parciales de
 la sucesión de números enteros positivos &lt;span class="math"&gt;\(T_{n} = \sum\limits_{i=1}^{n}i\)&lt;/span&gt;,
 o equivalentemente los binomios de Newton de la forma &lt;a class="citation-reference" href="https://cosmoscalibur.github.io/blog/cumple-28-perfecto-triangular-y-hexagonal/#wiki-tri" id="id4"&gt;[wiki_tri]&lt;/a&gt; &lt;a class="citation-reference" href="https://cosmoscalibur.github.io/blog/cumple-28-perfecto-triangular-y-hexagonal/#oeis-tri" id="id5"&gt;[oeis_tri]&lt;/a&gt;&lt;/p&gt;
@@ -273,11 +273,11 @@ corresponde a formar con los puntos un hexágono regular. Al igual que el
 triangular, se deben acumular los puntos del hexágono anterior y reusarlos
 (de esa forma hay dos aristas que comparten sus puntos con el nuevo hexágono)
 &lt;a class="citation-reference" href="https://cosmoscalibur.github.io/blog/cumple-28-perfecto-triangular-y-hexagonal/#wiki-hex" id="id6"&gt;[wiki_hex]&lt;/a&gt;.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_771909e36cf04b2fac6f0c52a400261b-1"&gt;&lt;/a&gt;.    ..         ...
-&lt;a name="rest_code_771909e36cf04b2fac6f0c52a400261b-2"&gt;&lt;/a&gt;    .  .       .  ..
-&lt;a name="rest_code_771909e36cf04b2fac6f0c52a400261b-3"&gt;&lt;/a&gt;     ..       .  .  .
-&lt;a name="rest_code_771909e36cf04b2fac6f0c52a400261b-4"&gt;&lt;/a&gt;               .  ..
-&lt;a name="rest_code_771909e36cf04b2fac6f0c52a400261b-5"&gt;&lt;/a&gt;                ...
+&lt;pre class="code text"&gt;&lt;a name="rest_code_5ba5caa3665a444e895a485afa106237-1"&gt;&lt;/a&gt;.    ..         ...
+&lt;a name="rest_code_5ba5caa3665a444e895a485afa106237-2"&gt;&lt;/a&gt;    .  .       .  ..
+&lt;a name="rest_code_5ba5caa3665a444e895a485afa106237-3"&gt;&lt;/a&gt;     ..       .  .  .
+&lt;a name="rest_code_5ba5caa3665a444e895a485afa106237-4"&gt;&lt;/a&gt;               .  ..
+&lt;a name="rest_code_5ba5caa3665a444e895a485afa106237-5"&gt;&lt;/a&gt;                ...
 &lt;/pre&gt;&lt;p&gt;Al igual que los triangulares, también cuenta con una expresión matemática que
 puede generar la secuencia: &lt;span class="math"&gt;\(n(2n-1)\)&lt;/span&gt; &lt;a class="citation-reference" href="https://cosmoscalibur.github.io/blog/cumple-28-perfecto-triangular-y-hexagonal/#wiki-hex" id="id7"&gt;[wiki_hex]&lt;/a&gt; &lt;a class="citation-reference" href="https://cosmoscalibur.github.io/blog/cumple-28-perfecto-triangular-y-hexagonal/#oeis-hex" id="id8"&gt;[oeis_hex]&lt;/a&gt;.&lt;/p&gt;
 &lt;/div&gt;
@@ -621,12 +621,12 @@ Scalibur.&lt;/p&gt;
 &lt;/div&gt;
 &lt;p&gt;Aquí hemos creado ya la máquina en si misma pero debemos configurar antes un par de cosas. En configuración de la máquina debemos ir a la sección de sistema (&lt;em&gt;system&lt;/em&gt;) y luego placa madre (&lt;em&gt;Motherboard&lt;/em&gt;) y habilitar las características extendidas (&lt;em&gt;Extended features&lt;/em&gt;) y elegir &lt;em&gt;USB Tablet&lt;/em&gt; en el puntero (&lt;em&gt;Pointing device&lt;/em&gt;). En la misma sección vamos a la pestaña de procesador (&lt;em&gt;Processor&lt;/em&gt;) e indicamos al menos 2 CPU. Por último, en la sección de monitor (&lt;em&gt;Display&lt;/em&gt;) vamos a la pestaña &lt;em&gt;Screen&lt;/em&gt; y asignamos 128 MB a la memoria de video (&lt;em&gt;Video Memory&lt;/em&gt;).&lt;/p&gt;
 &lt;p&gt;Ahora, pasamos a la consola (powershell o CMD en Windows) y ejecutamos lo siguiente (si es Windows hay que poner &lt;code&gt;VBoxManage.exe&lt;/code&gt; estando en el directorio de VirtualBox -&lt;code&gt;cd "C:Program FilesOracleVirtualBox"&lt;/code&gt;-):&lt;/p&gt;
-&lt;pre class="code bash"&gt;&lt;a name="rest_code_c8629b6a5d374a53a4f4633ae0a75036-1"&gt;&lt;/a&gt;VBoxManage modifyvm &lt;span class="s2"&gt;"macos"&lt;/span&gt; --cpuidset &lt;span class="m"&gt;00000001&lt;/span&gt; 000106e5 &lt;span class="m"&gt;00100800&lt;/span&gt; 0098e3fd bfebfbff
-&lt;a name="rest_code_c8629b6a5d374a53a4f4633ae0a75036-2"&gt;&lt;/a&gt;VBoxManage setextradata &lt;span class="s2"&gt;"macos"&lt;/span&gt; &lt;span class="s2"&gt;"VBoxInternal/Devices/efi/0/Config/DmiSystemProduct"&lt;/span&gt; &lt;span class="s2"&gt;"iMac11,3"&lt;/span&gt;
-&lt;a name="rest_code_c8629b6a5d374a53a4f4633ae0a75036-3"&gt;&lt;/a&gt;VBoxManage setextradata &lt;span class="s2"&gt;"macos"&lt;/span&gt; &lt;span class="s2"&gt;"VBoxInternal/Devices/efi/0/Config/DmiSystemVersion"&lt;/span&gt; &lt;span class="s2"&gt;"1.0"&lt;/span&gt;
-&lt;a name="rest_code_c8629b6a5d374a53a4f4633ae0a75036-4"&gt;&lt;/a&gt;VBoxManage setextradata &lt;span class="s2"&gt;"macos"&lt;/span&gt; &lt;span class="s2"&gt;"VBoxInternal/Devices/efi/0/Config/DmiBoardProduct"&lt;/span&gt; &lt;span class="s2"&gt;"Iloveapple"&lt;/span&gt;
-&lt;a name="rest_code_c8629b6a5d374a53a4f4633ae0a75036-5"&gt;&lt;/a&gt;VBoxManage setextradata &lt;span class="s2"&gt;"macos"&lt;/span&gt; &lt;span class="s2"&gt;"VBoxInternal/Devices/smc/0/Config/DeviceKey"&lt;/span&gt; &lt;span class="s2"&gt;"ourhardworkbythesewordsguardedpleasedontsteal(c)AppleComputerInc"&lt;/span&gt;
-&lt;a name="rest_code_c8629b6a5d374a53a4f4633ae0a75036-6"&gt;&lt;/a&gt;VBoxManage setextradata &lt;span class="s2"&gt;"macos"&lt;/span&gt; &lt;span class="s2"&gt;"VBoxInternal/Devices/smc/0/Config/GetKeyFromRealSMC"&lt;/span&gt; &lt;span class="m"&gt;1&lt;/span&gt;
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_7503f75f8ae14952bd19dc74f4775c82-1"&gt;&lt;/a&gt;VBoxManage modifyvm &lt;span class="s2"&gt;"macos"&lt;/span&gt; --cpuidset &lt;span class="m"&gt;00000001&lt;/span&gt; 000106e5 &lt;span class="m"&gt;00100800&lt;/span&gt; 0098e3fd bfebfbff
+&lt;a name="rest_code_7503f75f8ae14952bd19dc74f4775c82-2"&gt;&lt;/a&gt;VBoxManage setextradata &lt;span class="s2"&gt;"macos"&lt;/span&gt; &lt;span class="s2"&gt;"VBoxInternal/Devices/efi/0/Config/DmiSystemProduct"&lt;/span&gt; &lt;span class="s2"&gt;"iMac11,3"&lt;/span&gt;
+&lt;a name="rest_code_7503f75f8ae14952bd19dc74f4775c82-3"&gt;&lt;/a&gt;VBoxManage setextradata &lt;span class="s2"&gt;"macos"&lt;/span&gt; &lt;span class="s2"&gt;"VBoxInternal/Devices/efi/0/Config/DmiSystemVersion"&lt;/span&gt; &lt;span class="s2"&gt;"1.0"&lt;/span&gt;
+&lt;a name="rest_code_7503f75f8ae14952bd19dc74f4775c82-4"&gt;&lt;/a&gt;VBoxManage setextradata &lt;span class="s2"&gt;"macos"&lt;/span&gt; &lt;span class="s2"&gt;"VBoxInternal/Devices/efi/0/Config/DmiBoardProduct"&lt;/span&gt; &lt;span class="s2"&gt;"Iloveapple"&lt;/span&gt;
+&lt;a name="rest_code_7503f75f8ae14952bd19dc74f4775c82-5"&gt;&lt;/a&gt;VBoxManage setextradata &lt;span class="s2"&gt;"macos"&lt;/span&gt; &lt;span class="s2"&gt;"VBoxInternal/Devices/smc/0/Config/DeviceKey"&lt;/span&gt; &lt;span class="s2"&gt;"ourhardworkbythesewordsguardedpleasedontsteal(c)AppleComputerInc"&lt;/span&gt;
+&lt;a name="rest_code_7503f75f8ae14952bd19dc74f4775c82-6"&gt;&lt;/a&gt;VBoxManage setextradata &lt;span class="s2"&gt;"macos"&lt;/span&gt; &lt;span class="s2"&gt;"VBoxInternal/Devices/smc/0/Config/GetKeyFromRealSMC"&lt;/span&gt; &lt;span class="m"&gt;1&lt;/span&gt;
 &lt;/pre&gt;&lt;p&gt;Tras esto estamos listos para encender la máquina virtual e instalar el sistema operativo en ella (nombre, usuario, contraseña, idioma, teclado). Lo único problemático aquí es que tendrás problema con el teclado pues esta pensado para los teclados Mac. Como cualquier instalación de sistema operativo es algo lento y más considerando que es una máquina virtual.&lt;/p&gt;
 &lt;div class="figure align-center"&gt;
 &lt;img alt="Selección de idioma en macOS." src="https://lh3.googleusercontent.com/4pUM9zRUHvadbxEqTxP0ChqUY8PIbLpli8QTe0MhUchr1t-YSaOL34rlBWuJPiNlN9bu-YZbc-NobHQTkFsstjxANiw6wbsdDu2vJY2b52PdQFfSydcofwHt0tZiyWY5hSf2pnUVsWArZ3h0DEXJFl3wQIH03MLPj2eY1hT3r2rLq0qYCPMyCqpHJrbA9hogF74jbfrfMwj0OSG-YzOdF4nRH-5WKN_cAc_4rUQRSSfa367h2DcHRzsfMsq4WLWREJoMyE-BeQnVXh4dbZke4u6E-c-u7Zei31YStQRGW5fKCegvF1QmlG34ofIc-YaGcHBWJWesGrN7z9zuxNUQz1Mjqx7reVQhauHlLneMGB9wJGc7eDxlx2XjMx3C-omhiP0dfqNfp3Lnq41a_ZxevISpm3v3L88WhM6VBGBNkpF4x3-kxGovJ-irp3LUz1if05W1kmaVzHgwUbR8OPamO6bkNmWHRxjpZdXC1cRfrL5uHqb40B2QYIuqikwWDzKV1u3PYvi_uFHHJOoeEEDk2GdoZQYla25RPiHyS5RDwVsweBZig-By2VOwJCKoXB1rdBDSR3nUlvMa7qdQf91p5MT06be_EQ74BRpKmg=w1593-h896-no?pageId=101589342745553480499"&gt;
@@ -637,19 +637,19 @@ Scalibur.&lt;/p&gt;
 &lt;h2&gt;Después&lt;/h2&gt;
 &lt;p&gt;No soy usuario Mac y mi propósito de hacer esto era muy específico, validar compatibilidad de códigos que uso, desarrollo o contribuyo. Pero en este mismo sentido, algo que recomiendo hacer, es instalar &lt;a class="reference external" href="https://brew.sh/index_es.html"&gt;Homebrew&lt;/a&gt; con el fin de tener listo nuestro macOS para pruebas y poder instalar distintos paquetes comunes a la hora de programar.&lt;/p&gt;
 &lt;p&gt;Para ello debes abrir la consola que encontrarás en aplicaciones y ejecutar lo siguiente:&lt;/p&gt;
-&lt;pre class="code bash"&gt;&lt;a name="rest_code_e4937fff263f428585069c66d1f312c8-1"&gt;&lt;/a&gt;ruby -e &lt;span class="s2"&gt;"&lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install&lt;span class="k"&gt;)&lt;/span&gt;&lt;span class="s2"&gt;"&lt;/span&gt;
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_c53977ffe2ba4085922066ef053693c2-1"&gt;&lt;/a&gt;ruby -e &lt;span class="s2"&gt;"&lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install&lt;span class="k"&gt;)&lt;/span&gt;&lt;span class="s2"&gt;"&lt;/span&gt;
 &lt;/pre&gt;&lt;p&gt;Tendrás que tener paciencia pues el proceso me tomó 45 minutos (en foros reportan la instalación de &lt;em&gt;homebrew&lt;/em&gt; de casi 2 horas) y necesitas estar pendiente pues hay dos solicitudes de tu contraseña.&lt;/p&gt;
 &lt;div class="figure align-center"&gt;
 &lt;img alt="Instalación de homebrew en macOS" src="https://lh3.googleusercontent.com/Pvn6D-PrK_txoUeelj0eDJ1E7rXZErv4oz4CBSfGfm4K7HLR0uL0GJv5VsF95yTDDGSzTJtTnb74djPvcnB9oIGCb1FYKg-S6xbeOIBRmCkgAi9RXXohgs5Xk11OIr3A3dKkByXb1GB4u3DT2ClcTwq-EvxO5US_4Zd6TMeSboYVU61N22LUdMpwanRenNAHEMqJ1qTfc20QXbJ4UWOY8WEs3X1LmRwoFzNJYSa2QV4K9YGMtMEMOY-O4LVdApo9mxWuGtHNBjPkC9iJ0ydVwT7h64cB1WArQyo7vDCkQ3md0cQC3kPlF5HgX25TwbT7_02YU0bJfVOkMht06PkhkQWWck8aRobI-oaHlE9E04b4glT_p-qXHcNXkTqMreLEpC61YeJ_U_R6SNMN0E07dHrEy-_Ci0EuAy-R5ikX0Bm5cS1NGIi3c6vh4OjvqNwniN4MMLUhUSL8GHmsuVxiTatNG6oJUavTJwX4K7DlwgV30J7DCiyZShIdHPndEEoL2yUPWX0eMUsCGscDjmY4Em14YaKa95etIYvXZWfKoA4svKxXE15O0xWk3eZUYKQhBSWMkUMFMEm9m1PDzUun6PVA20YWCxblFWo74Q=w1593-h896-no?pageId=101589342745553480499"&gt;
 &lt;p class="caption"&gt;Instalación por consola de homebrew en macOS.&lt;/p&gt;
 &lt;/div&gt;
 &lt;p&gt;Una vez instalado, puedes aprovechar a dejar listo python (actualiza la versión por defecto e instala el gestor pip). Igualmente es conveniente instalar otros paquetes de uso común por otras aplicaciones .&lt;/p&gt;
-&lt;pre class="code bash"&gt;&lt;a name="rest_code_42142496b0284f0797a9e7b7ead1796b-1"&gt;&lt;/a&gt;brew install pkg-config &lt;span class="c1"&gt;# Ayuda a determinar la lista de paquetes existentes&lt;/span&gt;
-&lt;a name="rest_code_42142496b0284f0797a9e7b7ead1796b-2"&gt;&lt;/a&gt;brew install python3 &lt;span class="c1"&gt;# Python3 no viene por defecto&lt;/span&gt;
-&lt;a name="rest_code_42142496b0284f0797a9e7b7ead1796b-3"&gt;&lt;/a&gt;brew install python2 &lt;span class="c1"&gt;# Actualiza la versión existente. En ambos casos se instala pip (pip2 y pip3)&lt;/span&gt;
-&lt;a name="rest_code_42142496b0284f0797a9e7b7ead1796b-4"&gt;&lt;/a&gt;brew install freetype &lt;span class="c1"&gt;# Requerido para la manipulación de fuentes -por ejemplo en matplotlib-&lt;/span&gt;
-&lt;a name="rest_code_42142496b0284f0797a9e7b7ead1796b-5"&gt;&lt;/a&gt;brew install libpng &lt;span class="c1"&gt;# Requerido para la manipulación de imágenes png -por ejemplo en matplotlib-&lt;/span&gt;
-&lt;a name="rest_code_42142496b0284f0797a9e7b7ead1796b-6"&gt;&lt;/a&gt;brew install pygtk &lt;span class="c1"&gt;# Binding de GTK para python. Interfaces en pygtk son comunes.&lt;/span&gt;
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_292757db2ec349429d95bbeb16c15fd9-1"&gt;&lt;/a&gt;brew install pkg-config &lt;span class="c1"&gt;# Ayuda a determinar la lista de paquetes existentes&lt;/span&gt;
+&lt;a name="rest_code_292757db2ec349429d95bbeb16c15fd9-2"&gt;&lt;/a&gt;brew install python3 &lt;span class="c1"&gt;# Python3 no viene por defecto&lt;/span&gt;
+&lt;a name="rest_code_292757db2ec349429d95bbeb16c15fd9-3"&gt;&lt;/a&gt;brew install python2 &lt;span class="c1"&gt;# Actualiza la versión existente. En ambos casos se instala pip (pip2 y pip3)&lt;/span&gt;
+&lt;a name="rest_code_292757db2ec349429d95bbeb16c15fd9-4"&gt;&lt;/a&gt;brew install freetype &lt;span class="c1"&gt;# Requerido para la manipulación de fuentes -por ejemplo en matplotlib-&lt;/span&gt;
+&lt;a name="rest_code_292757db2ec349429d95bbeb16c15fd9-5"&gt;&lt;/a&gt;brew install libpng &lt;span class="c1"&gt;# Requerido para la manipulación de imágenes png -por ejemplo en matplotlib-&lt;/span&gt;
+&lt;a name="rest_code_292757db2ec349429d95bbeb16c15fd9-6"&gt;&lt;/a&gt;brew install pygtk &lt;span class="c1"&gt;# Binding de GTK para python. Interfaces en pygtk son comunes.&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</description><category>emulación</category><category>hackintosh</category><category>linux</category><category>macos</category><category>máquina virtual</category><guid>https://cosmoscalibur.github.io/blog/ejecutando-macos-en-linux/</guid><pubDate>Fri, 19 Jan 2018 03:16:55 GMT</pubDate></item><item><title>Problemas de audio en Moto G5</title><link>https://cosmoscalibur.github.io/blog/problemas-de-audio-en-moto-g5/</link><dc:creator>Edward Villegas Pulgarin</dc:creator><description>&lt;div&gt;&lt;p&gt;Recién cambié mi celular Moto G3 por un Moto G5 y vaya susto el que me llevé inicialmente. La verdad, como el cambio fue más bien un asunto de afán no revisé foros previamente (&lt;a class="reference external" href="https://cosmoscalibur.github.io/blog/comprando-celular-para-personalizar/"&gt;ver recomendaciones a la hora de comprar&lt;/a&gt;) sobre los problemas y me confié de los conocidos que tienen este celular y que nunca les he escuchado de problemas.&lt;/p&gt;
 &lt;p&gt;El susto comenzó con la primera llamada (cuando lo compré no se hizo prueba de llamada) y la sorpresa de encontrarme sin audio. Hice dos intentos adicionales pensando que podía ser algún problema de señal pero persistía hasta que algo se escucho cuando iba a cortar la llamada. Nuevamente probé, y el audio empezaba 5 segundos después de conectarse la llamada.&lt;/p&gt;
 &lt;!-- TEASER_END --&gt;
