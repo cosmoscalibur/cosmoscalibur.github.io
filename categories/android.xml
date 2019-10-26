@@ -3,7 +3,7 @@
 &lt;a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"&gt;
 &lt;img alt="Creative Commons License BY-NC-SA"
 style="border-width:0; margin-bottom:12px;"
-src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"&gt;&lt;/a&gt;</copyright><lastBuildDate>Tue, 22 Oct 2019 02:54:13 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Recuperar el arranque de tu Moto G5 en Linux</title><link>https://cosmoscalibur.github.io/blog/recuperar-el-arranque-de-tu-moto-g5-en-linux/</link><dc:creator>Edward Villegas-Pulgarin</dc:creator><description>&lt;div&gt;&lt;p&gt;Recientemente, aunque cambié a un Moto G7, pensaba restaurar el celular de
+src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"&gt;&lt;/a&gt;</copyright><lastBuildDate>Sat, 26 Oct 2019 03:24:58 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Recuperar el arranque de tu Moto G5 en Linux</title><link>https://cosmoscalibur.github.io/blog/recuperar-el-arranque-de-tu-moto-g5-en-linux/</link><dc:creator>Edward Villegas-Pulgarin</dc:creator><description>&lt;div&gt;&lt;p&gt;Recientemente, aunque cambié a un Moto G7, pensaba restaurar el celular de
 fábrica pero salió mal el proceso (no siempre es fácil si pretendes eliminar
 el acceso a &lt;a class="reference external" href="https://www.xda-developers.com/root/"&gt;administrador&lt;/a&gt; -&lt;em&gt;root&lt;/em&gt;- y
 el &lt;em&gt;recovery&lt;/em&gt; personalizado -&lt;a class="reference external" href="https://twrp.me/about/"&gt;TWRP&lt;/a&gt;-).&lt;/p&gt;
@@ -24,8 +24,8 @@ Linux pero por lo mismo dependerá de cual usemos.&lt;/p&gt;
 18.04, compartiendo mucho de la base de paquetes en sus repositorios. Así,
 en ambos casos, podremos proceder a instalar de la misma manera el SDK de
 Android, ADB, Fastboot y Platform Tools.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_d4481e027a8b4b0a8026271ab896691e-1"&gt;&lt;/a&gt;sudo apt install -y android-sdk android-tools-fastboot android-tools-adb \
-&lt;a name="rest_code_d4481e027a8b4b0a8026271ab896691e-2"&gt;&lt;/a&gt;android-sdk-platform-tools
+&lt;pre class="code text"&gt;&lt;a name="rest_code_fb3014ccd6c243b6a0b30367b6f48bdb-1"&gt;&lt;/a&gt;sudo apt install -y android-sdk android-tools-fastboot android-tools-adb \
+&lt;a name="rest_code_fb3014ccd6c243b6a0b30367b6f48bdb-2"&gt;&lt;/a&gt;android-sdk-platform-tools
 &lt;/pre&gt;&lt;/div&gt;
 &lt;div class="section" id="descargar-rom-de-fabrica"&gt;
 &lt;h2&gt;Descargar &lt;em&gt;ROM&lt;/em&gt; de fábrica&lt;/h2&gt;
@@ -51,13 +51,13 @@ soltar.&lt;/li&gt;
 &lt;p&gt;En este momento, hemos ingresado al modo &lt;em&gt;fastboot&lt;/em&gt; (o &lt;em&gt;bootloader&lt;/em&gt;).
 Conectamos el cable USB tanto al celular como a nuestro computador.&lt;/p&gt;
 &lt;p&gt;Podemos probar que todo vaya bien abriendo una terminal y ejecutando&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_3d2295e386c24e2bbce7124e9b41773d-1"&gt;&lt;/a&gt;fastboot devices
+&lt;pre class="code text"&gt;&lt;a name="rest_code_9af04e03090d41d790ebe23b4ea3660d-1"&gt;&lt;/a&gt;fastboot devices
 &lt;/pre&gt;&lt;p&gt;Y sabremos que funciona si muestra una secuencia alfanumérica y luego la
 palabra &lt;em&gt;fastboot&lt;/em&gt;. En mi caso es:&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_caf5d5d3be584834b1ea7c03884d7fa8-1"&gt;&lt;/a&gt;ZY3224RNMN   fastboot
+&lt;pre class="code text"&gt;&lt;a name="rest_code_70200fb206c442cea5357af84a117fe1-1"&gt;&lt;/a&gt;ZY3224RNMN   fastboot
 &lt;/pre&gt;&lt;p&gt;Algunas veces puede fallar por permisos, en cuyo caso deberías probar la
 ejecución con permiso de administrador.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_1d54b6b013e6439e8bb9f4d8f42adbbe-1"&gt;&lt;/a&gt;sudo fastboot devices
+&lt;pre class="code text"&gt;&lt;a name="rest_code_4a52ed306dcb40f6a17542fbe6c8232b-1"&gt;&lt;/a&gt;sudo fastboot devices
 &lt;/pre&gt;&lt;/div&gt;
 &lt;div class="section" id="instalar-sistema-operativo"&gt;
 &lt;h2&gt;Instalar sistema operativo&lt;/h2&gt;
@@ -67,33 +67,33 @@ operativo (algunos exploradores de archivos admiten poseen la opción de abrir
 la terminal en el directorio abierto en el explorador o puedes moverte en la
 terminal con el comando &lt;code&gt;cd&lt;/code&gt;).&lt;/p&gt;
 &lt;p&gt;Una vez ubicados en el directorio desde la terminal, procedemos a ejecutar&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_0d8ee93e1fb04f8faee4787277fca633-1"&gt;&lt;/a&gt;fastboot getvar max-sparse-size
-&lt;a name="rest_code_0d8ee93e1fb04f8faee4787277fca633-2"&gt;&lt;/a&gt;fastboot oem fb_mode_set
-&lt;a name="rest_code_0d8ee93e1fb04f8faee4787277fca633-3"&gt;&lt;/a&gt;fastboot flash partition gpt.bin
-&lt;a name="rest_code_0d8ee93e1fb04f8faee4787277fca633-4"&gt;&lt;/a&gt;fastboot flash bootloader bootloader.img
-&lt;a name="rest_code_0d8ee93e1fb04f8faee4787277fca633-5"&gt;&lt;/a&gt;fastboot flash modem NON-HLOS.bin
-&lt;a name="rest_code_0d8ee93e1fb04f8faee4787277fca633-6"&gt;&lt;/a&gt;fastboot flash fsg fsg.mbn
-&lt;a name="rest_code_0d8ee93e1fb04f8faee4787277fca633-7"&gt;&lt;/a&gt;fastboot erase modemst1
-&lt;a name="rest_code_0d8ee93e1fb04f8faee4787277fca633-8"&gt;&lt;/a&gt;fastboot erase modemst2
-&lt;a name="rest_code_0d8ee93e1fb04f8faee4787277fca633-9"&gt;&lt;/a&gt;fastboot flash dsp adspso.bin
-&lt;a name="rest_code_0d8ee93e1fb04f8faee4787277fca633-10"&gt;&lt;/a&gt;fastboot flash logo logo.bin
-&lt;a name="rest_code_0d8ee93e1fb04f8faee4787277fca633-11"&gt;&lt;/a&gt;fastboot flash boot boot.img
-&lt;a name="rest_code_0d8ee93e1fb04f8faee4787277fca633-12"&gt;&lt;/a&gt;fastboot flash recovery recovery.img
-&lt;a name="rest_code_0d8ee93e1fb04f8faee4787277fca633-13"&gt;&lt;/a&gt;fastboot flash system system.img_sparsechunk.0
-&lt;a name="rest_code_0d8ee93e1fb04f8faee4787277fca633-14"&gt;&lt;/a&gt;fastboot flash system system.img_sparsechunk.1
-&lt;a name="rest_code_0d8ee93e1fb04f8faee4787277fca633-15"&gt;&lt;/a&gt;fastboot flash system system.img_sparsechunk.2
-&lt;a name="rest_code_0d8ee93e1fb04f8faee4787277fca633-16"&gt;&lt;/a&gt;fastboot flash system system.img_sparsechunk.3
-&lt;a name="rest_code_0d8ee93e1fb04f8faee4787277fca633-17"&gt;&lt;/a&gt;fastboot flash system system.img_sparsechunk.4
-&lt;a name="rest_code_0d8ee93e1fb04f8faee4787277fca633-18"&gt;&lt;/a&gt;fastboot flash system system.img_sparsechunk.5
-&lt;a name="rest_code_0d8ee93e1fb04f8faee4787277fca633-19"&gt;&lt;/a&gt;fastboot flash system system.img_sparsechunk.6
-&lt;a name="rest_code_0d8ee93e1fb04f8faee4787277fca633-20"&gt;&lt;/a&gt;fastboot flash system system.img_sparsechunk.7
-&lt;a name="rest_code_0d8ee93e1fb04f8faee4787277fca633-21"&gt;&lt;/a&gt;fastboot flash system system.img_sparsechunk.8
-&lt;a name="rest_code_0d8ee93e1fb04f8faee4787277fca633-22"&gt;&lt;/a&gt;fastboot flash oem oem.img
-&lt;a name="rest_code_0d8ee93e1fb04f8faee4787277fca633-23"&gt;&lt;/a&gt;fastboot erase cache
-&lt;a name="rest_code_0d8ee93e1fb04f8faee4787277fca633-24"&gt;&lt;/a&gt;fastboot erase userdata
-&lt;a name="rest_code_0d8ee93e1fb04f8faee4787277fca633-25"&gt;&lt;/a&gt;fastboot erase DDR
-&lt;a name="rest_code_0d8ee93e1fb04f8faee4787277fca633-26"&gt;&lt;/a&gt;fastboot oem fb_mode_clear
-&lt;a name="rest_code_0d8ee93e1fb04f8faee4787277fca633-27"&gt;&lt;/a&gt;fastboot reboot
+&lt;pre class="code text"&gt;&lt;a name="rest_code_5f349ff57dac49bb86593c6043eb1f92-1"&gt;&lt;/a&gt;fastboot getvar max-sparse-size
+&lt;a name="rest_code_5f349ff57dac49bb86593c6043eb1f92-2"&gt;&lt;/a&gt;fastboot oem fb_mode_set
+&lt;a name="rest_code_5f349ff57dac49bb86593c6043eb1f92-3"&gt;&lt;/a&gt;fastboot flash partition gpt.bin
+&lt;a name="rest_code_5f349ff57dac49bb86593c6043eb1f92-4"&gt;&lt;/a&gt;fastboot flash bootloader bootloader.img
+&lt;a name="rest_code_5f349ff57dac49bb86593c6043eb1f92-5"&gt;&lt;/a&gt;fastboot flash modem NON-HLOS.bin
+&lt;a name="rest_code_5f349ff57dac49bb86593c6043eb1f92-6"&gt;&lt;/a&gt;fastboot flash fsg fsg.mbn
+&lt;a name="rest_code_5f349ff57dac49bb86593c6043eb1f92-7"&gt;&lt;/a&gt;fastboot erase modemst1
+&lt;a name="rest_code_5f349ff57dac49bb86593c6043eb1f92-8"&gt;&lt;/a&gt;fastboot erase modemst2
+&lt;a name="rest_code_5f349ff57dac49bb86593c6043eb1f92-9"&gt;&lt;/a&gt;fastboot flash dsp adspso.bin
+&lt;a name="rest_code_5f349ff57dac49bb86593c6043eb1f92-10"&gt;&lt;/a&gt;fastboot flash logo logo.bin
+&lt;a name="rest_code_5f349ff57dac49bb86593c6043eb1f92-11"&gt;&lt;/a&gt;fastboot flash boot boot.img
+&lt;a name="rest_code_5f349ff57dac49bb86593c6043eb1f92-12"&gt;&lt;/a&gt;fastboot flash recovery recovery.img
+&lt;a name="rest_code_5f349ff57dac49bb86593c6043eb1f92-13"&gt;&lt;/a&gt;fastboot flash system system.img_sparsechunk.0
+&lt;a name="rest_code_5f349ff57dac49bb86593c6043eb1f92-14"&gt;&lt;/a&gt;fastboot flash system system.img_sparsechunk.1
+&lt;a name="rest_code_5f349ff57dac49bb86593c6043eb1f92-15"&gt;&lt;/a&gt;fastboot flash system system.img_sparsechunk.2
+&lt;a name="rest_code_5f349ff57dac49bb86593c6043eb1f92-16"&gt;&lt;/a&gt;fastboot flash system system.img_sparsechunk.3
+&lt;a name="rest_code_5f349ff57dac49bb86593c6043eb1f92-17"&gt;&lt;/a&gt;fastboot flash system system.img_sparsechunk.4
+&lt;a name="rest_code_5f349ff57dac49bb86593c6043eb1f92-18"&gt;&lt;/a&gt;fastboot flash system system.img_sparsechunk.5
+&lt;a name="rest_code_5f349ff57dac49bb86593c6043eb1f92-19"&gt;&lt;/a&gt;fastboot flash system system.img_sparsechunk.6
+&lt;a name="rest_code_5f349ff57dac49bb86593c6043eb1f92-20"&gt;&lt;/a&gt;fastboot flash system system.img_sparsechunk.7
+&lt;a name="rest_code_5f349ff57dac49bb86593c6043eb1f92-21"&gt;&lt;/a&gt;fastboot flash system system.img_sparsechunk.8
+&lt;a name="rest_code_5f349ff57dac49bb86593c6043eb1f92-22"&gt;&lt;/a&gt;fastboot flash oem oem.img
+&lt;a name="rest_code_5f349ff57dac49bb86593c6043eb1f92-23"&gt;&lt;/a&gt;fastboot erase cache
+&lt;a name="rest_code_5f349ff57dac49bb86593c6043eb1f92-24"&gt;&lt;/a&gt;fastboot erase userdata
+&lt;a name="rest_code_5f349ff57dac49bb86593c6043eb1f92-25"&gt;&lt;/a&gt;fastboot erase DDR
+&lt;a name="rest_code_5f349ff57dac49bb86593c6043eb1f92-26"&gt;&lt;/a&gt;fastboot oem fb_mode_clear
+&lt;a name="rest_code_5f349ff57dac49bb86593c6043eb1f92-27"&gt;&lt;/a&gt;fastboot reboot
 &lt;/pre&gt;&lt;p&gt;Muy bien, hemos terminado de instalar (si no hemos tenido ejecuciones
 fallidas). Para iniciar el celular, con la tecla de volumen buscamos &lt;em&gt;restart&lt;/em&gt;
 y luego presionamos el botón de encendido. En este momento, es como si
@@ -117,7 +117,73 @@ visible (en mi caso, lo he notado con demoras superiores a las habituales).&lt;/
 &lt;li&gt;&lt;a class="reference external" href="https://www.hardreset.info/devices/motorola/motorola-moto-g5/recovery-mode/"&gt;HardReset.info: Recovery Mode MOTOROLA Moto G5&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a class="reference external" href="https://android.gadgethacks.com/how-to/know-your-android-tools-what-is-fastboot-do-you-use-it-0155640/"&gt;What Is Fastboot &amp;amp; How Do You Use It?&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;/div&gt;&lt;/div&gt;</description><category>android</category><category>celulares</category><category>fastboot</category><category>flash</category><category>linux</category><category>moto g5</category><category>motorola</category><category>smartphone</category><category>soft brick</category><guid>https://cosmoscalibur.github.io/blog/recuperar-el-arranque-de-tu-moto-g5-en-linux/</guid><pubDate>Tue, 22 Oct 2019 00:10:34 GMT</pubDate></item><item><title>Problemas de audio en Moto G5</title><link>https://cosmoscalibur.github.io/blog/problemas-de-audio-en-moto-g5/</link><dc:creator>Edward Villegas Pulgarin</dc:creator><description>&lt;div&gt;&lt;p&gt;Recién cambié mi celular Moto G3 por un Moto G5 y vaya susto el que me llevé inicialmente. La verdad, como el cambio fue más bien un asunto de afán no revisé foros previamente (&lt;a class="reference external" href="https://cosmoscalibur.github.io/blog/comprando-celular-para-personalizar/"&gt;ver recomendaciones a la hora de comprar&lt;/a&gt;) sobre los problemas y me confié de los conocidos que tienen este celular y que nunca les he escuchado de problemas.&lt;/p&gt;
+&lt;/div&gt;&lt;/div&gt;</description><category>android</category><category>celulares</category><category>fastboot</category><category>flash</category><category>linux</category><category>moto g5</category><category>motorola</category><category>smartphone</category><category>soft brick</category><guid>https://cosmoscalibur.github.io/blog/recuperar-el-arranque-de-tu-moto-g5-en-linux/</guid><pubDate>Tue, 22 Oct 2019 00:10:34 GMT</pubDate></item><item><title>Audiolibros con Overdrive y Biblioteca EPM</title><link>https://cosmoscalibur.github.io/blog/audiolibros-con-overdrive-y-biblioteca-epm/</link><dc:creator>Edward Villegas-Pulgarin</dc:creator><description>&lt;div&gt;&lt;p&gt;Vuelvo después de un largo tiempo al blog, con el fin de compartirles una
+excelente recomendación para aprovechar sus tiempos de espera en transporte o
+en las eternas filas. Se trata de aprovechar el tiempo escuchando audiolibros.&lt;/p&gt;
+&lt;p&gt;Para esto, se requiere de dos elementos, uno es tener una aplicación instalada
+en nuestro móvil y adicional tener acceso a los recursos de la Biblioteca de la
+Fundación EPM.&lt;/p&gt;
+&lt;!-- TEASER_END --&gt;
+&lt;div class="section" id="overdrive"&gt;
+&lt;h2&gt;Overdrive&lt;/h2&gt;
+&lt;p&gt;Bueno, el requisito de la aplicación se cumple con
+&lt;a class="reference external" href="https://www.overdrive.com/"&gt;Overdrive&lt;/a&gt;, una aplicación que permite la
+gestión del préstamo de libros electrónicos y audiolibros en las bibliotecas
+que tengan dispuesto espacio en esta plataforma. Ojo, no se trata de una
+aplicación general para audiolibros y libros, es solo para estos recursos en
+las bibliotecas aliadas.&lt;/p&gt;
+&lt;p&gt;Para nosotros en Colombia, tenemos más bien pocas opciones. Podrán explorar
+rápidamente las bibliotecas aliadas, categorizadas por &lt;em&gt;Antioquia&lt;/em&gt;, &lt;em&gt;Distrito
+Capital de Bogotá&lt;/em&gt;, &lt;em&gt;Medellín&lt;/em&gt; y &lt;em&gt;Valle del Cauca&lt;/em&gt;. Para esta exploración deben
+dirigirse a la opción "Administrar bibliotecas", el signo "+" para agregar una
+nueva biblioteca y finalmente "EXPLORAR BIBLIOTECAS".&lt;/p&gt;
+&lt;p&gt;La aplicación se encuentra disponible en:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;a class="reference external" href="https://play.google.com/store/apps/details?id=com.overdrive.mobile.android.mediaconsole"&gt;Google Play&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="https://itunes.apple.com/us/app/overdrive-ebooks-audiobooks/id366869252"&gt;AppStore&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="https://www.microsoft.com/es-co/p/overdrive-library-ebooks-audiobooks/9wzdncrfj3sr?activetab=pivot:overviewtab"&gt;Microsoft Store&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Puedes crear una cuenta en Overdrive con el fin de sincronizar tus datos de
+bibliotecas (se puede con Facebook).&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="fundacion-epm-red-de-bibliotecas"&gt;
+&lt;h2&gt;Fundación EPM - Red de bibliotecas&lt;/h2&gt;
+&lt;p&gt;No es que sea la única opción, pero si es la opción para cualquier ciudadano
+colombiano. La biblioteca de la Fundación EPM es una biblioteca pública y por
+tenes acceso a ella de una forma muy simple, inscribiéndonos en un formulario
+web, tras el cual tendremos nuestro usuario y contraseña.&lt;/p&gt;
+&lt;p&gt;Este formulario se encuentra disponible en el sitio del
+&lt;a class="reference external" href="http://bibliotecasmedellin.gov.co/cms/servicios-en-linea/afiliacion/"&gt;Sistema de Bibliotecas Públicas de Medellín&lt;/a&gt;.
+El único pero, es estar forzado a diligenciar un número de contacto fijo en una
+época donde es poco común pero los datos no son validados para tener acceso (en
+mi caso registre el número parcial de mi celular).&lt;/p&gt;
+&lt;div class="figure align-center"&gt;
+&lt;img alt="Menú lateral de Overdrive." src="https://lh3.googleusercontent.com/Q1z9N77kwoI3jx5_OiDoLI5wx7PbZIakYJd8IwFld3MUTe70QQTina4F2IqnMRi-0DgSpK953a35iD4UHB60u9LD5PaYnHNGu2xsMx6KnWWK7D-rxQIUDJU_8P5dHGSqf4_MMobQOw=w359-h637-no"&gt;
+&lt;p class="caption"&gt;Menú lateral de Overdrive con listado de bibliotecas agregadas.&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;Una vez diligenciado el formulario, te llegará un mensaje al correo electrónico
+que hayas indicado, donde se indica el usuario y contraseña. La verdad, no se
+para que es la contraseña, porque &lt;em&gt;Overdrive&lt;/em&gt; solo pide el usuario (número de
+documento de identificación) y un campo numérico que es el tipo de documento
+(1 si es cédula).&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="a-escuchar"&gt;
+&lt;h2&gt;A escuchar&lt;/h2&gt;
+&lt;p&gt;Una vez tenemos los datos, agregamos la biblioteca de la Fundación EPM,
+seleccionamos Red de Bibliotecas, ingresamos nuestros datos y procedemos a
+seleccionar el recurso que queremos prestar (en la próxima ocasión, accederemos
+desde el menú lateral seleccionando la biblioteca). En este caso, mi
+recomendación de audiolibros con experiencia inmersiva (tipo radionovela).&lt;/p&gt;
+&lt;div class="figure align-center"&gt;
+&lt;img alt="Lista de audiolibros prestados." src="https://lh3.googleusercontent.com/vTZozp1ie47mYkgRRHR8xexPRikM48eG2X4LHHj6WmRhS9Nt_8Gpi8j8Vo6v-PDImcoEydJ5-ChZOJg9Z4Xgf2hiEHqYezFcWjL3dOBXQwWk6VNCpWx-yB9PwV_rdPCUQico0i_0moHjlQ1HalI0JQrF7I3Vd-XM1BzFKpLdQBXNtorKJyfjr0hCN5zhyKmMq-rr_jE5xBezAIekGpC4IaGxF808QeKISuqTzIarz4uBjgnxhuLeBc34plguL8NrFP4rb8PzUxysNJPbcHh9nhSYWOtgZy_jUvoohXqQpaOD1RIgtNmP_tD-iPt3k3eXpJP_gjHP3ugo1THA3wYzhH3s7UNfFPOL_CGec93-cSLUHfqBrB-O_dzyaexvoLwpEgsonD9BcfUdkECTDG1wxs1S5N9QzMNu0-iJdghQMkQG9ZHrqvMAjdmgipRaDsMVbY4RtsQ7Gi4xPTCOQ_iW3l3XBtw2SEosQjSaL_v_oB8Ad0Z8P2ezHkytaTYlJ_YPG3EHzvay5GA9EXHB1F2QFEn-H-jeu5VI8jQgLoZWKBc4VejvDfbmTYJxNIti7f_x5PoV1e0JU2Iv3VwS8VELCELGfiMzBYDrEeV6v8MWyVqAp0NvzdJYoYgf2EXbNxSnUK0AhtAPbiRbTpTkn9K9Hu-IOUDciykbbH4VZjqqnlMVAOwnmNH09WnENqx915Q0FB6931dy6f3cUzwOVzK11Smf=w359-h637-no"&gt;
+&lt;p class="caption"&gt;Lista de audiolibros prestados disponible en la estantería.&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;Vamos a la categoría de audiolibros, escogemos el título seleccionando
+"PEDIR PRESTADO" y luego "Descargar". Ahora, vamos al menú lateral,
+seleccionamos "Estantería" y seleccionamos el audiolibro que deseamos
+disfrutar.&lt;/p&gt;
+&lt;p&gt;Que tengan una agradable experiencia.&lt;/p&gt;
+&lt;/div&gt;&lt;/div&gt;</description><category>android</category><category>audiolibros</category><category>bibliotecas</category><category>colombia</category><category>epm</category><category>overdrive</category><guid>https://cosmoscalibur.github.io/blog/audiolibros-con-overdrive-y-biblioteca-epm/</guid><pubDate>Sat, 18 May 2019 00:14:07 GMT</pubDate></item><item><title>Problemas de audio en Moto G5</title><link>https://cosmoscalibur.github.io/blog/problemas-de-audio-en-moto-g5/</link><dc:creator>Edward Villegas Pulgarin</dc:creator><description>&lt;div&gt;&lt;p&gt;Recién cambié mi celular Moto G3 por un Moto G5 y vaya susto el que me llevé inicialmente. La verdad, como el cambio fue más bien un asunto de afán no revisé foros previamente (&lt;a class="reference external" href="https://cosmoscalibur.github.io/blog/comprando-celular-para-personalizar/"&gt;ver recomendaciones a la hora de comprar&lt;/a&gt;) sobre los problemas y me confié de los conocidos que tienen este celular y que nunca les he escuchado de problemas.&lt;/p&gt;
 &lt;p&gt;El susto comenzó con la primera llamada (cuando lo compré no se hizo prueba de llamada) y la sorpresa de encontrarme sin audio. Hice dos intentos adicionales pensando que podía ser algún problema de señal pero persistía hasta que algo se escucho cuando iba a cortar la llamada. Nuevamente probé, y el audio empezaba 5 segundos después de conectarse la llamada.&lt;/p&gt;
 &lt;!-- TEASER_END --&gt;
 &lt;p&gt;Ante esto acudí al dios Google y me encontré una gran cantidad de noticias en páginas de celulares y foros técnicos que reportaban no solo mi problema, sino además otros problemas de audio (y otros problemas).&lt;/p&gt;

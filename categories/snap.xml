@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Cosmoscalibur (Publicaciones sobre snap)</title><link>https://www.cosmoscalibur.com/</link><description></description><atom:link href="https://cosmoscalibur.github.io/categories/snap.xml" rel="self" type="application/rss+xml"></atom:link><language>es</language><copyright>Contents © 2019 &lt;a href="mailto:cosmoscalibur@gmail.com"&gt;Edward Villegas Pulgarin&lt;/a&gt; 
+&lt;a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"&gt;
+&lt;img alt="Creative Commons License BY-NC-SA"
+style="border-width:0; margin-bottom:12px;"
+src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"&gt;&lt;/a&gt;</copyright><lastBuildDate>Sat, 26 Oct 2019 03:24:58 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Instalando paquetes en Linux (Mint)</title><link>https://cosmoscalibur.github.io/blog/instalando-paquetes-en-linux-mint/</link><dc:creator>Edward Villegas-Pulgarin</dc:creator><description>&lt;div&gt;&lt;p&gt;En Linux ahora tenemos muchas más opciones para instalar nuestros programas
+favoritos y de uso diario, según los intereses personales en reducir espacio
+en disco, aumentar estabilidad, mejorar seguridad, disponer siempre de la
+última versión, tener muy buena integración con el sistema operativo o no
+requerir permisos de administrador. Algunas de las estrategias, incluso
+facilitan que el mismo mecanismo podemos usarlo en más de una distribución
+Linux y así disponer de una transición más simple.&lt;/p&gt;
+&lt;!-- TEASER_END --&gt;
+&lt;p&gt;Este artículo es algo superficial sobre cada gestor, pero más adelante
+publicaré artículos dedicados a cada uno de ellos con el fin de contarles más
+opciones y trucos.&lt;/p&gt;
+&lt;div class="section" id="programas-generales"&gt;
+&lt;h2&gt;Programas generales&lt;/h2&gt;
+&lt;p&gt;Aunque no es una clasificación estricta, es la forma que veo para hablar de
+estos paquetes de &lt;em&gt;software&lt;/em&gt;. Son paquetes de uso general, lo suficiente para
+ser de interés para disponer a través de medios de distribución para público
+general. En ocasiones, esto puede incluir paquetes de uso científico o propio
+de desarrollo, o de alguna disciplina particular.&lt;/p&gt;
+&lt;div class="section" id="gestor-de-la-distribucion"&gt;
+&lt;h3&gt;Gestor de la distribución&lt;/h3&gt;
+&lt;p&gt;La mayor parte de distribuciones Linux disponen de gestores de paquetes de
+&lt;em&gt;software&lt;/em&gt;, que son herramientas para la búsqueda, descarga, instalación y
+configuración de estos. Los gestores se conectan a repositorios de paquetes
+oficiales que son mantenidos por los desarrollados de la distribución,
+asegurando que cumplan con estándares mínimos de compatibilidad y estabilidad.&lt;/p&gt;
+&lt;p&gt;También, algunos gestos pueden conectar a repositorios mantenidos por la
+comunidad, dando la opción de extender el &lt;em&gt;software&lt;/em&gt; disponible para
+instalación por los usuarios de una manera simple, pero a riesgo de
+inestabilidad o conflictos por la interacción con paquetes de los repositorios
+oficiales (no es general, pero suele ocurrir). Estos repositorios de comunidad
+los recomiendo como última opción.&lt;/p&gt;
+&lt;p&gt;En Ubuntu y Linux Mint, tienes la opción de usar el Centro de Software
+(preinstalado) o Synaptic (preinstalado en Linux Mint), para realizar la
+gestión de manera gráfica. Pero también puedes usar &lt;code&gt;apt-get&lt;/code&gt; o
+&lt;code&gt;apt&lt;/code&gt; (recomendado) para la gestión a través de consola.&lt;/p&gt;
+&lt;pre class="code text"&gt;&lt;a name="rest_code_274ce0ce5bd14c26a692e0985a4d292a-1"&gt;&lt;/a&gt;sudo apt update -q
+&lt;a name="rest_code_274ce0ce5bd14c26a692e0985a4d292a-2"&gt;&lt;/a&gt;sudo apt install -y okular
+&lt;/pre&gt;&lt;p&gt;Ahora dispones del lector de archivos PDF en tu sistema. Puedes accederlo por
+el menú o por comando (&lt;code&gt;okular&lt;/code&gt;). La primera línea es recomendable para
+actualizar las direcciones desde las cuales se descarga el software y los
+metadatos para búsqueda. La segunda línea realiza la instalación sin solicitar
+confirmación.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="appimage"&gt;
+&lt;h3&gt;AppImage&lt;/h3&gt;
+&lt;p&gt;Me parece la mejor de las opciones entre las nuevas estrategias. Permite la
+ejecución inmediata del programa (no requiere instalación), gestiona
+actualización y no es necesario permisos de administrador al no requerir
+instalar. En teoría, ejecuta en cualquier distribución Linux moderna.&lt;/p&gt;
+&lt;p&gt;Como el archivo ejecuta directamente, se pueden tener múltiples versiones del
+mismo programa. Esto, es por el aislamiento que posee, es un tipo de
+contenedor, tal como lo son las opciones de snap y flatpak, lo cual también
+evita conflictos en el sistema (programas que puedan requerir la misma
+dependencia pero en versiones diferentes, la dependencia no pueda gestionar
+múltiples instancias o exponga una brecha de seguridad).&lt;/p&gt;
+&lt;p&gt;Usaremos Stellarium para dar un ejemplo, y puedes buscar en
+&lt;a class="reference external" href="https://appimage.github.io"&gt;AppImageHub&lt;/a&gt; para ver una colección de AppImage
+disponibles.&lt;/p&gt;
+&lt;p&gt;Descargamos el &lt;a class="reference external" href="https://stellarium.org/"&gt;AppImage de Stellarium&lt;/a&gt; del sitio
+oficial del software (el segundo pingüino).&lt;/p&gt;
+&lt;pre class="code text"&gt;&lt;a name="rest_code_a389846143ea4f13884c969c8187b6d0-1"&gt;&lt;/a&gt;chmod 755 Stellarium-0.19.2-x86_64.AppImage
+&lt;a name="rest_code_a389846143ea4f13884c969c8187b6d0-2"&gt;&lt;/a&gt;./Stellarium-0.19.2-x86_64.AppImage
+&lt;/pre&gt;&lt;p&gt;La primera línea solo es necesario ejecutarla la primera vez.&lt;/p&gt;
+&lt;p&gt;Si queremos ejecutarlo de una manera más cómoda, podemos mover el archivo al
+directorio de ejecución de binarios del usuario o a uno de ejecución de sistema
+para estar disponible para todos los usuarios (&lt;code&gt;/usr/local/bin/&lt;/code&gt;).&lt;/p&gt;
+&lt;pre class="code text"&gt;&lt;a name="rest_code_741efc33843b4a7896ea533351a9c72d-1"&gt;&lt;/a&gt;mv Stellarium-0.19.2-x86_64.AppImage ~/.local/bin/stellarium
+&lt;a name="rest_code_741efc33843b4a7896ea533351a9c72d-2"&gt;&lt;/a&gt;stellarium
+&lt;/pre&gt;&lt;p&gt;Nuevamente, la primera línea es solo la primera vez.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="snap"&gt;
+&lt;h3&gt;Snap&lt;/h3&gt;
+&lt;p&gt;Los snap son el mecanismo de instalación promovido por Canonical
+(desarrolladores de Ubuntu). Sigue siendo un mecanismo centralizado, que
+requiere aprobación de Canonical para ser admitido el paquete y requiere ser
+administrador para la instalación.&lt;/p&gt;
+&lt;p&gt;En Ubuntu viene preinstalado pero en Linux Mint es necesario instalarlo.&lt;/p&gt;
+&lt;pre class="code text"&gt;&lt;a name="rest_code_eaeaa782980a484fb266955656214b7a-1"&gt;&lt;/a&gt;sudo apt install -y snapd
+&lt;/pre&gt;&lt;p&gt;Una vez instalado, podemos proceder a instalar un paquete snap.&lt;/p&gt;
+&lt;pre class="code text"&gt;&lt;a name="rest_code_e4ba961ebb0443028f8a802169c9b621-1"&gt;&lt;/a&gt;sudo snap install code --classic
+&lt;a name="rest_code_e4ba961ebb0443028f8a802169c9b621-2"&gt;&lt;/a&gt;snap run code # Ejecuta
+&lt;/pre&gt;&lt;p&gt;La ejecución con &lt;code&gt;snap run&lt;/code&gt; es necesaria si tras instalar no reconoce
+el paquete. Después de la primera ejecución o tras abrir una nueva terminal
+o reiniciar el equipo, será ya reconocido el paquete sin problema para
+ejecutarse directamente con el nombre (&lt;code&gt;code&lt;/code&gt;) o por el menú.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="flatpak"&gt;
+&lt;h3&gt;Flatpak&lt;/h3&gt;
+&lt;p&gt;El caso de flatpak no es muy cómodo, tiene cierta centralización como snap,
+pero con fines de indexación. Un desarrollador puede crear su propio
+repositorio flatpak. Y al igual que AppImage, no requiere permisos de
+administrador.&lt;/p&gt;
+&lt;p&gt;En Linux Mint viene preconfigurado a partir de la versión 18.3, pero si usas
+Ubuntu necesitas instalarlo. Desde la 18.10 se encuentra en los repositorios
+oficiales.&lt;/p&gt;
+&lt;pre class="code text"&gt;&lt;a name="rest_code_7a8f60e04831483eb87a0262069a56ac-1"&gt;&lt;/a&gt;sudo apt install flatpak
+&lt;a name="rest_code_7a8f60e04831483eb87a0262069a56ac-2"&gt;&lt;/a&gt;sudo apt install gnome-software-plugin-flatpak
+&lt;a name="rest_code_7a8f60e04831483eb87a0262069a56ac-3"&gt;&lt;/a&gt;flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+&lt;/pre&gt;&lt;p&gt;La primera línea instala el gestor de flatpak. La segunda línea permite usar
+flatpak con el Centro de Software de Gnome. Y la tercera línea agrega el
+repositorio de paquetes flatpak más popular.&lt;/p&gt;
+&lt;p&gt;Para ejemplificar, instalaremos el paquete peek&lt;/p&gt;
+&lt;pre class="code text"&gt;&lt;a name="rest_code_ab2550ee4e01455b8bb223824c7e2e2a-1"&gt;&lt;/a&gt;flatpak install -y flathub com.uploadedlobster.peek
+&lt;a name="rest_code_ab2550ee4e01455b8bb223824c7e2e2a-2"&gt;&lt;/a&gt;flatpak run com.uploadedlobster.peek
+&lt;/pre&gt;&lt;p&gt;Desafortunadamente la ejecución es siempre así, pero puedes crear un archivo
+que te facilite la labor.&lt;/p&gt;
+&lt;pre class="code text"&gt;&lt;a name="rest_code_ee54d80f94ad46dfa882c149e61e75a6-1"&gt;&lt;/a&gt;echo "flatpak run com.uploadedlobster.peek" &amp;gt; ~/.local/bin/peek
+&lt;a name="rest_code_ee54d80f94ad46dfa882c149e61e75a6-2"&gt;&lt;/a&gt;chmod 755 ~/.local/bin/peek
+&lt;a name="rest_code_ee54d80f94ad46dfa882c149e61e75a6-3"&gt;&lt;/a&gt;peek
+&lt;/pre&gt;&lt;p&gt;A nivel gráfico, por defecto si es agregado al menú.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="compilacion-y-binarios"&gt;
+&lt;h3&gt;Compilación y binarios&lt;/h3&gt;
+&lt;p&gt;Estas opciones, no son parte de la historia. La compilación sigue siendo
+fundamental para la optimización de código crítico o de alto rendimiento
+como es necesario en la computación científica. La compilación saca provecho de
+la arquitectura del procesador usado.&lt;/p&gt;
+&lt;p&gt;En este caso, será típico el uso de &lt;code&gt;configure&lt;/code&gt; y &lt;code&gt;make&lt;/code&gt;. Para más
+información, es necesario leer el archivo &lt;code&gt;README&lt;/code&gt; que deberías
+encontrar, el cual explicará el detalle del proceso de instalación.&lt;/p&gt;
+&lt;p&gt;En los paquetes con binarios, se obtiene un precompilado que es genérico
+respecto al procesador u optimizado no necesariamente para el procesador que se
+usa en nuestra máquina.&lt;/p&gt;
+&lt;p&gt;Una vez tenemos el binario (precompilado o por compilación en nuestra máquina)
+debemos dar permiso de ejecución al binario (&lt;code&gt;chmod 755&lt;/code&gt;) y añadirlo a
+un directorio que pertenezca al &lt;code&gt;path&lt;/code&gt; (ejemplo, a
+&lt;code&gt;$HOME/.local/bin/&lt;/code&gt;).&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="rutinas-de-instalacion"&gt;
+&lt;h3&gt;Rutinas de instalación&lt;/h3&gt;
+&lt;p&gt;En ocasiones encontraremos archivos &lt;code&gt;.run&lt;/code&gt; o &lt;code&gt;.sh&lt;/code&gt; que asisten la
+instalación, descargando componentes o codificando los distintos archivos en
+un solo archivo.&lt;/p&gt;
+&lt;p&gt;Para este caso, es necesario conferir permiso de ejecución al archivo y
+proceder a ejecutarlo. Este procedimiento, es el mismo expuesto en las primeras
+dos líneas de AppImage.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="referencias"&gt;
+&lt;h2&gt;Referencias&lt;/h2&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;a class="reference external" href="https://appimage.org/"&gt;AppImage&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="https://www.flatpak.org/"&gt;Flatpak&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="https://snapcraft.io/"&gt;Snap&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="https://wiki.gnome.org/Apps/Software"&gt;Gnome Software Center&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="https://help.ubuntu.com/lts/serverguide/apt.html"&gt;Ubuntu APT&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;&lt;/div&gt;</description><category>appimage</category><category>debian</category><category>flatpak</category><category>linux</category><category>linux mint</category><category>paquetes</category><category>snap</category><category>software</category><guid>https://cosmoscalibur.github.io/blog/instalando-paquetes-en-linux-mint/</guid><pubDate>Wed, 23 Oct 2019 01:21:34 GMT</pubDate></item></channel></rss>
