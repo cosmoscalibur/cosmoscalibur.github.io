@@ -3,7 +3,7 @@
 &lt;a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"&gt;
 &lt;img alt="Creative Commons License BY-NC-SA"
 style="border-width:0; margin-bottom:12px;"
-src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"&gt;&lt;/a&gt;</copyright><lastBuildDate>Sat, 26 Oct 2019 03:37:06 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Instalando paquetes en Linux (Mint)</title><link>https://cosmoscalibur.github.io/blog/instalando-paquetes-en-linux-mint/</link><dc:creator>Edward Villegas-Pulgarin</dc:creator><description>&lt;div&gt;&lt;p&gt;En Linux ahora tenemos muchas más opciones para instalar nuestros programas
+src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"&gt;&lt;/a&gt;</copyright><lastBuildDate>Sat, 09 Nov 2019 00:23:52 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Instalando paquetes en Linux (Mint)</title><link>https://cosmoscalibur.github.io/blog/instalando-paquetes-en-linux-mint/</link><dc:creator>Edward Villegas-Pulgarin</dc:creator><description>&lt;div&gt;&lt;p&gt;En Linux ahora tenemos muchas más opciones para instalar nuestros programas
 favoritos y de uso diario, según los intereses personales en reducir espacio
 en disco, aumentar estabilidad, mejorar seguridad, disponer siempre de la
 última versión, tener muy buena integración con el sistema operativo o no
@@ -28,7 +28,7 @@ de desarrollo, o de alguna disciplina particular.&lt;/p&gt;
 configuración de estos. Los gestores se conectan a repositorios de paquetes
 oficiales que son mantenidos por los desarrollados de la distribución,
 asegurando que cumplan con estándares mínimos de compatibilidad y estabilidad.&lt;/p&gt;
-&lt;p&gt;También, algunos gestos pueden conectar a repositorios mantenidos por la
+&lt;p&gt;También, algunos gestores pueden conectar a repositorios mantenidos por la
 comunidad, dando la opción de extender el &lt;em&gt;software&lt;/em&gt; disponible para
 instalación por los usuarios de una manera simple, pero a riesgo de
 inestabilidad o conflictos por la interacción con paquetes de los repositorios
@@ -38,8 +38,8 @@ los recomiendo como última opción.&lt;/p&gt;
 (preinstalado) o Synaptic (preinstalado en Linux Mint), para realizar la
 gestión de manera gráfica. Pero también puedes usar &lt;code&gt;apt-get&lt;/code&gt; o
 &lt;code&gt;apt&lt;/code&gt; (recomendado) para la gestión a través de consola.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_dd51d4257da642a6bf1dd4788eac9973-1"&gt;&lt;/a&gt;sudo apt update -q
-&lt;a name="rest_code_dd51d4257da642a6bf1dd4788eac9973-2"&gt;&lt;/a&gt;sudo apt install -y okular
+&lt;pre class="code text"&gt;&lt;a name="rest_code_a128a3f499de484baeea4f7219be344f-1"&gt;&lt;/a&gt;sudo apt update -q
+&lt;a name="rest_code_a128a3f499de484baeea4f7219be344f-2"&gt;&lt;/a&gt;sudo apt install -y okular
 &lt;/pre&gt;&lt;p&gt;Ahora dispones del lector de archivos PDF en tu sistema. Puedes accederlo por
 el menú o por comando (&lt;code&gt;okular&lt;/code&gt;). La primera línea es recomendable para
 actualizar las direcciones desde las cuales se descarga el software y los
@@ -61,16 +61,16 @@ múltiples instancias o exponga una brecha de seguridad).&lt;/p&gt;
 &lt;p&gt;Usaremos Stellarium para dar un ejemplo, y puedes buscar en
 &lt;a class="reference external" href="https://appimage.github.io"&gt;AppImageHub&lt;/a&gt; para ver una colección de AppImage
 disponibles.&lt;/p&gt;
-&lt;p&gt;Descargamos el &lt;a class="reference external" href="https://stellarium.org/"&gt;AppImage de Stellarium&lt;/a&gt; del sitio
+&lt;p id="appimagecode"&gt;Descargamos el &lt;a class="reference external" href="https://stellarium.org/"&gt;AppImage de Stellarium&lt;/a&gt; del sitio
 oficial del software (el segundo pingüino).&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_4e265ad002344647b0b61229e7f0c85a-1"&gt;&lt;/a&gt;chmod 755 Stellarium-0.19.2-x86_64.AppImage
-&lt;a name="rest_code_4e265ad002344647b0b61229e7f0c85a-2"&gt;&lt;/a&gt;./Stellarium-0.19.2-x86_64.AppImage
+&lt;pre class="code text"&gt;&lt;a name="rest_code_da41c73c74624f01b878a074ad4d1271-1"&gt;&lt;/a&gt;chmod 755 Stellarium-0.19.2-x86_64.AppImage
+&lt;a name="rest_code_da41c73c74624f01b878a074ad4d1271-2"&gt;&lt;/a&gt;./Stellarium-0.19.2-x86_64.AppImage
 &lt;/pre&gt;&lt;p&gt;La primera línea solo es necesario ejecutarla la primera vez.&lt;/p&gt;
 &lt;p&gt;Si queremos ejecutarlo de una manera más cómoda, podemos mover el archivo al
 directorio de ejecución de binarios del usuario o a uno de ejecución de sistema
 para estar disponible para todos los usuarios (&lt;code&gt;/usr/local/bin/&lt;/code&gt;).&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_5dbaed5659564ababa92d9d2fcddff7f-1"&gt;&lt;/a&gt;mv Stellarium-0.19.2-x86_64.AppImage ~/.local/bin/stellarium
-&lt;a name="rest_code_5dbaed5659564ababa92d9d2fcddff7f-2"&gt;&lt;/a&gt;stellarium
+&lt;pre class="code text"&gt;&lt;a name="rest_code_dd2171cac08d4938bfb63fc2435cd6b2-1"&gt;&lt;/a&gt;mv Stellarium-0.19.2-x86_64.AppImage ~/.local/bin/stellarium
+&lt;a name="rest_code_dd2171cac08d4938bfb63fc2435cd6b2-2"&gt;&lt;/a&gt;stellarium
 &lt;/pre&gt;&lt;p&gt;Nuevamente, la primera línea es solo la primera vez.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="snap"&gt;
@@ -80,10 +80,10 @@ para estar disponible para todos los usuarios (&lt;code&gt;/usr/local/bin/&lt;/c
 requiere aprobación de Canonical para ser admitido el paquete y requiere ser
 administrador para la instalación.&lt;/p&gt;
 &lt;p&gt;En Ubuntu viene preinstalado pero en Linux Mint es necesario instalarlo.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_881659c772674090aa5531462a7dd936-1"&gt;&lt;/a&gt;sudo apt install -y snapd
+&lt;pre class="code text"&gt;&lt;a name="rest_code_f72ed9c0010241fbbee8b709d72da590-1"&gt;&lt;/a&gt;sudo apt install -y snapd
 &lt;/pre&gt;&lt;p&gt;Una vez instalado, podemos proceder a instalar un paquete snap.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_817a4c5fac9f4d41a83f25cf9ffbae02-1"&gt;&lt;/a&gt;sudo snap install code --classic
-&lt;a name="rest_code_817a4c5fac9f4d41a83f25cf9ffbae02-2"&gt;&lt;/a&gt;snap run code # Ejecuta
+&lt;pre class="code text"&gt;&lt;a name="rest_code_c8785a52603a45229d9b4f4ccd04c485-1"&gt;&lt;/a&gt;sudo snap install code --classic
+&lt;a name="rest_code_c8785a52603a45229d9b4f4ccd04c485-2"&gt;&lt;/a&gt;snap run code # Ejecuta
 &lt;/pre&gt;&lt;p&gt;La ejecución con &lt;code&gt;snap run&lt;/code&gt; es necesaria si tras instalar no reconoce
 el paquete. Después de la primera ejecución o tras abrir una nueva terminal
 o reiniciar el equipo, será ya reconocido el paquete sin problema para
@@ -99,20 +99,20 @@ administrador.&lt;/p&gt;
 &lt;p&gt;En Linux Mint viene preconfigurado a partir de la versión 18.3, pero si usas
 Ubuntu necesitas instalarlo. Desde la 18.10 se encuentra en los repositorios
 oficiales.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_276505730feb4a9dafff174706f5ff56-1"&gt;&lt;/a&gt;sudo apt install flatpak
-&lt;a name="rest_code_276505730feb4a9dafff174706f5ff56-2"&gt;&lt;/a&gt;sudo apt install gnome-software-plugin-flatpak
-&lt;a name="rest_code_276505730feb4a9dafff174706f5ff56-3"&gt;&lt;/a&gt;flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+&lt;pre class="code text"&gt;&lt;a name="rest_code_513e5c48b9da4b408ebea9c277bd2c39-1"&gt;&lt;/a&gt;sudo apt install flatpak
+&lt;a name="rest_code_513e5c48b9da4b408ebea9c277bd2c39-2"&gt;&lt;/a&gt;sudo apt install gnome-software-plugin-flatpak
+&lt;a name="rest_code_513e5c48b9da4b408ebea9c277bd2c39-3"&gt;&lt;/a&gt;flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 &lt;/pre&gt;&lt;p&gt;La primera línea instala el gestor de flatpak. La segunda línea permite usar
 flatpak con el Centro de Software de Gnome. Y la tercera línea agrega el
 repositorio de paquetes flatpak más popular, &lt;a class="reference external" href="https://flathub.org/home"&gt;flathub&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Para ejemplificar, instalaremos el paquete peek&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_afba94e02d684fa8b8bb716cf978abea-1"&gt;&lt;/a&gt;flatpak install -y flathub com.uploadedlobster.peek
-&lt;a name="rest_code_afba94e02d684fa8b8bb716cf978abea-2"&gt;&lt;/a&gt;flatpak run com.uploadedlobster.peek
+&lt;pre class="code text"&gt;&lt;a name="rest_code_a093a0a08c5a432ea51428bd78e0008f-1"&gt;&lt;/a&gt;flatpak install -y flathub com.uploadedlobster.peek
+&lt;a name="rest_code_a093a0a08c5a432ea51428bd78e0008f-2"&gt;&lt;/a&gt;flatpak run com.uploadedlobster.peek
 &lt;/pre&gt;&lt;p&gt;Desafortunadamente la ejecución es siempre así, pero puedes crear un archivo
 que te facilite la labor.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_abdf22bde37b4c9f858f0f5a58a10e84-1"&gt;&lt;/a&gt;echo "flatpak run com.uploadedlobster.peek" &amp;gt; ~/.local/bin/peek
-&lt;a name="rest_code_abdf22bde37b4c9f858f0f5a58a10e84-2"&gt;&lt;/a&gt;chmod 755 ~/.local/bin/peek
-&lt;a name="rest_code_abdf22bde37b4c9f858f0f5a58a10e84-3"&gt;&lt;/a&gt;peek
+&lt;pre class="code text"&gt;&lt;a name="rest_code_47f8e1c270e94b9cadc64d4bec816fb8-1"&gt;&lt;/a&gt;echo "flatpak run com.uploadedlobster.peek" &amp;gt; ~/.local/bin/peek
+&lt;a name="rest_code_47f8e1c270e94b9cadc64d4bec816fb8-2"&gt;&lt;/a&gt;chmod 755 ~/.local/bin/peek
+&lt;a name="rest_code_47f8e1c270e94b9cadc64d4bec816fb8-3"&gt;&lt;/a&gt;peek
 &lt;/pre&gt;&lt;p&gt;A nivel gráfico, por defecto si es agregado al menú.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="compilacion-y-binarios"&gt;
@@ -138,8 +138,8 @@ un directorio que pertenezca al &lt;code&gt;path&lt;/code&gt; (ejemplo, a
 instalación, descargando componentes o codificando los distintos archivos en
 un solo archivo.&lt;/p&gt;
 &lt;p&gt;Para este caso, es necesario conferir permiso de ejecución al archivo y
-proceder a ejecutarlo. Este procedimiento, es el mismo expuesto en las primeras
-dos líneas de AppImage.&lt;/p&gt;
+proceder a ejecutarlo. Este procedimiento, es el mismo expuesto en las
+&lt;a class="reference external" href="https://cosmoscalibur.github.io/blog/instalando-paquetes-en-linux-mint/#appimagecode"&gt;primeras dos líneas de AppImage&lt;/a&gt;.&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="section" id="referencias"&gt;
