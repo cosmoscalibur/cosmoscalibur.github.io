@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="es" prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article#">
+<head>
+<meta charset="utf-8">
+<meta content="Crearemos un contenedor LXC que permita la ejecución de la" name="description">
+<meta content="width=device-width, initial-scale=1" name="viewport">
+<title>Crear contenedor LXC para aplicación GUI - EALite | Cosmoscalibur</title>
+<link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" rel="stylesheet">
+<link crossorigin="anonymous" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.11.0/baguetteBox.min.css" integrity="sha256-cKiyvRKpm8RaTdU71Oq2RUVgvfWrdIXjvVdQF2oZ1Y4=" rel="stylesheet">
+<link href="../../assets/css/all.css" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900" rel="stylesheet">
+<meta content="#5670d4" name="theme-color">
+<meta content="Nikola (getnikola.com)" name="generator">
+<link href="../../en/rss.xml" rel="alternate" title="RSS (en)" type="application/rss+xml">
+<link href="../../rss.xml" rel="alternate" title="RSS (es)" type="application/rss+xml">
+<link href="https://cosmoscalibur.github.io/blog/crear-contenedor-lxc-para-aplicacion-gui-ealite/" rel="canonical"><!--[if lt IE 9]><script src="https://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+<meta content="Edward Villegas-Pulgarin" name="author">
+<link href="../nos-atraemos-gravitacionalmente/" rel="prev" title="¿Nos atraemos gravitacionalmente?" type="text/html">
+<meta content="Cosmoscalibur" property="og:site_name">
+<meta content="Crear contenedor LXC para aplicación GUI - EALite" property="og:title">
+<meta content="https://cosmoscalibur.github.io/blog/crear-contenedor-lxc-para-aplicacion-gui-ealite/" property="og:url">
+<meta content="Crearemos un contenedor LXC que permita la ejecución de la" property="og:description">
+<meta content="article" property="og:type">
+<meta content="2019-11-11T18:21:26-05:00" property="article:published_time">
+<meta content="contenedor" property="article:tag">
+<meta content="linux" property="article:tag">
+<meta content="lxc" property="article:tag">
+<meta content="lxd" property="article:tag">
+<meta content="wine" property="article:tag">
+<meta content="summary" name="twitter:card">
+<meta content="@cosmoscalibur" name="twitter:site">
+<meta content="@edwardyvillegas" name="twitter:creator">
+</head>
+<body>
+<a class="sr-only sr-only-focusable" href="#content">Ir al contenido principal</a> <!-- Header and menu bar -->
+<div class="container">
+<header class="blog-header py-3">
+<div class="row nbb-header align-items-center">
+<div class="col-md-3 col-xs-2 col-sm-2" style="width: auto;"><button aria-controls="bs-navbar" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler navbar-light bg-light nbb-navbar-toggler" data-target=".bs-nav-collapsible" data-toggle="collapse" type="button"><span class="navbar-toggler-icon"></span></button>
+<div class="collapse bs-nav-collapsible bootblog4-search-form-holder"><!-- DuckDuckGo custom search -->
+<form action="https://duckduckgo.com/" class="navbar-form pull-left" id="search" method="get" name="search"><input name="sites" type="hidden" value="https://www.cosmoscalibur.com/"><input name="k8" type="hidden" value="#444444"><input name="k9" type="hidden" value="#D51920"><input name="kt" type="hidden" value="h"><input class="span2" maxlength="255" name="q" placeholder="Search…" style="margin-top: 4px;" type="text"><input style="visibility: hidden;" type="submit" value="DuckDuckGo Search"></form>
+<!-- End of custom search --></div>
+</div>
+<div class="col-md-6 col-xs-10 col-sm-10 bootblog4-brand" style="width: auto;"><a class="navbar-brand blog-header-logo text-dark" href="https://cosmoscalibur.github.io/"><span id="blog-title">Cosmoscalibur</span></a></div>
+<div class="col-md-3 justify-content-end align-items-center bs-nav-collapsible collapse flex-collapse bootblog4-right-nav">
+<nav class="navbar navbar-light bg-white">
+<ul class="navbar-nav bootblog4-right-nav">
+<li class="nav-item"><a class="nav-link" href="https://cosmoscalibur.github.io/en/" hreflang="en" rel="alternate">English</a></li>
+</ul>
+</nav>
+</div>
+</div>
+</header>
+<nav class="navbar navbar-expand-md navbar-light bg-white static-top">
+<div class="collapse navbar-collapse bs-nav-collapsible" id="bs-navbar">
+<ul class="navbar-nav nav-fill d-flex w-100">
+<li class="nav-item"><a class="nav-link" href="../../archive.html">Archivo</a></li>
+<li class="nav-item"><a class="nav-link" href="../../categories/">Etiquetas</a></li>
+<li class="nav-item"><a class="nav-link" href="../../rss.xml">Canal RSS</a></li>
+</ul>
+</div>
+<!-- /.navbar-collapse --></nav>
+</div>
+<div class="container" id="content" role="main">
+<div class="body-content"><!--Body content-->
+<article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article">
+<header>
+<h1 class="p-name entry-title" itemprop="headline name"><a class="u-url" href=".">Crear contenedor LXC para aplicación GUI - EALite</a></h1>
+<div class="metadata">
+<p class="byline author vcard"><span class="byline-name fn" itemprop="author">Edward Villegas-Pulgarin</span></p>
+<p class="dateline"><a href="." rel="bookmark"><time class="published dt-published" datetime="2019-11-11T18:21:26-05:00" itemprop="datePublished" title="2019-11-11 18:21">2019-11-11 18:21</time></a></p>
+<p class="commentline"><a data-disqus-identifier="cache/posts/crear-contenedor-lxc-para-aplicacion-gui-ealite.html" href="#disqus_thread">Comments</a></p>
+</div>
+</header>
+<div class="e-content entry-content" itemprop="articleBody text">
+<div>
+<p>El uso de contenedores en la industria del software se ha extendido ampliamente y no es de extrañar, ofrece a los desarrolladores la posibilidad de mejorar el aislamiento de sus servicios y de ahí hacerlo menos susceptible a errores por colisiones con otros servicios o conflictos de dependencias. Al mismo tiempo, son una alternativa más amigable en recursos respecto a las máquinas virtuales.</p>
+<p>Múltiples proveedores de infraestructura para nube ofrecen la opción de desplegar los servicios a partir de un contenedor, y sin duda, facilita la distribución de entornos de desarrollo y aplicaciones.</p>
+<!-- TEASER_END -->
+<p>Con estos beneficios (algo similar a lo discutido en <a class="reference external" href="../instalando-paquetes-en-linux-mint/">Instalando paquetes en Linux (Mint)</a>), procederemos a crear un contenedor para la ejecución de Enterprise Architect (la versión del visor, pero es aplicable a la versión completa). De manera oficial hay instrucciones para su uso en Linux con Wine pero la receta está incompleta (hay que agregar una instrucción más) y es mejor no ensuciar nuestro sistema de 64 bits con bibliotecas de 32 bits de manera innecesaria. Así que empecemos.</p>
+<div class="section" id="instalar-lxd">
+<h2>Instalar LXD</h2>
+<p>Nuestro primer paso será instalar el paquete LXD, el cual se encuentra disponible a través de múltiples gestores de paquetes de las distribuciones Linux pero también como paquete snap. Por facilidad, usaré el paquete snap.</p>
+<pre class="code text"><a id="rest_code_af7158a34a1d4e5abce7fd93a1a78db6-1" name="rest_code_af7158a34a1d4e5abce7fd93a1a78db6-1"></a>sudo snap install lxd
+</pre>
+<p>Ahora, debemos inicializar (solo es necesario la primera vez tras instalar).</p>
+<pre class="code text"><a id="rest_code_357f836c6f8044538d4b7c9f7bbab75f-1" name="rest_code_357f836c6f8044538d4b7c9f7bbab75f-1"></a>sudo lxd init
+</pre>
+<p>En mi caso, todos los valores que son preguntados los he dejado en su valor por defecto. Personalmente, solo debería preocuparnos el tamaño de la unidad usado (en caso de tener limitaciones en espacio de almacenamiento).</p>
+</div>
+<div class="section" id="crear-perfil-gui">
+<h2>Crear perfil GUI</h2>
+<p>Por defecto, el comportamiento de los contenedores es para la ejecución de servicios y aplicaciones de consola. Por eso, la ejecución de una aplicación gráfica nos requiere una configuración adicional, que es realizar el paso al sistema gráfico de nuestro sistema hospedador.</p>
+<p>El perfil gráfico es definido con el siguiente código (copia y pega en un nuevo archivo, <code>lxdguiprofile.txt</code>).</p>
+<pre class="code text"><a id="rest_code_66bee2604fff4d52b6ff7b48727a8975-1" name="rest_code_66bee2604fff4d52b6ff7b48727a8975-1"></a>config:
+<a id="rest_code_66bee2604fff4d52b6ff7b48727a8975-2" name="rest_code_66bee2604fff4d52b6ff7b48727a8975-2"></a>  environment.DISPLAY: :0
+<a id="rest_code_66bee2604fff4d52b6ff7b48727a8975-3" name="rest_code_66bee2604fff4d52b6ff7b48727a8975-3"></a>  raw.idmap: both 1000 1000
+<a id="rest_code_66bee2604fff4d52b6ff7b48727a8975-4" name="rest_code_66bee2604fff4d52b6ff7b48727a8975-4"></a>  user.user-data: |
+<a id="rest_code_66bee2604fff4d52b6ff7b48727a8975-5" name="rest_code_66bee2604fff4d52b6ff7b48727a8975-5"></a>    #cloud-config
+<a id="rest_code_66bee2604fff4d52b6ff7b48727a8975-6" name="rest_code_66bee2604fff4d52b6ff7b48727a8975-6"></a>    runcmd:
+<a id="rest_code_66bee2604fff4d52b6ff7b48727a8975-7" name="rest_code_66bee2604fff4d52b6ff7b48727a8975-7"></a>      - 'sed -i "s/; enable-shm = yes/enable-shm = no/g" /etc/pulse/client.conf'
+<a id="rest_code_66bee2604fff4d52b6ff7b48727a8975-8" name="rest_code_66bee2604fff4d52b6ff7b48727a8975-8"></a>      - 'echo export PULSE_SERVER=unix:/tmp/.pulse-native | tee --append /home/ubuntu/.profile'
+<a id="rest_code_66bee2604fff4d52b6ff7b48727a8975-9" name="rest_code_66bee2604fff4d52b6ff7b48727a8975-9"></a>    packages:
+<a id="rest_code_66bee2604fff4d52b6ff7b48727a8975-10" name="rest_code_66bee2604fff4d52b6ff7b48727a8975-10"></a>      - x11-apps
+<a id="rest_code_66bee2604fff4d52b6ff7b48727a8975-11" name="rest_code_66bee2604fff4d52b6ff7b48727a8975-11"></a>      - mesa-utils
+<a id="rest_code_66bee2604fff4d52b6ff7b48727a8975-12" name="rest_code_66bee2604fff4d52b6ff7b48727a8975-12"></a>      - pulseaudio
+<a id="rest_code_66bee2604fff4d52b6ff7b48727a8975-13" name="rest_code_66bee2604fff4d52b6ff7b48727a8975-13"></a>description: GUI LXD profile
+<a id="rest_code_66bee2604fff4d52b6ff7b48727a8975-14" name="rest_code_66bee2604fff4d52b6ff7b48727a8975-14"></a>devices:
+<a id="rest_code_66bee2604fff4d52b6ff7b48727a8975-15" name="rest_code_66bee2604fff4d52b6ff7b48727a8975-15"></a>  PASocket:
+<a id="rest_code_66bee2604fff4d52b6ff7b48727a8975-16" name="rest_code_66bee2604fff4d52b6ff7b48727a8975-16"></a>    path: /tmp/.pulse-native
+<a id="rest_code_66bee2604fff4d52b6ff7b48727a8975-17" name="rest_code_66bee2604fff4d52b6ff7b48727a8975-17"></a>    source: /run/user/1000/pulse/native
+<a id="rest_code_66bee2604fff4d52b6ff7b48727a8975-18" name="rest_code_66bee2604fff4d52b6ff7b48727a8975-18"></a>    type: disk
+<a id="rest_code_66bee2604fff4d52b6ff7b48727a8975-19" name="rest_code_66bee2604fff4d52b6ff7b48727a8975-19"></a>  X0:
+<a id="rest_code_66bee2604fff4d52b6ff7b48727a8975-20" name="rest_code_66bee2604fff4d52b6ff7b48727a8975-20"></a>    path: /tmp/.X11-unix/X0
+<a id="rest_code_66bee2604fff4d52b6ff7b48727a8975-21" name="rest_code_66bee2604fff4d52b6ff7b48727a8975-21"></a>    source: /tmp/.X11-unix/X0
+<a id="rest_code_66bee2604fff4d52b6ff7b48727a8975-22" name="rest_code_66bee2604fff4d52b6ff7b48727a8975-22"></a>    type: disk
+<a id="rest_code_66bee2604fff4d52b6ff7b48727a8975-23" name="rest_code_66bee2604fff4d52b6ff7b48727a8975-23"></a>  mygpu:
+<a id="rest_code_66bee2604fff4d52b6ff7b48727a8975-24" name="rest_code_66bee2604fff4d52b6ff7b48727a8975-24"></a>    type: gpu
+<a id="rest_code_66bee2604fff4d52b6ff7b48727a8975-25" name="rest_code_66bee2604fff4d52b6ff7b48727a8975-25"></a>name: gui
+<a id="rest_code_66bee2604fff4d52b6ff7b48727a8975-26" name="rest_code_66bee2604fff4d52b6ff7b48727a8975-26"></a>used_by:
+</pre>
+<p>Ahora, crearemos el perfil:</p>
+<pre class="code text"><a id="rest_code_9a3d0ffacd2e40089a1ff813e29fbebd-1" name="rest_code_9a3d0ffacd2e40089a1ff813e29fbebd-1"></a>sudo lxc profile create gui
+<a id="rest_code_9a3d0ffacd2e40089a1ff813e29fbebd-2" name="rest_code_9a3d0ffacd2e40089a1ff813e29fbebd-2"></a>cat lxdguiprofile.txt | sudo lxc profile edit gui
+</pre>
+<p>Este procedimiento, solo es necesario hacerlo la primera vez.</p>
+</div>
+<div class="section" id="obtener-contenedor-base">
+<h2>Obtener contenedor base</h2>
+<p>Una vez creado el perfil, lanzaremos un contenedor base, es decir, sobre el cual desarrollaremos nuestra necesidad. Estos contenedores base se encuentran disponibles en la página del proyecto y son bases de múltiples distribuciones Linux, con versiones y arquitecturas diferentes.</p>
+<p>Para nuestro fin, usaremos una base de Ubuntu 18.04 para arquitectura i386, que corresponde a 32 bits. Puedes usar otra distribución siempre y cuando disponga de la forma de instalar los paquetes necesarios y en versiones recientes (entre más reciente sea Wine, mejor).</p>
+<pre class="code text"><a id="rest_code_9db22f9116cb4e5c87a162481c96be45-1" name="rest_code_9db22f9116cb4e5c87a162481c96be45-1"></a>sudo lxc launch --profile default --profile gui images:ubuntu/18.04/i386 ea
+</pre>
+<p>Cuando no requerimos la parte gráfica, podemos omitir <code>--profile default --profile gui</code>. Los dos perfiles son un proceso de herencia, primero se carga el perfil por defecto y luego se añade lo necesario para las aplicaciones gráficas.</p>
+<p>Este procedimiento es la primera vez de cada contenedor. Si por error omitimos el perfil gráfico, tendremos que volverlo a crear. Si por un error en la especificación del contenedor lo deseamos eliminar, podemos ejecutar <code>sudo lxc rm ea --force</code>. El forzado es necesario para detener la ejecución del contenedor, o igual podríamos detenerlo primero, <code>sudo lxc stop ea</code>.</p>
+</div>
+<div class="section" id="comandos-en-el-contenedor">
+<h2>Comandos en el contenedor</h2>
+<p>Para instalar nuestro programa en el contenedor, necesitamos ejecutar comandos en este. Para ello, tenemos <code>lxc exec {contenedor} -- {comando}</code>. Una forma interactiva, adecuada para pruebas, es ejecutar bash.</p>
+<pre class="code text"><a id="rest_code_65f1955c690744879341b019723324e7-1" name="rest_code_65f1955c690744879341b019723324e7-1"></a>sudo lxc exec ea -- /bin/bash
+</pre>
+<p>De esta manera podemos ejecutar los comandos de la misma manera que lo hacemos en nuestro sistema, ya que estamos en el contenedor.</p>
+<p>Si deseamos automatizar, nos interesará enviar directamente las instrucciones en lugar de bash. Ejemplo, <code>sudo lxc exec ea -- apt update -q</code>. Notemos que se ha usado un comando que requiere privilegios de administrador, y es porque por defecto el ingreso al contenedor es como administrador. Para hacer uso del usuario estándar debemos indicarlo de forma explícita (por defecto, tenemos el usuario ubuntu), <code>sudo lxc exec ea -- su - ubuntu -c 'echo $(uname -a)'</code>.</p>
+</div>
+<div class="section" id="gestionar-archivos">
+<h2>Gestionar archivos</h2>
+<p>La gestión de archivos es realizada con los comandos <code>file pull</code> y <code>file push</code>.</p>
+<p>Así, si deseamos enviar un archivo:</p>
+<pre class="code text"><a id="rest_code_e2ee4179d96843b4bdc3712cbf2d6aff-1" name="rest_code_e2ee4179d96843b4bdc3712cbf2d6aff-1"></a>sudo lxc file push {archivo local} {contenedor}/{ruta contenedor}
+</pre>
+<p>Y si deseamos traer un archivo del contenedor:</p>
+<pre class="code text"><a id="rest_code_8f79f69449574721982e0ca0dcfc7f32-1" name="rest_code_8f79f69449574721982e0ca0dcfc7f32-1"></a>sudo lxc file pull {contenedor}/{ruta contenedor} {archivo local}
+</pre></div>
+<div class="section" id="instalar-ealite">
+<h2>Instalar EALite</h2>
+<p>Ahora que sabemos ejecutar comandos en el contenedor, instalaremos las dependencias y finalmente EALite.</p>
+<pre class="code text"><a id="rest_code_113d20b2c35b4bc3b9b0f3798c6430da-1" name="rest_code_113d20b2c35b4bc3b9b0f3798c6430da-1"></a>sudo lxc exec ea -- apt install --install-recommends -y wine-stable winetricks
+<a id="rest_code_113d20b2c35b4bc3b9b0f3798c6430da-2" name="rest_code_113d20b2c35b4bc3b9b0f3798c6430da-2"></a>sudo lxc exec ea -- apt install -y fonts-crosextra-carlito
+<a id="rest_code_113d20b2c35b4bc3b9b0f3798c6430da-3" name="rest_code_113d20b2c35b4bc3b9b0f3798c6430da-3"></a>sudo lxc exec ea -- su - ubuntu -c 'winetricks --unattended msxml3'
+<a id="rest_code_113d20b2c35b4bc3b9b0f3798c6430da-4" name="rest_code_113d20b2c35b4bc3b9b0f3798c6430da-4"></a>sudo lxc exec ea -- su - ubuntu -c 'winetricks --unattended msxml4'
+<a id="rest_code_113d20b2c35b4bc3b9b0f3798c6430da-5" name="rest_code_113d20b2c35b4bc3b9b0f3798c6430da-5"></a>sudo lxc exec ea -- su - ubuntu -c 'winetricks --unattended msxml6'
+<a id="rest_code_113d20b2c35b4bc3b9b0f3798c6430da-6" name="rest_code_113d20b2c35b4bc3b9b0f3798c6430da-6"></a>sudo lxc exec ea -- su - ubuntu -c 'winetricks --unattended mdac28'
+<a id="rest_code_113d20b2c35b4bc3b9b0f3798c6430da-7" name="rest_code_113d20b2c35b4bc3b9b0f3798c6430da-7"></a>sudo lxc exec ea -- su - ubuntu -c 'winetricks --unattended jet40'
+<a id="rest_code_113d20b2c35b4bc3b9b0f3798c6430da-8" name="rest_code_113d20b2c35b4bc3b9b0f3798c6430da-8"></a>wget http://www.sparxsystems.com.au/bin/EALite.exe
+<a id="rest_code_113d20b2c35b4bc3b9b0f3798c6430da-9" name="rest_code_113d20b2c35b4bc3b9b0f3798c6430da-9"></a>sudo lxc file push EALite.exe ea/home/ubuntu/EALite.exe
+<a id="rest_code_113d20b2c35b4bc3b9b0f3798c6430da-10" name="rest_code_113d20b2c35b4bc3b9b0f3798c6430da-10"></a>sudo lxc exec ea -- su - ubuntu -c 'wine msiexec /i EALite.exe'
+</pre>
+<p>En este punto, procederemos de manera gráfica a la instalación final de EALite.</p>
+<div class="figure align-center"><img alt="Ventana de instalación gráfica de EALite." src="https://lh3.googleusercontent.com/Or1svyyQDhMUe7R-ZbHbQYI_YAJsMqI7LfnvaYxpzOha6daPYnei6kROT7i3-ZJDbPBeARpB-YYS3PTHRC3rx_ZS_Dk8AMsKbKkjaGZypPabFnagwr4VMgbdNaGiXIWVwEorHnY4k7w6dE4T8b8UUroy_vRoR6oBRUmiTMzzhqdLvEJRRuxS6eFTDXNh9XAN2BpFNcU_pnx3QiaCNd0nDmmo7RsidrEZYxi7qaRGzAzSo4Ii8J9ew3k3-4p3iT0oNQv6kYbKR0oQKXp_pSg5kSAoOBbUjFEQ-J8jfR0cVBC6LAEj-kVdT_0whiXbxaaSHq4pL8m9Lg9v5iYp5asj5lc6KbcwJYWqLrDKmZllC-nuZoj8P13GZ167_MoYl2xX1EaV0uePZIEpFXs8NdSMs1QG7qDYFMykxpIpXUtxrzt58Yi3PZl-QqqMbPmp_2xY9BiytUQjp1MWeuDmxot83HBVVXJ8FPRgvHZQBxiub7FbC0GWhhIN7eWJACAzfG9v9ZZI9teZCP7841Y9H77ksM7XJidKjgL0XdIK5tqFi6VEm_EGh3dca9HDcP2_WYGzKqTra41VyWwHgOA8kg8SeeJ-UJrk-0XqLyneGpioObvpYZ57spIe3qYBc3k7dkylR73DeAN2VFgh42ZLH6s6gIzgEL66UeZEAxECczXyb66HpAiUVb-9Dg=w534-h462-no?pageId=101589342745553480499">
+<p class="caption">Ventana de instalación gráfica de EALite.</p>
+</div>
+<p>Ahora, es necesario crear un mecanismo simple para la ejecución de EA.</p>
+<pre class="code text"><a id="rest_code_06dadc22f2304b0696d78c36a82ef750-1" name="rest_code_06dadc22f2304b0696d78c36a82ef750-1"></a>sudo lxc exec ea -- su - ubuntu -c 'mkdir .local/bin'
+<a id="rest_code_06dadc22f2304b0696d78c36a82ef750-2" name="rest_code_06dadc22f2304b0696d78c36a82ef750-2"></a>sudo lxc exec ea -- su - ubuntu -c 'echo "wine .wine/drive_c/Program\ Files/Sparx\ Systems/EA\ LITE/EA.exe" &gt; .local/bin/ealite'
+<a id="rest_code_06dadc22f2304b0696d78c36a82ef750-3" name="rest_code_06dadc22f2304b0696d78c36a82ef750-3"></a>sudo lxc exec ea -- su - ubuntu -c 'chmod 755 .local/bin/ealite'
+</pre></div>
+<div class="section" id="ejecutar-ealite">
+<h2>Ejecutar EALite</h2>
+<p>Ahora, podemos usar el visor de Enterprise Architect.</p>
+<pre class="code text"><a id="rest_code_da0a4c6c8c9646b58bb6b5f3a6b8e50b-1" name="rest_code_da0a4c6c8c9646b58bb6b5f3a6b8e50b-1"></a>sudo lxc exec ea -- su - ubuntu -c 'ealite'
+</pre>
+<p>Cuando iniciemos el sistema operativo, requerimos de iniciar el contenedores antes de ejecutar la instrucción anterior, <code>sudo lxc start ea</code>.</p>
+<div class="figure align-center"><img alt="EA Viewer abierto." src="https://lh3.googleusercontent.com/MF7O7jeWDbYJb-JwVYd0JvHy4ZE_ef0ZcmYQd1HRoBRK6rve5vQc-G7XqtwQd3BEJMCpw5AR4MDE-PjDOJoU1B7ETLpODI19iEj4TaLeMKXeazt-idIocU1ebbnO5WuIFTLpFoEO3PP4bgsFuc4jidF6ql0V-6NqcKrioOgflu_iqUThVH6bDMDMCXFuVHtCL9XMv7HsCNpnG42FEFrqBiC5AgT9tiKtkBULtePr7v_BlpMyXgsXYI3brLCBgkouFIgY2dLEC8HBsQWFrPAEqLUtp8b1aPPKradRUtbORzkv1WaNx5ptcS3Ic7NfCSrhh5PBWuUioarHSsPH-wJuy25h0wiiHPOjj4IloNGqAdguLZ8FvEEl3KG5QrvFLPIMqE74Kpvv77cb4J9DWxC7TaGL5hWptsDVlrO4kFDgR6-I0UD_qheaHA4jsowz8rB-BOfIEtXyzpf19kyW6EwWi-F-wgxKS2mBO-5X9QylGHBe4o64MRFZN7BKKYtf0WgcuVpGSlPFTIqh3SFI1M_SL9io1dSbqnkyaXQfxTffH3aUUJ1PIv92UkwBQZZMfH4wE160rbRx0nhfQYjd3S-q8kaFsjzFisvkWy9joqEtOZ3PsXXAjxrNYMCO8_xoDFDOJ_it7d_HzYWqPFkRaChImCzDa_xuH0clD1GjcFRCXn3aD5Rqxuoe4Q=w1135-h637-no?pageId=101589342745553480499">
+<p class="caption">EA Viewer abierto.</p>
+</div>
+<div class="figure align-center"><img alt="Acceso al sistema de archivos del contenedor y no solo de la unidad de Wine." src="https://lh3.googleusercontent.com/ox373WeMlr0iVDxO-BW9aMALMQFHOxZr5xwig5DOq9FEDUr7zw9fN9E4-bAtXAEt_kFF_8Mc0THOKS-KbVwWtQ5Cd-CdbEoXZloNqqV31oDD1FfEgQfz9yAHiVQErNqqruCVlpegsBHfueOGxO1oA5sICrUqHlHcsBuBgCLCy_gGs48fLwClzo0ef8-5nRdYyiGARQtnL53Crz-KGVv-Bt2QosQ_jMxx2Sd892yj8kI5Vg1l1HFs2w6WBiJm4_OnsCYosCuMKQ7FKZH76sOVJPF6NDEiutHeXS3t9Z_7Ew6anvRxvqAxWOe-ijGkMAyIfz1otKuHsAM2aj_Jp85I7iEQ3VIFfnyjQX2Saj04h1yNC34iHO2MNZoIhUlWaTGwwkKSil5Cm2twOOoMfnE4eIaEgGOsOIWZbjlR0P5YDlZX9bHZsVZtTy1xX2nGz9dW-g4XEPxtuoqFwxpgMeDbAPaq0uj9Ei1CpJgGE4pPVLarhuiFCtx4c6bXBYg8tc_-4qpMa7A7Wy0Zy0pGfonnSuP4xS-_CAYbfVin4JiroLIH5MAn3D3lNjiT39FQkke9EBnW3Ci7lkL6ZJFQIGQ9HtcLqpSTBBMqwxS8k4z8e4rBSWzvhRBLh-2YOR9v-_L41XcsL6DwzerhlfMs26L_-BVXGYMxzbO1BxwVwZqBNdjSPclkmLBtpQ=w576-h356-no?pageId=101589342745553480499">
+<p class="caption">Acceso al sistema de archivos del contenedor y no solo de la unidad de Wine.</p>
+</div>
+<p>Puedes asegurar una forma simple de ejecutar EALite creando una rutina de lanzamiento con las dos líneas anteriores en un archivo que sea reconocido en el <code>path</code>.</p>
+<pre class="code text"><a id="rest_code_614662c782aa44f599d0c999d986b4fa-1" name="rest_code_614662c782aa44f599d0c999d986b4fa-1"></a>mkdir -p $HOME/.local/bin
+<a id="rest_code_614662c782aa44f599d0c999d986b4fa-2" name="rest_code_614662c782aa44f599d0c999d986b4fa-2"></a>cat &lt;&lt; EOF &gt; $HOME/.local/bin/ealite
+<a id="rest_code_614662c782aa44f599d0c999d986b4fa-3" name="rest_code_614662c782aa44f599d0c999d986b4fa-3"></a>sudo lxc start ea
+<a id="rest_code_614662c782aa44f599d0c999d986b4fa-4" name="rest_code_614662c782aa44f599d0c999d986b4fa-4"></a>sudo lxc exec ea -- su - ubuntu -c 'ealite'
+<a id="rest_code_614662c782aa44f599d0c999d986b4fa-5" name="rest_code_614662c782aa44f599d0c999d986b4fa-5"></a>EOF
+<a id="rest_code_614662c782aa44f599d0c999d986b4fa-6" name="rest_code_614662c782aa44f599d0c999d986b4fa-6"></a>chmod 755 $HOME/.local/bin/ealite
+</pre>
+<p>La ejecución con <code>sudo</code> puede omitirse si se añade el usuario a un grupo que permita la ejecución de lxc. Más adelante, haré una publicación sobre como hacerlo. Por ahora, diviértete ejecutando <code>ealite</code> e ingresando la contraseña de administrador.</p>
+</div>
+<div class="section" id="referencias">
+<h2>Referencias</h2>
+<ul class="simple">
+<li><a class="reference external" href="https://www.sparxsystems.eu/enterprisearchitect/ea-lite-edition/">EA Viewer</a>.</li>
+<li><a class="reference external" href="https://askubuntu.com/questions/827070/cant-run-glxgears-in-root-on-lxc-2-0-container/827146">can't run “glxgears” in root on lxc 2.0 container</a>. Solución a un posible error usando GUI en LXC.</li>
+<li><a class="reference external" href="https://blog.simos.info/how-to-easily-run-graphics-accelerated-gui-apps-in-lxd-containers-on-your-ubuntu-desktop/">How to easily run graphics-accelerated GUI apps in LXD containers on your Ubuntu desktop</a>.</li>
+<li><a class="reference external" href="https://linuxcontainers.org/lxd/getting-started-cli/">LXD Getting started - command line</a>.</li>
+<li><a class="reference external" href="https://us.images.linuxcontainers.org/">Image server for LXC and LXD</a>.</li>
+<li><a class="reference external" href="https://www.sparxsystems.com/enterprise_architect_user_guide/14.0/product_information/enterprise_architect_linux.html">Installing Enterprise Architect under Linux</a></li>
+<li><a class="reference external" href="https://wiki.winehq.org/Winetricks">Winetricks</a>.</li>
+</ul>
+</div>
+</div>
+</div>
+<aside class="postpromonav">
+<nav>
+<ul class="tags" itemprop="keywords">
+<li><a class="tag p-category" href="../../categories/contenedor/" rel="tag">contenedor</a></li>
+<li><a class="tag p-category" href="../../categories/linux/" rel="tag">linux</a></li>
+<li><a class="tag p-category" href="../../categories/lxc/" rel="tag">lxc</a></li>
+<li><a class="tag p-category" href="../../categories/lxd/" rel="tag">lxd</a></li>
+<li><a class="tag p-category" href="../../categories/wine/" rel="tag">wine</a></li>
+</ul>
+<ul class="pager hidden-print">
+<li class="previous"><a href="../nos-atraemos-gravitacionalmente/" rel="prev" title="¿Nos atraemos gravitacionalmente?">Publicación anterior</a></li>
+</ul>
+</nav>
+</aside>
+<section class="comments hidden-print">
+<h2>Comentarios</h2>
+<div id="disqus_thread"></div>
+<script>
+        var disqus_shortname ="cosmoscalibur",
+            disqus_url="https://cosmoscalibur.github.io/blog/crear-contenedor-lxc-para-aplicacion-gui-ealite/",
+        disqus_title="Crear contenedor LXC para aplicaci\u00f3n GUI - EALite",
+        disqus_identifier="cache/posts/crear-contenedor-lxc-para-aplicacion-gui-ealite.html",
+        disqus_config = function () {
+            this.language = "es_ES";
+        };
+        (function() {
+            var dsq = document.createElement('script'); dsq.async = true;
+            dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript> <a class="dsq-brlink" href="https://disqus.com" rel="nofollow">Comments powered by <span class="logo-disqus">Disqus</span></a></section>
+</article>
+<script>
+var disqus_shortname="cosmoscalibur";(function(){var a=document.createElement("script");a.async=true;a.src="https://"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());
+</script><!--End of body content-->
+<footer id="footer">Contents © 2019 <a href="mailto:cosmoscalibur@gmail.com">Edward Villegas Pulgarin</a> - Powered by <a href="https://getnikola.com" rel="nofollow">Nikola</a> <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="license"><img alt="Creative Commons License BY-NC-SA" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" style="border-width:0; margin-bottom:12px;"></a></footer>
+</div>
+</div>
+<script crossorigin="anonymous" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" src="https://code.jquery.com/jquery-3.3.1.min.js">
+</script>
+<script crossorigin="anonymous" integrity="sha256-ZvOgfh+ptkpoa2Y4HkRY28ir89u/+VRyDE7sB7hEEcI=" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js">
+</script>
+<script crossorigin="anonymous" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js">
+</script>
+<script crossorigin="anonymous" integrity="sha256-yQGjQhFs3LtyiN5hhr3k9s9TWZOh/RzCkD3gwwCKlkg=" src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.11.0/baguetteBox.min.js">
+</script>
+<script src="../../assets/js/all.js">
+</script>
+<script>
+    baguetteBox.run('div#content', {
+        ignoreClass: 'islink',
+        captions: function(element) {
+            return element.getElementsByTagName('img')[0].alt;
+    }});
+</script><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-150354242-1">
+</script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-150354242-1');
+</script>
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '595800477624602',
+      cookie     : true,
+      xfbml      : true,
+      version    : 'v5.0'
+    });
+    FB.AppEvents.logPageView();     
+  };
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "https://connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
+</body>
+</html>
