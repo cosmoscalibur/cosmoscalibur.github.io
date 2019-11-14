@@ -23,6 +23,8 @@
 <meta content="article" property="og:type">
 <meta content="2019-11-11T18:21:26-05:00" property="article:published_time">
 <meta content="contenedor" property="article:tag">
+<meta content="ealite" property="article:tag">
+<meta content="enterprise architect" property="article:tag">
 <meta content="linux" property="article:tag">
 <meta content="lxc" property="article:tag">
 <meta content="lxd" property="article:tag">
@@ -68,7 +70,7 @@
 <h1 class="p-name entry-title" itemprop="headline name"><a class="u-url" href=".">Crear contenedor LXC para aplicación GUI - EALite</a></h1>
 <div class="metadata">
 <p class="byline author vcard"><span class="byline-name fn" itemprop="author">Edward Villegas-Pulgarin</span></p>
-<p class="dateline"><a href="." rel="bookmark"><time class="published dt-published" datetime="2019-11-11T18:21:26-05:00" itemprop="datePublished" title="2019-11-11 18:21">2019-11-11 18:21</time></a></p>
+<p class="dateline"><a href="." rel="bookmark"><time class="published dt-published" datetime="2019-11-11T18:21:26-05:00" itemprop="datePublished" title="2019-11-11 18:21">2019-11-11 18:21</time> <span class="updated">(updated <time class="updated dt-updated" datetime="2019-11-13T22:02:00-05:00" itemprop="dateUpdated" title="2019-11-13 22:02">2019-11-13 22:02</time>)</span></a></p>
 <p class="commentline"><a data-disqus-identifier="cache/posts/crear-contenedor-lxc-para-aplicacion-gui-ealite.html" href="#disqus_thread">Comments</a></p>
 </div>
 </header>
@@ -81,10 +83,10 @@
 <div class="section" id="instalar-lxd">
 <h2>Instalar LXD</h2>
 <p>Nuestro primer paso será instalar el paquete LXD, el cual se encuentra disponible a través de múltiples gestores de paquetes de las distribuciones Linux pero también como paquete snap. Por facilidad, usaré el paquete snap.</p>
-<pre class="code text"><a id="rest_code_13f76e6473dc4a32a07440f5785332e3-1" name="rest_code_13f76e6473dc4a32a07440f5785332e3-1"></a>sudo snap install lxd
+<pre class="code text"><a id="rest_code_48de16df0d2a4935b750fdc0c4ba05df-1" name="rest_code_48de16df0d2a4935b750fdc0c4ba05df-1"></a>sudo snap install lxd
 </pre>
 <p>Ahora, debemos inicializar (solo es necesario la primera vez tras instalar).</p>
-<pre class="code text"><a id="rest_code_00246e8654bc498eb6eedbdd7138eff9-1" name="rest_code_00246e8654bc498eb6eedbdd7138eff9-1"></a>sudo lxd init
+<pre class="code text"><a id="rest_code_0369bcab1a434723a686e59b24307c4d-1" name="rest_code_0369bcab1a434723a686e59b24307c4d-1"></a>sudo lxd init
 </pre>
 <p>En mi caso, todos los valores que son preguntados los he dejado en su valor por defecto. Personalmente, solo debería preocuparnos el tamaño de la unidad usado (en caso de tener limitaciones en espacio de almacenamiento).</p>
 </div>
@@ -92,44 +94,44 @@
 <h2>Crear perfil GUI</h2>
 <p>Por defecto, el comportamiento de los contenedores es para la ejecución de servicios y aplicaciones de consola. Por eso, la ejecución de una aplicación gráfica nos requiere una configuración adicional, que es realizar el paso al sistema gráfico de nuestro sistema hospedador.</p>
 <p>El perfil gráfico es definido con el siguiente código (copia y pega en un nuevo archivo, <code>lxdguiprofile.txt</code>).</p>
-<pre class="code text"><a id="rest_code_8c4b5f1836b24d598955be58e9665d26-1" name="rest_code_8c4b5f1836b24d598955be58e9665d26-1"></a>config:
-<a id="rest_code_8c4b5f1836b24d598955be58e9665d26-2" name="rest_code_8c4b5f1836b24d598955be58e9665d26-2"></a>  environment.DISPLAY: :0
-<a id="rest_code_8c4b5f1836b24d598955be58e9665d26-3" name="rest_code_8c4b5f1836b24d598955be58e9665d26-3"></a>  raw.idmap: both 1000 1000
-<a id="rest_code_8c4b5f1836b24d598955be58e9665d26-4" name="rest_code_8c4b5f1836b24d598955be58e9665d26-4"></a>  user.user-data: |
-<a id="rest_code_8c4b5f1836b24d598955be58e9665d26-5" name="rest_code_8c4b5f1836b24d598955be58e9665d26-5"></a>    #cloud-config
-<a id="rest_code_8c4b5f1836b24d598955be58e9665d26-6" name="rest_code_8c4b5f1836b24d598955be58e9665d26-6"></a>    runcmd:
-<a id="rest_code_8c4b5f1836b24d598955be58e9665d26-7" name="rest_code_8c4b5f1836b24d598955be58e9665d26-7"></a>      - 'sed -i "s/; enable-shm = yes/enable-shm = no/g" /etc/pulse/client.conf'
-<a id="rest_code_8c4b5f1836b24d598955be58e9665d26-8" name="rest_code_8c4b5f1836b24d598955be58e9665d26-8"></a>      - 'echo export PULSE_SERVER=unix:/tmp/.pulse-native | tee --append /home/ubuntu/.profile'
-<a id="rest_code_8c4b5f1836b24d598955be58e9665d26-9" name="rest_code_8c4b5f1836b24d598955be58e9665d26-9"></a>    packages:
-<a id="rest_code_8c4b5f1836b24d598955be58e9665d26-10" name="rest_code_8c4b5f1836b24d598955be58e9665d26-10"></a>      - x11-apps
-<a id="rest_code_8c4b5f1836b24d598955be58e9665d26-11" name="rest_code_8c4b5f1836b24d598955be58e9665d26-11"></a>      - mesa-utils
-<a id="rest_code_8c4b5f1836b24d598955be58e9665d26-12" name="rest_code_8c4b5f1836b24d598955be58e9665d26-12"></a>      - pulseaudio
-<a id="rest_code_8c4b5f1836b24d598955be58e9665d26-13" name="rest_code_8c4b5f1836b24d598955be58e9665d26-13"></a>description: GUI LXD profile
-<a id="rest_code_8c4b5f1836b24d598955be58e9665d26-14" name="rest_code_8c4b5f1836b24d598955be58e9665d26-14"></a>devices:
-<a id="rest_code_8c4b5f1836b24d598955be58e9665d26-15" name="rest_code_8c4b5f1836b24d598955be58e9665d26-15"></a>  PASocket:
-<a id="rest_code_8c4b5f1836b24d598955be58e9665d26-16" name="rest_code_8c4b5f1836b24d598955be58e9665d26-16"></a>    path: /tmp/.pulse-native
-<a id="rest_code_8c4b5f1836b24d598955be58e9665d26-17" name="rest_code_8c4b5f1836b24d598955be58e9665d26-17"></a>    source: /run/user/1000/pulse/native
-<a id="rest_code_8c4b5f1836b24d598955be58e9665d26-18" name="rest_code_8c4b5f1836b24d598955be58e9665d26-18"></a>    type: disk
-<a id="rest_code_8c4b5f1836b24d598955be58e9665d26-19" name="rest_code_8c4b5f1836b24d598955be58e9665d26-19"></a>  X0:
-<a id="rest_code_8c4b5f1836b24d598955be58e9665d26-20" name="rest_code_8c4b5f1836b24d598955be58e9665d26-20"></a>    path: /tmp/.X11-unix/X0
-<a id="rest_code_8c4b5f1836b24d598955be58e9665d26-21" name="rest_code_8c4b5f1836b24d598955be58e9665d26-21"></a>    source: /tmp/.X11-unix/X0
-<a id="rest_code_8c4b5f1836b24d598955be58e9665d26-22" name="rest_code_8c4b5f1836b24d598955be58e9665d26-22"></a>    type: disk
-<a id="rest_code_8c4b5f1836b24d598955be58e9665d26-23" name="rest_code_8c4b5f1836b24d598955be58e9665d26-23"></a>  mygpu:
-<a id="rest_code_8c4b5f1836b24d598955be58e9665d26-24" name="rest_code_8c4b5f1836b24d598955be58e9665d26-24"></a>    type: gpu
-<a id="rest_code_8c4b5f1836b24d598955be58e9665d26-25" name="rest_code_8c4b5f1836b24d598955be58e9665d26-25"></a>name: gui
-<a id="rest_code_8c4b5f1836b24d598955be58e9665d26-26" name="rest_code_8c4b5f1836b24d598955be58e9665d26-26"></a>used_by:
+<pre class="code text"><a id="rest_code_05c195f5482c4f76874ce626b8e2338c-1" name="rest_code_05c195f5482c4f76874ce626b8e2338c-1"></a>config:
+<a id="rest_code_05c195f5482c4f76874ce626b8e2338c-2" name="rest_code_05c195f5482c4f76874ce626b8e2338c-2"></a>  environment.DISPLAY: :0
+<a id="rest_code_05c195f5482c4f76874ce626b8e2338c-3" name="rest_code_05c195f5482c4f76874ce626b8e2338c-3"></a>  raw.idmap: both 1000 1000
+<a id="rest_code_05c195f5482c4f76874ce626b8e2338c-4" name="rest_code_05c195f5482c4f76874ce626b8e2338c-4"></a>  user.user-data: |
+<a id="rest_code_05c195f5482c4f76874ce626b8e2338c-5" name="rest_code_05c195f5482c4f76874ce626b8e2338c-5"></a>    #cloud-config
+<a id="rest_code_05c195f5482c4f76874ce626b8e2338c-6" name="rest_code_05c195f5482c4f76874ce626b8e2338c-6"></a>    runcmd:
+<a id="rest_code_05c195f5482c4f76874ce626b8e2338c-7" name="rest_code_05c195f5482c4f76874ce626b8e2338c-7"></a>      - 'sed -i "s/; enable-shm = yes/enable-shm = no/g" /etc/pulse/client.conf'
+<a id="rest_code_05c195f5482c4f76874ce626b8e2338c-8" name="rest_code_05c195f5482c4f76874ce626b8e2338c-8"></a>      - 'echo export PULSE_SERVER=unix:/tmp/.pulse-native | tee --append /home/ubuntu/.profile'
+<a id="rest_code_05c195f5482c4f76874ce626b8e2338c-9" name="rest_code_05c195f5482c4f76874ce626b8e2338c-9"></a>    packages:
+<a id="rest_code_05c195f5482c4f76874ce626b8e2338c-10" name="rest_code_05c195f5482c4f76874ce626b8e2338c-10"></a>      - x11-apps
+<a id="rest_code_05c195f5482c4f76874ce626b8e2338c-11" name="rest_code_05c195f5482c4f76874ce626b8e2338c-11"></a>      - mesa-utils
+<a id="rest_code_05c195f5482c4f76874ce626b8e2338c-12" name="rest_code_05c195f5482c4f76874ce626b8e2338c-12"></a>      - pulseaudio
+<a id="rest_code_05c195f5482c4f76874ce626b8e2338c-13" name="rest_code_05c195f5482c4f76874ce626b8e2338c-13"></a>description: GUI LXD profile
+<a id="rest_code_05c195f5482c4f76874ce626b8e2338c-14" name="rest_code_05c195f5482c4f76874ce626b8e2338c-14"></a>devices:
+<a id="rest_code_05c195f5482c4f76874ce626b8e2338c-15" name="rest_code_05c195f5482c4f76874ce626b8e2338c-15"></a>  PASocket:
+<a id="rest_code_05c195f5482c4f76874ce626b8e2338c-16" name="rest_code_05c195f5482c4f76874ce626b8e2338c-16"></a>    path: /tmp/.pulse-native
+<a id="rest_code_05c195f5482c4f76874ce626b8e2338c-17" name="rest_code_05c195f5482c4f76874ce626b8e2338c-17"></a>    source: /run/user/1000/pulse/native
+<a id="rest_code_05c195f5482c4f76874ce626b8e2338c-18" name="rest_code_05c195f5482c4f76874ce626b8e2338c-18"></a>    type: disk
+<a id="rest_code_05c195f5482c4f76874ce626b8e2338c-19" name="rest_code_05c195f5482c4f76874ce626b8e2338c-19"></a>  X0:
+<a id="rest_code_05c195f5482c4f76874ce626b8e2338c-20" name="rest_code_05c195f5482c4f76874ce626b8e2338c-20"></a>    path: /tmp/.X11-unix/X0
+<a id="rest_code_05c195f5482c4f76874ce626b8e2338c-21" name="rest_code_05c195f5482c4f76874ce626b8e2338c-21"></a>    source: /tmp/.X11-unix/X0
+<a id="rest_code_05c195f5482c4f76874ce626b8e2338c-22" name="rest_code_05c195f5482c4f76874ce626b8e2338c-22"></a>    type: disk
+<a id="rest_code_05c195f5482c4f76874ce626b8e2338c-23" name="rest_code_05c195f5482c4f76874ce626b8e2338c-23"></a>  mygpu:
+<a id="rest_code_05c195f5482c4f76874ce626b8e2338c-24" name="rest_code_05c195f5482c4f76874ce626b8e2338c-24"></a>    type: gpu
+<a id="rest_code_05c195f5482c4f76874ce626b8e2338c-25" name="rest_code_05c195f5482c4f76874ce626b8e2338c-25"></a>name: gui
+<a id="rest_code_05c195f5482c4f76874ce626b8e2338c-26" name="rest_code_05c195f5482c4f76874ce626b8e2338c-26"></a>used_by:
 </pre>
 <p>Ahora, crearemos el perfil:</p>
-<pre class="code text"><a id="rest_code_4b85ab9c7f3b48f48c31a5350b0041aa-1" name="rest_code_4b85ab9c7f3b48f48c31a5350b0041aa-1"></a>sudo lxc profile create gui
-<a id="rest_code_4b85ab9c7f3b48f48c31a5350b0041aa-2" name="rest_code_4b85ab9c7f3b48f48c31a5350b0041aa-2"></a>cat lxdguiprofile.txt | sudo lxc profile edit gui
+<pre class="code text"><a id="rest_code_91e9e4b5d4f5450c900f2d2a0c5a35f1-1" name="rest_code_91e9e4b5d4f5450c900f2d2a0c5a35f1-1"></a>sudo lxc profile create gui
+<a id="rest_code_91e9e4b5d4f5450c900f2d2a0c5a35f1-2" name="rest_code_91e9e4b5d4f5450c900f2d2a0c5a35f1-2"></a>cat lxdguiprofile.txt | sudo lxc profile edit gui
 </pre>
 <p>Este procedimiento, solo es necesario hacerlo la primera vez.</p>
 </div>
 <div class="section" id="obtener-contenedor-base">
 <h2>Obtener contenedor base</h2>
-<p>Una vez creado el perfil, lanzaremos un contenedor base, es decir, sobre el cual desarrollaremos nuestra necesidad. Estos contenedores base se encuentran disponibles en la página del proyecto y son bases de múltiples distribuciones Linux, con versiones y arquitecturas diferentes.</p>
+<p>Una vez creado el perfil, lanzaremos un contenedor usando una imagen base, es decir, sobre la cual desarrollaremos nuestra necesidad. Estas imágenes base se encuentran disponibles en la página del proyecto y son bases de múltiples distribuciones Linux, con versiones y arquitecturas diferentes.</p>
 <p>Para nuestro fin, usaremos una base de Ubuntu 18.04 para arquitectura i386, que corresponde a 32 bits. Puedes usar otra distribución siempre y cuando disponga de la forma de instalar los paquetes necesarios y en versiones recientes (entre más reciente sea Wine, mejor).</p>
-<pre class="code text"><a id="rest_code_c34e9f5dd5cb438891d9d611d38ea567-1" name="rest_code_c34e9f5dd5cb438891d9d611d38ea567-1"></a>sudo lxc launch --profile default --profile gui images:ubuntu/18.04/i386 ea
+<pre class="code text"><a id="rest_code_b8dc79cc699b4dbeb26ea2541d25dd1b-1" name="rest_code_b8dc79cc699b4dbeb26ea2541d25dd1b-1"></a>sudo lxc launch --profile default --profile gui images:ubuntu/18.04/i386 ea
 </pre>
 <p>Cuando no requerimos la parte gráfica, podemos omitir <code>--profile default --profile gui</code>. Los dos perfiles son un proceso de herencia, primero se carga el perfil por defecto y luego se añade lo necesario para las aplicaciones gráficas.</p>
 <p>Este procedimiento es la primera vez de cada contenedor. Si por error omitimos el perfil gráfico, tendremos que volverlo a crear. Si por un error en la especificación del contenedor lo deseamos eliminar, podemos ejecutar <code>sudo lxc rm ea --force</code>. El forzado es necesario para detener la ejecución del contenedor, o igual podríamos detenerlo primero, <code>sudo lxc stop ea</code>.</p>
@@ -137,7 +139,7 @@
 <div class="section" id="comandos-en-el-contenedor">
 <h2>Comandos en el contenedor</h2>
 <p>Para instalar nuestro programa en el contenedor, necesitamos ejecutar comandos en este. Para ello, tenemos <code>lxc exec {contenedor} -- {comando}</code>. Una forma interactiva, adecuada para pruebas, es ejecutar bash.</p>
-<pre class="code text"><a id="rest_code_a32526c97912461a97b2ebe0edd74bdd-1" name="rest_code_a32526c97912461a97b2ebe0edd74bdd-1"></a>sudo lxc exec ea -- /bin/bash
+<pre class="code text"><a id="rest_code_03ef3285a52543119e57d31a7bad1262-1" name="rest_code_03ef3285a52543119e57d31a7bad1262-1"></a>sudo lxc exec ea -- /bin/bash
 </pre>
 <p>De esta manera podemos ejecutar los comandos de la misma manera que lo hacemos en nuestro sistema, ya que estamos en el contenedor.</p>
 <p>Si deseamos automatizar, nos interesará enviar directamente las instrucciones en lugar de bash. Ejemplo, <code>sudo lxc exec ea -- apt update -q</code>. Notemos que se ha usado un comando que requiere privilegios de administrador, y es porque por defecto el ingreso al contenedor es como administrador. Para hacer uso del usuario estándar debemos indicarlo de forma explícita (por defecto, tenemos el usuario ubuntu), <code>sudo lxc exec ea -- su - ubuntu -c 'echo $(uname -a)'</code>.</p>
@@ -146,53 +148,53 @@
 <h2>Gestionar archivos</h2>
 <p>La gestión de archivos es realizada con los comandos <code>file pull</code> y <code>file push</code>.</p>
 <p>Así, si deseamos enviar un archivo:</p>
-<pre class="code text"><a id="rest_code_08be9da8fddd4ab7817f1656707e7383-1" name="rest_code_08be9da8fddd4ab7817f1656707e7383-1"></a>sudo lxc file push {archivo local} {contenedor}/{ruta contenedor}
+<pre class="code text"><a id="rest_code_2e57bc03e7e243749e4fa6f09bf429f4-1" name="rest_code_2e57bc03e7e243749e4fa6f09bf429f4-1"></a>sudo lxc file push {archivo local} {contenedor}/{ruta contenedor}
 </pre>
 <p>Y si deseamos traer un archivo del contenedor:</p>
-<pre class="code text"><a id="rest_code_fb25dbee0ec44ed7acd6050817dbd814-1" name="rest_code_fb25dbee0ec44ed7acd6050817dbd814-1"></a>sudo lxc file pull {contenedor}/{ruta contenedor} {archivo local}
+<pre class="code text"><a id="rest_code_a4eeb292052a4b5caac56dfe20bb7cd0-1" name="rest_code_a4eeb292052a4b5caac56dfe20bb7cd0-1"></a>sudo lxc file pull {contenedor}/{ruta contenedor} {archivo local}
 </pre></div>
 <div class="section" id="instalar-ealite">
 <h2>Instalar EALite</h2>
 <p>Ahora que sabemos ejecutar comandos en el contenedor, instalaremos las dependencias y finalmente EALite.</p>
-<pre class="code text"><a id="rest_code_8d7c9727dacd4079a0e81521e0076e24-1" name="rest_code_8d7c9727dacd4079a0e81521e0076e24-1"></a>sudo lxc exec ea -- apt install --install-recommends -y wine-stable winetricks
-<a id="rest_code_8d7c9727dacd4079a0e81521e0076e24-2" name="rest_code_8d7c9727dacd4079a0e81521e0076e24-2"></a>sudo lxc exec ea -- apt install -y fonts-crosextra-carlito
-<a id="rest_code_8d7c9727dacd4079a0e81521e0076e24-3" name="rest_code_8d7c9727dacd4079a0e81521e0076e24-3"></a>sudo lxc exec ea -- su - ubuntu -c 'winetricks --unattended msxml3'
-<a id="rest_code_8d7c9727dacd4079a0e81521e0076e24-4" name="rest_code_8d7c9727dacd4079a0e81521e0076e24-4"></a>sudo lxc exec ea -- su - ubuntu -c 'winetricks --unattended msxml4'
-<a id="rest_code_8d7c9727dacd4079a0e81521e0076e24-5" name="rest_code_8d7c9727dacd4079a0e81521e0076e24-5"></a>sudo lxc exec ea -- su - ubuntu -c 'winetricks --unattended msxml6'
-<a id="rest_code_8d7c9727dacd4079a0e81521e0076e24-6" name="rest_code_8d7c9727dacd4079a0e81521e0076e24-6"></a>sudo lxc exec ea -- su - ubuntu -c 'winetricks --unattended mdac28'
-<a id="rest_code_8d7c9727dacd4079a0e81521e0076e24-7" name="rest_code_8d7c9727dacd4079a0e81521e0076e24-7"></a>sudo lxc exec ea -- su - ubuntu -c 'winetricks --unattended jet40'
-<a id="rest_code_8d7c9727dacd4079a0e81521e0076e24-8" name="rest_code_8d7c9727dacd4079a0e81521e0076e24-8"></a>wget http://www.sparxsystems.com.au/bin/EALite.exe
-<a id="rest_code_8d7c9727dacd4079a0e81521e0076e24-9" name="rest_code_8d7c9727dacd4079a0e81521e0076e24-9"></a>sudo lxc file push EALite.exe ea/home/ubuntu/EALite.exe
-<a id="rest_code_8d7c9727dacd4079a0e81521e0076e24-10" name="rest_code_8d7c9727dacd4079a0e81521e0076e24-10"></a>sudo lxc exec ea -- su - ubuntu -c 'wine msiexec /i EALite.exe'
+<pre class="code text"><a id="rest_code_2bf56567f6ac4e7cb94dadf69bbd7150-1" name="rest_code_2bf56567f6ac4e7cb94dadf69bbd7150-1"></a>sudo lxc exec ea -- apt install --install-recommends -y wine-stable winetricks
+<a id="rest_code_2bf56567f6ac4e7cb94dadf69bbd7150-2" name="rest_code_2bf56567f6ac4e7cb94dadf69bbd7150-2"></a>sudo lxc exec ea -- apt install -y fonts-crosextra-carlito
+<a id="rest_code_2bf56567f6ac4e7cb94dadf69bbd7150-3" name="rest_code_2bf56567f6ac4e7cb94dadf69bbd7150-3"></a>sudo lxc exec ea -- su - ubuntu -c 'winetricks --unattended msxml3'
+<a id="rest_code_2bf56567f6ac4e7cb94dadf69bbd7150-4" name="rest_code_2bf56567f6ac4e7cb94dadf69bbd7150-4"></a>sudo lxc exec ea -- su - ubuntu -c 'winetricks --unattended msxml4'
+<a id="rest_code_2bf56567f6ac4e7cb94dadf69bbd7150-5" name="rest_code_2bf56567f6ac4e7cb94dadf69bbd7150-5"></a>sudo lxc exec ea -- su - ubuntu -c 'winetricks --unattended msxml6'
+<a id="rest_code_2bf56567f6ac4e7cb94dadf69bbd7150-6" name="rest_code_2bf56567f6ac4e7cb94dadf69bbd7150-6"></a>sudo lxc exec ea -- su - ubuntu -c 'winetricks --unattended mdac28'
+<a id="rest_code_2bf56567f6ac4e7cb94dadf69bbd7150-7" name="rest_code_2bf56567f6ac4e7cb94dadf69bbd7150-7"></a>sudo lxc exec ea -- su - ubuntu -c 'winetricks --unattended jet40'
+<a id="rest_code_2bf56567f6ac4e7cb94dadf69bbd7150-8" name="rest_code_2bf56567f6ac4e7cb94dadf69bbd7150-8"></a>wget http://www.sparxsystems.com.au/bin/EALite.exe
+<a id="rest_code_2bf56567f6ac4e7cb94dadf69bbd7150-9" name="rest_code_2bf56567f6ac4e7cb94dadf69bbd7150-9"></a>sudo lxc file push EALite.exe ea/home/ubuntu/EALite.exe
+<a id="rest_code_2bf56567f6ac4e7cb94dadf69bbd7150-10" name="rest_code_2bf56567f6ac4e7cb94dadf69bbd7150-10"></a>sudo lxc exec ea -- su - ubuntu -c 'wine msiexec /i EALite.exe'
 </pre>
 <p>En este punto, procederemos de manera gráfica a la instalación final de EALite.</p>
-<div class="figure align-center"><img alt="Ventana de instalación gráfica de EALite." src="https://lh3.googleusercontent.com/Or1svyyQDhMUe7R-ZbHbQYI_YAJsMqI7LfnvaYxpzOha6daPYnei6kROT7i3-ZJDbPBeARpB-YYS3PTHRC3rx_ZS_Dk8AMsKbKkjaGZypPabFnagwr4VMgbdNaGiXIWVwEorHnY4k7w6dE4T8b8UUroy_vRoR6oBRUmiTMzzhqdLvEJRRuxS6eFTDXNh9XAN2BpFNcU_pnx3QiaCNd0nDmmo7RsidrEZYxi7qaRGzAzSo4Ii8J9ew3k3-4p3iT0oNQv6kYbKR0oQKXp_pSg5kSAoOBbUjFEQ-J8jfR0cVBC6LAEj-kVdT_0whiXbxaaSHq4pL8m9Lg9v5iYp5asj5lc6KbcwJYWqLrDKmZllC-nuZoj8P13GZ167_MoYl2xX1EaV0uePZIEpFXs8NdSMs1QG7qDYFMykxpIpXUtxrzt58Yi3PZl-QqqMbPmp_2xY9BiytUQjp1MWeuDmxot83HBVVXJ8FPRgvHZQBxiub7FbC0GWhhIN7eWJACAzfG9v9ZZI9teZCP7841Y9H77ksM7XJidKjgL0XdIK5tqFi6VEm_EGh3dca9HDcP2_WYGzKqTra41VyWwHgOA8kg8SeeJ-UJrk-0XqLyneGpioObvpYZ57spIe3qYBc3k7dkylR73DeAN2VFgh42ZLH6s6gIzgEL66UeZEAxECczXyb66HpAiUVb-9Dg=w534-h462-no?pageId=101589342745553480499">
+<div class="figure align-center"><img alt="Ventana de instalación gráfica de EALite." src="https://lh3.googleusercontent.com/bJQU29AUGyL8RwMip-Zfye6-npY8m5nTvUCvLys09zKO6Spm-0K86w7n9l0PJbg9I84k7Jr3zu2OBrZwUCSVcQYBlFDFkqD9T80ONFdYKX1dnVX81rvkeHAGRXeL75ByBu9wDbDqhWqBAx10HTAACgbKLN5_YKhQ1_acN2riplkT7cS0805fZpmSRyLu_xd_xtBRa4SNG9YjnOxBiJv7oymvcn0MXwLZGpM28IUIkqSnZdngYxKEZLRGOWi-crHOJHhElQUBQoiN9RDmrgLNVcMhpvu_7eLWOsCZ0_tdCDbqtkNeWBp5mFf2ykRI5-BI8G3xBbHrjrG3xTVvkBu2CTbbxUxLyv63WBEIpD-kmckIuhWxQrb_8DxDQCuRg2hQPyJwMY2RQcgU0CqB5yRhbG22aZczf-fIlovFSVDrJJIbI_V1Elm-6KWAn3P64KfKDvKAhDyAAfS9ChuTmtWyXr-GUHWyAKzWu6Rq5mMbcEmBijcUlRCZLkp8Bdn0jgzw64w0A1_VnC5Md4VaDoB2Beu8Tv4balnFw-AcI55NHbIXeBxDPB-FakLiu5x71laBXWTBa2_vVPb5e7TZu4kkpWzpVbw_EmVDVhFx-16BJSXCXovmxanlknIfDhWEkX_ZLASWnxE5_Vv8lDPxLb_s0mafKg7F6Ys_JZIOogNPYWn-tgIy5tvsNBmyCX6Lky7dQSCU_vmfIBw3BQ5pzY5QhNk4BQXsXwOhDU98ALq6mb-79pU=w534-h462-no" style="width: 480px;">
 <p class="caption">Ventana de instalación gráfica de EALite.</p>
 </div>
 <p>Ahora, es necesario crear un mecanismo simple para la ejecución de EA.</p>
-<pre class="code text"><a id="rest_code_951c53bfb27e4afc89a2881d29168ce2-1" name="rest_code_951c53bfb27e4afc89a2881d29168ce2-1"></a>sudo lxc exec ea -- su - ubuntu -c 'mkdir .local/bin'
-<a id="rest_code_951c53bfb27e4afc89a2881d29168ce2-2" name="rest_code_951c53bfb27e4afc89a2881d29168ce2-2"></a>sudo lxc exec ea -- su - ubuntu -c 'echo "wine .wine/drive_c/Program\ Files/Sparx\ Systems/EA\ LITE/EA.exe" &gt; .local/bin/ealite'
-<a id="rest_code_951c53bfb27e4afc89a2881d29168ce2-3" name="rest_code_951c53bfb27e4afc89a2881d29168ce2-3"></a>sudo lxc exec ea -- su - ubuntu -c 'chmod 755 .local/bin/ealite'
+<pre class="code text"><a id="rest_code_9e0677bff26c4e4aac585a27dee7cfd5-1" name="rest_code_9e0677bff26c4e4aac585a27dee7cfd5-1"></a>sudo lxc exec ea -- su - ubuntu -c 'mkdir $HOME/.local/bin'
+<a id="rest_code_9e0677bff26c4e4aac585a27dee7cfd5-2" name="rest_code_9e0677bff26c4e4aac585a27dee7cfd5-2"></a>sudo lxc exec ea -- su - ubuntu -c 'echo "wine $HOME/.wine/drive_c/Program\ Files/Sparx\ Systems/EA\ LITE/EA.exe" &gt; $HOME/.local/bin/ealite'
+<a id="rest_code_9e0677bff26c4e4aac585a27dee7cfd5-3" name="rest_code_9e0677bff26c4e4aac585a27dee7cfd5-3"></a>sudo lxc exec ea -- su - ubuntu -c 'chmod 755 $HOME/.local/bin/ealite'
 </pre></div>
 <div class="section" id="ejecutar-ealite">
 <h2>Ejecutar EALite</h2>
 <p>Ahora, podemos usar el visor de Enterprise Architect.</p>
-<pre class="code text"><a id="rest_code_ca3c6d0abf2e4c2d8753c6ea115080f0-1" name="rest_code_ca3c6d0abf2e4c2d8753c6ea115080f0-1"></a>sudo lxc exec ea -- su - ubuntu -c 'ealite'
+<pre class="code text"><a id="rest_code_6fb30959e44447dca7fc2d1483adccc2-1" name="rest_code_6fb30959e44447dca7fc2d1483adccc2-1"></a>sudo lxc exec ea -- su - ubuntu -c 'ealite'
 </pre>
 <p>Cuando iniciemos el sistema operativo, requerimos de iniciar el contenedores antes de ejecutar la instrucción anterior, <code>sudo lxc start ea</code>.</p>
-<div class="figure align-center"><img alt="EA Viewer abierto." src="https://lh3.googleusercontent.com/MF7O7jeWDbYJb-JwVYd0JvHy4ZE_ef0ZcmYQd1HRoBRK6rve5vQc-G7XqtwQd3BEJMCpw5AR4MDE-PjDOJoU1B7ETLpODI19iEj4TaLeMKXeazt-idIocU1ebbnO5WuIFTLpFoEO3PP4bgsFuc4jidF6ql0V-6NqcKrioOgflu_iqUThVH6bDMDMCXFuVHtCL9XMv7HsCNpnG42FEFrqBiC5AgT9tiKtkBULtePr7v_BlpMyXgsXYI3brLCBgkouFIgY2dLEC8HBsQWFrPAEqLUtp8b1aPPKradRUtbORzkv1WaNx5ptcS3Ic7NfCSrhh5PBWuUioarHSsPH-wJuy25h0wiiHPOjj4IloNGqAdguLZ8FvEEl3KG5QrvFLPIMqE74Kpvv77cb4J9DWxC7TaGL5hWptsDVlrO4kFDgR6-I0UD_qheaHA4jsowz8rB-BOfIEtXyzpf19kyW6EwWi-F-wgxKS2mBO-5X9QylGHBe4o64MRFZN7BKKYtf0WgcuVpGSlPFTIqh3SFI1M_SL9io1dSbqnkyaXQfxTffH3aUUJ1PIv92UkwBQZZMfH4wE160rbRx0nhfQYjd3S-q8kaFsjzFisvkWy9joqEtOZ3PsXXAjxrNYMCO8_xoDFDOJ_it7d_HzYWqPFkRaChImCzDa_xuH0clD1GjcFRCXn3aD5Rqxuoe4Q=w1135-h637-no?pageId=101589342745553480499">
+<div class="figure align-center"><img alt="EA Viewer abierto." src="https://lh3.googleusercontent.com/wbMbA11Vd9AgfS0hvKCYEBYVZp660AXH80_KAeqZEyq2ggaL_iHQqAcaggwRE4zkFOl62UFIRLCCZmigMYrLikFclrpTQmQaquhvx0F65C5RJYvLf9QAaXUewDkVpOfozzjiA1l6wQEnv4HpLMdwggdt7te3zjvtRNbO920-K4Au8bDzndkqPHSyw4WNxVWodelblTN7vxzFihA9lCVvxmakeYoQENBM_bWy_TaL_GMB35HGsiLI2JR57QlINZI3oqeWFvfwIRvchKO_P2z6VCvBYZpINl4TTTWV2wX4LOtzl35sRsdusctA8evs8kNg5LTIQWlk1jjFFxb3lJQ6H9XiSA6LEtI4Eo0W3JunTevcVi9fpP8ufGvO6Ije5KbnV6ypZJofdgkG5x9tcKHb8Ym2S7WFb-wscTtXbdlvzdp3_SDegx7eG8UQ8agIUz8KdoooernSaqP5jYnJYujIttu1dyn0jHLPZcHrs6-uzDzHwuU_Eg8InTJgIKGZusIiNBPLz0-p4fg9dXx_tCn5CzXb3U_XlnRSZP6oFG-4RcYqjhKr4uO3qX3pZMN7XYh7dWqNLuAjDo6Ib5T61VvGlERSkJb0uQTOERCvQTezeJ0mIoq0ga_cAgT7MmWVj-DIn5mBMOesJIVyVG6QPQDGXkyZPaoCn_FhRWIREuliguWTA5KNA0Dk9PCcVWLwepA3ON12V471PIcPrZW0z5IVi4VjpxUz2cxlG1vVN08sYCX3gFs=w1135-h637-no" style="width: 480px;">
 <p class="caption">EA Viewer abierto.</p>
 </div>
-<div class="figure align-center"><img alt="Acceso al sistema de archivos del contenedor y no solo de la unidad de Wine." src="https://lh3.googleusercontent.com/ox373WeMlr0iVDxO-BW9aMALMQFHOxZr5xwig5DOq9FEDUr7zw9fN9E4-bAtXAEt_kFF_8Mc0THOKS-KbVwWtQ5Cd-CdbEoXZloNqqV31oDD1FfEgQfz9yAHiVQErNqqruCVlpegsBHfueOGxO1oA5sICrUqHlHcsBuBgCLCy_gGs48fLwClzo0ef8-5nRdYyiGARQtnL53Crz-KGVv-Bt2QosQ_jMxx2Sd892yj8kI5Vg1l1HFs2w6WBiJm4_OnsCYosCuMKQ7FKZH76sOVJPF6NDEiutHeXS3t9Z_7Ew6anvRxvqAxWOe-ijGkMAyIfz1otKuHsAM2aj_Jp85I7iEQ3VIFfnyjQX2Saj04h1yNC34iHO2MNZoIhUlWaTGwwkKSil5Cm2twOOoMfnE4eIaEgGOsOIWZbjlR0P5YDlZX9bHZsVZtTy1xX2nGz9dW-g4XEPxtuoqFwxpgMeDbAPaq0uj9Ei1CpJgGE4pPVLarhuiFCtx4c6bXBYg8tc_-4qpMa7A7Wy0Zy0pGfonnSuP4xS-_CAYbfVin4JiroLIH5MAn3D3lNjiT39FQkke9EBnW3Ci7lkL6ZJFQIGQ9HtcLqpSTBBMqwxS8k4z8e4rBSWzvhRBLh-2YOR9v-_L41XcsL6DwzerhlfMs26L_-BVXGYMxzbO1BxwVwZqBNdjSPclkmLBtpQ=w576-h356-no?pageId=101589342745553480499">
+<div class="figure align-center"><img alt="Acceso al sistema de archivos del contenedor y no solo de la unidad de Wine." src="https://lh3.googleusercontent.com/2YXJxM7mZ7Dv4mChiwLFit1NKIrlZ7x3RhdEwLQ1w0tnryA35WhdELI6epGFAYfGTm622A2BhyMD-pxg_keBCwXcunUrpprcV9XoUGk34-9r0LVq8Z4rCleWidDzErnoqgZLDWp00Gz0XOMY49rHOKLNzHoWNWpVknQFPBytIbSO2U4Vka3zyyuiwkyD5sR54UyQtP4Dg7jqMacI2hzuAEGbp8bv1-dcne16Gf3VsmDBjxcSUz4nMzZx3NQinwveI38FrRK_Vyy2FTCuvjYM3XsLWXM_m1ZmPtGBBRR_BOGKZHLZZ91WmPwr3mwqTHtwzKKjYkf0jPpL7mjwidWIVOYYGkHjFcT0YSZxmOoAFb8hWn3tAfMvXVv4aFfHGmBsVL5NgNZyqxBFYIiN8x26jj1GCMoDvZpRCCaJAfXY8qOymGSJ2WkDEsXl40mbsrr8fRnx1vBbrVvd2a-YBVeanPBxZwTmH3cQ569xY6cOqqf4lpazo0EbKBAoexehF18LlDhCgsjKTY_DNTnfu5thc3veQkfSFtUeUXHlf-a1VulTGlWqafZzSdaJrn4pbT-cOKHPknpIXJkkFAtnPffRfnHtdJ-QKHFEh2JTNxN6BGm4AyY3WP2iF8hFHuUurwycv9mUp3XT8vowPbTvTBxsPVrwxOl10dgwbB_UkDhLoyNAMJG_hhHuLSkGEBI-oFO5OzYGhXS1qnfUG_25wzCAyviTKoi06TwhikC8E-cXxGtiJIo=s250-k-no" style="width: 480px;">
 <p class="caption">Acceso al sistema de archivos del contenedor y no solo de la unidad de Wine.</p>
 </div>
 <p>Puedes asegurar una forma simple de ejecutar EALite creando una rutina de lanzamiento con las dos líneas anteriores en un archivo que sea reconocido en el <code>path</code>.</p>
-<pre class="code text"><a id="rest_code_75d8ed9d6c624c3c827b5819c472ed9b-1" name="rest_code_75d8ed9d6c624c3c827b5819c472ed9b-1"></a>mkdir -p $HOME/.local/bin
-<a id="rest_code_75d8ed9d6c624c3c827b5819c472ed9b-2" name="rest_code_75d8ed9d6c624c3c827b5819c472ed9b-2"></a>cat &lt;&lt; EOF &gt; $HOME/.local/bin/ealite
-<a id="rest_code_75d8ed9d6c624c3c827b5819c472ed9b-3" name="rest_code_75d8ed9d6c624c3c827b5819c472ed9b-3"></a>sudo lxc start ea
-<a id="rest_code_75d8ed9d6c624c3c827b5819c472ed9b-4" name="rest_code_75d8ed9d6c624c3c827b5819c472ed9b-4"></a>sudo lxc exec ea -- su - ubuntu -c 'ealite'
-<a id="rest_code_75d8ed9d6c624c3c827b5819c472ed9b-5" name="rest_code_75d8ed9d6c624c3c827b5819c472ed9b-5"></a>EOF
-<a id="rest_code_75d8ed9d6c624c3c827b5819c472ed9b-6" name="rest_code_75d8ed9d6c624c3c827b5819c472ed9b-6"></a>chmod 755 $HOME/.local/bin/ealite
+<pre class="code text"><a id="rest_code_fde719a0fee14a558591b3df36561a34-1" name="rest_code_fde719a0fee14a558591b3df36561a34-1"></a>mkdir -p $HOME/.local/bin
+<a id="rest_code_fde719a0fee14a558591b3df36561a34-2" name="rest_code_fde719a0fee14a558591b3df36561a34-2"></a>cat &lt;&lt; EOF &gt; $HOME/.local/bin/ealite
+<a id="rest_code_fde719a0fee14a558591b3df36561a34-3" name="rest_code_fde719a0fee14a558591b3df36561a34-3"></a>sudo lxc start ea
+<a id="rest_code_fde719a0fee14a558591b3df36561a34-4" name="rest_code_fde719a0fee14a558591b3df36561a34-4"></a>sudo lxc exec ea -- su - ubuntu -c 'ealite'
+<a id="rest_code_fde719a0fee14a558591b3df36561a34-5" name="rest_code_fde719a0fee14a558591b3df36561a34-5"></a>EOF
+<a id="rest_code_fde719a0fee14a558591b3df36561a34-6" name="rest_code_fde719a0fee14a558591b3df36561a34-6"></a>chmod 755 $HOME/.local/bin/ealite
 </pre>
 <p>La ejecución con <code>sudo</code> puede omitirse si se añade el usuario a un grupo que permita la ejecución de lxc. Más adelante, haré una publicación sobre como hacerlo. Por ahora, diviértete ejecutando <code>ealite</code> e ingresando la contraseña de administrador.</p>
 <p>Para abrir un proyecto, recuerda usar <code>file push</code> y explorar dentro del contenedor.</p>
@@ -200,11 +202,13 @@
 <div class="section" id="compartir">
 <h2>Compartir</h2>
 <p>Para compartir el contenedor, puedes publicarlo y exportar la imagen.</p>
-<pre class="code text"><a id="rest_code_55629aaacaf645198bbe3c04c43ff63f-1" name="rest_code_55629aaacaf645198bbe3c04c43ff63f-1"></a>sudo lxc publish ea --alias ealite
-<a id="rest_code_55629aaacaf645198bbe3c04c43ff63f-2" name="rest_code_55629aaacaf645198bbe3c04c43ff63f-2"></a>sudo lxc image export ealite
+<pre class="code text"><a id="rest_code_bfadb72cc9a2410f89befe4c6d0beb95-1" name="rest_code_bfadb72cc9a2410f89befe4c6d0beb95-1"></a>sudo lxc publish ea --alias ealite
+<a id="rest_code_bfadb72cc9a2410f89befe4c6d0beb95-2" name="rest_code_bfadb72cc9a2410f89befe4c6d0beb95-2"></a>sudo lxc image export ealite
 </pre>
-<p>La imagen exportada es un archivo <code>tar.gz</code> con el nombre asociado al <em>fingerprint</em> (una secuencia alfanumérica).</p>
-</div>
+<p>La imagen exportada es un archivo <code>tar.gz</code> con el nombre asociado al <em>fingerprint</em> (una secuencia alfanumérica). Luego se debe importar la imagen y hacer <code>launch</code> nuevamente con el perfil.</p>
+<p>También puedes exportar directamente el contenedor, lo cual es recomendable porque lleva con ello la configuración del perfil GUI y es listo para usar una vez hagas la importación.</p>
+<pre class="code text"><a id="rest_code_b05c559db42247669c9cdd7fc875ae5d-1" name="rest_code_b05c559db42247669c9cdd7fc875ae5d-1"></a>sudo lxc export ea ea.tar.gz --optimized-storage
+</pre></div>
 <div class="section" id="referencias">
 <h2>Referencias</h2>
 <ul class="simple">
@@ -224,6 +228,8 @@
 <nav>
 <ul class="tags" itemprop="keywords">
 <li><a class="tag p-category" href="../../categories/contenedor/" rel="tag">contenedor</a></li>
+<li><a class="tag p-category" href="../../categories/ealite/" rel="tag">ealite</a></li>
+<li><a class="tag p-category" href="../../categories/enterprise-architect/" rel="tag">enterprise architect</a></li>
 <li><a class="tag p-category" href="../../categories/linux/" rel="tag">linux</a></li>
 <li><a class="tag p-category" href="../../categories/lxc/" rel="tag">lxc</a></li>
 <li><a class="tag p-category" href="../../categories/lxd/" rel="tag">lxd</a></li>
