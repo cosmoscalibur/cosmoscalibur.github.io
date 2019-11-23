@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Cosmoscalibur (Publicaciones sobre docker)</title><link>https://www.cosmoscalibur.com/</link><description></description><atom:link href="https://cosmoscalibur.github.io/categories/docker.xml" rel="self" type="application/rss+xml"></atom:link><language>es</language><copyright>Contents © 2019 &lt;a href="mailto:cosmoscalibur@gmail.com"&gt;Edward Villegas Pulgarin&lt;/a&gt; 
+&lt;a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"&gt;
+&lt;img alt="Creative Commons License BY-NC-SA"
+style="border-width:0; margin-bottom:12px;"
+src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"&gt;&lt;/a&gt;</copyright><lastBuildDate>Sat, 23 Nov 2019 02:51:07 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Crear contenedor Docker aplicación GUI - EALite</title><link>https://cosmoscalibur.github.io/blog/crear-contenedor-docker-aplicacion-gui-ealite/</link><dc:creator>Edward Villegas-Pulgarin</dc:creator><description>&lt;div&gt;&lt;p&gt;Dando continuidad al uso de contenedores que inicie en la publicación anterior,
+&lt;a class="reference external" href="https://cosmoscalibur.github.io/blog/crear-contenedor-lxc-para-aplicacion-gui-ealite/"&gt;Crear contenedor LXC para aplicación GUI - EALite&lt;/a&gt;, reproduciré la
+instalación de Enterprise Architect Viewer (EALite) con Docker (y por supuesto,
+Wine). Si deseas reproducir el ejemplo de este caso, requieres reproducir la
+el artículo mencionado para extraer el directorio de Wine.&lt;/p&gt;
+&lt;p&gt;A diferencia de LXC, Docker está más orientado al aislamiento de aplicaciones y
+no de sistema operativo (LXC cumple una función más cercana a una máquina
+virtual) lo cual ayuda a un mejor despliegue de aplicaciones y la
+estandarización de las etapas de desarrollo y de pruebas.&lt;/p&gt;
+&lt;p&gt;Común a LXC tenemos imágenes base que podemos usar, disponibles en
+&lt;a class="reference external" href="https://hub.docker.com"&gt;DockerHub&lt;/a&gt;. A partir de estas podemos completar
+nuestras necesidades especificando en el archivo Dockerfile.&lt;/p&gt;
+&lt;!-- TEASER_END --&gt;
+&lt;div class="section" id="instalar-docker"&gt;
+&lt;h2&gt;Instalar Docker&lt;/h2&gt;
+&lt;p&gt;Recomiendo en Linux instalar docker con snap.&lt;/p&gt;
+&lt;pre class="code text"&gt;&lt;a name="rest_code_d7e26598f0884134b13a971fb25e29a8-1"&gt;&lt;/a&gt;sudo snap install docker
+&lt;/pre&gt;&lt;p&gt;Posteriormente, podemos asociar nuestro usuario para la ejecución sin ser
+administrador.&lt;/p&gt;
+&lt;pre class="code text"&gt;&lt;a name="rest_code_9032462000d8443ab1aad701821501fe-1"&gt;&lt;/a&gt;sudo groupadd docker
+&lt;a name="rest_code_9032462000d8443ab1aad701821501fe-2"&gt;&lt;/a&gt;sudo usermod -aG docker $USER
+&lt;a name="rest_code_9032462000d8443ab1aad701821501fe-3"&gt;&lt;/a&gt;newgrp docker
+&lt;/pre&gt;&lt;p&gt;Puedes probar ejecutando como usuario regular, &lt;code&gt;docker run hello-world&lt;/code&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="dockerfile"&gt;
+&lt;h2&gt;Dockerfile&lt;/h2&gt;
+&lt;p&gt;Este archivo es el mecanismo mediante el cual se especifican las reglas de
+construcción de nuestra imagen. Se define un lenguaje común sin importar el
+sistema operativo base y las funciones específicas del sistema son usadas con
+una instrucción que habilita a ejecución en él.&lt;/p&gt;
+&lt;p&gt;Los comentarios en el archivo son como tradicionalmente estamos acostumbrados
+en otros lenguajes (entre ellos, bash), con signo número &lt;code&gt;#&lt;/code&gt;. Esto posee
+una excepción, y es el caso donde existe una directriz después como el caso que
+se ejemplificara.&lt;/p&gt;
+&lt;p&gt;La directriz &lt;code&gt;escape&lt;/code&gt; es usada para cambiar el carácter de salto de línea
+para instrucciones de múltiples líneas. Se puede tener la habitual barra
+invertida (&lt;tt class="docutils literal"&gt;\&lt;/tt&gt;) que es conflictivo con rutas con espacios en Linux o
+rutas Windows, y la opción de la tilde invertida (&lt;tt class="docutils literal"&gt;`&lt;/tt&gt;).&lt;/p&gt;
+&lt;p&gt;Después podemos definir la imagen base usando &lt;code&gt;FROM&lt;/code&gt; seguido de la
+especificación de la imagen en &lt;a class="reference external" href="https://hub.docker.com"&gt;DockerHub&lt;/a&gt;. En este caso, usaremos la &lt;a class="reference external" href="https://hub.docker.com/_/ubuntu"&gt;imagen
+Docker de Ubuntu&lt;/a&gt; con arquitectura i386 y
+versión 18.04. En general, la estructura de invocación es
+&lt;code&gt;arquitectura/ubuntu:version&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Las instrucciones son ejecutadas por defecto por el usuario &lt;em&gt;root&lt;/em&gt;
+(administrador), de manera que podemos ejecutar la instalación de paquetes
+invocando directamente el llamado al sistema iniciando con &lt;code&gt;RUN&lt;/code&gt;. Como se
+observa en el ejemplo, a continuación es una línea típica que se ejecuta en
+Ubuntu.&lt;/p&gt;
+&lt;div class="admonition note"&gt;
+&lt;p class="first admonition-title"&gt;Nota&lt;/p&gt;
+&lt;p class="last"&gt;La creación del usuario es necesaria porque wine debe ejecutarse por un
+usuario regular. Adicional, el nombre de usuario corresponde al mismo nombre
+del usuario Linux del cual traemos la copia de la instalación en Wine (Wine
+asigna el nombre de usuario Windows igual al usuario Linux, luego, al copiar
+la carpeta de Wine, solo funcionará si encuentra el mismo usuario).&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;Podemos cambiar el directorio sobre el cual ejecutamos usando &lt;code&gt;WORKDIR&lt;/code&gt;.
+En la siguiente línea usamos &lt;code&gt;COPY&lt;/code&gt; para mover un directorio del sistema
+hospedador a la imagen. Existe una instrucción similar, &lt;code&gt;ADD&lt;/code&gt;, la cual
+soporta que la fuente sea una URL realizando la descarga, y descomprime
+archivos &lt;em&gt;tar&lt;/em&gt;.&lt;/p&gt;
+&lt;div class="admonition note"&gt;
+&lt;p class="first admonition-title"&gt;Nota&lt;/p&gt;
+&lt;p&gt;El directorio que moveremos se genero en el contenedor LXC que construimos
+en &lt;a class="reference external" href="https://cosmoscalibur.github.io/blog/crear-contenedor-lxc-para-aplicacion-gui-ealite/"&gt;Crear contenedor LXC para aplicación GUI - EALite&lt;/a&gt;. Para ello,
+iniciamos el contenedor y extraemos el directorio.&lt;/p&gt;
+&lt;div class="last"&gt;&lt;pre class="code text"&gt;&lt;a name="rest_code_8559c8d20b3c4715ab6116ff07f1947b-1"&gt;&lt;/a&gt;sudo lxc start ea
+&lt;a name="rest_code_8559c8d20b3c4715ab6116ff07f1947b-2"&gt;&lt;/a&gt;sudo lxc file pull -r ea/home/ubuntu/.wine .
+&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Con &lt;code&gt;USER&lt;/code&gt; cambiamos el usuario que ejecuta los procesos. Es importante
+que a la hora de concluir, si un proceso es ejecutado por un usuario regular,
+nuestro último cambio de usuario debe apuntar a él, de otra forma el
+contenedor estará activo para el usuario administrador. Otro aspecto importante
+es el comportamiento por defecto en Linux, donde puede crear el usuario si no
+existe (pero no el directorio de usuario).&lt;/p&gt;
+&lt;p&gt;Finalmente, es necesario indicar que se ejecuta cuando se lanza el contenedor.
+Esto es posible con &lt;code&gt;CMD&lt;/code&gt; o con &lt;code&gt;ENTRYPOINT&lt;/code&gt;. La diferencia es que
+el primero permite sobreescribir la ejecución enviando como parámetro lo que
+se desea ejecutar, mientras que la segunda opción solo ejecuta la configurada.&lt;/p&gt;
+&lt;pre class="code text"&gt;&lt;a name="rest_code_510f9e4b0f1b45379e8f7f10c3227ba4-1"&gt;&lt;/a&gt;# escape=`
+&lt;a name="rest_code_510f9e4b0f1b45379e8f7f10c3227ba4-2"&gt;&lt;/a&gt;FROM i386/ubuntu:18.04
+&lt;a name="rest_code_510f9e4b0f1b45379e8f7f10c3227ba4-3"&gt;&lt;/a&gt;RUN apt update -q &amp;amp;&amp;amp; apt install --install-recommends -y wine-stable
+&lt;a name="rest_code_510f9e4b0f1b45379e8f7f10c3227ba4-4"&gt;&lt;/a&gt;RUN apt install -y fonts-crosextra-carlito
+&lt;a name="rest_code_510f9e4b0f1b45379e8f7f10c3227ba4-5"&gt;&lt;/a&gt;RUN useradd -ms /bin/bash ubuntu
+&lt;a name="rest_code_510f9e4b0f1b45379e8f7f10c3227ba4-6"&gt;&lt;/a&gt;WORKDIR /home/ubuntu
+&lt;a name="rest_code_510f9e4b0f1b45379e8f7f10c3227ba4-7"&gt;&lt;/a&gt;COPY .wine .wine
+&lt;a name="rest_code_510f9e4b0f1b45379e8f7f10c3227ba4-8"&gt;&lt;/a&gt;RUN chown -R ubuntu .wine
+&lt;a name="rest_code_510f9e4b0f1b45379e8f7f10c3227ba4-9"&gt;&lt;/a&gt;USER ubuntu
+&lt;a name="rest_code_510f9e4b0f1b45379e8f7f10c3227ba4-10"&gt;&lt;/a&gt;RUN mkdir -p .local/bin &amp;amp;&amp;amp; `
+&lt;a name="rest_code_510f9e4b0f1b45379e8f7f10c3227ba4-11"&gt;&lt;/a&gt;        echo "wine $HOME/.wine/drive_c/Program\ Files/Sparx\ Systems/EA\ LITE/EA.exe" &amp;gt; .local/bin/ealite &amp;amp;&amp;amp; `
+&lt;a name="rest_code_510f9e4b0f1b45379e8f7f10c3227ba4-12"&gt;&lt;/a&gt;        chmod 755 .local/bin/ealite
+&lt;a name="rest_code_510f9e4b0f1b45379e8f7f10c3227ba4-13"&gt;&lt;/a&gt;CMD ".local/bin/ealite"
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="section" id="construir-imagen-docker"&gt;
+&lt;h2&gt;Construir imagen Docker&lt;/h2&gt;
+&lt;p&gt;La construcción la realizamos con la opción &lt;code&gt;build&lt;/code&gt;. Se usa el argumento
+&lt;code&gt;-t&lt;/code&gt; para indicar la etiqueta que asignaremos a la imagen y &lt;code&gt;-f&lt;/code&gt;
+para relacionar la ruta del archivo dockerfile que se usará. El siguiente
+argumento no posee marca para indicarlo y corresponde al contexto, que viene a
+ser la ruta donde se encuentran los archivos que usaremos (que puede ser
+reemplazado por un archivo de contexto con la ruta a los distintos archivos).&lt;/p&gt;
+&lt;pre class="code text"&gt;&lt;a name="rest_code_d83edd9176e74c76b7ec396c5033f86b-1"&gt;&lt;/a&gt;docker build -t cosmoscalibur/ealite:latest -f dockerfile .
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="section" id="ejecutar-contenedor"&gt;
+&lt;h2&gt;Ejecutar contenedor&lt;/h2&gt;
+&lt;p&gt;Ahora puedes lanzar un contenedor gráfico basado en la imagen construida con la
+siguiente instrucción.&lt;/p&gt;
+&lt;pre class="code text"&gt;&lt;a name="rest_code_e94c23a236d4492790e56af1ac9f756e-1"&gt;&lt;/a&gt;docker run --net=host --env="DISPLAY" --volume="$HOME/.Xauthority:/root/.Xauthority:rw" cosmoscalibur/ealite:latest
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="section" id="referencias"&gt;
+&lt;h2&gt;Referencias&lt;/h2&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;a class="reference external" href="https://docs.docker.com/install/linux/linux-postinstall/"&gt;Docker docs: Post-installation steps for Linux&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="https://docs.docker.com/reference/"&gt;Docker docs: Reference documentation&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="https://medium.com/@SaravSun/running-gui-applications-inside-docker-containers-83d65c0db110"&gt;Running GUI Applications inside Docker Containers&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="https://www.sparxsystems.com/enterprise_architect_user_guide/14.0/product_information/enterprise_architect_linux.html"&gt;Installing Enterprise Architect under Linux&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;&lt;/div&gt;</description><category>contenedor</category><category>docker</category><category>ealite</category><category>enterprise architect</category><category>linux</category><category>wine</category><guid>https://cosmoscalibur.github.io/blog/crear-contenedor-docker-aplicacion-gui-ealite/</guid><pubDate>Sat, 23 Nov 2019 02:47:22 GMT</pubDate></item></channel></rss>
