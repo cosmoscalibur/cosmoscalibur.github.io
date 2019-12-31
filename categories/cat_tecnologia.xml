@@ -3,7 +3,72 @@
 &lt;a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"&gt;
 &lt;img alt="Creative Commons License BY-NC-SA"
 style="border-width:0; margin-bottom:12px;"
-src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"&gt;&lt;/a&gt;</copyright><lastBuildDate>Sat, 23 Nov 2019 02:51:07 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Crear contenedor Docker aplicación GUI - EALite</title><link>https://cosmoscalibur.github.io/blog/crear-contenedor-docker-aplicacion-gui-ealite/</link><dc:creator>Edward Villegas-Pulgarin</dc:creator><description>&lt;div&gt;&lt;p&gt;Dando continuidad al uso de contenedores que inicie en la publicación anterior,
+src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"&gt;&lt;/a&gt;</copyright><lastBuildDate>Tue, 31 Dec 2019 22:28:57 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Usar Anaconda Python en Git Bash</title><link>https://cosmoscalibur.github.io/blog/usar-anaconda-python-en-git-bash/</link><dc:creator>Edward Villegas-Pulgarin</dc:creator><description>&lt;div&gt;&lt;p&gt;Recientemente, por motivos laborales he tenido que trabajar en Windows y es
+por esto que tuve la necesidad de buscar una opción cómoda de usar &lt;a class="reference external" href="https://git-scm.com/"&gt;Git&lt;/a&gt;
+en Windows, con soporte de &lt;a class="reference external" href="https://www.gnu.org/software/bash/"&gt;Bash&lt;/a&gt; a lo
+que estoy acostumbrado en Linux y con Python Anaconda reconocido. De alguna
+manera, la versión mínima de como usar Windows sin morir en el intento.&lt;/p&gt;
+&lt;!-- TEASER_END --&gt;
+&lt;div class="section" id="anaconda-python"&gt;
+&lt;h2&gt;Anaconda Python&lt;/h2&gt;
+&lt;p&gt;Lo primero es proceder a instalar Anaconda Python desde su sitio oficial, pero
+recomiendo revisar primero la necesidad real de tener todo lo incluido en
+Anaconda o usar algo minimalista como Miniconda. Anaconda representará una
+instalación y descarga de casi 500 MB, y por ende un mayor tiempo en ambos
+pasos. Por otro lado, Miniconda solo instala lo mínimo requerido para tener
+Python y el gestor de paquetes Conda. Esta última opción es recomendable si
+posees poco espacio en disco, deseas instalar rápidamente, solo deseas probar
+lo básico de Python o el equipo es de bajas características (recuerdo casos en
+los cuales mis estudiantes -épocas de docente- la sola instalación de Anaconda
+bloqueaba el equipo y lo reiniciaba).&lt;/p&gt;
+&lt;p&gt;Si usas Anaconda para tus proyectos de desarrollo y usando buenas prácticas,
+seguramente estarás acostumbrado a usar ambientes y en ese caso no necesitas
+tener tantas cosas en el base, siendo buena opción Miniconda también.&lt;/p&gt;
+&lt;p&gt;Descarga &lt;a class="reference external" href="https://www.anaconda.com/distribution/"&gt;Anaconda&lt;/a&gt; o
+&lt;a class="reference external" href="https://docs.conda.io/en/latest/miniconda.html"&gt;Miniconda&lt;/a&gt; según tu
+necesidad e instala como cualquier programa de Windows. Lo importante durante
+la instalación es indicar que sea solo para el usuario actual y que no se
+asocie el &lt;code&gt;PATH&lt;/code&gt;. Seguir este consejo les evitará dolores de cabeza en el
+futuro.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="git-bash"&gt;
+&lt;h2&gt;Git Bash&lt;/h2&gt;
+&lt;p&gt;Si bien puedes descargarlo desde el sitio del proyecto, aprovecharemos el
+gestor Conda para facilitar la tarea de descarga, instalación y configuración.&lt;/p&gt;
+&lt;p&gt;Abriremos Anaconda PowerShell o Anaconda Prompt, y ejecutaremos lo siguiente:&lt;/p&gt;
+&lt;pre class="code text"&gt;&lt;a name="rest_code_0671f1e9f249469b85faec271e02b75a-1"&gt;&lt;/a&gt;conda create -n gitbash -c conda-forge git=2.24.0
+&lt;/pre&gt;&lt;p&gt;Es importante el uso de &lt;code&gt;-c conda-forge&lt;/code&gt; porque de este canal vendrá la
+versión de Git que usaremos. Si se usa el canal por defecto, se instala solo el
+cliente de consola, mientras que en esta opción viene Git Bash. He indicado
+también el &lt;code&gt;-n gitbash&lt;/code&gt; para evitar posibles conflictos entre los
+paquetes requeridos para usar Git y los paquetes disponibles en el ambiente
+base. En alguna publicación posterior hablaré sobre Conda para profundizar en
+esto.&lt;/p&gt;
+&lt;p&gt;Una vez terminada la instalación, puedes abrir el menú de Windows y buscar Git
+Bash, el cual ya contará con Conda reconocido. Ahora solo debes empezar a
+usarlo, &lt;code&gt;conda activate base&lt;/code&gt;.&lt;/p&gt;
+&lt;div class="admonition note"&gt;
+&lt;p class="first admonition-title"&gt;Nota&lt;/p&gt;
+&lt;p class="last"&gt;En este momento, nuestro ambiente por defecto será gitbash. Si instalas sin
+indicar el ambiente, tendrás el base por defecto habilitado pero con
+posibles conflictos.&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;¿Y qué pasa si ya teníamos instalado Git Bash? Git Bash soporta los archivos
+típicos de Bash, como el &lt;code&gt;bashrc&lt;/code&gt;. Así, podemos usar la configuración que
+habitualmente se usa en Linux.&lt;/p&gt;
+&lt;p&gt;Abrimos Git Bash, y ejecutamos:&lt;/p&gt;
+&lt;pre class="code text"&gt;&lt;a name="rest_code_d866139b4d704fcf97c1d003655221ea-1"&gt;&lt;/a&gt;cd
+&lt;a name="rest_code_d866139b4d704fcf97c1d003655221ea-2"&gt;&lt;/a&gt;echo ". /c/Users/USUARIO/ANACONDA/etc/profile.d/conda.sh" &amp;gt;&amp;gt; .bashrc
+&lt;a name="rest_code_d866139b4d704fcf97c1d003655221ea-3"&gt;&lt;/a&gt;source .bashrc
+&lt;/pre&gt;&lt;p&gt;Con la primera línea aseguramos ir al directorio del usuario. En la segunda
+línea, crearemos o editaremos el archivo de configuración, pero debes
+reemplazar &lt;code&gt;USUARIO&lt;/code&gt; por la carpeta de tu usuario y &lt;code&gt;ANACONDA&lt;/code&gt; por
+la carpeta de Anaconda (habitualmente &lt;code&gt;Anaconda&lt;/code&gt; o &lt;code&gt;Miniconda3&lt;/code&gt; si
+usaste Miniconda). La tercera línea actualiza la configuración en la sesión
+actual de la consola permitiendo usar de forma inmediata Conda. Para la próxima
+apertura de Git Bash ya no tendrás que configurar nada, solo empezar a usar
+Conda (aún no hay ambiente activado).&lt;/p&gt;
+&lt;/div&gt;&lt;/div&gt;</description><category>anaconda</category><category>bash</category><category>git</category><category>python</category><category>windows</category><guid>https://cosmoscalibur.github.io/blog/usar-anaconda-python-en-git-bash/</guid><pubDate>Tue, 31 Dec 2019 19:43:50 GMT</pubDate></item><item><title>Crear contenedor Docker aplicación GUI - EALite</title><link>https://cosmoscalibur.github.io/blog/crear-contenedor-docker-aplicacion-gui-ealite/</link><dc:creator>Edward Villegas-Pulgarin</dc:creator><description>&lt;div&gt;&lt;p&gt;Dando continuidad al uso de contenedores que inicie en la publicación anterior,
 &lt;a class="reference external" href="https://cosmoscalibur.github.io/blog/crear-contenedor-lxc-para-aplicacion-gui-ealite/"&gt;Crear contenedor LXC para aplicación GUI - EALite&lt;/a&gt;, reproduciré la
 instalación de Enterprise Architect Viewer (EALite) con Docker (y por supuesto,
 Wine). Si deseas reproducir el ejemplo de este caso, requieres reproducir la
@@ -898,63 +963,4 @@ Vocaloid Wikia (english version).&lt;/p&gt;
 &lt;p&gt;3. &lt;a class="reference external" href="http://www.vocaloid.com/en/"&gt;Vocaloid&lt;/a&gt;. Vocaloid YAMAHA (english
 version).&lt;/p&gt;
 &lt;p&gt;4. &lt;a class="reference external" href="http://en.wikipedia.org/wiki/Vocaloid"&gt;Vocaloid&lt;/a&gt;. Wikipedia
-(english version).&lt;/p&gt;&lt;/div&gt;</description><category>entretenimiento</category><category>geek</category><category>manga</category><category>síntesis de voz</category><category>software</category><guid>https://cosmoscalibur.github.io/blog/cantante-virtual-sensacion/</guid><pubDate>Tue, 25 Sep 2012 05:13:00 GMT</pubDate></item><item><title>Viendo carga molecular</title><link>https://cosmoscalibur.github.io/blog/viendo-carga-molecular/</link><dc:creator>Edward Villegas-Pulgarin</dc:creator><description>&lt;div&gt;&lt;p&gt;Científicos de IBM fueron capaz de medir por primera vez la distribución
-de carga de una molécula individual. Este logro permitirá dar nuevas
-luces acerca de la formación de enlaces
-entre átomos y moléculas, así como el estudio de
-distribución electrónicas con estructuras moleculares funcionales.&lt;/p&gt;
-&lt;!-- TEASER_END --&gt;
-&lt;p&gt;Esta observación se logro mediante el uso de una modificación de la
-técnica de microscopia de fuerza atómica (AFM por sus siglas en ingles).
-Esta técnica usa una muy pequeña punta (cuya terminación es de
-tamaño atómico) que interactúa con las nubes de carga de la superficie
-de interés experimentando repulsión/atracción conforme nos acercamos.&lt;/p&gt;
-&lt;p&gt;Esta fuerza sobre la punta no es medida directamente pero se establece
-a través de la medición de la deflexión de la ménsula en el cual se
-apoya la punta y se obtiene usando el modelo de resortes (Ley de Hooke)
-&lt;span class="math"&gt;\(F=-kz\)&lt;/span&gt;, donde &lt;span class="math"&gt;\(k\)&lt;/span&gt; corresponde a la constante de resorte de la ménsula
-(asociada a sus propiedades elásticas, como el modulo de Young). Usando
-esta fuerza junto con la curva de calibración de fuerza vs distancia del
-instrumento, es posible reconstruir (estas técnicas no nos permiten
-observar por lentes, debemos observar una reconstrucción matemática de
-la información a través del monitor de nuestro pc) la topografía de una
-superficie, y en este caso particular la estructura molecular en sí.&lt;/p&gt;
-&lt;div class="figure align-center"&gt;
-&lt;img alt="http://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Rastertunnelmikroskop-schema_es.svg/400px-Rastertunnelmikroskop-schema_es.svg.png" src="http://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Rastertunnelmikroskop-schema_es.svg/400px-Rastertunnelmikroskop-schema_es.svg.png" style="width: 320px; height: 257px;"&gt;
-&lt;p class="caption"&gt;Esquemático de un STM.&lt;/p&gt;
-&lt;/div&gt;
-&lt;p&gt;La técnica usada, resultado de la modificación de la anterior,
-denominada KPFM (&lt;em&gt;Kelvin probe force microscopy&lt;/em&gt;),
-es sensible adicionalmente a la carga. Esto se logra ya que la
-adaptación realizada esta basada en el uso de un STM (&lt;em&gt;Scanning Tunneling
-Microscopy&lt;/em&gt;, o Microscopia de Efecto Túnel) la cual aplica una diferencia
-de potencial al montaje, volviendo este sensible a las
-propiedades eléctricas y conductivas de la muestra. Esta técnica esta
-basada en el efecto de tunelamiento de la mecánica cuántica, que en este
-caso se produce cuando se acerca mucho una punta conductora a la
-superficie de interés. En este momento, surge una diferencia de
-potencial entre la punta y la superficie, que puede causar la emisión de
-electrones con una cierta probabilidad y por ende inducir una corriente
-de tunelamiento. Esta corriente de tunelamiento es función de la
-posición de la punta, la diferencia de potencial aplicada y la densidad
-local de estados (LDOS) asociada a la densidad electrónica.&lt;/p&gt;
-&lt;p&gt;Las siguientes micrografías son etapas del procesamiento de imagen de
-una observación de la tautomerización de la naftalocianina. La imagen en
-escala de grises corresponde a la micrografía original, donde se
-evidencian tonalidades claras y oscuras asociadas a distribuciones de
-carga más negativas o más positivas (no es directamente la medición de
-la carga, pero si de la intensidad del campo eléctrico, produciendo los
-fuertes contrastes debido a cambios en la dirección del
-campo eléctrico y no solo de su magnitud). Posteriormente se cambia el
-mapa de color, y por último se realizan suavizados de la imagen.&lt;/p&gt;
-&lt;div class="figure align-center"&gt;
-&lt;img alt="https://3c1703fe8d.site.internapcdn.net/newman/gfx/news/hires/2012/scientistsim.jpg" src="https://3c1703fe8d.site.internapcdn.net/newman/gfx/news/hires/2012/scientistsim.jpg" style="width: 320px; height: 257px;"&gt;
-&lt;p class="caption"&gt;Micrografía de naftalocianina.&lt;/p&gt;
-&lt;/div&gt;
-&lt;p&gt;&lt;strong&gt;Referencias&lt;/strong&gt;&lt;/p&gt;
-&lt;ol class="arabic simple"&gt;
-&lt;li&gt;&lt;a class="reference external" href="http://www.physorg.com/news/2012-02-scientists-image-molecule.html"&gt;Scientists image the charge distribution within a single molecule for the first time&lt;/a&gt;. Physorg. February 22, 2012.&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference external" href="http://en.wikipedia.org/wiki/Atomic_force_microscopy"&gt;Atomic force microscopy&lt;/a&gt;. Wikipedia.&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference external" href="http://www.nanoscience.com/education/AFM.html"&gt;Atomic Force Microscopy&lt;/a&gt;. Nanoscience.&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference external" href="http://en.wikipedia.org/wiki/Scanning_tunneling_microscope"&gt;Scanning tunneling microscope&lt;/a&gt;. Wikipedia.&lt;/li&gt;
-&lt;/ol&gt;&lt;/div&gt;</description><category>afm</category><category>fuerza atómica</category><category>microscopía</category><category>nanotecnología</category><guid>https://cosmoscalibur.github.io/blog/viendo-carga-molecular/</guid><pubDate>Tue, 28 Feb 2012 16:22:00 GMT</pubDate></item></channel></rss>
+(english version).&lt;/p&gt;&lt;/div&gt;</description><category>entretenimiento</category><category>geek</category><category>manga</category><category>síntesis de voz</category><category>software</category><guid>https://cosmoscalibur.github.io/blog/cantante-virtual-sensacion/</guid><pubDate>Tue, 25 Sep 2012 05:13:00 GMT</pubDate></item></channel></rss>

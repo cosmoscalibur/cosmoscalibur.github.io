@@ -3,7 +3,72 @@
 &lt;a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"&gt;
 &lt;img alt="Creative Commons License BY-NC-SA"
 style="border-width:0; margin-bottom:12px;"
-src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"&gt;&lt;/a&gt;</copyright><lastBuildDate>Sat, 23 Nov 2019 02:51:07 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Crear contenedor Docker aplicación GUI - EALite</title><link>https://cosmoscalibur.github.io/blog/crear-contenedor-docker-aplicacion-gui-ealite/</link><dc:creator>Edward Villegas-Pulgarin</dc:creator><description>&lt;div&gt;&lt;p&gt;Dando continuidad al uso de contenedores que inicie en la publicación anterior,
+src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"&gt;&lt;/a&gt;</copyright><lastBuildDate>Tue, 31 Dec 2019 22:28:56 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Usar Anaconda Python en Git Bash</title><link>https://cosmoscalibur.github.io/blog/usar-anaconda-python-en-git-bash/</link><dc:creator>Edward Villegas-Pulgarin</dc:creator><description>&lt;div&gt;&lt;p&gt;Recientemente, por motivos laborales he tenido que trabajar en Windows y es
+por esto que tuve la necesidad de buscar una opción cómoda de usar &lt;a class="reference external" href="https://git-scm.com/"&gt;Git&lt;/a&gt;
+en Windows, con soporte de &lt;a class="reference external" href="https://www.gnu.org/software/bash/"&gt;Bash&lt;/a&gt; a lo
+que estoy acostumbrado en Linux y con Python Anaconda reconocido. De alguna
+manera, la versión mínima de como usar Windows sin morir en el intento.&lt;/p&gt;
+&lt;!-- TEASER_END --&gt;
+&lt;div class="section" id="anaconda-python"&gt;
+&lt;h2&gt;Anaconda Python&lt;/h2&gt;
+&lt;p&gt;Lo primero es proceder a instalar Anaconda Python desde su sitio oficial, pero
+recomiendo revisar primero la necesidad real de tener todo lo incluido en
+Anaconda o usar algo minimalista como Miniconda. Anaconda representará una
+instalación y descarga de casi 500 MB, y por ende un mayor tiempo en ambos
+pasos. Por otro lado, Miniconda solo instala lo mínimo requerido para tener
+Python y el gestor de paquetes Conda. Esta última opción es recomendable si
+posees poco espacio en disco, deseas instalar rápidamente, solo deseas probar
+lo básico de Python o el equipo es de bajas características (recuerdo casos en
+los cuales mis estudiantes -épocas de docente- la sola instalación de Anaconda
+bloqueaba el equipo y lo reiniciaba).&lt;/p&gt;
+&lt;p&gt;Si usas Anaconda para tus proyectos de desarrollo y usando buenas prácticas,
+seguramente estarás acostumbrado a usar ambientes y en ese caso no necesitas
+tener tantas cosas en el base, siendo buena opción Miniconda también.&lt;/p&gt;
+&lt;p&gt;Descarga &lt;a class="reference external" href="https://www.anaconda.com/distribution/"&gt;Anaconda&lt;/a&gt; o
+&lt;a class="reference external" href="https://docs.conda.io/en/latest/miniconda.html"&gt;Miniconda&lt;/a&gt; según tu
+necesidad e instala como cualquier programa de Windows. Lo importante durante
+la instalación es indicar que sea solo para el usuario actual y que no se
+asocie el &lt;code&gt;PATH&lt;/code&gt;. Seguir este consejo les evitará dolores de cabeza en el
+futuro.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="git-bash"&gt;
+&lt;h2&gt;Git Bash&lt;/h2&gt;
+&lt;p&gt;Si bien puedes descargarlo desde el sitio del proyecto, aprovecharemos el
+gestor Conda para facilitar la tarea de descarga, instalación y configuración.&lt;/p&gt;
+&lt;p&gt;Abriremos Anaconda PowerShell o Anaconda Prompt, y ejecutaremos lo siguiente:&lt;/p&gt;
+&lt;pre class="code text"&gt;&lt;a name="rest_code_0671f1e9f249469b85faec271e02b75a-1"&gt;&lt;/a&gt;conda create -n gitbash -c conda-forge git=2.24.0
+&lt;/pre&gt;&lt;p&gt;Es importante el uso de &lt;code&gt;-c conda-forge&lt;/code&gt; porque de este canal vendrá la
+versión de Git que usaremos. Si se usa el canal por defecto, se instala solo el
+cliente de consola, mientras que en esta opción viene Git Bash. He indicado
+también el &lt;code&gt;-n gitbash&lt;/code&gt; para evitar posibles conflictos entre los
+paquetes requeridos para usar Git y los paquetes disponibles en el ambiente
+base. En alguna publicación posterior hablaré sobre Conda para profundizar en
+esto.&lt;/p&gt;
+&lt;p&gt;Una vez terminada la instalación, puedes abrir el menú de Windows y buscar Git
+Bash, el cual ya contará con Conda reconocido. Ahora solo debes empezar a
+usarlo, &lt;code&gt;conda activate base&lt;/code&gt;.&lt;/p&gt;
+&lt;div class="admonition note"&gt;
+&lt;p class="first admonition-title"&gt;Nota&lt;/p&gt;
+&lt;p class="last"&gt;En este momento, nuestro ambiente por defecto será gitbash. Si instalas sin
+indicar el ambiente, tendrás el base por defecto habilitado pero con
+posibles conflictos.&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;¿Y qué pasa si ya teníamos instalado Git Bash? Git Bash soporta los archivos
+típicos de Bash, como el &lt;code&gt;bashrc&lt;/code&gt;. Así, podemos usar la configuración que
+habitualmente se usa en Linux.&lt;/p&gt;
+&lt;p&gt;Abrimos Git Bash, y ejecutamos:&lt;/p&gt;
+&lt;pre class="code text"&gt;&lt;a name="rest_code_d866139b4d704fcf97c1d003655221ea-1"&gt;&lt;/a&gt;cd
+&lt;a name="rest_code_d866139b4d704fcf97c1d003655221ea-2"&gt;&lt;/a&gt;echo ". /c/Users/USUARIO/ANACONDA/etc/profile.d/conda.sh" &amp;gt;&amp;gt; .bashrc
+&lt;a name="rest_code_d866139b4d704fcf97c1d003655221ea-3"&gt;&lt;/a&gt;source .bashrc
+&lt;/pre&gt;&lt;p&gt;Con la primera línea aseguramos ir al directorio del usuario. En la segunda
+línea, crearemos o editaremos el archivo de configuración, pero debes
+reemplazar &lt;code&gt;USUARIO&lt;/code&gt; por la carpeta de tu usuario y &lt;code&gt;ANACONDA&lt;/code&gt; por
+la carpeta de Anaconda (habitualmente &lt;code&gt;Anaconda&lt;/code&gt; o &lt;code&gt;Miniconda3&lt;/code&gt; si
+usaste Miniconda). La tercera línea actualiza la configuración en la sesión
+actual de la consola permitiendo usar de forma inmediata Conda. Para la próxima
+apertura de Git Bash ya no tendrás que configurar nada, solo empezar a usar
+Conda (aún no hay ambiente activado).&lt;/p&gt;
+&lt;/div&gt;&lt;/div&gt;</description><category>anaconda</category><category>bash</category><category>git</category><category>python</category><category>windows</category><guid>https://cosmoscalibur.github.io/blog/usar-anaconda-python-en-git-bash/</guid><pubDate>Tue, 31 Dec 2019 19:43:50 GMT</pubDate></item><item><title>Crear contenedor Docker aplicación GUI - EALite</title><link>https://cosmoscalibur.github.io/blog/crear-contenedor-docker-aplicacion-gui-ealite/</link><dc:creator>Edward Villegas-Pulgarin</dc:creator><description>&lt;div&gt;&lt;p&gt;Dando continuidad al uso de contenedores que inicie en la publicación anterior,
 &lt;a class="reference external" href="https://cosmoscalibur.github.io/blog/crear-contenedor-lxc-para-aplicacion-gui-ealite/"&gt;Crear contenedor LXC para aplicación GUI - EALite&lt;/a&gt;, reproduciré la
 instalación de Enterprise Architect Viewer (EALite) con Docker (y por supuesto,
 Wine). Si deseas reproducir el ejemplo de este caso, requieres reproducir la
@@ -1232,19 +1297,4 @@ Scalibur.&lt;/p&gt;
 &lt;a name="rest_code_b6dca9fea42e4a9d9ffaf9eaa801acae-4"&gt;&lt;/a&gt;brew install freetype &lt;span class="c1"&gt;# Requerido para la manipulación de fuentes -por ejemplo en matplotlib-&lt;/span&gt;
 &lt;a name="rest_code_b6dca9fea42e4a9d9ffaf9eaa801acae-5"&gt;&lt;/a&gt;brew install libpng &lt;span class="c1"&gt;# Requerido para la manipulación de imágenes png -por ejemplo en matplotlib-&lt;/span&gt;
 &lt;a name="rest_code_b6dca9fea42e4a9d9ffaf9eaa801acae-6"&gt;&lt;/a&gt;brew install pygtk &lt;span class="c1"&gt;# Binding de GTK para python. Interfaces en pygtk son comunes.&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</description><category>emulación</category><category>hackintosh</category><category>linux</category><category>macos</category><category>máquina virtual</category><guid>https://cosmoscalibur.github.io/blog/ejecutando-macos-en-linux/</guid><pubDate>Fri, 19 Jan 2018 03:16:55 GMT</pubDate></item><item><title>Problemas de audio en Moto G5</title><link>https://cosmoscalibur.github.io/blog/problemas-de-audio-en-moto-g5/</link><dc:creator>Edward Villegas-Pulgarin</dc:creator><description>&lt;div&gt;&lt;p&gt;Recién cambié mi celular Moto G3 por un Moto G5 y vaya susto el que me llevé inicialmente. La verdad, como el cambio fue más bien un asunto de afán no revisé foros previamente (&lt;a class="reference external" href="https://cosmoscalibur.github.io/blog/comprando-celular-para-personalizar/"&gt;ver recomendaciones a la hora de comprar&lt;/a&gt;) sobre los problemas y me confié de los conocidos que tienen este celular y que nunca les he escuchado de problemas.&lt;/p&gt;
-&lt;p&gt;El susto comenzó con la primera llamada (cuando lo compré no se hizo prueba de llamada) y la sorpresa de encontrarme sin audio. Hice dos intentos adicionales pensando que podía ser algún problema de señal pero persistía hasta que algo se escucho cuando iba a cortar la llamada. Nuevamente probé, y el audio empezaba 5 segundos después de conectarse la llamada.&lt;/p&gt;
-&lt;!-- TEASER_END --&gt;
-&lt;p&gt;Ante esto acudí al dios Google y me encontré una gran cantidad de noticias en páginas de celulares y foros técnicos que reportaban no solo mi problema, sino además otros problemas de audio (y otros problemas).&lt;/p&gt;
-&lt;div class="section" id="problema-y-origen"&gt;
-&lt;h2&gt;Problema y origen&lt;/h2&gt;
-&lt;p&gt;Del mes de mayo de 2017 (3 meses después de la fecha de lanzamiento) se observan en esta búsqueda los primeros reportes de problemas de audio como ausencia de sonido durante el inicio de las llamadas, mala calidad del audio e incluso la apreciación de voz digitalizada. En algunos foros se encuentra reportado como problemas específicos de algunos operadores móviles pero realmente no es así, y ya entenderemos por que.&lt;/p&gt;
-&lt;p&gt;La razón de este error es que por defecto el Moto G5 viene habilitado con una opción de mejora de audio a través de recursos LTE pero bueno, ¿es una mejora?&lt;/p&gt;
-&lt;p&gt;Esta mejora de audio con recursos LTE significa que la señal asociada al audio de la llamada posee un procesamiento adicional con el fin de realizar el filtrado de ruido y mejora del nivel de audio (volumen) pero esto significa que hay un trabajo extra del procesador que no solo representa recurso de procesamiento sino también de tiempo. Efectivamente en mis ensayos puedo decir que percibí ligeramente un audio mucho más limpio con la mejora LTE pero nadie espera que en una llamada toque gastar primero 5 segundos para iniciar el audio, por lo cual resulta impráctico.&lt;/p&gt;
-&lt;p&gt;La voz digitalizada referida en los foros corresponde al efecto del procesamiento de naturaleza digital y no analógica de la señal, algo que no todos sentimos pero que al igual que en la música, algunos logran diferenciar el sonido de un instrumento sintetizado de un instrumento tradicional analógico. La mala calidad de audio podría ser un efecto no deseado del filtro.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="solucion"&gt;
-&lt;h2&gt;Solución&lt;/h2&gt;
-&lt;p&gt;Bueno, sabiendo que la solución se encuentra en internet y no es difícil encontrarla, decidí publicarla porque no siempre quien la necesita sabe inglés así que esta es una forma de contribuir (al igual que las publicaciones de ciencia) y bueno, a veces puedo dar detalles adicionales.&lt;/p&gt;
-&lt;p&gt;Necesitamos entrar a &lt;cite&gt;Configuración&lt;/cite&gt; y en la sección de "Conexiones inalámbricas y redes" seleccionamos &lt;cite&gt;... Más&lt;/cite&gt;. Ahora nos dirigimos a &lt;cite&gt;Redes móviles&lt;/cite&gt; y deshabilitamos la opción &lt;cite&gt;Modo 4G LTE mejorado&lt;/cite&gt;. Aunque nos indica que se recomienda usarlo ya sabemos por experiencia que es el origen de nuestro problema de audio.&lt;/p&gt;
-&lt;/div&gt;&lt;/div&gt;</description><category>android</category><category>audio</category><category>celulares</category><category>moto g5</category><category>motorola</category><category>smartphone</category><guid>https://cosmoscalibur.github.io/blog/problemas-de-audio-en-moto-g5/</guid><pubDate>Fri, 05 Jan 2018 01:03:38 GMT</pubDate></item></channel></rss>
+&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</description><category>emulación</category><category>hackintosh</category><category>linux</category><category>macos</category><category>máquina virtual</category><guid>https://cosmoscalibur.github.io/blog/ejecutando-macos-en-linux/</guid><pubDate>Fri, 19 Jan 2018 03:16:55 GMT</pubDate></item></channel></rss>
