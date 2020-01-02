@@ -67,9 +67,9 @@
 <header>
 <h1 class="p-name entry-title" itemprop="headline name"><a class="u-url" href=".">Usar Anaconda Python en Git Bash</a></h1>
 <div class="metadata">
-<p class="byline author vcard"><span class="byline-name fn" itemprop="author">Edward Villegas-Pulgarin</span></p>
+<p class="byline author vcard p-author h-card"><span class="byline-name fn p-name" itemprop="author">Edward Villegas-Pulgarin</span></p>
 <p class="dateline"><a href="." rel="bookmark"><time class="published dt-published" datetime="2019-12-31T14:43:50-05:00" itemprop="datePublished" title="2020-12-31 14:43">2020-12-31 14:43</time></a></p>
-<p class="commentline"><a data-disqus-identifier="cache/posts/usar-anaconda-python-en-git-bash.html" href="#disqus_thread">Comments</a></p>
+<p class="commentline"><a data-disqus-identifier="cache/posts/usar-anaconda-python-en-git-bash.html" href="#disqus_thread">Comentarios</a></p>
 </div>
 </header>
 <div class="e-content entry-content" itemprop="articleBody text">
@@ -86,19 +86,19 @@
 <h2>Git Bash</h2>
 <p>Si bien puedes descargarlo desde el sitio del proyecto, aprovecharemos el gestor Conda para facilitar la tarea de descarga, instalación y configuración.</p>
 <p>Abriremos Anaconda PowerShell o Anaconda Prompt, y ejecutaremos lo siguiente:</p>
-<pre class="code text"><a id="rest_code_0671f1e9f249469b85faec271e02b75a-1" name="rest_code_0671f1e9f249469b85faec271e02b75a-1"></a>conda create -n gitbash -c conda-forge git=2.24.0
+<pre class="code text"><a id="rest_code_3d85c2ac4b194e4bb3aac32f3f77ff20-1" name="rest_code_3d85c2ac4b194e4bb3aac32f3f77ff20-1"></a>conda create -n gitbash -c conda-forge git=2.24.0
 </pre>
 <p>Es importante el uso de <code>-c conda-forge</code> porque de este canal vendrá la versión de Git que usaremos. Si se usa el canal por defecto, se instala solo el cliente de consola, mientras que en esta opción viene Git Bash. He indicado también el <code>-n gitbash</code> para evitar posibles conflictos entre los paquetes requeridos para usar Git y los paquetes disponibles en el ambiente base. En alguna publicación posterior hablaré sobre Conda para profundizar en esto.</p>
 <p>Una vez terminada la instalación, puedes abrir el menú de Windows y buscar Git Bash, el cual ya contará con Conda reconocido. Ahora solo debes empezar a usarlo, <code>conda activate base</code>.</p>
 <div class="admonition note">
-<p class="first admonition-title">Nota</p>
-<p class="last">En este momento, nuestro ambiente por defecto será gitbash. Si instalas sin indicar el ambiente, tendrás el base por defecto habilitado pero con posibles conflictos.</p>
+<p class="admonition-title">Nota</p>
+<p>En este momento, nuestro ambiente por defecto será gitbash. Si instalas sin indicar el ambiente, tendrás el base por defecto habilitado pero con posibles conflictos.</p>
 </div>
 <p>¿Y qué pasa si ya teníamos instalado Git Bash? Git Bash soporta los archivos típicos de Bash, como el <code>bashrc</code>. Así, podemos usar la configuración que habitualmente se usa en Linux.</p>
 <p>Abrimos Git Bash, y ejecutamos:</p>
-<pre class="code text"><a id="rest_code_d866139b4d704fcf97c1d003655221ea-1" name="rest_code_d866139b4d704fcf97c1d003655221ea-1"></a>cd
-<a id="rest_code_d866139b4d704fcf97c1d003655221ea-2" name="rest_code_d866139b4d704fcf97c1d003655221ea-2"></a>echo ". /c/Users/USUARIO/ANACONDA/etc/profile.d/conda.sh" &gt;&gt; .bashrc
-<a id="rest_code_d866139b4d704fcf97c1d003655221ea-3" name="rest_code_d866139b4d704fcf97c1d003655221ea-3"></a>source .bashrc
+<pre class="code text"><a id="rest_code_9977624391fe413f88ff271996580ce2-1" name="rest_code_9977624391fe413f88ff271996580ce2-1"></a>cd
+<a id="rest_code_9977624391fe413f88ff271996580ce2-2" name="rest_code_9977624391fe413f88ff271996580ce2-2"></a>echo ". /c/Users/USUARIO/ANACONDA/etc/profile.d/conda.sh" &gt;&gt; .bashrc
+<a id="rest_code_9977624391fe413f88ff271996580ce2-3" name="rest_code_9977624391fe413f88ff271996580ce2-3"></a>source .bashrc
 </pre>
 <p>Con la primera línea aseguramos ir al directorio del usuario. En la segunda línea, crearemos o editaremos el archivo de configuración, pero debes reemplazar <code>USUARIO</code> por la carpeta de tu usuario y <code>ANACONDA</code> por la carpeta de Anaconda (habitualmente <code>Anaconda</code> o <code>Miniconda3</code> si usaste Miniconda). La tercera línea actualiza la configuración en la sesión actual de la consola permitiendo usar de forma inmediata Conda. Para la próxima apertura de Git Bash ya no tendrás que configurar nada, solo empezar a usar Conda (aún no hay ambiente activado).</p>
 </div>
@@ -139,12 +139,12 @@
 <script>
 var disqus_shortname="cosmoscalibur";(function(){var a=document.createElement("script");a.async=true;a.src="https://"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());
 </script><!--End of body content-->
-<footer id="footer">Contents © 2019 <a href="mailto:cosmoscalibur@gmail.com">Edward Villegas Pulgarin</a> - Powered by <a href="https://getnikola.com" rel="nofollow">Nikola</a> <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="license"><img alt="Creative Commons License BY-NC-SA" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" style="border-width:0; margin-bottom:12px;"></a></footer>
+<footer id="footer">Contents © 2020 <a href="mailto:cosmoscalibur@gmail.com">Edward Villegas Pulgarin</a> - Powered by <a href="https://getnikola.com" rel="nofollow">Nikola</a> <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="license"><img alt="Creative Commons License BY-NC-SA" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" style="border-width:0; margin-bottom:12px;"></a></footer>
 </div>
 </div>
-<script crossorigin="anonymous" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" src="https://code.jquery.com/jquery-3.3.1.min.js">
+<script crossorigin="anonymous" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" src="https://code.jquery.com/jquery-3.4.1.min.js">
 </script>
-<script crossorigin="anonymous" integrity="sha256-ZvOgfh+ptkpoa2Y4HkRY28ir89u/+VRyDE7sB7hEEcI=" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js">
+<script crossorigin="anonymous" integrity="sha256-fTuUgtT7O2rqoImwjrhDgbXTKUwyxxujIMRIK7TbuNU=" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.15.0/umd/popper.min.js">
 </script>
 <script crossorigin="anonymous" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js">
 </script>

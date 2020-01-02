@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Cosmoscalibur</title><link>https://www.cosmoscalibur.com/</link><description>Blog de ciencia, tecnología, cultura y literatura. Unir estos mundos no solo en un sitio sino en una historia.</description><atom:link href="https://cosmoscalibur.github.io/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>es</language><copyright>Contents © 2019 &lt;a href="mailto:cosmoscalibur@gmail.com"&gt;Edward Villegas Pulgarin&lt;/a&gt; 
+<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Cosmoscalibur</title><link>https://www.cosmoscalibur.com/</link><description>Blog de ciencia, tecnología, cultura y literatura. Unir estos mundos no solo en un sitio sino en una historia.</description><atom:link href="https://cosmoscalibur.github.io/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>es</language><copyright>Contents © 2020 &lt;a href="mailto:cosmoscalibur@gmail.com"&gt;Edward Villegas Pulgarin&lt;/a&gt; 
 &lt;a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"&gt;
 &lt;img alt="Creative Commons License BY-NC-SA"
 style="border-width:0; margin-bottom:12px;"
-src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"&gt;&lt;/a&gt;</copyright><lastBuildDate>Tue, 31 Dec 2019 22:28:56 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Usar Anaconda Python en Git Bash</title><link>https://cosmoscalibur.github.io/blog/usar-anaconda-python-en-git-bash/</link><dc:creator>Edward Villegas-Pulgarin</dc:creator><description>&lt;div&gt;&lt;p&gt;Recientemente, por motivos laborales he tenido que trabajar en Windows y es
+src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"&gt;&lt;/a&gt;</copyright><lastBuildDate>Thu, 02 Jan 2020 23:32:25 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Usar Anaconda Python en Git Bash</title><link>https://cosmoscalibur.github.io/blog/usar-anaconda-python-en-git-bash/</link><dc:creator>Edward Villegas-Pulgarin</dc:creator><description>&lt;div&gt;&lt;p&gt;Recientemente, por motivos laborales he tenido que trabajar en Windows y es
 por esto que tuve la necesidad de buscar una opción cómoda de usar &lt;a class="reference external" href="https://git-scm.com/"&gt;Git&lt;/a&gt;
 en Windows, con soporte de &lt;a class="reference external" href="https://www.gnu.org/software/bash/"&gt;Bash&lt;/a&gt; a lo
 que estoy acostumbrado en Linux y con Python Anaconda reconocido. De alguna
@@ -36,7 +36,7 @@ futuro.&lt;/p&gt;
 &lt;p&gt;Si bien puedes descargarlo desde el sitio del proyecto, aprovecharemos el
 gestor Conda para facilitar la tarea de descarga, instalación y configuración.&lt;/p&gt;
 &lt;p&gt;Abriremos Anaconda PowerShell o Anaconda Prompt, y ejecutaremos lo siguiente:&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_0671f1e9f249469b85faec271e02b75a-1"&gt;&lt;/a&gt;conda create -n gitbash -c conda-forge git=2.24.0
+&lt;pre class="code text"&gt;&lt;a name="rest_code_3d85c2ac4b194e4bb3aac32f3f77ff20-1"&gt;&lt;/a&gt;conda create -n gitbash -c conda-forge git=2.24.0
 &lt;/pre&gt;&lt;p&gt;Es importante el uso de &lt;code&gt;-c conda-forge&lt;/code&gt; porque de este canal vendrá la
 versión de Git que usaremos. Si se usa el canal por defecto, se instala solo el
 cliente de consola, mientras que en esta opción viene Git Bash. He indicado
@@ -48,8 +48,8 @@ esto.&lt;/p&gt;
 Bash, el cual ya contará con Conda reconocido. Ahora solo debes empezar a
 usarlo, &lt;code&gt;conda activate base&lt;/code&gt;.&lt;/p&gt;
 &lt;div class="admonition note"&gt;
-&lt;p class="first admonition-title"&gt;Nota&lt;/p&gt;
-&lt;p class="last"&gt;En este momento, nuestro ambiente por defecto será gitbash. Si instalas sin
+&lt;p class="admonition-title"&gt;Nota&lt;/p&gt;
+&lt;p&gt;En este momento, nuestro ambiente por defecto será gitbash. Si instalas sin
 indicar el ambiente, tendrás el base por defecto habilitado pero con
 posibles conflictos.&lt;/p&gt;
 &lt;/div&gt;
@@ -57,9 +57,9 @@ posibles conflictos.&lt;/p&gt;
 típicos de Bash, como el &lt;code&gt;bashrc&lt;/code&gt;. Así, podemos usar la configuración que
 habitualmente se usa en Linux.&lt;/p&gt;
 &lt;p&gt;Abrimos Git Bash, y ejecutamos:&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_d866139b4d704fcf97c1d003655221ea-1"&gt;&lt;/a&gt;cd
-&lt;a name="rest_code_d866139b4d704fcf97c1d003655221ea-2"&gt;&lt;/a&gt;echo ". /c/Users/USUARIO/ANACONDA/etc/profile.d/conda.sh" &amp;gt;&amp;gt; .bashrc
-&lt;a name="rest_code_d866139b4d704fcf97c1d003655221ea-3"&gt;&lt;/a&gt;source .bashrc
+&lt;pre class="code text"&gt;&lt;a name="rest_code_9977624391fe413f88ff271996580ce2-1"&gt;&lt;/a&gt;cd
+&lt;a name="rest_code_9977624391fe413f88ff271996580ce2-2"&gt;&lt;/a&gt;echo ". /c/Users/USUARIO/ANACONDA/etc/profile.d/conda.sh" &amp;gt;&amp;gt; .bashrc
+&lt;a name="rest_code_9977624391fe413f88ff271996580ce2-3"&gt;&lt;/a&gt;source .bashrc
 &lt;/pre&gt;&lt;p&gt;Con la primera línea aseguramos ir al directorio del usuario. En la segunda
 línea, crearemos o editaremos el archivo de configuración, pero debes
 reemplazar &lt;code&gt;USUARIO&lt;/code&gt; por la carpeta de tu usuario y &lt;code&gt;ANACONDA&lt;/code&gt; por
@@ -84,12 +84,12 @@ nuestras necesidades especificando en el archivo Dockerfile.&lt;/p&gt;
 &lt;div class="section" id="instalar-docker"&gt;
 &lt;h2&gt;Instalar Docker&lt;/h2&gt;
 &lt;p&gt;Recomiendo en Linux instalar docker con snap.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_d7e26598f0884134b13a971fb25e29a8-1"&gt;&lt;/a&gt;sudo snap install docker
+&lt;pre class="code text"&gt;&lt;a name="rest_code_66b0f8cbf48c4e5598ecdf9ac5efca12-1"&gt;&lt;/a&gt;sudo snap install docker
 &lt;/pre&gt;&lt;p&gt;Posteriormente, podemos asociar nuestro usuario para la ejecución sin ser
 administrador.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_9032462000d8443ab1aad701821501fe-1"&gt;&lt;/a&gt;sudo groupadd docker
-&lt;a name="rest_code_9032462000d8443ab1aad701821501fe-2"&gt;&lt;/a&gt;sudo usermod -aG docker $USER
-&lt;a name="rest_code_9032462000d8443ab1aad701821501fe-3"&gt;&lt;/a&gt;newgrp docker
+&lt;pre class="code text"&gt;&lt;a name="rest_code_d7f124fa9fb048308d85e2e6b63734c9-1"&gt;&lt;/a&gt;sudo groupadd docker
+&lt;a name="rest_code_d7f124fa9fb048308d85e2e6b63734c9-2"&gt;&lt;/a&gt;sudo usermod -aG docker $USER
+&lt;a name="rest_code_d7f124fa9fb048308d85e2e6b63734c9-3"&gt;&lt;/a&gt;newgrp docker
 &lt;/pre&gt;&lt;p&gt;Puedes probar ejecutando como usuario regular, &lt;code&gt;docker run hello-world&lt;/code&gt;.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="dockerfile"&gt;
@@ -104,8 +104,8 @@ una excepción, y es el caso donde existe una directriz después como el caso qu
 se ejemplificara.&lt;/p&gt;
 &lt;p&gt;La directriz &lt;code&gt;escape&lt;/code&gt; es usada para cambiar el carácter de salto de línea
 para instrucciones de múltiples líneas. Se puede tener la habitual barra
-invertida (&lt;tt class="docutils literal"&gt;\&lt;/tt&gt;) que es conflictivo con rutas con espacios en Linux o
-rutas Windows, y la opción de la tilde invertida (&lt;tt class="docutils literal"&gt;`&lt;/tt&gt;).&lt;/p&gt;
+invertida (&lt;code class="docutils literal"&gt;\&lt;/code&gt;) que es conflictivo con rutas con espacios en Linux o
+rutas Windows, y la opción de la tilde invertida (&lt;code class="docutils literal"&gt;`&lt;/code&gt;).&lt;/p&gt;
 &lt;p&gt;Después podemos definir la imagen base usando &lt;code&gt;FROM&lt;/code&gt; seguido de la
 especificación de la imagen en &lt;a class="reference external" href="https://hub.docker.com"&gt;DockerHub&lt;/a&gt;. En este caso, usaremos la &lt;a class="reference external" href="https://hub.docker.com/_/ubuntu"&gt;imagen
 Docker de Ubuntu&lt;/a&gt; con arquitectura i386 y
@@ -117,8 +117,8 @@ invocando directamente el llamado al sistema iniciando con &lt;code&gt;RUN&lt;/c
 observa en el ejemplo, a continuación es una línea típica que se ejecuta en
 Ubuntu.&lt;/p&gt;
 &lt;div class="admonition note"&gt;
-&lt;p class="first admonition-title"&gt;Nota&lt;/p&gt;
-&lt;p class="last"&gt;La creación del usuario es necesaria porque wine debe ejecutarse por un
+&lt;p class="admonition-title"&gt;Nota&lt;/p&gt;
+&lt;p&gt;La creación del usuario es necesaria porque wine debe ejecutarse por un
 usuario regular. Adicional, el nombre de usuario corresponde al mismo nombre
 del usuario Linux del cual traemos la copia de la instalación en Wine (Wine
 asigna el nombre de usuario Windows igual al usuario Linux, luego, al copiar
@@ -130,13 +130,13 @@ hospedador a la imagen. Existe una instrucción similar, &lt;code&gt;ADD&lt;/cod
 soporta que la fuente sea una URL realizando la descarga, y descomprime
 archivos &lt;em&gt;tar&lt;/em&gt;.&lt;/p&gt;
 &lt;div class="admonition note"&gt;
-&lt;p class="first admonition-title"&gt;Nota&lt;/p&gt;
+&lt;p class="admonition-title"&gt;Nota&lt;/p&gt;
 &lt;p&gt;El directorio que moveremos se genero en el contenedor LXC que construimos
 en &lt;a class="reference external" href="https://cosmoscalibur.github.io/blog/crear-contenedor-lxc-para-aplicacion-gui-ealite/"&gt;Crear contenedor LXC para aplicación GUI - EALite&lt;/a&gt;. Para ello,
 iniciamos el contenedor y extraemos el directorio.&lt;/p&gt;
-&lt;div class="last"&gt;&lt;pre class="code text"&gt;&lt;a name="rest_code_8559c8d20b3c4715ab6116ff07f1947b-1"&gt;&lt;/a&gt;sudo lxc start ea
-&lt;a name="rest_code_8559c8d20b3c4715ab6116ff07f1947b-2"&gt;&lt;/a&gt;sudo lxc file pull -r ea/home/ubuntu/.wine .
-&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;pre class="code text"&gt;&lt;a name="rest_code_098f00b906da4dc6ab1bf75b7101b519-1"&gt;&lt;/a&gt;sudo lxc start ea
+&lt;a name="rest_code_098f00b906da4dc6ab1bf75b7101b519-2"&gt;&lt;/a&gt;sudo lxc file pull -r ea/home/ubuntu/.wine .
+&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Con &lt;code&gt;USER&lt;/code&gt; cambiamos el usuario que ejecuta los procesos. Es importante
 que a la hora de concluir, si un proceso es ejecutado por un usuario regular,
 nuestro último cambio de usuario debe apuntar a él, de otra forma el
@@ -147,19 +147,19 @@ existe (pero no el directorio de usuario).&lt;/p&gt;
 Esto es posible con &lt;code&gt;CMD&lt;/code&gt; o con &lt;code&gt;ENTRYPOINT&lt;/code&gt;. La diferencia es que
 el primero permite sobreescribir la ejecución enviando como parámetro lo que
 se desea ejecutar, mientras que la segunda opción solo ejecuta la configurada.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_510f9e4b0f1b45379e8f7f10c3227ba4-1"&gt;&lt;/a&gt;# escape=`
-&lt;a name="rest_code_510f9e4b0f1b45379e8f7f10c3227ba4-2"&gt;&lt;/a&gt;FROM i386/ubuntu:18.04
-&lt;a name="rest_code_510f9e4b0f1b45379e8f7f10c3227ba4-3"&gt;&lt;/a&gt;RUN apt update -q &amp;amp;&amp;amp; apt install --install-recommends -y wine-stable
-&lt;a name="rest_code_510f9e4b0f1b45379e8f7f10c3227ba4-4"&gt;&lt;/a&gt;RUN apt install -y fonts-crosextra-carlito
-&lt;a name="rest_code_510f9e4b0f1b45379e8f7f10c3227ba4-5"&gt;&lt;/a&gt;RUN useradd -ms /bin/bash ubuntu
-&lt;a name="rest_code_510f9e4b0f1b45379e8f7f10c3227ba4-6"&gt;&lt;/a&gt;WORKDIR /home/ubuntu
-&lt;a name="rest_code_510f9e4b0f1b45379e8f7f10c3227ba4-7"&gt;&lt;/a&gt;COPY .wine .wine
-&lt;a name="rest_code_510f9e4b0f1b45379e8f7f10c3227ba4-8"&gt;&lt;/a&gt;RUN chown -R ubuntu .wine
-&lt;a name="rest_code_510f9e4b0f1b45379e8f7f10c3227ba4-9"&gt;&lt;/a&gt;USER ubuntu
-&lt;a name="rest_code_510f9e4b0f1b45379e8f7f10c3227ba4-10"&gt;&lt;/a&gt;RUN mkdir -p .local/bin &amp;amp;&amp;amp; `
-&lt;a name="rest_code_510f9e4b0f1b45379e8f7f10c3227ba4-11"&gt;&lt;/a&gt;        echo "wine $HOME/.wine/drive_c/Program\ Files/Sparx\ Systems/EA\ LITE/EA.exe" &amp;gt; .local/bin/ealite &amp;amp;&amp;amp; `
-&lt;a name="rest_code_510f9e4b0f1b45379e8f7f10c3227ba4-12"&gt;&lt;/a&gt;        chmod 755 .local/bin/ealite
-&lt;a name="rest_code_510f9e4b0f1b45379e8f7f10c3227ba4-13"&gt;&lt;/a&gt;CMD ".local/bin/ealite"
+&lt;pre class="code text"&gt;&lt;a name="rest_code_878f0f44af244defab22ccdf678aa0a4-1"&gt;&lt;/a&gt;# escape=`
+&lt;a name="rest_code_878f0f44af244defab22ccdf678aa0a4-2"&gt;&lt;/a&gt;FROM i386/ubuntu:18.04
+&lt;a name="rest_code_878f0f44af244defab22ccdf678aa0a4-3"&gt;&lt;/a&gt;RUN apt update -q &amp;amp;&amp;amp; apt install --install-recommends -y wine-stable
+&lt;a name="rest_code_878f0f44af244defab22ccdf678aa0a4-4"&gt;&lt;/a&gt;RUN apt install -y fonts-crosextra-carlito
+&lt;a name="rest_code_878f0f44af244defab22ccdf678aa0a4-5"&gt;&lt;/a&gt;RUN useradd -ms /bin/bash ubuntu
+&lt;a name="rest_code_878f0f44af244defab22ccdf678aa0a4-6"&gt;&lt;/a&gt;WORKDIR /home/ubuntu
+&lt;a name="rest_code_878f0f44af244defab22ccdf678aa0a4-7"&gt;&lt;/a&gt;COPY .wine .wine
+&lt;a name="rest_code_878f0f44af244defab22ccdf678aa0a4-8"&gt;&lt;/a&gt;RUN chown -R ubuntu .wine
+&lt;a name="rest_code_878f0f44af244defab22ccdf678aa0a4-9"&gt;&lt;/a&gt;USER ubuntu
+&lt;a name="rest_code_878f0f44af244defab22ccdf678aa0a4-10"&gt;&lt;/a&gt;RUN mkdir -p .local/bin &amp;amp;&amp;amp; `
+&lt;a name="rest_code_878f0f44af244defab22ccdf678aa0a4-11"&gt;&lt;/a&gt;        echo "wine $HOME/.wine/drive_c/Program\ Files/Sparx\ Systems/EA\ LITE/EA.exe" &amp;gt; .local/bin/ealite &amp;amp;&amp;amp; `
+&lt;a name="rest_code_878f0f44af244defab22ccdf678aa0a4-12"&gt;&lt;/a&gt;        chmod 755 .local/bin/ealite
+&lt;a name="rest_code_878f0f44af244defab22ccdf678aa0a4-13"&gt;&lt;/a&gt;CMD ".local/bin/ealite"
 &lt;/pre&gt;&lt;/div&gt;
 &lt;div class="section" id="construir-imagen-docker"&gt;
 &lt;h2&gt;Construir imagen Docker&lt;/h2&gt;
@@ -169,21 +169,21 @@ para relacionar la ruta del archivo dockerfile que se usará. El siguiente
 argumento no posee marca para indicarlo y corresponde al contexto, que viene a
 ser la ruta donde se encuentran los archivos que usaremos (que puede ser
 reemplazado por un archivo de contexto con la ruta a los distintos archivos).&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_d83edd9176e74c76b7ec396c5033f86b-1"&gt;&lt;/a&gt;docker build -t cosmoscalibur/ealite:latest -f dockerfile .
+&lt;pre class="code text"&gt;&lt;a name="rest_code_97dc4998a0424a4d80610f77190ac8df-1"&gt;&lt;/a&gt;docker build -t cosmoscalibur/ealite:latest -f dockerfile .
 &lt;/pre&gt;&lt;/div&gt;
 &lt;div class="section" id="ejecutar-contenedor"&gt;
 &lt;h2&gt;Ejecutar contenedor&lt;/h2&gt;
 &lt;p&gt;Ahora puedes lanzar un contenedor gráfico basado en la imagen construida con la
 siguiente instrucción.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_e94c23a236d4492790e56af1ac9f756e-1"&gt;&lt;/a&gt;docker run --net=host --env="DISPLAY" --volume="$HOME/.Xauthority:/root/.Xauthority:rw" cosmoscalibur/ealite:latest
+&lt;pre class="code text"&gt;&lt;a name="rest_code_6deb2628f9bb46519896e1f4b381bb34-1"&gt;&lt;/a&gt;docker run --net=host --env="DISPLAY" --volume="$HOME/.Xauthority:/root/.Xauthority:rw" cosmoscalibur/ealite:latest
 &lt;/pre&gt;&lt;/div&gt;
 &lt;div class="section" id="referencias"&gt;
 &lt;h2&gt;Referencias&lt;/h2&gt;
 &lt;ul class="simple"&gt;
-&lt;li&gt;&lt;a class="reference external" href="https://docs.docker.com/install/linux/linux-postinstall/"&gt;Docker docs: Post-installation steps for Linux&lt;/a&gt;.&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference external" href="https://docs.docker.com/reference/"&gt;Docker docs: Reference documentation&lt;/a&gt;.&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference external" href="https://medium.com/@SaravSun/running-gui-applications-inside-docker-containers-83d65c0db110"&gt;Running GUI Applications inside Docker Containers&lt;/a&gt;.&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference external" href="https://www.sparxsystems.com/enterprise_architect_user_guide/14.0/product_information/enterprise_architect_linux.html"&gt;Installing Enterprise Architect under Linux&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://docs.docker.com/install/linux/linux-postinstall/"&gt;Docker docs: Post-installation steps for Linux&lt;/a&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://docs.docker.com/reference/"&gt;Docker docs: Reference documentation&lt;/a&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://medium.com/@SaravSun/running-gui-applications-inside-docker-containers-83d65c0db110"&gt;Running GUI Applications inside Docker Containers&lt;/a&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://www.sparxsystems.com/enterprise_architect_user_guide/14.0/product_information/enterprise_architect_linux.html"&gt;Installing Enterprise Architect under Linux&lt;/a&gt;.&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;&lt;/div&gt;</description><category>contenedor</category><category>docker</category><category>ealite</category><category>enterprise architect</category><category>linux</category><category>wine</category><guid>https://cosmoscalibur.github.io/blog/crear-contenedor-docker-aplicacion-gui-ealite/</guid><pubDate>Sat, 23 Nov 2019 02:47:22 GMT</pubDate></item><item><title>Crear contenedor LXC para aplicación GUI - EALite</title><link>https://cosmoscalibur.github.io/blog/crear-contenedor-lxc-para-aplicacion-gui-ealite/</link><dc:creator>Edward Villegas-Pulgarin</dc:creator><description>&lt;div&gt;&lt;p&gt;El uso de contenedores en la industria del software se ha extendido ampliamente
 y no es de extrañar, ofrece a los desarrolladores la posibilidad de mejorar el
@@ -206,9 +206,9 @@ bibliotecas de 32 bits de manera innecesaria. Así que empecemos.&lt;/p&gt;
 &lt;p&gt;Nuestro primer paso será instalar el paquete LXD, el cual se encuentra
 disponible a través de múltiples gestores de paquetes de las distribuciones
 Linux pero también como paquete snap. Por facilidad, usaré el paquete snap.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_0645e8d00d0b4cc5a6a57acc0ddbfd2d-1"&gt;&lt;/a&gt;sudo snap install lxd
+&lt;pre class="code text"&gt;&lt;a name="rest_code_bd7cc90eec53437e99811b7c2279dca6-1"&gt;&lt;/a&gt;sudo snap install lxd
 &lt;/pre&gt;&lt;p&gt;Ahora, debemos inicializar (solo es necesario la primera vez tras instalar).&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_d695b6279ae140bb8022926c63370784-1"&gt;&lt;/a&gt;sudo lxd init
+&lt;pre class="code text"&gt;&lt;a name="rest_code_3cfea6eca9454efab8ab6742fbb39162-1"&gt;&lt;/a&gt;sudo lxd init
 &lt;/pre&gt;&lt;p&gt;En mi caso, todos los valores que son preguntados los he dejado en su valor
 por defecto. Personalmente, solo debería preocuparnos el tamaño de la unidad
 usado (en caso de tener limitaciones en espacio de almacenamiento).&lt;/p&gt;
@@ -221,35 +221,35 @@ gráfica nos requiere una configuración adicional, que es realizar el paso al
 sistema gráfico de nuestro sistema hospedador.&lt;/p&gt;
 &lt;p&gt;El perfil gráfico es definido con el siguiente código (copia y pega en un nuevo
 archivo, &lt;code&gt;lxdguiprofile.txt&lt;/code&gt;).&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_c0f674a2e1e64b808a840919e4baa748-1"&gt;&lt;/a&gt;config:
-&lt;a name="rest_code_c0f674a2e1e64b808a840919e4baa748-2"&gt;&lt;/a&gt;  environment.DISPLAY: :0
-&lt;a name="rest_code_c0f674a2e1e64b808a840919e4baa748-3"&gt;&lt;/a&gt;  raw.idmap: both 1000 1000
-&lt;a name="rest_code_c0f674a2e1e64b808a840919e4baa748-4"&gt;&lt;/a&gt;  user.user-data: |
-&lt;a name="rest_code_c0f674a2e1e64b808a840919e4baa748-5"&gt;&lt;/a&gt;    #cloud-config
-&lt;a name="rest_code_c0f674a2e1e64b808a840919e4baa748-6"&gt;&lt;/a&gt;    runcmd:
-&lt;a name="rest_code_c0f674a2e1e64b808a840919e4baa748-7"&gt;&lt;/a&gt;      - 'sed -i "s/; enable-shm = yes/enable-shm = no/g" /etc/pulse/client.conf'
-&lt;a name="rest_code_c0f674a2e1e64b808a840919e4baa748-8"&gt;&lt;/a&gt;      - 'echo export PULSE_SERVER=unix:/tmp/.pulse-native | tee --append /home/ubuntu/.profile'
-&lt;a name="rest_code_c0f674a2e1e64b808a840919e4baa748-9"&gt;&lt;/a&gt;    packages:
-&lt;a name="rest_code_c0f674a2e1e64b808a840919e4baa748-10"&gt;&lt;/a&gt;      - x11-apps
-&lt;a name="rest_code_c0f674a2e1e64b808a840919e4baa748-11"&gt;&lt;/a&gt;      - mesa-utils
-&lt;a name="rest_code_c0f674a2e1e64b808a840919e4baa748-12"&gt;&lt;/a&gt;      - pulseaudio
-&lt;a name="rest_code_c0f674a2e1e64b808a840919e4baa748-13"&gt;&lt;/a&gt;description: GUI LXD profile
-&lt;a name="rest_code_c0f674a2e1e64b808a840919e4baa748-14"&gt;&lt;/a&gt;devices:
-&lt;a name="rest_code_c0f674a2e1e64b808a840919e4baa748-15"&gt;&lt;/a&gt;  PASocket:
-&lt;a name="rest_code_c0f674a2e1e64b808a840919e4baa748-16"&gt;&lt;/a&gt;    path: /tmp/.pulse-native
-&lt;a name="rest_code_c0f674a2e1e64b808a840919e4baa748-17"&gt;&lt;/a&gt;    source: /run/user/1000/pulse/native
-&lt;a name="rest_code_c0f674a2e1e64b808a840919e4baa748-18"&gt;&lt;/a&gt;    type: disk
-&lt;a name="rest_code_c0f674a2e1e64b808a840919e4baa748-19"&gt;&lt;/a&gt;  X0:
-&lt;a name="rest_code_c0f674a2e1e64b808a840919e4baa748-20"&gt;&lt;/a&gt;    path: /tmp/.X11-unix/X0
-&lt;a name="rest_code_c0f674a2e1e64b808a840919e4baa748-21"&gt;&lt;/a&gt;    source: /tmp/.X11-unix/X0
-&lt;a name="rest_code_c0f674a2e1e64b808a840919e4baa748-22"&gt;&lt;/a&gt;    type: disk
-&lt;a name="rest_code_c0f674a2e1e64b808a840919e4baa748-23"&gt;&lt;/a&gt;  mygpu:
-&lt;a name="rest_code_c0f674a2e1e64b808a840919e4baa748-24"&gt;&lt;/a&gt;    type: gpu
-&lt;a name="rest_code_c0f674a2e1e64b808a840919e4baa748-25"&gt;&lt;/a&gt;name: gui
-&lt;a name="rest_code_c0f674a2e1e64b808a840919e4baa748-26"&gt;&lt;/a&gt;used_by:
+&lt;pre class="code text"&gt;&lt;a name="rest_code_11ebbfacdb534108ac14e5a151062a30-1"&gt;&lt;/a&gt;config:
+&lt;a name="rest_code_11ebbfacdb534108ac14e5a151062a30-2"&gt;&lt;/a&gt;  environment.DISPLAY: :0
+&lt;a name="rest_code_11ebbfacdb534108ac14e5a151062a30-3"&gt;&lt;/a&gt;  raw.idmap: both 1000 1000
+&lt;a name="rest_code_11ebbfacdb534108ac14e5a151062a30-4"&gt;&lt;/a&gt;  user.user-data: |
+&lt;a name="rest_code_11ebbfacdb534108ac14e5a151062a30-5"&gt;&lt;/a&gt;    #cloud-config
+&lt;a name="rest_code_11ebbfacdb534108ac14e5a151062a30-6"&gt;&lt;/a&gt;    runcmd:
+&lt;a name="rest_code_11ebbfacdb534108ac14e5a151062a30-7"&gt;&lt;/a&gt;      - 'sed -i "s/; enable-shm = yes/enable-shm = no/g" /etc/pulse/client.conf'
+&lt;a name="rest_code_11ebbfacdb534108ac14e5a151062a30-8"&gt;&lt;/a&gt;      - 'echo export PULSE_SERVER=unix:/tmp/.pulse-native | tee --append /home/ubuntu/.profile'
+&lt;a name="rest_code_11ebbfacdb534108ac14e5a151062a30-9"&gt;&lt;/a&gt;    packages:
+&lt;a name="rest_code_11ebbfacdb534108ac14e5a151062a30-10"&gt;&lt;/a&gt;      - x11-apps
+&lt;a name="rest_code_11ebbfacdb534108ac14e5a151062a30-11"&gt;&lt;/a&gt;      - mesa-utils
+&lt;a name="rest_code_11ebbfacdb534108ac14e5a151062a30-12"&gt;&lt;/a&gt;      - pulseaudio
+&lt;a name="rest_code_11ebbfacdb534108ac14e5a151062a30-13"&gt;&lt;/a&gt;description: GUI LXD profile
+&lt;a name="rest_code_11ebbfacdb534108ac14e5a151062a30-14"&gt;&lt;/a&gt;devices:
+&lt;a name="rest_code_11ebbfacdb534108ac14e5a151062a30-15"&gt;&lt;/a&gt;  PASocket:
+&lt;a name="rest_code_11ebbfacdb534108ac14e5a151062a30-16"&gt;&lt;/a&gt;    path: /tmp/.pulse-native
+&lt;a name="rest_code_11ebbfacdb534108ac14e5a151062a30-17"&gt;&lt;/a&gt;    source: /run/user/1000/pulse/native
+&lt;a name="rest_code_11ebbfacdb534108ac14e5a151062a30-18"&gt;&lt;/a&gt;    type: disk
+&lt;a name="rest_code_11ebbfacdb534108ac14e5a151062a30-19"&gt;&lt;/a&gt;  X0:
+&lt;a name="rest_code_11ebbfacdb534108ac14e5a151062a30-20"&gt;&lt;/a&gt;    path: /tmp/.X11-unix/X0
+&lt;a name="rest_code_11ebbfacdb534108ac14e5a151062a30-21"&gt;&lt;/a&gt;    source: /tmp/.X11-unix/X0
+&lt;a name="rest_code_11ebbfacdb534108ac14e5a151062a30-22"&gt;&lt;/a&gt;    type: disk
+&lt;a name="rest_code_11ebbfacdb534108ac14e5a151062a30-23"&gt;&lt;/a&gt;  mygpu:
+&lt;a name="rest_code_11ebbfacdb534108ac14e5a151062a30-24"&gt;&lt;/a&gt;    type: gpu
+&lt;a name="rest_code_11ebbfacdb534108ac14e5a151062a30-25"&gt;&lt;/a&gt;name: gui
+&lt;a name="rest_code_11ebbfacdb534108ac14e5a151062a30-26"&gt;&lt;/a&gt;used_by:
 &lt;/pre&gt;&lt;p&gt;Ahora, crearemos el perfil:&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_a93dbf98c06e44ca9e482f17ba4cc67b-1"&gt;&lt;/a&gt;sudo lxc profile create gui
-&lt;a name="rest_code_a93dbf98c06e44ca9e482f17ba4cc67b-2"&gt;&lt;/a&gt;cat lxdguiprofile.txt | sudo lxc profile edit gui
+&lt;pre class="code text"&gt;&lt;a name="rest_code_884c7113bb6742c69f5a54c626cec4f0-1"&gt;&lt;/a&gt;sudo lxc profile create gui
+&lt;a name="rest_code_884c7113bb6742c69f5a54c626cec4f0-2"&gt;&lt;/a&gt;cat lxdguiprofile.txt | sudo lxc profile edit gui
 &lt;/pre&gt;&lt;p&gt;Este procedimiento, solo es necesario hacerlo la primera vez.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="obtener-contenedor-base"&gt;
@@ -262,7 +262,7 @@ distribuciones Linux, con versiones y arquitecturas diferentes.&lt;/p&gt;
 corresponde a 32 bits. Puedes usar otra distribución siempre y cuando disponga
 de la forma de instalar los paquetes necesarios y en versiones recientes (entre
 más reciente sea Wine, mejor).&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_25ef5fd0ea814286bfee24d38e5c3f0c-1"&gt;&lt;/a&gt;sudo lxc launch --profile default --profile gui images:ubuntu/18.04/i386 ea
+&lt;pre class="code text"&gt;&lt;a name="rest_code_1a63d8672607414d81d773b5de9457ef-1"&gt;&lt;/a&gt;sudo lxc launch --profile default --profile gui images:ubuntu/18.04/i386 ea
 &lt;/pre&gt;&lt;p&gt;Cuando no requerimos la parte gráfica, podemos omitir
 &lt;code&gt;--profile default --profile gui&lt;/code&gt;. Los dos perfiles son un proceso de
 herencia, primero se carga el perfil por defecto y luego se añade lo necesario
@@ -279,7 +279,7 @@ ejecución del contenedor, o igual podríamos detenerlo primero,
 &lt;p&gt;Para instalar nuestro programa en el contenedor, necesitamos ejecutar comandos
 en este. Para ello, tenemos &lt;code&gt;lxc exec {contenedor} -- {comando}&lt;/code&gt;. Una
 forma interactiva, adecuada para pruebas, es ejecutar bash.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_06ce4ec74f884d6884a751f9b5ea9941-1"&gt;&lt;/a&gt;sudo lxc exec ea -- /bin/bash
+&lt;pre class="code text"&gt;&lt;a name="rest_code_be40c707534a4d22b76c870390248f50-1"&gt;&lt;/a&gt;sudo lxc exec ea -- /bin/bash
 &lt;/pre&gt;&lt;p&gt;De esta manera podemos ejecutar los comandos de la misma manera que lo hacemos
 en nuestro sistema, ya que estamos en el contenedor.&lt;/p&gt;
 &lt;p&gt;Si deseamos automatizar, nos interesará enviar directamente las instrucciones
@@ -295,39 +295,39 @@ tenemos el usuario ubuntu),
 &lt;p&gt;La gestión de archivos es realizada con los comandos &lt;code&gt;file pull&lt;/code&gt; y
 &lt;code&gt;file push&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;Así, si deseamos enviar un archivo:&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_3cf314ff356e41369eac3f2a9ee312b7-1"&gt;&lt;/a&gt;sudo lxc file push {archivo local} {contenedor}/{ruta contenedor}
+&lt;pre class="code text"&gt;&lt;a name="rest_code_ec17df5be6c14ca1822e3e14dec548e6-1"&gt;&lt;/a&gt;sudo lxc file push {archivo local} {contenedor}/{ruta contenedor}
 &lt;/pre&gt;&lt;p&gt;Y si deseamos traer un archivo del contenedor:&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_d8bb5fdde16b4fafbc26e4c0f9e8cfd3-1"&gt;&lt;/a&gt;sudo lxc file pull {contenedor}/{ruta contenedor} {archivo local}
+&lt;pre class="code text"&gt;&lt;a name="rest_code_6f6014c9fdaf4ef787eb71b799362683-1"&gt;&lt;/a&gt;sudo lxc file pull {contenedor}/{ruta contenedor} {archivo local}
 &lt;/pre&gt;&lt;/div&gt;
 &lt;div class="section" id="instalar-ealite"&gt;
 &lt;h2&gt;Instalar EALite&lt;/h2&gt;
 &lt;p&gt;Ahora que sabemos ejecutar comandos en el contenedor, instalaremos las
 dependencias y finalmente EALite.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_915ffb876cdc47e1a93388638e5f3169-1"&gt;&lt;/a&gt;sudo lxc exec ea -- apt update -q
-&lt;a name="rest_code_915ffb876cdc47e1a93388638e5f3169-2"&gt;&lt;/a&gt;sudo lxc exec ea -- apt install --install-recommends -y wine-stable winetricks
-&lt;a name="rest_code_915ffb876cdc47e1a93388638e5f3169-3"&gt;&lt;/a&gt;sudo lxc exec ea -- apt install -y fonts-crosextra-carlito
-&lt;a name="rest_code_915ffb876cdc47e1a93388638e5f3169-4"&gt;&lt;/a&gt;sudo lxc exec ea -- su - ubuntu -c 'winetricks --unattended msxml3'
-&lt;a name="rest_code_915ffb876cdc47e1a93388638e5f3169-5"&gt;&lt;/a&gt;sudo lxc exec ea -- su - ubuntu -c 'winetricks --unattended msxml4'
-&lt;a name="rest_code_915ffb876cdc47e1a93388638e5f3169-6"&gt;&lt;/a&gt;sudo lxc exec ea -- su - ubuntu -c 'winetricks --unattended msxml6'
-&lt;a name="rest_code_915ffb876cdc47e1a93388638e5f3169-7"&gt;&lt;/a&gt;sudo lxc exec ea -- su - ubuntu -c 'winetricks --unattended mdac28'
-&lt;a name="rest_code_915ffb876cdc47e1a93388638e5f3169-8"&gt;&lt;/a&gt;sudo lxc exec ea -- su - ubuntu -c 'winetricks --unattended jet40'
-&lt;a name="rest_code_915ffb876cdc47e1a93388638e5f3169-9"&gt;&lt;/a&gt;wget http://www.sparxsystems.com.au/bin/EALite.exe
-&lt;a name="rest_code_915ffb876cdc47e1a93388638e5f3169-10"&gt;&lt;/a&gt;sudo lxc file push EALite.exe ea/home/ubuntu/EALite.exe
-&lt;a name="rest_code_915ffb876cdc47e1a93388638e5f3169-11"&gt;&lt;/a&gt;sudo lxc exec ea -- su - ubuntu -c 'wine msiexec /i EALite.exe'
+&lt;pre class="code text"&gt;&lt;a name="rest_code_1c0e4f7686d44cd191b78997b6ed68b3-1"&gt;&lt;/a&gt;sudo lxc exec ea -- apt update -q
+&lt;a name="rest_code_1c0e4f7686d44cd191b78997b6ed68b3-2"&gt;&lt;/a&gt;sudo lxc exec ea -- apt install --install-recommends -y wine-stable winetricks
+&lt;a name="rest_code_1c0e4f7686d44cd191b78997b6ed68b3-3"&gt;&lt;/a&gt;sudo lxc exec ea -- apt install -y fonts-crosextra-carlito
+&lt;a name="rest_code_1c0e4f7686d44cd191b78997b6ed68b3-4"&gt;&lt;/a&gt;sudo lxc exec ea -- su - ubuntu -c 'winetricks --unattended msxml3'
+&lt;a name="rest_code_1c0e4f7686d44cd191b78997b6ed68b3-5"&gt;&lt;/a&gt;sudo lxc exec ea -- su - ubuntu -c 'winetricks --unattended msxml4'
+&lt;a name="rest_code_1c0e4f7686d44cd191b78997b6ed68b3-6"&gt;&lt;/a&gt;sudo lxc exec ea -- su - ubuntu -c 'winetricks --unattended msxml6'
+&lt;a name="rest_code_1c0e4f7686d44cd191b78997b6ed68b3-7"&gt;&lt;/a&gt;sudo lxc exec ea -- su - ubuntu -c 'winetricks --unattended mdac28'
+&lt;a name="rest_code_1c0e4f7686d44cd191b78997b6ed68b3-8"&gt;&lt;/a&gt;sudo lxc exec ea -- su - ubuntu -c 'winetricks --unattended jet40'
+&lt;a name="rest_code_1c0e4f7686d44cd191b78997b6ed68b3-9"&gt;&lt;/a&gt;wget http://www.sparxsystems.com.au/bin/EALite.exe
+&lt;a name="rest_code_1c0e4f7686d44cd191b78997b6ed68b3-10"&gt;&lt;/a&gt;sudo lxc file push EALite.exe ea/home/ubuntu/EALite.exe
+&lt;a name="rest_code_1c0e4f7686d44cd191b78997b6ed68b3-11"&gt;&lt;/a&gt;sudo lxc exec ea -- su - ubuntu -c 'wine msiexec /i EALite.exe'
 &lt;/pre&gt;&lt;p&gt;En este punto, procederemos de manera gráfica a la instalación final de EALite.&lt;/p&gt;
 &lt;div class="figure align-center"&gt;
 &lt;img alt="Ventana de instalación gráfica de EALite." src="https://lh3.googleusercontent.com/bJQU29AUGyL8RwMip-Zfye6-npY8m5nTvUCvLys09zKO6Spm-0K86w7n9l0PJbg9I84k7Jr3zu2OBrZwUCSVcQYBlFDFkqD9T80ONFdYKX1dnVX81rvkeHAGRXeL75ByBu9wDbDqhWqBAx10HTAACgbKLN5_YKhQ1_acN2riplkT7cS0805fZpmSRyLu_xd_xtBRa4SNG9YjnOxBiJv7oymvcn0MXwLZGpM28IUIkqSnZdngYxKEZLRGOWi-crHOJHhElQUBQoiN9RDmrgLNVcMhpvu_7eLWOsCZ0_tdCDbqtkNeWBp5mFf2ykRI5-BI8G3xBbHrjrG3xTVvkBu2CTbbxUxLyv63WBEIpD-kmckIuhWxQrb_8DxDQCuRg2hQPyJwMY2RQcgU0CqB5yRhbG22aZczf-fIlovFSVDrJJIbI_V1Elm-6KWAn3P64KfKDvKAhDyAAfS9ChuTmtWyXr-GUHWyAKzWu6Rq5mMbcEmBijcUlRCZLkp8Bdn0jgzw64w0A1_VnC5Md4VaDoB2Beu8Tv4balnFw-AcI55NHbIXeBxDPB-FakLiu5x71laBXWTBa2_vVPb5e7TZu4kkpWzpVbw_EmVDVhFx-16BJSXCXovmxanlknIfDhWEkX_ZLASWnxE5_Vv8lDPxLb_s0mafKg7F6Ys_JZIOogNPYWn-tgIy5tvsNBmyCX6Lky7dQSCU_vmfIBw3BQ5pzY5QhNk4BQXsXwOhDU98ALq6mb-79pU=w534-h462-no" style="width: 480px;"&gt;
 &lt;p class="caption"&gt;Ventana de instalación gráfica de EALite.&lt;/p&gt;
 &lt;/div&gt;
 &lt;p&gt;Ahora, es necesario crear un mecanismo simple para la ejecución de EA.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_1a498a8b90404725969afd27382e7268-1"&gt;&lt;/a&gt;sudo lxc exec ea -- su - ubuntu -c 'mkdir $HOME/.local/bin'
-&lt;a name="rest_code_1a498a8b90404725969afd27382e7268-2"&gt;&lt;/a&gt;sudo lxc exec ea -- su - ubuntu -c 'echo "wine $HOME/.wine/drive_c/Program\ Files/Sparx\ Systems/EA\ LITE/EA.exe" &amp;gt; $HOME/.local/bin/ealite'
-&lt;a name="rest_code_1a498a8b90404725969afd27382e7268-3"&gt;&lt;/a&gt;sudo lxc exec ea -- su - ubuntu -c 'chmod 755 $HOME/.local/bin/ealite'
+&lt;pre class="code text"&gt;&lt;a name="rest_code_9c4c86d583c14c0cb2f4aae7a0f15ef2-1"&gt;&lt;/a&gt;sudo lxc exec ea -- su - ubuntu -c 'mkdir $HOME/.local/bin'
+&lt;a name="rest_code_9c4c86d583c14c0cb2f4aae7a0f15ef2-2"&gt;&lt;/a&gt;sudo lxc exec ea -- su - ubuntu -c 'echo "wine $HOME/.wine/drive_c/Program\ Files/Sparx\ Systems/EA\ LITE/EA.exe" &amp;gt; $HOME/.local/bin/ealite'
+&lt;a name="rest_code_9c4c86d583c14c0cb2f4aae7a0f15ef2-3"&gt;&lt;/a&gt;sudo lxc exec ea -- su - ubuntu -c 'chmod 755 $HOME/.local/bin/ealite'
 &lt;/pre&gt;&lt;/div&gt;
 &lt;div class="section" id="ejecutar-ealite"&gt;
 &lt;h2&gt;Ejecutar EALite&lt;/h2&gt;
 &lt;p&gt;Ahora, podemos usar el visor de Enterprise Architect.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_1c7afedb475b4fa5a6d25035ea442cc9-1"&gt;&lt;/a&gt;sudo lxc exec ea -- su - ubuntu -c 'ealite'
+&lt;pre class="code text"&gt;&lt;a name="rest_code_c57117f60c874d48a2360737e8f1211d-1"&gt;&lt;/a&gt;sudo lxc exec ea -- su - ubuntu -c 'ealite'
 &lt;/pre&gt;&lt;p&gt;Cuando iniciemos el sistema operativo, requerimos de iniciar el contenedores
 antes de ejecutar la instrucción anterior, &lt;code&gt;sudo lxc start ea&lt;/code&gt;.&lt;/p&gt;
 &lt;div class="figure align-center"&gt;
@@ -341,12 +341,12 @@ antes de ejecutar la instrucción anterior, &lt;code&gt;sudo lxc start ea&lt;/co
 &lt;p&gt;Puedes asegurar una forma simple de ejecutar EALite creando una rutina de
 lanzamiento con las dos líneas anteriores en un archivo que sea reconocido en
 el &lt;code&gt;path&lt;/code&gt;.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_e28d8356651a48ee98a79d6ddf4ecc01-1"&gt;&lt;/a&gt;mkdir -p $HOME/.local/bin
-&lt;a name="rest_code_e28d8356651a48ee98a79d6ddf4ecc01-2"&gt;&lt;/a&gt;cat &amp;lt;&amp;lt; EOF &amp;gt; $HOME/.local/bin/ealite
-&lt;a name="rest_code_e28d8356651a48ee98a79d6ddf4ecc01-3"&gt;&lt;/a&gt;sudo lxc start ea
-&lt;a name="rest_code_e28d8356651a48ee98a79d6ddf4ecc01-4"&gt;&lt;/a&gt;sudo lxc exec ea -- su - ubuntu -c 'ealite'
-&lt;a name="rest_code_e28d8356651a48ee98a79d6ddf4ecc01-5"&gt;&lt;/a&gt;EOF
-&lt;a name="rest_code_e28d8356651a48ee98a79d6ddf4ecc01-6"&gt;&lt;/a&gt;chmod 755 $HOME/.local/bin/ealite
+&lt;pre class="code text"&gt;&lt;a name="rest_code_2f64eccdf86342909281163f9428be38-1"&gt;&lt;/a&gt;mkdir -p $HOME/.local/bin
+&lt;a name="rest_code_2f64eccdf86342909281163f9428be38-2"&gt;&lt;/a&gt;cat &amp;lt;&amp;lt; EOF &amp;gt; $HOME/.local/bin/ealite
+&lt;a name="rest_code_2f64eccdf86342909281163f9428be38-3"&gt;&lt;/a&gt;sudo lxc start ea
+&lt;a name="rest_code_2f64eccdf86342909281163f9428be38-4"&gt;&lt;/a&gt;sudo lxc exec ea -- su - ubuntu -c 'ealite'
+&lt;a name="rest_code_2f64eccdf86342909281163f9428be38-5"&gt;&lt;/a&gt;EOF
+&lt;a name="rest_code_2f64eccdf86342909281163f9428be38-6"&gt;&lt;/a&gt;chmod 755 $HOME/.local/bin/ealite
 &lt;/pre&gt;&lt;p&gt;La ejecución con &lt;code&gt;sudo&lt;/code&gt; puede omitirse si se añade el usuario a un grupo
 que permita la ejecución de lxc. Más adelante, haré una publicación sobre como
 hacerlo. Por ahora, diviértete ejecutando &lt;code&gt;ealite&lt;/code&gt; e ingresando la
@@ -357,28 +357,28 @@ contenedor.&lt;/p&gt;
 &lt;div class="section" id="compartir"&gt;
 &lt;h2&gt;Compartir&lt;/h2&gt;
 &lt;p&gt;Para compartir el contenedor, puedes publicarlo y exportar la imagen.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_2466b970e137407db96ce51c2051976b-1"&gt;&lt;/a&gt;sudo lxc publish ea --alias ealite
-&lt;a name="rest_code_2466b970e137407db96ce51c2051976b-2"&gt;&lt;/a&gt;sudo lxc image export ealite
+&lt;pre class="code text"&gt;&lt;a name="rest_code_c502fdd862644dfc8fb9f6f1b29cc52f-1"&gt;&lt;/a&gt;sudo lxc publish ea --alias ealite
+&lt;a name="rest_code_c502fdd862644dfc8fb9f6f1b29cc52f-2"&gt;&lt;/a&gt;sudo lxc image export ealite
 &lt;/pre&gt;&lt;p&gt;La imagen exportada es un archivo &lt;code&gt;tar.gz&lt;/code&gt; con el nombre asociado al
 &lt;em&gt;fingerprint&lt;/em&gt; (una secuencia alfanumérica). Luego se debe importar la imagen
 y hacer &lt;code&gt;launch&lt;/code&gt; nuevamente con el perfil.&lt;/p&gt;
 &lt;p&gt;También puedes exportar directamente el contenedor, lo cual es recomendable
 porque lleva con ello la configuración del perfil GUI y es listo para usar
 una vez hagas la importación.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_6d707b5703504619859637becf564d7e-1"&gt;&lt;/a&gt;sudo lxc export ea ea.tar.gz --optimized-storage
+&lt;pre class="code text"&gt;&lt;a name="rest_code_69bda44514034646a99a98af629939c8-1"&gt;&lt;/a&gt;sudo lxc export ea ea.tar.gz --optimized-storage
 &lt;/pre&gt;&lt;/div&gt;
 &lt;div class="section" id="referencias"&gt;
 &lt;h2&gt;Referencias&lt;/h2&gt;
 &lt;ul class="simple"&gt;
-&lt;li&gt;&lt;a class="reference external" href="https://www.sparxsystems.eu/enterprisearchitect/ea-lite-edition/"&gt;EA Viewer&lt;/a&gt;.&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference external" href="https://askubuntu.com/questions/827070/cant-run-glxgears-in-root-on-lxc-2-0-container/827146"&gt;can't run “glxgears” in root on lxc 2.0 container&lt;/a&gt;.
-Solución a un posible error usando GUI en LXC.&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference external" href="https://blog.simos.info/how-to-easily-run-graphics-accelerated-gui-apps-in-lxd-containers-on-your-ubuntu-desktop/"&gt;How to easily run graphics-accelerated GUI apps in LXD containers on your Ubuntu desktop&lt;/a&gt;.&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference external" href="https://linuxcontainers.org/lxd/getting-started-cli/"&gt;LXD Getting started - command line&lt;/a&gt;.&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference external" href="https://us.images.linuxcontainers.org/"&gt;Image server for LXC and LXD&lt;/a&gt;.&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference external" href="https://www.sparxsystems.com/enterprise_architect_user_guide/14.0/product_information/enterprise_architect_linux.html"&gt;Installing Enterprise Architect under Linux&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference external" href="https://wiki.winehq.org/Winetricks"&gt;Winetricks&lt;/a&gt;.&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference external" href="https://stackoverflow.com/questions/31228191/how-do-i-export-a-lxc-container"&gt;How do I export a lxc container?&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://www.sparxsystems.eu/enterprisearchitect/ea-lite-edition/"&gt;EA Viewer&lt;/a&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://askubuntu.com/questions/827070/cant-run-glxgears-in-root-on-lxc-2-0-container/827146"&gt;can't run “glxgears” in root on lxc 2.0 container&lt;/a&gt;.
+Solución a un posible error usando GUI en LXC.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://blog.simos.info/how-to-easily-run-graphics-accelerated-gui-apps-in-lxd-containers-on-your-ubuntu-desktop/"&gt;How to easily run graphics-accelerated GUI apps in LXD containers on your Ubuntu desktop&lt;/a&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://linuxcontainers.org/lxd/getting-started-cli/"&gt;LXD Getting started - command line&lt;/a&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://us.images.linuxcontainers.org/"&gt;Image server for LXC and LXD&lt;/a&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://www.sparxsystems.com/enterprise_architect_user_guide/14.0/product_information/enterprise_architect_linux.html"&gt;Installing Enterprise Architect under Linux&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://wiki.winehq.org/Winetricks"&gt;Winetricks&lt;/a&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://stackoverflow.com/questions/31228191/how-do-i-export-a-lxc-container"&gt;How do I export a lxc container?&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;&lt;/div&gt;</description><category>contenedor</category><category>ealite</category><category>enterprise architect</category><category>linux</category><category>lxc</category><category>lxd</category><category>wine</category><guid>https://cosmoscalibur.github.io/blog/crear-contenedor-lxc-para-aplicacion-gui-ealite/</guid><pubDate>Mon, 11 Nov 2019 23:21:26 GMT</pubDate></item><item><title>¿Nos atraemos gravitacionalmente?</title><link>https://cosmoscalibur.github.io/blog/nos-atraemos-gravitacionalmente/</link><dc:creator>Edward Villegas-Pulgarin</dc:creator><description>&lt;div&gt;&lt;p&gt;La interacción gravitacional o mal llamada fuerza gravitacional (hablamos de
 dos cosas diferentes), suele verse en nuestro imaginario como una interacción
@@ -490,17 +490,19 @@ resulta débil en comparación a todas ellas.&lt;/p&gt;
 &lt;div class="section" id="referencias"&gt;
 &lt;h2&gt;Referencias&lt;/h2&gt;
 &lt;ul class="simple"&gt;
-&lt;li&gt;&lt;dl class="first docutils"&gt;
+&lt;li&gt;&lt;dl class="simple"&gt;
 &lt;dt&gt;&lt;a class="reference external" href="https://en.wikipedia.org/wiki/Philosophi%C3%A6_Naturalis_Principia_Mathematica"&gt;Philosophiæ naturalis principia mathematica&lt;/a&gt;,&lt;/dt&gt;
-&lt;dd&gt;Wikipedia.&lt;/dd&gt;
+&lt;dd&gt;&lt;p&gt;Wikipedia.&lt;/p&gt;
+&lt;/dd&gt;
 &lt;/dl&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;dl class="first docutils"&gt;
+&lt;li&gt;&lt;dl class="simple"&gt;
 &lt;dt&gt;&lt;a class="reference external" href="https://en.wikipedia.org/wiki/Newton%27s_law_of_universal_gravitation"&gt;Newton's law of universal gravitation&lt;/a&gt;,&lt;/dt&gt;
-&lt;dd&gt;Wikipedia.&lt;/dd&gt;
+&lt;dd&gt;&lt;p&gt;Wikipedia.&lt;/p&gt;
+&lt;/dd&gt;
 &lt;/dl&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;a class="reference external" href="https://en.wikipedia.org/wiki/Friction"&gt;Friction&lt;/a&gt;, Wikipedia.&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://en.wikipedia.org/wiki/Friction"&gt;Friction&lt;/a&gt;, Wikipedia.&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;&lt;/div&gt;</description><category>atracción gravitacional</category><category>física</category><category>fuerza de gravedad</category><category>gravedad</category><guid>https://cosmoscalibur.github.io/blog/nos-atraemos-gravitacionalmente/</guid><pubDate>Sat, 09 Nov 2019 00:40:26 GMT</pubDate></item><item><title>Instalando paquetes en Linux (Mint)</title><link>https://cosmoscalibur.github.io/blog/instalando-paquetes-en-linux-mint/</link><dc:creator>Edward Villegas-Pulgarin</dc:creator><description>&lt;div&gt;&lt;p&gt;En Linux ahora tenemos muchas más opciones para instalar nuestros programas
 favoritos y de uso diario, según los intereses personales en reducir espacio
@@ -537,8 +539,8 @@ los recomiendo como última opción.&lt;/p&gt;
 (preinstalado) o Synaptic (preinstalado en Linux Mint), para realizar la
 gestión de manera gráfica. Pero también puedes usar &lt;code&gt;apt-get&lt;/code&gt; o
 &lt;code&gt;apt&lt;/code&gt; (recomendado) para la gestión a través de consola.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_8f3a65ab28ba4afb87165c4aa5a8ef8a-1"&gt;&lt;/a&gt;sudo apt update -q
-&lt;a name="rest_code_8f3a65ab28ba4afb87165c4aa5a8ef8a-2"&gt;&lt;/a&gt;sudo apt install -y okular
+&lt;pre class="code text"&gt;&lt;a name="rest_code_a347500f4ff84fc7aa1b3a84a2852665-1"&gt;&lt;/a&gt;sudo apt update -q
+&lt;a name="rest_code_a347500f4ff84fc7aa1b3a84a2852665-2"&gt;&lt;/a&gt;sudo apt install -y okular
 &lt;/pre&gt;&lt;p&gt;Ahora dispones del lector de archivos PDF en tu sistema. Puedes accederlo por
 el menú o por comando (&lt;code&gt;okular&lt;/code&gt;). La primera línea es recomendable para
 actualizar las direcciones desde las cuales se descarga el software y los
@@ -562,14 +564,14 @@ múltiples instancias o exponga una brecha de seguridad).&lt;/p&gt;
 disponibles.&lt;/p&gt;
 &lt;p id="appimagecode"&gt;Descargamos el &lt;a class="reference external" href="https://stellarium.org/"&gt;AppImage de Stellarium&lt;/a&gt; del sitio
 oficial del software (el segundo pingüino).&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_76c3becd45124e24a88b0ab27f24b1e7-1"&gt;&lt;/a&gt;chmod 755 Stellarium-0.19.2-x86_64.AppImage
-&lt;a name="rest_code_76c3becd45124e24a88b0ab27f24b1e7-2"&gt;&lt;/a&gt;./Stellarium-0.19.2-x86_64.AppImage
+&lt;pre class="code text"&gt;&lt;a name="rest_code_7495a606f9dd49e6bb34f3838b7209d2-1"&gt;&lt;/a&gt;chmod 755 Stellarium-0.19.2-x86_64.AppImage
+&lt;a name="rest_code_7495a606f9dd49e6bb34f3838b7209d2-2"&gt;&lt;/a&gt;./Stellarium-0.19.2-x86_64.AppImage
 &lt;/pre&gt;&lt;p&gt;La primera línea solo es necesario ejecutarla la primera vez.&lt;/p&gt;
 &lt;p&gt;Si queremos ejecutarlo de una manera más cómoda, podemos mover el archivo al
 directorio de ejecución de binarios del usuario o a uno de ejecución de sistema
 para estar disponible para todos los usuarios (&lt;code&gt;/usr/local/bin/&lt;/code&gt;).&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_94b6c770b552471ebf155e99cab2c3e7-1"&gt;&lt;/a&gt;mv Stellarium-0.19.2-x86_64.AppImage ~/.local/bin/stellarium
-&lt;a name="rest_code_94b6c770b552471ebf155e99cab2c3e7-2"&gt;&lt;/a&gt;stellarium
+&lt;pre class="code text"&gt;&lt;a name="rest_code_09b2959aa5204d4f86c33bfcaf81f4e0-1"&gt;&lt;/a&gt;mv Stellarium-0.19.2-x86_64.AppImage ~/.local/bin/stellarium
+&lt;a name="rest_code_09b2959aa5204d4f86c33bfcaf81f4e0-2"&gt;&lt;/a&gt;stellarium
 &lt;/pre&gt;&lt;p&gt;Nuevamente, la primera línea es solo la primera vez.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="snap"&gt;
@@ -579,10 +581,10 @@ para estar disponible para todos los usuarios (&lt;code&gt;/usr/local/bin/&lt;/c
 requiere aprobación de Canonical para ser admitido el paquete y requiere ser
 administrador para la instalación.&lt;/p&gt;
 &lt;p&gt;En Ubuntu viene preinstalado pero en Linux Mint es necesario instalarlo.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_8420699c0ed84d57b7cfc5c75346dfd2-1"&gt;&lt;/a&gt;sudo apt install -y snapd
+&lt;pre class="code text"&gt;&lt;a name="rest_code_fe0151fa5130436ca442ec31845f448e-1"&gt;&lt;/a&gt;sudo apt install -y snapd
 &lt;/pre&gt;&lt;p&gt;Una vez instalado, podemos proceder a instalar un paquete snap.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_4ede0102d42342929789c1f503cbdfd4-1"&gt;&lt;/a&gt;sudo snap install code --classic
-&lt;a name="rest_code_4ede0102d42342929789c1f503cbdfd4-2"&gt;&lt;/a&gt;snap run code # Ejecuta
+&lt;pre class="code text"&gt;&lt;a name="rest_code_0003a94769c0445eabd188b71c65a199-1"&gt;&lt;/a&gt;sudo snap install code --classic
+&lt;a name="rest_code_0003a94769c0445eabd188b71c65a199-2"&gt;&lt;/a&gt;snap run code # Ejecuta
 &lt;/pre&gt;&lt;p&gt;La ejecución con &lt;code&gt;snap run&lt;/code&gt; es necesaria si tras instalar no reconoce
 el paquete. Después de la primera ejecución o tras abrir una nueva terminal
 o reiniciar el equipo, será ya reconocido el paquete sin problema para
@@ -598,20 +600,20 @@ administrador.&lt;/p&gt;
 &lt;p&gt;En Linux Mint viene preconfigurado a partir de la versión 18.3, pero si usas
 Ubuntu necesitas instalarlo. Desde la 18.10 se encuentra en los repositorios
 oficiales.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_b74625680a9044a4a983691bff71171b-1"&gt;&lt;/a&gt;sudo apt install flatpak
-&lt;a name="rest_code_b74625680a9044a4a983691bff71171b-2"&gt;&lt;/a&gt;sudo apt install gnome-software-plugin-flatpak
-&lt;a name="rest_code_b74625680a9044a4a983691bff71171b-3"&gt;&lt;/a&gt;flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+&lt;pre class="code text"&gt;&lt;a name="rest_code_1fb9bd40ea674121a21b9f57b4beec49-1"&gt;&lt;/a&gt;sudo apt install flatpak
+&lt;a name="rest_code_1fb9bd40ea674121a21b9f57b4beec49-2"&gt;&lt;/a&gt;sudo apt install gnome-software-plugin-flatpak
+&lt;a name="rest_code_1fb9bd40ea674121a21b9f57b4beec49-3"&gt;&lt;/a&gt;flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 &lt;/pre&gt;&lt;p&gt;La primera línea instala el gestor de flatpak. La segunda línea permite usar
 flatpak con el Centro de Software de Gnome. Y la tercera línea agrega el
 repositorio de paquetes flatpak más popular, &lt;a class="reference external" href="https://flathub.org/home"&gt;flathub&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Para ejemplificar, instalaremos el paquete peek&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_1313c16587734d439aa670ed7f3f313d-1"&gt;&lt;/a&gt;flatpak install -y flathub com.uploadedlobster.peek
-&lt;a name="rest_code_1313c16587734d439aa670ed7f3f313d-2"&gt;&lt;/a&gt;flatpak run com.uploadedlobster.peek
+&lt;pre class="code text"&gt;&lt;a name="rest_code_062549dd27b944f1acee53e46a79c166-1"&gt;&lt;/a&gt;flatpak install -y flathub com.uploadedlobster.peek
+&lt;a name="rest_code_062549dd27b944f1acee53e46a79c166-2"&gt;&lt;/a&gt;flatpak run com.uploadedlobster.peek
 &lt;/pre&gt;&lt;p&gt;Desafortunadamente la ejecución es siempre así, pero puedes crear un archivo
 que te facilite la labor.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_a1fcb91167894157a1bf831790c23eeb-1"&gt;&lt;/a&gt;echo "flatpak run com.uploadedlobster.peek" &amp;gt; ~/.local/bin/peek
-&lt;a name="rest_code_a1fcb91167894157a1bf831790c23eeb-2"&gt;&lt;/a&gt;chmod 755 ~/.local/bin/peek
-&lt;a name="rest_code_a1fcb91167894157a1bf831790c23eeb-3"&gt;&lt;/a&gt;peek
+&lt;pre class="code text"&gt;&lt;a name="rest_code_2a05d824ad604c28b0fb02b89449b25a-1"&gt;&lt;/a&gt;echo "flatpak run com.uploadedlobster.peek" &amp;gt; ~/.local/bin/peek
+&lt;a name="rest_code_2a05d824ad604c28b0fb02b89449b25a-2"&gt;&lt;/a&gt;chmod 755 ~/.local/bin/peek
+&lt;a name="rest_code_2a05d824ad604c28b0fb02b89449b25a-3"&gt;&lt;/a&gt;peek
 &lt;/pre&gt;&lt;p&gt;A nivel gráfico, por defecto si es agregado al menú.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="compilacion-y-binarios"&gt;
@@ -644,11 +646,11 @@ proceder a ejecutarlo. Este procedimiento, es el mismo expuesto en las
 &lt;div class="section" id="referencias"&gt;
 &lt;h2&gt;Referencias&lt;/h2&gt;
 &lt;ul class="simple"&gt;
-&lt;li&gt;&lt;a class="reference external" href="https://appimage.org/"&gt;AppImage&lt;/a&gt;.&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference external" href="https://www.flatpak.org/"&gt;Flatpak&lt;/a&gt;.&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference external" href="https://snapcraft.io/"&gt;Snap&lt;/a&gt;.&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference external" href="https://wiki.gnome.org/Apps/Software"&gt;Gnome Software Center&lt;/a&gt;.&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference external" href="https://help.ubuntu.com/lts/serverguide/apt.html"&gt;Ubuntu APT&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://appimage.org/"&gt;AppImage&lt;/a&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://www.flatpak.org/"&gt;Flatpak&lt;/a&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://snapcraft.io/"&gt;Snap&lt;/a&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://wiki.gnome.org/Apps/Software"&gt;Gnome Software Center&lt;/a&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://help.ubuntu.com/lts/serverguide/apt.html"&gt;Ubuntu APT&lt;/a&gt;.&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;&lt;/div&gt;</description><category>appimage</category><category>debian</category><category>flatpak</category><category>linux</category><category>linux mint</category><category>paquetes</category><category>snap</category><category>software</category><guid>https://cosmoscalibur.github.io/blog/instalando-paquetes-en-linux-mint/</guid><pubDate>Wed, 23 Oct 2019 01:21:34 GMT</pubDate></item><item><title>Recuperar el arranque de tu Moto G5 en Linux</title><link>https://cosmoscalibur.github.io/blog/recuperar-el-arranque-de-tu-moto-g5-en-linux/</link><dc:creator>Edward Villegas-Pulgarin</dc:creator><description>&lt;div&gt;&lt;p&gt;Recientemente, aunque cambié a un Moto G7, pensaba restaurar el celular de
 fábrica pero salió mal el proceso (no siempre es fácil si pretendes eliminar
@@ -671,8 +673,8 @@ Linux pero por lo mismo dependerá de cual usemos.&lt;/p&gt;
 18.04, compartiendo mucho de la base de paquetes en sus repositorios. Así,
 en ambos casos, podremos proceder a instalar de la misma manera el SDK de
 Android, ADB, Fastboot y Platform Tools.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_d5b6e72a10a647878a367d10657e0ffd-1"&gt;&lt;/a&gt;sudo apt install -y android-sdk android-tools-fastboot android-tools-adb \
-&lt;a name="rest_code_d5b6e72a10a647878a367d10657e0ffd-2"&gt;&lt;/a&gt;android-sdk-platform-tools
+&lt;pre class="code text"&gt;&lt;a name="rest_code_bc08b14589d8434fb02dd8a7236ae6fc-1"&gt;&lt;/a&gt;sudo apt install -y android-sdk android-tools-fastboot android-tools-adb \
+&lt;a name="rest_code_bc08b14589d8434fb02dd8a7236ae6fc-2"&gt;&lt;/a&gt;android-sdk-platform-tools
 &lt;/pre&gt;&lt;/div&gt;
 &lt;div class="section" id="descargar-rom-de-fabrica"&gt;
 &lt;h2&gt;Descargar &lt;em&gt;ROM&lt;/em&gt; de fábrica&lt;/h2&gt;
@@ -690,21 +692,21 @@ la recomendada es esta.&lt;/p&gt;
 &lt;p&gt;Ya nos acercamos poco a poco. El siguiente paso es con nuestro celular.
 Debemos pasar a modo &lt;em&gt;fastboot&lt;/em&gt; y esto se logra de la siguiente manera.&lt;/p&gt;
 &lt;ol class="arabic simple"&gt;
-&lt;li&gt;Apagar el celular.&lt;/li&gt;
-&lt;li&gt;Presionar de manera sostenida la parte inferior de la tecla de volumen.&lt;/li&gt;
-&lt;li&gt;Mientras sostienes la tecla de volumen, presionar la tecla de prendido, y
-soltar.&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Apagar el celular.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Presionar de manera sostenida la parte inferior de la tecla de volumen.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Mientras sostienes la tecla de volumen, presionar la tecla de prendido, y
+soltar.&lt;/p&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;En este momento, hemos ingresado al modo &lt;em&gt;fastboot&lt;/em&gt; (o &lt;em&gt;bootloader&lt;/em&gt;).
 Conectamos el cable USB tanto al celular como a nuestro computador.&lt;/p&gt;
 &lt;p&gt;Podemos probar que todo vaya bien abriendo una terminal y ejecutando&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_5f5bf94b700c48e1ac5181c9e975e763-1"&gt;&lt;/a&gt;fastboot devices
+&lt;pre class="code text"&gt;&lt;a name="rest_code_093d0ca1dd134a0e9735208d993dccdc-1"&gt;&lt;/a&gt;fastboot devices
 &lt;/pre&gt;&lt;p&gt;Y sabremos que funciona si muestra una secuencia alfanumérica y luego la
 palabra &lt;em&gt;fastboot&lt;/em&gt;. En mi caso es:&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_d4cc0df8e3de4bb8b4059363470a828c-1"&gt;&lt;/a&gt;ZY3224RNMN   fastboot
+&lt;pre class="code text"&gt;&lt;a name="rest_code_46c78e1ec0854b7696dc40e75e2b881f-1"&gt;&lt;/a&gt;ZY3224RNMN   fastboot
 &lt;/pre&gt;&lt;p&gt;Algunas veces puede fallar por permisos, en cuyo caso deberías probar la
 ejecución con permiso de administrador.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_928211c0e04145e0976833f78ce78065-1"&gt;&lt;/a&gt;sudo fastboot devices
+&lt;pre class="code text"&gt;&lt;a name="rest_code_f6ea6029a5ad40f181bd0863bdb561f2-1"&gt;&lt;/a&gt;sudo fastboot devices
 &lt;/pre&gt;&lt;/div&gt;
 &lt;div class="section" id="instalar-sistema-operativo"&gt;
 &lt;h2&gt;Instalar sistema operativo&lt;/h2&gt;
@@ -714,33 +716,33 @@ operativo (algunos exploradores de archivos admiten poseen la opción de abrir
 la terminal en el directorio abierto en el explorador o puedes moverte en la
 terminal con el comando &lt;code&gt;cd&lt;/code&gt;).&lt;/p&gt;
 &lt;p&gt;Una vez ubicados en el directorio desde la terminal, procedemos a ejecutar&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_81b689c9febe4373a0ae00159299812c-1"&gt;&lt;/a&gt;fastboot getvar max-sparse-size
-&lt;a name="rest_code_81b689c9febe4373a0ae00159299812c-2"&gt;&lt;/a&gt;fastboot oem fb_mode_set
-&lt;a name="rest_code_81b689c9febe4373a0ae00159299812c-3"&gt;&lt;/a&gt;fastboot flash partition gpt.bin
-&lt;a name="rest_code_81b689c9febe4373a0ae00159299812c-4"&gt;&lt;/a&gt;fastboot flash bootloader bootloader.img
-&lt;a name="rest_code_81b689c9febe4373a0ae00159299812c-5"&gt;&lt;/a&gt;fastboot flash modem NON-HLOS.bin
-&lt;a name="rest_code_81b689c9febe4373a0ae00159299812c-6"&gt;&lt;/a&gt;fastboot flash fsg fsg.mbn
-&lt;a name="rest_code_81b689c9febe4373a0ae00159299812c-7"&gt;&lt;/a&gt;fastboot erase modemst1
-&lt;a name="rest_code_81b689c9febe4373a0ae00159299812c-8"&gt;&lt;/a&gt;fastboot erase modemst2
-&lt;a name="rest_code_81b689c9febe4373a0ae00159299812c-9"&gt;&lt;/a&gt;fastboot flash dsp adspso.bin
-&lt;a name="rest_code_81b689c9febe4373a0ae00159299812c-10"&gt;&lt;/a&gt;fastboot flash logo logo.bin
-&lt;a name="rest_code_81b689c9febe4373a0ae00159299812c-11"&gt;&lt;/a&gt;fastboot flash boot boot.img
-&lt;a name="rest_code_81b689c9febe4373a0ae00159299812c-12"&gt;&lt;/a&gt;fastboot flash recovery recovery.img
-&lt;a name="rest_code_81b689c9febe4373a0ae00159299812c-13"&gt;&lt;/a&gt;fastboot flash system system.img_sparsechunk.0
-&lt;a name="rest_code_81b689c9febe4373a0ae00159299812c-14"&gt;&lt;/a&gt;fastboot flash system system.img_sparsechunk.1
-&lt;a name="rest_code_81b689c9febe4373a0ae00159299812c-15"&gt;&lt;/a&gt;fastboot flash system system.img_sparsechunk.2
-&lt;a name="rest_code_81b689c9febe4373a0ae00159299812c-16"&gt;&lt;/a&gt;fastboot flash system system.img_sparsechunk.3
-&lt;a name="rest_code_81b689c9febe4373a0ae00159299812c-17"&gt;&lt;/a&gt;fastboot flash system system.img_sparsechunk.4
-&lt;a name="rest_code_81b689c9febe4373a0ae00159299812c-18"&gt;&lt;/a&gt;fastboot flash system system.img_sparsechunk.5
-&lt;a name="rest_code_81b689c9febe4373a0ae00159299812c-19"&gt;&lt;/a&gt;fastboot flash system system.img_sparsechunk.6
-&lt;a name="rest_code_81b689c9febe4373a0ae00159299812c-20"&gt;&lt;/a&gt;fastboot flash system system.img_sparsechunk.7
-&lt;a name="rest_code_81b689c9febe4373a0ae00159299812c-21"&gt;&lt;/a&gt;fastboot flash system system.img_sparsechunk.8
-&lt;a name="rest_code_81b689c9febe4373a0ae00159299812c-22"&gt;&lt;/a&gt;fastboot flash oem oem.img
-&lt;a name="rest_code_81b689c9febe4373a0ae00159299812c-23"&gt;&lt;/a&gt;fastboot erase cache
-&lt;a name="rest_code_81b689c9febe4373a0ae00159299812c-24"&gt;&lt;/a&gt;fastboot erase userdata
-&lt;a name="rest_code_81b689c9febe4373a0ae00159299812c-25"&gt;&lt;/a&gt;fastboot erase DDR
-&lt;a name="rest_code_81b689c9febe4373a0ae00159299812c-26"&gt;&lt;/a&gt;fastboot oem fb_mode_clear
-&lt;a name="rest_code_81b689c9febe4373a0ae00159299812c-27"&gt;&lt;/a&gt;fastboot reboot
+&lt;pre class="code text"&gt;&lt;a name="rest_code_1bc4ee7c65624a24b6bf1b46e5e8afd8-1"&gt;&lt;/a&gt;fastboot getvar max-sparse-size
+&lt;a name="rest_code_1bc4ee7c65624a24b6bf1b46e5e8afd8-2"&gt;&lt;/a&gt;fastboot oem fb_mode_set
+&lt;a name="rest_code_1bc4ee7c65624a24b6bf1b46e5e8afd8-3"&gt;&lt;/a&gt;fastboot flash partition gpt.bin
+&lt;a name="rest_code_1bc4ee7c65624a24b6bf1b46e5e8afd8-4"&gt;&lt;/a&gt;fastboot flash bootloader bootloader.img
+&lt;a name="rest_code_1bc4ee7c65624a24b6bf1b46e5e8afd8-5"&gt;&lt;/a&gt;fastboot flash modem NON-HLOS.bin
+&lt;a name="rest_code_1bc4ee7c65624a24b6bf1b46e5e8afd8-6"&gt;&lt;/a&gt;fastboot flash fsg fsg.mbn
+&lt;a name="rest_code_1bc4ee7c65624a24b6bf1b46e5e8afd8-7"&gt;&lt;/a&gt;fastboot erase modemst1
+&lt;a name="rest_code_1bc4ee7c65624a24b6bf1b46e5e8afd8-8"&gt;&lt;/a&gt;fastboot erase modemst2
+&lt;a name="rest_code_1bc4ee7c65624a24b6bf1b46e5e8afd8-9"&gt;&lt;/a&gt;fastboot flash dsp adspso.bin
+&lt;a name="rest_code_1bc4ee7c65624a24b6bf1b46e5e8afd8-10"&gt;&lt;/a&gt;fastboot flash logo logo.bin
+&lt;a name="rest_code_1bc4ee7c65624a24b6bf1b46e5e8afd8-11"&gt;&lt;/a&gt;fastboot flash boot boot.img
+&lt;a name="rest_code_1bc4ee7c65624a24b6bf1b46e5e8afd8-12"&gt;&lt;/a&gt;fastboot flash recovery recovery.img
+&lt;a name="rest_code_1bc4ee7c65624a24b6bf1b46e5e8afd8-13"&gt;&lt;/a&gt;fastboot flash system system.img_sparsechunk.0
+&lt;a name="rest_code_1bc4ee7c65624a24b6bf1b46e5e8afd8-14"&gt;&lt;/a&gt;fastboot flash system system.img_sparsechunk.1
+&lt;a name="rest_code_1bc4ee7c65624a24b6bf1b46e5e8afd8-15"&gt;&lt;/a&gt;fastboot flash system system.img_sparsechunk.2
+&lt;a name="rest_code_1bc4ee7c65624a24b6bf1b46e5e8afd8-16"&gt;&lt;/a&gt;fastboot flash system system.img_sparsechunk.3
+&lt;a name="rest_code_1bc4ee7c65624a24b6bf1b46e5e8afd8-17"&gt;&lt;/a&gt;fastboot flash system system.img_sparsechunk.4
+&lt;a name="rest_code_1bc4ee7c65624a24b6bf1b46e5e8afd8-18"&gt;&lt;/a&gt;fastboot flash system system.img_sparsechunk.5
+&lt;a name="rest_code_1bc4ee7c65624a24b6bf1b46e5e8afd8-19"&gt;&lt;/a&gt;fastboot flash system system.img_sparsechunk.6
+&lt;a name="rest_code_1bc4ee7c65624a24b6bf1b46e5e8afd8-20"&gt;&lt;/a&gt;fastboot flash system system.img_sparsechunk.7
+&lt;a name="rest_code_1bc4ee7c65624a24b6bf1b46e5e8afd8-21"&gt;&lt;/a&gt;fastboot flash system system.img_sparsechunk.8
+&lt;a name="rest_code_1bc4ee7c65624a24b6bf1b46e5e8afd8-22"&gt;&lt;/a&gt;fastboot flash oem oem.img
+&lt;a name="rest_code_1bc4ee7c65624a24b6bf1b46e5e8afd8-23"&gt;&lt;/a&gt;fastboot erase cache
+&lt;a name="rest_code_1bc4ee7c65624a24b6bf1b46e5e8afd8-24"&gt;&lt;/a&gt;fastboot erase userdata
+&lt;a name="rest_code_1bc4ee7c65624a24b6bf1b46e5e8afd8-25"&gt;&lt;/a&gt;fastboot erase DDR
+&lt;a name="rest_code_1bc4ee7c65624a24b6bf1b46e5e8afd8-26"&gt;&lt;/a&gt;fastboot oem fb_mode_clear
+&lt;a name="rest_code_1bc4ee7c65624a24b6bf1b46e5e8afd8-27"&gt;&lt;/a&gt;fastboot reboot
 &lt;/pre&gt;&lt;p&gt;Muy bien, hemos terminado de instalar (si no hemos tenido ejecuciones
 fallidas). Para iniciar el celular, con la tecla de volumen buscamos &lt;em&gt;restart&lt;/em&gt;
 y luego presionamos el botón de encendido. En este momento, es como si
@@ -760,9 +762,9 @@ visible (en mi caso, lo he notado con demoras superiores a las habituales).&lt;/
 &lt;div class="section" id="referencias"&gt;
 &lt;h2&gt;Referencias&lt;/h2&gt;
 &lt;ul class="simple"&gt;
-&lt;li&gt;&lt;a class="reference external" href="https://forum.xda-developers.com/g5/development/fastboot-cedricretail8-1-0opp28-85-19-4-t3930448"&gt;[FASTBOOT]CEDRIC_RETAIL_8.1.0_OPP28.85-19-4-2_cid50_subsidy-DEFAULT_regulatory-DEFAUL&lt;/a&gt;.&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference external" href="https://www.hardreset.info/devices/motorola/motorola-moto-g5/recovery-mode/"&gt;HardReset.info: Recovery Mode MOTOROLA Moto G5&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference external" href="https://android.gadgethacks.com/how-to/know-your-android-tools-what-is-fastboot-do-you-use-it-0155640/"&gt;What Is Fastboot &amp;amp; How Do You Use It?&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://forum.xda-developers.com/g5/development/fastboot-cedricretail8-1-0opp28-85-19-4-t3930448"&gt;[FASTBOOT]CEDRIC_RETAIL_8.1.0_OPP28.85-19-4-2_cid50_subsidy-DEFAULT_regulatory-DEFAUL&lt;/a&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://www.hardreset.info/devices/motorola/motorola-moto-g5/recovery-mode/"&gt;HardReset.info: Recovery Mode MOTOROLA Moto G5&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://android.gadgethacks.com/how-to/know-your-android-tools-what-is-fastboot-do-you-use-it-0155640/"&gt;What Is Fastboot &amp;amp; How Do You Use It?&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;&lt;/div&gt;</description><category>android</category><category>celulares</category><category>fastboot</category><category>flash</category><category>linux</category><category>moto g5</category><category>motorola</category><category>smartphone</category><category>soft brick</category><guid>https://cosmoscalibur.github.io/blog/recuperar-el-arranque-de-tu-moto-g5-en-linux/</guid><pubDate>Tue, 22 Oct 2019 00:10:34 GMT</pubDate></item><item><title>Audiolibros con Overdrive y Biblioteca EPM</title><link>https://cosmoscalibur.github.io/blog/audiolibros-con-overdrive-y-biblioteca-epm/</link><dc:creator>Edward Villegas-Pulgarin</dc:creator><description>&lt;div&gt;&lt;p&gt;Vuelvo después de un largo tiempo al blog, con el fin de compartirles una
 excelente recomendación para aprovechar sus tiempos de espera en transporte o
@@ -786,9 +788,9 @@ dirigirse a la opción "Administrar bibliotecas", el signo "+" para agregar una
 nueva biblioteca y finalmente "EXPLORAR BIBLIOTECAS".&lt;/p&gt;
 &lt;p&gt;La aplicación se encuentra disponible en:&lt;/p&gt;
 &lt;ul class="simple"&gt;
-&lt;li&gt;&lt;a class="reference external" href="https://play.google.com/store/apps/details?id=com.overdrive.mobile.android.mediaconsole"&gt;Google Play&lt;/a&gt;.&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference external" href="https://itunes.apple.com/us/app/overdrive-ebooks-audiobooks/id366869252"&gt;AppStore&lt;/a&gt;.&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference external" href="https://www.microsoft.com/es-co/p/overdrive-library-ebooks-audiobooks/9wzdncrfj3sr?activetab=pivot:overviewtab"&gt;Microsoft Store&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://play.google.com/store/apps/details?id=com.overdrive.mobile.android.mediaconsole"&gt;Google Play&lt;/a&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://itunes.apple.com/us/app/overdrive-ebooks-audiobooks/id366869252"&gt;AppStore&lt;/a&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://www.microsoft.com/es-co/p/overdrive-library-ebooks-audiobooks/9wzdncrfj3sr?activetab=pivot:overviewtab"&gt;Microsoft Store&lt;/a&gt;.&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;Puedes crear una cuenta en Overdrive con el fin de sincronizar tus datos de
 bibliotecas (se puede con Facebook).&lt;/p&gt;
@@ -834,10 +836,11 @@ disfrutar.&lt;/p&gt;
 con algo que no sea tecnología. La motivación de esta publicación es el
 particular mensaje de cumpleaños que me dejo mi hermano, y que dice así:&lt;/p&gt;
 &lt;blockquote&gt;
-¡Felices 28 años! El 28 es un número perfecto, literalmente. Por serlo es
+&lt;p&gt;¡Felices 28 años! El 28 es un número perfecto, literalmente. Por serlo es
 también hexagonal y triangular. Es verdad que es el segundo número perfecto,
 pero también es el último que vas a cumplir. El siguiente está cerca de 500
-¿sabrías encontrarlo?&lt;/blockquote&gt;
+¿sabrías encontrarlo?&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;!-- TEASER_END --&gt;
 &lt;p&gt;Antes que nada, si quieren enviar de felicitaciones como este, pueden encontrar
 en el blog Verne del 'El País' de España, los originales mensajes para edades
@@ -866,13 +869,15 @@ resultado el número mencionado &lt;a class="citation-reference" href="https://c
 &lt;p&gt;Esto es algo poco común, y el primer número perfecto es 6 y el segundo es 28.
 Tal como menciona el mensaje indicado al inicio, el siguiente está alrededor de
 500 (particularmente, 496). Veamos como lo sabemos de forma práctica.&lt;/p&gt;
-&lt;dl class="docutils"&gt;
+&lt;dl class="simple"&gt;
 &lt;dt&gt;n = 6&lt;/dt&gt;
-&lt;dd&gt;Hallamos inicialmente los divisores propios de 6, que corresponde a: 1, 2 y
-3. A continuación: &lt;span class="math"&gt;\(1+2+3=6\)&lt;/span&gt; Como es igual, 6 es un número perfecto.&lt;/dd&gt;
+&lt;dd&gt;&lt;p&gt;Hallamos inicialmente los divisores propios de 6, que corresponde a: 1, 2 y
+3. A continuación: &lt;span class="math"&gt;\(1+2+3=6\)&lt;/span&gt; Como es igual, 6 es un número perfecto.&lt;/p&gt;
+&lt;/dd&gt;
 &lt;dt&gt;n = 28&lt;/dt&gt;
-&lt;dd&gt;Hallamos nuevamente los divisores propios positivos: 1, 2, 4, 7 y 14. Y
-realizamos su suma: &lt;span class="math"&gt;\(1+2+4+7+14=28\)&lt;/span&gt;. Por lo cual, es número perfecto.&lt;/dd&gt;
+&lt;dd&gt;&lt;p&gt;Hallamos nuevamente los divisores propios positivos: 1, 2, 4, 7 y 14. Y
+realizamos su suma: &lt;span class="math"&gt;\(1+2+4+7+14=28\)&lt;/span&gt;. Por lo cual, es número perfecto.&lt;/p&gt;
+&lt;/dd&gt;
 &lt;/dl&gt;
 &lt;p&gt;Por definición el 1 no se considera número perfecto, técnicamente no hay que
 hacer una suma al ser un solo divisor propio positivo. ¿Cómo sabemos cuál es el
@@ -897,10 +902,10 @@ total), 6 puntos son triángulos de lado de 3 puntos (3 vértices que son
 compartidos y 3 que se encuentran en medio de los lados -uno en cada lado-) y el
 10 son lados de 4 puntos (3 vértices compartidos, 2 puntos en cada lado y 1
 punto interior del triángulo ya que se acumula el triángulo anterior).&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_9b898e0991a840a5a1f9cd8a470ecb8b-1"&gt;&lt;/a&gt;.   .      .           .
-&lt;a name="rest_code_9b898e0991a840a5a1f9cd8a470ecb8b-2"&gt;&lt;/a&gt;   . .    . .         . .
-&lt;a name="rest_code_9b898e0991a840a5a1f9cd8a470ecb8b-3"&gt;&lt;/a&gt;         . . .       . . .
-&lt;a name="rest_code_9b898e0991a840a5a1f9cd8a470ecb8b-4"&gt;&lt;/a&gt;                    . . . .
+&lt;pre class="code text"&gt;&lt;a name="rest_code_87394e40c1514181b2021ee97e4e4968-1"&gt;&lt;/a&gt;.   .      .           .
+&lt;a name="rest_code_87394e40c1514181b2021ee97e4e4968-2"&gt;&lt;/a&gt;   . .    . .         . .
+&lt;a name="rest_code_87394e40c1514181b2021ee97e4e4968-3"&gt;&lt;/a&gt;         . . .       . . .
+&lt;a name="rest_code_87394e40c1514181b2021ee97e4e4968-4"&gt;&lt;/a&gt;                    . . . .
 &lt;/pre&gt;&lt;p&gt;Desde la forma matemática, los números triangulares son las sumas parciales de
 la sucesión de números enteros positivos &lt;span class="math"&gt;\(T_{n} = \sum\limits_{i=1}^{n}i\)&lt;/span&gt;,
 o equivalentemente los binomios de Newton de la forma &lt;a class="citation-reference" href="https://cosmoscalibur.github.io/blog/cumple-28-perfecto-triangular-y-hexagonal/#wiki-tri" id="id4"&gt;[wiki_tri]&lt;/a&gt; &lt;a class="citation-reference" href="https://cosmoscalibur.github.io/blog/cumple-28-perfecto-triangular-y-hexagonal/#oeis-tri" id="id5"&gt;[oeis_tri]&lt;/a&gt;&lt;/p&gt;
@@ -920,11 +925,11 @@ corresponde a formar con los puntos un hexágono regular. Al igual que el
 triangular, se deben acumular los puntos del hexágono anterior y reusarlos
 (de esa forma hay dos aristas que comparten sus puntos con el nuevo hexágono)
 &lt;a class="citation-reference" href="https://cosmoscalibur.github.io/blog/cumple-28-perfecto-triangular-y-hexagonal/#wiki-hex" id="id6"&gt;[wiki_hex]&lt;/a&gt;.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_826cebbddcf64f3cb57b5108b69c6c53-1"&gt;&lt;/a&gt;.    ..         ...
-&lt;a name="rest_code_826cebbddcf64f3cb57b5108b69c6c53-2"&gt;&lt;/a&gt;    .  .       .  ..
-&lt;a name="rest_code_826cebbddcf64f3cb57b5108b69c6c53-3"&gt;&lt;/a&gt;     ..       .  .  .
-&lt;a name="rest_code_826cebbddcf64f3cb57b5108b69c6c53-4"&gt;&lt;/a&gt;               .  ..
-&lt;a name="rest_code_826cebbddcf64f3cb57b5108b69c6c53-5"&gt;&lt;/a&gt;                ...
+&lt;pre class="code text"&gt;&lt;a name="rest_code_1e99a7ca9ef24c0ab4a1b4aa47d71f13-1"&gt;&lt;/a&gt;.    ..         ...
+&lt;a name="rest_code_1e99a7ca9ef24c0ab4a1b4aa47d71f13-2"&gt;&lt;/a&gt;    .  .       .  ..
+&lt;a name="rest_code_1e99a7ca9ef24c0ab4a1b4aa47d71f13-3"&gt;&lt;/a&gt;     ..       .  .  .
+&lt;a name="rest_code_1e99a7ca9ef24c0ab4a1b4aa47d71f13-4"&gt;&lt;/a&gt;               .  ..
+&lt;a name="rest_code_1e99a7ca9ef24c0ab4a1b4aa47d71f13-5"&gt;&lt;/a&gt;                ...
 &lt;/pre&gt;&lt;p&gt;Al igual que los triangulares, también cuenta con una expresión matemática que
 puede generar la secuencia: &lt;span class="math"&gt;\(n(2n-1)\)&lt;/span&gt; &lt;a class="citation-reference" href="https://cosmoscalibur.github.io/blog/cumple-28-perfecto-triangular-y-hexagonal/#wiki-hex" id="id7"&gt;[wiki_hex]&lt;/a&gt; &lt;a class="citation-reference" href="https://cosmoscalibur.github.io/blog/cumple-28-perfecto-triangular-y-hexagonal/#oeis-hex" id="id8"&gt;[oeis_hex]&lt;/a&gt;.&lt;/p&gt;
 &lt;/div&gt;
@@ -942,55 +947,36 @@ cada número en forma ordenada.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="para-saber-mas"&gt;
 &lt;h2&gt;Para saber más&lt;/h2&gt;
-&lt;table class="docutils citation" frame="void" id="wiki-perfect" rules="none"&gt;
-&lt;colgroup&gt;&lt;col class="label"&gt;&lt;col&gt;&lt;/colgroup&gt;
-&lt;tbody valign="top"&gt;
-&lt;tr&gt;&lt;td class="label"&gt;&lt;a class="fn-backref" href="https://cosmoscalibur.github.io/blog/cumple-28-perfecto-triangular-y-hexagonal/#id2"&gt;[wiki_perfect]&lt;/a&gt;&lt;/td&gt;&lt;td&gt;Wikipedia, &lt;a class="reference external" href="https://es.wikipedia.org/wiki/N%C3%BAmero_perfecto"&gt;Número perfecto&lt;/a&gt;.
-Consultado: 1 de abril de 2018.&lt;/td&gt;&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;table class="docutils citation" frame="void" id="oeis-perfect" rules="none"&gt;
-&lt;colgroup&gt;&lt;col class="label"&gt;&lt;col&gt;&lt;/colgroup&gt;
-&lt;tbody valign="top"&gt;
-&lt;tr&gt;&lt;td class="label"&gt;&lt;a class="fn-backref" href="https://cosmoscalibur.github.io/blog/cumple-28-perfecto-triangular-y-hexagonal/#id1"&gt;[oeis_perfect]&lt;/a&gt;&lt;/td&gt;&lt;td&gt;The On-Line Encyclopedia of Integer Sequences, &lt;a class="reference external" href="http://oeis.org/A000384"&gt;Hexagonal numbers&lt;/a&gt;.
-Consultado: 1 de abril de 2018.&lt;/td&gt;&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;table class="docutils citation" frame="void" id="wiki-tri" rules="none"&gt;
-&lt;colgroup&gt;&lt;col class="label"&gt;&lt;col&gt;&lt;/colgroup&gt;
-&lt;tbody valign="top"&gt;
-&lt;tr&gt;&lt;td class="label"&gt;[wiki_tri]&lt;/td&gt;&lt;td&gt;&lt;em&gt;(&lt;a class="fn-backref" href="https://cosmoscalibur.github.io/blog/cumple-28-perfecto-triangular-y-hexagonal/#id3"&gt;1&lt;/a&gt;, &lt;a class="fn-backref" href="https://cosmoscalibur.github.io/blog/cumple-28-perfecto-triangular-y-hexagonal/#id4"&gt;2&lt;/a&gt;)&lt;/em&gt; Wikipedia, &lt;a class="reference external" href="https://es.wikipedia.org/wiki/N%C3%BAmero_triangular"&gt;Número triangular&lt;/a&gt;.
-Consultado: 1 de abril de 2018.&lt;/td&gt;&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;table class="docutils citation" frame="void" id="oeis-tri" rules="none"&gt;
-&lt;colgroup&gt;&lt;col class="label"&gt;&lt;col&gt;&lt;/colgroup&gt;
-&lt;tbody valign="top"&gt;
-&lt;tr&gt;&lt;td class="label"&gt;&lt;a class="fn-backref" href="https://cosmoscalibur.github.io/blog/cumple-28-perfecto-triangular-y-hexagonal/#id5"&gt;[oeis_tri]&lt;/a&gt;&lt;/td&gt;&lt;td&gt;The On-Line Encyclopedia of Integer Sequences, &lt;a class="reference external" href="http://oeis.org/A000217"&gt;Triangular numbers&lt;/a&gt;.
-Consultado: 1 de abril de 2018.&lt;/td&gt;&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;table class="docutils citation" frame="void" id="wiki-hex" rules="none"&gt;
-&lt;colgroup&gt;&lt;col class="label"&gt;&lt;col&gt;&lt;/colgroup&gt;
-&lt;tbody valign="top"&gt;
-&lt;tr&gt;&lt;td class="label"&gt;[wiki_hex]&lt;/td&gt;&lt;td&gt;&lt;em&gt;(&lt;a class="fn-backref" href="https://cosmoscalibur.github.io/blog/cumple-28-perfecto-triangular-y-hexagonal/#id6"&gt;1&lt;/a&gt;, &lt;a class="fn-backref" href="https://cosmoscalibur.github.io/blog/cumple-28-perfecto-triangular-y-hexagonal/#id7"&gt;2&lt;/a&gt;)&lt;/em&gt; Wikipedia, &lt;a class="reference external" href="https://es.wikipedia.org/wiki/N%C3%BAmero_hexagonal"&gt;Número hexagonal&lt;/a&gt;.
-Consultado: 1 de abril de 2018.&lt;/td&gt;&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;table class="docutils citation" frame="void" id="oeis-hex" rules="none"&gt;
-&lt;colgroup&gt;&lt;col class="label"&gt;&lt;col&gt;&lt;/colgroup&gt;
-&lt;tbody valign="top"&gt;
-&lt;tr&gt;&lt;td class="label"&gt;&lt;a class="fn-backref" href="https://cosmoscalibur.github.io/blog/cumple-28-perfecto-triangular-y-hexagonal/#id8"&gt;[oeis_hex]&lt;/a&gt;&lt;/td&gt;&lt;td&gt;The On-Line Encyclopedia of Integer Sequences, &lt;a class="reference external" href="http://oeis.org/A000396"&gt;Perfect numbers&lt;/a&gt;.
-Consultado: 1 de abril de 2018.&lt;/td&gt;&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;table class="docutils citation" frame="void" id="oeis" rules="none"&gt;
-&lt;colgroup&gt;&lt;col class="label"&gt;&lt;col&gt;&lt;/colgroup&gt;
-&lt;tbody valign="top"&gt;
-&lt;tr&gt;&lt;td class="label"&gt;&lt;a class="fn-backref" href="https://cosmoscalibur.github.io/blog/cumple-28-perfecto-triangular-y-hexagonal/#id9"&gt;[oeis]&lt;/a&gt;&lt;/td&gt;&lt;td&gt;&lt;a class="reference external" href="http://oeis.org/wiki/Welcome"&gt;The On-Line Encyclopedia of Integer Sequences&lt;/a&gt;.
-Consultado: 1 de abril de 2018.&lt;/td&gt;&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
+&lt;dl class="citation"&gt;
+&lt;dt class="label" id="wiki-perfect"&gt;&lt;span class="brackets"&gt;&lt;a class="fn-backref" href="https://cosmoscalibur.github.io/blog/cumple-28-perfecto-triangular-y-hexagonal/#id2"&gt;wiki_perfect&lt;/a&gt;&lt;/span&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;Wikipedia, &lt;a class="reference external" href="https://es.wikipedia.org/wiki/N%C3%BAmero_perfecto"&gt;Número perfecto&lt;/a&gt;.
+Consultado: 1 de abril de 2018.&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class="label" id="oeis-perfect"&gt;&lt;span class="brackets"&gt;&lt;a class="fn-backref" href="https://cosmoscalibur.github.io/blog/cumple-28-perfecto-triangular-y-hexagonal/#id1"&gt;oeis_perfect&lt;/a&gt;&lt;/span&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;The On-Line Encyclopedia of Integer Sequences, &lt;a class="reference external" href="http://oeis.org/A000384"&gt;Hexagonal numbers&lt;/a&gt;.
+Consultado: 1 de abril de 2018.&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class="label" id="wiki-tri"&gt;&lt;span class="brackets"&gt;wiki_tri&lt;/span&gt;&lt;span class="fn-backref"&gt;(&lt;a href="https://cosmoscalibur.github.io/blog/cumple-28-perfecto-triangular-y-hexagonal/#id3"&gt;1&lt;/a&gt;,&lt;a href="https://cosmoscalibur.github.io/blog/cumple-28-perfecto-triangular-y-hexagonal/#id4"&gt;2&lt;/a&gt;)&lt;/span&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;Wikipedia, &lt;a class="reference external" href="https://es.wikipedia.org/wiki/N%C3%BAmero_triangular"&gt;Número triangular&lt;/a&gt;.
+Consultado: 1 de abril de 2018.&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class="label" id="oeis-tri"&gt;&lt;span class="brackets"&gt;&lt;a class="fn-backref" href="https://cosmoscalibur.github.io/blog/cumple-28-perfecto-triangular-y-hexagonal/#id5"&gt;oeis_tri&lt;/a&gt;&lt;/span&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;The On-Line Encyclopedia of Integer Sequences, &lt;a class="reference external" href="http://oeis.org/A000217"&gt;Triangular numbers&lt;/a&gt;.
+Consultado: 1 de abril de 2018.&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class="label" id="wiki-hex"&gt;&lt;span class="brackets"&gt;wiki_hex&lt;/span&gt;&lt;span class="fn-backref"&gt;(&lt;a href="https://cosmoscalibur.github.io/blog/cumple-28-perfecto-triangular-y-hexagonal/#id6"&gt;1&lt;/a&gt;,&lt;a href="https://cosmoscalibur.github.io/blog/cumple-28-perfecto-triangular-y-hexagonal/#id7"&gt;2&lt;/a&gt;)&lt;/span&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;Wikipedia, &lt;a class="reference external" href="https://es.wikipedia.org/wiki/N%C3%BAmero_hexagonal"&gt;Número hexagonal&lt;/a&gt;.
+Consultado: 1 de abril de 2018.&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class="label" id="oeis-hex"&gt;&lt;span class="brackets"&gt;&lt;a class="fn-backref" href="https://cosmoscalibur.github.io/blog/cumple-28-perfecto-triangular-y-hexagonal/#id8"&gt;oeis_hex&lt;/a&gt;&lt;/span&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;The On-Line Encyclopedia of Integer Sequences, &lt;a class="reference external" href="http://oeis.org/A000396"&gt;Perfect numbers&lt;/a&gt;.
+Consultado: 1 de abril de 2018.&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class="label" id="oeis"&gt;&lt;span class="brackets"&gt;&lt;a class="fn-backref" href="https://cosmoscalibur.github.io/blog/cumple-28-perfecto-triangular-y-hexagonal/#id9"&gt;oeis&lt;/a&gt;&lt;/span&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;&lt;a class="reference external" href="http://oeis.org/wiki/Welcome"&gt;The On-Line Encyclopedia of Integer Sequences&lt;/a&gt;.
+Consultado: 1 de abril de 2018.&lt;/p&gt;
+&lt;/dd&gt;
+&lt;/dl&gt;
 &lt;/div&gt;&lt;/div&gt;</description><category>número hexagonal</category><category>número perfecto</category><category>número triangular</category><category>números</category><guid>https://cosmoscalibur.github.io/blog/cumple-28-perfecto-triangular-y-hexagonal/</guid><pubDate>Sun, 01 Apr 2018 19:14:10 GMT</pubDate></item><item><title>La experiencia de PyCon Colombia 2018</title><link>https://cosmoscalibur.github.io/blog/la-experiencia-de-pycon-colombia-2018/</link><dc:creator>Edward Villegas-Pulgarin</dc:creator><description>&lt;div&gt;&lt;p&gt;Tras mi primera participación en PyCon Colombia (segunda versión del evento), me
 encuentro con una comunidad bastante amplia y que hace honor a una de las
 características más importantes del lenguaje, y es lo extensa y variada que es
@@ -1030,34 +1016,34 @@ a este importante material (puedes dejarme un comentario si conoces de un recurs
 de las conferencias y talleres que no este aquí).&lt;/p&gt;
 &lt;div class="section" id="conferencias-principales"&gt;
 &lt;h3&gt;Conferencias principales&lt;/h3&gt;
-&lt;table border="1" class="docutils"&gt;
+&lt;table&gt;
 &lt;colgroup&gt;
-&lt;col width="36%"&gt;
-&lt;col width="64%"&gt;
+&lt;col style="width: 36%"&gt;
+&lt;col style="width: 64%"&gt;
 &lt;/colgroup&gt;
-&lt;thead valign="bottom"&gt;
-&lt;tr&gt;&lt;th class="head"&gt;Conferencista&lt;/th&gt;
-&lt;th class="head"&gt;Recurso&lt;/th&gt;
+&lt;thead&gt;
+&lt;tr&gt;&lt;th class="head"&gt;&lt;p&gt;Conferencista&lt;/p&gt;&lt;/th&gt;
+&lt;th class="head"&gt;&lt;p&gt;Recurso&lt;/p&gt;&lt;/th&gt;
 &lt;/tr&gt;
 &lt;/thead&gt;
-&lt;tbody valign="top"&gt;
-&lt;tr&gt;&lt;td&gt;&lt;a class="reference external" href="https://twitter.com/loooorenanicole"&gt;Lorena Mesa&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;&lt;a class="reference external" href="https://docs.google.com/presentation/d/1VJpw_h95B0yfWEJDGn9Hj1qeGRk0b9_TOFqDXOo2pwA/edit#slide=id.g2c36140c5b_0_555"&gt;Your model is bias, but so is your data&lt;/a&gt;&lt;/td&gt;
+&lt;tbody&gt;
+&lt;tr&gt;&lt;td&gt;&lt;p&gt;&lt;a class="reference external" href="https://twitter.com/loooorenanicole"&gt;Lorena Mesa&lt;/a&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;td&gt;&lt;p&gt;&lt;a class="reference external" href="https://docs.google.com/presentation/d/1VJpw_h95B0yfWEJDGn9Hj1qeGRk0b9_TOFqDXOo2pwA/edit#slide=id.g2c36140c5b_0_555"&gt;Your model is bias, but so is your data&lt;/a&gt;&lt;/p&gt;&lt;/td&gt;
 &lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;&lt;a class="reference external" href="https://twitter.com/NaomiCeder"&gt;Naomi Ceder&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;&lt;a class="reference external" href="https://docs.google.com/presentation/d/19FTLXRXHX6dyxS5GJYLLK4NGYaeT280vIZm9ncSjdd8/edit#slide=id.p"&gt;Obstáculos para la inclusión&lt;/a&gt;&lt;/td&gt;
+&lt;tr&gt;&lt;td&gt;&lt;p&gt;&lt;a class="reference external" href="https://twitter.com/NaomiCeder"&gt;Naomi Ceder&lt;/a&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;td&gt;&lt;p&gt;&lt;a class="reference external" href="https://docs.google.com/presentation/d/19FTLXRXHX6dyxS5GJYLLK4NGYaeT280vIZm9ncSjdd8/edit#slide=id.p"&gt;Obstáculos para la inclusión&lt;/a&gt;&lt;/p&gt;&lt;/td&gt;
 &lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;&lt;a class="reference external" href="https://twitter.com/ch_doig"&gt;Christine Doig&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;&lt;a class="reference external" href="https://speakerdeck.com/chdoig/pycon-colombia-2018"&gt;Data Science: Past, Present and Future&lt;/a&gt;&lt;/td&gt;
+&lt;tr&gt;&lt;td&gt;&lt;p&gt;&lt;a class="reference external" href="https://twitter.com/ch_doig"&gt;Christine Doig&lt;/a&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;td&gt;&lt;p&gt;&lt;a class="reference external" href="https://speakerdeck.com/chdoig/pycon-colombia-2018"&gt;Data Science: Past, Present and Future&lt;/a&gt;&lt;/p&gt;&lt;/td&gt;
 &lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;&lt;a class="reference external" href="https://twitter.com/audreyr"&gt;Audrey Roy&lt;/a&gt; y &lt;a class="reference external" href="https://twitter.com/pydanny"&gt;Daniel Roy&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;&lt;a class="reference external" href="https://github.com/pydanny/arepa"&gt;Empaquetado en python&lt;/a&gt;&lt;/td&gt;
+&lt;tr&gt;&lt;td&gt;&lt;p&gt;&lt;a class="reference external" href="https://twitter.com/audreyr"&gt;Audrey Roy&lt;/a&gt; y &lt;a class="reference external" href="https://twitter.com/pydanny"&gt;Daniel Roy&lt;/a&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;td&gt;&lt;p&gt;&lt;a class="reference external" href="https://github.com/pydanny/arepa"&gt;Empaquetado en python&lt;/a&gt;&lt;/p&gt;&lt;/td&gt;
 &lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;&lt;a class="reference external" href="https://twitter.com/learnopencv"&gt;Satya Mallick&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;&lt;a class="reference external" href="http://www.learnopencv.com/satya-mallick-pycon-colombia-keynote-2018/"&gt;Computer Vision Machine Learning &amp;amp; AI&lt;/a&gt;&lt;/td&gt;
+&lt;tr&gt;&lt;td&gt;&lt;p&gt;&lt;a class="reference external" href="https://twitter.com/learnopencv"&gt;Satya Mallick&lt;/a&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;td&gt;&lt;p&gt;&lt;a class="reference external" href="http://www.learnopencv.com/satya-mallick-pycon-colombia-keynote-2018/"&gt;Computer Vision Machine Learning &amp;amp; AI&lt;/a&gt;&lt;/p&gt;&lt;/td&gt;
 &lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;&lt;a class="reference external" href="https://www.twitter.com/deborahhanus"&gt;Deborah Hanus&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;&lt;a class="reference external" href="https://www.slideshare.net/DeborahHanus/pycon-colombia-keynote-2018"&gt;With great machine learning comes great responsibility&lt;/a&gt;&lt;/td&gt;
+&lt;tr&gt;&lt;td&gt;&lt;p&gt;&lt;a class="reference external" href="https://www.twitter.com/deborahhanus"&gt;Deborah Hanus&lt;/a&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;td&gt;&lt;p&gt;&lt;a class="reference external" href="https://www.slideshare.net/DeborahHanus/pycon-colombia-keynote-2018"&gt;With great machine learning comes great responsibility&lt;/a&gt;&lt;/p&gt;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
@@ -1109,64 +1095,64 @@ paquetes de python (y disponerlos en PyPI) y el uso de &lt;em&gt;cookiecutter&lt
 &lt;/div&gt;
 &lt;div class="section" id="conferencias-sometidas"&gt;
 &lt;h3&gt;Conferencias sometidas&lt;/h3&gt;
-&lt;table border="1" class="docutils"&gt;
+&lt;table&gt;
 &lt;colgroup&gt;
-&lt;col width="30%"&gt;
-&lt;col width="70%"&gt;
+&lt;col style="width: 30%"&gt;
+&lt;col style="width: 70%"&gt;
 &lt;/colgroup&gt;
-&lt;thead valign="bottom"&gt;
-&lt;tr&gt;&lt;th class="head"&gt;Conferencista&lt;/th&gt;
-&lt;th class="head"&gt;Recurso&lt;/th&gt;
+&lt;thead&gt;
+&lt;tr&gt;&lt;th class="head"&gt;&lt;p&gt;Conferencista&lt;/p&gt;&lt;/th&gt;
+&lt;th class="head"&gt;&lt;p&gt;Recurso&lt;/p&gt;&lt;/th&gt;
 &lt;/tr&gt;
 &lt;/thead&gt;
-&lt;tbody valign="top"&gt;
-&lt;tr&gt;&lt;td&gt;&lt;a class="reference external" href="https://twitter.com/joserzapata"&gt;Jose Zapata&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;&lt;a class="reference external" href="https://github.com/JoseRZapata/Pycon2018Colombia"&gt;Audio Analysis with Python&lt;/a&gt;&lt;/td&gt;
+&lt;tbody&gt;
+&lt;tr&gt;&lt;td&gt;&lt;p&gt;&lt;a class="reference external" href="https://twitter.com/joserzapata"&gt;Jose Zapata&lt;/a&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;td&gt;&lt;p&gt;&lt;a class="reference external" href="https://github.com/JoseRZapata/Pycon2018Colombia"&gt;Audio Analysis with Python&lt;/a&gt;&lt;/p&gt;&lt;/td&gt;
 &lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;&lt;a class="reference external" href="https://twitter.com/maigfrga"&gt;Manuel Franco&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;&lt;a class="reference external" href="https://github.com/maigfrga/nt-recommend/blob/master/documentation/pycon/Intro%20Recsys.odp"&gt;Introduction to Recommendation Systems&lt;/a&gt;&lt;/td&gt;
+&lt;tr&gt;&lt;td&gt;&lt;p&gt;&lt;a class="reference external" href="https://twitter.com/maigfrga"&gt;Manuel Franco&lt;/a&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;td&gt;&lt;p&gt;&lt;a class="reference external" href="https://github.com/maigfrga/nt-recommend/blob/master/documentation/pycon/Intro%20Recsys.odp"&gt;Introduction to Recommendation Systems&lt;/a&gt;&lt;/p&gt;&lt;/td&gt;
 &lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;&lt;a class="reference external" href="https://twitter.com/DasIstHerrKuska"&gt;Robert Kuska&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;&lt;a class="reference external" href="https://docs.google.com/presentation/d/1DYSYqu1bsODQVOAZupdPZ4afYeAuuze0mEGC0b-9bAw/edit#slide=id.p"&gt;Bits and bytes of python memory management&lt;/a&gt;&lt;/td&gt;
+&lt;tr&gt;&lt;td&gt;&lt;p&gt;&lt;a class="reference external" href="https://twitter.com/DasIstHerrKuska"&gt;Robert Kuska&lt;/a&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;td&gt;&lt;p&gt;&lt;a class="reference external" href="https://docs.google.com/presentation/d/1DYSYqu1bsODQVOAZupdPZ4afYeAuuze0mEGC0b-9bAw/edit#slide=id.p"&gt;Bits and bytes of python memory management&lt;/a&gt;&lt;/p&gt;&lt;/td&gt;
 &lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;&lt;a class="reference external" href="https://twitter.com/_JorgeMartinezG"&gt;Jorge Martinez&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;&lt;a class="reference external" href="https://github.com/JorgeMartinezG/KalmanTemplateTracker"&gt;Detection vs tracking&lt;/a&gt;&lt;/td&gt;
+&lt;tr&gt;&lt;td&gt;&lt;p&gt;&lt;a class="reference external" href="https://twitter.com/_JorgeMartinezG"&gt;Jorge Martinez&lt;/a&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;td&gt;&lt;p&gt;&lt;a class="reference external" href="https://github.com/JorgeMartinezG/KalmanTemplateTracker"&gt;Detection vs tracking&lt;/a&gt;&lt;/p&gt;&lt;/td&gt;
 &lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;&lt;a class="reference external" href="https://twitter.com/iris9112"&gt;Isabel Ruiz Buriticá&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;&lt;a class="reference external" href="https://github.com/iris9112/Pycon2018_Fractals"&gt;Pintando el caos con python&lt;/a&gt;&lt;/td&gt;
+&lt;tr&gt;&lt;td&gt;&lt;p&gt;&lt;a class="reference external" href="https://twitter.com/iris9112"&gt;Isabel Ruiz Buriticá&lt;/a&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;td&gt;&lt;p&gt;&lt;a class="reference external" href="https://github.com/iris9112/Pycon2018_Fractals"&gt;Pintando el caos con python&lt;/a&gt;&lt;/p&gt;&lt;/td&gt;
 &lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;Rocky Bernstein&lt;/td&gt;
-&lt;td&gt;&lt;a class="reference external" href="http://rocky.github.io/pycon2018.co/#/"&gt;Decompilation and Pandora's Box&lt;/a&gt;&lt;/td&gt;
+&lt;tr&gt;&lt;td&gt;&lt;p&gt;Rocky Bernstein&lt;/p&gt;&lt;/td&gt;
+&lt;td&gt;&lt;p&gt;&lt;a class="reference external" href="http://rocky.github.io/pycon2018.co/#/"&gt;Decompilation and Pandora's Box&lt;/a&gt;&lt;/p&gt;&lt;/td&gt;
 &lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;&lt;a class="reference external" href="https://twitter.com/cosmoscalibur"&gt;Edward Villegas-Pulgarin&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;&lt;a class="reference external" href="https://github.com/cosmoscalibur/aula-notebook"&gt;Usando Jupyter Notebook en el aula&lt;/a&gt;&lt;/td&gt;
+&lt;tr&gt;&lt;td&gt;&lt;p&gt;&lt;a class="reference external" href="https://twitter.com/cosmoscalibur"&gt;Edward Villegas-Pulgarin&lt;/a&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;td&gt;&lt;p&gt;&lt;a class="reference external" href="https://github.com/cosmoscalibur/aula-notebook"&gt;Usando Jupyter Notebook en el aula&lt;/a&gt;&lt;/p&gt;&lt;/td&gt;
 &lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;&lt;a class="reference external" href="https://twitter.com/nicoguaro"&gt;Nicolás Guarín Zapata&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;&lt;a class="reference external" href="https://github.com/AppliedMechanics-EAFIT/SolidsPy"&gt;SolidsPy: A FEM Framework for Teaching Computational Modeling with Python&lt;/a&gt;&lt;/td&gt;
+&lt;tr&gt;&lt;td&gt;&lt;p&gt;&lt;a class="reference external" href="https://twitter.com/nicoguaro"&gt;Nicolás Guarín Zapata&lt;/a&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;td&gt;&lt;p&gt;&lt;a class="reference external" href="https://github.com/AppliedMechanics-EAFIT/SolidsPy"&gt;SolidsPy: A FEM Framework for Teaching Computational Modeling with Python&lt;/a&gt;&lt;/p&gt;&lt;/td&gt;
 &lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;&lt;a class="reference external" href="https://twitter.com/santiagomv1127"&gt;Santiago Mesa&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;&lt;a class="reference external" href="https://github.com/samez21/leyes-kepler"&gt;Solar System Simulator&lt;/a&gt;&lt;/td&gt;
+&lt;tr&gt;&lt;td&gt;&lt;p&gt;&lt;a class="reference external" href="https://twitter.com/santiagomv1127"&gt;Santiago Mesa&lt;/a&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;td&gt;&lt;p&gt;&lt;a class="reference external" href="https://github.com/samez21/leyes-kepler"&gt;Solar System Simulator&lt;/a&gt;&lt;/p&gt;&lt;/td&gt;
 &lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;&lt;a class="reference external" href="https://twitter.com/dav009"&gt;David Przybilla&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;&lt;a class="reference external" href="https://github.com/dav009/pyconco"&gt;Python in the land of Serverless&lt;/a&gt;&lt;/td&gt;
+&lt;tr&gt;&lt;td&gt;&lt;p&gt;&lt;a class="reference external" href="https://twitter.com/dav009"&gt;David Przybilla&lt;/a&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;td&gt;&lt;p&gt;&lt;a class="reference external" href="https://github.com/dav009/pyconco"&gt;Python in the land of Serverless&lt;/a&gt;&lt;/p&gt;&lt;/td&gt;
 &lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;&lt;a class="reference external" href="https://twitter.com/MiltonLn"&gt;Milton Lenis&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;&lt;a class="reference external" href="https://github.com/MiltonLn/pycon-multitenant"&gt;Multitenant Architectures in Python&lt;/a&gt;&lt;/td&gt;
+&lt;tr&gt;&lt;td&gt;&lt;p&gt;&lt;a class="reference external" href="https://twitter.com/MiltonLn"&gt;Milton Lenis&lt;/a&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;td&gt;&lt;p&gt;&lt;a class="reference external" href="https://github.com/MiltonLn/pycon-multitenant"&gt;Multitenant Architectures in Python&lt;/a&gt;&lt;/p&gt;&lt;/td&gt;
 &lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;&lt;a class="reference external" href="https://twitter.com/GudarJs"&gt;Dario Guzman&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;&lt;a class="reference external" href="https://github.com/GudarJs/Facial-Recognition-Tensorflow"&gt;Facial recognition with neural networks&lt;/a&gt;&lt;/td&gt;
+&lt;tr&gt;&lt;td&gt;&lt;p&gt;&lt;a class="reference external" href="https://twitter.com/GudarJs"&gt;Dario Guzman&lt;/a&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;td&gt;&lt;p&gt;&lt;a class="reference external" href="https://github.com/GudarJs/Facial-Recognition-Tensorflow"&gt;Facial recognition with neural networks&lt;/a&gt;&lt;/p&gt;&lt;/td&gt;
 &lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;Jonathan Sandoval Cardona&lt;/td&gt;
-&lt;td&gt;&lt;a class="reference external" href="https://github.com/jsandovalc/pycon2018"&gt;Introduction to asynchronous programming with Python and Twisted&lt;/a&gt;&lt;/td&gt;
+&lt;tr&gt;&lt;td&gt;&lt;p&gt;Jonathan Sandoval Cardona&lt;/p&gt;&lt;/td&gt;
+&lt;td&gt;&lt;p&gt;&lt;a class="reference external" href="https://github.com/jsandovalc/pycon2018"&gt;Introduction to asynchronous programming with Python and Twisted&lt;/a&gt;&lt;/p&gt;&lt;/td&gt;
 &lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;&lt;a class="reference external" href="https://twitter.com/carlosmart626"&gt;Carlos Alberto Martinez Morales&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;&lt;a class="reference external" href="https://github.com/CarlosMart626/graphql-pycon.co2018"&gt;Creating a GraphQL api in Django&lt;/a&gt;&lt;/td&gt;
+&lt;tr&gt;&lt;td&gt;&lt;p&gt;&lt;a class="reference external" href="https://twitter.com/carlosmart626"&gt;Carlos Alberto Martinez Morales&lt;/a&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;td&gt;&lt;p&gt;&lt;a class="reference external" href="https://github.com/CarlosMart626/graphql-pycon.co2018"&gt;Creating a GraphQL api in Django&lt;/a&gt;&lt;/p&gt;&lt;/td&gt;
 &lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;&lt;a class="reference external" href="https://twitter.com/jorlugaqui"&gt;Jorge Luis Galvis Quintero&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;&lt;a class="reference external" href="https://github.com/jorlugaqui/pycon"&gt;Architecture for machine learning apps (Django flavored)&lt;/a&gt;&lt;/td&gt;
+&lt;tr&gt;&lt;td&gt;&lt;p&gt;&lt;a class="reference external" href="https://twitter.com/jorlugaqui"&gt;Jorge Luis Galvis Quintero&lt;/a&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;td&gt;&lt;p&gt;&lt;a class="reference external" href="https://github.com/jorlugaqui/pycon"&gt;Architecture for machine learning apps (Django flavored)&lt;/a&gt;&lt;/p&gt;&lt;/td&gt;
 &lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;Manuela Jaramillo&lt;/td&gt;
-&lt;td&gt;&lt;a class="reference external" href="https://github.com/manuela98/talkscript2media"&gt;TalkScript2Media&lt;/a&gt;&lt;/td&gt;
+&lt;tr&gt;&lt;td&gt;&lt;p&gt;Manuela Jaramillo&lt;/p&gt;&lt;/td&gt;
+&lt;td&gt;&lt;p&gt;&lt;a class="reference external" href="https://github.com/manuela98/talkscript2media"&gt;TalkScript2Media&lt;/a&gt;&lt;/p&gt;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
@@ -1176,37 +1162,37 @@ conferencistas, y de los tuits compartidos durante el evento.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="talleres"&gt;
 &lt;h3&gt;Talleres&lt;/h3&gt;
-&lt;table border="1" class="docutils"&gt;
+&lt;table&gt;
 &lt;colgroup&gt;
-&lt;col width="22%"&gt;
-&lt;col width="78%"&gt;
+&lt;col style="width: 22%"&gt;
+&lt;col style="width: 78%"&gt;
 &lt;/colgroup&gt;
-&lt;thead valign="bottom"&gt;
-&lt;tr&gt;&lt;th class="head"&gt;Conferencista&lt;/th&gt;
-&lt;th class="head"&gt;Recurso&lt;/th&gt;
+&lt;thead&gt;
+&lt;tr&gt;&lt;th class="head"&gt;&lt;p&gt;Conferencista&lt;/p&gt;&lt;/th&gt;
+&lt;th class="head"&gt;&lt;p&gt;Recurso&lt;/p&gt;&lt;/th&gt;
 &lt;/tr&gt;
 &lt;/thead&gt;
-&lt;tbody valign="top"&gt;
-&lt;tr&gt;&lt;td&gt;Sebastián Parada, María Camila Guerrero Giraldo&lt;/td&gt;
-&lt;td&gt;&lt;a class="reference external" href="https://github.com/NeftaliChana/PyCon-2018"&gt;Programación funcional con python&lt;/a&gt;&lt;/td&gt;
+&lt;tbody&gt;
+&lt;tr&gt;&lt;td&gt;&lt;p&gt;Sebastián Parada, María Camila Guerrero Giraldo&lt;/p&gt;&lt;/td&gt;
+&lt;td&gt;&lt;p&gt;&lt;a class="reference external" href="https://github.com/NeftaliChana/PyCon-2018"&gt;Programación funcional con python&lt;/a&gt;&lt;/p&gt;&lt;/td&gt;
 &lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;&lt;a class="reference external" href="https://twitter.com/serpulga"&gt;Sergio Pulgarin&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;&lt;a class="reference external" href="https://docs.google.com/presentation/d/1meKI2I_sX3avnQcU2gK1j-RcSzXcyYC4-Y4Ol1Pu35E/edit#slide=id.p"&gt;Python API for C programs&lt;/a&gt; &lt;a class="reference external" href="https://github.com/serpulga/python-accounts"&gt;(ejemplo)&lt;/a&gt;&lt;/td&gt;
+&lt;tr&gt;&lt;td&gt;&lt;p&gt;&lt;a class="reference external" href="https://twitter.com/serpulga"&gt;Sergio Pulgarin&lt;/a&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;td&gt;&lt;p&gt;&lt;a class="reference external" href="https://docs.google.com/presentation/d/1meKI2I_sX3avnQcU2gK1j-RcSzXcyYC4-Y4Ol1Pu35E/edit#slide=id.p"&gt;Python API for C programs&lt;/a&gt; &lt;a class="reference external" href="https://github.com/serpulga/python-accounts"&gt;(ejemplo)&lt;/a&gt;&lt;/p&gt;&lt;/td&gt;
 &lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;&lt;a class="reference external" href="https://twitter.com/__mharrison__"&gt;Matt Harrison&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;&lt;a class="reference external" href="https://github.com/mattharrison/Jungle-PyconCo-2018"&gt;Welcome to the Jungle: Random Forests for Fun and Profit&lt;/a&gt;&lt;/td&gt;
+&lt;tr&gt;&lt;td&gt;&lt;p&gt;&lt;a class="reference external" href="https://twitter.com/__mharrison__"&gt;Matt Harrison&lt;/a&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;td&gt;&lt;p&gt;&lt;a class="reference external" href="https://github.com/mattharrison/Jungle-PyconCo-2018"&gt;Welcome to the Jungle: Random Forests for Fun and Profit&lt;/a&gt;&lt;/p&gt;&lt;/td&gt;
 &lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;Juan Nicolás Táutiva&lt;/td&gt;
-&lt;td&gt;&lt;a class="reference external" href="https://github.com/NickATC/Taller_Python_OOP_2018"&gt;Programming for non-programmers: The four pillars of object-oriented programming&lt;/a&gt;&lt;/td&gt;
+&lt;tr&gt;&lt;td&gt;&lt;p&gt;Juan Nicolás Táutiva&lt;/p&gt;&lt;/td&gt;
+&lt;td&gt;&lt;p&gt;&lt;a class="reference external" href="https://github.com/NickATC/Taller_Python_OOP_2018"&gt;Programming for non-programmers: The four pillars of object-oriented programming&lt;/a&gt;&lt;/p&gt;&lt;/td&gt;
 &lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;&lt;a class="reference external" href="https://twitter.com/tebanep"&gt;Esteban Echeverry&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;&lt;a class="reference external" href="https://github.com/nubark/clean-architecture-python"&gt;Clean architecture with python&lt;/a&gt;&lt;/td&gt;
+&lt;tr&gt;&lt;td&gt;&lt;p&gt;&lt;a class="reference external" href="https://twitter.com/tebanep"&gt;Esteban Echeverry&lt;/a&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;td&gt;&lt;p&gt;&lt;a class="reference external" href="https://github.com/nubark/clean-architecture-python"&gt;Clean architecture with python&lt;/a&gt;&lt;/p&gt;&lt;/td&gt;
 &lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;&lt;a class="reference external" href="https://twitter.com/moisesvw"&gt;Moises Vargas&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;&lt;a class="reference external" href="https://github.com/moisesvw/pyconMDE2018"&gt;Classifying human faces using Convolutional Neural Networks&lt;/a&gt;&lt;/td&gt;
+&lt;tr&gt;&lt;td&gt;&lt;p&gt;&lt;a class="reference external" href="https://twitter.com/moisesvw"&gt;Moises Vargas&lt;/a&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;td&gt;&lt;p&gt;&lt;a class="reference external" href="https://github.com/moisesvw/pyconMDE2018"&gt;Classifying human faces using Convolutional Neural Networks&lt;/a&gt;&lt;/p&gt;&lt;/td&gt;
 &lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;&lt;a class="reference external" href="https://twitter.com/rafa_laverde"&gt;Rafael Laverde&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;&lt;a class="reference external" href="https://github.com/rlaverde/pycon-demo"&gt;Build a powerful static website using Lektor&lt;/a&gt;&lt;/td&gt;
+&lt;tr&gt;&lt;td&gt;&lt;p&gt;&lt;a class="reference external" href="https://twitter.com/rafa_laverde"&gt;Rafael Laverde&lt;/a&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;td&gt;&lt;p&gt;&lt;a class="reference external" href="https://github.com/rlaverde/pycon-demo"&gt;Build a powerful static website using Lektor&lt;/a&gt;&lt;/p&gt;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
@@ -1268,12 +1254,12 @@ Scalibur.&lt;/p&gt;
 &lt;/div&gt;
 &lt;p&gt;Aquí hemos creado ya la máquina en si misma pero debemos configurar antes un par de cosas. En configuración de la máquina debemos ir a la sección de sistema (&lt;em&gt;system&lt;/em&gt;) y luego placa madre (&lt;em&gt;Motherboard&lt;/em&gt;) y habilitar las características extendidas (&lt;em&gt;Extended features&lt;/em&gt;) y elegir &lt;em&gt;USB Tablet&lt;/em&gt; en el puntero (&lt;em&gt;Pointing device&lt;/em&gt;). En la misma sección vamos a la pestaña de procesador (&lt;em&gt;Processor&lt;/em&gt;) e indicamos al menos 2 CPU. Por último, en la sección de monitor (&lt;em&gt;Display&lt;/em&gt;) vamos a la pestaña &lt;em&gt;Screen&lt;/em&gt; y asignamos 128 MB a la memoria de video (&lt;em&gt;Video Memory&lt;/em&gt;).&lt;/p&gt;
 &lt;p&gt;Ahora, pasamos a la consola (powershell o CMD en Windows) y ejecutamos lo siguiente (si es Windows hay que poner &lt;code&gt;VBoxManage.exe&lt;/code&gt; estando en el directorio de VirtualBox -&lt;code&gt;cd "C:Program FilesOracleVirtualBox"&lt;/code&gt;-):&lt;/p&gt;
-&lt;pre class="code bash"&gt;&lt;a name="rest_code_9eefd7297b5a42aba7eb7094783e33bb-1"&gt;&lt;/a&gt;VBoxManage modifyvm &lt;span class="s2"&gt;"macos"&lt;/span&gt; --cpuidset &lt;span class="m"&gt;00000001&lt;/span&gt; 000106e5 &lt;span class="m"&gt;00100800&lt;/span&gt; 0098e3fd bfebfbff
-&lt;a name="rest_code_9eefd7297b5a42aba7eb7094783e33bb-2"&gt;&lt;/a&gt;VBoxManage setextradata &lt;span class="s2"&gt;"macos"&lt;/span&gt; &lt;span class="s2"&gt;"VBoxInternal/Devices/efi/0/Config/DmiSystemProduct"&lt;/span&gt; &lt;span class="s2"&gt;"iMac11,3"&lt;/span&gt;
-&lt;a name="rest_code_9eefd7297b5a42aba7eb7094783e33bb-3"&gt;&lt;/a&gt;VBoxManage setextradata &lt;span class="s2"&gt;"macos"&lt;/span&gt; &lt;span class="s2"&gt;"VBoxInternal/Devices/efi/0/Config/DmiSystemVersion"&lt;/span&gt; &lt;span class="s2"&gt;"1.0"&lt;/span&gt;
-&lt;a name="rest_code_9eefd7297b5a42aba7eb7094783e33bb-4"&gt;&lt;/a&gt;VBoxManage setextradata &lt;span class="s2"&gt;"macos"&lt;/span&gt; &lt;span class="s2"&gt;"VBoxInternal/Devices/efi/0/Config/DmiBoardProduct"&lt;/span&gt; &lt;span class="s2"&gt;"Iloveapple"&lt;/span&gt;
-&lt;a name="rest_code_9eefd7297b5a42aba7eb7094783e33bb-5"&gt;&lt;/a&gt;VBoxManage setextradata &lt;span class="s2"&gt;"macos"&lt;/span&gt; &lt;span class="s2"&gt;"VBoxInternal/Devices/smc/0/Config/DeviceKey"&lt;/span&gt; &lt;span class="s2"&gt;"ourhardworkbythesewordsguardedpleasedontsteal(c)AppleComputerInc"&lt;/span&gt;
-&lt;a name="rest_code_9eefd7297b5a42aba7eb7094783e33bb-6"&gt;&lt;/a&gt;VBoxManage setextradata &lt;span class="s2"&gt;"macos"&lt;/span&gt; &lt;span class="s2"&gt;"VBoxInternal/Devices/smc/0/Config/GetKeyFromRealSMC"&lt;/span&gt; &lt;span class="m"&gt;1&lt;/span&gt;
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_12fecd24f28f4ebeb21792058a2180f3-1"&gt;&lt;/a&gt;VBoxManage modifyvm &lt;span class="s2"&gt;"macos"&lt;/span&gt; --cpuidset &lt;span class="m"&gt;00000001&lt;/span&gt; 000106e5 &lt;span class="m"&gt;00100800&lt;/span&gt; 0098e3fd bfebfbff
+&lt;a name="rest_code_12fecd24f28f4ebeb21792058a2180f3-2"&gt;&lt;/a&gt;VBoxManage setextradata &lt;span class="s2"&gt;"macos"&lt;/span&gt; &lt;span class="s2"&gt;"VBoxInternal/Devices/efi/0/Config/DmiSystemProduct"&lt;/span&gt; &lt;span class="s2"&gt;"iMac11,3"&lt;/span&gt;
+&lt;a name="rest_code_12fecd24f28f4ebeb21792058a2180f3-3"&gt;&lt;/a&gt;VBoxManage setextradata &lt;span class="s2"&gt;"macos"&lt;/span&gt; &lt;span class="s2"&gt;"VBoxInternal/Devices/efi/0/Config/DmiSystemVersion"&lt;/span&gt; &lt;span class="s2"&gt;"1.0"&lt;/span&gt;
+&lt;a name="rest_code_12fecd24f28f4ebeb21792058a2180f3-4"&gt;&lt;/a&gt;VBoxManage setextradata &lt;span class="s2"&gt;"macos"&lt;/span&gt; &lt;span class="s2"&gt;"VBoxInternal/Devices/efi/0/Config/DmiBoardProduct"&lt;/span&gt; &lt;span class="s2"&gt;"Iloveapple"&lt;/span&gt;
+&lt;a name="rest_code_12fecd24f28f4ebeb21792058a2180f3-5"&gt;&lt;/a&gt;VBoxManage setextradata &lt;span class="s2"&gt;"macos"&lt;/span&gt; &lt;span class="s2"&gt;"VBoxInternal/Devices/smc/0/Config/DeviceKey"&lt;/span&gt; &lt;span class="s2"&gt;"ourhardworkbythesewordsguardedpleasedontsteal(c)AppleComputerInc"&lt;/span&gt;
+&lt;a name="rest_code_12fecd24f28f4ebeb21792058a2180f3-6"&gt;&lt;/a&gt;VBoxManage setextradata &lt;span class="s2"&gt;"macos"&lt;/span&gt; &lt;span class="s2"&gt;"VBoxInternal/Devices/smc/0/Config/GetKeyFromRealSMC"&lt;/span&gt; &lt;span class="m"&gt;1&lt;/span&gt;
 &lt;/pre&gt;&lt;p&gt;Tras esto estamos listos para encender la máquina virtual e instalar el sistema operativo en ella (nombre, usuario, contraseña, idioma, teclado). Lo único problemático aquí es que tendrás problema con el teclado pues esta pensado para los teclados Mac. Como cualquier instalación de sistema operativo es algo lento y más considerando que es una máquina virtual.&lt;/p&gt;
 &lt;div class="figure align-center"&gt;
 &lt;img alt="Selección de idioma en macOS." src="https://lh3.googleusercontent.com/4pUM9zRUHvadbxEqTxP0ChqUY8PIbLpli8QTe0MhUchr1t-YSaOL34rlBWuJPiNlN9bu-YZbc-NobHQTkFsstjxANiw6wbsdDu2vJY2b52PdQFfSydcofwHt0tZiyWY5hSf2pnUVsWArZ3h0DEXJFl3wQIH03MLPj2eY1hT3r2rLq0qYCPMyCqpHJrbA9hogF74jbfrfMwj0OSG-YzOdF4nRH-5WKN_cAc_4rUQRSSfa367h2DcHRzsfMsq4WLWREJoMyE-BeQnVXh4dbZke4u6E-c-u7Zei31YStQRGW5fKCegvF1QmlG34ofIc-YaGcHBWJWesGrN7z9zuxNUQz1Mjqx7reVQhauHlLneMGB9wJGc7eDxlx2XjMx3C-omhiP0dfqNfp3Lnq41a_ZxevISpm3v3L88WhM6VBGBNkpF4x3-kxGovJ-irp3LUz1if05W1kmaVzHgwUbR8OPamO6bkNmWHRxjpZdXC1cRfrL5uHqb40B2QYIuqikwWDzKV1u3PYvi_uFHHJOoeEEDk2GdoZQYla25RPiHyS5RDwVsweBZig-By2VOwJCKoXB1rdBDSR3nUlvMa7qdQf91p5MT06be_EQ74BRpKmg=w1593-h896-no?pageId=101589342745553480499"&gt;
@@ -1284,17 +1270,17 @@ Scalibur.&lt;/p&gt;
 &lt;h2&gt;Después&lt;/h2&gt;
 &lt;p&gt;No soy usuario Mac y mi propósito de hacer esto era muy específico, validar compatibilidad de códigos que uso, desarrollo o contribuyo. Pero en este mismo sentido, algo que recomiendo hacer, es instalar &lt;a class="reference external" href="https://brew.sh/index_es.html"&gt;Homebrew&lt;/a&gt; con el fin de tener listo nuestro macOS para pruebas y poder instalar distintos paquetes comunes a la hora de programar.&lt;/p&gt;
 &lt;p&gt;Para ello debes abrir la consola que encontrarás en aplicaciones y ejecutar lo siguiente:&lt;/p&gt;
-&lt;pre class="code bash"&gt;&lt;a name="rest_code_efffe6c8457144c395330f68cf5fb4af-1"&gt;&lt;/a&gt;ruby -e &lt;span class="s2"&gt;"&lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install&lt;span class="k"&gt;)&lt;/span&gt;&lt;span class="s2"&gt;"&lt;/span&gt;
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_2d99291878cc4be88708f4de6b674b46-1"&gt;&lt;/a&gt;ruby -e &lt;span class="s2"&gt;"&lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install&lt;span class="k"&gt;)&lt;/span&gt;&lt;span class="s2"&gt;"&lt;/span&gt;
 &lt;/pre&gt;&lt;p&gt;Tendrás que tener paciencia pues el proceso me tomó 45 minutos (en foros reportan la instalación de &lt;em&gt;homebrew&lt;/em&gt; de casi 2 horas) y necesitas estar pendiente pues hay dos solicitudes de tu contraseña.&lt;/p&gt;
 &lt;div class="figure align-center"&gt;
 &lt;img alt="Instalación de homebrew en macOS" src="https://lh3.googleusercontent.com/Pvn6D-PrK_txoUeelj0eDJ1E7rXZErv4oz4CBSfGfm4K7HLR0uL0GJv5VsF95yTDDGSzTJtTnb74djPvcnB9oIGCb1FYKg-S6xbeOIBRmCkgAi9RXXohgs5Xk11OIr3A3dKkByXb1GB4u3DT2ClcTwq-EvxO5US_4Zd6TMeSboYVU61N22LUdMpwanRenNAHEMqJ1qTfc20QXbJ4UWOY8WEs3X1LmRwoFzNJYSa2QV4K9YGMtMEMOY-O4LVdApo9mxWuGtHNBjPkC9iJ0ydVwT7h64cB1WArQyo7vDCkQ3md0cQC3kPlF5HgX25TwbT7_02YU0bJfVOkMht06PkhkQWWck8aRobI-oaHlE9E04b4glT_p-qXHcNXkTqMreLEpC61YeJ_U_R6SNMN0E07dHrEy-_Ci0EuAy-R5ikX0Bm5cS1NGIi3c6vh4OjvqNwniN4MMLUhUSL8GHmsuVxiTatNG6oJUavTJwX4K7DlwgV30J7DCiyZShIdHPndEEoL2yUPWX0eMUsCGscDjmY4Em14YaKa95etIYvXZWfKoA4svKxXE15O0xWk3eZUYKQhBSWMkUMFMEm9m1PDzUun6PVA20YWCxblFWo74Q=w1593-h896-no?pageId=101589342745553480499"&gt;
 &lt;p class="caption"&gt;Instalación por consola de homebrew en macOS.&lt;/p&gt;
 &lt;/div&gt;
 &lt;p&gt;Una vez instalado, puedes aprovechar a dejar listo python (actualiza la versión por defecto e instala el gestor pip). Igualmente es conveniente instalar otros paquetes de uso común por otras aplicaciones .&lt;/p&gt;
-&lt;pre class="code bash"&gt;&lt;a name="rest_code_b6dca9fea42e4a9d9ffaf9eaa801acae-1"&gt;&lt;/a&gt;brew install pkg-config &lt;span class="c1"&gt;# Ayuda a determinar la lista de paquetes existentes&lt;/span&gt;
-&lt;a name="rest_code_b6dca9fea42e4a9d9ffaf9eaa801acae-2"&gt;&lt;/a&gt;brew install python3 &lt;span class="c1"&gt;# Python3 no viene por defecto&lt;/span&gt;
-&lt;a name="rest_code_b6dca9fea42e4a9d9ffaf9eaa801acae-3"&gt;&lt;/a&gt;brew install python2 &lt;span class="c1"&gt;# Actualiza la versión existente. En ambos casos se instala pip (pip2 y pip3)&lt;/span&gt;
-&lt;a name="rest_code_b6dca9fea42e4a9d9ffaf9eaa801acae-4"&gt;&lt;/a&gt;brew install freetype &lt;span class="c1"&gt;# Requerido para la manipulación de fuentes -por ejemplo en matplotlib-&lt;/span&gt;
-&lt;a name="rest_code_b6dca9fea42e4a9d9ffaf9eaa801acae-5"&gt;&lt;/a&gt;brew install libpng &lt;span class="c1"&gt;# Requerido para la manipulación de imágenes png -por ejemplo en matplotlib-&lt;/span&gt;
-&lt;a name="rest_code_b6dca9fea42e4a9d9ffaf9eaa801acae-6"&gt;&lt;/a&gt;brew install pygtk &lt;span class="c1"&gt;# Binding de GTK para python. Interfaces en pygtk son comunes.&lt;/span&gt;
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_fca54a95a33f4893a4d9bd939030068b-1"&gt;&lt;/a&gt;brew install pkg-config &lt;span class="c1"&gt;# Ayuda a determinar la lista de paquetes existentes&lt;/span&gt;
+&lt;a name="rest_code_fca54a95a33f4893a4d9bd939030068b-2"&gt;&lt;/a&gt;brew install python3 &lt;span class="c1"&gt;# Python3 no viene por defecto&lt;/span&gt;
+&lt;a name="rest_code_fca54a95a33f4893a4d9bd939030068b-3"&gt;&lt;/a&gt;brew install python2 &lt;span class="c1"&gt;# Actualiza la versión existente. En ambos casos se instala pip (pip2 y pip3)&lt;/span&gt;
+&lt;a name="rest_code_fca54a95a33f4893a4d9bd939030068b-4"&gt;&lt;/a&gt;brew install freetype &lt;span class="c1"&gt;# Requerido para la manipulación de fuentes -por ejemplo en matplotlib-&lt;/span&gt;
+&lt;a name="rest_code_fca54a95a33f4893a4d9bd939030068b-5"&gt;&lt;/a&gt;brew install libpng &lt;span class="c1"&gt;# Requerido para la manipulación de imágenes png -por ejemplo en matplotlib-&lt;/span&gt;
+&lt;a name="rest_code_fca54a95a33f4893a4d9bd939030068b-6"&gt;&lt;/a&gt;brew install pygtk &lt;span class="c1"&gt;# Binding de GTK para python. Interfaces en pygtk son comunes.&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</description><category>emulación</category><category>hackintosh</category><category>linux</category><category>macos</category><category>máquina virtual</category><guid>https://cosmoscalibur.github.io/blog/ejecutando-macos-en-linux/</guid><pubDate>Fri, 19 Jan 2018 03:16:55 GMT</pubDate></item></channel></rss>
