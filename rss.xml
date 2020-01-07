@@ -3,7 +3,228 @@
 &lt;a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"&gt;
 &lt;img alt="Creative Commons License BY-NC-SA"
 style="border-width:0; margin-bottom:12px;"
-src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"&gt;&lt;/a&gt;</copyright><lastBuildDate>Tue, 07 Jan 2020 00:23:52 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Usar Anaconda Python en Git Bash</title><link>https://cosmoscalibur.github.io/blog/usar-anaconda-python-en-git-bash/</link><dc:creator>Edward Villegas-Pulgarin</dc:creator><description>&lt;div&gt;&lt;p&gt;Recientemente, por motivos laborales he tenido que trabajar en Windows y es
+src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"&gt;&lt;/a&gt;</copyright><lastBuildDate>Tue, 07 Jan 2020 00:33:41 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Crear documentación de un proyecto Python con Sphinx.</title><link>https://cosmoscalibur.github.io/blog/crear-documentacion-de-un-proyecto-python-con-sphinx/</link><dc:creator>Edward Villegas-Pulgarin</dc:creator><description>&lt;div&gt;&lt;p&gt;Sin duda, una etapa importante en cualquier proyecto de desarrollo (y no solo
+de &lt;em&gt;software&lt;/em&gt;) es la generación de la documentación. En el caso de &lt;em&gt;software&lt;/em&gt;
+es posible asistirse de herramientas que ayudan a automatizar la generación de
+la documentación mediante extracción de comentarios en el código, usar palabras
+claves y lenguaje de marcado para modificación de estilo en el texto o
+inclusión de otros elementos que no sean solo texto plano (imágenes,
+ecuaciones, enlaces entre otros).&lt;/p&gt;
+&lt;!-- TEASER_END --&gt;
+&lt;p&gt;Algunas herramientas para este fin son &lt;a class="reference external" href="http://doxygen.nl/"&gt;Doxygen&lt;/a&gt;
+(habitual para proyectos en C/C++), &lt;a class="reference external" href="https://www.oracle.com/technetwork/java/javase/documentation/index-jsp-135444.html"&gt;Javadoc&lt;/a&gt;
+(para Java, pero habitual también en TypeScript), &lt;a class="reference external" href="https://esdoc.org/"&gt;ESDoc&lt;/a&gt;
+(para Javascript) y por supuesto, Sphinx, para Python.&lt;/p&gt;
+&lt;p&gt;En esta entrada instalaremos lo necesario para generar nuestra documentación de
+un proyecto Python y haremos un pequeño ejemplo.&lt;/p&gt;
+&lt;div class="section" id="latex"&gt;
+&lt;h2&gt;LaTeX&lt;/h2&gt;
+&lt;p&gt;Si deseamos generar documentación web, este paquete no es necesario, pero para
+generar nuestra documentación en PDF es una dependencia obligatoria. La
+instalación recomendada dependerá del sistema operativo que se use.&lt;/p&gt;
+&lt;dl&gt;
+&lt;dt&gt;Mac&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;Puedes usar &lt;a class="reference external" href="https://www.tug.org/mactex/"&gt;MacTex&lt;/a&gt; el cual incluye el
+compilador TeXLive y editores como TeXShop, y otras dependencias para el
+funcionamiento de LaTeX en Mac.&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt&gt;Windows&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;La opción más cómoda es el compilador &lt;a class="reference external" href="https://miktex.org/download"&gt;MikTeX&lt;/a&gt;,
+el cual permite de forma predeterminada la descarga automática de paquetes
+adicionales en la medida que sean requeridos (instalación &lt;em&gt;on the fly&lt;/em&gt;).&lt;/p&gt;
+&lt;p&gt;Es importante que en la configuración no cambies al modo silencioso, pues
+esto puede afectar la ejecución posterior en los casos que requieran de
+instalación.&lt;/p&gt;
+&lt;p&gt;Si usas Anaconda, puedes incluirlo desde el canal de &lt;em&gt;conda-forge&lt;/em&gt;,
+&lt;code&gt;conda install -c conda-forge miktex&lt;/code&gt;.&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt&gt;Linux&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;En Linux usaremos TeXLive pero su instalación la haremos directamente del
+gestor de paquetes del sistema operativo. En la mayor parte de
+distribuciones Linux estará disponible a través del gestor.&lt;/p&gt;
+&lt;p&gt;En el caso de las distribuciones basadas en Debian (Ubuntu y Linux Mint
+entre otras) puedes instalar de la siguiente manera:&lt;/p&gt;
+&lt;pre class="code text"&gt;&lt;a name="rest_code_c74952c882b147039babf58d632b86db-1"&gt;&lt;/a&gt;sudo apt install -y texlive texlive-latex-base texlive-latex-extra \
+&lt;a name="rest_code_c74952c882b147039babf58d632b86db-2"&gt;&lt;/a&gt;    texlive-lang-spanish latexmk
+&lt;/pre&gt;&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class="section" id="sphinx"&gt;
+&lt;h2&gt;Sphinx&lt;/h2&gt;
+&lt;p&gt;Si usamos Python a través de Anaconda podemos usar el gestor &lt;em&gt;conda&lt;/em&gt; para la
+instalación, así &lt;code&gt;conda install sphinx&lt;/code&gt;, en caso contrario, podemos usar
+el gestor de paquetes &lt;em&gt;PIP&lt;/em&gt;: &lt;code&gt;pip install -U Sphinx&lt;/code&gt;.&lt;/p&gt;
+&lt;div class="admonition note"&gt;
+&lt;p class="admonition-title"&gt;Nota&lt;/p&gt;
+&lt;p&gt;Si deseas una experiencia en Windows similar a Linux, usando el
+&lt;code&gt;Makefile&lt;/code&gt; tradicional y la posibilidad de usar en combinación con
+Bash, te recomiendo usar Git Bash, y si es en conjunto con Anaconda puedes
+leer mi publicación al respecto, &lt;a class="reference external" href="https://cosmoscalibur.github.io/blog/usar-anaconda-python-en-git-bash/"&gt;Usar Anaconda Python en Git Bash&lt;/a&gt; e
+instalar el paquete &lt;code&gt;make&lt;/code&gt; con Anaconda o instalar
+&lt;a class="reference external" href="http://mingw-w64.org/doku.php"&gt;Mingw-w64&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="configuracion-de-sphinx"&gt;
+&lt;h2&gt;Configuración de Sphinx&lt;/h2&gt;
+&lt;p&gt;Abriremos una consola (si es Windows, debes tener en cuenta que para usar
+paquetes de Anaconda debes usar las consolas Anaconda Prompt, Anaconda
+PowerShell u otra si la configuraste -como el caso de Git Bash que
+mencioné en la sección anterior-) y debemos ubicarnos en el directorio que
+destinaremos para la documentación. Es habitual que en la estructura de nuestro
+proyecto destinemos un directorio &lt;code&gt;docs&lt;/code&gt; para este fin.&lt;/p&gt;
+&lt;p&gt;Ahora ejecutamos &lt;code&gt;sphinx-quickstart&lt;/code&gt; y respondemos las preguntas que
+saldrán. Es necesario tener en cuenta, que si usas Windows debes agregar al
+comando la terminación &lt;code&gt;.exe&lt;/code&gt;, ejemplo &lt;code&gt;sphinx-quickstart.exe&lt;/code&gt;.&lt;/p&gt;
+&lt;pre class="code text"&gt;&lt;a name="rest_code_9de96d98ef2044aeb85e9a14a01a7132-1"&gt;&lt;/a&gt;&amp;gt; Separate source and build directories (y/n) [n]: y
+&lt;a name="rest_code_9de96d98ef2044aeb85e9a14a01a7132-2"&gt;&lt;/a&gt;&amp;gt; Project name: proyecto
+&lt;a name="rest_code_9de96d98ef2044aeb85e9a14a01a7132-3"&gt;&lt;/a&gt;&amp;gt; Author name(s): Edward Villegas-Pulgarin
+&lt;a name="rest_code_9de96d98ef2044aeb85e9a14a01a7132-4"&gt;&lt;/a&gt;&amp;gt; Project release []: 0.1.0
+&lt;a name="rest_code_9de96d98ef2044aeb85e9a14a01a7132-5"&gt;&lt;/a&gt;&amp;gt; Project language [en]: es
+&lt;/pre&gt;&lt;p&gt;Siempre recomiendo separar el directorio del código fuente de la documentación
+del directorio de compilados de la misma. Respecto al esquema de versiones me
+agrada el &lt;cite&gt;versionamiento semántico &amp;lt;https://semver.org/&amp;gt;&lt;/cite&gt; que permite al
+usuario final intuir un poco más sobre la madurez del proyecto con el número,
+pero puedes usar el &lt;cite&gt;esquema basado en fecha de liberación &amp;lt;https://calver.org/&amp;gt;&lt;/cite&gt;.
+En el lenguaje se especifica el lenguaje con el código a dos letras
+internacional, acorde a los &lt;a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/configuration.html#confval-language"&gt;soportados por Sphinx&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Aunque en la terminal nos indican que podemos continuar con el archivo
+&lt;code&gt;index.rst&lt;/code&gt;, debemos hacer unos pequeños cambios en el archivo
+&lt;code&gt;conf.py&lt;/code&gt; que encontraremos en &lt;code&gt;docs/source&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Puedes saber más opciones de configuración en la documentación de Sphinx sobre
+&lt;a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/configuration.html"&gt;conf.py&lt;/a&gt;.&lt;/p&gt;
+&lt;div class="section" id="extensiones"&gt;
+&lt;h3&gt;Extensiones&lt;/h3&gt;
+&lt;p&gt;Recomiendo incluir la extensión de Autodoc para extraer automáticamente la
+documentación de la API, MathJax para el soporte de ecuaciones matemáticas en
+la versión Web y Napoleon para el estilo de Numpy y Google en la documentación.
+Con Coverage puedes validar que funciones se han documentado y dcotest integra
+pruebas de código desde la documentación (comparar salidas con ejemplo de
+documentación).&lt;/p&gt;
+&lt;p&gt;Modificar en el archivo.&lt;/p&gt;
+&lt;pre class="code text"&gt;&lt;a name="rest_code_3775b45da28c45c1b23c531a80a8a15b-1"&gt;&lt;/a&gt;extensions = [
+&lt;a name="rest_code_3775b45da28c45c1b23c531a80a8a15b-2"&gt;&lt;/a&gt;    'sphinx.ext.autodoc',
+&lt;a name="rest_code_3775b45da28c45c1b23c531a80a8a15b-3"&gt;&lt;/a&gt;    'sphinx.ext.mathjax',
+&lt;a name="rest_code_3775b45da28c45c1b23c531a80a8a15b-4"&gt;&lt;/a&gt;    'sphinx.ext.napoleon',
+&lt;a name="rest_code_3775b45da28c45c1b23c531a80a8a15b-5"&gt;&lt;/a&gt;    'sphinx.ext.coverage',
+&lt;a name="rest_code_3775b45da28c45c1b23c531a80a8a15b-6"&gt;&lt;/a&gt;    'sphinx.ext.doctest'
+&lt;a name="rest_code_3775b45da28c45c1b23c531a80a8a15b-7"&gt;&lt;/a&gt;]
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="section" id="importar-paquete"&gt;
+&lt;h3&gt;Importar paquete&lt;/h3&gt;
+&lt;p&gt;Para apoyarte de ejemplos actualizados automáticamente, uso de metadatos desde
+el código (ejemplo, el autor o la versión) puedes importar el paquete en el
+archivo de configuración. Dado que estarás en modo de desarrollo probablemente,
+el paquete no ha sido instalado y lo deberás hacer descomentando las tres
+primeras líneas de código en la sección de &lt;em&gt;Path setup&lt;/em&gt;. El punto que hay por
+defecto indica la misma carpeta de &lt;code&gt;docs/source&lt;/code&gt;, por lo cual es
+necesario reemplazar por &lt;code&gt;../..&lt;/code&gt; que se devuelve los dos niveles
+necesarios.&lt;/p&gt;
+&lt;pre class="code text"&gt;&lt;a name="rest_code_ff768d3e268b436eb0f68f0a211098d9-1"&gt;&lt;/a&gt;import os
+&lt;a name="rest_code_ff768d3e268b436eb0f68f0a211098d9-2"&gt;&lt;/a&gt;import sys
+&lt;a name="rest_code_ff768d3e268b436eb0f68f0a211098d9-3"&gt;&lt;/a&gt;import datetime
+&lt;a name="rest_code_ff768d3e268b436eb0f68f0a211098d9-4"&gt;&lt;/a&gt;sys.path.insert(0, os.path.abspath('../..'))
+&lt;a name="rest_code_ff768d3e268b436eb0f68f0a211098d9-5"&gt;&lt;/a&gt;import proyecto
+&lt;/pre&gt;&lt;p&gt;Ahora, puedes hacer cosas como la siguiente, si está disponible en tu código.&lt;/p&gt;
+&lt;pre class="code text"&gt;&lt;a name="rest_code_03a8599c731d452d83e6dcfd9617a71d-1"&gt;&lt;/a&gt;author = proyecto.__author__
+&lt;a name="rest_code_03a8599c731d452d83e6dcfd9617a71d-2"&gt;&lt;/a&gt;copyright = str(datetime.date.today().year) + ', ' + author
+&lt;a name="rest_code_03a8599c731d452d83e6dcfd9617a71d-3"&gt;&lt;/a&gt;release = proyecto.__version__
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="section" id="referencias-cruzadas"&gt;
+&lt;h3&gt;Referencias cruzadas&lt;/h3&gt;
+&lt;p&gt;Para usar referencias cruzadas, es decir, numeración de tablas, figuras,
+códigos y ecuaciones si poseen pie de objeto, y ser referenciados en el texto
+por el número, se requiere configurar lo siguiente.&lt;/p&gt;
+&lt;pre class="code text"&gt;&lt;a name="rest_code_ad39adb2212b40bbbbac8c984f3d5697-1"&gt;&lt;/a&gt;numfig = True
+&lt;a name="rest_code_ad39adb2212b40bbbbac8c984f3d5697-2"&gt;&lt;/a&gt;numfig_format = {'figure': 'Fig. %s', 'table': 'Tabla %s',
+&lt;a name="rest_code_ad39adb2212b40bbbbac8c984f3d5697-3"&gt;&lt;/a&gt;                 'code-block': 'Código %s', 'section': 'Sección %s'}
+&lt;a name="rest_code_ad39adb2212b40bbbbac8c984f3d5697-4"&gt;&lt;/a&gt;numfig_secnum_depth = 1
+&lt;a name="rest_code_ad39adb2212b40bbbbac8c984f3d5697-5"&gt;&lt;/a&gt;math_numfig = True
+&lt;a name="rest_code_ad39adb2212b40bbbbac8c984f3d5697-6"&gt;&lt;/a&gt;math_eqref_format = 'Ec. {number}'
+&lt;/pre&gt;&lt;p&gt;Así, es posible usar &lt;code&gt;:label:&lt;/code&gt; para asignar una referencia a los objetos
+y &lt;code&gt;:numref:&lt;/code&gt; y &lt;code&gt;:eq:&lt;/code&gt; a la hora de mencionarlos. Con
+&lt;code&gt;numfig_secnum_depth&lt;/code&gt; configuras la numeración de los objetos, si es
+continúa (0), por sección (1) y subsección (2).&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="id1"&gt;
+&lt;h3&gt;LaTeX&lt;/h3&gt;
+&lt;p&gt;Hay una configuración básica para LaTeX que puedes agregar. El documento
+maestro, el nombre del archivo TeX, el nombre que nuestra documentación, el
+nombre del autor (que podemos usar la variable que ya definimos) y el tipo de
+documento (cuya clase &lt;em&gt;manual&lt;/em&gt; está definida por Sphinx).&lt;/p&gt;
+&lt;pre class="code text"&gt;&lt;a name="rest_code_6ee92b11697f414abc970d75d5418300-1"&gt;&lt;/a&gt;master_doc = 'index'
+&lt;a name="rest_code_6ee92b11697f414abc970d75d5418300-2"&gt;&lt;/a&gt;latex_documents = [
+&lt;a name="rest_code_6ee92b11697f414abc970d75d5418300-3"&gt;&lt;/a&gt;    (master_doc, 'proyecto.tex', 'Documentación Proyecto',
+&lt;a name="rest_code_6ee92b11697f414abc970d75d5418300-4"&gt;&lt;/a&gt;     author, 'manual'),
+&lt;a name="rest_code_6ee92b11697f414abc970d75d5418300-5"&gt;&lt;/a&gt;]
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="escritura-en-restructuredtext"&gt;
+&lt;h2&gt;Escritura en ReStructuredText&lt;/h2&gt;
+&lt;p&gt;Sobre esto, es referencia ver la documentación de
+&lt;a class="reference external" href="https://docutils.readthedocs.io/en/sphinx-docs/user/rst/quickstart.html"&gt;DocUtils&lt;/a&gt;
+y de Sphinx &lt;a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html"&gt;ReStructuredText Primer&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Una vez tienes las bases de ReStructuredText puedes editar lo básico. De ahí, y
+para tener todo el provecho de Sphinx hay elementos como los roles, directivas
+y dominios que debes aprender a usar,
+&lt;a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/restructuredtext/index.html"&gt;Sphinx ReStructuredText&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;¿Y por qué los dominios? Estos añaden sintaxis para manejar las relaciones con
+el código, como enlazar a funciones relacionadas que se generaron con &lt;em&gt;autodoc&lt;/em&gt;
+y además la forma de como documentar la función (u otro elemento del código) en
+su código fuente y que pueda ser extraída. Por ejemplo, el
+&lt;a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/restructuredtext/domains.html#the-python-domain"&gt;dominio de Python&lt;/a&gt;.&lt;/p&gt;
+&lt;div class="section" id="que-archivos-debo-editar"&gt;
+&lt;h3&gt;¿Qué archivos debo editar?&lt;/h3&gt;
+&lt;p&gt;Primero, editaremos &lt;code&gt;docs/source/index.rst&lt;/code&gt;, donde deberemos agregar los
+nombres de los archivos que se incluyen en la documentación, tanto los
+generados como los automáticos. Se agrega uno por línea, sin extensión y la
+posición es relativa a la ubicación del archivo &lt;code&gt;index.rst&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Te recomiendo siempre un archivo &lt;code&gt;README.rst&lt;/code&gt; que fija la generalidad e
+intención del proyecto, &lt;code&gt;history.rst&lt;/code&gt; para tener documentados los cambios
+entre versiones (como un &lt;em&gt;changelog&lt;/em&gt; pero a mano, más condensado), un
+&lt;code&gt;usage.rst&lt;/code&gt; documentando el uso de nuestro proyecto,
+&lt;code&gt;installation.rst&lt;/code&gt; con instrucciones de instalación y adicional, agregar
+una ruta a la documentación de la API (la misma ruta la debemos indicar más
+adelante). Puedes agregar más archivos, por ejemplo, yo suelo usar un
+&lt;code&gt;concepts.rst&lt;/code&gt; para detallar los conceptos necesarios antes de usar el
+software o detallar teoría que ayuda a interpretar resultados o que expande la
+información para que alguien pueda analizar o continuar un desarrollo.&lt;/p&gt;
+&lt;pre class="code text"&gt;&lt;a name="rest_code_d052e0dfdf9c4f9b8f3d0cecbc979112-1"&gt;&lt;/a&gt;.. toctree::
+&lt;a name="rest_code_d052e0dfdf9c4f9b8f3d0cecbc979112-2"&gt;&lt;/a&gt;   :maxdepth: 3
+&lt;a name="rest_code_d052e0dfdf9c4f9b8f3d0cecbc979112-3"&gt;&lt;/a&gt;   :caption: Contenido:
+&lt;a name="rest_code_d052e0dfdf9c4f9b8f3d0cecbc979112-4"&gt;&lt;/a&gt;
+&lt;a name="rest_code_d052e0dfdf9c4f9b8f3d0cecbc979112-5"&gt;&lt;/a&gt;   README
+&lt;a name="rest_code_d052e0dfdf9c4f9b8f3d0cecbc979112-6"&gt;&lt;/a&gt;   installation
+&lt;a name="rest_code_d052e0dfdf9c4f9b8f3d0cecbc979112-7"&gt;&lt;/a&gt;   usage
+&lt;a name="rest_code_d052e0dfdf9c4f9b8f3d0cecbc979112-8"&gt;&lt;/a&gt;   api/modules
+&lt;a name="rest_code_d052e0dfdf9c4f9b8f3d0cecbc979112-9"&gt;&lt;/a&gt;   concepts
+&lt;a name="rest_code_d052e0dfdf9c4f9b8f3d0cecbc979112-10"&gt;&lt;/a&gt;   history
+&lt;/pre&gt;&lt;p&gt;Y podemos borrar las líneas posteriores de &lt;em&gt;Indices and tables&lt;/em&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="ejecucion-de-sphinx"&gt;
+&lt;h2&gt;Ejecución de Sphinx&lt;/h2&gt;
+&lt;p&gt;Como estamos haciendo uso de &lt;em&gt;autodoc&lt;/em&gt;, nuestro primer paso es generar la
+extracción de la API.&lt;/p&gt;
+&lt;pre class="code text"&gt;&lt;a name="rest_code_93ac84d8a4734c61b0e96a7965e7bd49-1"&gt;&lt;/a&gt;sphinx-apidoc -f -M -o source/api/ ../proyecto
+&lt;/pre&gt;&lt;p&gt;Recordar que en Windows hay que agregar &lt;code&gt;.exe&lt;/code&gt;
+(&lt;code&gt;sphinx-apidoc.exe&lt;/code&gt;). &lt;code&gt;-f&lt;/code&gt; es para forzar la regeneración de los
+archivos (importante si actualizamos la documentación de la API), &lt;code&gt;-M&lt;/code&gt;
+para ubicar primero la documentación de los módulos (por defecto primero son
+las funciones, y esto no me parece natural). Luego, es la ruta para la
+documentación de la API (uno de los archivos será el &lt;code&gt;api/modules.rst&lt;/code&gt;)
+y finalmente la ruta donde se encuentra el paquete. Ambas rutas son relativas
+al directorio de documentación.&lt;/p&gt;
+&lt;p&gt;Ahora, solo es necesario generar la documentación: &lt;code&gt;make latexpdf&lt;/code&gt; si es
+con el &lt;em&gt;Makefile&lt;/em&gt; o &lt;code&gt;make.bat latexpdf&lt;/code&gt; si no instalaste &lt;em&gt;make&lt;/em&gt; en
+Windows. Aquí debemos devolvernos un nivel en la carpeta para ejecutarlo.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="publicar"&gt;
+&lt;h2&gt;Publicar&lt;/h2&gt;
+&lt;p&gt;Ahora encontrarás en la carpeta &lt;em&gt;build&lt;/em&gt; los archivos LaTeX, y uno de ellos será
+el PDF que queremos. También puedes hacer compilación HTML (&lt;code&gt;make html&lt;/code&gt;)
+y usar esta para publicar como un &lt;a class="reference external" href="https://pages.github.com/"&gt;GitHub Pages&lt;/a&gt; o
+en &lt;a class="reference external" href="https://docs.readthedocs.io/en/stable/intro/getting-started-with-sphinx.html"&gt;ReadTheDocs&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;&lt;/div&gt;</description><category>anaconda</category><category>documentación</category><category>latex</category><category>linux</category><category>python</category><category>restructuredtext</category><category>sphinx</category><category>windows</category><guid>https://cosmoscalibur.github.io/blog/crear-documentacion-de-un-proyecto-python-con-sphinx/</guid><pubDate>Tue, 07 Jan 2020 00:24:48 GMT</pubDate></item><item><title>Usar Anaconda Python en Git Bash</title><link>https://cosmoscalibur.github.io/blog/usar-anaconda-python-en-git-bash/</link><dc:creator>Edward Villegas-Pulgarin</dc:creator><description>&lt;div&gt;&lt;p&gt;Recientemente, por motivos laborales he tenido que trabajar en Windows y es
 por esto que tuve la necesidad de buscar una opción cómoda de usar &lt;a class="reference external" href="https://git-scm.com/"&gt;Git&lt;/a&gt;
 en Windows, con soporte de &lt;a class="reference external" href="https://www.gnu.org/software/bash/"&gt;Bash&lt;/a&gt; a lo
 que estoy acostumbrado en Linux y con Python Anaconda reconocido. De alguna
@@ -1218,69 +1439,4 @@ Scalibur.&lt;/p&gt;
 &lt;/div&gt;
 &lt;p&gt;Puedes acceder al repositorio de los ejemplos de mi conferencia en
 &lt;a class="reference external" href="https://github.com/cosmoscalibur/aula-notebook"&gt;github&lt;/a&gt;.&lt;/p&gt;
-&lt;/div&gt;&lt;/div&gt;</description><category>conferencias</category><category>eventos</category><category>pycon colombia</category><category>python</category><guid>https://cosmoscalibur.github.io/blog/la-experiencia-de-pycon-colombia-2018/</guid><pubDate>Sun, 18 Feb 2018 23:43:22 GMT</pubDate></item><item><title>Ejecutando macOS en Linux</title><link>https://cosmoscalibur.github.io/blog/ejecutando-macos-en-linux/</link><dc:creator>Edward Villegas-Pulgarin</dc:creator><description>&lt;div&gt;&lt;p&gt;Debo admitirlo, no me gusta Mac y sigue sin gustarme, pero en múltiples ocasiones se hace necesario poder disponer de un Mac al igual que de un Windows para efectos de pruebas o de correr software específico cuando no hay de otra. Por este caso me di a la tarea de buscar como lograr ejecutar macOS en mi equipo Asus que posee Linux instalado de la forma más fácil posible. A continuación, como ejecutar macOS (específicamente hackintosh) en tu equipo Linux (el procedimiento aplica también para Windows).&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Requisitos&lt;/strong&gt;: Conexión a internet estable, disco duro con más de 100 GB disponibles, RAM superior a 6 GB, procesador de más de dos núcleos (preferible Intel) y mucho tiempo.&lt;/p&gt;
-&lt;!-- TEASER_END --&gt;
-&lt;div class="section" id="contexto"&gt;
-&lt;h2&gt;Contexto&lt;/h2&gt;
-&lt;p&gt;Creo que no hay necesidad pero no hay que dar por obvias las cosas. El primer punto al respecto de esto es que macOS en si mismo es "imposible" de piratear porque el sistema operativo esta ligado al hardware. Así, la única manera de obtener e instalar macOS es tener un equipo Mac. El tema se resuelve entonces a través de una modificación del sistema operativo que da origen a iPC, OSX86 o Hackintosh, una variación del sistema que permite llevar macOS a equipos tradicionales (PC).&lt;/p&gt;
-&lt;p&gt;El cómo se logra esto es elaborado y la verdad no veo interés en comentarlo pues es el camino difícil, pero solo para resumir diré que el punto inicial es que hay que tener un equipo Mac en el cual se ejecutan una serie de rutinas para extraer los directorios del sistema y recrear los llamados del sistema operativo a una forma entendible por los procesadores x86-64. La forma sencilla es encontrar de donde obtener ya la imagen del sistema operativo lista. Pero como podrán ver al googlear no solo un poco sino mucho, todo esta dicho para quienes tienen Mac pero no para los mortales que no lo tenemos.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="descarga"&gt;
-&lt;h2&gt;Descarga&lt;/h2&gt;
-&lt;p&gt;La verdad, creo que este es el punto más difícil y misterioso del proceso de lograr la instalación de macOS (modificado). La razón de esta dificultad no solo se asocia a la dificultad sino al tema legal (con Windows no sucede así pues la imagen misma del sistema operativo es gratuita y el problema es conseguir la licencia -salvo que no te importe el mensaje de copia no original y la ausencia de actualizaciones-).&lt;/p&gt;
-&lt;p&gt;Después de muchos fracasos en descargas (largas descargas) que me llevaban a depender de Mac, encontré dos opciones listas para usar que correspondían a imágenes para máquina virtual (específicamente para VMWare/VirtualBox). Difíciles de encontrar, recurren a descarga por enlace magnético y hay pocos pares de descarga lo cual llega a un tiempo largo de descarga.&lt;/p&gt;
-&lt;p&gt;Necesitas para esto un cliente torrent (si usas Linux probablemente tendrás por defecto transmission o si usas windows puedes instalar BitTorrent, µTorrent o FrostWire), una buena conexión a internet y mucha paciencia. El enlace magnético lo obtendrás de &lt;a class="reference external" href="https://thepiratebay.org/torrent/17986715/MacOS_Sierra_10.12_VirtualBox_VMWare_Virtual_Image_Preinstalled"&gt;The Pirate Bay&lt;/a&gt; dando clic en donde dice &lt;em&gt;GET THIS TORRENT&lt;/em&gt; (hay un símbolo de un imán al lado izquierdo). Una vez lo hagas y si tienes correctamente instalado el cliente torrent, este se abrirá (o el navegador solicitará permiso de abrirlo).&lt;/p&gt;
-&lt;p&gt;Ahora te esperan unas 12 horas de descarga (en mi caso el pico máximo de velocidad que recuerdo fue de 120 kB y el mínimo fueron ratos donde no habían pares de descarga).&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="maquina-virtual"&gt;
-&lt;h2&gt;Máquina Virtual&lt;/h2&gt;
-&lt;p&gt;Mi recomendación es no intentar la instalación directa en el equipo (para empezar, no pude encontrar una imagen para ello). El proceso de instalación directo tiene sus pasos malucos y al parecer el soporte es básicamente es para equipos con procesadores Intel (lo demás se hace con más trucos de lo normal y para posiblemente perder el tiempo). Así, la mejor opción es una máquina virtual, si fallas solo perdiste tiempo pero sigues con un sistema operativo funcional montado para trabajar o dispersar.&lt;/p&gt;
-&lt;p&gt;En Linux me parece mucho más natural usar QEMU (usando la interfaz de Virt-Manager) pero desafortunadamente este no tiene el soporte necesario y nuevamente, nos llenamos de trucos bajo la manga si queremos hacerlo funcionar de esa manera. Por ahora, QEMU es la mejor opción en Linux si deseas virtualizar Windows u otra distribución linux, pero no macOS (tiene que ver con el arranque, QEMU mantiene el sistema anterior -&lt;em&gt;LEGACY&lt;/em&gt;- de arranque de OSX). Así las cosas, una conversión de formato de la imagen no sirve (lo intenté).&lt;/p&gt;
-&lt;p&gt;Necesariamente necesitas de VMWare o de VirtualBox. En mi caso, y es la opción más simple desde Linux, podemos usar VirtualBox (esta en los repositorios de varias distribuciones) y en Windows, igual por ser gratuito te lo recomiendo (&lt;a class="reference external" href="https://www.virtualbox.org/wiki/Downloads"&gt;descargar&lt;/a&gt;).&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="instalacion"&gt;
-&lt;h2&gt;Instalación&lt;/h2&gt;
-&lt;p&gt;Nuestro primer paso es descomprimir el archivo que descargamos (un archivo &lt;code&gt;rar&lt;/code&gt;). De los archivos que encontrarás solo es necesario el archivo con extensión &lt;code&gt;vmdk&lt;/code&gt; (puedes renombrar el archivo si deseas). Ahora abrimos VirtualBox y seleccionamos el botón de nuevo.&lt;/p&gt;
-&lt;p&gt;Ahora vamos a seleccionar el sistema operativo, indicando como se ve en la imagen y luego asignamos la RAM deseada (2 GB son el mínimo del sistema pero hayq ue considerar que además es una máquina virtual, lo cual conviene asignar más para un comportamiento más fluido) considerando que debes dejar al menos 2 GB disponibles para el sistema operativo del equipo.&lt;/p&gt;
-&lt;div class="figure align-center"&gt;
-&lt;img alt="Selección del sistema operativo" src="https://lh3.googleusercontent.com/YZidzbC6DFnWvn3Yqb2eBsR0kc9R1qCpwkhHXps0HMbSieD4caWezb2Rg1uhzaFOcrZHA3BKQvf4cTM5txZ_ke09hSimTZSz65CXr8P_28dAaIedqWcuCJuMwYZgQQkdU2yvjtQaBMH_NmVlDsD9f6dKFqPjpk3YsYUBg-GgaMMhlS6O473DW2cQ3yuubT3ioWneyejObXf_c9hs_5ZBD4o-ucD7Bf18mDm1ypZfY1yQf_n729S8JUSpR-cOFznmiFEPVN62SRYwtoM9xuFK913W6pmqNpRr5AUksJPPKa7dl_bssJkxlJnaS-NmEZi76AU8CKjAGzpLUP1P44C-Oqry4K0nr-VGqP0ict6MutkbXWYhKknjSmi_f8KrVx0DLsrtGhDJcD0fCA1dNaOEwMzu-C7g-bcb9EbXtEgH5qRJJNoe0xsIb25wiYo4gsv7ibMT7X8DseMwgwIx5Kr1RWxd4h2n27s72ORbHU7-cCrc7dnBQu1Df523mtbL_l0caNa_3uy-wKZeFiJQ4e08yvjcK46IzXxU9ilSIqDp0E7AP4v990XPGGECfeTqQYvSP8dLPvn8AmX1za08GwfGeJJlOfSIkRYHTdygyA=w577-h425-no?pageId=101589342745553480499"&gt;
-&lt;p class="caption"&gt;Selección del sistema operativo y versión a instalar.&lt;/p&gt;
-&lt;/div&gt;
-&lt;p&gt;Finalmente debemos indicar que se creara a partir de una imagen de disco existente y seleccionamos el símbolo de carpeta para buscar el archivo &lt;code&gt;vmdk&lt;/code&gt;.&lt;/p&gt;
-&lt;div class="figure align-center"&gt;
-&lt;img alt="Selección de disco existente" src="https://lh3.googleusercontent.com/gJA9H6jQprdKjdNLwyeq8GMy0TnFihCGsK3fXYuA1hqKqs6ikd8EG9aWikZ1qfPt_UElt1JUUGBHTe-wSVpNAocWZkK7HnAGjc-ftuh_M8nqvqOYJx9-N2yebwWAlxVnM_Glsm-ea9PrEJSHHriyEDQogHnUmYHUf0QdIOvuhhr1J9nRPSGq3I-mWKbZNK0d4m982TlS-vMLobe6hMzar9fJ7R8I2P8XPivalkoHM4a_n3nMThS3jvggwJpHiKQ1OECRSiZOVxifIJPlHdX04NbbI11nzV4_9Jz75Zim-gNctPXgZaJFb0TX2NFY-KDvFc_vuHMyH9cm6H88aBNxzkls9t3CkugPHfT6Cnsyf3sgIMrPFCCI-JdgFUsr0oAf0gmuNlJyNGBi1W6l4HRFFNGFwiVszwQP37UdqHRXMQsfG8Llkfy3LzTxFXb-WTyXcJXKGBoLzm6RyjTJPUEPIOcH4fv2u-6U5tSOT9qUeL4uMUQ0HFUqib7DkFy4ksTQBPEbQjIgKwcaN91mRSFSYpvxF_ZoIn5Rxjoe8pLq64fGQziGbHYrfwqY3zX-wFQVD-p7re48Ie9sJwjzXNf60gZia50CfC8a0w9xOA=w572-h425-no?pageId=101589342745553480499"&gt;
-&lt;p class="caption"&gt;Selección de crear máquina virtual a partir de disco existente.&lt;/p&gt;
-&lt;/div&gt;
-&lt;p&gt;Aquí hemos creado ya la máquina en si misma pero debemos configurar antes un par de cosas. En configuración de la máquina debemos ir a la sección de sistema (&lt;em&gt;system&lt;/em&gt;) y luego placa madre (&lt;em&gt;Motherboard&lt;/em&gt;) y habilitar las características extendidas (&lt;em&gt;Extended features&lt;/em&gt;) y elegir &lt;em&gt;USB Tablet&lt;/em&gt; en el puntero (&lt;em&gt;Pointing device&lt;/em&gt;). En la misma sección vamos a la pestaña de procesador (&lt;em&gt;Processor&lt;/em&gt;) e indicamos al menos 2 CPU. Por último, en la sección de monitor (&lt;em&gt;Display&lt;/em&gt;) vamos a la pestaña &lt;em&gt;Screen&lt;/em&gt; y asignamos 128 MB a la memoria de video (&lt;em&gt;Video Memory&lt;/em&gt;).&lt;/p&gt;
-&lt;p&gt;Ahora, pasamos a la consola (powershell o CMD en Windows) y ejecutamos lo siguiente (si es Windows hay que poner &lt;code&gt;VBoxManage.exe&lt;/code&gt; estando en el directorio de VirtualBox -&lt;code&gt;cd "C:Program FilesOracleVirtualBox"&lt;/code&gt;-):&lt;/p&gt;
-&lt;pre class="code bash"&gt;&lt;a name="rest_code_166e0c4c907b480ea786f948712f3f54-1"&gt;&lt;/a&gt;VBoxManage modifyvm &lt;span class="s2"&gt;"macos"&lt;/span&gt; --cpuidset &lt;span class="m"&gt;00000001&lt;/span&gt; 000106e5 &lt;span class="m"&gt;00100800&lt;/span&gt; 0098e3fd bfebfbff
-&lt;a name="rest_code_166e0c4c907b480ea786f948712f3f54-2"&gt;&lt;/a&gt;VBoxManage setextradata &lt;span class="s2"&gt;"macos"&lt;/span&gt; &lt;span class="s2"&gt;"VBoxInternal/Devices/efi/0/Config/DmiSystemProduct"&lt;/span&gt; &lt;span class="s2"&gt;"iMac11,3"&lt;/span&gt;
-&lt;a name="rest_code_166e0c4c907b480ea786f948712f3f54-3"&gt;&lt;/a&gt;VBoxManage setextradata &lt;span class="s2"&gt;"macos"&lt;/span&gt; &lt;span class="s2"&gt;"VBoxInternal/Devices/efi/0/Config/DmiSystemVersion"&lt;/span&gt; &lt;span class="s2"&gt;"1.0"&lt;/span&gt;
-&lt;a name="rest_code_166e0c4c907b480ea786f948712f3f54-4"&gt;&lt;/a&gt;VBoxManage setextradata &lt;span class="s2"&gt;"macos"&lt;/span&gt; &lt;span class="s2"&gt;"VBoxInternal/Devices/efi/0/Config/DmiBoardProduct"&lt;/span&gt; &lt;span class="s2"&gt;"Iloveapple"&lt;/span&gt;
-&lt;a name="rest_code_166e0c4c907b480ea786f948712f3f54-5"&gt;&lt;/a&gt;VBoxManage setextradata &lt;span class="s2"&gt;"macos"&lt;/span&gt; &lt;span class="s2"&gt;"VBoxInternal/Devices/smc/0/Config/DeviceKey"&lt;/span&gt; &lt;span class="s2"&gt;"ourhardworkbythesewordsguardedpleasedontsteal(c)AppleComputerInc"&lt;/span&gt;
-&lt;a name="rest_code_166e0c4c907b480ea786f948712f3f54-6"&gt;&lt;/a&gt;VBoxManage setextradata &lt;span class="s2"&gt;"macos"&lt;/span&gt; &lt;span class="s2"&gt;"VBoxInternal/Devices/smc/0/Config/GetKeyFromRealSMC"&lt;/span&gt; &lt;span class="m"&gt;1&lt;/span&gt;
-&lt;/pre&gt;&lt;p&gt;Tras esto estamos listos para encender la máquina virtual e instalar el sistema operativo en ella (nombre, usuario, contraseña, idioma, teclado). Lo único problemático aquí es que tendrás problema con el teclado pues esta pensado para los teclados Mac. Como cualquier instalación de sistema operativo es algo lento y más considerando que es una máquina virtual.&lt;/p&gt;
-&lt;div class="figure align-center"&gt;
-&lt;img alt="Selección de idioma en macOS." src="https://lh3.googleusercontent.com/4pUM9zRUHvadbxEqTxP0ChqUY8PIbLpli8QTe0MhUchr1t-YSaOL34rlBWuJPiNlN9bu-YZbc-NobHQTkFsstjxANiw6wbsdDu2vJY2b52PdQFfSydcofwHt0tZiyWY5hSf2pnUVsWArZ3h0DEXJFl3wQIH03MLPj2eY1hT3r2rLq0qYCPMyCqpHJrbA9hogF74jbfrfMwj0OSG-YzOdF4nRH-5WKN_cAc_4rUQRSSfa367h2DcHRzsfMsq4WLWREJoMyE-BeQnVXh4dbZke4u6E-c-u7Zei31YStQRGW5fKCegvF1QmlG34ofIc-YaGcHBWJWesGrN7z9zuxNUQz1Mjqx7reVQhauHlLneMGB9wJGc7eDxlx2XjMx3C-omhiP0dfqNfp3Lnq41a_ZxevISpm3v3L88WhM6VBGBNkpF4x3-kxGovJ-irp3LUz1if05W1kmaVzHgwUbR8OPamO6bkNmWHRxjpZdXC1cRfrL5uHqb40B2QYIuqikwWDzKV1u3PYvi_uFHHJOoeEEDk2GdoZQYla25RPiHyS5RDwVsweBZig-By2VOwJCKoXB1rdBDSR3nUlvMa7qdQf91p5MT06be_EQ74BRpKmg=w1593-h896-no?pageId=101589342745553480499"&gt;
-&lt;p class="caption"&gt;Selección de idioma en macOS.&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="section" id="despues"&gt;
-&lt;h2&gt;Después&lt;/h2&gt;
-&lt;p&gt;No soy usuario Mac y mi propósito de hacer esto era muy específico, validar compatibilidad de códigos que uso, desarrollo o contribuyo. Pero en este mismo sentido, algo que recomiendo hacer, es instalar &lt;a class="reference external" href="https://brew.sh/index_es.html"&gt;Homebrew&lt;/a&gt; con el fin de tener listo nuestro macOS para pruebas y poder instalar distintos paquetes comunes a la hora de programar.&lt;/p&gt;
-&lt;p&gt;Para ello debes abrir la consola que encontrarás en aplicaciones y ejecutar lo siguiente:&lt;/p&gt;
-&lt;pre class="code bash"&gt;&lt;a name="rest_code_0659062d7532463589423e0e2a870ce8-1"&gt;&lt;/a&gt;ruby -e &lt;span class="s2"&gt;"&lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install&lt;span class="k"&gt;)&lt;/span&gt;&lt;span class="s2"&gt;"&lt;/span&gt;
-&lt;/pre&gt;&lt;p&gt;Tendrás que tener paciencia pues el proceso me tomó 45 minutos (en foros reportan la instalación de &lt;em&gt;homebrew&lt;/em&gt; de casi 2 horas) y necesitas estar pendiente pues hay dos solicitudes de tu contraseña.&lt;/p&gt;
-&lt;div class="figure align-center"&gt;
-&lt;img alt="Instalación de homebrew en macOS" src="https://lh3.googleusercontent.com/Pvn6D-PrK_txoUeelj0eDJ1E7rXZErv4oz4CBSfGfm4K7HLR0uL0GJv5VsF95yTDDGSzTJtTnb74djPvcnB9oIGCb1FYKg-S6xbeOIBRmCkgAi9RXXohgs5Xk11OIr3A3dKkByXb1GB4u3DT2ClcTwq-EvxO5US_4Zd6TMeSboYVU61N22LUdMpwanRenNAHEMqJ1qTfc20QXbJ4UWOY8WEs3X1LmRwoFzNJYSa2QV4K9YGMtMEMOY-O4LVdApo9mxWuGtHNBjPkC9iJ0ydVwT7h64cB1WArQyo7vDCkQ3md0cQC3kPlF5HgX25TwbT7_02YU0bJfVOkMht06PkhkQWWck8aRobI-oaHlE9E04b4glT_p-qXHcNXkTqMreLEpC61YeJ_U_R6SNMN0E07dHrEy-_Ci0EuAy-R5ikX0Bm5cS1NGIi3c6vh4OjvqNwniN4MMLUhUSL8GHmsuVxiTatNG6oJUavTJwX4K7DlwgV30J7DCiyZShIdHPndEEoL2yUPWX0eMUsCGscDjmY4Em14YaKa95etIYvXZWfKoA4svKxXE15O0xWk3eZUYKQhBSWMkUMFMEm9m1PDzUun6PVA20YWCxblFWo74Q=w1593-h896-no?pageId=101589342745553480499"&gt;
-&lt;p class="caption"&gt;Instalación por consola de homebrew en macOS.&lt;/p&gt;
-&lt;/div&gt;
-&lt;p&gt;Una vez instalado, puedes aprovechar a dejar listo python (actualiza la versión por defecto e instala el gestor pip). Igualmente es conveniente instalar otros paquetes de uso común por otras aplicaciones .&lt;/p&gt;
-&lt;pre class="code bash"&gt;&lt;a name="rest_code_4d5465fff2fc4bda936da30ea5e7dd88-1"&gt;&lt;/a&gt;brew install pkg-config &lt;span class="c1"&gt;# Ayuda a determinar la lista de paquetes existentes&lt;/span&gt;
-&lt;a name="rest_code_4d5465fff2fc4bda936da30ea5e7dd88-2"&gt;&lt;/a&gt;brew install python3 &lt;span class="c1"&gt;# Python3 no viene por defecto&lt;/span&gt;
-&lt;a name="rest_code_4d5465fff2fc4bda936da30ea5e7dd88-3"&gt;&lt;/a&gt;brew install python2 &lt;span class="c1"&gt;# Actualiza la versión existente. En ambos casos se instala pip (pip2 y pip3)&lt;/span&gt;
-&lt;a name="rest_code_4d5465fff2fc4bda936da30ea5e7dd88-4"&gt;&lt;/a&gt;brew install freetype &lt;span class="c1"&gt;# Requerido para la manipulación de fuentes -por ejemplo en matplotlib-&lt;/span&gt;
-&lt;a name="rest_code_4d5465fff2fc4bda936da30ea5e7dd88-5"&gt;&lt;/a&gt;brew install libpng &lt;span class="c1"&gt;# Requerido para la manipulación de imágenes png -por ejemplo en matplotlib-&lt;/span&gt;
-&lt;a name="rest_code_4d5465fff2fc4bda936da30ea5e7dd88-6"&gt;&lt;/a&gt;brew install pygtk &lt;span class="c1"&gt;# Binding de GTK para python. Interfaces en pygtk son comunes.&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</description><category>emulación</category><category>hackintosh</category><category>linux</category><category>macos</category><category>máquina virtual</category><guid>https://cosmoscalibur.github.io/blog/ejecutando-macos-en-linux/</guid><pubDate>Fri, 19 Jan 2018 03:16:55 GMT</pubDate></item></channel></rss>
+&lt;/div&gt;&lt;/div&gt;</description><category>conferencias</category><category>eventos</category><category>pycon colombia</category><category>python</category><guid>https://cosmoscalibur.github.io/blog/la-experiencia-de-pycon-colombia-2018/</guid><pubDate>Sun, 18 Feb 2018 23:43:22 GMT</pubDate></item></channel></rss>
