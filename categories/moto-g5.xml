@@ -3,7 +3,7 @@
 &lt;a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"&gt;
 &lt;img alt="Creative Commons License BY-NC-SA"
 style="border-width:0; margin-bottom:12px;"
-src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"&gt;&lt;/a&gt;</copyright><lastBuildDate>Sun, 15 Mar 2020 04:24:15 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Recuperar el arranque de tu Moto G5 en Linux</title><link>https://cosmoscalibur.github.io/blog/recuperar-el-arranque-de-tu-moto-g5-en-linux/</link><dc:creator>Edward Villegas-Pulgarin</dc:creator><description>&lt;div&gt;&lt;p&gt;Recientemente, aunque cambié a un Moto G7, pensaba restaurar el celular de
+src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"&gt;&lt;/a&gt;</copyright><lastBuildDate>Fri, 20 Mar 2020 04:26:28 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Recuperar el arranque de tu Moto G5 en Linux</title><link>https://cosmoscalibur.github.io/blog/recuperar-el-arranque-de-tu-moto-g5-en-linux/</link><dc:creator>Edward Villegas-Pulgarin</dc:creator><description>&lt;div&gt;&lt;p&gt;Recientemente, aunque cambié a un Moto G7, pensaba restaurar el celular de
 fábrica pero salió mal el proceso (no siempre es fácil si pretendes eliminar
 el acceso a &lt;a class="reference external" href="https://www.xda-developers.com/root/"&gt;administrador&lt;/a&gt; -&lt;em&gt;root&lt;/em&gt;- y
 el &lt;em&gt;recovery&lt;/em&gt; personalizado -&lt;a class="reference external" href="https://twrp.me/about/"&gt;TWRP&lt;/a&gt;-).&lt;/p&gt;
@@ -24,8 +24,8 @@ Linux pero por lo mismo dependerá de cual usemos.&lt;/p&gt;
 18.04, compartiendo mucho de la base de paquetes en sus repositorios. Así,
 en ambos casos, podremos proceder a instalar de la misma manera el SDK de
 Android, ADB, Fastboot y Platform Tools.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_b49f8c75afb842eabe6218daa1ea5b75-1"&gt;&lt;/a&gt;sudo apt install -y android-sdk android-tools-fastboot android-tools-adb \
-&lt;a name="rest_code_b49f8c75afb842eabe6218daa1ea5b75-2"&gt;&lt;/a&gt;android-sdk-platform-tools
+&lt;pre class="code text"&gt;&lt;a name="rest_code_d27344b1a92146a2a8e7466a2be5556a-1"&gt;&lt;/a&gt;sudo apt install -y android-sdk android-tools-fastboot android-tools-adb \
+&lt;a name="rest_code_d27344b1a92146a2a8e7466a2be5556a-2"&gt;&lt;/a&gt;android-sdk-platform-tools
 &lt;/pre&gt;&lt;/div&gt;
 &lt;div class="section" id="descargar-rom-de-fabrica"&gt;
 &lt;h2&gt;Descargar &lt;em&gt;ROM&lt;/em&gt; de fábrica&lt;/h2&gt;
@@ -51,13 +51,13 @@ soltar.&lt;/p&gt;&lt;/li&gt;
 &lt;p&gt;En este momento, hemos ingresado al modo &lt;em&gt;fastboot&lt;/em&gt; (o &lt;em&gt;bootloader&lt;/em&gt;).
 Conectamos el cable USB tanto al celular como a nuestro computador.&lt;/p&gt;
 &lt;p&gt;Podemos probar que todo vaya bien abriendo una terminal y ejecutando&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_56b68c8949074e69becfe80655394676-1"&gt;&lt;/a&gt;fastboot devices
+&lt;pre class="code text"&gt;&lt;a name="rest_code_0d660194bf3e47b5913392cbb4b73276-1"&gt;&lt;/a&gt;fastboot devices
 &lt;/pre&gt;&lt;p&gt;Y sabremos que funciona si muestra una secuencia alfanumérica y luego la
 palabra &lt;em&gt;fastboot&lt;/em&gt;. En mi caso es:&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_f7f5a55ea7c84bd6894c83a52e62a5e9-1"&gt;&lt;/a&gt;ZY3224RNMN   fastboot
+&lt;pre class="code text"&gt;&lt;a name="rest_code_72e977d9a7fb45a1a22a1ec02d15f039-1"&gt;&lt;/a&gt;ZY3224RNMN   fastboot
 &lt;/pre&gt;&lt;p&gt;Algunas veces puede fallar por permisos, en cuyo caso deberías probar la
 ejecución con permiso de administrador.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_6958850ebc3a4a0f8a465919dfd538c2-1"&gt;&lt;/a&gt;sudo fastboot devices
+&lt;pre class="code text"&gt;&lt;a name="rest_code_6ada61daf30444e6bd37afa4f2c9c897-1"&gt;&lt;/a&gt;sudo fastboot devices
 &lt;/pre&gt;&lt;/div&gt;
 &lt;div class="section" id="instalar-sistema-operativo"&gt;
 &lt;h2&gt;Instalar sistema operativo&lt;/h2&gt;
@@ -67,33 +67,33 @@ operativo (algunos exploradores de archivos admiten poseen la opción de abrir
 la terminal en el directorio abierto en el explorador o puedes moverte en la
 terminal con el comando &lt;code&gt;cd&lt;/code&gt;).&lt;/p&gt;
 &lt;p&gt;Una vez ubicados en el directorio desde la terminal, procedemos a ejecutar&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_2008e7bf19d34c9c9d454da50bdf333d-1"&gt;&lt;/a&gt;fastboot getvar max-sparse-size
-&lt;a name="rest_code_2008e7bf19d34c9c9d454da50bdf333d-2"&gt;&lt;/a&gt;fastboot oem fb_mode_set
-&lt;a name="rest_code_2008e7bf19d34c9c9d454da50bdf333d-3"&gt;&lt;/a&gt;fastboot flash partition gpt.bin
-&lt;a name="rest_code_2008e7bf19d34c9c9d454da50bdf333d-4"&gt;&lt;/a&gt;fastboot flash bootloader bootloader.img
-&lt;a name="rest_code_2008e7bf19d34c9c9d454da50bdf333d-5"&gt;&lt;/a&gt;fastboot flash modem NON-HLOS.bin
-&lt;a name="rest_code_2008e7bf19d34c9c9d454da50bdf333d-6"&gt;&lt;/a&gt;fastboot flash fsg fsg.mbn
-&lt;a name="rest_code_2008e7bf19d34c9c9d454da50bdf333d-7"&gt;&lt;/a&gt;fastboot erase modemst1
-&lt;a name="rest_code_2008e7bf19d34c9c9d454da50bdf333d-8"&gt;&lt;/a&gt;fastboot erase modemst2
-&lt;a name="rest_code_2008e7bf19d34c9c9d454da50bdf333d-9"&gt;&lt;/a&gt;fastboot flash dsp adspso.bin
-&lt;a name="rest_code_2008e7bf19d34c9c9d454da50bdf333d-10"&gt;&lt;/a&gt;fastboot flash logo logo.bin
-&lt;a name="rest_code_2008e7bf19d34c9c9d454da50bdf333d-11"&gt;&lt;/a&gt;fastboot flash boot boot.img
-&lt;a name="rest_code_2008e7bf19d34c9c9d454da50bdf333d-12"&gt;&lt;/a&gt;fastboot flash recovery recovery.img
-&lt;a name="rest_code_2008e7bf19d34c9c9d454da50bdf333d-13"&gt;&lt;/a&gt;fastboot flash system system.img_sparsechunk.0
-&lt;a name="rest_code_2008e7bf19d34c9c9d454da50bdf333d-14"&gt;&lt;/a&gt;fastboot flash system system.img_sparsechunk.1
-&lt;a name="rest_code_2008e7bf19d34c9c9d454da50bdf333d-15"&gt;&lt;/a&gt;fastboot flash system system.img_sparsechunk.2
-&lt;a name="rest_code_2008e7bf19d34c9c9d454da50bdf333d-16"&gt;&lt;/a&gt;fastboot flash system system.img_sparsechunk.3
-&lt;a name="rest_code_2008e7bf19d34c9c9d454da50bdf333d-17"&gt;&lt;/a&gt;fastboot flash system system.img_sparsechunk.4
-&lt;a name="rest_code_2008e7bf19d34c9c9d454da50bdf333d-18"&gt;&lt;/a&gt;fastboot flash system system.img_sparsechunk.5
-&lt;a name="rest_code_2008e7bf19d34c9c9d454da50bdf333d-19"&gt;&lt;/a&gt;fastboot flash system system.img_sparsechunk.6
-&lt;a name="rest_code_2008e7bf19d34c9c9d454da50bdf333d-20"&gt;&lt;/a&gt;fastboot flash system system.img_sparsechunk.7
-&lt;a name="rest_code_2008e7bf19d34c9c9d454da50bdf333d-21"&gt;&lt;/a&gt;fastboot flash system system.img_sparsechunk.8
-&lt;a name="rest_code_2008e7bf19d34c9c9d454da50bdf333d-22"&gt;&lt;/a&gt;fastboot flash oem oem.img
-&lt;a name="rest_code_2008e7bf19d34c9c9d454da50bdf333d-23"&gt;&lt;/a&gt;fastboot erase cache
-&lt;a name="rest_code_2008e7bf19d34c9c9d454da50bdf333d-24"&gt;&lt;/a&gt;fastboot erase userdata
-&lt;a name="rest_code_2008e7bf19d34c9c9d454da50bdf333d-25"&gt;&lt;/a&gt;fastboot erase DDR
-&lt;a name="rest_code_2008e7bf19d34c9c9d454da50bdf333d-26"&gt;&lt;/a&gt;fastboot oem fb_mode_clear
-&lt;a name="rest_code_2008e7bf19d34c9c9d454da50bdf333d-27"&gt;&lt;/a&gt;fastboot reboot
+&lt;pre class="code text"&gt;&lt;a name="rest_code_6c66cb4dd6a54dd1b6d1d0f3f000aa60-1"&gt;&lt;/a&gt;fastboot getvar max-sparse-size
+&lt;a name="rest_code_6c66cb4dd6a54dd1b6d1d0f3f000aa60-2"&gt;&lt;/a&gt;fastboot oem fb_mode_set
+&lt;a name="rest_code_6c66cb4dd6a54dd1b6d1d0f3f000aa60-3"&gt;&lt;/a&gt;fastboot flash partition gpt.bin
+&lt;a name="rest_code_6c66cb4dd6a54dd1b6d1d0f3f000aa60-4"&gt;&lt;/a&gt;fastboot flash bootloader bootloader.img
+&lt;a name="rest_code_6c66cb4dd6a54dd1b6d1d0f3f000aa60-5"&gt;&lt;/a&gt;fastboot flash modem NON-HLOS.bin
+&lt;a name="rest_code_6c66cb4dd6a54dd1b6d1d0f3f000aa60-6"&gt;&lt;/a&gt;fastboot flash fsg fsg.mbn
+&lt;a name="rest_code_6c66cb4dd6a54dd1b6d1d0f3f000aa60-7"&gt;&lt;/a&gt;fastboot erase modemst1
+&lt;a name="rest_code_6c66cb4dd6a54dd1b6d1d0f3f000aa60-8"&gt;&lt;/a&gt;fastboot erase modemst2
+&lt;a name="rest_code_6c66cb4dd6a54dd1b6d1d0f3f000aa60-9"&gt;&lt;/a&gt;fastboot flash dsp adspso.bin
+&lt;a name="rest_code_6c66cb4dd6a54dd1b6d1d0f3f000aa60-10"&gt;&lt;/a&gt;fastboot flash logo logo.bin
+&lt;a name="rest_code_6c66cb4dd6a54dd1b6d1d0f3f000aa60-11"&gt;&lt;/a&gt;fastboot flash boot boot.img
+&lt;a name="rest_code_6c66cb4dd6a54dd1b6d1d0f3f000aa60-12"&gt;&lt;/a&gt;fastboot flash recovery recovery.img
+&lt;a name="rest_code_6c66cb4dd6a54dd1b6d1d0f3f000aa60-13"&gt;&lt;/a&gt;fastboot flash system system.img_sparsechunk.0
+&lt;a name="rest_code_6c66cb4dd6a54dd1b6d1d0f3f000aa60-14"&gt;&lt;/a&gt;fastboot flash system system.img_sparsechunk.1
+&lt;a name="rest_code_6c66cb4dd6a54dd1b6d1d0f3f000aa60-15"&gt;&lt;/a&gt;fastboot flash system system.img_sparsechunk.2
+&lt;a name="rest_code_6c66cb4dd6a54dd1b6d1d0f3f000aa60-16"&gt;&lt;/a&gt;fastboot flash system system.img_sparsechunk.3
+&lt;a name="rest_code_6c66cb4dd6a54dd1b6d1d0f3f000aa60-17"&gt;&lt;/a&gt;fastboot flash system system.img_sparsechunk.4
+&lt;a name="rest_code_6c66cb4dd6a54dd1b6d1d0f3f000aa60-18"&gt;&lt;/a&gt;fastboot flash system system.img_sparsechunk.5
+&lt;a name="rest_code_6c66cb4dd6a54dd1b6d1d0f3f000aa60-19"&gt;&lt;/a&gt;fastboot flash system system.img_sparsechunk.6
+&lt;a name="rest_code_6c66cb4dd6a54dd1b6d1d0f3f000aa60-20"&gt;&lt;/a&gt;fastboot flash system system.img_sparsechunk.7
+&lt;a name="rest_code_6c66cb4dd6a54dd1b6d1d0f3f000aa60-21"&gt;&lt;/a&gt;fastboot flash system system.img_sparsechunk.8
+&lt;a name="rest_code_6c66cb4dd6a54dd1b6d1d0f3f000aa60-22"&gt;&lt;/a&gt;fastboot flash oem oem.img
+&lt;a name="rest_code_6c66cb4dd6a54dd1b6d1d0f3f000aa60-23"&gt;&lt;/a&gt;fastboot erase cache
+&lt;a name="rest_code_6c66cb4dd6a54dd1b6d1d0f3f000aa60-24"&gt;&lt;/a&gt;fastboot erase userdata
+&lt;a name="rest_code_6c66cb4dd6a54dd1b6d1d0f3f000aa60-25"&gt;&lt;/a&gt;fastboot erase DDR
+&lt;a name="rest_code_6c66cb4dd6a54dd1b6d1d0f3f000aa60-26"&gt;&lt;/a&gt;fastboot oem fb_mode_clear
+&lt;a name="rest_code_6c66cb4dd6a54dd1b6d1d0f3f000aa60-27"&gt;&lt;/a&gt;fastboot reboot
 &lt;/pre&gt;&lt;p&gt;Muy bien, hemos terminado de instalar (si no hemos tenido ejecuciones
 fallidas). Para iniciar el celular, con la tecla de volumen buscamos &lt;em&gt;restart&lt;/em&gt;
 y luego presionamos el botón de encendido. En este momento, es como si
