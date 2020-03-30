@@ -89,8 +89,8 @@
 <p>La mayor parte de distribuciones Linux disponen de gestores de paquetes de <em>software</em>, que son herramientas para la búsqueda, descarga, instalación y configuración de estos. Los gestores se conectan a repositorios de paquetes oficiales que son mantenidos por los desarrollados de la distribución, asegurando que cumplan con estándares mínimos de compatibilidad y estabilidad.</p>
 <p>También, algunos gestores pueden conectar a repositorios mantenidos por la comunidad, dando la opción de extender el <em>software</em> disponible para instalación por los usuarios de una manera simple, pero a riesgo de inestabilidad o conflictos por la interacción con paquetes de los repositorios oficiales (no es general, pero suele ocurrir). Estos repositorios de comunidad los recomiendo como última opción.</p>
 <p>En Ubuntu y Linux Mint, tienes la opción de usar el Centro de Software (preinstalado) o Synaptic (preinstalado en Linux Mint), para realizar la gestión de manera gráfica. Pero también puedes usar <code>apt-get</code> o <code>apt</code> (recomendado) para la gestión a través de consola.</p>
-<pre class="code text"><a id="rest_code_ceba78b430d949709e36af52dab9297d-1" name="rest_code_ceba78b430d949709e36af52dab9297d-1"></a>sudo apt update -q
-<a id="rest_code_ceba78b430d949709e36af52dab9297d-2" name="rest_code_ceba78b430d949709e36af52dab9297d-2"></a>sudo apt install -y okular
+<pre class="code text"><a id="rest_code_e03dad2bfa124a1487cf64dc1b5d96b8-1" name="rest_code_e03dad2bfa124a1487cf64dc1b5d96b8-1"></a>sudo apt update -q
+<a id="rest_code_e03dad2bfa124a1487cf64dc1b5d96b8-2" name="rest_code_e03dad2bfa124a1487cf64dc1b5d96b8-2"></a>sudo apt install -y okular
 </pre>
 <p>Ahora dispones del lector de archivos PDF en tu sistema. Puedes accederlo por el menú o por comando (<code>okular</code>). La primera línea es recomendable para actualizar las direcciones desde las cuales se descarga el software y los metadatos para búsqueda. La segunda línea realiza la instalación sin solicitar confirmación.</p>
 </div>
@@ -100,13 +100,13 @@
 <p>Como el archivo ejecuta directamente, se pueden tener múltiples versiones del mismo programa. Esto, es por el aislamiento que posee, es un tipo de contenedor, tal como lo son las opciones de snap y flatpak, lo cual también evita conflictos en el sistema (programas que puedan requerir la misma dependencia pero en versiones diferentes, la dependencia no pueda gestionar múltiples instancias o exponga una brecha de seguridad).</p>
 <p>Usaremos Stellarium para dar un ejemplo, y puedes buscar en <a class="reference external" href="https://appimage.github.io">AppImageHub</a> para ver una colección de AppImage disponibles.</p>
 <p id="appimagecode">Descargamos el <a class="reference external" href="https://stellarium.org/">AppImage de Stellarium</a> del sitio oficial del software (el segundo pingüino).</p>
-<pre class="code text"><a id="rest_code_a075e2482bef499e869db9a6b920354c-1" name="rest_code_a075e2482bef499e869db9a6b920354c-1"></a>chmod 755 Stellarium-0.19.2-x86_64.AppImage
-<a id="rest_code_a075e2482bef499e869db9a6b920354c-2" name="rest_code_a075e2482bef499e869db9a6b920354c-2"></a>./Stellarium-0.19.2-x86_64.AppImage
+<pre class="code text"><a id="rest_code_e612f0e59af44830ad67ce0be61e7c3d-1" name="rest_code_e612f0e59af44830ad67ce0be61e7c3d-1"></a>chmod 755 Stellarium-0.19.2-x86_64.AppImage
+<a id="rest_code_e612f0e59af44830ad67ce0be61e7c3d-2" name="rest_code_e612f0e59af44830ad67ce0be61e7c3d-2"></a>./Stellarium-0.19.2-x86_64.AppImage
 </pre>
 <p>La primera línea solo es necesario ejecutarla la primera vez.</p>
 <p>Si queremos ejecutarlo de una manera más cómoda, podemos mover el archivo al directorio de ejecución de binarios del usuario o a uno de ejecución de sistema para estar disponible para todos los usuarios (<code>/usr/local/bin/</code>).</p>
-<pre class="code text"><a id="rest_code_50ed9337dbef43dabefb38bbdb02bb14-1" name="rest_code_50ed9337dbef43dabefb38bbdb02bb14-1"></a>mv Stellarium-0.19.2-x86_64.AppImage ~/.local/bin/stellarium
-<a id="rest_code_50ed9337dbef43dabefb38bbdb02bb14-2" name="rest_code_50ed9337dbef43dabefb38bbdb02bb14-2"></a>stellarium
+<pre class="code text"><a id="rest_code_13b708caa22a4b89a62b294c9e15a6c6-1" name="rest_code_13b708caa22a4b89a62b294c9e15a6c6-1"></a>mv Stellarium-0.19.2-x86_64.AppImage ~/.local/bin/stellarium
+<a id="rest_code_13b708caa22a4b89a62b294c9e15a6c6-2" name="rest_code_13b708caa22a4b89a62b294c9e15a6c6-2"></a>stellarium
 </pre>
 <p>Nuevamente, la primera línea es solo la primera vez.</p>
 </div>
@@ -114,11 +114,11 @@
 <h3>Snap</h3>
 <p>Los snap son el mecanismo de instalación promovido por Canonical (desarrolladores de Ubuntu). Sigue siendo un mecanismo centralizado, que requiere aprobación de Canonical para ser admitido el paquete y requiere ser administrador para la instalación.</p>
 <p>En Ubuntu viene preinstalado pero en Linux Mint es necesario instalarlo.</p>
-<pre class="code text"><a id="rest_code_ff00ec91452242e88d14db16e3b4898c-1" name="rest_code_ff00ec91452242e88d14db16e3b4898c-1"></a>sudo apt install -y snapd
+<pre class="code text"><a id="rest_code_8759651722ed4cbcac9a229829779c6b-1" name="rest_code_8759651722ed4cbcac9a229829779c6b-1"></a>sudo apt install -y snapd
 </pre>
 <p>Una vez instalado, podemos proceder a instalar un paquete snap.</p>
-<pre class="code text"><a id="rest_code_16d511666c7f48a2af3ca11b192b4aab-1" name="rest_code_16d511666c7f48a2af3ca11b192b4aab-1"></a>sudo snap install code --classic
-<a id="rest_code_16d511666c7f48a2af3ca11b192b4aab-2" name="rest_code_16d511666c7f48a2af3ca11b192b4aab-2"></a>snap run code # Ejecuta
+<pre class="code text"><a id="rest_code_00ce7dc310cb411cb142d6ad444e3277-1" name="rest_code_00ce7dc310cb411cb142d6ad444e3277-1"></a>sudo snap install code --classic
+<a id="rest_code_00ce7dc310cb411cb142d6ad444e3277-2" name="rest_code_00ce7dc310cb411cb142d6ad444e3277-2"></a>snap run code # Ejecuta
 </pre>
 <p>La ejecución con <code>snap run</code> es necesaria si tras instalar no reconoce el paquete. Después de la primera ejecución o tras abrir una nueva terminal o reiniciar el equipo, será ya reconocido el paquete sin problema para ejecutarse directamente con el nombre (<code>code</code>) o por el menú.</p>
 <p>Puedes buscar más paquetes en <a class="reference external" href="https://snapcraft.io/store">snapcraf</a></p>
@@ -127,19 +127,19 @@
 <h3>Flatpak</h3>
 <p>El caso de flatpak no es muy cómodo, tiene cierta centralización como snap, pero con fines de indexación. Un desarrollador puede crear su propio repositorio flatpak. Y al igual que AppImage, no requiere permisos de administrador.</p>
 <p>En Linux Mint viene preconfigurado a partir de la versión 18.3, pero si usas Ubuntu necesitas instalarlo. Desde la 18.10 se encuentra en los repositorios oficiales.</p>
-<pre class="code text"><a id="rest_code_8d77fedc7f4449429599d010e0a54604-1" name="rest_code_8d77fedc7f4449429599d010e0a54604-1"></a>sudo apt install flatpak
-<a id="rest_code_8d77fedc7f4449429599d010e0a54604-2" name="rest_code_8d77fedc7f4449429599d010e0a54604-2"></a>sudo apt install gnome-software-plugin-flatpak
-<a id="rest_code_8d77fedc7f4449429599d010e0a54604-3" name="rest_code_8d77fedc7f4449429599d010e0a54604-3"></a>flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+<pre class="code text"><a id="rest_code_e92abf5fe39241eba47dabfbb77eb36f-1" name="rest_code_e92abf5fe39241eba47dabfbb77eb36f-1"></a>sudo apt install flatpak
+<a id="rest_code_e92abf5fe39241eba47dabfbb77eb36f-2" name="rest_code_e92abf5fe39241eba47dabfbb77eb36f-2"></a>sudo apt install gnome-software-plugin-flatpak
+<a id="rest_code_e92abf5fe39241eba47dabfbb77eb36f-3" name="rest_code_e92abf5fe39241eba47dabfbb77eb36f-3"></a>flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 </pre>
 <p>La primera línea instala el gestor de flatpak. La segunda línea permite usar flatpak con el Centro de Software de Gnome. Y la tercera línea agrega el repositorio de paquetes flatpak más popular, <a class="reference external" href="https://flathub.org/home">flathub</a>.</p>
 <p>Para ejemplificar, instalaremos el paquete peek</p>
-<pre class="code text"><a id="rest_code_5a08c50a10084b8aaefde1fff189f865-1" name="rest_code_5a08c50a10084b8aaefde1fff189f865-1"></a>flatpak install -y flathub com.uploadedlobster.peek
-<a id="rest_code_5a08c50a10084b8aaefde1fff189f865-2" name="rest_code_5a08c50a10084b8aaefde1fff189f865-2"></a>flatpak run com.uploadedlobster.peek
+<pre class="code text"><a id="rest_code_e230dd4862774d798f9f34dc73236f16-1" name="rest_code_e230dd4862774d798f9f34dc73236f16-1"></a>flatpak install -y flathub com.uploadedlobster.peek
+<a id="rest_code_e230dd4862774d798f9f34dc73236f16-2" name="rest_code_e230dd4862774d798f9f34dc73236f16-2"></a>flatpak run com.uploadedlobster.peek
 </pre>
 <p>Desafortunadamente la ejecución es siempre así, pero puedes crear un archivo que te facilite la labor.</p>
-<pre class="code text"><a id="rest_code_ca98617b48884f25820b73788f092730-1" name="rest_code_ca98617b48884f25820b73788f092730-1"></a>echo "flatpak run com.uploadedlobster.peek" &gt; ~/.local/bin/peek
-<a id="rest_code_ca98617b48884f25820b73788f092730-2" name="rest_code_ca98617b48884f25820b73788f092730-2"></a>chmod 755 ~/.local/bin/peek
-<a id="rest_code_ca98617b48884f25820b73788f092730-3" name="rest_code_ca98617b48884f25820b73788f092730-3"></a>peek
+<pre class="code text"><a id="rest_code_04774dac70cb4c1b960de2ff791a225b-1" name="rest_code_04774dac70cb4c1b960de2ff791a225b-1"></a>echo "flatpak run com.uploadedlobster.peek" &gt; ~/.local/bin/peek
+<a id="rest_code_04774dac70cb4c1b960de2ff791a225b-2" name="rest_code_04774dac70cb4c1b960de2ff791a225b-2"></a>chmod 755 ~/.local/bin/peek
+<a id="rest_code_04774dac70cb4c1b960de2ff791a225b-3" name="rest_code_04774dac70cb4c1b960de2ff791a225b-3"></a>peek
 </pre>
 <p>A nivel gráfico, por defecto si es agregado al menú.</p>
 </div>

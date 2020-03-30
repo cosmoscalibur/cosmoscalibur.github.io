@@ -87,7 +87,7 @@
 <h2>Git Bash</h2>
 <p>Si bien puedes descargarlo desde el sitio del proyecto, aprovecharemos el gestor Conda para facilitar la tarea de descarga, instalación y configuración.</p>
 <p>Abriremos Anaconda PowerShell o Anaconda Prompt, y ejecutaremos lo siguiente:</p>
-<pre class="code text"><a id="rest_code_49a63241f0644077af7e6a659a51d844-1" name="rest_code_49a63241f0644077af7e6a659a51d844-1"></a>conda create -n gitbash -c conda-forge git=2.24.0
+<pre class="code text"><a id="rest_code_f9afab9d2f2949aaa92b685f1071a2f3-1" name="rest_code_f9afab9d2f2949aaa92b685f1071a2f3-1"></a>conda create -n gitbash -c conda-forge git=2.24.0
 </pre>
 <p>Es importante el uso de <code>-c conda-forge</code> porque de este canal vendrá la versión de Git que usaremos. Si se usa el canal por defecto, se instala solo el cliente de consola, mientras que en esta opción viene Git Bash. He indicado también el <code>-n gitbash</code> para evitar posibles conflictos entre los paquetes requeridos para usar Git y los paquetes disponibles en el ambiente base. En alguna publicación posterior hablaré sobre Conda para profundizar en esto.</p>
 <p>Una vez terminada la instalación, puedes abrir el menú de Windows y buscar Git Bash, el cual ya contará con Conda reconocido. Ahora solo debes empezar a usarlo, <code>conda activate base</code>.</p>
@@ -97,9 +97,9 @@
 </div>
 <p>¿Y qué pasa si ya teníamos instalado Git Bash? Git Bash soporta los archivos típicos de Bash, como el <code>bashrc</code>. Así, podemos usar la configuración que habitualmente se usa en Linux.</p>
 <p>Abrimos Git Bash, y ejecutamos:</p>
-<pre class="code text"><a id="rest_code_7ad2b20a0f3648868fc95b9c99291d81-1" name="rest_code_7ad2b20a0f3648868fc95b9c99291d81-1"></a>cd
-<a id="rest_code_7ad2b20a0f3648868fc95b9c99291d81-2" name="rest_code_7ad2b20a0f3648868fc95b9c99291d81-2"></a>echo ". /c/Users/USUARIO/ANACONDA/etc/profile.d/conda.sh" &gt;&gt; .bashrc
-<a id="rest_code_7ad2b20a0f3648868fc95b9c99291d81-3" name="rest_code_7ad2b20a0f3648868fc95b9c99291d81-3"></a>source .bashrc
+<pre class="code text"><a id="rest_code_074ec3eaa74e49cbb2137dc181370f06-1" name="rest_code_074ec3eaa74e49cbb2137dc181370f06-1"></a>cd
+<a id="rest_code_074ec3eaa74e49cbb2137dc181370f06-2" name="rest_code_074ec3eaa74e49cbb2137dc181370f06-2"></a>echo ". /c/Users/USUARIO/ANACONDA/etc/profile.d/conda.sh" &gt;&gt; .bashrc
+<a id="rest_code_074ec3eaa74e49cbb2137dc181370f06-3" name="rest_code_074ec3eaa74e49cbb2137dc181370f06-3"></a>source .bashrc
 </pre>
 <p>Con la primera línea aseguramos ir al directorio del usuario. En la segunda línea, crearemos o editaremos el archivo de configuración, pero debes reemplazar <code>USUARIO</code> por la carpeta de tu usuario y <code>ANACONDA</code> por la carpeta de Anaconda (habitualmente <code>Anaconda</code> o <code>Miniconda3</code> si usaste Miniconda). La tercera línea actualiza la configuración en la sesión actual de la consola permitiendo usar de forma inmediata Conda. Para la próxima apertura de Git Bash ya no tendrás que configurar nada, solo empezar a usar Conda (aún no hay ambiente activado).</p>
 </div>
