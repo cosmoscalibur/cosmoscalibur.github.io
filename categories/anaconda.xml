@@ -3,7 +3,7 @@
 &lt;a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"&gt;
 &lt;img alt="Creative Commons License BY-NC-SA"
 style="border-width:0; margin-bottom:12px;"
-src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"&gt;&lt;/a&gt;</copyright><lastBuildDate>Mon, 06 Apr 2020 20:01:23 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Crear documentación de un proyecto Python con Sphinx.</title><link>https://cosmoscalibur.github.io/blog/crear-documentacion-de-un-proyecto-python-con-sphinx/</link><dc:creator>Edward Villegas-Pulgarin</dc:creator><description>&lt;div&gt;&lt;p&gt;Sin duda, una etapa importante en cualquier proyecto de desarrollo (y no solo
+src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"&gt;&lt;/a&gt;</copyright><lastBuildDate>Mon, 06 Apr 2020 22:19:47 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Crear documentación de un proyecto Python con Sphinx.</title><link>https://cosmoscalibur.github.io/blog/crear-documentacion-de-un-proyecto-python-con-sphinx/</link><dc:creator>Edward Villegas-Pulgarin</dc:creator><description>&lt;div&gt;&lt;p&gt;Sin duda, una etapa importante en cualquier proyecto de desarrollo (y no solo
 de &lt;em&gt;software&lt;/em&gt;) es la generación de la documentación. En el caso de &lt;em&gt;software&lt;/em&gt;
 es posible asistirse de herramientas que ayudan a automatizar la generación de
 la documentación mediante extracción de comentarios en el código, usar palabras
@@ -44,8 +44,8 @@ gestor de paquetes del sistema operativo. En la mayor parte de
 distribuciones Linux estará disponible a través del gestor.&lt;/p&gt;
 &lt;p&gt;En el caso de las distribuciones basadas en Debian (Ubuntu y Linux Mint
 entre otras) puedes instalar de la siguiente manera:&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_10576aa572e644348fe48c5f36646fe9-1"&gt;&lt;/a&gt;sudo apt install -y texlive texlive-latex-base texlive-latex-extra \
-&lt;a name="rest_code_10576aa572e644348fe48c5f36646fe9-2"&gt;&lt;/a&gt;    texlive-lang-spanish latexmk
+&lt;pre class="code text"&gt;&lt;a name="rest_code_a7a458c0293a4766b70ae1abf6b52abe-1"&gt;&lt;/a&gt;sudo apt install -y texlive texlive-latex-base texlive-latex-extra \
+&lt;a name="rest_code_a7a458c0293a4766b70ae1abf6b52abe-2"&gt;&lt;/a&gt;    texlive-lang-spanish latexmk
 &lt;/pre&gt;&lt;/dd&gt;
 &lt;/dl&gt;
 &lt;/div&gt;
@@ -75,11 +75,11 @@ proyecto destinemos un directorio &lt;code&gt;docs&lt;/code&gt; para este fin.&l
 &lt;p&gt;Ahora ejecutamos &lt;code&gt;sphinx-quickstart&lt;/code&gt; y respondemos las preguntas que
 saldrán. Es necesario tener en cuenta, que si usas Windows debes agregar al
 comando la terminación &lt;code&gt;.exe&lt;/code&gt;, ejemplo &lt;code&gt;sphinx-quickstart.exe&lt;/code&gt;.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_08cb644b2f1d444bb591b5c619e1bb85-1"&gt;&lt;/a&gt;&amp;gt; Separate source and build directories (y/n) [n]: y
-&lt;a name="rest_code_08cb644b2f1d444bb591b5c619e1bb85-2"&gt;&lt;/a&gt;&amp;gt; Project name: proyecto
-&lt;a name="rest_code_08cb644b2f1d444bb591b5c619e1bb85-3"&gt;&lt;/a&gt;&amp;gt; Author name(s): Edward Villegas-Pulgarin
-&lt;a name="rest_code_08cb644b2f1d444bb591b5c619e1bb85-4"&gt;&lt;/a&gt;&amp;gt; Project release []: 0.1.0
-&lt;a name="rest_code_08cb644b2f1d444bb591b5c619e1bb85-5"&gt;&lt;/a&gt;&amp;gt; Project language [en]: es
+&lt;pre class="code text"&gt;&lt;a name="rest_code_fb2c01ce25ca4879972760dde61e2fea-1"&gt;&lt;/a&gt;&amp;gt; Separate source and build directories (y/n) [n]: y
+&lt;a name="rest_code_fb2c01ce25ca4879972760dde61e2fea-2"&gt;&lt;/a&gt;&amp;gt; Project name: proyecto
+&lt;a name="rest_code_fb2c01ce25ca4879972760dde61e2fea-3"&gt;&lt;/a&gt;&amp;gt; Author name(s): Edward Villegas-Pulgarin
+&lt;a name="rest_code_fb2c01ce25ca4879972760dde61e2fea-4"&gt;&lt;/a&gt;&amp;gt; Project release []: 0.1.0
+&lt;a name="rest_code_fb2c01ce25ca4879972760dde61e2fea-5"&gt;&lt;/a&gt;&amp;gt; Project language [en]: es
 &lt;/pre&gt;&lt;p&gt;Siempre recomiendo separar el directorio del código fuente de la documentación
 del directorio de compilados de la misma. Respecto al esquema de versiones me
 agrada el &lt;cite&gt;versionamiento semántico &amp;lt;https://semver.org/&amp;gt;&lt;/cite&gt; que permite al
@@ -101,13 +101,13 @@ Con Coverage puedes validar que funciones se han documentado y dcotest integra
 pruebas de código desde la documentación (comparar salidas con ejemplo de
 documentación).&lt;/p&gt;
 &lt;p&gt;Modificar en el archivo.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_7db670d0bfa948deb6bec78a8fe97865-1"&gt;&lt;/a&gt;extensions = [
-&lt;a name="rest_code_7db670d0bfa948deb6bec78a8fe97865-2"&gt;&lt;/a&gt;    'sphinx.ext.autodoc',
-&lt;a name="rest_code_7db670d0bfa948deb6bec78a8fe97865-3"&gt;&lt;/a&gt;    'sphinx.ext.mathjax',
-&lt;a name="rest_code_7db670d0bfa948deb6bec78a8fe97865-4"&gt;&lt;/a&gt;    'sphinx.ext.napoleon',
-&lt;a name="rest_code_7db670d0bfa948deb6bec78a8fe97865-5"&gt;&lt;/a&gt;    'sphinx.ext.coverage',
-&lt;a name="rest_code_7db670d0bfa948deb6bec78a8fe97865-6"&gt;&lt;/a&gt;    'sphinx.ext.doctest'
-&lt;a name="rest_code_7db670d0bfa948deb6bec78a8fe97865-7"&gt;&lt;/a&gt;]
+&lt;pre class="code text"&gt;&lt;a name="rest_code_df5197c79d8e4e359479beaff04aee75-1"&gt;&lt;/a&gt;extensions = [
+&lt;a name="rest_code_df5197c79d8e4e359479beaff04aee75-2"&gt;&lt;/a&gt;    'sphinx.ext.autodoc',
+&lt;a name="rest_code_df5197c79d8e4e359479beaff04aee75-3"&gt;&lt;/a&gt;    'sphinx.ext.mathjax',
+&lt;a name="rest_code_df5197c79d8e4e359479beaff04aee75-4"&gt;&lt;/a&gt;    'sphinx.ext.napoleon',
+&lt;a name="rest_code_df5197c79d8e4e359479beaff04aee75-5"&gt;&lt;/a&gt;    'sphinx.ext.coverage',
+&lt;a name="rest_code_df5197c79d8e4e359479beaff04aee75-6"&gt;&lt;/a&gt;    'sphinx.ext.doctest'
+&lt;a name="rest_code_df5197c79d8e4e359479beaff04aee75-7"&gt;&lt;/a&gt;]
 &lt;/pre&gt;&lt;/div&gt;
 &lt;div class="section" id="importar-paquete"&gt;
 &lt;h3&gt;Importar paquete&lt;/h3&gt;
@@ -119,27 +119,27 @@ primeras líneas de código en la sección de &lt;em&gt;Path setup&lt;/em&gt;. E
 defecto indica la misma carpeta de &lt;code&gt;docs/source&lt;/code&gt;, por lo cual es
 necesario reemplazar por &lt;code&gt;../..&lt;/code&gt; que se devuelve los dos niveles
 necesarios.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_12944db6de7c4e3cb266c9d2a4d006e9-1"&gt;&lt;/a&gt;import os
-&lt;a name="rest_code_12944db6de7c4e3cb266c9d2a4d006e9-2"&gt;&lt;/a&gt;import sys
-&lt;a name="rest_code_12944db6de7c4e3cb266c9d2a4d006e9-3"&gt;&lt;/a&gt;import datetime
-&lt;a name="rest_code_12944db6de7c4e3cb266c9d2a4d006e9-4"&gt;&lt;/a&gt;sys.path.insert(0, os.path.abspath('../..'))
-&lt;a name="rest_code_12944db6de7c4e3cb266c9d2a4d006e9-5"&gt;&lt;/a&gt;import proyecto
+&lt;pre class="code text"&gt;&lt;a name="rest_code_cea61513745447b294d06308de1eed63-1"&gt;&lt;/a&gt;import os
+&lt;a name="rest_code_cea61513745447b294d06308de1eed63-2"&gt;&lt;/a&gt;import sys
+&lt;a name="rest_code_cea61513745447b294d06308de1eed63-3"&gt;&lt;/a&gt;import datetime
+&lt;a name="rest_code_cea61513745447b294d06308de1eed63-4"&gt;&lt;/a&gt;sys.path.insert(0, os.path.abspath('../..'))
+&lt;a name="rest_code_cea61513745447b294d06308de1eed63-5"&gt;&lt;/a&gt;import proyecto
 &lt;/pre&gt;&lt;p&gt;Ahora, puedes hacer cosas como la siguiente, si está disponible en tu código.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_ba8ccd98ac9b402da2e77591652b4692-1"&gt;&lt;/a&gt;author = proyecto.__author__
-&lt;a name="rest_code_ba8ccd98ac9b402da2e77591652b4692-2"&gt;&lt;/a&gt;copyright = str(datetime.date.today().year) + ', ' + author
-&lt;a name="rest_code_ba8ccd98ac9b402da2e77591652b4692-3"&gt;&lt;/a&gt;release = proyecto.__version__
+&lt;pre class="code text"&gt;&lt;a name="rest_code_a36289bbe11e489594267c69cae830e9-1"&gt;&lt;/a&gt;author = proyecto.__author__
+&lt;a name="rest_code_a36289bbe11e489594267c69cae830e9-2"&gt;&lt;/a&gt;copyright = str(datetime.date.today().year) + ', ' + author
+&lt;a name="rest_code_a36289bbe11e489594267c69cae830e9-3"&gt;&lt;/a&gt;release = proyecto.__version__
 &lt;/pre&gt;&lt;/div&gt;
 &lt;div class="section" id="referencias-cruzadas"&gt;
 &lt;h3&gt;Referencias cruzadas&lt;/h3&gt;
 &lt;p&gt;Para usar referencias cruzadas, es decir, numeración de tablas, figuras,
 códigos y ecuaciones si poseen pie de objeto, y ser referenciados en el texto
 por el número, se requiere configurar lo siguiente.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_cc1a65ab28644c3eaf95fa8903baccbb-1"&gt;&lt;/a&gt;numfig = True
-&lt;a name="rest_code_cc1a65ab28644c3eaf95fa8903baccbb-2"&gt;&lt;/a&gt;numfig_format = {'figure': 'Fig. %s', 'table': 'Tabla %s',
-&lt;a name="rest_code_cc1a65ab28644c3eaf95fa8903baccbb-3"&gt;&lt;/a&gt;                 'code-block': 'Código %s', 'section': 'Sección %s'}
-&lt;a name="rest_code_cc1a65ab28644c3eaf95fa8903baccbb-4"&gt;&lt;/a&gt;numfig_secnum_depth = 1
-&lt;a name="rest_code_cc1a65ab28644c3eaf95fa8903baccbb-5"&gt;&lt;/a&gt;math_numfig = True
-&lt;a name="rest_code_cc1a65ab28644c3eaf95fa8903baccbb-6"&gt;&lt;/a&gt;math_eqref_format = 'Ec. {number}'
+&lt;pre class="code text"&gt;&lt;a name="rest_code_7edaa7d812734a4184f5539fc1c795f7-1"&gt;&lt;/a&gt;numfig = True
+&lt;a name="rest_code_7edaa7d812734a4184f5539fc1c795f7-2"&gt;&lt;/a&gt;numfig_format = {'figure': 'Fig. %s', 'table': 'Tabla %s',
+&lt;a name="rest_code_7edaa7d812734a4184f5539fc1c795f7-3"&gt;&lt;/a&gt;                 'code-block': 'Código %s', 'section': 'Sección %s'}
+&lt;a name="rest_code_7edaa7d812734a4184f5539fc1c795f7-4"&gt;&lt;/a&gt;numfig_secnum_depth = 1
+&lt;a name="rest_code_7edaa7d812734a4184f5539fc1c795f7-5"&gt;&lt;/a&gt;math_numfig = True
+&lt;a name="rest_code_7edaa7d812734a4184f5539fc1c795f7-6"&gt;&lt;/a&gt;math_eqref_format = 'Ec. {number}'
 &lt;/pre&gt;&lt;p&gt;Así, es posible usar &lt;code&gt;:label:&lt;/code&gt; para asignar una referencia a los objetos
 y &lt;code&gt;:numref:&lt;/code&gt; y &lt;code&gt;:eq:&lt;/code&gt; a la hora de mencionarlos. Con
 &lt;code&gt;numfig_secnum_depth&lt;/code&gt; configuras la numeración de los objetos, si es
@@ -151,11 +151,11 @@ continúa (0), por sección (1) y subsección (2).&lt;/p&gt;
 maestro, el nombre del archivo TeX, el nombre que nuestra documentación, el
 nombre del autor (que podemos usar la variable que ya definimos) y el tipo de
 documento (cuya clase &lt;em&gt;manual&lt;/em&gt; está definida por Sphinx).&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_64fe95e748924e2488e08500c300c2a2-1"&gt;&lt;/a&gt;master_doc = 'index'
-&lt;a name="rest_code_64fe95e748924e2488e08500c300c2a2-2"&gt;&lt;/a&gt;latex_documents = [
-&lt;a name="rest_code_64fe95e748924e2488e08500c300c2a2-3"&gt;&lt;/a&gt;    (master_doc, 'proyecto.tex', 'Documentación Proyecto',
-&lt;a name="rest_code_64fe95e748924e2488e08500c300c2a2-4"&gt;&lt;/a&gt;     author, 'manual'),
-&lt;a name="rest_code_64fe95e748924e2488e08500c300c2a2-5"&gt;&lt;/a&gt;]
+&lt;pre class="code text"&gt;&lt;a name="rest_code_d469506b82864bc39ea9d8ef2e14b8cc-1"&gt;&lt;/a&gt;master_doc = 'index'
+&lt;a name="rest_code_d469506b82864bc39ea9d8ef2e14b8cc-2"&gt;&lt;/a&gt;latex_documents = [
+&lt;a name="rest_code_d469506b82864bc39ea9d8ef2e14b8cc-3"&gt;&lt;/a&gt;    (master_doc, 'proyecto.tex', 'Documentación Proyecto',
+&lt;a name="rest_code_d469506b82864bc39ea9d8ef2e14b8cc-4"&gt;&lt;/a&gt;     author, 'manual'),
+&lt;a name="rest_code_d469506b82864bc39ea9d8ef2e14b8cc-5"&gt;&lt;/a&gt;]
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="section" id="escritura-en-restructuredtext"&gt;
@@ -188,16 +188,16 @@ adelante). Puedes agregar más archivos, por ejemplo, yo suelo usar un
 &lt;code&gt;concepts.rst&lt;/code&gt; para detallar los conceptos necesarios antes de usar el
 software o detallar teoría que ayuda a interpretar resultados o que expande la
 información para que alguien pueda analizar o continuar un desarrollo.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_70e11088a15e4a3fba5f2ca676802bf1-1"&gt;&lt;/a&gt;.. toctree::
-&lt;a name="rest_code_70e11088a15e4a3fba5f2ca676802bf1-2"&gt;&lt;/a&gt;   :maxdepth: 3
-&lt;a name="rest_code_70e11088a15e4a3fba5f2ca676802bf1-3"&gt;&lt;/a&gt;   :caption: Contenido:
-&lt;a name="rest_code_70e11088a15e4a3fba5f2ca676802bf1-4"&gt;&lt;/a&gt;
-&lt;a name="rest_code_70e11088a15e4a3fba5f2ca676802bf1-5"&gt;&lt;/a&gt;   README
-&lt;a name="rest_code_70e11088a15e4a3fba5f2ca676802bf1-6"&gt;&lt;/a&gt;   installation
-&lt;a name="rest_code_70e11088a15e4a3fba5f2ca676802bf1-7"&gt;&lt;/a&gt;   usage
-&lt;a name="rest_code_70e11088a15e4a3fba5f2ca676802bf1-8"&gt;&lt;/a&gt;   api/modules
-&lt;a name="rest_code_70e11088a15e4a3fba5f2ca676802bf1-9"&gt;&lt;/a&gt;   concepts
-&lt;a name="rest_code_70e11088a15e4a3fba5f2ca676802bf1-10"&gt;&lt;/a&gt;   history
+&lt;pre class="code text"&gt;&lt;a name="rest_code_488d9cbef67c4165afc28a868a2eb4e8-1"&gt;&lt;/a&gt;.. toctree::
+&lt;a name="rest_code_488d9cbef67c4165afc28a868a2eb4e8-2"&gt;&lt;/a&gt;   :maxdepth: 3
+&lt;a name="rest_code_488d9cbef67c4165afc28a868a2eb4e8-3"&gt;&lt;/a&gt;   :caption: Contenido:
+&lt;a name="rest_code_488d9cbef67c4165afc28a868a2eb4e8-4"&gt;&lt;/a&gt;
+&lt;a name="rest_code_488d9cbef67c4165afc28a868a2eb4e8-5"&gt;&lt;/a&gt;   README
+&lt;a name="rest_code_488d9cbef67c4165afc28a868a2eb4e8-6"&gt;&lt;/a&gt;   installation
+&lt;a name="rest_code_488d9cbef67c4165afc28a868a2eb4e8-7"&gt;&lt;/a&gt;   usage
+&lt;a name="rest_code_488d9cbef67c4165afc28a868a2eb4e8-8"&gt;&lt;/a&gt;   api/modules
+&lt;a name="rest_code_488d9cbef67c4165afc28a868a2eb4e8-9"&gt;&lt;/a&gt;   concepts
+&lt;a name="rest_code_488d9cbef67c4165afc28a868a2eb4e8-10"&gt;&lt;/a&gt;   history
 &lt;/pre&gt;&lt;p&gt;Y podemos borrar las líneas posteriores de &lt;em&gt;Indices and tables&lt;/em&gt;.&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -205,7 +205,7 @@ información para que alguien pueda analizar o continuar un desarrollo.&lt;/p&gt
 &lt;h2&gt;Ejecución de Sphinx&lt;/h2&gt;
 &lt;p&gt;Como estamos haciendo uso de &lt;em&gt;autodoc&lt;/em&gt;, nuestro primer paso es generar la
 extracción de la API.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_aff3d8054efc444fa1a07f60b5e0cdd9-1"&gt;&lt;/a&gt;sphinx-apidoc -f -M -o source/api/ ../proyecto
+&lt;pre class="code text"&gt;&lt;a name="rest_code_27432ed9bf8f4d4590877ee9fd2b9ca7-1"&gt;&lt;/a&gt;sphinx-apidoc -f -M -o source/api/ ../proyecto
 &lt;/pre&gt;&lt;p&gt;Recordar que en Windows hay que agregar &lt;code&gt;.exe&lt;/code&gt;
 (&lt;code&gt;sphinx-apidoc.exe&lt;/code&gt;). &lt;code&gt;-f&lt;/code&gt; es para forzar la regeneración de los
 archivos (importante si actualizamos la documentación de la API), &lt;code&gt;-M&lt;/code&gt;
@@ -257,7 +257,7 @@ futuro.&lt;/p&gt;
 &lt;p&gt;Si bien puedes descargarlo desde el sitio del proyecto, aprovecharemos el
 gestor Conda para facilitar la tarea de descarga, instalación y configuración.&lt;/p&gt;
 &lt;p&gt;Abriremos Anaconda PowerShell o Anaconda Prompt, y ejecutaremos lo siguiente:&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_14149a8d3b9f403fa7a659a4ad2910fc-1"&gt;&lt;/a&gt;conda create -n gitbash -c conda-forge git=2.24.0
+&lt;pre class="code text"&gt;&lt;a name="rest_code_fbdbfac60eb049b1981c883bd84a475d-1"&gt;&lt;/a&gt;conda create -n gitbash -c conda-forge git=2.24.0
 &lt;/pre&gt;&lt;p&gt;Es importante el uso de &lt;code&gt;-c conda-forge&lt;/code&gt; porque de este canal vendrá la
 versión de Git que usaremos. Si se usa el canal por defecto, se instala solo el
 cliente de consola, mientras que en esta opción viene Git Bash. He indicado
@@ -278,9 +278,9 @@ posibles conflictos.&lt;/p&gt;
 típicos de Bash, como el &lt;code&gt;bashrc&lt;/code&gt;. Así, podemos usar la configuración que
 habitualmente se usa en Linux.&lt;/p&gt;
 &lt;p&gt;Abrimos Git Bash, y ejecutamos:&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_7c3219a5dce34e139bb38c155edd5361-1"&gt;&lt;/a&gt;cd
-&lt;a name="rest_code_7c3219a5dce34e139bb38c155edd5361-2"&gt;&lt;/a&gt;echo ". /c/Users/USUARIO/ANACONDA/etc/profile.d/conda.sh" &amp;gt;&amp;gt; .bashrc
-&lt;a name="rest_code_7c3219a5dce34e139bb38c155edd5361-3"&gt;&lt;/a&gt;source .bashrc
+&lt;pre class="code text"&gt;&lt;a name="rest_code_b3571af918d7465b99135301eeee49a8-1"&gt;&lt;/a&gt;cd
+&lt;a name="rest_code_b3571af918d7465b99135301eeee49a8-2"&gt;&lt;/a&gt;echo ". /c/Users/USUARIO/ANACONDA/etc/profile.d/conda.sh" &amp;gt;&amp;gt; .bashrc
+&lt;a name="rest_code_b3571af918d7465b99135301eeee49a8-3"&gt;&lt;/a&gt;source .bashrc
 &lt;/pre&gt;&lt;p&gt;Con la primera línea aseguramos ir al directorio del usuario. En la segunda
 línea, crearemos o editaremos el archivo de configuración, pero debes
 reemplazar &lt;code&gt;USUARIO&lt;/code&gt; por la carpeta de tu usuario y &lt;code&gt;ANACONDA&lt;/code&gt; por
