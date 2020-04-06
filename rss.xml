@@ -3,7 +3,300 @@
 &lt;a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"&gt;
 &lt;img alt="Creative Commons License BY-NC-SA"
 style="border-width:0; margin-bottom:12px;"
-src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"&gt;&lt;/a&gt;</copyright><lastBuildDate>Mon, 30 Mar 2020 00:34:03 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Seguridad vs flexibilidad del cómputo en nube</title><link>https://cosmoscalibur.github.io/blog/seguridad-vs-flexibilidad-del-computo-en-nube/</link><dc:creator>Edward Villegas-Pulgarin</dc:creator><description>&lt;div&gt;&lt;p&gt;Bueno, con el fin de compartir un poco y sacar provecho de la formación en la
+src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"&gt;&lt;/a&gt;</copyright><lastBuildDate>Mon, 06 Apr 2020 20:01:22 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Datos y responsabilidad: Covid19</title><link>https://cosmoscalibur.github.io/blog/datos-y-responsabilidad-covid19/</link><dc:creator>Edward Villegas-Pulgarin</dc:creator><description>&lt;div&gt;&lt;p&gt;Había tratado de estar al margen de hacer muy público lo que pienso y analizo
+de los datos de la pandemia por covid19 en Colombia, y de las medidas tomadas.
+Sin embargo, finalmente me motivé a hacer una segunda afirmación del todo
+pública (si, ya les contaré que fue lo anterior) porque veo algo recurrente en
+colegas "científicos de datos" (&lt;em&gt;data scientists&lt;/em&gt; que se gustan decir en
+inglés), donde creen prudente hacer ajustes de curvas básicas y hacer
+interpretaciones del futuro y observaciones sin contexto del fenómeno.&lt;/p&gt;
+&lt;div class="admonition note"&gt;
+&lt;p class="admonition-title"&gt;Nota&lt;/p&gt;
+&lt;p&gt;No soy epidemiólogo, médico, biólogo o similar. Trabajo en analítica de
+datos y modelización matemática, graduado de ingeniería física y maestría en
+física aplicada. Y esto es un llamado a la prudencia y responsabilidad de
+mis colegas.&lt;/p&gt;
+&lt;/div&gt;
+&lt;!-- TEASER_END --&gt;
+&lt;div class="section" id="ruido-y-desinformacion"&gt;
+&lt;h2&gt;Ruido y desinformación&lt;/h2&gt;
+&lt;p&gt;Esta es la razón de hacer esta publicación, así que empezaré con mencionar
+algunas señales de ruido en medio de esta pandemia y, luego brevemente
+comentaré porque no debe considerarse esa situación y que si podríamos decir
+sanamente.&lt;/p&gt;
+&lt;p&gt;Ha sido días con mucha agitación en redes con menciones basadas en los datos
+pero no revisadas por epidemiólogos, los expertos a los cuales debemos escuchar
+en medio de esta crisis, sino por "expertos" en analítica de datos y como les
+gusta en inglés, "&lt;em&gt;data scientists&lt;/em&gt;". El porque de las comillas es parte de mi
+crítica, y es que no estamos en una situación que permita salir públicamente a
+llenarse el ego de sé predecir con modelos de juguetes e impresionar a público
+que no tiene formación ni en datos ni en epidemiología. ¿Usan esos modelos en
+sus trabajos?&lt;/p&gt;
+&lt;p&gt;Pero al grano, ¿qué han afirmado?, e incluso, ¿qué han ayudado a soportar
+erradamente a nuestros gobernantes o a los conspiranoicos?&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;Los datos son sospechosos y no son de creer, en otros países crece muy
+rápido.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;El gobierno nos esconde información, hay muertos que no reportan.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;La curva se está aplanando y el comercio se puede reactivar.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;La cuarentena si ha servido.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Pues todas estas cosas, son afirmaciones que no son posibles y debemos entender
+el fenómeno y la captura de datos (ambos importantes en cualquier análisis de
+datos). Mi idea no es difamar a los colegas, por lo cual no enlazo a las
+publicaciones (ya en los casos respectivos he comentado porque no debería
+hacerse).&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="subestimacion-de-los-datos"&gt;
+&lt;h2&gt;Subestimación de los datos&lt;/h2&gt;
+&lt;p&gt;Una de las cosas más importantes al iniciar a revisar la información de los
+casos de covid19 en todo el mundo, es la mención a "Casos positivos
+confirmados". Y aquí, &lt;strong&gt;confirmados&lt;/strong&gt; es la clave.&lt;/p&gt;
+&lt;div class="figure align-center"&gt;
+&lt;img alt="https://scontent.feoh1-1.fna.fbcdn.net/v/t1.0-9/92274230_2581544318799902_2324018941443178496_n.png?_nc_cat=101&amp;amp;_nc_sid=e007fa&amp;amp;_nc_eui2=AeHo6euMGLhu4fVlXa8yyiSy7mzs1DVNbZ3ubOzUNU1tnQ0CqjIyeEjctuTk_qGQZwv446WRZGfjgFGiaiD5HTgo&amp;amp;_nc_oc=AQkVMTsymWLpveUWNnebxwLF5H0E4ZpflAs8RxGwd00fpjrw0NWW45PQeGa59_FVxN4&amp;amp;_nc_ht=scontent.feoh1-1.fna&amp;amp;oh=645ce25a1a62ccfee4ee9abf80c0db2d&amp;amp;oe=5EB148DC" src="https://scontent.feoh1-1.fna.fbcdn.net/v/t1.0-9/92274230_2581544318799902_2324018941443178496_n.png?_nc_cat=101&amp;amp;_nc_sid=e007fa&amp;amp;_nc_eui2=AeHo6euMGLhu4fVlXa8yyiSy7mzs1DVNbZ3ubOzUNU1tnQ0CqjIyeEjctuTk_qGQZwv446WRZGfjgFGiaiD5HTgo&amp;amp;_nc_oc=AQkVMTsymWLpveUWNnebxwLF5H0E4ZpflAs8RxGwd00fpjrw0NWW45PQeGa59_FVxN4&amp;amp;_nc_ht=scontent.feoh1-1.fna&amp;amp;oh=645ce25a1a62ccfee4ee9abf80c0db2d&amp;amp;oe=5EB148DC" style="width: 150px; height: 300px;"&gt;
+&lt;p class="caption"&gt;Se resalta la mención de &lt;strong&gt;confirmados&lt;/strong&gt; en los comunicados oficiales. En el
+ejemplo, comunicado del 5 de abril de 2020.&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;Esto es importante porque es claro con esta mención, que la cifra dada en todos
+los casos (infectados, muertos e incluso recuperados) siempre será una
+subestimación. Pero, ¿por qué es así? Resulta que la sola política o criterio
+de toma de muestras afecta. Dado que las muestras poseen un costo asociado y no
+hay presupuesto infinito (si, todo es plata), la cantidad de pruebas es
+limitada y priorizadas según los casos que puedan preveerse de mayor
+complejidad, o que tengan motivos para considerar una alta probabilidad de
+contagio. Ejemplo de esta subestimación en rechazos a pruebas es que al inicio
+del fenómeno si no procedías del extranjero, no eras consciente del contacto
+con personas provenientes del extranjero o con personas positivas a covid19,
+simplemente no te hacían el examen y el diagnóstico era una enfermedad
+respiratoria adicional. Igual, si no tenías fiebre tampoco te hacían la
+prueba. ¿Y si eres asintomático? Pues ni siquiera vas a solicitar la prueba.&lt;/p&gt;
+&lt;p&gt;¿Y esto a nivel de datos qué representa? En el reporte de la Organización
+Mundial de la Salud, el 87.9% de los infectados confirmados presentó fiebre
+[&lt;a class="reference internal" href="https://cosmoscalibur.github.io/blog/datos-y-responsabilidad-covid19/#who-report"&gt;who-report&lt;/a&gt;], así que usando los criterios de pruebas tenemos un potencial
+12.1% de casos que tuvieron que esperar complicaciones o simplemente están
+como si nada. Pero también, hay otro porcentaje, que en el mismo reporte se
+considera bajo, pero que en una gran cantidad representa muchas personas, y
+son los asintomáticos.&lt;/p&gt;
+&lt;p&gt;Siendo esto claro, vemos que también en la medida que se puedan realizar más
+pruebas conoceremos mejor la realidad del país. Algo de estadística básica nos
+dice que siempre tenemos incertidumbre en la medida que no se conozca
+información de cada individuo de la población sino de una muestra. Pero
+adicional, la muestra desde el punto de vista estadístico para la aplicación de
+las pruebas presenta un sesgo (depende de tener ciertos síntomas y condición de
+vulnerabilidad). Con la llegada de las pruebas rápidas al país podremos ver
+eventualmente una realidad más clara de la condición real, pues los casos
+confirmados son limitados por la capacidad de hacer pruebas.&lt;/p&gt;
+&lt;p&gt;Tomo en consideración lo afirmado en la sección sobre las pruebas en &lt;em&gt;Our World
+in Data&lt;/em&gt; [&lt;a class="reference internal" href="https://cosmoscalibur.github.io/blog/datos-y-responsabilidad-covid19/#ourworldindata"&gt;ourworldindata&lt;/a&gt;]:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;8) What are the typical testing practices in the country?
+Having a sense of how often and when individuals are tested, can help the
+users of these statistics understand how estimates of tests performed and
+individuals tested might relate to each other.
+For instance, how many tests does a case investigation require? What are the
+eligibility criteria to be tested? Are health workers, or other specific
+groups, being routinely retested?&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Finalmente, no todos los países tienen las mismas políticas y medidas
+implementadas, así como sus dinámicas sociales e incluso ambiente son
+diferentes. Esto lleva a que la comparación con otros países no sirve de
+referente para un análisis más allá de un consuelo de tontos de ver que otros
+lloran más muertos que nosotros.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="prediccion-y-aplanamiento-de-la-curva"&gt;
+&lt;h2&gt;Predicción y aplanamiento de la curva&lt;/h2&gt;
+&lt;p&gt;Si es posible hacer pronósticos matemáticos sobre la evolución de la pandemia,
+eso es algo claro y es uno de los insumos importantes para tomar decisiones
+sobre las medidas a implementar para controlar su propagación. Y entonces, ¿por
+qué la crítica a mis colegas?&lt;/p&gt;
+&lt;p&gt;No están considerando múltiples variables, las cuales describiré:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Tipo de contagio: Es una descripción que aporta a la definición de la fase de
+la pandemia en la que nos encontramos. Puede ser:&lt;/p&gt;
+&lt;dl&gt;
+&lt;dt&gt;Importado&lt;/dt&gt;
+&lt;dd&gt;&lt;blockquote&gt;
+&lt;p&gt;Son los casos que ingresas al país ya infectados. La forma como evoluciona
+depende de las políticas externas, la condición de la pandemia en el
+extranjero, la frecuencia de viajes internacionales y la distribución de
+orígenes. Esto lleva a una medida de suspensión de vuelos internacionales
+y cierre de fronteras.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;dl class="simple"&gt;
+&lt;dt&gt;Relacionados&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;Son los casos que se establecen como infectados por interacción directa
+con los casos positivos. Su control en buena medida depende de la
+trazabilidad de las interacciones de los casos importados al inicio de la
+pandemia (son los únicos positivos al inicio) pero después se amplia al
+trabajo de seguimiento sobre los demás relacionados.&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt&gt;Autóctonos&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;Autóctonos o de transmisión comunitaria, no es más que la forma bonita de
+decir que le perdimos el rastro a los infectados. Es por eso que los
+datos oficiales mencionan "En estudio" y no algo como esto. Aquí, al
+perder el rastro y considerando los casos asintomáticos y subclínicos (el
+infectado si desarrollará síntomas pero aún no los tiene o no son
+detectables). Aquí es donde el distanciamiento social y el aislamiento
+poseen un papel importante (cualquiera puede ser potencial portador).&lt;/p&gt;
+&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Medidas implementadas o anomalías: Es importante a la hora de interpretar
+resultados, considerar las fechas de implementación de las distintas medidas
+implementadas y no solo de la última o que se considere importante. También,
+hay otras afectaciones en el tiempo como la disminución o aumento de la
+capacidad de pruebas.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;11 de marzo: Primer caso relacionado [&lt;a class="reference internal" href="https://cosmoscalibur.github.io/blog/datos-y-responsabilidad-covid19/#covid-colombia"&gt;covid-colombia&lt;/a&gt;].&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;14 de marzo: Cierre de frontera con Venezuela [&lt;a class="reference internal" href="https://cosmoscalibur.github.io/blog/datos-y-responsabilidad-covid19/#tt-duque"&gt;tt-duque&lt;/a&gt;].&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;16 de marzo: Se niega ingreso a extranjeros provenientes de Europa o Asia.
+Colombianos tendrán aislamiento de 14 días [&lt;a class="reference internal" href="https://cosmoscalibur.github.io/blog/datos-y-responsabilidad-covid19/#tt-duque"&gt;tt-duque&lt;/a&gt;].&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;17 de marzo: Cierre de fronteras terrestres, marítimas y fluviales
+[&lt;a class="reference internal" href="https://cosmoscalibur.github.io/blog/datos-y-responsabilidad-covid19/#cnn-fronteras"&gt;cnn-fronteras&lt;/a&gt;].&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;20 de marzo: Simulacro de cuarentena en Bogotá [&lt;a class="reference internal" href="https://cosmoscalibur.github.io/blog/datos-y-responsabilidad-covid19/#tiempo-simulacro"&gt;tiempo-simulacro&lt;/a&gt;]. Otras
+localidades del país hacen medidas similares el fin de semana.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;23 de marzo: Suspenden vuelos internacionales [&lt;a class="reference internal" href="https://cosmoscalibur.github.io/blog/datos-y-responsabilidad-covid19/#tt-presidencia-int"&gt;tt-presidencia-int&lt;/a&gt;]&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;23 de marzo: Primer caso de transmisión comunitaria [&lt;a class="reference internal" href="https://cosmoscalibur.github.io/blog/datos-y-responsabilidad-covid19/#covid-colombia"&gt;covid-colombia&lt;/a&gt;].&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;25 de marzo: Inicia cuarentena [&lt;a class="reference internal" href="https://cosmoscalibur.github.io/blog/datos-y-responsabilidad-covid19/#tiempo-cuarentena"&gt;tiempo-cuarentena&lt;/a&gt;].&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;25 de marzo: Suspenden vuelos nacionales [&lt;a class="reference internal" href="https://cosmoscalibur.github.io/blog/datos-y-responsabilidad-covid19/#tt-presidencia-nal"&gt;tt-presidencia-nal&lt;/a&gt;].&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;27 de marzo: Daño en máquina del INS para procesar pruebas [&lt;a class="reference internal" href="https://cosmoscalibur.github.io/blog/datos-y-responsabilidad-covid19/#tt-ins-dano"&gt;tt-INS-daño&lt;/a&gt;].&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;4 de abril: Se anuncia por el gobierno nacional el uso obligatorio de
+tapabocas en transporte masivo y público [&lt;a class="reference internal" href="https://cosmoscalibur.github.io/blog/datos-y-responsabilidad-covid19/#minsalud-tapabocas"&gt;minsalud-tapabocas&lt;/a&gt;]. En
+Medellín comenzará el 6 de abril [&lt;a class="reference internal" href="https://cosmoscalibur.github.io/blog/datos-y-responsabilidad-covid19/#tt-quintero"&gt;tt-quintero&lt;/a&gt;].&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;(abril): INS anunció el 22 de marzo que se avalaran distintos laboratorios
+en el país para hacer pruebas de covid19 [&lt;a class="reference internal" href="https://cosmoscalibur.github.io/blog/datos-y-responsabilidad-covid19/#presidencia-covid"&gt;presidencia-covid&lt;/a&gt;].&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;¿Y entonces qué? Bueno, en buena medida muchas de estas fechas deberían llevar
+a ingresar consideraciones en el modelo pero sino, mínimamente deben ser usadas
+adecuadamente para interpretar los datos y tendencias. Esto, contrastando con
+los 15 días típicos de tiempo de incubación.&lt;/p&gt;
+&lt;div class="figure align-center"&gt;
+&lt;img alt="https://scontent.feoh1-1.fna.fbcdn.net/v/t1.0-9/92133479_2580908902196777_4256090235584118784_n.png?_nc_cat=108&amp;amp;_nc_sid=e007fa&amp;amp;_nc_eui2=AeFY4jxWRDAZ0zdrrH1AGx6ljHs7z6oI1QOMezvPqgjVAzibEg-JNBI3tYxGRDPg4wp0rh-R4cLu60iQAro2keck&amp;amp;_nc_oc=AQkQUOfVkvVcv8vPPzaT6cgBdTyt1PbZ9vPk1UZRKUjIDZipkuWwcNLvWS6PIy0giGs&amp;amp;_nc_ht=scontent.feoh1-1.fna&amp;amp;oh=c78a8c8cf36a16941d01b32be498bef2&amp;amp;oe=5EAF499E" src="https://scontent.feoh1-1.fna.fbcdn.net/v/t1.0-9/92133479_2580908902196777_4256090235584118784_n.png?_nc_cat=108&amp;amp;_nc_sid=e007fa&amp;amp;_nc_eui2=AeFY4jxWRDAZ0zdrrH1AGx6ljHs7z6oI1QOMezvPqgjVAzibEg-JNBI3tYxGRDPg4wp0rh-R4cLu60iQAro2keck&amp;amp;_nc_oc=AQkQUOfVkvVcv8vPPzaT6cgBdTyt1PbZ9vPk1UZRKUjIDZipkuWwcNLvWS6PIy0giGs&amp;amp;_nc_ht=scontent.feoh1-1.fna&amp;amp;oh=c78a8c8cf36a16941d01b32be498bef2&amp;amp;oe=5EAF499E"&gt;
+&lt;p class="caption"&gt;Acumulado de casos positivos confirmados de covid19 por tipología incluyendo
+el total. La curva azul presenta crecimiento exponencial.&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;Con lo anterior en mente, vemos que la interpretación de los datos debe hacerse
+a la vista de los 3 tipos de contagio, donde notamos al separar la evolución
+que el aplanamiento observado está en las curvas de importados y relacionados,
+pero la curva de los casos de estudio (alias comunitarios) crece
+exponencialmente e incluso ha alcanzado los valores de los relacionados. Esto
+nos hace esperar que el aplanamiento observado sea temporal y probablemente en
+el transcurso de la semana evidenciemos nuevamente un incremento exponencial
+pero no tan pronunciado porque los casos importados deberán ser poco
+apreciables sobre el fin de semana.&lt;/p&gt;
+&lt;p&gt;Vale recordar la afirmación de los expertos y compartida por el ministro de
+salud en entrevista el día de ayer por el canal Caracol, "Las cifras de hoy son
+de pacientes de hace 14 días" [&lt;a class="reference internal" href="https://cosmoscalibur.github.io/blog/datos-y-responsabilidad-covid19/#tt-caracol"&gt;tt-caracol&lt;/a&gt;].&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="conceptos"&gt;
+&lt;h2&gt;Conceptos&lt;/h2&gt;
+&lt;p&gt;Generalmente los comportamientos de crecimientos de población o de la
+propagación en poblaciones se modelan con comportamientos de tipo exponencial,
+gausianas y logísticas (si, igual las otras tienen exponenciales por dentro).&lt;/p&gt;
+&lt;p&gt;Normalmente nos encontramos que la manera como interactuamos con las personas
+y manteniendo el trazado de la interacción de estas, lleva a consolidar el
+número de personas con interacción directa e indirecta con el crecimiento
+exponencial (&lt;span class="math"&gt;\(A\exp(r t)\)&lt;/span&gt;, donde &lt;span class="math"&gt;\(r\)&lt;/span&gt; es la tasa de crecimiento y
+&lt;span class="math"&gt;\(A\)&lt;/span&gt; es la población inicial afectada).&lt;/p&gt;
+&lt;p&gt;Las curvas gausianas [&lt;a class="reference internal" href="https://cosmoscalibur.github.io/blog/datos-y-responsabilidad-covid19/#wiki-gausiana"&gt;wiki-gausiana&lt;/a&gt;] pueden describir los casos activos, es
+decir, los casos actuales que se encuentran afectados actualizando respecto a
+los casos de recuperados y muertos que se descuentan de los infectados. Esta es
+la famosa curva que nos comunican que debemos aplanar [&lt;a class="reference internal" href="https://cosmoscalibur.github.io/blog/datos-y-responsabilidad-covid19/#bbc-aplanar"&gt;bbc-aplanar&lt;/a&gt;] mediante
+medidas como el distanciamiento social, el aislamiento
+[&lt;a class="reference internal" href="https://cosmoscalibur.github.io/blog/datos-y-responsabilidad-covid19/#elcolombiano-distancia"&gt;elcolombiano-distancia&lt;/a&gt;] y el uso masivo de tapabocas [&lt;a class="reference internal" href="https://cosmoscalibur.github.io/blog/datos-y-responsabilidad-covid19/#minsalud-tapabocas"&gt;minsalud-tapabocas&lt;/a&gt;].&lt;/p&gt;
+&lt;p&gt;Las curvas logísticas [&lt;a class="reference internal" href="https://cosmoscalibur.github.io/blog/datos-y-responsabilidad-covid19/#wiki-logistica"&gt;wiki-logistica&lt;/a&gt;] sirven para describir los casos
+acumulados de registros nuevos (en el caso de infectados, así se recuperen o
+mueran no se reduce el conteo).&lt;/p&gt;
+&lt;p&gt;Las menciones anteriores son solo resultados rápidos que se pueden usar de
+modelos más elaborados [&lt;a class="reference internal" href="https://cosmoscalibur.github.io/blog/datos-y-responsabilidad-covid19/#wiki-modelling"&gt;wiki-modelling&lt;/a&gt;] que dependen de resolver sistemas de
+ecuaciones diferenciales, pero aún así, estos modelos resultan ser muy simples
+comparando con la dinámica real que se debe capturar. Es por este motivo que se
+usan modelos estocásticos si hablamos de un modelo serio que permita reflejar
+incluso el comportamiento de las interacciones humanas en un mayor detalle y
+las medidas implementadas [&lt;a class="reference internal" href="https://cosmoscalibur.github.io/blog/datos-y-responsabilidad-covid19/#wiki-stochastic"&gt;wiki-stochastic&lt;/a&gt;].&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="recomendaciones-para-saber-mas"&gt;
+&lt;h2&gt;Recomendaciones para saber más&lt;/h2&gt;
+&lt;p&gt;Siga fuentes oficiales de información y las recomendaciones de las autoridades
+sanitarias. Y antes de consumir información sobre este tema, le recomiendo leer
+las publicaciones que epidemiólogos y expertos afines han realizado en una
+forma digerible y divulgativa. Respecto a esto último recomiendo los hilos en
+twitter de &lt;a class="reference external" href="https://twitter.com/ZulmaCucunuba"&gt;Zulma Cucunubá&lt;/a&gt;, epidemióloga,
+doctora en dinámica de enfermedades infecciosas.&lt;/p&gt;
+&lt;p&gt;A nivel de gráficos, es posible que actualice el
+&lt;a class="reference external" href="https://www.facebook.com/pg/cosmoscalibur/photos/?tab=album&amp;amp;album_id=2580908872196780"&gt;álbum en facebook&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="referencias"&gt;
+&lt;h2&gt;Referencias&lt;/h2&gt;
+&lt;dl class="citation"&gt;
+&lt;dt class="label" id="wiki-gausiana"&gt;&lt;span class="brackets"&gt;wiki-gausiana&lt;/span&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;&lt;a class="reference external" href="https://es.wikipedia.org/wiki/Funci%C3%B3n_gaussiana"&gt;https://es.wikipedia.org/wiki/Funci%C3%B3n_gaussiana&lt;/a&gt;&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class="label" id="bbc-aplanar"&gt;&lt;span class="brackets"&gt;bbc-aplanar&lt;/span&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;&lt;a class="reference external" href="https://www.bbc.com/mundo/noticias-51835806"&gt;https://www.bbc.com/mundo/noticias-51835806&lt;/a&gt;&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class="label" id="elcolombiano-distancia"&gt;&lt;span class="brackets"&gt;elcolombiano-distancia&lt;/span&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;&lt;a class="reference external" href="https://www.elcolombiano.com/colombia/salud/coronavirus-que-es-el-distanciamiento-social-BG12632636"&gt;https://www.elcolombiano.com/colombia/salud/coronavirus-que-es-el-distanciamiento-social-BG12632636&lt;/a&gt;&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class="label" id="minsalud-tapabocas"&gt;&lt;span class="brackets"&gt;minsalud-tapabocas&lt;/span&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;&lt;a class="reference external" href="https://www.minsalud.gov.co/Paginas/El-uso-de-tapabocas-se-hace-obligatorio-en-el-sistema-de-transporte-publico.aspx"&gt;https://www.minsalud.gov.co/Paginas/El-uso-de-tapabocas-se-hace-obligatorio-en-el-sistema-de-transporte-publico.aspx&lt;/a&gt;&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class="label" id="wiki-modelling"&gt;&lt;span class="brackets"&gt;wiki-modelling&lt;/span&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;&lt;a class="reference external" href="https://en.wikipedia.org/wiki/Mathematical_modelling_of_infectious_disease"&gt;https://en.wikipedia.org/wiki/Mathematical_modelling_of_infectious_disease&lt;/a&gt;&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class="label" id="wiki-stochastic"&gt;&lt;span class="brackets"&gt;wiki-stochastic&lt;/span&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;&lt;a class="reference external" href="https://en.wikipedia.org/wiki/Compartmental_models_in_epidemiology"&gt;https://en.wikipedia.org/wiki/Compartmental_models_in_epidemiology&lt;/a&gt;&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class="label" id="who-report"&gt;&lt;span class="brackets"&gt;who-report&lt;/span&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;&lt;a class="reference external" href="https://www.who.int/docs/default-source/coronaviruse/who-china-joint-mission-on-covid-19-final-report.pdf"&gt;https://www.who.int/docs/default-source/coronaviruse/who-china-joint-mission-on-covid-19-final-report.pdf&lt;/a&gt;&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class="label" id="ourworldindata"&gt;&lt;span class="brackets"&gt;ourworldindata&lt;/span&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;&lt;a class="reference external" href="https://ourworldindata.org/covid-testing"&gt;https://ourworldindata.org/covid-testing&lt;/a&gt;&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class="label" id="cnn-fronteras"&gt;&lt;span class="brackets"&gt;cnn-fronteras&lt;/span&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;&lt;a class="reference external" href="https://cnnespanol.cnn.com/2020/03/16/alerta-colombia-cerrara-sus-fronteras-desde-el-17-de-marzo-hasta-el-30-de-mayo-como-medida-contra-el-coronavirus/"&gt;https://cnnespanol.cnn.com/2020/03/16/alerta-colombia-cerrara-sus-fronteras-desde-el-17-de-marzo-hasta-el-30-de-mayo-como-medida-contra-el-coronavirus/&lt;/a&gt;&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class="label" id="tt-duque"&gt;&lt;span class="brackets"&gt;tt-duque&lt;/span&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;&lt;a class="reference external" href="https://twitter.com/IvanDuque/status/1238666927779823618"&gt;https://twitter.com/IvanDuque/status/1238666927779823618&lt;/a&gt;&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class="label" id="tt-presidencia-nal"&gt;&lt;span class="brackets"&gt;tt-presidencia-nal&lt;/span&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;&lt;a class="reference external" href="https://twitter.com/infopresidencia/status/1241790747571077122"&gt;https://twitter.com/infopresidencia/status/1241790747571077122&lt;/a&gt;&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class="label" id="tt-presidencia-int"&gt;&lt;span class="brackets"&gt;tt-presidencia-int&lt;/span&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;&lt;a class="reference external" href="https://twitter.com/infopresidencia/status/1240646520287961089"&gt;https://twitter.com/infopresidencia/status/1240646520287961089&lt;/a&gt;&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class="label" id="tt-ins-dano"&gt;&lt;span class="brackets"&gt;tt-INS-daño&lt;/span&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;&lt;a class="reference external" href="https://twitter.com/INSColombia/status/1243617211186544640"&gt;https://twitter.com/INSColombia/status/1243617211186544640&lt;/a&gt;&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class="label" id="presidencia-covid"&gt;&lt;span class="brackets"&gt;presidencia-covid&lt;/span&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;&lt;a class="reference external" href="https://id.presidencia.gov.co/Paginas/prensa/2020/Instituto-Nacional-Salud-anuncia-que-22-nuevos-laboratorios-preparan-para-iniciar-diagnosticos-COVID-19-en-el-pais-200322.aspx"&gt;https://id.presidencia.gov.co/Paginas/prensa/2020/Instituto-Nacional-Salud-anuncia-que-22-nuevos-laboratorios-preparan-para-iniciar-diagnosticos-COVID-19-en-el-pais-200322.aspx&lt;/a&gt;&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class="label" id="tiempo-cuarentena"&gt;&lt;span class="brackets"&gt;tiempo-cuarentena&lt;/span&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;&lt;a class="reference external" href="https://www.eltiempo.com/salud/cuarentena-total-en-colombia-por-el-coronavirus-declara-el-presidente-ivan-duque-475512"&gt;https://www.eltiempo.com/salud/cuarentena-total-en-colombia-por-el-coronavirus-declara-el-presidente-ivan-duque-475512&lt;/a&gt;&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class="label" id="tiempo-simulacro"&gt;&lt;span class="brackets"&gt;tiempo-simulacro&lt;/span&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;&lt;a class="reference external" href="https://www.eltiempo.com/bogota/preguntas-y-respuestas-sobre-el-simulacro-de-cuarentena-en-bogota-474192"&gt;https://www.eltiempo.com/bogota/preguntas-y-respuestas-sobre-el-simulacro-de-cuarentena-en-bogota-474192&lt;/a&gt;&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class="label" id="covid-colombia"&gt;&lt;span class="brackets"&gt;covid-colombia&lt;/span&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;Revisar en el archivo de datos. &lt;a class="reference external" href="https://coronaviruscolombia.gov.co/Covid19/index.html"&gt;https://coronaviruscolombia.gov.co/Covid19/index.html&lt;/a&gt;&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class="label" id="tt-caracol"&gt;&lt;span class="brackets"&gt;tt-caracol&lt;/span&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;&lt;a class="reference external" href="https://twitter.com/NoticiasCaracol/status/1246957124858585088"&gt;https://twitter.com/NoticiasCaracol/status/1246957124858585088&lt;/a&gt;&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class="label" id="wiki-logistica"&gt;&lt;span class="brackets"&gt;wiki-logistica&lt;/span&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;&lt;a class="reference external" href="https://es.wikipedia.org/wiki/Funci%C3%B3n_log%C3%ADstica"&gt;https://es.wikipedia.org/wiki/Funci%C3%B3n_log%C3%ADstica&lt;/a&gt;&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class="label" id="tt-quintero"&gt;&lt;span class="brackets"&gt;tt-quintero&lt;/span&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;&lt;a class="reference external" href="https://twitter.com/QuinteroCalle/status/1246049721334018050"&gt;https://twitter.com/QuinteroCalle/status/1246049721334018050&lt;/a&gt;&lt;/p&gt;
+&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;/div&gt;&lt;/div&gt;</description><category>colombia</category><category>coronavirus</category><category>covid19</category><category>datos</category><category>pandemia</category><category>responsabilidad</category><guid>https://cosmoscalibur.github.io/blog/datos-y-responsabilidad-covid19/</guid><pubDate>Mon, 06 Apr 2020 00:11:52 GMT</pubDate></item><item><title>Seguridad vs flexibilidad del cómputo en nube</title><link>https://cosmoscalibur.github.io/blog/seguridad-vs-flexibilidad-del-computo-en-nube/</link><dc:creator>Edward Villegas-Pulgarin</dc:creator><description>&lt;div&gt;&lt;p&gt;Bueno, con el fin de compartir un poco y sacar provecho de la formación en la
 cual me encuentro, esta es la tercera entrega basada en el curso de
 &lt;a class="reference external" href="https://programasprofesionales.mit.edu/transformacion-digital-descarga-folleto-old/"&gt;transformación digital&lt;/a&gt;
 que estoy realizando. En esta ocasión, la participación requerida en el foro
@@ -28,8 +321,8 @@ seguridad que ofrecen los servicios y una alta disponibilidad de la
 información mediante la red redundante del proveedor [&lt;a class="reference internal" href="https://cosmoscalibur.github.io/blog/seguridad-vs-flexibilidad-del-computo-en-nube/#id3"&gt;3&lt;/a&gt;, &lt;a class="reference internal" href="https://cosmoscalibur.github.io/blog/seguridad-vs-flexibilidad-del-computo-en-nube/#id5"&gt;5&lt;/a&gt;].&lt;/p&gt;
 &lt;p&gt;Otras publicaciones basadas en el curso de transformación digital:&lt;/p&gt;
 
-&lt;!-- Begin post-list post_list_9761a3c4955a4b43a7398ef9e8e11821 --&gt;
-&lt;div id="post_list_9761a3c4955a4b43a7398ef9e8e11821" class="post-list"&gt;
+&lt;!-- Begin post-list post_list_6b7595024461418fba110dd8aa811e8e --&gt;
+&lt;div id="post_list_6b7595024461418fba110dd8aa811e8e" class="post-list"&gt;
     &lt;ul class="post-list"&gt;
             &lt;li class="post-list-item"&gt;
             2020-03-01 21:18
@@ -43,7 +336,7 @@ información mediante la red redundante del proveedor [&lt;a class="reference in
             &lt;/li&gt;
     &lt;/ul&gt;
 &lt;/div&gt;
-&lt;!-- End post-list post_list_9761a3c4955a4b43a7398ef9e8e11821 --&gt;
+&lt;!-- End post-list post_list_6b7595024461418fba110dd8aa811e8e --&gt;
 
 &lt;dl class="footnote brackets"&gt;
 &lt;dt class="label" id="id1"&gt;&lt;span class="brackets"&gt;1&lt;/span&gt;&lt;/dt&gt;
@@ -96,8 +389,8 @@ intermediación actual en el sector inmobiliario (pero que un futuro con las
 reformas necesarias legales podría suceder) [&lt;a class="reference internal" href="https://cosmoscalibur.github.io/blog/sectores-que-se-ven-afectados-por-blockchain-sector-inmobiliario/#id3"&gt;3&lt;/a&gt;].&lt;/p&gt;
 &lt;p&gt;Otras publicaciones basadas en el curso de transformación digital:&lt;/p&gt;
 
-&lt;!-- Begin post-list post_list_fd1c657053c74c4cbe0e2378e0686c15 --&gt;
-&lt;div id="post_list_fd1c657053c74c4cbe0e2378e0686c15" class="post-list"&gt;
+&lt;!-- Begin post-list post_list_febd8ea6bafb404687e7b48f5e4ec76d --&gt;
+&lt;div id="post_list_febd8ea6bafb404687e7b48f5e4ec76d" class="post-list"&gt;
     &lt;ul class="post-list"&gt;
             &lt;li class="post-list-item"&gt;
             2020-03-14 23:02
@@ -111,7 +404,7 @@ reformas necesarias legales podría suceder) [&lt;a class="reference internal" h
             &lt;/li&gt;
     &lt;/ul&gt;
 &lt;/div&gt;
-&lt;!-- End post-list post_list_fd1c657053c74c4cbe0e2378e0686c15 --&gt;
+&lt;!-- End post-list post_list_febd8ea6bafb404687e7b48f5e4ec76d --&gt;
 
 &lt;dl class="footnote brackets"&gt;
 &lt;dt class="label" id="id1"&gt;&lt;span class="brackets"&gt;1&lt;/span&gt;&lt;/dt&gt;
@@ -164,8 +457,8 @@ presencia y acciones del Centro para la Cuarta Revolución Industrial como un
 habilitador [&lt;a class="reference internal" href="https://cosmoscalibur.github.io/blog/estamos-preparados-para-un-nuevo-tipo-de-monedas-completamente-digitales/#id10"&gt;10&lt;/a&gt;], tenga pronto resultados.&lt;/p&gt;
 &lt;p&gt;Otras publicaciones basadas en el curso de transformación digital:&lt;/p&gt;
 
-&lt;!-- Begin post-list post_list_20e30cbd28f441e68690943b6012e407 --&gt;
-&lt;div id="post_list_20e30cbd28f441e68690943b6012e407" class="post-list"&gt;
+&lt;!-- Begin post-list post_list_3532a61a9395451baff9efb43813cee3 --&gt;
+&lt;div id="post_list_3532a61a9395451baff9efb43813cee3" class="post-list"&gt;
     &lt;ul class="post-list"&gt;
             &lt;li class="post-list-item"&gt;
             2020-03-14 23:02
@@ -179,7 +472,7 @@ habilitador [&lt;a class="reference internal" href="https://cosmoscalibur.github
             &lt;/li&gt;
     &lt;/ul&gt;
 &lt;/div&gt;
-&lt;!-- End post-list post_list_20e30cbd28f441e68690943b6012e407 --&gt;
+&lt;!-- End post-list post_list_3532a61a9395451baff9efb43813cee3 --&gt;
 
 &lt;dl class="footnote brackets"&gt;
 &lt;dt class="label" id="id1"&gt;&lt;span class="brackets"&gt;1&lt;/span&gt;&lt;/dt&gt;
@@ -263,8 +556,8 @@ gestor de paquetes del sistema operativo. En la mayor parte de
 distribuciones Linux estará disponible a través del gestor.&lt;/p&gt;
 &lt;p&gt;En el caso de las distribuciones basadas en Debian (Ubuntu y Linux Mint
 entre otras) puedes instalar de la siguiente manera:&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_467289a873e645e496759f0e77c370be-1"&gt;&lt;/a&gt;sudo apt install -y texlive texlive-latex-base texlive-latex-extra \
-&lt;a name="rest_code_467289a873e645e496759f0e77c370be-2"&gt;&lt;/a&gt;    texlive-lang-spanish latexmk
+&lt;pre class="code text"&gt;&lt;a name="rest_code_10576aa572e644348fe48c5f36646fe9-1"&gt;&lt;/a&gt;sudo apt install -y texlive texlive-latex-base texlive-latex-extra \
+&lt;a name="rest_code_10576aa572e644348fe48c5f36646fe9-2"&gt;&lt;/a&gt;    texlive-lang-spanish latexmk
 &lt;/pre&gt;&lt;/dd&gt;
 &lt;/dl&gt;
 &lt;/div&gt;
@@ -294,11 +587,11 @@ proyecto destinemos un directorio &lt;code&gt;docs&lt;/code&gt; para este fin.&l
 &lt;p&gt;Ahora ejecutamos &lt;code&gt;sphinx-quickstart&lt;/code&gt; y respondemos las preguntas que
 saldrán. Es necesario tener en cuenta, que si usas Windows debes agregar al
 comando la terminación &lt;code&gt;.exe&lt;/code&gt;, ejemplo &lt;code&gt;sphinx-quickstart.exe&lt;/code&gt;.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_cde4084ce1b94cc4984b39bdc2b3bd5a-1"&gt;&lt;/a&gt;&amp;gt; Separate source and build directories (y/n) [n]: y
-&lt;a name="rest_code_cde4084ce1b94cc4984b39bdc2b3bd5a-2"&gt;&lt;/a&gt;&amp;gt; Project name: proyecto
-&lt;a name="rest_code_cde4084ce1b94cc4984b39bdc2b3bd5a-3"&gt;&lt;/a&gt;&amp;gt; Author name(s): Edward Villegas-Pulgarin
-&lt;a name="rest_code_cde4084ce1b94cc4984b39bdc2b3bd5a-4"&gt;&lt;/a&gt;&amp;gt; Project release []: 0.1.0
-&lt;a name="rest_code_cde4084ce1b94cc4984b39bdc2b3bd5a-5"&gt;&lt;/a&gt;&amp;gt; Project language [en]: es
+&lt;pre class="code text"&gt;&lt;a name="rest_code_08cb644b2f1d444bb591b5c619e1bb85-1"&gt;&lt;/a&gt;&amp;gt; Separate source and build directories (y/n) [n]: y
+&lt;a name="rest_code_08cb644b2f1d444bb591b5c619e1bb85-2"&gt;&lt;/a&gt;&amp;gt; Project name: proyecto
+&lt;a name="rest_code_08cb644b2f1d444bb591b5c619e1bb85-3"&gt;&lt;/a&gt;&amp;gt; Author name(s): Edward Villegas-Pulgarin
+&lt;a name="rest_code_08cb644b2f1d444bb591b5c619e1bb85-4"&gt;&lt;/a&gt;&amp;gt; Project release []: 0.1.0
+&lt;a name="rest_code_08cb644b2f1d444bb591b5c619e1bb85-5"&gt;&lt;/a&gt;&amp;gt; Project language [en]: es
 &lt;/pre&gt;&lt;p&gt;Siempre recomiendo separar el directorio del código fuente de la documentación
 del directorio de compilados de la misma. Respecto al esquema de versiones me
 agrada el &lt;cite&gt;versionamiento semántico &amp;lt;https://semver.org/&amp;gt;&lt;/cite&gt; que permite al
@@ -320,13 +613,13 @@ Con Coverage puedes validar que funciones se han documentado y dcotest integra
 pruebas de código desde la documentación (comparar salidas con ejemplo de
 documentación).&lt;/p&gt;
 &lt;p&gt;Modificar en el archivo.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_d430a29e94974b078175013d800f94ad-1"&gt;&lt;/a&gt;extensions = [
-&lt;a name="rest_code_d430a29e94974b078175013d800f94ad-2"&gt;&lt;/a&gt;    'sphinx.ext.autodoc',
-&lt;a name="rest_code_d430a29e94974b078175013d800f94ad-3"&gt;&lt;/a&gt;    'sphinx.ext.mathjax',
-&lt;a name="rest_code_d430a29e94974b078175013d800f94ad-4"&gt;&lt;/a&gt;    'sphinx.ext.napoleon',
-&lt;a name="rest_code_d430a29e94974b078175013d800f94ad-5"&gt;&lt;/a&gt;    'sphinx.ext.coverage',
-&lt;a name="rest_code_d430a29e94974b078175013d800f94ad-6"&gt;&lt;/a&gt;    'sphinx.ext.doctest'
-&lt;a name="rest_code_d430a29e94974b078175013d800f94ad-7"&gt;&lt;/a&gt;]
+&lt;pre class="code text"&gt;&lt;a name="rest_code_7db670d0bfa948deb6bec78a8fe97865-1"&gt;&lt;/a&gt;extensions = [
+&lt;a name="rest_code_7db670d0bfa948deb6bec78a8fe97865-2"&gt;&lt;/a&gt;    'sphinx.ext.autodoc',
+&lt;a name="rest_code_7db670d0bfa948deb6bec78a8fe97865-3"&gt;&lt;/a&gt;    'sphinx.ext.mathjax',
+&lt;a name="rest_code_7db670d0bfa948deb6bec78a8fe97865-4"&gt;&lt;/a&gt;    'sphinx.ext.napoleon',
+&lt;a name="rest_code_7db670d0bfa948deb6bec78a8fe97865-5"&gt;&lt;/a&gt;    'sphinx.ext.coverage',
+&lt;a name="rest_code_7db670d0bfa948deb6bec78a8fe97865-6"&gt;&lt;/a&gt;    'sphinx.ext.doctest'
+&lt;a name="rest_code_7db670d0bfa948deb6bec78a8fe97865-7"&gt;&lt;/a&gt;]
 &lt;/pre&gt;&lt;/div&gt;
 &lt;div class="section" id="importar-paquete"&gt;
 &lt;h3&gt;Importar paquete&lt;/h3&gt;
@@ -338,27 +631,27 @@ primeras líneas de código en la sección de &lt;em&gt;Path setup&lt;/em&gt;. E
 defecto indica la misma carpeta de &lt;code&gt;docs/source&lt;/code&gt;, por lo cual es
 necesario reemplazar por &lt;code&gt;../..&lt;/code&gt; que se devuelve los dos niveles
 necesarios.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_4514d81861014bd3875db88070990f62-1"&gt;&lt;/a&gt;import os
-&lt;a name="rest_code_4514d81861014bd3875db88070990f62-2"&gt;&lt;/a&gt;import sys
-&lt;a name="rest_code_4514d81861014bd3875db88070990f62-3"&gt;&lt;/a&gt;import datetime
-&lt;a name="rest_code_4514d81861014bd3875db88070990f62-4"&gt;&lt;/a&gt;sys.path.insert(0, os.path.abspath('../..'))
-&lt;a name="rest_code_4514d81861014bd3875db88070990f62-5"&gt;&lt;/a&gt;import proyecto
+&lt;pre class="code text"&gt;&lt;a name="rest_code_12944db6de7c4e3cb266c9d2a4d006e9-1"&gt;&lt;/a&gt;import os
+&lt;a name="rest_code_12944db6de7c4e3cb266c9d2a4d006e9-2"&gt;&lt;/a&gt;import sys
+&lt;a name="rest_code_12944db6de7c4e3cb266c9d2a4d006e9-3"&gt;&lt;/a&gt;import datetime
+&lt;a name="rest_code_12944db6de7c4e3cb266c9d2a4d006e9-4"&gt;&lt;/a&gt;sys.path.insert(0, os.path.abspath('../..'))
+&lt;a name="rest_code_12944db6de7c4e3cb266c9d2a4d006e9-5"&gt;&lt;/a&gt;import proyecto
 &lt;/pre&gt;&lt;p&gt;Ahora, puedes hacer cosas como la siguiente, si está disponible en tu código.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_40ee14c92ec046669ef2ed2e74a01b5f-1"&gt;&lt;/a&gt;author = proyecto.__author__
-&lt;a name="rest_code_40ee14c92ec046669ef2ed2e74a01b5f-2"&gt;&lt;/a&gt;copyright = str(datetime.date.today().year) + ', ' + author
-&lt;a name="rest_code_40ee14c92ec046669ef2ed2e74a01b5f-3"&gt;&lt;/a&gt;release = proyecto.__version__
+&lt;pre class="code text"&gt;&lt;a name="rest_code_ba8ccd98ac9b402da2e77591652b4692-1"&gt;&lt;/a&gt;author = proyecto.__author__
+&lt;a name="rest_code_ba8ccd98ac9b402da2e77591652b4692-2"&gt;&lt;/a&gt;copyright = str(datetime.date.today().year) + ', ' + author
+&lt;a name="rest_code_ba8ccd98ac9b402da2e77591652b4692-3"&gt;&lt;/a&gt;release = proyecto.__version__
 &lt;/pre&gt;&lt;/div&gt;
 &lt;div class="section" id="referencias-cruzadas"&gt;
 &lt;h3&gt;Referencias cruzadas&lt;/h3&gt;
 &lt;p&gt;Para usar referencias cruzadas, es decir, numeración de tablas, figuras,
 códigos y ecuaciones si poseen pie de objeto, y ser referenciados en el texto
 por el número, se requiere configurar lo siguiente.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_4463008edefb42d69b743c91d48b4e5a-1"&gt;&lt;/a&gt;numfig = True
-&lt;a name="rest_code_4463008edefb42d69b743c91d48b4e5a-2"&gt;&lt;/a&gt;numfig_format = {'figure': 'Fig. %s', 'table': 'Tabla %s',
-&lt;a name="rest_code_4463008edefb42d69b743c91d48b4e5a-3"&gt;&lt;/a&gt;                 'code-block': 'Código %s', 'section': 'Sección %s'}
-&lt;a name="rest_code_4463008edefb42d69b743c91d48b4e5a-4"&gt;&lt;/a&gt;numfig_secnum_depth = 1
-&lt;a name="rest_code_4463008edefb42d69b743c91d48b4e5a-5"&gt;&lt;/a&gt;math_numfig = True
-&lt;a name="rest_code_4463008edefb42d69b743c91d48b4e5a-6"&gt;&lt;/a&gt;math_eqref_format = 'Ec. {number}'
+&lt;pre class="code text"&gt;&lt;a name="rest_code_cc1a65ab28644c3eaf95fa8903baccbb-1"&gt;&lt;/a&gt;numfig = True
+&lt;a name="rest_code_cc1a65ab28644c3eaf95fa8903baccbb-2"&gt;&lt;/a&gt;numfig_format = {'figure': 'Fig. %s', 'table': 'Tabla %s',
+&lt;a name="rest_code_cc1a65ab28644c3eaf95fa8903baccbb-3"&gt;&lt;/a&gt;                 'code-block': 'Código %s', 'section': 'Sección %s'}
+&lt;a name="rest_code_cc1a65ab28644c3eaf95fa8903baccbb-4"&gt;&lt;/a&gt;numfig_secnum_depth = 1
+&lt;a name="rest_code_cc1a65ab28644c3eaf95fa8903baccbb-5"&gt;&lt;/a&gt;math_numfig = True
+&lt;a name="rest_code_cc1a65ab28644c3eaf95fa8903baccbb-6"&gt;&lt;/a&gt;math_eqref_format = 'Ec. {number}'
 &lt;/pre&gt;&lt;p&gt;Así, es posible usar &lt;code&gt;:label:&lt;/code&gt; para asignar una referencia a los objetos
 y &lt;code&gt;:numref:&lt;/code&gt; y &lt;code&gt;:eq:&lt;/code&gt; a la hora de mencionarlos. Con
 &lt;code&gt;numfig_secnum_depth&lt;/code&gt; configuras la numeración de los objetos, si es
@@ -370,11 +663,11 @@ continúa (0), por sección (1) y subsección (2).&lt;/p&gt;
 maestro, el nombre del archivo TeX, el nombre que nuestra documentación, el
 nombre del autor (que podemos usar la variable que ya definimos) y el tipo de
 documento (cuya clase &lt;em&gt;manual&lt;/em&gt; está definida por Sphinx).&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_a6f6fd817f9e47deafb337b3ce47a7b6-1"&gt;&lt;/a&gt;master_doc = 'index'
-&lt;a name="rest_code_a6f6fd817f9e47deafb337b3ce47a7b6-2"&gt;&lt;/a&gt;latex_documents = [
-&lt;a name="rest_code_a6f6fd817f9e47deafb337b3ce47a7b6-3"&gt;&lt;/a&gt;    (master_doc, 'proyecto.tex', 'Documentación Proyecto',
-&lt;a name="rest_code_a6f6fd817f9e47deafb337b3ce47a7b6-4"&gt;&lt;/a&gt;     author, 'manual'),
-&lt;a name="rest_code_a6f6fd817f9e47deafb337b3ce47a7b6-5"&gt;&lt;/a&gt;]
+&lt;pre class="code text"&gt;&lt;a name="rest_code_64fe95e748924e2488e08500c300c2a2-1"&gt;&lt;/a&gt;master_doc = 'index'
+&lt;a name="rest_code_64fe95e748924e2488e08500c300c2a2-2"&gt;&lt;/a&gt;latex_documents = [
+&lt;a name="rest_code_64fe95e748924e2488e08500c300c2a2-3"&gt;&lt;/a&gt;    (master_doc, 'proyecto.tex', 'Documentación Proyecto',
+&lt;a name="rest_code_64fe95e748924e2488e08500c300c2a2-4"&gt;&lt;/a&gt;     author, 'manual'),
+&lt;a name="rest_code_64fe95e748924e2488e08500c300c2a2-5"&gt;&lt;/a&gt;]
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="section" id="escritura-en-restructuredtext"&gt;
@@ -407,16 +700,16 @@ adelante). Puedes agregar más archivos, por ejemplo, yo suelo usar un
 &lt;code&gt;concepts.rst&lt;/code&gt; para detallar los conceptos necesarios antes de usar el
 software o detallar teoría que ayuda a interpretar resultados o que expande la
 información para que alguien pueda analizar o continuar un desarrollo.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_0a3105b207f8484d90a64b8ec39a259d-1"&gt;&lt;/a&gt;.. toctree::
-&lt;a name="rest_code_0a3105b207f8484d90a64b8ec39a259d-2"&gt;&lt;/a&gt;   :maxdepth: 3
-&lt;a name="rest_code_0a3105b207f8484d90a64b8ec39a259d-3"&gt;&lt;/a&gt;   :caption: Contenido:
-&lt;a name="rest_code_0a3105b207f8484d90a64b8ec39a259d-4"&gt;&lt;/a&gt;
-&lt;a name="rest_code_0a3105b207f8484d90a64b8ec39a259d-5"&gt;&lt;/a&gt;   README
-&lt;a name="rest_code_0a3105b207f8484d90a64b8ec39a259d-6"&gt;&lt;/a&gt;   installation
-&lt;a name="rest_code_0a3105b207f8484d90a64b8ec39a259d-7"&gt;&lt;/a&gt;   usage
-&lt;a name="rest_code_0a3105b207f8484d90a64b8ec39a259d-8"&gt;&lt;/a&gt;   api/modules
-&lt;a name="rest_code_0a3105b207f8484d90a64b8ec39a259d-9"&gt;&lt;/a&gt;   concepts
-&lt;a name="rest_code_0a3105b207f8484d90a64b8ec39a259d-10"&gt;&lt;/a&gt;   history
+&lt;pre class="code text"&gt;&lt;a name="rest_code_70e11088a15e4a3fba5f2ca676802bf1-1"&gt;&lt;/a&gt;.. toctree::
+&lt;a name="rest_code_70e11088a15e4a3fba5f2ca676802bf1-2"&gt;&lt;/a&gt;   :maxdepth: 3
+&lt;a name="rest_code_70e11088a15e4a3fba5f2ca676802bf1-3"&gt;&lt;/a&gt;   :caption: Contenido:
+&lt;a name="rest_code_70e11088a15e4a3fba5f2ca676802bf1-4"&gt;&lt;/a&gt;
+&lt;a name="rest_code_70e11088a15e4a3fba5f2ca676802bf1-5"&gt;&lt;/a&gt;   README
+&lt;a name="rest_code_70e11088a15e4a3fba5f2ca676802bf1-6"&gt;&lt;/a&gt;   installation
+&lt;a name="rest_code_70e11088a15e4a3fba5f2ca676802bf1-7"&gt;&lt;/a&gt;   usage
+&lt;a name="rest_code_70e11088a15e4a3fba5f2ca676802bf1-8"&gt;&lt;/a&gt;   api/modules
+&lt;a name="rest_code_70e11088a15e4a3fba5f2ca676802bf1-9"&gt;&lt;/a&gt;   concepts
+&lt;a name="rest_code_70e11088a15e4a3fba5f2ca676802bf1-10"&gt;&lt;/a&gt;   history
 &lt;/pre&gt;&lt;p&gt;Y podemos borrar las líneas posteriores de &lt;em&gt;Indices and tables&lt;/em&gt;.&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -424,7 +717,7 @@ información para que alguien pueda analizar o continuar un desarrollo.&lt;/p&gt
 &lt;h2&gt;Ejecución de Sphinx&lt;/h2&gt;
 &lt;p&gt;Como estamos haciendo uso de &lt;em&gt;autodoc&lt;/em&gt;, nuestro primer paso es generar la
 extracción de la API.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_e6f3c4135c294e55b4dd09f8afaeae0f-1"&gt;&lt;/a&gt;sphinx-apidoc -f -M -o source/api/ ../proyecto
+&lt;pre class="code text"&gt;&lt;a name="rest_code_aff3d8054efc444fa1a07f60b5e0cdd9-1"&gt;&lt;/a&gt;sphinx-apidoc -f -M -o source/api/ ../proyecto
 &lt;/pre&gt;&lt;p&gt;Recordar que en Windows hay que agregar &lt;code&gt;.exe&lt;/code&gt;
 (&lt;code&gt;sphinx-apidoc.exe&lt;/code&gt;). &lt;code&gt;-f&lt;/code&gt; es para forzar la regeneración de los
 archivos (importante si actualizamos la documentación de la API), &lt;code&gt;-M&lt;/code&gt;
@@ -476,7 +769,7 @@ futuro.&lt;/p&gt;
 &lt;p&gt;Si bien puedes descargarlo desde el sitio del proyecto, aprovecharemos el
 gestor Conda para facilitar la tarea de descarga, instalación y configuración.&lt;/p&gt;
 &lt;p&gt;Abriremos Anaconda PowerShell o Anaconda Prompt, y ejecutaremos lo siguiente:&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_f9afab9d2f2949aaa92b685f1071a2f3-1"&gt;&lt;/a&gt;conda create -n gitbash -c conda-forge git=2.24.0
+&lt;pre class="code text"&gt;&lt;a name="rest_code_14149a8d3b9f403fa7a659a4ad2910fc-1"&gt;&lt;/a&gt;conda create -n gitbash -c conda-forge git=2.24.0
 &lt;/pre&gt;&lt;p&gt;Es importante el uso de &lt;code&gt;-c conda-forge&lt;/code&gt; porque de este canal vendrá la
 versión de Git que usaremos. Si se usa el canal por defecto, se instala solo el
 cliente de consola, mientras que en esta opción viene Git Bash. He indicado
@@ -497,9 +790,9 @@ posibles conflictos.&lt;/p&gt;
 típicos de Bash, como el &lt;code&gt;bashrc&lt;/code&gt;. Así, podemos usar la configuración que
 habitualmente se usa en Linux.&lt;/p&gt;
 &lt;p&gt;Abrimos Git Bash, y ejecutamos:&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_074ec3eaa74e49cbb2137dc181370f06-1"&gt;&lt;/a&gt;cd
-&lt;a name="rest_code_074ec3eaa74e49cbb2137dc181370f06-2"&gt;&lt;/a&gt;echo ". /c/Users/USUARIO/ANACONDA/etc/profile.d/conda.sh" &amp;gt;&amp;gt; .bashrc
-&lt;a name="rest_code_074ec3eaa74e49cbb2137dc181370f06-3"&gt;&lt;/a&gt;source .bashrc
+&lt;pre class="code text"&gt;&lt;a name="rest_code_7c3219a5dce34e139bb38c155edd5361-1"&gt;&lt;/a&gt;cd
+&lt;a name="rest_code_7c3219a5dce34e139bb38c155edd5361-2"&gt;&lt;/a&gt;echo ". /c/Users/USUARIO/ANACONDA/etc/profile.d/conda.sh" &amp;gt;&amp;gt; .bashrc
+&lt;a name="rest_code_7c3219a5dce34e139bb38c155edd5361-3"&gt;&lt;/a&gt;source .bashrc
 &lt;/pre&gt;&lt;p&gt;Con la primera línea aseguramos ir al directorio del usuario. En la segunda
 línea, crearemos o editaremos el archivo de configuración, pero debes
 reemplazar &lt;code&gt;USUARIO&lt;/code&gt; por la carpeta de tu usuario y &lt;code&gt;ANACONDA&lt;/code&gt; por
@@ -524,12 +817,12 @@ nuestras necesidades especificando en el archivo Dockerfile.&lt;/p&gt;
 &lt;div class="section" id="instalar-docker"&gt;
 &lt;h2&gt;Instalar Docker&lt;/h2&gt;
 &lt;p&gt;Recomiendo en Linux instalar docker con snap.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_d433d7dd9737492da7703621861acf5a-1"&gt;&lt;/a&gt;sudo snap install docker
+&lt;pre class="code text"&gt;&lt;a name="rest_code_8eeb764c4cb045e99907acc9b973cfa9-1"&gt;&lt;/a&gt;sudo snap install docker
 &lt;/pre&gt;&lt;p&gt;Posteriormente, podemos asociar nuestro usuario para la ejecución sin ser
 administrador.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_3a9969953a9a4f288e2b71c2ef1da3a8-1"&gt;&lt;/a&gt;sudo groupadd docker
-&lt;a name="rest_code_3a9969953a9a4f288e2b71c2ef1da3a8-2"&gt;&lt;/a&gt;sudo usermod -aG docker $USER
-&lt;a name="rest_code_3a9969953a9a4f288e2b71c2ef1da3a8-3"&gt;&lt;/a&gt;newgrp docker
+&lt;pre class="code text"&gt;&lt;a name="rest_code_50e46542ed674e5c95852ce1507d01ac-1"&gt;&lt;/a&gt;sudo groupadd docker
+&lt;a name="rest_code_50e46542ed674e5c95852ce1507d01ac-2"&gt;&lt;/a&gt;sudo usermod -aG docker $USER
+&lt;a name="rest_code_50e46542ed674e5c95852ce1507d01ac-3"&gt;&lt;/a&gt;newgrp docker
 &lt;/pre&gt;&lt;p&gt;Puedes probar ejecutando como usuario regular, &lt;code&gt;docker run hello-world&lt;/code&gt;.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="dockerfile"&gt;
@@ -574,8 +867,8 @@ archivos &lt;em&gt;tar&lt;/em&gt;.&lt;/p&gt;
 &lt;p&gt;El directorio que moveremos se genero en el contenedor LXC que construimos
 en &lt;a class="reference external" href="https://cosmoscalibur.github.io/blog/crear-contenedor-lxc-para-aplicacion-gui-ealite/"&gt;Crear contenedor LXC para aplicación GUI - EALite&lt;/a&gt;. Para ello,
 iniciamos el contenedor y extraemos el directorio.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_548cdf815f244a88b3bf5f90062e305c-1"&gt;&lt;/a&gt;sudo lxc start ea
-&lt;a name="rest_code_548cdf815f244a88b3bf5f90062e305c-2"&gt;&lt;/a&gt;sudo lxc file pull -r ea/home/ubuntu/.wine .
+&lt;pre class="code text"&gt;&lt;a name="rest_code_7ff4a28c2ef0457c9e557d6590ca3950-1"&gt;&lt;/a&gt;sudo lxc start ea
+&lt;a name="rest_code_7ff4a28c2ef0457c9e557d6590ca3950-2"&gt;&lt;/a&gt;sudo lxc file pull -r ea/home/ubuntu/.wine .
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Con &lt;code&gt;USER&lt;/code&gt; cambiamos el usuario que ejecuta los procesos. Es importante
 que a la hora de concluir, si un proceso es ejecutado por un usuario regular,
@@ -587,19 +880,19 @@ existe (pero no el directorio de usuario).&lt;/p&gt;
 Esto es posible con &lt;code&gt;CMD&lt;/code&gt; o con &lt;code&gt;ENTRYPOINT&lt;/code&gt;. La diferencia es que
 el primero permite sobreescribir la ejecución enviando como parámetro lo que
 se desea ejecutar, mientras que la segunda opción solo ejecuta la configurada.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_2db7bef9ba8849608cd393f618454dbb-1"&gt;&lt;/a&gt;# escape=`
-&lt;a name="rest_code_2db7bef9ba8849608cd393f618454dbb-2"&gt;&lt;/a&gt;FROM i386/ubuntu:18.04
-&lt;a name="rest_code_2db7bef9ba8849608cd393f618454dbb-3"&gt;&lt;/a&gt;RUN apt update -q &amp;amp;&amp;amp; apt install --install-recommends -y wine-stable
-&lt;a name="rest_code_2db7bef9ba8849608cd393f618454dbb-4"&gt;&lt;/a&gt;RUN apt install -y fonts-crosextra-carlito
-&lt;a name="rest_code_2db7bef9ba8849608cd393f618454dbb-5"&gt;&lt;/a&gt;RUN useradd -ms /bin/bash ubuntu
-&lt;a name="rest_code_2db7bef9ba8849608cd393f618454dbb-6"&gt;&lt;/a&gt;WORKDIR /home/ubuntu
-&lt;a name="rest_code_2db7bef9ba8849608cd393f618454dbb-7"&gt;&lt;/a&gt;COPY .wine .wine
-&lt;a name="rest_code_2db7bef9ba8849608cd393f618454dbb-8"&gt;&lt;/a&gt;RUN chown -R ubuntu .wine
-&lt;a name="rest_code_2db7bef9ba8849608cd393f618454dbb-9"&gt;&lt;/a&gt;USER ubuntu
-&lt;a name="rest_code_2db7bef9ba8849608cd393f618454dbb-10"&gt;&lt;/a&gt;RUN mkdir -p .local/bin &amp;amp;&amp;amp; `
-&lt;a name="rest_code_2db7bef9ba8849608cd393f618454dbb-11"&gt;&lt;/a&gt;        echo "wine $HOME/.wine/drive_c/Program\ Files/Sparx\ Systems/EA\ LITE/EA.exe" &amp;gt; .local/bin/ealite &amp;amp;&amp;amp; `
-&lt;a name="rest_code_2db7bef9ba8849608cd393f618454dbb-12"&gt;&lt;/a&gt;        chmod 755 .local/bin/ealite
-&lt;a name="rest_code_2db7bef9ba8849608cd393f618454dbb-13"&gt;&lt;/a&gt;CMD ".local/bin/ealite"
+&lt;pre class="code text"&gt;&lt;a name="rest_code_d04b1a8b08774b9ab4e59f341abc6061-1"&gt;&lt;/a&gt;# escape=`
+&lt;a name="rest_code_d04b1a8b08774b9ab4e59f341abc6061-2"&gt;&lt;/a&gt;FROM i386/ubuntu:18.04
+&lt;a name="rest_code_d04b1a8b08774b9ab4e59f341abc6061-3"&gt;&lt;/a&gt;RUN apt update -q &amp;amp;&amp;amp; apt install --install-recommends -y wine-stable
+&lt;a name="rest_code_d04b1a8b08774b9ab4e59f341abc6061-4"&gt;&lt;/a&gt;RUN apt install -y fonts-crosextra-carlito
+&lt;a name="rest_code_d04b1a8b08774b9ab4e59f341abc6061-5"&gt;&lt;/a&gt;RUN useradd -ms /bin/bash ubuntu
+&lt;a name="rest_code_d04b1a8b08774b9ab4e59f341abc6061-6"&gt;&lt;/a&gt;WORKDIR /home/ubuntu
+&lt;a name="rest_code_d04b1a8b08774b9ab4e59f341abc6061-7"&gt;&lt;/a&gt;COPY .wine .wine
+&lt;a name="rest_code_d04b1a8b08774b9ab4e59f341abc6061-8"&gt;&lt;/a&gt;RUN chown -R ubuntu .wine
+&lt;a name="rest_code_d04b1a8b08774b9ab4e59f341abc6061-9"&gt;&lt;/a&gt;USER ubuntu
+&lt;a name="rest_code_d04b1a8b08774b9ab4e59f341abc6061-10"&gt;&lt;/a&gt;RUN mkdir -p .local/bin &amp;amp;&amp;amp; `
+&lt;a name="rest_code_d04b1a8b08774b9ab4e59f341abc6061-11"&gt;&lt;/a&gt;        echo "wine $HOME/.wine/drive_c/Program\ Files/Sparx\ Systems/EA\ LITE/EA.exe" &amp;gt; .local/bin/ealite &amp;amp;&amp;amp; `
+&lt;a name="rest_code_d04b1a8b08774b9ab4e59f341abc6061-12"&gt;&lt;/a&gt;        chmod 755 .local/bin/ealite
+&lt;a name="rest_code_d04b1a8b08774b9ab4e59f341abc6061-13"&gt;&lt;/a&gt;CMD ".local/bin/ealite"
 &lt;/pre&gt;&lt;/div&gt;
 &lt;div class="section" id="construir-imagen-docker"&gt;
 &lt;h2&gt;Construir imagen Docker&lt;/h2&gt;
@@ -609,13 +902,13 @@ para relacionar la ruta del archivo dockerfile que se usará. El siguiente
 argumento no posee marca para indicarlo y corresponde al contexto, que viene a
 ser la ruta donde se encuentran los archivos que usaremos (que puede ser
 reemplazado por un archivo de contexto con la ruta a los distintos archivos).&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_9ec506557f324b1fb6579a423cb3e627-1"&gt;&lt;/a&gt;docker build -t cosmoscalibur/ealite:latest -f dockerfile .
+&lt;pre class="code text"&gt;&lt;a name="rest_code_dee94afe0e324abdb6c1c817d4598b24-1"&gt;&lt;/a&gt;docker build -t cosmoscalibur/ealite:latest -f dockerfile .
 &lt;/pre&gt;&lt;/div&gt;
 &lt;div class="section" id="ejecutar-contenedor"&gt;
 &lt;h2&gt;Ejecutar contenedor&lt;/h2&gt;
 &lt;p&gt;Ahora puedes lanzar un contenedor gráfico basado en la imagen construida con la
 siguiente instrucción.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_e4b0be3e96934177bd9f7947fc3a8fae-1"&gt;&lt;/a&gt;docker run --net=host --env="DISPLAY" --volume="$HOME/.Xauthority:/root/.Xauthority:rw" cosmoscalibur/ealite:latest
+&lt;pre class="code text"&gt;&lt;a name="rest_code_f5244aba9cc948cc841985ea8fb5b262-1"&gt;&lt;/a&gt;docker run --net=host --env="DISPLAY" --volume="$HOME/.Xauthority:/root/.Xauthority:rw" cosmoscalibur/ealite:latest
 &lt;/pre&gt;&lt;/div&gt;
 &lt;div class="section" id="referencias"&gt;
 &lt;h2&gt;Referencias&lt;/h2&gt;
@@ -646,9 +939,9 @@ bibliotecas de 32 bits de manera innecesaria. Así que empecemos.&lt;/p&gt;
 &lt;p&gt;Nuestro primer paso será instalar el paquete LXD, el cual se encuentra
 disponible a través de múltiples gestores de paquetes de las distribuciones
 Linux pero también como paquete snap. Por facilidad, usaré el paquete snap.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_d3c5c6230a204eacb6e0bf9c15b6af12-1"&gt;&lt;/a&gt;sudo snap install lxd
+&lt;pre class="code text"&gt;&lt;a name="rest_code_4333fcd4cd394cf6a015cf1562941cd9-1"&gt;&lt;/a&gt;sudo snap install lxd
 &lt;/pre&gt;&lt;p&gt;Ahora, debemos inicializar (solo es necesario la primera vez tras instalar).&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_e66c83156a954837a707bc360af3b482-1"&gt;&lt;/a&gt;sudo lxd init
+&lt;pre class="code text"&gt;&lt;a name="rest_code_dcd6081f732f48f4bc3f1afbe8e361c9-1"&gt;&lt;/a&gt;sudo lxd init
 &lt;/pre&gt;&lt;p&gt;En mi caso, todos los valores que son preguntados los he dejado en su valor
 por defecto. Personalmente, solo debería preocuparnos el tamaño de la unidad
 usado (en caso de tener limitaciones en espacio de almacenamiento).&lt;/p&gt;
@@ -661,35 +954,35 @@ gráfica nos requiere una configuración adicional, que es realizar el paso al
 sistema gráfico de nuestro sistema hospedador.&lt;/p&gt;
 &lt;p&gt;El perfil gráfico es definido con el siguiente código (copia y pega en un nuevo
 archivo, &lt;code&gt;lxdguiprofile.txt&lt;/code&gt;).&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_7e09636fd0a54685bb6a14ccbe6938a3-1"&gt;&lt;/a&gt;config:
-&lt;a name="rest_code_7e09636fd0a54685bb6a14ccbe6938a3-2"&gt;&lt;/a&gt;  environment.DISPLAY: :0
-&lt;a name="rest_code_7e09636fd0a54685bb6a14ccbe6938a3-3"&gt;&lt;/a&gt;  raw.idmap: both 1000 1000
-&lt;a name="rest_code_7e09636fd0a54685bb6a14ccbe6938a3-4"&gt;&lt;/a&gt;  user.user-data: |
-&lt;a name="rest_code_7e09636fd0a54685bb6a14ccbe6938a3-5"&gt;&lt;/a&gt;    #cloud-config
-&lt;a name="rest_code_7e09636fd0a54685bb6a14ccbe6938a3-6"&gt;&lt;/a&gt;    runcmd:
-&lt;a name="rest_code_7e09636fd0a54685bb6a14ccbe6938a3-7"&gt;&lt;/a&gt;      - 'sed -i "s/; enable-shm = yes/enable-shm = no/g" /etc/pulse/client.conf'
-&lt;a name="rest_code_7e09636fd0a54685bb6a14ccbe6938a3-8"&gt;&lt;/a&gt;      - 'echo export PULSE_SERVER=unix:/tmp/.pulse-native | tee --append /home/ubuntu/.profile'
-&lt;a name="rest_code_7e09636fd0a54685bb6a14ccbe6938a3-9"&gt;&lt;/a&gt;    packages:
-&lt;a name="rest_code_7e09636fd0a54685bb6a14ccbe6938a3-10"&gt;&lt;/a&gt;      - x11-apps
-&lt;a name="rest_code_7e09636fd0a54685bb6a14ccbe6938a3-11"&gt;&lt;/a&gt;      - mesa-utils
-&lt;a name="rest_code_7e09636fd0a54685bb6a14ccbe6938a3-12"&gt;&lt;/a&gt;      - pulseaudio
-&lt;a name="rest_code_7e09636fd0a54685bb6a14ccbe6938a3-13"&gt;&lt;/a&gt;description: GUI LXD profile
-&lt;a name="rest_code_7e09636fd0a54685bb6a14ccbe6938a3-14"&gt;&lt;/a&gt;devices:
-&lt;a name="rest_code_7e09636fd0a54685bb6a14ccbe6938a3-15"&gt;&lt;/a&gt;  PASocket:
-&lt;a name="rest_code_7e09636fd0a54685bb6a14ccbe6938a3-16"&gt;&lt;/a&gt;    path: /tmp/.pulse-native
-&lt;a name="rest_code_7e09636fd0a54685bb6a14ccbe6938a3-17"&gt;&lt;/a&gt;    source: /run/user/1000/pulse/native
-&lt;a name="rest_code_7e09636fd0a54685bb6a14ccbe6938a3-18"&gt;&lt;/a&gt;    type: disk
-&lt;a name="rest_code_7e09636fd0a54685bb6a14ccbe6938a3-19"&gt;&lt;/a&gt;  X0:
-&lt;a name="rest_code_7e09636fd0a54685bb6a14ccbe6938a3-20"&gt;&lt;/a&gt;    path: /tmp/.X11-unix/X0
-&lt;a name="rest_code_7e09636fd0a54685bb6a14ccbe6938a3-21"&gt;&lt;/a&gt;    source: /tmp/.X11-unix/X0
-&lt;a name="rest_code_7e09636fd0a54685bb6a14ccbe6938a3-22"&gt;&lt;/a&gt;    type: disk
-&lt;a name="rest_code_7e09636fd0a54685bb6a14ccbe6938a3-23"&gt;&lt;/a&gt;  mygpu:
-&lt;a name="rest_code_7e09636fd0a54685bb6a14ccbe6938a3-24"&gt;&lt;/a&gt;    type: gpu
-&lt;a name="rest_code_7e09636fd0a54685bb6a14ccbe6938a3-25"&gt;&lt;/a&gt;name: gui
-&lt;a name="rest_code_7e09636fd0a54685bb6a14ccbe6938a3-26"&gt;&lt;/a&gt;used_by:
+&lt;pre class="code text"&gt;&lt;a name="rest_code_73e2ba293c6d407082672304a0707cba-1"&gt;&lt;/a&gt;config:
+&lt;a name="rest_code_73e2ba293c6d407082672304a0707cba-2"&gt;&lt;/a&gt;  environment.DISPLAY: :0
+&lt;a name="rest_code_73e2ba293c6d407082672304a0707cba-3"&gt;&lt;/a&gt;  raw.idmap: both 1000 1000
+&lt;a name="rest_code_73e2ba293c6d407082672304a0707cba-4"&gt;&lt;/a&gt;  user.user-data: |
+&lt;a name="rest_code_73e2ba293c6d407082672304a0707cba-5"&gt;&lt;/a&gt;    #cloud-config
+&lt;a name="rest_code_73e2ba293c6d407082672304a0707cba-6"&gt;&lt;/a&gt;    runcmd:
+&lt;a name="rest_code_73e2ba293c6d407082672304a0707cba-7"&gt;&lt;/a&gt;      - 'sed -i "s/; enable-shm = yes/enable-shm = no/g" /etc/pulse/client.conf'
+&lt;a name="rest_code_73e2ba293c6d407082672304a0707cba-8"&gt;&lt;/a&gt;      - 'echo export PULSE_SERVER=unix:/tmp/.pulse-native | tee --append /home/ubuntu/.profile'
+&lt;a name="rest_code_73e2ba293c6d407082672304a0707cba-9"&gt;&lt;/a&gt;    packages:
+&lt;a name="rest_code_73e2ba293c6d407082672304a0707cba-10"&gt;&lt;/a&gt;      - x11-apps
+&lt;a name="rest_code_73e2ba293c6d407082672304a0707cba-11"&gt;&lt;/a&gt;      - mesa-utils
+&lt;a name="rest_code_73e2ba293c6d407082672304a0707cba-12"&gt;&lt;/a&gt;      - pulseaudio
+&lt;a name="rest_code_73e2ba293c6d407082672304a0707cba-13"&gt;&lt;/a&gt;description: GUI LXD profile
+&lt;a name="rest_code_73e2ba293c6d407082672304a0707cba-14"&gt;&lt;/a&gt;devices:
+&lt;a name="rest_code_73e2ba293c6d407082672304a0707cba-15"&gt;&lt;/a&gt;  PASocket:
+&lt;a name="rest_code_73e2ba293c6d407082672304a0707cba-16"&gt;&lt;/a&gt;    path: /tmp/.pulse-native
+&lt;a name="rest_code_73e2ba293c6d407082672304a0707cba-17"&gt;&lt;/a&gt;    source: /run/user/1000/pulse/native
+&lt;a name="rest_code_73e2ba293c6d407082672304a0707cba-18"&gt;&lt;/a&gt;    type: disk
+&lt;a name="rest_code_73e2ba293c6d407082672304a0707cba-19"&gt;&lt;/a&gt;  X0:
+&lt;a name="rest_code_73e2ba293c6d407082672304a0707cba-20"&gt;&lt;/a&gt;    path: /tmp/.X11-unix/X0
+&lt;a name="rest_code_73e2ba293c6d407082672304a0707cba-21"&gt;&lt;/a&gt;    source: /tmp/.X11-unix/X0
+&lt;a name="rest_code_73e2ba293c6d407082672304a0707cba-22"&gt;&lt;/a&gt;    type: disk
+&lt;a name="rest_code_73e2ba293c6d407082672304a0707cba-23"&gt;&lt;/a&gt;  mygpu:
+&lt;a name="rest_code_73e2ba293c6d407082672304a0707cba-24"&gt;&lt;/a&gt;    type: gpu
+&lt;a name="rest_code_73e2ba293c6d407082672304a0707cba-25"&gt;&lt;/a&gt;name: gui
+&lt;a name="rest_code_73e2ba293c6d407082672304a0707cba-26"&gt;&lt;/a&gt;used_by:
 &lt;/pre&gt;&lt;p&gt;Ahora, crearemos el perfil:&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_c0f00660068d4e63a486a8f136f19e8d-1"&gt;&lt;/a&gt;sudo lxc profile create gui
-&lt;a name="rest_code_c0f00660068d4e63a486a8f136f19e8d-2"&gt;&lt;/a&gt;cat lxdguiprofile.txt | sudo lxc profile edit gui
+&lt;pre class="code text"&gt;&lt;a name="rest_code_3ae036609be845fa8303c5cd28c0a2da-1"&gt;&lt;/a&gt;sudo lxc profile create gui
+&lt;a name="rest_code_3ae036609be845fa8303c5cd28c0a2da-2"&gt;&lt;/a&gt;cat lxdguiprofile.txt | sudo lxc profile edit gui
 &lt;/pre&gt;&lt;p&gt;Este procedimiento, solo es necesario hacerlo la primera vez.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="obtener-contenedor-base"&gt;
@@ -702,7 +995,7 @@ distribuciones Linux, con versiones y arquitecturas diferentes.&lt;/p&gt;
 corresponde a 32 bits. Puedes usar otra distribución siempre y cuando disponga
 de la forma de instalar los paquetes necesarios y en versiones recientes (entre
 más reciente sea Wine, mejor).&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_0d8d4a5eb72d40f39c62d7e87569c401-1"&gt;&lt;/a&gt;sudo lxc launch --profile default --profile gui images:ubuntu/18.04/i386 ea
+&lt;pre class="code text"&gt;&lt;a name="rest_code_4bb039148d6547269e8bbcbdfe2d2e07-1"&gt;&lt;/a&gt;sudo lxc launch --profile default --profile gui images:ubuntu/18.04/i386 ea
 &lt;/pre&gt;&lt;p&gt;Cuando no requerimos la parte gráfica, podemos omitir
 &lt;code&gt;--profile default --profile gui&lt;/code&gt;. Los dos perfiles son un proceso de
 herencia, primero se carga el perfil por defecto y luego se añade lo necesario
@@ -719,7 +1012,7 @@ ejecución del contenedor, o igual podríamos detenerlo primero,
 &lt;p&gt;Para instalar nuestro programa en el contenedor, necesitamos ejecutar comandos
 en este. Para ello, tenemos &lt;code&gt;lxc exec {contenedor} -- {comando}&lt;/code&gt;. Una
 forma interactiva, adecuada para pruebas, es ejecutar bash.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_3c273198bd924adf91c22ace1f6975cf-1"&gt;&lt;/a&gt;sudo lxc exec ea -- /bin/bash
+&lt;pre class="code text"&gt;&lt;a name="rest_code_edfb53d941f744e8ba4784a513300473-1"&gt;&lt;/a&gt;sudo lxc exec ea -- /bin/bash
 &lt;/pre&gt;&lt;p&gt;De esta manera podemos ejecutar los comandos de la misma manera que lo hacemos
 en nuestro sistema, ya que estamos en el contenedor.&lt;/p&gt;
 &lt;p&gt;Si deseamos automatizar, nos interesará enviar directamente las instrucciones
@@ -735,39 +1028,39 @@ tenemos el usuario ubuntu),
 &lt;p&gt;La gestión de archivos es realizada con los comandos &lt;code&gt;file pull&lt;/code&gt; y
 &lt;code&gt;file push&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;Así, si deseamos enviar un archivo:&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_455e909711ae42b890a5b507f6dc20a4-1"&gt;&lt;/a&gt;sudo lxc file push {archivo local} {contenedor}/{ruta contenedor}
+&lt;pre class="code text"&gt;&lt;a name="rest_code_33074c15f5cd4e20be00ec7dca387fc6-1"&gt;&lt;/a&gt;sudo lxc file push {archivo local} {contenedor}/{ruta contenedor}
 &lt;/pre&gt;&lt;p&gt;Y si deseamos traer un archivo del contenedor:&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_034e0d4c370c42149793a00e9e5bf6f1-1"&gt;&lt;/a&gt;sudo lxc file pull {contenedor}/{ruta contenedor} {archivo local}
+&lt;pre class="code text"&gt;&lt;a name="rest_code_2010964cfcab4369a6de3f67097b5e0b-1"&gt;&lt;/a&gt;sudo lxc file pull {contenedor}/{ruta contenedor} {archivo local}
 &lt;/pre&gt;&lt;/div&gt;
 &lt;div class="section" id="instalar-ealite"&gt;
 &lt;h2&gt;Instalar EALite&lt;/h2&gt;
 &lt;p&gt;Ahora que sabemos ejecutar comandos en el contenedor, instalaremos las
 dependencias y finalmente EALite.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_d99266e8be84489184416c1c5f7e3f49-1"&gt;&lt;/a&gt;sudo lxc exec ea -- apt update -q
-&lt;a name="rest_code_d99266e8be84489184416c1c5f7e3f49-2"&gt;&lt;/a&gt;sudo lxc exec ea -- apt install --install-recommends -y wine-stable winetricks
-&lt;a name="rest_code_d99266e8be84489184416c1c5f7e3f49-3"&gt;&lt;/a&gt;sudo lxc exec ea -- apt install -y fonts-crosextra-carlito
-&lt;a name="rest_code_d99266e8be84489184416c1c5f7e3f49-4"&gt;&lt;/a&gt;sudo lxc exec ea -- su - ubuntu -c 'winetricks --unattended msxml3'
-&lt;a name="rest_code_d99266e8be84489184416c1c5f7e3f49-5"&gt;&lt;/a&gt;sudo lxc exec ea -- su - ubuntu -c 'winetricks --unattended msxml4'
-&lt;a name="rest_code_d99266e8be84489184416c1c5f7e3f49-6"&gt;&lt;/a&gt;sudo lxc exec ea -- su - ubuntu -c 'winetricks --unattended msxml6'
-&lt;a name="rest_code_d99266e8be84489184416c1c5f7e3f49-7"&gt;&lt;/a&gt;sudo lxc exec ea -- su - ubuntu -c 'winetricks --unattended mdac28'
-&lt;a name="rest_code_d99266e8be84489184416c1c5f7e3f49-8"&gt;&lt;/a&gt;sudo lxc exec ea -- su - ubuntu -c 'winetricks --unattended jet40'
-&lt;a name="rest_code_d99266e8be84489184416c1c5f7e3f49-9"&gt;&lt;/a&gt;wget http://www.sparxsystems.com.au/bin/EALite.exe
-&lt;a name="rest_code_d99266e8be84489184416c1c5f7e3f49-10"&gt;&lt;/a&gt;sudo lxc file push EALite.exe ea/home/ubuntu/EALite.exe
-&lt;a name="rest_code_d99266e8be84489184416c1c5f7e3f49-11"&gt;&lt;/a&gt;sudo lxc exec ea -- su - ubuntu -c 'wine msiexec /i EALite.exe'
+&lt;pre class="code text"&gt;&lt;a name="rest_code_d2f52e360dc842ae95a57bd9f96a18b1-1"&gt;&lt;/a&gt;sudo lxc exec ea -- apt update -q
+&lt;a name="rest_code_d2f52e360dc842ae95a57bd9f96a18b1-2"&gt;&lt;/a&gt;sudo lxc exec ea -- apt install --install-recommends -y wine-stable winetricks
+&lt;a name="rest_code_d2f52e360dc842ae95a57bd9f96a18b1-3"&gt;&lt;/a&gt;sudo lxc exec ea -- apt install -y fonts-crosextra-carlito
+&lt;a name="rest_code_d2f52e360dc842ae95a57bd9f96a18b1-4"&gt;&lt;/a&gt;sudo lxc exec ea -- su - ubuntu -c 'winetricks --unattended msxml3'
+&lt;a name="rest_code_d2f52e360dc842ae95a57bd9f96a18b1-5"&gt;&lt;/a&gt;sudo lxc exec ea -- su - ubuntu -c 'winetricks --unattended msxml4'
+&lt;a name="rest_code_d2f52e360dc842ae95a57bd9f96a18b1-6"&gt;&lt;/a&gt;sudo lxc exec ea -- su - ubuntu -c 'winetricks --unattended msxml6'
+&lt;a name="rest_code_d2f52e360dc842ae95a57bd9f96a18b1-7"&gt;&lt;/a&gt;sudo lxc exec ea -- su - ubuntu -c 'winetricks --unattended mdac28'
+&lt;a name="rest_code_d2f52e360dc842ae95a57bd9f96a18b1-8"&gt;&lt;/a&gt;sudo lxc exec ea -- su - ubuntu -c 'winetricks --unattended jet40'
+&lt;a name="rest_code_d2f52e360dc842ae95a57bd9f96a18b1-9"&gt;&lt;/a&gt;wget http://www.sparxsystems.com.au/bin/EALite.exe
+&lt;a name="rest_code_d2f52e360dc842ae95a57bd9f96a18b1-10"&gt;&lt;/a&gt;sudo lxc file push EALite.exe ea/home/ubuntu/EALite.exe
+&lt;a name="rest_code_d2f52e360dc842ae95a57bd9f96a18b1-11"&gt;&lt;/a&gt;sudo lxc exec ea -- su - ubuntu -c 'wine msiexec /i EALite.exe'
 &lt;/pre&gt;&lt;p&gt;En este punto, procederemos de manera gráfica a la instalación final de EALite.&lt;/p&gt;
 &lt;div class="figure align-center"&gt;
 &lt;img alt="Ventana de instalación gráfica de EALite." src="https://lh3.googleusercontent.com/bJQU29AUGyL8RwMip-Zfye6-npY8m5nTvUCvLys09zKO6Spm-0K86w7n9l0PJbg9I84k7Jr3zu2OBrZwUCSVcQYBlFDFkqD9T80ONFdYKX1dnVX81rvkeHAGRXeL75ByBu9wDbDqhWqBAx10HTAACgbKLN5_YKhQ1_acN2riplkT7cS0805fZpmSRyLu_xd_xtBRa4SNG9YjnOxBiJv7oymvcn0MXwLZGpM28IUIkqSnZdngYxKEZLRGOWi-crHOJHhElQUBQoiN9RDmrgLNVcMhpvu_7eLWOsCZ0_tdCDbqtkNeWBp5mFf2ykRI5-BI8G3xBbHrjrG3xTVvkBu2CTbbxUxLyv63WBEIpD-kmckIuhWxQrb_8DxDQCuRg2hQPyJwMY2RQcgU0CqB5yRhbG22aZczf-fIlovFSVDrJJIbI_V1Elm-6KWAn3P64KfKDvKAhDyAAfS9ChuTmtWyXr-GUHWyAKzWu6Rq5mMbcEmBijcUlRCZLkp8Bdn0jgzw64w0A1_VnC5Md4VaDoB2Beu8Tv4balnFw-AcI55NHbIXeBxDPB-FakLiu5x71laBXWTBa2_vVPb5e7TZu4kkpWzpVbw_EmVDVhFx-16BJSXCXovmxanlknIfDhWEkX_ZLASWnxE5_Vv8lDPxLb_s0mafKg7F6Ys_JZIOogNPYWn-tgIy5tvsNBmyCX6Lky7dQSCU_vmfIBw3BQ5pzY5QhNk4BQXsXwOhDU98ALq6mb-79pU=w534-h462-no" style="width: 480px;"&gt;
 &lt;p class="caption"&gt;Ventana de instalación gráfica de EALite.&lt;/p&gt;
 &lt;/div&gt;
 &lt;p&gt;Ahora, es necesario crear un mecanismo simple para la ejecución de EA.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_87541877fb624f6790e0aceb9a8c261f-1"&gt;&lt;/a&gt;sudo lxc exec ea -- su - ubuntu -c 'mkdir $HOME/.local/bin'
-&lt;a name="rest_code_87541877fb624f6790e0aceb9a8c261f-2"&gt;&lt;/a&gt;sudo lxc exec ea -- su - ubuntu -c 'echo "wine $HOME/.wine/drive_c/Program\ Files/Sparx\ Systems/EA\ LITE/EA.exe" &amp;gt; $HOME/.local/bin/ealite'
-&lt;a name="rest_code_87541877fb624f6790e0aceb9a8c261f-3"&gt;&lt;/a&gt;sudo lxc exec ea -- su - ubuntu -c 'chmod 755 $HOME/.local/bin/ealite'
+&lt;pre class="code text"&gt;&lt;a name="rest_code_36b06e9fd08d40a4899393d8d9746e7b-1"&gt;&lt;/a&gt;sudo lxc exec ea -- su - ubuntu -c 'mkdir $HOME/.local/bin'
+&lt;a name="rest_code_36b06e9fd08d40a4899393d8d9746e7b-2"&gt;&lt;/a&gt;sudo lxc exec ea -- su - ubuntu -c 'echo "wine $HOME/.wine/drive_c/Program\ Files/Sparx\ Systems/EA\ LITE/EA.exe" &amp;gt; $HOME/.local/bin/ealite'
+&lt;a name="rest_code_36b06e9fd08d40a4899393d8d9746e7b-3"&gt;&lt;/a&gt;sudo lxc exec ea -- su - ubuntu -c 'chmod 755 $HOME/.local/bin/ealite'
 &lt;/pre&gt;&lt;/div&gt;
 &lt;div class="section" id="ejecutar-ealite"&gt;
 &lt;h2&gt;Ejecutar EALite&lt;/h2&gt;
 &lt;p&gt;Ahora, podemos usar el visor de Enterprise Architect.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_42bd3ecdaae740f88d5815b871d83268-1"&gt;&lt;/a&gt;sudo lxc exec ea -- su - ubuntu -c 'ealite'
+&lt;pre class="code text"&gt;&lt;a name="rest_code_eadf3a11daea4635a01591479e2910a3-1"&gt;&lt;/a&gt;sudo lxc exec ea -- su - ubuntu -c 'ealite'
 &lt;/pre&gt;&lt;p&gt;Cuando iniciemos el sistema operativo, requerimos de iniciar el contenedores
 antes de ejecutar la instrucción anterior, &lt;code&gt;sudo lxc start ea&lt;/code&gt;.&lt;/p&gt;
 &lt;div class="figure align-center"&gt;
@@ -781,12 +1074,12 @@ antes de ejecutar la instrucción anterior, &lt;code&gt;sudo lxc start ea&lt;/co
 &lt;p&gt;Puedes asegurar una forma simple de ejecutar EALite creando una rutina de
 lanzamiento con las dos líneas anteriores en un archivo que sea reconocido en
 el &lt;code&gt;path&lt;/code&gt;.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_5fe8d7988eee4fedb7f6f17e5a97c1d8-1"&gt;&lt;/a&gt;mkdir -p $HOME/.local/bin
-&lt;a name="rest_code_5fe8d7988eee4fedb7f6f17e5a97c1d8-2"&gt;&lt;/a&gt;cat &amp;lt;&amp;lt; EOF &amp;gt; $HOME/.local/bin/ealite
-&lt;a name="rest_code_5fe8d7988eee4fedb7f6f17e5a97c1d8-3"&gt;&lt;/a&gt;sudo lxc start ea
-&lt;a name="rest_code_5fe8d7988eee4fedb7f6f17e5a97c1d8-4"&gt;&lt;/a&gt;sudo lxc exec ea -- su - ubuntu -c 'ealite'
-&lt;a name="rest_code_5fe8d7988eee4fedb7f6f17e5a97c1d8-5"&gt;&lt;/a&gt;EOF
-&lt;a name="rest_code_5fe8d7988eee4fedb7f6f17e5a97c1d8-6"&gt;&lt;/a&gt;chmod 755 $HOME/.local/bin/ealite
+&lt;pre class="code text"&gt;&lt;a name="rest_code_087adefc2e134b628baca836af00311d-1"&gt;&lt;/a&gt;mkdir -p $HOME/.local/bin
+&lt;a name="rest_code_087adefc2e134b628baca836af00311d-2"&gt;&lt;/a&gt;cat &amp;lt;&amp;lt; EOF &amp;gt; $HOME/.local/bin/ealite
+&lt;a name="rest_code_087adefc2e134b628baca836af00311d-3"&gt;&lt;/a&gt;sudo lxc start ea
+&lt;a name="rest_code_087adefc2e134b628baca836af00311d-4"&gt;&lt;/a&gt;sudo lxc exec ea -- su - ubuntu -c 'ealite'
+&lt;a name="rest_code_087adefc2e134b628baca836af00311d-5"&gt;&lt;/a&gt;EOF
+&lt;a name="rest_code_087adefc2e134b628baca836af00311d-6"&gt;&lt;/a&gt;chmod 755 $HOME/.local/bin/ealite
 &lt;/pre&gt;&lt;p&gt;La ejecución con &lt;code&gt;sudo&lt;/code&gt; puede omitirse si se añade el usuario a un grupo
 que permita la ejecución de lxc. Más adelante, haré una publicación sobre como
 hacerlo. Por ahora, diviértete ejecutando &lt;code&gt;ealite&lt;/code&gt; e ingresando la
@@ -797,15 +1090,15 @@ contenedor.&lt;/p&gt;
 &lt;div class="section" id="compartir"&gt;
 &lt;h2&gt;Compartir&lt;/h2&gt;
 &lt;p&gt;Para compartir el contenedor, puedes publicarlo y exportar la imagen.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_520c5bc2a9804e7f828c4d2b76a46b54-1"&gt;&lt;/a&gt;sudo lxc publish ea --alias ealite
-&lt;a name="rest_code_520c5bc2a9804e7f828c4d2b76a46b54-2"&gt;&lt;/a&gt;sudo lxc image export ealite
+&lt;pre class="code text"&gt;&lt;a name="rest_code_2593ff4718854baca2bb15fe60e667e8-1"&gt;&lt;/a&gt;sudo lxc publish ea --alias ealite
+&lt;a name="rest_code_2593ff4718854baca2bb15fe60e667e8-2"&gt;&lt;/a&gt;sudo lxc image export ealite
 &lt;/pre&gt;&lt;p&gt;La imagen exportada es un archivo &lt;code&gt;tar.gz&lt;/code&gt; con el nombre asociado al
 &lt;em&gt;fingerprint&lt;/em&gt; (una secuencia alfanumérica). Luego se debe importar la imagen
 y hacer &lt;code&gt;launch&lt;/code&gt; nuevamente con el perfil.&lt;/p&gt;
 &lt;p&gt;También puedes exportar directamente el contenedor, lo cual es recomendable
 porque lleva con ello la configuración del perfil GUI y es listo para usar
 una vez hagas la importación.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_c3f0f8fabc8a436088844f89ff8fb377-1"&gt;&lt;/a&gt;sudo lxc export ea ea.tar.gz --optimized-storage
+&lt;pre class="code text"&gt;&lt;a name="rest_code_933b0a05a78046f691c2cddc41e4c8d7-1"&gt;&lt;/a&gt;sudo lxc export ea ea.tar.gz --optimized-storage
 &lt;/pre&gt;&lt;/div&gt;
 &lt;div class="section" id="referencias"&gt;
 &lt;h2&gt;Referencias&lt;/h2&gt;
@@ -979,8 +1272,8 @@ los recomiendo como última opción.&lt;/p&gt;
 (preinstalado) o Synaptic (preinstalado en Linux Mint), para realizar la
 gestión de manera gráfica. Pero también puedes usar &lt;code&gt;apt-get&lt;/code&gt; o
 &lt;code&gt;apt&lt;/code&gt; (recomendado) para la gestión a través de consola.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_e03dad2bfa124a1487cf64dc1b5d96b8-1"&gt;&lt;/a&gt;sudo apt update -q
-&lt;a name="rest_code_e03dad2bfa124a1487cf64dc1b5d96b8-2"&gt;&lt;/a&gt;sudo apt install -y okular
+&lt;pre class="code text"&gt;&lt;a name="rest_code_2a3bd49ec2304a6ebab0f9823bd455ed-1"&gt;&lt;/a&gt;sudo apt update -q
+&lt;a name="rest_code_2a3bd49ec2304a6ebab0f9823bd455ed-2"&gt;&lt;/a&gt;sudo apt install -y okular
 &lt;/pre&gt;&lt;p&gt;Ahora dispones del lector de archivos PDF en tu sistema. Puedes accederlo por
 el menú o por comando (&lt;code&gt;okular&lt;/code&gt;). La primera línea es recomendable para
 actualizar las direcciones desde las cuales se descarga el software y los
@@ -1004,14 +1297,14 @@ múltiples instancias o exponga una brecha de seguridad).&lt;/p&gt;
 disponibles.&lt;/p&gt;
 &lt;p id="appimagecode"&gt;Descargamos el &lt;a class="reference external" href="https://stellarium.org/"&gt;AppImage de Stellarium&lt;/a&gt; del sitio
 oficial del software (el segundo pingüino).&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_e612f0e59af44830ad67ce0be61e7c3d-1"&gt;&lt;/a&gt;chmod 755 Stellarium-0.19.2-x86_64.AppImage
-&lt;a name="rest_code_e612f0e59af44830ad67ce0be61e7c3d-2"&gt;&lt;/a&gt;./Stellarium-0.19.2-x86_64.AppImage
+&lt;pre class="code text"&gt;&lt;a name="rest_code_dc746ac8be7548fbb1b40d5dc85b329f-1"&gt;&lt;/a&gt;chmod 755 Stellarium-0.19.2-x86_64.AppImage
+&lt;a name="rest_code_dc746ac8be7548fbb1b40d5dc85b329f-2"&gt;&lt;/a&gt;./Stellarium-0.19.2-x86_64.AppImage
 &lt;/pre&gt;&lt;p&gt;La primera línea solo es necesario ejecutarla la primera vez.&lt;/p&gt;
 &lt;p&gt;Si queremos ejecutarlo de una manera más cómoda, podemos mover el archivo al
 directorio de ejecución de binarios del usuario o a uno de ejecución de sistema
 para estar disponible para todos los usuarios (&lt;code&gt;/usr/local/bin/&lt;/code&gt;).&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_13b708caa22a4b89a62b294c9e15a6c6-1"&gt;&lt;/a&gt;mv Stellarium-0.19.2-x86_64.AppImage ~/.local/bin/stellarium
-&lt;a name="rest_code_13b708caa22a4b89a62b294c9e15a6c6-2"&gt;&lt;/a&gt;stellarium
+&lt;pre class="code text"&gt;&lt;a name="rest_code_968d157226b540d38beebc888d9f4a57-1"&gt;&lt;/a&gt;mv Stellarium-0.19.2-x86_64.AppImage ~/.local/bin/stellarium
+&lt;a name="rest_code_968d157226b540d38beebc888d9f4a57-2"&gt;&lt;/a&gt;stellarium
 &lt;/pre&gt;&lt;p&gt;Nuevamente, la primera línea es solo la primera vez.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="snap"&gt;
@@ -1021,10 +1314,10 @@ para estar disponible para todos los usuarios (&lt;code&gt;/usr/local/bin/&lt;/c
 requiere aprobación de Canonical para ser admitido el paquete y requiere ser
 administrador para la instalación.&lt;/p&gt;
 &lt;p&gt;En Ubuntu viene preinstalado pero en Linux Mint es necesario instalarlo.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_8759651722ed4cbcac9a229829779c6b-1"&gt;&lt;/a&gt;sudo apt install -y snapd
+&lt;pre class="code text"&gt;&lt;a name="rest_code_a79084434798499489d135b49c0256c0-1"&gt;&lt;/a&gt;sudo apt install -y snapd
 &lt;/pre&gt;&lt;p&gt;Una vez instalado, podemos proceder a instalar un paquete snap.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_00ce7dc310cb411cb142d6ad444e3277-1"&gt;&lt;/a&gt;sudo snap install code --classic
-&lt;a name="rest_code_00ce7dc310cb411cb142d6ad444e3277-2"&gt;&lt;/a&gt;snap run code # Ejecuta
+&lt;pre class="code text"&gt;&lt;a name="rest_code_cf78618b8ce74223bed86fd44ca95e92-1"&gt;&lt;/a&gt;sudo snap install code --classic
+&lt;a name="rest_code_cf78618b8ce74223bed86fd44ca95e92-2"&gt;&lt;/a&gt;snap run code # Ejecuta
 &lt;/pre&gt;&lt;p&gt;La ejecución con &lt;code&gt;snap run&lt;/code&gt; es necesaria si tras instalar no reconoce
 el paquete. Después de la primera ejecución o tras abrir una nueva terminal
 o reiniciar el equipo, será ya reconocido el paquete sin problema para
@@ -1040,20 +1333,20 @@ administrador.&lt;/p&gt;
 &lt;p&gt;En Linux Mint viene preconfigurado a partir de la versión 18.3, pero si usas
 Ubuntu necesitas instalarlo. Desde la 18.10 se encuentra en los repositorios
 oficiales.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_e92abf5fe39241eba47dabfbb77eb36f-1"&gt;&lt;/a&gt;sudo apt install flatpak
-&lt;a name="rest_code_e92abf5fe39241eba47dabfbb77eb36f-2"&gt;&lt;/a&gt;sudo apt install gnome-software-plugin-flatpak
-&lt;a name="rest_code_e92abf5fe39241eba47dabfbb77eb36f-3"&gt;&lt;/a&gt;flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+&lt;pre class="code text"&gt;&lt;a name="rest_code_f1940796594a44e0b025540c4ce0d613-1"&gt;&lt;/a&gt;sudo apt install flatpak
+&lt;a name="rest_code_f1940796594a44e0b025540c4ce0d613-2"&gt;&lt;/a&gt;sudo apt install gnome-software-plugin-flatpak
+&lt;a name="rest_code_f1940796594a44e0b025540c4ce0d613-3"&gt;&lt;/a&gt;flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 &lt;/pre&gt;&lt;p&gt;La primera línea instala el gestor de flatpak. La segunda línea permite usar
 flatpak con el Centro de Software de Gnome. Y la tercera línea agrega el
 repositorio de paquetes flatpak más popular, &lt;a class="reference external" href="https://flathub.org/home"&gt;flathub&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Para ejemplificar, instalaremos el paquete peek&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_e230dd4862774d798f9f34dc73236f16-1"&gt;&lt;/a&gt;flatpak install -y flathub com.uploadedlobster.peek
-&lt;a name="rest_code_e230dd4862774d798f9f34dc73236f16-2"&gt;&lt;/a&gt;flatpak run com.uploadedlobster.peek
+&lt;pre class="code text"&gt;&lt;a name="rest_code_373d24e2ecbc4bdfbf81bb64e75bcb0b-1"&gt;&lt;/a&gt;flatpak install -y flathub com.uploadedlobster.peek
+&lt;a name="rest_code_373d24e2ecbc4bdfbf81bb64e75bcb0b-2"&gt;&lt;/a&gt;flatpak run com.uploadedlobster.peek
 &lt;/pre&gt;&lt;p&gt;Desafortunadamente la ejecución es siempre así, pero puedes crear un archivo
 que te facilite la labor.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_04774dac70cb4c1b960de2ff791a225b-1"&gt;&lt;/a&gt;echo "flatpak run com.uploadedlobster.peek" &amp;gt; ~/.local/bin/peek
-&lt;a name="rest_code_04774dac70cb4c1b960de2ff791a225b-2"&gt;&lt;/a&gt;chmod 755 ~/.local/bin/peek
-&lt;a name="rest_code_04774dac70cb4c1b960de2ff791a225b-3"&gt;&lt;/a&gt;peek
+&lt;pre class="code text"&gt;&lt;a name="rest_code_d442318e36af4c85895983f53a80d841-1"&gt;&lt;/a&gt;echo "flatpak run com.uploadedlobster.peek" &amp;gt; ~/.local/bin/peek
+&lt;a name="rest_code_d442318e36af4c85895983f53a80d841-2"&gt;&lt;/a&gt;chmod 755 ~/.local/bin/peek
+&lt;a name="rest_code_d442318e36af4c85895983f53a80d841-3"&gt;&lt;/a&gt;peek
 &lt;/pre&gt;&lt;p&gt;A nivel gráfico, por defecto si es agregado al menú.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="compilacion-y-binarios"&gt;
@@ -1092,118 +1385,4 @@ proceder a ejecutarlo. Este procedimiento, es el mismo expuesto en las
 &lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://wiki.gnome.org/Apps/Software"&gt;Gnome Software Center&lt;/a&gt;.&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://help.ubuntu.com/lts/serverguide/apt.html"&gt;Ubuntu APT&lt;/a&gt;.&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;/div&gt;&lt;/div&gt;</description><category>appimage</category><category>debian</category><category>flatpak</category><category>linux</category><category>linux mint</category><category>paquetes</category><category>snap</category><category>software</category><guid>https://cosmoscalibur.github.io/blog/instalando-paquetes-en-linux-mint/</guid><pubDate>Wed, 23 Oct 2019 01:21:34 GMT</pubDate></item><item><title>Recuperar el arranque de tu Moto G5 en Linux</title><link>https://cosmoscalibur.github.io/blog/recuperar-el-arranque-de-tu-moto-g5-en-linux/</link><dc:creator>Edward Villegas-Pulgarin</dc:creator><description>&lt;div&gt;&lt;p&gt;Recientemente, aunque cambié a un Moto G7, pensaba restaurar el celular de
-fábrica pero salió mal el proceso (no siempre es fácil si pretendes eliminar
-el acceso a &lt;a class="reference external" href="https://www.xda-developers.com/root/"&gt;administrador&lt;/a&gt; -&lt;em&gt;root&lt;/em&gt;- y
-el &lt;em&gt;recovery&lt;/em&gt; personalizado -&lt;a class="reference external" href="https://twrp.me/about/"&gt;TWRP&lt;/a&gt;-).&lt;/p&gt;
-&lt;p&gt;A raíz de esto, no funcionaba &lt;em&gt;play service&lt;/em&gt; y por ende no era posible llegar
-a la pantalla de ingreso de usuario ni omitirlo. Esto es un tipo de fallo
-denominado &lt;em&gt;soft brick&lt;/em&gt;, en el cual el celular es inservible a nivel de
-sistema operativo (se distingue de un &lt;em&gt;hard brick&lt;/em&gt;, en el cual el daño es
-físico).&lt;/p&gt;
-&lt;!-- TEASER_END --&gt;
-&lt;p&gt;A continuación, veremos como recuperar tu celular de este estado con Linux.&lt;/p&gt;
-&lt;div class="section" id="instalacion-de-herramientas-android"&gt;
-&lt;h2&gt;Instalación de herramientas Android&lt;/h2&gt;
-&lt;p&gt;Nuestro primer paso es la instalación de las herramientas de software o
-paquetes que necesitaremos para rescatar nuestro equipo. Este paso puede ser
-realizado con la ayuda de los gestores de paquete de nuestra distribución
-Linux pero por lo mismo dependerá de cual usemos.&lt;/p&gt;
-&lt;p&gt;En mi caso, uso Linux Mint 19, una distribución que es derivada de Ubuntu
-18.04, compartiendo mucho de la base de paquetes en sus repositorios. Así,
-en ambos casos, podremos proceder a instalar de la misma manera el SDK de
-Android, ADB, Fastboot y Platform Tools.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_976bded0d7af40a0a61b9db941cd7a41-1"&gt;&lt;/a&gt;sudo apt install -y android-sdk android-tools-fastboot android-tools-adb \
-&lt;a name="rest_code_976bded0d7af40a0a61b9db941cd7a41-2"&gt;&lt;/a&gt;android-sdk-platform-tools
-&lt;/pre&gt;&lt;/div&gt;
-&lt;div class="section" id="descargar-rom-de-fabrica"&gt;
-&lt;h2&gt;Descargar &lt;em&gt;ROM&lt;/em&gt; de fábrica&lt;/h2&gt;
-&lt;p&gt;Como lo advertía en &lt;a class="reference external" href="https://cosmoscalibur.github.io/blog/comprando-celular-para-personalizar/"&gt;Comprando celular para personalizar&lt;/a&gt;, un detalle
-importante al adquirir celular es revisar la existencia de la &lt;em&gt;ROM&lt;/em&gt; de fábrica
-(sistema operativo original) en los foros especializados como
-&lt;a class="reference external" href="https://www.xda-developers.com/"&gt;XDA&lt;/a&gt;. Pueden existir otras fuentes, pero
-la recomendada es esta.&lt;/p&gt;
-&lt;p&gt;Descargaremos la &lt;em&gt;ROM&lt;/em&gt; de la versión Android Oreo 8.1 para nuestro Moto G5.
-&lt;a class="reference external" href="https://mirrors.lolinet.com/firmware/moto/cedric/official/RETAIL/CEDRIC_RETAIL_8.1.0_OPP28.85-19-4-2_cid50_subsidy-DEFAULT_regulatory-DEFAULT_CFC.xml.zip"&gt;Descargar Android 8.1 Moto G5 cedric&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Una vez descargado el archivo, procedemos a descomprimirlo.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="fastboot-mode"&gt;
-&lt;h2&gt;&lt;em&gt;Fastboot mode&lt;/em&gt;&lt;/h2&gt;
-&lt;p&gt;Ya nos acercamos poco a poco. El siguiente paso es con nuestro celular.
-Debemos pasar a modo &lt;em&gt;fastboot&lt;/em&gt; y esto se logra de la siguiente manera.&lt;/p&gt;
-&lt;ol class="arabic simple"&gt;
-&lt;li&gt;&lt;p&gt;Apagar el celular.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Presionar de manera sostenida la parte inferior de la tecla de volumen.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Mientras sostienes la tecla de volumen, presionar la tecla de prendido, y
-soltar.&lt;/p&gt;&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;En este momento, hemos ingresado al modo &lt;em&gt;fastboot&lt;/em&gt; (o &lt;em&gt;bootloader&lt;/em&gt;).
-Conectamos el cable USB tanto al celular como a nuestro computador.&lt;/p&gt;
-&lt;p&gt;Podemos probar que todo vaya bien abriendo una terminal y ejecutando&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_ebf610ee0a884af9a6c65594549698f9-1"&gt;&lt;/a&gt;fastboot devices
-&lt;/pre&gt;&lt;p&gt;Y sabremos que funciona si muestra una secuencia alfanumérica y luego la
-palabra &lt;em&gt;fastboot&lt;/em&gt;. En mi caso es:&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_8eb61c6a66144c11a142110697866c29-1"&gt;&lt;/a&gt;ZY3224RNMN   fastboot
-&lt;/pre&gt;&lt;p&gt;Algunas veces puede fallar por permisos, en cuyo caso deberías probar la
-ejecución con permiso de administrador.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_c17ee4d941614e0bbedd87ffc424dec3-1"&gt;&lt;/a&gt;sudo fastboot devices
-&lt;/pre&gt;&lt;/div&gt;
-&lt;div class="section" id="instalar-sistema-operativo"&gt;
-&lt;h2&gt;Instalar sistema operativo&lt;/h2&gt;
-&lt;p&gt;Finalmente, necesitamos instalar el sistema operativo. Vamos a requerir de
-abrir una terminal y ubicarla en el directorio donde descomprimimos el sistema
-operativo (algunos exploradores de archivos admiten poseen la opción de abrir
-la terminal en el directorio abierto en el explorador o puedes moverte en la
-terminal con el comando &lt;code&gt;cd&lt;/code&gt;).&lt;/p&gt;
-&lt;p&gt;Una vez ubicados en el directorio desde la terminal, procedemos a ejecutar&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_61b32cfc0289434a83cf26a6d1247da5-1"&gt;&lt;/a&gt;fastboot getvar max-sparse-size
-&lt;a name="rest_code_61b32cfc0289434a83cf26a6d1247da5-2"&gt;&lt;/a&gt;fastboot oem fb_mode_set
-&lt;a name="rest_code_61b32cfc0289434a83cf26a6d1247da5-3"&gt;&lt;/a&gt;fastboot flash partition gpt.bin
-&lt;a name="rest_code_61b32cfc0289434a83cf26a6d1247da5-4"&gt;&lt;/a&gt;fastboot flash bootloader bootloader.img
-&lt;a name="rest_code_61b32cfc0289434a83cf26a6d1247da5-5"&gt;&lt;/a&gt;fastboot flash modem NON-HLOS.bin
-&lt;a name="rest_code_61b32cfc0289434a83cf26a6d1247da5-6"&gt;&lt;/a&gt;fastboot flash fsg fsg.mbn
-&lt;a name="rest_code_61b32cfc0289434a83cf26a6d1247da5-7"&gt;&lt;/a&gt;fastboot erase modemst1
-&lt;a name="rest_code_61b32cfc0289434a83cf26a6d1247da5-8"&gt;&lt;/a&gt;fastboot erase modemst2
-&lt;a name="rest_code_61b32cfc0289434a83cf26a6d1247da5-9"&gt;&lt;/a&gt;fastboot flash dsp adspso.bin
-&lt;a name="rest_code_61b32cfc0289434a83cf26a6d1247da5-10"&gt;&lt;/a&gt;fastboot flash logo logo.bin
-&lt;a name="rest_code_61b32cfc0289434a83cf26a6d1247da5-11"&gt;&lt;/a&gt;fastboot flash boot boot.img
-&lt;a name="rest_code_61b32cfc0289434a83cf26a6d1247da5-12"&gt;&lt;/a&gt;fastboot flash recovery recovery.img
-&lt;a name="rest_code_61b32cfc0289434a83cf26a6d1247da5-13"&gt;&lt;/a&gt;fastboot flash system system.img_sparsechunk.0
-&lt;a name="rest_code_61b32cfc0289434a83cf26a6d1247da5-14"&gt;&lt;/a&gt;fastboot flash system system.img_sparsechunk.1
-&lt;a name="rest_code_61b32cfc0289434a83cf26a6d1247da5-15"&gt;&lt;/a&gt;fastboot flash system system.img_sparsechunk.2
-&lt;a name="rest_code_61b32cfc0289434a83cf26a6d1247da5-16"&gt;&lt;/a&gt;fastboot flash system system.img_sparsechunk.3
-&lt;a name="rest_code_61b32cfc0289434a83cf26a6d1247da5-17"&gt;&lt;/a&gt;fastboot flash system system.img_sparsechunk.4
-&lt;a name="rest_code_61b32cfc0289434a83cf26a6d1247da5-18"&gt;&lt;/a&gt;fastboot flash system system.img_sparsechunk.5
-&lt;a name="rest_code_61b32cfc0289434a83cf26a6d1247da5-19"&gt;&lt;/a&gt;fastboot flash system system.img_sparsechunk.6
-&lt;a name="rest_code_61b32cfc0289434a83cf26a6d1247da5-20"&gt;&lt;/a&gt;fastboot flash system system.img_sparsechunk.7
-&lt;a name="rest_code_61b32cfc0289434a83cf26a6d1247da5-21"&gt;&lt;/a&gt;fastboot flash system system.img_sparsechunk.8
-&lt;a name="rest_code_61b32cfc0289434a83cf26a6d1247da5-22"&gt;&lt;/a&gt;fastboot flash oem oem.img
-&lt;a name="rest_code_61b32cfc0289434a83cf26a6d1247da5-23"&gt;&lt;/a&gt;fastboot erase cache
-&lt;a name="rest_code_61b32cfc0289434a83cf26a6d1247da5-24"&gt;&lt;/a&gt;fastboot erase userdata
-&lt;a name="rest_code_61b32cfc0289434a83cf26a6d1247da5-25"&gt;&lt;/a&gt;fastboot erase DDR
-&lt;a name="rest_code_61b32cfc0289434a83cf26a6d1247da5-26"&gt;&lt;/a&gt;fastboot oem fb_mode_clear
-&lt;a name="rest_code_61b32cfc0289434a83cf26a6d1247da5-27"&gt;&lt;/a&gt;fastboot reboot
-&lt;/pre&gt;&lt;p&gt;Muy bien, hemos terminado de instalar (si no hemos tenido ejecuciones
-fallidas). Para iniciar el celular, con la tecla de volumen buscamos &lt;em&gt;restart&lt;/em&gt;
-y luego presionamos el botón de encendido. En este momento, es como si
-estuviera nuevo el celular, por lo que tardará unos minutos que inicie.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="que-puede-salir-mal"&gt;
-&lt;h2&gt;¿Qué puede salir mal?&lt;/h2&gt;
-&lt;p&gt;Bueno, esto no es un procedimiento seguro ni asegura el funcionamiento. El
-primer detalle, es recordar que esto solo servirá si el problema era del
-sistema operativo, o sea, si era un &lt;em&gt;soft brick&lt;/em&gt;. En caso contrario,
-&lt;em&gt;hard brick&lt;/em&gt;, necesitarás un servicio técnico para el arreglo de tu equipo.&lt;/p&gt;
-&lt;p&gt;Otra opción para una posible falla en el proceso, es un cable USB deteriorado
-o un puerto USB deteriorado. En estos casos, es posible perder la conexión
-entre el celular y computador, y en muchas ocasiones no habrá una advertencia
-visible (en mi caso, lo he notado con demoras superiores a las habituales).&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="referencias"&gt;
-&lt;h2&gt;Referencias&lt;/h2&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://forum.xda-developers.com/g5/development/fastboot-cedricretail8-1-0opp28-85-19-4-t3930448"&gt;[FASTBOOT]CEDRIC_RETAIL_8.1.0_OPP28.85-19-4-2_cid50_subsidy-DEFAULT_regulatory-DEFAUL&lt;/a&gt;.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://www.hardreset.info/devices/motorola/motorola-moto-g5/recovery-mode/"&gt;HardReset.info: Recovery Mode MOTOROLA Moto G5&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://android.gadgethacks.com/how-to/know-your-android-tools-what-is-fastboot-do-you-use-it-0155640/"&gt;What Is Fastboot &amp;amp; How Do You Use It?&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;&lt;/div&gt;</description><category>android</category><category>celulares</category><category>fastboot</category><category>flash</category><category>linux</category><category>moto g5</category><category>motorola</category><category>smartphone</category><category>soft brick</category><guid>https://cosmoscalibur.github.io/blog/recuperar-el-arranque-de-tu-moto-g5-en-linux/</guid><pubDate>Tue, 22 Oct 2019 00:10:34 GMT</pubDate></item></channel></rss>
+&lt;/div&gt;&lt;/div&gt;</description><category>appimage</category><category>debian</category><category>flatpak</category><category>linux</category><category>linux mint</category><category>paquetes</category><category>snap</category><category>software</category><guid>https://cosmoscalibur.github.io/blog/instalando-paquetes-en-linux-mint/</guid><pubDate>Wed, 23 Oct 2019 01:21:34 GMT</pubDate></item></channel></rss>
