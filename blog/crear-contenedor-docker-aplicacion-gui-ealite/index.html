@@ -85,12 +85,12 @@
 <div class="section" id="instalar-docker">
 <h2>Instalar Docker</h2>
 <p>Recomiendo en Linux instalar docker con snap.</p>
-<pre class="code text"><a id="rest_code_a829e7a3b0c34fd2bf3270231bc6811e-1" name="rest_code_a829e7a3b0c34fd2bf3270231bc6811e-1"></a>sudo snap install docker
+<pre class="code text"><a id="rest_code_a38be24bc0d245e7aa851569b0826b85-1" name="rest_code_a38be24bc0d245e7aa851569b0826b85-1"></a>sudo snap install docker
 </pre>
 <p>Posteriormente, podemos asociar nuestro usuario para la ejecución sin ser administrador.</p>
-<pre class="code text"><a id="rest_code_d939398e484b4abea77d722712444603-1" name="rest_code_d939398e484b4abea77d722712444603-1"></a>sudo groupadd docker
-<a id="rest_code_d939398e484b4abea77d722712444603-2" name="rest_code_d939398e484b4abea77d722712444603-2"></a>sudo usermod -aG docker $USER
-<a id="rest_code_d939398e484b4abea77d722712444603-3" name="rest_code_d939398e484b4abea77d722712444603-3"></a>newgrp docker
+<pre class="code text"><a id="rest_code_67835da80aae48cd88833646127de258-1" name="rest_code_67835da80aae48cd88833646127de258-1"></a>sudo groupadd docker
+<a id="rest_code_67835da80aae48cd88833646127de258-2" name="rest_code_67835da80aae48cd88833646127de258-2"></a>sudo usermod -aG docker $USER
+<a id="rest_code_67835da80aae48cd88833646127de258-3" name="rest_code_67835da80aae48cd88833646127de258-3"></a>newgrp docker
 </pre>
 <p>Puedes probar ejecutando como usuario regular, <code>docker run hello-world</code>.</p>
 </div>
@@ -109,34 +109,34 @@
 <div class="admonition note">
 <p class="admonition-title">Nota</p>
 <p>El directorio que moveremos se genero en el contenedor LXC que construimos en <a class="reference external" href="../crear-contenedor-lxc-para-aplicacion-gui-ealite/">Crear contenedor LXC para aplicación GUI - EALite</a>. Para ello, iniciamos el contenedor y extraemos el directorio.</p>
-<pre class="code text"><a id="rest_code_67020365fda04f4390d9928b8a21c34f-1" name="rest_code_67020365fda04f4390d9928b8a21c34f-1"></a>sudo lxc start ea
-<a id="rest_code_67020365fda04f4390d9928b8a21c34f-2" name="rest_code_67020365fda04f4390d9928b8a21c34f-2"></a>sudo lxc file pull -r ea/home/ubuntu/.wine .
+<pre class="code text"><a id="rest_code_156f5dea8c4d406c9b926158bef11d04-1" name="rest_code_156f5dea8c4d406c9b926158bef11d04-1"></a>sudo lxc start ea
+<a id="rest_code_156f5dea8c4d406c9b926158bef11d04-2" name="rest_code_156f5dea8c4d406c9b926158bef11d04-2"></a>sudo lxc file pull -r ea/home/ubuntu/.wine .
 </pre></div>
 <p>Con <code>USER</code> cambiamos el usuario que ejecuta los procesos. Es importante que a la hora de concluir, si un proceso es ejecutado por un usuario regular, nuestro último cambio de usuario debe apuntar a él, de otra forma el contenedor estará activo para el usuario administrador. Otro aspecto importante es el comportamiento por defecto en Linux, donde puede crear el usuario si no existe (pero no el directorio de usuario).</p>
 <p>Finalmente, es necesario indicar que se ejecuta cuando se lanza el contenedor. Esto es posible con <code>CMD</code> o con <code>ENTRYPOINT</code>. La diferencia es que el primero permite sobreescribir la ejecución enviando como parámetro lo que se desea ejecutar, mientras que la segunda opción solo ejecuta la configurada.</p>
-<pre class="code text"><a id="rest_code_5c6c8da81d7a4281acc60e98c1a10b8a-1" name="rest_code_5c6c8da81d7a4281acc60e98c1a10b8a-1"></a># escape=`
-<a id="rest_code_5c6c8da81d7a4281acc60e98c1a10b8a-2" name="rest_code_5c6c8da81d7a4281acc60e98c1a10b8a-2"></a>FROM i386/ubuntu:18.04
-<a id="rest_code_5c6c8da81d7a4281acc60e98c1a10b8a-3" name="rest_code_5c6c8da81d7a4281acc60e98c1a10b8a-3"></a>RUN apt update -q &amp;& apt install --install-recommends -y wine-stable
-<a id="rest_code_5c6c8da81d7a4281acc60e98c1a10b8a-4" name="rest_code_5c6c8da81d7a4281acc60e98c1a10b8a-4"></a>RUN apt install -y fonts-crosextra-carlito
-<a id="rest_code_5c6c8da81d7a4281acc60e98c1a10b8a-5" name="rest_code_5c6c8da81d7a4281acc60e98c1a10b8a-5"></a>RUN useradd -ms /bin/bash ubuntu
-<a id="rest_code_5c6c8da81d7a4281acc60e98c1a10b8a-6" name="rest_code_5c6c8da81d7a4281acc60e98c1a10b8a-6"></a>WORKDIR /home/ubuntu
-<a id="rest_code_5c6c8da81d7a4281acc60e98c1a10b8a-7" name="rest_code_5c6c8da81d7a4281acc60e98c1a10b8a-7"></a>COPY .wine .wine
-<a id="rest_code_5c6c8da81d7a4281acc60e98c1a10b8a-8" name="rest_code_5c6c8da81d7a4281acc60e98c1a10b8a-8"></a>RUN chown -R ubuntu .wine
-<a id="rest_code_5c6c8da81d7a4281acc60e98c1a10b8a-9" name="rest_code_5c6c8da81d7a4281acc60e98c1a10b8a-9"></a>USER ubuntu
-<a id="rest_code_5c6c8da81d7a4281acc60e98c1a10b8a-10" name="rest_code_5c6c8da81d7a4281acc60e98c1a10b8a-10"></a>RUN mkdir -p .local/bin &amp;& `
-<a id="rest_code_5c6c8da81d7a4281acc60e98c1a10b8a-11" name="rest_code_5c6c8da81d7a4281acc60e98c1a10b8a-11"></a>        echo "wine $HOME/.wine/drive_c/Program\ Files/Sparx\ Systems/EA\ LITE/EA.exe" &gt; .local/bin/ealite &amp;& `
-<a id="rest_code_5c6c8da81d7a4281acc60e98c1a10b8a-12" name="rest_code_5c6c8da81d7a4281acc60e98c1a10b8a-12"></a>        chmod 755 .local/bin/ealite
-<a id="rest_code_5c6c8da81d7a4281acc60e98c1a10b8a-13" name="rest_code_5c6c8da81d7a4281acc60e98c1a10b8a-13"></a>CMD ".local/bin/ealite"
+<pre class="code text"><a id="rest_code_be1c42f6a3a540d4bd50309971eb7cea-1" name="rest_code_be1c42f6a3a540d4bd50309971eb7cea-1"></a># escape=`
+<a id="rest_code_be1c42f6a3a540d4bd50309971eb7cea-2" name="rest_code_be1c42f6a3a540d4bd50309971eb7cea-2"></a>FROM i386/ubuntu:18.04
+<a id="rest_code_be1c42f6a3a540d4bd50309971eb7cea-3" name="rest_code_be1c42f6a3a540d4bd50309971eb7cea-3"></a>RUN apt update -q &amp;& apt install --install-recommends -y wine-stable
+<a id="rest_code_be1c42f6a3a540d4bd50309971eb7cea-4" name="rest_code_be1c42f6a3a540d4bd50309971eb7cea-4"></a>RUN apt install -y fonts-crosextra-carlito
+<a id="rest_code_be1c42f6a3a540d4bd50309971eb7cea-5" name="rest_code_be1c42f6a3a540d4bd50309971eb7cea-5"></a>RUN useradd -ms /bin/bash ubuntu
+<a id="rest_code_be1c42f6a3a540d4bd50309971eb7cea-6" name="rest_code_be1c42f6a3a540d4bd50309971eb7cea-6"></a>WORKDIR /home/ubuntu
+<a id="rest_code_be1c42f6a3a540d4bd50309971eb7cea-7" name="rest_code_be1c42f6a3a540d4bd50309971eb7cea-7"></a>COPY .wine .wine
+<a id="rest_code_be1c42f6a3a540d4bd50309971eb7cea-8" name="rest_code_be1c42f6a3a540d4bd50309971eb7cea-8"></a>RUN chown -R ubuntu .wine
+<a id="rest_code_be1c42f6a3a540d4bd50309971eb7cea-9" name="rest_code_be1c42f6a3a540d4bd50309971eb7cea-9"></a>USER ubuntu
+<a id="rest_code_be1c42f6a3a540d4bd50309971eb7cea-10" name="rest_code_be1c42f6a3a540d4bd50309971eb7cea-10"></a>RUN mkdir -p .local/bin &amp;& `
+<a id="rest_code_be1c42f6a3a540d4bd50309971eb7cea-11" name="rest_code_be1c42f6a3a540d4bd50309971eb7cea-11"></a>        echo "wine $HOME/.wine/drive_c/Program\ Files/Sparx\ Systems/EA\ LITE/EA.exe" &gt; .local/bin/ealite &amp;& `
+<a id="rest_code_be1c42f6a3a540d4bd50309971eb7cea-12" name="rest_code_be1c42f6a3a540d4bd50309971eb7cea-12"></a>        chmod 755 .local/bin/ealite
+<a id="rest_code_be1c42f6a3a540d4bd50309971eb7cea-13" name="rest_code_be1c42f6a3a540d4bd50309971eb7cea-13"></a>CMD ".local/bin/ealite"
 </pre></div>
 <div class="section" id="construir-imagen-docker">
 <h2>Construir imagen Docker</h2>
 <p>La construcción la realizamos con la opción <code>build</code>. Se usa el argumento <code>-t</code> para indicar la etiqueta que asignaremos a la imagen y <code>-f</code> para relacionar la ruta del archivo dockerfile que se usará. El siguiente argumento no posee marca para indicarlo y corresponde al contexto, que viene a ser la ruta donde se encuentran los archivos que usaremos (que puede ser reemplazado por un archivo de contexto con la ruta a los distintos archivos).</p>
-<pre class="code text"><a id="rest_code_f64a253cbaaa4e87937d922e3e4bbe69-1" name="rest_code_f64a253cbaaa4e87937d922e3e4bbe69-1"></a>docker build -t cosmoscalibur/ealite:latest -f dockerfile .
+<pre class="code text"><a id="rest_code_6cdd707cab5447c48e236e586ef41207-1" name="rest_code_6cdd707cab5447c48e236e586ef41207-1"></a>docker build -t cosmoscalibur/ealite:latest -f dockerfile .
 </pre></div>
 <div class="section" id="ejecutar-contenedor">
 <h2>Ejecutar contenedor</h2>
 <p>Ahora puedes lanzar un contenedor gráfico basado en la imagen construida con la siguiente instrucción.</p>
-<pre class="code text"><a id="rest_code_c6708611fedb446e840e657586c151b9-1" name="rest_code_c6708611fedb446e840e657586c151b9-1"></a>docker run --net=host --env="DISPLAY" --volume="$HOME/.Xauthority:/root/.Xauthority:rw" cosmoscalibur/ealite:latest
+<pre class="code text"><a id="rest_code_908ecb5df64e4232ae1f45f9a5f2db10-1" name="rest_code_908ecb5df64e4232ae1f45f9a5f2db10-1"></a>docker run --net=host --env="DISPLAY" --volume="$HOME/.Xauthority:/root/.Xauthority:rw" cosmoscalibur/ealite:latest
 </pre></div>
 <div class="section" id="referencias">
 <h2>Referencias</h2>
