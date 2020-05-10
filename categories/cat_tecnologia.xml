@@ -3,7 +3,321 @@
 &lt;a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"&gt;
 &lt;img alt="Creative Commons License BY-NC-SA"
 style="border-width:0; margin-bottom:12px;"
-src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"&gt;&lt;/a&gt;</copyright><lastBuildDate>Sat, 02 May 2020 19:33:33 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Crear documentación de un proyecto Python con Sphinx.</title><link>https://cosmoscalibur.github.io/blog/crear-documentacion-de-un-proyecto-python-con-sphinx/</link><dc:creator>Edward Villegas-Pulgarin</dc:creator><description>&lt;div&gt;&lt;p&gt;Sin duda, una etapa importante en cualquier proyecto de desarrollo (y no solo
+src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"&gt;&lt;/a&gt;</copyright><lastBuildDate>Sun, 10 May 2020 23:35:29 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Calcular distancia geodésica con Python</title><link>https://cosmoscalibur.github.io/blog/calcular-distancia-geodesica-con-python/</link><dc:creator>Edward Villegas-Pulgarin</dc:creator><description>&lt;div&gt;&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;p&gt;Aunque una de las cosas que más ha rondado en mi desarrollo académico y laboral es la programación, y buena parte de los años en ello con Python, nunca había realizado una entrada al respecto en el blog (lo más cercano ha sido una entrada sobre &lt;a href="https://cosmoscalibur.github.io/blog/crear-documentacion-de-un-proyecto-python-con-sphinx/"&gt;Crear documentación de un proyecto Python con Sphinx.&lt;/a&gt; y &lt;a href="https://cosmoscalibur.github.io/blog/crear-contenedor-docker-aplicacion-gui-ealite/"&gt;Crear contenedor Docker aplicación GUI - EALite&lt;/a&gt;).&lt;/p&gt;
+&lt;p&gt;A partir de ahora, y usando &lt;em&gt;notebooks&lt;/em&gt; compartiré algunas entradas relacionadas con programación o algunas bibliotecas específicas. En esta ocasión, me interesa compartirles como calcular la distancia geodésica entre dos lugares con GeoPy (una biblioteca Python), una de las tantas cosas que por motivos laborales he necesitado en mi exploración con proyectos con sistemas de información geográfica y ruteos.&lt;/p&gt;
+&lt;!-- TEASER_END --&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;h2 id="Geoide-y-geodésicas"&gt;Geoide y geodésicas&lt;a class="anchor-link" href="https://cosmoscalibur.github.io/blog/calcular-distancia-geodesica-con-python/#Geoide-y-geod%C3%A9sicas"&gt;¶&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;¿Habían escuchado antes "geoide" y "geodésica"? Bueno, resulta que el concepto de distancia entre puntos es dependiente de la geometría sobre la cual sea válido el desplazamiento. Así, si ubicamos dos puntos sobre la superficie de la Tierra, uno podría pensar en tomar como distancia la separación en línea recta entre los dos puntos atravesando el interior de la Tierra, y sí, eso es una distancia pero es impráctica porque nadie por ahora atravesará el interior para desplazarse. A esta distancia la conocemos como distancia euclideana (supone una geometría plana, como nos enseñan en el colegio y para muchos en universidad, donde Pitágoras funciona para esta cuenta).&lt;/p&gt;
+&lt;p&gt;Pues bien, si la distancia implica una restricción para moverse sobre una geometría en particular, las líneas rectas no son los caminos más cortos (sobre el cual se define la distancia) sino un tipo de líneas que llamaremos geodésicas. Así, la distancia sobre la superficie de la Tierra se mide sobre la geodésica que une los dos puntos de interés y a esa forma superficie de referencia de la Tierra es llamada geoide.&lt;/p&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;h2 id="Cálculo-de-distancia"&gt;Cálculo de distancia&lt;a class="anchor-link" href="https://cosmoscalibur.github.io/blog/calcular-distancia-geodesica-con-python/#C%C3%A1lculo-de-distancia"&gt;¶&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;El cálculo de la distancia sobre la Tierra debe hacerse suponiendo alguna condición sobre la geometría de la Tierra. Esto es por ejemplo, suponer una esfera, un elipsoide o un plano (y no, la Tierra no es plana, pero para distancias cortas es una buena aproximación). Estas suposiciones ya vienen incluidas y pueden ser parametrizadas en las bibliotecas de cómputo.&lt;/p&gt;
+&lt;p&gt;Para el cómputo de geodésicas en Python, en buena medida todo se resume en &lt;a href="https://geographiclib.sourceforge.io/"&gt;GeographicLib&lt;/a&gt;. Tanto &lt;a href="https://gdal.org/"&gt;GDAL&lt;/a&gt;, &lt;a href="https://pyproj4.github.io/pyproj/stable/#"&gt;PyProj&lt;/a&gt; y &lt;a href="https://geopy.readthedocs.io/en/stable/#"&gt;GeoPy&lt;/a&gt; recurren a la implementación de GeographicLib como método por defecto de cálculo.&lt;/p&gt;
+&lt;p&gt;Para referencia, usaremos GeoPy (incluido también en GeoPandas) y que dispone de 3 métodos de cálculo de distancia que discutiremos.&lt;/p&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;p&gt;Primer paso vamos a instalar GeoPy. Para este fin usaremos el gestor de paquetes &lt;em&gt;conda&lt;/em&gt; de Anaconda, pero puedes usar &lt;em&gt;pip&lt;/em&gt;.&lt;/p&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
+&lt;div class="prompt input_prompt"&gt;In [1]:&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
+&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;%%bash
+conda install -c conda-forge geopy
+&lt;/pre&gt;&lt;/div&gt;
+
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="output_wrapper"&gt;
+&lt;div class="output"&gt;
+
+
+&lt;div class="output_area"&gt;
+
+    &lt;div class="prompt"&gt;&lt;/div&gt;
+
+
+&lt;div class="output_subarea output_stream output_stdout output_text"&gt;
+&lt;pre&gt;Collecting package metadata (current_repodata.json): ...working... done
+Solving environment: ...working... done
+
+## Package Plan ##
+
+  environment location: /home/cosmoscalibur/anaconda/envs/geodesic
+
+  added / updated specs:
+    - geopy
+
+
+The following NEW packages will be INSTALLED:
+
+  geographiclib      conda-forge/noarch::geographiclib-1.50-py_0
+  geopy              conda-forge/noarch::geopy-1.21.0-py_0
+
+The following packages will be UPDATED:
+
+  ca-certificates     pkgs/main::ca-certificates-2020.1.1-0 --&amp;gt; conda-forge::ca-certificates-2020.4.5.1-hecc5488_0
+
+The following packages will be SUPERSEDED by a higher-priority channel:
+
+  certifi              pkgs/main::certifi-2020.4.5.1-py37_0 --&amp;gt; conda-forge::certifi-2020.4.5.1-py37hc8dfbb8_0
+  openssl              pkgs/main::openssl-1.1.1g-h7b6447c_0 --&amp;gt; conda-forge::openssl-1.1.1g-h516909a_0
+
+
+Proceed ([y]/n)? 
+Preparing transaction: ...working... done
+Verifying transaction: ...working... done
+Executing transaction: ...working... done
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;p&gt;Ahora, importamos el módulo de &lt;a href="https://geopy.readthedocs.io/en/stable/#module-geopy.distance"&gt;distancia de GeoPy&lt;/a&gt;.&lt;/p&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
+&lt;div class="prompt input_prompt"&gt;In [2]:&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
+&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;geopy.distance&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;p&gt;Para referencia usaremos las coordenadas de Medellín (MDE) y Envigado (ENV) según son ubicadas por Google Maps.&lt;/p&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
+&lt;div class="prompt input_prompt"&gt;In [3]:&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
+&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;MDE&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mf"&gt;6.2443695&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mf"&gt;75.6512527&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;ENV&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mf"&gt;6.1663544&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mf"&gt;75.5994392&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;p&gt;Para efectos de comparación, no solo presentaré la forma de uso de los métodos sino las distancias y los tiempos de ejecución.&lt;/p&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;h3 id="Método-de-círculo-mayor"&gt;Método de círculo mayor&lt;a class="anchor-link" href="https://cosmoscalibur.github.io/blog/calcular-distancia-geodesica-con-python/#M%C3%A9todo-de-c%C3%ADrculo-mayor"&gt;¶&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;El &lt;a href="https://en.wikipedia.org/wiki/Great-circle_distance"&gt;método de círculo mayor&lt;/a&gt; consiste en considerar la Tierra como una esfera perfecta de radio 6371.009 km (para el sistema de coordenadas geográficas &lt;a href="https://en.wikipedia.org/wiki/World_Geodetic_System#WGS84"&gt;WGS-84&lt;/a&gt;). Con esta aproximación se puede tener un error máximo del 0.5%. A pesar del error, es un método de cálculo directo (es una fórmula para reemplazar) y por ende puede obtener un resultado muy rápido y tiene asegurado entregar siempre una aproximación.&lt;/p&gt;
+&lt;p&gt;Es llamado círculo mayor porque en una esfera sabemos que el camino más corto es el descrito por el círculo de mayor radio sobre la esfera que contenga a los dos puntos.&lt;/p&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
+&lt;div class="prompt input_prompt"&gt;In [4]:&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
+&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="k"&gt;timeit&lt;/span&gt; geopy.distance.great_circle(MDE, ENV)
+&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;geopy&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;distance&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;great_circle&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;MDE&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;ENV&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="output_wrapper"&gt;
+&lt;div class="output"&gt;
+
+
+&lt;div class="output_area"&gt;
+
+    &lt;div class="prompt"&gt;&lt;/div&gt;
+
+
+&lt;div class="output_subarea output_stream output_stdout output_text"&gt;
+&lt;pre&gt;14.9 µs ± 238 ns per loop (mean ± std. dev. of 7 runs, 100000 loops each)
+10.395180481810051 km
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;h3 id="Método-de-Vincenty"&gt;Método de Vincenty&lt;a class="anchor-link" href="https://cosmoscalibur.github.io/blog/calcular-distancia-geodesica-con-python/#M%C3%A9todo-de-Vincenty"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;p&gt;El &lt;a href="https://en.wikipedia.org/wiki/Vincenty%27s_formulae"&gt;método de Vincenty&lt;/a&gt; es un método iterativo para la aproximación de la distancia geodésica sobre un elipsoide, en este caso, el elipsoide de referencia del sistema coordenado WGS-84. Este método presenta problemas de convergencia entre puntos antinodales y hoy su uso no es aconsejado (GeoPy aún lo presenta en la versión 1.21 pero está marcado como obsoleto).&lt;/p&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
+&lt;div class="prompt input_prompt"&gt;In [5]:&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
+&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="k"&gt;timeit&lt;/span&gt; geopy.distance.vincenty(MDE, ENV)
+&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;geopy&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;distance&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;vincenty&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;MDE&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;ENV&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="output_wrapper"&gt;
+&lt;div class="output"&gt;
+
+
+&lt;div class="output_area"&gt;
+
+    &lt;div class="prompt"&gt;&lt;/div&gt;
+
+
+&lt;div class="output_subarea output_stream output_stderr output_text"&gt;
+&lt;pre&gt;/home/cosmoscalibur/anaconda/envs/geodesic/lib/python3.7/site-packages/ipykernel_launcher.py:1: DeprecationWarning: Vincenty is deprecated and is going to be removed in geopy 2.0. Use `geopy.distance.geodesic` (or the default `geopy.distance.distance`) instead, which is more accurate and always converges.
+  """Entry point for launching an IPython kernel.
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="output_area"&gt;
+
+    &lt;div class="prompt"&gt;&lt;/div&gt;
+
+
+&lt;div class="output_subarea output_stream output_stdout output_text"&gt;
+&lt;pre&gt;29.7 µs ± 964 ns per loop (mean ± std. dev. of 7 runs, 10000 loops each)
+10.359310623929353 km
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="output_area"&gt;
+
+    &lt;div class="prompt"&gt;&lt;/div&gt;
+
+
+&lt;div class="output_subarea output_stream output_stderr output_text"&gt;
+&lt;pre&gt;/home/cosmoscalibur/anaconda/envs/geodesic/lib/python3.7/site-packages/ipykernel_launcher.py:2: DeprecationWarning: Vincenty is deprecated and is going to be removed in geopy 2.0. Use `geopy.distance.geodesic` (or the default `geopy.distance.distance`) instead, which is more accurate and always converges.
+  
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;h3 id="Método-de-Karney"&gt;Método de Karney&lt;a class="anchor-link" href="https://cosmoscalibur.github.io/blog/calcular-distancia-geodesica-con-python/#M%C3%A9todo-de-Karney"&gt;¶&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;Este método al igual que el propuesto por Vincenty, es iterativo pero se asegura que siempre converge y con menor margen de error que Vincenty. Fue &lt;a href="https://link.springer.com/article/10.1007/s00190-012-0578-z"&gt;propuesto en 2013&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;La implementación disponible en GeoPy corresponde a la implementación C++ de GeographicLib.&lt;/p&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
+&lt;div class="prompt input_prompt"&gt;In [6]:&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
+&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="k"&gt;timeit&lt;/span&gt; geopy.distance.distance(MDE, ENV)
+&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;geopy&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;distance&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;distance&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;MDE&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;ENV&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="output_wrapper"&gt;
+&lt;div class="output"&gt;
+
+
+&lt;div class="output_area"&gt;
+
+    &lt;div class="prompt"&gt;&lt;/div&gt;
+
+
+&lt;div class="output_subarea output_stream output_stdout output_text"&gt;
+&lt;pre&gt;231 µs ± 7.42 µs per loop (mean ± std. dev. of 7 runs, 1000 loops each)
+10.35931062438337 km
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;h2 id="Consideraciones"&gt;Consideraciones&lt;a class="anchor-link" href="https://cosmoscalibur.github.io/blog/calcular-distancia-geodesica-con-python/#Consideraciones"&gt;¶&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;La interfaz incluida en GeographicLib no me pareció amigable, por lo cual no la recomiendo pero su uso asegura incluir solo las funciones especializadas para el tratamiento de la distancia geodésica. GeoPy incluye más utilidades pero posee una interfaz más simple. GDAL y PyProj poseen muchas más funcionalidades, por lo cual representa un aumento de almacenamiento innecesario. Esto, finalmente, para recomendar GeoPy para esta tarea (respecto a GeographicLib, aún te dará la opción de la aproximación de círculo mayor).&lt;/p&gt;
+&lt;p&gt;Respecto al método, la divergencia de Vincenty para casos antinodales y la convergencia lenta en otros casos reportados, al igual que su marcado de obsolescencia en las implementaciones nos lleva a omitirlo de cualquier consideración futura. La aproximación de Karney posee el menor error de las 3 aproximaciones pero su tiempo de cómputo es alto si se considera la necesidad de calcular entre una gran cantidad de pares de puntos.&lt;/p&gt;
+&lt;p&gt;Para mi caso de interés (problemas de ruteo), la distancia geodésica solo se usa como un primer aproximado para reducir el número de pares sobre los cuales se cálcula la distancia sobre la red vial (de lo cual hablaré en una próxima entrada) y por ende su valor no importa que tenga gran exactitud pero que sea decente para distancias cortas (se busca eliminar el cálculo de distancias largas sobre la red vial).&lt;/p&gt;
+&lt;p&gt;Así, si la necesidad es de exactitud te recomiendo la aproximación de Karney pero si es solo una primera aproximación buscando menor tiempo de cómputo, la recomendación es el círculo mayor.&lt;/p&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/div&gt;</description><category>distancia geodésica</category><category>geoide</category><category>geopy</category><category>gis</category><category>python</category><guid>https://cosmoscalibur.github.io/blog/calcular-distancia-geodesica-con-python/</guid><pubDate>Sun, 10 May 2020 23:35:00 GMT</pubDate></item><item><title>Crear documentación de un proyecto Python con Sphinx.</title><link>https://cosmoscalibur.github.io/blog/crear-documentacion-de-un-proyecto-python-con-sphinx/</link><dc:creator>Edward Villegas-Pulgarin</dc:creator><description>&lt;div&gt;&lt;p&gt;Sin duda, una etapa importante en cualquier proyecto de desarrollo (y no solo
 de &lt;em&gt;software&lt;/em&gt;) es la generación de la documentación. En el caso de &lt;em&gt;software&lt;/em&gt;
 es posible asistirse de herramientas que ayudan a automatizar la generación de
 la documentación mediante extracción de comentarios en el código, usar palabras
@@ -44,8 +358,8 @@ gestor de paquetes del sistema operativo. En la mayor parte de
 distribuciones Linux estará disponible a través del gestor.&lt;/p&gt;
 &lt;p&gt;En el caso de las distribuciones basadas en Debian (Ubuntu y Linux Mint
 entre otras) puedes instalar de la siguiente manera:&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_27072ff099864e0e948774593e42bd0e-1"&gt;&lt;/a&gt;sudo apt install -y texlive texlive-latex-base texlive-latex-extra \
-&lt;a name="rest_code_27072ff099864e0e948774593e42bd0e-2"&gt;&lt;/a&gt;    texlive-lang-spanish latexmk
+&lt;pre class="code text"&gt;&lt;a name="rest_code_343bfb3db89948119d25ff36d8e1befa-1"&gt;&lt;/a&gt;sudo apt install -y texlive texlive-latex-base texlive-latex-extra \
+&lt;a name="rest_code_343bfb3db89948119d25ff36d8e1befa-2"&gt;&lt;/a&gt;    texlive-lang-spanish latexmk
 &lt;/pre&gt;&lt;/dd&gt;
 &lt;/dl&gt;
 &lt;/div&gt;
@@ -75,11 +389,11 @@ proyecto destinemos un directorio &lt;code&gt;docs&lt;/code&gt; para este fin.&l
 &lt;p&gt;Ahora ejecutamos &lt;code&gt;sphinx-quickstart&lt;/code&gt; y respondemos las preguntas que
 saldrán. Es necesario tener en cuenta, que si usas Windows debes agregar al
 comando la terminación &lt;code&gt;.exe&lt;/code&gt;, ejemplo &lt;code&gt;sphinx-quickstart.exe&lt;/code&gt;.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_bf0fd349754d47f0bca27ea26b5c04b8-1"&gt;&lt;/a&gt;&amp;gt; Separate source and build directories (y/n) [n]: y
-&lt;a name="rest_code_bf0fd349754d47f0bca27ea26b5c04b8-2"&gt;&lt;/a&gt;&amp;gt; Project name: proyecto
-&lt;a name="rest_code_bf0fd349754d47f0bca27ea26b5c04b8-3"&gt;&lt;/a&gt;&amp;gt; Author name(s): Edward Villegas-Pulgarin
-&lt;a name="rest_code_bf0fd349754d47f0bca27ea26b5c04b8-4"&gt;&lt;/a&gt;&amp;gt; Project release []: 0.1.0
-&lt;a name="rest_code_bf0fd349754d47f0bca27ea26b5c04b8-5"&gt;&lt;/a&gt;&amp;gt; Project language [en]: es
+&lt;pre class="code text"&gt;&lt;a name="rest_code_1e2e54d138524bce91ce44457ec6ccdd-1"&gt;&lt;/a&gt;&amp;gt; Separate source and build directories (y/n) [n]: y
+&lt;a name="rest_code_1e2e54d138524bce91ce44457ec6ccdd-2"&gt;&lt;/a&gt;&amp;gt; Project name: proyecto
+&lt;a name="rest_code_1e2e54d138524bce91ce44457ec6ccdd-3"&gt;&lt;/a&gt;&amp;gt; Author name(s): Edward Villegas-Pulgarin
+&lt;a name="rest_code_1e2e54d138524bce91ce44457ec6ccdd-4"&gt;&lt;/a&gt;&amp;gt; Project release []: 0.1.0
+&lt;a name="rest_code_1e2e54d138524bce91ce44457ec6ccdd-5"&gt;&lt;/a&gt;&amp;gt; Project language [en]: es
 &lt;/pre&gt;&lt;p&gt;Siempre recomiendo separar el directorio del código fuente de la documentación
 del directorio de compilados de la misma. Respecto al esquema de versiones me
 agrada el &lt;cite&gt;versionamiento semántico &amp;lt;https://semver.org/&amp;gt;&lt;/cite&gt; que permite al
@@ -101,13 +415,13 @@ Con Coverage puedes validar que funciones se han documentado y dcotest integra
 pruebas de código desde la documentación (comparar salidas con ejemplo de
 documentación).&lt;/p&gt;
 &lt;p&gt;Modificar en el archivo.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_05c60c500e094263bd0751a67354e64e-1"&gt;&lt;/a&gt;extensions = [
-&lt;a name="rest_code_05c60c500e094263bd0751a67354e64e-2"&gt;&lt;/a&gt;    'sphinx.ext.autodoc',
-&lt;a name="rest_code_05c60c500e094263bd0751a67354e64e-3"&gt;&lt;/a&gt;    'sphinx.ext.mathjax',
-&lt;a name="rest_code_05c60c500e094263bd0751a67354e64e-4"&gt;&lt;/a&gt;    'sphinx.ext.napoleon',
-&lt;a name="rest_code_05c60c500e094263bd0751a67354e64e-5"&gt;&lt;/a&gt;    'sphinx.ext.coverage',
-&lt;a name="rest_code_05c60c500e094263bd0751a67354e64e-6"&gt;&lt;/a&gt;    'sphinx.ext.doctest'
-&lt;a name="rest_code_05c60c500e094263bd0751a67354e64e-7"&gt;&lt;/a&gt;]
+&lt;pre class="code text"&gt;&lt;a name="rest_code_e0106a8ca69e444aabf7a267a984588a-1"&gt;&lt;/a&gt;extensions = [
+&lt;a name="rest_code_e0106a8ca69e444aabf7a267a984588a-2"&gt;&lt;/a&gt;    'sphinx.ext.autodoc',
+&lt;a name="rest_code_e0106a8ca69e444aabf7a267a984588a-3"&gt;&lt;/a&gt;    'sphinx.ext.mathjax',
+&lt;a name="rest_code_e0106a8ca69e444aabf7a267a984588a-4"&gt;&lt;/a&gt;    'sphinx.ext.napoleon',
+&lt;a name="rest_code_e0106a8ca69e444aabf7a267a984588a-5"&gt;&lt;/a&gt;    'sphinx.ext.coverage',
+&lt;a name="rest_code_e0106a8ca69e444aabf7a267a984588a-6"&gt;&lt;/a&gt;    'sphinx.ext.doctest'
+&lt;a name="rest_code_e0106a8ca69e444aabf7a267a984588a-7"&gt;&lt;/a&gt;]
 &lt;/pre&gt;&lt;/div&gt;
 &lt;div class="section" id="importar-paquete"&gt;
 &lt;h3&gt;Importar paquete&lt;/h3&gt;
@@ -119,27 +433,27 @@ primeras líneas de código en la sección de &lt;em&gt;Path setup&lt;/em&gt;. E
 defecto indica la misma carpeta de &lt;code&gt;docs/source&lt;/code&gt;, por lo cual es
 necesario reemplazar por &lt;code&gt;../..&lt;/code&gt; que se devuelve los dos niveles
 necesarios.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_fc0a8e7e80de423fb27bb57531c57cc0-1"&gt;&lt;/a&gt;import os
-&lt;a name="rest_code_fc0a8e7e80de423fb27bb57531c57cc0-2"&gt;&lt;/a&gt;import sys
-&lt;a name="rest_code_fc0a8e7e80de423fb27bb57531c57cc0-3"&gt;&lt;/a&gt;import datetime
-&lt;a name="rest_code_fc0a8e7e80de423fb27bb57531c57cc0-4"&gt;&lt;/a&gt;sys.path.insert(0, os.path.abspath('../..'))
-&lt;a name="rest_code_fc0a8e7e80de423fb27bb57531c57cc0-5"&gt;&lt;/a&gt;import proyecto
+&lt;pre class="code text"&gt;&lt;a name="rest_code_5a201a28a6ce4525b995a1fe86cb405b-1"&gt;&lt;/a&gt;import os
+&lt;a name="rest_code_5a201a28a6ce4525b995a1fe86cb405b-2"&gt;&lt;/a&gt;import sys
+&lt;a name="rest_code_5a201a28a6ce4525b995a1fe86cb405b-3"&gt;&lt;/a&gt;import datetime
+&lt;a name="rest_code_5a201a28a6ce4525b995a1fe86cb405b-4"&gt;&lt;/a&gt;sys.path.insert(0, os.path.abspath('../..'))
+&lt;a name="rest_code_5a201a28a6ce4525b995a1fe86cb405b-5"&gt;&lt;/a&gt;import proyecto
 &lt;/pre&gt;&lt;p&gt;Ahora, puedes hacer cosas como la siguiente, si está disponible en tu código.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_6634ae9cfc3b4490b54c44c3617d07ab-1"&gt;&lt;/a&gt;author = proyecto.__author__
-&lt;a name="rest_code_6634ae9cfc3b4490b54c44c3617d07ab-2"&gt;&lt;/a&gt;copyright = str(datetime.date.today().year) + ', ' + author
-&lt;a name="rest_code_6634ae9cfc3b4490b54c44c3617d07ab-3"&gt;&lt;/a&gt;release = proyecto.__version__
+&lt;pre class="code text"&gt;&lt;a name="rest_code_35f7629087bc47b19819dcb57bdaf441-1"&gt;&lt;/a&gt;author = proyecto.__author__
+&lt;a name="rest_code_35f7629087bc47b19819dcb57bdaf441-2"&gt;&lt;/a&gt;copyright = str(datetime.date.today().year) + ', ' + author
+&lt;a name="rest_code_35f7629087bc47b19819dcb57bdaf441-3"&gt;&lt;/a&gt;release = proyecto.__version__
 &lt;/pre&gt;&lt;/div&gt;
 &lt;div class="section" id="referencias-cruzadas"&gt;
 &lt;h3&gt;Referencias cruzadas&lt;/h3&gt;
 &lt;p&gt;Para usar referencias cruzadas, es decir, numeración de tablas, figuras,
 códigos y ecuaciones si poseen pie de objeto, y ser referenciados en el texto
 por el número, se requiere configurar lo siguiente.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_8927a791bf264d6ba61580df9b329a33-1"&gt;&lt;/a&gt;numfig = True
-&lt;a name="rest_code_8927a791bf264d6ba61580df9b329a33-2"&gt;&lt;/a&gt;numfig_format = {'figure': 'Fig. %s', 'table': 'Tabla %s',
-&lt;a name="rest_code_8927a791bf264d6ba61580df9b329a33-3"&gt;&lt;/a&gt;                 'code-block': 'Código %s', 'section': 'Sección %s'}
-&lt;a name="rest_code_8927a791bf264d6ba61580df9b329a33-4"&gt;&lt;/a&gt;numfig_secnum_depth = 1
-&lt;a name="rest_code_8927a791bf264d6ba61580df9b329a33-5"&gt;&lt;/a&gt;math_numfig = True
-&lt;a name="rest_code_8927a791bf264d6ba61580df9b329a33-6"&gt;&lt;/a&gt;math_eqref_format = 'Ec. {number}'
+&lt;pre class="code text"&gt;&lt;a name="rest_code_eb438146ca4c42929e51955f01a2904a-1"&gt;&lt;/a&gt;numfig = True
+&lt;a name="rest_code_eb438146ca4c42929e51955f01a2904a-2"&gt;&lt;/a&gt;numfig_format = {'figure': 'Fig. %s', 'table': 'Tabla %s',
+&lt;a name="rest_code_eb438146ca4c42929e51955f01a2904a-3"&gt;&lt;/a&gt;                 'code-block': 'Código %s', 'section': 'Sección %s'}
+&lt;a name="rest_code_eb438146ca4c42929e51955f01a2904a-4"&gt;&lt;/a&gt;numfig_secnum_depth = 1
+&lt;a name="rest_code_eb438146ca4c42929e51955f01a2904a-5"&gt;&lt;/a&gt;math_numfig = True
+&lt;a name="rest_code_eb438146ca4c42929e51955f01a2904a-6"&gt;&lt;/a&gt;math_eqref_format = 'Ec. {number}'
 &lt;/pre&gt;&lt;p&gt;Así, es posible usar &lt;code&gt;:label:&lt;/code&gt; para asignar una referencia a los objetos
 y &lt;code&gt;:numref:&lt;/code&gt; y &lt;code&gt;:eq:&lt;/code&gt; a la hora de mencionarlos. Con
 &lt;code&gt;numfig_secnum_depth&lt;/code&gt; configuras la numeración de los objetos, si es
@@ -151,11 +465,11 @@ continúa (0), por sección (1) y subsección (2).&lt;/p&gt;
 maestro, el nombre del archivo TeX, el nombre que nuestra documentación, el
 nombre del autor (que podemos usar la variable que ya definimos) y el tipo de
 documento (cuya clase &lt;em&gt;manual&lt;/em&gt; está definida por Sphinx).&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_45cecaff0aae4af1a24f6bd6228cbda8-1"&gt;&lt;/a&gt;master_doc = 'index'
-&lt;a name="rest_code_45cecaff0aae4af1a24f6bd6228cbda8-2"&gt;&lt;/a&gt;latex_documents = [
-&lt;a name="rest_code_45cecaff0aae4af1a24f6bd6228cbda8-3"&gt;&lt;/a&gt;    (master_doc, 'proyecto.tex', 'Documentación Proyecto',
-&lt;a name="rest_code_45cecaff0aae4af1a24f6bd6228cbda8-4"&gt;&lt;/a&gt;     author, 'manual'),
-&lt;a name="rest_code_45cecaff0aae4af1a24f6bd6228cbda8-5"&gt;&lt;/a&gt;]
+&lt;pre class="code text"&gt;&lt;a name="rest_code_25bce8bf4e1e4c398125cf72e8b3f53d-1"&gt;&lt;/a&gt;master_doc = 'index'
+&lt;a name="rest_code_25bce8bf4e1e4c398125cf72e8b3f53d-2"&gt;&lt;/a&gt;latex_documents = [
+&lt;a name="rest_code_25bce8bf4e1e4c398125cf72e8b3f53d-3"&gt;&lt;/a&gt;    (master_doc, 'proyecto.tex', 'Documentación Proyecto',
+&lt;a name="rest_code_25bce8bf4e1e4c398125cf72e8b3f53d-4"&gt;&lt;/a&gt;     author, 'manual'),
+&lt;a name="rest_code_25bce8bf4e1e4c398125cf72e8b3f53d-5"&gt;&lt;/a&gt;]
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="section" id="escritura-en-restructuredtext"&gt;
@@ -188,16 +502,16 @@ adelante). Puedes agregar más archivos, por ejemplo, yo suelo usar un
 &lt;code&gt;concepts.rst&lt;/code&gt; para detallar los conceptos necesarios antes de usar el
 software o detallar teoría que ayuda a interpretar resultados o que expande la
 información para que alguien pueda analizar o continuar un desarrollo.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_b436cdfa91ce4cf8b2438d0930b6e575-1"&gt;&lt;/a&gt;.. toctree::
-&lt;a name="rest_code_b436cdfa91ce4cf8b2438d0930b6e575-2"&gt;&lt;/a&gt;   :maxdepth: 3
-&lt;a name="rest_code_b436cdfa91ce4cf8b2438d0930b6e575-3"&gt;&lt;/a&gt;   :caption: Contenido:
-&lt;a name="rest_code_b436cdfa91ce4cf8b2438d0930b6e575-4"&gt;&lt;/a&gt;
-&lt;a name="rest_code_b436cdfa91ce4cf8b2438d0930b6e575-5"&gt;&lt;/a&gt;   README
-&lt;a name="rest_code_b436cdfa91ce4cf8b2438d0930b6e575-6"&gt;&lt;/a&gt;   installation
-&lt;a name="rest_code_b436cdfa91ce4cf8b2438d0930b6e575-7"&gt;&lt;/a&gt;   usage
-&lt;a name="rest_code_b436cdfa91ce4cf8b2438d0930b6e575-8"&gt;&lt;/a&gt;   api/modules
-&lt;a name="rest_code_b436cdfa91ce4cf8b2438d0930b6e575-9"&gt;&lt;/a&gt;   concepts
-&lt;a name="rest_code_b436cdfa91ce4cf8b2438d0930b6e575-10"&gt;&lt;/a&gt;   history
+&lt;pre class="code text"&gt;&lt;a name="rest_code_95825ccad8a84c1e9e8e57c04dcfa118-1"&gt;&lt;/a&gt;.. toctree::
+&lt;a name="rest_code_95825ccad8a84c1e9e8e57c04dcfa118-2"&gt;&lt;/a&gt;   :maxdepth: 3
+&lt;a name="rest_code_95825ccad8a84c1e9e8e57c04dcfa118-3"&gt;&lt;/a&gt;   :caption: Contenido:
+&lt;a name="rest_code_95825ccad8a84c1e9e8e57c04dcfa118-4"&gt;&lt;/a&gt;
+&lt;a name="rest_code_95825ccad8a84c1e9e8e57c04dcfa118-5"&gt;&lt;/a&gt;   README
+&lt;a name="rest_code_95825ccad8a84c1e9e8e57c04dcfa118-6"&gt;&lt;/a&gt;   installation
+&lt;a name="rest_code_95825ccad8a84c1e9e8e57c04dcfa118-7"&gt;&lt;/a&gt;   usage
+&lt;a name="rest_code_95825ccad8a84c1e9e8e57c04dcfa118-8"&gt;&lt;/a&gt;   api/modules
+&lt;a name="rest_code_95825ccad8a84c1e9e8e57c04dcfa118-9"&gt;&lt;/a&gt;   concepts
+&lt;a name="rest_code_95825ccad8a84c1e9e8e57c04dcfa118-10"&gt;&lt;/a&gt;   history
 &lt;/pre&gt;&lt;p&gt;Y podemos borrar las líneas posteriores de &lt;em&gt;Indices and tables&lt;/em&gt;.&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -205,7 +519,7 @@ información para que alguien pueda analizar o continuar un desarrollo.&lt;/p&gt
 &lt;h2&gt;Ejecución de Sphinx&lt;/h2&gt;
 &lt;p&gt;Como estamos haciendo uso de &lt;em&gt;autodoc&lt;/em&gt;, nuestro primer paso es generar la
 extracción de la API.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_0f7233b8234f459f8533e29bd800063c-1"&gt;&lt;/a&gt;sphinx-apidoc -f -M -o source/api/ ../proyecto
+&lt;pre class="code text"&gt;&lt;a name="rest_code_ae5ece7789c4448ca717757c9568bb49-1"&gt;&lt;/a&gt;sphinx-apidoc -f -M -o source/api/ ../proyecto
 &lt;/pre&gt;&lt;p&gt;Recordar que en Windows hay que agregar &lt;code&gt;.exe&lt;/code&gt;
 (&lt;code&gt;sphinx-apidoc.exe&lt;/code&gt;). &lt;code&gt;-f&lt;/code&gt; es para forzar la regeneración de los
 archivos (importante si actualizamos la documentación de la API), &lt;code&gt;-M&lt;/code&gt;
@@ -257,7 +571,7 @@ futuro.&lt;/p&gt;
 &lt;p&gt;Si bien puedes descargarlo desde el sitio del proyecto, aprovecharemos el
 gestor Conda para facilitar la tarea de descarga, instalación y configuración.&lt;/p&gt;
 &lt;p&gt;Abriremos Anaconda PowerShell o Anaconda Prompt, y ejecutaremos lo siguiente:&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_309a7f55617f4f94be02e7582e105c76-1"&gt;&lt;/a&gt;conda create -n gitbash -c conda-forge git=2.24.0
+&lt;pre class="code text"&gt;&lt;a name="rest_code_b9b981bf9513472cbf8f366cb2a61717-1"&gt;&lt;/a&gt;conda create -n gitbash -c conda-forge git=2.24.0
 &lt;/pre&gt;&lt;p&gt;Es importante el uso de &lt;code&gt;-c conda-forge&lt;/code&gt; porque de este canal vendrá la
 versión de Git que usaremos. Si se usa el canal por defecto, se instala solo el
 cliente de consola, mientras que en esta opción viene Git Bash. He indicado
@@ -278,9 +592,9 @@ posibles conflictos.&lt;/p&gt;
 típicos de Bash, como el &lt;code&gt;bashrc&lt;/code&gt;. Así, podemos usar la configuración que
 habitualmente se usa en Linux.&lt;/p&gt;
 &lt;p&gt;Abrimos Git Bash, y ejecutamos:&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_3ca1d019d7204c5b89ff5b6a260b7567-1"&gt;&lt;/a&gt;cd
-&lt;a name="rest_code_3ca1d019d7204c5b89ff5b6a260b7567-2"&gt;&lt;/a&gt;echo ". /c/Users/USUARIO/ANACONDA/etc/profile.d/conda.sh" &amp;gt;&amp;gt; .bashrc
-&lt;a name="rest_code_3ca1d019d7204c5b89ff5b6a260b7567-3"&gt;&lt;/a&gt;source .bashrc
+&lt;pre class="code text"&gt;&lt;a name="rest_code_052a6e7f9aa343078e3774457f1d2032-1"&gt;&lt;/a&gt;cd
+&lt;a name="rest_code_052a6e7f9aa343078e3774457f1d2032-2"&gt;&lt;/a&gt;echo ". /c/Users/USUARIO/ANACONDA/etc/profile.d/conda.sh" &amp;gt;&amp;gt; .bashrc
+&lt;a name="rest_code_052a6e7f9aa343078e3774457f1d2032-3"&gt;&lt;/a&gt;source .bashrc
 &lt;/pre&gt;&lt;p&gt;Con la primera línea aseguramos ir al directorio del usuario. En la segunda
 línea, crearemos o editaremos el archivo de configuración, pero debes
 reemplazar &lt;code&gt;USUARIO&lt;/code&gt; por la carpeta de tu usuario y &lt;code&gt;ANACONDA&lt;/code&gt; por
@@ -305,12 +619,12 @@ nuestras necesidades especificando en el archivo Dockerfile.&lt;/p&gt;
 &lt;div class="section" id="instalar-docker"&gt;
 &lt;h2&gt;Instalar Docker&lt;/h2&gt;
 &lt;p&gt;Recomiendo en Linux instalar docker con snap.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_77b85bda58f34fb29904f15303187f81-1"&gt;&lt;/a&gt;sudo snap install docker
+&lt;pre class="code text"&gt;&lt;a name="rest_code_6518ec354a7d41ce9e764dcea1844f5e-1"&gt;&lt;/a&gt;sudo snap install docker
 &lt;/pre&gt;&lt;p&gt;Posteriormente, podemos asociar nuestro usuario para la ejecución sin ser
 administrador.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_bbe7e9065e4d4bb7b46eba3eeffbaefa-1"&gt;&lt;/a&gt;sudo groupadd docker
-&lt;a name="rest_code_bbe7e9065e4d4bb7b46eba3eeffbaefa-2"&gt;&lt;/a&gt;sudo usermod -aG docker $USER
-&lt;a name="rest_code_bbe7e9065e4d4bb7b46eba3eeffbaefa-3"&gt;&lt;/a&gt;newgrp docker
+&lt;pre class="code text"&gt;&lt;a name="rest_code_22e143cc21d440118c020cbc2c836f6c-1"&gt;&lt;/a&gt;sudo groupadd docker
+&lt;a name="rest_code_22e143cc21d440118c020cbc2c836f6c-2"&gt;&lt;/a&gt;sudo usermod -aG docker $USER
+&lt;a name="rest_code_22e143cc21d440118c020cbc2c836f6c-3"&gt;&lt;/a&gt;newgrp docker
 &lt;/pre&gt;&lt;p&gt;Puedes probar ejecutando como usuario regular, &lt;code&gt;docker run hello-world&lt;/code&gt;.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="dockerfile"&gt;
@@ -355,8 +669,8 @@ archivos &lt;em&gt;tar&lt;/em&gt;.&lt;/p&gt;
 &lt;p&gt;El directorio que moveremos se genero en el contenedor LXC que construimos
 en &lt;a class="reference external" href="https://cosmoscalibur.github.io/blog/crear-contenedor-lxc-para-aplicacion-gui-ealite/"&gt;Crear contenedor LXC para aplicación GUI - EALite&lt;/a&gt;. Para ello,
 iniciamos el contenedor y extraemos el directorio.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_55f488bc4e5a40fe949f561b7bdd9114-1"&gt;&lt;/a&gt;sudo lxc start ea
-&lt;a name="rest_code_55f488bc4e5a40fe949f561b7bdd9114-2"&gt;&lt;/a&gt;sudo lxc file pull -r ea/home/ubuntu/.wine .
+&lt;pre class="code text"&gt;&lt;a name="rest_code_fde8c8b3cdcc4e308b8d04d3f80433b9-1"&gt;&lt;/a&gt;sudo lxc start ea
+&lt;a name="rest_code_fde8c8b3cdcc4e308b8d04d3f80433b9-2"&gt;&lt;/a&gt;sudo lxc file pull -r ea/home/ubuntu/.wine .
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Con &lt;code&gt;USER&lt;/code&gt; cambiamos el usuario que ejecuta los procesos. Es importante
 que a la hora de concluir, si un proceso es ejecutado por un usuario regular,
@@ -368,19 +682,19 @@ existe (pero no el directorio de usuario).&lt;/p&gt;
 Esto es posible con &lt;code&gt;CMD&lt;/code&gt; o con &lt;code&gt;ENTRYPOINT&lt;/code&gt;. La diferencia es que
 el primero permite sobreescribir la ejecución enviando como parámetro lo que
 se desea ejecutar, mientras que la segunda opción solo ejecuta la configurada.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_85882fe8ede2442381188df1976d33e8-1"&gt;&lt;/a&gt;# escape=`
-&lt;a name="rest_code_85882fe8ede2442381188df1976d33e8-2"&gt;&lt;/a&gt;FROM i386/ubuntu:18.04
-&lt;a name="rest_code_85882fe8ede2442381188df1976d33e8-3"&gt;&lt;/a&gt;RUN apt update -q &amp;amp;&amp;amp; apt install --install-recommends -y wine-stable
-&lt;a name="rest_code_85882fe8ede2442381188df1976d33e8-4"&gt;&lt;/a&gt;RUN apt install -y fonts-crosextra-carlito
-&lt;a name="rest_code_85882fe8ede2442381188df1976d33e8-5"&gt;&lt;/a&gt;RUN useradd -ms /bin/bash ubuntu
-&lt;a name="rest_code_85882fe8ede2442381188df1976d33e8-6"&gt;&lt;/a&gt;WORKDIR /home/ubuntu
-&lt;a name="rest_code_85882fe8ede2442381188df1976d33e8-7"&gt;&lt;/a&gt;COPY .wine .wine
-&lt;a name="rest_code_85882fe8ede2442381188df1976d33e8-8"&gt;&lt;/a&gt;RUN chown -R ubuntu .wine
-&lt;a name="rest_code_85882fe8ede2442381188df1976d33e8-9"&gt;&lt;/a&gt;USER ubuntu
-&lt;a name="rest_code_85882fe8ede2442381188df1976d33e8-10"&gt;&lt;/a&gt;RUN mkdir -p .local/bin &amp;amp;&amp;amp; `
-&lt;a name="rest_code_85882fe8ede2442381188df1976d33e8-11"&gt;&lt;/a&gt;        echo "wine $HOME/.wine/drive_c/Program\ Files/Sparx\ Systems/EA\ LITE/EA.exe" &amp;gt; .local/bin/ealite &amp;amp;&amp;amp; `
-&lt;a name="rest_code_85882fe8ede2442381188df1976d33e8-12"&gt;&lt;/a&gt;        chmod 755 .local/bin/ealite
-&lt;a name="rest_code_85882fe8ede2442381188df1976d33e8-13"&gt;&lt;/a&gt;CMD ".local/bin/ealite"
+&lt;pre class="code text"&gt;&lt;a name="rest_code_adbacd10bde544b7b5510c59981734fa-1"&gt;&lt;/a&gt;# escape=`
+&lt;a name="rest_code_adbacd10bde544b7b5510c59981734fa-2"&gt;&lt;/a&gt;FROM i386/ubuntu:18.04
+&lt;a name="rest_code_adbacd10bde544b7b5510c59981734fa-3"&gt;&lt;/a&gt;RUN apt update -q &amp;amp;&amp;amp; apt install --install-recommends -y wine-stable
+&lt;a name="rest_code_adbacd10bde544b7b5510c59981734fa-4"&gt;&lt;/a&gt;RUN apt install -y fonts-crosextra-carlito
+&lt;a name="rest_code_adbacd10bde544b7b5510c59981734fa-5"&gt;&lt;/a&gt;RUN useradd -ms /bin/bash ubuntu
+&lt;a name="rest_code_adbacd10bde544b7b5510c59981734fa-6"&gt;&lt;/a&gt;WORKDIR /home/ubuntu
+&lt;a name="rest_code_adbacd10bde544b7b5510c59981734fa-7"&gt;&lt;/a&gt;COPY .wine .wine
+&lt;a name="rest_code_adbacd10bde544b7b5510c59981734fa-8"&gt;&lt;/a&gt;RUN chown -R ubuntu .wine
+&lt;a name="rest_code_adbacd10bde544b7b5510c59981734fa-9"&gt;&lt;/a&gt;USER ubuntu
+&lt;a name="rest_code_adbacd10bde544b7b5510c59981734fa-10"&gt;&lt;/a&gt;RUN mkdir -p .local/bin &amp;amp;&amp;amp; `
+&lt;a name="rest_code_adbacd10bde544b7b5510c59981734fa-11"&gt;&lt;/a&gt;        echo "wine $HOME/.wine/drive_c/Program\ Files/Sparx\ Systems/EA\ LITE/EA.exe" &amp;gt; .local/bin/ealite &amp;amp;&amp;amp; `
+&lt;a name="rest_code_adbacd10bde544b7b5510c59981734fa-12"&gt;&lt;/a&gt;        chmod 755 .local/bin/ealite
+&lt;a name="rest_code_adbacd10bde544b7b5510c59981734fa-13"&gt;&lt;/a&gt;CMD ".local/bin/ealite"
 &lt;/pre&gt;&lt;/div&gt;
 &lt;div class="section" id="construir-imagen-docker"&gt;
 &lt;h2&gt;Construir imagen Docker&lt;/h2&gt;
@@ -390,13 +704,13 @@ para relacionar la ruta del archivo dockerfile que se usará. El siguiente
 argumento no posee marca para indicarlo y corresponde al contexto, que viene a
 ser la ruta donde se encuentran los archivos que usaremos (que puede ser
 reemplazado por un archivo de contexto con la ruta a los distintos archivos).&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_7919f8607d724b4c8392f7211ea90168-1"&gt;&lt;/a&gt;docker build -t cosmoscalibur/ealite:latest -f dockerfile .
+&lt;pre class="code text"&gt;&lt;a name="rest_code_75f43966a72c43e48c2626efdf6a5cc1-1"&gt;&lt;/a&gt;docker build -t cosmoscalibur/ealite:latest -f dockerfile .
 &lt;/pre&gt;&lt;/div&gt;
 &lt;div class="section" id="ejecutar-contenedor"&gt;
 &lt;h2&gt;Ejecutar contenedor&lt;/h2&gt;
 &lt;p&gt;Ahora puedes lanzar un contenedor gráfico basado en la imagen construida con la
 siguiente instrucción.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_6f686b3f639a4b0eb91f2fcde48644ff-1"&gt;&lt;/a&gt;docker run --net=host --env="DISPLAY" --volume="$HOME/.Xauthority:/root/.Xauthority:rw" cosmoscalibur/ealite:latest
+&lt;pre class="code text"&gt;&lt;a name="rest_code_9be1f7a526964849b412e4caa99c2cbc-1"&gt;&lt;/a&gt;docker run --net=host --env="DISPLAY" --volume="$HOME/.Xauthority:/root/.Xauthority:rw" cosmoscalibur/ealite:latest
 &lt;/pre&gt;&lt;/div&gt;
 &lt;div class="section" id="referencias"&gt;
 &lt;h2&gt;Referencias&lt;/h2&gt;
@@ -427,9 +741,9 @@ bibliotecas de 32 bits de manera innecesaria. Así que empecemos.&lt;/p&gt;
 &lt;p&gt;Nuestro primer paso será instalar el paquete LXD, el cual se encuentra
 disponible a través de múltiples gestores de paquetes de las distribuciones
 Linux pero también como paquete snap. Por facilidad, usaré el paquete snap.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_e1152351549944858afdd56bd84193d4-1"&gt;&lt;/a&gt;sudo snap install lxd
+&lt;pre class="code text"&gt;&lt;a name="rest_code_65fc2d6265194ac8abd6e11e564e162c-1"&gt;&lt;/a&gt;sudo snap install lxd
 &lt;/pre&gt;&lt;p&gt;Ahora, debemos inicializar (solo es necesario la primera vez tras instalar).&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_0261eda9d06c4aceae091af4665bd73e-1"&gt;&lt;/a&gt;sudo lxd init
+&lt;pre class="code text"&gt;&lt;a name="rest_code_50a09df441ba4ce0a050584fd433c2a6-1"&gt;&lt;/a&gt;sudo lxd init
 &lt;/pre&gt;&lt;p&gt;En mi caso, todos los valores que son preguntados los he dejado en su valor
 por defecto. Personalmente, solo debería preocuparnos el tamaño de la unidad
 usado (en caso de tener limitaciones en espacio de almacenamiento).&lt;/p&gt;
@@ -442,35 +756,35 @@ gráfica nos requiere una configuración adicional, que es realizar el paso al
 sistema gráfico de nuestro sistema hospedador.&lt;/p&gt;
 &lt;p&gt;El perfil gráfico es definido con el siguiente código (copia y pega en un nuevo
 archivo, &lt;code&gt;lxdguiprofile.txt&lt;/code&gt;).&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_7e9cb44a573240a29f35fdced42508e7-1"&gt;&lt;/a&gt;config:
-&lt;a name="rest_code_7e9cb44a573240a29f35fdced42508e7-2"&gt;&lt;/a&gt;  environment.DISPLAY: :0
-&lt;a name="rest_code_7e9cb44a573240a29f35fdced42508e7-3"&gt;&lt;/a&gt;  raw.idmap: both 1000 1000
-&lt;a name="rest_code_7e9cb44a573240a29f35fdced42508e7-4"&gt;&lt;/a&gt;  user.user-data: |
-&lt;a name="rest_code_7e9cb44a573240a29f35fdced42508e7-5"&gt;&lt;/a&gt;    #cloud-config
-&lt;a name="rest_code_7e9cb44a573240a29f35fdced42508e7-6"&gt;&lt;/a&gt;    runcmd:
-&lt;a name="rest_code_7e9cb44a573240a29f35fdced42508e7-7"&gt;&lt;/a&gt;      - 'sed -i "s/; enable-shm = yes/enable-shm = no/g" /etc/pulse/client.conf'
-&lt;a name="rest_code_7e9cb44a573240a29f35fdced42508e7-8"&gt;&lt;/a&gt;      - 'echo export PULSE_SERVER=unix:/tmp/.pulse-native | tee --append /home/ubuntu/.profile'
-&lt;a name="rest_code_7e9cb44a573240a29f35fdced42508e7-9"&gt;&lt;/a&gt;    packages:
-&lt;a name="rest_code_7e9cb44a573240a29f35fdced42508e7-10"&gt;&lt;/a&gt;      - x11-apps
-&lt;a name="rest_code_7e9cb44a573240a29f35fdced42508e7-11"&gt;&lt;/a&gt;      - mesa-utils
-&lt;a name="rest_code_7e9cb44a573240a29f35fdced42508e7-12"&gt;&lt;/a&gt;      - pulseaudio
-&lt;a name="rest_code_7e9cb44a573240a29f35fdced42508e7-13"&gt;&lt;/a&gt;description: GUI LXD profile
-&lt;a name="rest_code_7e9cb44a573240a29f35fdced42508e7-14"&gt;&lt;/a&gt;devices:
-&lt;a name="rest_code_7e9cb44a573240a29f35fdced42508e7-15"&gt;&lt;/a&gt;  PASocket:
-&lt;a name="rest_code_7e9cb44a573240a29f35fdced42508e7-16"&gt;&lt;/a&gt;    path: /tmp/.pulse-native
-&lt;a name="rest_code_7e9cb44a573240a29f35fdced42508e7-17"&gt;&lt;/a&gt;    source: /run/user/1000/pulse/native
-&lt;a name="rest_code_7e9cb44a573240a29f35fdced42508e7-18"&gt;&lt;/a&gt;    type: disk
-&lt;a name="rest_code_7e9cb44a573240a29f35fdced42508e7-19"&gt;&lt;/a&gt;  X0:
-&lt;a name="rest_code_7e9cb44a573240a29f35fdced42508e7-20"&gt;&lt;/a&gt;    path: /tmp/.X11-unix/X0
-&lt;a name="rest_code_7e9cb44a573240a29f35fdced42508e7-21"&gt;&lt;/a&gt;    source: /tmp/.X11-unix/X0
-&lt;a name="rest_code_7e9cb44a573240a29f35fdced42508e7-22"&gt;&lt;/a&gt;    type: disk
-&lt;a name="rest_code_7e9cb44a573240a29f35fdced42508e7-23"&gt;&lt;/a&gt;  mygpu:
-&lt;a name="rest_code_7e9cb44a573240a29f35fdced42508e7-24"&gt;&lt;/a&gt;    type: gpu
-&lt;a name="rest_code_7e9cb44a573240a29f35fdced42508e7-25"&gt;&lt;/a&gt;name: gui
-&lt;a name="rest_code_7e9cb44a573240a29f35fdced42508e7-26"&gt;&lt;/a&gt;used_by:
+&lt;pre class="code text"&gt;&lt;a name="rest_code_a3ba351dd3d64c7f84662c7bef8c591e-1"&gt;&lt;/a&gt;config:
+&lt;a name="rest_code_a3ba351dd3d64c7f84662c7bef8c591e-2"&gt;&lt;/a&gt;  environment.DISPLAY: :0
+&lt;a name="rest_code_a3ba351dd3d64c7f84662c7bef8c591e-3"&gt;&lt;/a&gt;  raw.idmap: both 1000 1000
+&lt;a name="rest_code_a3ba351dd3d64c7f84662c7bef8c591e-4"&gt;&lt;/a&gt;  user.user-data: |
+&lt;a name="rest_code_a3ba351dd3d64c7f84662c7bef8c591e-5"&gt;&lt;/a&gt;    #cloud-config
+&lt;a name="rest_code_a3ba351dd3d64c7f84662c7bef8c591e-6"&gt;&lt;/a&gt;    runcmd:
+&lt;a name="rest_code_a3ba351dd3d64c7f84662c7bef8c591e-7"&gt;&lt;/a&gt;      - 'sed -i "s/; enable-shm = yes/enable-shm = no/g" /etc/pulse/client.conf'
+&lt;a name="rest_code_a3ba351dd3d64c7f84662c7bef8c591e-8"&gt;&lt;/a&gt;      - 'echo export PULSE_SERVER=unix:/tmp/.pulse-native | tee --append /home/ubuntu/.profile'
+&lt;a name="rest_code_a3ba351dd3d64c7f84662c7bef8c591e-9"&gt;&lt;/a&gt;    packages:
+&lt;a name="rest_code_a3ba351dd3d64c7f84662c7bef8c591e-10"&gt;&lt;/a&gt;      - x11-apps
+&lt;a name="rest_code_a3ba351dd3d64c7f84662c7bef8c591e-11"&gt;&lt;/a&gt;      - mesa-utils
+&lt;a name="rest_code_a3ba351dd3d64c7f84662c7bef8c591e-12"&gt;&lt;/a&gt;      - pulseaudio
+&lt;a name="rest_code_a3ba351dd3d64c7f84662c7bef8c591e-13"&gt;&lt;/a&gt;description: GUI LXD profile
+&lt;a name="rest_code_a3ba351dd3d64c7f84662c7bef8c591e-14"&gt;&lt;/a&gt;devices:
+&lt;a name="rest_code_a3ba351dd3d64c7f84662c7bef8c591e-15"&gt;&lt;/a&gt;  PASocket:
+&lt;a name="rest_code_a3ba351dd3d64c7f84662c7bef8c591e-16"&gt;&lt;/a&gt;    path: /tmp/.pulse-native
+&lt;a name="rest_code_a3ba351dd3d64c7f84662c7bef8c591e-17"&gt;&lt;/a&gt;    source: /run/user/1000/pulse/native
+&lt;a name="rest_code_a3ba351dd3d64c7f84662c7bef8c591e-18"&gt;&lt;/a&gt;    type: disk
+&lt;a name="rest_code_a3ba351dd3d64c7f84662c7bef8c591e-19"&gt;&lt;/a&gt;  X0:
+&lt;a name="rest_code_a3ba351dd3d64c7f84662c7bef8c591e-20"&gt;&lt;/a&gt;    path: /tmp/.X11-unix/X0
+&lt;a name="rest_code_a3ba351dd3d64c7f84662c7bef8c591e-21"&gt;&lt;/a&gt;    source: /tmp/.X11-unix/X0
+&lt;a name="rest_code_a3ba351dd3d64c7f84662c7bef8c591e-22"&gt;&lt;/a&gt;    type: disk
+&lt;a name="rest_code_a3ba351dd3d64c7f84662c7bef8c591e-23"&gt;&lt;/a&gt;  mygpu:
+&lt;a name="rest_code_a3ba351dd3d64c7f84662c7bef8c591e-24"&gt;&lt;/a&gt;    type: gpu
+&lt;a name="rest_code_a3ba351dd3d64c7f84662c7bef8c591e-25"&gt;&lt;/a&gt;name: gui
+&lt;a name="rest_code_a3ba351dd3d64c7f84662c7bef8c591e-26"&gt;&lt;/a&gt;used_by:
 &lt;/pre&gt;&lt;p&gt;Ahora, crearemos el perfil:&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_c7e55a0f958f4bdfabc6337e267839b9-1"&gt;&lt;/a&gt;sudo lxc profile create gui
-&lt;a name="rest_code_c7e55a0f958f4bdfabc6337e267839b9-2"&gt;&lt;/a&gt;cat lxdguiprofile.txt | sudo lxc profile edit gui
+&lt;pre class="code text"&gt;&lt;a name="rest_code_da2009cecac04330acdcce3f7340fdcc-1"&gt;&lt;/a&gt;sudo lxc profile create gui
+&lt;a name="rest_code_da2009cecac04330acdcce3f7340fdcc-2"&gt;&lt;/a&gt;cat lxdguiprofile.txt | sudo lxc profile edit gui
 &lt;/pre&gt;&lt;p&gt;Este procedimiento, solo es necesario hacerlo la primera vez.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="obtener-contenedor-base"&gt;
@@ -483,7 +797,7 @@ distribuciones Linux, con versiones y arquitecturas diferentes.&lt;/p&gt;
 corresponde a 32 bits. Puedes usar otra distribución siempre y cuando disponga
 de la forma de instalar los paquetes necesarios y en versiones recientes (entre
 más reciente sea Wine, mejor).&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_ff5b5d69a09c44978fb161f99246c7f3-1"&gt;&lt;/a&gt;sudo lxc launch --profile default --profile gui images:ubuntu/18.04/i386 ea
+&lt;pre class="code text"&gt;&lt;a name="rest_code_68c50fc887094b74a421f12b5810fff0-1"&gt;&lt;/a&gt;sudo lxc launch --profile default --profile gui images:ubuntu/18.04/i386 ea
 &lt;/pre&gt;&lt;p&gt;Cuando no requerimos la parte gráfica, podemos omitir
 &lt;code&gt;--profile default --profile gui&lt;/code&gt;. Los dos perfiles son un proceso de
 herencia, primero se carga el perfil por defecto y luego se añade lo necesario
@@ -500,7 +814,7 @@ ejecución del contenedor, o igual podríamos detenerlo primero,
 &lt;p&gt;Para instalar nuestro programa en el contenedor, necesitamos ejecutar comandos
 en este. Para ello, tenemos &lt;code&gt;lxc exec {contenedor} -- {comando}&lt;/code&gt;. Una
 forma interactiva, adecuada para pruebas, es ejecutar bash.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_b974c99830984b18a9b84cc1f102b4de-1"&gt;&lt;/a&gt;sudo lxc exec ea -- /bin/bash
+&lt;pre class="code text"&gt;&lt;a name="rest_code_a79960b049f74edbb7714785ff95f844-1"&gt;&lt;/a&gt;sudo lxc exec ea -- /bin/bash
 &lt;/pre&gt;&lt;p&gt;De esta manera podemos ejecutar los comandos de la misma manera que lo hacemos
 en nuestro sistema, ya que estamos en el contenedor.&lt;/p&gt;
 &lt;p&gt;Si deseamos automatizar, nos interesará enviar directamente las instrucciones
@@ -516,39 +830,39 @@ tenemos el usuario ubuntu),
 &lt;p&gt;La gestión de archivos es realizada con los comandos &lt;code&gt;file pull&lt;/code&gt; y
 &lt;code&gt;file push&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;Así, si deseamos enviar un archivo:&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_c76d6b2d82e041188cb588be432d442b-1"&gt;&lt;/a&gt;sudo lxc file push {archivo local} {contenedor}/{ruta contenedor}
+&lt;pre class="code text"&gt;&lt;a name="rest_code_edad313b9cd3475bbcc2ae96a12c4cf3-1"&gt;&lt;/a&gt;sudo lxc file push {archivo local} {contenedor}/{ruta contenedor}
 &lt;/pre&gt;&lt;p&gt;Y si deseamos traer un archivo del contenedor:&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_0c44015ed27b4988acd2b9b6ff1ec0a1-1"&gt;&lt;/a&gt;sudo lxc file pull {contenedor}/{ruta contenedor} {archivo local}
+&lt;pre class="code text"&gt;&lt;a name="rest_code_69013212fa10441bb14437f4ecfb0081-1"&gt;&lt;/a&gt;sudo lxc file pull {contenedor}/{ruta contenedor} {archivo local}
 &lt;/pre&gt;&lt;/div&gt;
 &lt;div class="section" id="instalar-ealite"&gt;
 &lt;h2&gt;Instalar EALite&lt;/h2&gt;
 &lt;p&gt;Ahora que sabemos ejecutar comandos en el contenedor, instalaremos las
 dependencias y finalmente EALite.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_3c14610f1ec2441dad4c222efccfb111-1"&gt;&lt;/a&gt;sudo lxc exec ea -- apt update -q
-&lt;a name="rest_code_3c14610f1ec2441dad4c222efccfb111-2"&gt;&lt;/a&gt;sudo lxc exec ea -- apt install --install-recommends -y wine-stable winetricks
-&lt;a name="rest_code_3c14610f1ec2441dad4c222efccfb111-3"&gt;&lt;/a&gt;sudo lxc exec ea -- apt install -y fonts-crosextra-carlito
-&lt;a name="rest_code_3c14610f1ec2441dad4c222efccfb111-4"&gt;&lt;/a&gt;sudo lxc exec ea -- su - ubuntu -c 'winetricks --unattended msxml3'
-&lt;a name="rest_code_3c14610f1ec2441dad4c222efccfb111-5"&gt;&lt;/a&gt;sudo lxc exec ea -- su - ubuntu -c 'winetricks --unattended msxml4'
-&lt;a name="rest_code_3c14610f1ec2441dad4c222efccfb111-6"&gt;&lt;/a&gt;sudo lxc exec ea -- su - ubuntu -c 'winetricks --unattended msxml6'
-&lt;a name="rest_code_3c14610f1ec2441dad4c222efccfb111-7"&gt;&lt;/a&gt;sudo lxc exec ea -- su - ubuntu -c 'winetricks --unattended mdac28'
-&lt;a name="rest_code_3c14610f1ec2441dad4c222efccfb111-8"&gt;&lt;/a&gt;sudo lxc exec ea -- su - ubuntu -c 'winetricks --unattended jet40'
-&lt;a name="rest_code_3c14610f1ec2441dad4c222efccfb111-9"&gt;&lt;/a&gt;wget http://www.sparxsystems.com.au/bin/EALite.exe
-&lt;a name="rest_code_3c14610f1ec2441dad4c222efccfb111-10"&gt;&lt;/a&gt;sudo lxc file push EALite.exe ea/home/ubuntu/EALite.exe
-&lt;a name="rest_code_3c14610f1ec2441dad4c222efccfb111-11"&gt;&lt;/a&gt;sudo lxc exec ea -- su - ubuntu -c 'wine msiexec /i EALite.exe'
+&lt;pre class="code text"&gt;&lt;a name="rest_code_910990199f9c48e182f008e5cf28e49c-1"&gt;&lt;/a&gt;sudo lxc exec ea -- apt update -q
+&lt;a name="rest_code_910990199f9c48e182f008e5cf28e49c-2"&gt;&lt;/a&gt;sudo lxc exec ea -- apt install --install-recommends -y wine-stable winetricks
+&lt;a name="rest_code_910990199f9c48e182f008e5cf28e49c-3"&gt;&lt;/a&gt;sudo lxc exec ea -- apt install -y fonts-crosextra-carlito
+&lt;a name="rest_code_910990199f9c48e182f008e5cf28e49c-4"&gt;&lt;/a&gt;sudo lxc exec ea -- su - ubuntu -c 'winetricks --unattended msxml3'
+&lt;a name="rest_code_910990199f9c48e182f008e5cf28e49c-5"&gt;&lt;/a&gt;sudo lxc exec ea -- su - ubuntu -c 'winetricks --unattended msxml4'
+&lt;a name="rest_code_910990199f9c48e182f008e5cf28e49c-6"&gt;&lt;/a&gt;sudo lxc exec ea -- su - ubuntu -c 'winetricks --unattended msxml6'
+&lt;a name="rest_code_910990199f9c48e182f008e5cf28e49c-7"&gt;&lt;/a&gt;sudo lxc exec ea -- su - ubuntu -c 'winetricks --unattended mdac28'
+&lt;a name="rest_code_910990199f9c48e182f008e5cf28e49c-8"&gt;&lt;/a&gt;sudo lxc exec ea -- su - ubuntu -c 'winetricks --unattended jet40'
+&lt;a name="rest_code_910990199f9c48e182f008e5cf28e49c-9"&gt;&lt;/a&gt;wget http://www.sparxsystems.com.au/bin/EALite.exe
+&lt;a name="rest_code_910990199f9c48e182f008e5cf28e49c-10"&gt;&lt;/a&gt;sudo lxc file push EALite.exe ea/home/ubuntu/EALite.exe
+&lt;a name="rest_code_910990199f9c48e182f008e5cf28e49c-11"&gt;&lt;/a&gt;sudo lxc exec ea -- su - ubuntu -c 'wine msiexec /i EALite.exe'
 &lt;/pre&gt;&lt;p&gt;En este punto, procederemos de manera gráfica a la instalación final de EALite.&lt;/p&gt;
 &lt;div class="figure align-center"&gt;
 &lt;img alt="Ventana de instalación gráfica de EALite." src="https://lh3.googleusercontent.com/bJQU29AUGyL8RwMip-Zfye6-npY8m5nTvUCvLys09zKO6Spm-0K86w7n9l0PJbg9I84k7Jr3zu2OBrZwUCSVcQYBlFDFkqD9T80ONFdYKX1dnVX81rvkeHAGRXeL75ByBu9wDbDqhWqBAx10HTAACgbKLN5_YKhQ1_acN2riplkT7cS0805fZpmSRyLu_xd_xtBRa4SNG9YjnOxBiJv7oymvcn0MXwLZGpM28IUIkqSnZdngYxKEZLRGOWi-crHOJHhElQUBQoiN9RDmrgLNVcMhpvu_7eLWOsCZ0_tdCDbqtkNeWBp5mFf2ykRI5-BI8G3xBbHrjrG3xTVvkBu2CTbbxUxLyv63WBEIpD-kmckIuhWxQrb_8DxDQCuRg2hQPyJwMY2RQcgU0CqB5yRhbG22aZczf-fIlovFSVDrJJIbI_V1Elm-6KWAn3P64KfKDvKAhDyAAfS9ChuTmtWyXr-GUHWyAKzWu6Rq5mMbcEmBijcUlRCZLkp8Bdn0jgzw64w0A1_VnC5Md4VaDoB2Beu8Tv4balnFw-AcI55NHbIXeBxDPB-FakLiu5x71laBXWTBa2_vVPb5e7TZu4kkpWzpVbw_EmVDVhFx-16BJSXCXovmxanlknIfDhWEkX_ZLASWnxE5_Vv8lDPxLb_s0mafKg7F6Ys_JZIOogNPYWn-tgIy5tvsNBmyCX6Lky7dQSCU_vmfIBw3BQ5pzY5QhNk4BQXsXwOhDU98ALq6mb-79pU=w534-h462-no" style="width: 480px;"&gt;
 &lt;p class="caption"&gt;Ventana de instalación gráfica de EALite.&lt;/p&gt;
 &lt;/div&gt;
 &lt;p&gt;Ahora, es necesario crear un mecanismo simple para la ejecución de EA.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_f579c3cd23da426b9a2776fc472a3a5b-1"&gt;&lt;/a&gt;sudo lxc exec ea -- su - ubuntu -c 'mkdir $HOME/.local/bin'
-&lt;a name="rest_code_f579c3cd23da426b9a2776fc472a3a5b-2"&gt;&lt;/a&gt;sudo lxc exec ea -- su - ubuntu -c 'echo "wine $HOME/.wine/drive_c/Program\ Files/Sparx\ Systems/EA\ LITE/EA.exe" &amp;gt; $HOME/.local/bin/ealite'
-&lt;a name="rest_code_f579c3cd23da426b9a2776fc472a3a5b-3"&gt;&lt;/a&gt;sudo lxc exec ea -- su - ubuntu -c 'chmod 755 $HOME/.local/bin/ealite'
+&lt;pre class="code text"&gt;&lt;a name="rest_code_7104d55f73364e6ca76d91f1bd8faf9c-1"&gt;&lt;/a&gt;sudo lxc exec ea -- su - ubuntu -c 'mkdir $HOME/.local/bin'
+&lt;a name="rest_code_7104d55f73364e6ca76d91f1bd8faf9c-2"&gt;&lt;/a&gt;sudo lxc exec ea -- su - ubuntu -c 'echo "wine $HOME/.wine/drive_c/Program\ Files/Sparx\ Systems/EA\ LITE/EA.exe" &amp;gt; $HOME/.local/bin/ealite'
+&lt;a name="rest_code_7104d55f73364e6ca76d91f1bd8faf9c-3"&gt;&lt;/a&gt;sudo lxc exec ea -- su - ubuntu -c 'chmod 755 $HOME/.local/bin/ealite'
 &lt;/pre&gt;&lt;/div&gt;
 &lt;div class="section" id="ejecutar-ealite"&gt;
 &lt;h2&gt;Ejecutar EALite&lt;/h2&gt;
 &lt;p&gt;Ahora, podemos usar el visor de Enterprise Architect.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_68c3d658ee39447a83119070b92ffcb6-1"&gt;&lt;/a&gt;sudo lxc exec ea -- su - ubuntu -c 'ealite'
+&lt;pre class="code text"&gt;&lt;a name="rest_code_e72c429dba714c7d90b7279b978d9b6d-1"&gt;&lt;/a&gt;sudo lxc exec ea -- su - ubuntu -c 'ealite'
 &lt;/pre&gt;&lt;p&gt;Cuando iniciemos el sistema operativo, requerimos de iniciar el contenedores
 antes de ejecutar la instrucción anterior, &lt;code&gt;sudo lxc start ea&lt;/code&gt;.&lt;/p&gt;
 &lt;div class="figure align-center"&gt;
@@ -562,12 +876,12 @@ antes de ejecutar la instrucción anterior, &lt;code&gt;sudo lxc start ea&lt;/co
 &lt;p&gt;Puedes asegurar una forma simple de ejecutar EALite creando una rutina de
 lanzamiento con las dos líneas anteriores en un archivo que sea reconocido en
 el &lt;code&gt;path&lt;/code&gt;.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_b4201f593ecf4664af41dca3c1b24d00-1"&gt;&lt;/a&gt;mkdir -p $HOME/.local/bin
-&lt;a name="rest_code_b4201f593ecf4664af41dca3c1b24d00-2"&gt;&lt;/a&gt;cat &amp;lt;&amp;lt; EOF &amp;gt; $HOME/.local/bin/ealite
-&lt;a name="rest_code_b4201f593ecf4664af41dca3c1b24d00-3"&gt;&lt;/a&gt;sudo lxc start ea
-&lt;a name="rest_code_b4201f593ecf4664af41dca3c1b24d00-4"&gt;&lt;/a&gt;sudo lxc exec ea -- su - ubuntu -c 'ealite'
-&lt;a name="rest_code_b4201f593ecf4664af41dca3c1b24d00-5"&gt;&lt;/a&gt;EOF
-&lt;a name="rest_code_b4201f593ecf4664af41dca3c1b24d00-6"&gt;&lt;/a&gt;chmod 755 $HOME/.local/bin/ealite
+&lt;pre class="code text"&gt;&lt;a name="rest_code_104272c4871149a8aaafc3166d4f3614-1"&gt;&lt;/a&gt;mkdir -p $HOME/.local/bin
+&lt;a name="rest_code_104272c4871149a8aaafc3166d4f3614-2"&gt;&lt;/a&gt;cat &amp;lt;&amp;lt; EOF &amp;gt; $HOME/.local/bin/ealite
+&lt;a name="rest_code_104272c4871149a8aaafc3166d4f3614-3"&gt;&lt;/a&gt;sudo lxc start ea
+&lt;a name="rest_code_104272c4871149a8aaafc3166d4f3614-4"&gt;&lt;/a&gt;sudo lxc exec ea -- su - ubuntu -c 'ealite'
+&lt;a name="rest_code_104272c4871149a8aaafc3166d4f3614-5"&gt;&lt;/a&gt;EOF
+&lt;a name="rest_code_104272c4871149a8aaafc3166d4f3614-6"&gt;&lt;/a&gt;chmod 755 $HOME/.local/bin/ealite
 &lt;/pre&gt;&lt;p&gt;La ejecución con &lt;code&gt;sudo&lt;/code&gt; puede omitirse si se añade el usuario a un grupo
 que permita la ejecución de lxc. Más adelante, haré una publicación sobre como
 hacerlo. Por ahora, diviértete ejecutando &lt;code&gt;ealite&lt;/code&gt; e ingresando la
@@ -578,15 +892,15 @@ contenedor.&lt;/p&gt;
 &lt;div class="section" id="compartir"&gt;
 &lt;h2&gt;Compartir&lt;/h2&gt;
 &lt;p&gt;Para compartir el contenedor, puedes publicarlo y exportar la imagen.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_53d20eec3e4147a9b15592b78028fead-1"&gt;&lt;/a&gt;sudo lxc publish ea --alias ealite
-&lt;a name="rest_code_53d20eec3e4147a9b15592b78028fead-2"&gt;&lt;/a&gt;sudo lxc image export ealite
+&lt;pre class="code text"&gt;&lt;a name="rest_code_6623ea1f959f4db9a3dabb92966671df-1"&gt;&lt;/a&gt;sudo lxc publish ea --alias ealite
+&lt;a name="rest_code_6623ea1f959f4db9a3dabb92966671df-2"&gt;&lt;/a&gt;sudo lxc image export ealite
 &lt;/pre&gt;&lt;p&gt;La imagen exportada es un archivo &lt;code&gt;tar.gz&lt;/code&gt; con el nombre asociado al
 &lt;em&gt;fingerprint&lt;/em&gt; (una secuencia alfanumérica). Luego se debe importar la imagen
 y hacer &lt;code&gt;launch&lt;/code&gt; nuevamente con el perfil.&lt;/p&gt;
 &lt;p&gt;También puedes exportar directamente el contenedor, lo cual es recomendable
 porque lleva con ello la configuración del perfil GUI y es listo para usar
 una vez hagas la importación.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_085f974471a14e0db4b54253abec20ab-1"&gt;&lt;/a&gt;sudo lxc export ea ea.tar.gz --optimized-storage
+&lt;pre class="code text"&gt;&lt;a name="rest_code_e18405b3f6c04bd799c4ebef627994b4-1"&gt;&lt;/a&gt;sudo lxc export ea ea.tar.gz --optimized-storage
 &lt;/pre&gt;&lt;/div&gt;
 &lt;div class="section" id="referencias"&gt;
 &lt;h2&gt;Referencias&lt;/h2&gt;
@@ -636,8 +950,8 @@ los recomiendo como última opción.&lt;/p&gt;
 (preinstalado) o Synaptic (preinstalado en Linux Mint), para realizar la
 gestión de manera gráfica. Pero también puedes usar &lt;code&gt;apt-get&lt;/code&gt; o
 &lt;code&gt;apt&lt;/code&gt; (recomendado) para la gestión a través de consola.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_93e4a70881e341f8af678a7243cb8bde-1"&gt;&lt;/a&gt;sudo apt update -q
-&lt;a name="rest_code_93e4a70881e341f8af678a7243cb8bde-2"&gt;&lt;/a&gt;sudo apt install -y okular
+&lt;pre class="code text"&gt;&lt;a name="rest_code_a776eec8ab524ff99e623041cfe1835b-1"&gt;&lt;/a&gt;sudo apt update -q
+&lt;a name="rest_code_a776eec8ab524ff99e623041cfe1835b-2"&gt;&lt;/a&gt;sudo apt install -y okular
 &lt;/pre&gt;&lt;p&gt;Ahora dispones del lector de archivos PDF en tu sistema. Puedes accederlo por
 el menú o por comando (&lt;code&gt;okular&lt;/code&gt;). La primera línea es recomendable para
 actualizar las direcciones desde las cuales se descarga el software y los
@@ -661,14 +975,14 @@ múltiples instancias o exponga una brecha de seguridad).&lt;/p&gt;
 disponibles.&lt;/p&gt;
 &lt;p id="appimagecode"&gt;Descargamos el &lt;a class="reference external" href="https://stellarium.org/"&gt;AppImage de Stellarium&lt;/a&gt; del sitio
 oficial del software (el segundo pingüino).&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_d812d82be5354627b7710b7df32e8397-1"&gt;&lt;/a&gt;chmod 755 Stellarium-0.19.2-x86_64.AppImage
-&lt;a name="rest_code_d812d82be5354627b7710b7df32e8397-2"&gt;&lt;/a&gt;./Stellarium-0.19.2-x86_64.AppImage
+&lt;pre class="code text"&gt;&lt;a name="rest_code_747b7c81a3f44e7882dc80557caa35ba-1"&gt;&lt;/a&gt;chmod 755 Stellarium-0.19.2-x86_64.AppImage
+&lt;a name="rest_code_747b7c81a3f44e7882dc80557caa35ba-2"&gt;&lt;/a&gt;./Stellarium-0.19.2-x86_64.AppImage
 &lt;/pre&gt;&lt;p&gt;La primera línea solo es necesario ejecutarla la primera vez.&lt;/p&gt;
 &lt;p&gt;Si queremos ejecutarlo de una manera más cómoda, podemos mover el archivo al
 directorio de ejecución de binarios del usuario o a uno de ejecución de sistema
 para estar disponible para todos los usuarios (&lt;code&gt;/usr/local/bin/&lt;/code&gt;).&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_b9cc12332a894efdb2fc1543528896ea-1"&gt;&lt;/a&gt;mv Stellarium-0.19.2-x86_64.AppImage ~/.local/bin/stellarium
-&lt;a name="rest_code_b9cc12332a894efdb2fc1543528896ea-2"&gt;&lt;/a&gt;stellarium
+&lt;pre class="code text"&gt;&lt;a name="rest_code_80466bf307cc424ab5ce52aed9d95f89-1"&gt;&lt;/a&gt;mv Stellarium-0.19.2-x86_64.AppImage ~/.local/bin/stellarium
+&lt;a name="rest_code_80466bf307cc424ab5ce52aed9d95f89-2"&gt;&lt;/a&gt;stellarium
 &lt;/pre&gt;&lt;p&gt;Nuevamente, la primera línea es solo la primera vez.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="snap"&gt;
@@ -678,10 +992,10 @@ para estar disponible para todos los usuarios (&lt;code&gt;/usr/local/bin/&lt;/c
 requiere aprobación de Canonical para ser admitido el paquete y requiere ser
 administrador para la instalación.&lt;/p&gt;
 &lt;p&gt;En Ubuntu viene preinstalado pero en Linux Mint es necesario instalarlo.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_dc5edcdeeeba43c1b9e5eaee86423b09-1"&gt;&lt;/a&gt;sudo apt install -y snapd
+&lt;pre class="code text"&gt;&lt;a name="rest_code_77f89ac8d3314fdea7228fc87168a5eb-1"&gt;&lt;/a&gt;sudo apt install -y snapd
 &lt;/pre&gt;&lt;p&gt;Una vez instalado, podemos proceder a instalar un paquete snap.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_2e238ea0f5744179a8224c626589f6c6-1"&gt;&lt;/a&gt;sudo snap install code --classic
-&lt;a name="rest_code_2e238ea0f5744179a8224c626589f6c6-2"&gt;&lt;/a&gt;snap run code # Ejecuta
+&lt;pre class="code text"&gt;&lt;a name="rest_code_d98b277238c547a587e7df0702b30d47-1"&gt;&lt;/a&gt;sudo snap install code --classic
+&lt;a name="rest_code_d98b277238c547a587e7df0702b30d47-2"&gt;&lt;/a&gt;snap run code # Ejecuta
 &lt;/pre&gt;&lt;p&gt;La ejecución con &lt;code&gt;snap run&lt;/code&gt; es necesaria si tras instalar no reconoce
 el paquete. Después de la primera ejecución o tras abrir una nueva terminal
 o reiniciar el equipo, será ya reconocido el paquete sin problema para
@@ -697,20 +1011,20 @@ administrador.&lt;/p&gt;
 &lt;p&gt;En Linux Mint viene preconfigurado a partir de la versión 18.3, pero si usas
 Ubuntu necesitas instalarlo. Desde la 18.10 se encuentra en los repositorios
 oficiales.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_fa9c9efeb9b4493382f0aecbd305d31a-1"&gt;&lt;/a&gt;sudo apt install flatpak
-&lt;a name="rest_code_fa9c9efeb9b4493382f0aecbd305d31a-2"&gt;&lt;/a&gt;sudo apt install gnome-software-plugin-flatpak
-&lt;a name="rest_code_fa9c9efeb9b4493382f0aecbd305d31a-3"&gt;&lt;/a&gt;flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+&lt;pre class="code text"&gt;&lt;a name="rest_code_17b486715f494d3b9a38b9c6c542ba63-1"&gt;&lt;/a&gt;sudo apt install flatpak
+&lt;a name="rest_code_17b486715f494d3b9a38b9c6c542ba63-2"&gt;&lt;/a&gt;sudo apt install gnome-software-plugin-flatpak
+&lt;a name="rest_code_17b486715f494d3b9a38b9c6c542ba63-3"&gt;&lt;/a&gt;flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 &lt;/pre&gt;&lt;p&gt;La primera línea instala el gestor de flatpak. La segunda línea permite usar
 flatpak con el Centro de Software de Gnome. Y la tercera línea agrega el
 repositorio de paquetes flatpak más popular, &lt;a class="reference external" href="https://flathub.org/home"&gt;flathub&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Para ejemplificar, instalaremos el paquete peek&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_a0cdca8f06164d33ab669e29ffa8b678-1"&gt;&lt;/a&gt;flatpak install -y flathub com.uploadedlobster.peek
-&lt;a name="rest_code_a0cdca8f06164d33ab669e29ffa8b678-2"&gt;&lt;/a&gt;flatpak run com.uploadedlobster.peek
+&lt;pre class="code text"&gt;&lt;a name="rest_code_470c2bdc011d4cbca581c4e0d2fba210-1"&gt;&lt;/a&gt;flatpak install -y flathub com.uploadedlobster.peek
+&lt;a name="rest_code_470c2bdc011d4cbca581c4e0d2fba210-2"&gt;&lt;/a&gt;flatpak run com.uploadedlobster.peek
 &lt;/pre&gt;&lt;p&gt;Desafortunadamente la ejecución es siempre así, pero puedes crear un archivo
 que te facilite la labor.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_5b1a8e07583349758bc98284c4aefed1-1"&gt;&lt;/a&gt;echo "flatpak run com.uploadedlobster.peek" &amp;gt; ~/.local/bin/peek
-&lt;a name="rest_code_5b1a8e07583349758bc98284c4aefed1-2"&gt;&lt;/a&gt;chmod 755 ~/.local/bin/peek
-&lt;a name="rest_code_5b1a8e07583349758bc98284c4aefed1-3"&gt;&lt;/a&gt;peek
+&lt;pre class="code text"&gt;&lt;a name="rest_code_e2cfcc852ff644ada405fd39963a5c95-1"&gt;&lt;/a&gt;echo "flatpak run com.uploadedlobster.peek" &amp;gt; ~/.local/bin/peek
+&lt;a name="rest_code_e2cfcc852ff644ada405fd39963a5c95-2"&gt;&lt;/a&gt;chmod 755 ~/.local/bin/peek
+&lt;a name="rest_code_e2cfcc852ff644ada405fd39963a5c95-3"&gt;&lt;/a&gt;peek
 &lt;/pre&gt;&lt;p&gt;A nivel gráfico, por defecto si es agregado al menú.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="compilacion-y-binarios"&gt;
@@ -1026,12 +1340,12 @@ Scalibur.&lt;/p&gt;
 &lt;/div&gt;
 &lt;p&gt;Aquí hemos creado ya la máquina en si misma pero debemos configurar antes un par de cosas. En configuración de la máquina debemos ir a la sección de sistema (&lt;em&gt;system&lt;/em&gt;) y luego placa madre (&lt;em&gt;Motherboard&lt;/em&gt;) y habilitar las características extendidas (&lt;em&gt;Extended features&lt;/em&gt;) y elegir &lt;em&gt;USB Tablet&lt;/em&gt; en el puntero (&lt;em&gt;Pointing device&lt;/em&gt;). En la misma sección vamos a la pestaña de procesador (&lt;em&gt;Processor&lt;/em&gt;) e indicamos al menos 2 CPU. Por último, en la sección de monitor (&lt;em&gt;Display&lt;/em&gt;) vamos a la pestaña &lt;em&gt;Screen&lt;/em&gt; y asignamos 128 MB a la memoria de video (&lt;em&gt;Video Memory&lt;/em&gt;).&lt;/p&gt;
 &lt;p&gt;Ahora, pasamos a la consola (powershell o CMD en Windows) y ejecutamos lo siguiente (si es Windows hay que poner &lt;code&gt;VBoxManage.exe&lt;/code&gt; estando en el directorio de VirtualBox -&lt;code&gt;cd "C:Program FilesOracleVirtualBox"&lt;/code&gt;-):&lt;/p&gt;
-&lt;pre class="code bash"&gt;&lt;a name="rest_code_60af6bbfa08c441a8c1ac560065e3a01-1"&gt;&lt;/a&gt;VBoxManage modifyvm &lt;span class="s2"&gt;"macos"&lt;/span&gt; --cpuidset &lt;span class="m"&gt;00000001&lt;/span&gt; 000106e5 &lt;span class="m"&gt;00100800&lt;/span&gt; 0098e3fd bfebfbff
-&lt;a name="rest_code_60af6bbfa08c441a8c1ac560065e3a01-2"&gt;&lt;/a&gt;VBoxManage setextradata &lt;span class="s2"&gt;"macos"&lt;/span&gt; &lt;span class="s2"&gt;"VBoxInternal/Devices/efi/0/Config/DmiSystemProduct"&lt;/span&gt; &lt;span class="s2"&gt;"iMac11,3"&lt;/span&gt;
-&lt;a name="rest_code_60af6bbfa08c441a8c1ac560065e3a01-3"&gt;&lt;/a&gt;VBoxManage setextradata &lt;span class="s2"&gt;"macos"&lt;/span&gt; &lt;span class="s2"&gt;"VBoxInternal/Devices/efi/0/Config/DmiSystemVersion"&lt;/span&gt; &lt;span class="s2"&gt;"1.0"&lt;/span&gt;
-&lt;a name="rest_code_60af6bbfa08c441a8c1ac560065e3a01-4"&gt;&lt;/a&gt;VBoxManage setextradata &lt;span class="s2"&gt;"macos"&lt;/span&gt; &lt;span class="s2"&gt;"VBoxInternal/Devices/efi/0/Config/DmiBoardProduct"&lt;/span&gt; &lt;span class="s2"&gt;"Iloveapple"&lt;/span&gt;
-&lt;a name="rest_code_60af6bbfa08c441a8c1ac560065e3a01-5"&gt;&lt;/a&gt;VBoxManage setextradata &lt;span class="s2"&gt;"macos"&lt;/span&gt; &lt;span class="s2"&gt;"VBoxInternal/Devices/smc/0/Config/DeviceKey"&lt;/span&gt; &lt;span class="s2"&gt;"ourhardworkbythesewordsguardedpleasedontsteal(c)AppleComputerInc"&lt;/span&gt;
-&lt;a name="rest_code_60af6bbfa08c441a8c1ac560065e3a01-6"&gt;&lt;/a&gt;VBoxManage setextradata &lt;span class="s2"&gt;"macos"&lt;/span&gt; &lt;span class="s2"&gt;"VBoxInternal/Devices/smc/0/Config/GetKeyFromRealSMC"&lt;/span&gt; &lt;span class="m"&gt;1&lt;/span&gt;
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_087f0880b59042e2af9ec7ad49a542b5-1"&gt;&lt;/a&gt;VBoxManage modifyvm &lt;span class="s2"&gt;"macos"&lt;/span&gt; --cpuidset &lt;span class="m"&gt;00000001&lt;/span&gt; 000106e5 &lt;span class="m"&gt;00100800&lt;/span&gt; 0098e3fd bfebfbff
+&lt;a name="rest_code_087f0880b59042e2af9ec7ad49a542b5-2"&gt;&lt;/a&gt;VBoxManage setextradata &lt;span class="s2"&gt;"macos"&lt;/span&gt; &lt;span class="s2"&gt;"VBoxInternal/Devices/efi/0/Config/DmiSystemProduct"&lt;/span&gt; &lt;span class="s2"&gt;"iMac11,3"&lt;/span&gt;
+&lt;a name="rest_code_087f0880b59042e2af9ec7ad49a542b5-3"&gt;&lt;/a&gt;VBoxManage setextradata &lt;span class="s2"&gt;"macos"&lt;/span&gt; &lt;span class="s2"&gt;"VBoxInternal/Devices/efi/0/Config/DmiSystemVersion"&lt;/span&gt; &lt;span class="s2"&gt;"1.0"&lt;/span&gt;
+&lt;a name="rest_code_087f0880b59042e2af9ec7ad49a542b5-4"&gt;&lt;/a&gt;VBoxManage setextradata &lt;span class="s2"&gt;"macos"&lt;/span&gt; &lt;span class="s2"&gt;"VBoxInternal/Devices/efi/0/Config/DmiBoardProduct"&lt;/span&gt; &lt;span class="s2"&gt;"Iloveapple"&lt;/span&gt;
+&lt;a name="rest_code_087f0880b59042e2af9ec7ad49a542b5-5"&gt;&lt;/a&gt;VBoxManage setextradata &lt;span class="s2"&gt;"macos"&lt;/span&gt; &lt;span class="s2"&gt;"VBoxInternal/Devices/smc/0/Config/DeviceKey"&lt;/span&gt; &lt;span class="s2"&gt;"ourhardworkbythesewordsguardedpleasedontsteal(c)AppleComputerInc"&lt;/span&gt;
+&lt;a name="rest_code_087f0880b59042e2af9ec7ad49a542b5-6"&gt;&lt;/a&gt;VBoxManage setextradata &lt;span class="s2"&gt;"macos"&lt;/span&gt; &lt;span class="s2"&gt;"VBoxInternal/Devices/smc/0/Config/GetKeyFromRealSMC"&lt;/span&gt; &lt;span class="m"&gt;1&lt;/span&gt;
 &lt;/pre&gt;&lt;p&gt;Tras esto estamos listos para encender la máquina virtual e instalar el sistema operativo en ella (nombre, usuario, contraseña, idioma, teclado). Lo único problemático aquí es que tendrás problema con el teclado pues esta pensado para los teclados Mac. Como cualquier instalación de sistema operativo es algo lento y más considerando que es una máquina virtual.&lt;/p&gt;
 &lt;div class="figure align-center"&gt;
 &lt;img alt="Selección de idioma en macOS." src="https://lh3.googleusercontent.com/4pUM9zRUHvadbxEqTxP0ChqUY8PIbLpli8QTe0MhUchr1t-YSaOL34rlBWuJPiNlN9bu-YZbc-NobHQTkFsstjxANiw6wbsdDu2vJY2b52PdQFfSydcofwHt0tZiyWY5hSf2pnUVsWArZ3h0DEXJFl3wQIH03MLPj2eY1hT3r2rLq0qYCPMyCqpHJrbA9hogF74jbfrfMwj0OSG-YzOdF4nRH-5WKN_cAc_4rUQRSSfa367h2DcHRzsfMsq4WLWREJoMyE-BeQnVXh4dbZke4u6E-c-u7Zei31YStQRGW5fKCegvF1QmlG34ofIc-YaGcHBWJWesGrN7z9zuxNUQz1Mjqx7reVQhauHlLneMGB9wJGc7eDxlx2XjMx3C-omhiP0dfqNfp3Lnq41a_ZxevISpm3v3L88WhM6VBGBNkpF4x3-kxGovJ-irp3LUz1if05W1kmaVzHgwUbR8OPamO6bkNmWHRxjpZdXC1cRfrL5uHqb40B2QYIuqikwWDzKV1u3PYvi_uFHHJOoeEEDk2GdoZQYla25RPiHyS5RDwVsweBZig-By2VOwJCKoXB1rdBDSR3nUlvMa7qdQf91p5MT06be_EQ74BRpKmg=w1593-h896-no?pageId=101589342745553480499"&gt;
@@ -1042,19 +1356,19 @@ Scalibur.&lt;/p&gt;
 &lt;h2&gt;Después&lt;/h2&gt;
 &lt;p&gt;No soy usuario Mac y mi propósito de hacer esto era muy específico, validar compatibilidad de códigos que uso, desarrollo o contribuyo. Pero en este mismo sentido, algo que recomiendo hacer, es instalar &lt;a class="reference external" href="https://brew.sh/index_es.html"&gt;Homebrew&lt;/a&gt; con el fin de tener listo nuestro macOS para pruebas y poder instalar distintos paquetes comunes a la hora de programar.&lt;/p&gt;
 &lt;p&gt;Para ello debes abrir la consola que encontrarás en aplicaciones y ejecutar lo siguiente:&lt;/p&gt;
-&lt;pre class="code bash"&gt;&lt;a name="rest_code_4230fd45c9de45b49dd0e244d2db9733-1"&gt;&lt;/a&gt;ruby -e &lt;span class="s2"&gt;"&lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install&lt;span class="k"&gt;)&lt;/span&gt;&lt;span class="s2"&gt;"&lt;/span&gt;
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_249dc5e97a0a41a7badf050f589b9b01-1"&gt;&lt;/a&gt;ruby -e &lt;span class="s2"&gt;"&lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install&lt;span class="k"&gt;)&lt;/span&gt;&lt;span class="s2"&gt;"&lt;/span&gt;
 &lt;/pre&gt;&lt;p&gt;Tendrás que tener paciencia pues el proceso me tomó 45 minutos (en foros reportan la instalación de &lt;em&gt;homebrew&lt;/em&gt; de casi 2 horas) y necesitas estar pendiente pues hay dos solicitudes de tu contraseña.&lt;/p&gt;
 &lt;div class="figure align-center"&gt;
 &lt;img alt="Instalación de homebrew en macOS" src="https://lh3.googleusercontent.com/Pvn6D-PrK_txoUeelj0eDJ1E7rXZErv4oz4CBSfGfm4K7HLR0uL0GJv5VsF95yTDDGSzTJtTnb74djPvcnB9oIGCb1FYKg-S6xbeOIBRmCkgAi9RXXohgs5Xk11OIr3A3dKkByXb1GB4u3DT2ClcTwq-EvxO5US_4Zd6TMeSboYVU61N22LUdMpwanRenNAHEMqJ1qTfc20QXbJ4UWOY8WEs3X1LmRwoFzNJYSa2QV4K9YGMtMEMOY-O4LVdApo9mxWuGtHNBjPkC9iJ0ydVwT7h64cB1WArQyo7vDCkQ3md0cQC3kPlF5HgX25TwbT7_02YU0bJfVOkMht06PkhkQWWck8aRobI-oaHlE9E04b4glT_p-qXHcNXkTqMreLEpC61YeJ_U_R6SNMN0E07dHrEy-_Ci0EuAy-R5ikX0Bm5cS1NGIi3c6vh4OjvqNwniN4MMLUhUSL8GHmsuVxiTatNG6oJUavTJwX4K7DlwgV30J7DCiyZShIdHPndEEoL2yUPWX0eMUsCGscDjmY4Em14YaKa95etIYvXZWfKoA4svKxXE15O0xWk3eZUYKQhBSWMkUMFMEm9m1PDzUun6PVA20YWCxblFWo74Q=w1593-h896-no?pageId=101589342745553480499"&gt;
 &lt;p class="caption"&gt;Instalación por consola de homebrew en macOS.&lt;/p&gt;
 &lt;/div&gt;
 &lt;p&gt;Una vez instalado, puedes aprovechar a dejar listo python (actualiza la versión por defecto e instala el gestor pip). Igualmente es conveniente instalar otros paquetes de uso común por otras aplicaciones .&lt;/p&gt;
-&lt;pre class="code bash"&gt;&lt;a name="rest_code_ddbc79fecbf441f8b0634e83e7516bd7-1"&gt;&lt;/a&gt;brew install pkg-config &lt;span class="c1"&gt;# Ayuda a determinar la lista de paquetes existentes&lt;/span&gt;
-&lt;a name="rest_code_ddbc79fecbf441f8b0634e83e7516bd7-2"&gt;&lt;/a&gt;brew install python3 &lt;span class="c1"&gt;# Python3 no viene por defecto&lt;/span&gt;
-&lt;a name="rest_code_ddbc79fecbf441f8b0634e83e7516bd7-3"&gt;&lt;/a&gt;brew install python2 &lt;span class="c1"&gt;# Actualiza la versión existente. En ambos casos se instala pip (pip2 y pip3)&lt;/span&gt;
-&lt;a name="rest_code_ddbc79fecbf441f8b0634e83e7516bd7-4"&gt;&lt;/a&gt;brew install freetype &lt;span class="c1"&gt;# Requerido para la manipulación de fuentes -por ejemplo en matplotlib-&lt;/span&gt;
-&lt;a name="rest_code_ddbc79fecbf441f8b0634e83e7516bd7-5"&gt;&lt;/a&gt;brew install libpng &lt;span class="c1"&gt;# Requerido para la manipulación de imágenes png -por ejemplo en matplotlib-&lt;/span&gt;
-&lt;a name="rest_code_ddbc79fecbf441f8b0634e83e7516bd7-6"&gt;&lt;/a&gt;brew install pygtk &lt;span class="c1"&gt;# Binding de GTK para python. Interfaces en pygtk son comunes.&lt;/span&gt;
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_5b4a4dc57c7c4b22856d0e6def3ea1f5-1"&gt;&lt;/a&gt;brew install pkg-config &lt;span class="c1"&gt;# Ayuda a determinar la lista de paquetes existentes&lt;/span&gt;
+&lt;a name="rest_code_5b4a4dc57c7c4b22856d0e6def3ea1f5-2"&gt;&lt;/a&gt;brew install python3 &lt;span class="c1"&gt;# Python3 no viene por defecto&lt;/span&gt;
+&lt;a name="rest_code_5b4a4dc57c7c4b22856d0e6def3ea1f5-3"&gt;&lt;/a&gt;brew install python2 &lt;span class="c1"&gt;# Actualiza la versión existente. En ambos casos se instala pip (pip2 y pip3)&lt;/span&gt;
+&lt;a name="rest_code_5b4a4dc57c7c4b22856d0e6def3ea1f5-4"&gt;&lt;/a&gt;brew install freetype &lt;span class="c1"&gt;# Requerido para la manipulación de fuentes -por ejemplo en matplotlib-&lt;/span&gt;
+&lt;a name="rest_code_5b4a4dc57c7c4b22856d0e6def3ea1f5-5"&gt;&lt;/a&gt;brew install libpng &lt;span class="c1"&gt;# Requerido para la manipulación de imágenes png -por ejemplo en matplotlib-&lt;/span&gt;
+&lt;a name="rest_code_5b4a4dc57c7c4b22856d0e6def3ea1f5-6"&gt;&lt;/a&gt;brew install pygtk &lt;span class="c1"&gt;# Binding de GTK para python. Interfaces en pygtk son comunes.&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</description><category>emulación</category><category>hackintosh</category><category>linux</category><category>macos</category><category>máquina virtual</category><guid>https://cosmoscalibur.github.io/blog/ejecutando-macos-en-linux/</guid><pubDate>Fri, 19 Jan 2018 03:16:55 GMT</pubDate></item><item><title>Problemas de audio en Moto G5</title><link>https://cosmoscalibur.github.io/blog/problemas-de-audio-en-moto-g5/</link><dc:creator>Edward Villegas-Pulgarin</dc:creator><description>&lt;div&gt;&lt;p&gt;Recién cambié mi celular Moto G3 por un Moto G5 y vaya susto el que me llevé inicialmente. La verdad, como el cambio fue más bien un asunto de afán no revisé foros previamente (&lt;a class="reference external" href="https://cosmoscalibur.github.io/blog/comprando-celular-para-personalizar/"&gt;ver recomendaciones a la hora de comprar&lt;/a&gt;) sobre los problemas y me confié de los conocidos que tienen este celular y que nunca les he escuchado de problemas.&lt;/p&gt;
 &lt;p&gt;El susto comenzó con la primera llamada (cuando lo compré no se hizo prueba de llamada) y la sorpresa de encontrarme sin audio. Hice dos intentos adicionales pensando que podía ser algún problema de señal pero persistía hasta que algo se escucho cuando iba a cortar la llamada. Nuevamente probé, y el audio empezaba 5 segundos después de conectarse la llamada.&lt;/p&gt;
 &lt;!-- TEASER_END --&gt;
@@ -1124,31 +1438,4 @@ Scalibur.&lt;/p&gt;
 &lt;p&gt;Sin duda es bueno comprar un celular que ya tenga revisiones por usuarios y no por comercializadores y fabricantes, por lo cual un tiempo de 6 meses tras su lanzamiento puede ser una buena opción para poder explorar comentarios de posibles fallos o inconsistencias con las características anunciadas.&lt;/p&gt;
 &lt;p&gt;Igualmente, tras este tiempo, la revisión del foro técnico de XDA nos ampliara el panorama sobre la existencia de las características de personalización que deseamos siendo importante la validación la posibilidad de conseguir la &lt;em&gt;ROM&lt;/em&gt; de fábrica para recuperación tras fallos, existencia de &lt;em&gt;ROM&lt;/em&gt; modificadas para la optimización de nuestro equipo (LineageOS y ViperOS como principales alternativas), particiones de recuperación modificadas (principal opción TWRP) para facilitar los procesos de instalación y métodos para lograr privilegios de administrador para el detalle fino de la optimización.&lt;/p&gt;
 &lt;p&gt;Se recomienda celulares con &lt;em&gt;hardware&lt;/em&gt; y precio intermedio dado que las características específicas de &lt;em&gt;hardware&lt;/em&gt; puede representar funcionamiento limitado al instalar una versión modificada del sistema operativo y un riesgo alto ante un valor elevado pagado. Los celulares de bajo costo podrían verse muy beneficiados de la personalización pero no suelen encontrarse proyectos muy estables para estos modelos.&lt;/p&gt;
-&lt;/div&gt;&lt;/div&gt;</description><category>android</category><category>celular</category><category>smartphone</category><guid>https://cosmoscalibur.github.io/blog/comprando-celular-para-personalizar/</guid><pubDate>Thu, 04 Jan 2018 01:49:54 GMT</pubDate></item><item><title>Topónimos colombianos en RLA-ES</title><link>https://cosmoscalibur.github.io/blog/toponimos-colombianos-en-rla-es/</link><dc:creator>Edward Villegas-Pulgarin</dc:creator><description>&lt;div&gt;&lt;p&gt;Primero, saludo después de un tiempo largo de ausencia. Por diversos motivos el blog tuve que dejarlo en el olvido pero hoy lo reanudo. El como volví merece una publicación posterior.&lt;/p&gt;
-&lt;p&gt;En esta ocasión quiero contarles de una contribución que me aprobaron el día de ayer en el proyecto "Recursos Lingüísticos Abiertos del Español" y de paso, sobre el proyecto en si mismo que me parece bastante interesante.&lt;/p&gt;
-&lt;!-- TEASER_END --&gt;
-&lt;div class="section" id="el-proyecto"&gt;
-&lt;h2&gt;El proyecto&lt;/h2&gt;
-&lt;p&gt;Resulta que finalizando mayo buscaba sobre proyectos que implicarán procesamiento de texto y lenguaje natural, por diversos motivos (aprender, prácticar y hacer una propuesta a una estudiante). En esa búsqueda me tope por casualidad con el proyecto &lt;a class="reference external" href="https://github.com/sbosio/rla-es"&gt;Recursos Lingüisticos Abiertos del Español&lt;/a&gt; que es liderado por Santiago Bosio (&lt;a class="reference external" href="https://github.com/sbosio"&gt;@sbosio&lt;/a&gt; en github).&lt;/p&gt;
-&lt;p&gt;Este proyecto ha aportado diversas localizaciones del español en proyectos como LibreOffice, OpenOffice y Mozilla (proyectos que usan Hunspell para la corrección de ortografía). Y de paso, indirectamente había sido la fuente del diccionario para mis editores de texto plano (TeXMaker, Atom y ReText), pues no uso los que vienen por defecto en la distribución de Ubuntu sino que descomprimo la extensión de LibreOffice y tomo los archivos &lt;code&gt;dic&lt;/code&gt; y &lt;code&gt;aff&lt;/code&gt; (con el fin de tener versiones más recientes).&lt;/p&gt;
-&lt;p&gt;Aunque por si mismo el proyecto no era lo que buscaba, vi la oportunidad no solo de usar una versión actualizada del diccionario sin esperar las liberaciones de versión (y sus respectivas subidas a los proyectos), sino una oportunidad de contribuir en la localización de Colombia.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="la-contribucion"&gt;
-&lt;h2&gt;La contribución&lt;/h2&gt;
-&lt;p&gt;En el reporte &lt;a class="reference external" href="https://github.com/sbosio/rla-es/issues/81"&gt;#81&lt;/a&gt; del repositorio de github, se propuso como mejora agregar los topónimos de las localizaciones que aún no tuvieran dicha información. La localización de Colombia era uno de esos casos, y efectivamente una necesidad como colombiano para hacer algunos documentos en los que requiera mención a entes territoriales (y cuantos estudiantes en sus clases de geografía colombiana).&lt;/p&gt;
-&lt;p&gt;Con esta necesidad y el ánimo de aportar por primera vez a un proyecto existente (a través del &lt;a class="reference external" href="https://github.com/fisicatyc"&gt;semillero de física teórica y computacional&lt;/a&gt; ya lo había hecho, pero finalmente es algo que cofundé), inicie la búsqueda de la fuente de insumos para esta tarea.&lt;/p&gt;
-&lt;p&gt;Así encontré &lt;a class="reference external" href="https://geoportal.dane.gov.co/v2/?page=elementoHistoricoDivipola"&gt;DIVIPOLA&lt;/a&gt;, que es la Codificación de la División Político-administrativa de Colombia. En ella, se pueden consultar los reportes históricos de la división nacional en entes territoriales para descargar y afortunadamente en un formato "amigable" (excel). Y aquí comenzo el trabajo, usando herramientas libres claro esta, que fueron &lt;code&gt;soffice&lt;/code&gt; (la interface de comandos de LibreOffice) para la conversión del archivo de excel a texto plano (en específico a un archivo de valores separados por coma -CSV-) y las utilidades &lt;code&gt;tail,&lt;/code&gt; &lt;code&gt;cut,&lt;/code&gt; &lt;code&gt;tr&lt;/code&gt; y &lt;code&gt;sed&lt;/code&gt; para la manipulación del texto como la extracción de las columnas de datos necesarias, eliminación de números (cardinales y romanos), eliminación de palabras comunes (ya que no aportan al diccionario), eliminación de signos y conversión a minúsculas con mayúscula inicial. Y por supuesto, &lt;code&gt;git&lt;/code&gt; para el control de versiones.&lt;/p&gt;
-&lt;p&gt;No haré detalle técnico más allá de la mención anterior, pero si quieres ver como se hace (es un buen ejercicio), dejé constancia en el repositorio de como se hace el proceso como referencia para un futuro mantenimiento (&lt;a class="reference external" href="https://github.com/sbosio/rla-es/tree/master/ortograf/palabras/toponimos/l10n/es_CO"&gt;ver explicación&lt;/a&gt;).&lt;/p&gt;
-&lt;p&gt;Finalmente en el reporte &lt;a class="reference external" href="https://github.com/sbosio/rla-es/pull/120"&gt;#120&lt;/a&gt; realice la solicitud de inclusión (&lt;em&gt;pull request (PR)&lt;/em&gt;) y unida (&lt;em&gt;merged&lt;/em&gt;) al ramal principal el 10 de julio de 2017, y espera ver la luz oficialmente en la versión 2.3 de RLA-ES (sin fecha programada aún).&lt;/p&gt;
-&lt;p&gt;¡Corrección de topónimos colombianos a la mano! Claro, faltan accidentes geográficos, pero es el primer paso. Espero poder aportar a la localización mucho más y al proyecto en general.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="uso"&gt;
-&lt;h2&gt;Uso&lt;/h2&gt;
-&lt;p&gt;Una vez sea liberada la versión 2.3, estará disponible a traves de las extensiones de los proyectos y de la página de &lt;a class="reference external" href="https://github.com/sbosio/rla-es/releases"&gt;releases de RLA-ES&lt;/a&gt;. Por ahora, es necesario generar el archivo descargando (o clonando) el proyecto y siguiendo las instrucciones dadas en la &lt;a class="reference external" href="https://github.com/sbosio/rla-es/wiki/Generar-diccionario-corrector"&gt;wiki del proyecto&lt;/a&gt; (para la localización de Colombia, debemos usar &lt;code&gt;es_CO).&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;Finalmente, para poderlo usar en nuestros editores de texto plano (si, diccionario para nuestros documentos de LaTeX y MarkDown), debes seguir las indicaciones finales de la sección de la wiki (que se resúmen en descomprimir el archivo generado).&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Fuentes&lt;/strong&gt;:&lt;/p&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://github.com/sbosio/rla-es"&gt;sbosio/rla-es&lt;/a&gt;: Proyecto original.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://github.com/cosmoscalibur/rla-es"&gt;cosmoscalibur/rla-es&lt;/a&gt;: Mi derivación (&lt;em&gt;fork&lt;/em&gt;) del proyecto para hacer las contribuciones.&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;&lt;/div&gt;</description><category>colombia</category><category>corrector de ortografía</category><category>diccionario</category><category>español</category><category>hunspell</category><category>rla-es</category><category>software libre</category><category>topónimos</category><guid>https://cosmoscalibur.github.io/blog/toponimos-colombianos-en-rla-es/</guid><pubDate>Tue, 11 Jul 2017 23:19:13 GMT</pubDate></item></channel></rss>
+&lt;/div&gt;&lt;/div&gt;</description><category>android</category><category>celular</category><category>smartphone</category><guid>https://cosmoscalibur.github.io/blog/comprando-celular-para-personalizar/</guid><pubDate>Thu, 04 Jan 2018 01:49:54 GMT</pubDate></item></channel></rss>
