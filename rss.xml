@@ -3,7 +3,167 @@
 &lt;a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"&gt;
 &lt;img alt="Creative Commons License BY-NC-SA"
 style="border-width:0; margin-bottom:12px;"
-src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"&gt;&lt;/a&gt;</copyright><lastBuildDate>Mon, 11 May 2020 02:06:36 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Calcular distancia geodésica con Python</title><link>https://cosmoscalibur.github.io/blog/calcular-distancia-geodesica-con-python/</link><dc:creator>Edward Villegas-Pulgarin</dc:creator><description>&lt;div&gt;&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
+src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"&gt;&lt;/a&gt;</copyright><lastBuildDate>Sun, 17 May 2020 20:10:36 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Usar la cámara de tu celular como webcam</title><link>https://cosmoscalibur.github.io/blog/usar-la-camara-de-tu-celular-como-webcam/</link><dc:creator>Edward Villegas-Pulgarin</dc:creator><description>&lt;div&gt;&lt;p&gt;Con la nueva normalidad que vivimos alrededor de la virtualidad, el uso de
+videollamadas se ha incrementado y muchas cámaras incorporadas en los
+equipos no poseen buenas características (o son ausentes). Adicional, el
+soporte de opciones como usar el celular, una buena alternativa para no
+comprar una cámara web, es amplio en Windows pero no en Linux.&lt;/p&gt;
+&lt;p&gt;Así que, por ese motivo hoy les compartiré como usar la cámara del celular
+(Android o iOS) como cámara web en Linux.&lt;/p&gt;
+&lt;!-- TEASER_END --&gt;
+&lt;div class="section" id="droidcam"&gt;
+&lt;h2&gt;DroidCam&lt;/h2&gt;
+&lt;p&gt;Sin hacer muchos rodeos y comparaciones, en este asunto seré muy práctico.
+La primera aplicación que me cumplió con las características y que
+funcionó adecuadamente, es DroidCam [&lt;a class="reference internal" href="https://cosmoscalibur.github.io/blog/usar-la-camara-de-tu-celular-como-webcam/#id1"&gt;droidcam&lt;/a&gt;]. Esta utilidad nos permite
+usar la cámara del celular para reemplazar los incorporados del equipo, y
+se puede hacer comunicación tanto por wifi como por el cable USB
+(instalando ADB).&lt;/p&gt;
+&lt;div class="section" id="instalacion-en-linux"&gt;
+&lt;h3&gt;Instalación en Linux&lt;/h3&gt;
+&lt;p&gt;El procedimiento de instalación puede seguirse en la página web de
+DroidCam [&lt;a class="reference internal" href="https://cosmoscalibur.github.io/blog/usar-la-camara-de-tu-celular-como-webcam/#linux"&gt;linux&lt;/a&gt;] pero lo lustraré para el caso de Linux Mint
+(aplicable para Debian y derivados). El aspecto dependiente de la
+distribución es la instalación de las 3 dependencias requeridas (GCC, Make
+y Linux Headers).&lt;/p&gt;
+&lt;pre&gt;&lt;font color="#8AE234"&gt;&lt;b&gt;cosmoscalibur@edliviano&lt;/b&gt;&lt;/font&gt;:&lt;font color="#729FCF"&gt;&lt;b&gt;/tmp&lt;/b&gt;&lt;/font&gt;$  wget https://files.dev47apps.net/linux/droidcam_latest.zip
+--2020-05-12 19:03:30--  https://files.dev47apps.net/linux/droidcam_latest.zip
+Resolving files.dev47apps.net (files.dev47apps.net)... 104.28.5.185, 104.28.4.185, 2606:4700:3037::681c:4b9, ...
+Connecting to files.dev47apps.net (files.dev47apps.net)|104.28.5.185|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 933306 (911K) [application/zip]
+Saving to: ‘droidcam_latest.zip’
+droidcam_latest.zip 100%[===================&amp;gt;] 911,43K  2,45MB/s    in 0,4s
+2020-05-12 19:03:30 (2,45 MB/s) - ‘droidcam_latest.zip’ saved [933306/933306]
+&lt;font color="#8AE234"&gt;&lt;b&gt;cosmoscalibur@edliviano&lt;/b&gt;&lt;/font&gt;:&lt;font color="#729FCF"&gt;&lt;b&gt;/tmp&lt;/b&gt;&lt;/font&gt;$  echo "5ff0e772a76befba4e37e03101b611d7 droidcam_latest.zip" | md5sum -c --
+droidcam_latest.zip: OK
+&lt;font color="#8AE234"&gt;&lt;b&gt;cosmoscalibur@edliviano&lt;/b&gt;&lt;/font&gt;:&lt;font color="#729FCF"&gt;&lt;b&gt;~/tmp&lt;/b&gt;&lt;/font&gt;$ sudo apt install -y gcc make linux-headers-`uname -r`
+Reading package lists... Done
+Building dependency tree
+Reading state information... Done
+make is already the newest version (4.1-9.1ubuntu1).
+gcc is already the newest version (4:7.4.0-1ubuntu2.3).
+linux-headers-5.3.0-51-generic is already the newest version (5.3.0-51.44~18.04.2).
+&lt;font color="#8AE234"&gt;&lt;b&gt;cosmoscalibur@edliviano&lt;/b&gt;&lt;/font&gt;:&lt;font color="#729FCF"&gt;&lt;b&gt;/tmp&lt;/b&gt;&lt;/font&gt;$  unzip droidcam_latest.zip -d droidcam &amp;amp;&amp;amp; cd droidcam
+Archive:  droidcam_latest.zip
+  inflating: droidcam/LICENCE
+  inflating: droidcam/Makefile
+  inflating: droidcam/README.md
+  inflating: droidcam/droidcam
+  inflating: droidcam/droidcam-cli
+  inflating: droidcam/install
+  creating: droidcam/src/
+  inflating: droidcam/uninstall
+  creating: droidcam/v4l2loopback/
+  inflating: droidcam/v4l2loopback/v4l2loopback-dc.c
+  inflating: droidcam/v4l2loopback/Makefile
+  inflating: droidcam/v4l2loopback/test-mmap.c
+  inflating: droidcam/v4l2loopback/test.c
+&lt;font color="#8AE234"&gt;&lt;b&gt;cosmoscalibur@edliviano&lt;/b&gt;&lt;/font&gt;:&lt;font color="#729FCF"&gt;&lt;b&gt;/tmp/droidcam&lt;/b&gt;&lt;/font&gt;$  sudo ./install
+[sudo] password for cosmoscalibur:
+Webcam parameters: '640' and '480'
+Building v4l2loopback-dc.ko
+make: Entering directory '/tmp/droidcam/v4l2loopback'
+make -C /lib/modules/`uname -r`/build M=`pwd`
+make[1]: Entering directory '/usr/src/linux-headers-5.3.0-51-generic'
+  CC [M]  /tmp/droidcam/v4l2loopback/v4l2loopback-dc.o
+  Building modules, stage 2.
+  MODPOST 1 modules
+  CC      /tmp/droidcam/v4l2loopback/v4l2loopback-dc.mod.o
+  LD [M]  /tmp/droidcam/v4l2loopback/v4l2loopback-dc.ko
+make[1]: Leaving directory '/usr/src/linux-headers-5.3.0-51-generic'
+make: Leaving directory '/tmp/droidcam/v4l2loopback'
+Moving driver and executable to system folders
++ cp v4l2loopback/v4l2loopback-dc.ko /lib/modules/5.3.0-51-generic/kernel/drivers/media/video/
++ cp droidcam /usr/bin/
++ cp droidcam-cli /usr/bin/
++ set +x
+Registering webcam device
+Running depmod
+make: Entering directory '/tmp/droidcam/v4l2loopback'
+make -C /lib/modules/`uname -r`/build M=`pwd` clean
+make[1]: Entering directory '/usr/src/linux-headers-5.3.0-51-generic'
+  CLEAN   /tmp/droidcam/v4l2loopback/Module.symvers
+make[1]: Leaving directory '/usr/src/linux-headers-5.3.0-51-generic'
+make: Leaving directory '/tmp/droidcam/v4l2loopback'
+Adding uninstall script
+Adding driver to /etc/modules
+Done
+&lt;font color="#8AE234"&gt;&lt;b&gt;cosmoscalibur@edliviano&lt;/b&gt;&lt;/font&gt;:&lt;font color="#729FCF"&gt;&lt;b&gt;/tmp/droidcam&lt;/b&gt;&lt;/font&gt;$ lsmod | grep v4l2loopback_dc
+&lt;font color="#EF2929"&gt;&lt;b&gt;v4l2loopback_dc&lt;/b&gt;&lt;/font&gt;        24576  0
+videodev              208896  5 v4l2_common,videobuf2_v4l2,&lt;font color="#EF2929"&gt;&lt;b&gt;v4l2loopback_dc&lt;/b&gt;&lt;/font&gt;,uvcvideo,videobuf2_common
+&lt;/pre&gt;&lt;p&gt;La última instrucción es solo para efectos de validación. Si sale
+&lt;code&gt;v4l2loopback_dc&lt;/code&gt;, estamos bien.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="instalacion-en-android"&gt;
+&lt;h3&gt;Instalación en Android&lt;/h3&gt;
+&lt;p&gt;Para instalar en Android, buscamos DroidCam en Google Play [&lt;a class="reference internal" href="https://cosmoscalibur.github.io/blog/usar-la-camara-de-tu-celular-como-webcam/#android"&gt;android&lt;/a&gt;].
+Encontrarán dos versiones, una gratuita y una paga. Podemos usar la
+gratuita para la funcionalidad requerida, siendo única limitación la
+resolución máxima a la que transmite.&lt;/p&gt;
+&lt;p&gt;Una vez instalada, procedemos a abrir y seguir los siguientes pasos:&lt;/p&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;&lt;p&gt;Mensaje de agradecimiento, presionamos "Próximo".&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Instrucciones para cámara web, presionamos "Obtener".&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;En la siguiente vista obtenemos la IP y el puerto que debemos
+configurar en nuestro equipo.&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="figure align-center"&gt;
+&lt;img alt="https://scontent.feoh1-1.fna.fbcdn.net/v/t1.0-9/s960x960/98190742_2615291835425150_2382823438931722240_o.jpg?_nc_cat=109&amp;amp;_nc_sid=e007fa&amp;amp;_nc_eui2=AeE3aikyXro2hfD78UZLDd-33AKAVYvt933cAoBVi-33fVYchSfKzK8tlbCztHkP7Qy9T8dJhEs19XhNkFZJt7sv&amp;amp;_nc_oc=AQkwLIIq5EloP_GwqBuL1W-trPrigsCiy-OreZ6h8zhA7cHmghZGdTLizpLYQskc_vc&amp;amp;_nc_ht=scontent.feoh1-1.fna&amp;amp;_nc_tp=7&amp;amp;oh=53179b193854db29558e707a4074c32e&amp;amp;oe=5EE88736" src="https://scontent.feoh1-1.fna.fbcdn.net/v/t1.0-9/s960x960/98190742_2615291835425150_2382823438931722240_o.jpg?_nc_cat=109&amp;amp;_nc_sid=e007fa&amp;amp;_nc_eui2=AeE3aikyXro2hfD78UZLDd-33AKAVYvt933cAoBVi-33fVYchSfKzK8tlbCztHkP7Qy9T8dJhEs19XhNkFZJt7sv&amp;amp;_nc_oc=AQkwLIIq5EloP_GwqBuL1W-trPrigsCiy-OreZ6h8zhA7cHmghZGdTLizpLYQskc_vc&amp;amp;_nc_ht=scontent.feoh1-1.fna&amp;amp;_nc_tp=7&amp;amp;oh=53179b193854db29558e707a4074c32e&amp;amp;oe=5EE88736" style="width: 300px;"&gt;
+&lt;p class="caption"&gt;DroidCam activo (información de IP y puerto).&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;En la parte superior derecha, accedemos a la configuración. La
+configuración importante para nosotros está en la sección "CÁMARA", y es
+el límite de FPS (ayuda a ahorrar batería) y la cámara que se usará (en
+"Cámara" podemos seleccionar cual de las cámaras).&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="ejecutar"&gt;
+&lt;h2&gt;Ejecutar&lt;/h2&gt;
+&lt;p&gt;Finalmente, para hacer uso de DroidCam en Linux, debemos ejecutar en la
+consola &lt;code&gt;droidcam&lt;/code&gt; y esto abrirá un GUI para ingresar la IP y el
+puerto que usaremos.&lt;/p&gt;
+&lt;pre&gt;&lt;font color="#8AE234"&gt;&lt;b&gt;cosmoscalibur@edliviano&lt;/b&gt;&lt;/font&gt;:&lt;font color="#729FCF"&gt;&lt;b&gt;/tmp/droidcam&lt;/b&gt;&lt;/font&gt;$ droidcam
+Device: USB2.0 VGA UVC WebCam: USB2.0 V
+Device: USB2.0 VGA UVC WebCam: USB2.0 V
+Device: Droidcam
+Found driver: /dev/video2 (fd:7)
+connecting to 192.168.1.2:4747
+&lt;/pre&gt;&lt;div class="figure align-center"&gt;
+&lt;img alt="https://scontent.feoh1-1.fna.fbcdn.net/v/t1.0-9/98830017_2615306735423660_3021668015683928064_n.png?_nc_cat=100&amp;amp;_nc_sid=e007fa&amp;amp;_nc_eui2=AeHrA7mJY7MFFCkeQZZPs0GGVRhGQdUhEGZVGEZB1SEQZiw2FAVS2vMFb2ShRLups6JA9U7wBgYH9ChT0kUMs2n9&amp;amp;_nc_oc=AQl0N2UueD73e9SyqW3mn44J040YnHFZYxIdP2uc8z3-V8gmf2FWWNvHVAAbj7cCsU8&amp;amp;_nc_ht=scontent.feoh1-1.fna&amp;amp;oh=5ba3efe59eed0a64c9334906afffabe3&amp;amp;oe=5EE8856D" src="https://scontent.feoh1-1.fna.fbcdn.net/v/t1.0-9/98830017_2615306735423660_3021668015683928064_n.png?_nc_cat=100&amp;amp;_nc_sid=e007fa&amp;amp;_nc_eui2=AeHrA7mJY7MFFCkeQZZPs0GGVRhGQdUhEGZVGEZB1SEQZiw2FAVS2vMFb2ShRLups6JA9U7wBgYH9ChT0kUMs2n9&amp;amp;_nc_oc=AQl0N2UueD73e9SyqW3mn44J040YnHFZYxIdP2uc8z3-V8gmf2FWWNvHVAAbj7cCsU8&amp;amp;_nc_ht=scontent.feoh1-1.fna&amp;amp;oh=5ba3efe59eed0a64c9334906afffabe3&amp;amp;oe=5EE8856D" style="width: 400px;"&gt;
+&lt;p class="caption"&gt;Cliente GUI de DroidCam en Linux. Aquí ingresamos IP y puerto.&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;Una vez configurado, presionamos "Connect". En este momento DroidCam del
+celular activará la vista de la cámara y podremos configurar la aplicación
+que requiera de la cámara.&lt;/p&gt;
+&lt;p&gt;Para ejemplo, tomaré Skype, pero será igual con toda aplicación que
+soporte selección de cámara (aplica para Hangout, OBS, Teams, entre otras).
+En el menú respectivo, seleccionamos "DroidCam" y estamos listos.&lt;/p&gt;
+&lt;div class="figure align-center"&gt;
+&lt;img alt="https://scontent.feoh1-1.fna.fbcdn.net/v/t1.0-9/98331772_2615291892091811_6468051221121859584_n.jpg?_nc_cat=108&amp;amp;_nc_sid=e007fa&amp;amp;_nc_eui2=AeFZxJ4Kkk1JwiAptA2Hrkhd-KfUQJ4sugf4p9RAniy6B9l4bjNmVaMRvVea_3lQMf5iYlH8WGQJ6NSydmarrKot&amp;amp;_nc_oc=AQkpsi5Cyvf16J4JOu4yL6r8r4yJ6--B3NWuXF4rNtHA1jjmIQdUHtL5MHlmqboV-UA&amp;amp;_nc_ht=scontent.feoh1-1.fna&amp;amp;oh=e2e936973f2423edae0c6feca2041aa4&amp;amp;oe=5EE6FA58" src="https://scontent.feoh1-1.fna.fbcdn.net/v/t1.0-9/98331772_2615291892091811_6468051221121859584_n.jpg?_nc_cat=108&amp;amp;_nc_sid=e007fa&amp;amp;_nc_eui2=AeFZxJ4Kkk1JwiAptA2Hrkhd-KfUQJ4sugf4p9RAniy6B9l4bjNmVaMRvVea_3lQMf5iYlH8WGQJ6NSydmarrKot&amp;amp;_nc_oc=AQkpsi5Cyvf16J4JOu4yL6r8r4yJ6--B3NWuXF4rNtHA1jjmIQdUHtL5MHlmqboV-UA&amp;amp;_nc_ht=scontent.feoh1-1.fna&amp;amp;oh=e2e936973f2423edae0c6feca2041aa4&amp;amp;oe=5EE6FA58" style="width: 400px;"&gt;
+&lt;p class="caption"&gt;Selección de DroidCam como cámara en las aplicaciones.&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;Comparemos ahora la calidad incluyendo las dos vistas (DroidCam e
+incorporada) con OBS.&lt;/p&gt;
+&lt;div class="figure align-center"&gt;
+&lt;img alt="https://scontent.feoh1-1.fna.fbcdn.net/v/t1.0-9/98204051_2615321822088818_715797291046273024_n.png?_nc_cat=110&amp;amp;_nc_sid=e007fa&amp;amp;_nc_eui2=AeGJ5eMq7VyRnN2U3-Hp8Rrw018i8Vxd1-fTXyLxXF3X5_8aBRVjcAWNFEPSRPUJxjclKSRsGFIRmm6OUkYLcfES&amp;amp;_nc_oc=AQnyxwagsbBrFPEY3PpwzpelWBkC9OANxoJiGUH2MkqdO2ESnNuFRWLu7qoohcyQy5o&amp;amp;_nc_ht=scontent.feoh1-1.fna&amp;amp;oh=d8c9d1c0ff2535cca4d7d04b906e2d9a&amp;amp;oe=5EE772A3" src="https://scontent.feoh1-1.fna.fbcdn.net/v/t1.0-9/98204051_2615321822088818_715797291046273024_n.png?_nc_cat=110&amp;amp;_nc_sid=e007fa&amp;amp;_nc_eui2=AeGJ5eMq7VyRnN2U3-Hp8Rrw018i8Vxd1-fTXyLxXF3X5_8aBRVjcAWNFEPSRPUJxjclKSRsGFIRmm6OUkYLcfES&amp;amp;_nc_oc=AQnyxwagsbBrFPEY3PpwzpelWBkC9OANxoJiGUH2MkqdO2ESnNuFRWLu7qoohcyQy5o&amp;amp;_nc_ht=scontent.feoh1-1.fna&amp;amp;oh=d8c9d1c0ff2535cca4d7d04b906e2d9a&amp;amp;oe=5EE772A3" style="width: 600px;"&gt;
+&lt;p class="caption"&gt;Comparación incorporando la vista de DroidCam (izquierda) y la cámara incorporada de mi equipo (derecha) en OBS.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="referencias"&gt;
+&lt;h2&gt;Referencias&lt;/h2&gt;
+&lt;dl class="citation"&gt;
+&lt;dt class="label" id="id1"&gt;&lt;span class="brackets"&gt;droidcam&lt;/span&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;DroidCam Wireless Webcam &lt;a class="reference external" href="https://www.dev47apps.com/"&gt;https://www.dev47apps.com/&lt;/a&gt; .&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class="label" id="linux"&gt;&lt;span class="brackets"&gt;linux&lt;/span&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;DroidCam Linux Install &lt;a class="reference external" href="https://www.dev47apps.com/droidcam/linuxx/"&gt;https://www.dev47apps.com/droidcam/linuxx/&lt;/a&gt; .&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class="label" id="android"&gt;&lt;span class="brackets"&gt;android&lt;/span&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;DroidCam Wireless Webcam (Android) &lt;a class="reference external" href="https://play.google.com/store/apps/details?id=com.dev47apps.droidcam"&gt;https://play.google.com/store/apps/details?id=com.dev47apps.droidcam&lt;/a&gt;&lt;/p&gt;
+&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;/div&gt;&lt;/div&gt;</description><category>android</category><category>cámara</category><category>droidcam</category><category>linux</category><category>webcam</category><guid>https://cosmoscalibur.github.io/blog/usar-la-camara-de-tu-celular-como-webcam/</guid><pubDate>Sun, 17 May 2020 20:02:25 GMT</pubDate></item><item><title>Calcular distancia geodésica con Python</title><link>https://cosmoscalibur.github.io/blog/calcular-distancia-geodesica-con-python/</link><dc:creator>Edward Villegas-Pulgarin</dc:creator><description>&lt;div&gt;&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
 &lt;/div&gt;&lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;p&gt;Aunque una de las cosas que más ha rondado en mi desarrollo académico y laboral es la programación, y buena parte de los años en ello con Python, nunca había realizado una entrada al respecto en el blog (lo más cercano ha sido una entrada sobre &lt;a href="https://cosmoscalibur.github.io/blog/crear-documentacion-de-un-proyecto-python-con-sphinx/"&gt;Crear documentación de un proyecto Python con Sphinx.&lt;/a&gt; y &lt;a href="https://cosmoscalibur.github.io/blog/crear-contenedor-docker-aplicacion-gui-ealite/"&gt;Crear contenedor Docker aplicación GUI - EALite&lt;/a&gt;).&lt;/p&gt;
@@ -344,8 +504,8 @@ medidas como:&lt;/p&gt;
 &lt;p&gt;Estas medidas como se ha discutido en el curso no eliminan los riesgos, pero la
 toma de diversas medidas permite la reducción del riesgo.&lt;/p&gt;
 
-&lt;!-- Begin post-list post_list_f3aebeacbd1046589b55e468ae937d53 --&gt;
-&lt;div id="post_list_f3aebeacbd1046589b55e468ae937d53" class="post-list"&gt;
+&lt;!-- Begin post-list post_list_5eada18074ca410fa95037f3b83bbf08 --&gt;
+&lt;div id="post_list_5eada18074ca410fa95037f3b83bbf08" class="post-list"&gt;
     &lt;ul class="post-list"&gt;
             &lt;li class="post-list-item"&gt;
             2020-04-09 15:19
@@ -374,7 +534,7 @@ toma de diversas medidas permite la reducción del riesgo.&lt;/p&gt;
             &lt;/li&gt;
     &lt;/ul&gt;
 &lt;/div&gt;
-&lt;!-- End post-list post_list_f3aebeacbd1046589b55e468ae937d53 --&gt;
+&lt;!-- End post-list post_list_5eada18074ca410fa95037f3b83bbf08 --&gt;
 
 &lt;p&gt;9 Tips For Keeping Your Customer Data Secure &lt;a class="reference external" href="https://www.decibelinsight.com/blog/9-privacy-tips-for-secure-customer-data"&gt;https://www.decibelinsight.com/blog/9-privacy-tips-for-secure-customer-data&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Azure customer data protection &lt;a class="reference external" href="https://docs.microsoft.com/en-us/azure/security/fundamentals/protection-customer-data"&gt;https://docs.microsoft.com/en-us/azure/security/fundamentals/protection-customer-data&lt;/a&gt;&lt;/p&gt;
@@ -395,8 +555,8 @@ para crear diagnósticos de situaciones actuales, hacer optimización de
 escenarios y previsión de escenarios futuros, creando así una estrategia que
 asegure ventajas competitivas.&lt;/p&gt;
 
-&lt;!-- Begin post-list post_list_e0a54a6fe53e4067832ae896727f9dcb --&gt;
-&lt;div id="post_list_e0a54a6fe53e4067832ae896727f9dcb" class="post-list"&gt;
+&lt;!-- Begin post-list post_list_99b1a387108e420a9b5e0e456569c2e3 --&gt;
+&lt;div id="post_list_99b1a387108e420a9b5e0e456569c2e3" class="post-list"&gt;
     &lt;ul class="post-list"&gt;
             &lt;li class="post-list-item"&gt;
             2020-04-09 16:37
@@ -425,7 +585,7 @@ asegure ventajas competitivas.&lt;/p&gt;
             &lt;/li&gt;
     &lt;/ul&gt;
 &lt;/div&gt;
-&lt;!-- End post-list post_list_e0a54a6fe53e4067832ae896727f9dcb --&gt;
+&lt;!-- End post-list post_list_99b1a387108e420a9b5e0e456569c2e3 --&gt;
 
 &lt;p&gt;Role of Data Analytics in Internet of Things (IoT) &lt;a class="reference external" href="https://www.fingent.com/blog/role-of-data-analytics-in-internet-of-things-iot"&gt;https://www.fingent.com/blog/role-of-data-analytics-in-internet-of-things-iot&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;4 Emerging Use Cases for IoT Data Analytics &lt;a class="reference external" href="https://www.softwareadvice.com/resources/iot-data-analytics-use-cases/"&gt;https://www.softwareadvice.com/resources/iot-data-analytics-use-cases/&lt;/a&gt;&lt;/p&gt;&lt;/div&gt;</description><category>internet de las cosas</category><category>iot</category><category>transformación digital</category><guid>https://cosmoscalibur.github.io/blog/aplicacion-de-iot-a-la-cadena-de-suministro/</guid><pubDate>Thu, 09 Apr 2020 20:19:21 GMT</pubDate></item><item><title>IoT ¿Merece la pena asumir los riesgos?</title><link>https://cosmoscalibur.github.io/blog/iot-merece-la-pena-asumir-los-riesgos/</link><dc:creator>Edward Villegas-Pulgarin</dc:creator><description>&lt;div&gt;&lt;p&gt;Sigo con algunas publicaciones asociadas a participaciones en foro y ensayos
@@ -443,8 +603,8 @@ es que a mayor riesgo existe la posibilidad de un mayor retorno.&lt;/p&gt;
 atenuarse con una adecuada preparación de los protocolos usados, la continua
 actualización de software y la selección de las tecnologías.&lt;/p&gt;
 
-&lt;!-- Begin post-list post_list_76cbeea77e3a414f834de093c3a08a39 --&gt;
-&lt;div id="post_list_76cbeea77e3a414f834de093c3a08a39" class="post-list"&gt;
+&lt;!-- Begin post-list post_list_c729ab66dd4747af971ff7d05fabe232 --&gt;
+&lt;div id="post_list_c729ab66dd4747af971ff7d05fabe232" class="post-list"&gt;
     &lt;ul class="post-list"&gt;
             &lt;li class="post-list-item"&gt;
             2020-04-09 16:37
@@ -473,7 +633,7 @@ actualización de software y la selección de las tecnologías.&lt;/p&gt;
             &lt;/li&gt;
     &lt;/ul&gt;
 &lt;/div&gt;
-&lt;!-- End post-list post_list_76cbeea77e3a414f834de093c3a08a39 --&gt;
+&lt;!-- End post-list post_list_c729ab66dd4747af971ff7d05fabe232 --&gt;
 
 &lt;p&gt;IoT Vulnerabilities &amp;amp; Risk Mitigation. &lt;a class="reference external" href="https://www.iotforall.com/mitigate-iot-security-risks/"&gt;https://www.iotforall.com/mitigate-iot-security-risks/&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;6 Ways to Mitigate Software Implementation Risks &lt;a class="reference external" href="https://www.panorama-consulting.com/6-ways-to-mitigate-software-implementation-risks/"&gt;https://www.panorama-consulting.com/6-ways-to-mitigate-software-implementation-risks/&lt;/a&gt;&lt;/p&gt;&lt;/div&gt;</description><category>internet de las cosas</category><category>iot</category><category>transformación digital</category><guid>https://cosmoscalibur.github.io/blog/iot-merece-la-pena-asumir-los-riesgos/</guid><pubDate>Thu, 09 Apr 2020 19:56:33 GMT</pubDate></item><item><title>Datos y responsabilidad: Covid19</title><link>https://cosmoscalibur.github.io/blog/datos-y-responsabilidad-covid19/</link><dc:creator>Edward Villegas-Pulgarin</dc:creator><description>&lt;div&gt;&lt;p&gt;Había tratado de estar al margen de hacer muy público lo que pienso y analizo
@@ -796,8 +956,8 @@ seguridad que ofrecen los servicios y una alta disponibilidad de la
 información mediante la red redundante del proveedor [&lt;a class="reference internal" href="https://cosmoscalibur.github.io/blog/seguridad-vs-flexibilidad-del-computo-en-nube/#id3"&gt;3&lt;/a&gt;, &lt;a class="reference internal" href="https://cosmoscalibur.github.io/blog/seguridad-vs-flexibilidad-del-computo-en-nube/#id5"&gt;5&lt;/a&gt;].&lt;/p&gt;
 &lt;p&gt;Otras publicaciones basadas en el curso de transformación digital:&lt;/p&gt;
 
-&lt;!-- Begin post-list post_list_cbb4d7e1ffd74ea3a615a4687ab43a66 --&gt;
-&lt;div id="post_list_cbb4d7e1ffd74ea3a615a4687ab43a66" class="post-list"&gt;
+&lt;!-- Begin post-list post_list_f2638e1b40eb4b7586c9d00aae2463d4 --&gt;
+&lt;div id="post_list_f2638e1b40eb4b7586c9d00aae2463d4" class="post-list"&gt;
     &lt;ul class="post-list"&gt;
             &lt;li class="post-list-item"&gt;
             2020-04-09 16:37
@@ -826,7 +986,7 @@ información mediante la red redundante del proveedor [&lt;a class="reference in
             &lt;/li&gt;
     &lt;/ul&gt;
 &lt;/div&gt;
-&lt;!-- End post-list post_list_cbb4d7e1ffd74ea3a615a4687ab43a66 --&gt;
+&lt;!-- End post-list post_list_f2638e1b40eb4b7586c9d00aae2463d4 --&gt;
 
 &lt;dl class="footnote brackets"&gt;
 &lt;dt class="label" id="id1"&gt;&lt;span class="brackets"&gt;1&lt;/span&gt;&lt;/dt&gt;
@@ -879,8 +1039,8 @@ intermediación actual en el sector inmobiliario (pero que un futuro con las
 reformas necesarias legales podría suceder) [&lt;a class="reference internal" href="https://cosmoscalibur.github.io/blog/sectores-que-se-ven-afectados-por-blockchain-sector-inmobiliario/#id3"&gt;3&lt;/a&gt;].&lt;/p&gt;
 &lt;p&gt;Otras publicaciones basadas en el curso de transformación digital:&lt;/p&gt;
 
-&lt;!-- Begin post-list post_list_4f6aa85ff0e04aee81dc1357dbe779ac --&gt;
-&lt;div id="post_list_4f6aa85ff0e04aee81dc1357dbe779ac" class="post-list"&gt;
+&lt;!-- Begin post-list post_list_bf298bdacc3349a89fec913f2d56c6e9 --&gt;
+&lt;div id="post_list_bf298bdacc3349a89fec913f2d56c6e9" class="post-list"&gt;
     &lt;ul class="post-list"&gt;
             &lt;li class="post-list-item"&gt;
             2020-04-09 16:37
@@ -909,7 +1069,7 @@ reformas necesarias legales podría suceder) [&lt;a class="reference internal" h
             &lt;/li&gt;
     &lt;/ul&gt;
 &lt;/div&gt;
-&lt;!-- End post-list post_list_4f6aa85ff0e04aee81dc1357dbe779ac --&gt;
+&lt;!-- End post-list post_list_bf298bdacc3349a89fec913f2d56c6e9 --&gt;
 
 &lt;dl class="footnote brackets"&gt;
 &lt;dt class="label" id="id1"&gt;&lt;span class="brackets"&gt;1&lt;/span&gt;&lt;/dt&gt;
@@ -962,8 +1122,8 @@ presencia y acciones del Centro para la Cuarta Revolución Industrial como un
 habilitador [&lt;a class="reference internal" href="https://cosmoscalibur.github.io/blog/estamos-preparados-para-un-nuevo-tipo-de-monedas-completamente-digitales/#id10"&gt;10&lt;/a&gt;], tenga pronto resultados.&lt;/p&gt;
 &lt;p&gt;Otras publicaciones basadas en el curso de transformación digital:&lt;/p&gt;
 
-&lt;!-- Begin post-list post_list_60ee216075ad4569b0753cbfa58c2798 --&gt;
-&lt;div id="post_list_60ee216075ad4569b0753cbfa58c2798" class="post-list"&gt;
+&lt;!-- Begin post-list post_list_a1142cb1b6cd47799429bacb3eee668e --&gt;
+&lt;div id="post_list_a1142cb1b6cd47799429bacb3eee668e" class="post-list"&gt;
     &lt;ul class="post-list"&gt;
             &lt;li class="post-list-item"&gt;
             2020-04-09 16:37
@@ -992,7 +1152,7 @@ habilitador [&lt;a class="reference internal" href="https://cosmoscalibur.github
             &lt;/li&gt;
     &lt;/ul&gt;
 &lt;/div&gt;
-&lt;!-- End post-list post_list_60ee216075ad4569b0753cbfa58c2798 --&gt;
+&lt;!-- End post-list post_list_a1142cb1b6cd47799429bacb3eee668e --&gt;
 
 &lt;dl class="footnote brackets"&gt;
 &lt;dt class="label" id="id1"&gt;&lt;span class="brackets"&gt;1&lt;/span&gt;&lt;/dt&gt;
@@ -1076,8 +1236,8 @@ gestor de paquetes del sistema operativo. En la mayor parte de
 distribuciones Linux estará disponible a través del gestor.&lt;/p&gt;
 &lt;p&gt;En el caso de las distribuciones basadas en Debian (Ubuntu y Linux Mint
 entre otras) puedes instalar de la siguiente manera:&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_e6ac9beae73c46f0b23102669101e19b-1"&gt;&lt;/a&gt;sudo apt install -y texlive texlive-latex-base texlive-latex-extra \
-&lt;a name="rest_code_e6ac9beae73c46f0b23102669101e19b-2"&gt;&lt;/a&gt;    texlive-lang-spanish latexmk
+&lt;pre class="code text"&gt;&lt;a name="rest_code_882c4e7f710a4f42b124687df3ea79d2-1"&gt;&lt;/a&gt;sudo apt install -y texlive texlive-latex-base texlive-latex-extra \
+&lt;a name="rest_code_882c4e7f710a4f42b124687df3ea79d2-2"&gt;&lt;/a&gt;    texlive-lang-spanish latexmk
 &lt;/pre&gt;&lt;/dd&gt;
 &lt;/dl&gt;
 &lt;/div&gt;
@@ -1107,11 +1267,11 @@ proyecto destinemos un directorio &lt;code&gt;docs&lt;/code&gt; para este fin.&l
 &lt;p&gt;Ahora ejecutamos &lt;code&gt;sphinx-quickstart&lt;/code&gt; y respondemos las preguntas que
 saldrán. Es necesario tener en cuenta, que si usas Windows debes agregar al
 comando la terminación &lt;code&gt;.exe&lt;/code&gt;, ejemplo &lt;code&gt;sphinx-quickstart.exe&lt;/code&gt;.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_5f6032b80a2a41c380efc885bc067743-1"&gt;&lt;/a&gt;&amp;gt; Separate source and build directories (y/n) [n]: y
-&lt;a name="rest_code_5f6032b80a2a41c380efc885bc067743-2"&gt;&lt;/a&gt;&amp;gt; Project name: proyecto
-&lt;a name="rest_code_5f6032b80a2a41c380efc885bc067743-3"&gt;&lt;/a&gt;&amp;gt; Author name(s): Edward Villegas-Pulgarin
-&lt;a name="rest_code_5f6032b80a2a41c380efc885bc067743-4"&gt;&lt;/a&gt;&amp;gt; Project release []: 0.1.0
-&lt;a name="rest_code_5f6032b80a2a41c380efc885bc067743-5"&gt;&lt;/a&gt;&amp;gt; Project language [en]: es
+&lt;pre class="code text"&gt;&lt;a name="rest_code_44a79db38ffd474a8aed289d888a971e-1"&gt;&lt;/a&gt;&amp;gt; Separate source and build directories (y/n) [n]: y
+&lt;a name="rest_code_44a79db38ffd474a8aed289d888a971e-2"&gt;&lt;/a&gt;&amp;gt; Project name: proyecto
+&lt;a name="rest_code_44a79db38ffd474a8aed289d888a971e-3"&gt;&lt;/a&gt;&amp;gt; Author name(s): Edward Villegas-Pulgarin
+&lt;a name="rest_code_44a79db38ffd474a8aed289d888a971e-4"&gt;&lt;/a&gt;&amp;gt; Project release []: 0.1.0
+&lt;a name="rest_code_44a79db38ffd474a8aed289d888a971e-5"&gt;&lt;/a&gt;&amp;gt; Project language [en]: es
 &lt;/pre&gt;&lt;p&gt;Siempre recomiendo separar el directorio del código fuente de la documentación
 del directorio de compilados de la misma. Respecto al esquema de versiones me
 agrada el &lt;cite&gt;versionamiento semántico &amp;lt;https://semver.org/&amp;gt;&lt;/cite&gt; que permite al
@@ -1133,13 +1293,13 @@ Con Coverage puedes validar que funciones se han documentado y dcotest integra
 pruebas de código desde la documentación (comparar salidas con ejemplo de
 documentación).&lt;/p&gt;
 &lt;p&gt;Modificar en el archivo.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_076cb7d744cc4e23aec83847e71d7e75-1"&gt;&lt;/a&gt;extensions = [
-&lt;a name="rest_code_076cb7d744cc4e23aec83847e71d7e75-2"&gt;&lt;/a&gt;    'sphinx.ext.autodoc',
-&lt;a name="rest_code_076cb7d744cc4e23aec83847e71d7e75-3"&gt;&lt;/a&gt;    'sphinx.ext.mathjax',
-&lt;a name="rest_code_076cb7d744cc4e23aec83847e71d7e75-4"&gt;&lt;/a&gt;    'sphinx.ext.napoleon',
-&lt;a name="rest_code_076cb7d744cc4e23aec83847e71d7e75-5"&gt;&lt;/a&gt;    'sphinx.ext.coverage',
-&lt;a name="rest_code_076cb7d744cc4e23aec83847e71d7e75-6"&gt;&lt;/a&gt;    'sphinx.ext.doctest'
-&lt;a name="rest_code_076cb7d744cc4e23aec83847e71d7e75-7"&gt;&lt;/a&gt;]
+&lt;pre class="code text"&gt;&lt;a name="rest_code_7670a42e671e4210b0b4b634dcd728a9-1"&gt;&lt;/a&gt;extensions = [
+&lt;a name="rest_code_7670a42e671e4210b0b4b634dcd728a9-2"&gt;&lt;/a&gt;    'sphinx.ext.autodoc',
+&lt;a name="rest_code_7670a42e671e4210b0b4b634dcd728a9-3"&gt;&lt;/a&gt;    'sphinx.ext.mathjax',
+&lt;a name="rest_code_7670a42e671e4210b0b4b634dcd728a9-4"&gt;&lt;/a&gt;    'sphinx.ext.napoleon',
+&lt;a name="rest_code_7670a42e671e4210b0b4b634dcd728a9-5"&gt;&lt;/a&gt;    'sphinx.ext.coverage',
+&lt;a name="rest_code_7670a42e671e4210b0b4b634dcd728a9-6"&gt;&lt;/a&gt;    'sphinx.ext.doctest'
+&lt;a name="rest_code_7670a42e671e4210b0b4b634dcd728a9-7"&gt;&lt;/a&gt;]
 &lt;/pre&gt;&lt;/div&gt;
 &lt;div class="section" id="importar-paquete"&gt;
 &lt;h3&gt;Importar paquete&lt;/h3&gt;
@@ -1151,27 +1311,27 @@ primeras líneas de código en la sección de &lt;em&gt;Path setup&lt;/em&gt;. E
 defecto indica la misma carpeta de &lt;code&gt;docs/source&lt;/code&gt;, por lo cual es
 necesario reemplazar por &lt;code&gt;../..&lt;/code&gt; que se devuelve los dos niveles
 necesarios.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_ade96a374ebb427281d6e56151a31050-1"&gt;&lt;/a&gt;import os
-&lt;a name="rest_code_ade96a374ebb427281d6e56151a31050-2"&gt;&lt;/a&gt;import sys
-&lt;a name="rest_code_ade96a374ebb427281d6e56151a31050-3"&gt;&lt;/a&gt;import datetime
-&lt;a name="rest_code_ade96a374ebb427281d6e56151a31050-4"&gt;&lt;/a&gt;sys.path.insert(0, os.path.abspath('../..'))
-&lt;a name="rest_code_ade96a374ebb427281d6e56151a31050-5"&gt;&lt;/a&gt;import proyecto
+&lt;pre class="code text"&gt;&lt;a name="rest_code_2501461dae57455890254f5771800df4-1"&gt;&lt;/a&gt;import os
+&lt;a name="rest_code_2501461dae57455890254f5771800df4-2"&gt;&lt;/a&gt;import sys
+&lt;a name="rest_code_2501461dae57455890254f5771800df4-3"&gt;&lt;/a&gt;import datetime
+&lt;a name="rest_code_2501461dae57455890254f5771800df4-4"&gt;&lt;/a&gt;sys.path.insert(0, os.path.abspath('../..'))
+&lt;a name="rest_code_2501461dae57455890254f5771800df4-5"&gt;&lt;/a&gt;import proyecto
 &lt;/pre&gt;&lt;p&gt;Ahora, puedes hacer cosas como la siguiente, si está disponible en tu código.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_b0b1bc7c096b434dba66267ce5e7dfe7-1"&gt;&lt;/a&gt;author = proyecto.__author__
-&lt;a name="rest_code_b0b1bc7c096b434dba66267ce5e7dfe7-2"&gt;&lt;/a&gt;copyright = str(datetime.date.today().year) + ', ' + author
-&lt;a name="rest_code_b0b1bc7c096b434dba66267ce5e7dfe7-3"&gt;&lt;/a&gt;release = proyecto.__version__
+&lt;pre class="code text"&gt;&lt;a name="rest_code_52c27f82ccd649f9bb6a8982cdea61c9-1"&gt;&lt;/a&gt;author = proyecto.__author__
+&lt;a name="rest_code_52c27f82ccd649f9bb6a8982cdea61c9-2"&gt;&lt;/a&gt;copyright = str(datetime.date.today().year) + ', ' + author
+&lt;a name="rest_code_52c27f82ccd649f9bb6a8982cdea61c9-3"&gt;&lt;/a&gt;release = proyecto.__version__
 &lt;/pre&gt;&lt;/div&gt;
 &lt;div class="section" id="referencias-cruzadas"&gt;
 &lt;h3&gt;Referencias cruzadas&lt;/h3&gt;
 &lt;p&gt;Para usar referencias cruzadas, es decir, numeración de tablas, figuras,
 códigos y ecuaciones si poseen pie de objeto, y ser referenciados en el texto
 por el número, se requiere configurar lo siguiente.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_f5e7e922d02d41a0afec7bdad83e42a8-1"&gt;&lt;/a&gt;numfig = True
-&lt;a name="rest_code_f5e7e922d02d41a0afec7bdad83e42a8-2"&gt;&lt;/a&gt;numfig_format = {'figure': 'Fig. %s', 'table': 'Tabla %s',
-&lt;a name="rest_code_f5e7e922d02d41a0afec7bdad83e42a8-3"&gt;&lt;/a&gt;                 'code-block': 'Código %s', 'section': 'Sección %s'}
-&lt;a name="rest_code_f5e7e922d02d41a0afec7bdad83e42a8-4"&gt;&lt;/a&gt;numfig_secnum_depth = 1
-&lt;a name="rest_code_f5e7e922d02d41a0afec7bdad83e42a8-5"&gt;&lt;/a&gt;math_numfig = True
-&lt;a name="rest_code_f5e7e922d02d41a0afec7bdad83e42a8-6"&gt;&lt;/a&gt;math_eqref_format = 'Ec. {number}'
+&lt;pre class="code text"&gt;&lt;a name="rest_code_4f3db5aae48f48b59c123a9da0626903-1"&gt;&lt;/a&gt;numfig = True
+&lt;a name="rest_code_4f3db5aae48f48b59c123a9da0626903-2"&gt;&lt;/a&gt;numfig_format = {'figure': 'Fig. %s', 'table': 'Tabla %s',
+&lt;a name="rest_code_4f3db5aae48f48b59c123a9da0626903-3"&gt;&lt;/a&gt;                 'code-block': 'Código %s', 'section': 'Sección %s'}
+&lt;a name="rest_code_4f3db5aae48f48b59c123a9da0626903-4"&gt;&lt;/a&gt;numfig_secnum_depth = 1
+&lt;a name="rest_code_4f3db5aae48f48b59c123a9da0626903-5"&gt;&lt;/a&gt;math_numfig = True
+&lt;a name="rest_code_4f3db5aae48f48b59c123a9da0626903-6"&gt;&lt;/a&gt;math_eqref_format = 'Ec. {number}'
 &lt;/pre&gt;&lt;p&gt;Así, es posible usar &lt;code&gt;:label:&lt;/code&gt; para asignar una referencia a los objetos
 y &lt;code&gt;:numref:&lt;/code&gt; y &lt;code&gt;:eq:&lt;/code&gt; a la hora de mencionarlos. Con
 &lt;code&gt;numfig_secnum_depth&lt;/code&gt; configuras la numeración de los objetos, si es
@@ -1183,11 +1343,11 @@ continúa (0), por sección (1) y subsección (2).&lt;/p&gt;
 maestro, el nombre del archivo TeX, el nombre que nuestra documentación, el
 nombre del autor (que podemos usar la variable que ya definimos) y el tipo de
 documento (cuya clase &lt;em&gt;manual&lt;/em&gt; está definida por Sphinx).&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_639710201a9342f68ff152041d0efa97-1"&gt;&lt;/a&gt;master_doc = 'index'
-&lt;a name="rest_code_639710201a9342f68ff152041d0efa97-2"&gt;&lt;/a&gt;latex_documents = [
-&lt;a name="rest_code_639710201a9342f68ff152041d0efa97-3"&gt;&lt;/a&gt;    (master_doc, 'proyecto.tex', 'Documentación Proyecto',
-&lt;a name="rest_code_639710201a9342f68ff152041d0efa97-4"&gt;&lt;/a&gt;     author, 'manual'),
-&lt;a name="rest_code_639710201a9342f68ff152041d0efa97-5"&gt;&lt;/a&gt;]
+&lt;pre class="code text"&gt;&lt;a name="rest_code_b0486e3f49df4b81bd0d8d1e7436ffab-1"&gt;&lt;/a&gt;master_doc = 'index'
+&lt;a name="rest_code_b0486e3f49df4b81bd0d8d1e7436ffab-2"&gt;&lt;/a&gt;latex_documents = [
+&lt;a name="rest_code_b0486e3f49df4b81bd0d8d1e7436ffab-3"&gt;&lt;/a&gt;    (master_doc, 'proyecto.tex', 'Documentación Proyecto',
+&lt;a name="rest_code_b0486e3f49df4b81bd0d8d1e7436ffab-4"&gt;&lt;/a&gt;     author, 'manual'),
+&lt;a name="rest_code_b0486e3f49df4b81bd0d8d1e7436ffab-5"&gt;&lt;/a&gt;]
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="section" id="escritura-en-restructuredtext"&gt;
@@ -1220,16 +1380,16 @@ adelante). Puedes agregar más archivos, por ejemplo, yo suelo usar un
 &lt;code&gt;concepts.rst&lt;/code&gt; para detallar los conceptos necesarios antes de usar el
 software o detallar teoría que ayuda a interpretar resultados o que expande la
 información para que alguien pueda analizar o continuar un desarrollo.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_292a376dc5944876901845e056f5d65b-1"&gt;&lt;/a&gt;.. toctree::
-&lt;a name="rest_code_292a376dc5944876901845e056f5d65b-2"&gt;&lt;/a&gt;   :maxdepth: 3
-&lt;a name="rest_code_292a376dc5944876901845e056f5d65b-3"&gt;&lt;/a&gt;   :caption: Contenido:
-&lt;a name="rest_code_292a376dc5944876901845e056f5d65b-4"&gt;&lt;/a&gt;
-&lt;a name="rest_code_292a376dc5944876901845e056f5d65b-5"&gt;&lt;/a&gt;   README
-&lt;a name="rest_code_292a376dc5944876901845e056f5d65b-6"&gt;&lt;/a&gt;   installation
-&lt;a name="rest_code_292a376dc5944876901845e056f5d65b-7"&gt;&lt;/a&gt;   usage
-&lt;a name="rest_code_292a376dc5944876901845e056f5d65b-8"&gt;&lt;/a&gt;   api/modules
-&lt;a name="rest_code_292a376dc5944876901845e056f5d65b-9"&gt;&lt;/a&gt;   concepts
-&lt;a name="rest_code_292a376dc5944876901845e056f5d65b-10"&gt;&lt;/a&gt;   history
+&lt;pre class="code text"&gt;&lt;a name="rest_code_04387214367b4e6ca92487e84a7f4eab-1"&gt;&lt;/a&gt;.. toctree::
+&lt;a name="rest_code_04387214367b4e6ca92487e84a7f4eab-2"&gt;&lt;/a&gt;   :maxdepth: 3
+&lt;a name="rest_code_04387214367b4e6ca92487e84a7f4eab-3"&gt;&lt;/a&gt;   :caption: Contenido:
+&lt;a name="rest_code_04387214367b4e6ca92487e84a7f4eab-4"&gt;&lt;/a&gt;
+&lt;a name="rest_code_04387214367b4e6ca92487e84a7f4eab-5"&gt;&lt;/a&gt;   README
+&lt;a name="rest_code_04387214367b4e6ca92487e84a7f4eab-6"&gt;&lt;/a&gt;   installation
+&lt;a name="rest_code_04387214367b4e6ca92487e84a7f4eab-7"&gt;&lt;/a&gt;   usage
+&lt;a name="rest_code_04387214367b4e6ca92487e84a7f4eab-8"&gt;&lt;/a&gt;   api/modules
+&lt;a name="rest_code_04387214367b4e6ca92487e84a7f4eab-9"&gt;&lt;/a&gt;   concepts
+&lt;a name="rest_code_04387214367b4e6ca92487e84a7f4eab-10"&gt;&lt;/a&gt;   history
 &lt;/pre&gt;&lt;p&gt;Y podemos borrar las líneas posteriores de &lt;em&gt;Indices and tables&lt;/em&gt;.&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -1237,7 +1397,7 @@ información para que alguien pueda analizar o continuar un desarrollo.&lt;/p&gt
 &lt;h2&gt;Ejecución de Sphinx&lt;/h2&gt;
 &lt;p&gt;Como estamos haciendo uso de &lt;em&gt;autodoc&lt;/em&gt;, nuestro primer paso es generar la
 extracción de la API.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_ad663f2854d84eb28b6d016c7f849bed-1"&gt;&lt;/a&gt;sphinx-apidoc -f -M -o source/api/ ../proyecto
+&lt;pre class="code text"&gt;&lt;a name="rest_code_48d3a3660bda4805ac7ee4edcf46ab7b-1"&gt;&lt;/a&gt;sphinx-apidoc -f -M -o source/api/ ../proyecto
 &lt;/pre&gt;&lt;p&gt;Recordar que en Windows hay que agregar &lt;code&gt;.exe&lt;/code&gt;
 (&lt;code&gt;sphinx-apidoc.exe&lt;/code&gt;). &lt;code&gt;-f&lt;/code&gt; es para forzar la regeneración de los
 archivos (importante si actualizamos la documentación de la API), &lt;code&gt;-M&lt;/code&gt;
@@ -1256,69 +1416,4 @@ Windows. Aquí debemos devolvernos un nivel en la carpeta para ejecutarlo.&lt;/p
 el PDF que queremos. También puedes hacer compilación HTML (&lt;code&gt;make html&lt;/code&gt;)
 y usar esta para publicar como un &lt;a class="reference external" href="https://pages.github.com/"&gt;GitHub Pages&lt;/a&gt; o
 en &lt;a class="reference external" href="https://docs.readthedocs.io/en/stable/intro/getting-started-with-sphinx.html"&gt;ReadTheDocs&lt;/a&gt;.&lt;/p&gt;
-&lt;/div&gt;&lt;/div&gt;</description><category>anaconda</category><category>documentación</category><category>latex</category><category>linux</category><category>python</category><category>restructuredtext</category><category>sphinx</category><category>windows</category><guid>https://cosmoscalibur.github.io/blog/crear-documentacion-de-un-proyecto-python-con-sphinx/</guid><pubDate>Tue, 07 Jan 2020 00:24:48 GMT</pubDate></item><item><title>Usar Anaconda Python en Git Bash</title><link>https://cosmoscalibur.github.io/blog/usar-anaconda-python-en-git-bash/</link><dc:creator>Edward Villegas-Pulgarin</dc:creator><description>&lt;div&gt;&lt;p&gt;Recientemente, por motivos laborales he tenido que trabajar en Windows y es
-por esto que tuve la necesidad de buscar una opción cómoda de usar &lt;a class="reference external" href="https://git-scm.com/"&gt;Git&lt;/a&gt;
-en Windows, con soporte de &lt;a class="reference external" href="https://www.gnu.org/software/bash/"&gt;Bash&lt;/a&gt; a lo
-que estoy acostumbrado en Linux y con Python Anaconda reconocido. De alguna
-manera, la versión mínima de como usar Windows sin morir en el intento.&lt;/p&gt;
-&lt;!-- TEASER_END --&gt;
-&lt;div class="section" id="anaconda-python"&gt;
-&lt;h2&gt;Anaconda Python&lt;/h2&gt;
-&lt;p&gt;Lo primero es proceder a instalar Anaconda Python desde su sitio oficial, pero
-recomiendo revisar primero la necesidad real de tener todo lo incluido en
-Anaconda o usar algo minimalista como Miniconda. Anaconda representará una
-instalación y descarga de casi 500 MB, y por ende un mayor tiempo en ambos
-pasos. Por otro lado, Miniconda solo instala lo mínimo requerido para tener
-Python y el gestor de paquetes Conda. Esta última opción es recomendable si
-posees poco espacio en disco, deseas instalar rápidamente, solo deseas probar
-lo básico de Python o el equipo es de bajas características (recuerdo casos en
-los cuales mis estudiantes -épocas de docente- la sola instalación de Anaconda
-bloqueaba el equipo y lo reiniciaba).&lt;/p&gt;
-&lt;p&gt;Si usas Anaconda para tus proyectos de desarrollo y usando buenas prácticas,
-seguramente estarás acostumbrado a usar ambientes y en ese caso no necesitas
-tener tantas cosas en el base, siendo buena opción Miniconda también.&lt;/p&gt;
-&lt;p&gt;Descarga &lt;a class="reference external" href="https://www.anaconda.com/distribution/"&gt;Anaconda&lt;/a&gt; o
-&lt;a class="reference external" href="https://docs.conda.io/en/latest/miniconda.html"&gt;Miniconda&lt;/a&gt; según tu
-necesidad e instala como cualquier programa de Windows. Lo importante durante
-la instalación es indicar que sea solo para el usuario actual y que no se
-asocie el &lt;code&gt;PATH&lt;/code&gt;. Seguir este consejo les evitará dolores de cabeza en el
-futuro.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="git-bash"&gt;
-&lt;h2&gt;Git Bash&lt;/h2&gt;
-&lt;p&gt;Si bien puedes descargarlo desde el sitio del proyecto, aprovecharemos el
-gestor Conda para facilitar la tarea de descarga, instalación y configuración.&lt;/p&gt;
-&lt;p&gt;Abriremos Anaconda PowerShell o Anaconda Prompt, y ejecutaremos lo siguiente:&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_17ba4b20c42545d6bb1b28018247d22f-1"&gt;&lt;/a&gt;conda create -n gitbash -c conda-forge git=2.24.0
-&lt;/pre&gt;&lt;p&gt;Es importante el uso de &lt;code&gt;-c conda-forge&lt;/code&gt; porque de este canal vendrá la
-versión de Git que usaremos. Si se usa el canal por defecto, se instala solo el
-cliente de consola, mientras que en esta opción viene Git Bash. He indicado
-también el &lt;code&gt;-n gitbash&lt;/code&gt; para evitar posibles conflictos entre los
-paquetes requeridos para usar Git y los paquetes disponibles en el ambiente
-base. En alguna publicación posterior hablaré sobre Conda para profundizar en
-esto.&lt;/p&gt;
-&lt;p&gt;Una vez terminada la instalación, puedes abrir el menú de Windows y buscar Git
-Bash, el cual ya contará con Conda reconocido. Ahora solo debes empezar a
-usarlo, &lt;code&gt;conda activate base&lt;/code&gt;.&lt;/p&gt;
-&lt;div class="admonition note"&gt;
-&lt;p class="admonition-title"&gt;Nota&lt;/p&gt;
-&lt;p&gt;En este momento, nuestro ambiente por defecto será gitbash. Si instalas sin
-indicar el ambiente, tendrás el base por defecto habilitado pero con
-posibles conflictos.&lt;/p&gt;
-&lt;/div&gt;
-&lt;p&gt;¿Y qué pasa si ya teníamos instalado Git Bash? Git Bash soporta los archivos
-típicos de Bash, como el &lt;code&gt;bashrc&lt;/code&gt;. Así, podemos usar la configuración que
-habitualmente se usa en Linux.&lt;/p&gt;
-&lt;p&gt;Abrimos Git Bash, y ejecutamos:&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_c64f3177301643139f67ee663d8207e8-1"&gt;&lt;/a&gt;cd
-&lt;a name="rest_code_c64f3177301643139f67ee663d8207e8-2"&gt;&lt;/a&gt;echo ". /c/Users/USUARIO/ANACONDA/etc/profile.d/conda.sh" &amp;gt;&amp;gt; .bashrc
-&lt;a name="rest_code_c64f3177301643139f67ee663d8207e8-3"&gt;&lt;/a&gt;source .bashrc
-&lt;/pre&gt;&lt;p&gt;Con la primera línea aseguramos ir al directorio del usuario. En la segunda
-línea, crearemos o editaremos el archivo de configuración, pero debes
-reemplazar &lt;code&gt;USUARIO&lt;/code&gt; por la carpeta de tu usuario y &lt;code&gt;ANACONDA&lt;/code&gt; por
-la carpeta de Anaconda (habitualmente &lt;code&gt;Anaconda&lt;/code&gt; o &lt;code&gt;Miniconda3&lt;/code&gt; si
-usaste Miniconda). La tercera línea actualiza la configuración en la sesión
-actual de la consola permitiendo usar de forma inmediata Conda. Para la próxima
-apertura de Git Bash ya no tendrás que configurar nada, solo empezar a usar
-Conda (aún no hay ambiente activado).&lt;/p&gt;
-&lt;/div&gt;&lt;/div&gt;</description><category>anaconda</category><category>bash</category><category>git</category><category>python</category><category>windows</category><guid>https://cosmoscalibur.github.io/blog/usar-anaconda-python-en-git-bash/</guid><pubDate>Tue, 31 Dec 2019 19:43:50 GMT</pubDate></item></channel></rss>
+&lt;/div&gt;&lt;/div&gt;</description><category>anaconda</category><category>documentación</category><category>latex</category><category>linux</category><category>python</category><category>restructuredtext</category><category>sphinx</category><category>windows</category><guid>https://cosmoscalibur.github.io/blog/crear-documentacion-de-un-proyecto-python-con-sphinx/</guid><pubDate>Tue, 07 Jan 2020 00:24:48 GMT</pubDate></item></channel></rss>
