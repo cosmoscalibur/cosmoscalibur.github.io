@@ -15,13 +15,15 @@
 <meta content="Nikola (getnikola.com)" name="generator">
 <link href="../../en/rss.xml" rel="alternate" title="RSS (en)" type="application/rss+xml">
 <link href="../../rss.xml" rel="alternate" title="RSS (es)" type="application/rss+xml">
-<link href="https://cosmoscalibur.github.io/blog/crear-documentacion-de-un-proyecto-python-con-sphinx/" rel="canonical"><!--[if lt IE 9]><script src="https://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+<link href="https://www.cosmoscalibur.com/blog/crear-documentacion-de-un-proyecto-python-con-sphinx/" rel="canonical"><!--[if lt IE 9]><script src="https://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+<script async data-ad-client="ca-pub-0356238418278924" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js">
+</script>
 <meta content="Edward Villegas-Pulgarin" name="author">
 <link href="../usar-anaconda-python-en-git-bash/" rel="prev" title="Usar Anaconda Python en Git Bash" type="text/html">
 <link href="../estamos-preparados-para-un-nuevo-tipo-de-monedas-completamente-digitales/" rel="next" title="¿Estamos preparados para un nuevo tipo de monedas, completamente digitales?" type="text/html">
 <meta content="Cosmoscalibur" property="og:site_name">
 <meta content="Crear documentación de un proyecto Python con Sphinx." property="og:title">
-<meta content="https://cosmoscalibur.github.io/blog/crear-documentacion-de-un-proyecto-python-con-sphinx/" property="og:url">
+<meta content="https://www.cosmoscalibur.com/blog/crear-documentacion-de-un-proyecto-python-con-sphinx/" property="og:url">
 <meta content="Generación automática de documentación con Sphinx para un proyecto Python." property="og:description">
 <meta content="article" property="og:type">
 <meta content="2020-01-06T19:24:48-05:00" property="article:published_time">
@@ -34,8 +36,8 @@
 <meta content="sphinx" property="article:tag">
 <meta content="windows" property="article:tag">
 <meta content="summary" name="twitter:card">
-<meta content="@cosmoscalibur" name="twitter:site">
-<meta content="@edwardyvillegas" name="twitter:creator">
+<meta content="cosmoscalibur" name="twitter:site">
+<meta content="eyvillegasp" name="twitter:creator">
 </head>
 <body>
 <a class="sr-only sr-only-focusable" href="#content">Ir al contenido principal</a> <!-- Header and menu bar -->
@@ -47,11 +49,11 @@
 <form action="https://duckduckgo.com/" class="navbar-form pull-left" id="search" method="get" name="search"><input name="sites" type="hidden" value="https://www.cosmoscalibur.com/"><input name="k8" type="hidden" value="#444444"><input name="k9" type="hidden" value="#D51920"><input name="kt" type="hidden" value="h"><input class="span2" maxlength="255" name="q" placeholder="Search…" style="margin-top: 4px;" type="text"><input style="visibility: hidden;" type="submit" value="DuckDuckGo Search"></form>
 <!-- End of custom search --></div>
 </div>
-<div class="col-md-6 col-xs-10 col-sm-10 bootblog4-brand" style="width: auto;"><a class="navbar-brand blog-header-logo text-dark" href="https://cosmoscalibur.github.io/"><span id="blog-title">Cosmoscalibur</span></a></div>
+<div class="col-md-6 col-xs-10 col-sm-10 bootblog4-brand" style="width: auto;"><a class="navbar-brand blog-header-logo text-dark" href="https://www.cosmoscalibur.com/"><span id="blog-title">Cosmoscalibur</span></a></div>
 <div class="col-md-3 justify-content-end align-items-center bs-nav-collapsible collapse flex-collapse bootblog4-right-nav">
 <nav class="navbar navbar-light bg-white">
 <ul class="navbar-nav bootblog4-right-nav">
-<li class="nav-item"><a class="nav-link" href="https://cosmoscalibur.github.io/en/" hreflang="en" rel="alternate">English</a></li>
+<li class="nav-item"><a class="nav-link" href="https://www.cosmoscalibur.com/en/" hreflang="en" rel="alternate">English</a></li>
 </ul>
 </nav>
 </div>
@@ -102,8 +104,8 @@
 <dd>
 <p>En Linux usaremos TeXLive pero su instalación la haremos directamente del gestor de paquetes del sistema operativo. En la mayor parte de distribuciones Linux estará disponible a través del gestor.</p>
 <p>En el caso de las distribuciones basadas en Debian (Ubuntu y Linux Mint entre otras) puedes instalar de la siguiente manera:</p>
-<pre class="code text"><a id="rest_code_882c4e7f710a4f42b124687df3ea79d2-1" name="rest_code_882c4e7f710a4f42b124687df3ea79d2-1"></a>sudo apt install -y texlive texlive-latex-base texlive-latex-extra \
-<a id="rest_code_882c4e7f710a4f42b124687df3ea79d2-2" name="rest_code_882c4e7f710a4f42b124687df3ea79d2-2"></a>    texlive-lang-spanish latexmk
+<pre class="code text"><a id="rest_code_38bc2434b7eb4b77a977704df21f582f-1" name="rest_code_38bc2434b7eb4b77a977704df21f582f-1"></a>sudo apt install -y texlive texlive-latex-base texlive-latex-extra \
+<a id="rest_code_38bc2434b7eb4b77a977704df21f582f-2" name="rest_code_38bc2434b7eb4b77a977704df21f582f-2"></a>    texlive-lang-spanish latexmk
 </pre></dd>
 </dl>
 </div>
@@ -119,11 +121,11 @@
 <h2>Configuración de Sphinx</h2>
 <p>Abriremos una consola (si es Windows, debes tener en cuenta que para usar paquetes de Anaconda debes usar las consolas Anaconda Prompt, Anaconda PowerShell u otra si la configuraste -como el caso de Git Bash que mencioné en la sección anterior-) y debemos ubicarnos en el directorio que destinaremos para la documentación. Es habitual que en la estructura de nuestro proyecto destinemos un directorio <code>docs</code> para este fin.</p>
 <p>Ahora ejecutamos <code>sphinx-quickstart</code> y respondemos las preguntas que saldrán. Es necesario tener en cuenta, que si usas Windows debes agregar al comando la terminación <code>.exe</code>, ejemplo <code>sphinx-quickstart.exe</code>.</p>
-<pre class="code text"><a id="rest_code_44a79db38ffd474a8aed289d888a971e-1" name="rest_code_44a79db38ffd474a8aed289d888a971e-1"></a>&gt; Separate source and build directories (y/n) [n]: y
-<a id="rest_code_44a79db38ffd474a8aed289d888a971e-2" name="rest_code_44a79db38ffd474a8aed289d888a971e-2"></a>&gt; Project name: proyecto
-<a id="rest_code_44a79db38ffd474a8aed289d888a971e-3" name="rest_code_44a79db38ffd474a8aed289d888a971e-3"></a>&gt; Author name(s): Edward Villegas-Pulgarin
-<a id="rest_code_44a79db38ffd474a8aed289d888a971e-4" name="rest_code_44a79db38ffd474a8aed289d888a971e-4"></a>&gt; Project release []: 0.1.0
-<a id="rest_code_44a79db38ffd474a8aed289d888a971e-5" name="rest_code_44a79db38ffd474a8aed289d888a971e-5"></a>&gt; Project language [en]: es
+<pre class="code text"><a id="rest_code_7d4266f57b2e439492abd46c8b5a1e3a-1" name="rest_code_7d4266f57b2e439492abd46c8b5a1e3a-1"></a>&gt; Separate source and build directories (y/n) [n]: y
+<a id="rest_code_7d4266f57b2e439492abd46c8b5a1e3a-2" name="rest_code_7d4266f57b2e439492abd46c8b5a1e3a-2"></a>&gt; Project name: proyecto
+<a id="rest_code_7d4266f57b2e439492abd46c8b5a1e3a-3" name="rest_code_7d4266f57b2e439492abd46c8b5a1e3a-3"></a>&gt; Author name(s): Edward Villegas-Pulgarin
+<a id="rest_code_7d4266f57b2e439492abd46c8b5a1e3a-4" name="rest_code_7d4266f57b2e439492abd46c8b5a1e3a-4"></a>&gt; Project release []: 0.1.0
+<a id="rest_code_7d4266f57b2e439492abd46c8b5a1e3a-5" name="rest_code_7d4266f57b2e439492abd46c8b5a1e3a-5"></a>&gt; Project language [en]: es
 </pre>
 <p>Siempre recomiendo separar el directorio del código fuente de la documentación del directorio de compilados de la misma. Respecto al esquema de versiones me agrada el <cite>versionamiento semántico &lt;https://semver.org/&gt;</cite> que permite al usuario final intuir un poco más sobre la madurez del proyecto con el número, pero puedes usar el <cite>esquema basado en fecha de liberación &lt;https://calver.org/&gt;</cite>. En el lenguaje se especifica el lenguaje con el código a dos letras internacional, acorde a los <a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/configuration.html#confval-language">soportados por Sphinx</a>.</p>
 <p>Aunque en la terminal nos indican que podemos continuar con el archivo <code>index.rst</code>, debemos hacer unos pequeños cambios en el archivo <code>conf.py</code> que encontraremos en <code>docs/source</code>.</p>
@@ -132,48 +134,48 @@
 <h3>Extensiones</h3>
 <p>Recomiendo incluir la extensión de Autodoc para extraer automáticamente la documentación de la API, MathJax para el soporte de ecuaciones matemáticas en la versión Web y Napoleon para el estilo de Numpy y Google en la documentación. Con Coverage puedes validar que funciones se han documentado y dcotest integra pruebas de código desde la documentación (comparar salidas con ejemplo de documentación).</p>
 <p>Modificar en el archivo.</p>
-<pre class="code text"><a id="rest_code_7670a42e671e4210b0b4b634dcd728a9-1" name="rest_code_7670a42e671e4210b0b4b634dcd728a9-1"></a>extensions = [
-<a id="rest_code_7670a42e671e4210b0b4b634dcd728a9-2" name="rest_code_7670a42e671e4210b0b4b634dcd728a9-2"></a>    'sphinx.ext.autodoc',
-<a id="rest_code_7670a42e671e4210b0b4b634dcd728a9-3" name="rest_code_7670a42e671e4210b0b4b634dcd728a9-3"></a>    'sphinx.ext.mathjax',
-<a id="rest_code_7670a42e671e4210b0b4b634dcd728a9-4" name="rest_code_7670a42e671e4210b0b4b634dcd728a9-4"></a>    'sphinx.ext.napoleon',
-<a id="rest_code_7670a42e671e4210b0b4b634dcd728a9-5" name="rest_code_7670a42e671e4210b0b4b634dcd728a9-5"></a>    'sphinx.ext.coverage',
-<a id="rest_code_7670a42e671e4210b0b4b634dcd728a9-6" name="rest_code_7670a42e671e4210b0b4b634dcd728a9-6"></a>    'sphinx.ext.doctest'
-<a id="rest_code_7670a42e671e4210b0b4b634dcd728a9-7" name="rest_code_7670a42e671e4210b0b4b634dcd728a9-7"></a>]
+<pre class="code text"><a id="rest_code_7d5ccfe63a464edf84b3f34cb2672544-1" name="rest_code_7d5ccfe63a464edf84b3f34cb2672544-1"></a>extensions = [
+<a id="rest_code_7d5ccfe63a464edf84b3f34cb2672544-2" name="rest_code_7d5ccfe63a464edf84b3f34cb2672544-2"></a>    'sphinx.ext.autodoc',
+<a id="rest_code_7d5ccfe63a464edf84b3f34cb2672544-3" name="rest_code_7d5ccfe63a464edf84b3f34cb2672544-3"></a>    'sphinx.ext.mathjax',
+<a id="rest_code_7d5ccfe63a464edf84b3f34cb2672544-4" name="rest_code_7d5ccfe63a464edf84b3f34cb2672544-4"></a>    'sphinx.ext.napoleon',
+<a id="rest_code_7d5ccfe63a464edf84b3f34cb2672544-5" name="rest_code_7d5ccfe63a464edf84b3f34cb2672544-5"></a>    'sphinx.ext.coverage',
+<a id="rest_code_7d5ccfe63a464edf84b3f34cb2672544-6" name="rest_code_7d5ccfe63a464edf84b3f34cb2672544-6"></a>    'sphinx.ext.doctest'
+<a id="rest_code_7d5ccfe63a464edf84b3f34cb2672544-7" name="rest_code_7d5ccfe63a464edf84b3f34cb2672544-7"></a>]
 </pre></div>
 <div class="section" id="importar-paquete">
 <h3>Importar paquete</h3>
 <p>Para apoyarte de ejemplos actualizados automáticamente, uso de metadatos desde el código (ejemplo, el autor o la versión) puedes importar el paquete en el archivo de configuración. Dado que estarás en modo de desarrollo probablemente, el paquete no ha sido instalado y lo deberás hacer descomentando las tres primeras líneas de código en la sección de <em>Path setup</em>. El punto que hay por defecto indica la misma carpeta de <code>docs/source</code>, por lo cual es necesario reemplazar por <code>../..</code> que se devuelve los dos niveles necesarios.</p>
-<pre class="code text"><a id="rest_code_2501461dae57455890254f5771800df4-1" name="rest_code_2501461dae57455890254f5771800df4-1"></a>import os
-<a id="rest_code_2501461dae57455890254f5771800df4-2" name="rest_code_2501461dae57455890254f5771800df4-2"></a>import sys
-<a id="rest_code_2501461dae57455890254f5771800df4-3" name="rest_code_2501461dae57455890254f5771800df4-3"></a>import datetime
-<a id="rest_code_2501461dae57455890254f5771800df4-4" name="rest_code_2501461dae57455890254f5771800df4-4"></a>sys.path.insert(0, os.path.abspath('../..'))
-<a id="rest_code_2501461dae57455890254f5771800df4-5" name="rest_code_2501461dae57455890254f5771800df4-5"></a>import proyecto
+<pre class="code text"><a id="rest_code_52f722164a5348a7a74c654a31044400-1" name="rest_code_52f722164a5348a7a74c654a31044400-1"></a>import os
+<a id="rest_code_52f722164a5348a7a74c654a31044400-2" name="rest_code_52f722164a5348a7a74c654a31044400-2"></a>import sys
+<a id="rest_code_52f722164a5348a7a74c654a31044400-3" name="rest_code_52f722164a5348a7a74c654a31044400-3"></a>import datetime
+<a id="rest_code_52f722164a5348a7a74c654a31044400-4" name="rest_code_52f722164a5348a7a74c654a31044400-4"></a>sys.path.insert(0, os.path.abspath('../..'))
+<a id="rest_code_52f722164a5348a7a74c654a31044400-5" name="rest_code_52f722164a5348a7a74c654a31044400-5"></a>import proyecto
 </pre>
 <p>Ahora, puedes hacer cosas como la siguiente, si está disponible en tu código.</p>
-<pre class="code text"><a id="rest_code_52c27f82ccd649f9bb6a8982cdea61c9-1" name="rest_code_52c27f82ccd649f9bb6a8982cdea61c9-1"></a>author = proyecto.__author__
-<a id="rest_code_52c27f82ccd649f9bb6a8982cdea61c9-2" name="rest_code_52c27f82ccd649f9bb6a8982cdea61c9-2"></a>copyright = str(datetime.date.today().year) + ', ' + author
-<a id="rest_code_52c27f82ccd649f9bb6a8982cdea61c9-3" name="rest_code_52c27f82ccd649f9bb6a8982cdea61c9-3"></a>release = proyecto.__version__
+<pre class="code text"><a id="rest_code_9bf3a4d3e0634688aaa2c71c0f1d78b9-1" name="rest_code_9bf3a4d3e0634688aaa2c71c0f1d78b9-1"></a>author = proyecto.__author__
+<a id="rest_code_9bf3a4d3e0634688aaa2c71c0f1d78b9-2" name="rest_code_9bf3a4d3e0634688aaa2c71c0f1d78b9-2"></a>copyright = str(datetime.date.today().year) + ', ' + author
+<a id="rest_code_9bf3a4d3e0634688aaa2c71c0f1d78b9-3" name="rest_code_9bf3a4d3e0634688aaa2c71c0f1d78b9-3"></a>release = proyecto.__version__
 </pre></div>
 <div class="section" id="referencias-cruzadas">
 <h3>Referencias cruzadas</h3>
 <p>Para usar referencias cruzadas, es decir, numeración de tablas, figuras, códigos y ecuaciones si poseen pie de objeto, y ser referenciados en el texto por el número, se requiere configurar lo siguiente.</p>
-<pre class="code text"><a id="rest_code_4f3db5aae48f48b59c123a9da0626903-1" name="rest_code_4f3db5aae48f48b59c123a9da0626903-1"></a>numfig = True
-<a id="rest_code_4f3db5aae48f48b59c123a9da0626903-2" name="rest_code_4f3db5aae48f48b59c123a9da0626903-2"></a>numfig_format = {'figure': 'Fig. %s', 'table': 'Tabla %s',
-<a id="rest_code_4f3db5aae48f48b59c123a9da0626903-3" name="rest_code_4f3db5aae48f48b59c123a9da0626903-3"></a>                 'code-block': 'Código %s', 'section': 'Sección %s'}
-<a id="rest_code_4f3db5aae48f48b59c123a9da0626903-4" name="rest_code_4f3db5aae48f48b59c123a9da0626903-4"></a>numfig_secnum_depth = 1
-<a id="rest_code_4f3db5aae48f48b59c123a9da0626903-5" name="rest_code_4f3db5aae48f48b59c123a9da0626903-5"></a>math_numfig = True
-<a id="rest_code_4f3db5aae48f48b59c123a9da0626903-6" name="rest_code_4f3db5aae48f48b59c123a9da0626903-6"></a>math_eqref_format = 'Ec. {number}'
+<pre class="code text"><a id="rest_code_5522ebd6eeb14f80aca2b04ac819796d-1" name="rest_code_5522ebd6eeb14f80aca2b04ac819796d-1"></a>numfig = True
+<a id="rest_code_5522ebd6eeb14f80aca2b04ac819796d-2" name="rest_code_5522ebd6eeb14f80aca2b04ac819796d-2"></a>numfig_format = {'figure': 'Fig. %s', 'table': 'Tabla %s',
+<a id="rest_code_5522ebd6eeb14f80aca2b04ac819796d-3" name="rest_code_5522ebd6eeb14f80aca2b04ac819796d-3"></a>                 'code-block': 'Código %s', 'section': 'Sección %s'}
+<a id="rest_code_5522ebd6eeb14f80aca2b04ac819796d-4" name="rest_code_5522ebd6eeb14f80aca2b04ac819796d-4"></a>numfig_secnum_depth = 1
+<a id="rest_code_5522ebd6eeb14f80aca2b04ac819796d-5" name="rest_code_5522ebd6eeb14f80aca2b04ac819796d-5"></a>math_numfig = True
+<a id="rest_code_5522ebd6eeb14f80aca2b04ac819796d-6" name="rest_code_5522ebd6eeb14f80aca2b04ac819796d-6"></a>math_eqref_format = 'Ec. {number}'
 </pre>
 <p>Así, es posible usar <code>:label:</code> para asignar una referencia a los objetos y <code>:numref:</code> y <code>:eq:</code> a la hora de mencionarlos. Con <code>numfig_secnum_depth</code> configuras la numeración de los objetos, si es continúa (0), por sección (1) y subsección (2).</p>
 </div>
 <div class="section" id="id1">
 <h3>LaTeX</h3>
 <p>Hay una configuración básica para LaTeX que puedes agregar. El documento maestro, el nombre del archivo TeX, el nombre que nuestra documentación, el nombre del autor (que podemos usar la variable que ya definimos) y el tipo de documento (cuya clase <em>manual</em> está definida por Sphinx).</p>
-<pre class="code text"><a id="rest_code_b0486e3f49df4b81bd0d8d1e7436ffab-1" name="rest_code_b0486e3f49df4b81bd0d8d1e7436ffab-1"></a>master_doc = 'index'
-<a id="rest_code_b0486e3f49df4b81bd0d8d1e7436ffab-2" name="rest_code_b0486e3f49df4b81bd0d8d1e7436ffab-2"></a>latex_documents = [
-<a id="rest_code_b0486e3f49df4b81bd0d8d1e7436ffab-3" name="rest_code_b0486e3f49df4b81bd0d8d1e7436ffab-3"></a>    (master_doc, 'proyecto.tex', 'Documentación Proyecto',
-<a id="rest_code_b0486e3f49df4b81bd0d8d1e7436ffab-4" name="rest_code_b0486e3f49df4b81bd0d8d1e7436ffab-4"></a>     author, 'manual'),
-<a id="rest_code_b0486e3f49df4b81bd0d8d1e7436ffab-5" name="rest_code_b0486e3f49df4b81bd0d8d1e7436ffab-5"></a>]
+<pre class="code text"><a id="rest_code_69d7374860a44daeb88da2012ea43469-1" name="rest_code_69d7374860a44daeb88da2012ea43469-1"></a>master_doc = 'index'
+<a id="rest_code_69d7374860a44daeb88da2012ea43469-2" name="rest_code_69d7374860a44daeb88da2012ea43469-2"></a>latex_documents = [
+<a id="rest_code_69d7374860a44daeb88da2012ea43469-3" name="rest_code_69d7374860a44daeb88da2012ea43469-3"></a>    (master_doc, 'proyecto.tex', 'Documentación Proyecto',
+<a id="rest_code_69d7374860a44daeb88da2012ea43469-4" name="rest_code_69d7374860a44daeb88da2012ea43469-4"></a>     author, 'manual'),
+<a id="rest_code_69d7374860a44daeb88da2012ea43469-5" name="rest_code_69d7374860a44daeb88da2012ea43469-5"></a>]
 </pre></div>
 </div>
 <div class="section" id="escritura-en-restructuredtext">
@@ -185,16 +187,16 @@
 <h3>¿Qué archivos debo editar?</h3>
 <p>Primero, editaremos <code>docs/source/index.rst</code>, donde deberemos agregar los nombres de los archivos que se incluyen en la documentación, tanto los generados como los automáticos. Se agrega uno por línea, sin extensión y la posición es relativa a la ubicación del archivo <code>index.rst</code>.</p>
 <p>Te recomiendo siempre un archivo <code>README.rst</code> que fija la generalidad e intención del proyecto, <code>history.rst</code> para tener documentados los cambios entre versiones (como un <em>changelog</em> pero a mano, más condensado), un <code>usage.rst</code> documentando el uso de nuestro proyecto, <code>installation.rst</code> con instrucciones de instalación y adicional, agregar una ruta a la documentación de la API (la misma ruta la debemos indicar más adelante). Puedes agregar más archivos, por ejemplo, yo suelo usar un <code>concepts.rst</code> para detallar los conceptos necesarios antes de usar el software o detallar teoría que ayuda a interpretar resultados o que expande la información para que alguien pueda analizar o continuar un desarrollo.</p>
-<pre class="code text"><a id="rest_code_04387214367b4e6ca92487e84a7f4eab-1" name="rest_code_04387214367b4e6ca92487e84a7f4eab-1"></a>.. toctree::
-<a id="rest_code_04387214367b4e6ca92487e84a7f4eab-2" name="rest_code_04387214367b4e6ca92487e84a7f4eab-2"></a>   :maxdepth: 3
-<a id="rest_code_04387214367b4e6ca92487e84a7f4eab-3" name="rest_code_04387214367b4e6ca92487e84a7f4eab-3"></a>   :caption: Contenido:
-<a id="rest_code_04387214367b4e6ca92487e84a7f4eab-4" name="rest_code_04387214367b4e6ca92487e84a7f4eab-4"></a>
-<a id="rest_code_04387214367b4e6ca92487e84a7f4eab-5" name="rest_code_04387214367b4e6ca92487e84a7f4eab-5"></a>   README
-<a id="rest_code_04387214367b4e6ca92487e84a7f4eab-6" name="rest_code_04387214367b4e6ca92487e84a7f4eab-6"></a>   installation
-<a id="rest_code_04387214367b4e6ca92487e84a7f4eab-7" name="rest_code_04387214367b4e6ca92487e84a7f4eab-7"></a>   usage
-<a id="rest_code_04387214367b4e6ca92487e84a7f4eab-8" name="rest_code_04387214367b4e6ca92487e84a7f4eab-8"></a>   api/modules
-<a id="rest_code_04387214367b4e6ca92487e84a7f4eab-9" name="rest_code_04387214367b4e6ca92487e84a7f4eab-9"></a>   concepts
-<a id="rest_code_04387214367b4e6ca92487e84a7f4eab-10" name="rest_code_04387214367b4e6ca92487e84a7f4eab-10"></a>   history
+<pre class="code text"><a id="rest_code_045eb7ed3b744593a955b0bb86179c31-1" name="rest_code_045eb7ed3b744593a955b0bb86179c31-1"></a>.. toctree::
+<a id="rest_code_045eb7ed3b744593a955b0bb86179c31-2" name="rest_code_045eb7ed3b744593a955b0bb86179c31-2"></a>   :maxdepth: 3
+<a id="rest_code_045eb7ed3b744593a955b0bb86179c31-3" name="rest_code_045eb7ed3b744593a955b0bb86179c31-3"></a>   :caption: Contenido:
+<a id="rest_code_045eb7ed3b744593a955b0bb86179c31-4" name="rest_code_045eb7ed3b744593a955b0bb86179c31-4"></a>
+<a id="rest_code_045eb7ed3b744593a955b0bb86179c31-5" name="rest_code_045eb7ed3b744593a955b0bb86179c31-5"></a>   README
+<a id="rest_code_045eb7ed3b744593a955b0bb86179c31-6" name="rest_code_045eb7ed3b744593a955b0bb86179c31-6"></a>   installation
+<a id="rest_code_045eb7ed3b744593a955b0bb86179c31-7" name="rest_code_045eb7ed3b744593a955b0bb86179c31-7"></a>   usage
+<a id="rest_code_045eb7ed3b744593a955b0bb86179c31-8" name="rest_code_045eb7ed3b744593a955b0bb86179c31-8"></a>   api/modules
+<a id="rest_code_045eb7ed3b744593a955b0bb86179c31-9" name="rest_code_045eb7ed3b744593a955b0bb86179c31-9"></a>   concepts
+<a id="rest_code_045eb7ed3b744593a955b0bb86179c31-10" name="rest_code_045eb7ed3b744593a955b0bb86179c31-10"></a>   history
 </pre>
 <p>Y podemos borrar las líneas posteriores de <em>Indices and tables</em>.</p>
 </div>
@@ -202,7 +204,7 @@
 <div class="section" id="ejecucion-de-sphinx">
 <h2>Ejecución de Sphinx</h2>
 <p>Como estamos haciendo uso de <em>autodoc</em>, nuestro primer paso es generar la extracción de la API.</p>
-<pre class="code text"><a id="rest_code_48d3a3660bda4805ac7ee4edcf46ab7b-1" name="rest_code_48d3a3660bda4805ac7ee4edcf46ab7b-1"></a>sphinx-apidoc -f -M -o source/api/ ../proyecto
+<pre class="code text"><a id="rest_code_7c806a947a644caa8c860653fc1baf0d-1" name="rest_code_7c806a947a644caa8c860653fc1baf0d-1"></a>sphinx-apidoc -f -M -o source/api/ ../proyecto
 </pre>
 <p>Recordar que en Windows hay que agregar <code>.exe</code> (<code>sphinx-apidoc.exe</code>). <code>-f</code> es para forzar la regeneración de los archivos (importante si actualizamos la documentación de la API), <code>-M</code> para ubicar primero la documentación de los módulos (por defecto primero son las funciones, y esto no me parece natural). Luego, es la ruta para la documentación de la API (uno de los archivos será el <code>api/modules.rst</code>) y finalmente la ruta donde se encuentra el paquete. Ambas rutas son relativas al directorio de documentación.</p>
 <p>Ahora, solo es necesario generar la documentación: <code>make latexpdf</code> si es con el <em>Makefile</em> o <code>make.bat latexpdf</code> si no instalaste <em>make</em> en Windows. Aquí debemos devolvernos un nivel en la carpeta para ejecutarlo.</p>
@@ -236,7 +238,7 @@
 <div id="disqus_thread"></div>
 <script>
         var disqus_shortname ="cosmoscalibur",
-            disqus_url="https://cosmoscalibur.github.io/blog/crear-documentacion-de-un-proyecto-python-con-sphinx/",
+            disqus_url="https://www.cosmoscalibur.com/blog/crear-documentacion-de-un-proyecto-python-con-sphinx/",
         disqus_title="Crear documentaci\u00f3n de un proyecto Python con Sphinx.",
         disqus_identifier="cache/posts/crear-documentacion-de-un-proyecto-python-con-sphinx.html",
         disqus_config = function () {
@@ -281,9 +283,7 @@ var disqus_shortname="cosmoscalibur";(function(){var a=document.createElement("s
 
   gtag('config', 'UA-150354242-1');
 </script>
-<script async data-ad-client="ca-pub-0356238418278924" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js">
-</script>
-<script>
+<script async>
   window.fbAsyncInit = function() {
     FB.init({
       appId      : '595800477624602',
