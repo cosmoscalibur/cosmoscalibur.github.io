@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es" prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article#">
+<html lang="es" prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article# fb: http://ogp.me/ns/fb#">
 <head>
 <meta charset="utf-8">
 <meta content="Actualmente existen diversos mecanismos de instalación de software en Linux, sin requerir de conocimientos avanzados o procesos largos de instalación. Ejemplificaremos la instalación y uso de algunos gestores de paquetes y mecanismos de instalación en Linux Mint." name="description">
@@ -8,16 +8,13 @@
 <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" rel="stylesheet">
 <link crossorigin="anonymous" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.11.0/baguetteBox.min.css" integrity="sha256-cKiyvRKpm8RaTdU71Oq2RUVgvfWrdIXjvVdQF2oZ1Y4=" rel="stylesheet">
 <link href="../../assets/css/all.css" rel="stylesheet" type="text/css">
-<link href="../../assets/css/ipython.min.css" rel="stylesheet" type="text/css">
-<link href="../../assets/css/nikola_ipython.css" rel="stylesheet" type="text/css">
 <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900" rel="stylesheet">
 <meta content="#5670d4" name="theme-color">
 <meta content="Nikola (getnikola.com)" name="generator">
 <link href="../../en/rss.xml" rel="alternate" title="RSS (en)" type="application/rss+xml">
 <link href="../../rss.xml" rel="alternate" title="RSS (es)" type="application/rss+xml">
-<link href="https://www.cosmoscalibur.com/blog/instalando-paquetes-en-linux-mint/" rel="canonical"><!--[if lt IE 9]><script src="https://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-<script async data-ad-client="ca-pub-0356238418278924" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js">
-</script>
+<link href="https://www.cosmoscalibur.com/blog/instalando-paquetes-en-linux-mint/" rel="canonical">
+<meta content="595800477624602" property="fb:app_id"><!--[if lt IE 9]><script src="https://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
 <meta content="Edward Villegas-Pulgarin" name="author">
 <link href="../recuperar-el-arranque-de-tu-moto-g5-en-linux/" rel="prev" title="Recuperar el arranque de tu Moto G5 en Linux" type="text/html">
 <link href="../nos-atraemos-gravitacionalmente/" rel="next" title="¿Nos atraemos gravitacionalmente?" type="text/html">
@@ -77,7 +74,7 @@
 <div class="metadata">
 <p class="byline author vcard p-author h-card"><span class="byline-name fn p-name" itemprop="author">Edward Villegas-Pulgarin</span></p>
 <p class="dateline"><a href="." rel="bookmark"><time class="published dt-published" datetime="2019-10-22T20:21:34-05:00" itemprop="datePublished" title="2019-10-22 20:21">2019-10-22 20:21</time></a></p>
-<p class="commentline"><a data-disqus-identifier="cache/posts/instalando-paquetes-en-linux-mint.html" href="#disqus_thread">Comentarios</a></p>
+<p class="commentline"><span class="fb-comments-count" data-url="/blog/instalando-paquetes-en-linux-mint/"></span></p>
 </div>
 </header>
 <div class="e-content entry-content" itemprop="articleBody text">
@@ -93,8 +90,8 @@
 <p>La mayor parte de distribuciones Linux disponen de gestores de paquetes de <em>software</em>, que son herramientas para la búsqueda, descarga, instalación y configuración de estos. Los gestores se conectan a repositorios de paquetes oficiales que son mantenidos por los desarrollados de la distribución, asegurando que cumplan con estándares mínimos de compatibilidad y estabilidad.</p>
 <p>También, algunos gestores pueden conectar a repositorios mantenidos por la comunidad, dando la opción de extender el <em>software</em> disponible para instalación por los usuarios de una manera simple, pero a riesgo de inestabilidad o conflictos por la interacción con paquetes de los repositorios oficiales (no es general, pero suele ocurrir). Estos repositorios de comunidad los recomiendo como última opción.</p>
 <p>En Ubuntu y Linux Mint, tienes la opción de usar el Centro de Software (preinstalado) o Synaptic (preinstalado en Linux Mint), para realizar la gestión de manera gráfica. Pero también puedes usar <code>apt-get</code> o <code>apt</code> (recomendado) para la gestión a través de consola.</p>
-<pre class="code text"><a id="rest_code_7b5e291d5ee94a9ea07ea9d6f3dfde03-1" name="rest_code_7b5e291d5ee94a9ea07ea9d6f3dfde03-1"></a>sudo apt update -q
-<a id="rest_code_7b5e291d5ee94a9ea07ea9d6f3dfde03-2" name="rest_code_7b5e291d5ee94a9ea07ea9d6f3dfde03-2"></a>sudo apt install -y okular
+<pre class="code text"><a id="rest_code_32b99e346eab454d985183966ae7d118-1" name="rest_code_32b99e346eab454d985183966ae7d118-1"></a>sudo apt update -q
+<a id="rest_code_32b99e346eab454d985183966ae7d118-2" name="rest_code_32b99e346eab454d985183966ae7d118-2"></a>sudo apt install -y okular
 </pre>
 <p>Ahora dispones del lector de archivos PDF en tu sistema. Puedes accederlo por el menú o por comando (<code>okular</code>). La primera línea es recomendable para actualizar las direcciones desde las cuales se descarga el software y los metadatos para búsqueda. La segunda línea realiza la instalación sin solicitar confirmación.</p>
 </div>
@@ -104,13 +101,13 @@
 <p>Como el archivo ejecuta directamente, se pueden tener múltiples versiones del mismo programa. Esto, es por el aislamiento que posee, es un tipo de contenedor, tal como lo son las opciones de snap y flatpak, lo cual también evita conflictos en el sistema (programas que puedan requerir la misma dependencia pero en versiones diferentes, la dependencia no pueda gestionar múltiples instancias o exponga una brecha de seguridad).</p>
 <p>Usaremos Stellarium para dar un ejemplo, y puedes buscar en <a class="reference external" href="https://appimage.github.io">AppImageHub</a> para ver una colección de AppImage disponibles.</p>
 <p id="appimagecode">Descargamos el <a class="reference external" href="https://stellarium.org/">AppImage de Stellarium</a> del sitio oficial del software (el segundo pingüino).</p>
-<pre class="code text"><a id="rest_code_36ebda98759a4d1fbdea73bd809ec88f-1" name="rest_code_36ebda98759a4d1fbdea73bd809ec88f-1"></a>chmod 755 Stellarium-0.19.2-x86_64.AppImage
-<a id="rest_code_36ebda98759a4d1fbdea73bd809ec88f-2" name="rest_code_36ebda98759a4d1fbdea73bd809ec88f-2"></a>./Stellarium-0.19.2-x86_64.AppImage
+<pre class="code text"><a id="rest_code_11c615a0f38844dc85aeb01756319f46-1" name="rest_code_11c615a0f38844dc85aeb01756319f46-1"></a>chmod 755 Stellarium-0.19.2-x86_64.AppImage
+<a id="rest_code_11c615a0f38844dc85aeb01756319f46-2" name="rest_code_11c615a0f38844dc85aeb01756319f46-2"></a>./Stellarium-0.19.2-x86_64.AppImage
 </pre>
 <p>La primera línea solo es necesario ejecutarla la primera vez.</p>
 <p>Si queremos ejecutarlo de una manera más cómoda, podemos mover el archivo al directorio de ejecución de binarios del usuario o a uno de ejecución de sistema para estar disponible para todos los usuarios (<code>/usr/local/bin/</code>).</p>
-<pre class="code text"><a id="rest_code_2d058190b1984edcb40988fa5ad49f67-1" name="rest_code_2d058190b1984edcb40988fa5ad49f67-1"></a>mv Stellarium-0.19.2-x86_64.AppImage ~/.local/bin/stellarium
-<a id="rest_code_2d058190b1984edcb40988fa5ad49f67-2" name="rest_code_2d058190b1984edcb40988fa5ad49f67-2"></a>stellarium
+<pre class="code text"><a id="rest_code_edad9e00b8424e3e89c351229670d3c5-1" name="rest_code_edad9e00b8424e3e89c351229670d3c5-1"></a>mv Stellarium-0.19.2-x86_64.AppImage ~/.local/bin/stellarium
+<a id="rest_code_edad9e00b8424e3e89c351229670d3c5-2" name="rest_code_edad9e00b8424e3e89c351229670d3c5-2"></a>stellarium
 </pre>
 <p>Nuevamente, la primera línea es solo la primera vez.</p>
 </div>
@@ -118,11 +115,11 @@
 <h3>Snap</h3>
 <p>Los snap son el mecanismo de instalación promovido por Canonical (desarrolladores de Ubuntu). Sigue siendo un mecanismo centralizado, que requiere aprobación de Canonical para ser admitido el paquete y requiere ser administrador para la instalación.</p>
 <p>En Ubuntu viene preinstalado pero en Linux Mint es necesario instalarlo.</p>
-<pre class="code text"><a id="rest_code_c388cd34d2744736bd9029c8be86420c-1" name="rest_code_c388cd34d2744736bd9029c8be86420c-1"></a>sudo apt install -y snapd
+<pre class="code text"><a id="rest_code_bbe2a972f43a4c7fa8f70d760fb3c518-1" name="rest_code_bbe2a972f43a4c7fa8f70d760fb3c518-1"></a>sudo apt install -y snapd
 </pre>
 <p>Una vez instalado, podemos proceder a instalar un paquete snap.</p>
-<pre class="code text"><a id="rest_code_908bbed22f0444778d5ac62a7c3f3169-1" name="rest_code_908bbed22f0444778d5ac62a7c3f3169-1"></a>sudo snap install code --classic
-<a id="rest_code_908bbed22f0444778d5ac62a7c3f3169-2" name="rest_code_908bbed22f0444778d5ac62a7c3f3169-2"></a>snap run code # Ejecuta
+<pre class="code text"><a id="rest_code_ffd4e09eb9d64756a52c698e9f314f79-1" name="rest_code_ffd4e09eb9d64756a52c698e9f314f79-1"></a>sudo snap install code --classic
+<a id="rest_code_ffd4e09eb9d64756a52c698e9f314f79-2" name="rest_code_ffd4e09eb9d64756a52c698e9f314f79-2"></a>snap run code # Ejecuta
 </pre>
 <p>La ejecución con <code>snap run</code> es necesaria si tras instalar no reconoce el paquete. Después de la primera ejecución o tras abrir una nueva terminal o reiniciar el equipo, será ya reconocido el paquete sin problema para ejecutarse directamente con el nombre (<code>code</code>) o por el menú.</p>
 <p>Puedes buscar más paquetes en <a class="reference external" href="https://snapcraft.io/store">snapcraf</a></p>
@@ -131,19 +128,19 @@
 <h3>Flatpak</h3>
 <p>El caso de flatpak no es muy cómodo, tiene cierta centralización como snap, pero con fines de indexación. Un desarrollador puede crear su propio repositorio flatpak. Y al igual que AppImage, no requiere permisos de administrador.</p>
 <p>En Linux Mint viene preconfigurado a partir de la versión 18.3, pero si usas Ubuntu necesitas instalarlo. Desde la 18.10 se encuentra en los repositorios oficiales.</p>
-<pre class="code text"><a id="rest_code_e38bae4545d94d7ab2e6ddd271ece791-1" name="rest_code_e38bae4545d94d7ab2e6ddd271ece791-1"></a>sudo apt install flatpak
-<a id="rest_code_e38bae4545d94d7ab2e6ddd271ece791-2" name="rest_code_e38bae4545d94d7ab2e6ddd271ece791-2"></a>sudo apt install gnome-software-plugin-flatpak
-<a id="rest_code_e38bae4545d94d7ab2e6ddd271ece791-3" name="rest_code_e38bae4545d94d7ab2e6ddd271ece791-3"></a>flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+<pre class="code text"><a id="rest_code_ebc8c8266d0145009e4d83ce1f238ebf-1" name="rest_code_ebc8c8266d0145009e4d83ce1f238ebf-1"></a>sudo apt install flatpak
+<a id="rest_code_ebc8c8266d0145009e4d83ce1f238ebf-2" name="rest_code_ebc8c8266d0145009e4d83ce1f238ebf-2"></a>sudo apt install gnome-software-plugin-flatpak
+<a id="rest_code_ebc8c8266d0145009e4d83ce1f238ebf-3" name="rest_code_ebc8c8266d0145009e4d83ce1f238ebf-3"></a>flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 </pre>
 <p>La primera línea instala el gestor de flatpak. La segunda línea permite usar flatpak con el Centro de Software de Gnome. Y la tercera línea agrega el repositorio de paquetes flatpak más popular, <a class="reference external" href="https://flathub.org/home">flathub</a>.</p>
 <p>Para ejemplificar, instalaremos el paquete peek</p>
-<pre class="code text"><a id="rest_code_f5212afd9e0b495aa7c28e73ce9d0902-1" name="rest_code_f5212afd9e0b495aa7c28e73ce9d0902-1"></a>flatpak install -y flathub com.uploadedlobster.peek
-<a id="rest_code_f5212afd9e0b495aa7c28e73ce9d0902-2" name="rest_code_f5212afd9e0b495aa7c28e73ce9d0902-2"></a>flatpak run com.uploadedlobster.peek
+<pre class="code text"><a id="rest_code_95ff33bf09744125a761aafe786d208a-1" name="rest_code_95ff33bf09744125a761aafe786d208a-1"></a>flatpak install -y flathub com.uploadedlobster.peek
+<a id="rest_code_95ff33bf09744125a761aafe786d208a-2" name="rest_code_95ff33bf09744125a761aafe786d208a-2"></a>flatpak run com.uploadedlobster.peek
 </pre>
 <p>Desafortunadamente la ejecución es siempre así, pero puedes crear un archivo que te facilite la labor.</p>
-<pre class="code text"><a id="rest_code_5af4af28a026424e8e185f206424481c-1" name="rest_code_5af4af28a026424e8e185f206424481c-1"></a>echo "flatpak run com.uploadedlobster.peek" &gt; ~/.local/bin/peek
-<a id="rest_code_5af4af28a026424e8e185f206424481c-2" name="rest_code_5af4af28a026424e8e185f206424481c-2"></a>chmod 755 ~/.local/bin/peek
-<a id="rest_code_5af4af28a026424e8e185f206424481c-3" name="rest_code_5af4af28a026424e8e185f206424481c-3"></a>peek
+<pre class="code text"><a id="rest_code_7586880ad2d0422089c5b8b4beb3f828-1" name="rest_code_7586880ad2d0422089c5b8b4beb3f828-1"></a>echo "flatpak run com.uploadedlobster.peek" &gt; ~/.local/bin/peek
+<a id="rest_code_7586880ad2d0422089c5b8b4beb3f828-2" name="rest_code_7586880ad2d0422089c5b8b4beb3f828-2"></a>chmod 755 ~/.local/bin/peek
+<a id="rest_code_7586880ad2d0422089c5b8b4beb3f828-3" name="rest_code_7586880ad2d0422089c5b8b4beb3f828-3"></a>peek
 </pre>
 <p>A nivel gráfico, por defecto si es agregado al menú.</p>
 </div>
@@ -202,24 +199,58 @@
 </aside>
 <section class="comments hidden-print">
 <h2>Comentarios</h2>
-<div id="disqus_thread"></div>
+<div id="fb-root"></div>
 <script>
-        var disqus_shortname ="cosmoscalibur",
-            disqus_url="https://www.cosmoscalibur.com/blog/instalando-paquetes-en-linux-mint/",
-        disqus_title="Instalando paquetes en Linux (Mint)",
-        disqus_identifier="cache/posts/instalando-paquetes-en-linux-mint.html",
-        disqus_config = function () {
-            this.language = "es_ES";
-        };
-        (function() {
-            var dsq = document.createElement('script'); dsq.async = true;
-            dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
-            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-        })();
-</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript> <a class="dsq-brlink" href="https://disqus.com" rel="nofollow">Comments powered by <span class="logo-disqus">Disqus</span></a></section>
+  window.fbAsyncInit = function() {
+    // init the FB JS SDK
+    FB.init({
+      appId      : '595800477624602',
+      status     : true,
+      xfbml      : true
+    });
+
+  };
+
+  // Load the SDK asynchronously
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "https://connect.facebook.net/en_US/all.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
+<div class="fb-comments" data-href="https://www.cosmoscalibur.com/blog/instalando-paquetes-en-linux-mint/" data-width="470"></div>
+</section>
 </article>
+<div id="fb-root"></div>
 <script>
-var disqus_shortname="cosmoscalibur";(function(){var a=document.createElement("script");a.async=true;a.src="https://"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());
+    // thank lxml for this
+    $('.fb-comments-count').each(function(i, obj) {
+        var url = obj.attributes['data-url'].value;
+        // change here if you dislike the default way of displaying
+        // this
+        obj.innerHTML = '<fb:comments-count href="' + url + '"><\/fb:comments-count> comments';
+    });
+
+  window.fbAsyncInit = function() {
+    // init the FB JS SDK
+    FB.init({
+      appId      : '595800477624602',
+      status     : true,
+      xfbml      : true
+    });
+
+  };
+
+  // Load the SDK asynchronously
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "https://connect.facebook.net/en_US/all.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
 </script><!--End of body content-->
 <footer id="footer">Contents © 2020 <a href="mailto:cosmoscalibur@gmail.com">Edward Villegas Pulgarin</a> - Powered by <a href="https://getnikola.com" rel="nofollow">Nikola</a> <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="license"><img alt="Creative Commons License BY-NC-SA" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" style="border-width:0; margin-bottom:12px;"></a></footer>
 </div>

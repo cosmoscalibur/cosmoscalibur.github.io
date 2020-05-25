@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es" prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article#">
+<html lang="es" prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article# fb: http://ogp.me/ns/fb#">
 <head>
 <meta charset="utf-8">
 <meta content="width=device-width, initial-scale=1" name="viewport">
@@ -7,16 +7,13 @@
 <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" rel="stylesheet">
 <link crossorigin="anonymous" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.11.0/baguetteBox.min.css" integrity="sha256-cKiyvRKpm8RaTdU71Oq2RUVgvfWrdIXjvVdQF2oZ1Y4=" rel="stylesheet">
 <link href="../../assets/css/all.css" rel="stylesheet" type="text/css">
-<link href="../../assets/css/ipython.min.css" rel="stylesheet" type="text/css">
-<link href="../../assets/css/nikola_ipython.css" rel="stylesheet" type="text/css">
 <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900" rel="stylesheet">
 <meta content="#5670d4" name="theme-color">
 <meta content="Nikola (getnikola.com)" name="generator">
 <link href="../../en/rss.xml" rel="alternate" title="RSS (en)" type="application/rss+xml">
 <link href="../../rss.xml" rel="alternate" title="RSS (es)" type="application/rss+xml">
-<link href="https://www.cosmoscalibur.com/categories/caos/" rel="canonical"><!--[if lt IE 9]><script src="https://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-<script async data-ad-client="ca-pub-0356238418278924" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js">
-</script>
+<link href="https://www.cosmoscalibur.com/categories/caos/" rel="canonical">
+<meta content="595800477624602" property="fb:app_id"><!--[if lt IE 9]><script src="https://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
 <link href="../caos.xml" hreflang="es" rel="alternate" title="RSS for tag caos (es)" type="application/rss+xml">
 </head>
 <body>
@@ -64,7 +61,7 @@
 <div class="metadata">
 <p class="byline author vcard"><span class="byline-name fn" itemprop="author">Edward Villegas-Pulgarin</span></p>
 <p class="dateline"><a href="../../blog/caos/" rel="bookmark"><time class="published dt-published" datetime="2011-02-21T00:21:00-05:00" itemprop="datePublished" title="2011-02-21 00:21">2011-02-21 00:21</time> <span class="updated">(updated <time class="dt-updated" datetime="2020-03-29T19:30:00-05:00" itemprop="dateUpdated" title="2020-03-29 19:30">2020-03-29 19:30</time>)</span></a></p>
-<p class="commentline"><a data-disqus-identifier="cache/posts/caos.html" href="../../blog/caos/#disqus_thread">Comentarios</a></p>
+<p class="commentline"><span class="fb-comments-count" data-url="/blog/caos/"></span></p>
 </div>
 </header>
 <div class="p-summary entry-summary">
@@ -80,8 +77,34 @@
 </div>
 </article>
 </div>
+<div id="fb-root"></div>
 <script>
-var disqus_shortname="cosmoscalibur";(function(){var a=document.createElement("script");a.async=true;a.src="https://"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());
+    // thank lxml for this
+    $('.fb-comments-count').each(function(i, obj) {
+        var url = obj.attributes['data-url'].value;
+        // change here if you dislike the default way of displaying
+        // this
+        obj.innerHTML = '<fb:comments-count href="' + url + '"><\/fb:comments-count> comments';
+    });
+
+  window.fbAsyncInit = function() {
+    // init the FB JS SDK
+    FB.init({
+      appId      : '595800477624602',
+      status     : true,
+      xfbml      : true
+    });
+
+  };
+
+  // Load the SDK asynchronously
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "https://connect.facebook.net/en_US/all.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
 </script><!--End of body content-->
 <footer id="footer">Contents © 2020 <a href="mailto:cosmoscalibur@gmail.com">Edward Villegas Pulgarin</a> - Powered by <a href="https://getnikola.com" rel="nofollow">Nikola</a> <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="license"><img alt="Creative Commons License BY-NC-SA" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" style="border-width:0; margin-bottom:12px;"></a></footer>
 </div>

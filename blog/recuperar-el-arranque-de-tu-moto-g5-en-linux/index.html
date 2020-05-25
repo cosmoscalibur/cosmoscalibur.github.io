@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es" prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article#">
+<html lang="es" prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article# fb: http://ogp.me/ns/fb#">
 <head>
 <meta charset="utf-8">
 <meta content="Procedimiento y recursos para la recuperación del celular Moto G5 después de un soft brick, reinstalando android mediante fastboot en Linux." name="description">
@@ -8,16 +8,13 @@
 <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" rel="stylesheet">
 <link crossorigin="anonymous" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.11.0/baguetteBox.min.css" integrity="sha256-cKiyvRKpm8RaTdU71Oq2RUVgvfWrdIXjvVdQF2oZ1Y4=" rel="stylesheet">
 <link href="../../assets/css/all.css" rel="stylesheet" type="text/css">
-<link href="../../assets/css/ipython.min.css" rel="stylesheet" type="text/css">
-<link href="../../assets/css/nikola_ipython.css" rel="stylesheet" type="text/css">
 <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900" rel="stylesheet">
 <meta content="#5670d4" name="theme-color">
 <meta content="Nikola (getnikola.com)" name="generator">
 <link href="../../en/rss.xml" rel="alternate" title="RSS (en)" type="application/rss+xml">
 <link href="../../rss.xml" rel="alternate" title="RSS (es)" type="application/rss+xml">
-<link href="https://www.cosmoscalibur.com/blog/recuperar-el-arranque-de-tu-moto-g5-en-linux/" rel="canonical"><!--[if lt IE 9]><script src="https://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-<script async data-ad-client="ca-pub-0356238418278924" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js">
-</script>
+<link href="https://www.cosmoscalibur.com/blog/recuperar-el-arranque-de-tu-moto-g5-en-linux/" rel="canonical">
+<meta content="595800477624602" property="fb:app_id"><!--[if lt IE 9]><script src="https://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
 <meta content="Edward Villegas-Pulgarin" name="author">
 <link href="../audiolibros-con-overdrive-y-biblioteca-epm/" rel="prev" title="Audiolibros con Overdrive y Biblioteca EPM" type="text/html">
 <link href="../instalando-paquetes-en-linux-mint/" rel="next" title="Instalando paquetes en Linux (Mint)" type="text/html">
@@ -78,7 +75,7 @@
 <div class="metadata">
 <p class="byline author vcard p-author h-card"><span class="byline-name fn p-name" itemprop="author">Edward Villegas-Pulgarin</span></p>
 <p class="dateline"><a href="." rel="bookmark"><time class="published dt-published" datetime="2019-10-21T19:10:34-05:00" itemprop="datePublished" title="2019-10-21 19:10">2019-10-21 19:10</time></a></p>
-<p class="commentline"><a data-disqus-identifier="cache/posts/recuperar-el-arranque-de-tu-moto-g5-en-linux.html" href="#disqus_thread">Comentarios</a></p>
+<p class="commentline"><span class="fb-comments-count" data-url="/blog/recuperar-el-arranque-de-tu-moto-g5-en-linux/"></span></p>
 </div>
 </header>
 <div class="e-content entry-content" itemprop="articleBody text">
@@ -91,8 +88,8 @@
 <h2>Instalación de herramientas Android</h2>
 <p>Nuestro primer paso es la instalación de las herramientas de software o paquetes que necesitaremos para rescatar nuestro equipo. Este paso puede ser realizado con la ayuda de los gestores de paquete de nuestra distribución Linux pero por lo mismo dependerá de cual usemos.</p>
 <p>En mi caso, uso Linux Mint 19, una distribución que es derivada de Ubuntu 18.04, compartiendo mucho de la base de paquetes en sus repositorios. Así, en ambos casos, podremos proceder a instalar de la misma manera el SDK de Android, ADB, Fastboot y Platform Tools.</p>
-<pre class="code text"><a id="rest_code_faa6031bc083487a898b7d8ec786ba4f-1" name="rest_code_faa6031bc083487a898b7d8ec786ba4f-1"></a>sudo apt install -y android-sdk android-tools-fastboot android-tools-adb \
-<a id="rest_code_faa6031bc083487a898b7d8ec786ba4f-2" name="rest_code_faa6031bc083487a898b7d8ec786ba4f-2"></a>android-sdk-platform-tools
+<pre class="code text"><a id="rest_code_3fbad3baa8474c2c810a2ace2585d5a1-1" name="rest_code_3fbad3baa8474c2c810a2ace2585d5a1-1"></a>sudo apt install -y android-sdk android-tools-fastboot android-tools-adb \
+<a id="rest_code_3fbad3baa8474c2c810a2ace2585d5a1-2" name="rest_code_3fbad3baa8474c2c810a2ace2585d5a1-2"></a>android-sdk-platform-tools
 </pre></div>
 <div class="section" id="descargar-rom-de-fabrica">
 <h2>Descargar <em>ROM</em> de fábrica</h2>
@@ -116,45 +113,45 @@
 </ol>
 <p>En este momento, hemos ingresado al modo <em>fastboot</em> (o <em>bootloader</em>). Conectamos el cable USB tanto al celular como a nuestro computador.</p>
 <p>Podemos probar que todo vaya bien abriendo una terminal y ejecutando</p>
-<pre class="code text"><a id="rest_code_892f4d4318b3446eba4a5495b46b4c41-1" name="rest_code_892f4d4318b3446eba4a5495b46b4c41-1"></a>fastboot devices
+<pre class="code text"><a id="rest_code_872168085e40411db49db6c2ee65c04e-1" name="rest_code_872168085e40411db49db6c2ee65c04e-1"></a>fastboot devices
 </pre>
 <p>Y sabremos que funciona si muestra una secuencia alfanumérica y luego la palabra <em>fastboot</em>. En mi caso es:</p>
-<pre class="code text"><a id="rest_code_9ea70bbe2ca34fc9be09ccf5a86ebcf5-1" name="rest_code_9ea70bbe2ca34fc9be09ccf5a86ebcf5-1"></a>ZY3224RNMN   fastboot
+<pre class="code text"><a id="rest_code_9568f0ee879e4bd181a55c3a54d0f7d8-1" name="rest_code_9568f0ee879e4bd181a55c3a54d0f7d8-1"></a>ZY3224RNMN   fastboot
 </pre>
 <p>Algunas veces puede fallar por permisos, en cuyo caso deberías probar la ejecución con permiso de administrador.</p>
-<pre class="code text"><a id="rest_code_2b9bb5f2b7c74e0889dc5cdbcab8134b-1" name="rest_code_2b9bb5f2b7c74e0889dc5cdbcab8134b-1"></a>sudo fastboot devices
+<pre class="code text"><a id="rest_code_96afa092c7c544dcb2362a0be72e659e-1" name="rest_code_96afa092c7c544dcb2362a0be72e659e-1"></a>sudo fastboot devices
 </pre></div>
 <div class="section" id="instalar-sistema-operativo">
 <h2>Instalar sistema operativo</h2>
 <p>Finalmente, necesitamos instalar el sistema operativo. Vamos a requerir de abrir una terminal y ubicarla en el directorio donde descomprimimos el sistema operativo (algunos exploradores de archivos admiten poseen la opción de abrir la terminal en el directorio abierto en el explorador o puedes moverte en la terminal con el comando <code>cd</code>).</p>
 <p>Una vez ubicados en el directorio desde la terminal, procedemos a ejecutar</p>
-<pre class="code text"><a id="rest_code_09e777b81e574ffc9ff0c320b7eec45f-1" name="rest_code_09e777b81e574ffc9ff0c320b7eec45f-1"></a>fastboot getvar max-sparse-size
-<a id="rest_code_09e777b81e574ffc9ff0c320b7eec45f-2" name="rest_code_09e777b81e574ffc9ff0c320b7eec45f-2"></a>fastboot oem fb_mode_set
-<a id="rest_code_09e777b81e574ffc9ff0c320b7eec45f-3" name="rest_code_09e777b81e574ffc9ff0c320b7eec45f-3"></a>fastboot flash partition gpt.bin
-<a id="rest_code_09e777b81e574ffc9ff0c320b7eec45f-4" name="rest_code_09e777b81e574ffc9ff0c320b7eec45f-4"></a>fastboot flash bootloader bootloader.img
-<a id="rest_code_09e777b81e574ffc9ff0c320b7eec45f-5" name="rest_code_09e777b81e574ffc9ff0c320b7eec45f-5"></a>fastboot flash modem NON-HLOS.bin
-<a id="rest_code_09e777b81e574ffc9ff0c320b7eec45f-6" name="rest_code_09e777b81e574ffc9ff0c320b7eec45f-6"></a>fastboot flash fsg fsg.mbn
-<a id="rest_code_09e777b81e574ffc9ff0c320b7eec45f-7" name="rest_code_09e777b81e574ffc9ff0c320b7eec45f-7"></a>fastboot erase modemst1
-<a id="rest_code_09e777b81e574ffc9ff0c320b7eec45f-8" name="rest_code_09e777b81e574ffc9ff0c320b7eec45f-8"></a>fastboot erase modemst2
-<a id="rest_code_09e777b81e574ffc9ff0c320b7eec45f-9" name="rest_code_09e777b81e574ffc9ff0c320b7eec45f-9"></a>fastboot flash dsp adspso.bin
-<a id="rest_code_09e777b81e574ffc9ff0c320b7eec45f-10" name="rest_code_09e777b81e574ffc9ff0c320b7eec45f-10"></a>fastboot flash logo logo.bin
-<a id="rest_code_09e777b81e574ffc9ff0c320b7eec45f-11" name="rest_code_09e777b81e574ffc9ff0c320b7eec45f-11"></a>fastboot flash boot boot.img
-<a id="rest_code_09e777b81e574ffc9ff0c320b7eec45f-12" name="rest_code_09e777b81e574ffc9ff0c320b7eec45f-12"></a>fastboot flash recovery recovery.img
-<a id="rest_code_09e777b81e574ffc9ff0c320b7eec45f-13" name="rest_code_09e777b81e574ffc9ff0c320b7eec45f-13"></a>fastboot flash system system.img_sparsechunk.0
-<a id="rest_code_09e777b81e574ffc9ff0c320b7eec45f-14" name="rest_code_09e777b81e574ffc9ff0c320b7eec45f-14"></a>fastboot flash system system.img_sparsechunk.1
-<a id="rest_code_09e777b81e574ffc9ff0c320b7eec45f-15" name="rest_code_09e777b81e574ffc9ff0c320b7eec45f-15"></a>fastboot flash system system.img_sparsechunk.2
-<a id="rest_code_09e777b81e574ffc9ff0c320b7eec45f-16" name="rest_code_09e777b81e574ffc9ff0c320b7eec45f-16"></a>fastboot flash system system.img_sparsechunk.3
-<a id="rest_code_09e777b81e574ffc9ff0c320b7eec45f-17" name="rest_code_09e777b81e574ffc9ff0c320b7eec45f-17"></a>fastboot flash system system.img_sparsechunk.4
-<a id="rest_code_09e777b81e574ffc9ff0c320b7eec45f-18" name="rest_code_09e777b81e574ffc9ff0c320b7eec45f-18"></a>fastboot flash system system.img_sparsechunk.5
-<a id="rest_code_09e777b81e574ffc9ff0c320b7eec45f-19" name="rest_code_09e777b81e574ffc9ff0c320b7eec45f-19"></a>fastboot flash system system.img_sparsechunk.6
-<a id="rest_code_09e777b81e574ffc9ff0c320b7eec45f-20" name="rest_code_09e777b81e574ffc9ff0c320b7eec45f-20"></a>fastboot flash system system.img_sparsechunk.7
-<a id="rest_code_09e777b81e574ffc9ff0c320b7eec45f-21" name="rest_code_09e777b81e574ffc9ff0c320b7eec45f-21"></a>fastboot flash system system.img_sparsechunk.8
-<a id="rest_code_09e777b81e574ffc9ff0c320b7eec45f-22" name="rest_code_09e777b81e574ffc9ff0c320b7eec45f-22"></a>fastboot flash oem oem.img
-<a id="rest_code_09e777b81e574ffc9ff0c320b7eec45f-23" name="rest_code_09e777b81e574ffc9ff0c320b7eec45f-23"></a>fastboot erase cache
-<a id="rest_code_09e777b81e574ffc9ff0c320b7eec45f-24" name="rest_code_09e777b81e574ffc9ff0c320b7eec45f-24"></a>fastboot erase userdata
-<a id="rest_code_09e777b81e574ffc9ff0c320b7eec45f-25" name="rest_code_09e777b81e574ffc9ff0c320b7eec45f-25"></a>fastboot erase DDR
-<a id="rest_code_09e777b81e574ffc9ff0c320b7eec45f-26" name="rest_code_09e777b81e574ffc9ff0c320b7eec45f-26"></a>fastboot oem fb_mode_clear
-<a id="rest_code_09e777b81e574ffc9ff0c320b7eec45f-27" name="rest_code_09e777b81e574ffc9ff0c320b7eec45f-27"></a>fastboot reboot
+<pre class="code text"><a id="rest_code_3090b468e87140008fd332ad7f869a97-1" name="rest_code_3090b468e87140008fd332ad7f869a97-1"></a>fastboot getvar max-sparse-size
+<a id="rest_code_3090b468e87140008fd332ad7f869a97-2" name="rest_code_3090b468e87140008fd332ad7f869a97-2"></a>fastboot oem fb_mode_set
+<a id="rest_code_3090b468e87140008fd332ad7f869a97-3" name="rest_code_3090b468e87140008fd332ad7f869a97-3"></a>fastboot flash partition gpt.bin
+<a id="rest_code_3090b468e87140008fd332ad7f869a97-4" name="rest_code_3090b468e87140008fd332ad7f869a97-4"></a>fastboot flash bootloader bootloader.img
+<a id="rest_code_3090b468e87140008fd332ad7f869a97-5" name="rest_code_3090b468e87140008fd332ad7f869a97-5"></a>fastboot flash modem NON-HLOS.bin
+<a id="rest_code_3090b468e87140008fd332ad7f869a97-6" name="rest_code_3090b468e87140008fd332ad7f869a97-6"></a>fastboot flash fsg fsg.mbn
+<a id="rest_code_3090b468e87140008fd332ad7f869a97-7" name="rest_code_3090b468e87140008fd332ad7f869a97-7"></a>fastboot erase modemst1
+<a id="rest_code_3090b468e87140008fd332ad7f869a97-8" name="rest_code_3090b468e87140008fd332ad7f869a97-8"></a>fastboot erase modemst2
+<a id="rest_code_3090b468e87140008fd332ad7f869a97-9" name="rest_code_3090b468e87140008fd332ad7f869a97-9"></a>fastboot flash dsp adspso.bin
+<a id="rest_code_3090b468e87140008fd332ad7f869a97-10" name="rest_code_3090b468e87140008fd332ad7f869a97-10"></a>fastboot flash logo logo.bin
+<a id="rest_code_3090b468e87140008fd332ad7f869a97-11" name="rest_code_3090b468e87140008fd332ad7f869a97-11"></a>fastboot flash boot boot.img
+<a id="rest_code_3090b468e87140008fd332ad7f869a97-12" name="rest_code_3090b468e87140008fd332ad7f869a97-12"></a>fastboot flash recovery recovery.img
+<a id="rest_code_3090b468e87140008fd332ad7f869a97-13" name="rest_code_3090b468e87140008fd332ad7f869a97-13"></a>fastboot flash system system.img_sparsechunk.0
+<a id="rest_code_3090b468e87140008fd332ad7f869a97-14" name="rest_code_3090b468e87140008fd332ad7f869a97-14"></a>fastboot flash system system.img_sparsechunk.1
+<a id="rest_code_3090b468e87140008fd332ad7f869a97-15" name="rest_code_3090b468e87140008fd332ad7f869a97-15"></a>fastboot flash system system.img_sparsechunk.2
+<a id="rest_code_3090b468e87140008fd332ad7f869a97-16" name="rest_code_3090b468e87140008fd332ad7f869a97-16"></a>fastboot flash system system.img_sparsechunk.3
+<a id="rest_code_3090b468e87140008fd332ad7f869a97-17" name="rest_code_3090b468e87140008fd332ad7f869a97-17"></a>fastboot flash system system.img_sparsechunk.4
+<a id="rest_code_3090b468e87140008fd332ad7f869a97-18" name="rest_code_3090b468e87140008fd332ad7f869a97-18"></a>fastboot flash system system.img_sparsechunk.5
+<a id="rest_code_3090b468e87140008fd332ad7f869a97-19" name="rest_code_3090b468e87140008fd332ad7f869a97-19"></a>fastboot flash system system.img_sparsechunk.6
+<a id="rest_code_3090b468e87140008fd332ad7f869a97-20" name="rest_code_3090b468e87140008fd332ad7f869a97-20"></a>fastboot flash system system.img_sparsechunk.7
+<a id="rest_code_3090b468e87140008fd332ad7f869a97-21" name="rest_code_3090b468e87140008fd332ad7f869a97-21"></a>fastboot flash system system.img_sparsechunk.8
+<a id="rest_code_3090b468e87140008fd332ad7f869a97-22" name="rest_code_3090b468e87140008fd332ad7f869a97-22"></a>fastboot flash oem oem.img
+<a id="rest_code_3090b468e87140008fd332ad7f869a97-23" name="rest_code_3090b468e87140008fd332ad7f869a97-23"></a>fastboot erase cache
+<a id="rest_code_3090b468e87140008fd332ad7f869a97-24" name="rest_code_3090b468e87140008fd332ad7f869a97-24"></a>fastboot erase userdata
+<a id="rest_code_3090b468e87140008fd332ad7f869a97-25" name="rest_code_3090b468e87140008fd332ad7f869a97-25"></a>fastboot erase DDR
+<a id="rest_code_3090b468e87140008fd332ad7f869a97-26" name="rest_code_3090b468e87140008fd332ad7f869a97-26"></a>fastboot oem fb_mode_clear
+<a id="rest_code_3090b468e87140008fd332ad7f869a97-27" name="rest_code_3090b468e87140008fd332ad7f869a97-27"></a>fastboot reboot
 </pre>
 <p>Muy bien, hemos terminado de instalar (si no hemos tenido ejecuciones fallidas). Para iniciar el celular, con la tecla de volumen buscamos <em>restart</em> y luego presionamos el botón de encendido. En este momento, es como si estuviera nuevo el celular, por lo que tardará unos minutos que inicie.</p>
 </div>
@@ -200,24 +197,58 @@
 </aside>
 <section class="comments hidden-print">
 <h2>Comentarios</h2>
-<div id="disqus_thread"></div>
+<div id="fb-root"></div>
 <script>
-        var disqus_shortname ="cosmoscalibur",
-            disqus_url="https://www.cosmoscalibur.com/blog/recuperar-el-arranque-de-tu-moto-g5-en-linux/",
-        disqus_title="Recuperar el arranque de tu Moto G5 en Linux",
-        disqus_identifier="cache/posts/recuperar-el-arranque-de-tu-moto-g5-en-linux.html",
-        disqus_config = function () {
-            this.language = "es_ES";
-        };
-        (function() {
-            var dsq = document.createElement('script'); dsq.async = true;
-            dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
-            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-        })();
-</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript> <a class="dsq-brlink" href="https://disqus.com" rel="nofollow">Comments powered by <span class="logo-disqus">Disqus</span></a></section>
+  window.fbAsyncInit = function() {
+    // init the FB JS SDK
+    FB.init({
+      appId      : '595800477624602',
+      status     : true,
+      xfbml      : true
+    });
+
+  };
+
+  // Load the SDK asynchronously
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "https://connect.facebook.net/en_US/all.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
+<div class="fb-comments" data-href="https://www.cosmoscalibur.com/blog/recuperar-el-arranque-de-tu-moto-g5-en-linux/" data-width="470"></div>
+</section>
 </article>
+<div id="fb-root"></div>
 <script>
-var disqus_shortname="cosmoscalibur";(function(){var a=document.createElement("script");a.async=true;a.src="https://"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());
+    // thank lxml for this
+    $('.fb-comments-count').each(function(i, obj) {
+        var url = obj.attributes['data-url'].value;
+        // change here if you dislike the default way of displaying
+        // this
+        obj.innerHTML = '<fb:comments-count href="' + url + '"><\/fb:comments-count> comments';
+    });
+
+  window.fbAsyncInit = function() {
+    // init the FB JS SDK
+    FB.init({
+      appId      : '595800477624602',
+      status     : true,
+      xfbml      : true
+    });
+
+  };
+
+  // Load the SDK asynchronously
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "https://connect.facebook.net/en_US/all.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
 </script><!--End of body content-->
 <footer id="footer">Contents © 2020 <a href="mailto:cosmoscalibur@gmail.com">Edward Villegas Pulgarin</a> - Powered by <a href="https://getnikola.com" rel="nofollow">Nikola</a> <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="license"><img alt="Creative Commons License BY-NC-SA" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" style="border-width:0; margin-bottom:12px;"></a></footer>
 </div>

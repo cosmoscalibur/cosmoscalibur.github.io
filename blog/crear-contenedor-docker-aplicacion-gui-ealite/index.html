@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es" prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article#">
+<html lang="es" prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article# fb: http://ogp.me/ns/fb#">
 <head>
 <meta charset="utf-8">
 <meta content="Crearemos un contenedor Docker para lanzar una aplicación gráfica, en este caso Enterprise Architect Viewer (EALite)." name="description">
@@ -8,16 +8,13 @@
 <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" rel="stylesheet">
 <link crossorigin="anonymous" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.11.0/baguetteBox.min.css" integrity="sha256-cKiyvRKpm8RaTdU71Oq2RUVgvfWrdIXjvVdQF2oZ1Y4=" rel="stylesheet">
 <link href="../../assets/css/all.css" rel="stylesheet" type="text/css">
-<link href="../../assets/css/ipython.min.css" rel="stylesheet" type="text/css">
-<link href="../../assets/css/nikola_ipython.css" rel="stylesheet" type="text/css">
 <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900" rel="stylesheet">
 <meta content="#5670d4" name="theme-color">
 <meta content="Nikola (getnikola.com)" name="generator">
 <link href="../../en/rss.xml" rel="alternate" title="RSS (en)" type="application/rss+xml">
 <link href="../../rss.xml" rel="alternate" title="RSS (es)" type="application/rss+xml">
-<link href="https://www.cosmoscalibur.com/blog/crear-contenedor-docker-aplicacion-gui-ealite/" rel="canonical"><!--[if lt IE 9]><script src="https://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-<script async data-ad-client="ca-pub-0356238418278924" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js">
-</script>
+<link href="https://www.cosmoscalibur.com/blog/crear-contenedor-docker-aplicacion-gui-ealite/" rel="canonical">
+<meta content="595800477624602" property="fb:app_id"><!--[if lt IE 9]><script src="https://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
 <meta content="Edward Villegas-Pulgarin" name="author">
 <link href="../crear-contenedor-lxc-para-aplicacion-gui-ealite/" rel="prev" title="Crear contenedor LXC para aplicación GUI - EALite" type="text/html">
 <link href="../usar-anaconda-python-en-git-bash/" rel="next" title="Usar Anaconda Python en Git Bash" type="text/html">
@@ -75,7 +72,7 @@
 <div class="metadata">
 <p class="byline author vcard p-author h-card"><span class="byline-name fn p-name" itemprop="author">Edward Villegas-Pulgarin</span></p>
 <p class="dateline"><a href="." rel="bookmark"><time class="published dt-published" datetime="2019-11-22T21:47:22-05:00" itemprop="datePublished" title="2019-11-22 21:47">2019-11-22 21:47</time></a></p>
-<p class="commentline"><a data-disqus-identifier="cache/posts/crear-contenedor-docker-aplicacion-gui-ealite.html" href="#disqus_thread">Comentarios</a></p>
+<p class="commentline"><span class="fb-comments-count" data-url="/blog/crear-contenedor-docker-aplicacion-gui-ealite/"></span></p>
 </div>
 </header>
 <div class="e-content entry-content" itemprop="articleBody text">
@@ -87,12 +84,12 @@
 <div class="section" id="instalar-docker">
 <h2>Instalar Docker</h2>
 <p>Recomiendo en Linux instalar docker con snap.</p>
-<pre class="code text"><a id="rest_code_ec5d6d60cb524cf4bf7adb4bddd9518f-1" name="rest_code_ec5d6d60cb524cf4bf7adb4bddd9518f-1"></a>sudo snap install docker
+<pre class="code text"><a id="rest_code_58cfd4d59b404a6795a6837c4f8778d0-1" name="rest_code_58cfd4d59b404a6795a6837c4f8778d0-1"></a>sudo snap install docker
 </pre>
 <p>Posteriormente, podemos asociar nuestro usuario para la ejecución sin ser administrador.</p>
-<pre class="code text"><a id="rest_code_a9f2e186e2204f6290c5ec556ecdef04-1" name="rest_code_a9f2e186e2204f6290c5ec556ecdef04-1"></a>sudo groupadd docker
-<a id="rest_code_a9f2e186e2204f6290c5ec556ecdef04-2" name="rest_code_a9f2e186e2204f6290c5ec556ecdef04-2"></a>sudo usermod -aG docker $USER
-<a id="rest_code_a9f2e186e2204f6290c5ec556ecdef04-3" name="rest_code_a9f2e186e2204f6290c5ec556ecdef04-3"></a>newgrp docker
+<pre class="code text"><a id="rest_code_b5d75e7e202743baaf302055c089b302-1" name="rest_code_b5d75e7e202743baaf302055c089b302-1"></a>sudo groupadd docker
+<a id="rest_code_b5d75e7e202743baaf302055c089b302-2" name="rest_code_b5d75e7e202743baaf302055c089b302-2"></a>sudo usermod -aG docker $USER
+<a id="rest_code_b5d75e7e202743baaf302055c089b302-3" name="rest_code_b5d75e7e202743baaf302055c089b302-3"></a>newgrp docker
 </pre>
 <p>Puedes probar ejecutando como usuario regular, <code>docker run hello-world</code>.</p>
 </div>
@@ -111,34 +108,34 @@
 <div class="admonition note">
 <p class="admonition-title">Nota</p>
 <p>El directorio que moveremos se genero en el contenedor LXC que construimos en <a class="reference external" href="../crear-contenedor-lxc-para-aplicacion-gui-ealite/">Crear contenedor LXC para aplicación GUI - EALite</a>. Para ello, iniciamos el contenedor y extraemos el directorio.</p>
-<pre class="code text"><a id="rest_code_9fead2e4de90447da3a266d9d15d6773-1" name="rest_code_9fead2e4de90447da3a266d9d15d6773-1"></a>sudo lxc start ea
-<a id="rest_code_9fead2e4de90447da3a266d9d15d6773-2" name="rest_code_9fead2e4de90447da3a266d9d15d6773-2"></a>sudo lxc file pull -r ea/home/ubuntu/.wine .
+<pre class="code text"><a id="rest_code_08a5d7e05419469a9bf40e628d7f4b14-1" name="rest_code_08a5d7e05419469a9bf40e628d7f4b14-1"></a>sudo lxc start ea
+<a id="rest_code_08a5d7e05419469a9bf40e628d7f4b14-2" name="rest_code_08a5d7e05419469a9bf40e628d7f4b14-2"></a>sudo lxc file pull -r ea/home/ubuntu/.wine .
 </pre></div>
 <p>Con <code>USER</code> cambiamos el usuario que ejecuta los procesos. Es importante que a la hora de concluir, si un proceso es ejecutado por un usuario regular, nuestro último cambio de usuario debe apuntar a él, de otra forma el contenedor estará activo para el usuario administrador. Otro aspecto importante es el comportamiento por defecto en Linux, donde puede crear el usuario si no existe (pero no el directorio de usuario).</p>
 <p>Finalmente, es necesario indicar que se ejecuta cuando se lanza el contenedor. Esto es posible con <code>CMD</code> o con <code>ENTRYPOINT</code>. La diferencia es que el primero permite sobreescribir la ejecución enviando como parámetro lo que se desea ejecutar, mientras que la segunda opción solo ejecuta la configurada.</p>
-<pre class="code text"><a id="rest_code_a18d0aa8dc6c4a3ba7c9eef6e59515bb-1" name="rest_code_a18d0aa8dc6c4a3ba7c9eef6e59515bb-1"></a># escape=`
-<a id="rest_code_a18d0aa8dc6c4a3ba7c9eef6e59515bb-2" name="rest_code_a18d0aa8dc6c4a3ba7c9eef6e59515bb-2"></a>FROM i386/ubuntu:18.04
-<a id="rest_code_a18d0aa8dc6c4a3ba7c9eef6e59515bb-3" name="rest_code_a18d0aa8dc6c4a3ba7c9eef6e59515bb-3"></a>RUN apt update -q &amp;& apt install --install-recommends -y wine-stable
-<a id="rest_code_a18d0aa8dc6c4a3ba7c9eef6e59515bb-4" name="rest_code_a18d0aa8dc6c4a3ba7c9eef6e59515bb-4"></a>RUN apt install -y fonts-crosextra-carlito
-<a id="rest_code_a18d0aa8dc6c4a3ba7c9eef6e59515bb-5" name="rest_code_a18d0aa8dc6c4a3ba7c9eef6e59515bb-5"></a>RUN useradd -ms /bin/bash ubuntu
-<a id="rest_code_a18d0aa8dc6c4a3ba7c9eef6e59515bb-6" name="rest_code_a18d0aa8dc6c4a3ba7c9eef6e59515bb-6"></a>WORKDIR /home/ubuntu
-<a id="rest_code_a18d0aa8dc6c4a3ba7c9eef6e59515bb-7" name="rest_code_a18d0aa8dc6c4a3ba7c9eef6e59515bb-7"></a>COPY .wine .wine
-<a id="rest_code_a18d0aa8dc6c4a3ba7c9eef6e59515bb-8" name="rest_code_a18d0aa8dc6c4a3ba7c9eef6e59515bb-8"></a>RUN chown -R ubuntu .wine
-<a id="rest_code_a18d0aa8dc6c4a3ba7c9eef6e59515bb-9" name="rest_code_a18d0aa8dc6c4a3ba7c9eef6e59515bb-9"></a>USER ubuntu
-<a id="rest_code_a18d0aa8dc6c4a3ba7c9eef6e59515bb-10" name="rest_code_a18d0aa8dc6c4a3ba7c9eef6e59515bb-10"></a>RUN mkdir -p .local/bin &amp;& `
-<a id="rest_code_a18d0aa8dc6c4a3ba7c9eef6e59515bb-11" name="rest_code_a18d0aa8dc6c4a3ba7c9eef6e59515bb-11"></a>        echo "wine $HOME/.wine/drive_c/Program\ Files/Sparx\ Systems/EA\ LITE/EA.exe" &gt; .local/bin/ealite &amp;& `
-<a id="rest_code_a18d0aa8dc6c4a3ba7c9eef6e59515bb-12" name="rest_code_a18d0aa8dc6c4a3ba7c9eef6e59515bb-12"></a>        chmod 755 .local/bin/ealite
-<a id="rest_code_a18d0aa8dc6c4a3ba7c9eef6e59515bb-13" name="rest_code_a18d0aa8dc6c4a3ba7c9eef6e59515bb-13"></a>CMD ".local/bin/ealite"
+<pre class="code text"><a id="rest_code_24131e2fa7d345d3b41defb1d9a0a0f7-1" name="rest_code_24131e2fa7d345d3b41defb1d9a0a0f7-1"></a># escape=`
+<a id="rest_code_24131e2fa7d345d3b41defb1d9a0a0f7-2" name="rest_code_24131e2fa7d345d3b41defb1d9a0a0f7-2"></a>FROM i386/ubuntu:18.04
+<a id="rest_code_24131e2fa7d345d3b41defb1d9a0a0f7-3" name="rest_code_24131e2fa7d345d3b41defb1d9a0a0f7-3"></a>RUN apt update -q &amp;& apt install --install-recommends -y wine-stable
+<a id="rest_code_24131e2fa7d345d3b41defb1d9a0a0f7-4" name="rest_code_24131e2fa7d345d3b41defb1d9a0a0f7-4"></a>RUN apt install -y fonts-crosextra-carlito
+<a id="rest_code_24131e2fa7d345d3b41defb1d9a0a0f7-5" name="rest_code_24131e2fa7d345d3b41defb1d9a0a0f7-5"></a>RUN useradd -ms /bin/bash ubuntu
+<a id="rest_code_24131e2fa7d345d3b41defb1d9a0a0f7-6" name="rest_code_24131e2fa7d345d3b41defb1d9a0a0f7-6"></a>WORKDIR /home/ubuntu
+<a id="rest_code_24131e2fa7d345d3b41defb1d9a0a0f7-7" name="rest_code_24131e2fa7d345d3b41defb1d9a0a0f7-7"></a>COPY .wine .wine
+<a id="rest_code_24131e2fa7d345d3b41defb1d9a0a0f7-8" name="rest_code_24131e2fa7d345d3b41defb1d9a0a0f7-8"></a>RUN chown -R ubuntu .wine
+<a id="rest_code_24131e2fa7d345d3b41defb1d9a0a0f7-9" name="rest_code_24131e2fa7d345d3b41defb1d9a0a0f7-9"></a>USER ubuntu
+<a id="rest_code_24131e2fa7d345d3b41defb1d9a0a0f7-10" name="rest_code_24131e2fa7d345d3b41defb1d9a0a0f7-10"></a>RUN mkdir -p .local/bin &amp;& `
+<a id="rest_code_24131e2fa7d345d3b41defb1d9a0a0f7-11" name="rest_code_24131e2fa7d345d3b41defb1d9a0a0f7-11"></a>        echo "wine $HOME/.wine/drive_c/Program\ Files/Sparx\ Systems/EA\ LITE/EA.exe" &gt; .local/bin/ealite &amp;& `
+<a id="rest_code_24131e2fa7d345d3b41defb1d9a0a0f7-12" name="rest_code_24131e2fa7d345d3b41defb1d9a0a0f7-12"></a>        chmod 755 .local/bin/ealite
+<a id="rest_code_24131e2fa7d345d3b41defb1d9a0a0f7-13" name="rest_code_24131e2fa7d345d3b41defb1d9a0a0f7-13"></a>CMD ".local/bin/ealite"
 </pre></div>
 <div class="section" id="construir-imagen-docker">
 <h2>Construir imagen Docker</h2>
 <p>La construcción la realizamos con la opción <code>build</code>. Se usa el argumento <code>-t</code> para indicar la etiqueta que asignaremos a la imagen y <code>-f</code> para relacionar la ruta del archivo dockerfile que se usará. El siguiente argumento no posee marca para indicarlo y corresponde al contexto, que viene a ser la ruta donde se encuentran los archivos que usaremos (que puede ser reemplazado por un archivo de contexto con la ruta a los distintos archivos).</p>
-<pre class="code text"><a id="rest_code_e9b8488dadb44e06b5b55409af77a8d8-1" name="rest_code_e9b8488dadb44e06b5b55409af77a8d8-1"></a>docker build -t cosmoscalibur/ealite:latest -f dockerfile .
+<pre class="code text"><a id="rest_code_75a522f75ad5445ca8e12bdbb72caefb-1" name="rest_code_75a522f75ad5445ca8e12bdbb72caefb-1"></a>docker build -t cosmoscalibur/ealite:latest -f dockerfile .
 </pre></div>
 <div class="section" id="ejecutar-contenedor">
 <h2>Ejecutar contenedor</h2>
 <p>Ahora puedes lanzar un contenedor gráfico basado en la imagen construida con la siguiente instrucción.</p>
-<pre class="code text"><a id="rest_code_0cbd7f17cd2245ac866beef0c8f86105-1" name="rest_code_0cbd7f17cd2245ac866beef0c8f86105-1"></a>docker run --net=host --env="DISPLAY" --volume="$HOME/.Xauthority:/root/.Xauthority:rw" cosmoscalibur/ealite:latest
+<pre class="code text"><a id="rest_code_9bb685c9db1a4aad84bc49fb67af4c03-1" name="rest_code_9bb685c9db1a4aad84bc49fb67af4c03-1"></a>docker run --net=host --env="DISPLAY" --volume="$HOME/.Xauthority:/root/.Xauthority:rw" cosmoscalibur/ealite:latest
 </pre></div>
 <div class="section" id="referencias">
 <h2>Referencias</h2>
@@ -177,24 +174,58 @@
 </aside>
 <section class="comments hidden-print">
 <h2>Comentarios</h2>
-<div id="disqus_thread"></div>
+<div id="fb-root"></div>
 <script>
-        var disqus_shortname ="cosmoscalibur",
-            disqus_url="https://www.cosmoscalibur.com/blog/crear-contenedor-docker-aplicacion-gui-ealite/",
-        disqus_title="Crear contenedor Docker aplicaci\u00f3n GUI - EALite",
-        disqus_identifier="cache/posts/crear-contenedor-docker-aplicacion-gui-ealite.html",
-        disqus_config = function () {
-            this.language = "es_ES";
-        };
-        (function() {
-            var dsq = document.createElement('script'); dsq.async = true;
-            dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
-            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-        })();
-</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript> <a class="dsq-brlink" href="https://disqus.com" rel="nofollow">Comments powered by <span class="logo-disqus">Disqus</span></a></section>
+  window.fbAsyncInit = function() {
+    // init the FB JS SDK
+    FB.init({
+      appId      : '595800477624602',
+      status     : true,
+      xfbml      : true
+    });
+
+  };
+
+  // Load the SDK asynchronously
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "https://connect.facebook.net/en_US/all.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
+<div class="fb-comments" data-href="https://www.cosmoscalibur.com/blog/crear-contenedor-docker-aplicacion-gui-ealite/" data-width="470"></div>
+</section>
 </article>
+<div id="fb-root"></div>
 <script>
-var disqus_shortname="cosmoscalibur";(function(){var a=document.createElement("script");a.async=true;a.src="https://"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());
+    // thank lxml for this
+    $('.fb-comments-count').each(function(i, obj) {
+        var url = obj.attributes['data-url'].value;
+        // change here if you dislike the default way of displaying
+        // this
+        obj.innerHTML = '<fb:comments-count href="' + url + '"><\/fb:comments-count> comments';
+    });
+
+  window.fbAsyncInit = function() {
+    // init the FB JS SDK
+    FB.init({
+      appId      : '595800477624602',
+      status     : true,
+      xfbml      : true
+    });
+
+  };
+
+  // Load the SDK asynchronously
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "https://connect.facebook.net/en_US/all.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
 </script><!--End of body content-->
 <footer id="footer">Contents © 2020 <a href="mailto:cosmoscalibur@gmail.com">Edward Villegas Pulgarin</a> - Powered by <a href="https://getnikola.com" rel="nofollow">Nikola</a> <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="license"><img alt="Creative Commons License BY-NC-SA" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" style="border-width:0; margin-bottom:12px;"></a></footer>
 </div>
