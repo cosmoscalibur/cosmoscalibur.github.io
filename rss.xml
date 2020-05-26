@@ -3,7 +3,139 @@
 &lt;a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"&gt;
 &lt;img alt="Creative Commons License BY-NC-SA"
 style="border-width:0; margin-bottom:12px;"
-src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"&gt;&lt;/a&gt;</copyright><lastBuildDate>Tue, 26 May 2020 21:23:07 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Usar la cámara de tu celular como webcam</title><link>https://www.cosmoscalibur.com/blog/usar-la-camara-de-tu-celular-como-webcam/</link><dc:creator>Edward Villegas-Pulgarin</dc:creator><description>&lt;div&gt;&lt;p&gt;Con la nueva normalidad que vivimos alrededor de la virtualidad, el uso de
+src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"&gt;&lt;/a&gt;</copyright><lastBuildDate>Tue, 26 May 2020 21:52:05 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Reformas del blog: Parte 1</title><link>https://www.cosmoscalibur.com/blog/reformas-del-blog-parte-1/</link><dc:creator>Edward Villegas-Pulgarin</dc:creator><description>&lt;div&gt;&lt;p&gt;Bueno, he estado en múltiples ocasiones por escribir sobre mantener un blog, y
+hoy fue el caso, pero centrado en unas actualizaciones que he hecho para
+mejorar la experiencia de los lectores que usan su celular y deben soportar
+altos tiempos de carga y una alta descarga en imágenes cuando las contiene.&lt;/p&gt;
+&lt;p&gt;Esto puede no ser válido para todos, pero resulta de mi experiencia particular
+y, bajo la condición de tener un sitio generado de forma estática con Nikola
+y alojado en GitHub. He planteado parte 1 porque pretendo hacer unas reformas
+adicionales más adelante.&lt;/p&gt;
+&lt;!-- TEASER_END --&gt;
+&lt;div class="section" id="pagespeed"&gt;
+&lt;h2&gt;PageSpeed&lt;/h2&gt;
+&lt;p&gt;Antes que nada esto surge porque estuve haciendo seguimiento a las métricas de
+la herramienta PageSpeed [&lt;a class="reference internal" href="https://www.cosmoscalibur.com/blog/reformas-del-blog-parte-1/#ps"&gt;ps&lt;/a&gt;] que ofrece Google integrada a su plataforma de
+Analytics (puedes usar de forma local con Lighthouse [&lt;a class="reference internal" href="https://www.cosmoscalibur.com/blog/reformas-del-blog-parte-1/#lh"&gt;lh&lt;/a&gt;]). El análisis
+entrega no solo métricas sino también algunas recomendaciones y por ello
+procedí a ponerme en ello (dado que la mayor parte de mis lectores usan su
+celular).&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="sistema-de-comentarios"&gt;
+&lt;h2&gt;Sistema de comentarios&lt;/h2&gt;
+&lt;p&gt;Si bien pensar en una forma de interacción directa con los lectores del blog
+es importante, se debe evaluar en el tiempo su impacto. En el caso de mi blog,
+la cantidad de comentarios durante su historia lo hace despreciable cuando
+contrasto con la penalización en el tiempo de carga que ha introducido el
+sistema de comentarios.&lt;/p&gt;
+&lt;p&gt;Disqus [&lt;a class="reference internal" href="https://www.cosmoscalibur.com/blog/reformas-del-blog-parte-1/#dqs"&gt;dqs&lt;/a&gt;] es un sistema de comentarios importante, permite socializar y asocia un
+perfil de los lectores y los generadores de contenido, lo cual permite también
+generar tráfico, pero en mi caso tampoco representa una fuente de tráfico
+importante ni de una contribución que quiera considerar.&lt;/p&gt;
+&lt;p&gt;Esto me llevó inicialmente a pensar en eliminar el sistema de comentarios,
+pero también cuando veo como las publicaciones pueden tener mayor impacto en
+redes sociales y que Facebook ofrece su sistema de comentarios [&lt;a class="reference internal" href="https://www.cosmoscalibur.com/blog/reformas-del-blog-parte-1/#fb-comments"&gt;fb-comments&lt;/a&gt;],
+no veo descabellado cambiar. La mayor parte de mis lectores poseen Facebook y
+el tráfico a razón de Facebook hoy es el mayor entre las fuentes de tráfico
+sociales y puede potenciarse al incluir la opción de compartir el comentario
+con Facebook (enlazando automáticamente el enlace la publicación).&lt;/p&gt;
+&lt;iframe style="width:120px;height:240px;" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" src="//ws-na.amazon-adsystem.com/widgets/q?ServiceVersion=20070822&amp;amp;OneJS=1&amp;amp;Operation=GetAdHtml&amp;amp;MarketPlace=US&amp;amp;source=ss&amp;amp;ref=as_ss_li_til&amp;amp;ad_type=product_link&amp;amp;tracking_id=cosmoscalibur-20&amp;amp;language=es_US&amp;amp;marketplace=amazon&amp;amp;region=US&amp;amp;placement=B07QWLXCC7&amp;amp;asins=B07QWLXCC7&amp;amp;linkId=ec8263fe9f13222ede56df34878a1743&amp;amp;show_border=true&amp;amp;link_opens_in_new_window=true"&gt;&lt;/iframe&gt;&lt;p&gt;Con estos cambios el bloqueo por el sistema de comentarios pasó de 800 ms a
+400 ms, en promedio.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="publicidad"&gt;
+&lt;h2&gt;Publicidad&lt;/h2&gt;
+&lt;p&gt;El blog no ha tenido publicidad, pero hace un tiempo he venido revisando el
+tema de monetizar el blog. La idea es hacerlo de una forma no invasiva pero
+sin muchas complicaciones para mi también.&lt;/p&gt;
+&lt;p&gt;Es así como Google AdSense [&lt;a class="reference internal" href="https://www.cosmoscalibur.com/blog/reformas-del-blog-parte-1/#gads"&gt;gads&lt;/a&gt;] por sus procesos de validación y la
+penalización que he sufrido en tiempo de carga por la adición en el código no
+me parece prudente. Adicional, no puedo asegurar que la publicidad mostrada
+sea realmente acorde al blog (así pueda serlo para el lector).&lt;/p&gt;
+&lt;p&gt;Por ello, he decido probar las opciones estáticas del programa de asociados de
+Amazon [&lt;a class="reference internal" href="https://www.cosmoscalibur.com/blog/reformas-del-blog-parte-1/#amz"&gt;amz&lt;/a&gt;]. No hay generación dinámica, ni selección de la posición óptima
+de la publicidad, pero puedo decidir que promocionar en mis publicaciones,
+ubicarla donde considere que no afecta la lectura o que genere confusión y que
+además aporte realmente al lector que llega a mi publicación (por ejemplo,
+recomendando un libro sobre el tema de la publicación).&lt;/p&gt;
+&lt;p&gt;Es posible que no sea permanente, pero quiero probarlo. El programa de
+asociados también tiene unos tiempos máximos permitiendo publicidad sin
+generar conversiones.&lt;/p&gt;
+&lt;p&gt;Con este cambio, el bloqueo por la presentación de publicidad pasó de 350 ms
+a menos de 40 ms.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="imagenes"&gt;
+&lt;h2&gt;Imágenes&lt;/h2&gt;
+&lt;p&gt;Con el fin de reducir la descarga y tiempo asociado a las imágenes, decidí
+respaldar imágenes en el repositorio y usar la opción de thumbnail de Nikola
+[&lt;a class="reference internal" href="https://www.cosmoscalibur.com/blog/reformas-del-blog-parte-1/#thumb"&gt;thumb&lt;/a&gt;]. Esto permite usar una versión de tamaño reducido para los artículos
+pero que vincula a la imagen original (la cual puedo optimizar también).&lt;/p&gt;
+&lt;p&gt;Esto tiene una ventaja adicional, y es asegurar la existencia de las imágenes
+para el futuro sin depender de la fuente original (la cual, en la medida de lo
+posible mantendré referencia) y en un futuro puede permitir opciones de
+servido por CDN (una opción tentadora es Statically [&lt;a class="reference internal" href="https://www.cosmoscalibur.com/blog/reformas-del-blog-parte-1/#cdn"&gt;cdn&lt;/a&gt;]), imágenes
+optimizadas [&lt;a class="reference internal" href="https://www.cosmoscalibur.com/blog/reformas-del-blog-parte-1/#opt"&gt;opt&lt;/a&gt;, &lt;a class="reference internal" href="https://www.cosmoscalibur.com/blog/reformas-del-blog-parte-1/#tools"&gt;tools&lt;/a&gt;] como el uso del formato webp
+[&lt;a class="reference internal" href="https://www.cosmoscalibur.com/blog/reformas-del-blog-parte-1/#webp"&gt;webp&lt;/a&gt;, &lt;a class="reference internal" href="https://www.cosmoscalibur.com/blog/reformas-del-blog-parte-1/#caniuse"&gt;caniuse&lt;/a&gt;, &lt;a class="reference internal" href="https://www.cosmoscalibur.com/blog/reformas-del-blog-parte-1/#fallback"&gt;fallback&lt;/a&gt;], tamaños diferentes por dispositivo
+[&lt;a class="reference internal" href="https://www.cosmoscalibur.com/blog/reformas-del-blog-parte-1/#picture-media"&gt;picture-media&lt;/a&gt;] y carga diferida [&lt;a class="reference internal" href="https://www.cosmoscalibur.com/blog/reformas-del-blog-parte-1/#defer"&gt;defer&lt;/a&gt;, &lt;a class="reference internal" href="https://www.cosmoscalibur.com/blog/reformas-del-blog-parte-1/#lazy"&gt;lazy&lt;/a&gt;]. Este cambio permitió ver
+en el artículo más crítico (&lt;a class="reference external" href="https://www.cosmoscalibur.com/blog/cosmogonia-griega/"&gt;Cosmogonía griega&lt;/a&gt;) notar una reducción del
+tamaño de archivos descargados (se compara el tamaño potencial de reducción de
+las imágenes respecto a su peso en webp).&lt;/p&gt;
+&lt;p&gt;Debo decir que respecto a la conservación de las imágenes, una de las imágenes
+la fuente no se encontraba disponible y fue necesario buscar su reemplazo
+(sucedió con &lt;a class="reference external" href="https://www.cosmoscalibur.com/blog/cerebro-prehistorico/"&gt;Cerebro prehistórico&lt;/a&gt;).&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="referencias"&gt;
+&lt;h2&gt;Referencias&lt;/h2&gt;
+&lt;dl class="citation"&gt;
+&lt;dt class="label" id="ps"&gt;&lt;span class="brackets"&gt;ps&lt;/span&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;PageSpeed Insights &lt;a class="reference external" href="https://developers.google.com/speed/pagespeed/insights/"&gt;https://developers.google.com/speed/pagespeed/insights/&lt;/a&gt;&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class="label" id="lh"&gt;&lt;span class="brackets"&gt;lh&lt;/span&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;Auditar apps web con Lighthouse &lt;a class="reference external" href="https://developers.google.com/web/tools/lighthouse/"&gt;https://developers.google.com/web/tools/lighthouse/&lt;/a&gt;&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class="label" id="dqs"&gt;&lt;span class="brackets"&gt;dqs&lt;/span&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;Disqus &lt;a class="reference external" href="https://disqus.com/"&gt;https://disqus.com/&lt;/a&gt;&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class="label" id="fb-comments"&gt;&lt;span class="brackets"&gt;fb-comments&lt;/span&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;Comments Plugin (Facebook) &lt;a class="reference external" href="https://developers.facebook.com/docs/plugins/comments/"&gt;https://developers.facebook.com/docs/plugins/comments/&lt;/a&gt;&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class="label" id="gads"&gt;&lt;span class="brackets"&gt;gads&lt;/span&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;Google AdSense &lt;a class="reference external" href="https://www.google.com/adsense/start"&gt;https://www.google.com/adsense/start&lt;/a&gt;&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class="label" id="amz"&gt;&lt;span class="brackets"&gt;amz&lt;/span&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;Amazon Associates &lt;a class="reference external" href="https://affiliate-program.amazon.com/"&gt;https://affiliate-program.amazon.com/&lt;/a&gt;&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class="label" id="thumb"&gt;&lt;span class="brackets"&gt;thumb&lt;/span&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;Thumbnails, The Nikola Handbook &lt;a class="reference external" href="https://getnikola.com/handbook.html#thumbnails"&gt;https://getnikola.com/handbook.html#thumbnails&lt;/a&gt;&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class="label" id="cdn"&gt;&lt;span class="brackets"&gt;cdn&lt;/span&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;Statically &lt;a class="reference external" href="https://statically.io/"&gt;https://statically.io/&lt;/a&gt;&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class="label" id="opt"&gt;&lt;span class="brackets"&gt;opt&lt;/span&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;Efficiently encode images &lt;a class="reference external" href="https://web.dev/uses-optimized-images/"&gt;https://web.dev/uses-optimized-images/&lt;/a&gt;&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class="label" id="webp"&gt;&lt;span class="brackets"&gt;webp&lt;/span&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;Serve images in next-gen formats &lt;a class="reference external" href="https://web.dev/uses-webp-images/"&gt;https://web.dev/uses-webp-images/&lt;/a&gt;&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class="label" id="caniuse"&gt;&lt;span class="brackets"&gt;caniuse&lt;/span&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;Can I use webp? &lt;a class="reference external" href="https://caniuse.com/#search=webp"&gt;https://caniuse.com/#search=webp&lt;/a&gt;&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class="label" id="defer"&gt;&lt;span class="brackets"&gt;defer&lt;/span&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;Defer offscreen images &lt;a class="reference external" href="https://web.dev/offscreen-images/"&gt;https://web.dev/offscreen-images/&lt;/a&gt;&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class="label" id="lazy"&gt;&lt;span class="brackets"&gt;lazy&lt;/span&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;Lazy load offscreen images with lazysizes &lt;a class="reference external" href="https://web.dev/codelab-use-lazysizes-to-lazyload-images/"&gt;https://web.dev/codelab-use-lazysizes-to-lazyload-images/&lt;/a&gt;&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class="label" id="fallback"&gt;&lt;span class="brackets"&gt;fallback&lt;/span&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;Using WebP Images with Fallback &lt;a class="reference external" href="https://usefulangle.com/post/114/webp-image-in-html-with-fallback"&gt;https://usefulangle.com/post/114/webp-image-in-html-with-fallback&lt;/a&gt;&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class="label" id="tools"&gt;&lt;span class="brackets"&gt;tools&lt;/span&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;ImageOptim for various platforms &lt;a class="reference external" href="https://imageoptim.com/versions"&gt;https://imageoptim.com/versions&lt;/a&gt;&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class="label" id="picture-media"&gt;&lt;span class="brackets"&gt;picture-media&lt;/span&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;&amp;lt;picture&amp;gt;: The Picture element, MDN &lt;a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/picture"&gt;https://developer.mozilla.org/en-US/docs/Web/HTML/Element/picture&lt;/a&gt;&lt;/p&gt;
+&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;/div&gt;&lt;/div&gt;</description><category>adsense</category><category>amazon</category><category>blog</category><category>comentarios</category><category>disqus</category><category>facebook</category><category>nikola</category><category>publicidad</category><guid>https://www.cosmoscalibur.com/blog/reformas-del-blog-parte-1/</guid><pubDate>Tue, 26 May 2020 21:51:39 GMT</pubDate></item><item><title>Usar la cámara de tu celular como webcam</title><link>https://www.cosmoscalibur.com/blog/usar-la-camara-de-tu-celular-como-webcam/</link><dc:creator>Edward Villegas-Pulgarin</dc:creator><description>&lt;div&gt;&lt;p&gt;Con la nueva normalidad que vivimos alrededor de la virtualidad, el uso de
 videollamadas se ha incrementado y muchas cámaras incorporadas en los
 equipos no poseen buenas características (o son ausentes). Adicional, el
 soporte de opciones como usar el celular, una buena alternativa para no
@@ -303,8 +435,8 @@ medidas como:&lt;/p&gt;
 &lt;p&gt;Estas medidas como se ha discutido en el curso no eliminan los riesgos, pero la
 toma de diversas medidas permite la reducción del riesgo.&lt;/p&gt;
 
-&lt;!-- Begin post-list post_list_8790761a9bd24e1e9caab6209c347e45 --&gt;
-&lt;div id="post_list_8790761a9bd24e1e9caab6209c347e45" class="post-list"&gt;
+&lt;!-- Begin post-list post_list_f5389df387a64c9e8fde40ae2e1a6ac3 --&gt;
+&lt;div id="post_list_f5389df387a64c9e8fde40ae2e1a6ac3" class="post-list"&gt;
     &lt;ul class="post-list"&gt;
             &lt;li class="post-list-item"&gt;
             2020-04-09 15:19
@@ -333,7 +465,7 @@ toma de diversas medidas permite la reducción del riesgo.&lt;/p&gt;
             &lt;/li&gt;
     &lt;/ul&gt;
 &lt;/div&gt;
-&lt;!-- End post-list post_list_8790761a9bd24e1e9caab6209c347e45 --&gt;
+&lt;!-- End post-list post_list_f5389df387a64c9e8fde40ae2e1a6ac3 --&gt;
 
 &lt;p&gt;9 Tips For Keeping Your Customer Data Secure &lt;a class="reference external" href="https://www.decibelinsight.com/blog/9-privacy-tips-for-secure-customer-data"&gt;https://www.decibelinsight.com/blog/9-privacy-tips-for-secure-customer-data&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Azure customer data protection &lt;a class="reference external" href="https://docs.microsoft.com/en-us/azure/security/fundamentals/protection-customer-data"&gt;https://docs.microsoft.com/en-us/azure/security/fundamentals/protection-customer-data&lt;/a&gt;&lt;/p&gt;
@@ -354,8 +486,8 @@ para crear diagnósticos de situaciones actuales, hacer optimización de
 escenarios y previsión de escenarios futuros, creando así una estrategia que
 asegure ventajas competitivas.&lt;/p&gt;
 
-&lt;!-- Begin post-list post_list_a7a36bd948f644edb19797b1c54b082d --&gt;
-&lt;div id="post_list_a7a36bd948f644edb19797b1c54b082d" class="post-list"&gt;
+&lt;!-- Begin post-list post_list_73e412402f034aa1880d32159d78901a --&gt;
+&lt;div id="post_list_73e412402f034aa1880d32159d78901a" class="post-list"&gt;
     &lt;ul class="post-list"&gt;
             &lt;li class="post-list-item"&gt;
             2020-04-09 16:37
@@ -384,7 +516,7 @@ asegure ventajas competitivas.&lt;/p&gt;
             &lt;/li&gt;
     &lt;/ul&gt;
 &lt;/div&gt;
-&lt;!-- End post-list post_list_a7a36bd948f644edb19797b1c54b082d --&gt;
+&lt;!-- End post-list post_list_73e412402f034aa1880d32159d78901a --&gt;
 
 &lt;p&gt;Role of Data Analytics in Internet of Things (IoT) &lt;a class="reference external" href="https://www.fingent.com/blog/role-of-data-analytics-in-internet-of-things-iot"&gt;https://www.fingent.com/blog/role-of-data-analytics-in-internet-of-things-iot&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;4 Emerging Use Cases for IoT Data Analytics &lt;a class="reference external" href="https://www.softwareadvice.com/resources/iot-data-analytics-use-cases/"&gt;https://www.softwareadvice.com/resources/iot-data-analytics-use-cases/&lt;/a&gt;&lt;/p&gt;&lt;/div&gt;</description><category>internet de las cosas</category><category>iot</category><category>transformación digital</category><guid>https://www.cosmoscalibur.com/blog/aplicacion-de-iot-a-la-cadena-de-suministro/</guid><pubDate>Thu, 09 Apr 2020 20:19:21 GMT</pubDate></item><item><title>IoT ¿Merece la pena asumir los riesgos?</title><link>https://www.cosmoscalibur.com/blog/iot-merece-la-pena-asumir-los-riesgos/</link><dc:creator>Edward Villegas-Pulgarin</dc:creator><description>&lt;div&gt;&lt;p&gt;Sigo con algunas publicaciones asociadas a participaciones en foro y ensayos
@@ -402,8 +534,8 @@ es que a mayor riesgo existe la posibilidad de un mayor retorno.&lt;/p&gt;
 atenuarse con una adecuada preparación de los protocolos usados, la continua
 actualización de software y la selección de las tecnologías.&lt;/p&gt;
 
-&lt;!-- Begin post-list post_list_de5eface492e419891703a29cd7452a5 --&gt;
-&lt;div id="post_list_de5eface492e419891703a29cd7452a5" class="post-list"&gt;
+&lt;!-- Begin post-list post_list_8c630a62208e4631af352f5ebc6028bd --&gt;
+&lt;div id="post_list_8c630a62208e4631af352f5ebc6028bd" class="post-list"&gt;
     &lt;ul class="post-list"&gt;
             &lt;li class="post-list-item"&gt;
             2020-04-09 16:37
@@ -432,7 +564,7 @@ actualización de software y la selección de las tecnologías.&lt;/p&gt;
             &lt;/li&gt;
     &lt;/ul&gt;
 &lt;/div&gt;
-&lt;!-- End post-list post_list_de5eface492e419891703a29cd7452a5 --&gt;
+&lt;!-- End post-list post_list_8c630a62208e4631af352f5ebc6028bd --&gt;
 
 &lt;p&gt;IoT Vulnerabilities &amp;amp; Risk Mitigation. &lt;a class="reference external" href="https://www.iotforall.com/mitigate-iot-security-risks/"&gt;https://www.iotforall.com/mitigate-iot-security-risks/&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;6 Ways to Mitigate Software Implementation Risks &lt;a class="reference external" href="https://www.panorama-consulting.com/6-ways-to-mitigate-software-implementation-risks/"&gt;https://www.panorama-consulting.com/6-ways-to-mitigate-software-implementation-risks/&lt;/a&gt;&lt;/p&gt;&lt;/div&gt;</description><category>internet de las cosas</category><category>iot</category><category>transformación digital</category><guid>https://www.cosmoscalibur.com/blog/iot-merece-la-pena-asumir-los-riesgos/</guid><pubDate>Thu, 09 Apr 2020 19:56:33 GMT</pubDate></item><item><title>Datos y responsabilidad: Covid19</title><link>https://www.cosmoscalibur.com/blog/datos-y-responsabilidad-covid19/</link><dc:creator>Edward Villegas-Pulgarin</dc:creator><description>&lt;div&gt;&lt;p&gt;Había tratado de estar al margen de hacer muy público lo que pienso y analizo
@@ -755,8 +887,8 @@ seguridad que ofrecen los servicios y una alta disponibilidad de la
 información mediante la red redundante del proveedor [&lt;a class="reference internal" href="https://www.cosmoscalibur.com/blog/seguridad-vs-flexibilidad-del-computo-en-nube/#id3"&gt;3&lt;/a&gt;, &lt;a class="reference internal" href="https://www.cosmoscalibur.com/blog/seguridad-vs-flexibilidad-del-computo-en-nube/#id5"&gt;5&lt;/a&gt;].&lt;/p&gt;
 &lt;p&gt;Otras publicaciones basadas en el curso de transformación digital:&lt;/p&gt;
 
-&lt;!-- Begin post-list post_list_507c2f8a37334e46879764e14a6282df --&gt;
-&lt;div id="post_list_507c2f8a37334e46879764e14a6282df" class="post-list"&gt;
+&lt;!-- Begin post-list post_list_752a7a9dc2d84f79b752c031c21d5c09 --&gt;
+&lt;div id="post_list_752a7a9dc2d84f79b752c031c21d5c09" class="post-list"&gt;
     &lt;ul class="post-list"&gt;
             &lt;li class="post-list-item"&gt;
             2020-04-09 16:37
@@ -785,7 +917,7 @@ información mediante la red redundante del proveedor [&lt;a class="reference in
             &lt;/li&gt;
     &lt;/ul&gt;
 &lt;/div&gt;
-&lt;!-- End post-list post_list_507c2f8a37334e46879764e14a6282df --&gt;
+&lt;!-- End post-list post_list_752a7a9dc2d84f79b752c031c21d5c09 --&gt;
 
 &lt;dl class="footnote brackets"&gt;
 &lt;dt class="label" id="id1"&gt;&lt;span class="brackets"&gt;1&lt;/span&gt;&lt;/dt&gt;
@@ -838,8 +970,8 @@ intermediación actual en el sector inmobiliario (pero que un futuro con las
 reformas necesarias legales podría suceder) [&lt;a class="reference internal" href="https://www.cosmoscalibur.com/blog/sectores-que-se-ven-afectados-por-blockchain-sector-inmobiliario/#id3"&gt;3&lt;/a&gt;].&lt;/p&gt;
 &lt;p&gt;Otras publicaciones basadas en el curso de transformación digital:&lt;/p&gt;
 
-&lt;!-- Begin post-list post_list_0520a7d646b94429aaa3992847637036 --&gt;
-&lt;div id="post_list_0520a7d646b94429aaa3992847637036" class="post-list"&gt;
+&lt;!-- Begin post-list post_list_f924496595894260aa9bab82b6ec751f --&gt;
+&lt;div id="post_list_f924496595894260aa9bab82b6ec751f" class="post-list"&gt;
     &lt;ul class="post-list"&gt;
             &lt;li class="post-list-item"&gt;
             2020-04-09 16:37
@@ -868,7 +1000,7 @@ reformas necesarias legales podría suceder) [&lt;a class="reference internal" h
             &lt;/li&gt;
     &lt;/ul&gt;
 &lt;/div&gt;
-&lt;!-- End post-list post_list_0520a7d646b94429aaa3992847637036 --&gt;
+&lt;!-- End post-list post_list_f924496595894260aa9bab82b6ec751f --&gt;
 
 &lt;dl class="footnote brackets"&gt;
 &lt;dt class="label" id="id1"&gt;&lt;span class="brackets"&gt;1&lt;/span&gt;&lt;/dt&gt;
@@ -921,8 +1053,8 @@ presencia y acciones del Centro para la Cuarta Revolución Industrial como un
 habilitador [&lt;a class="reference internal" href="https://www.cosmoscalibur.com/blog/estamos-preparados-para-un-nuevo-tipo-de-monedas-completamente-digitales/#id10"&gt;10&lt;/a&gt;], tenga pronto resultados.&lt;/p&gt;
 &lt;p&gt;Otras publicaciones basadas en el curso de transformación digital:&lt;/p&gt;
 
-&lt;!-- Begin post-list post_list_a72041a7c3b14fc8a2be734bdc9dd384 --&gt;
-&lt;div id="post_list_a72041a7c3b14fc8a2be734bdc9dd384" class="post-list"&gt;
+&lt;!-- Begin post-list post_list_96fc160a4e0945c58afde639bc99408b --&gt;
+&lt;div id="post_list_96fc160a4e0945c58afde639bc99408b" class="post-list"&gt;
     &lt;ul class="post-list"&gt;
             &lt;li class="post-list-item"&gt;
             2020-04-09 16:37
@@ -951,7 +1083,7 @@ habilitador [&lt;a class="reference internal" href="https://www.cosmoscalibur.co
             &lt;/li&gt;
     &lt;/ul&gt;
 &lt;/div&gt;
-&lt;!-- End post-list post_list_a72041a7c3b14fc8a2be734bdc9dd384 --&gt;
+&lt;!-- End post-list post_list_96fc160a4e0945c58afde639bc99408b --&gt;
 
 &lt;dl class="footnote brackets"&gt;
 &lt;dt class="label" id="id1"&gt;&lt;span class="brackets"&gt;1&lt;/span&gt;&lt;/dt&gt;
@@ -994,225 +1126,4 @@ Consultado el 23 de febrero de 2020. Wikipedia.&lt;/p&gt;
 &lt;dd&gt;&lt;p&gt;&lt;a class="reference external" href="https://www.elcolombiano.com/opinion/columnistas/medellin-y-la-cuarta-revolucion-industrial-DC10033055"&gt;Medellín y la Cuarta Revolución Industrial&lt;/a&gt;.
 15 de enero de 2019. El Colombiano.&lt;/p&gt;
 &lt;/dd&gt;
-&lt;/dl&gt;&lt;/div&gt;</description><category>blockchain</category><category>criptomonedas</category><category>monedas digitales</category><category>transformación digital</category><guid>https://www.cosmoscalibur.com/blog/estamos-preparados-para-un-nuevo-tipo-de-monedas-completamente-digitales/</guid><pubDate>Mon, 02 Mar 2020 01:13:18 GMT</pubDate></item><item><title>Crear documentación de un proyecto Python con Sphinx.</title><link>https://www.cosmoscalibur.com/blog/crear-documentacion-de-un-proyecto-python-con-sphinx/</link><dc:creator>Edward Villegas-Pulgarin</dc:creator><description>&lt;div&gt;&lt;p&gt;Sin duda, una etapa importante en cualquier proyecto de desarrollo (y no solo
-de &lt;em&gt;software&lt;/em&gt;) es la generación de la documentación. En el caso de &lt;em&gt;software&lt;/em&gt;
-es posible asistirse de herramientas que ayudan a automatizar la generación de
-la documentación mediante extracción de comentarios en el código, usar palabras
-claves y lenguaje de marcado para modificación de estilo en el texto o
-inclusión de otros elementos que no sean solo texto plano (imágenes,
-ecuaciones, enlaces entre otros).&lt;/p&gt;
-&lt;!-- TEASER_END --&gt;
-&lt;p&gt;Algunas herramientas para este fin son &lt;a class="reference external" href="http://doxygen.nl/"&gt;Doxygen&lt;/a&gt;
-(habitual para proyectos en C/C++), &lt;a class="reference external" href="https://www.oracle.com/technetwork/java/javase/documentation/index-jsp-135444.html"&gt;Javadoc&lt;/a&gt;
-(para Java, pero habitual también en TypeScript), &lt;a class="reference external" href="https://esdoc.org/"&gt;ESDoc&lt;/a&gt;
-(para Javascript) y por supuesto, Sphinx, para Python.&lt;/p&gt;
-&lt;p&gt;En esta entrada instalaremos lo necesario para generar nuestra documentación de
-un proyecto Python y haremos un pequeño ejemplo.&lt;/p&gt;
-&lt;iframe style="width:120px;height:240px;" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" src="//ws-na.amazon-adsystem.com/widgets/q?ServiceVersion=20070822&amp;amp;OneJS=1&amp;amp;Operation=GetAdHtml&amp;amp;MarketPlace=US&amp;amp;source=ss&amp;amp;ref=as_ss_li_til&amp;amp;ad_type=product_link&amp;amp;tracking_id=cosmoscalibur-20&amp;amp;language=es_US&amp;amp;marketplace=amazon&amp;amp;region=US&amp;amp;placement=B07QWLXCC7&amp;amp;asins=B07QWLXCC7&amp;amp;linkId=ec8263fe9f13222ede56df34878a1743&amp;amp;show_border=true&amp;amp;link_opens_in_new_window=true"&gt;&lt;/iframe&gt;&lt;div class="section" id="latex"&gt;
-&lt;h2&gt;LaTeX&lt;/h2&gt;
-&lt;p&gt;Si deseamos generar documentación web, este paquete no es necesario, pero para
-generar nuestra documentación en PDF es una dependencia obligatoria. La
-instalación recomendada dependerá del sistema operativo que se use.&lt;/p&gt;
-&lt;dl&gt;
-&lt;dt&gt;Mac&lt;/dt&gt;
-&lt;dd&gt;&lt;p&gt;Puedes usar &lt;a class="reference external" href="https://www.tug.org/mactex/"&gt;MacTex&lt;/a&gt; el cual incluye el
-compilador TeXLive y editores como TeXShop, y otras dependencias para el
-funcionamiento de LaTeX en Mac.&lt;/p&gt;
-&lt;/dd&gt;
-&lt;dt&gt;Windows&lt;/dt&gt;
-&lt;dd&gt;&lt;p&gt;La opción más cómoda es el compilador &lt;a class="reference external" href="https://miktex.org/download"&gt;MikTeX&lt;/a&gt;,
-el cual permite de forma predeterminada la descarga automática de paquetes
-adicionales en la medida que sean requeridos (instalación &lt;em&gt;on the fly&lt;/em&gt;).&lt;/p&gt;
-&lt;p&gt;Es importante que en la configuración no cambies al modo silencioso, pues
-esto puede afectar la ejecución posterior en los casos que requieran de
-instalación.&lt;/p&gt;
-&lt;p&gt;Si usas Anaconda, puedes incluirlo desde el canal de &lt;em&gt;conda-forge&lt;/em&gt;,
-&lt;code&gt;conda install -c conda-forge miktex&lt;/code&gt;.&lt;/p&gt;
-&lt;/dd&gt;
-&lt;dt&gt;Linux&lt;/dt&gt;
-&lt;dd&gt;&lt;p&gt;En Linux usaremos TeXLive pero su instalación la haremos directamente del
-gestor de paquetes del sistema operativo. En la mayor parte de
-distribuciones Linux estará disponible a través del gestor.&lt;/p&gt;
-&lt;p&gt;En el caso de las distribuciones basadas en Debian (Ubuntu y Linux Mint
-entre otras) puedes instalar de la siguiente manera:&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_f09e9572e70c4b4f9e7a08e0c09357ac-1"&gt;&lt;/a&gt;sudo apt install -y texlive texlive-latex-base texlive-latex-extra \
-&lt;a name="rest_code_f09e9572e70c4b4f9e7a08e0c09357ac-2"&gt;&lt;/a&gt;    texlive-lang-spanish latexmk
-&lt;/pre&gt;&lt;/dd&gt;
-&lt;/dl&gt;
-&lt;/div&gt;
-&lt;div class="section" id="sphinx"&gt;
-&lt;h2&gt;Sphinx&lt;/h2&gt;
-&lt;p&gt;Si usamos Python a través de Anaconda podemos usar el gestor &lt;em&gt;conda&lt;/em&gt; para la
-instalación, así &lt;code&gt;conda install sphinx&lt;/code&gt;, en caso contrario, podemos usar
-el gestor de paquetes &lt;em&gt;PIP&lt;/em&gt;: &lt;code&gt;pip install -U Sphinx&lt;/code&gt;.&lt;/p&gt;
-&lt;div class="admonition note"&gt;
-&lt;p class="admonition-title"&gt;Nota&lt;/p&gt;
-&lt;p&gt;Si deseas una experiencia en Windows similar a Linux, usando el
-&lt;code&gt;Makefile&lt;/code&gt; tradicional y la posibilidad de usar en combinación con
-Bash, te recomiendo usar Git Bash, y si es en conjunto con Anaconda puedes
-leer mi publicación al respecto, &lt;a class="reference external" href="https://www.cosmoscalibur.com/blog/usar-anaconda-python-en-git-bash/"&gt;Usar Anaconda Python en Git Bash&lt;/a&gt; e
-instalar el paquete &lt;code&gt;make&lt;/code&gt; con Anaconda o instalar
-&lt;a class="reference external" href="http://mingw-w64.org/doku.php"&gt;Mingw-w64&lt;/a&gt;.&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="section" id="configuracion-de-sphinx"&gt;
-&lt;h2&gt;Configuración de Sphinx&lt;/h2&gt;
-&lt;p&gt;Abriremos una consola (si es Windows, debes tener en cuenta que para usar
-paquetes de Anaconda debes usar las consolas Anaconda Prompt, Anaconda
-PowerShell u otra si la configuraste -como el caso de Git Bash que
-mencioné en la sección anterior-) y debemos ubicarnos en el directorio que
-destinaremos para la documentación. Es habitual que en la estructura de nuestro
-proyecto destinemos un directorio &lt;code&gt;docs&lt;/code&gt; para este fin.&lt;/p&gt;
-&lt;p&gt;Ahora ejecutamos &lt;code&gt;sphinx-quickstart&lt;/code&gt; y respondemos las preguntas que
-saldrán. Es necesario tener en cuenta, que si usas Windows debes agregar al
-comando la terminación &lt;code&gt;.exe&lt;/code&gt;, ejemplo &lt;code&gt;sphinx-quickstart.exe&lt;/code&gt;.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_08ff6c3727794039950d987b01fb6d19-1"&gt;&lt;/a&gt;&amp;gt; Separate source and build directories (y/n) [n]: y
-&lt;a name="rest_code_08ff6c3727794039950d987b01fb6d19-2"&gt;&lt;/a&gt;&amp;gt; Project name: proyecto
-&lt;a name="rest_code_08ff6c3727794039950d987b01fb6d19-3"&gt;&lt;/a&gt;&amp;gt; Author name(s): Edward Villegas-Pulgarin
-&lt;a name="rest_code_08ff6c3727794039950d987b01fb6d19-4"&gt;&lt;/a&gt;&amp;gt; Project release []: 0.1.0
-&lt;a name="rest_code_08ff6c3727794039950d987b01fb6d19-5"&gt;&lt;/a&gt;&amp;gt; Project language [en]: es
-&lt;/pre&gt;&lt;p&gt;Siempre recomiendo separar el directorio del código fuente de la documentación
-del directorio de compilados de la misma. Respecto al esquema de versiones me
-agrada el &lt;cite&gt;versionamiento semántico &amp;lt;https://semver.org/&amp;gt;&lt;/cite&gt; que permite al
-usuario final intuir un poco más sobre la madurez del proyecto con el número,
-pero puedes usar el &lt;cite&gt;esquema basado en fecha de liberación &amp;lt;https://calver.org/&amp;gt;&lt;/cite&gt;.
-En el lenguaje se especifica el lenguaje con el código a dos letras
-internacional, acorde a los &lt;a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/configuration.html#confval-language"&gt;soportados por Sphinx&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Aunque en la terminal nos indican que podemos continuar con el archivo
-&lt;code&gt;index.rst&lt;/code&gt;, debemos hacer unos pequeños cambios en el archivo
-&lt;code&gt;conf.py&lt;/code&gt; que encontraremos en &lt;code&gt;docs/source&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;Puedes saber más opciones de configuración en la documentación de Sphinx sobre
-&lt;a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/configuration.html"&gt;conf.py&lt;/a&gt;.&lt;/p&gt;
-&lt;div class="section" id="extensiones"&gt;
-&lt;h3&gt;Extensiones&lt;/h3&gt;
-&lt;p&gt;Recomiendo incluir la extensión de Autodoc para extraer automáticamente la
-documentación de la API, MathJax para el soporte de ecuaciones matemáticas en
-la versión Web y Napoleon para el estilo de Numpy y Google en la documentación.
-Con Coverage puedes validar que funciones se han documentado y dcotest integra
-pruebas de código desde la documentación (comparar salidas con ejemplo de
-documentación).&lt;/p&gt;
-&lt;p&gt;Modificar en el archivo.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_17915c83d8944e84803d13e81aba0a4b-1"&gt;&lt;/a&gt;extensions = [
-&lt;a name="rest_code_17915c83d8944e84803d13e81aba0a4b-2"&gt;&lt;/a&gt;    'sphinx.ext.autodoc',
-&lt;a name="rest_code_17915c83d8944e84803d13e81aba0a4b-3"&gt;&lt;/a&gt;    'sphinx.ext.mathjax',
-&lt;a name="rest_code_17915c83d8944e84803d13e81aba0a4b-4"&gt;&lt;/a&gt;    'sphinx.ext.napoleon',
-&lt;a name="rest_code_17915c83d8944e84803d13e81aba0a4b-5"&gt;&lt;/a&gt;    'sphinx.ext.coverage',
-&lt;a name="rest_code_17915c83d8944e84803d13e81aba0a4b-6"&gt;&lt;/a&gt;    'sphinx.ext.doctest'
-&lt;a name="rest_code_17915c83d8944e84803d13e81aba0a4b-7"&gt;&lt;/a&gt;]
-&lt;/pre&gt;&lt;/div&gt;
-&lt;div class="section" id="importar-paquete"&gt;
-&lt;h3&gt;Importar paquete&lt;/h3&gt;
-&lt;p&gt;Para apoyarte de ejemplos actualizados automáticamente, uso de metadatos desde
-el código (ejemplo, el autor o la versión) puedes importar el paquete en el
-archivo de configuración. Dado que estarás en modo de desarrollo probablemente,
-el paquete no ha sido instalado y lo deberás hacer descomentando las tres
-primeras líneas de código en la sección de &lt;em&gt;Path setup&lt;/em&gt;. El punto que hay por
-defecto indica la misma carpeta de &lt;code&gt;docs/source&lt;/code&gt;, por lo cual es
-necesario reemplazar por &lt;code&gt;../..&lt;/code&gt; que se devuelve los dos niveles
-necesarios.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_f648447aeb204c5b9024bd9de37ce5a8-1"&gt;&lt;/a&gt;import os
-&lt;a name="rest_code_f648447aeb204c5b9024bd9de37ce5a8-2"&gt;&lt;/a&gt;import sys
-&lt;a name="rest_code_f648447aeb204c5b9024bd9de37ce5a8-3"&gt;&lt;/a&gt;import datetime
-&lt;a name="rest_code_f648447aeb204c5b9024bd9de37ce5a8-4"&gt;&lt;/a&gt;sys.path.insert(0, os.path.abspath('../..'))
-&lt;a name="rest_code_f648447aeb204c5b9024bd9de37ce5a8-5"&gt;&lt;/a&gt;import proyecto
-&lt;/pre&gt;&lt;p&gt;Ahora, puedes hacer cosas como la siguiente, si está disponible en tu código.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_c145a3405be44c6e805af73df3c9a841-1"&gt;&lt;/a&gt;author = proyecto.__author__
-&lt;a name="rest_code_c145a3405be44c6e805af73df3c9a841-2"&gt;&lt;/a&gt;copyright = str(datetime.date.today().year) + ', ' + author
-&lt;a name="rest_code_c145a3405be44c6e805af73df3c9a841-3"&gt;&lt;/a&gt;release = proyecto.__version__
-&lt;/pre&gt;&lt;/div&gt;
-&lt;div class="section" id="referencias-cruzadas"&gt;
-&lt;h3&gt;Referencias cruzadas&lt;/h3&gt;
-&lt;p&gt;Para usar referencias cruzadas, es decir, numeración de tablas, figuras,
-códigos y ecuaciones si poseen pie de objeto, y ser referenciados en el texto
-por el número, se requiere configurar lo siguiente.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_20e54794610748558a124d062f7e80ad-1"&gt;&lt;/a&gt;numfig = True
-&lt;a name="rest_code_20e54794610748558a124d062f7e80ad-2"&gt;&lt;/a&gt;numfig_format = {'figure': 'Fig. %s', 'table': 'Tabla %s',
-&lt;a name="rest_code_20e54794610748558a124d062f7e80ad-3"&gt;&lt;/a&gt;                 'code-block': 'Código %s', 'section': 'Sección %s'}
-&lt;a name="rest_code_20e54794610748558a124d062f7e80ad-4"&gt;&lt;/a&gt;numfig_secnum_depth = 1
-&lt;a name="rest_code_20e54794610748558a124d062f7e80ad-5"&gt;&lt;/a&gt;math_numfig = True
-&lt;a name="rest_code_20e54794610748558a124d062f7e80ad-6"&gt;&lt;/a&gt;math_eqref_format = 'Ec. {number}'
-&lt;/pre&gt;&lt;p&gt;Así, es posible usar &lt;code&gt;:label:&lt;/code&gt; para asignar una referencia a los objetos
-y &lt;code&gt;:numref:&lt;/code&gt; y &lt;code&gt;:eq:&lt;/code&gt; a la hora de mencionarlos. Con
-&lt;code&gt;numfig_secnum_depth&lt;/code&gt; configuras la numeración de los objetos, si es
-continúa (0), por sección (1) y subsección (2).&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="id1"&gt;
-&lt;h3&gt;LaTeX&lt;/h3&gt;
-&lt;p&gt;Hay una configuración básica para LaTeX que puedes agregar. El documento
-maestro, el nombre del archivo TeX, el nombre que nuestra documentación, el
-nombre del autor (que podemos usar la variable que ya definimos) y el tipo de
-documento (cuya clase &lt;em&gt;manual&lt;/em&gt; está definida por Sphinx).&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_f1ff9926960b427d841da09bb5a9b9be-1"&gt;&lt;/a&gt;master_doc = 'index'
-&lt;a name="rest_code_f1ff9926960b427d841da09bb5a9b9be-2"&gt;&lt;/a&gt;latex_documents = [
-&lt;a name="rest_code_f1ff9926960b427d841da09bb5a9b9be-3"&gt;&lt;/a&gt;    (master_doc, 'proyecto.tex', 'Documentación Proyecto',
-&lt;a name="rest_code_f1ff9926960b427d841da09bb5a9b9be-4"&gt;&lt;/a&gt;     author, 'manual'),
-&lt;a name="rest_code_f1ff9926960b427d841da09bb5a9b9be-5"&gt;&lt;/a&gt;]
-&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="section" id="escritura-en-restructuredtext"&gt;
-&lt;h2&gt;Escritura en ReStructuredText&lt;/h2&gt;
-&lt;p&gt;Sobre esto, es referencia ver la documentación de
-&lt;a class="reference external" href="https://docutils.readthedocs.io/en/sphinx-docs/user/rst/quickstart.html"&gt;DocUtils&lt;/a&gt;
-y de Sphinx &lt;a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html"&gt;ReStructuredText Primer&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Una vez tienes las bases de ReStructuredText puedes editar lo básico. De ahí, y
-para tener todo el provecho de Sphinx hay elementos como los roles, directivas
-y dominios que debes aprender a usar,
-&lt;a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/restructuredtext/index.html"&gt;Sphinx ReStructuredText&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;¿Y por qué los dominios? Estos añaden sintaxis para manejar las relaciones con
-el código, como enlazar a funciones relacionadas que se generaron con &lt;em&gt;autodoc&lt;/em&gt;
-y además la forma de como documentar la función (u otro elemento del código) en
-su código fuente y que pueda ser extraída. Por ejemplo, el
-&lt;a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/restructuredtext/domains.html#the-python-domain"&gt;dominio de Python&lt;/a&gt;.&lt;/p&gt;
-&lt;div class="section" id="que-archivos-debo-editar"&gt;
-&lt;h3&gt;¿Qué archivos debo editar?&lt;/h3&gt;
-&lt;p&gt;Primero, editaremos &lt;code&gt;docs/source/index.rst&lt;/code&gt;, donde deberemos agregar los
-nombres de los archivos que se incluyen en la documentación, tanto los
-generados como los automáticos. Se agrega uno por línea, sin extensión y la
-posición es relativa a la ubicación del archivo &lt;code&gt;index.rst&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;Te recomiendo siempre un archivo &lt;code&gt;README.rst&lt;/code&gt; que fija la generalidad e
-intención del proyecto, &lt;code&gt;history.rst&lt;/code&gt; para tener documentados los cambios
-entre versiones (como un &lt;em&gt;changelog&lt;/em&gt; pero a mano, más condensado), un
-&lt;code&gt;usage.rst&lt;/code&gt; documentando el uso de nuestro proyecto,
-&lt;code&gt;installation.rst&lt;/code&gt; con instrucciones de instalación y adicional, agregar
-una ruta a la documentación de la API (la misma ruta la debemos indicar más
-adelante). Puedes agregar más archivos, por ejemplo, yo suelo usar un
-&lt;code&gt;concepts.rst&lt;/code&gt; para detallar los conceptos necesarios antes de usar el
-software o detallar teoría que ayuda a interpretar resultados o que expande la
-información para que alguien pueda analizar o continuar un desarrollo.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_037d377e156f4c338f8c9ab77d772be7-1"&gt;&lt;/a&gt;.. toctree::
-&lt;a name="rest_code_037d377e156f4c338f8c9ab77d772be7-2"&gt;&lt;/a&gt;   :maxdepth: 3
-&lt;a name="rest_code_037d377e156f4c338f8c9ab77d772be7-3"&gt;&lt;/a&gt;   :caption: Contenido:
-&lt;a name="rest_code_037d377e156f4c338f8c9ab77d772be7-4"&gt;&lt;/a&gt;
-&lt;a name="rest_code_037d377e156f4c338f8c9ab77d772be7-5"&gt;&lt;/a&gt;   README
-&lt;a name="rest_code_037d377e156f4c338f8c9ab77d772be7-6"&gt;&lt;/a&gt;   installation
-&lt;a name="rest_code_037d377e156f4c338f8c9ab77d772be7-7"&gt;&lt;/a&gt;   usage
-&lt;a name="rest_code_037d377e156f4c338f8c9ab77d772be7-8"&gt;&lt;/a&gt;   api/modules
-&lt;a name="rest_code_037d377e156f4c338f8c9ab77d772be7-9"&gt;&lt;/a&gt;   concepts
-&lt;a name="rest_code_037d377e156f4c338f8c9ab77d772be7-10"&gt;&lt;/a&gt;   history
-&lt;/pre&gt;&lt;p&gt;Y podemos borrar las líneas posteriores de &lt;em&gt;Indices and tables&lt;/em&gt;.&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="section" id="ejecucion-de-sphinx"&gt;
-&lt;h2&gt;Ejecución de Sphinx&lt;/h2&gt;
-&lt;p&gt;Como estamos haciendo uso de &lt;em&gt;autodoc&lt;/em&gt;, nuestro primer paso es generar la
-extracción de la API.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_af55688e94e449e0b21c46853da46f28-1"&gt;&lt;/a&gt;sphinx-apidoc -f -M -o source/api/ ../proyecto
-&lt;/pre&gt;&lt;p&gt;Recordar que en Windows hay que agregar &lt;code&gt;.exe&lt;/code&gt;
-(&lt;code&gt;sphinx-apidoc.exe&lt;/code&gt;). &lt;code&gt;-f&lt;/code&gt; es para forzar la regeneración de los
-archivos (importante si actualizamos la documentación de la API), &lt;code&gt;-M&lt;/code&gt;
-para ubicar primero la documentación de los módulos (por defecto primero son
-las funciones, y esto no me parece natural). Luego, es la ruta para la
-documentación de la API (uno de los archivos será el &lt;code&gt;api/modules.rst&lt;/code&gt;)
-y finalmente la ruta donde se encuentra el paquete. Ambas rutas son relativas
-al directorio de documentación.&lt;/p&gt;
-&lt;p&gt;Ahora, solo es necesario generar la documentación: &lt;code&gt;make latexpdf&lt;/code&gt; si es
-con el &lt;em&gt;Makefile&lt;/em&gt; o &lt;code&gt;make.bat latexpdf&lt;/code&gt; si no instalaste &lt;em&gt;make&lt;/em&gt; en
-Windows. Aquí debemos devolvernos un nivel en la carpeta para ejecutarlo.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="publicar"&gt;
-&lt;h2&gt;Publicar&lt;/h2&gt;
-&lt;p&gt;Ahora encontrarás en la carpeta &lt;em&gt;build&lt;/em&gt; los archivos LaTeX, y uno de ellos será
-el PDF que queremos. También puedes hacer compilación HTML (&lt;code&gt;make html&lt;/code&gt;)
-y usar esta para publicar como un &lt;a class="reference external" href="https://pages.github.com/"&gt;GitHub Pages&lt;/a&gt; o
-en &lt;a class="reference external" href="https://docs.readthedocs.io/en/stable/intro/getting-started-with-sphinx.html"&gt;ReadTheDocs&lt;/a&gt;.&lt;/p&gt;
-&lt;/div&gt;&lt;/div&gt;</description><category>anaconda</category><category>documentación</category><category>latex</category><category>linux</category><category>python</category><category>restructuredtext</category><category>sphinx</category><category>windows</category><guid>https://www.cosmoscalibur.com/blog/crear-documentacion-de-un-proyecto-python-con-sphinx/</guid><pubDate>Tue, 07 Jan 2020 00:24:48 GMT</pubDate></item></channel></rss>
+&lt;/dl&gt;&lt;/div&gt;</description><category>blockchain</category><category>criptomonedas</category><category>monedas digitales</category><category>transformación digital</category><guid>https://www.cosmoscalibur.com/blog/estamos-preparados-para-un-nuevo-tipo-de-monedas-completamente-digitales/</guid><pubDate>Mon, 02 Mar 2020 01:13:18 GMT</pubDate></item></channel></rss>

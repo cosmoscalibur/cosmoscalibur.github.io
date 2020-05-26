@@ -3,7 +3,139 @@
 &lt;a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"&gt;
 &lt;img alt="Creative Commons License BY-NC-SA"
 style="border-width:0; margin-bottom:12px;"
-src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"&gt;&lt;/a&gt;</copyright><lastBuildDate>Tue, 26 May 2020 21:23:05 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Usar la cámara de tu celular como webcam</title><link>https://www.cosmoscalibur.com/blog/usar-la-camara-de-tu-celular-como-webcam/</link><dc:creator>Edward Villegas-Pulgarin</dc:creator><description>&lt;div&gt;&lt;p&gt;Con la nueva normalidad que vivimos alrededor de la virtualidad, el uso de
+src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"&gt;&lt;/a&gt;</copyright><lastBuildDate>Tue, 26 May 2020 21:52:07 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Reformas del blog: Parte 1</title><link>https://www.cosmoscalibur.com/blog/reformas-del-blog-parte-1/</link><dc:creator>Edward Villegas-Pulgarin</dc:creator><description>&lt;div&gt;&lt;p&gt;Bueno, he estado en múltiples ocasiones por escribir sobre mantener un blog, y
+hoy fue el caso, pero centrado en unas actualizaciones que he hecho para
+mejorar la experiencia de los lectores que usan su celular y deben soportar
+altos tiempos de carga y una alta descarga en imágenes cuando las contiene.&lt;/p&gt;
+&lt;p&gt;Esto puede no ser válido para todos, pero resulta de mi experiencia particular
+y, bajo la condición de tener un sitio generado de forma estática con Nikola
+y alojado en GitHub. He planteado parte 1 porque pretendo hacer unas reformas
+adicionales más adelante.&lt;/p&gt;
+&lt;!-- TEASER_END --&gt;
+&lt;div class="section" id="pagespeed"&gt;
+&lt;h2&gt;PageSpeed&lt;/h2&gt;
+&lt;p&gt;Antes que nada esto surge porque estuve haciendo seguimiento a las métricas de
+la herramienta PageSpeed [&lt;a class="reference internal" href="https://www.cosmoscalibur.com/blog/reformas-del-blog-parte-1/#ps"&gt;ps&lt;/a&gt;] que ofrece Google integrada a su plataforma de
+Analytics (puedes usar de forma local con Lighthouse [&lt;a class="reference internal" href="https://www.cosmoscalibur.com/blog/reformas-del-blog-parte-1/#lh"&gt;lh&lt;/a&gt;]). El análisis
+entrega no solo métricas sino también algunas recomendaciones y por ello
+procedí a ponerme en ello (dado que la mayor parte de mis lectores usan su
+celular).&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="sistema-de-comentarios"&gt;
+&lt;h2&gt;Sistema de comentarios&lt;/h2&gt;
+&lt;p&gt;Si bien pensar en una forma de interacción directa con los lectores del blog
+es importante, se debe evaluar en el tiempo su impacto. En el caso de mi blog,
+la cantidad de comentarios durante su historia lo hace despreciable cuando
+contrasto con la penalización en el tiempo de carga que ha introducido el
+sistema de comentarios.&lt;/p&gt;
+&lt;p&gt;Disqus [&lt;a class="reference internal" href="https://www.cosmoscalibur.com/blog/reformas-del-blog-parte-1/#dqs"&gt;dqs&lt;/a&gt;] es un sistema de comentarios importante, permite socializar y asocia un
+perfil de los lectores y los generadores de contenido, lo cual permite también
+generar tráfico, pero en mi caso tampoco representa una fuente de tráfico
+importante ni de una contribución que quiera considerar.&lt;/p&gt;
+&lt;p&gt;Esto me llevó inicialmente a pensar en eliminar el sistema de comentarios,
+pero también cuando veo como las publicaciones pueden tener mayor impacto en
+redes sociales y que Facebook ofrece su sistema de comentarios [&lt;a class="reference internal" href="https://www.cosmoscalibur.com/blog/reformas-del-blog-parte-1/#fb-comments"&gt;fb-comments&lt;/a&gt;],
+no veo descabellado cambiar. La mayor parte de mis lectores poseen Facebook y
+el tráfico a razón de Facebook hoy es el mayor entre las fuentes de tráfico
+sociales y puede potenciarse al incluir la opción de compartir el comentario
+con Facebook (enlazando automáticamente el enlace la publicación).&lt;/p&gt;
+&lt;iframe style="width:120px;height:240px;" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" src="//ws-na.amazon-adsystem.com/widgets/q?ServiceVersion=20070822&amp;amp;OneJS=1&amp;amp;Operation=GetAdHtml&amp;amp;MarketPlace=US&amp;amp;source=ss&amp;amp;ref=as_ss_li_til&amp;amp;ad_type=product_link&amp;amp;tracking_id=cosmoscalibur-20&amp;amp;language=es_US&amp;amp;marketplace=amazon&amp;amp;region=US&amp;amp;placement=B07QWLXCC7&amp;amp;asins=B07QWLXCC7&amp;amp;linkId=ec8263fe9f13222ede56df34878a1743&amp;amp;show_border=true&amp;amp;link_opens_in_new_window=true"&gt;&lt;/iframe&gt;&lt;p&gt;Con estos cambios el bloqueo por el sistema de comentarios pasó de 800 ms a
+400 ms, en promedio.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="publicidad"&gt;
+&lt;h2&gt;Publicidad&lt;/h2&gt;
+&lt;p&gt;El blog no ha tenido publicidad, pero hace un tiempo he venido revisando el
+tema de monetizar el blog. La idea es hacerlo de una forma no invasiva pero
+sin muchas complicaciones para mi también.&lt;/p&gt;
+&lt;p&gt;Es así como Google AdSense [&lt;a class="reference internal" href="https://www.cosmoscalibur.com/blog/reformas-del-blog-parte-1/#gads"&gt;gads&lt;/a&gt;] por sus procesos de validación y la
+penalización que he sufrido en tiempo de carga por la adición en el código no
+me parece prudente. Adicional, no puedo asegurar que la publicidad mostrada
+sea realmente acorde al blog (así pueda serlo para el lector).&lt;/p&gt;
+&lt;p&gt;Por ello, he decido probar las opciones estáticas del programa de asociados de
+Amazon [&lt;a class="reference internal" href="https://www.cosmoscalibur.com/blog/reformas-del-blog-parte-1/#amz"&gt;amz&lt;/a&gt;]. No hay generación dinámica, ni selección de la posición óptima
+de la publicidad, pero puedo decidir que promocionar en mis publicaciones,
+ubicarla donde considere que no afecta la lectura o que genere confusión y que
+además aporte realmente al lector que llega a mi publicación (por ejemplo,
+recomendando un libro sobre el tema de la publicación).&lt;/p&gt;
+&lt;p&gt;Es posible que no sea permanente, pero quiero probarlo. El programa de
+asociados también tiene unos tiempos máximos permitiendo publicidad sin
+generar conversiones.&lt;/p&gt;
+&lt;p&gt;Con este cambio, el bloqueo por la presentación de publicidad pasó de 350 ms
+a menos de 40 ms.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="imagenes"&gt;
+&lt;h2&gt;Imágenes&lt;/h2&gt;
+&lt;p&gt;Con el fin de reducir la descarga y tiempo asociado a las imágenes, decidí
+respaldar imágenes en el repositorio y usar la opción de thumbnail de Nikola
+[&lt;a class="reference internal" href="https://www.cosmoscalibur.com/blog/reformas-del-blog-parte-1/#thumb"&gt;thumb&lt;/a&gt;]. Esto permite usar una versión de tamaño reducido para los artículos
+pero que vincula a la imagen original (la cual puedo optimizar también).&lt;/p&gt;
+&lt;p&gt;Esto tiene una ventaja adicional, y es asegurar la existencia de las imágenes
+para el futuro sin depender de la fuente original (la cual, en la medida de lo
+posible mantendré referencia) y en un futuro puede permitir opciones de
+servido por CDN (una opción tentadora es Statically [&lt;a class="reference internal" href="https://www.cosmoscalibur.com/blog/reformas-del-blog-parte-1/#cdn"&gt;cdn&lt;/a&gt;]), imágenes
+optimizadas [&lt;a class="reference internal" href="https://www.cosmoscalibur.com/blog/reformas-del-blog-parte-1/#opt"&gt;opt&lt;/a&gt;, &lt;a class="reference internal" href="https://www.cosmoscalibur.com/blog/reformas-del-blog-parte-1/#tools"&gt;tools&lt;/a&gt;] como el uso del formato webp
+[&lt;a class="reference internal" href="https://www.cosmoscalibur.com/blog/reformas-del-blog-parte-1/#webp"&gt;webp&lt;/a&gt;, &lt;a class="reference internal" href="https://www.cosmoscalibur.com/blog/reformas-del-blog-parte-1/#caniuse"&gt;caniuse&lt;/a&gt;, &lt;a class="reference internal" href="https://www.cosmoscalibur.com/blog/reformas-del-blog-parte-1/#fallback"&gt;fallback&lt;/a&gt;], tamaños diferentes por dispositivo
+[&lt;a class="reference internal" href="https://www.cosmoscalibur.com/blog/reformas-del-blog-parte-1/#picture-media"&gt;picture-media&lt;/a&gt;] y carga diferida [&lt;a class="reference internal" href="https://www.cosmoscalibur.com/blog/reformas-del-blog-parte-1/#defer"&gt;defer&lt;/a&gt;, &lt;a class="reference internal" href="https://www.cosmoscalibur.com/blog/reformas-del-blog-parte-1/#lazy"&gt;lazy&lt;/a&gt;]. Este cambio permitió ver
+en el artículo más crítico (&lt;a class="reference external" href="https://www.cosmoscalibur.com/blog/cosmogonia-griega/"&gt;Cosmogonía griega&lt;/a&gt;) notar una reducción del
+tamaño de archivos descargados (se compara el tamaño potencial de reducción de
+las imágenes respecto a su peso en webp).&lt;/p&gt;
+&lt;p&gt;Debo decir que respecto a la conservación de las imágenes, una de las imágenes
+la fuente no se encontraba disponible y fue necesario buscar su reemplazo
+(sucedió con &lt;a class="reference external" href="https://www.cosmoscalibur.com/blog/cerebro-prehistorico/"&gt;Cerebro prehistórico&lt;/a&gt;).&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="referencias"&gt;
+&lt;h2&gt;Referencias&lt;/h2&gt;
+&lt;dl class="citation"&gt;
+&lt;dt class="label" id="ps"&gt;&lt;span class="brackets"&gt;ps&lt;/span&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;PageSpeed Insights &lt;a class="reference external" href="https://developers.google.com/speed/pagespeed/insights/"&gt;https://developers.google.com/speed/pagespeed/insights/&lt;/a&gt;&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class="label" id="lh"&gt;&lt;span class="brackets"&gt;lh&lt;/span&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;Auditar apps web con Lighthouse &lt;a class="reference external" href="https://developers.google.com/web/tools/lighthouse/"&gt;https://developers.google.com/web/tools/lighthouse/&lt;/a&gt;&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class="label" id="dqs"&gt;&lt;span class="brackets"&gt;dqs&lt;/span&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;Disqus &lt;a class="reference external" href="https://disqus.com/"&gt;https://disqus.com/&lt;/a&gt;&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class="label" id="fb-comments"&gt;&lt;span class="brackets"&gt;fb-comments&lt;/span&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;Comments Plugin (Facebook) &lt;a class="reference external" href="https://developers.facebook.com/docs/plugins/comments/"&gt;https://developers.facebook.com/docs/plugins/comments/&lt;/a&gt;&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class="label" id="gads"&gt;&lt;span class="brackets"&gt;gads&lt;/span&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;Google AdSense &lt;a class="reference external" href="https://www.google.com/adsense/start"&gt;https://www.google.com/adsense/start&lt;/a&gt;&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class="label" id="amz"&gt;&lt;span class="brackets"&gt;amz&lt;/span&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;Amazon Associates &lt;a class="reference external" href="https://affiliate-program.amazon.com/"&gt;https://affiliate-program.amazon.com/&lt;/a&gt;&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class="label" id="thumb"&gt;&lt;span class="brackets"&gt;thumb&lt;/span&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;Thumbnails, The Nikola Handbook &lt;a class="reference external" href="https://getnikola.com/handbook.html#thumbnails"&gt;https://getnikola.com/handbook.html#thumbnails&lt;/a&gt;&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class="label" id="cdn"&gt;&lt;span class="brackets"&gt;cdn&lt;/span&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;Statically &lt;a class="reference external" href="https://statically.io/"&gt;https://statically.io/&lt;/a&gt;&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class="label" id="opt"&gt;&lt;span class="brackets"&gt;opt&lt;/span&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;Efficiently encode images &lt;a class="reference external" href="https://web.dev/uses-optimized-images/"&gt;https://web.dev/uses-optimized-images/&lt;/a&gt;&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class="label" id="webp"&gt;&lt;span class="brackets"&gt;webp&lt;/span&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;Serve images in next-gen formats &lt;a class="reference external" href="https://web.dev/uses-webp-images/"&gt;https://web.dev/uses-webp-images/&lt;/a&gt;&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class="label" id="caniuse"&gt;&lt;span class="brackets"&gt;caniuse&lt;/span&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;Can I use webp? &lt;a class="reference external" href="https://caniuse.com/#search=webp"&gt;https://caniuse.com/#search=webp&lt;/a&gt;&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class="label" id="defer"&gt;&lt;span class="brackets"&gt;defer&lt;/span&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;Defer offscreen images &lt;a class="reference external" href="https://web.dev/offscreen-images/"&gt;https://web.dev/offscreen-images/&lt;/a&gt;&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class="label" id="lazy"&gt;&lt;span class="brackets"&gt;lazy&lt;/span&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;Lazy load offscreen images with lazysizes &lt;a class="reference external" href="https://web.dev/codelab-use-lazysizes-to-lazyload-images/"&gt;https://web.dev/codelab-use-lazysizes-to-lazyload-images/&lt;/a&gt;&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class="label" id="fallback"&gt;&lt;span class="brackets"&gt;fallback&lt;/span&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;Using WebP Images with Fallback &lt;a class="reference external" href="https://usefulangle.com/post/114/webp-image-in-html-with-fallback"&gt;https://usefulangle.com/post/114/webp-image-in-html-with-fallback&lt;/a&gt;&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class="label" id="tools"&gt;&lt;span class="brackets"&gt;tools&lt;/span&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;ImageOptim for various platforms &lt;a class="reference external" href="https://imageoptim.com/versions"&gt;https://imageoptim.com/versions&lt;/a&gt;&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class="label" id="picture-media"&gt;&lt;span class="brackets"&gt;picture-media&lt;/span&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;&amp;lt;picture&amp;gt;: The Picture element, MDN &lt;a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/picture"&gt;https://developer.mozilla.org/en-US/docs/Web/HTML/Element/picture&lt;/a&gt;&lt;/p&gt;
+&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;/div&gt;&lt;/div&gt;</description><category>adsense</category><category>amazon</category><category>blog</category><category>comentarios</category><category>disqus</category><category>facebook</category><category>nikola</category><category>publicidad</category><guid>https://www.cosmoscalibur.com/blog/reformas-del-blog-parte-1/</guid><pubDate>Tue, 26 May 2020 21:51:39 GMT</pubDate></item><item><title>Usar la cámara de tu celular como webcam</title><link>https://www.cosmoscalibur.com/blog/usar-la-camara-de-tu-celular-como-webcam/</link><dc:creator>Edward Villegas-Pulgarin</dc:creator><description>&lt;div&gt;&lt;p&gt;Con la nueva normalidad que vivimos alrededor de la virtualidad, el uso de
 videollamadas se ha incrementado y muchas cámaras incorporadas en los
 equipos no poseen buenas características (o son ausentes). Adicional, el
 soporte de opciones como usar el celular, una buena alternativa para no
@@ -317,8 +449,8 @@ gestor de paquetes del sistema operativo. En la mayor parte de
 distribuciones Linux estará disponible a través del gestor.&lt;/p&gt;
 &lt;p&gt;En el caso de las distribuciones basadas en Debian (Ubuntu y Linux Mint
 entre otras) puedes instalar de la siguiente manera:&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_f09e9572e70c4b4f9e7a08e0c09357ac-1"&gt;&lt;/a&gt;sudo apt install -y texlive texlive-latex-base texlive-latex-extra \
-&lt;a name="rest_code_f09e9572e70c4b4f9e7a08e0c09357ac-2"&gt;&lt;/a&gt;    texlive-lang-spanish latexmk
+&lt;pre class="code text"&gt;&lt;a name="rest_code_2d5023eb13d84036a9175ba5d9ee1cc6-1"&gt;&lt;/a&gt;sudo apt install -y texlive texlive-latex-base texlive-latex-extra \
+&lt;a name="rest_code_2d5023eb13d84036a9175ba5d9ee1cc6-2"&gt;&lt;/a&gt;    texlive-lang-spanish latexmk
 &lt;/pre&gt;&lt;/dd&gt;
 &lt;/dl&gt;
 &lt;/div&gt;
@@ -348,11 +480,11 @@ proyecto destinemos un directorio &lt;code&gt;docs&lt;/code&gt; para este fin.&l
 &lt;p&gt;Ahora ejecutamos &lt;code&gt;sphinx-quickstart&lt;/code&gt; y respondemos las preguntas que
 saldrán. Es necesario tener en cuenta, que si usas Windows debes agregar al
 comando la terminación &lt;code&gt;.exe&lt;/code&gt;, ejemplo &lt;code&gt;sphinx-quickstart.exe&lt;/code&gt;.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_08ff6c3727794039950d987b01fb6d19-1"&gt;&lt;/a&gt;&amp;gt; Separate source and build directories (y/n) [n]: y
-&lt;a name="rest_code_08ff6c3727794039950d987b01fb6d19-2"&gt;&lt;/a&gt;&amp;gt; Project name: proyecto
-&lt;a name="rest_code_08ff6c3727794039950d987b01fb6d19-3"&gt;&lt;/a&gt;&amp;gt; Author name(s): Edward Villegas-Pulgarin
-&lt;a name="rest_code_08ff6c3727794039950d987b01fb6d19-4"&gt;&lt;/a&gt;&amp;gt; Project release []: 0.1.0
-&lt;a name="rest_code_08ff6c3727794039950d987b01fb6d19-5"&gt;&lt;/a&gt;&amp;gt; Project language [en]: es
+&lt;pre class="code text"&gt;&lt;a name="rest_code_c185fa7d3af04a78a10d01ea1e6fda88-1"&gt;&lt;/a&gt;&amp;gt; Separate source and build directories (y/n) [n]: y
+&lt;a name="rest_code_c185fa7d3af04a78a10d01ea1e6fda88-2"&gt;&lt;/a&gt;&amp;gt; Project name: proyecto
+&lt;a name="rest_code_c185fa7d3af04a78a10d01ea1e6fda88-3"&gt;&lt;/a&gt;&amp;gt; Author name(s): Edward Villegas-Pulgarin
+&lt;a name="rest_code_c185fa7d3af04a78a10d01ea1e6fda88-4"&gt;&lt;/a&gt;&amp;gt; Project release []: 0.1.0
+&lt;a name="rest_code_c185fa7d3af04a78a10d01ea1e6fda88-5"&gt;&lt;/a&gt;&amp;gt; Project language [en]: es
 &lt;/pre&gt;&lt;p&gt;Siempre recomiendo separar el directorio del código fuente de la documentación
 del directorio de compilados de la misma. Respecto al esquema de versiones me
 agrada el &lt;cite&gt;versionamiento semántico &amp;lt;https://semver.org/&amp;gt;&lt;/cite&gt; que permite al
@@ -374,13 +506,13 @@ Con Coverage puedes validar que funciones se han documentado y dcotest integra
 pruebas de código desde la documentación (comparar salidas con ejemplo de
 documentación).&lt;/p&gt;
 &lt;p&gt;Modificar en el archivo.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_17915c83d8944e84803d13e81aba0a4b-1"&gt;&lt;/a&gt;extensions = [
-&lt;a name="rest_code_17915c83d8944e84803d13e81aba0a4b-2"&gt;&lt;/a&gt;    'sphinx.ext.autodoc',
-&lt;a name="rest_code_17915c83d8944e84803d13e81aba0a4b-3"&gt;&lt;/a&gt;    'sphinx.ext.mathjax',
-&lt;a name="rest_code_17915c83d8944e84803d13e81aba0a4b-4"&gt;&lt;/a&gt;    'sphinx.ext.napoleon',
-&lt;a name="rest_code_17915c83d8944e84803d13e81aba0a4b-5"&gt;&lt;/a&gt;    'sphinx.ext.coverage',
-&lt;a name="rest_code_17915c83d8944e84803d13e81aba0a4b-6"&gt;&lt;/a&gt;    'sphinx.ext.doctest'
-&lt;a name="rest_code_17915c83d8944e84803d13e81aba0a4b-7"&gt;&lt;/a&gt;]
+&lt;pre class="code text"&gt;&lt;a name="rest_code_482b7f22724e476c84f26760311e3595-1"&gt;&lt;/a&gt;extensions = [
+&lt;a name="rest_code_482b7f22724e476c84f26760311e3595-2"&gt;&lt;/a&gt;    'sphinx.ext.autodoc',
+&lt;a name="rest_code_482b7f22724e476c84f26760311e3595-3"&gt;&lt;/a&gt;    'sphinx.ext.mathjax',
+&lt;a name="rest_code_482b7f22724e476c84f26760311e3595-4"&gt;&lt;/a&gt;    'sphinx.ext.napoleon',
+&lt;a name="rest_code_482b7f22724e476c84f26760311e3595-5"&gt;&lt;/a&gt;    'sphinx.ext.coverage',
+&lt;a name="rest_code_482b7f22724e476c84f26760311e3595-6"&gt;&lt;/a&gt;    'sphinx.ext.doctest'
+&lt;a name="rest_code_482b7f22724e476c84f26760311e3595-7"&gt;&lt;/a&gt;]
 &lt;/pre&gt;&lt;/div&gt;
 &lt;div class="section" id="importar-paquete"&gt;
 &lt;h3&gt;Importar paquete&lt;/h3&gt;
@@ -392,27 +524,27 @@ primeras líneas de código en la sección de &lt;em&gt;Path setup&lt;/em&gt;. E
 defecto indica la misma carpeta de &lt;code&gt;docs/source&lt;/code&gt;, por lo cual es
 necesario reemplazar por &lt;code&gt;../..&lt;/code&gt; que se devuelve los dos niveles
 necesarios.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_f648447aeb204c5b9024bd9de37ce5a8-1"&gt;&lt;/a&gt;import os
-&lt;a name="rest_code_f648447aeb204c5b9024bd9de37ce5a8-2"&gt;&lt;/a&gt;import sys
-&lt;a name="rest_code_f648447aeb204c5b9024bd9de37ce5a8-3"&gt;&lt;/a&gt;import datetime
-&lt;a name="rest_code_f648447aeb204c5b9024bd9de37ce5a8-4"&gt;&lt;/a&gt;sys.path.insert(0, os.path.abspath('../..'))
-&lt;a name="rest_code_f648447aeb204c5b9024bd9de37ce5a8-5"&gt;&lt;/a&gt;import proyecto
+&lt;pre class="code text"&gt;&lt;a name="rest_code_2594bbf9c3a141b9be0f4abc25cbf3d9-1"&gt;&lt;/a&gt;import os
+&lt;a name="rest_code_2594bbf9c3a141b9be0f4abc25cbf3d9-2"&gt;&lt;/a&gt;import sys
+&lt;a name="rest_code_2594bbf9c3a141b9be0f4abc25cbf3d9-3"&gt;&lt;/a&gt;import datetime
+&lt;a name="rest_code_2594bbf9c3a141b9be0f4abc25cbf3d9-4"&gt;&lt;/a&gt;sys.path.insert(0, os.path.abspath('../..'))
+&lt;a name="rest_code_2594bbf9c3a141b9be0f4abc25cbf3d9-5"&gt;&lt;/a&gt;import proyecto
 &lt;/pre&gt;&lt;p&gt;Ahora, puedes hacer cosas como la siguiente, si está disponible en tu código.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_c145a3405be44c6e805af73df3c9a841-1"&gt;&lt;/a&gt;author = proyecto.__author__
-&lt;a name="rest_code_c145a3405be44c6e805af73df3c9a841-2"&gt;&lt;/a&gt;copyright = str(datetime.date.today().year) + ', ' + author
-&lt;a name="rest_code_c145a3405be44c6e805af73df3c9a841-3"&gt;&lt;/a&gt;release = proyecto.__version__
+&lt;pre class="code text"&gt;&lt;a name="rest_code_c4833d94a66e4b52a443c7c7192097b7-1"&gt;&lt;/a&gt;author = proyecto.__author__
+&lt;a name="rest_code_c4833d94a66e4b52a443c7c7192097b7-2"&gt;&lt;/a&gt;copyright = str(datetime.date.today().year) + ', ' + author
+&lt;a name="rest_code_c4833d94a66e4b52a443c7c7192097b7-3"&gt;&lt;/a&gt;release = proyecto.__version__
 &lt;/pre&gt;&lt;/div&gt;
 &lt;div class="section" id="referencias-cruzadas"&gt;
 &lt;h3&gt;Referencias cruzadas&lt;/h3&gt;
 &lt;p&gt;Para usar referencias cruzadas, es decir, numeración de tablas, figuras,
 códigos y ecuaciones si poseen pie de objeto, y ser referenciados en el texto
 por el número, se requiere configurar lo siguiente.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_20e54794610748558a124d062f7e80ad-1"&gt;&lt;/a&gt;numfig = True
-&lt;a name="rest_code_20e54794610748558a124d062f7e80ad-2"&gt;&lt;/a&gt;numfig_format = {'figure': 'Fig. %s', 'table': 'Tabla %s',
-&lt;a name="rest_code_20e54794610748558a124d062f7e80ad-3"&gt;&lt;/a&gt;                 'code-block': 'Código %s', 'section': 'Sección %s'}
-&lt;a name="rest_code_20e54794610748558a124d062f7e80ad-4"&gt;&lt;/a&gt;numfig_secnum_depth = 1
-&lt;a name="rest_code_20e54794610748558a124d062f7e80ad-5"&gt;&lt;/a&gt;math_numfig = True
-&lt;a name="rest_code_20e54794610748558a124d062f7e80ad-6"&gt;&lt;/a&gt;math_eqref_format = 'Ec. {number}'
+&lt;pre class="code text"&gt;&lt;a name="rest_code_e1d3809ef64846cd8907f409df2a5ac4-1"&gt;&lt;/a&gt;numfig = True
+&lt;a name="rest_code_e1d3809ef64846cd8907f409df2a5ac4-2"&gt;&lt;/a&gt;numfig_format = {'figure': 'Fig. %s', 'table': 'Tabla %s',
+&lt;a name="rest_code_e1d3809ef64846cd8907f409df2a5ac4-3"&gt;&lt;/a&gt;                 'code-block': 'Código %s', 'section': 'Sección %s'}
+&lt;a name="rest_code_e1d3809ef64846cd8907f409df2a5ac4-4"&gt;&lt;/a&gt;numfig_secnum_depth = 1
+&lt;a name="rest_code_e1d3809ef64846cd8907f409df2a5ac4-5"&gt;&lt;/a&gt;math_numfig = True
+&lt;a name="rest_code_e1d3809ef64846cd8907f409df2a5ac4-6"&gt;&lt;/a&gt;math_eqref_format = 'Ec. {number}'
 &lt;/pre&gt;&lt;p&gt;Así, es posible usar &lt;code&gt;:label:&lt;/code&gt; para asignar una referencia a los objetos
 y &lt;code&gt;:numref:&lt;/code&gt; y &lt;code&gt;:eq:&lt;/code&gt; a la hora de mencionarlos. Con
 &lt;code&gt;numfig_secnum_depth&lt;/code&gt; configuras la numeración de los objetos, si es
@@ -424,11 +556,11 @@ continúa (0), por sección (1) y subsección (2).&lt;/p&gt;
 maestro, el nombre del archivo TeX, el nombre que nuestra documentación, el
 nombre del autor (que podemos usar la variable que ya definimos) y el tipo de
 documento (cuya clase &lt;em&gt;manual&lt;/em&gt; está definida por Sphinx).&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_f1ff9926960b427d841da09bb5a9b9be-1"&gt;&lt;/a&gt;master_doc = 'index'
-&lt;a name="rest_code_f1ff9926960b427d841da09bb5a9b9be-2"&gt;&lt;/a&gt;latex_documents = [
-&lt;a name="rest_code_f1ff9926960b427d841da09bb5a9b9be-3"&gt;&lt;/a&gt;    (master_doc, 'proyecto.tex', 'Documentación Proyecto',
-&lt;a name="rest_code_f1ff9926960b427d841da09bb5a9b9be-4"&gt;&lt;/a&gt;     author, 'manual'),
-&lt;a name="rest_code_f1ff9926960b427d841da09bb5a9b9be-5"&gt;&lt;/a&gt;]
+&lt;pre class="code text"&gt;&lt;a name="rest_code_29733a752eb846b5a5f05539f497bde3-1"&gt;&lt;/a&gt;master_doc = 'index'
+&lt;a name="rest_code_29733a752eb846b5a5f05539f497bde3-2"&gt;&lt;/a&gt;latex_documents = [
+&lt;a name="rest_code_29733a752eb846b5a5f05539f497bde3-3"&gt;&lt;/a&gt;    (master_doc, 'proyecto.tex', 'Documentación Proyecto',
+&lt;a name="rest_code_29733a752eb846b5a5f05539f497bde3-4"&gt;&lt;/a&gt;     author, 'manual'),
+&lt;a name="rest_code_29733a752eb846b5a5f05539f497bde3-5"&gt;&lt;/a&gt;]
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="section" id="escritura-en-restructuredtext"&gt;
@@ -461,16 +593,16 @@ adelante). Puedes agregar más archivos, por ejemplo, yo suelo usar un
 &lt;code&gt;concepts.rst&lt;/code&gt; para detallar los conceptos necesarios antes de usar el
 software o detallar teoría que ayuda a interpretar resultados o que expande la
 información para que alguien pueda analizar o continuar un desarrollo.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_037d377e156f4c338f8c9ab77d772be7-1"&gt;&lt;/a&gt;.. toctree::
-&lt;a name="rest_code_037d377e156f4c338f8c9ab77d772be7-2"&gt;&lt;/a&gt;   :maxdepth: 3
-&lt;a name="rest_code_037d377e156f4c338f8c9ab77d772be7-3"&gt;&lt;/a&gt;   :caption: Contenido:
-&lt;a name="rest_code_037d377e156f4c338f8c9ab77d772be7-4"&gt;&lt;/a&gt;
-&lt;a name="rest_code_037d377e156f4c338f8c9ab77d772be7-5"&gt;&lt;/a&gt;   README
-&lt;a name="rest_code_037d377e156f4c338f8c9ab77d772be7-6"&gt;&lt;/a&gt;   installation
-&lt;a name="rest_code_037d377e156f4c338f8c9ab77d772be7-7"&gt;&lt;/a&gt;   usage
-&lt;a name="rest_code_037d377e156f4c338f8c9ab77d772be7-8"&gt;&lt;/a&gt;   api/modules
-&lt;a name="rest_code_037d377e156f4c338f8c9ab77d772be7-9"&gt;&lt;/a&gt;   concepts
-&lt;a name="rest_code_037d377e156f4c338f8c9ab77d772be7-10"&gt;&lt;/a&gt;   history
+&lt;pre class="code text"&gt;&lt;a name="rest_code_452cbb3e413240058c4deeadbc32f203-1"&gt;&lt;/a&gt;.. toctree::
+&lt;a name="rest_code_452cbb3e413240058c4deeadbc32f203-2"&gt;&lt;/a&gt;   :maxdepth: 3
+&lt;a name="rest_code_452cbb3e413240058c4deeadbc32f203-3"&gt;&lt;/a&gt;   :caption: Contenido:
+&lt;a name="rest_code_452cbb3e413240058c4deeadbc32f203-4"&gt;&lt;/a&gt;
+&lt;a name="rest_code_452cbb3e413240058c4deeadbc32f203-5"&gt;&lt;/a&gt;   README
+&lt;a name="rest_code_452cbb3e413240058c4deeadbc32f203-6"&gt;&lt;/a&gt;   installation
+&lt;a name="rest_code_452cbb3e413240058c4deeadbc32f203-7"&gt;&lt;/a&gt;   usage
+&lt;a name="rest_code_452cbb3e413240058c4deeadbc32f203-8"&gt;&lt;/a&gt;   api/modules
+&lt;a name="rest_code_452cbb3e413240058c4deeadbc32f203-9"&gt;&lt;/a&gt;   concepts
+&lt;a name="rest_code_452cbb3e413240058c4deeadbc32f203-10"&gt;&lt;/a&gt;   history
 &lt;/pre&gt;&lt;p&gt;Y podemos borrar las líneas posteriores de &lt;em&gt;Indices and tables&lt;/em&gt;.&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -478,7 +610,7 @@ información para que alguien pueda analizar o continuar un desarrollo.&lt;/p&gt
 &lt;h2&gt;Ejecución de Sphinx&lt;/h2&gt;
 &lt;p&gt;Como estamos haciendo uso de &lt;em&gt;autodoc&lt;/em&gt;, nuestro primer paso es generar la
 extracción de la API.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_af55688e94e449e0b21c46853da46f28-1"&gt;&lt;/a&gt;sphinx-apidoc -f -M -o source/api/ ../proyecto
+&lt;pre class="code text"&gt;&lt;a name="rest_code_14e247e79a8d4114ba79d5919c9216b9-1"&gt;&lt;/a&gt;sphinx-apidoc -f -M -o source/api/ ../proyecto
 &lt;/pre&gt;&lt;p&gt;Recordar que en Windows hay que agregar &lt;code&gt;.exe&lt;/code&gt;
 (&lt;code&gt;sphinx-apidoc.exe&lt;/code&gt;). &lt;code&gt;-f&lt;/code&gt; es para forzar la regeneración de los
 archivos (importante si actualizamos la documentación de la API), &lt;code&gt;-M&lt;/code&gt;
@@ -530,7 +662,7 @@ futuro.&lt;/p&gt;
 &lt;p&gt;Si bien puedes descargarlo desde el sitio del proyecto, aprovecharemos el
 gestor Conda para facilitar la tarea de descarga, instalación y configuración.&lt;/p&gt;
 &lt;p&gt;Abriremos Anaconda PowerShell o Anaconda Prompt, y ejecutaremos lo siguiente:&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_9f7b506d4d19475fbfdb574b4370e614-1"&gt;&lt;/a&gt;conda create -n gitbash -c conda-forge git=2.24.0
+&lt;pre class="code text"&gt;&lt;a name="rest_code_43897161ee9344f9869b5059ce6e2fcf-1"&gt;&lt;/a&gt;conda create -n gitbash -c conda-forge git=2.24.0
 &lt;/pre&gt;&lt;p&gt;Es importante el uso de &lt;code&gt;-c conda-forge&lt;/code&gt; porque de este canal vendrá la
 versión de Git que usaremos. Si se usa el canal por defecto, se instala solo el
 cliente de consola, mientras que en esta opción viene Git Bash. He indicado
@@ -551,9 +683,9 @@ posibles conflictos.&lt;/p&gt;
 típicos de Bash, como el &lt;code&gt;bashrc&lt;/code&gt;. Así, podemos usar la configuración que
 habitualmente se usa en Linux.&lt;/p&gt;
 &lt;p&gt;Abrimos Git Bash, y ejecutamos:&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_ac1bae5a0df74e02921b979f371c6969-1"&gt;&lt;/a&gt;cd
-&lt;a name="rest_code_ac1bae5a0df74e02921b979f371c6969-2"&gt;&lt;/a&gt;echo ". /c/Users/USUARIO/ANACONDA/etc/profile.d/conda.sh" &amp;gt;&amp;gt; .bashrc
-&lt;a name="rest_code_ac1bae5a0df74e02921b979f371c6969-3"&gt;&lt;/a&gt;source .bashrc
+&lt;pre class="code text"&gt;&lt;a name="rest_code_1c85a0e1241c44b681d517aa480009d3-1"&gt;&lt;/a&gt;cd
+&lt;a name="rest_code_1c85a0e1241c44b681d517aa480009d3-2"&gt;&lt;/a&gt;echo ". /c/Users/USUARIO/ANACONDA/etc/profile.d/conda.sh" &amp;gt;&amp;gt; .bashrc
+&lt;a name="rest_code_1c85a0e1241c44b681d517aa480009d3-3"&gt;&lt;/a&gt;source .bashrc
 &lt;/pre&gt;&lt;p&gt;Con la primera línea aseguramos ir al directorio del usuario. En la segunda
 línea, crearemos o editaremos el archivo de configuración, pero debes
 reemplazar &lt;code&gt;USUARIO&lt;/code&gt; por la carpeta de tu usuario y &lt;code&gt;ANACONDA&lt;/code&gt; por
@@ -578,12 +710,12 @@ nuestras necesidades especificando en el archivo Dockerfile.&lt;/p&gt;
 &lt;div class="section" id="instalar-docker"&gt;
 &lt;h2&gt;Instalar Docker&lt;/h2&gt;
 &lt;p&gt;Recomiendo en Linux instalar docker con snap.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_72526f236f88479db3b602b288a62dd9-1"&gt;&lt;/a&gt;sudo snap install docker
+&lt;pre class="code text"&gt;&lt;a name="rest_code_d3de171c15084801a1ddfd737a0433f1-1"&gt;&lt;/a&gt;sudo snap install docker
 &lt;/pre&gt;&lt;p&gt;Posteriormente, podemos asociar nuestro usuario para la ejecución sin ser
 administrador.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_c7840db319084f8994853138d5d7156a-1"&gt;&lt;/a&gt;sudo groupadd docker
-&lt;a name="rest_code_c7840db319084f8994853138d5d7156a-2"&gt;&lt;/a&gt;sudo usermod -aG docker $USER
-&lt;a name="rest_code_c7840db319084f8994853138d5d7156a-3"&gt;&lt;/a&gt;newgrp docker
+&lt;pre class="code text"&gt;&lt;a name="rest_code_80c2c56368654c789e1012869f2e5b37-1"&gt;&lt;/a&gt;sudo groupadd docker
+&lt;a name="rest_code_80c2c56368654c789e1012869f2e5b37-2"&gt;&lt;/a&gt;sudo usermod -aG docker $USER
+&lt;a name="rest_code_80c2c56368654c789e1012869f2e5b37-3"&gt;&lt;/a&gt;newgrp docker
 &lt;/pre&gt;&lt;p&gt;Puedes probar ejecutando como usuario regular, &lt;code&gt;docker run hello-world&lt;/code&gt;.&lt;/p&gt;
 &lt;iframe style="width:120px;height:240px;" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" src="//ws-na.amazon-adsystem.com/widgets/q?ServiceVersion=20070822&amp;amp;OneJS=1&amp;amp;Operation=GetAdHtml&amp;amp;MarketPlace=US&amp;amp;source=ss&amp;amp;ref=as_ss_li_til&amp;amp;ad_type=product_link&amp;amp;tracking_id=cosmoscalibur-20&amp;amp;language=es_US&amp;amp;marketplace=amazon&amp;amp;region=US&amp;amp;placement=B07QWLXCC7&amp;amp;asins=B07QWLXCC7&amp;amp;linkId=ec8263fe9f13222ede56df34878a1743&amp;amp;show_border=true&amp;amp;link_opens_in_new_window=true"&gt;&lt;/iframe&gt;&lt;/div&gt;
 &lt;div class="section" id="dockerfile"&gt;
@@ -628,8 +760,8 @@ archivos &lt;em&gt;tar&lt;/em&gt;.&lt;/p&gt;
 &lt;p&gt;El directorio que moveremos se genero en el contenedor LXC que construimos
 en &lt;a class="reference external" href="https://www.cosmoscalibur.com/blog/crear-contenedor-lxc-para-aplicacion-gui-ealite/"&gt;Crear contenedor LXC para aplicación GUI - EALite&lt;/a&gt;. Para ello,
 iniciamos el contenedor y extraemos el directorio.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_54a889382d354ae59feeffd96bdbc849-1"&gt;&lt;/a&gt;sudo lxc start ea
-&lt;a name="rest_code_54a889382d354ae59feeffd96bdbc849-2"&gt;&lt;/a&gt;sudo lxc file pull -r ea/home/ubuntu/.wine .
+&lt;pre class="code text"&gt;&lt;a name="rest_code_19b6afc5a02041c59eacac310dcf8677-1"&gt;&lt;/a&gt;sudo lxc start ea
+&lt;a name="rest_code_19b6afc5a02041c59eacac310dcf8677-2"&gt;&lt;/a&gt;sudo lxc file pull -r ea/home/ubuntu/.wine .
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Con &lt;code&gt;USER&lt;/code&gt; cambiamos el usuario que ejecuta los procesos. Es importante
 que a la hora de concluir, si un proceso es ejecutado por un usuario regular,
@@ -641,19 +773,19 @@ existe (pero no el directorio de usuario).&lt;/p&gt;
 Esto es posible con &lt;code&gt;CMD&lt;/code&gt; o con &lt;code&gt;ENTRYPOINT&lt;/code&gt;. La diferencia es que
 el primero permite sobreescribir la ejecución enviando como parámetro lo que
 se desea ejecutar, mientras que la segunda opción solo ejecuta la configurada.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_5761ecc8690d491898c77a7f5646ba20-1"&gt;&lt;/a&gt;# escape=`
-&lt;a name="rest_code_5761ecc8690d491898c77a7f5646ba20-2"&gt;&lt;/a&gt;FROM i386/ubuntu:18.04
-&lt;a name="rest_code_5761ecc8690d491898c77a7f5646ba20-3"&gt;&lt;/a&gt;RUN apt update -q &amp;amp;&amp;amp; apt install --install-recommends -y wine-stable
-&lt;a name="rest_code_5761ecc8690d491898c77a7f5646ba20-4"&gt;&lt;/a&gt;RUN apt install -y fonts-crosextra-carlito
-&lt;a name="rest_code_5761ecc8690d491898c77a7f5646ba20-5"&gt;&lt;/a&gt;RUN useradd -ms /bin/bash ubuntu
-&lt;a name="rest_code_5761ecc8690d491898c77a7f5646ba20-6"&gt;&lt;/a&gt;WORKDIR /home/ubuntu
-&lt;a name="rest_code_5761ecc8690d491898c77a7f5646ba20-7"&gt;&lt;/a&gt;COPY .wine .wine
-&lt;a name="rest_code_5761ecc8690d491898c77a7f5646ba20-8"&gt;&lt;/a&gt;RUN chown -R ubuntu .wine
-&lt;a name="rest_code_5761ecc8690d491898c77a7f5646ba20-9"&gt;&lt;/a&gt;USER ubuntu
-&lt;a name="rest_code_5761ecc8690d491898c77a7f5646ba20-10"&gt;&lt;/a&gt;RUN mkdir -p .local/bin &amp;amp;&amp;amp; `
-&lt;a name="rest_code_5761ecc8690d491898c77a7f5646ba20-11"&gt;&lt;/a&gt;        echo "wine $HOME/.wine/drive_c/Program\ Files/Sparx\ Systems/EA\ LITE/EA.exe" &amp;gt; .local/bin/ealite &amp;amp;&amp;amp; `
-&lt;a name="rest_code_5761ecc8690d491898c77a7f5646ba20-12"&gt;&lt;/a&gt;        chmod 755 .local/bin/ealite
-&lt;a name="rest_code_5761ecc8690d491898c77a7f5646ba20-13"&gt;&lt;/a&gt;CMD ".local/bin/ealite"
+&lt;pre class="code text"&gt;&lt;a name="rest_code_2146b8878dc84d09bd8f630a88c70931-1"&gt;&lt;/a&gt;# escape=`
+&lt;a name="rest_code_2146b8878dc84d09bd8f630a88c70931-2"&gt;&lt;/a&gt;FROM i386/ubuntu:18.04
+&lt;a name="rest_code_2146b8878dc84d09bd8f630a88c70931-3"&gt;&lt;/a&gt;RUN apt update -q &amp;amp;&amp;amp; apt install --install-recommends -y wine-stable
+&lt;a name="rest_code_2146b8878dc84d09bd8f630a88c70931-4"&gt;&lt;/a&gt;RUN apt install -y fonts-crosextra-carlito
+&lt;a name="rest_code_2146b8878dc84d09bd8f630a88c70931-5"&gt;&lt;/a&gt;RUN useradd -ms /bin/bash ubuntu
+&lt;a name="rest_code_2146b8878dc84d09bd8f630a88c70931-6"&gt;&lt;/a&gt;WORKDIR /home/ubuntu
+&lt;a name="rest_code_2146b8878dc84d09bd8f630a88c70931-7"&gt;&lt;/a&gt;COPY .wine .wine
+&lt;a name="rest_code_2146b8878dc84d09bd8f630a88c70931-8"&gt;&lt;/a&gt;RUN chown -R ubuntu .wine
+&lt;a name="rest_code_2146b8878dc84d09bd8f630a88c70931-9"&gt;&lt;/a&gt;USER ubuntu
+&lt;a name="rest_code_2146b8878dc84d09bd8f630a88c70931-10"&gt;&lt;/a&gt;RUN mkdir -p .local/bin &amp;amp;&amp;amp; `
+&lt;a name="rest_code_2146b8878dc84d09bd8f630a88c70931-11"&gt;&lt;/a&gt;        echo "wine $HOME/.wine/drive_c/Program\ Files/Sparx\ Systems/EA\ LITE/EA.exe" &amp;gt; .local/bin/ealite &amp;amp;&amp;amp; `
+&lt;a name="rest_code_2146b8878dc84d09bd8f630a88c70931-12"&gt;&lt;/a&gt;        chmod 755 .local/bin/ealite
+&lt;a name="rest_code_2146b8878dc84d09bd8f630a88c70931-13"&gt;&lt;/a&gt;CMD ".local/bin/ealite"
 &lt;/pre&gt;&lt;/div&gt;
 &lt;div class="section" id="construir-imagen-docker"&gt;
 &lt;h2&gt;Construir imagen Docker&lt;/h2&gt;
@@ -663,13 +795,13 @@ para relacionar la ruta del archivo dockerfile que se usará. El siguiente
 argumento no posee marca para indicarlo y corresponde al contexto, que viene a
 ser la ruta donde se encuentran los archivos que usaremos (que puede ser
 reemplazado por un archivo de contexto con la ruta a los distintos archivos).&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_98f1bc25fbc84b659df6277e3675ba79-1"&gt;&lt;/a&gt;docker build -t cosmoscalibur/ealite:latest -f dockerfile .
+&lt;pre class="code text"&gt;&lt;a name="rest_code_6dd6203911f446bfa37f11d488e4c8bd-1"&gt;&lt;/a&gt;docker build -t cosmoscalibur/ealite:latest -f dockerfile .
 &lt;/pre&gt;&lt;/div&gt;
 &lt;div class="section" id="ejecutar-contenedor"&gt;
 &lt;h2&gt;Ejecutar contenedor&lt;/h2&gt;
 &lt;p&gt;Ahora puedes lanzar un contenedor gráfico basado en la imagen construida con la
 siguiente instrucción.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_e57bcaf04e344643ba23fcd9bf3ee162-1"&gt;&lt;/a&gt;docker run --net=host --env="DISPLAY" --volume="$HOME/.Xauthority:/root/.Xauthority:rw" cosmoscalibur/ealite:latest
+&lt;pre class="code text"&gt;&lt;a name="rest_code_ee5af8cb67904ca99bd485086f2ae490-1"&gt;&lt;/a&gt;docker run --net=host --env="DISPLAY" --volume="$HOME/.Xauthority:/root/.Xauthority:rw" cosmoscalibur/ealite:latest
 &lt;/pre&gt;&lt;/div&gt;
 &lt;div class="section" id="referencias"&gt;
 &lt;h2&gt;Referencias&lt;/h2&gt;
@@ -700,9 +832,9 @@ bibliotecas de 32 bits de manera innecesaria. Así que empecemos.&lt;/p&gt;
 &lt;p&gt;Nuestro primer paso será instalar el paquete LXD, el cual se encuentra
 disponible a través de múltiples gestores de paquetes de las distribuciones
 Linux pero también como paquete snap. Por facilidad, usaré el paquete snap.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_ada36c0c169a41409d11c1669cb6f2ab-1"&gt;&lt;/a&gt;sudo snap install lxd
+&lt;pre class="code text"&gt;&lt;a name="rest_code_5e82ee959dab46018f6e44537d8b2d59-1"&gt;&lt;/a&gt;sudo snap install lxd
 &lt;/pre&gt;&lt;p&gt;Ahora, debemos inicializar (solo es necesario la primera vez tras instalar).&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_01144f4d358643ac8877e59328d2f819-1"&gt;&lt;/a&gt;sudo lxd init
+&lt;pre class="code text"&gt;&lt;a name="rest_code_e5abd0a7b0ba4211992d32ff00e23bf5-1"&gt;&lt;/a&gt;sudo lxd init
 &lt;/pre&gt;&lt;p&gt;En mi caso, todos los valores que son preguntados los he dejado en su valor
 por defecto. Personalmente, solo debería preocuparnos el tamaño de la unidad
 usado (en caso de tener limitaciones en espacio de almacenamiento).&lt;/p&gt;
@@ -715,35 +847,35 @@ gráfica nos requiere una configuración adicional, que es realizar el paso al
 sistema gráfico de nuestro sistema hospedador.&lt;/p&gt;
 &lt;p&gt;El perfil gráfico es definido con el siguiente código (copia y pega en un nuevo
 archivo, &lt;code&gt;lxdguiprofile.txt&lt;/code&gt;).&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_51eb594ff90948b0b0798866297973f2-1"&gt;&lt;/a&gt;config:
-&lt;a name="rest_code_51eb594ff90948b0b0798866297973f2-2"&gt;&lt;/a&gt;  environment.DISPLAY: :0
-&lt;a name="rest_code_51eb594ff90948b0b0798866297973f2-3"&gt;&lt;/a&gt;  raw.idmap: both 1000 1000
-&lt;a name="rest_code_51eb594ff90948b0b0798866297973f2-4"&gt;&lt;/a&gt;  user.user-data: |
-&lt;a name="rest_code_51eb594ff90948b0b0798866297973f2-5"&gt;&lt;/a&gt;    #cloud-config
-&lt;a name="rest_code_51eb594ff90948b0b0798866297973f2-6"&gt;&lt;/a&gt;    runcmd:
-&lt;a name="rest_code_51eb594ff90948b0b0798866297973f2-7"&gt;&lt;/a&gt;      - 'sed -i "s/; enable-shm = yes/enable-shm = no/g" /etc/pulse/client.conf'
-&lt;a name="rest_code_51eb594ff90948b0b0798866297973f2-8"&gt;&lt;/a&gt;      - 'echo export PULSE_SERVER=unix:/tmp/.pulse-native | tee --append /home/ubuntu/.profile'
-&lt;a name="rest_code_51eb594ff90948b0b0798866297973f2-9"&gt;&lt;/a&gt;    packages:
-&lt;a name="rest_code_51eb594ff90948b0b0798866297973f2-10"&gt;&lt;/a&gt;      - x11-apps
-&lt;a name="rest_code_51eb594ff90948b0b0798866297973f2-11"&gt;&lt;/a&gt;      - mesa-utils
-&lt;a name="rest_code_51eb594ff90948b0b0798866297973f2-12"&gt;&lt;/a&gt;      - pulseaudio
-&lt;a name="rest_code_51eb594ff90948b0b0798866297973f2-13"&gt;&lt;/a&gt;description: GUI LXD profile
-&lt;a name="rest_code_51eb594ff90948b0b0798866297973f2-14"&gt;&lt;/a&gt;devices:
-&lt;a name="rest_code_51eb594ff90948b0b0798866297973f2-15"&gt;&lt;/a&gt;  PASocket:
-&lt;a name="rest_code_51eb594ff90948b0b0798866297973f2-16"&gt;&lt;/a&gt;    path: /tmp/.pulse-native
-&lt;a name="rest_code_51eb594ff90948b0b0798866297973f2-17"&gt;&lt;/a&gt;    source: /run/user/1000/pulse/native
-&lt;a name="rest_code_51eb594ff90948b0b0798866297973f2-18"&gt;&lt;/a&gt;    type: disk
-&lt;a name="rest_code_51eb594ff90948b0b0798866297973f2-19"&gt;&lt;/a&gt;  X0:
-&lt;a name="rest_code_51eb594ff90948b0b0798866297973f2-20"&gt;&lt;/a&gt;    path: /tmp/.X11-unix/X0
-&lt;a name="rest_code_51eb594ff90948b0b0798866297973f2-21"&gt;&lt;/a&gt;    source: /tmp/.X11-unix/X0
-&lt;a name="rest_code_51eb594ff90948b0b0798866297973f2-22"&gt;&lt;/a&gt;    type: disk
-&lt;a name="rest_code_51eb594ff90948b0b0798866297973f2-23"&gt;&lt;/a&gt;  mygpu:
-&lt;a name="rest_code_51eb594ff90948b0b0798866297973f2-24"&gt;&lt;/a&gt;    type: gpu
-&lt;a name="rest_code_51eb594ff90948b0b0798866297973f2-25"&gt;&lt;/a&gt;name: gui
-&lt;a name="rest_code_51eb594ff90948b0b0798866297973f2-26"&gt;&lt;/a&gt;used_by:
+&lt;pre class="code text"&gt;&lt;a name="rest_code_28b5f477b8be4143ad398b39971797e5-1"&gt;&lt;/a&gt;config:
+&lt;a name="rest_code_28b5f477b8be4143ad398b39971797e5-2"&gt;&lt;/a&gt;  environment.DISPLAY: :0
+&lt;a name="rest_code_28b5f477b8be4143ad398b39971797e5-3"&gt;&lt;/a&gt;  raw.idmap: both 1000 1000
+&lt;a name="rest_code_28b5f477b8be4143ad398b39971797e5-4"&gt;&lt;/a&gt;  user.user-data: |
+&lt;a name="rest_code_28b5f477b8be4143ad398b39971797e5-5"&gt;&lt;/a&gt;    #cloud-config
+&lt;a name="rest_code_28b5f477b8be4143ad398b39971797e5-6"&gt;&lt;/a&gt;    runcmd:
+&lt;a name="rest_code_28b5f477b8be4143ad398b39971797e5-7"&gt;&lt;/a&gt;      - 'sed -i "s/; enable-shm = yes/enable-shm = no/g" /etc/pulse/client.conf'
+&lt;a name="rest_code_28b5f477b8be4143ad398b39971797e5-8"&gt;&lt;/a&gt;      - 'echo export PULSE_SERVER=unix:/tmp/.pulse-native | tee --append /home/ubuntu/.profile'
+&lt;a name="rest_code_28b5f477b8be4143ad398b39971797e5-9"&gt;&lt;/a&gt;    packages:
+&lt;a name="rest_code_28b5f477b8be4143ad398b39971797e5-10"&gt;&lt;/a&gt;      - x11-apps
+&lt;a name="rest_code_28b5f477b8be4143ad398b39971797e5-11"&gt;&lt;/a&gt;      - mesa-utils
+&lt;a name="rest_code_28b5f477b8be4143ad398b39971797e5-12"&gt;&lt;/a&gt;      - pulseaudio
+&lt;a name="rest_code_28b5f477b8be4143ad398b39971797e5-13"&gt;&lt;/a&gt;description: GUI LXD profile
+&lt;a name="rest_code_28b5f477b8be4143ad398b39971797e5-14"&gt;&lt;/a&gt;devices:
+&lt;a name="rest_code_28b5f477b8be4143ad398b39971797e5-15"&gt;&lt;/a&gt;  PASocket:
+&lt;a name="rest_code_28b5f477b8be4143ad398b39971797e5-16"&gt;&lt;/a&gt;    path: /tmp/.pulse-native
+&lt;a name="rest_code_28b5f477b8be4143ad398b39971797e5-17"&gt;&lt;/a&gt;    source: /run/user/1000/pulse/native
+&lt;a name="rest_code_28b5f477b8be4143ad398b39971797e5-18"&gt;&lt;/a&gt;    type: disk
+&lt;a name="rest_code_28b5f477b8be4143ad398b39971797e5-19"&gt;&lt;/a&gt;  X0:
+&lt;a name="rest_code_28b5f477b8be4143ad398b39971797e5-20"&gt;&lt;/a&gt;    path: /tmp/.X11-unix/X0
+&lt;a name="rest_code_28b5f477b8be4143ad398b39971797e5-21"&gt;&lt;/a&gt;    source: /tmp/.X11-unix/X0
+&lt;a name="rest_code_28b5f477b8be4143ad398b39971797e5-22"&gt;&lt;/a&gt;    type: disk
+&lt;a name="rest_code_28b5f477b8be4143ad398b39971797e5-23"&gt;&lt;/a&gt;  mygpu:
+&lt;a name="rest_code_28b5f477b8be4143ad398b39971797e5-24"&gt;&lt;/a&gt;    type: gpu
+&lt;a name="rest_code_28b5f477b8be4143ad398b39971797e5-25"&gt;&lt;/a&gt;name: gui
+&lt;a name="rest_code_28b5f477b8be4143ad398b39971797e5-26"&gt;&lt;/a&gt;used_by:
 &lt;/pre&gt;&lt;p&gt;Ahora, crearemos el perfil:&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_430b31f1e9a7408585378344718e448a-1"&gt;&lt;/a&gt;sudo lxc profile create gui
-&lt;a name="rest_code_430b31f1e9a7408585378344718e448a-2"&gt;&lt;/a&gt;cat lxdguiprofile.txt | sudo lxc profile edit gui
+&lt;pre class="code text"&gt;&lt;a name="rest_code_282cef29eb644a3684d3cf474d74323a-1"&gt;&lt;/a&gt;sudo lxc profile create gui
+&lt;a name="rest_code_282cef29eb644a3684d3cf474d74323a-2"&gt;&lt;/a&gt;cat lxdguiprofile.txt | sudo lxc profile edit gui
 &lt;/pre&gt;&lt;p&gt;Este procedimiento, solo es necesario hacerlo la primera vez.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="obtener-contenedor-base"&gt;
@@ -756,7 +888,7 @@ distribuciones Linux, con versiones y arquitecturas diferentes.&lt;/p&gt;
 corresponde a 32 bits. Puedes usar otra distribución siempre y cuando disponga
 de la forma de instalar los paquetes necesarios y en versiones recientes (entre
 más reciente sea Wine, mejor).&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_1218dc7e74064b029b8336920b0d9722-1"&gt;&lt;/a&gt;sudo lxc launch --profile default --profile gui images:ubuntu/18.04/i386 ea
+&lt;pre class="code text"&gt;&lt;a name="rest_code_d2c0ffb2e7a04094ba73f55539ab53dd-1"&gt;&lt;/a&gt;sudo lxc launch --profile default --profile gui images:ubuntu/18.04/i386 ea
 &lt;/pre&gt;&lt;p&gt;Cuando no requerimos la parte gráfica, podemos omitir
 &lt;code&gt;--profile default --profile gui&lt;/code&gt;. Los dos perfiles son un proceso de
 herencia, primero se carga el perfil por defecto y luego se añade lo necesario
@@ -773,7 +905,7 @@ ejecución del contenedor, o igual podríamos detenerlo primero,
 &lt;p&gt;Para instalar nuestro programa en el contenedor, necesitamos ejecutar comandos
 en este. Para ello, tenemos &lt;code&gt;lxc exec {contenedor} -- {comando}&lt;/code&gt;. Una
 forma interactiva, adecuada para pruebas, es ejecutar bash.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_101db610905a4534848ae2c561790046-1"&gt;&lt;/a&gt;sudo lxc exec ea -- /bin/bash
+&lt;pre class="code text"&gt;&lt;a name="rest_code_25c2049097a843b4aa63165583a479d2-1"&gt;&lt;/a&gt;sudo lxc exec ea -- /bin/bash
 &lt;/pre&gt;&lt;p&gt;De esta manera podemos ejecutar los comandos de la misma manera que lo hacemos
 en nuestro sistema, ya que estamos en el contenedor.&lt;/p&gt;
 &lt;p&gt;Si deseamos automatizar, nos interesará enviar directamente las instrucciones
@@ -789,39 +921,39 @@ tenemos el usuario ubuntu),
 &lt;p&gt;La gestión de archivos es realizada con los comandos &lt;code&gt;file pull&lt;/code&gt; y
 &lt;code&gt;file push&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;Así, si deseamos enviar un archivo:&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_c4d1173d8f9044b9835a81ab50ba345c-1"&gt;&lt;/a&gt;sudo lxc file push {archivo local} {contenedor}/{ruta contenedor}
+&lt;pre class="code text"&gt;&lt;a name="rest_code_e5f3294d4d584fd2a1235c1931e2dc7b-1"&gt;&lt;/a&gt;sudo lxc file push {archivo local} {contenedor}/{ruta contenedor}
 &lt;/pre&gt;&lt;p&gt;Y si deseamos traer un archivo del contenedor:&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_81f115d6a231403f87c010a2268857bb-1"&gt;&lt;/a&gt;sudo lxc file pull {contenedor}/{ruta contenedor} {archivo local}
+&lt;pre class="code text"&gt;&lt;a name="rest_code_5784dc4ace8842cdb425414061d8dc8d-1"&gt;&lt;/a&gt;sudo lxc file pull {contenedor}/{ruta contenedor} {archivo local}
 &lt;/pre&gt;&lt;/div&gt;
 &lt;div class="section" id="instalar-ealite"&gt;
 &lt;h2&gt;Instalar EALite&lt;/h2&gt;
 &lt;p&gt;Ahora que sabemos ejecutar comandos en el contenedor, instalaremos las
 dependencias y finalmente EALite.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_f1adeca1890f401b8fb4230036f11f46-1"&gt;&lt;/a&gt;sudo lxc exec ea -- apt update -q
-&lt;a name="rest_code_f1adeca1890f401b8fb4230036f11f46-2"&gt;&lt;/a&gt;sudo lxc exec ea -- apt install --install-recommends -y wine-stable winetricks
-&lt;a name="rest_code_f1adeca1890f401b8fb4230036f11f46-3"&gt;&lt;/a&gt;sudo lxc exec ea -- apt install -y fonts-crosextra-carlito
-&lt;a name="rest_code_f1adeca1890f401b8fb4230036f11f46-4"&gt;&lt;/a&gt;sudo lxc exec ea -- su - ubuntu -c 'winetricks --unattended msxml3'
-&lt;a name="rest_code_f1adeca1890f401b8fb4230036f11f46-5"&gt;&lt;/a&gt;sudo lxc exec ea -- su - ubuntu -c 'winetricks --unattended msxml4'
-&lt;a name="rest_code_f1adeca1890f401b8fb4230036f11f46-6"&gt;&lt;/a&gt;sudo lxc exec ea -- su - ubuntu -c 'winetricks --unattended msxml6'
-&lt;a name="rest_code_f1adeca1890f401b8fb4230036f11f46-7"&gt;&lt;/a&gt;sudo lxc exec ea -- su - ubuntu -c 'winetricks --unattended mdac28'
-&lt;a name="rest_code_f1adeca1890f401b8fb4230036f11f46-8"&gt;&lt;/a&gt;sudo lxc exec ea -- su - ubuntu -c 'winetricks --unattended jet40'
-&lt;a name="rest_code_f1adeca1890f401b8fb4230036f11f46-9"&gt;&lt;/a&gt;wget http://www.sparxsystems.com.au/bin/EALite.exe
-&lt;a name="rest_code_f1adeca1890f401b8fb4230036f11f46-10"&gt;&lt;/a&gt;sudo lxc file push EALite.exe ea/home/ubuntu/EALite.exe
-&lt;a name="rest_code_f1adeca1890f401b8fb4230036f11f46-11"&gt;&lt;/a&gt;sudo lxc exec ea -- su - ubuntu -c 'wine msiexec /i EALite.exe'
+&lt;pre class="code text"&gt;&lt;a name="rest_code_99ae503129944334ad90c327788373aa-1"&gt;&lt;/a&gt;sudo lxc exec ea -- apt update -q
+&lt;a name="rest_code_99ae503129944334ad90c327788373aa-2"&gt;&lt;/a&gt;sudo lxc exec ea -- apt install --install-recommends -y wine-stable winetricks
+&lt;a name="rest_code_99ae503129944334ad90c327788373aa-3"&gt;&lt;/a&gt;sudo lxc exec ea -- apt install -y fonts-crosextra-carlito
+&lt;a name="rest_code_99ae503129944334ad90c327788373aa-4"&gt;&lt;/a&gt;sudo lxc exec ea -- su - ubuntu -c 'winetricks --unattended msxml3'
+&lt;a name="rest_code_99ae503129944334ad90c327788373aa-5"&gt;&lt;/a&gt;sudo lxc exec ea -- su - ubuntu -c 'winetricks --unattended msxml4'
+&lt;a name="rest_code_99ae503129944334ad90c327788373aa-6"&gt;&lt;/a&gt;sudo lxc exec ea -- su - ubuntu -c 'winetricks --unattended msxml6'
+&lt;a name="rest_code_99ae503129944334ad90c327788373aa-7"&gt;&lt;/a&gt;sudo lxc exec ea -- su - ubuntu -c 'winetricks --unattended mdac28'
+&lt;a name="rest_code_99ae503129944334ad90c327788373aa-8"&gt;&lt;/a&gt;sudo lxc exec ea -- su - ubuntu -c 'winetricks --unattended jet40'
+&lt;a name="rest_code_99ae503129944334ad90c327788373aa-9"&gt;&lt;/a&gt;wget http://www.sparxsystems.com.au/bin/EALite.exe
+&lt;a name="rest_code_99ae503129944334ad90c327788373aa-10"&gt;&lt;/a&gt;sudo lxc file push EALite.exe ea/home/ubuntu/EALite.exe
+&lt;a name="rest_code_99ae503129944334ad90c327788373aa-11"&gt;&lt;/a&gt;sudo lxc exec ea -- su - ubuntu -c 'wine msiexec /i EALite.exe'
 &lt;/pre&gt;&lt;p&gt;En este punto, procederemos de manera gráfica a la instalación final de EALite.&lt;/p&gt;
 &lt;div class="figure align-center"&gt;
 &lt;img alt="Ventana de instalación gráfica de EALite." src="https://lh3.googleusercontent.com/bJQU29AUGyL8RwMip-Zfye6-npY8m5nTvUCvLys09zKO6Spm-0K86w7n9l0PJbg9I84k7Jr3zu2OBrZwUCSVcQYBlFDFkqD9T80ONFdYKX1dnVX81rvkeHAGRXeL75ByBu9wDbDqhWqBAx10HTAACgbKLN5_YKhQ1_acN2riplkT7cS0805fZpmSRyLu_xd_xtBRa4SNG9YjnOxBiJv7oymvcn0MXwLZGpM28IUIkqSnZdngYxKEZLRGOWi-crHOJHhElQUBQoiN9RDmrgLNVcMhpvu_7eLWOsCZ0_tdCDbqtkNeWBp5mFf2ykRI5-BI8G3xBbHrjrG3xTVvkBu2CTbbxUxLyv63WBEIpD-kmckIuhWxQrb_8DxDQCuRg2hQPyJwMY2RQcgU0CqB5yRhbG22aZczf-fIlovFSVDrJJIbI_V1Elm-6KWAn3P64KfKDvKAhDyAAfS9ChuTmtWyXr-GUHWyAKzWu6Rq5mMbcEmBijcUlRCZLkp8Bdn0jgzw64w0A1_VnC5Md4VaDoB2Beu8Tv4balnFw-AcI55NHbIXeBxDPB-FakLiu5x71laBXWTBa2_vVPb5e7TZu4kkpWzpVbw_EmVDVhFx-16BJSXCXovmxanlknIfDhWEkX_ZLASWnxE5_Vv8lDPxLb_s0mafKg7F6Ys_JZIOogNPYWn-tgIy5tvsNBmyCX6Lky7dQSCU_vmfIBw3BQ5pzY5QhNk4BQXsXwOhDU98ALq6mb-79pU=w534-h462-no" style="width: 480px;"&gt;
 &lt;p class="caption"&gt;Ventana de instalación gráfica de EALite.&lt;/p&gt;
 &lt;/div&gt;
 &lt;p&gt;Ahora, es necesario crear un mecanismo simple para la ejecución de EA.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_7367e00c261a415088b6fc749df326f4-1"&gt;&lt;/a&gt;sudo lxc exec ea -- su - ubuntu -c 'mkdir $HOME/.local/bin'
-&lt;a name="rest_code_7367e00c261a415088b6fc749df326f4-2"&gt;&lt;/a&gt;sudo lxc exec ea -- su - ubuntu -c 'echo "wine $HOME/.wine/drive_c/Program\ Files/Sparx\ Systems/EA\ LITE/EA.exe" &amp;gt; $HOME/.local/bin/ealite'
-&lt;a name="rest_code_7367e00c261a415088b6fc749df326f4-3"&gt;&lt;/a&gt;sudo lxc exec ea -- su - ubuntu -c 'chmod 755 $HOME/.local/bin/ealite'
+&lt;pre class="code text"&gt;&lt;a name="rest_code_ebba827f834c45259a6406479b2ba248-1"&gt;&lt;/a&gt;sudo lxc exec ea -- su - ubuntu -c 'mkdir $HOME/.local/bin'
+&lt;a name="rest_code_ebba827f834c45259a6406479b2ba248-2"&gt;&lt;/a&gt;sudo lxc exec ea -- su - ubuntu -c 'echo "wine $HOME/.wine/drive_c/Program\ Files/Sparx\ Systems/EA\ LITE/EA.exe" &amp;gt; $HOME/.local/bin/ealite'
+&lt;a name="rest_code_ebba827f834c45259a6406479b2ba248-3"&gt;&lt;/a&gt;sudo lxc exec ea -- su - ubuntu -c 'chmod 755 $HOME/.local/bin/ealite'
 &lt;/pre&gt;&lt;/div&gt;
 &lt;div class="section" id="ejecutar-ealite"&gt;
 &lt;h2&gt;Ejecutar EALite&lt;/h2&gt;
 &lt;p&gt;Ahora, podemos usar el visor de Enterprise Architect.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_3ba263f40769490cab9aeb21d92d3aa1-1"&gt;&lt;/a&gt;sudo lxc exec ea -- su - ubuntu -c 'ealite'
+&lt;pre class="code text"&gt;&lt;a name="rest_code_702703af8e5c4bfcbc4b9744dc09da41-1"&gt;&lt;/a&gt;sudo lxc exec ea -- su - ubuntu -c 'ealite'
 &lt;/pre&gt;&lt;p&gt;Cuando iniciemos el sistema operativo, requerimos de iniciar el contenedores
 antes de ejecutar la instrucción anterior, &lt;code&gt;sudo lxc start ea&lt;/code&gt;.&lt;/p&gt;
 &lt;div class="figure align-center"&gt;
@@ -835,12 +967,12 @@ antes de ejecutar la instrucción anterior, &lt;code&gt;sudo lxc start ea&lt;/co
 &lt;p&gt;Puedes asegurar una forma simple de ejecutar EALite creando una rutina de
 lanzamiento con las dos líneas anteriores en un archivo que sea reconocido en
 el &lt;code&gt;path&lt;/code&gt;.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_03d46f520efe4a12a3d46bdb2abee7b6-1"&gt;&lt;/a&gt;mkdir -p $HOME/.local/bin
-&lt;a name="rest_code_03d46f520efe4a12a3d46bdb2abee7b6-2"&gt;&lt;/a&gt;cat &amp;lt;&amp;lt; EOF &amp;gt; $HOME/.local/bin/ealite
-&lt;a name="rest_code_03d46f520efe4a12a3d46bdb2abee7b6-3"&gt;&lt;/a&gt;sudo lxc start ea
-&lt;a name="rest_code_03d46f520efe4a12a3d46bdb2abee7b6-4"&gt;&lt;/a&gt;sudo lxc exec ea -- su - ubuntu -c 'ealite'
-&lt;a name="rest_code_03d46f520efe4a12a3d46bdb2abee7b6-5"&gt;&lt;/a&gt;EOF
-&lt;a name="rest_code_03d46f520efe4a12a3d46bdb2abee7b6-6"&gt;&lt;/a&gt;chmod 755 $HOME/.local/bin/ealite
+&lt;pre class="code text"&gt;&lt;a name="rest_code_cf7a5d774d904551bd551b2676a0b07d-1"&gt;&lt;/a&gt;mkdir -p $HOME/.local/bin
+&lt;a name="rest_code_cf7a5d774d904551bd551b2676a0b07d-2"&gt;&lt;/a&gt;cat &amp;lt;&amp;lt; EOF &amp;gt; $HOME/.local/bin/ealite
+&lt;a name="rest_code_cf7a5d774d904551bd551b2676a0b07d-3"&gt;&lt;/a&gt;sudo lxc start ea
+&lt;a name="rest_code_cf7a5d774d904551bd551b2676a0b07d-4"&gt;&lt;/a&gt;sudo lxc exec ea -- su - ubuntu -c 'ealite'
+&lt;a name="rest_code_cf7a5d774d904551bd551b2676a0b07d-5"&gt;&lt;/a&gt;EOF
+&lt;a name="rest_code_cf7a5d774d904551bd551b2676a0b07d-6"&gt;&lt;/a&gt;chmod 755 $HOME/.local/bin/ealite
 &lt;/pre&gt;&lt;p&gt;La ejecución con &lt;code&gt;sudo&lt;/code&gt; puede omitirse si se añade el usuario a un grupo
 que permita la ejecución de lxc. Más adelante, haré una publicación sobre como
 hacerlo. Por ahora, diviértete ejecutando &lt;code&gt;ealite&lt;/code&gt; e ingresando la
@@ -851,15 +983,15 @@ contenedor.&lt;/p&gt;
 &lt;div class="section" id="compartir"&gt;
 &lt;h2&gt;Compartir&lt;/h2&gt;
 &lt;p&gt;Para compartir el contenedor, puedes publicarlo y exportar la imagen.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_14e1efc8695e4d95a287731362d23953-1"&gt;&lt;/a&gt;sudo lxc publish ea --alias ealite
-&lt;a name="rest_code_14e1efc8695e4d95a287731362d23953-2"&gt;&lt;/a&gt;sudo lxc image export ealite
+&lt;pre class="code text"&gt;&lt;a name="rest_code_d689844c5a9449a9badf690616e9d025-1"&gt;&lt;/a&gt;sudo lxc publish ea --alias ealite
+&lt;a name="rest_code_d689844c5a9449a9badf690616e9d025-2"&gt;&lt;/a&gt;sudo lxc image export ealite
 &lt;/pre&gt;&lt;p&gt;La imagen exportada es un archivo &lt;code&gt;tar.gz&lt;/code&gt; con el nombre asociado al
 &lt;em&gt;fingerprint&lt;/em&gt; (una secuencia alfanumérica). Luego se debe importar la imagen
 y hacer &lt;code&gt;launch&lt;/code&gt; nuevamente con el perfil.&lt;/p&gt;
 &lt;p&gt;También puedes exportar directamente el contenedor, lo cual es recomendable
 porque lleva con ello la configuración del perfil GUI y es listo para usar
 una vez hagas la importación.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_107a39f32ad44e7aa81aea31a13c09e3-1"&gt;&lt;/a&gt;sudo lxc export ea ea.tar.gz --optimized-storage
+&lt;pre class="code text"&gt;&lt;a name="rest_code_0c88f8b2d69d4afaa82910744a298658-1"&gt;&lt;/a&gt;sudo lxc export ea ea.tar.gz --optimized-storage
 &lt;/pre&gt;&lt;/div&gt;
 &lt;div class="section" id="referencias"&gt;
 &lt;h2&gt;Referencias&lt;/h2&gt;
@@ -909,8 +1041,8 @@ los recomiendo como última opción.&lt;/p&gt;
 (preinstalado) o Synaptic (preinstalado en Linux Mint), para realizar la
 gestión de manera gráfica. Pero también puedes usar &lt;code&gt;apt-get&lt;/code&gt; o
 &lt;code&gt;apt&lt;/code&gt; (recomendado) para la gestión a través de consola.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_6b2caa63bb1d4d198a0779026a1a4dc7-1"&gt;&lt;/a&gt;sudo apt update -q
-&lt;a name="rest_code_6b2caa63bb1d4d198a0779026a1a4dc7-2"&gt;&lt;/a&gt;sudo apt install -y okular
+&lt;pre class="code text"&gt;&lt;a name="rest_code_8feb8dd171614e1e942bcf22118e13b8-1"&gt;&lt;/a&gt;sudo apt update -q
+&lt;a name="rest_code_8feb8dd171614e1e942bcf22118e13b8-2"&gt;&lt;/a&gt;sudo apt install -y okular
 &lt;/pre&gt;&lt;p&gt;Ahora dispones del lector de archivos PDF en tu sistema. Puedes accederlo por
 el menú o por comando (&lt;code&gt;okular&lt;/code&gt;). La primera línea es recomendable para
 actualizar las direcciones desde las cuales se descarga el software y los
@@ -934,14 +1066,14 @@ múltiples instancias o exponga una brecha de seguridad).&lt;/p&gt;
 disponibles.&lt;/p&gt;
 &lt;p id="appimagecode"&gt;Descargamos el &lt;a class="reference external" href="https://stellarium.org/"&gt;AppImage de Stellarium&lt;/a&gt; del sitio
 oficial del software (el segundo pingüino).&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_ef505b56f18a48c29fc1b33771fd4a28-1"&gt;&lt;/a&gt;chmod 755 Stellarium-0.19.2-x86_64.AppImage
-&lt;a name="rest_code_ef505b56f18a48c29fc1b33771fd4a28-2"&gt;&lt;/a&gt;./Stellarium-0.19.2-x86_64.AppImage
+&lt;pre class="code text"&gt;&lt;a name="rest_code_00dd4b4216eb40eb8688167b34d2bbb0-1"&gt;&lt;/a&gt;chmod 755 Stellarium-0.19.2-x86_64.AppImage
+&lt;a name="rest_code_00dd4b4216eb40eb8688167b34d2bbb0-2"&gt;&lt;/a&gt;./Stellarium-0.19.2-x86_64.AppImage
 &lt;/pre&gt;&lt;p&gt;La primera línea solo es necesario ejecutarla la primera vez.&lt;/p&gt;
 &lt;p&gt;Si queremos ejecutarlo de una manera más cómoda, podemos mover el archivo al
 directorio de ejecución de binarios del usuario o a uno de ejecución de sistema
 para estar disponible para todos los usuarios (&lt;code&gt;/usr/local/bin/&lt;/code&gt;).&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_2b90e8d221cd408e866cbc89438ca307-1"&gt;&lt;/a&gt;mv Stellarium-0.19.2-x86_64.AppImage ~/.local/bin/stellarium
-&lt;a name="rest_code_2b90e8d221cd408e866cbc89438ca307-2"&gt;&lt;/a&gt;stellarium
+&lt;pre class="code text"&gt;&lt;a name="rest_code_0e8114c846ea48a18efe17cb9521f5d6-1"&gt;&lt;/a&gt;mv Stellarium-0.19.2-x86_64.AppImage ~/.local/bin/stellarium
+&lt;a name="rest_code_0e8114c846ea48a18efe17cb9521f5d6-2"&gt;&lt;/a&gt;stellarium
 &lt;/pre&gt;&lt;p&gt;Nuevamente, la primera línea es solo la primera vez.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="snap"&gt;
@@ -951,10 +1083,10 @@ para estar disponible para todos los usuarios (&lt;code&gt;/usr/local/bin/&lt;/c
 requiere aprobación de Canonical para ser admitido el paquete y requiere ser
 administrador para la instalación.&lt;/p&gt;
 &lt;p&gt;En Ubuntu viene preinstalado pero en Linux Mint es necesario instalarlo.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_d6f55bd587404d149a04856333a5b439-1"&gt;&lt;/a&gt;sudo apt install -y snapd
+&lt;pre class="code text"&gt;&lt;a name="rest_code_e3b16a5a2b124c2da2e6702b62b6cd33-1"&gt;&lt;/a&gt;sudo apt install -y snapd
 &lt;/pre&gt;&lt;p&gt;Una vez instalado, podemos proceder a instalar un paquete snap.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_ac0d41d0755945ba83f640b6747f5181-1"&gt;&lt;/a&gt;sudo snap install code --classic
-&lt;a name="rest_code_ac0d41d0755945ba83f640b6747f5181-2"&gt;&lt;/a&gt;snap run code # Ejecuta
+&lt;pre class="code text"&gt;&lt;a name="rest_code_f3f894825c884529bd3627524735f6f2-1"&gt;&lt;/a&gt;sudo snap install code --classic
+&lt;a name="rest_code_f3f894825c884529bd3627524735f6f2-2"&gt;&lt;/a&gt;snap run code # Ejecuta
 &lt;/pre&gt;&lt;p&gt;La ejecución con &lt;code&gt;snap run&lt;/code&gt; es necesaria si tras instalar no reconoce
 el paquete. Después de la primera ejecución o tras abrir una nueva terminal
 o reiniciar el equipo, será ya reconocido el paquete sin problema para
@@ -970,20 +1102,20 @@ administrador.&lt;/p&gt;
 &lt;p&gt;En Linux Mint viene preconfigurado a partir de la versión 18.3, pero si usas
 Ubuntu necesitas instalarlo. Desde la 18.10 se encuentra en los repositorios
 oficiales.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_fe86067640bc4854999b687fc018f179-1"&gt;&lt;/a&gt;sudo apt install flatpak
-&lt;a name="rest_code_fe86067640bc4854999b687fc018f179-2"&gt;&lt;/a&gt;sudo apt install gnome-software-plugin-flatpak
-&lt;a name="rest_code_fe86067640bc4854999b687fc018f179-3"&gt;&lt;/a&gt;flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+&lt;pre class="code text"&gt;&lt;a name="rest_code_979732109e9248279d679a60d7acbf18-1"&gt;&lt;/a&gt;sudo apt install flatpak
+&lt;a name="rest_code_979732109e9248279d679a60d7acbf18-2"&gt;&lt;/a&gt;sudo apt install gnome-software-plugin-flatpak
+&lt;a name="rest_code_979732109e9248279d679a60d7acbf18-3"&gt;&lt;/a&gt;flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 &lt;/pre&gt;&lt;p&gt;La primera línea instala el gestor de flatpak. La segunda línea permite usar
 flatpak con el Centro de Software de Gnome. Y la tercera línea agrega el
 repositorio de paquetes flatpak más popular, &lt;a class="reference external" href="https://flathub.org/home"&gt;flathub&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Para ejemplificar, instalaremos el paquete peek&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_ba4a2120c260458c8cf27e7f3a504b3e-1"&gt;&lt;/a&gt;flatpak install -y flathub com.uploadedlobster.peek
-&lt;a name="rest_code_ba4a2120c260458c8cf27e7f3a504b3e-2"&gt;&lt;/a&gt;flatpak run com.uploadedlobster.peek
+&lt;pre class="code text"&gt;&lt;a name="rest_code_a3e643929c2c4e1e84ebf77d5400f25e-1"&gt;&lt;/a&gt;flatpak install -y flathub com.uploadedlobster.peek
+&lt;a name="rest_code_a3e643929c2c4e1e84ebf77d5400f25e-2"&gt;&lt;/a&gt;flatpak run com.uploadedlobster.peek
 &lt;/pre&gt;&lt;p&gt;Desafortunadamente la ejecución es siempre así, pero puedes crear un archivo
 que te facilite la labor.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_4fc41c500b904a658592a90de95beefc-1"&gt;&lt;/a&gt;echo "flatpak run com.uploadedlobster.peek" &amp;gt; ~/.local/bin/peek
-&lt;a name="rest_code_4fc41c500b904a658592a90de95beefc-2"&gt;&lt;/a&gt;chmod 755 ~/.local/bin/peek
-&lt;a name="rest_code_4fc41c500b904a658592a90de95beefc-3"&gt;&lt;/a&gt;peek
+&lt;pre class="code text"&gt;&lt;a name="rest_code_0d4206ee70c84e4b841712016858caea-1"&gt;&lt;/a&gt;echo "flatpak run com.uploadedlobster.peek" &amp;gt; ~/.local/bin/peek
+&lt;a name="rest_code_0d4206ee70c84e4b841712016858caea-2"&gt;&lt;/a&gt;chmod 755 ~/.local/bin/peek
+&lt;a name="rest_code_0d4206ee70c84e4b841712016858caea-3"&gt;&lt;/a&gt;peek
 &lt;/pre&gt;&lt;p&gt;A nivel gráfico, por defecto si es agregado al menú.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="compilacion-y-binarios"&gt;
@@ -1299,12 +1431,12 @@ Scalibur.&lt;/p&gt;
 &lt;/div&gt;
 &lt;p&gt;Aquí hemos creado ya la máquina en si misma pero debemos configurar antes un par de cosas. En configuración de la máquina debemos ir a la sección de sistema (&lt;em&gt;system&lt;/em&gt;) y luego placa madre (&lt;em&gt;Motherboard&lt;/em&gt;) y habilitar las características extendidas (&lt;em&gt;Extended features&lt;/em&gt;) y elegir &lt;em&gt;USB Tablet&lt;/em&gt; en el puntero (&lt;em&gt;Pointing device&lt;/em&gt;). En la misma sección vamos a la pestaña de procesador (&lt;em&gt;Processor&lt;/em&gt;) e indicamos al menos 2 CPU. Por último, en la sección de monitor (&lt;em&gt;Display&lt;/em&gt;) vamos a la pestaña &lt;em&gt;Screen&lt;/em&gt; y asignamos 128 MB a la memoria de video (&lt;em&gt;Video Memory&lt;/em&gt;).&lt;/p&gt;
 &lt;p&gt;Ahora, pasamos a la consola (powershell o CMD en Windows) y ejecutamos lo siguiente (si es Windows hay que poner &lt;code&gt;VBoxManage.exe&lt;/code&gt; estando en el directorio de VirtualBox -&lt;code&gt;cd "C:Program FilesOracleVirtualBox"&lt;/code&gt;-):&lt;/p&gt;
-&lt;pre class="code bash"&gt;&lt;a name="rest_code_6b76deca78ec427c92fa546e16aea34a-1"&gt;&lt;/a&gt;VBoxManage modifyvm &lt;span class="s2"&gt;"macos"&lt;/span&gt; --cpuidset &lt;span class="m"&gt;00000001&lt;/span&gt; 000106e5 &lt;span class="m"&gt;00100800&lt;/span&gt; 0098e3fd bfebfbff
-&lt;a name="rest_code_6b76deca78ec427c92fa546e16aea34a-2"&gt;&lt;/a&gt;VBoxManage setextradata &lt;span class="s2"&gt;"macos"&lt;/span&gt; &lt;span class="s2"&gt;"VBoxInternal/Devices/efi/0/Config/DmiSystemProduct"&lt;/span&gt; &lt;span class="s2"&gt;"iMac11,3"&lt;/span&gt;
-&lt;a name="rest_code_6b76deca78ec427c92fa546e16aea34a-3"&gt;&lt;/a&gt;VBoxManage setextradata &lt;span class="s2"&gt;"macos"&lt;/span&gt; &lt;span class="s2"&gt;"VBoxInternal/Devices/efi/0/Config/DmiSystemVersion"&lt;/span&gt; &lt;span class="s2"&gt;"1.0"&lt;/span&gt;
-&lt;a name="rest_code_6b76deca78ec427c92fa546e16aea34a-4"&gt;&lt;/a&gt;VBoxManage setextradata &lt;span class="s2"&gt;"macos"&lt;/span&gt; &lt;span class="s2"&gt;"VBoxInternal/Devices/efi/0/Config/DmiBoardProduct"&lt;/span&gt; &lt;span class="s2"&gt;"Iloveapple"&lt;/span&gt;
-&lt;a name="rest_code_6b76deca78ec427c92fa546e16aea34a-5"&gt;&lt;/a&gt;VBoxManage setextradata &lt;span class="s2"&gt;"macos"&lt;/span&gt; &lt;span class="s2"&gt;"VBoxInternal/Devices/smc/0/Config/DeviceKey"&lt;/span&gt; &lt;span class="s2"&gt;"ourhardworkbythesewordsguardedpleasedontsteal(c)AppleComputerInc"&lt;/span&gt;
-&lt;a name="rest_code_6b76deca78ec427c92fa546e16aea34a-6"&gt;&lt;/a&gt;VBoxManage setextradata &lt;span class="s2"&gt;"macos"&lt;/span&gt; &lt;span class="s2"&gt;"VBoxInternal/Devices/smc/0/Config/GetKeyFromRealSMC"&lt;/span&gt; &lt;span class="m"&gt;1&lt;/span&gt;
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_e58ab7d17f9b440da2efc715733d26b4-1"&gt;&lt;/a&gt;VBoxManage modifyvm &lt;span class="s2"&gt;"macos"&lt;/span&gt; --cpuidset &lt;span class="m"&gt;00000001&lt;/span&gt; 000106e5 &lt;span class="m"&gt;00100800&lt;/span&gt; 0098e3fd bfebfbff
+&lt;a name="rest_code_e58ab7d17f9b440da2efc715733d26b4-2"&gt;&lt;/a&gt;VBoxManage setextradata &lt;span class="s2"&gt;"macos"&lt;/span&gt; &lt;span class="s2"&gt;"VBoxInternal/Devices/efi/0/Config/DmiSystemProduct"&lt;/span&gt; &lt;span class="s2"&gt;"iMac11,3"&lt;/span&gt;
+&lt;a name="rest_code_e58ab7d17f9b440da2efc715733d26b4-3"&gt;&lt;/a&gt;VBoxManage setextradata &lt;span class="s2"&gt;"macos"&lt;/span&gt; &lt;span class="s2"&gt;"VBoxInternal/Devices/efi/0/Config/DmiSystemVersion"&lt;/span&gt; &lt;span class="s2"&gt;"1.0"&lt;/span&gt;
+&lt;a name="rest_code_e58ab7d17f9b440da2efc715733d26b4-4"&gt;&lt;/a&gt;VBoxManage setextradata &lt;span class="s2"&gt;"macos"&lt;/span&gt; &lt;span class="s2"&gt;"VBoxInternal/Devices/efi/0/Config/DmiBoardProduct"&lt;/span&gt; &lt;span class="s2"&gt;"Iloveapple"&lt;/span&gt;
+&lt;a name="rest_code_e58ab7d17f9b440da2efc715733d26b4-5"&gt;&lt;/a&gt;VBoxManage setextradata &lt;span class="s2"&gt;"macos"&lt;/span&gt; &lt;span class="s2"&gt;"VBoxInternal/Devices/smc/0/Config/DeviceKey"&lt;/span&gt; &lt;span class="s2"&gt;"ourhardworkbythesewordsguardedpleasedontsteal(c)AppleComputerInc"&lt;/span&gt;
+&lt;a name="rest_code_e58ab7d17f9b440da2efc715733d26b4-6"&gt;&lt;/a&gt;VBoxManage setextradata &lt;span class="s2"&gt;"macos"&lt;/span&gt; &lt;span class="s2"&gt;"VBoxInternal/Devices/smc/0/Config/GetKeyFromRealSMC"&lt;/span&gt; &lt;span class="m"&gt;1&lt;/span&gt;
 &lt;/pre&gt;&lt;p&gt;Tras esto estamos listos para encender la máquina virtual e instalar el sistema operativo en ella (nombre, usuario, contraseña, idioma, teclado). Lo único problemático aquí es que tendrás problema con el teclado pues esta pensado para los teclados Mac. Como cualquier instalación de sistema operativo es algo lento y más considerando que es una máquina virtual.&lt;/p&gt;
 &lt;div class="figure align-center"&gt;
 &lt;img alt="Selección de idioma en macOS." src="https://lh3.googleusercontent.com/4pUM9zRUHvadbxEqTxP0ChqUY8PIbLpli8QTe0MhUchr1t-YSaOL34rlBWuJPiNlN9bu-YZbc-NobHQTkFsstjxANiw6wbsdDu2vJY2b52PdQFfSydcofwHt0tZiyWY5hSf2pnUVsWArZ3h0DEXJFl3wQIH03MLPj2eY1hT3r2rLq0qYCPMyCqpHJrbA9hogF74jbfrfMwj0OSG-YzOdF4nRH-5WKN_cAc_4rUQRSSfa367h2DcHRzsfMsq4WLWREJoMyE-BeQnVXh4dbZke4u6E-c-u7Zei31YStQRGW5fKCegvF1QmlG34ofIc-YaGcHBWJWesGrN7z9zuxNUQz1Mjqx7reVQhauHlLneMGB9wJGc7eDxlx2XjMx3C-omhiP0dfqNfp3Lnq41a_ZxevISpm3v3L88WhM6VBGBNkpF4x3-kxGovJ-irp3LUz1if05W1kmaVzHgwUbR8OPamO6bkNmWHRxjpZdXC1cRfrL5uHqb40B2QYIuqikwWDzKV1u3PYvi_uFHHJOoeEEDk2GdoZQYla25RPiHyS5RDwVsweBZig-By2VOwJCKoXB1rdBDSR3nUlvMa7qdQf91p5MT06be_EQ74BRpKmg=w1593-h896-no?pageId=101589342745553480499"&gt;
@@ -1315,67 +1447,17 @@ Scalibur.&lt;/p&gt;
 &lt;h2&gt;Después&lt;/h2&gt;
 &lt;p&gt;No soy usuario Mac y mi propósito de hacer esto era muy específico, validar compatibilidad de códigos que uso, desarrollo o contribuyo. Pero en este mismo sentido, algo que recomiendo hacer, es instalar &lt;a class="reference external" href="https://brew.sh/index_es.html"&gt;Homebrew&lt;/a&gt; con el fin de tener listo nuestro macOS para pruebas y poder instalar distintos paquetes comunes a la hora de programar.&lt;/p&gt;
 &lt;p&gt;Para ello debes abrir la consola que encontrarás en aplicaciones y ejecutar lo siguiente:&lt;/p&gt;
-&lt;pre class="code bash"&gt;&lt;a name="rest_code_b4de5dbb5e37450aa3e9dea49ebd9ba7-1"&gt;&lt;/a&gt;ruby -e &lt;span class="s2"&gt;"&lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install&lt;span class="k"&gt;)&lt;/span&gt;&lt;span class="s2"&gt;"&lt;/span&gt;
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_ad7e9cd1133447d199c1571b8de2115e-1"&gt;&lt;/a&gt;ruby -e &lt;span class="s2"&gt;"&lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install&lt;span class="k"&gt;)&lt;/span&gt;&lt;span class="s2"&gt;"&lt;/span&gt;
 &lt;/pre&gt;&lt;p&gt;Tendrás que tener paciencia pues el proceso me tomó 45 minutos (en foros reportan la instalación de &lt;em&gt;homebrew&lt;/em&gt; de casi 2 horas) y necesitas estar pendiente pues hay dos solicitudes de tu contraseña.&lt;/p&gt;
 &lt;div class="figure align-center"&gt;
 &lt;img alt="Instalación de homebrew en macOS" src="https://lh3.googleusercontent.com/Pvn6D-PrK_txoUeelj0eDJ1E7rXZErv4oz4CBSfGfm4K7HLR0uL0GJv5VsF95yTDDGSzTJtTnb74djPvcnB9oIGCb1FYKg-S6xbeOIBRmCkgAi9RXXohgs5Xk11OIr3A3dKkByXb1GB4u3DT2ClcTwq-EvxO5US_4Zd6TMeSboYVU61N22LUdMpwanRenNAHEMqJ1qTfc20QXbJ4UWOY8WEs3X1LmRwoFzNJYSa2QV4K9YGMtMEMOY-O4LVdApo9mxWuGtHNBjPkC9iJ0ydVwT7h64cB1WArQyo7vDCkQ3md0cQC3kPlF5HgX25TwbT7_02YU0bJfVOkMht06PkhkQWWck8aRobI-oaHlE9E04b4glT_p-qXHcNXkTqMreLEpC61YeJ_U_R6SNMN0E07dHrEy-_Ci0EuAy-R5ikX0Bm5cS1NGIi3c6vh4OjvqNwniN4MMLUhUSL8GHmsuVxiTatNG6oJUavTJwX4K7DlwgV30J7DCiyZShIdHPndEEoL2yUPWX0eMUsCGscDjmY4Em14YaKa95etIYvXZWfKoA4svKxXE15O0xWk3eZUYKQhBSWMkUMFMEm9m1PDzUun6PVA20YWCxblFWo74Q=w1593-h896-no?pageId=101589342745553480499"&gt;
 &lt;p class="caption"&gt;Instalación por consola de homebrew en macOS.&lt;/p&gt;
 &lt;/div&gt;
 &lt;p&gt;Una vez instalado, puedes aprovechar a dejar listo python (actualiza la versión por defecto e instala el gestor pip). Igualmente es conveniente instalar otros paquetes de uso común por otras aplicaciones .&lt;/p&gt;
-&lt;pre class="code bash"&gt;&lt;a name="rest_code_9b6b9b88f1104f1483f391906242d252-1"&gt;&lt;/a&gt;brew install pkg-config &lt;span class="c1"&gt;# Ayuda a determinar la lista de paquetes existentes&lt;/span&gt;
-&lt;a name="rest_code_9b6b9b88f1104f1483f391906242d252-2"&gt;&lt;/a&gt;brew install python3 &lt;span class="c1"&gt;# Python3 no viene por defecto&lt;/span&gt;
-&lt;a name="rest_code_9b6b9b88f1104f1483f391906242d252-3"&gt;&lt;/a&gt;brew install python2 &lt;span class="c1"&gt;# Actualiza la versión existente. En ambos casos se instala pip (pip2 y pip3)&lt;/span&gt;
-&lt;a name="rest_code_9b6b9b88f1104f1483f391906242d252-4"&gt;&lt;/a&gt;brew install freetype &lt;span class="c1"&gt;# Requerido para la manipulación de fuentes -por ejemplo en matplotlib-&lt;/span&gt;
-&lt;a name="rest_code_9b6b9b88f1104f1483f391906242d252-5"&gt;&lt;/a&gt;brew install libpng &lt;span class="c1"&gt;# Requerido para la manipulación de imágenes png -por ejemplo en matplotlib-&lt;/span&gt;
-&lt;a name="rest_code_9b6b9b88f1104f1483f391906242d252-6"&gt;&lt;/a&gt;brew install pygtk &lt;span class="c1"&gt;# Binding de GTK para python. Interfaces en pygtk son comunes.&lt;/span&gt;
-&lt;/pre&gt;&lt;iframe style="width:120px;height:240px;" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" src="//ws-na.amazon-adsystem.com/widgets/q?ServiceVersion=20070822&amp;amp;OneJS=1&amp;amp;Operation=GetAdHtml&amp;amp;MarketPlace=US&amp;amp;source=ss&amp;amp;ref=as_ss_li_til&amp;amp;ad_type=product_link&amp;amp;tracking_id=cosmoscalibur-20&amp;amp;language=es_US&amp;amp;marketplace=amazon&amp;amp;region=US&amp;amp;placement=B07QWLXCC7&amp;amp;asins=B07QWLXCC7&amp;amp;linkId=ec8263fe9f13222ede56df34878a1743&amp;amp;show_border=true&amp;amp;link_opens_in_new_window=true"&gt;&lt;/iframe&gt;&lt;/div&gt;&lt;/div&gt;</description><category>emulación</category><category>hackintosh</category><category>linux</category><category>macos</category><category>máquina virtual</category><guid>https://www.cosmoscalibur.com/blog/ejecutando-macos-en-linux/</guid><pubDate>Fri, 19 Jan 2018 03:16:55 GMT</pubDate></item><item><title>Problemas de audio en Moto G5</title><link>https://www.cosmoscalibur.com/blog/problemas-de-audio-en-moto-g5/</link><dc:creator>Edward Villegas-Pulgarin</dc:creator><description>&lt;div&gt;&lt;p&gt;Recién cambié mi celular Moto G3 por un Moto G5 y vaya susto el que me llevé
-inicialmente. La verdad, como el cambio fue más bien un asunto de afán no
-revisé foros previamente
-(&lt;a class="reference external" href="https://www.cosmoscalibur.com/blog/comprando-celular-para-personalizar/"&gt;ver recomendaciones a la hora de comprar&lt;/a&gt;)
-sobre los problemas y me confié de los conocidos que tienen este celular y que
-nunca les he escuchado de problemas.&lt;/p&gt;
-&lt;p&gt;El susto comenzó con la primera llamada (cuando lo compré no se hizo prueba de
-llamada) y la sorpresa de encontrarme sin audio. Hice dos intentos adicionales
-pensando que podía ser algún problema de señal pero persistía hasta que algo
-se escucho cuando iba a cortar la llamada. Nuevamente probé, y el audio
-empezaba 5 segundos después de conectarse la llamada.&lt;/p&gt;
-&lt;!-- TEASER_END --&gt;
-&lt;p&gt;Ante esto acudí al dios Google y me encontré una gran cantidad de noticias en
-páginas de celulares y foros técnicos que reportaban no solo mi problema, sino
-además otros problemas de audio (y otros problemas).&lt;/p&gt;
-&lt;div class="section" id="problema-y-origen"&gt;
-&lt;h2&gt;Problema y origen&lt;/h2&gt;
-&lt;p&gt;Del mes de mayo de 2017 (3 meses después de la fecha de lanzamiento) se
-observan en esta búsqueda los primeros reportes de problemas de audio como
-ausencia de sonido durante el inicio de las llamadas, mala calidad del audio e
-incluso la apreciación de voz digitalizada. En algunos foros se encuentra
-reportado como problemas específicos de algunos operadores móviles pero
-realmente no es así, y ya entenderemos por que.&lt;/p&gt;
-&lt;p&gt;La razón de este error es que por defecto el Moto G5 viene habilitado con una
-opción de mejora de audio a través de recursos LTE pero bueno, ¿es una mejora?&lt;/p&gt;
-&lt;p&gt;Esta mejora de audio con recursos LTE significa que la señal asociada al audio
-de la llamada posee un procesamiento adicional con el fin de realizar el
-filtrado de ruido y mejora del nivel de audio (volumen) pero esto significa
-que hay un trabajo extra del procesador que no solo representa recurso de
-procesamiento sino también de tiempo. Efectivamente en mis ensayos puedo decir
-que percibí ligeramente un audio mucho más limpio con la mejora LTE pero nadie
-espera que en una llamada toque gastar primero 5 segundos para iniciar el
-audio, por lo cual resulta impráctico.&lt;/p&gt;
-&lt;p&gt;La voz digitalizada referida en los foros corresponde al efecto del
-procesamiento de naturaleza digital y no analógica de la señal, algo que no
-todos sentimos pero que al igual que en la música, algunos logran diferenciar
-el sonido de un instrumento sintetizado de un instrumento tradicional
-analógico. La mala calidad de audio podría ser un efecto no deseado del filtro.&lt;/p&gt;
-&lt;iframe style="width:120px;height:240px;" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" src="//ws-na.amazon-adsystem.com/widgets/q?ServiceVersion=20070822&amp;amp;OneJS=1&amp;amp;Operation=GetAdHtml&amp;amp;MarketPlace=US&amp;amp;source=ss&amp;amp;ref=as_ss_li_til&amp;amp;ad_type=product_link&amp;amp;tracking_id=cosmoscalibur-20&amp;amp;language=en_US&amp;amp;marketplace=amazon&amp;amp;region=US&amp;amp;placement=B07N92347B&amp;amp;asins=B07N92347B&amp;amp;linkId=3e1a24bfc3e2af9a3e8a28c2d48923c1&amp;amp;show_border=true&amp;amp;link_opens_in_new_window=true"&gt;&lt;/iframe&gt;&lt;/div&gt;
-&lt;div class="section" id="solucion"&gt;
-&lt;h2&gt;Solución&lt;/h2&gt;
-&lt;p&gt;Bueno, sabiendo que la solución se encuentra en internet y no es difícil
-encontrarla, decidí publicarla porque no siempre quien la necesita sabe inglés
-así que esta es una forma de contribuir (al igual que las publicaciones de
-ciencia) y bueno, a veces puedo dar detalles adicionales.&lt;/p&gt;
-&lt;p&gt;Necesitamos entrar a &lt;cite&gt;Configuración&lt;/cite&gt; y en la sección de "Conexiones
-inalámbricas y redes" seleccionamos &lt;cite&gt;... Más&lt;/cite&gt;. Ahora nos dirigimos a
-&lt;cite&gt;Redes móviles&lt;/cite&gt; y deshabilitamos la opción &lt;cite&gt;Modo 4G LTE mejorado&lt;/cite&gt;. Aunque nos
-indica que se recomienda usarlo ya sabemos por experiencia que es el origen de
-nuestro problema de audio.&lt;/p&gt;
-&lt;/div&gt;&lt;/div&gt;</description><category>android</category><category>audio</category><category>celulares</category><category>moto g5</category><category>motorola</category><category>smartphone</category><guid>https://www.cosmoscalibur.com/blog/problemas-de-audio-en-moto-g5/</guid><pubDate>Fri, 05 Jan 2018 01:03:38 GMT</pubDate></item></channel></rss>
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_ff9c770b93ee41b7a3f56cae79d522d3-1"&gt;&lt;/a&gt;brew install pkg-config &lt;span class="c1"&gt;# Ayuda a determinar la lista de paquetes existentes&lt;/span&gt;
+&lt;a name="rest_code_ff9c770b93ee41b7a3f56cae79d522d3-2"&gt;&lt;/a&gt;brew install python3 &lt;span class="c1"&gt;# Python3 no viene por defecto&lt;/span&gt;
+&lt;a name="rest_code_ff9c770b93ee41b7a3f56cae79d522d3-3"&gt;&lt;/a&gt;brew install python2 &lt;span class="c1"&gt;# Actualiza la versión existente. En ambos casos se instala pip (pip2 y pip3)&lt;/span&gt;
+&lt;a name="rest_code_ff9c770b93ee41b7a3f56cae79d522d3-4"&gt;&lt;/a&gt;brew install freetype &lt;span class="c1"&gt;# Requerido para la manipulación de fuentes -por ejemplo en matplotlib-&lt;/span&gt;
+&lt;a name="rest_code_ff9c770b93ee41b7a3f56cae79d522d3-5"&gt;&lt;/a&gt;brew install libpng &lt;span class="c1"&gt;# Requerido para la manipulación de imágenes png -por ejemplo en matplotlib-&lt;/span&gt;
+&lt;a name="rest_code_ff9c770b93ee41b7a3f56cae79d522d3-6"&gt;&lt;/a&gt;brew install pygtk &lt;span class="c1"&gt;# Binding de GTK para python. Interfaces en pygtk son comunes.&lt;/span&gt;
+&lt;/pre&gt;&lt;iframe style="width:120px;height:240px;" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" src="//ws-na.amazon-adsystem.com/widgets/q?ServiceVersion=20070822&amp;amp;OneJS=1&amp;amp;Operation=GetAdHtml&amp;amp;MarketPlace=US&amp;amp;source=ss&amp;amp;ref=as_ss_li_til&amp;amp;ad_type=product_link&amp;amp;tracking_id=cosmoscalibur-20&amp;amp;language=es_US&amp;amp;marketplace=amazon&amp;amp;region=US&amp;amp;placement=B07QWLXCC7&amp;amp;asins=B07QWLXCC7&amp;amp;linkId=ec8263fe9f13222ede56df34878a1743&amp;amp;show_border=true&amp;amp;link_opens_in_new_window=true"&gt;&lt;/iframe&gt;&lt;/div&gt;&lt;/div&gt;</description><category>emulación</category><category>hackintosh</category><category>linux</category><category>macos</category><category>máquina virtual</category><guid>https://www.cosmoscalibur.com/blog/ejecutando-macos-en-linux/</guid><pubDate>Fri, 19 Jan 2018 03:16:55 GMT</pubDate></item></channel></rss>
