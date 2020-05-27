@@ -1,71 +1,158 @@
-<?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Cosmoscalibur (Publicaciones sobre hackintosh)</title><link>https://www.cosmoscalibur.com/</link><description></description><atom:link href="https://www.cosmoscalibur.com/categories/hackintosh.xml" rel="self" type="application/rss+xml"></atom:link><language>es</language><copyright>Contents © 2020 &lt;a href="mailto:cosmoscalibur@gmail.com"&gt;Edward Villegas Pulgarin&lt;/a&gt; 
+<?xml version='1.0' encoding='utf-8'?>
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>Cosmoscalibur (Publicaciones sobre hackintosh)</title><link>https://www.cosmoscalibur.com/</link><description/><atom:link href="https://www.cosmoscalibur.com/categories/hackintosh.xml" rel="self" type="application/rss+xml"/><language>es</language><copyright>Contents © 2020 &lt;a href="mailto:cosmoscalibur@gmail.com"&gt;Edward Villegas Pulgarin&lt;/a&gt; 
 &lt;a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"&gt;
 &lt;img alt="Creative Commons License BY-NC-SA"
 style="border-width:0; margin-bottom:12px;"
-src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"&gt;&lt;/a&gt;</copyright><lastBuildDate>Tue, 26 May 2020 21:55:56 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Ejecutando macOS en Linux</title><link>https://www.cosmoscalibur.com/blog/ejecutando-macos-en-linux/</link><dc:creator>Edward Villegas-Pulgarin</dc:creator><description>&lt;div&gt;&lt;p&gt;Debo admitirlo, no me gusta Mac y sigue sin gustarme, pero en múltiples ocasiones se hace necesario poder disponer de un Mac al igual que de un Windows para efectos de pruebas o de correr software específico cuando no hay de otra. Por este caso me di a la tarea de buscar como lograr ejecutar macOS en mi equipo Asus que posee Linux instalado de la forma más fácil posible. A continuación, como ejecutar macOS (específicamente hackintosh) en tu equipo Linux (el procedimiento aplica también para Windows).&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Requisitos&lt;/strong&gt;: Conexión a internet estable, disco duro con más de 100 GB disponibles, RAM superior a 6 GB, procesador de más de dos núcleos (preferible Intel) y mucho tiempo.&lt;/p&gt;
-&lt;!-- TEASER_END --&gt;
+src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"&gt;&lt;/a&gt;</copyright><lastBuildDate>Wed, 27 May 2020 18:44:13 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Ejecutando macOS en Linux</title><link>https://www.cosmoscalibur.com/blog/ejecutando-macos-en-linux/</link><dc:creator>Edward Villegas-Pulgarin</dc:creator><description>&lt;div&gt;&lt;p&gt;Debo admitirlo, no me gusta Mac y sigue sin gustarme, pero en múltiples
+ocasiones se hace necesario poder disponer de un Mac al igual que de un
+Windows para efectos de pruebas o de correr software específico cuando no hay
+de otra. Por este caso me di a la tarea de buscar como lograr ejecutar macOS
+en mi equipo Asus que posee Linux instalado de la forma más fácil posible. A
+continuación, como ejecutar macOS (específicamente hackintosh) en tu equipo
+Linux (el procedimiento aplica también para Windows).&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Requisitos&lt;/strong&gt;: Conexión a internet estable, disco duro con más de 100 GB
+disponibles, RAM superior a 6 GB, procesador de más de dos núcleos (preferible
+Intel) y mucho tiempo.&lt;/p&gt;
+&lt;iframe style="width:120px;height:240px;" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" src="//ws-na.amazon-adsystem.com/widgets/q?ServiceVersion=20070822&amp;amp;OneJS=1&amp;amp;Operation=GetAdHtml&amp;amp;MarketPlace=US&amp;amp;source=ss&amp;amp;ref=as_ss_li_til&amp;amp;ad_type=product_link&amp;amp;tracking_id=cosmoscalibur-20&amp;amp;language=es_US&amp;amp;marketplace=amazon&amp;amp;region=US&amp;amp;placement=B07QWLXCC7&amp;amp;asins=B07QWLXCC7&amp;amp;linkId=ec8263fe9f13222ede56df34878a1743&amp;amp;show_border=true&amp;amp;link_opens_in_new_window=true"&gt;&lt;/iframe&gt;&lt;!-- TEASER_END --&gt;
 &lt;div class="section" id="contexto"&gt;
 &lt;h2&gt;Contexto&lt;/h2&gt;
-&lt;p&gt;Creo que no hay necesidad pero no hay que dar por obvias las cosas. El primer punto al respecto de esto es que macOS en si mismo es "imposible" de piratear porque el sistema operativo esta ligado al hardware. Así, la única manera de obtener e instalar macOS es tener un equipo Mac. El tema se resuelve entonces a través de una modificación del sistema operativo que da origen a iPC, OSX86 o Hackintosh, una variación del sistema que permite llevar macOS a equipos tradicionales (PC).&lt;/p&gt;
-&lt;p&gt;El cómo se logra esto es elaborado y la verdad no veo interés en comentarlo pues es el camino difícil, pero solo para resumir diré que el punto inicial es que hay que tener un equipo Mac en el cual se ejecutan una serie de rutinas para extraer los directorios del sistema y recrear los llamados del sistema operativo a una forma entendible por los procesadores x86-64. La forma sencilla es encontrar de donde obtener ya la imagen del sistema operativo lista. Pero como podrán ver al googlear no solo un poco sino mucho, todo esta dicho para quienes tienen Mac pero no para los mortales que no lo tenemos.&lt;/p&gt;
+&lt;p&gt;Creo que no hay necesidad pero no hay que dar por obvias las cosas. El primer
+punto al respecto de esto es que macOS en si mismo es "imposible" de piratear
+porque el sistema operativo esta ligado al hardware. Así, la única manera de
+obtener e instalar macOS es tener un equipo Mac. El tema se resuelve entonces
+a través de una modificación del sistema operativo que da origen a iPC, OSX86
+o Hackintosh, una variación del sistema que permite llevar macOS a equipos
+tradicionales (PC).&lt;/p&gt;
+&lt;p&gt;El cómo se logra esto es elaborado y la verdad no veo interés en comentarlo
+pues es el camino difícil, pero solo para resumir diré que el punto inicial
+es que hay que tener un equipo Mac en el cual se ejecutan una serie de rutinas
+para extraer los directorios del sistema y recrear los llamados del sistema
+operativo a una forma entendible por los procesadores x86-64. La forma
+sencilla es encontrar de donde obtener ya la imagen del sistema operativo
+lista. Pero como podrán ver al googlear no solo un poco sino mucho, todo esta
+dicho para quienes tienen Mac pero no para los mortales que no lo tenemos.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="descarga"&gt;
 &lt;h2&gt;Descarga&lt;/h2&gt;
-&lt;p&gt;La verdad, creo que este es el punto más difícil y misterioso del proceso de lograr la instalación de macOS (modificado). La razón de esta dificultad no solo se asocia a la dificultad sino al tema legal (con Windows no sucede así pues la imagen misma del sistema operativo es gratuita y el problema es conseguir la licencia -salvo que no te importe el mensaje de copia no original y la ausencia de actualizaciones-).&lt;/p&gt;
-&lt;p&gt;Después de muchos fracasos en descargas (largas descargas) que me llevaban a depender de Mac, encontré dos opciones listas para usar que correspondían a imágenes para máquina virtual (específicamente para VMWare/VirtualBox). Difíciles de encontrar, recurren a descarga por enlace magnético y hay pocos pares de descarga lo cual llega a un tiempo largo de descarga.&lt;/p&gt;
-&lt;p&gt;Necesitas para esto un cliente torrent (si usas Linux probablemente tendrás por defecto transmission o si usas windows puedes instalar BitTorrent, µTorrent o FrostWire), una buena conexión a internet y mucha paciencia. El enlace magnético lo obtendrás de &lt;a class="reference external" href="https://thepiratebay.org/torrent/17986715/MacOS_Sierra_10.12_VirtualBox_VMWare_Virtual_Image_Preinstalled"&gt;The Pirate Bay&lt;/a&gt; dando clic en donde dice &lt;em&gt;GET THIS TORRENT&lt;/em&gt; (hay un símbolo de un imán al lado izquierdo). Una vez lo hagas y si tienes correctamente instalado el cliente torrent, este se abrirá (o el navegador solicitará permiso de abrirlo).&lt;/p&gt;
-&lt;p&gt;Ahora te esperan unas 12 horas de descarga (en mi caso el pico máximo de velocidad que recuerdo fue de 120 kB y el mínimo fueron ratos donde no habían pares de descarga).&lt;/p&gt;
+&lt;p&gt;La verdad, creo que este es el punto más difícil y misterioso del proceso de
+lograr la instalación de macOS (modificado). La razón de esta dificultad no
+solo se asocia a la dificultad sino al tema legal (con Windows no sucede así
+pues la imagen misma del sistema operativo es gratuita y el problema es
+conseguir la licencia -salvo que no te importe el mensaje de copia no original
+y la ausencia de actualizaciones-).&lt;/p&gt;
+&lt;p&gt;Después de muchos fracasos en descargas (largas descargas) que me llevaban a
+depender de Mac, encontré dos opciones listas para usar que correspondían a
+imágenes para máquina virtual (específicamente para VMWare/VirtualBox).
+Difíciles de encontrar, recurren a descarga por enlace magnético y hay pocos
+pares de descarga lo cual llega a un tiempo largo de descarga.&lt;/p&gt;
+&lt;p&gt;Necesitas para esto un cliente torrent (si usas Linux probablemente tendrás
+por defecto transmission o si usas windows puedes instalar BitTorrent,
+µTorrent o FrostWire), una buena conexión a internet y mucha paciencia. El
+enlace magnético lo obtendrás de
+&lt;a class="reference external" href="https://thepiratebay.org/torrent/17986715/MacOS_Sierra_10.12_VirtualBox_VMWare_Virtual_Image_Preinstalled"&gt;The Pirate Bay&lt;/a&gt;
+dando clic en donde dice &lt;em&gt;GET THIS TORRENT&lt;/em&gt; (hay un símbolo de un imán al lado
+izquierdo). Una vez lo hagas y si tienes correctamente instalado el cliente
+torrent, este se abrirá (o el navegador solicitará permiso de abrirlo).&lt;/p&gt;
+&lt;p&gt;Ahora te esperan unas 12 horas de descarga (en mi caso el pico máximo de
+velocidad que recuerdo fue de 120 kB y el mínimo fueron ratos donde no habían
+pares de descarga).&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="maquina-virtual"&gt;
 &lt;h2&gt;Máquina Virtual&lt;/h2&gt;
-&lt;p&gt;Mi recomendación es no intentar la instalación directa en el equipo (para empezar, no pude encontrar una imagen para ello). El proceso de instalación directo tiene sus pasos malucos y al parecer el soporte es básicamente es para equipos con procesadores Intel (lo demás se hace con más trucos de lo normal y para posiblemente perder el tiempo). Así, la mejor opción es una máquina virtual, si fallas solo perdiste tiempo pero sigues con un sistema operativo funcional montado para trabajar o dispersar.&lt;/p&gt;
-&lt;p&gt;En Linux me parece mucho más natural usar QEMU (usando la interfaz de Virt-Manager) pero desafortunadamente este no tiene el soporte necesario y nuevamente, nos llenamos de trucos bajo la manga si queremos hacerlo funcionar de esa manera. Por ahora, QEMU es la mejor opción en Linux si deseas virtualizar Windows u otra distribución linux, pero no macOS (tiene que ver con el arranque, QEMU mantiene el sistema anterior -&lt;em&gt;LEGACY&lt;/em&gt;- de arranque de OSX). Así las cosas, una conversión de formato de la imagen no sirve (lo intenté).&lt;/p&gt;
-&lt;p&gt;Necesariamente necesitas de VMWare o de VirtualBox. En mi caso, y es la opción más simple desde Linux, podemos usar VirtualBox (esta en los repositorios de varias distribuciones) y en Windows, igual por ser gratuito te lo recomiendo (&lt;a class="reference external" href="https://www.virtualbox.org/wiki/Downloads"&gt;descargar&lt;/a&gt;).&lt;/p&gt;
+&lt;p&gt;Mi recomendación es no intentar la instalación directa en el equipo (para
+empezar, no pude encontrar una imagen para ello). El proceso de instalación
+directo tiene sus pasos malucos y al parecer el soporte es básicamente es para
+equipos con procesadores Intel (lo demás se hace con más trucos de lo normal y
+para posiblemente perder el tiempo). Así, la mejor opción es una máquina
+virtual, si fallas solo perdiste tiempo pero sigues con un sistema operativo
+funcional montado para trabajar o dispersar.&lt;/p&gt;
+&lt;p&gt;En Linux me parece mucho más natural usar QEMU (usando la interfaz de
+Virt-Manager) pero desafortunadamente este no tiene el soporte necesario y
+nuevamente, nos llenamos de trucos bajo la manga si queremos hacerlo funcionar
+de esa manera. Por ahora, QEMU es la mejor opción en Linux si deseas
+virtualizar Windows u otra distribución linux, pero no macOS (tiene que ver
+con el arranque, QEMU mantiene el sistema anterior -&lt;em&gt;LEGACY&lt;/em&gt;- de arranque de
+OSX). Así las cosas, una conversión de formato de la imagen no sirve (lo
+intenté).&lt;/p&gt;
+&lt;p&gt;Necesariamente necesitas de VMWare o de VirtualBox. En mi caso, y es la opción
+más simple desde Linux, podemos usar VirtualBox (esta en los repositorios de
+varias distribuciones) y en Windows, igual por ser gratuito te lo recomiendo
+(&lt;a class="reference external" href="https://www.virtualbox.org/wiki/Downloads"&gt;descargar&lt;/a&gt;).&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="instalacion"&gt;
 &lt;h2&gt;Instalación&lt;/h2&gt;
-&lt;p&gt;Nuestro primer paso es descomprimir el archivo que descargamos (un archivo &lt;code&gt;rar&lt;/code&gt;). De los archivos que encontrarás solo es necesario el archivo con extensión &lt;code&gt;vmdk&lt;/code&gt; (puedes renombrar el archivo si deseas). Ahora abrimos VirtualBox y seleccionamos el botón de nuevo.&lt;/p&gt;
-&lt;p&gt;Ahora vamos a seleccionar el sistema operativo, indicando como se ve en la imagen y luego asignamos la RAM deseada (2 GB son el mínimo del sistema pero hayq ue considerar que además es una máquina virtual, lo cual conviene asignar más para un comportamiento más fluido) considerando que debes dejar al menos 2 GB disponibles para el sistema operativo del equipo.&lt;/p&gt;
+&lt;p&gt;Nuestro primer paso es descomprimir el archivo que descargamos (un archivo
+&lt;code&gt;rar&lt;/code&gt;). De los archivos que encontrarás solo es necesario el archivo con
+extensión &lt;code&gt;vmdk&lt;/code&gt; (puedes renombrar el archivo si deseas). Ahora abrimos
+VirtualBox y seleccionamos el botón de nuevo.&lt;/p&gt;
+&lt;p&gt;Ahora vamos a seleccionar el sistema operativo, indicando como se ve en la
+imagen y luego asignamos la RAM deseada (2 GB son el mínimo del sistema pero
+hay que considerar que además es una máquina virtual, lo cual conviene asignar
+más para un comportamiento más fluido) considerando que debes dejar al menos
+2 GB disponibles para el sistema operativo del equipo.&lt;/p&gt;
 &lt;div class="figure align-center"&gt;
-&lt;img alt="Selección del sistema operativo" src="https://lh3.googleusercontent.com/YZidzbC6DFnWvn3Yqb2eBsR0kc9R1qCpwkhHXps0HMbSieD4caWezb2Rg1uhzaFOcrZHA3BKQvf4cTM5txZ_ke09hSimTZSz65CXr8P_28dAaIedqWcuCJuMwYZgQQkdU2yvjtQaBMH_NmVlDsD9f6dKFqPjpk3YsYUBg-GgaMMhlS6O473DW2cQ3yuubT3ioWneyejObXf_c9hs_5ZBD4o-ucD7Bf18mDm1ypZfY1yQf_n729S8JUSpR-cOFznmiFEPVN62SRYwtoM9xuFK913W6pmqNpRr5AUksJPPKa7dl_bssJkxlJnaS-NmEZi76AU8CKjAGzpLUP1P44C-Oqry4K0nr-VGqP0ict6MutkbXWYhKknjSmi_f8KrVx0DLsrtGhDJcD0fCA1dNaOEwMzu-C7g-bcb9EbXtEgH5qRJJNoe0xsIb25wiYo4gsv7ibMT7X8DseMwgwIx5Kr1RWxd4h2n27s72ORbHU7-cCrc7dnBQu1Df523mtbL_l0caNa_3uy-wKZeFiJQ4e08yvjcK46IzXxU9ilSIqDp0E7AP4v990XPGGECfeTqQYvSP8dLPvn8AmX1za08GwfGeJJlOfSIkRYHTdygyA=w577-h425-no?pageId=101589342745553480499"&gt;
+&lt;a class="reference external image-reference" href="https://www.cosmoscalibur.com/images/ejecutando-macos-en-linux/maquina-virtual-seleccionar-macos.png"&gt;&lt;img alt="Selección del sistema operativo" src="https://www.cosmoscalibur.com/images/ejecutando-macos-en-linux/maquina-virtual-seleccionar-macos.thumbnail.png"&gt;&lt;/a&gt;
 &lt;p class="caption"&gt;Selección del sistema operativo y versión a instalar.&lt;/p&gt;
 &lt;/div&gt;
-&lt;p&gt;Finalmente debemos indicar que se creara a partir de una imagen de disco existente y seleccionamos el símbolo de carpeta para buscar el archivo &lt;code&gt;vmdk&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Finalmente debemos indicar que se creara a partir de una imagen de disco
+existente y seleccionamos el símbolo de carpeta para buscar el archivo
+&lt;code&gt;vmdk&lt;/code&gt;.&lt;/p&gt;
 &lt;div class="figure align-center"&gt;
-&lt;img alt="Selección de disco existente" src="https://lh3.googleusercontent.com/gJA9H6jQprdKjdNLwyeq8GMy0TnFihCGsK3fXYuA1hqKqs6ikd8EG9aWikZ1qfPt_UElt1JUUGBHTe-wSVpNAocWZkK7HnAGjc-ftuh_M8nqvqOYJx9-N2yebwWAlxVnM_Glsm-ea9PrEJSHHriyEDQogHnUmYHUf0QdIOvuhhr1J9nRPSGq3I-mWKbZNK0d4m982TlS-vMLobe6hMzar9fJ7R8I2P8XPivalkoHM4a_n3nMThS3jvggwJpHiKQ1OECRSiZOVxifIJPlHdX04NbbI11nzV4_9Jz75Zim-gNctPXgZaJFb0TX2NFY-KDvFc_vuHMyH9cm6H88aBNxzkls9t3CkugPHfT6Cnsyf3sgIMrPFCCI-JdgFUsr0oAf0gmuNlJyNGBi1W6l4HRFFNGFwiVszwQP37UdqHRXMQsfG8Llkfy3LzTxFXb-WTyXcJXKGBoLzm6RyjTJPUEPIOcH4fv2u-6U5tSOT9qUeL4uMUQ0HFUqib7DkFy4ksTQBPEbQjIgKwcaN91mRSFSYpvxF_ZoIn5Rxjoe8pLq64fGQziGbHYrfwqY3zX-wFQVD-p7re48Ie9sJwjzXNf60gZia50CfC8a0w9xOA=w572-h425-no?pageId=101589342745553480499"&gt;
+&lt;a class="reference external image-reference" href="https://www.cosmoscalibur.com/images/ejecutando-macos-en-linux/maquina-virtual-disco-existente.png"&gt;&lt;img alt="Selección de disco existente" src="https://www.cosmoscalibur.com/images/ejecutando-macos-en-linux/maquina-virtual-disco-existente.thumbnail.png"&gt;&lt;/a&gt;
 &lt;p class="caption"&gt;Selección de crear máquina virtual a partir de disco existente.&lt;/p&gt;
 &lt;/div&gt;
-&lt;p&gt;Aquí hemos creado ya la máquina en si misma pero debemos configurar antes un par de cosas. En configuración de la máquina debemos ir a la sección de sistema (&lt;em&gt;system&lt;/em&gt;) y luego placa madre (&lt;em&gt;Motherboard&lt;/em&gt;) y habilitar las características extendidas (&lt;em&gt;Extended features&lt;/em&gt;) y elegir &lt;em&gt;USB Tablet&lt;/em&gt; en el puntero (&lt;em&gt;Pointing device&lt;/em&gt;). En la misma sección vamos a la pestaña de procesador (&lt;em&gt;Processor&lt;/em&gt;) e indicamos al menos 2 CPU. Por último, en la sección de monitor (&lt;em&gt;Display&lt;/em&gt;) vamos a la pestaña &lt;em&gt;Screen&lt;/em&gt; y asignamos 128 MB a la memoria de video (&lt;em&gt;Video Memory&lt;/em&gt;).&lt;/p&gt;
-&lt;p&gt;Ahora, pasamos a la consola (powershell o CMD en Windows) y ejecutamos lo siguiente (si es Windows hay que poner &lt;code&gt;VBoxManage.exe&lt;/code&gt; estando en el directorio de VirtualBox -&lt;code&gt;cd "C:Program FilesOracleVirtualBox"&lt;/code&gt;-):&lt;/p&gt;
-&lt;pre class="code bash"&gt;&lt;a name="rest_code_305931a7e6904de58278e857aceec8ac-1"&gt;&lt;/a&gt;VBoxManage modifyvm &lt;span class="s2"&gt;"macos"&lt;/span&gt; --cpuidset &lt;span class="m"&gt;00000001&lt;/span&gt; 000106e5 &lt;span class="m"&gt;00100800&lt;/span&gt; 0098e3fd bfebfbff
-&lt;a name="rest_code_305931a7e6904de58278e857aceec8ac-2"&gt;&lt;/a&gt;VBoxManage setextradata &lt;span class="s2"&gt;"macos"&lt;/span&gt; &lt;span class="s2"&gt;"VBoxInternal/Devices/efi/0/Config/DmiSystemProduct"&lt;/span&gt; &lt;span class="s2"&gt;"iMac11,3"&lt;/span&gt;
-&lt;a name="rest_code_305931a7e6904de58278e857aceec8ac-3"&gt;&lt;/a&gt;VBoxManage setextradata &lt;span class="s2"&gt;"macos"&lt;/span&gt; &lt;span class="s2"&gt;"VBoxInternal/Devices/efi/0/Config/DmiSystemVersion"&lt;/span&gt; &lt;span class="s2"&gt;"1.0"&lt;/span&gt;
-&lt;a name="rest_code_305931a7e6904de58278e857aceec8ac-4"&gt;&lt;/a&gt;VBoxManage setextradata &lt;span class="s2"&gt;"macos"&lt;/span&gt; &lt;span class="s2"&gt;"VBoxInternal/Devices/efi/0/Config/DmiBoardProduct"&lt;/span&gt; &lt;span class="s2"&gt;"Iloveapple"&lt;/span&gt;
-&lt;a name="rest_code_305931a7e6904de58278e857aceec8ac-5"&gt;&lt;/a&gt;VBoxManage setextradata &lt;span class="s2"&gt;"macos"&lt;/span&gt; &lt;span class="s2"&gt;"VBoxInternal/Devices/smc/0/Config/DeviceKey"&lt;/span&gt; &lt;span class="s2"&gt;"ourhardworkbythesewordsguardedpleasedontsteal(c)AppleComputerInc"&lt;/span&gt;
-&lt;a name="rest_code_305931a7e6904de58278e857aceec8ac-6"&gt;&lt;/a&gt;VBoxManage setextradata &lt;span class="s2"&gt;"macos"&lt;/span&gt; &lt;span class="s2"&gt;"VBoxInternal/Devices/smc/0/Config/GetKeyFromRealSMC"&lt;/span&gt; &lt;span class="m"&gt;1&lt;/span&gt;
-&lt;/pre&gt;&lt;p&gt;Tras esto estamos listos para encender la máquina virtual e instalar el sistema operativo en ella (nombre, usuario, contraseña, idioma, teclado). Lo único problemático aquí es que tendrás problema con el teclado pues esta pensado para los teclados Mac. Como cualquier instalación de sistema operativo es algo lento y más considerando que es una máquina virtual.&lt;/p&gt;
+&lt;p&gt;Aquí hemos creado ya la máquina en si misma pero debemos configurar antes un
+par de cosas. En configuración de la máquina debemos ir a la sección de
+sistema (&lt;em&gt;system&lt;/em&gt;) y luego placa madre (&lt;em&gt;Motherboard&lt;/em&gt;) y habilitar las
+características extendidas (&lt;em&gt;Extended features&lt;/em&gt;) y elegir &lt;em&gt;USB Tablet&lt;/em&gt; en el
+puntero (&lt;em&gt;Pointing device&lt;/em&gt;). En la misma sección vamos a la pestaña de
+procesador (&lt;em&gt;Processor&lt;/em&gt;) e indicamos al menos 2 CPU. Por último, en la sección
+de monitor (&lt;em&gt;Display&lt;/em&gt;) vamos a la pestaña &lt;em&gt;Screen&lt;/em&gt; y asignamos 128 MB a la
+memoria de video (&lt;em&gt;Video Memory&lt;/em&gt;).&lt;/p&gt;
+&lt;p&gt;Ahora, pasamos a la consola (powershell o CMD en Windows) y ejecutamos lo
+siguiente (si es Windows hay que poner &lt;code&gt;VBoxManage.exe&lt;/code&gt; estando en el
+directorio de VirtualBox -&lt;code&gt;cd "C:Program FilesOracleVirtualBox"&lt;/code&gt;-):&lt;/p&gt;
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_9946ce30d30948f18bad61228391e91d-1"&gt;&lt;/a&gt;VBoxManage modifyvm &lt;span class="s2"&gt;"macos"&lt;/span&gt; --cpuidset &lt;span class="m"&gt;00000001&lt;/span&gt; 000106e5 &lt;span class="m"&gt;00100800&lt;/span&gt; 0098e3fd bfebfbff
+&lt;a name="rest_code_9946ce30d30948f18bad61228391e91d-2"&gt;&lt;/a&gt;VBoxManage setextradata &lt;span class="s2"&gt;"macos"&lt;/span&gt; &lt;span class="s2"&gt;"VBoxInternal/Devices/efi/0/Config/DmiSystemProduct"&lt;/span&gt; &lt;span class="s2"&gt;"iMac11,3"&lt;/span&gt;
+&lt;a name="rest_code_9946ce30d30948f18bad61228391e91d-3"&gt;&lt;/a&gt;VBoxManage setextradata &lt;span class="s2"&gt;"macos"&lt;/span&gt; &lt;span class="s2"&gt;"VBoxInternal/Devices/efi/0/Config/DmiSystemVersion"&lt;/span&gt; &lt;span class="s2"&gt;"1.0"&lt;/span&gt;
+&lt;a name="rest_code_9946ce30d30948f18bad61228391e91d-4"&gt;&lt;/a&gt;VBoxManage setextradata &lt;span class="s2"&gt;"macos"&lt;/span&gt; &lt;span class="s2"&gt;"VBoxInternal/Devices/efi/0/Config/DmiBoardProduct"&lt;/span&gt; &lt;span class="s2"&gt;"Iloveapple"&lt;/span&gt;
+&lt;a name="rest_code_9946ce30d30948f18bad61228391e91d-5"&gt;&lt;/a&gt;VBoxManage setextradata &lt;span class="s2"&gt;"macos"&lt;/span&gt; &lt;span class="s2"&gt;"VBoxInternal/Devices/smc/0/Config/DeviceKey"&lt;/span&gt; &lt;span class="s2"&gt;"ourhardworkbythesewordsguardedpleasedontsteal(c)AppleComputerInc"&lt;/span&gt;
+&lt;a name="rest_code_9946ce30d30948f18bad61228391e91d-6"&gt;&lt;/a&gt;VBoxManage setextradata &lt;span class="s2"&gt;"macos"&lt;/span&gt; &lt;span class="s2"&gt;"VBoxInternal/Devices/smc/0/Config/GetKeyFromRealSMC"&lt;/span&gt; &lt;span class="m"&gt;1&lt;/span&gt;
+&lt;/pre&gt;&lt;p&gt;Tras esto estamos listos para encender la máquina virtual e instalar el
+sistema operativo en ella (nombre, usuario, contraseña, idioma, teclado). Lo
+único problemático aquí es que tendrás problema con el teclado pues esta
+pensado para los teclados Mac. Como cualquier instalación de sistema operativo
+es algo lento y más considerando que es una máquina virtual.&lt;/p&gt;
 &lt;div class="figure align-center"&gt;
-&lt;img alt="Selección de idioma en macOS." src="https://lh3.googleusercontent.com/4pUM9zRUHvadbxEqTxP0ChqUY8PIbLpli8QTe0MhUchr1t-YSaOL34rlBWuJPiNlN9bu-YZbc-NobHQTkFsstjxANiw6wbsdDu2vJY2b52PdQFfSydcofwHt0tZiyWY5hSf2pnUVsWArZ3h0DEXJFl3wQIH03MLPj2eY1hT3r2rLq0qYCPMyCqpHJrbA9hogF74jbfrfMwj0OSG-YzOdF4nRH-5WKN_cAc_4rUQRSSfa367h2DcHRzsfMsq4WLWREJoMyE-BeQnVXh4dbZke4u6E-c-u7Zei31YStQRGW5fKCegvF1QmlG34ofIc-YaGcHBWJWesGrN7z9zuxNUQz1Mjqx7reVQhauHlLneMGB9wJGc7eDxlx2XjMx3C-omhiP0dfqNfp3Lnq41a_ZxevISpm3v3L88WhM6VBGBNkpF4x3-kxGovJ-irp3LUz1if05W1kmaVzHgwUbR8OPamO6bkNmWHRxjpZdXC1cRfrL5uHqb40B2QYIuqikwWDzKV1u3PYvi_uFHHJOoeEEDk2GdoZQYla25RPiHyS5RDwVsweBZig-By2VOwJCKoXB1rdBDSR3nUlvMa7qdQf91p5MT06be_EQ74BRpKmg=w1593-h896-no?pageId=101589342745553480499"&gt;
+&lt;a class="reference external image-reference" href="https://www.cosmoscalibur.com/images/ejecutando-macos-en-linux/maquina-virtual-idioma-macos.png"&gt;&lt;img alt="Selección de idioma en macOS." src="https://www.cosmoscalibur.com/images/ejecutando-macos-en-linux/maquina-virtual-idioma-macos.thumbnail.png"&gt;&lt;/a&gt;
 &lt;p class="caption"&gt;Selección de idioma en macOS.&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="section" id="despues"&gt;
 &lt;h2&gt;Después&lt;/h2&gt;
-&lt;p&gt;No soy usuario Mac y mi propósito de hacer esto era muy específico, validar compatibilidad de códigos que uso, desarrollo o contribuyo. Pero en este mismo sentido, algo que recomiendo hacer, es instalar &lt;a class="reference external" href="https://brew.sh/index_es.html"&gt;Homebrew&lt;/a&gt; con el fin de tener listo nuestro macOS para pruebas y poder instalar distintos paquetes comunes a la hora de programar.&lt;/p&gt;
-&lt;p&gt;Para ello debes abrir la consola que encontrarás en aplicaciones y ejecutar lo siguiente:&lt;/p&gt;
-&lt;pre class="code bash"&gt;&lt;a name="rest_code_e2dcb418e0384a57b79000fa40a18955-1"&gt;&lt;/a&gt;ruby -e &lt;span class="s2"&gt;"&lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install&lt;span class="k"&gt;)&lt;/span&gt;&lt;span class="s2"&gt;"&lt;/span&gt;
-&lt;/pre&gt;&lt;p&gt;Tendrás que tener paciencia pues el proceso me tomó 45 minutos (en foros reportan la instalación de &lt;em&gt;homebrew&lt;/em&gt; de casi 2 horas) y necesitas estar pendiente pues hay dos solicitudes de tu contraseña.&lt;/p&gt;
+&lt;p&gt;No soy usuario Mac y mi propósito de hacer esto era muy específico, validar
+compatibilidad de códigos que uso, desarrollo o contribuyo. Pero en este
+mismo sentido, algo que recomiendo hacer, es instalar
+&lt;a class="reference external" href="https://brew.sh/index_es.html"&gt;Homebrew&lt;/a&gt; con el fin de tener listo nuestro
+macOS para pruebas y poder instalar distintos paquetes comunes a la hora de
+programar.&lt;/p&gt;
+&lt;p&gt;Para ello debes abrir la consola que encontrarás en aplicaciones y ejecutar lo
+siguiente:&lt;/p&gt;
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_eb14399258c54b36956c0dc556c8788a-1"&gt;&lt;/a&gt;ruby -e &lt;span class="s2"&gt;"&lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install&lt;span class="k"&gt;)&lt;/span&gt;&lt;span class="s2"&gt;"&lt;/span&gt;
+&lt;/pre&gt;&lt;p&gt;Tendrás que tener paciencia pues el proceso me tomó 45 minutos (en foros
+reportan la instalación de &lt;em&gt;homebrew&lt;/em&gt; de casi 2 horas) y necesitas estar
+pendiente pues hay dos solicitudes de tu contraseña.&lt;/p&gt;
 &lt;div class="figure align-center"&gt;
-&lt;img alt="Instalación de homebrew en macOS" src="https://lh3.googleusercontent.com/Pvn6D-PrK_txoUeelj0eDJ1E7rXZErv4oz4CBSfGfm4K7HLR0uL0GJv5VsF95yTDDGSzTJtTnb74djPvcnB9oIGCb1FYKg-S6xbeOIBRmCkgAi9RXXohgs5Xk11OIr3A3dKkByXb1GB4u3DT2ClcTwq-EvxO5US_4Zd6TMeSboYVU61N22LUdMpwanRenNAHEMqJ1qTfc20QXbJ4UWOY8WEs3X1LmRwoFzNJYSa2QV4K9YGMtMEMOY-O4LVdApo9mxWuGtHNBjPkC9iJ0ydVwT7h64cB1WArQyo7vDCkQ3md0cQC3kPlF5HgX25TwbT7_02YU0bJfVOkMht06PkhkQWWck8aRobI-oaHlE9E04b4glT_p-qXHcNXkTqMreLEpC61YeJ_U_R6SNMN0E07dHrEy-_Ci0EuAy-R5ikX0Bm5cS1NGIi3c6vh4OjvqNwniN4MMLUhUSL8GHmsuVxiTatNG6oJUavTJwX4K7DlwgV30J7DCiyZShIdHPndEEoL2yUPWX0eMUsCGscDjmY4Em14YaKa95etIYvXZWfKoA4svKxXE15O0xWk3eZUYKQhBSWMkUMFMEm9m1PDzUun6PVA20YWCxblFWo74Q=w1593-h896-no?pageId=101589342745553480499"&gt;
+&lt;img alt="Instalación de homebrew en macOS" src="https://www.cosmoscalibur.com/images/ejecutando-macos-en-linux/maquina-virtual-homebrew-macos.png"&gt;
 &lt;p class="caption"&gt;Instalación por consola de homebrew en macOS.&lt;/p&gt;
 &lt;/div&gt;
-&lt;p&gt;Una vez instalado, puedes aprovechar a dejar listo python (actualiza la versión por defecto e instala el gestor pip). Igualmente es conveniente instalar otros paquetes de uso común por otras aplicaciones .&lt;/p&gt;
-&lt;pre class="code bash"&gt;&lt;a name="rest_code_c5163c13103046c18f83cdf8dc5950b0-1"&gt;&lt;/a&gt;brew install pkg-config &lt;span class="c1"&gt;# Ayuda a determinar la lista de paquetes existentes&lt;/span&gt;
-&lt;a name="rest_code_c5163c13103046c18f83cdf8dc5950b0-2"&gt;&lt;/a&gt;brew install python3 &lt;span class="c1"&gt;# Python3 no viene por defecto&lt;/span&gt;
-&lt;a name="rest_code_c5163c13103046c18f83cdf8dc5950b0-3"&gt;&lt;/a&gt;brew install python2 &lt;span class="c1"&gt;# Actualiza la versión existente. En ambos casos se instala pip (pip2 y pip3)&lt;/span&gt;
-&lt;a name="rest_code_c5163c13103046c18f83cdf8dc5950b0-4"&gt;&lt;/a&gt;brew install freetype &lt;span class="c1"&gt;# Requerido para la manipulación de fuentes -por ejemplo en matplotlib-&lt;/span&gt;
-&lt;a name="rest_code_c5163c13103046c18f83cdf8dc5950b0-5"&gt;&lt;/a&gt;brew install libpng &lt;span class="c1"&gt;# Requerido para la manipulación de imágenes png -por ejemplo en matplotlib-&lt;/span&gt;
-&lt;a name="rest_code_c5163c13103046c18f83cdf8dc5950b0-6"&gt;&lt;/a&gt;brew install pygtk &lt;span class="c1"&gt;# Binding de GTK para python. Interfaces en pygtk son comunes.&lt;/span&gt;
-&lt;/pre&gt;&lt;iframe style="width:120px;height:240px;" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" src="//ws-na.amazon-adsystem.com/widgets/q?ServiceVersion=20070822&amp;amp;OneJS=1&amp;amp;Operation=GetAdHtml&amp;amp;MarketPlace=US&amp;amp;source=ss&amp;amp;ref=as_ss_li_til&amp;amp;ad_type=product_link&amp;amp;tracking_id=cosmoscalibur-20&amp;amp;language=es_US&amp;amp;marketplace=amazon&amp;amp;region=US&amp;amp;placement=B07QWLXCC7&amp;amp;asins=B07QWLXCC7&amp;amp;linkId=ec8263fe9f13222ede56df34878a1743&amp;amp;show_border=true&amp;amp;link_opens_in_new_window=true"&gt;&lt;/iframe&gt;&lt;/div&gt;&lt;/div&gt;</description><category>emulación</category><category>hackintosh</category><category>linux</category><category>macos</category><category>máquina virtual</category><guid>https://www.cosmoscalibur.com/blog/ejecutando-macos-en-linux/</guid><pubDate>Fri, 19 Jan 2018 03:16:55 GMT</pubDate></item></channel></rss>
+&lt;p&gt;Una vez instalado, puedes aprovechar a dejar listo python (actualiza la
+versión por defecto e instala el gestor pip). Igualmente es conveniente
+instalar otros paquetes de uso común por otras aplicaciones .&lt;/p&gt;
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_775f5b19cde7455fa5bf0b6392a7de3e-1"&gt;&lt;/a&gt;brew install pkg-config &lt;span class="c1"&gt;# Ayuda a determinar la lista de paquetes existentes&lt;/span&gt;
+&lt;a name="rest_code_775f5b19cde7455fa5bf0b6392a7de3e-2"&gt;&lt;/a&gt;brew install python3 &lt;span class="c1"&gt;# Python3 no viene por defecto&lt;/span&gt;
+&lt;a name="rest_code_775f5b19cde7455fa5bf0b6392a7de3e-3"&gt;&lt;/a&gt;brew install python2 &lt;span class="c1"&gt;# Actualiza la versión existente. En ambos casos se instala pip (pip2 y pip3)&lt;/span&gt;
+&lt;a name="rest_code_775f5b19cde7455fa5bf0b6392a7de3e-4"&gt;&lt;/a&gt;brew install freetype &lt;span class="c1"&gt;# Requerido para la manipulación de fuentes -por ejemplo en matplotlib-&lt;/span&gt;
+&lt;a name="rest_code_775f5b19cde7455fa5bf0b6392a7de3e-5"&gt;&lt;/a&gt;brew install libpng &lt;span class="c1"&gt;# Requerido para la manipulación de imágenes png -por ejemplo en matplotlib-&lt;/span&gt;
+&lt;a name="rest_code_775f5b19cde7455fa5bf0b6392a7de3e-6"&gt;&lt;/a&gt;brew install pygtk &lt;span class="c1"&gt;# Binding de GTK para python. Interfaces en pygtk son comunes.&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</description><category>emulación</category><category>hackintosh</category><category>linux</category><category>macos</category><category>máquina virtual</category><guid>https://www.cosmoscalibur.com/blog/ejecutando-macos-en-linux/</guid><pubDate>Fri, 19 Jan 2018 03:16:55 GMT</pubDate></item></channel></rss>
