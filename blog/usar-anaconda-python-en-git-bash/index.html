@@ -14,6 +14,7 @@
 <link href="../../en/rss.xml" rel="alternate" title="RSS (en)" type="application/rss+xml">
 <link href="../../rss.xml" rel="alternate" title="RSS (es)" type="application/rss+xml">
 <link href="https://www.cosmoscalibur.com/blog/usar-anaconda-python-en-git-bash/" rel="canonical">
+<link href="../../images/favicon.jpg" rel="icon" sizes="32x32">
 <meta content="595800477624602" property="fb:app_id"><!--[if lt IE 9]><script src="https://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
 <meta content="Edward Villegas-Pulgarin" name="author">
 <link href="../crear-contenedor-docker-aplicacion-gui-ealite/" rel="prev" title="Crear contenedor Docker aplicación GUI - EALite" type="text/html">
@@ -88,7 +89,7 @@
 <h2>Git Bash</h2>
 <p>Si bien puedes descargarlo desde el sitio del proyecto, aprovecharemos el gestor Conda para facilitar la tarea de descarga, instalación y configuración.</p>
 <p>Abriremos Anaconda PowerShell o Anaconda Prompt, y ejecutaremos lo siguiente:</p>
-<pre class="code text"><a id="rest_code_ce207146b4094ada82ed0765d864f3cd-1" name="rest_code_ce207146b4094ada82ed0765d864f3cd-1"></a>conda create -n gitbash -c conda-forge git=2.24.0
+<pre class="code text"><a id="rest_code_9d1780b162444314a8f2667a721c55eb-1" name="rest_code_9d1780b162444314a8f2667a721c55eb-1"></a>conda create -n gitbash -c conda-forge git=2.24.0
 </pre>
 <p>Es importante el uso de <code>-c conda-forge</code> porque de este canal vendrá la versión de Git que usaremos. Si se usa el canal por defecto, se instala solo el cliente de consola, mientras que en esta opción viene Git Bash. He indicado también el <code>-n gitbash</code> para evitar posibles conflictos entre los paquetes requeridos para usar Git y los paquetes disponibles en el ambiente base. En alguna publicación posterior hablaré sobre Conda para profundizar en esto.</p>
 <p>Una vez terminada la instalación, puedes abrir el menú de Windows y buscar Git Bash, el cual ya contará con Conda reconocido. Ahora solo debes empezar a usarlo, <code>conda activate base</code>.</p>
@@ -98,9 +99,9 @@
 </div>
 <p>¿Y qué pasa si ya teníamos instalado Git Bash? Git Bash soporta los archivos típicos de Bash, como el <code>bashrc</code>. Así, podemos usar la configuración que habitualmente se usa en Linux.</p>
 <p>Abrimos Git Bash, y ejecutamos:</p>
-<pre class="code text"><a id="rest_code_18ffe791a19d4b80a0a73fb0fcdd575d-1" name="rest_code_18ffe791a19d4b80a0a73fb0fcdd575d-1"></a>cd
-<a id="rest_code_18ffe791a19d4b80a0a73fb0fcdd575d-2" name="rest_code_18ffe791a19d4b80a0a73fb0fcdd575d-2"></a>echo ". /c/Users/USUARIO/ANACONDA/etc/profile.d/conda.sh" &gt;&gt; .bashrc
-<a id="rest_code_18ffe791a19d4b80a0a73fb0fcdd575d-3" name="rest_code_18ffe791a19d4b80a0a73fb0fcdd575d-3"></a>source .bashrc
+<pre class="code text"><a id="rest_code_3cfde672ab3f484fb0f3defeffc3388f-1" name="rest_code_3cfde672ab3f484fb0f3defeffc3388f-1"></a>cd
+<a id="rest_code_3cfde672ab3f484fb0f3defeffc3388f-2" name="rest_code_3cfde672ab3f484fb0f3defeffc3388f-2"></a>echo ". /c/Users/USUARIO/ANACONDA/etc/profile.d/conda.sh" &gt;&gt; .bashrc
+<a id="rest_code_3cfde672ab3f484fb0f3defeffc3388f-3" name="rest_code_3cfde672ab3f484fb0f3defeffc3388f-3"></a>source .bashrc
 </pre>
 <p>Con la primera línea aseguramos ir al directorio del usuario. En la segunda línea, crearemos o editaremos el archivo de configuración, pero debes reemplazar <code>USUARIO</code> por la carpeta de tu usuario y <code>ANACONDA</code> por la carpeta de Anaconda (habitualmente <code>Anaconda</code> o <code>Miniconda3</code> si usaste Miniconda). La tercera línea actualiza la configuración en la sesión actual de la consola permitiendo usar de forma inmediata Conda. Para la próxima apertura de Git Bash ya no tendrás que configurar nada, solo empezar a usar Conda (aún no hay ambiente activado).</p>
 <iframe frameborder="0" marginheight="0" marginwidth="0" scrolling="no" src="//ws-na.amazon-adsystem.com/widgets/q?ServiceVersion=20070822&amp;OneJS=1&amp;Operation=GetAdHtml&amp;MarketPlace=US&amp;source=ss&amp;ref=as_ss_li_til&amp;ad_type=product_link&amp;tracking_id=cosmoscalibur-20&amp;language=es_US&amp;marketplace=amazon&amp;region=US&amp;placement=B079Q47BDK&amp;asins=B079Q47BDK&amp;linkId=27f9b2ded3fc9aa23cd85e1f292c8b4e&amp;show_border=true&amp;link_opens_in_new_window=true" style="width:120px;height:240px;"></iframe></div>
