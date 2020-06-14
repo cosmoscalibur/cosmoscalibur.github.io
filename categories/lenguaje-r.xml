@@ -1,0 +1,146 @@
+<?xml version='1.0' encoding='utf-8'?>
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>Cosmoscalibur (Publicaciones sobre lenguaje r)</title><link>https://www.cosmoscalibur.com/</link><description/><atom:link href="https://www.cosmoscalibur.com/categories/lenguaje-r.xml" rel="self" type="application/rss+xml"/><language>es</language><copyright>Contents © 2020 &lt;a href="mailto:cosmoscalibur@gmail.com"&gt;Edward Villegas Pulgarin&lt;/a&gt; 
+&lt;a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"&gt;
+&lt;img alt="Creative Commons License BY-NC-SA"
+style="border-width:0; margin-bottom:12px;"
+src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"&gt;&lt;/a&gt;</copyright><lastBuildDate>Sun, 14 Jun 2020 01:23:05 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Determinar intersecciones en el diagrama de Venn con R</title><link>https://www.cosmoscalibur.com/blog/determinar-intersecciones-en-el-diagrama-de-venn-con-r/</link><dc:creator>Edward Villegas-Pulgarin</dc:creator><description>&lt;div&gt;&lt;p&gt;Esta entrada es mi primera entrada asociada al lenguaje R y sobre mi primer paquete en R: &lt;a href="https://github.com/cosmoscalibur/venn.compute"&gt;&lt;code&gt;venn.compute&lt;/code&gt;&lt;/a&gt;. Este paquete surge por un caso de uso particular que estaba ayudando a automatizar de determinar los elementos (no solo el dibujo ni la cantidad) de las intersecciones y específicos de un diagrama de Venn, útil en bioinformática para comparación de genes.  &lt;/p&gt;
+&lt;!-- TEASER_END --&gt;
+
+&lt;p&gt;Así, esta entrada es tipo tutorial de como usar el paquete que hice para este fin.  &lt;/p&gt;
+&lt;h2&gt;Caso de uso&lt;/h2&gt;
+&lt;p&gt;Se posee la información de múltiples conjuntos en archivos de texto plano, en donde cada elemento es una línea de dicho archivo. No siempre es la misma cantidad de conjuntos y se desea poder generar archivos de salida para revisar las intersecciones y elementos específicos. Usualmente, puede importar el gráfico por lo cual se puede incluir.  &lt;/p&gt;
+&lt;p&gt;Como ejemplo se usarán 3 archivos ubicados en una carpeta &lt;code&gt;tests&lt;/code&gt;, con los nombres &lt;code&gt;primes.txt&lt;/code&gt;, &lt;code&gt;even.txt&lt;/code&gt; y &lt;code&gt;fibo.txt&lt;/code&gt; con el contenido de los números primos, pares y de Fibonacci hasta el 20.&lt;/p&gt;
+&lt;h2&gt;Instalación&lt;/h2&gt;
+&lt;p&gt;Por el momento, se debe instalar el paquete a partir de GitHub, por lo cual debes usar la utilidad incluida en &lt;code&gt;devtools&lt;/code&gt; en lugar del mecanismo de instalación habitual (ya está sometido el paquete, así que en el futura podría usarse).  &lt;/p&gt;
+&lt;p&gt;Si usas Anaconda en Linux, probablemente debas configurar la ruta del ejecutable de &lt;code&gt;tar&lt;/code&gt; (al instalar desde GitHub genera un error indicando que no encuentra el ejecuta &lt;code&gt;sh: 1: /bin/gtar: not found&lt;/code&gt;).&lt;/p&gt;
+&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nf"&gt;Sys.setenv&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;TAR&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;"/bin/tar"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="c1"&gt;# Si es Anaconda Linux&lt;/span&gt;
+&lt;/pre&gt;
+
+
+&lt;p&gt;Ahora sí, haremos la instalación desde el repositorio de GitHub del paquete (se indica &lt;code&gt;usuario/paquete&lt;/code&gt;).&lt;/p&gt;
+&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;devtools&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="nf"&gt;install_github&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"cosmoscalibur/venn.compute"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;
+
+
+&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nv"&gt;Downloading&lt;/span&gt; &lt;span class="nv"&gt;GitHub&lt;/span&gt; &lt;span class="nv"&gt;repo&lt;/span&gt; &lt;span class="nv"&gt;cosmoscalibur&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nv"&gt;venn&lt;/span&gt;.&lt;span class="nv"&gt;compute&lt;/span&gt;@&lt;span class="nv"&gt;master&lt;/span&gt;
+
+
+&lt;span class="nv"&gt;formatR&lt;/span&gt; &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;.&lt;span class="mi"&gt;6&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;.&lt;span class="mi"&gt;7&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt; [&lt;span class="nv"&gt;CRAN&lt;/span&gt;]
+
+
+&lt;span class="nv"&gt;Installing&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="nv"&gt;packages&lt;/span&gt;: &lt;span class="nv"&gt;formatR&lt;/span&gt;
+&lt;span class="nv"&gt;Updating&lt;/span&gt; &lt;span class="nv"&gt;HTML&lt;/span&gt; &lt;span class="nv"&gt;index&lt;/span&gt; &lt;span class="nv"&gt;of&lt;/span&gt; &lt;span class="nv"&gt;packages&lt;/span&gt; &lt;span class="nv"&gt;in&lt;/span&gt; &lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;.Library&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;
+&lt;span class="nv"&gt;Making&lt;/span&gt; &lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;packages.html&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt; ... &lt;span class="nv"&gt;done&lt;/span&gt;
+
+
+✔  &lt;span class="nv"&gt;checking&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="nv"&gt;file&lt;/span&gt; ‘&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nv"&gt;tmp&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nv"&gt;RtmpT7UVx3&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nv"&gt;remotes61d65fec5ae1&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nv"&gt;cosmoscalibur&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;venn&lt;/span&gt;.&lt;span class="nv"&gt;compute&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="nv"&gt;f4fb43&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nv"&gt;DESCRIPTION&lt;/span&gt;’ ...
+─  &lt;span class="nv"&gt;preparing&lt;/span&gt; ‘&lt;span class="nv"&gt;venn&lt;/span&gt;.&lt;span class="nv"&gt;compute&lt;/span&gt;’:
+✔  &lt;span class="nv"&gt;checking&lt;/span&gt; &lt;span class="nv"&gt;DESCRIPTION&lt;/span&gt; &lt;span class="nv"&gt;meta&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;information&lt;/span&gt;
+─  &lt;span class="nv"&gt;checking&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="nv"&gt;LF&lt;/span&gt; &lt;span class="nv"&gt;line&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;endings&lt;/span&gt; &lt;span class="nv"&gt;in&lt;/span&gt; &lt;span class="nv"&gt;source&lt;/span&gt; &lt;span class="nv"&gt;and&lt;/span&gt; &lt;span class="nv"&gt;make&lt;/span&gt; &lt;span class="nv"&gt;files&lt;/span&gt; &lt;span class="nv"&gt;and&lt;/span&gt; &lt;span class="nv"&gt;shell&lt;/span&gt; &lt;span class="nv"&gt;scripts&lt;/span&gt;
+─  &lt;span class="nv"&gt;checking&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="nv"&gt;empty&lt;/span&gt; &lt;span class="nv"&gt;or&lt;/span&gt; &lt;span class="nv"&gt;unneeded&lt;/span&gt; &lt;span class="nv"&gt;directories&lt;/span&gt;
+─  &lt;span class="nv"&gt;building&lt;/span&gt; ‘&lt;span class="nv"&gt;venn&lt;/span&gt;.&lt;span class="nv"&gt;compute_1&lt;/span&gt;.&lt;span class="mi"&gt;1&lt;/span&gt;.&lt;span class="mi"&gt;0&lt;/span&gt;.&lt;span class="nv"&gt;tar&lt;/span&gt;.&lt;span class="nv"&gt;gz&lt;/span&gt;’
+&lt;/pre&gt;
+
+
+&lt;h2&gt;Ejecución&lt;/h2&gt;
+&lt;p&gt;Lo primero que debemos hacer es cargar el paquete.&lt;/p&gt;
+&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nf"&gt;library&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;venn.compute&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;
+
+
+&lt;h3&gt;Lectura de archivos&lt;/h3&gt;
+&lt;p&gt;Para leer los archivos, he creado una función específica para la lectura, de manera que el contenido de los archivos sea cargado a arreglos de caracteres y estos se anexan a una lista. Adicional, se asocian los nombres personalizados a los conjuntos de elementos de cada archivo.&lt;/p&gt;
+&lt;p&gt;Las rutas a los archivos y los nombres que asociaremos, se agregan como
+arreglos de caracteres, y tiene soporte genérico para una cantidad diferente
+a la ilustrada.&lt;/p&gt;
+&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;sets&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;-&lt;/span&gt; &lt;span class="nf"&gt;read.lists_from_files&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;c&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"tests/primes.txt"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;"tests/even.txt"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+                                &lt;span class="s"&gt;"tests/fibo.txt"&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="nf"&gt;c&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"primes"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;"even"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;"fibo"&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;span class="nf"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sets&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;
+
+
+&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="n"&gt;primes&lt;/span&gt;
+&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="ss"&gt;"1"&lt;/span&gt;  &lt;span class="ss"&gt;"2"&lt;/span&gt;  &lt;span class="ss"&gt;"3"&lt;/span&gt;  &lt;span class="ss"&gt;"5"&lt;/span&gt;  &lt;span class="ss"&gt;"7"&lt;/span&gt;  &lt;span class="ss"&gt;"11"&lt;/span&gt; &lt;span class="ss"&gt;"13"&lt;/span&gt; &lt;span class="ss"&gt;"17"&lt;/span&gt;
+
+&lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="n"&gt;even&lt;/span&gt;
+ &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="ss"&gt;"0"&lt;/span&gt;  &lt;span class="ss"&gt;"2"&lt;/span&gt;  &lt;span class="ss"&gt;"4"&lt;/span&gt;  &lt;span class="ss"&gt;"6"&lt;/span&gt;  &lt;span class="ss"&gt;"8"&lt;/span&gt;  &lt;span class="ss"&gt;"10"&lt;/span&gt; &lt;span class="ss"&gt;"12"&lt;/span&gt; &lt;span class="ss"&gt;"14"&lt;/span&gt; &lt;span class="ss"&gt;"16"&lt;/span&gt; &lt;span class="ss"&gt;"18"&lt;/span&gt;
+
+&lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="n"&gt;fibo&lt;/span&gt;
+&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="ss"&gt;"1"&lt;/span&gt;  &lt;span class="ss"&gt;"2"&lt;/span&gt;  &lt;span class="ss"&gt;"3"&lt;/span&gt;  &lt;span class="ss"&gt;"5"&lt;/span&gt;  &lt;span class="ss"&gt;"8"&lt;/span&gt;  &lt;span class="ss"&gt;"13"&lt;/span&gt;
+&lt;/pre&gt;
+
+
+&lt;p&gt;Como observamos, se han creado las listas nombradas con los contenidos de los archivos. Estos nombres son los usados para crear los archivos, asociar las listas nombradas de las intersecciones y el gráfico (usa un paquete externo donde el ingreso de esta manera permite pasarlo como única variable).&lt;/p&gt;
+&lt;h3&gt;Determinar elementos&lt;/h3&gt;
+&lt;p&gt;Ya con los conjuntos cargados en la lista, podemos determinar los elementos que van en cada área del diagrama de Venn (intersecciones y específicos).&lt;/p&gt;
+&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nf"&gt;venn.compute_specific&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sets&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;
+
+
+&lt;dl&gt;
+    &lt;dt&gt;$primes_even_fibo&lt;/dt&gt;
+        &lt;dd&gt;'2'&lt;/dd&gt;
+    &lt;dt&gt;$primes_even&lt;/dt&gt;
+        &lt;dd&gt;&lt;/dd&gt;
+    &lt;dt&gt;$primes_fibo&lt;/dt&gt;
+        &lt;dd&gt;&lt;ol class="list-inline"&gt;
+    &lt;li&gt;'1'&lt;/li&gt;
+    &lt;li&gt;'3'&lt;/li&gt;
+    &lt;li&gt;'5'&lt;/li&gt;
+    &lt;li&gt;'13'&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/dd&gt;
+    &lt;dt&gt;$even_fibo&lt;/dt&gt;
+        &lt;dd&gt;'8'&lt;/dd&gt;
+    &lt;dt&gt;$primes&lt;/dt&gt;
+        &lt;dd&gt;&lt;ol class="list-inline"&gt;
+    &lt;li&gt;'7'&lt;/li&gt;
+    &lt;li&gt;'11'&lt;/li&gt;
+    &lt;li&gt;'17'&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/dd&gt;
+    &lt;dt&gt;$even&lt;/dt&gt;
+        &lt;dd&gt;&lt;ol class="list-inline"&gt;
+    &lt;li&gt;'0'&lt;/li&gt;
+    &lt;li&gt;'4'&lt;/li&gt;
+    &lt;li&gt;'6'&lt;/li&gt;
+    &lt;li&gt;'10'&lt;/li&gt;
+    &lt;li&gt;'12'&lt;/li&gt;
+    &lt;li&gt;'14'&lt;/li&gt;
+    &lt;li&gt;'16'&lt;/li&gt;
+    &lt;li&gt;'18'&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/dd&gt;
+    &lt;dt&gt;$fibo&lt;/dt&gt;
+        &lt;dd&gt;&lt;/dd&gt;
+&lt;/dl&gt;
+
+&lt;p&gt;Usando la convención del nombre asignado a los conjuntos unidos por guion bajo, se distinguen las áreas asociadas. Así, &lt;strong&gt;\$primes_even_fibo&lt;/strong&gt; representa el área de intersección de los tres conjuntos, y posee solo un elemento (&lt;code&gt;'2'&lt;/code&gt;), y &lt;strong&gt;\$fibo&lt;/strong&gt; representa los específicos de dicho conjunto, es decir, los que pertenecen exclusivamente a este y no a intersecciones con otros, el cual en este caso es vacío.  &lt;/p&gt;
+&lt;p&gt;Si esta información es masiva, es conveniente escribir el resultado en archivos y no en memoria. Así, debemos crear una carpeta para los archivos e indicamos su ruta como segundo argumento.&lt;/p&gt;
+&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nf"&gt;venn.compute_specific&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sets&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;output_dir&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;"tests/output"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;
+
+
+&lt;p&gt;Podemos verificar la creación de los archivos con la misma convención de nombre y extensión &lt;code&gt;txt&lt;/code&gt;.&lt;/p&gt;
+&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nf"&gt;dir&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"tests/output/"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;
+
+
+&lt;ol class="list-inline"&gt;
+    &lt;li&gt;'even_fibo.txt'&lt;/li&gt;
+    &lt;li&gt;'even.txt'&lt;/li&gt;
+    &lt;li&gt;'fibo.txt'&lt;/li&gt;
+    &lt;li&gt;'primes_even_fibo.txt'&lt;/li&gt;
+    &lt;li&gt;'primes_even.txt'&lt;/li&gt;
+    &lt;li&gt;'primes_fibo.txt'&lt;/li&gt;
+    &lt;li&gt;'primes.txt'&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3&gt;Graficar diagrama de Venn&lt;/h3&gt;
+&lt;p&gt;Para obtener el diagrama tengo una función que define un flujo por defecto que crea los archivos del paso anterior y adicional el gráfico del diagrama con el paquete &lt;a href="https://cran.r-project.org/web/packages/VennDiagram/index.html"&gt;&lt;code&gt;VennDiagram&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;
+&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nf"&gt;venn.compute_plot&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sets&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;output_dir&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;"tests/output"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;
+
+
+&lt;p&gt;Además de generar como les conté, los archivos de las intersecciones y específicos, se generó un archivo cuyo nombre es la convención seguida para la intersección de la totalidad de conjuntos y con extensión &lt;code&gt;png&lt;/code&gt;, &lt;code&gt;primes_even_fibo.png&lt;/code&gt;.  &lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;&lt;div class="figure "&gt;&lt;a href="https://www.cosmoscalibur.com/images/determinar-intersecciones-en-el-diagrama-de-venn-con-r/primes_even_fibo.png" class="image-reference"&gt;&lt;img src="https://www.cosmoscalibur.com/images/determinar-intersecciones-en-el-diagrama-de-venn-con-r/primes_even_fibo.thumbnail.png"&gt;&lt;/a&gt;&lt;p&gt;Diagrama de Venn generado para los 3 conjuntos.&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;</description><category>bioinformática</category><category>diagrama de Venn</category><category>lenguaje r</category><guid>https://www.cosmoscalibur.com/blog/determinar-intersecciones-en-el-diagrama-de-venn-con-r/</guid><pubDate>Sun, 14 Jun 2020 00:40:00 GMT</pubDate></item></channel></rss>
