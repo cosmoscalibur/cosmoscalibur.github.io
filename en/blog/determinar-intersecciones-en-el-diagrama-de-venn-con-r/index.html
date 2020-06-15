@@ -13,13 +13,13 @@
 <meta content="Nikola (getnikola.com)" name="generator">
 <link href="../../rss.xml" rel="alternate" title="RSS (en)" type="application/rss+xml">
 <link href="../../../rss.xml" rel="alternate" title="RSS (es)" type="application/rss+xml">
-<link href="https://www.cosmoscalibur.com/en/blog/determinar-intersecciones-en-el-diagrama-de-venn-con-r/" rel="canonical">
+<link href="https://cosmoscalibur.github.io/en/blog/determinar-intersecciones-en-el-diagrama-de-venn-con-r/" rel="canonical">
 <link href="../../../images/favicon.jpg" rel="icon" sizes="32x32">
 <meta content="595800477624602" property="fb:app_id"><!--[if lt IE 9]><script src="https://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
 <meta content="Edward Villegas-Pulgarin" name="author">
 <meta content="Cosmoscalibur" property="og:site_name">
 <meta content="Compute specific and intersection elements with R" property="og:title">
-<meta content="https://www.cosmoscalibur.com/en/blog/determinar-intersecciones-en-el-diagrama-de-venn-con-r/" property="og:url">
+<meta content="https://cosmoscalibur.github.io/en/blog/determinar-intersecciones-en-el-diagrama-de-venn-con-r/" property="og:url">
 <meta content="Utility to determine elements in overlap areas in Venn diagramas with R package. Use case in bioinformatics to compare list of genes." property="og:description">
 <meta content="article" property="og:type">
 <meta content="2020-06-13T19:40:00-05:00" property="article:published_time">
@@ -41,11 +41,11 @@
 <form action="https://duckduckgo.com/" class="navbar-form pull-left" id="search" method="get" name="search"><input name="sites" type="hidden" value="https://www.cosmoscalibur.com/"><input name="k8" type="hidden" value="#444444"><input name="k9" type="hidden" value="#D51920"><input name="kt" type="hidden" value="h"><input class="span2" maxlength="255" name="q" placeholder="Search…" style="margin-top: 4px;" type="text"><input style="visibility: hidden;" type="submit" value="DuckDuckGo Search"></form>
 <!-- End of custom search --></div>
 </div>
-<div class="col-md-6 col-xs-10 col-sm-10 bootblog4-brand" style="width: auto;"><a class="navbar-brand blog-header-logo text-dark" href="https://www.cosmoscalibur.com/en/"><span id="blog-title">Cosmoscalibur</span></a></div>
+<div class="col-md-6 col-xs-10 col-sm-10 bootblog4-brand" style="width: auto;"><a class="navbar-brand blog-header-logo text-dark" href="https://cosmoscalibur.github.io/en/"><span id="blog-title">Cosmoscalibur</span></a></div>
 <div class="col-md-3 justify-content-end align-items-center bs-nav-collapsible collapse flex-collapse bootblog4-right-nav">
 <nav class="navbar navbar-light bg-white">
 <ul class="navbar-nav bootblog4-right-nav">
-<li class="nav-item"><a class="nav-link" href="https://www.cosmoscalibur.com/" hreflang="es" rel="alternate">Español</a></li>
+<li class="nav-item"><a class="nav-link" href="https://cosmoscalibur.github.io/" hreflang="es" rel="alternate">Español</a></li>
 </ul>
 </nav>
 </div>
@@ -118,8 +118,10 @@
 <h3>Lectura de archivos</h3>
 <h3>Read files</h3>
 <p>This is a custom reader to include multiple files and associate its custom names, returned a named list of character arrays (each element is an element line of the file).</p>
-<pre class="code literal-block"><span></span><span class="n">sets</span> <span class="o">&lt;-</span> <span class="nf">read.lists_from_files</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="s">"tests/primes.txt"</span><span class="p">,</span> <span class="s">"tests/even.txt"</span><span class="p">,</span>
-                                <span class="s">"tests/fibo.txt"</span><span class="p">),</span> <span class="nf">c</span><span class="p">(</span><span class="s">"primes"</span><span class="p">,</span> <span class="s">"even"</span><span class="p">,</span> <span class="s">"fibo"</span><span class="p">))</span>
+<pre class="code literal-block"><span></span><span class="n">sets</span> <span class="o">&lt;-</span> <span class="nf">read.lists_from_files</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="nf">file.path</span><span class="p">(</span><span class="s">"tests"</span><span class="p">,</span> <span class="s">"primes.txt"</span><span class="p">),</span>
+                                <span class="nf">file.path</span><span class="p">(</span><span class="s">"tests"</span><span class="p">,</span> <span class="s">"even.txt"</span><span class="p">),</span>
+                                <span class="nf">file.path</span><span class="p">(</span><span class="s">"tests"</span><span class="p">,</span> <span class="s">"fibo.txt"</span><span class="p">)),</span>
+                              <span class="nf">c</span><span class="p">(</span><span class="s">"primes"</span><span class="p">,</span> <span class="s">"even"</span><span class="p">,</span> <span class="s">"fibo"</span><span class="p">))</span>
 <span class="nf">print</span><span class="p">(</span><span class="n">sets</span><span class="p">)</span>
 </pre>
 <pre class="code literal-block"><span></span><span class="err">$</span><span class="n">primes</span>
@@ -176,10 +178,10 @@
 <dd></dd>
 </dl>
 <p>If you need to write sets in files, add an output path. Files are written using convention of join sets name with underscore.</p>
-<pre class="code literal-block"><span></span><span class="nf">venn.compute_specific</span><span class="p">(</span><span class="n">sets</span><span class="p">,</span> <span class="n">output_dir</span> <span class="o">=</span> <span class="s">"tests/output"</span><span class="p">)</span>
+<pre class="code literal-block"><span></span><span class="nf">venn.compute_specific</span><span class="p">(</span><span class="n">sets</span><span class="p">,</span> <span class="n">output_dir</span> <span class="o">=</span> <span class="nf">file.path</span><span class="p">(</span><span class="s">"tests"</span><span class="p">,</span> <span class="s">"output"</span><span class="p">))</span>
 </pre>
 <p>We can verify written files.</p>
-<pre class="code literal-block"><span></span><span class="nf">dir</span><span class="p">(</span><span class="s">"tests/output/"</span><span class="p">)</span>
+<pre class="code literal-block"><span></span><span class="nf">dir</span><span class="p">(</span><span class="nf">file.path</span><span class="p">(</span><span class="s">"tests"</span><span class="p">,</span> <span class="s">"output"</span><span class="p">))</span>
 </pre>
 <ol class="list-inline">
 <li>'even_fibo.txt'</li>
@@ -192,7 +194,7 @@
 </ol>
 <h3>Plot Venn diagram</h3>
 <p>Finally, if you want to save plot, invoke this function with the same arguments as before (internally using <a href="https://cran.r-project.org/web/packages/VennDiagram/index.html"><code>VennDiagram</code></a>)</p>
-<pre class="code literal-block"><span></span><span class="nf">venn.compute_plot</span><span class="p">(</span><span class="n">sets</span><span class="p">,</span> <span class="n">output_dir</span> <span class="o">=</span> <span class="s">"tests/output"</span><span class="p">)</span>
+<pre class="code literal-block"><span></span><span class="nf">venn.compute_plot</span><span class="p">(</span><span class="n">sets</span><span class="p">,</span> <span class="n">output_dir</span> <span class="o">=</span> <span class="nf">file.path</span><span class="p">(</span><span class="s">"tests"</span><span class="p">,</span> <span class="s">"output"</span><span class="p">))</span>
 </pre>
 <p>Now, we have a <code>primes_even_fibo.png</code> file.</p>
 <p></p>
@@ -233,7 +235,7 @@
      fjs.parentNode.insertBefore(js, fjs);
    }(document, 'script', 'facebook-jssdk'));
 </script>
-<div class="fb-comments" data-href="https://www.cosmoscalibur.com/en/blog/determinar-intersecciones-en-el-diagrama-de-venn-con-r/" data-width="470"></div>
+<div class="fb-comments" data-href="https://cosmoscalibur.github.io/en/blog/determinar-intersecciones-en-el-diagrama-de-venn-con-r/" data-width="470"></div>
 </section>
 </article>
 <div id="fb-root"></div>

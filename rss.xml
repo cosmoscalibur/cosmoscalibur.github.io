@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='utf-8'?>
-<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>Cosmoscalibur</title><link>https://www.cosmoscalibur.com/</link><description>Blog de ciencia, tecnología, cultura y literatura. Unir estos mundos no solo en un sitio sino en una historia.</description><atom:link href="https://www.cosmoscalibur.com/rss.xml" rel="self" type="application/rss+xml"/><language>es</language><copyright>Contents © 2020 &lt;a href="mailto:cosmoscalibur@gmail.com"&gt;Edward Villegas Pulgarin&lt;/a&gt; 
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>Cosmoscalibur</title><link>https://www.cosmoscalibur.com/</link><description>Blog de ciencia, tecnología, cultura y literatura. Unir estos mundos no solo en un sitio sino en una historia.</description><atom:link href="https://cosmoscalibur.github.io/rss.xml" rel="self" type="application/rss+xml"/><language>es</language><copyright>Contents © 2020 &lt;a href="mailto:cosmoscalibur@gmail.com"&gt;Edward Villegas Pulgarin&lt;/a&gt; 
 &lt;a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"&gt;
 &lt;img alt="Creative Commons License BY-NC-SA"
 style="border-width:0; margin-bottom:12px;"
-src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"&gt;&lt;/a&gt;</copyright><lastBuildDate>Sun, 14 Jun 2020 01:23:05 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Determinar intersecciones en el diagrama de Venn con R</title><link>https://www.cosmoscalibur.com/blog/determinar-intersecciones-en-el-diagrama-de-venn-con-r/</link><dc:creator>Edward Villegas-Pulgarin</dc:creator><description>&lt;div&gt;&lt;p&gt;Esta entrada es mi primera entrada asociada al lenguaje R y sobre mi primer paquete en R: &lt;a href="https://github.com/cosmoscalibur/venn.compute"&gt;&lt;code&gt;venn.compute&lt;/code&gt;&lt;/a&gt;. Este paquete surge por un caso de uso particular que estaba ayudando a automatizar de determinar los elementos (no solo el dibujo ni la cantidad) de las intersecciones y específicos de un diagrama de Venn, útil en bioinformática para comparación de genes.  &lt;/p&gt;
+src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"&gt;&lt;/a&gt;</copyright><lastBuildDate>Mon, 15 Jun 2020 19:03:00 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Determinar intersecciones en el diagrama de Venn con R</title><link>https://cosmoscalibur.github.io/blog/determinar-intersecciones-en-el-diagrama-de-venn-con-r/</link><dc:creator>Edward Villegas-Pulgarin</dc:creator><description>&lt;div&gt;&lt;p&gt;Esta entrada es mi primera entrada asociada al lenguaje R y sobre mi primer paquete en R: &lt;a href="https://github.com/cosmoscalibur/venn.compute"&gt;&lt;code&gt;venn.compute&lt;/code&gt;&lt;/a&gt;. Este paquete surge por un caso de uso particular que estaba ayudando a automatizar de determinar los elementos (no solo el dibujo ni la cantidad) de las intersecciones y específicos de un diagrama de Venn, útil en bioinformática para comparación de genes.  &lt;/p&gt;
 &lt;!-- TEASER_END --&gt;
 
 &lt;p&gt;Así, esta entrada es tipo tutorial de como usar el paquete que hice para este fin.  &lt;/p&gt;
@@ -53,8 +53,10 @@ src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"&gt;&lt;/a&gt;</copy
 &lt;p&gt;Las rutas a los archivos y los nombres que asociaremos, se agregan como
 arreglos de caracteres, y tiene soporte genérico para una cantidad diferente
 a la ilustrada.&lt;/p&gt;
-&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;sets&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;-&lt;/span&gt; &lt;span class="nf"&gt;read.lists_from_files&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;c&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"tests/primes.txt"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;"tests/even.txt"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-                                &lt;span class="s"&gt;"tests/fibo.txt"&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="nf"&gt;c&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"primes"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;"even"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;"fibo"&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;sets&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;-&lt;/span&gt; &lt;span class="nf"&gt;read.lists_from_files&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;c&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;file.path&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"tests"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;"primes.txt"&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+                                &lt;span class="nf"&gt;file.path&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"tests"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;"even.txt"&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+                                &lt;span class="nf"&gt;file.path&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"tests"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;"fibo.txt"&lt;/span&gt;&lt;span class="p"&gt;)),&lt;/span&gt;
+                              &lt;span class="nf"&gt;c&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"primes"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;"even"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;"fibo"&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
 &lt;span class="nf"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sets&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;
 
@@ -117,12 +119,12 @@ a la ilustrada.&lt;/p&gt;
 
 &lt;p&gt;Usando la convención del nombre asignado a los conjuntos unidos por guion bajo, se distinguen las áreas asociadas. Así, &lt;strong&gt;\$primes_even_fibo&lt;/strong&gt; representa el área de intersección de los tres conjuntos, y posee solo un elemento (&lt;code&gt;'2'&lt;/code&gt;), y &lt;strong&gt;\$fibo&lt;/strong&gt; representa los específicos de dicho conjunto, es decir, los que pertenecen exclusivamente a este y no a intersecciones con otros, el cual en este caso es vacío.  &lt;/p&gt;
 &lt;p&gt;Si esta información es masiva, es conveniente escribir el resultado en archivos y no en memoria. Así, debemos crear una carpeta para los archivos e indicamos su ruta como segundo argumento.&lt;/p&gt;
-&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nf"&gt;venn.compute_specific&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sets&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;output_dir&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;"tests/output"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nf"&gt;venn.compute_specific&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sets&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;output_dir&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nf"&gt;file.path&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"tests"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;"output"&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
 &lt;/pre&gt;
 
 
 &lt;p&gt;Podemos verificar la creación de los archivos con la misma convención de nombre y extensión &lt;code&gt;txt&lt;/code&gt;.&lt;/p&gt;
-&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nf"&gt;dir&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"tests/output/"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nf"&gt;dir&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;file.path&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"tests"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;"output"&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
 &lt;/pre&gt;
 
 
@@ -138,12 +140,12 @@ a la ilustrada.&lt;/p&gt;
 
 &lt;h3&gt;Graficar diagrama de Venn&lt;/h3&gt;
 &lt;p&gt;Para obtener el diagrama tengo una función que define un flujo por defecto que crea los archivos del paso anterior y adicional el gráfico del diagrama con el paquete &lt;a href="https://cran.r-project.org/web/packages/VennDiagram/index.html"&gt;&lt;code&gt;VennDiagram&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;
-&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nf"&gt;venn.compute_plot&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sets&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;output_dir&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;"tests/output"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nf"&gt;venn.compute_plot&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sets&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;output_dir&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nf"&gt;file.path&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"tests"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;"output"&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
 &lt;/pre&gt;
 
 
 &lt;p&gt;Además de generar como les conté, los archivos de las intersecciones y específicos, se generó un archivo cuyo nombre es la convención seguida para la intersección de la totalidad de conjuntos y con extensión &lt;code&gt;png&lt;/code&gt;, &lt;code&gt;primes_even_fibo.png&lt;/code&gt;.  &lt;/p&gt;
-&lt;p&gt;&lt;/p&gt;&lt;div class="figure "&gt;&lt;a href="https://www.cosmoscalibur.com/images/determinar-intersecciones-en-el-diagrama-de-venn-con-r/primes_even_fibo.png" class="image-reference"&gt;&lt;img src="https://www.cosmoscalibur.com/images/determinar-intersecciones-en-el-diagrama-de-venn-con-r/primes_even_fibo.thumbnail.png"&gt;&lt;/a&gt;&lt;p&gt;Diagrama de Venn generado para los 3 conjuntos.&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;</description><category>bioinformática</category><category>diagrama de Venn</category><category>lenguaje r</category><guid>https://www.cosmoscalibur.com/blog/determinar-intersecciones-en-el-diagrama-de-venn-con-r/</guid><pubDate>Sun, 14 Jun 2020 00:40:00 GMT</pubDate></item><item><title>Reformas del blog: Parte 1</title><link>https://www.cosmoscalibur.com/blog/reformas-del-blog-parte-1/</link><dc:creator>Edward Villegas-Pulgarin</dc:creator><description>&lt;div&gt;&lt;p&gt;Bueno, he estado en múltiples ocasiones por escribir sobre mantener un blog, y
+&lt;p&gt;&lt;/p&gt;&lt;div class="figure "&gt;&lt;a href="https://cosmoscalibur.github.io/images/determinar-intersecciones-en-el-diagrama-de-venn-con-r/primes_even_fibo.png" class="image-reference"&gt;&lt;img src="https://cosmoscalibur.github.io/images/determinar-intersecciones-en-el-diagrama-de-venn-con-r/primes_even_fibo.thumbnail.png"&gt;&lt;/a&gt;&lt;p&gt;Diagrama de Venn generado para los 3 conjuntos.&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;</description><category>bioinformática</category><category>diagrama de Venn</category><category>lenguaje r</category><guid>https://cosmoscalibur.github.io/blog/determinar-intersecciones-en-el-diagrama-de-venn-con-r/</guid><pubDate>Sun, 14 Jun 2020 00:40:00 GMT</pubDate></item><item><title>Reformas del blog: Parte 1</title><link>https://cosmoscalibur.github.io/blog/reformas-del-blog-parte-1/</link><dc:creator>Edward Villegas-Pulgarin</dc:creator><description>&lt;div&gt;&lt;p&gt;Bueno, he estado en múltiples ocasiones por escribir sobre mantener un blog, y
 hoy fue el caso, pero centrado en unas actualizaciones que he hecho para
 mejorar la experiencia de los lectores que usan su celular y deben soportar
 altos tiempos de carga y una alta descarga en imágenes cuando las contiene.&lt;/p&gt;
@@ -155,8 +157,8 @@ adicionales más adelante.&lt;/p&gt;
 &lt;div class="section" id="pagespeed"&gt;
 &lt;h2&gt;PageSpeed&lt;/h2&gt;
 &lt;p&gt;Antes que nada esto surge porque estuve haciendo seguimiento a las métricas de
-la herramienta PageSpeed [&lt;a class="reference internal" href="https://www.cosmoscalibur.com/blog/reformas-del-blog-parte-1/#ps"&gt;ps&lt;/a&gt;] que ofrece Google integrada a su plataforma de
-Analytics (puedes usar de forma local con Lighthouse [&lt;a class="reference internal" href="https://www.cosmoscalibur.com/blog/reformas-del-blog-parte-1/#lh"&gt;lh&lt;/a&gt;]). El análisis
+la herramienta PageSpeed [&lt;a class="reference internal" href="https://cosmoscalibur.github.io/blog/reformas-del-blog-parte-1/#ps"&gt;ps&lt;/a&gt;] que ofrece Google integrada a su plataforma de
+Analytics (puedes usar de forma local con Lighthouse [&lt;a class="reference internal" href="https://cosmoscalibur.github.io/blog/reformas-del-blog-parte-1/#lh"&gt;lh&lt;/a&gt;]). El análisis
 entrega no solo métricas sino también algunas recomendaciones y por ello
 procedí a ponerme en ello (dado que la mayor parte de mis lectores usan su
 celular).&lt;/p&gt;
@@ -168,13 +170,13 @@ es importante, se debe evaluar en el tiempo su impacto. En el caso de mi blog,
 la cantidad de comentarios durante su historia lo hace despreciable cuando
 contrasto con la penalización en el tiempo de carga que ha introducido el
 sistema de comentarios.&lt;/p&gt;
-&lt;p&gt;Disqus [&lt;a class="reference internal" href="https://www.cosmoscalibur.com/blog/reformas-del-blog-parte-1/#dqs"&gt;dqs&lt;/a&gt;] es un sistema de comentarios importante, permite socializar y asocia un
+&lt;p&gt;Disqus [&lt;a class="reference internal" href="https://cosmoscalibur.github.io/blog/reformas-del-blog-parte-1/#dqs"&gt;dqs&lt;/a&gt;] es un sistema de comentarios importante, permite socializar y asocia un
 perfil de los lectores y los generadores de contenido, lo cual permite también
 generar tráfico, pero en mi caso tampoco representa una fuente de tráfico
 importante ni de una contribución que quiera considerar.&lt;/p&gt;
 &lt;p&gt;Esto me llevó inicialmente a pensar en eliminar el sistema de comentarios,
 pero también cuando veo como las publicaciones pueden tener mayor impacto en
-redes sociales y que Facebook ofrece su sistema de comentarios [&lt;a class="reference internal" href="https://www.cosmoscalibur.com/blog/reformas-del-blog-parte-1/#fb-comments"&gt;fb-comments&lt;/a&gt;],
+redes sociales y que Facebook ofrece su sistema de comentarios [&lt;a class="reference internal" href="https://cosmoscalibur.github.io/blog/reformas-del-blog-parte-1/#fb-comments"&gt;fb-comments&lt;/a&gt;],
 no veo descabellado cambiar. La mayor parte de mis lectores poseen Facebook y
 el tráfico a razón de Facebook hoy es el mayor entre las fuentes de tráfico
 sociales y puede potenciarse al incluir la opción de compartir el comentario
@@ -187,12 +189,12 @@ con Facebook (enlazando automáticamente el enlace la publicación).&lt;/p&gt;
 &lt;p&gt;El blog no ha tenido publicidad, pero hace un tiempo he venido revisando el
 tema de monetizar el blog. La idea es hacerlo de una forma no invasiva pero
 sin muchas complicaciones para mi también.&lt;/p&gt;
-&lt;p&gt;Es así como Google AdSense [&lt;a class="reference internal" href="https://www.cosmoscalibur.com/blog/reformas-del-blog-parte-1/#gads"&gt;gads&lt;/a&gt;] por sus procesos de validación y la
+&lt;p&gt;Es así como Google AdSense [&lt;a class="reference internal" href="https://cosmoscalibur.github.io/blog/reformas-del-blog-parte-1/#gads"&gt;gads&lt;/a&gt;] por sus procesos de validación y la
 penalización que he sufrido en tiempo de carga por la adición en el código no
 me parece prudente. Adicional, no puedo asegurar que la publicidad mostrada
 sea realmente acorde al blog (así pueda serlo para el lector).&lt;/p&gt;
 &lt;p&gt;Por ello, he decido probar las opciones estáticas del programa de asociados de
-Amazon [&lt;a class="reference internal" href="https://www.cosmoscalibur.com/blog/reformas-del-blog-parte-1/#amz"&gt;amz&lt;/a&gt;]. No hay generación dinámica, ni selección de la posición óptima
+Amazon [&lt;a class="reference internal" href="https://cosmoscalibur.github.io/blog/reformas-del-blog-parte-1/#amz"&gt;amz&lt;/a&gt;]. No hay generación dinámica, ni selección de la posición óptima
 de la publicidad, pero puedo decidir que promocionar en mis publicaciones,
 ubicarla donde considere que no afecta la lectura o que genere confusión y que
 además aporte realmente al lector que llega a mi publicación (por ejemplo,
@@ -207,21 +209,21 @@ a menos de 40 ms.&lt;/p&gt;
 &lt;h2&gt;Imágenes&lt;/h2&gt;
 &lt;p&gt;Con el fin de reducir la descarga y tiempo asociado a las imágenes, decidí
 respaldar imágenes en el repositorio y usar la opción de thumbnail de Nikola
-[&lt;a class="reference internal" href="https://www.cosmoscalibur.com/blog/reformas-del-blog-parte-1/#thumb"&gt;thumb&lt;/a&gt;]. Esto permite usar una versión de tamaño reducido para los artículos
+[&lt;a class="reference internal" href="https://cosmoscalibur.github.io/blog/reformas-del-blog-parte-1/#thumb"&gt;thumb&lt;/a&gt;]. Esto permite usar una versión de tamaño reducido para los artículos
 pero que vincula a la imagen original (la cual puedo optimizar también).&lt;/p&gt;
 &lt;p&gt;Esto tiene una ventaja adicional, y es asegurar la existencia de las imágenes
 para el futuro sin depender de la fuente original (la cual, en la medida de lo
 posible mantendré referencia) y en un futuro puede permitir opciones de
-servido por CDN (una opción tentadora es Statically [&lt;a class="reference internal" href="https://www.cosmoscalibur.com/blog/reformas-del-blog-parte-1/#cdn"&gt;cdn&lt;/a&gt;]), imágenes
-optimizadas [&lt;a class="reference internal" href="https://www.cosmoscalibur.com/blog/reformas-del-blog-parte-1/#opt"&gt;opt&lt;/a&gt;, &lt;a class="reference internal" href="https://www.cosmoscalibur.com/blog/reformas-del-blog-parte-1/#tools"&gt;tools&lt;/a&gt;] como el uso del formato webp
-[&lt;a class="reference internal" href="https://www.cosmoscalibur.com/blog/reformas-del-blog-parte-1/#webp"&gt;webp&lt;/a&gt;, &lt;a class="reference internal" href="https://www.cosmoscalibur.com/blog/reformas-del-blog-parte-1/#caniuse"&gt;caniuse&lt;/a&gt;, &lt;a class="reference internal" href="https://www.cosmoscalibur.com/blog/reformas-del-blog-parte-1/#fallback"&gt;fallback&lt;/a&gt;], tamaños diferentes por dispositivo
-[&lt;a class="reference internal" href="https://www.cosmoscalibur.com/blog/reformas-del-blog-parte-1/#picture-media"&gt;picture-media&lt;/a&gt;] y carga diferida [&lt;a class="reference internal" href="https://www.cosmoscalibur.com/blog/reformas-del-blog-parte-1/#defer"&gt;defer&lt;/a&gt;, &lt;a class="reference internal" href="https://www.cosmoscalibur.com/blog/reformas-del-blog-parte-1/#lazy"&gt;lazy&lt;/a&gt;]. Este cambio permitió ver
-en el artículo más crítico (&lt;a class="reference external" href="https://www.cosmoscalibur.com/blog/cosmogonia-griega/"&gt;Cosmogonía griega&lt;/a&gt;) notar una reducción del
+servido por CDN (una opción tentadora es Statically [&lt;a class="reference internal" href="https://cosmoscalibur.github.io/blog/reformas-del-blog-parte-1/#cdn"&gt;cdn&lt;/a&gt;]), imágenes
+optimizadas [&lt;a class="reference internal" href="https://cosmoscalibur.github.io/blog/reformas-del-blog-parte-1/#opt"&gt;opt&lt;/a&gt;, &lt;a class="reference internal" href="https://cosmoscalibur.github.io/blog/reformas-del-blog-parte-1/#tools"&gt;tools&lt;/a&gt;] como el uso del formato webp
+[&lt;a class="reference internal" href="https://cosmoscalibur.github.io/blog/reformas-del-blog-parte-1/#webp"&gt;webp&lt;/a&gt;, &lt;a class="reference internal" href="https://cosmoscalibur.github.io/blog/reformas-del-blog-parte-1/#caniuse"&gt;caniuse&lt;/a&gt;, &lt;a class="reference internal" href="https://cosmoscalibur.github.io/blog/reformas-del-blog-parte-1/#fallback"&gt;fallback&lt;/a&gt;], tamaños diferentes por dispositivo
+[&lt;a class="reference internal" href="https://cosmoscalibur.github.io/blog/reformas-del-blog-parte-1/#picture-media"&gt;picture-media&lt;/a&gt;] y carga diferida [&lt;a class="reference internal" href="https://cosmoscalibur.github.io/blog/reformas-del-blog-parte-1/#defer"&gt;defer&lt;/a&gt;, &lt;a class="reference internal" href="https://cosmoscalibur.github.io/blog/reformas-del-blog-parte-1/#lazy"&gt;lazy&lt;/a&gt;]. Este cambio permitió ver
+en el artículo más crítico (&lt;a class="reference external" href="https://cosmoscalibur.github.io/blog/cosmogonia-griega/"&gt;Cosmogonía griega&lt;/a&gt;) notar una reducción del
 tamaño de archivos descargados (se compara el tamaño potencial de reducción de
 las imágenes respecto a su peso en webp).&lt;/p&gt;
 &lt;p&gt;Debo decir que respecto a la conservación de las imágenes, una de las imágenes
 la fuente no se encontraba disponible y fue necesario buscar su reemplazo
-(sucedió con &lt;a class="reference external" href="https://www.cosmoscalibur.com/blog/cerebro-prehistorico/"&gt;Cerebro prehistórico&lt;/a&gt;).&lt;/p&gt;
+(sucedió con &lt;a class="reference external" href="https://cosmoscalibur.github.io/blog/cerebro-prehistorico/"&gt;Cerebro prehistórico&lt;/a&gt;).&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="referencias"&gt;
 &lt;h2&gt;Referencias&lt;/h2&gt;
@@ -275,7 +277,7 @@ la fuente no se encontraba disponible y fue necesario buscar su reemplazo
 &lt;dd&gt;&lt;p&gt;&amp;lt;picture&amp;gt;: The Picture element, MDN &lt;a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/picture"&gt;https://developer.mozilla.org/en-US/docs/Web/HTML/Element/picture&lt;/a&gt;&lt;/p&gt;
 &lt;/dd&gt;
 &lt;/dl&gt;
-&lt;/div&gt;&lt;/div&gt;</description><category>adsense</category><category>amazon</category><category>blog</category><category>comentarios</category><category>disqus</category><category>facebook</category><category>nikola</category><category>publicidad</category><guid>https://www.cosmoscalibur.com/blog/reformas-del-blog-parte-1/</guid><pubDate>Tue, 26 May 2020 21:51:39 GMT</pubDate></item><item><title>Usar la cámara de tu celular como webcam</title><link>https://www.cosmoscalibur.com/blog/usar-la-camara-de-tu-celular-como-webcam/</link><dc:creator>Edward Villegas-Pulgarin</dc:creator><description>&lt;div&gt;&lt;p&gt;Con la nueva normalidad que vivimos alrededor de la virtualidad, el uso de
+&lt;/div&gt;&lt;/div&gt;</description><category>adsense</category><category>amazon</category><category>blog</category><category>comentarios</category><category>disqus</category><category>facebook</category><category>nikola</category><category>publicidad</category><guid>https://cosmoscalibur.github.io/blog/reformas-del-blog-parte-1/</guid><pubDate>Tue, 26 May 2020 21:51:39 GMT</pubDate></item><item><title>Usar la cámara de tu celular como webcam</title><link>https://cosmoscalibur.github.io/blog/usar-la-camara-de-tu-celular-como-webcam/</link><dc:creator>Edward Villegas-Pulgarin</dc:creator><description>&lt;div&gt;&lt;p&gt;Con la nueva normalidad que vivimos alrededor de la virtualidad, el uso de
 videollamadas se ha incrementado y muchas cámaras incorporadas en los
 equipos no poseen buenas características (o son ausentes). Adicional, el
 soporte de opciones como usar el celular, una buena alternativa para no
@@ -287,14 +289,14 @@ comprar una cámara web, es amplio en Windows pero no en Linux.&lt;/p&gt;
 &lt;h2&gt;DroidCam&lt;/h2&gt;
 &lt;p&gt;Sin hacer muchos rodeos y comparaciones, en este asunto seré muy práctico.
 La primera aplicación que me cumplió con las características y que
-funcionó adecuadamente, es DroidCam [&lt;a class="reference internal" href="https://www.cosmoscalibur.com/blog/usar-la-camara-de-tu-celular-como-webcam/#id1"&gt;droidcam&lt;/a&gt;]. Esta utilidad nos permite
+funcionó adecuadamente, es DroidCam [&lt;a class="reference internal" href="https://cosmoscalibur.github.io/blog/usar-la-camara-de-tu-celular-como-webcam/#id1"&gt;droidcam&lt;/a&gt;]. Esta utilidad nos permite
 usar la cámara del celular para reemplazar los incorporados del equipo, y
 se puede hacer comunicación tanto por wifi como por el cable USB
 (instalando ADB).&lt;/p&gt;
 &lt;div class="section" id="instalacion-en-linux"&gt;
 &lt;h3&gt;Instalación en Linux&lt;/h3&gt;
 &lt;p&gt;El procedimiento de instalación puede seguirse en la página web de
-DroidCam [&lt;a class="reference internal" href="https://www.cosmoscalibur.com/blog/usar-la-camara-de-tu-celular-como-webcam/#linux"&gt;linux&lt;/a&gt;] pero lo lustraré para el caso de Linux Mint
+DroidCam [&lt;a class="reference internal" href="https://cosmoscalibur.github.io/blog/usar-la-camara-de-tu-celular-como-webcam/#linux"&gt;linux&lt;/a&gt;] pero lo lustraré para el caso de Linux Mint
 (aplicable para Debian y derivados). El aspecto dependiente de la
 distribución es la instalación de las 3 dependencias requeridas (GCC, Make
 y Linux Headers).&lt;/p&gt;
@@ -369,7 +371,7 @@ videodev              208896  5 v4l2_common,videobuf2_v4l2,&lt;font color="#EF29
 &lt;/div&gt;
 &lt;div class="section" id="instalacion-en-android"&gt;
 &lt;h3&gt;Instalación en Android&lt;/h3&gt;
-&lt;p&gt;Para instalar en Android, buscamos DroidCam en Google Play [&lt;a class="reference internal" href="https://www.cosmoscalibur.com/blog/usar-la-camara-de-tu-celular-como-webcam/#android"&gt;android&lt;/a&gt;].
+&lt;p&gt;Para instalar en Android, buscamos DroidCam en Google Play [&lt;a class="reference internal" href="https://cosmoscalibur.github.io/blog/usar-la-camara-de-tu-celular-como-webcam/#android"&gt;android&lt;/a&gt;].
 Encontrarán dos versiones, una gratuita y una paga. Podemos usar la
 gratuita para la funcionalidad requerida, siendo única limitación la
 resolución máxima a la que transmite.&lt;/p&gt;
@@ -381,7 +383,7 @@ resolución máxima a la que transmite.&lt;/p&gt;
 configurar en nuestro equipo.&lt;/p&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;div class="figure align-center"&gt;
-&lt;a class="reference external image-reference" href="https://www.cosmoscalibur.com/images/usar-la-camara-de-tu-celular-como-webcam/droidcam-activo-ip-puerto.jpg"&gt;&lt;img alt="DroidCam activo (información de IP y puerto)." src="https://www.cosmoscalibur.com/images/usar-la-camara-de-tu-celular-como-webcam/droidcam-activo-ip-puerto.thumbnail.jpg" style="width: 300px;"&gt;&lt;/a&gt;
+&lt;a class="reference external image-reference" href="https://cosmoscalibur.github.io/images/usar-la-camara-de-tu-celular-como-webcam/droidcam-activo-ip-puerto.jpg"&gt;&lt;img alt="DroidCam activo (información de IP y puerto)." src="https://cosmoscalibur.github.io/images/usar-la-camara-de-tu-celular-como-webcam/droidcam-activo-ip-puerto.thumbnail.jpg" style="width: 300px;"&gt;&lt;/a&gt;
 &lt;p class="caption"&gt;DroidCam activo (información de IP y puerto).&lt;/p&gt;
 &lt;/div&gt;
 &lt;p&gt;En la parte superior derecha, accedemos a la configuración. La
@@ -402,7 +404,7 @@ Device: Droidcam
 Found driver: /dev/video2 (fd:7)
 connecting to 192.168.1.2:4747
 &lt;/pre&gt;&lt;div class="figure align-center"&gt;
-&lt;a class="reference external image-reference" href="https://www.cosmoscalibur.com/images/usar-la-camara-de-tu-celular-como-webcam/droidcam-linux-gui.png"&gt;&lt;img alt="Cliente GUI de DroidCam en Linux." src="https://www.cosmoscalibur.com/images/usar-la-camara-de-tu-celular-como-webcam/droidcam-linux-gui.thumbnail.png" style="width: 400px;"&gt;&lt;/a&gt;
+&lt;a class="reference external image-reference" href="https://cosmoscalibur.github.io/images/usar-la-camara-de-tu-celular-como-webcam/droidcam-linux-gui.png"&gt;&lt;img alt="Cliente GUI de DroidCam en Linux." src="https://cosmoscalibur.github.io/images/usar-la-camara-de-tu-celular-como-webcam/droidcam-linux-gui.thumbnail.png" style="width: 400px;"&gt;&lt;/a&gt;
 &lt;p class="caption"&gt;Cliente GUI de DroidCam en Linux. Aquí ingresamos IP y puerto.&lt;/p&gt;
 &lt;/div&gt;
 &lt;p&gt;Una vez configurado, presionamos "Connect". En este momento DroidCam del
@@ -412,13 +414,13 @@ que requiera de la cámara.&lt;/p&gt;
 soporte selección de cámara (aplica para Hangout, OBS, Teams, entre otras).
 En el menú respectivo, seleccionamos "DroidCam" y estamos listos.&lt;/p&gt;
 &lt;div class="figure align-center"&gt;
-&lt;a class="reference external image-reference" href="https://www.cosmoscalibur.com/images/usar-la-camara-de-tu-celular-como-webcam/droidcam-seleccion-skype.jpg"&gt;&lt;img alt="Selección de DroidCam como cámara en Skype." src="https://www.cosmoscalibur.com/images/usar-la-camara-de-tu-celular-como-webcam/droidcam-seleccion-skype.thumbnail.jpg" style="width: 400px;"&gt;&lt;/a&gt;
+&lt;a class="reference external image-reference" href="https://cosmoscalibur.github.io/images/usar-la-camara-de-tu-celular-como-webcam/droidcam-seleccion-skype.jpg"&gt;&lt;img alt="Selección de DroidCam como cámara en Skype." src="https://cosmoscalibur.github.io/images/usar-la-camara-de-tu-celular-como-webcam/droidcam-seleccion-skype.thumbnail.jpg" style="width: 400px;"&gt;&lt;/a&gt;
 &lt;p class="caption"&gt;Selección de DroidCam como cámara en las aplicaciones.&lt;/p&gt;
 &lt;/div&gt;
 &lt;p&gt;Comparemos ahora la calidad incluyendo las dos vistas (DroidCam e
 incorporada) con OBS.&lt;/p&gt;
 &lt;div class="figure align-center"&gt;
-&lt;a class="reference external image-reference" href="https://www.cosmoscalibur.com/images/usar-la-camara-de-tu-celular-como-webcam/droidcam-vs-integrada.png"&gt;&lt;img alt="Comparación de cámara DroidCam y cámara integrada." src="https://www.cosmoscalibur.com/images/usar-la-camara-de-tu-celular-como-webcam/droidcam-vs-integrada.thumbnail.png" style="width: 600px;"&gt;&lt;/a&gt;
+&lt;a class="reference external image-reference" href="https://cosmoscalibur.github.io/images/usar-la-camara-de-tu-celular-como-webcam/droidcam-vs-integrada.png"&gt;&lt;img alt="Comparación de cámara DroidCam y cámara integrada." src="https://cosmoscalibur.github.io/images/usar-la-camara-de-tu-celular-como-webcam/droidcam-vs-integrada.thumbnail.png" style="width: 600px;"&gt;&lt;/a&gt;
 &lt;p class="caption"&gt;Comparación incorporando la vista de DroidCam (izquierda) y la cámara integrada de mi equipo (derecha) en OBS.&lt;/p&gt;
 &lt;/div&gt;
 &lt;iframe style="width:120px;height:240px;" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" src="//ws-na.amazon-adsystem.com/widgets/q?ServiceVersion=20070822&amp;amp;OneJS=1&amp;amp;Operation=GetAdHtml&amp;amp;MarketPlace=US&amp;amp;source=ss&amp;amp;ref=as_ss_li_til&amp;amp;ad_type=product_link&amp;amp;tracking_id=cosmoscalibur-20&amp;amp;language=en_US&amp;amp;marketplace=amazon&amp;amp;region=US&amp;amp;placement=B07N92347B&amp;amp;asins=B07N92347B&amp;amp;linkId=3e1a24bfc3e2af9a3e8a28c2d48923c1&amp;amp;show_border=true&amp;amp;link_opens_in_new_window=true"&gt;&lt;/iframe&gt;&lt;/div&gt;
@@ -435,7 +437,7 @@ incorporada) con OBS.&lt;/p&gt;
 &lt;dd&gt;&lt;p&gt;DroidCam Wireless Webcam (Android) &lt;a class="reference external" href="https://play.google.com/store/apps/details?id=com.dev47apps.droidcam"&gt;https://play.google.com/store/apps/details?id=com.dev47apps.droidcam&lt;/a&gt;&lt;/p&gt;
 &lt;/dd&gt;
 &lt;/dl&gt;
-&lt;/div&gt;&lt;/div&gt;</description><category>android</category><category>cámara</category><category>droidcam</category><category>linux</category><category>webcam</category><guid>https://www.cosmoscalibur.com/blog/usar-la-camara-de-tu-celular-como-webcam/</guid><pubDate>Sun, 17 May 2020 20:02:25 GMT</pubDate></item><item><title>Calcular distancia geodésica con Python</title><link>https://www.cosmoscalibur.com/blog/calcular-distancia-geodesica-con-python/</link><dc:creator>Edward Villegas-Pulgarin</dc:creator><description>&lt;div&gt;&lt;p&gt;Aunque una de las cosas que más ha rondado en mi desarrollo académico y laboral es la programación, y buena parte de los años en ello con Python, nunca había realizado una entrada al respecto en el blog (lo más cercano ha sido una entrada sobre &lt;a href="https://www.cosmoscalibur.com/blog/crear-documentacion-de-un-proyecto-python-con-sphinx/"&gt;Crear documentación de un proyecto Python con Sphinx.&lt;/a&gt; y &lt;a href="https://www.cosmoscalibur.com/blog/crear-contenedor-docker-aplicacion-gui-ealite/"&gt;Crear contenedor Docker aplicación GUI - EALite&lt;/a&gt;).  &lt;/p&gt;
+&lt;/div&gt;&lt;/div&gt;</description><category>android</category><category>cámara</category><category>droidcam</category><category>linux</category><category>webcam</category><guid>https://cosmoscalibur.github.io/blog/usar-la-camara-de-tu-celular-como-webcam/</guid><pubDate>Sun, 17 May 2020 20:02:25 GMT</pubDate></item><item><title>Calcular distancia geodésica con Python</title><link>https://cosmoscalibur.github.io/blog/calcular-distancia-geodesica-con-python/</link><dc:creator>Edward Villegas-Pulgarin</dc:creator><description>&lt;div&gt;&lt;p&gt;Aunque una de las cosas que más ha rondado en mi desarrollo académico y laboral es la programación, y buena parte de los años en ello con Python, nunca había realizado una entrada al respecto en el blog (lo más cercano ha sido una entrada sobre &lt;a href="https://cosmoscalibur.github.io/blog/crear-documentacion-de-un-proyecto-python-con-sphinx/"&gt;Crear documentación de un proyecto Python con Sphinx.&lt;/a&gt; y &lt;a href="https://cosmoscalibur.github.io/blog/crear-contenedor-docker-aplicacion-gui-ealite/"&gt;Crear contenedor Docker aplicación GUI - EALite&lt;/a&gt;).  &lt;/p&gt;
 &lt;p&gt;A partir de ahora, y usando &lt;em&gt;notebooks&lt;/em&gt; compartiré algunas entradas relacionadas con programación o algunas bibliotecas específicas. En esta ocasión, me interesa compartirles como calcular la distancia geodésica entre dos lugares con GeoPy (una biblioteca Python), una de las tantas cosas que por motivos laborales he necesitado en mi exploración con proyectos con sistemas de información geográfica y ruteos.&lt;/p&gt;
 &lt;!-- TEASER_END --&gt;
 
@@ -548,7 +550,7 @@ conda install -c conda-forge geopy
 &lt;p&gt;La interfaz incluida en GeographicLib no me pareció amigable, por lo cual no la recomiendo pero su uso asegura incluir solo las funciones especializadas para el tratamiento de la distancia geodésica. GeoPy incluye más utilidades pero posee una interfaz más simple. GDAL y PyProj poseen muchas más funcionalidades, por lo cual representa un aumento de almacenamiento innecesario. Esto, finalmente, para recomendar GeoPy para esta tarea (respecto a GeographicLib, aún te dará la opción de la aproximación de círculo mayor).  &lt;/p&gt;
 &lt;p&gt;Respecto al método, la divergencia de Vincenty para casos antinodales y la convergencia lenta en otros casos reportados, al igual que su marcado de obsolescencia en las implementaciones nos lleva a omitirlo de cualquier consideración futura. La aproximación de Karney posee el menor error de las 3 aproximaciones pero su tiempo de cómputo es alto si se considera la necesidad de calcular entre una gran cantidad de pares de puntos.  &lt;/p&gt;
 &lt;p&gt;Para mi caso de interés (problemas de ruteo), la distancia geodésica solo se usa como un primer aproximado para reducir el número de pares sobre los cuales se cálcula la distancia sobre la red vial (de lo cual hablaré en una próxima entrada) y por ende su valor no importa que tenga gran exactitud pero que sea decente para distancias cortas (se busca eliminar el cálculo de distancias largas sobre la red vial).  &lt;/p&gt;
-&lt;p&gt;Así, si la necesidad es de exactitud te recomiendo la aproximación de Karney pero si es solo una primera aproximación buscando menor tiempo de cómputo, la recomendación es el círculo mayor.&lt;/p&gt;&lt;/div&gt;</description><category>distancia geodésica</category><category>geoide</category><category>geopy</category><category>gis</category><category>python</category><guid>https://www.cosmoscalibur.com/blog/calcular-distancia-geodesica-con-python/</guid><pubDate>Sun, 10 May 2020 23:35:00 GMT</pubDate></item><item><title>Filtraciones de datos en el siglo XXI</title><link>https://www.cosmoscalibur.com/blog/filtraciones-de-datos-en-el-siglo-xxi/</link><dc:creator>Edward Villegas-Pulgarin</dc:creator><description>&lt;div&gt;&lt;p&gt;Otra publicación sobre el curso de transformación digital. Esta vez, sobre la
+&lt;p&gt;Así, si la necesidad es de exactitud te recomiendo la aproximación de Karney pero si es solo una primera aproximación buscando menor tiempo de cómputo, la recomendación es el círculo mayor.&lt;/p&gt;&lt;/div&gt;</description><category>distancia geodésica</category><category>geoide</category><category>geopy</category><category>gis</category><category>python</category><guid>https://cosmoscalibur.github.io/blog/calcular-distancia-geodesica-con-python/</guid><pubDate>Sun, 10 May 2020 23:35:00 GMT</pubDate></item><item><title>Filtraciones de datos en el siglo XXI</title><link>https://cosmoscalibur.github.io/blog/filtraciones-de-datos-en-el-siglo-xxi/</link><dc:creator>Edward Villegas-Pulgarin</dc:creator><description>&lt;div&gt;&lt;p&gt;Otra publicación sobre el curso de transformación digital. Esta vez, sobre la
 precauciones respecto a las filtraciones de datos. Son participaciones en foros
 del curso.&lt;/p&gt;
 &lt;!-- TEASER_END --&gt;
@@ -575,41 +577,41 @@ medidas como:&lt;/p&gt;
 &lt;p&gt;Estas medidas como se ha discutido en el curso no eliminan los riesgos, pero la
 toma de diversas medidas permite la reducción del riesgo.&lt;/p&gt;
 
-&lt;!-- Begin post-list post_list_f7278fe885424a88811efb9cc30cbdfe --&gt;
-&lt;div id="post_list_f7278fe885424a88811efb9cc30cbdfe" class="post-list"&gt;
+&lt;!-- Begin post-list post_list_0095d22473bf49b9858558f28bbffae8 --&gt;
+&lt;div id="post_list_0095d22473bf49b9858558f28bbffae8" class="post-list"&gt;
     &lt;ul class="post-list"&gt;
             &lt;li class="post-list-item"&gt;
             2020-04-09 15:19
              
-            &lt;a href="https://www.cosmoscalibur.com/blog/aplicacion-de-iot-a-la-cadena-de-suministro/"&gt;Aplicación de IoT a la cadena de suministro&lt;/a&gt;
+            &lt;a href="https://cosmoscalibur.github.io/blog/aplicacion-de-iot-a-la-cadena-de-suministro/"&gt;Aplicación de IoT a la cadena de suministro&lt;/a&gt;
             &lt;/li&gt;
             &lt;li class="post-list-item"&gt;
             2020-04-09 14:56
              
-            &lt;a href="https://www.cosmoscalibur.com/blog/iot-merece-la-pena-asumir-los-riesgos/"&gt;IoT ¿Merece la pena asumir los riesgos?&lt;/a&gt;
+            &lt;a href="https://cosmoscalibur.github.io/blog/iot-merece-la-pena-asumir-los-riesgos/"&gt;IoT ¿Merece la pena asumir los riesgos?&lt;/a&gt;
             &lt;/li&gt;
             &lt;li class="post-list-item"&gt;
             2020-03-14 23:02
              
-            &lt;a href="https://www.cosmoscalibur.com/blog/seguridad-vs-flexibilidad-del-computo-en-nube/"&gt;Seguridad vs flexibilidad del cómputo en nube&lt;/a&gt;
+            &lt;a href="https://cosmoscalibur.github.io/blog/seguridad-vs-flexibilidad-del-computo-en-nube/"&gt;Seguridad vs flexibilidad del cómputo en nube&lt;/a&gt;
             &lt;/li&gt;
             &lt;li class="post-list-item"&gt;
             2020-03-01 21:18
              
-            &lt;a href="https://www.cosmoscalibur.com/blog/sectores-que-se-ven-afectados-por-blockchain-sector-inmobiliario/"&gt;Sectores que se ven afectados por blockchain: sector inmobiliario&lt;/a&gt;
+            &lt;a href="https://cosmoscalibur.github.io/blog/sectores-que-se-ven-afectados-por-blockchain-sector-inmobiliario/"&gt;Sectores que se ven afectados por blockchain: sector inmobiliario&lt;/a&gt;
             &lt;/li&gt;
             &lt;li class="post-list-item"&gt;
             2020-03-01 20:13
              
-            &lt;a href="https://www.cosmoscalibur.com/blog/estamos-preparados-para-un-nuevo-tipo-de-monedas-completamente-digitales/"&gt;¿Estamos preparados para un nuevo tipo de monedas, completamente digitales?&lt;/a&gt;
+            &lt;a href="https://cosmoscalibur.github.io/blog/estamos-preparados-para-un-nuevo-tipo-de-monedas-completamente-digitales/"&gt;¿Estamos preparados para un nuevo tipo de monedas, completamente digitales?&lt;/a&gt;
             &lt;/li&gt;
     &lt;/ul&gt;
 &lt;/div&gt;
-&lt;!-- End post-list post_list_f7278fe885424a88811efb9cc30cbdfe --&gt;
+&lt;!-- End post-list post_list_0095d22473bf49b9858558f28bbffae8 --&gt;
 
 &lt;p&gt;9 Tips For Keeping Your Customer Data Secure &lt;a class="reference external" href="https://www.decibelinsight.com/blog/9-privacy-tips-for-secure-customer-data"&gt;https://www.decibelinsight.com/blog/9-privacy-tips-for-secure-customer-data&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Azure customer data protection &lt;a class="reference external" href="https://docs.microsoft.com/en-us/azure/security/fundamentals/protection-customer-data"&gt;https://docs.microsoft.com/en-us/azure/security/fundamentals/protection-customer-data&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;Data Security: How to Keep Your Customers’ Information Safe &lt;a class="reference external" href="https://medium.com/the-mission/data-security-how-to-keep-your-customers-information-safe-a3150510a7b7"&gt;https://medium.com/the-mission/data-security-how-to-keep-your-customers-information-safe-a3150510a7b7&lt;/a&gt;&lt;/p&gt;&lt;/div&gt;</description><category>datos</category><category>transformación digital</category><guid>https://www.cosmoscalibur.com/blog/filtraciones-de-datos-en-el-siglo-xxi/</guid><pubDate>Thu, 09 Apr 2020 21:37:26 GMT</pubDate></item><item><title>Aplicación de IoT a la cadena de suministro</title><link>https://www.cosmoscalibur.com/blog/aplicacion-de-iot-a-la-cadena-de-suministro/</link><dc:creator>Edward Villegas-Pulgarin</dc:creator><description>&lt;div&gt;&lt;p&gt;Otra publicación sobre el curso de transformación digital. Esta vez, sobre la
+&lt;p&gt;Data Security: How to Keep Your Customers’ Information Safe &lt;a class="reference external" href="https://medium.com/the-mission/data-security-how-to-keep-your-customers-information-safe-a3150510a7b7"&gt;https://medium.com/the-mission/data-security-how-to-keep-your-customers-information-safe-a3150510a7b7&lt;/a&gt;&lt;/p&gt;&lt;/div&gt;</description><category>datos</category><category>transformación digital</category><guid>https://cosmoscalibur.github.io/blog/filtraciones-de-datos-en-el-siglo-xxi/</guid><pubDate>Thu, 09 Apr 2020 21:37:26 GMT</pubDate></item><item><title>Aplicación de IoT a la cadena de suministro</title><link>https://cosmoscalibur.github.io/blog/aplicacion-de-iot-a-la-cadena-de-suministro/</link><dc:creator>Edward Villegas-Pulgarin</dc:creator><description>&lt;div&gt;&lt;p&gt;Otra publicación sobre el curso de transformación digital. Esta vez, sobre la
 aplicación de &lt;em&gt;IoT&lt;/em&gt; (Internet de las Cosas) a la cadena de suministro. Son
 participaciones en foros del curso.&lt;/p&gt;
 &lt;!-- TEASER_END --&gt;
@@ -626,40 +628,40 @@ para crear diagnósticos de situaciones actuales, hacer optimización de
 escenarios y previsión de escenarios futuros, creando así una estrategia que
 asegure ventajas competitivas.&lt;/p&gt;
 
-&lt;!-- Begin post-list post_list_6d8048862faa4d2fbfd2f08439bb760b --&gt;
-&lt;div id="post_list_6d8048862faa4d2fbfd2f08439bb760b" class="post-list"&gt;
+&lt;!-- Begin post-list post_list_11792bd18b28469d869e4c3d594592a2 --&gt;
+&lt;div id="post_list_11792bd18b28469d869e4c3d594592a2" class="post-list"&gt;
     &lt;ul class="post-list"&gt;
             &lt;li class="post-list-item"&gt;
             2020-04-09 16:37
              
-            &lt;a href="https://www.cosmoscalibur.com/blog/filtraciones-de-datos-en-el-siglo-xxi/"&gt;Filtraciones de datos en el siglo XXI&lt;/a&gt;
+            &lt;a href="https://cosmoscalibur.github.io/blog/filtraciones-de-datos-en-el-siglo-xxi/"&gt;Filtraciones de datos en el siglo XXI&lt;/a&gt;
             &lt;/li&gt;
             &lt;li class="post-list-item"&gt;
             2020-04-09 14:56
              
-            &lt;a href="https://www.cosmoscalibur.com/blog/iot-merece-la-pena-asumir-los-riesgos/"&gt;IoT ¿Merece la pena asumir los riesgos?&lt;/a&gt;
+            &lt;a href="https://cosmoscalibur.github.io/blog/iot-merece-la-pena-asumir-los-riesgos/"&gt;IoT ¿Merece la pena asumir los riesgos?&lt;/a&gt;
             &lt;/li&gt;
             &lt;li class="post-list-item"&gt;
             2020-03-14 23:02
              
-            &lt;a href="https://www.cosmoscalibur.com/blog/seguridad-vs-flexibilidad-del-computo-en-nube/"&gt;Seguridad vs flexibilidad del cómputo en nube&lt;/a&gt;
+            &lt;a href="https://cosmoscalibur.github.io/blog/seguridad-vs-flexibilidad-del-computo-en-nube/"&gt;Seguridad vs flexibilidad del cómputo en nube&lt;/a&gt;
             &lt;/li&gt;
             &lt;li class="post-list-item"&gt;
             2020-03-01 21:18
              
-            &lt;a href="https://www.cosmoscalibur.com/blog/sectores-que-se-ven-afectados-por-blockchain-sector-inmobiliario/"&gt;Sectores que se ven afectados por blockchain: sector inmobiliario&lt;/a&gt;
+            &lt;a href="https://cosmoscalibur.github.io/blog/sectores-que-se-ven-afectados-por-blockchain-sector-inmobiliario/"&gt;Sectores que se ven afectados por blockchain: sector inmobiliario&lt;/a&gt;
             &lt;/li&gt;
             &lt;li class="post-list-item"&gt;
             2020-03-01 20:13
              
-            &lt;a href="https://www.cosmoscalibur.com/blog/estamos-preparados-para-un-nuevo-tipo-de-monedas-completamente-digitales/"&gt;¿Estamos preparados para un nuevo tipo de monedas, completamente digitales?&lt;/a&gt;
+            &lt;a href="https://cosmoscalibur.github.io/blog/estamos-preparados-para-un-nuevo-tipo-de-monedas-completamente-digitales/"&gt;¿Estamos preparados para un nuevo tipo de monedas, completamente digitales?&lt;/a&gt;
             &lt;/li&gt;
     &lt;/ul&gt;
 &lt;/div&gt;
-&lt;!-- End post-list post_list_6d8048862faa4d2fbfd2f08439bb760b --&gt;
+&lt;!-- End post-list post_list_11792bd18b28469d869e4c3d594592a2 --&gt;
 
 &lt;p&gt;Role of Data Analytics in Internet of Things (IoT) &lt;a class="reference external" href="https://www.fingent.com/blog/role-of-data-analytics-in-internet-of-things-iot"&gt;https://www.fingent.com/blog/role-of-data-analytics-in-internet-of-things-iot&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;4 Emerging Use Cases for IoT Data Analytics &lt;a class="reference external" href="https://www.softwareadvice.com/resources/iot-data-analytics-use-cases/"&gt;https://www.softwareadvice.com/resources/iot-data-analytics-use-cases/&lt;/a&gt;&lt;/p&gt;&lt;/div&gt;</description><category>internet de las cosas</category><category>iot</category><category>transformación digital</category><guid>https://www.cosmoscalibur.com/blog/aplicacion-de-iot-a-la-cadena-de-suministro/</guid><pubDate>Thu, 09 Apr 2020 20:19:21 GMT</pubDate></item><item><title>IoT ¿Merece la pena asumir los riesgos?</title><link>https://www.cosmoscalibur.com/blog/iot-merece-la-pena-asumir-los-riesgos/</link><dc:creator>Edward Villegas-Pulgarin</dc:creator><description>&lt;div&gt;&lt;p&gt;Sigo con algunas publicaciones asociadas a participaciones en foro y ensayos
+&lt;p&gt;4 Emerging Use Cases for IoT Data Analytics &lt;a class="reference external" href="https://www.softwareadvice.com/resources/iot-data-analytics-use-cases/"&gt;https://www.softwareadvice.com/resources/iot-data-analytics-use-cases/&lt;/a&gt;&lt;/p&gt;&lt;/div&gt;</description><category>internet de las cosas</category><category>iot</category><category>transformación digital</category><guid>https://cosmoscalibur.github.io/blog/aplicacion-de-iot-a-la-cadena-de-suministro/</guid><pubDate>Thu, 09 Apr 2020 20:19:21 GMT</pubDate></item><item><title>IoT ¿Merece la pena asumir los riesgos?</title><link>https://cosmoscalibur.github.io/blog/iot-merece-la-pena-asumir-los-riesgos/</link><dc:creator>Edward Villegas-Pulgarin</dc:creator><description>&lt;div&gt;&lt;p&gt;Sigo con algunas publicaciones asociadas a participaciones en foro y ensayos
 que he realizado para el curso de transformación digital que estoy realizando
 por estas semanas. Esta vez, el tema es sobre si amerita asumir los riesgos
 asociados a la implementación de tecnologías &lt;em&gt;IoT&lt;/em&gt; (Internet de las Cosas).&lt;/p&gt;
@@ -674,40 +676,40 @@ es que a mayor riesgo existe la posibilidad de un mayor retorno.&lt;/p&gt;
 atenuarse con una adecuada preparación de los protocolos usados, la continua
 actualización de software y la selección de las tecnologías.&lt;/p&gt;
 
-&lt;!-- Begin post-list post_list_c0b76be5731f4bbcaa960bed297b3cd5 --&gt;
-&lt;div id="post_list_c0b76be5731f4bbcaa960bed297b3cd5" class="post-list"&gt;
+&lt;!-- Begin post-list post_list_c3bf436f4d1e4b9aab9cfb8565b4c582 --&gt;
+&lt;div id="post_list_c3bf436f4d1e4b9aab9cfb8565b4c582" class="post-list"&gt;
     &lt;ul class="post-list"&gt;
             &lt;li class="post-list-item"&gt;
             2020-04-09 16:37
              
-            &lt;a href="https://www.cosmoscalibur.com/blog/filtraciones-de-datos-en-el-siglo-xxi/"&gt;Filtraciones de datos en el siglo XXI&lt;/a&gt;
+            &lt;a href="https://cosmoscalibur.github.io/blog/filtraciones-de-datos-en-el-siglo-xxi/"&gt;Filtraciones de datos en el siglo XXI&lt;/a&gt;
             &lt;/li&gt;
             &lt;li class="post-list-item"&gt;
             2020-04-09 15:19
              
-            &lt;a href="https://www.cosmoscalibur.com/blog/aplicacion-de-iot-a-la-cadena-de-suministro/"&gt;Aplicación de IoT a la cadena de suministro&lt;/a&gt;
+            &lt;a href="https://cosmoscalibur.github.io/blog/aplicacion-de-iot-a-la-cadena-de-suministro/"&gt;Aplicación de IoT a la cadena de suministro&lt;/a&gt;
             &lt;/li&gt;
             &lt;li class="post-list-item"&gt;
             2020-03-14 23:02
              
-            &lt;a href="https://www.cosmoscalibur.com/blog/seguridad-vs-flexibilidad-del-computo-en-nube/"&gt;Seguridad vs flexibilidad del cómputo en nube&lt;/a&gt;
+            &lt;a href="https://cosmoscalibur.github.io/blog/seguridad-vs-flexibilidad-del-computo-en-nube/"&gt;Seguridad vs flexibilidad del cómputo en nube&lt;/a&gt;
             &lt;/li&gt;
             &lt;li class="post-list-item"&gt;
             2020-03-01 21:18
              
-            &lt;a href="https://www.cosmoscalibur.com/blog/sectores-que-se-ven-afectados-por-blockchain-sector-inmobiliario/"&gt;Sectores que se ven afectados por blockchain: sector inmobiliario&lt;/a&gt;
+            &lt;a href="https://cosmoscalibur.github.io/blog/sectores-que-se-ven-afectados-por-blockchain-sector-inmobiliario/"&gt;Sectores que se ven afectados por blockchain: sector inmobiliario&lt;/a&gt;
             &lt;/li&gt;
             &lt;li class="post-list-item"&gt;
             2020-03-01 20:13
              
-            &lt;a href="https://www.cosmoscalibur.com/blog/estamos-preparados-para-un-nuevo-tipo-de-monedas-completamente-digitales/"&gt;¿Estamos preparados para un nuevo tipo de monedas, completamente digitales?&lt;/a&gt;
+            &lt;a href="https://cosmoscalibur.github.io/blog/estamos-preparados-para-un-nuevo-tipo-de-monedas-completamente-digitales/"&gt;¿Estamos preparados para un nuevo tipo de monedas, completamente digitales?&lt;/a&gt;
             &lt;/li&gt;
     &lt;/ul&gt;
 &lt;/div&gt;
-&lt;!-- End post-list post_list_c0b76be5731f4bbcaa960bed297b3cd5 --&gt;
+&lt;!-- End post-list post_list_c3bf436f4d1e4b9aab9cfb8565b4c582 --&gt;
 
 &lt;p&gt;IoT Vulnerabilities &amp;amp; Risk Mitigation. &lt;a class="reference external" href="https://www.iotforall.com/mitigate-iot-security-risks/"&gt;https://www.iotforall.com/mitigate-iot-security-risks/&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;6 Ways to Mitigate Software Implementation Risks &lt;a class="reference external" href="https://www.panorama-consulting.com/6-ways-to-mitigate-software-implementation-risks/"&gt;https://www.panorama-consulting.com/6-ways-to-mitigate-software-implementation-risks/&lt;/a&gt;&lt;/p&gt;&lt;/div&gt;</description><category>internet de las cosas</category><category>iot</category><category>transformación digital</category><guid>https://www.cosmoscalibur.com/blog/iot-merece-la-pena-asumir-los-riesgos/</guid><pubDate>Thu, 09 Apr 2020 19:56:33 GMT</pubDate></item><item><title>Datos y responsabilidad: Covid19</title><link>https://www.cosmoscalibur.com/blog/datos-y-responsabilidad-covid19/</link><dc:creator>Edward Villegas-Pulgarin</dc:creator><description>&lt;div&gt;&lt;p&gt;Había tratado de estar al margen de hacer muy público lo que pienso y analizo
+&lt;p&gt;6 Ways to Mitigate Software Implementation Risks &lt;a class="reference external" href="https://www.panorama-consulting.com/6-ways-to-mitigate-software-implementation-risks/"&gt;https://www.panorama-consulting.com/6-ways-to-mitigate-software-implementation-risks/&lt;/a&gt;&lt;/p&gt;&lt;/div&gt;</description><category>internet de las cosas</category><category>iot</category><category>transformación digital</category><guid>https://cosmoscalibur.github.io/blog/iot-merece-la-pena-asumir-los-riesgos/</guid><pubDate>Thu, 09 Apr 2020 19:56:33 GMT</pubDate></item><item><title>Datos y responsabilidad: Covid19</title><link>https://cosmoscalibur.github.io/blog/datos-y-responsabilidad-covid19/</link><dc:creator>Edward Villegas-Pulgarin</dc:creator><description>&lt;div&gt;&lt;p&gt;Había tratado de estar al margen de hacer muy público lo que pienso y analizo
 de los datos de la pandemia por covid19 en Colombia, y de las medidas tomadas.
 Sin embargo, finalmente me motivé a hacer una segunda afirmación del todo
 pública (si, ya les contaré que fue lo anterior) porque veo algo recurrente en
@@ -757,7 +759,7 @@ hacerse).&lt;/p&gt;
 casos de covid19 en todo el mundo, es la mención a "Casos positivos
 confirmados". Y aquí, &lt;strong&gt;confirmados&lt;/strong&gt; es la clave.&lt;/p&gt;
 &lt;div class="figure align-center"&gt;
-&lt;img alt="Comunicado gráfico de los casos de Covid19 en Colombia del 4 de abril de 2020." src="https://www.cosmoscalibur.com/images/datos-y-responsabilidad-covid19/comunicado-covid-colombia-4-abril-2020.png" style="width: 150px; height: 300px;"&gt;
+&lt;img alt="Comunicado gráfico de los casos de Covid19 en Colombia del 4 de abril de 2020." src="https://cosmoscalibur.github.io/images/datos-y-responsabilidad-covid19/comunicado-covid-colombia-4-abril-2020.png" style="width: 150px; height: 300px;"&gt;
 &lt;p class="caption"&gt;Se resalta la mención de &lt;strong&gt;confirmados&lt;/strong&gt; en los comunicados oficiales. En el
 ejemplo, comunicado del 5 de abril de 2020.&lt;/p&gt;
 &lt;/div&gt;
@@ -776,7 +778,7 @@ respiratoria adicional. Igual, si no tenías fiebre tampoco te hacían la
 prueba. ¿Y si eres asintomático? Pues ni siquiera vas a solicitar la prueba.&lt;/p&gt;
 &lt;p&gt;¿Y esto a nivel de datos qué representa? En el reporte de la Organización
 Mundial de la Salud, el 87.9% de los infectados confirmados presentó fiebre
-[&lt;a class="reference internal" href="https://www.cosmoscalibur.com/blog/datos-y-responsabilidad-covid19/#who-report"&gt;who-report&lt;/a&gt;], así que usando los criterios de pruebas tenemos un potencial
+[&lt;a class="reference internal" href="https://cosmoscalibur.github.io/blog/datos-y-responsabilidad-covid19/#who-report"&gt;who-report&lt;/a&gt;], así que usando los criterios de pruebas tenemos un potencial
 12.1% de casos que tuvieron que esperar complicaciones o simplemente están
 como si nada. Pero también, hay otro porcentaje, que en el mismo reporte se
 considera bajo, pero que en una gran cantidad representa muchas personas, y
@@ -791,7 +793,7 @@ vulnerabilidad). Con la llegada de las pruebas rápidas al país podremos ver
 eventualmente una realidad más clara de la condición real, pues los casos
 confirmados son limitados por la capacidad de hacer pruebas.&lt;/p&gt;
 &lt;p&gt;Tomo en consideración lo afirmado en la sección sobre las pruebas en &lt;em&gt;Our World
-in Data&lt;/em&gt; [&lt;a class="reference internal" href="https://www.cosmoscalibur.com/blog/datos-y-responsabilidad-covid19/#ourworldindata"&gt;ourworldindata&lt;/a&gt;]:&lt;/p&gt;
+in Data&lt;/em&gt; [&lt;a class="reference internal" href="https://cosmoscalibur.github.io/blog/datos-y-responsabilidad-covid19/#ourworldindata"&gt;ourworldindata&lt;/a&gt;]:&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;8) What are the typical testing practices in the country?
 Having a sense of how often and when individuals are tested, can help the
@@ -854,24 +856,24 @@ hay otras afectaciones en el tiempo como la disminución o aumento de la
 capacidad de pruebas.&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;ul class="simple"&gt;
-&lt;li&gt;&lt;p&gt;11 de marzo: Primer caso relacionado [&lt;a class="reference internal" href="https://www.cosmoscalibur.com/blog/datos-y-responsabilidad-covid19/#covid-colombia"&gt;covid-colombia&lt;/a&gt;].&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;14 de marzo: Cierre de frontera con Venezuela [&lt;a class="reference internal" href="https://www.cosmoscalibur.com/blog/datos-y-responsabilidad-covid19/#tt-duque"&gt;tt-duque&lt;/a&gt;].&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;11 de marzo: Primer caso relacionado [&lt;a class="reference internal" href="https://cosmoscalibur.github.io/blog/datos-y-responsabilidad-covid19/#covid-colombia"&gt;covid-colombia&lt;/a&gt;].&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;14 de marzo: Cierre de frontera con Venezuela [&lt;a class="reference internal" href="https://cosmoscalibur.github.io/blog/datos-y-responsabilidad-covid19/#tt-duque"&gt;tt-duque&lt;/a&gt;].&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;16 de marzo: Se niega ingreso a extranjeros provenientes de Europa o Asia.
-Colombianos tendrán aislamiento de 14 días [&lt;a class="reference internal" href="https://www.cosmoscalibur.com/blog/datos-y-responsabilidad-covid19/#tt-duque"&gt;tt-duque&lt;/a&gt;].&lt;/p&gt;&lt;/li&gt;
+Colombianos tendrán aislamiento de 14 días [&lt;a class="reference internal" href="https://cosmoscalibur.github.io/blog/datos-y-responsabilidad-covid19/#tt-duque"&gt;tt-duque&lt;/a&gt;].&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;17 de marzo: Cierre de fronteras terrestres, marítimas y fluviales
-[&lt;a class="reference internal" href="https://www.cosmoscalibur.com/blog/datos-y-responsabilidad-covid19/#cnn-fronteras"&gt;cnn-fronteras&lt;/a&gt;].&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;20 de marzo: Simulacro de cuarentena en Bogotá [&lt;a class="reference internal" href="https://www.cosmoscalibur.com/blog/datos-y-responsabilidad-covid19/#tiempo-simulacro"&gt;tiempo-simulacro&lt;/a&gt;]. Otras
+[&lt;a class="reference internal" href="https://cosmoscalibur.github.io/blog/datos-y-responsabilidad-covid19/#cnn-fronteras"&gt;cnn-fronteras&lt;/a&gt;].&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;20 de marzo: Simulacro de cuarentena en Bogotá [&lt;a class="reference internal" href="https://cosmoscalibur.github.io/blog/datos-y-responsabilidad-covid19/#tiempo-simulacro"&gt;tiempo-simulacro&lt;/a&gt;]. Otras
 localidades del país hacen medidas similares el fin de semana.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;23 de marzo: Suspenden vuelos internacionales [&lt;a class="reference internal" href="https://www.cosmoscalibur.com/blog/datos-y-responsabilidad-covid19/#tt-presidencia-int"&gt;tt-presidencia-int&lt;/a&gt;]&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;23 de marzo: Primer caso de transmisión comunitaria [&lt;a class="reference internal" href="https://www.cosmoscalibur.com/blog/datos-y-responsabilidad-covid19/#covid-colombia"&gt;covid-colombia&lt;/a&gt;].&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;25 de marzo: Inicia cuarentena [&lt;a class="reference internal" href="https://www.cosmoscalibur.com/blog/datos-y-responsabilidad-covid19/#tiempo-cuarentena"&gt;tiempo-cuarentena&lt;/a&gt;].&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;25 de marzo: Suspenden vuelos nacionales [&lt;a class="reference internal" href="https://www.cosmoscalibur.com/blog/datos-y-responsabilidad-covid19/#tt-presidencia-nal"&gt;tt-presidencia-nal&lt;/a&gt;].&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;27 de marzo: Daño en máquina del INS para procesar pruebas [&lt;a class="reference internal" href="https://www.cosmoscalibur.com/blog/datos-y-responsabilidad-covid19/#tt-ins-dano"&gt;tt-INS-daño&lt;/a&gt;].&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;23 de marzo: Suspenden vuelos internacionales [&lt;a class="reference internal" href="https://cosmoscalibur.github.io/blog/datos-y-responsabilidad-covid19/#tt-presidencia-int"&gt;tt-presidencia-int&lt;/a&gt;]&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;23 de marzo: Primer caso de transmisión comunitaria [&lt;a class="reference internal" href="https://cosmoscalibur.github.io/blog/datos-y-responsabilidad-covid19/#covid-colombia"&gt;covid-colombia&lt;/a&gt;].&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;25 de marzo: Inicia cuarentena [&lt;a class="reference internal" href="https://cosmoscalibur.github.io/blog/datos-y-responsabilidad-covid19/#tiempo-cuarentena"&gt;tiempo-cuarentena&lt;/a&gt;].&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;25 de marzo: Suspenden vuelos nacionales [&lt;a class="reference internal" href="https://cosmoscalibur.github.io/blog/datos-y-responsabilidad-covid19/#tt-presidencia-nal"&gt;tt-presidencia-nal&lt;/a&gt;].&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;27 de marzo: Daño en máquina del INS para procesar pruebas [&lt;a class="reference internal" href="https://cosmoscalibur.github.io/blog/datos-y-responsabilidad-covid19/#tt-ins-dano"&gt;tt-INS-daño&lt;/a&gt;].&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;4 de abril: Se anuncia por el gobierno nacional el uso obligatorio de
-tapabocas en transporte masivo y público [&lt;a class="reference internal" href="https://www.cosmoscalibur.com/blog/datos-y-responsabilidad-covid19/#minsalud-tapabocas"&gt;minsalud-tapabocas&lt;/a&gt;]. En
-Medellín comenzará el 7 de abril [&lt;a class="reference internal" href="https://www.cosmoscalibur.com/blog/datos-y-responsabilidad-covid19/#tt-quintero"&gt;tt-quintero&lt;/a&gt;].&lt;/p&gt;&lt;/li&gt;
+tapabocas en transporte masivo y público [&lt;a class="reference internal" href="https://cosmoscalibur.github.io/blog/datos-y-responsabilidad-covid19/#minsalud-tapabocas"&gt;minsalud-tapabocas&lt;/a&gt;]. En
+Medellín comenzará el 7 de abril [&lt;a class="reference internal" href="https://cosmoscalibur.github.io/blog/datos-y-responsabilidad-covid19/#tt-quintero"&gt;tt-quintero&lt;/a&gt;].&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;(abril): INS anunció el 22 de marzo que se avalaran distintos laboratorios
-en el país para hacer pruebas de covid19 [&lt;a class="reference internal" href="https://www.cosmoscalibur.com/blog/datos-y-responsabilidad-covid19/#presidencia-covid"&gt;presidencia-covid&lt;/a&gt;].&lt;/p&gt;&lt;/li&gt;
+en el país para hacer pruebas de covid19 [&lt;a class="reference internal" href="https://cosmoscalibur.github.io/blog/datos-y-responsabilidad-covid19/#presidencia-covid"&gt;presidencia-covid&lt;/a&gt;].&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;Distintas regiones han aplicado pico y cédula pero el inicio ha sido en
 fechas diferentes.&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
@@ -883,7 +885,7 @@ a ingresar consideraciones en el modelo pero sino, mínimamente deben ser usadas
 adecuadamente para interpretar los datos y tendencias. Esto, contrastando con
 los 15 días típicos de tiempo de incubación.&lt;/p&gt;
 &lt;div class="figure align-center"&gt;
-&lt;img alt="Casos acumulados de Covid19 al 4 de abril de 2020 por tipo en Colombia." src="https://www.cosmoscalibur.com/images/datos-y-responsabilidad-covid19/casos-covid-colombia-tipo-4-abril-2020.png"&gt;
+&lt;img alt="Casos acumulados de Covid19 al 4 de abril de 2020 por tipo en Colombia." src="https://cosmoscalibur.github.io/images/datos-y-responsabilidad-covid19/casos-covid-colombia-tipo-4-abril-2020.png"&gt;
 &lt;p class="caption"&gt;Acumulado de casos positivos confirmados de covid19 por tipología incluyendo
 el total. La curva azul presenta crecimiento exponencial.&lt;/p&gt;
 &lt;/div&gt;
@@ -898,7 +900,7 @@ pero no tan pronunciado porque los casos importados deberán ser poco
 apreciables sobre el fin de semana.&lt;/p&gt;
 &lt;p&gt;Vale recordar la afirmación de los expertos y compartida por el ministro de
 salud en entrevista el día de ayer por el canal Caracol, "Las cifras de hoy son
-de pacientes de hace 14 días" [&lt;a class="reference internal" href="https://www.cosmoscalibur.com/blog/datos-y-responsabilidad-covid19/#tt-caracol"&gt;tt-caracol&lt;/a&gt;].&lt;/p&gt;
+de pacientes de hace 14 días" [&lt;a class="reference internal" href="https://cosmoscalibur.github.io/blog/datos-y-responsabilidad-covid19/#tt-caracol"&gt;tt-caracol&lt;/a&gt;].&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="conceptos"&gt;
 &lt;h2&gt;Conceptos&lt;/h2&gt;
@@ -910,22 +912,22 @@ y manteniendo el trazado de la interacción de estas, lleva a consolidar el
 número de personas con interacción directa e indirecta con el crecimiento
 exponencial (&lt;span class="math"&gt;\(A\exp(r t)\)&lt;/span&gt;, donde &lt;span class="math"&gt;\(r\)&lt;/span&gt; es la tasa de crecimiento y
 &lt;span class="math"&gt;\(A\)&lt;/span&gt; es la población inicial afectada).&lt;/p&gt;
-&lt;p&gt;Las curvas gausianas [&lt;a class="reference internal" href="https://www.cosmoscalibur.com/blog/datos-y-responsabilidad-covid19/#wiki-gausiana"&gt;wiki-gausiana&lt;/a&gt;] pueden describir los casos activos, es
+&lt;p&gt;Las curvas gausianas [&lt;a class="reference internal" href="https://cosmoscalibur.github.io/blog/datos-y-responsabilidad-covid19/#wiki-gausiana"&gt;wiki-gausiana&lt;/a&gt;] pueden describir los casos activos, es
 decir, los casos actuales que se encuentran afectados actualizando respecto a
 los casos de recuperados y muertos que se descuentan de los infectados. Esta es
-la famosa curva que nos comunican que debemos aplanar [&lt;a class="reference internal" href="https://www.cosmoscalibur.com/blog/datos-y-responsabilidad-covid19/#bbc-aplanar"&gt;bbc-aplanar&lt;/a&gt;] mediante
+la famosa curva que nos comunican que debemos aplanar [&lt;a class="reference internal" href="https://cosmoscalibur.github.io/blog/datos-y-responsabilidad-covid19/#bbc-aplanar"&gt;bbc-aplanar&lt;/a&gt;] mediante
 medidas como el distanciamiento social, el aislamiento
-[&lt;a class="reference internal" href="https://www.cosmoscalibur.com/blog/datos-y-responsabilidad-covid19/#elcolombiano-distancia"&gt;elcolombiano-distancia&lt;/a&gt;] y el uso masivo de tapabocas [&lt;a class="reference internal" href="https://www.cosmoscalibur.com/blog/datos-y-responsabilidad-covid19/#minsalud-tapabocas"&gt;minsalud-tapabocas&lt;/a&gt;].&lt;/p&gt;
-&lt;p&gt;Las curvas logísticas [&lt;a class="reference internal" href="https://www.cosmoscalibur.com/blog/datos-y-responsabilidad-covid19/#wiki-logistica"&gt;wiki-logistica&lt;/a&gt;] sirven para describir los casos
+[&lt;a class="reference internal" href="https://cosmoscalibur.github.io/blog/datos-y-responsabilidad-covid19/#elcolombiano-distancia"&gt;elcolombiano-distancia&lt;/a&gt;] y el uso masivo de tapabocas [&lt;a class="reference internal" href="https://cosmoscalibur.github.io/blog/datos-y-responsabilidad-covid19/#minsalud-tapabocas"&gt;minsalud-tapabocas&lt;/a&gt;].&lt;/p&gt;
+&lt;p&gt;Las curvas logísticas [&lt;a class="reference internal" href="https://cosmoscalibur.github.io/blog/datos-y-responsabilidad-covid19/#wiki-logistica"&gt;wiki-logistica&lt;/a&gt;] sirven para describir los casos
 acumulados de registros nuevos (en el caso de infectados, así se recuperen o
 mueran no se reduce el conteo).&lt;/p&gt;
 &lt;p&gt;Las menciones anteriores son solo resultados rápidos que se pueden usar de
-modelos más elaborados [&lt;a class="reference internal" href="https://www.cosmoscalibur.com/blog/datos-y-responsabilidad-covid19/#wiki-modelling"&gt;wiki-modelling&lt;/a&gt;] que dependen de resolver sistemas de
+modelos más elaborados [&lt;a class="reference internal" href="https://cosmoscalibur.github.io/blog/datos-y-responsabilidad-covid19/#wiki-modelling"&gt;wiki-modelling&lt;/a&gt;] que dependen de resolver sistemas de
 ecuaciones diferenciales, pero aún así, estos modelos resultan ser muy simples
 comparando con la dinámica real que se debe capturar. Es por este motivo que se
 usan modelos estocásticos si hablamos de un modelo serio que permita reflejar
 incluso el comportamiento de las interacciones humanas en un mayor detalle y
-las medidas implementadas [&lt;a class="reference internal" href="https://www.cosmoscalibur.com/blog/datos-y-responsabilidad-covid19/#wiki-stochastic"&gt;wiki-stochastic&lt;/a&gt;].&lt;/p&gt;
+las medidas implementadas [&lt;a class="reference internal" href="https://cosmoscalibur.github.io/blog/datos-y-responsabilidad-covid19/#wiki-stochastic"&gt;wiki-stochastic&lt;/a&gt;].&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="recomendaciones-para-saber-mas"&gt;
 &lt;h2&gt;Recomendaciones para saber más&lt;/h2&gt;
@@ -1002,7 +1004,7 @@ doctora en dinámica de enfermedades infecciosas.&lt;/p&gt;
 &lt;dd&gt;&lt;p&gt;&lt;a class="reference external" href="https://twitter.com/QuinteroCalle/status/1246049721334018050"&gt;https://twitter.com/QuinteroCalle/status/1246049721334018050&lt;/a&gt;&lt;/p&gt;
 &lt;/dd&gt;
 &lt;/dl&gt;
-&lt;/div&gt;&lt;/div&gt;</description><category>colombia</category><category>coronavirus</category><category>covid19</category><category>datos</category><category>pandemia</category><category>responsabilidad</category><guid>https://www.cosmoscalibur.com/blog/datos-y-responsabilidad-covid19/</guid><pubDate>Mon, 06 Apr 2020 00:11:52 GMT</pubDate></item><item><title>Seguridad vs flexibilidad del cómputo en nube</title><link>https://www.cosmoscalibur.com/blog/seguridad-vs-flexibilidad-del-computo-en-nube/</link><dc:creator>Edward Villegas-Pulgarin</dc:creator><description>&lt;div&gt;&lt;p&gt;Bueno, con el fin de compartir un poco y sacar provecho de la formación en la
+&lt;/div&gt;&lt;/div&gt;</description><category>colombia</category><category>coronavirus</category><category>covid19</category><category>datos</category><category>pandemia</category><category>responsabilidad</category><guid>https://cosmoscalibur.github.io/blog/datos-y-responsabilidad-covid19/</guid><pubDate>Mon, 06 Apr 2020 00:11:52 GMT</pubDate></item><item><title>Seguridad vs flexibilidad del cómputo en nube</title><link>https://cosmoscalibur.github.io/blog/seguridad-vs-flexibilidad-del-computo-en-nube/</link><dc:creator>Edward Villegas-Pulgarin</dc:creator><description>&lt;div&gt;&lt;p&gt;Bueno, con el fin de compartir un poco y sacar provecho de la formación en la
 cual me encuentro, esta es la tercera entrega basada en el curso de
 &lt;a class="reference external" href="https://programasprofesionales.mit.edu/transformacion-digital-descarga-folleto-old/"&gt;transformación digital&lt;/a&gt;
 que estoy realizando. En esta ocasión, la participación requerida en el foro
@@ -1013,51 +1015,51 @@ en la nube.&lt;/p&gt;
 infraestructuras en nube van en aumento y brindan una adecuada relación
 de costo beneficio para los emprendimientos, donde el modelo de negocio
 típico por uso o suscripción de periodos de tiempo cortos permite reducir
-los riesgos de inversión [&lt;a class="reference internal" href="https://www.cosmoscalibur.com/blog/seguridad-vs-flexibilidad-del-computo-en-nube/#id1"&gt;1&lt;/a&gt;].&lt;/p&gt;
+los riesgos de inversión [&lt;a class="reference internal" href="https://cosmoscalibur.github.io/blog/seguridad-vs-flexibilidad-del-computo-en-nube/#id1"&gt;1&lt;/a&gt;].&lt;/p&gt;
 &lt;iframe style="width:120px;height:240px;" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" src="//ws-na.amazon-adsystem.com/widgets/q?ServiceVersion=20070822&amp;amp;OneJS=1&amp;amp;Operation=GetAdHtml&amp;amp;MarketPlace=US&amp;amp;source=ss&amp;amp;ref=as_ss_li_til&amp;amp;ad_type=product_link&amp;amp;tracking_id=cosmoscalibur-20&amp;amp;language=es_US&amp;amp;marketplace=amazon&amp;amp;region=US&amp;amp;placement=B07QWLXCC7&amp;amp;asins=B07QWLXCC7&amp;amp;linkId=ec8263fe9f13222ede56df34878a1743&amp;amp;show_border=true&amp;amp;link_opens_in_new_window=true"&gt;&lt;/iframe&gt;&lt;p&gt;Este modelo de negocio de la infraestructura en nube o de en general,
-distintos elementos XaaS [&lt;a class="reference internal" href="https://www.cosmoscalibur.com/blog/seguridad-vs-flexibilidad-del-computo-en-nube/#id2"&gt;2&lt;/a&gt;], generan la flexibilidad necesaria a través del
-escalamiento horizontal [&lt;a class="reference internal" href="https://www.cosmoscalibur.com/blog/seguridad-vs-flexibilidad-del-computo-en-nube/#id1"&gt;1&lt;/a&gt;, &lt;a class="reference internal" href="https://www.cosmoscalibur.com/blog/seguridad-vs-flexibilidad-del-computo-en-nube/#id2"&gt;2&lt;/a&gt;, &lt;a class="reference internal" href="https://www.cosmoscalibur.com/blog/seguridad-vs-flexibilidad-del-computo-en-nube/#id3"&gt;3&lt;/a&gt;] pero posee un costo intrínseco en la
+distintos elementos XaaS [&lt;a class="reference internal" href="https://cosmoscalibur.github.io/blog/seguridad-vs-flexibilidad-del-computo-en-nube/#id2"&gt;2&lt;/a&gt;], generan la flexibilidad necesaria a través del
+escalamiento horizontal [&lt;a class="reference internal" href="https://cosmoscalibur.github.io/blog/seguridad-vs-flexibilidad-del-computo-en-nube/#id1"&gt;1&lt;/a&gt;, &lt;a class="reference internal" href="https://cosmoscalibur.github.io/blog/seguridad-vs-flexibilidad-del-computo-en-nube/#id2"&gt;2&lt;/a&gt;, &lt;a class="reference internal" href="https://cosmoscalibur.github.io/blog/seguridad-vs-flexibilidad-del-computo-en-nube/#id3"&gt;3&lt;/a&gt;] pero posee un costo intrínseco en la
 seguridad de la información. La exposición de la información en servidores
 externos bajo las políticas de seguridad de terceros puede corresponder a un
 riesgo que muchas compañías no asumen, pero puede ser más seguro que el
-almacenamiento en infraestructura propia [&lt;a class="reference internal" href="https://www.cosmoscalibur.com/blog/seguridad-vs-flexibilidad-del-computo-en-nube/#id4"&gt;4&lt;/a&gt;, &lt;a class="reference internal" href="https://www.cosmoscalibur.com/blog/seguridad-vs-flexibilidad-del-computo-en-nube/#id5"&gt;5&lt;/a&gt;]. Ofrece igual ventajas en
+almacenamiento en infraestructura propia [&lt;a class="reference internal" href="https://cosmoscalibur.github.io/blog/seguridad-vs-flexibilidad-del-computo-en-nube/#id4"&gt;4&lt;/a&gt;, &lt;a class="reference internal" href="https://cosmoscalibur.github.io/blog/seguridad-vs-flexibilidad-del-computo-en-nube/#id5"&gt;5&lt;/a&gt;]. Ofrece igual ventajas en
 otros aspectos de la seguridad de la información como la capacidad de
 recuperación ante fallos y desastres gracias a los sistemas de copias de
 seguridad que ofrecen los servicios y una alta disponibilidad de la
-información mediante la red redundante del proveedor [&lt;a class="reference internal" href="https://www.cosmoscalibur.com/blog/seguridad-vs-flexibilidad-del-computo-en-nube/#id3"&gt;3&lt;/a&gt;, &lt;a class="reference internal" href="https://www.cosmoscalibur.com/blog/seguridad-vs-flexibilidad-del-computo-en-nube/#id5"&gt;5&lt;/a&gt;].&lt;/p&gt;
+información mediante la red redundante del proveedor [&lt;a class="reference internal" href="https://cosmoscalibur.github.io/blog/seguridad-vs-flexibilidad-del-computo-en-nube/#id3"&gt;3&lt;/a&gt;, &lt;a class="reference internal" href="https://cosmoscalibur.github.io/blog/seguridad-vs-flexibilidad-del-computo-en-nube/#id5"&gt;5&lt;/a&gt;].&lt;/p&gt;
 &lt;p&gt;Otras publicaciones basadas en el curso de transformación digital:&lt;/p&gt;
 
-&lt;!-- Begin post-list post_list_03b8f85057214054b87639a44978d51a --&gt;
-&lt;div id="post_list_03b8f85057214054b87639a44978d51a" class="post-list"&gt;
+&lt;!-- Begin post-list post_list_8428a2f6af03487d8e1ee862db7bc03f --&gt;
+&lt;div id="post_list_8428a2f6af03487d8e1ee862db7bc03f" class="post-list"&gt;
     &lt;ul class="post-list"&gt;
             &lt;li class="post-list-item"&gt;
             2020-04-09 16:37
              
-            &lt;a href="https://www.cosmoscalibur.com/blog/filtraciones-de-datos-en-el-siglo-xxi/"&gt;Filtraciones de datos en el siglo XXI&lt;/a&gt;
+            &lt;a href="https://cosmoscalibur.github.io/blog/filtraciones-de-datos-en-el-siglo-xxi/"&gt;Filtraciones de datos en el siglo XXI&lt;/a&gt;
             &lt;/li&gt;
             &lt;li class="post-list-item"&gt;
             2020-04-09 15:19
              
-            &lt;a href="https://www.cosmoscalibur.com/blog/aplicacion-de-iot-a-la-cadena-de-suministro/"&gt;Aplicación de IoT a la cadena de suministro&lt;/a&gt;
+            &lt;a href="https://cosmoscalibur.github.io/blog/aplicacion-de-iot-a-la-cadena-de-suministro/"&gt;Aplicación de IoT a la cadena de suministro&lt;/a&gt;
             &lt;/li&gt;
             &lt;li class="post-list-item"&gt;
             2020-04-09 14:56
              
-            &lt;a href="https://www.cosmoscalibur.com/blog/iot-merece-la-pena-asumir-los-riesgos/"&gt;IoT ¿Merece la pena asumir los riesgos?&lt;/a&gt;
+            &lt;a href="https://cosmoscalibur.github.io/blog/iot-merece-la-pena-asumir-los-riesgos/"&gt;IoT ¿Merece la pena asumir los riesgos?&lt;/a&gt;
             &lt;/li&gt;
             &lt;li class="post-list-item"&gt;
             2020-03-01 21:18
              
-            &lt;a href="https://www.cosmoscalibur.com/blog/sectores-que-se-ven-afectados-por-blockchain-sector-inmobiliario/"&gt;Sectores que se ven afectados por blockchain: sector inmobiliario&lt;/a&gt;
+            &lt;a href="https://cosmoscalibur.github.io/blog/sectores-que-se-ven-afectados-por-blockchain-sector-inmobiliario/"&gt;Sectores que se ven afectados por blockchain: sector inmobiliario&lt;/a&gt;
             &lt;/li&gt;
             &lt;li class="post-list-item"&gt;
             2020-03-01 20:13
              
-            &lt;a href="https://www.cosmoscalibur.com/blog/estamos-preparados-para-un-nuevo-tipo-de-monedas-completamente-digitales/"&gt;¿Estamos preparados para un nuevo tipo de monedas, completamente digitales?&lt;/a&gt;
+            &lt;a href="https://cosmoscalibur.github.io/blog/estamos-preparados-para-un-nuevo-tipo-de-monedas-completamente-digitales/"&gt;¿Estamos preparados para un nuevo tipo de monedas, completamente digitales?&lt;/a&gt;
             &lt;/li&gt;
     &lt;/ul&gt;
 &lt;/div&gt;
-&lt;!-- End post-list post_list_03b8f85057214054b87639a44978d51a --&gt;
+&lt;!-- End post-list post_list_8428a2f6af03487d8e1ee862db7bc03f --&gt;
 
 &lt;dl class="footnote brackets"&gt;
 &lt;dt class="label" id="id1"&gt;&lt;span class="brackets"&gt;1&lt;/span&gt;&lt;/dt&gt;
@@ -1082,7 +1084,7 @@ información mediante la red redundante del proveedor [&lt;a class="reference in
 14 de marzo de 2020.
 &lt;a class="reference external" href="https://www.salesforce.com/uk/blog/2015/11/why-move-to-the-cloud-10-benefits-of-cloud-computing.html"&gt;https://www.salesforce.com/uk/blog/2015/11/why-move-to-the-cloud-10-benefits-of-cloud-computing.html&lt;/a&gt;&lt;/p&gt;
 &lt;/dd&gt;
-&lt;/dl&gt;&lt;/div&gt;</description><category>computación en nube</category><category>transformación digital</category><category>xaas</category><guid>https://www.cosmoscalibur.com/blog/seguridad-vs-flexibilidad-del-computo-en-nube/</guid><pubDate>Sun, 15 Mar 2020 04:02:47 GMT</pubDate></item><item><title>Sectores que se ven afectados por blockchain: sector inmobiliario</title><link>https://www.cosmoscalibur.com/blog/sectores-que-se-ven-afectados-por-blockchain-sector-inmobiliario/</link><dc:creator>Edward Villegas-Pulgarin</dc:creator><description>&lt;div&gt;&lt;p&gt;Como les conté en la &lt;a class="reference external" href="https://www.cosmoscalibur.com/blog/estamos-preparados-para-un-nuevo-tipo-de-monedas-completamente-digitales/"&gt;publicación anterior&lt;/a&gt;,
+&lt;/dl&gt;&lt;/div&gt;</description><category>computación en nube</category><category>transformación digital</category><category>xaas</category><guid>https://cosmoscalibur.github.io/blog/seguridad-vs-flexibilidad-del-computo-en-nube/</guid><pubDate>Sun, 15 Mar 2020 04:02:47 GMT</pubDate></item><item><title>Sectores que se ven afectados por blockchain: sector inmobiliario</title><link>https://cosmoscalibur.github.io/blog/sectores-que-se-ven-afectados-por-blockchain-sector-inmobiliario/</link><dc:creator>Edward Villegas-Pulgarin</dc:creator><description>&lt;div&gt;&lt;p&gt;Como les conté en la &lt;a class="reference external" href="https://cosmoscalibur.github.io/blog/estamos-preparados-para-un-nuevo-tipo-de-monedas-completamente-digitales/"&gt;publicación anterior&lt;/a&gt;,
 estoy en un curso de transformación digital. Pues bueno, la idea es que
 compartiré algunas de mis participaciones en el curso y así mantener activo el
 blog en este tiempo. El blockchain es un tema central en el inicio del curso,
@@ -1093,54 +1095,54 @@ inmobiliario.&lt;/p&gt;
 diversos sectores para mejorar la trazabilidad de las transacciones, conservar
 información protegida y la ejecución de contratos inteligentes que eliminen la
 intermediación. De hecho, como afirma Santiago Márquez (CTO de Clluc) “todo
-sector que se encuentre intermediado es susceptible de ser transformado” [&lt;a class="reference internal" href="https://www.cosmoscalibur.com/blog/sectores-que-se-ven-afectados-por-blockchain-sector-inmobiliario/#id1"&gt;1&lt;/a&gt;].&lt;/p&gt;
+sector que se encuentre intermediado es susceptible de ser transformado” [&lt;a class="reference internal" href="https://cosmoscalibur.github.io/blog/sectores-que-se-ven-afectados-por-blockchain-sector-inmobiliario/#id1"&gt;1&lt;/a&gt;].&lt;/p&gt;
 &lt;iframe style="width:120px;height:240px;" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" src="//ws-na.amazon-adsystem.com/widgets/q?ServiceVersion=20070822&amp;amp;OneJS=1&amp;amp;Operation=GetAdHtml&amp;amp;MarketPlace=US&amp;amp;source=ss&amp;amp;ref=as_ss_li_til&amp;amp;ad_type=product_link&amp;amp;tracking_id=cosmoscalibur-20&amp;amp;language=es_US&amp;amp;marketplace=amazon&amp;amp;region=US&amp;amp;placement=B07QWLXCC7&amp;amp;asins=B07QWLXCC7&amp;amp;linkId=ec8263fe9f13222ede56df34878a1743&amp;amp;show_border=true&amp;amp;link_opens_in_new_window=true"&gt;&lt;/iframe&gt;&lt;p&gt;El sector inmobiliario es un sector potencial para el blockchain, que mediante
 el uso de contratos inteligentes hoy se visualiza como un mecanismo para
-facilitar el mantenimiento de los edificios [&lt;a class="reference internal" href="https://www.cosmoscalibur.com/blog/sectores-que-se-ven-afectados-por-blockchain-sector-inmobiliario/#id2"&gt;2&lt;/a&gt;].&lt;/p&gt;
+facilitar el mantenimiento de los edificios [&lt;a class="reference internal" href="https://cosmoscalibur.github.io/blog/sectores-que-se-ven-afectados-por-blockchain-sector-inmobiliario/#id2"&gt;2&lt;/a&gt;].&lt;/p&gt;
 &lt;p&gt;La descentralización de la gestión a través de blockchain permite suponer un
-ahorro de tiempo dedicado y de espacio de almacenamiento [&lt;a class="reference internal" href="https://www.cosmoscalibur.com/blog/sectores-que-se-ven-afectados-por-blockchain-sector-inmobiliario/#id3"&gt;3&lt;/a&gt;], que a su vez se
+ahorro de tiempo dedicado y de espacio de almacenamiento [&lt;a class="reference internal" href="https://cosmoscalibur.github.io/blog/sectores-que-se-ven-afectados-por-blockchain-sector-inmobiliario/#id3"&gt;3&lt;/a&gt;], que a su vez se
 traduce en la reducción del costo administrativo para los clientes del sector
 inmobiliario. En esto, España se ha convertido en un referente mundial, en la
 adopción que ha tenido el sector inmobiliario de la tecnología blockchain a sus
-procesos y la creación de nuevos modelos de negocio [&lt;a class="reference internal" href="https://www.cosmoscalibur.com/blog/sectores-que-se-ven-afectados-por-blockchain-sector-inmobiliario/#id3"&gt;3&lt;/a&gt;, &lt;a class="reference internal" href="https://www.cosmoscalibur.com/blog/sectores-que-se-ven-afectados-por-blockchain-sector-inmobiliario/#id4"&gt;4&lt;/a&gt;].&lt;/p&gt;
+procesos y la creación de nuevos modelos de negocio [&lt;a class="reference internal" href="https://cosmoscalibur.github.io/blog/sectores-que-se-ven-afectados-por-blockchain-sector-inmobiliario/#id3"&gt;3&lt;/a&gt;, &lt;a class="reference internal" href="https://cosmoscalibur.github.io/blog/sectores-que-se-ven-afectados-por-blockchain-sector-inmobiliario/#id4"&gt;4&lt;/a&gt;].&lt;/p&gt;
 &lt;p&gt;La reforma que ha traído el blockchain implica una mejor experiencia al cliente
 a través de mecanismos de verificación de identidad más confiables y de una
 mejora en la seguridad de las transacciones, más que la eliminación de la
 intermediación actual en el sector inmobiliario (pero que un futuro con las
-reformas necesarias legales podría suceder) [&lt;a class="reference internal" href="https://www.cosmoscalibur.com/blog/sectores-que-se-ven-afectados-por-blockchain-sector-inmobiliario/#id3"&gt;3&lt;/a&gt;].&lt;/p&gt;
+reformas necesarias legales podría suceder) [&lt;a class="reference internal" href="https://cosmoscalibur.github.io/blog/sectores-que-se-ven-afectados-por-blockchain-sector-inmobiliario/#id3"&gt;3&lt;/a&gt;].&lt;/p&gt;
 &lt;p&gt;Otras publicaciones basadas en el curso de transformación digital:&lt;/p&gt;
 
-&lt;!-- Begin post-list post_list_30d9f34d1f7a4c978a0309694049ab3b --&gt;
-&lt;div id="post_list_30d9f34d1f7a4c978a0309694049ab3b" class="post-list"&gt;
+&lt;!-- Begin post-list post_list_b7215fccf8964c1a8a9315d484062b17 --&gt;
+&lt;div id="post_list_b7215fccf8964c1a8a9315d484062b17" class="post-list"&gt;
     &lt;ul class="post-list"&gt;
             &lt;li class="post-list-item"&gt;
             2020-04-09 16:37
              
-            &lt;a href="https://www.cosmoscalibur.com/blog/filtraciones-de-datos-en-el-siglo-xxi/"&gt;Filtraciones de datos en el siglo XXI&lt;/a&gt;
+            &lt;a href="https://cosmoscalibur.github.io/blog/filtraciones-de-datos-en-el-siglo-xxi/"&gt;Filtraciones de datos en el siglo XXI&lt;/a&gt;
             &lt;/li&gt;
             &lt;li class="post-list-item"&gt;
             2020-04-09 15:19
              
-            &lt;a href="https://www.cosmoscalibur.com/blog/aplicacion-de-iot-a-la-cadena-de-suministro/"&gt;Aplicación de IoT a la cadena de suministro&lt;/a&gt;
+            &lt;a href="https://cosmoscalibur.github.io/blog/aplicacion-de-iot-a-la-cadena-de-suministro/"&gt;Aplicación de IoT a la cadena de suministro&lt;/a&gt;
             &lt;/li&gt;
             &lt;li class="post-list-item"&gt;
             2020-04-09 14:56
              
-            &lt;a href="https://www.cosmoscalibur.com/blog/iot-merece-la-pena-asumir-los-riesgos/"&gt;IoT ¿Merece la pena asumir los riesgos?&lt;/a&gt;
+            &lt;a href="https://cosmoscalibur.github.io/blog/iot-merece-la-pena-asumir-los-riesgos/"&gt;IoT ¿Merece la pena asumir los riesgos?&lt;/a&gt;
             &lt;/li&gt;
             &lt;li class="post-list-item"&gt;
             2020-03-14 23:02
              
-            &lt;a href="https://www.cosmoscalibur.com/blog/seguridad-vs-flexibilidad-del-computo-en-nube/"&gt;Seguridad vs flexibilidad del cómputo en nube&lt;/a&gt;
+            &lt;a href="https://cosmoscalibur.github.io/blog/seguridad-vs-flexibilidad-del-computo-en-nube/"&gt;Seguridad vs flexibilidad del cómputo en nube&lt;/a&gt;
             &lt;/li&gt;
             &lt;li class="post-list-item"&gt;
             2020-03-01 20:13
              
-            &lt;a href="https://www.cosmoscalibur.com/blog/estamos-preparados-para-un-nuevo-tipo-de-monedas-completamente-digitales/"&gt;¿Estamos preparados para un nuevo tipo de monedas, completamente digitales?&lt;/a&gt;
+            &lt;a href="https://cosmoscalibur.github.io/blog/estamos-preparados-para-un-nuevo-tipo-de-monedas-completamente-digitales/"&gt;¿Estamos preparados para un nuevo tipo de monedas, completamente digitales?&lt;/a&gt;
             &lt;/li&gt;
     &lt;/ul&gt;
 &lt;/div&gt;
-&lt;!-- End post-list post_list_30d9f34d1f7a4c978a0309694049ab3b --&gt;
+&lt;!-- End post-list post_list_b7215fccf8964c1a8a9315d484062b17 --&gt;
 
 &lt;dl class="footnote brackets"&gt;
 &lt;dt class="label" id="id1"&gt;&lt;span class="brackets"&gt;1&lt;/span&gt;&lt;/dt&gt;
@@ -1159,4 +1161,4 @@ Katy Chamberlain Diaz. 18 de febrero de 2020. Grupo EM Inmobiliaria.&lt;/p&gt;
 &lt;dd&gt;&lt;p&gt;&lt;a class="reference external" href="https://www.inmodiario.com/191/28609/espana-entra-top-mundial-uso-blockchain-sector-inmobiliario.html"&gt;España entra en el top-10 mundial en el uso del blockchain en el sector inmobiliario&lt;/a&gt;.
 11 de febrero de 2020. Inmodiario.&lt;/p&gt;
 &lt;/dd&gt;
-&lt;/dl&gt;&lt;/div&gt;</description><category>blockchain</category><category>transformación digital</category><guid>https://www.cosmoscalibur.com/blog/sectores-que-se-ven-afectados-por-blockchain-sector-inmobiliario/</guid><pubDate>Mon, 02 Mar 2020 02:18:43 GMT</pubDate></item></channel></rss>
+&lt;/dl&gt;&lt;/div&gt;</description><category>blockchain</category><category>transformación digital</category><guid>https://cosmoscalibur.github.io/blog/sectores-que-se-ven-afectados-por-blockchain-sector-inmobiliario/</guid><pubDate>Mon, 02 Mar 2020 02:18:43 GMT</pubDate></item></channel></rss>

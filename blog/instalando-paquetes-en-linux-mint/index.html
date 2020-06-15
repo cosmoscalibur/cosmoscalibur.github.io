@@ -13,7 +13,7 @@
 <meta content="Nikola (getnikola.com)" name="generator">
 <link href="../../en/rss.xml" rel="alternate" title="RSS (en)" type="application/rss+xml">
 <link href="../../rss.xml" rel="alternate" title="RSS (es)" type="application/rss+xml">
-<link href="https://www.cosmoscalibur.com/blog/instalando-paquetes-en-linux-mint/" rel="canonical">
+<link href="https://cosmoscalibur.github.io/blog/instalando-paquetes-en-linux-mint/" rel="canonical">
 <link href="../../images/favicon.jpg" rel="icon" sizes="32x32">
 <meta content="595800477624602" property="fb:app_id"><!--[if lt IE 9]><script src="https://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
 <meta content="Edward Villegas-Pulgarin" name="author">
@@ -21,7 +21,7 @@
 <link href="../nos-atraemos-gravitacionalmente/" rel="next" title="¿Nos atraemos gravitacionalmente?" type="text/html">
 <meta content="Cosmoscalibur" property="og:site_name">
 <meta content="Instalando paquetes en Linux (Mint)" property="og:title">
-<meta content="https://www.cosmoscalibur.com/blog/instalando-paquetes-en-linux-mint/" property="og:url">
+<meta content="https://cosmoscalibur.github.io/blog/instalando-paquetes-en-linux-mint/" property="og:url">
 <meta content="Actualmente existen diversos mecanismos de instalación de software en Linux, sin requerir de conocimientos avanzados o procesos largos de instalación. Ejemplificaremos la instalación y uso de algunos" property="og:description">
 <meta content="article" property="og:type">
 <meta content="2019-10-22T20:21:34-05:00" property="article:published_time">
@@ -47,11 +47,11 @@
 <form action="https://duckduckgo.com/" class="navbar-form pull-left" id="search" method="get" name="search"><input name="sites" type="hidden" value="https://www.cosmoscalibur.com/"><input name="k8" type="hidden" value="#444444"><input name="k9" type="hidden" value="#D51920"><input name="kt" type="hidden" value="h"><input class="span2" maxlength="255" name="q" placeholder="Search…" style="margin-top: 4px;" type="text"><input style="visibility: hidden;" type="submit" value="DuckDuckGo Search"></form>
 <!-- End of custom search --></div>
 </div>
-<div class="col-md-6 col-xs-10 col-sm-10 bootblog4-brand" style="width: auto;"><a class="navbar-brand blog-header-logo text-dark" href="https://www.cosmoscalibur.com/"><span id="blog-title">Cosmoscalibur</span></a></div>
+<div class="col-md-6 col-xs-10 col-sm-10 bootblog4-brand" style="width: auto;"><a class="navbar-brand blog-header-logo text-dark" href="https://cosmoscalibur.github.io/"><span id="blog-title">Cosmoscalibur</span></a></div>
 <div class="col-md-3 justify-content-end align-items-center bs-nav-collapsible collapse flex-collapse bootblog4-right-nav">
 <nav class="navbar navbar-light bg-white">
 <ul class="navbar-nav bootblog4-right-nav">
-<li class="nav-item"><a class="nav-link" href="https://www.cosmoscalibur.com/en/" hreflang="en" rel="alternate">English</a></li>
+<li class="nav-item"><a class="nav-link" href="https://cosmoscalibur.github.io/en/" hreflang="en" rel="alternate">English</a></li>
 </ul>
 </nav>
 </div>
@@ -92,8 +92,8 @@
 <p>La mayor parte de distribuciones Linux disponen de gestores de paquetes de <em>software</em>, que son herramientas para la búsqueda, descarga, instalación y configuración de estos. Los gestores se conectan a repositorios de paquetes oficiales que son mantenidos por los desarrollados de la distribución, asegurando que cumplan con estándares mínimos de compatibilidad y estabilidad.</p>
 <p>También, algunos gestores pueden conectar a repositorios mantenidos por la comunidad, dando la opción de extender el <em>software</em> disponible para instalación por los usuarios de una manera simple, pero a riesgo de inestabilidad o conflictos por la interacción con paquetes de los repositorios oficiales (no es general, pero suele ocurrir). Estos repositorios de comunidad los recomiendo como última opción.</p>
 <p>En Ubuntu y Linux Mint, tienes la opción de usar el Centro de Software (preinstalado) o Synaptic (preinstalado en Linux Mint), para realizar la gestión de manera gráfica. Pero también puedes usar <code>apt-get</code> o <code>apt</code> (recomendado) para la gestión a través de consola.</p>
-<pre class="code text"><a id="rest_code_f7f0cc149175496eb23089da4309883a-1" name="rest_code_f7f0cc149175496eb23089da4309883a-1"></a>sudo apt update -q
-<a id="rest_code_f7f0cc149175496eb23089da4309883a-2" name="rest_code_f7f0cc149175496eb23089da4309883a-2"></a>sudo apt install -y okular
+<pre class="code text"><a id="rest_code_7a7f01373f574bacbbb1d3e637423dd6-1" name="rest_code_7a7f01373f574bacbbb1d3e637423dd6-1"></a>sudo apt update -q
+<a id="rest_code_7a7f01373f574bacbbb1d3e637423dd6-2" name="rest_code_7a7f01373f574bacbbb1d3e637423dd6-2"></a>sudo apt install -y okular
 </pre>
 <p>Ahora dispones del lector de archivos PDF en tu sistema. Puedes accederlo por el menú o por comando (<code>okular</code>). La primera línea es recomendable para actualizar las direcciones desde las cuales se descarga el software y los metadatos para búsqueda. La segunda línea realiza la instalación sin solicitar confirmación.</p>
 </div>
@@ -103,13 +103,13 @@
 <p>Como el archivo ejecuta directamente, se pueden tener múltiples versiones del mismo programa. Esto, es por el aislamiento que posee, es un tipo de contenedor, tal como lo son las opciones de snap y flatpak, lo cual también evita conflictos en el sistema (programas que puedan requerir la misma dependencia pero en versiones diferentes, la dependencia no pueda gestionar múltiples instancias o exponga una brecha de seguridad).</p>
 <p>Usaremos Stellarium para dar un ejemplo, y puedes buscar en <a class="reference external" href="https://appimage.github.io">AppImageHub</a> para ver una colección de AppImage disponibles.</p>
 <p id="appimagecode">Descargamos el <a class="reference external" href="https://stellarium.org/">AppImage de Stellarium</a> del sitio oficial del software (el segundo pingüino).</p>
-<pre class="code text"><a id="rest_code_7a7eaa4431654f38934bf3bf26205387-1" name="rest_code_7a7eaa4431654f38934bf3bf26205387-1"></a>chmod 755 Stellarium-0.19.2-x86_64.AppImage
-<a id="rest_code_7a7eaa4431654f38934bf3bf26205387-2" name="rest_code_7a7eaa4431654f38934bf3bf26205387-2"></a>./Stellarium-0.19.2-x86_64.AppImage
+<pre class="code text"><a id="rest_code_e28069f4a0af43d8b370434dac3a1638-1" name="rest_code_e28069f4a0af43d8b370434dac3a1638-1"></a>chmod 755 Stellarium-0.19.2-x86_64.AppImage
+<a id="rest_code_e28069f4a0af43d8b370434dac3a1638-2" name="rest_code_e28069f4a0af43d8b370434dac3a1638-2"></a>./Stellarium-0.19.2-x86_64.AppImage
 </pre>
 <p>La primera línea solo es necesario ejecutarla la primera vez.</p>
 <p>Si queremos ejecutarlo de una manera más cómoda, podemos mover el archivo al directorio de ejecución de binarios del usuario o a uno de ejecución de sistema para estar disponible para todos los usuarios (<code>/usr/local/bin/</code>).</p>
-<pre class="code text"><a id="rest_code_82def2d811d84faf9dca33b0d40192fe-1" name="rest_code_82def2d811d84faf9dca33b0d40192fe-1"></a>mv Stellarium-0.19.2-x86_64.AppImage ~/.local/bin/stellarium
-<a id="rest_code_82def2d811d84faf9dca33b0d40192fe-2" name="rest_code_82def2d811d84faf9dca33b0d40192fe-2"></a>stellarium
+<pre class="code text"><a id="rest_code_3cc081ae63b94ba8be32fbb50b59ef5d-1" name="rest_code_3cc081ae63b94ba8be32fbb50b59ef5d-1"></a>mv Stellarium-0.19.2-x86_64.AppImage ~/.local/bin/stellarium
+<a id="rest_code_3cc081ae63b94ba8be32fbb50b59ef5d-2" name="rest_code_3cc081ae63b94ba8be32fbb50b59ef5d-2"></a>stellarium
 </pre>
 <p>Nuevamente, la primera línea es solo la primera vez.</p>
 </div>
@@ -117,11 +117,11 @@
 <h3>Snap</h3>
 <p>Los snap son el mecanismo de instalación promovido por Canonical (desarrolladores de Ubuntu). Sigue siendo un mecanismo centralizado, que requiere aprobación de Canonical para ser admitido el paquete y requiere ser administrador para la instalación.</p>
 <p>En Ubuntu viene preinstalado pero en Linux Mint es necesario instalarlo.</p>
-<pre class="code text"><a id="rest_code_0d3dde326b764bf09fb11e7abb7ab7a0-1" name="rest_code_0d3dde326b764bf09fb11e7abb7ab7a0-1"></a>sudo apt install -y snapd
+<pre class="code text"><a id="rest_code_a8b6defe82214ef194cade8bb02757f9-1" name="rest_code_a8b6defe82214ef194cade8bb02757f9-1"></a>sudo apt install -y snapd
 </pre>
 <p>Una vez instalado, podemos proceder a instalar un paquete snap.</p>
-<pre class="code text"><a id="rest_code_2d47be2328ca4b09855e9932e9534cb3-1" name="rest_code_2d47be2328ca4b09855e9932e9534cb3-1"></a>sudo snap install code --classic
-<a id="rest_code_2d47be2328ca4b09855e9932e9534cb3-2" name="rest_code_2d47be2328ca4b09855e9932e9534cb3-2"></a>snap run code # Ejecuta
+<pre class="code text"><a id="rest_code_39cb78c6a9a044729244603b67279a74-1" name="rest_code_39cb78c6a9a044729244603b67279a74-1"></a>sudo snap install code --classic
+<a id="rest_code_39cb78c6a9a044729244603b67279a74-2" name="rest_code_39cb78c6a9a044729244603b67279a74-2"></a>snap run code # Ejecuta
 </pre>
 <p>La ejecución con <code>snap run</code> es necesaria si tras instalar no reconoce el paquete. Después de la primera ejecución o tras abrir una nueva terminal o reiniciar el equipo, será ya reconocido el paquete sin problema para ejecutarse directamente con el nombre (<code>code</code>) o por el menú.</p>
 <p>Puedes buscar más paquetes en <a class="reference external" href="https://snapcraft.io/store">snapcraf</a></p>
@@ -130,19 +130,19 @@
 <h3>Flatpak</h3>
 <p>El caso de flatpak no es muy cómodo, tiene cierta centralización como snap, pero con fines de indexación. Un desarrollador puede crear su propio repositorio flatpak. Y al igual que AppImage, no requiere permisos de administrador.</p>
 <p>En Linux Mint viene preconfigurado a partir de la versión 18.3, pero si usas Ubuntu necesitas instalarlo. Desde la 18.10 se encuentra en los repositorios oficiales.</p>
-<pre class="code text"><a id="rest_code_e11eae04ae664d95801a9192dc3d7088-1" name="rest_code_e11eae04ae664d95801a9192dc3d7088-1"></a>sudo apt install flatpak
-<a id="rest_code_e11eae04ae664d95801a9192dc3d7088-2" name="rest_code_e11eae04ae664d95801a9192dc3d7088-2"></a>sudo apt install gnome-software-plugin-flatpak
-<a id="rest_code_e11eae04ae664d95801a9192dc3d7088-3" name="rest_code_e11eae04ae664d95801a9192dc3d7088-3"></a>flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+<pre class="code text"><a id="rest_code_42b20dd62ec64748b1114ccfd1a82db4-1" name="rest_code_42b20dd62ec64748b1114ccfd1a82db4-1"></a>sudo apt install flatpak
+<a id="rest_code_42b20dd62ec64748b1114ccfd1a82db4-2" name="rest_code_42b20dd62ec64748b1114ccfd1a82db4-2"></a>sudo apt install gnome-software-plugin-flatpak
+<a id="rest_code_42b20dd62ec64748b1114ccfd1a82db4-3" name="rest_code_42b20dd62ec64748b1114ccfd1a82db4-3"></a>flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 </pre>
 <p>La primera línea instala el gestor de flatpak. La segunda línea permite usar flatpak con el Centro de Software de Gnome. Y la tercera línea agrega el repositorio de paquetes flatpak más popular, <a class="reference external" href="https://flathub.org/home">flathub</a>.</p>
 <p>Para ejemplificar, instalaremos el paquete peek</p>
-<pre class="code text"><a id="rest_code_d7f3c907dfe94fc6a70a86ff5dc0862b-1" name="rest_code_d7f3c907dfe94fc6a70a86ff5dc0862b-1"></a>flatpak install -y flathub com.uploadedlobster.peek
-<a id="rest_code_d7f3c907dfe94fc6a70a86ff5dc0862b-2" name="rest_code_d7f3c907dfe94fc6a70a86ff5dc0862b-2"></a>flatpak run com.uploadedlobster.peek
+<pre class="code text"><a id="rest_code_0110fffa2a4f41d38bcdc8b9076c10b6-1" name="rest_code_0110fffa2a4f41d38bcdc8b9076c10b6-1"></a>flatpak install -y flathub com.uploadedlobster.peek
+<a id="rest_code_0110fffa2a4f41d38bcdc8b9076c10b6-2" name="rest_code_0110fffa2a4f41d38bcdc8b9076c10b6-2"></a>flatpak run com.uploadedlobster.peek
 </pre>
 <p>Desafortunadamente la ejecución es siempre así, pero puedes crear un archivo que te facilite la labor.</p>
-<pre class="code text"><a id="rest_code_fdfd34d5570e465b9b163ff3642ee8f4-1" name="rest_code_fdfd34d5570e465b9b163ff3642ee8f4-1"></a>echo "flatpak run com.uploadedlobster.peek" &gt; ~/.local/bin/peek
-<a id="rest_code_fdfd34d5570e465b9b163ff3642ee8f4-2" name="rest_code_fdfd34d5570e465b9b163ff3642ee8f4-2"></a>chmod 755 ~/.local/bin/peek
-<a id="rest_code_fdfd34d5570e465b9b163ff3642ee8f4-3" name="rest_code_fdfd34d5570e465b9b163ff3642ee8f4-3"></a>peek
+<pre class="code text"><a id="rest_code_0bc1ae8de2d549a8b5a97af3322d0f71-1" name="rest_code_0bc1ae8de2d549a8b5a97af3322d0f71-1"></a>echo "flatpak run com.uploadedlobster.peek" &gt; ~/.local/bin/peek
+<a id="rest_code_0bc1ae8de2d549a8b5a97af3322d0f71-2" name="rest_code_0bc1ae8de2d549a8b5a97af3322d0f71-2"></a>chmod 755 ~/.local/bin/peek
+<a id="rest_code_0bc1ae8de2d549a8b5a97af3322d0f71-3" name="rest_code_0bc1ae8de2d549a8b5a97af3322d0f71-3"></a>peek
 </pre>
 <p>A nivel gráfico, por defecto si es agregado al menú.</p>
 </div>
@@ -222,7 +222,7 @@
      fjs.parentNode.insertBefore(js, fjs);
    }(document, 'script', 'facebook-jssdk'));
 </script>
-<div class="fb-comments" data-href="https://www.cosmoscalibur.com/blog/instalando-paquetes-en-linux-mint/" data-width="470"></div>
+<div class="fb-comments" data-href="https://cosmoscalibur.github.io/blog/instalando-paquetes-en-linux-mint/" data-width="470"></div>
 </section>
 </article>
 <div id="fb-root"></div>
