@@ -15,7 +15,34 @@
 <link href="../../rss.xml" rel="alternate" title="RSS (es)" type="application/rss+xml">
 <link href="https://cosmoscalibur.github.io/blog/calcular-distancia-geodesica-con-python/" rel="canonical">
 <link href="../../images/favicon.jpg" rel="icon" sizes="32x32">
-<meta content="595800477624602" property="fb:app_id"><!--[if lt IE 9]><script src="https://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+<meta content="595800477624602" property="fb:app_id"><!--[if lt IE 9]><script src="https://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]--><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-150354242-1">
+</script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-150354242-1');
+</script>
+<script async>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '595800477624602',
+      cookie     : true,
+      xfbml      : true,
+      version    : 'v7.0'
+    });
+    FB.AppEvents.logPageView();     
+  };
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "https://connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
 <meta content="Edward Villegas-Pulgarin" name="author">
 <link href="../filtraciones-de-datos-en-el-siglo-xxi/" rel="prev" title="Filtraciones de datos en el siglo XXI" type="text/html">
 <link href="../usar-la-camara-de-tu-celular-como-webcam/" rel="next" title="Usar la cámara de tu celular como webcam" type="text/html">
@@ -163,7 +190,6 @@ conda install -c conda-forge geopy
 <pre class="code literal-block"><span></span><span class="mi">231</span> µ<span class="nv">s</span> ± <span class="mi">7</span>.<span class="mi">42</span> µ<span class="nv">s</span> <span class="nv">per</span> <span class="k">loop</span> <span class="ss">(</span><span class="nv">mean</span> ± <span class="nv">std</span>. <span class="nv">dev</span>. <span class="nv">of</span> <span class="mi">7</span> <span class="nv">runs</span>, <span class="mi">1000</span> <span class="nv">loops</span> <span class="nv">each</span><span class="ss">)</span>
 <span class="mi">10</span>.<span class="mi">35931062438337</span> <span class="nv">km</span>
 </pre>
-<iframe frameborder="0" marginheight="0" marginwidth="0" scrolling="no" src="//ws-na.amazon-adsystem.com/widgets/q?ServiceVersion=20070822&amp;OneJS=1&amp;Operation=GetAdHtml&amp;MarketPlace=US&amp;source=ss&amp;ref=as_ss_li_til&amp;ad_type=product_link&amp;tracking_id=cosmoscalibur-20&amp;language=es_US&amp;marketplace=amazon&amp;region=US&amp;placement=B079Q47BDK&amp;asins=B079Q47BDK&amp;linkId=27f9b2ded3fc9aa23cd85e1f292c8b4e&amp;show_border=true&amp;link_opens_in_new_window=true" style="width:120px;height:240px;"></iframe>
 <h2>Consideraciones</h2>
 <p>La interfaz incluida en GeographicLib no me pareció amigable, por lo cual no la recomiendo pero su uso asegura incluir solo las funciones especializadas para el tratamiento de la distancia geodésica. GeoPy incluye más utilidades pero posee una interfaz más simple. GDAL y PyProj poseen muchas más funcionalidades, por lo cual representa un aumento de almacenamiento innecesario. Esto, finalmente, para recomendar GeoPy para esta tarea (respecto a GeographicLib, aún te dará la opción de la aproximación de círculo mayor).</p>
 <p>Respecto al método, la divergencia de Vincenty para casos antinodales y la convergencia lenta en otros casos reportados, al igual que su marcado de obsolescencia en las implementaciones nos lleva a omitirlo de cualquier consideración futura. La aproximación de Karney posee el menor error de las 3 aproximaciones pero su tiempo de cómputo es alto si se considera la necesidad de calcular entre una gran cantidad de pares de puntos.</p>
@@ -241,7 +267,10 @@ conda install -c conda-forge geopy
      fjs.parentNode.insertBefore(js, fjs);
    }(document, 'script', 'facebook-jssdk'));
 </script><!--End of body content-->
-<footer id="footer">Contents © 2020 <a href="mailto:cosmoscalibur@gmail.com">Edward Villegas Pulgarin</a> - Powered by <a href="https://getnikola.com" rel="nofollow">Nikola</a> <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="license"><img alt="Creative Commons License BY-NC-SA" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" style="border-width:0; margin-bottom:12px;"></a></footer>
+<footer id="footer">
+<div align="center"><iframe frameborder="0" marginheight="0" marginwidth="0" scrolling="no" src="//ws-na.amazon-adsystem.com/widgets/q?ServiceVersion=20070822&amp;OneJS=1&amp;Operation=GetAdHtml&amp;MarketPlace=US&amp;source=ss&amp;ref=as_ss_li_til&amp;ad_type=product_link&amp;tracking_id=cosmoscalibur-20&amp;language=es_US&amp;marketplace=amazon&amp;region=US&amp;placement=B007700BJG&amp;asins=B007700BJG&amp;linkId=e254123f0500fc338aaa7fc094ad49eb&amp;show_border=true&amp;link_opens_in_new_window=true" style="width:120px;height:240px;"></iframe></div>
+<br>
+Contents © 2020 <a href="mailto:cosmoscalibur@gmail.com">Edward Villegas Pulgarin</a> - Powered by <a href="https://getnikola.com" rel="nofollow">Nikola</a> <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="license"><img alt="Creative Commons License BY-NC-SA" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" style="border-width:0; margin-bottom:12px;"></a></footer>
 </div>
 </div>
 <script crossorigin="anonymous" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" src="https://code.jquery.com/jquery-3.4.1.min.js">
@@ -260,33 +289,6 @@ conda install -c conda-forge geopy
         captions: function(element) {
             return element.getElementsByTagName('img')[0].alt;
     }});
-</script><!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-150354242-1">
-</script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'UA-150354242-1');
-</script>
-<script async>
-  window.fbAsyncInit = function() {
-    FB.init({
-      appId      : '595800477624602',
-      cookie     : true,
-      xfbml      : true,
-      version    : 'v7.0'
-    });
-    FB.AppEvents.logPageView();     
-  };
-  (function(d, s, id){
-     var js, fjs = d.getElementsByTagName(s)[0];
-     if (d.getElementById(id)) {return;}
-     js = d.createElement(s); js.id = id;
-     js.src = "https://connect.facebook.net/en_US/sdk.js";
-     fjs.parentNode.insertBefore(js, fjs);
-   }(document, 'script', 'facebook-jssdk'));
 </script>
 </body>
 </html>

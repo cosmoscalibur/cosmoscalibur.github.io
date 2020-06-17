@@ -15,7 +15,34 @@
 <link href="../../rss.xml" rel="alternate" title="RSS (es)" type="application/rss+xml">
 <link href="https://cosmoscalibur.github.io/blog/ejecutando-macos-en-linux/" rel="canonical">
 <link href="../../images/favicon.jpg" rel="icon" sizes="32x32">
-<meta content="595800477624602" property="fb:app_id"><!--[if lt IE 9]><script src="https://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+<meta content="595800477624602" property="fb:app_id"><!--[if lt IE 9]><script src="https://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]--><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-150354242-1">
+</script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-150354242-1');
+</script>
+<script async>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '595800477624602',
+      cookie     : true,
+      xfbml      : true,
+      version    : 'v7.0'
+    });
+    FB.AppEvents.logPageView();     
+  };
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "https://connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
 <meta content="Edward Villegas-Pulgarin" name="author">
 <link href="../problemas-de-audio-en-moto-g5/" rel="prev" title="Problemas de audio en Moto G5" type="text/html">
 <link href="../la-experiencia-de-pycon-colombia-2018/" rel="next" title="La experiencia de PyCon Colombia 2018" type="text/html">
@@ -79,7 +106,7 @@
 <div>
 <p>Debo admitirlo, no me gusta Mac y sigue sin gustarme, pero en múltiples ocasiones se hace necesario poder disponer de un Mac al igual que de un Windows para efectos de pruebas o de correr software específico cuando no hay de otra. Por este caso me di a la tarea de buscar como lograr ejecutar macOS en mi equipo Asus que posee Linux instalado de la forma más fácil posible. A continuación, como ejecutar macOS (específicamente hackintosh) en tu equipo Linux (el procedimiento aplica también para Windows).</p>
 <p><strong>Requisitos</strong>: Conexión a internet estable, disco duro con más de 100 GB disponibles, RAM superior a 6 GB, procesador de más de dos núcleos (preferible Intel) y mucho tiempo.</p>
-<iframe frameborder="0" marginheight="0" marginwidth="0" scrolling="no" src="//ws-na.amazon-adsystem.com/widgets/q?ServiceVersion=20070822&amp;OneJS=1&amp;Operation=GetAdHtml&amp;MarketPlace=US&amp;source=ss&amp;ref=as_ss_li_til&amp;ad_type=product_link&amp;tracking_id=cosmoscalibur-20&amp;language=es_US&amp;marketplace=amazon&amp;region=US&amp;placement=B07QWLXCC7&amp;asins=B07QWLXCC7&amp;linkId=ec8263fe9f13222ede56df34878a1743&amp;show_border=true&amp;link_opens_in_new_window=true" style="width:120px;height:240px;"></iframe><!-- TEASER_END -->
+<!-- TEASER_END -->
 <div class="section" id="contexto">
 <h2>Contexto</h2>
 <p>Creo que no hay necesidad pero no hay que dar por obvias las cosas. El primer punto al respecto de esto es que macOS en si mismo es "imposible" de piratear porque el sistema operativo esta ligado al hardware. Así, la única manera de obtener e instalar macOS es tener un equipo Mac. El tema se resuelve entonces a través de una modificación del sistema operativo que da origen a iPC, OSX86 o Hackintosh, una variación del sistema que permite llevar macOS a equipos tradicionales (PC).</p>
@@ -111,12 +138,12 @@
 </div>
 <p>Aquí hemos creado ya la máquina en si misma pero debemos configurar antes un par de cosas. En configuración de la máquina debemos ir a la sección de sistema (<em>system</em>) y luego placa madre (<em>Motherboard</em>) y habilitar las características extendidas (<em>Extended features</em>) y elegir <em>USB Tablet</em> en el puntero (<em>Pointing device</em>). En la misma sección vamos a la pestaña de procesador (<em>Processor</em>) e indicamos al menos 2 CPU. Por último, en la sección de monitor (<em>Display</em>) vamos a la pestaña <em>Screen</em> y asignamos 128 MB a la memoria de video (<em>Video Memory</em>).</p>
 <p>Ahora, pasamos a la consola (powershell o CMD en Windows) y ejecutamos lo siguiente (si es Windows hay que poner <code>VBoxManage.exe</code> estando en el directorio de VirtualBox -<code>cd "C:Program FilesOracleVirtualBox"</code>-):</p>
-<pre class="code bash"><a id="rest_code_13577771cbb54388bcd59220c1b6e6cd-1" name="rest_code_13577771cbb54388bcd59220c1b6e6cd-1"></a>VBoxManage modifyvm <span class="s2">"macos"</span> --cpuidset <span class="m">00000001</span> 000106e5 <span class="m">00100800</span> 0098e3fd bfebfbff
-<a id="rest_code_13577771cbb54388bcd59220c1b6e6cd-2" name="rest_code_13577771cbb54388bcd59220c1b6e6cd-2"></a>VBoxManage setextradata <span class="s2">"macos"</span> <span class="s2">"VBoxInternal/Devices/efi/0/Config/DmiSystemProduct"</span> <span class="s2">"iMac11,3"</span>
-<a id="rest_code_13577771cbb54388bcd59220c1b6e6cd-3" name="rest_code_13577771cbb54388bcd59220c1b6e6cd-3"></a>VBoxManage setextradata <span class="s2">"macos"</span> <span class="s2">"VBoxInternal/Devices/efi/0/Config/DmiSystemVersion"</span> <span class="s2">"1.0"</span>
-<a id="rest_code_13577771cbb54388bcd59220c1b6e6cd-4" name="rest_code_13577771cbb54388bcd59220c1b6e6cd-4"></a>VBoxManage setextradata <span class="s2">"macos"</span> <span class="s2">"VBoxInternal/Devices/efi/0/Config/DmiBoardProduct"</span> <span class="s2">"Iloveapple"</span>
-<a id="rest_code_13577771cbb54388bcd59220c1b6e6cd-5" name="rest_code_13577771cbb54388bcd59220c1b6e6cd-5"></a>VBoxManage setextradata <span class="s2">"macos"</span> <span class="s2">"VBoxInternal/Devices/smc/0/Config/DeviceKey"</span> <span class="s2">"ourhardworkbythesewordsguardedpleasedontsteal(c)AppleComputerInc"</span>
-<a id="rest_code_13577771cbb54388bcd59220c1b6e6cd-6" name="rest_code_13577771cbb54388bcd59220c1b6e6cd-6"></a>VBoxManage setextradata <span class="s2">"macos"</span> <span class="s2">"VBoxInternal/Devices/smc/0/Config/GetKeyFromRealSMC"</span> <span class="m">1</span>
+<pre class="code bash"><a id="rest_code_96da233a483d45d683d795c5b58b246e-1" name="rest_code_96da233a483d45d683d795c5b58b246e-1"></a>VBoxManage modifyvm <span class="s2">"macos"</span> --cpuidset <span class="m">00000001</span> 000106e5 <span class="m">00100800</span> 0098e3fd bfebfbff
+<a id="rest_code_96da233a483d45d683d795c5b58b246e-2" name="rest_code_96da233a483d45d683d795c5b58b246e-2"></a>VBoxManage setextradata <span class="s2">"macos"</span> <span class="s2">"VBoxInternal/Devices/efi/0/Config/DmiSystemProduct"</span> <span class="s2">"iMac11,3"</span>
+<a id="rest_code_96da233a483d45d683d795c5b58b246e-3" name="rest_code_96da233a483d45d683d795c5b58b246e-3"></a>VBoxManage setextradata <span class="s2">"macos"</span> <span class="s2">"VBoxInternal/Devices/efi/0/Config/DmiSystemVersion"</span> <span class="s2">"1.0"</span>
+<a id="rest_code_96da233a483d45d683d795c5b58b246e-4" name="rest_code_96da233a483d45d683d795c5b58b246e-4"></a>VBoxManage setextradata <span class="s2">"macos"</span> <span class="s2">"VBoxInternal/Devices/efi/0/Config/DmiBoardProduct"</span> <span class="s2">"Iloveapple"</span>
+<a id="rest_code_96da233a483d45d683d795c5b58b246e-5" name="rest_code_96da233a483d45d683d795c5b58b246e-5"></a>VBoxManage setextradata <span class="s2">"macos"</span> <span class="s2">"VBoxInternal/Devices/smc/0/Config/DeviceKey"</span> <span class="s2">"ourhardworkbythesewordsguardedpleasedontsteal(c)AppleComputerInc"</span>
+<a id="rest_code_96da233a483d45d683d795c5b58b246e-6" name="rest_code_96da233a483d45d683d795c5b58b246e-6"></a>VBoxManage setextradata <span class="s2">"macos"</span> <span class="s2">"VBoxInternal/Devices/smc/0/Config/GetKeyFromRealSMC"</span> <span class="m">1</span>
 </pre>
 <p>Tras esto estamos listos para encender la máquina virtual e instalar el sistema operativo en ella (nombre, usuario, contraseña, idioma, teclado). Lo único problemático aquí es que tendrás problema con el teclado pues esta pensado para los teclados Mac. Como cualquier instalación de sistema operativo es algo lento y más considerando que es una máquina virtual.</p>
 <div class="figure align-center"><a class="reference external image-reference" href="../../images/ejecutando-macos-en-linux/maquina-virtual-idioma-macos.png"><img alt="Selección de idioma en macOS." src="../../images/ejecutando-macos-en-linux/maquina-virtual-idioma-macos.thumbnail.png"></a>
@@ -127,19 +154,19 @@
 <h2>Después</h2>
 <p>No soy usuario Mac y mi propósito de hacer esto era muy específico, validar compatibilidad de códigos que uso, desarrollo o contribuyo. Pero en este mismo sentido, algo que recomiendo hacer, es instalar <a class="reference external" href="https://brew.sh/index_es.html">Homebrew</a> con el fin de tener listo nuestro macOS para pruebas y poder instalar distintos paquetes comunes a la hora de programar.</p>
 <p>Para ello debes abrir la consola que encontrarás en aplicaciones y ejecutar lo siguiente:</p>
-<pre class="code bash"><a id="rest_code_58a573f29c99402db6aeb3a5bfafc3de-1" name="rest_code_58a573f29c99402db6aeb3a5bfafc3de-1"></a>ruby -e <span class="s2">"</span><span class="k">$(</span>curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install<span class="k">)</span><span class="s2">"</span>
+<pre class="code bash"><a id="rest_code_82b9a5e588794ea5827c14a3fbc036e6-1" name="rest_code_82b9a5e588794ea5827c14a3fbc036e6-1"></a>ruby -e <span class="s2">"</span><span class="k">$(</span>curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install<span class="k">)</span><span class="s2">"</span>
 </pre>
 <p>Tendrás que tener paciencia pues el proceso me tomó 45 minutos (en foros reportan la instalación de <em>homebrew</em> de casi 2 horas) y necesitas estar pendiente pues hay dos solicitudes de tu contraseña.</p>
 <div class="figure align-center"><img alt="Instalación de homebrew en macOS" src="../../images/ejecutando-macos-en-linux/maquina-virtual-homebrew-macos.png">
 <p class="caption">Instalación por consola de homebrew en macOS.</p>
 </div>
 <p>Una vez instalado, puedes aprovechar a dejar listo python (actualiza la versión por defecto e instala el gestor pip). Igualmente es conveniente instalar otros paquetes de uso común por otras aplicaciones .</p>
-<pre class="code bash"><a id="rest_code_df07d62356364f1c841fa765bc2058d3-1" name="rest_code_df07d62356364f1c841fa765bc2058d3-1"></a>brew install pkg-config <span class="c1"># Ayuda a determinar la lista de paquetes existentes</span>
-<a id="rest_code_df07d62356364f1c841fa765bc2058d3-2" name="rest_code_df07d62356364f1c841fa765bc2058d3-2"></a>brew install python3 <span class="c1"># Python3 no viene por defecto</span>
-<a id="rest_code_df07d62356364f1c841fa765bc2058d3-3" name="rest_code_df07d62356364f1c841fa765bc2058d3-3"></a>brew install python2 <span class="c1"># Actualiza la versión existente. En ambos casos se instala pip (pip2 y pip3)</span>
-<a id="rest_code_df07d62356364f1c841fa765bc2058d3-4" name="rest_code_df07d62356364f1c841fa765bc2058d3-4"></a>brew install freetype <span class="c1"># Requerido para la manipulación de fuentes -por ejemplo en matplotlib-</span>
-<a id="rest_code_df07d62356364f1c841fa765bc2058d3-5" name="rest_code_df07d62356364f1c841fa765bc2058d3-5"></a>brew install libpng <span class="c1"># Requerido para la manipulación de imágenes png -por ejemplo en matplotlib-</span>
-<a id="rest_code_df07d62356364f1c841fa765bc2058d3-6" name="rest_code_df07d62356364f1c841fa765bc2058d3-6"></a>brew install pygtk <span class="c1"># Binding de GTK para python. Interfaces en pygtk son comunes.</span>
+<pre class="code bash"><a id="rest_code_1869e82d509a4ab2a679cdd738da2667-1" name="rest_code_1869e82d509a4ab2a679cdd738da2667-1"></a>brew install pkg-config <span class="c1"># Ayuda a determinar la lista de paquetes existentes</span>
+<a id="rest_code_1869e82d509a4ab2a679cdd738da2667-2" name="rest_code_1869e82d509a4ab2a679cdd738da2667-2"></a>brew install python3 <span class="c1"># Python3 no viene por defecto</span>
+<a id="rest_code_1869e82d509a4ab2a679cdd738da2667-3" name="rest_code_1869e82d509a4ab2a679cdd738da2667-3"></a>brew install python2 <span class="c1"># Actualiza la versión existente. En ambos casos se instala pip (pip2 y pip3)</span>
+<a id="rest_code_1869e82d509a4ab2a679cdd738da2667-4" name="rest_code_1869e82d509a4ab2a679cdd738da2667-4"></a>brew install freetype <span class="c1"># Requerido para la manipulación de fuentes -por ejemplo en matplotlib-</span>
+<a id="rest_code_1869e82d509a4ab2a679cdd738da2667-5" name="rest_code_1869e82d509a4ab2a679cdd738da2667-5"></a>brew install libpng <span class="c1"># Requerido para la manipulación de imágenes png -por ejemplo en matplotlib-</span>
+<a id="rest_code_1869e82d509a4ab2a679cdd738da2667-6" name="rest_code_1869e82d509a4ab2a679cdd738da2667-6"></a>brew install pygtk <span class="c1"># Binding de GTK para python. Interfaces en pygtk son comunes.</span>
 </pre></div>
 </div>
 </div>
@@ -213,7 +240,10 @@
      fjs.parentNode.insertBefore(js, fjs);
    }(document, 'script', 'facebook-jssdk'));
 </script><!--End of body content-->
-<footer id="footer">Contents © 2020 <a href="mailto:cosmoscalibur@gmail.com">Edward Villegas Pulgarin</a> - Powered by <a href="https://getnikola.com" rel="nofollow">Nikola</a> <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="license"><img alt="Creative Commons License BY-NC-SA" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" style="border-width:0; margin-bottom:12px;"></a></footer>
+<footer id="footer">
+<div align="center"><iframe frameborder="0" marginheight="0" marginwidth="0" scrolling="no" src="//ws-na.amazon-adsystem.com/widgets/q?ServiceVersion=20070822&amp;OneJS=1&amp;Operation=GetAdHtml&amp;MarketPlace=US&amp;source=ss&amp;ref=as_ss_li_til&amp;ad_type=product_link&amp;tracking_id=cosmoscalibur-20&amp;language=es_US&amp;marketplace=amazon&amp;region=US&amp;placement=B007700BJG&amp;asins=B007700BJG&amp;linkId=e254123f0500fc338aaa7fc094ad49eb&amp;show_border=true&amp;link_opens_in_new_window=true" style="width:120px;height:240px;"></iframe></div>
+<br>
+Contents © 2020 <a href="mailto:cosmoscalibur@gmail.com">Edward Villegas Pulgarin</a> - Powered by <a href="https://getnikola.com" rel="nofollow">Nikola</a> <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="license"><img alt="Creative Commons License BY-NC-SA" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" style="border-width:0; margin-bottom:12px;"></a></footer>
 </div>
 </div>
 <script crossorigin="anonymous" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" src="https://code.jquery.com/jquery-3.4.1.min.js">
@@ -232,33 +262,6 @@
         captions: function(element) {
             return element.getElementsByTagName('img')[0].alt;
     }});
-</script><!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-150354242-1">
-</script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'UA-150354242-1');
-</script>
-<script async>
-  window.fbAsyncInit = function() {
-    FB.init({
-      appId      : '595800477624602',
-      cookie     : true,
-      xfbml      : true,
-      version    : 'v7.0'
-    });
-    FB.AppEvents.logPageView();     
-  };
-  (function(d, s, id){
-     var js, fjs = d.getElementsByTagName(s)[0];
-     if (d.getElementById(id)) {return;}
-     js = d.createElement(s); js.id = id;
-     js.src = "https://connect.facebook.net/en_US/sdk.js";
-     fjs.parentNode.insertBefore(js, fjs);
-   }(document, 'script', 'facebook-jssdk'));
 </script>
 </body>
 </html>
