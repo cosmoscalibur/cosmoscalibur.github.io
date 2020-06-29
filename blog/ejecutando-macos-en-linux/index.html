@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es" prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article# fb: http://ogp.me/ns/fb#">
+<html lang="es" prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article#">
 <head>
 <meta charset="utf-8">
 <meta content="Esta publicación describe de manera básica el proceso de instalación de macOS en una máquina virtual en un entorno Linux. Se indica el sitio de descarga de la imagen del sistema operativo que corresponde a una variante denominada hackintosh." name="description">
@@ -14,17 +14,16 @@
 <link href="../../en/rss.xml" rel="alternate" title="RSS (en)" type="application/rss+xml">
 <link href="../../rss.xml" rel="alternate" title="RSS (es)" type="application/rss+xml">
 <link href="https://cosmoscalibur.github.io/blog/ejecutando-macos-en-linux/" rel="canonical">
-<link href="../../images/favicon.jpg" rel="icon" sizes="32x32">
-<meta content="595800477624602" property="fb:app_id"><!--[if lt IE 9]><script src="https://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]--><!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-150354242-1">
-</script>
+<link href="../../images/favicon.jpg" rel="icon" sizes="32x32"><!--[if lt IE 9]><script src="https://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]--><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-150354242-1"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 
   gtag('config', 'UA-150354242-1');
-</script>
+</script><!-- Google Adsense -->
+<script async data-ad-client="ca-pub-0356238418278924" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><!-- Facebook Analytics -->
 <script async>
   window.fbAsyncInit = function() {
     FB.init({
@@ -99,7 +98,7 @@
 <div class="metadata">
 <p class="byline author vcard p-author h-card"><span class="byline-name fn p-name" itemprop="author">Edward Villegas-Pulgarin</span></p>
 <p class="dateline"><a href="." rel="bookmark"><time class="published dt-published" datetime="2018-01-18T22:16:55-05:00" itemprop="datePublished" title="2018-01-18 22:16">2018-01-18 22:16</time></a></p>
-<p class="commentline"><span class="fb-comments-count" data-url="/blog/ejecutando-macos-en-linux/"></span></p>
+<p class="commentline"><a data-disqus-identifier="cache/posts/ejecutando-macos-en-linux.html" href="#disqus_thread">Comentarios</a></p>
 </div>
 </header>
 <div class="e-content entry-content" itemprop="articleBody text">
@@ -138,12 +137,12 @@
 </div>
 <p>Aquí hemos creado ya la máquina en si misma pero debemos configurar antes un par de cosas. En configuración de la máquina debemos ir a la sección de sistema (<em>system</em>) y luego placa madre (<em>Motherboard</em>) y habilitar las características extendidas (<em>Extended features</em>) y elegir <em>USB Tablet</em> en el puntero (<em>Pointing device</em>). En la misma sección vamos a la pestaña de procesador (<em>Processor</em>) e indicamos al menos 2 CPU. Por último, en la sección de monitor (<em>Display</em>) vamos a la pestaña <em>Screen</em> y asignamos 128 MB a la memoria de video (<em>Video Memory</em>).</p>
 <p>Ahora, pasamos a la consola (powershell o CMD en Windows) y ejecutamos lo siguiente (si es Windows hay que poner <code>VBoxManage.exe</code> estando en el directorio de VirtualBox -<code>cd "C:Program FilesOracleVirtualBox"</code>-):</p>
-<pre class="code bash"><a id="rest_code_b840069cfe15442ba974c1ebc46f95f6-1" name="rest_code_b840069cfe15442ba974c1ebc46f95f6-1"></a>VBoxManage modifyvm <span class="s2">"macos"</span> --cpuidset <span class="m">00000001</span> 000106e5 <span class="m">00100800</span> 0098e3fd bfebfbff
-<a id="rest_code_b840069cfe15442ba974c1ebc46f95f6-2" name="rest_code_b840069cfe15442ba974c1ebc46f95f6-2"></a>VBoxManage setextradata <span class="s2">"macos"</span> <span class="s2">"VBoxInternal/Devices/efi/0/Config/DmiSystemProduct"</span> <span class="s2">"iMac11,3"</span>
-<a id="rest_code_b840069cfe15442ba974c1ebc46f95f6-3" name="rest_code_b840069cfe15442ba974c1ebc46f95f6-3"></a>VBoxManage setextradata <span class="s2">"macos"</span> <span class="s2">"VBoxInternal/Devices/efi/0/Config/DmiSystemVersion"</span> <span class="s2">"1.0"</span>
-<a id="rest_code_b840069cfe15442ba974c1ebc46f95f6-4" name="rest_code_b840069cfe15442ba974c1ebc46f95f6-4"></a>VBoxManage setextradata <span class="s2">"macos"</span> <span class="s2">"VBoxInternal/Devices/efi/0/Config/DmiBoardProduct"</span> <span class="s2">"Iloveapple"</span>
-<a id="rest_code_b840069cfe15442ba974c1ebc46f95f6-5" name="rest_code_b840069cfe15442ba974c1ebc46f95f6-5"></a>VBoxManage setextradata <span class="s2">"macos"</span> <span class="s2">"VBoxInternal/Devices/smc/0/Config/DeviceKey"</span> <span class="s2">"ourhardworkbythesewordsguardedpleasedontsteal(c)AppleComputerInc"</span>
-<a id="rest_code_b840069cfe15442ba974c1ebc46f95f6-6" name="rest_code_b840069cfe15442ba974c1ebc46f95f6-6"></a>VBoxManage setextradata <span class="s2">"macos"</span> <span class="s2">"VBoxInternal/Devices/smc/0/Config/GetKeyFromRealSMC"</span> <span class="m">1</span>
+<pre class="code bash"><a id="rest_code_586242d1557a410cb3bcc3de04530df8-1" name="rest_code_586242d1557a410cb3bcc3de04530df8-1"></a>VBoxManage modifyvm <span class="s2">"macos"</span> --cpuidset <span class="m">00000001</span> 000106e5 <span class="m">00100800</span> 0098e3fd bfebfbff
+<a id="rest_code_586242d1557a410cb3bcc3de04530df8-2" name="rest_code_586242d1557a410cb3bcc3de04530df8-2"></a>VBoxManage setextradata <span class="s2">"macos"</span> <span class="s2">"VBoxInternal/Devices/efi/0/Config/DmiSystemProduct"</span> <span class="s2">"iMac11,3"</span>
+<a id="rest_code_586242d1557a410cb3bcc3de04530df8-3" name="rest_code_586242d1557a410cb3bcc3de04530df8-3"></a>VBoxManage setextradata <span class="s2">"macos"</span> <span class="s2">"VBoxInternal/Devices/efi/0/Config/DmiSystemVersion"</span> <span class="s2">"1.0"</span>
+<a id="rest_code_586242d1557a410cb3bcc3de04530df8-4" name="rest_code_586242d1557a410cb3bcc3de04530df8-4"></a>VBoxManage setextradata <span class="s2">"macos"</span> <span class="s2">"VBoxInternal/Devices/efi/0/Config/DmiBoardProduct"</span> <span class="s2">"Iloveapple"</span>
+<a id="rest_code_586242d1557a410cb3bcc3de04530df8-5" name="rest_code_586242d1557a410cb3bcc3de04530df8-5"></a>VBoxManage setextradata <span class="s2">"macos"</span> <span class="s2">"VBoxInternal/Devices/smc/0/Config/DeviceKey"</span> <span class="s2">"ourhardworkbythesewordsguardedpleasedontsteal(c)AppleComputerInc"</span>
+<a id="rest_code_586242d1557a410cb3bcc3de04530df8-6" name="rest_code_586242d1557a410cb3bcc3de04530df8-6"></a>VBoxManage setextradata <span class="s2">"macos"</span> <span class="s2">"VBoxInternal/Devices/smc/0/Config/GetKeyFromRealSMC"</span> <span class="m">1</span>
 </pre>
 <p>Tras esto estamos listos para encender la máquina virtual e instalar el sistema operativo en ella (nombre, usuario, contraseña, idioma, teclado). Lo único problemático aquí es que tendrás problema con el teclado pues esta pensado para los teclados Mac. Como cualquier instalación de sistema operativo es algo lento y más considerando que es una máquina virtual.</p>
 <div class="figure align-center"><a class="reference external image-reference" href="../../images/ejecutando-macos-en-linux/maquina-virtual-idioma-macos.png"><img alt="Selección de idioma en macOS." src="../../images/ejecutando-macos-en-linux/maquina-virtual-idioma-macos.thumbnail.png"></a>
@@ -154,19 +153,19 @@
 <h2>Después</h2>
 <p>No soy usuario Mac y mi propósito de hacer esto era muy específico, validar compatibilidad de códigos que uso, desarrollo o contribuyo. Pero en este mismo sentido, algo que recomiendo hacer, es instalar <a class="reference external" href="https://brew.sh/index_es.html">Homebrew</a> con el fin de tener listo nuestro macOS para pruebas y poder instalar distintos paquetes comunes a la hora de programar.</p>
 <p>Para ello debes abrir la consola que encontrarás en aplicaciones y ejecutar lo siguiente:</p>
-<pre class="code bash"><a id="rest_code_4e9f3b2e6ad24ed198eef904df41864a-1" name="rest_code_4e9f3b2e6ad24ed198eef904df41864a-1"></a>ruby -e <span class="s2">"</span><span class="k">$(</span>curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install<span class="k">)</span><span class="s2">"</span>
+<pre class="code bash"><a id="rest_code_b3092ed50d1544dcad720a2bbdec163f-1" name="rest_code_b3092ed50d1544dcad720a2bbdec163f-1"></a>ruby -e <span class="s2">"</span><span class="k">$(</span>curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install<span class="k">)</span><span class="s2">"</span>
 </pre>
 <p>Tendrás que tener paciencia pues el proceso me tomó 45 minutos (en foros reportan la instalación de <em>homebrew</em> de casi 2 horas) y necesitas estar pendiente pues hay dos solicitudes de tu contraseña.</p>
 <div class="figure align-center"><img alt="Instalación de homebrew en macOS" src="../../images/ejecutando-macos-en-linux/maquina-virtual-homebrew-macos.png">
 <p class="caption">Instalación por consola de homebrew en macOS.</p>
 </div>
 <p>Una vez instalado, puedes aprovechar a dejar listo python (actualiza la versión por defecto e instala el gestor pip). Igualmente es conveniente instalar otros paquetes de uso común por otras aplicaciones .</p>
-<pre class="code bash"><a id="rest_code_76afe366996d48218c36f029fd663cc8-1" name="rest_code_76afe366996d48218c36f029fd663cc8-1"></a>brew install pkg-config <span class="c1"># Ayuda a determinar la lista de paquetes existentes</span>
-<a id="rest_code_76afe366996d48218c36f029fd663cc8-2" name="rest_code_76afe366996d48218c36f029fd663cc8-2"></a>brew install python3 <span class="c1"># Python3 no viene por defecto</span>
-<a id="rest_code_76afe366996d48218c36f029fd663cc8-3" name="rest_code_76afe366996d48218c36f029fd663cc8-3"></a>brew install python2 <span class="c1"># Actualiza la versión existente. En ambos casos se instala pip (pip2 y pip3)</span>
-<a id="rest_code_76afe366996d48218c36f029fd663cc8-4" name="rest_code_76afe366996d48218c36f029fd663cc8-4"></a>brew install freetype <span class="c1"># Requerido para la manipulación de fuentes -por ejemplo en matplotlib-</span>
-<a id="rest_code_76afe366996d48218c36f029fd663cc8-5" name="rest_code_76afe366996d48218c36f029fd663cc8-5"></a>brew install libpng <span class="c1"># Requerido para la manipulación de imágenes png -por ejemplo en matplotlib-</span>
-<a id="rest_code_76afe366996d48218c36f029fd663cc8-6" name="rest_code_76afe366996d48218c36f029fd663cc8-6"></a>brew install pygtk <span class="c1"># Binding de GTK para python. Interfaces en pygtk son comunes.</span>
+<pre class="code bash"><a id="rest_code_e73218f1e6474f3ea810c1ef57105ade-1" name="rest_code_e73218f1e6474f3ea810c1ef57105ade-1"></a>brew install pkg-config <span class="c1"># Ayuda a determinar la lista de paquetes existentes</span>
+<a id="rest_code_e73218f1e6474f3ea810c1ef57105ade-2" name="rest_code_e73218f1e6474f3ea810c1ef57105ade-2"></a>brew install python3 <span class="c1"># Python3 no viene por defecto</span>
+<a id="rest_code_e73218f1e6474f3ea810c1ef57105ade-3" name="rest_code_e73218f1e6474f3ea810c1ef57105ade-3"></a>brew install python2 <span class="c1"># Actualiza la versión existente. En ambos casos se instala pip (pip2 y pip3)</span>
+<a id="rest_code_e73218f1e6474f3ea810c1ef57105ade-4" name="rest_code_e73218f1e6474f3ea810c1ef57105ade-4"></a>brew install freetype <span class="c1"># Requerido para la manipulación de fuentes -por ejemplo en matplotlib-</span>
+<a id="rest_code_e73218f1e6474f3ea810c1ef57105ade-5" name="rest_code_e73218f1e6474f3ea810c1ef57105ade-5"></a>brew install libpng <span class="c1"># Requerido para la manipulación de imágenes png -por ejemplo en matplotlib-</span>
+<a id="rest_code_e73218f1e6474f3ea810c1ef57105ade-6" name="rest_code_e73218f1e6474f3ea810c1ef57105ade-6"></a>brew install pygtk <span class="c1"># Binding de GTK para python. Interfaces en pygtk son comunes.</span>
 </pre></div>
 </div>
 </div>
@@ -187,76 +186,35 @@
 </aside>
 <section class="comments hidden-print">
 <h2>Comentarios</h2>
-<div id="fb-root"></div>
+<div id="disqus_thread"></div>
 <script>
-  window.fbAsyncInit = function() {
-    // init the FB JS SDK
-    FB.init({
-      appId      : '595800477624602',
-      status     : true,
-      xfbml      : true
-    });
-
-  };
-
-  // Load the SDK asynchronously
-  (function(d, s, id){
-     var js, fjs = d.getElementsByTagName(s)[0];
-     if (d.getElementById(id)) {return;}
-     js = d.createElement(s); js.id = id;
-     js.src = "https://connect.facebook.net/en_US/all.js";
-     fjs.parentNode.insertBefore(js, fjs);
-   }(document, 'script', 'facebook-jssdk'));
-</script>
-<div class="fb-comments" data-href="https://cosmoscalibur.github.io/blog/ejecutando-macos-en-linux/" data-width="470"></div>
-</section>
+        var disqus_shortname ="cosmoscalibur",
+            disqus_url="https://cosmoscalibur.github.io/blog/ejecutando-macos-en-linux/",
+        disqus_title="Ejecutando macOS en Linux",
+        disqus_identifier="cache/posts/ejecutando-macos-en-linux.html",
+        disqus_config = function () {
+            this.language = "es_ES";
+        };
+        (function() {
+            var dsq = document.createElement('script'); dsq.async = true;
+            dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript> <a class="dsq-brlink" href="https://disqus.com" rel="nofollow">Comments powered by <span class="logo-disqus">Disqus</span></a></section>
 </article>
-<div id="fb-root"></div>
 <script>
-    // thank lxml for this
-    $('.fb-comments-count').each(function(i, obj) {
-        var url = obj.attributes['data-url'].value;
-        // change here if you dislike the default way of displaying
-        // this
-        obj.innerHTML = '<fb:comments-count href="' + url + '"><\/fb:comments-count> comments';
-    });
-
-  window.fbAsyncInit = function() {
-    // init the FB JS SDK
-    FB.init({
-      appId      : '595800477624602',
-      status     : true,
-      xfbml      : true
-    });
-
-  };
-
-  // Load the SDK asynchronously
-  (function(d, s, id){
-     var js, fjs = d.getElementsByTagName(s)[0];
-     if (d.getElementById(id)) {return;}
-     js = d.createElement(s); js.id = id;
-     js.src = "https://connect.facebook.net/en_US/all.js";
-     fjs.parentNode.insertBefore(js, fjs);
-   }(document, 'script', 'facebook-jssdk'));
+var disqus_shortname="cosmoscalibur";(function(){var a=document.createElement("script");a.async=true;a.src="https://"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());
 </script><!--End of body content-->
-<footer id="footer">
-<div align="center"><iframe frameborder="0" marginheight="0" marginwidth="0" scrolling="no" src="//ws-na.amazon-adsystem.com/widgets/q?ServiceVersion=20070822&amp;OneJS=1&amp;Operation=GetAdHtml&amp;MarketPlace=US&amp;source=ss&amp;ref=as_ss_li_til&amp;ad_type=product_link&amp;tracking_id=cosmoscalibur-20&amp;language=es_US&amp;marketplace=amazon&amp;region=US&amp;placement=B007700BJG&amp;asins=B007700BJG&amp;linkId=e254123f0500fc338aaa7fc094ad49eb&amp;show_border=true&amp;link_opens_in_new_window=true" style="width:120px;height:240px;"></iframe></div>
-<br>
-Contents © 2020 <a href="mailto:cosmoscalibur@gmail.com">Edward Villegas Pulgarin</a> - Powered by <a href="https://getnikola.com" rel="nofollow">Nikola</a> <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="license"><img alt="Creative Commons License BY-NC-SA" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" style="border-width:0; margin-bottom:12px;"></a></footer>
+<footer id="footer">Contents © 2020 <a href="mailto:cosmoscalibur@gmail.com">Edward Villegas Pulgarin</a> - Powered by <a href="https://getnikola.com" rel="nofollow">Nikola</a> <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="license"><img alt="Creative Commons License BY-NC-SA" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" style="border-width:0; margin-bottom:12px;"></a></footer>
 </div>
 </div>
-<script crossorigin="anonymous" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" src="https://code.jquery.com/jquery-3.4.1.min.js">
-</script>
-<script crossorigin="anonymous" integrity="sha256-/ijcOLwFf26xEYAjW75FizKVo5tnTYiQddPZoLUHHZ8=" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js">
-</script>
-<script crossorigin="anonymous" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js">
-</script>
-<script crossorigin="anonymous" integrity="sha256-yQGjQhFs3LtyiN5hhr3k9s9TWZOh/RzCkD3gwwCKlkg=" src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.11.0/baguetteBox.min.js">
-</script>
-<script src="../../assets/js/all.js">
-</script>
+<script crossorigin="anonymous" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script crossorigin="anonymous" integrity="sha256-/ijcOLwFf26xEYAjW75FizKVo5tnTYiQddPZoLUHHZ8=" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
+<script crossorigin="anonymous" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+<script crossorigin="anonymous" integrity="sha256-yQGjQhFs3LtyiN5hhr3k9s9TWZOh/RzCkD3gwwCKlkg=" src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.11.0/baguetteBox.min.js"></script>
+<script src="../../assets/js/all.js"></script>
 <script>
+
     baguetteBox.run('div#content', {
         ignoreClass: 'islink',
         captions: function(element) {

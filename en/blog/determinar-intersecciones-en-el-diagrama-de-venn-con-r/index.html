@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article# fb: http://ogp.me/ns/fb#">
+<html lang="en" prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article#">
 <head>
 <meta charset="utf-8">
 <meta content="Utility to determine elements in overlap areas in Venn diagramas with R package. Use case in bioinformatics to compare list of genes." name="description">
@@ -14,17 +14,16 @@
 <link href="../../rss.xml" rel="alternate" title="RSS (en)" type="application/rss+xml">
 <link href="../../../rss.xml" rel="alternate" title="RSS (es)" type="application/rss+xml">
 <link href="https://cosmoscalibur.github.io/en/blog/determinar-intersecciones-en-el-diagrama-de-venn-con-r/" rel="canonical">
-<link href="../../../images/favicon.jpg" rel="icon" sizes="32x32">
-<meta content="595800477624602" property="fb:app_id"><!--[if lt IE 9]><script src="https://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]--><!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-150354242-1">
-</script>
+<link href="../../../images/favicon.jpg" rel="icon" sizes="32x32"><!--[if lt IE 9]><script src="https://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]--><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-150354242-1"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 
   gtag('config', 'UA-150354242-1');
-</script>
+</script><!-- Google Adsense -->
+<script async data-ad-client="ca-pub-0356238418278924" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><!-- Facebook Analytics -->
 <script async>
   window.fbAsyncInit = function() {
     FB.init({
@@ -96,7 +95,7 @@
 <div class="metadata">
 <p class="byline author vcard p-author h-card"><span class="byline-name fn p-name" itemprop="author">Edward Villegas-Pulgarin</span></p>
 <p class="dateline"><a href="." rel="bookmark"><time class="published dt-published" datetime="2020-06-13T19:40:00-05:00" itemprop="datePublished" title="2020-06-13 19:40">2020-06-13 19:40</time></a></p>
-<p class="commentline"><span class="fb-comments-count" data-url="/en/blog/determinar-intersecciones-en-el-diagrama-de-venn-con-r/"></span></p>
+<p class="commentline"><a data-disqus-identifier="cache/posts/determinar-intersecciones-en-el-diagrama-de-venn-con-r.html" href="#disqus_thread">Comments</a></p>
 </div>
 <div class="metadata posttranslations translations">
 <h3 class="posttranslations-intro">Also available in:</h3>
@@ -117,41 +116,41 @@
 <p>Use 3 files in <code>tests</code> directory with names <code>primes.txt</code>, <code>even.txt</code> y <code>fibo.txt</code> whose content are primes, even and Fibonacci numbers until 20.</p>
 <h2>Install</h2>
 <p>You can install from GitHub as:</p>
-<pre class="code literal-block"><span></span><span class="n">devtools</span><span class="o">::</span><span class="nf">install_github</span><span class="p">(</span><span class="s">"cosmoscalibur/venn.compute"</span><span class="p">)</span>
-</pre>
+<pre class="code literal-block"><span></span><code><span class="n">devtools</span><span class="o">::</span><span class="nf">install_github</span><span class="p">(</span><span class="s">"cosmoscalibur/venn.compute"</span><span class="p">)</span>
+</code></pre>
 <p>Downloading GitHub repo cosmoscalibur/venn.compute@master</p>
-<pre class="code literal-block"><span></span><span class="nv">formatR</span> <span class="ss">(</span><span class="mi">1</span>.<span class="mi">6</span> <span class="o">-&gt;</span> <span class="mi">1</span>.<span class="mi">7</span><span class="ss">)</span> [<span class="nv">CRAN</span>]
+<pre class="code literal-block"><span></span><code><span class="n">formatR</span><span class="w"> </span><span class="p">(</span><span class="mf">1.6</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="mf">1.7</span><span class="p">)</span><span class="w"> </span><span class="o">[</span><span class="n">CRAN</span><span class="o">]</span><span class="w"></span>
 
 
-<span class="nv">Installing</span> <span class="mi">1</span> <span class="nv">packages</span>: <span class="nv">formatR</span>
-<span class="nv">Updating</span> <span class="nv">HTML</span> <span class="nv">index</span> <span class="nv">of</span> <span class="nv">packages</span> <span class="nv">in</span> <span class="s1">'</span><span class="s">.Library</span><span class="s1">'</span>
-<span class="nv">Making</span> <span class="s1">'</span><span class="s">packages.html</span><span class="s1">'</span> ... <span class="nv">done</span>
+<span class="n">Installing</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="nl">packages</span><span class="p">:</span><span class="w"> </span><span class="n">formatR</span><span class="w"></span>
+<span class="n">Updating</span><span class="w"> </span><span class="n">HTML</span><span class="w"> </span><span class="k">index</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">packages</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="s1">'.Library'</span><span class="w"></span>
+<span class="n">Making</span><span class="w"> </span><span class="s1">'packages.html'</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="n">done</span><span class="w"></span>
 
 
-✔  <span class="nv">checking</span> <span class="k">for</span> <span class="nv">file</span> ‘<span class="o">/</span><span class="nv">tmp</span><span class="o">/</span><span class="nv">RtmpT7UVx3</span><span class="o">/</span><span class="nv">remotes61d65fec5ae1</span><span class="o">/</span><span class="nv">cosmoscalibur</span><span class="o">-</span><span class="nv">venn</span>.<span class="nv">compute</span><span class="o">-</span><span class="mi">6</span><span class="nv">f4fb43</span><span class="o">/</span><span class="nv">DESCRIPTION</span>’ ...
-─  <span class="nv">preparing</span> ‘<span class="nv">venn</span>.<span class="nv">compute</span>’:
-✔  <span class="nv">checking</span> <span class="nv">DESCRIPTION</span> <span class="nv">meta</span><span class="o">-</span><span class="nv">information</span>
-─  <span class="nv">checking</span> <span class="k">for</span> <span class="nv">LF</span> <span class="nv">line</span><span class="o">-</span><span class="nv">endings</span> <span class="nv">in</span> <span class="nv">source</span> <span class="nv">and</span> <span class="nv">make</span> <span class="nv">files</span> <span class="nv">and</span> <span class="nv">shell</span> <span class="nv">scripts</span>
-─  <span class="nv">checking</span> <span class="k">for</span> <span class="nv">empty</span> <span class="nv">or</span> <span class="nv">unneeded</span> <span class="nv">directories</span>
-─  <span class="nv">building</span> ‘<span class="nv">venn</span>.<span class="nv">compute_1</span>.<span class="mi">1</span>.<span class="mi">0</span>.<span class="nv">tar</span>.<span class="nv">gz</span>’
-</pre>
+<span class="err">✔</span><span class="w">  </span><span class="n">checking</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="k">file</span><span class="w"> </span><span class="err">‘</span><span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">RtmpT7UVx3</span><span class="o">/</span><span class="n">remotes61d65fec5ae1</span><span class="o">/</span><span class="n">cosmoscalibur</span><span class="o">-</span><span class="n">venn</span><span class="p">.</span><span class="k">compute</span><span class="o">-</span><span class="mi">6</span><span class="n">f4fb43</span><span class="o">/</span><span class="n">DESCRIPTION</span><span class="err">’</span><span class="w"> </span><span class="p">...</span><span class="w"></span>
+<span class="err">─</span><span class="w">  </span><span class="n">preparing</span><span class="w"> </span><span class="err">‘</span><span class="n">venn</span><span class="p">.</span><span class="k">compute</span><span class="err">’:</span><span class="w"></span>
+<span class="err">✔</span><span class="w">  </span><span class="n">checking</span><span class="w"> </span><span class="n">DESCRIPTION</span><span class="w"> </span><span class="n">meta</span><span class="o">-</span><span class="n">information</span><span class="w"></span>
+<span class="err">─</span><span class="w">  </span><span class="n">checking</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">LF</span><span class="w"> </span><span class="n">line</span><span class="o">-</span><span class="n">endings</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">source</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">make</span><span class="w"> </span><span class="n">files</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">shell</span><span class="w"> </span><span class="n">scripts</span><span class="w"></span>
+<span class="err">─</span><span class="w">  </span><span class="n">checking</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">empty</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="n">unneeded</span><span class="w"> </span><span class="n">directories</span><span class="w"></span>
+<span class="err">─</span><span class="w">  </span><span class="n">building</span><span class="w"> </span><span class="err">‘</span><span class="n">venn</span><span class="p">.</span><span class="n">compute_1</span><span class="mf">.1.0</span><span class="p">.</span><span class="n">tar</span><span class="p">.</span><span class="n">gz</span><span class="err">’</span><span class="w"></span>
+</code></pre>
 <p>If an error about TAR executable is showed (common in Linux with Anaconda, <code>sh: 1: /bin/gtar: not found</code>), you need to setup your TAR path.</p>
-<pre class="code literal-block"><span></span><span class="nf">Sys.setenv</span><span class="p">(</span><span class="n">TAR</span> <span class="o">=</span> <span class="s">"/bin/tar"</span><span class="p">)</span>
-</pre>
+<pre class="code literal-block"><span></span><code><span class="nf">Sys.setenv</span><span class="p">(</span><span class="n">TAR</span> <span class="o">=</span> <span class="s">"/bin/tar"</span><span class="p">)</span>
+</code></pre>
 <h2>How to use</h2>
 <p>First, load the package.</p>
-<pre class="code literal-block"><span></span><span class="nf">library</span><span class="p">(</span><span class="n">venn.compute</span><span class="p">)</span>
-</pre>
+<pre class="code literal-block"><span></span><code><span class="nf">library</span><span class="p">(</span><span class="n">venn.compute</span><span class="p">)</span>
+</code></pre>
 <h3>Lectura de archivos</h3>
 <h3>Read files</h3>
 <p>This is a custom reader to include multiple files and associate its custom names, returned a named list of character arrays (each element is an element line of the file).</p>
-<pre class="code literal-block"><span></span><span class="n">sets</span> <span class="o">&lt;-</span> <span class="nf">read.lists_from_files</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="nf">file.path</span><span class="p">(</span><span class="s">"tests"</span><span class="p">,</span> <span class="s">"primes.txt"</span><span class="p">),</span>
+<pre class="code literal-block"><span></span><code><span class="n">sets</span> <span class="o">&lt;-</span> <span class="nf">read.lists_from_files</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="nf">file.path</span><span class="p">(</span><span class="s">"tests"</span><span class="p">,</span> <span class="s">"primes.txt"</span><span class="p">),</span>
                                 <span class="nf">file.path</span><span class="p">(</span><span class="s">"tests"</span><span class="p">,</span> <span class="s">"even.txt"</span><span class="p">),</span>
                                 <span class="nf">file.path</span><span class="p">(</span><span class="s">"tests"</span><span class="p">,</span> <span class="s">"fibo.txt"</span><span class="p">)),</span>
                               <span class="nf">c</span><span class="p">(</span><span class="s">"primes"</span><span class="p">,</span> <span class="s">"even"</span><span class="p">,</span> <span class="s">"fibo"</span><span class="p">))</span>
 <span class="nf">print</span><span class="p">(</span><span class="n">sets</span><span class="p">)</span>
-</pre>
-<pre class="code literal-block"><span></span><span class="err">$</span><span class="n">primes</span>
+</code></pre>
+<pre class="code literal-block"><span></span><code><span class="err">$</span><span class="n">primes</span>
 <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="ss">"1"</span>  <span class="ss">"2"</span>  <span class="ss">"3"</span>  <span class="ss">"5"</span>  <span class="ss">"7"</span>  <span class="ss">"11"</span> <span class="ss">"13"</span> <span class="ss">"17"</span>
 
 <span class="err">$</span><span class="n">even</span>
@@ -159,11 +158,11 @@
 
 <span class="err">$</span><span class="n">fibo</span>
 <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="ss">"1"</span>  <span class="ss">"2"</span>  <span class="ss">"3"</span>  <span class="ss">"5"</span>  <span class="ss">"8"</span>  <span class="ss">"13"</span>
-</pre>
+</code></pre>
 <h3>Compute intersections and specific elements</h3>
 <p>Now you can compute specific elements of Venn diagram intersections.</p>
-<pre class="code literal-block"><span></span><span class="nf">venn.compute_specific</span><span class="p">(</span><span class="n">sets</span><span class="p">)</span>
-</pre>
+<pre class="code literal-block"><span></span><code><span class="nf">venn.compute_specific</span><span class="p">(</span><span class="n">sets</span><span class="p">)</span>
+</code></pre>
 <dl>
 <dt>$primes_even_fibo</dt>
 <dd>'2'</dd>
@@ -205,11 +204,11 @@
 <dd></dd>
 </dl>
 <p>If you need to write sets in files, add an output path. Files are written using convention of join sets name with underscore.</p>
-<pre class="code literal-block"><span></span><span class="nf">venn.compute_specific</span><span class="p">(</span><span class="n">sets</span><span class="p">,</span> <span class="n">output_dir</span> <span class="o">=</span> <span class="nf">file.path</span><span class="p">(</span><span class="s">"tests"</span><span class="p">,</span> <span class="s">"output"</span><span class="p">))</span>
-</pre>
+<pre class="code literal-block"><span></span><code><span class="nf">venn.compute_specific</span><span class="p">(</span><span class="n">sets</span><span class="p">,</span> <span class="n">output_dir</span> <span class="o">=</span> <span class="nf">file.path</span><span class="p">(</span><span class="s">"tests"</span><span class="p">,</span> <span class="s">"output"</span><span class="p">))</span>
+</code></pre>
 <p>We can verify written files.</p>
-<pre class="code literal-block"><span></span><span class="nf">dir</span><span class="p">(</span><span class="nf">file.path</span><span class="p">(</span><span class="s">"tests"</span><span class="p">,</span> <span class="s">"output"</span><span class="p">))</span>
-</pre>
+<pre class="code literal-block"><span></span><code><span class="nf">dir</span><span class="p">(</span><span class="nf">file.path</span><span class="p">(</span><span class="s">"tests"</span><span class="p">,</span> <span class="s">"output"</span><span class="p">))</span>
+</code></pre>
 <ol class="list-inline">
 <li>'even_fibo.txt'</li>
 <li>'even.txt'</li>
@@ -221,8 +220,8 @@
 </ol>
 <h3>Plot Venn diagram</h3>
 <p>Finally, if you want to save plot, invoke this function with the same arguments as before (internally using <a href="https://cran.r-project.org/web/packages/VennDiagram/index.html"><code>VennDiagram</code></a>)</p>
-<pre class="code literal-block"><span></span><span class="nf">venn.compute_plot</span><span class="p">(</span><span class="n">sets</span><span class="p">,</span> <span class="n">output_dir</span> <span class="o">=</span> <span class="nf">file.path</span><span class="p">(</span><span class="s">"tests"</span><span class="p">,</span> <span class="s">"output"</span><span class="p">))</span>
-</pre>
+<pre class="code literal-block"><span></span><code><span class="nf">venn.compute_plot</span><span class="p">(</span><span class="n">sets</span><span class="p">,</span> <span class="n">output_dir</span> <span class="o">=</span> <span class="nf">file.path</span><span class="p">(</span><span class="s">"tests"</span><span class="p">,</span> <span class="s">"output"</span><span class="p">))</span>
+</code></pre>
 <p>Now, we have a <code>primes_even_fibo.png</code> file.</p>
 <p></p>
 <div class="figure"><a class="image-reference" href="../../../images/determinar-intersecciones-en-el-diagrama-de-venn-con-r/primes_even_fibo.png"><img src="../../../images/determinar-intersecciones-en-el-diagrama-de-venn-con-r/primes_even_fibo.thumbnail.png"></a>
@@ -241,76 +240,35 @@
 </aside>
 <section class="comments hidden-print">
 <h2>Comments</h2>
-<div id="fb-root"></div>
+<div id="disqus_thread"></div>
 <script>
-  window.fbAsyncInit = function() {
-    // init the FB JS SDK
-    FB.init({
-      appId      : '595800477624602',
-      status     : true,
-      xfbml      : true
-    });
-
-  };
-
-  // Load the SDK asynchronously
-  (function(d, s, id){
-     var js, fjs = d.getElementsByTagName(s)[0];
-     if (d.getElementById(id)) {return;}
-     js = d.createElement(s); js.id = id;
-     js.src = "https://connect.facebook.net/en_US/all.js";
-     fjs.parentNode.insertBefore(js, fjs);
-   }(document, 'script', 'facebook-jssdk'));
-</script>
-<div class="fb-comments" data-href="https://cosmoscalibur.github.io/en/blog/determinar-intersecciones-en-el-diagrama-de-venn-con-r/" data-width="470"></div>
-</section>
+        var disqus_shortname ="cosmoscalibur",
+            disqus_url="https://cosmoscalibur.github.io/en/blog/determinar-intersecciones-en-el-diagrama-de-venn-con-r/",
+        disqus_title="Compute specific and intersection elements with R",
+        disqus_identifier="cache/posts/determinar-intersecciones-en-el-diagrama-de-venn-con-r.html",
+        disqus_config = function () {
+            this.language = "en";
+        };
+        (function() {
+            var dsq = document.createElement('script'); dsq.async = true;
+            dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript> <a class="dsq-brlink" href="https://disqus.com" rel="nofollow">Comments powered by <span class="logo-disqus">Disqus</span></a></section>
 </article>
-<div id="fb-root"></div>
 <script>
-    // thank lxml for this
-    $('.fb-comments-count').each(function(i, obj) {
-        var url = obj.attributes['data-url'].value;
-        // change here if you dislike the default way of displaying
-        // this
-        obj.innerHTML = '<fb:comments-count href="' + url + '"><\/fb:comments-count> comments';
-    });
-
-  window.fbAsyncInit = function() {
-    // init the FB JS SDK
-    FB.init({
-      appId      : '595800477624602',
-      status     : true,
-      xfbml      : true
-    });
-
-  };
-
-  // Load the SDK asynchronously
-  (function(d, s, id){
-     var js, fjs = d.getElementsByTagName(s)[0];
-     if (d.getElementById(id)) {return;}
-     js = d.createElement(s); js.id = id;
-     js.src = "https://connect.facebook.net/en_US/all.js";
-     fjs.parentNode.insertBefore(js, fjs);
-   }(document, 'script', 'facebook-jssdk'));
+var disqus_shortname="cosmoscalibur";(function(){var a=document.createElement("script");a.async=true;a.src="https://"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());
 </script><!--End of body content-->
-<footer id="footer">
-<div align="center"><iframe frameborder="0" marginheight="0" marginwidth="0" scrolling="no" src="//ws-na.amazon-adsystem.com/widgets/q?ServiceVersion=20070822&amp;OneJS=1&amp;Operation=GetAdHtml&amp;MarketPlace=US&amp;source=ss&amp;ref=as_ss_li_til&amp;ad_type=product_link&amp;tracking_id=cosmoscalibur-20&amp;language=es_US&amp;marketplace=amazon&amp;region=US&amp;placement=B007700BJG&amp;asins=B007700BJG&amp;linkId=e254123f0500fc338aaa7fc094ad49eb&amp;show_border=true&amp;link_opens_in_new_window=true" style="width:120px;height:240px;"></iframe></div>
-<br>
-Contents © 2020 <a href="mailto:cosmoscalibur@gmail.com">Edward Villegas-Pulgarin</a> - Powered by <a href="https://getnikola.com" rel="nofollow">Nikola</a> <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="license"><img alt="Creative Commons License BY-NC-SA" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" style="border-width:0; margin-bottom:12px;"></a></footer>
+<footer id="footer">Contents © 2020 <a href="mailto:cosmoscalibur@gmail.com">Edward Villegas-Pulgarin</a> - Powered by <a href="https://getnikola.com" rel="nofollow">Nikola</a> <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="license"><img alt="Creative Commons License BY-NC-SA" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" style="border-width:0; margin-bottom:12px;"></a></footer>
 </div>
 </div>
-<script crossorigin="anonymous" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" src="https://code.jquery.com/jquery-3.4.1.min.js">
-</script>
-<script crossorigin="anonymous" integrity="sha256-/ijcOLwFf26xEYAjW75FizKVo5tnTYiQddPZoLUHHZ8=" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js">
-</script>
-<script crossorigin="anonymous" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js">
-</script>
-<script crossorigin="anonymous" integrity="sha256-yQGjQhFs3LtyiN5hhr3k9s9TWZOh/RzCkD3gwwCKlkg=" src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.11.0/baguetteBox.min.js">
-</script>
-<script src="../../../assets/js/all.js">
-</script>
+<script crossorigin="anonymous" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script crossorigin="anonymous" integrity="sha256-/ijcOLwFf26xEYAjW75FizKVo5tnTYiQddPZoLUHHZ8=" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
+<script crossorigin="anonymous" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+<script crossorigin="anonymous" integrity="sha256-yQGjQhFs3LtyiN5hhr3k9s9TWZOh/RzCkD3gwwCKlkg=" src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.11.0/baguetteBox.min.js"></script>
+<script src="../../../assets/js/all.js"></script>
 <script>
+
     baguetteBox.run('div#content', {
         ignoreClass: 'islink',
         captions: function(element) {

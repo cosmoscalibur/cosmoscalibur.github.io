@@ -3,7 +3,106 @@
 &lt;a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"&gt;
 &lt;img alt="Creative Commons License BY-NC-SA"
 style="border-width:0; margin-bottom:12px;"
-src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"&gt;&lt;/a&gt;</copyright><lastBuildDate>Mon, 22 Jun 2020 00:15:26 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Ver Netflix juntos pero separados</title><link>https://cosmoscalibur.github.io/blog/ver-netflix-juntos-pero-separados/</link><dc:creator>Edward Villegas-Pulgarin</dc:creator><description>&lt;div&gt;&lt;p&gt;Ante la necesidad de cuidarnos en esta cuarentena, hemos perdido los momentos
+src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"&gt;&lt;/a&gt;</copyright><lastBuildDate>Mon, 29 Jun 2020 22:45:24 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Instalar Python Anaconda</title><link>https://cosmoscalibur.github.io/blog/instalar-python-anaconda/</link><dc:creator>Edward Villegas-Pulgarin</dc:creator><description>&lt;div&gt;&lt;p&gt;En los últimos años, una herramienta se ha popularizado no solo como una base
+para el ecosistena de la analítica de datos ("ciencia de datos" como llaman
+también algunos) sino también en general para el desarrollo en Python
+(científico, web o de propósito general). Esta herramienta es Anaconda, que no
+solo nos facilita un sistema de distribución de paquetes multiplataforma, un
+repositorio principal con amplio soporte multiplataforma (canal &lt;em&gt;default&lt;/em&gt; o
+&lt;em&gt;anaconda&lt;/em&gt;) sino un gestor de ambientes para permitir aislar nuestras
+dependencias facilitando la reproducibilidad y evitando los conflictos.&lt;/p&gt;
+&lt;!-- TEASER_END --&gt;
+&lt;div class="section" id="obtener-instalador"&gt;
+&lt;h2&gt;Obtener instalador&lt;/h2&gt;
+&lt;p&gt;Nuestro primer paso es obtener el instalador de Python Anaconda según nuestro
+sistema operativo, modo de instalación y limitación de espacio de
+almacenamiento o ancho de banda. Aunque Anaconda aún dispone de instaladores de
+Python 2.7, no recomiendo su uso sino las versiones asociadas a Python 3.X
+(Python 2 perdió soporte el 31 de diciembre de 2019).&lt;/p&gt;
+&lt;p&gt;Si tenemos limitación de espacio de almacenamiento o ancho de banda, podemos
+usar el instalador de
+&lt;a class="reference external" href="https://docs.conda.io/en/latest/miniconda.html"&gt;miniconda&lt;/a&gt;, el cual
+corresponde a un instalador de alrededor de 60 MB en los 3 sistemas operativos.
+Este instalador nos da mayor control sobre los paquetes instalados, y solo
+incluye por defecto lo necesario para el interprete de Python y el gestor
+Conda.&lt;/p&gt;
+&lt;p&gt;Si queremos una colección de paquetes listos para usar, iremos al instalador de
+&lt;a class="reference external" href="https://anaconda.org/"&gt;Python Anaconda&lt;/a&gt; (seleccionamos &lt;em&gt;Download Anaconda&lt;/em&gt;).
+Ahora vamos a la sección de instaladores (&lt;em&gt;Anaconda Installers&lt;/em&gt;) y escogeremos
+el acorde a nuestra necesidad:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;Instalador gráfico de 32 y 64 bits para Windows.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Instalador por línea de comandos para Windows (64 bits).&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Instalador gráfico y por línea de comandos para Mac (64 bits).&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Esta descarga es de alrededor de 500 MB para todos los casos.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="instalacion-por-linea-de-comandos"&gt;
+&lt;h2&gt;Instalación por línea de comandos&lt;/h2&gt;
+&lt;p&gt;La instalación por línea de comandos aplica de la misma manera tanto para Mac
+como para Linux, usando ambos un instalador basado en código bash (indiferente
+si es Anaconda o Miniconda).&lt;/p&gt;
+&lt;p&gt;Para este caso nos basaremos en la instalación silenciosa &lt;a class="citation-reference" href="https://cosmoscalibur.github.io/blog/instalar-python-anaconda/#cmd" id="id1"&gt;[cmd]&lt;/a&gt; para evitar las
+preguntas interactivas y así despreocuparnos durante la instalación. Invocamos
+el instalador con Bash de la siguiente forma (asegurate de usar la ruta
+completa y correcta del instalador &lt;code&gt;sh&lt;/code&gt; que usarás).&lt;/p&gt;
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_ca06179cb09a4de7803b7c9113ad1a79-1"&gt;&lt;/a&gt;bash Anaconda3-2020.02-Linux-x86_64.sh -b -p &lt;span class="nv"&gt;$HOME&lt;/span&gt;/anaconda
+&lt;a name="rest_code_ca06179cb09a4de7803b7c9113ad1a79-2"&gt;&lt;/a&gt;&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;". &lt;/span&gt;&lt;span class="nv"&gt;$HOME&lt;/span&gt;&lt;span class="s2"&gt;/anaconda/etc/profile.d/conda.sh"&lt;/span&gt; &amp;gt;&amp;gt; &lt;span class="nv"&gt;$HOME&lt;/span&gt;/.bashrc
+&lt;a name="rest_code_ca06179cb09a4de7803b7c9113ad1a79-3"&gt;&lt;/a&gt;&lt;span class="nb"&gt;source&lt;/span&gt; &lt;span class="nv"&gt;$HOME&lt;/span&gt;/.bashrc
+&lt;/pre&gt;&lt;p&gt;En la invocación de Bash, el argumento &lt;code&gt;-b&lt;/code&gt; implica la aceptación de
+licencias y con &lt;code&gt;-p&lt;/code&gt; indicamos la ruta para la instalación de Anaconda
+(puedes cambiarla a tu deseo).&lt;/p&gt;
+&lt;p&gt;La segunda y tercera línea son específicas si usas una consola Bash. Esto
+permite reconocer el gestor Conda por la consola cuando se inicia una nueva
+sesión y la última línea que se aplique para la sesión actual.&lt;/p&gt;
+&lt;p&gt;Aunque no es mi preferencia y además puede generar potenciales conflictos, si
+deseas que el entorno de Python Anaconda esté activado por defecto puedes
+agregar en el &lt;code&gt;.bashrc&lt;/code&gt; la línea &lt;code&gt;conda activate&lt;/code&gt;.&lt;/p&gt;
+&lt;div class="youtube-video align-center"&gt;
+&lt;iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/UFfsg56qigY?rel=0&amp;amp;wmode=transparent" frameborder="0" allow="encrypted-media" allowfullscreen&gt;&lt;/iframe&gt;
+&lt;/div&gt;&lt;p&gt;La versión de &lt;em&gt;Anaconda Navigator&lt;/em&gt; incluida en 2020.02 en Linux presenta un
+error, por lo cual, si al ejecutarlo ves el mensaje
+&lt;code&gt;UnboundLocalError: local variable 'DISTRO_NAME' referenced before assignment&lt;/code&gt;
+bastará con actualizar el paquete &lt;a class="citation-reference" href="https://cosmoscalibur.github.io/blog/instalar-python-anaconda/#navigator" id="id2"&gt;[navigator]&lt;/a&gt;.&lt;/p&gt;
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_ae88fac26786429ca44037442bbf0354-1"&gt;&lt;/a&gt;conda update anaconda-navigator
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="section" id="instalacion-grafica"&gt;
+&lt;h2&gt;Instalación gráfica&lt;/h2&gt;
+&lt;p&gt;La instalación en Windows con el instalador gráfico &lt;a class="citation-reference" href="https://cosmoscalibur.github.io/blog/instalar-python-anaconda/#gui" id="id3"&gt;[gui]&lt;/a&gt; es sencilla. Las
+opciones por defecto son justamente las recomendadas por lo cual solo es
+necesario dar clic en "&lt;em&gt;Next&lt;/em&gt;" siempre.&lt;/p&gt;
+&lt;p&gt;Es fuertemente recomendado usar la instalación con las opciones por defecto,
+para evitar futuros conflictos. Esto es, instalar "&lt;em&gt;Just Me&lt;/em&gt;" para no requerir
+permisos de administrador, no agregar al &lt;code&gt;PATH&lt;/code&gt; (evitar conflictos con
+programas que hagan uso de Python u otros paquetes incluidos en Anaconda) y
+registrar Python Anaconda como Python por defecto (así será reconocido por los
+editores de código que detectan Anaconda).&lt;/p&gt;
+&lt;div class="youtube-video align-center"&gt;
+&lt;iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/zFk6beeQ-CU?rel=0&amp;amp;wmode=transparent" frameborder="0" allow="encrypted-media" allowfullscreen&gt;&lt;/iframe&gt;
+&lt;/div&gt;&lt;p&gt;La instalación gráfica en Mac puedes seguir también las opciones por defecto.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="verificar-instalacion"&gt;
+&lt;h2&gt;Verificar instalación&lt;/h2&gt;
+&lt;p&gt;Basta con validar la lista de paquetes incluidos para saber que funciona
+adecuadamente Anaconda. Abrimos la consola Bash (Linux o Mac) o
+&lt;em&gt;Anaconda Prompt&lt;/em&gt; (Windows, o con abrir &lt;em&gt;Anaconda Navigator&lt;/em&gt; es suficiente), y
+ejecutamos &lt;code&gt;conda list&lt;/code&gt;. Si observamos la lista de paquetes, funciona.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="referencias"&gt;
+&lt;h2&gt;Referencias&lt;/h2&gt;
+&lt;dl class="citation"&gt;
+&lt;dt class="label" id="cmd"&gt;&lt;span class="brackets"&gt;&lt;a class="fn-backref" href="https://cosmoscalibur.github.io/blog/instalar-python-anaconda/#id1"&gt;cmd&lt;/a&gt;&lt;/span&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;&lt;a class="reference external" href="https://conda.io/projects/conda/en/latest/user-guide/install/linux.html#installing-in-silent-mode"&gt;Installing in silent mode&lt;/a&gt;.
+conda.&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class="label" id="navigator"&gt;&lt;span class="brackets"&gt;&lt;a class="fn-backref" href="https://cosmoscalibur.github.io/blog/instalar-python-anaconda/#id2"&gt;navigator&lt;/a&gt;&lt;/span&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;&lt;a class="reference external" href="https://github.com/ContinuumIO/anaconda-issues/issues/11662"&gt;UnboundLocalError: local variable 'DISTRO_NAME' referenced before assignment&lt;/a&gt;. Anaconda issues.&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class="label" id="gui"&gt;&lt;span class="brackets"&gt;&lt;a class="fn-backref" href="https://cosmoscalibur.github.io/blog/instalar-python-anaconda/#id3"&gt;gui&lt;/a&gt;&lt;/span&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;&lt;a class="reference external" href="https://docs.anaconda.com/anaconda/install/windows/"&gt;Installing on Windows&lt;/a&gt;. Anaconda.&lt;/p&gt;
+&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;/div&gt;&lt;/div&gt;</description><category>instalar anaconda</category><category>instalar python</category><category>python</category><category>python anaconda</category><category>python linux</category><category>python mac</category><category>python windows</category><guid>https://cosmoscalibur.github.io/blog/instalar-python-anaconda/</guid><pubDate>Mon, 29 Jun 2020 17:18:07 GMT</pubDate></item><item><title>Ver Netflix juntos pero separados</title><link>https://cosmoscalibur.github.io/blog/ver-netflix-juntos-pero-separados/</link><dc:creator>Edward Villegas-Pulgarin</dc:creator><description>&lt;div&gt;&lt;p&gt;Ante la necesidad de cuidarnos en esta cuarentena, hemos perdido los momentos
 de cine o de maratones con familia y amigos, pero hasta en esto hay forma de
 innovar y buscar opciones para mantener un equivalente de estas actividades
 sin descuidar nuestra salud, cumpliendo cada protocolo requerido gracias a la
@@ -84,39 +183,39 @@ esto podría explicarlo).&lt;/p&gt;
 &lt;h2&gt;Instalación&lt;/h2&gt;
 &lt;p&gt;Por el momento, se debe instalar el paquete a partir de GitHub, por lo cual debes usar la utilidad incluida en &lt;code&gt;devtools&lt;/code&gt; en lugar del mecanismo de instalación habitual (ya está sometido el paquete, así que en el futura podría usarse).  &lt;/p&gt;
 &lt;p&gt;Si usas Anaconda en Linux, probablemente debas configurar la ruta del ejecutable de &lt;code&gt;tar&lt;/code&gt; (al instalar desde GitHub genera un error indicando que no encuentra el ejecuta &lt;code&gt;sh: 1: /bin/gtar: not found&lt;/code&gt;).&lt;/p&gt;
-&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nf"&gt;Sys.setenv&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;TAR&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;"/bin/tar"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="c1"&gt;# Si es Anaconda Linux&lt;/span&gt;
-&lt;/pre&gt;
+&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nf"&gt;Sys.setenv&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;TAR&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;"/bin/tar"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="c1"&gt;# Si es Anaconda Linux&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
 
 
 &lt;p&gt;Ahora sí, haremos la instalación desde el repositorio de GitHub del paquete (se indica &lt;code&gt;usuario/paquete&lt;/code&gt;).&lt;/p&gt;
-&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;devtools&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="nf"&gt;install_github&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"cosmoscalibur/venn.compute"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/pre&gt;
+&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;devtools&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="nf"&gt;install_github&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"cosmoscalibur/venn.compute"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
 
 
-&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nv"&gt;Downloading&lt;/span&gt; &lt;span class="nv"&gt;GitHub&lt;/span&gt; &lt;span class="nv"&gt;repo&lt;/span&gt; &lt;span class="nv"&gt;cosmoscalibur&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nv"&gt;venn&lt;/span&gt;.&lt;span class="nv"&gt;compute&lt;/span&gt;@&lt;span class="nv"&gt;master&lt;/span&gt;
+&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;Downloading&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;GitHub&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;repo&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;cosmoscalibur&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;venn&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="k"&gt;compute&lt;/span&gt;&lt;span class="nv"&gt;@master&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
 
 
-&lt;span class="nv"&gt;formatR&lt;/span&gt; &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;.&lt;span class="mi"&gt;6&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;.&lt;span class="mi"&gt;7&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt; [&lt;span class="nv"&gt;CRAN&lt;/span&gt;]
+&lt;span class="n"&gt;formatR&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mf"&gt;1.6&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mf"&gt;1.7&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="n"&gt;CRAN&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
 
 
-&lt;span class="nv"&gt;Installing&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="nv"&gt;packages&lt;/span&gt;: &lt;span class="nv"&gt;formatR&lt;/span&gt;
-&lt;span class="nv"&gt;Updating&lt;/span&gt; &lt;span class="nv"&gt;HTML&lt;/span&gt; &lt;span class="nv"&gt;index&lt;/span&gt; &lt;span class="nv"&gt;of&lt;/span&gt; &lt;span class="nv"&gt;packages&lt;/span&gt; &lt;span class="nv"&gt;in&lt;/span&gt; &lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;.Library&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;
-&lt;span class="nv"&gt;Making&lt;/span&gt; &lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;packages.html&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt; ... &lt;span class="nv"&gt;done&lt;/span&gt;
+&lt;span class="n"&gt;Installing&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nl"&gt;packages&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;formatR&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="n"&gt;Updating&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;HTML&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;index&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;of&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;packages&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ow"&gt;in&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;'.Library'&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="n"&gt;Making&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;'packages.html'&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;...&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;done&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
 
 
-✔  &lt;span class="nv"&gt;checking&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="nv"&gt;file&lt;/span&gt; ‘&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nv"&gt;tmp&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nv"&gt;RtmpT7UVx3&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nv"&gt;remotes61d65fec5ae1&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nv"&gt;cosmoscalibur&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;venn&lt;/span&gt;.&lt;span class="nv"&gt;compute&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="nv"&gt;f4fb43&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nv"&gt;DESCRIPTION&lt;/span&gt;’ ...
-─  &lt;span class="nv"&gt;preparing&lt;/span&gt; ‘&lt;span class="nv"&gt;venn&lt;/span&gt;.&lt;span class="nv"&gt;compute&lt;/span&gt;’:
-✔  &lt;span class="nv"&gt;checking&lt;/span&gt; &lt;span class="nv"&gt;DESCRIPTION&lt;/span&gt; &lt;span class="nv"&gt;meta&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;information&lt;/span&gt;
-─  &lt;span class="nv"&gt;checking&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="nv"&gt;LF&lt;/span&gt; &lt;span class="nv"&gt;line&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;endings&lt;/span&gt; &lt;span class="nv"&gt;in&lt;/span&gt; &lt;span class="nv"&gt;source&lt;/span&gt; &lt;span class="nv"&gt;and&lt;/span&gt; &lt;span class="nv"&gt;make&lt;/span&gt; &lt;span class="nv"&gt;files&lt;/span&gt; &lt;span class="nv"&gt;and&lt;/span&gt; &lt;span class="nv"&gt;shell&lt;/span&gt; &lt;span class="nv"&gt;scripts&lt;/span&gt;
-─  &lt;span class="nv"&gt;checking&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="nv"&gt;empty&lt;/span&gt; &lt;span class="nv"&gt;or&lt;/span&gt; &lt;span class="nv"&gt;unneeded&lt;/span&gt; &lt;span class="nv"&gt;directories&lt;/span&gt;
-─  &lt;span class="nv"&gt;building&lt;/span&gt; ‘&lt;span class="nv"&gt;venn&lt;/span&gt;.&lt;span class="nv"&gt;compute_1&lt;/span&gt;.&lt;span class="mi"&gt;1&lt;/span&gt;.&lt;span class="mi"&gt;0&lt;/span&gt;.&lt;span class="nv"&gt;tar&lt;/span&gt;.&lt;span class="nv"&gt;gz&lt;/span&gt;’
-&lt;/pre&gt;
+&lt;span class="err"&gt;✔&lt;/span&gt;&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="n"&gt;checking&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;for&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;file&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;‘&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;tmp&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;RtmpT7UVx3&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;remotes61d65fec5ae1&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;cosmoscalibur&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;venn&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="k"&gt;compute&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="n"&gt;f4fb43&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;DESCRIPTION&lt;/span&gt;&lt;span class="err"&gt;’&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;...&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="err"&gt;─&lt;/span&gt;&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="n"&gt;preparing&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;‘&lt;/span&gt;&lt;span class="n"&gt;venn&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="k"&gt;compute&lt;/span&gt;&lt;span class="err"&gt;’:&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="err"&gt;✔&lt;/span&gt;&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="n"&gt;checking&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;DESCRIPTION&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;meta&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;information&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="err"&gt;─&lt;/span&gt;&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="n"&gt;checking&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;for&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;LF&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;line&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;endings&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ow"&gt;in&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;source&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ow"&gt;and&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;make&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;files&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ow"&gt;and&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;shell&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;scripts&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="err"&gt;─&lt;/span&gt;&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="n"&gt;checking&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;for&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;empty&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ow"&gt;or&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;unneeded&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;directories&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="err"&gt;─&lt;/span&gt;&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="n"&gt;building&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;‘&lt;/span&gt;&lt;span class="n"&gt;venn&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;compute_1&lt;/span&gt;&lt;span class="mf"&gt;.1.0&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;tar&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;gz&lt;/span&gt;&lt;span class="err"&gt;’&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
 
 
 &lt;h2&gt;Ejecución&lt;/h2&gt;
 &lt;p&gt;Lo primero que debemos hacer es cargar el paquete.&lt;/p&gt;
-&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nf"&gt;library&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;venn.compute&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/pre&gt;
+&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nf"&gt;library&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;venn.compute&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
 
 
 &lt;h3&gt;Lectura de archivos&lt;/h3&gt;
@@ -124,15 +223,15 @@ esto podría explicarlo).&lt;/p&gt;
 &lt;p&gt;Las rutas a los archivos y los nombres que asociaremos, se agregan como
 arreglos de caracteres, y tiene soporte genérico para una cantidad diferente
 a la ilustrada.&lt;/p&gt;
-&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;sets&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;-&lt;/span&gt; &lt;span class="nf"&gt;read.lists_from_files&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;c&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;file.path&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"tests"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;"primes.txt"&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;sets&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;-&lt;/span&gt; &lt;span class="nf"&gt;read.lists_from_files&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;c&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;file.path&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"tests"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;"primes.txt"&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
                                 &lt;span class="nf"&gt;file.path&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"tests"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;"even.txt"&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
                                 &lt;span class="nf"&gt;file.path&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"tests"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;"fibo.txt"&lt;/span&gt;&lt;span class="p"&gt;)),&lt;/span&gt;
                               &lt;span class="nf"&gt;c&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"primes"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;"even"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;"fibo"&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
 &lt;span class="nf"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sets&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/pre&gt;
+&lt;/code&gt;&lt;/pre&gt;
 
 
-&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="n"&gt;primes&lt;/span&gt;
+&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="n"&gt;primes&lt;/span&gt;
 &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="ss"&gt;"1"&lt;/span&gt;  &lt;span class="ss"&gt;"2"&lt;/span&gt;  &lt;span class="ss"&gt;"3"&lt;/span&gt;  &lt;span class="ss"&gt;"5"&lt;/span&gt;  &lt;span class="ss"&gt;"7"&lt;/span&gt;  &lt;span class="ss"&gt;"11"&lt;/span&gt; &lt;span class="ss"&gt;"13"&lt;/span&gt; &lt;span class="ss"&gt;"17"&lt;/span&gt;
 
 &lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="n"&gt;even&lt;/span&gt;
@@ -140,14 +239,14 @@ a la ilustrada.&lt;/p&gt;
 
 &lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="n"&gt;fibo&lt;/span&gt;
 &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="ss"&gt;"1"&lt;/span&gt;  &lt;span class="ss"&gt;"2"&lt;/span&gt;  &lt;span class="ss"&gt;"3"&lt;/span&gt;  &lt;span class="ss"&gt;"5"&lt;/span&gt;  &lt;span class="ss"&gt;"8"&lt;/span&gt;  &lt;span class="ss"&gt;"13"&lt;/span&gt;
-&lt;/pre&gt;
+&lt;/code&gt;&lt;/pre&gt;
 
 
 &lt;p&gt;Como observamos, se han creado las listas nombradas con los contenidos de los archivos. Estos nombres son los usados para crear los archivos, asociar las listas nombradas de las intersecciones y el gráfico (usa un paquete externo donde el ingreso de esta manera permite pasarlo como única variable).&lt;/p&gt;
 &lt;h3&gt;Determinar elementos&lt;/h3&gt;
 &lt;p&gt;Ya con los conjuntos cargados en la lista, podemos determinar los elementos que van en cada área del diagrama de Venn (intersecciones y específicos).&lt;/p&gt;
-&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nf"&gt;venn.compute_specific&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sets&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/pre&gt;
+&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nf"&gt;venn.compute_specific&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sets&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
 
 
 &lt;dl&gt;
@@ -190,13 +289,13 @@ a la ilustrada.&lt;/p&gt;
 
 &lt;p&gt;Usando la convención del nombre asignado a los conjuntos unidos por guion bajo, se distinguen las áreas asociadas. Así, &lt;strong&gt;\$primes_even_fibo&lt;/strong&gt; representa el área de intersección de los tres conjuntos, y posee solo un elemento (&lt;code&gt;'2'&lt;/code&gt;), y &lt;strong&gt;\$fibo&lt;/strong&gt; representa los específicos de dicho conjunto, es decir, los que pertenecen exclusivamente a este y no a intersecciones con otros, el cual en este caso es vacío.  &lt;/p&gt;
 &lt;p&gt;Si esta información es masiva, es conveniente escribir el resultado en archivos y no en memoria. Así, debemos crear una carpeta para los archivos e indicamos su ruta como segundo argumento.&lt;/p&gt;
-&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nf"&gt;venn.compute_specific&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sets&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;output_dir&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nf"&gt;file.path&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"tests"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;"output"&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-&lt;/pre&gt;
+&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nf"&gt;venn.compute_specific&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sets&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;output_dir&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nf"&gt;file.path&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"tests"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;"output"&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
 
 
 &lt;p&gt;Podemos verificar la creación de los archivos con la misma convención de nombre y extensión &lt;code&gt;txt&lt;/code&gt;.&lt;/p&gt;
-&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nf"&gt;dir&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;file.path&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"tests"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;"output"&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-&lt;/pre&gt;
+&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nf"&gt;dir&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;file.path&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"tests"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;"output"&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
 
 
 &lt;ol class="list-inline"&gt;
@@ -211,8 +310,8 @@ a la ilustrada.&lt;/p&gt;
 
 &lt;h3&gt;Graficar diagrama de Venn&lt;/h3&gt;
 &lt;p&gt;Para obtener el diagrama tengo una función que define un flujo por defecto que crea los archivos del paso anterior y adicional el gráfico del diagrama con el paquete &lt;a href="https://cran.r-project.org/web/packages/VennDiagram/index.html"&gt;&lt;code&gt;VennDiagram&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;
-&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nf"&gt;venn.compute_plot&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sets&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;output_dir&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nf"&gt;file.path&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"tests"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;"output"&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-&lt;/pre&gt;
+&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nf"&gt;venn.compute_plot&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sets&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;output_dir&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nf"&gt;file.path&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"tests"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;"output"&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
 
 
 &lt;p&gt;Además de generar como les conté, los archivos de las intersecciones y específicos, se generó un archivo cuyo nombre es la convención seguida para la intersección de la totalidad de conjuntos y con extensión &lt;code&gt;png&lt;/code&gt;, &lt;code&gt;primes_even_fibo.png&lt;/code&gt;.  &lt;/p&gt;
@@ -250,10 +349,13 @@ pero también cuando veo como las publicaciones pueden tener mayor impacto en
 redes sociales y que Facebook ofrece su sistema de comentarios [&lt;a class="reference internal" href="https://cosmoscalibur.github.io/blog/reformas-del-blog-parte-1/#fb-comments"&gt;fb-comments&lt;/a&gt;],
 no veo descabellado cambiar. La mayor parte de mis lectores poseen Facebook y
 el tráfico a razón de Facebook hoy es el mayor entre las fuentes de tráfico
-sociales y puede potenciarse al incluir la opción de compartir el comentario
-con Facebook (enlazando automáticamente el enlace la publicación).&lt;/p&gt;
-&lt;p&gt;Con estos cambios el bloqueo por el sistema de comentarios pasó de 800 ms a
-400 ms, en promedio.&lt;/p&gt;
+sociales. Reduce el bloqueo de 800 ms a 400 ms.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Actualización 29 de junio de 2020&lt;/strong&gt;: Por alguna razón el &lt;em&gt;plugin&lt;/em&gt; de
+comentarios de Facebook dejó de funcionar y además observo una caída abrupta en
+la analítica de visitas de Facebook que no se verifica con Google. Me da mala
+espina Facebook y retorno a Disqus.&lt;/p&gt;
+&lt;p&gt;Es necesario revisar como permitir el modo de carga asíncrono de Disqus que sea
+compatible con Nikola.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="publicidad"&gt;
 &lt;h2&gt;Publicidad&lt;/h2&gt;
@@ -272,9 +374,15 @@ además aporte realmente al lector que llega a mi publicación (por ejemplo,
 recomendando un libro sobre el tema de la publicación).&lt;/p&gt;
 &lt;p&gt;Es posible que no sea permanente, pero quiero probarlo. El programa de
 asociados también tiene unos tiempos máximos permitiendo publicidad sin
-generar conversiones.&lt;/p&gt;
-&lt;p&gt;Con este cambio, el bloqueo por la presentación de publicidad pasó de 350 ms
-a menos de 40 ms.&lt;/p&gt;
+generar conversiones. Con este cambio, el bloqueo por la presentación de
+publicidad pasó de 350 ms a menos de 40 ms.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Actualización 29 de junio de 2020&lt;/strong&gt;: Al no ser de generación dinámica resulta
+de difícil mantenimiento generar recomendaciones de publicidad acorde al lector
+que llega a una publicación. El trabajo manual de usar producto por artículo
+para hacerlo más acorde ha sido incómodo y un único producto genérico insertado
+en la plantilla posee bajo impacto. He decidido esperar que llegue mi código de
+Google AdSense. Tal vez la opción de Amazon sea muy buena para quienes
+directamente recomiendan productos.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="imagenes"&gt;
 &lt;h2&gt;Imágenes&lt;/h2&gt;
@@ -520,12 +628,12 @@ incorporada) con OBS.&lt;/p&gt;
 &lt;p&gt;Para el cómputo de geodésicas en Python, en buena medida todo se resume en &lt;a href="https://geographiclib.sourceforge.io/"&gt;GeographicLib&lt;/a&gt;. Tanto &lt;a href="https://gdal.org/"&gt;GDAL&lt;/a&gt;, &lt;a href="https://pyproj4.github.io/pyproj/stable/#"&gt;PyProj&lt;/a&gt; y &lt;a href="https://geopy.readthedocs.io/en/stable/#"&gt;GeoPy&lt;/a&gt; recurren a la implementación de GeographicLib como método por defecto de cálculo.  &lt;/p&gt;
 &lt;p&gt;Para referencia, usaremos GeoPy (incluido también en GeoPandas) y que dispone de 3 métodos de cálculo de distancia que discutiremos.&lt;/p&gt;
 &lt;p&gt;Primer paso vamos a instalar GeoPy. Para este fin usaremos el gestor de paquetes &lt;em&gt;conda&lt;/em&gt; de Anaconda, pero puedes usar &lt;em&gt;pip&lt;/em&gt;.&lt;/p&gt;
-&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;%%bash
+&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;%%bash
 conda install -c conda-forge geopy
-&lt;/pre&gt;
+&lt;/code&gt;&lt;/pre&gt;
 
 
-&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;Collecting&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;package&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;metadata&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;current_repodata&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;json&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="err"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;...&lt;/span&gt;&lt;span class="n"&gt;working&lt;/span&gt;&lt;span class="p"&gt;...&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;done&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;Collecting&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;package&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;metadata&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;current_repodata&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;json&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="err"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;...&lt;/span&gt;&lt;span class="n"&gt;working&lt;/span&gt;&lt;span class="p"&gt;...&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;done&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
 &lt;span class="n"&gt;Solving&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nl"&gt;environment&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;...&lt;/span&gt;&lt;span class="n"&gt;working&lt;/span&gt;&lt;span class="p"&gt;...&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;done&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
 
 &lt;span class="err"&gt;##&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Package&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;Plan&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;##&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
@@ -555,64 +663,64 @@ conda install -c conda-forge geopy
 &lt;span class="n"&gt;Preparing&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;transaction&lt;/span&gt;&lt;span class="err"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;...&lt;/span&gt;&lt;span class="n"&gt;working&lt;/span&gt;&lt;span class="p"&gt;...&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;done&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
 &lt;span class="n"&gt;Verifying&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;transaction&lt;/span&gt;&lt;span class="err"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;...&lt;/span&gt;&lt;span class="n"&gt;working&lt;/span&gt;&lt;span class="p"&gt;...&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;done&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
 &lt;span class="n"&gt;Executing&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;transaction&lt;/span&gt;&lt;span class="err"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;...&lt;/span&gt;&lt;span class="n"&gt;working&lt;/span&gt;&lt;span class="p"&gt;...&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;done&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;/pre&gt;
+&lt;/code&gt;&lt;/pre&gt;
 
 
 &lt;p&gt;Ahora, importamos el módulo de &lt;a href="https://geopy.readthedocs.io/en/stable/#module-geopy.distance"&gt;distancia de GeoPy&lt;/a&gt;.&lt;/p&gt;
-&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;geopy.distance&lt;/span&gt;
-&lt;/pre&gt;
+&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;geopy.distance&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
 
 
 &lt;p&gt;Para referencia usaremos las coordenadas de Medellín (MDE) y Envigado (ENV) según son ubicadas por Google Maps.&lt;/p&gt;
-&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;MDE&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mf"&gt;6.2443695&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mf"&gt;75.6512527&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;MDE&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mf"&gt;6.2443695&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mf"&gt;75.6512527&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="n"&gt;ENV&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mf"&gt;6.1663544&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mf"&gt;75.5994392&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/pre&gt;
+&lt;/code&gt;&lt;/pre&gt;
 
 
 &lt;p&gt;Para efectos de comparación, no solo presentaré la forma de uso de los métodos sino las distancias y los tiempos de ejecución.&lt;/p&gt;
 &lt;h3&gt;Método de círculo mayor&lt;/h3&gt;
 &lt;p&gt;El &lt;a href="https://en.wikipedia.org/wiki/Great-circle_distance"&gt;método de círculo mayor&lt;/a&gt; consiste en considerar la Tierra como una esfera perfecta de radio 6371.009 km (para el sistema de coordenadas geográficas &lt;a href="https://en.wikipedia.org/wiki/World_Geodetic_System#WGS84"&gt;WGS-84&lt;/a&gt;). Con esta aproximación se puede tener un error máximo del 0.5%. A pesar del error, es un método de cálculo directo (es una fórmula para reemplazar) y por ende puede obtener un resultado muy rápido y tiene asegurado entregar siempre una aproximación.  &lt;/p&gt;
 &lt;p&gt;Es llamado círculo mayor porque en una esfera sabemos que el camino más corto es el descrito por el círculo de mayor radio sobre la esfera que contenga a los dos puntos.&lt;/p&gt;
-&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="n"&gt;timeit&lt;/span&gt; &lt;span class="n"&gt;geopy&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;distance&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;great_circle&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;MDE&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;ENV&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;geopy&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;distance&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;great_circle&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;MDE&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;ENV&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-&lt;/pre&gt;
+&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="n"&gt;timeit&lt;/span&gt; &lt;span class="n"&gt;geopy&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;distance&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;great_circle&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;MDE&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;ENV&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;geopy&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;distance&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;great_circle&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;MDE&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;ENV&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
 
 
-&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="mi"&gt;14&lt;/span&gt;.&lt;span class="mi"&gt;9&lt;/span&gt; µ&lt;span class="nv"&gt;s&lt;/span&gt; ± &lt;span class="mi"&gt;238&lt;/span&gt; &lt;span class="nv"&gt;ns&lt;/span&gt; &lt;span class="nv"&gt;per&lt;/span&gt; &lt;span class="k"&gt;loop&lt;/span&gt; &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;mean&lt;/span&gt; ± &lt;span class="nv"&gt;std&lt;/span&gt;. &lt;span class="nv"&gt;dev&lt;/span&gt;. &lt;span class="nv"&gt;of&lt;/span&gt; &lt;span class="mi"&gt;7&lt;/span&gt; &lt;span class="nv"&gt;runs&lt;/span&gt;, &lt;span class="mi"&gt;100000&lt;/span&gt; &lt;span class="nv"&gt;loops&lt;/span&gt; &lt;span class="nv"&gt;each&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;
-&lt;span class="mi"&gt;10&lt;/span&gt;.&lt;span class="mi"&gt;395180481810051&lt;/span&gt; &lt;span class="nv"&gt;km&lt;/span&gt;
-&lt;/pre&gt;
+&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="err"&gt;14.9 µs ± 238 ns per loop (mean ± std. dev. of 7 runs, 100000 loops each)&lt;/span&gt;
+&lt;span class="err"&gt;10.395180481810051 km&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
 
 
 &lt;h3&gt;Método de Vincenty&lt;/h3&gt;
 &lt;p&gt;El &lt;a href="https://en.wikipedia.org/wiki/Vincenty%27s_formulae"&gt;método de Vincenty&lt;/a&gt; es un método iterativo para la aproximación de la distancia geodésica sobre un elipsoide, en este caso, el elipsoide de referencia del sistema coordenado WGS-84. Este método presenta problemas de convergencia entre puntos antinodales y hoy su uso no es aconsejado (GeoPy aún lo presenta en la versión 1.21 pero está marcado como obsoleto).&lt;/p&gt;
-&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="n"&gt;timeit&lt;/span&gt; &lt;span class="n"&gt;geopy&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;distance&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;vincenty&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;MDE&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;ENV&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;geopy&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;distance&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;vincenty&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;MDE&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;ENV&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-&lt;/pre&gt;
+&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="n"&gt;timeit&lt;/span&gt; &lt;span class="n"&gt;geopy&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;distance&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;vincenty&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;MDE&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;ENV&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;geopy&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;distance&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;vincenty&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;MDE&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;ENV&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
 
 
-&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nv"&gt;home&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nv"&gt;cosmoscalibur&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nv"&gt;anaconda&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nv"&gt;envs&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nv"&gt;geodesic&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nv"&gt;lib&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nv"&gt;python3&lt;/span&gt;.&lt;span class="mi"&gt;7&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nv"&gt;site&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;packages&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nv"&gt;ipykernel_launcher&lt;/span&gt;.&lt;span class="nv"&gt;py&lt;/span&gt;:&lt;span class="mi"&gt;1&lt;/span&gt;: &lt;span class="nv"&gt;DeprecationWarning&lt;/span&gt;: &lt;span class="nv"&gt;Vincenty&lt;/span&gt; &lt;span class="nv"&gt;is&lt;/span&gt; &lt;span class="nv"&gt;deprecated&lt;/span&gt; &lt;span class="nv"&gt;and&lt;/span&gt; &lt;span class="nv"&gt;is&lt;/span&gt; &lt;span class="nv"&gt;going&lt;/span&gt; &lt;span class="nv"&gt;to&lt;/span&gt; &lt;span class="nv"&gt;be&lt;/span&gt; &lt;span class="nv"&gt;removed&lt;/span&gt; &lt;span class="nv"&gt;in&lt;/span&gt; &lt;span class="nv"&gt;geopy&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;.&lt;span class="mi"&gt;0&lt;/span&gt;. &lt;span class="nv"&gt;Use&lt;/span&gt; `&lt;span class="nv"&gt;geopy&lt;/span&gt;.&lt;span class="nv"&gt;distance&lt;/span&gt;.&lt;span class="nv"&gt;geodesic&lt;/span&gt;` &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;or&lt;/span&gt; &lt;span class="nv"&gt;the&lt;/span&gt; &lt;span class="nv"&gt;default&lt;/span&gt; `&lt;span class="nv"&gt;geopy&lt;/span&gt;.&lt;span class="nv"&gt;distance&lt;/span&gt;.&lt;span class="nv"&gt;distance&lt;/span&gt;`&lt;span class="ss"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;instead&lt;/span&gt;, &lt;span class="nv"&gt;which&lt;/span&gt; &lt;span class="nv"&gt;is&lt;/span&gt; &lt;span class="nv"&gt;more&lt;/span&gt; &lt;span class="nv"&gt;accurate&lt;/span&gt; &lt;span class="nv"&gt;and&lt;/span&gt; &lt;span class="nv"&gt;always&lt;/span&gt; &lt;span class="nv"&gt;converges&lt;/span&gt;.
-  &lt;span class="s2"&gt;"""&lt;/span&gt;&lt;span class="s"&gt;Entry point for launching an IPython kernel.&lt;/span&gt;
+&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;home&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;cosmoscalibur&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;anaconda&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;envs&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;geodesic&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;lib&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;python3&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;7&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;site&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;packages&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;ipykernel_launcher&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;py&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;DeprecationWarning&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Vincenty&lt;/span&gt; &lt;span class="k"&gt;is&lt;/span&gt; &lt;span class="n"&gt;deprecated&lt;/span&gt; &lt;span class="k"&gt;and&lt;/span&gt; &lt;span class="k"&gt;is&lt;/span&gt; &lt;span class="n"&gt;going&lt;/span&gt; &lt;span class="k"&gt;to&lt;/span&gt; &lt;span class="n"&gt;be&lt;/span&gt; &lt;span class="n"&gt;removed&lt;/span&gt; &lt;span class="k"&gt;in&lt;/span&gt; &lt;span class="n"&gt;geopy&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt; &lt;span class="n"&gt;Use&lt;/span&gt; &lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="n"&gt;geopy&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;distance&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;geodesic&lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;or&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="k"&gt;default&lt;/span&gt; &lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="n"&gt;geopy&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;distance&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;distance&lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;instead&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;which&lt;/span&gt; &lt;span class="k"&gt;is&lt;/span&gt; &lt;span class="k"&gt;more&lt;/span&gt; &lt;span class="n"&gt;accurate&lt;/span&gt; &lt;span class="k"&gt;and&lt;/span&gt; &lt;span class="n"&gt;always&lt;/span&gt; &lt;span class="n"&gt;converges&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
+  &lt;span class="ss"&gt;""&lt;/span&gt;&lt;span class="err"&gt;"&lt;/span&gt;&lt;span class="n"&gt;Entry&lt;/span&gt; &lt;span class="n"&gt;point&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;launching&lt;/span&gt; &lt;span class="n"&gt;an&lt;/span&gt; &lt;span class="n"&gt;IPython&lt;/span&gt; &lt;span class="n"&gt;kernel&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
 
 
-&lt;span class="mi"&gt;29&lt;/span&gt;.&lt;span class="mi"&gt;7&lt;/span&gt; µ&lt;span class="nv"&gt;s&lt;/span&gt; ± &lt;span class="mi"&gt;964&lt;/span&gt; &lt;span class="nv"&gt;ns&lt;/span&gt; &lt;span class="nv"&gt;per&lt;/span&gt; &lt;span class="k"&gt;loop&lt;/span&gt; &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;mean&lt;/span&gt; ± &lt;span class="nv"&gt;std&lt;/span&gt;. &lt;span class="nv"&gt;dev&lt;/span&gt;. &lt;span class="nv"&gt;of&lt;/span&gt; &lt;span class="mi"&gt;7&lt;/span&gt; &lt;span class="nv"&gt;runs&lt;/span&gt;, &lt;span class="mi"&gt;10000&lt;/span&gt; &lt;span class="nv"&gt;loops&lt;/span&gt; &lt;span class="nv"&gt;each&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;
-&lt;span class="mi"&gt;10&lt;/span&gt;.&lt;span class="mi"&gt;359310623929353&lt;/span&gt; &lt;span class="nv"&gt;km&lt;/span&gt;
+&lt;span class="mi"&gt;29&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;7&lt;/span&gt; &lt;span class="err"&gt;µ&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt; &lt;span class="err"&gt;±&lt;/span&gt; &lt;span class="mi"&gt;964&lt;/span&gt; &lt;span class="n"&gt;ns&lt;/span&gt; &lt;span class="n"&gt;per&lt;/span&gt; &lt;span class="n"&gt;loop&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;mean&lt;/span&gt; &lt;span class="err"&gt;±&lt;/span&gt; &lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt; &lt;span class="n"&gt;dev&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt; &lt;span class="k"&gt;of&lt;/span&gt; &lt;span class="mi"&gt;7&lt;/span&gt; &lt;span class="n"&gt;runs&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;10000&lt;/span&gt; &lt;span class="n"&gt;loops&lt;/span&gt; &lt;span class="k"&gt;each&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;359310623929353&lt;/span&gt; &lt;span class="n"&gt;km&lt;/span&gt;
 
 
-&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nv"&gt;home&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nv"&gt;cosmoscalibur&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nv"&gt;anaconda&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nv"&gt;envs&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nv"&gt;geodesic&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nv"&gt;lib&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nv"&gt;python3&lt;/span&gt;.&lt;span class="mi"&gt;7&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nv"&gt;site&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;packages&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nv"&gt;ipykernel_launcher&lt;/span&gt;.&lt;span class="nv"&gt;py&lt;/span&gt;:&lt;span class="mi"&gt;2&lt;/span&gt;: &lt;span class="nv"&gt;DeprecationWarning&lt;/span&gt;: &lt;span class="nv"&gt;Vincenty&lt;/span&gt; &lt;span class="nv"&gt;is&lt;/span&gt; &lt;span class="nv"&gt;deprecated&lt;/span&gt; &lt;span class="nv"&gt;and&lt;/span&gt; &lt;span class="nv"&gt;is&lt;/span&gt; &lt;span class="nv"&gt;going&lt;/span&gt; &lt;span class="nv"&gt;to&lt;/span&gt; &lt;span class="nv"&gt;be&lt;/span&gt; &lt;span class="nv"&gt;removed&lt;/span&gt; &lt;span class="nv"&gt;in&lt;/span&gt; &lt;span class="nv"&gt;geopy&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;.&lt;span class="mi"&gt;0&lt;/span&gt;. &lt;span class="nv"&gt;Use&lt;/span&gt; `&lt;span class="nv"&gt;geopy&lt;/span&gt;.&lt;span class="nv"&gt;distance&lt;/span&gt;.&lt;span class="nv"&gt;geodesic&lt;/span&gt;` &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;or&lt;/span&gt; &lt;span class="nv"&gt;the&lt;/span&gt; &lt;span class="nv"&gt;default&lt;/span&gt; `&lt;span class="nv"&gt;geopy&lt;/span&gt;.&lt;span class="nv"&gt;distance&lt;/span&gt;.&lt;span class="nv"&gt;distance&lt;/span&gt;`&lt;span class="ss"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;instead&lt;/span&gt;, &lt;span class="nv"&gt;which&lt;/span&gt; &lt;span class="nv"&gt;is&lt;/span&gt; &lt;span class="nv"&gt;more&lt;/span&gt; &lt;span class="nv"&gt;accurate&lt;/span&gt; &lt;span class="nv"&gt;and&lt;/span&gt; &lt;span class="nv"&gt;always&lt;/span&gt; &lt;span class="nv"&gt;converges&lt;/span&gt;.
-&lt;/pre&gt;
+&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;home&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;cosmoscalibur&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;anaconda&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;envs&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;geodesic&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;lib&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;python3&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;7&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;site&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;packages&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;ipykernel_launcher&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;py&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;DeprecationWarning&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Vincenty&lt;/span&gt; &lt;span class="k"&gt;is&lt;/span&gt; &lt;span class="n"&gt;deprecated&lt;/span&gt; &lt;span class="k"&gt;and&lt;/span&gt; &lt;span class="k"&gt;is&lt;/span&gt; &lt;span class="n"&gt;going&lt;/span&gt; &lt;span class="k"&gt;to&lt;/span&gt; &lt;span class="n"&gt;be&lt;/span&gt; &lt;span class="n"&gt;removed&lt;/span&gt; &lt;span class="k"&gt;in&lt;/span&gt; &lt;span class="n"&gt;geopy&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt; &lt;span class="n"&gt;Use&lt;/span&gt; &lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="n"&gt;geopy&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;distance&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;geodesic&lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;or&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="k"&gt;default&lt;/span&gt; &lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="n"&gt;geopy&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;distance&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;distance&lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;instead&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;which&lt;/span&gt; &lt;span class="k"&gt;is&lt;/span&gt; &lt;span class="k"&gt;more&lt;/span&gt; &lt;span class="n"&gt;accurate&lt;/span&gt; &lt;span class="k"&gt;and&lt;/span&gt; &lt;span class="n"&gt;always&lt;/span&gt; &lt;span class="n"&gt;converges&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
 
 
 &lt;h3&gt;Método de Karney&lt;/h3&gt;
 &lt;p&gt;Este método al igual que el propuesto por Vincenty, es iterativo pero se asegura que siempre converge y con menor margen de error que Vincenty. Fue &lt;a href="https://link.springer.com/article/10.1007/s00190-012-0578-z"&gt;propuesto en 2013&lt;/a&gt;.  &lt;/p&gt;
 &lt;p&gt;La implementación disponible en GeoPy corresponde a la implementación C++ de GeographicLib.&lt;/p&gt;
-&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="n"&gt;timeit&lt;/span&gt; &lt;span class="n"&gt;geopy&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;distance&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;distance&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;MDE&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;ENV&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;geopy&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;distance&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;distance&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;MDE&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;ENV&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-&lt;/pre&gt;
+&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="n"&gt;timeit&lt;/span&gt; &lt;span class="n"&gt;geopy&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;distance&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;distance&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;MDE&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;ENV&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;geopy&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;distance&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;distance&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;MDE&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;ENV&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
 
 
-&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="mi"&gt;231&lt;/span&gt; µ&lt;span class="nv"&gt;s&lt;/span&gt; ± &lt;span class="mi"&gt;7&lt;/span&gt;.&lt;span class="mi"&gt;42&lt;/span&gt; µ&lt;span class="nv"&gt;s&lt;/span&gt; &lt;span class="nv"&gt;per&lt;/span&gt; &lt;span class="k"&gt;loop&lt;/span&gt; &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;mean&lt;/span&gt; ± &lt;span class="nv"&gt;std&lt;/span&gt;. &lt;span class="nv"&gt;dev&lt;/span&gt;. &lt;span class="nv"&gt;of&lt;/span&gt; &lt;span class="mi"&gt;7&lt;/span&gt; &lt;span class="nv"&gt;runs&lt;/span&gt;, &lt;span class="mi"&gt;1000&lt;/span&gt; &lt;span class="nv"&gt;loops&lt;/span&gt; &lt;span class="nv"&gt;each&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;
-&lt;span class="mi"&gt;10&lt;/span&gt;.&lt;span class="mi"&gt;35931062438337&lt;/span&gt; &lt;span class="nv"&gt;km&lt;/span&gt;
-&lt;/pre&gt;
+&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="err"&gt;231 µs ± 7.42 µs per loop (mean ± std. dev. of 7 runs, 1000 loops each)&lt;/span&gt;
+&lt;span class="err"&gt;10.35931062438337 km&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
 
 
 &lt;h2&gt;Consideraciones&lt;/h2&gt;
@@ -660,8 +768,8 @@ gestor de paquetes del sistema operativo. En la mayor parte de
 distribuciones Linux estará disponible a través del gestor.&lt;/p&gt;
 &lt;p&gt;En el caso de las distribuciones basadas en Debian (Ubuntu y Linux Mint
 entre otras) puedes instalar de la siguiente manera:&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_959aa50c355e44a5a4d1ac50ac190538-1"&gt;&lt;/a&gt;sudo apt install -y texlive texlive-latex-base texlive-latex-extra \
-&lt;a name="rest_code_959aa50c355e44a5a4d1ac50ac190538-2"&gt;&lt;/a&gt;    texlive-lang-spanish latexmk
+&lt;pre class="code text"&gt;&lt;a name="rest_code_a0538199010943adbcb3e0f3f1769cf6-1"&gt;&lt;/a&gt;sudo apt install -y texlive texlive-latex-base texlive-latex-extra \
+&lt;a name="rest_code_a0538199010943adbcb3e0f3f1769cf6-2"&gt;&lt;/a&gt;    texlive-lang-spanish latexmk
 &lt;/pre&gt;&lt;/dd&gt;
 &lt;/dl&gt;
 &lt;/div&gt;
@@ -691,11 +799,11 @@ proyecto destinemos un directorio &lt;code&gt;docs&lt;/code&gt; para este fin.&l
 &lt;p&gt;Ahora ejecutamos &lt;code&gt;sphinx-quickstart&lt;/code&gt; y respondemos las preguntas que
 saldrán. Es necesario tener en cuenta, que si usas Windows debes agregar al
 comando la terminación &lt;code&gt;.exe&lt;/code&gt;, ejemplo &lt;code&gt;sphinx-quickstart.exe&lt;/code&gt;.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_d275e26b6bbf462583be3ede9d010934-1"&gt;&lt;/a&gt;&amp;gt; Separate source and build directories (y/n) [n]: y
-&lt;a name="rest_code_d275e26b6bbf462583be3ede9d010934-2"&gt;&lt;/a&gt;&amp;gt; Project name: proyecto
-&lt;a name="rest_code_d275e26b6bbf462583be3ede9d010934-3"&gt;&lt;/a&gt;&amp;gt; Author name(s): Edward Villegas-Pulgarin
-&lt;a name="rest_code_d275e26b6bbf462583be3ede9d010934-4"&gt;&lt;/a&gt;&amp;gt; Project release []: 0.1.0
-&lt;a name="rest_code_d275e26b6bbf462583be3ede9d010934-5"&gt;&lt;/a&gt;&amp;gt; Project language [en]: es
+&lt;pre class="code text"&gt;&lt;a name="rest_code_d623e2217dc6496481409db784861343-1"&gt;&lt;/a&gt;&amp;gt; Separate source and build directories (y/n) [n]: y
+&lt;a name="rest_code_d623e2217dc6496481409db784861343-2"&gt;&lt;/a&gt;&amp;gt; Project name: proyecto
+&lt;a name="rest_code_d623e2217dc6496481409db784861343-3"&gt;&lt;/a&gt;&amp;gt; Author name(s): Edward Villegas-Pulgarin
+&lt;a name="rest_code_d623e2217dc6496481409db784861343-4"&gt;&lt;/a&gt;&amp;gt; Project release []: 0.1.0
+&lt;a name="rest_code_d623e2217dc6496481409db784861343-5"&gt;&lt;/a&gt;&amp;gt; Project language [en]: es
 &lt;/pre&gt;&lt;p&gt;Siempre recomiendo separar el directorio del código fuente de la documentación
 del directorio de compilados de la misma. Respecto al esquema de versiones me
 agrada el &lt;cite&gt;versionamiento semántico &amp;lt;https://semver.org/&amp;gt;&lt;/cite&gt; que permite al
@@ -717,13 +825,13 @@ Con Coverage puedes validar que funciones se han documentado y dcotest integra
 pruebas de código desde la documentación (comparar salidas con ejemplo de
 documentación).&lt;/p&gt;
 &lt;p&gt;Modificar en el archivo.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_8c2745548bb54f049e2bfa2e41f8600a-1"&gt;&lt;/a&gt;extensions = [
-&lt;a name="rest_code_8c2745548bb54f049e2bfa2e41f8600a-2"&gt;&lt;/a&gt;    'sphinx.ext.autodoc',
-&lt;a name="rest_code_8c2745548bb54f049e2bfa2e41f8600a-3"&gt;&lt;/a&gt;    'sphinx.ext.mathjax',
-&lt;a name="rest_code_8c2745548bb54f049e2bfa2e41f8600a-4"&gt;&lt;/a&gt;    'sphinx.ext.napoleon',
-&lt;a name="rest_code_8c2745548bb54f049e2bfa2e41f8600a-5"&gt;&lt;/a&gt;    'sphinx.ext.coverage',
-&lt;a name="rest_code_8c2745548bb54f049e2bfa2e41f8600a-6"&gt;&lt;/a&gt;    'sphinx.ext.doctest'
-&lt;a name="rest_code_8c2745548bb54f049e2bfa2e41f8600a-7"&gt;&lt;/a&gt;]
+&lt;pre class="code text"&gt;&lt;a name="rest_code_55cea48fd3604342969bb98edf2a6463-1"&gt;&lt;/a&gt;extensions = [
+&lt;a name="rest_code_55cea48fd3604342969bb98edf2a6463-2"&gt;&lt;/a&gt;    'sphinx.ext.autodoc',
+&lt;a name="rest_code_55cea48fd3604342969bb98edf2a6463-3"&gt;&lt;/a&gt;    'sphinx.ext.mathjax',
+&lt;a name="rest_code_55cea48fd3604342969bb98edf2a6463-4"&gt;&lt;/a&gt;    'sphinx.ext.napoleon',
+&lt;a name="rest_code_55cea48fd3604342969bb98edf2a6463-5"&gt;&lt;/a&gt;    'sphinx.ext.coverage',
+&lt;a name="rest_code_55cea48fd3604342969bb98edf2a6463-6"&gt;&lt;/a&gt;    'sphinx.ext.doctest'
+&lt;a name="rest_code_55cea48fd3604342969bb98edf2a6463-7"&gt;&lt;/a&gt;]
 &lt;/pre&gt;&lt;/div&gt;
 &lt;div class="section" id="importar-paquete"&gt;
 &lt;h3&gt;Importar paquete&lt;/h3&gt;
@@ -735,27 +843,27 @@ primeras líneas de código en la sección de &lt;em&gt;Path setup&lt;/em&gt;. E
 defecto indica la misma carpeta de &lt;code&gt;docs/source&lt;/code&gt;, por lo cual es
 necesario reemplazar por &lt;code&gt;../..&lt;/code&gt; que se devuelve los dos niveles
 necesarios.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_2c5dd9ed06244993aa33a1e9d0255039-1"&gt;&lt;/a&gt;import os
-&lt;a name="rest_code_2c5dd9ed06244993aa33a1e9d0255039-2"&gt;&lt;/a&gt;import sys
-&lt;a name="rest_code_2c5dd9ed06244993aa33a1e9d0255039-3"&gt;&lt;/a&gt;import datetime
-&lt;a name="rest_code_2c5dd9ed06244993aa33a1e9d0255039-4"&gt;&lt;/a&gt;sys.path.insert(0, os.path.abspath('../..'))
-&lt;a name="rest_code_2c5dd9ed06244993aa33a1e9d0255039-5"&gt;&lt;/a&gt;import proyecto
+&lt;pre class="code text"&gt;&lt;a name="rest_code_115b0b1797004580b0d80c7f642c7cef-1"&gt;&lt;/a&gt;import os
+&lt;a name="rest_code_115b0b1797004580b0d80c7f642c7cef-2"&gt;&lt;/a&gt;import sys
+&lt;a name="rest_code_115b0b1797004580b0d80c7f642c7cef-3"&gt;&lt;/a&gt;import datetime
+&lt;a name="rest_code_115b0b1797004580b0d80c7f642c7cef-4"&gt;&lt;/a&gt;sys.path.insert(0, os.path.abspath('../..'))
+&lt;a name="rest_code_115b0b1797004580b0d80c7f642c7cef-5"&gt;&lt;/a&gt;import proyecto
 &lt;/pre&gt;&lt;p&gt;Ahora, puedes hacer cosas como la siguiente, si está disponible en tu código.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_74d723d8ee2a4fe1974a779e9dfce46b-1"&gt;&lt;/a&gt;author = proyecto.__author__
-&lt;a name="rest_code_74d723d8ee2a4fe1974a779e9dfce46b-2"&gt;&lt;/a&gt;copyright = str(datetime.date.today().year) + ', ' + author
-&lt;a name="rest_code_74d723d8ee2a4fe1974a779e9dfce46b-3"&gt;&lt;/a&gt;release = proyecto.__version__
+&lt;pre class="code text"&gt;&lt;a name="rest_code_d43f6859b5314de7a097cf585d0560f1-1"&gt;&lt;/a&gt;author = proyecto.__author__
+&lt;a name="rest_code_d43f6859b5314de7a097cf585d0560f1-2"&gt;&lt;/a&gt;copyright = str(datetime.date.today().year) + ', ' + author
+&lt;a name="rest_code_d43f6859b5314de7a097cf585d0560f1-3"&gt;&lt;/a&gt;release = proyecto.__version__
 &lt;/pre&gt;&lt;/div&gt;
 &lt;div class="section" id="referencias-cruzadas"&gt;
 &lt;h3&gt;Referencias cruzadas&lt;/h3&gt;
 &lt;p&gt;Para usar referencias cruzadas, es decir, numeración de tablas, figuras,
 códigos y ecuaciones si poseen pie de objeto, y ser referenciados en el texto
 por el número, se requiere configurar lo siguiente.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_04d1113f91cf41188919971128c02af7-1"&gt;&lt;/a&gt;numfig = True
-&lt;a name="rest_code_04d1113f91cf41188919971128c02af7-2"&gt;&lt;/a&gt;numfig_format = {'figure': 'Fig. %s', 'table': 'Tabla %s',
-&lt;a name="rest_code_04d1113f91cf41188919971128c02af7-3"&gt;&lt;/a&gt;                 'code-block': 'Código %s', 'section': 'Sección %s'}
-&lt;a name="rest_code_04d1113f91cf41188919971128c02af7-4"&gt;&lt;/a&gt;numfig_secnum_depth = 1
-&lt;a name="rest_code_04d1113f91cf41188919971128c02af7-5"&gt;&lt;/a&gt;math_numfig = True
-&lt;a name="rest_code_04d1113f91cf41188919971128c02af7-6"&gt;&lt;/a&gt;math_eqref_format = 'Ec. {number}'
+&lt;pre class="code text"&gt;&lt;a name="rest_code_2f0b4bac2ee44d6189d4356b13726b98-1"&gt;&lt;/a&gt;numfig = True
+&lt;a name="rest_code_2f0b4bac2ee44d6189d4356b13726b98-2"&gt;&lt;/a&gt;numfig_format = {'figure': 'Fig. %s', 'table': 'Tabla %s',
+&lt;a name="rest_code_2f0b4bac2ee44d6189d4356b13726b98-3"&gt;&lt;/a&gt;                 'code-block': 'Código %s', 'section': 'Sección %s'}
+&lt;a name="rest_code_2f0b4bac2ee44d6189d4356b13726b98-4"&gt;&lt;/a&gt;numfig_secnum_depth = 1
+&lt;a name="rest_code_2f0b4bac2ee44d6189d4356b13726b98-5"&gt;&lt;/a&gt;math_numfig = True
+&lt;a name="rest_code_2f0b4bac2ee44d6189d4356b13726b98-6"&gt;&lt;/a&gt;math_eqref_format = 'Ec. {number}'
 &lt;/pre&gt;&lt;p&gt;Así, es posible usar &lt;code&gt;:label:&lt;/code&gt; para asignar una referencia a los objetos
 y &lt;code&gt;:numref:&lt;/code&gt; y &lt;code&gt;:eq:&lt;/code&gt; a la hora de mencionarlos. Con
 &lt;code&gt;numfig_secnum_depth&lt;/code&gt; configuras la numeración de los objetos, si es
@@ -767,11 +875,11 @@ continúa (0), por sección (1) y subsección (2).&lt;/p&gt;
 maestro, el nombre del archivo TeX, el nombre que nuestra documentación, el
 nombre del autor (que podemos usar la variable que ya definimos) y el tipo de
 documento (cuya clase &lt;em&gt;manual&lt;/em&gt; está definida por Sphinx).&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_2e642da484d443efb029e5d22b7f3d75-1"&gt;&lt;/a&gt;master_doc = 'index'
-&lt;a name="rest_code_2e642da484d443efb029e5d22b7f3d75-2"&gt;&lt;/a&gt;latex_documents = [
-&lt;a name="rest_code_2e642da484d443efb029e5d22b7f3d75-3"&gt;&lt;/a&gt;    (master_doc, 'proyecto.tex', 'Documentación Proyecto',
-&lt;a name="rest_code_2e642da484d443efb029e5d22b7f3d75-4"&gt;&lt;/a&gt;     author, 'manual'),
-&lt;a name="rest_code_2e642da484d443efb029e5d22b7f3d75-5"&gt;&lt;/a&gt;]
+&lt;pre class="code text"&gt;&lt;a name="rest_code_a3f5c59d94854314becca8ed58f087ad-1"&gt;&lt;/a&gt;master_doc = 'index'
+&lt;a name="rest_code_a3f5c59d94854314becca8ed58f087ad-2"&gt;&lt;/a&gt;latex_documents = [
+&lt;a name="rest_code_a3f5c59d94854314becca8ed58f087ad-3"&gt;&lt;/a&gt;    (master_doc, 'proyecto.tex', 'Documentación Proyecto',
+&lt;a name="rest_code_a3f5c59d94854314becca8ed58f087ad-4"&gt;&lt;/a&gt;     author, 'manual'),
+&lt;a name="rest_code_a3f5c59d94854314becca8ed58f087ad-5"&gt;&lt;/a&gt;]
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="section" id="escritura-en-restructuredtext"&gt;
@@ -804,16 +912,16 @@ adelante). Puedes agregar más archivos, por ejemplo, yo suelo usar un
 &lt;code&gt;concepts.rst&lt;/code&gt; para detallar los conceptos necesarios antes de usar el
 software o detallar teoría que ayuda a interpretar resultados o que expande la
 información para que alguien pueda analizar o continuar un desarrollo.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_e71132eee0934ccda3563b8e1becb68f-1"&gt;&lt;/a&gt;.. toctree::
-&lt;a name="rest_code_e71132eee0934ccda3563b8e1becb68f-2"&gt;&lt;/a&gt;   :maxdepth: 3
-&lt;a name="rest_code_e71132eee0934ccda3563b8e1becb68f-3"&gt;&lt;/a&gt;   :caption: Contenido:
-&lt;a name="rest_code_e71132eee0934ccda3563b8e1becb68f-4"&gt;&lt;/a&gt;
-&lt;a name="rest_code_e71132eee0934ccda3563b8e1becb68f-5"&gt;&lt;/a&gt;   README
-&lt;a name="rest_code_e71132eee0934ccda3563b8e1becb68f-6"&gt;&lt;/a&gt;   installation
-&lt;a name="rest_code_e71132eee0934ccda3563b8e1becb68f-7"&gt;&lt;/a&gt;   usage
-&lt;a name="rest_code_e71132eee0934ccda3563b8e1becb68f-8"&gt;&lt;/a&gt;   api/modules
-&lt;a name="rest_code_e71132eee0934ccda3563b8e1becb68f-9"&gt;&lt;/a&gt;   concepts
-&lt;a name="rest_code_e71132eee0934ccda3563b8e1becb68f-10"&gt;&lt;/a&gt;   history
+&lt;pre class="code text"&gt;&lt;a name="rest_code_8014d0e52f1e4271a6b31e123cdf98bc-1"&gt;&lt;/a&gt;.. toctree::
+&lt;a name="rest_code_8014d0e52f1e4271a6b31e123cdf98bc-2"&gt;&lt;/a&gt;   :maxdepth: 3
+&lt;a name="rest_code_8014d0e52f1e4271a6b31e123cdf98bc-3"&gt;&lt;/a&gt;   :caption: Contenido:
+&lt;a name="rest_code_8014d0e52f1e4271a6b31e123cdf98bc-4"&gt;&lt;/a&gt;
+&lt;a name="rest_code_8014d0e52f1e4271a6b31e123cdf98bc-5"&gt;&lt;/a&gt;   README
+&lt;a name="rest_code_8014d0e52f1e4271a6b31e123cdf98bc-6"&gt;&lt;/a&gt;   installation
+&lt;a name="rest_code_8014d0e52f1e4271a6b31e123cdf98bc-7"&gt;&lt;/a&gt;   usage
+&lt;a name="rest_code_8014d0e52f1e4271a6b31e123cdf98bc-8"&gt;&lt;/a&gt;   api/modules
+&lt;a name="rest_code_8014d0e52f1e4271a6b31e123cdf98bc-9"&gt;&lt;/a&gt;   concepts
+&lt;a name="rest_code_8014d0e52f1e4271a6b31e123cdf98bc-10"&gt;&lt;/a&gt;   history
 &lt;/pre&gt;&lt;p&gt;Y podemos borrar las líneas posteriores de &lt;em&gt;Indices and tables&lt;/em&gt;.&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -821,7 +929,7 @@ información para que alguien pueda analizar o continuar un desarrollo.&lt;/p&gt
 &lt;h2&gt;Ejecución de Sphinx&lt;/h2&gt;
 &lt;p&gt;Como estamos haciendo uso de &lt;em&gt;autodoc&lt;/em&gt;, nuestro primer paso es generar la
 extracción de la API.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_e09626796aa34e7d9009bab6e0ade476-1"&gt;&lt;/a&gt;sphinx-apidoc -f -M -o source/api/ ../proyecto
+&lt;pre class="code text"&gt;&lt;a name="rest_code_4abb9f485c9c4fd6bce413bb8980223b-1"&gt;&lt;/a&gt;sphinx-apidoc -f -M -o source/api/ ../proyecto
 &lt;/pre&gt;&lt;p&gt;Recordar que en Windows hay que agregar &lt;code&gt;.exe&lt;/code&gt;
 (&lt;code&gt;sphinx-apidoc.exe&lt;/code&gt;). &lt;code&gt;-f&lt;/code&gt; es para forzar la regeneración de los
 archivos (importante si actualizamos la documentación de la API), &lt;code&gt;-M&lt;/code&gt;
@@ -873,7 +981,7 @@ futuro.&lt;/p&gt;
 &lt;p&gt;Si bien puedes descargarlo desde el sitio del proyecto, aprovecharemos el
 gestor Conda para facilitar la tarea de descarga, instalación y configuración.&lt;/p&gt;
 &lt;p&gt;Abriremos Anaconda PowerShell o Anaconda Prompt, y ejecutaremos lo siguiente:&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_258892832aaa4b72b77f8f1a928c366d-1"&gt;&lt;/a&gt;conda create -n gitbash -c conda-forge git=2.24.0
+&lt;pre class="code text"&gt;&lt;a name="rest_code_0f9723a8a61043b0b1d0ba947ce65199-1"&gt;&lt;/a&gt;conda create -n gitbash -c conda-forge git=2.24.0
 &lt;/pre&gt;&lt;p&gt;Es importante el uso de &lt;code&gt;-c conda-forge&lt;/code&gt; porque de este canal vendrá la
 versión de Git que usaremos. Si se usa el canal por defecto, se instala solo el
 cliente de consola, mientras que en esta opción viene Git Bash. He indicado
@@ -894,9 +1002,9 @@ posibles conflictos.&lt;/p&gt;
 típicos de Bash, como el &lt;code&gt;bashrc&lt;/code&gt;. Así, podemos usar la configuración que
 habitualmente se usa en Linux.&lt;/p&gt;
 &lt;p&gt;Abrimos Git Bash, y ejecutamos:&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_b163e9e1b76b47f69f410aa39c574782-1"&gt;&lt;/a&gt;cd
-&lt;a name="rest_code_b163e9e1b76b47f69f410aa39c574782-2"&gt;&lt;/a&gt;echo ". /c/Users/USUARIO/ANACONDA/etc/profile.d/conda.sh" &amp;gt;&amp;gt; .bashrc
-&lt;a name="rest_code_b163e9e1b76b47f69f410aa39c574782-3"&gt;&lt;/a&gt;source .bashrc
+&lt;pre class="code text"&gt;&lt;a name="rest_code_781fc3e1216a4b15a31bd685721e822f-1"&gt;&lt;/a&gt;cd
+&lt;a name="rest_code_781fc3e1216a4b15a31bd685721e822f-2"&gt;&lt;/a&gt;echo ". /c/Users/USUARIO/ANACONDA/etc/profile.d/conda.sh" &amp;gt;&amp;gt; .bashrc
+&lt;a name="rest_code_781fc3e1216a4b15a31bd685721e822f-3"&gt;&lt;/a&gt;source .bashrc
 &lt;/pre&gt;&lt;p&gt;Con la primera línea aseguramos ir al directorio del usuario. En la segunda
 línea, crearemos o editaremos el archivo de configuración, pero debes
 reemplazar &lt;code&gt;USUARIO&lt;/code&gt; por la carpeta de tu usuario y &lt;code&gt;ANACONDA&lt;/code&gt; por
@@ -921,12 +1029,12 @@ nuestras necesidades especificando en el archivo Dockerfile.&lt;/p&gt;
 &lt;div class="section" id="instalar-docker"&gt;
 &lt;h2&gt;Instalar Docker&lt;/h2&gt;
 &lt;p&gt;Recomiendo en Linux instalar docker con snap.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_e059e92f2b9a4201b2a782e329566a23-1"&gt;&lt;/a&gt;sudo snap install docker
+&lt;pre class="code text"&gt;&lt;a name="rest_code_1a59264feff645e788e890b787d3b772-1"&gt;&lt;/a&gt;sudo snap install docker
 &lt;/pre&gt;&lt;p&gt;Posteriormente, podemos asociar nuestro usuario para la ejecución sin ser
 administrador.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_508d6d3da2484b4a8243aae0f38124b9-1"&gt;&lt;/a&gt;sudo groupadd docker
-&lt;a name="rest_code_508d6d3da2484b4a8243aae0f38124b9-2"&gt;&lt;/a&gt;sudo usermod -aG docker $USER
-&lt;a name="rest_code_508d6d3da2484b4a8243aae0f38124b9-3"&gt;&lt;/a&gt;newgrp docker
+&lt;pre class="code text"&gt;&lt;a name="rest_code_14db894eaa584f76978315873486e936-1"&gt;&lt;/a&gt;sudo groupadd docker
+&lt;a name="rest_code_14db894eaa584f76978315873486e936-2"&gt;&lt;/a&gt;sudo usermod -aG docker $USER
+&lt;a name="rest_code_14db894eaa584f76978315873486e936-3"&gt;&lt;/a&gt;newgrp docker
 &lt;/pre&gt;&lt;p&gt;Puedes probar ejecutando como usuario regular, &lt;code&gt;docker run hello-world&lt;/code&gt;.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="dockerfile"&gt;
@@ -971,8 +1079,8 @@ archivos &lt;em&gt;tar&lt;/em&gt;.&lt;/p&gt;
 &lt;p&gt;El directorio que moveremos se genero en el contenedor LXC que construimos
 en &lt;a class="reference external" href="https://cosmoscalibur.github.io/blog/crear-contenedor-lxc-para-aplicacion-gui-ealite/"&gt;Crear contenedor LXC para aplicación GUI - EALite&lt;/a&gt;. Para ello,
 iniciamos el contenedor y extraemos el directorio.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_d9c792ebe65b4924a899a915ad6eceb2-1"&gt;&lt;/a&gt;sudo lxc start ea
-&lt;a name="rest_code_d9c792ebe65b4924a899a915ad6eceb2-2"&gt;&lt;/a&gt;sudo lxc file pull -r ea/home/ubuntu/.wine .
+&lt;pre class="code text"&gt;&lt;a name="rest_code_541080a2b8604905b90a4e5ae8a223aa-1"&gt;&lt;/a&gt;sudo lxc start ea
+&lt;a name="rest_code_541080a2b8604905b90a4e5ae8a223aa-2"&gt;&lt;/a&gt;sudo lxc file pull -r ea/home/ubuntu/.wine .
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Con &lt;code&gt;USER&lt;/code&gt; cambiamos el usuario que ejecuta los procesos. Es importante
 que a la hora de concluir, si un proceso es ejecutado por un usuario regular,
@@ -984,19 +1092,19 @@ existe (pero no el directorio de usuario).&lt;/p&gt;
 Esto es posible con &lt;code&gt;CMD&lt;/code&gt; o con &lt;code&gt;ENTRYPOINT&lt;/code&gt;. La diferencia es que
 el primero permite sobreescribir la ejecución enviando como parámetro lo que
 se desea ejecutar, mientras que la segunda opción solo ejecuta la configurada.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_004349fca227471b83580738dbd7eaf7-1"&gt;&lt;/a&gt;# escape=`
-&lt;a name="rest_code_004349fca227471b83580738dbd7eaf7-2"&gt;&lt;/a&gt;FROM i386/ubuntu:18.04
-&lt;a name="rest_code_004349fca227471b83580738dbd7eaf7-3"&gt;&lt;/a&gt;RUN apt update -q &amp;amp;&amp;amp; apt install --install-recommends -y wine-stable
-&lt;a name="rest_code_004349fca227471b83580738dbd7eaf7-4"&gt;&lt;/a&gt;RUN apt install -y fonts-crosextra-carlito
-&lt;a name="rest_code_004349fca227471b83580738dbd7eaf7-5"&gt;&lt;/a&gt;RUN useradd -ms /bin/bash ubuntu
-&lt;a name="rest_code_004349fca227471b83580738dbd7eaf7-6"&gt;&lt;/a&gt;WORKDIR /home/ubuntu
-&lt;a name="rest_code_004349fca227471b83580738dbd7eaf7-7"&gt;&lt;/a&gt;COPY .wine .wine
-&lt;a name="rest_code_004349fca227471b83580738dbd7eaf7-8"&gt;&lt;/a&gt;RUN chown -R ubuntu .wine
-&lt;a name="rest_code_004349fca227471b83580738dbd7eaf7-9"&gt;&lt;/a&gt;USER ubuntu
-&lt;a name="rest_code_004349fca227471b83580738dbd7eaf7-10"&gt;&lt;/a&gt;RUN mkdir -p .local/bin &amp;amp;&amp;amp; `
-&lt;a name="rest_code_004349fca227471b83580738dbd7eaf7-11"&gt;&lt;/a&gt;        echo "wine $HOME/.wine/drive_c/Program\ Files/Sparx\ Systems/EA\ LITE/EA.exe" &amp;gt; .local/bin/ealite &amp;amp;&amp;amp; `
-&lt;a name="rest_code_004349fca227471b83580738dbd7eaf7-12"&gt;&lt;/a&gt;        chmod 755 .local/bin/ealite
-&lt;a name="rest_code_004349fca227471b83580738dbd7eaf7-13"&gt;&lt;/a&gt;CMD ".local/bin/ealite"
+&lt;pre class="code text"&gt;&lt;a name="rest_code_bb91688667184070845aacf463a6d57d-1"&gt;&lt;/a&gt;# escape=`
+&lt;a name="rest_code_bb91688667184070845aacf463a6d57d-2"&gt;&lt;/a&gt;FROM i386/ubuntu:18.04
+&lt;a name="rest_code_bb91688667184070845aacf463a6d57d-3"&gt;&lt;/a&gt;RUN apt update -q &amp;amp;&amp;amp; apt install --install-recommends -y wine-stable
+&lt;a name="rest_code_bb91688667184070845aacf463a6d57d-4"&gt;&lt;/a&gt;RUN apt install -y fonts-crosextra-carlito
+&lt;a name="rest_code_bb91688667184070845aacf463a6d57d-5"&gt;&lt;/a&gt;RUN useradd -ms /bin/bash ubuntu
+&lt;a name="rest_code_bb91688667184070845aacf463a6d57d-6"&gt;&lt;/a&gt;WORKDIR /home/ubuntu
+&lt;a name="rest_code_bb91688667184070845aacf463a6d57d-7"&gt;&lt;/a&gt;COPY .wine .wine
+&lt;a name="rest_code_bb91688667184070845aacf463a6d57d-8"&gt;&lt;/a&gt;RUN chown -R ubuntu .wine
+&lt;a name="rest_code_bb91688667184070845aacf463a6d57d-9"&gt;&lt;/a&gt;USER ubuntu
+&lt;a name="rest_code_bb91688667184070845aacf463a6d57d-10"&gt;&lt;/a&gt;RUN mkdir -p .local/bin &amp;amp;&amp;amp; `
+&lt;a name="rest_code_bb91688667184070845aacf463a6d57d-11"&gt;&lt;/a&gt;        echo "wine $HOME/.wine/drive_c/Program\ Files/Sparx\ Systems/EA\ LITE/EA.exe" &amp;gt; .local/bin/ealite &amp;amp;&amp;amp; `
+&lt;a name="rest_code_bb91688667184070845aacf463a6d57d-12"&gt;&lt;/a&gt;        chmod 755 .local/bin/ealite
+&lt;a name="rest_code_bb91688667184070845aacf463a6d57d-13"&gt;&lt;/a&gt;CMD ".local/bin/ealite"
 &lt;/pre&gt;&lt;/div&gt;
 &lt;div class="section" id="construir-imagen-docker"&gt;
 &lt;h2&gt;Construir imagen Docker&lt;/h2&gt;
@@ -1006,13 +1114,13 @@ para relacionar la ruta del archivo dockerfile que se usará. El siguiente
 argumento no posee marca para indicarlo y corresponde al contexto, que viene a
 ser la ruta donde se encuentran los archivos que usaremos (que puede ser
 reemplazado por un archivo de contexto con la ruta a los distintos archivos).&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_b67a8e0c37cc46e8b1be98f3a2f0ecca-1"&gt;&lt;/a&gt;docker build -t cosmoscalibur/ealite:latest -f dockerfile .
+&lt;pre class="code text"&gt;&lt;a name="rest_code_5e00b0f22de7400586d9377aa95143cf-1"&gt;&lt;/a&gt;docker build -t cosmoscalibur/ealite:latest -f dockerfile .
 &lt;/pre&gt;&lt;/div&gt;
 &lt;div class="section" id="ejecutar-contenedor"&gt;
 &lt;h2&gt;Ejecutar contenedor&lt;/h2&gt;
 &lt;p&gt;Ahora puedes lanzar un contenedor gráfico basado en la imagen construida con la
 siguiente instrucción.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_097bf80e6d9c4546b20eb2f992656c2e-1"&gt;&lt;/a&gt;docker run --net=host --env="DISPLAY" --volume="$HOME/.Xauthority:/root/.Xauthority:rw" cosmoscalibur/ealite:latest
+&lt;pre class="code text"&gt;&lt;a name="rest_code_d8ba6418ab8443feb78b31388fd6ad7e-1"&gt;&lt;/a&gt;docker run --net=host --env="DISPLAY" --volume="$HOME/.Xauthority:/root/.Xauthority:rw" cosmoscalibur/ealite:latest
 &lt;/pre&gt;&lt;/div&gt;
 &lt;div class="section" id="referencias"&gt;
 &lt;h2&gt;Referencias&lt;/h2&gt;
@@ -1043,9 +1151,9 @@ bibliotecas de 32 bits de manera innecesaria. Así que empecemos.&lt;/p&gt;
 &lt;p&gt;Nuestro primer paso será instalar el paquete LXD, el cual se encuentra
 disponible a través de múltiples gestores de paquetes de las distribuciones
 Linux pero también como paquete snap. Por facilidad, usaré el paquete snap.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_0f0d39f9e4694a759fc1b20a58ab92c5-1"&gt;&lt;/a&gt;sudo snap install lxd
+&lt;pre class="code text"&gt;&lt;a name="rest_code_78098b1a74c14f95aec404f61058da99-1"&gt;&lt;/a&gt;sudo snap install lxd
 &lt;/pre&gt;&lt;p&gt;Ahora, debemos inicializar (solo es necesario la primera vez tras instalar).&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_468138264980403bb454390bee7bed76-1"&gt;&lt;/a&gt;sudo lxd init
+&lt;pre class="code text"&gt;&lt;a name="rest_code_2797b171d7954f9b82173b22a0ca3102-1"&gt;&lt;/a&gt;sudo lxd init
 &lt;/pre&gt;&lt;p&gt;En mi caso, todos los valores que son preguntados los he dejado en su valor
 por defecto. Personalmente, solo debería preocuparnos el tamaño de la unidad
 usado (en caso de tener limitaciones en espacio de almacenamiento).&lt;/p&gt;
@@ -1058,35 +1166,35 @@ gráfica nos requiere una configuración adicional, que es realizar el paso al
 sistema gráfico de nuestro sistema hospedador.&lt;/p&gt;
 &lt;p&gt;El perfil gráfico es definido con el siguiente código (copia y pega en un nuevo
 archivo, &lt;code&gt;lxdguiprofile.txt&lt;/code&gt;).&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_bb701a30a3cd40dfa8d2966f19a961d7-1"&gt;&lt;/a&gt;config:
-&lt;a name="rest_code_bb701a30a3cd40dfa8d2966f19a961d7-2"&gt;&lt;/a&gt;  environment.DISPLAY: :0
-&lt;a name="rest_code_bb701a30a3cd40dfa8d2966f19a961d7-3"&gt;&lt;/a&gt;  raw.idmap: both 1000 1000
-&lt;a name="rest_code_bb701a30a3cd40dfa8d2966f19a961d7-4"&gt;&lt;/a&gt;  user.user-data: |
-&lt;a name="rest_code_bb701a30a3cd40dfa8d2966f19a961d7-5"&gt;&lt;/a&gt;    #cloud-config
-&lt;a name="rest_code_bb701a30a3cd40dfa8d2966f19a961d7-6"&gt;&lt;/a&gt;    runcmd:
-&lt;a name="rest_code_bb701a30a3cd40dfa8d2966f19a961d7-7"&gt;&lt;/a&gt;      - 'sed -i "s/; enable-shm = yes/enable-shm = no/g" /etc/pulse/client.conf'
-&lt;a name="rest_code_bb701a30a3cd40dfa8d2966f19a961d7-8"&gt;&lt;/a&gt;      - 'echo export PULSE_SERVER=unix:/tmp/.pulse-native | tee --append /home/ubuntu/.profile'
-&lt;a name="rest_code_bb701a30a3cd40dfa8d2966f19a961d7-9"&gt;&lt;/a&gt;    packages:
-&lt;a name="rest_code_bb701a30a3cd40dfa8d2966f19a961d7-10"&gt;&lt;/a&gt;      - x11-apps
-&lt;a name="rest_code_bb701a30a3cd40dfa8d2966f19a961d7-11"&gt;&lt;/a&gt;      - mesa-utils
-&lt;a name="rest_code_bb701a30a3cd40dfa8d2966f19a961d7-12"&gt;&lt;/a&gt;      - pulseaudio
-&lt;a name="rest_code_bb701a30a3cd40dfa8d2966f19a961d7-13"&gt;&lt;/a&gt;description: GUI LXD profile
-&lt;a name="rest_code_bb701a30a3cd40dfa8d2966f19a961d7-14"&gt;&lt;/a&gt;devices:
-&lt;a name="rest_code_bb701a30a3cd40dfa8d2966f19a961d7-15"&gt;&lt;/a&gt;  PASocket:
-&lt;a name="rest_code_bb701a30a3cd40dfa8d2966f19a961d7-16"&gt;&lt;/a&gt;    path: /tmp/.pulse-native
-&lt;a name="rest_code_bb701a30a3cd40dfa8d2966f19a961d7-17"&gt;&lt;/a&gt;    source: /run/user/1000/pulse/native
-&lt;a name="rest_code_bb701a30a3cd40dfa8d2966f19a961d7-18"&gt;&lt;/a&gt;    type: disk
-&lt;a name="rest_code_bb701a30a3cd40dfa8d2966f19a961d7-19"&gt;&lt;/a&gt;  X0:
-&lt;a name="rest_code_bb701a30a3cd40dfa8d2966f19a961d7-20"&gt;&lt;/a&gt;    path: /tmp/.X11-unix/X0
-&lt;a name="rest_code_bb701a30a3cd40dfa8d2966f19a961d7-21"&gt;&lt;/a&gt;    source: /tmp/.X11-unix/X0
-&lt;a name="rest_code_bb701a30a3cd40dfa8d2966f19a961d7-22"&gt;&lt;/a&gt;    type: disk
-&lt;a name="rest_code_bb701a30a3cd40dfa8d2966f19a961d7-23"&gt;&lt;/a&gt;  mygpu:
-&lt;a name="rest_code_bb701a30a3cd40dfa8d2966f19a961d7-24"&gt;&lt;/a&gt;    type: gpu
-&lt;a name="rest_code_bb701a30a3cd40dfa8d2966f19a961d7-25"&gt;&lt;/a&gt;name: gui
-&lt;a name="rest_code_bb701a30a3cd40dfa8d2966f19a961d7-26"&gt;&lt;/a&gt;used_by:
+&lt;pre class="code text"&gt;&lt;a name="rest_code_5d1913985a6a4737a358a4377d502e8f-1"&gt;&lt;/a&gt;config:
+&lt;a name="rest_code_5d1913985a6a4737a358a4377d502e8f-2"&gt;&lt;/a&gt;  environment.DISPLAY: :0
+&lt;a name="rest_code_5d1913985a6a4737a358a4377d502e8f-3"&gt;&lt;/a&gt;  raw.idmap: both 1000 1000
+&lt;a name="rest_code_5d1913985a6a4737a358a4377d502e8f-4"&gt;&lt;/a&gt;  user.user-data: |
+&lt;a name="rest_code_5d1913985a6a4737a358a4377d502e8f-5"&gt;&lt;/a&gt;    #cloud-config
+&lt;a name="rest_code_5d1913985a6a4737a358a4377d502e8f-6"&gt;&lt;/a&gt;    runcmd:
+&lt;a name="rest_code_5d1913985a6a4737a358a4377d502e8f-7"&gt;&lt;/a&gt;      - 'sed -i "s/; enable-shm = yes/enable-shm = no/g" /etc/pulse/client.conf'
+&lt;a name="rest_code_5d1913985a6a4737a358a4377d502e8f-8"&gt;&lt;/a&gt;      - 'echo export PULSE_SERVER=unix:/tmp/.pulse-native | tee --append /home/ubuntu/.profile'
+&lt;a name="rest_code_5d1913985a6a4737a358a4377d502e8f-9"&gt;&lt;/a&gt;    packages:
+&lt;a name="rest_code_5d1913985a6a4737a358a4377d502e8f-10"&gt;&lt;/a&gt;      - x11-apps
+&lt;a name="rest_code_5d1913985a6a4737a358a4377d502e8f-11"&gt;&lt;/a&gt;      - mesa-utils
+&lt;a name="rest_code_5d1913985a6a4737a358a4377d502e8f-12"&gt;&lt;/a&gt;      - pulseaudio
+&lt;a name="rest_code_5d1913985a6a4737a358a4377d502e8f-13"&gt;&lt;/a&gt;description: GUI LXD profile
+&lt;a name="rest_code_5d1913985a6a4737a358a4377d502e8f-14"&gt;&lt;/a&gt;devices:
+&lt;a name="rest_code_5d1913985a6a4737a358a4377d502e8f-15"&gt;&lt;/a&gt;  PASocket:
+&lt;a name="rest_code_5d1913985a6a4737a358a4377d502e8f-16"&gt;&lt;/a&gt;    path: /tmp/.pulse-native
+&lt;a name="rest_code_5d1913985a6a4737a358a4377d502e8f-17"&gt;&lt;/a&gt;    source: /run/user/1000/pulse/native
+&lt;a name="rest_code_5d1913985a6a4737a358a4377d502e8f-18"&gt;&lt;/a&gt;    type: disk
+&lt;a name="rest_code_5d1913985a6a4737a358a4377d502e8f-19"&gt;&lt;/a&gt;  X0:
+&lt;a name="rest_code_5d1913985a6a4737a358a4377d502e8f-20"&gt;&lt;/a&gt;    path: /tmp/.X11-unix/X0
+&lt;a name="rest_code_5d1913985a6a4737a358a4377d502e8f-21"&gt;&lt;/a&gt;    source: /tmp/.X11-unix/X0
+&lt;a name="rest_code_5d1913985a6a4737a358a4377d502e8f-22"&gt;&lt;/a&gt;    type: disk
+&lt;a name="rest_code_5d1913985a6a4737a358a4377d502e8f-23"&gt;&lt;/a&gt;  mygpu:
+&lt;a name="rest_code_5d1913985a6a4737a358a4377d502e8f-24"&gt;&lt;/a&gt;    type: gpu
+&lt;a name="rest_code_5d1913985a6a4737a358a4377d502e8f-25"&gt;&lt;/a&gt;name: gui
+&lt;a name="rest_code_5d1913985a6a4737a358a4377d502e8f-26"&gt;&lt;/a&gt;used_by:
 &lt;/pre&gt;&lt;p&gt;Ahora, crearemos el perfil:&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_9c1b60ce365f42978c80fc02b86cf857-1"&gt;&lt;/a&gt;sudo lxc profile create gui
-&lt;a name="rest_code_9c1b60ce365f42978c80fc02b86cf857-2"&gt;&lt;/a&gt;cat lxdguiprofile.txt | sudo lxc profile edit gui
+&lt;pre class="code text"&gt;&lt;a name="rest_code_541cd087011e4725a2a771cb236e36e0-1"&gt;&lt;/a&gt;sudo lxc profile create gui
+&lt;a name="rest_code_541cd087011e4725a2a771cb236e36e0-2"&gt;&lt;/a&gt;cat lxdguiprofile.txt | sudo lxc profile edit gui
 &lt;/pre&gt;&lt;p&gt;Este procedimiento, solo es necesario hacerlo la primera vez.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="obtener-contenedor-base"&gt;
@@ -1099,7 +1207,7 @@ distribuciones Linux, con versiones y arquitecturas diferentes.&lt;/p&gt;
 corresponde a 32 bits. Puedes usar otra distribución siempre y cuando disponga
 de la forma de instalar los paquetes necesarios y en versiones recientes (entre
 más reciente sea Wine, mejor).&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_40769f5f8c044b4ca359b161500729ab-1"&gt;&lt;/a&gt;sudo lxc launch --profile default --profile gui images:ubuntu/18.04/i386 ea
+&lt;pre class="code text"&gt;&lt;a name="rest_code_6d5377565c62494da99bc9977043c8d8-1"&gt;&lt;/a&gt;sudo lxc launch --profile default --profile gui images:ubuntu/18.04/i386 ea
 &lt;/pre&gt;&lt;p&gt;Cuando no requerimos la parte gráfica, podemos omitir
 &lt;code&gt;--profile default --profile gui&lt;/code&gt;. Los dos perfiles son un proceso de
 herencia, primero se carga el perfil por defecto y luego se añade lo necesario
@@ -1116,7 +1224,7 @@ ejecución del contenedor, o igual podríamos detenerlo primero,
 &lt;p&gt;Para instalar nuestro programa en el contenedor, necesitamos ejecutar comandos
 en este. Para ello, tenemos &lt;code&gt;lxc exec {contenedor} -- {comando}&lt;/code&gt;. Una
 forma interactiva, adecuada para pruebas, es ejecutar bash.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_84af22cdaf55462db32f074f3161869a-1"&gt;&lt;/a&gt;sudo lxc exec ea -- /bin/bash
+&lt;pre class="code text"&gt;&lt;a name="rest_code_c32e2cb799c146ceb9edbb72b2dc3a0e-1"&gt;&lt;/a&gt;sudo lxc exec ea -- /bin/bash
 &lt;/pre&gt;&lt;p&gt;De esta manera podemos ejecutar los comandos de la misma manera que lo hacemos
 en nuestro sistema, ya que estamos en el contenedor.&lt;/p&gt;
 &lt;p&gt;Si deseamos automatizar, nos interesará enviar directamente las instrucciones
@@ -1132,39 +1240,39 @@ tenemos el usuario ubuntu),
 &lt;p&gt;La gestión de archivos es realizada con los comandos &lt;code&gt;file pull&lt;/code&gt; y
 &lt;code&gt;file push&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;Así, si deseamos enviar un archivo:&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_495ffd801bd14e6897c5ee172ab229cb-1"&gt;&lt;/a&gt;sudo lxc file push {archivo local} {contenedor}/{ruta contenedor}
+&lt;pre class="code text"&gt;&lt;a name="rest_code_31e28c1372374c0882569565c7db0455-1"&gt;&lt;/a&gt;sudo lxc file push {archivo local} {contenedor}/{ruta contenedor}
 &lt;/pre&gt;&lt;p&gt;Y si deseamos traer un archivo del contenedor:&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_2ea4989d70614fb89bdf680cf49d72ff-1"&gt;&lt;/a&gt;sudo lxc file pull {contenedor}/{ruta contenedor} {archivo local}
+&lt;pre class="code text"&gt;&lt;a name="rest_code_81adf1813d9f43cf8a87fa9f61d54f4c-1"&gt;&lt;/a&gt;sudo lxc file pull {contenedor}/{ruta contenedor} {archivo local}
 &lt;/pre&gt;&lt;/div&gt;
 &lt;div class="section" id="instalar-ealite"&gt;
 &lt;h2&gt;Instalar EALite&lt;/h2&gt;
 &lt;p&gt;Ahora que sabemos ejecutar comandos en el contenedor, instalaremos las
 dependencias y finalmente EALite.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_adc753776eb945f782cb4edb774d6b25-1"&gt;&lt;/a&gt;sudo lxc exec ea -- apt update -q
-&lt;a name="rest_code_adc753776eb945f782cb4edb774d6b25-2"&gt;&lt;/a&gt;sudo lxc exec ea -- apt install --install-recommends -y wine-stable winetricks
-&lt;a name="rest_code_adc753776eb945f782cb4edb774d6b25-3"&gt;&lt;/a&gt;sudo lxc exec ea -- apt install -y fonts-crosextra-carlito
-&lt;a name="rest_code_adc753776eb945f782cb4edb774d6b25-4"&gt;&lt;/a&gt;sudo lxc exec ea -- su - ubuntu -c 'winetricks --unattended msxml3'
-&lt;a name="rest_code_adc753776eb945f782cb4edb774d6b25-5"&gt;&lt;/a&gt;sudo lxc exec ea -- su - ubuntu -c 'winetricks --unattended msxml4'
-&lt;a name="rest_code_adc753776eb945f782cb4edb774d6b25-6"&gt;&lt;/a&gt;sudo lxc exec ea -- su - ubuntu -c 'winetricks --unattended msxml6'
-&lt;a name="rest_code_adc753776eb945f782cb4edb774d6b25-7"&gt;&lt;/a&gt;sudo lxc exec ea -- su - ubuntu -c 'winetricks --unattended mdac28'
-&lt;a name="rest_code_adc753776eb945f782cb4edb774d6b25-8"&gt;&lt;/a&gt;sudo lxc exec ea -- su - ubuntu -c 'winetricks --unattended jet40'
-&lt;a name="rest_code_adc753776eb945f782cb4edb774d6b25-9"&gt;&lt;/a&gt;wget http://www.sparxsystems.com.au/bin/EALite.exe
-&lt;a name="rest_code_adc753776eb945f782cb4edb774d6b25-10"&gt;&lt;/a&gt;sudo lxc file push EALite.exe ea/home/ubuntu/EALite.exe
-&lt;a name="rest_code_adc753776eb945f782cb4edb774d6b25-11"&gt;&lt;/a&gt;sudo lxc exec ea -- su - ubuntu -c 'wine msiexec /i EALite.exe'
+&lt;pre class="code text"&gt;&lt;a name="rest_code_f60bdb128acd47f68d7b6b503d675f4d-1"&gt;&lt;/a&gt;sudo lxc exec ea -- apt update -q
+&lt;a name="rest_code_f60bdb128acd47f68d7b6b503d675f4d-2"&gt;&lt;/a&gt;sudo lxc exec ea -- apt install --install-recommends -y wine-stable winetricks
+&lt;a name="rest_code_f60bdb128acd47f68d7b6b503d675f4d-3"&gt;&lt;/a&gt;sudo lxc exec ea -- apt install -y fonts-crosextra-carlito
+&lt;a name="rest_code_f60bdb128acd47f68d7b6b503d675f4d-4"&gt;&lt;/a&gt;sudo lxc exec ea -- su - ubuntu -c 'winetricks --unattended msxml3'
+&lt;a name="rest_code_f60bdb128acd47f68d7b6b503d675f4d-5"&gt;&lt;/a&gt;sudo lxc exec ea -- su - ubuntu -c 'winetricks --unattended msxml4'
+&lt;a name="rest_code_f60bdb128acd47f68d7b6b503d675f4d-6"&gt;&lt;/a&gt;sudo lxc exec ea -- su - ubuntu -c 'winetricks --unattended msxml6'
+&lt;a name="rest_code_f60bdb128acd47f68d7b6b503d675f4d-7"&gt;&lt;/a&gt;sudo lxc exec ea -- su - ubuntu -c 'winetricks --unattended mdac28'
+&lt;a name="rest_code_f60bdb128acd47f68d7b6b503d675f4d-8"&gt;&lt;/a&gt;sudo lxc exec ea -- su - ubuntu -c 'winetricks --unattended jet40'
+&lt;a name="rest_code_f60bdb128acd47f68d7b6b503d675f4d-9"&gt;&lt;/a&gt;wget http://www.sparxsystems.com.au/bin/EALite.exe
+&lt;a name="rest_code_f60bdb128acd47f68d7b6b503d675f4d-10"&gt;&lt;/a&gt;sudo lxc file push EALite.exe ea/home/ubuntu/EALite.exe
+&lt;a name="rest_code_f60bdb128acd47f68d7b6b503d675f4d-11"&gt;&lt;/a&gt;sudo lxc exec ea -- su - ubuntu -c 'wine msiexec /i EALite.exe'
 &lt;/pre&gt;&lt;p&gt;En este punto, procederemos de manera gráfica a la instalación final de EALite.&lt;/p&gt;
 &lt;div class="figure align-center"&gt;
 &lt;a class="reference external image-reference" href="https://cosmoscalibur.github.io/images/crear-contenedor-lxc-para-aplicacion-gui-ealite/instalacion-grafica-ealite-lxc.png"&gt;&lt;img alt="Ventana de instalación gráfica de EALite." src="https://cosmoscalibur.github.io/images/crear-contenedor-lxc-para-aplicacion-gui-ealite/instalacion-grafica-ealite-lxc.thumbnail.png" style="width: 480px;"&gt;&lt;/a&gt;
 &lt;p class="caption"&gt;Ventana de instalación gráfica de EALite.&lt;/p&gt;
 &lt;/div&gt;
 &lt;p&gt;Ahora, es necesario crear un mecanismo simple para la ejecución de EA.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_632027016794493e8d08f9834ca97400-1"&gt;&lt;/a&gt;sudo lxc exec ea -- su - ubuntu -c 'mkdir $HOME/.local/bin'
-&lt;a name="rest_code_632027016794493e8d08f9834ca97400-2"&gt;&lt;/a&gt;sudo lxc exec ea -- su - ubuntu -c 'echo "wine $HOME/.wine/drive_c/Program\ Files/Sparx\ Systems/EA\ LITE/EA.exe" &amp;gt; $HOME/.local/bin/ealite'
-&lt;a name="rest_code_632027016794493e8d08f9834ca97400-3"&gt;&lt;/a&gt;sudo lxc exec ea -- su - ubuntu -c 'chmod 755 $HOME/.local/bin/ealite'
+&lt;pre class="code text"&gt;&lt;a name="rest_code_837338f10c5f4612b6b2db8fbafd4fca-1"&gt;&lt;/a&gt;sudo lxc exec ea -- su - ubuntu -c 'mkdir $HOME/.local/bin'
+&lt;a name="rest_code_837338f10c5f4612b6b2db8fbafd4fca-2"&gt;&lt;/a&gt;sudo lxc exec ea -- su - ubuntu -c 'echo "wine $HOME/.wine/drive_c/Program\ Files/Sparx\ Systems/EA\ LITE/EA.exe" &amp;gt; $HOME/.local/bin/ealite'
+&lt;a name="rest_code_837338f10c5f4612b6b2db8fbafd4fca-3"&gt;&lt;/a&gt;sudo lxc exec ea -- su - ubuntu -c 'chmod 755 $HOME/.local/bin/ealite'
 &lt;/pre&gt;&lt;/div&gt;
 &lt;div class="section" id="ejecutar-ealite"&gt;
 &lt;h2&gt;Ejecutar EALite&lt;/h2&gt;
 &lt;p&gt;Ahora, podemos usar el visor de Enterprise Architect.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_9cc67a3d54c34b0a923752ed892f60ab-1"&gt;&lt;/a&gt;sudo lxc exec ea -- su - ubuntu -c 'ealite'
+&lt;pre class="code text"&gt;&lt;a name="rest_code_1ce33949aa6c48fa86fe6dc875925e2e-1"&gt;&lt;/a&gt;sudo lxc exec ea -- su - ubuntu -c 'ealite'
 &lt;/pre&gt;&lt;p&gt;Cuando iniciemos el sistema operativo, requerimos de iniciar el contenedores
 antes de ejecutar la instrucción anterior, &lt;code&gt;sudo lxc start ea&lt;/code&gt;.&lt;/p&gt;
 &lt;div class="figure align-center"&gt;
@@ -1178,12 +1286,12 @@ antes de ejecutar la instrucción anterior, &lt;code&gt;sudo lxc start ea&lt;/co
 &lt;p&gt;Puedes asegurar una forma simple de ejecutar EALite creando una rutina de
 lanzamiento con las dos líneas anteriores en un archivo que sea reconocido en
 el &lt;code&gt;path&lt;/code&gt;.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_27629668e0eb414c9ae243ac00a955f0-1"&gt;&lt;/a&gt;mkdir -p $HOME/.local/bin
-&lt;a name="rest_code_27629668e0eb414c9ae243ac00a955f0-2"&gt;&lt;/a&gt;cat &amp;lt;&amp;lt; EOF &amp;gt; $HOME/.local/bin/ealite
-&lt;a name="rest_code_27629668e0eb414c9ae243ac00a955f0-3"&gt;&lt;/a&gt;sudo lxc start ea
-&lt;a name="rest_code_27629668e0eb414c9ae243ac00a955f0-4"&gt;&lt;/a&gt;sudo lxc exec ea -- su - ubuntu -c 'ealite'
-&lt;a name="rest_code_27629668e0eb414c9ae243ac00a955f0-5"&gt;&lt;/a&gt;EOF
-&lt;a name="rest_code_27629668e0eb414c9ae243ac00a955f0-6"&gt;&lt;/a&gt;chmod 755 $HOME/.local/bin/ealite
+&lt;pre class="code text"&gt;&lt;a name="rest_code_e9f80efcfef74906ab41bf51019e260f-1"&gt;&lt;/a&gt;mkdir -p $HOME/.local/bin
+&lt;a name="rest_code_e9f80efcfef74906ab41bf51019e260f-2"&gt;&lt;/a&gt;cat &amp;lt;&amp;lt; EOF &amp;gt; $HOME/.local/bin/ealite
+&lt;a name="rest_code_e9f80efcfef74906ab41bf51019e260f-3"&gt;&lt;/a&gt;sudo lxc start ea
+&lt;a name="rest_code_e9f80efcfef74906ab41bf51019e260f-4"&gt;&lt;/a&gt;sudo lxc exec ea -- su - ubuntu -c 'ealite'
+&lt;a name="rest_code_e9f80efcfef74906ab41bf51019e260f-5"&gt;&lt;/a&gt;EOF
+&lt;a name="rest_code_e9f80efcfef74906ab41bf51019e260f-6"&gt;&lt;/a&gt;chmod 755 $HOME/.local/bin/ealite
 &lt;/pre&gt;&lt;p&gt;La ejecución con &lt;code&gt;sudo&lt;/code&gt; puede omitirse si se añade el usuario a un grupo
 que permita la ejecución de lxc. Más adelante, haré una publicación sobre como
 hacerlo. Por ahora, diviértete ejecutando &lt;code&gt;ealite&lt;/code&gt; e ingresando la
@@ -1194,15 +1302,15 @@ contenedor.&lt;/p&gt;
 &lt;div class="section" id="compartir"&gt;
 &lt;h2&gt;Compartir&lt;/h2&gt;
 &lt;p&gt;Para compartir el contenedor, puedes publicarlo y exportar la imagen.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_ed3626c451974e3294e3ca9525063641-1"&gt;&lt;/a&gt;sudo lxc publish ea --alias ealite
-&lt;a name="rest_code_ed3626c451974e3294e3ca9525063641-2"&gt;&lt;/a&gt;sudo lxc image export ealite
+&lt;pre class="code text"&gt;&lt;a name="rest_code_31a962d227b54163a57f9b89e66ec3ff-1"&gt;&lt;/a&gt;sudo lxc publish ea --alias ealite
+&lt;a name="rest_code_31a962d227b54163a57f9b89e66ec3ff-2"&gt;&lt;/a&gt;sudo lxc image export ealite
 &lt;/pre&gt;&lt;p&gt;La imagen exportada es un archivo &lt;code&gt;tar.gz&lt;/code&gt; con el nombre asociado al
 &lt;em&gt;fingerprint&lt;/em&gt; (una secuencia alfanumérica). Luego se debe importar la imagen
 y hacer &lt;code&gt;launch&lt;/code&gt; nuevamente con el perfil.&lt;/p&gt;
 &lt;p&gt;También puedes exportar directamente el contenedor, lo cual es recomendable
 porque lleva con ello la configuración del perfil GUI y es listo para usar
 una vez hagas la importación.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_cc21caf2c9f14b6e920ba1f4645d5989-1"&gt;&lt;/a&gt;sudo lxc export ea ea.tar.gz --optimized-storage
+&lt;pre class="code text"&gt;&lt;a name="rest_code_636ab550e4634ca3af2d88b8a35a64ad-1"&gt;&lt;/a&gt;sudo lxc export ea ea.tar.gz --optimized-storage
 &lt;/pre&gt;&lt;/div&gt;
 &lt;div class="section" id="referencias"&gt;
 &lt;h2&gt;Referencias&lt;/h2&gt;
@@ -1217,152 +1325,4 @@ Solución a un posible error usando GUI en LXC.&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://wiki.winehq.org/Winetricks"&gt;Winetricks&lt;/a&gt;.&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://stackoverflow.com/questions/31228191/how-do-i-export-a-lxc-container"&gt;How do I export a lxc container?&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;/div&gt;&lt;/div&gt;</description><category>contenedor</category><category>ealite</category><category>enterprise architect</category><category>linux</category><category>lxc</category><category>lxd</category><category>wine</category><guid>https://cosmoscalibur.github.io/blog/crear-contenedor-lxc-para-aplicacion-gui-ealite/</guid><pubDate>Mon, 11 Nov 2019 23:21:26 GMT</pubDate></item><item><title>Instalando paquetes en Linux (Mint)</title><link>https://cosmoscalibur.github.io/blog/instalando-paquetes-en-linux-mint/</link><dc:creator>Edward Villegas-Pulgarin</dc:creator><description>&lt;div&gt;&lt;p&gt;En Linux ahora tenemos muchas más opciones para instalar nuestros programas
-favoritos y de uso diario, según los intereses personales en reducir espacio
-en disco, aumentar estabilidad, mejorar seguridad, disponer siempre de la
-última versión, tener muy buena integración con el sistema operativo o no
-requerir permisos de administrador. Algunas de las estrategias, incluso
-facilitan que el mismo mecanismo podemos usarlo en más de una distribución
-Linux y así disponer de una transición más simple.&lt;/p&gt;
-&lt;!-- TEASER_END --&gt;
-&lt;p&gt;Este artículo es algo superficial sobre cada gestor, pero más adelante
-publicaré artículos dedicados a cada uno de ellos con el fin de contarles más
-opciones y trucos.&lt;/p&gt;
-&lt;div class="section" id="programas-generales"&gt;
-&lt;h2&gt;Programas generales&lt;/h2&gt;
-&lt;p&gt;Aunque no es una clasificación estricta, es la forma que veo para hablar de
-estos paquetes de &lt;em&gt;software&lt;/em&gt;. Son paquetes de uso general, lo suficiente para
-ser de interés para disponer a través de medios de distribución para público
-general. En ocasiones, esto puede incluir paquetes de uso científico o propio
-de desarrollo, o de alguna disciplina particular.&lt;/p&gt;
-&lt;div class="section" id="gestor-de-la-distribucion"&gt;
-&lt;h3&gt;Gestor de la distribución&lt;/h3&gt;
-&lt;p&gt;La mayor parte de distribuciones Linux disponen de gestores de paquetes de
-&lt;em&gt;software&lt;/em&gt;, que son herramientas para la búsqueda, descarga, instalación y
-configuración de estos. Los gestores se conectan a repositorios de paquetes
-oficiales que son mantenidos por los desarrollados de la distribución,
-asegurando que cumplan con estándares mínimos de compatibilidad y estabilidad.&lt;/p&gt;
-&lt;p&gt;También, algunos gestores pueden conectar a repositorios mantenidos por la
-comunidad, dando la opción de extender el &lt;em&gt;software&lt;/em&gt; disponible para
-instalación por los usuarios de una manera simple, pero a riesgo de
-inestabilidad o conflictos por la interacción con paquetes de los repositorios
-oficiales (no es general, pero suele ocurrir). Estos repositorios de comunidad
-los recomiendo como última opción.&lt;/p&gt;
-&lt;p&gt;En Ubuntu y Linux Mint, tienes la opción de usar el Centro de Software
-(preinstalado) o Synaptic (preinstalado en Linux Mint), para realizar la
-gestión de manera gráfica. Pero también puedes usar &lt;code&gt;apt-get&lt;/code&gt; o
-&lt;code&gt;apt&lt;/code&gt; (recomendado) para la gestión a través de consola.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_602157f723ad4c0795ecb443ba4d1789-1"&gt;&lt;/a&gt;sudo apt update -q
-&lt;a name="rest_code_602157f723ad4c0795ecb443ba4d1789-2"&gt;&lt;/a&gt;sudo apt install -y okular
-&lt;/pre&gt;&lt;p&gt;Ahora dispones del lector de archivos PDF en tu sistema. Puedes accederlo por
-el menú o por comando (&lt;code&gt;okular&lt;/code&gt;). La primera línea es recomendable para
-actualizar las direcciones desde las cuales se descarga el software y los
-metadatos para búsqueda. La segunda línea realiza la instalación sin solicitar
-confirmación.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="appimage"&gt;
-&lt;h3&gt;AppImage&lt;/h3&gt;
-&lt;p&gt;Me parece la mejor de las opciones entre las nuevas estrategias. Permite la
-ejecución inmediata del programa (no requiere instalación), gestiona
-actualización y no es necesario permisos de administrador al no requerir
-instalar. En teoría, ejecuta en cualquier distribución Linux moderna.&lt;/p&gt;
-&lt;p&gt;Como el archivo ejecuta directamente, se pueden tener múltiples versiones del
-mismo programa. Esto, es por el aislamiento que posee, es un tipo de
-contenedor, tal como lo son las opciones de snap y flatpak, lo cual también
-evita conflictos en el sistema (programas que puedan requerir la misma
-dependencia pero en versiones diferentes, la dependencia no pueda gestionar
-múltiples instancias o exponga una brecha de seguridad).&lt;/p&gt;
-&lt;p&gt;Usaremos Stellarium para dar un ejemplo, y puedes buscar en
-&lt;a class="reference external" href="https://appimage.github.io"&gt;AppImageHub&lt;/a&gt; para ver una colección de AppImage
-disponibles.&lt;/p&gt;
-&lt;p id="appimagecode"&gt;Descargamos el &lt;a class="reference external" href="https://stellarium.org/"&gt;AppImage de Stellarium&lt;/a&gt; del sitio
-oficial del software (el segundo pingüino).&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_4141aef28a6b49868d3c6bac3f9a1f60-1"&gt;&lt;/a&gt;chmod 755 Stellarium-0.19.2-x86_64.AppImage
-&lt;a name="rest_code_4141aef28a6b49868d3c6bac3f9a1f60-2"&gt;&lt;/a&gt;./Stellarium-0.19.2-x86_64.AppImage
-&lt;/pre&gt;&lt;p&gt;La primera línea solo es necesario ejecutarla la primera vez.&lt;/p&gt;
-&lt;p&gt;Si queremos ejecutarlo de una manera más cómoda, podemos mover el archivo al
-directorio de ejecución de binarios del usuario o a uno de ejecución de sistema
-para estar disponible para todos los usuarios (&lt;code&gt;/usr/local/bin/&lt;/code&gt;).&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_8029096874044529bbe204e9d3e1ac2f-1"&gt;&lt;/a&gt;mv Stellarium-0.19.2-x86_64.AppImage ~/.local/bin/stellarium
-&lt;a name="rest_code_8029096874044529bbe204e9d3e1ac2f-2"&gt;&lt;/a&gt;stellarium
-&lt;/pre&gt;&lt;p&gt;Nuevamente, la primera línea es solo la primera vez.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="snap"&gt;
-&lt;h3&gt;Snap&lt;/h3&gt;
-&lt;p&gt;Los snap son el mecanismo de instalación promovido por Canonical
-(desarrolladores de Ubuntu). Sigue siendo un mecanismo centralizado, que
-requiere aprobación de Canonical para ser admitido el paquete y requiere ser
-administrador para la instalación.&lt;/p&gt;
-&lt;p&gt;En Ubuntu viene preinstalado pero en Linux Mint es necesario instalarlo.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_abd6befdd3c9480eb2123f6963b11fa3-1"&gt;&lt;/a&gt;sudo apt install -y snapd
-&lt;/pre&gt;&lt;p&gt;Una vez instalado, podemos proceder a instalar un paquete snap.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_59f70532e9784b7eac0cac0f9adafdbe-1"&gt;&lt;/a&gt;sudo snap install code --classic
-&lt;a name="rest_code_59f70532e9784b7eac0cac0f9adafdbe-2"&gt;&lt;/a&gt;snap run code # Ejecuta
-&lt;/pre&gt;&lt;p&gt;La ejecución con &lt;code&gt;snap run&lt;/code&gt; es necesaria si tras instalar no reconoce
-el paquete. Después de la primera ejecución o tras abrir una nueva terminal
-o reiniciar el equipo, será ya reconocido el paquete sin problema para
-ejecutarse directamente con el nombre (&lt;code&gt;code&lt;/code&gt;) o por el menú.&lt;/p&gt;
-&lt;p&gt;Puedes buscar más paquetes en &lt;a class="reference external" href="https://snapcraft.io/store"&gt;snapcraf&lt;/a&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="flatpak"&gt;
-&lt;h3&gt;Flatpak&lt;/h3&gt;
-&lt;p&gt;El caso de flatpak no es muy cómodo, tiene cierta centralización como snap,
-pero con fines de indexación. Un desarrollador puede crear su propio
-repositorio flatpak. Y al igual que AppImage, no requiere permisos de
-administrador.&lt;/p&gt;
-&lt;p&gt;En Linux Mint viene preconfigurado a partir de la versión 18.3, pero si usas
-Ubuntu necesitas instalarlo. Desde la 18.10 se encuentra en los repositorios
-oficiales.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_c503a38e9805476188ffd4931752ffd5-1"&gt;&lt;/a&gt;sudo apt install flatpak
-&lt;a name="rest_code_c503a38e9805476188ffd4931752ffd5-2"&gt;&lt;/a&gt;sudo apt install gnome-software-plugin-flatpak
-&lt;a name="rest_code_c503a38e9805476188ffd4931752ffd5-3"&gt;&lt;/a&gt;flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-&lt;/pre&gt;&lt;p&gt;La primera línea instala el gestor de flatpak. La segunda línea permite usar
-flatpak con el Centro de Software de Gnome. Y la tercera línea agrega el
-repositorio de paquetes flatpak más popular, &lt;a class="reference external" href="https://flathub.org/home"&gt;flathub&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Para ejemplificar, instalaremos el paquete peek&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_40abfb2f2e4d49c8b10f7661ba156431-1"&gt;&lt;/a&gt;flatpak install -y flathub com.uploadedlobster.peek
-&lt;a name="rest_code_40abfb2f2e4d49c8b10f7661ba156431-2"&gt;&lt;/a&gt;flatpak run com.uploadedlobster.peek
-&lt;/pre&gt;&lt;p&gt;Desafortunadamente la ejecución es siempre así, pero puedes crear un archivo
-que te facilite la labor.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_ff8fe5d8bdd84fbd980751635a2b8e46-1"&gt;&lt;/a&gt;echo "flatpak run com.uploadedlobster.peek" &amp;gt; ~/.local/bin/peek
-&lt;a name="rest_code_ff8fe5d8bdd84fbd980751635a2b8e46-2"&gt;&lt;/a&gt;chmod 755 ~/.local/bin/peek
-&lt;a name="rest_code_ff8fe5d8bdd84fbd980751635a2b8e46-3"&gt;&lt;/a&gt;peek
-&lt;/pre&gt;&lt;p&gt;A nivel gráfico, por defecto si es agregado al menú.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="compilacion-y-binarios"&gt;
-&lt;h3&gt;Compilación y binarios&lt;/h3&gt;
-&lt;p&gt;Estas opciones, no son parte de la historia. La compilación sigue siendo
-fundamental para la optimización de código crítico o de alto rendimiento
-como es necesario en la computación científica. La compilación saca provecho de
-la arquitectura del procesador usado.&lt;/p&gt;
-&lt;p&gt;En este caso, será típico el uso de &lt;code&gt;configure&lt;/code&gt; y &lt;code&gt;make&lt;/code&gt;. Para más
-información, es necesario leer el archivo &lt;code&gt;README&lt;/code&gt; que deberías
-encontrar, el cual explicará el detalle del proceso de instalación.&lt;/p&gt;
-&lt;p&gt;En los paquetes con binarios, se obtiene un precompilado que es genérico
-respecto al procesador u optimizado no necesariamente para el procesador que se
-usa en nuestra máquina.&lt;/p&gt;
-&lt;p&gt;Una vez tenemos el binario (precompilado o por compilación en nuestra máquina)
-debemos dar permiso de ejecución al binario (&lt;code&gt;chmod 755&lt;/code&gt;) y añadirlo a
-un directorio que pertenezca al &lt;code&gt;path&lt;/code&gt; (ejemplo, a
-&lt;code&gt;$HOME/.local/bin/&lt;/code&gt;).&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="rutinas-de-instalacion"&gt;
-&lt;h3&gt;Rutinas de instalación&lt;/h3&gt;
-&lt;p&gt;En ocasiones encontraremos archivos &lt;code&gt;.run&lt;/code&gt; o &lt;code&gt;.sh&lt;/code&gt; que asisten la
-instalación, descargando componentes o codificando los distintos archivos en
-un solo archivo.&lt;/p&gt;
-&lt;p&gt;Para este caso, es necesario conferir permiso de ejecución al archivo y
-proceder a ejecutarlo. Este procedimiento, es el mismo expuesto en las
-&lt;a class="reference external" href="https://cosmoscalibur.github.io/blog/instalando-paquetes-en-linux-mint/#appimagecode"&gt;primeras dos líneas de AppImage&lt;/a&gt;.&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="section" id="referencias"&gt;
-&lt;h2&gt;Referencias&lt;/h2&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://appimage.org/"&gt;AppImage&lt;/a&gt;.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://www.flatpak.org/"&gt;Flatpak&lt;/a&gt;.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://snapcraft.io/"&gt;Snap&lt;/a&gt;.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://wiki.gnome.org/Apps/Software"&gt;Gnome Software Center&lt;/a&gt;.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://help.ubuntu.com/lts/serverguide/apt.html"&gt;Ubuntu APT&lt;/a&gt;.&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;&lt;/div&gt;</description><category>appimage</category><category>debian</category><category>flatpak</category><category>linux</category><category>linux mint</category><category>paquetes</category><category>snap</category><category>software</category><guid>https://cosmoscalibur.github.io/blog/instalando-paquetes-en-linux-mint/</guid><pubDate>Wed, 23 Oct 2019 01:21:34 GMT</pubDate></item></channel></rss>
+&lt;/div&gt;&lt;/div&gt;</description><category>contenedor</category><category>ealite</category><category>enterprise architect</category><category>linux</category><category>lxc</category><category>lxd</category><category>wine</category><guid>https://cosmoscalibur.github.io/blog/crear-contenedor-lxc-para-aplicacion-gui-ealite/</guid><pubDate>Mon, 11 Nov 2019 23:21:26 GMT</pubDate></item></channel></rss>

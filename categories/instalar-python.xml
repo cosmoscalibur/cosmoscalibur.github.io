@@ -1,0 +1,105 @@
+<?xml version='1.0' encoding='utf-8'?>
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>Cosmoscalibur (Publicaciones sobre instalar python)</title><link>https://www.cosmoscalibur.com/</link><description/><atom:link href="https://cosmoscalibur.github.io/categories/instalar-python.xml" rel="self" type="application/rss+xml"/><language>es</language><copyright>Contents © 2020 &lt;a href="mailto:cosmoscalibur@gmail.com"&gt;Edward Villegas Pulgarin&lt;/a&gt; 
+&lt;a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"&gt;
+&lt;img alt="Creative Commons License BY-NC-SA"
+style="border-width:0; margin-bottom:12px;"
+src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"&gt;&lt;/a&gt;</copyright><lastBuildDate>Mon, 29 Jun 2020 22:45:26 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Instalar Python Anaconda</title><link>https://cosmoscalibur.github.io/blog/instalar-python-anaconda/</link><dc:creator>Edward Villegas-Pulgarin</dc:creator><description>&lt;div&gt;&lt;p&gt;En los últimos años, una herramienta se ha popularizado no solo como una base
+para el ecosistena de la analítica de datos ("ciencia de datos" como llaman
+también algunos) sino también en general para el desarrollo en Python
+(científico, web o de propósito general). Esta herramienta es Anaconda, que no
+solo nos facilita un sistema de distribución de paquetes multiplataforma, un
+repositorio principal con amplio soporte multiplataforma (canal &lt;em&gt;default&lt;/em&gt; o
+&lt;em&gt;anaconda&lt;/em&gt;) sino un gestor de ambientes para permitir aislar nuestras
+dependencias facilitando la reproducibilidad y evitando los conflictos.&lt;/p&gt;
+&lt;!-- TEASER_END --&gt;
+&lt;div class="section" id="obtener-instalador"&gt;
+&lt;h2&gt;Obtener instalador&lt;/h2&gt;
+&lt;p&gt;Nuestro primer paso es obtener el instalador de Python Anaconda según nuestro
+sistema operativo, modo de instalación y limitación de espacio de
+almacenamiento o ancho de banda. Aunque Anaconda aún dispone de instaladores de
+Python 2.7, no recomiendo su uso sino las versiones asociadas a Python 3.X
+(Python 2 perdió soporte el 31 de diciembre de 2019).&lt;/p&gt;
+&lt;p&gt;Si tenemos limitación de espacio de almacenamiento o ancho de banda, podemos
+usar el instalador de
+&lt;a class="reference external" href="https://docs.conda.io/en/latest/miniconda.html"&gt;miniconda&lt;/a&gt;, el cual
+corresponde a un instalador de alrededor de 60 MB en los 3 sistemas operativos.
+Este instalador nos da mayor control sobre los paquetes instalados, y solo
+incluye por defecto lo necesario para el interprete de Python y el gestor
+Conda.&lt;/p&gt;
+&lt;p&gt;Si queremos una colección de paquetes listos para usar, iremos al instalador de
+&lt;a class="reference external" href="https://anaconda.org/"&gt;Python Anaconda&lt;/a&gt; (seleccionamos &lt;em&gt;Download Anaconda&lt;/em&gt;).
+Ahora vamos a la sección de instaladores (&lt;em&gt;Anaconda Installers&lt;/em&gt;) y escogeremos
+el acorde a nuestra necesidad:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;Instalador gráfico de 32 y 64 bits para Windows.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Instalador por línea de comandos para Windows (64 bits).&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Instalador gráfico y por línea de comandos para Mac (64 bits).&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Esta descarga es de alrededor de 500 MB para todos los casos.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="instalacion-por-linea-de-comandos"&gt;
+&lt;h2&gt;Instalación por línea de comandos&lt;/h2&gt;
+&lt;p&gt;La instalación por línea de comandos aplica de la misma manera tanto para Mac
+como para Linux, usando ambos un instalador basado en código bash (indiferente
+si es Anaconda o Miniconda).&lt;/p&gt;
+&lt;p&gt;Para este caso nos basaremos en la instalación silenciosa &lt;a class="citation-reference" href="https://cosmoscalibur.github.io/blog/instalar-python-anaconda/#cmd" id="id1"&gt;[cmd]&lt;/a&gt; para evitar las
+preguntas interactivas y así despreocuparnos durante la instalación. Invocamos
+el instalador con Bash de la siguiente forma (asegurate de usar la ruta
+completa y correcta del instalador &lt;code&gt;sh&lt;/code&gt; que usarás).&lt;/p&gt;
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_ca06179cb09a4de7803b7c9113ad1a79-1"&gt;&lt;/a&gt;bash Anaconda3-2020.02-Linux-x86_64.sh -b -p &lt;span class="nv"&gt;$HOME&lt;/span&gt;/anaconda
+&lt;a name="rest_code_ca06179cb09a4de7803b7c9113ad1a79-2"&gt;&lt;/a&gt;&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;". &lt;/span&gt;&lt;span class="nv"&gt;$HOME&lt;/span&gt;&lt;span class="s2"&gt;/anaconda/etc/profile.d/conda.sh"&lt;/span&gt; &amp;gt;&amp;gt; &lt;span class="nv"&gt;$HOME&lt;/span&gt;/.bashrc
+&lt;a name="rest_code_ca06179cb09a4de7803b7c9113ad1a79-3"&gt;&lt;/a&gt;&lt;span class="nb"&gt;source&lt;/span&gt; &lt;span class="nv"&gt;$HOME&lt;/span&gt;/.bashrc
+&lt;/pre&gt;&lt;p&gt;En la invocación de Bash, el argumento &lt;code&gt;-b&lt;/code&gt; implica la aceptación de
+licencias y con &lt;code&gt;-p&lt;/code&gt; indicamos la ruta para la instalación de Anaconda
+(puedes cambiarla a tu deseo).&lt;/p&gt;
+&lt;p&gt;La segunda y tercera línea son específicas si usas una consola Bash. Esto
+permite reconocer el gestor Conda por la consola cuando se inicia una nueva
+sesión y la última línea que se aplique para la sesión actual.&lt;/p&gt;
+&lt;p&gt;Aunque no es mi preferencia y además puede generar potenciales conflictos, si
+deseas que el entorno de Python Anaconda esté activado por defecto puedes
+agregar en el &lt;code&gt;.bashrc&lt;/code&gt; la línea &lt;code&gt;conda activate&lt;/code&gt;.&lt;/p&gt;
+&lt;div class="youtube-video align-center"&gt;
+&lt;iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/UFfsg56qigY?rel=0&amp;amp;wmode=transparent" frameborder="0" allow="encrypted-media" allowfullscreen&gt;&lt;/iframe&gt;
+&lt;/div&gt;&lt;p&gt;La versión de &lt;em&gt;Anaconda Navigator&lt;/em&gt; incluida en 2020.02 en Linux presenta un
+error, por lo cual, si al ejecutarlo ves el mensaje
+&lt;code&gt;UnboundLocalError: local variable 'DISTRO_NAME' referenced before assignment&lt;/code&gt;
+bastará con actualizar el paquete &lt;a class="citation-reference" href="https://cosmoscalibur.github.io/blog/instalar-python-anaconda/#navigator" id="id2"&gt;[navigator]&lt;/a&gt;.&lt;/p&gt;
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_ae88fac26786429ca44037442bbf0354-1"&gt;&lt;/a&gt;conda update anaconda-navigator
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="section" id="instalacion-grafica"&gt;
+&lt;h2&gt;Instalación gráfica&lt;/h2&gt;
+&lt;p&gt;La instalación en Windows con el instalador gráfico &lt;a class="citation-reference" href="https://cosmoscalibur.github.io/blog/instalar-python-anaconda/#gui" id="id3"&gt;[gui]&lt;/a&gt; es sencilla. Las
+opciones por defecto son justamente las recomendadas por lo cual solo es
+necesario dar clic en "&lt;em&gt;Next&lt;/em&gt;" siempre.&lt;/p&gt;
+&lt;p&gt;Es fuertemente recomendado usar la instalación con las opciones por defecto,
+para evitar futuros conflictos. Esto es, instalar "&lt;em&gt;Just Me&lt;/em&gt;" para no requerir
+permisos de administrador, no agregar al &lt;code&gt;PATH&lt;/code&gt; (evitar conflictos con
+programas que hagan uso de Python u otros paquetes incluidos en Anaconda) y
+registrar Python Anaconda como Python por defecto (así será reconocido por los
+editores de código que detectan Anaconda).&lt;/p&gt;
+&lt;div class="youtube-video align-center"&gt;
+&lt;iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/zFk6beeQ-CU?rel=0&amp;amp;wmode=transparent" frameborder="0" allow="encrypted-media" allowfullscreen&gt;&lt;/iframe&gt;
+&lt;/div&gt;&lt;p&gt;La instalación gráfica en Mac puedes seguir también las opciones por defecto.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="verificar-instalacion"&gt;
+&lt;h2&gt;Verificar instalación&lt;/h2&gt;
+&lt;p&gt;Basta con validar la lista de paquetes incluidos para saber que funciona
+adecuadamente Anaconda. Abrimos la consola Bash (Linux o Mac) o
+&lt;em&gt;Anaconda Prompt&lt;/em&gt; (Windows, o con abrir &lt;em&gt;Anaconda Navigator&lt;/em&gt; es suficiente), y
+ejecutamos &lt;code&gt;conda list&lt;/code&gt;. Si observamos la lista de paquetes, funciona.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="referencias"&gt;
+&lt;h2&gt;Referencias&lt;/h2&gt;
+&lt;dl class="citation"&gt;
+&lt;dt class="label" id="cmd"&gt;&lt;span class="brackets"&gt;&lt;a class="fn-backref" href="https://cosmoscalibur.github.io/blog/instalar-python-anaconda/#id1"&gt;cmd&lt;/a&gt;&lt;/span&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;&lt;a class="reference external" href="https://conda.io/projects/conda/en/latest/user-guide/install/linux.html#installing-in-silent-mode"&gt;Installing in silent mode&lt;/a&gt;.
+conda.&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class="label" id="navigator"&gt;&lt;span class="brackets"&gt;&lt;a class="fn-backref" href="https://cosmoscalibur.github.io/blog/instalar-python-anaconda/#id2"&gt;navigator&lt;/a&gt;&lt;/span&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;&lt;a class="reference external" href="https://github.com/ContinuumIO/anaconda-issues/issues/11662"&gt;UnboundLocalError: local variable 'DISTRO_NAME' referenced before assignment&lt;/a&gt;. Anaconda issues.&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class="label" id="gui"&gt;&lt;span class="brackets"&gt;&lt;a class="fn-backref" href="https://cosmoscalibur.github.io/blog/instalar-python-anaconda/#id3"&gt;gui&lt;/a&gt;&lt;/span&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;&lt;a class="reference external" href="https://docs.anaconda.com/anaconda/install/windows/"&gt;Installing on Windows&lt;/a&gt;. Anaconda.&lt;/p&gt;
+&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;/div&gt;&lt;/div&gt;</description><category>instalar anaconda</category><category>instalar python</category><category>python</category><category>python anaconda</category><category>python linux</category><category>python mac</category><category>python windows</category><guid>https://cosmoscalibur.github.io/blog/instalar-python-anaconda/</guid><pubDate>Mon, 29 Jun 2020 17:18:07 GMT</pubDate></item></channel></rss>

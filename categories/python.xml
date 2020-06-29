@@ -3,7 +3,106 @@
 &lt;a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"&gt;
 &lt;img alt="Creative Commons License BY-NC-SA"
 style="border-width:0; margin-bottom:12px;"
-src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"&gt;&lt;/a&gt;</copyright><lastBuildDate>Mon, 22 Jun 2020 00:15:26 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Calcular distancia geodésica con Python</title><link>https://cosmoscalibur.github.io/blog/calcular-distancia-geodesica-con-python/</link><dc:creator>Edward Villegas-Pulgarin</dc:creator><description>&lt;div&gt;&lt;p&gt;Aunque una de las cosas que más ha rondado en mi desarrollo académico y laboral es la programación, y buena parte de los años en ello con Python, nunca había realizado una entrada al respecto en el blog (lo más cercano ha sido una entrada sobre &lt;a href="https://cosmoscalibur.github.io/blog/crear-documentacion-de-un-proyecto-python-con-sphinx/"&gt;Crear documentación de un proyecto Python con Sphinx.&lt;/a&gt; y &lt;a href="https://cosmoscalibur.github.io/blog/crear-contenedor-docker-aplicacion-gui-ealite/"&gt;Crear contenedor Docker aplicación GUI - EALite&lt;/a&gt;).  &lt;/p&gt;
+src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"&gt;&lt;/a&gt;</copyright><lastBuildDate>Mon, 29 Jun 2020 22:45:26 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Instalar Python Anaconda</title><link>https://cosmoscalibur.github.io/blog/instalar-python-anaconda/</link><dc:creator>Edward Villegas-Pulgarin</dc:creator><description>&lt;div&gt;&lt;p&gt;En los últimos años, una herramienta se ha popularizado no solo como una base
+para el ecosistena de la analítica de datos ("ciencia de datos" como llaman
+también algunos) sino también en general para el desarrollo en Python
+(científico, web o de propósito general). Esta herramienta es Anaconda, que no
+solo nos facilita un sistema de distribución de paquetes multiplataforma, un
+repositorio principal con amplio soporte multiplataforma (canal &lt;em&gt;default&lt;/em&gt; o
+&lt;em&gt;anaconda&lt;/em&gt;) sino un gestor de ambientes para permitir aislar nuestras
+dependencias facilitando la reproducibilidad y evitando los conflictos.&lt;/p&gt;
+&lt;!-- TEASER_END --&gt;
+&lt;div class="section" id="obtener-instalador"&gt;
+&lt;h2&gt;Obtener instalador&lt;/h2&gt;
+&lt;p&gt;Nuestro primer paso es obtener el instalador de Python Anaconda según nuestro
+sistema operativo, modo de instalación y limitación de espacio de
+almacenamiento o ancho de banda. Aunque Anaconda aún dispone de instaladores de
+Python 2.7, no recomiendo su uso sino las versiones asociadas a Python 3.X
+(Python 2 perdió soporte el 31 de diciembre de 2019).&lt;/p&gt;
+&lt;p&gt;Si tenemos limitación de espacio de almacenamiento o ancho de banda, podemos
+usar el instalador de
+&lt;a class="reference external" href="https://docs.conda.io/en/latest/miniconda.html"&gt;miniconda&lt;/a&gt;, el cual
+corresponde a un instalador de alrededor de 60 MB en los 3 sistemas operativos.
+Este instalador nos da mayor control sobre los paquetes instalados, y solo
+incluye por defecto lo necesario para el interprete de Python y el gestor
+Conda.&lt;/p&gt;
+&lt;p&gt;Si queremos una colección de paquetes listos para usar, iremos al instalador de
+&lt;a class="reference external" href="https://anaconda.org/"&gt;Python Anaconda&lt;/a&gt; (seleccionamos &lt;em&gt;Download Anaconda&lt;/em&gt;).
+Ahora vamos a la sección de instaladores (&lt;em&gt;Anaconda Installers&lt;/em&gt;) y escogeremos
+el acorde a nuestra necesidad:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;Instalador gráfico de 32 y 64 bits para Windows.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Instalador por línea de comandos para Windows (64 bits).&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Instalador gráfico y por línea de comandos para Mac (64 bits).&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Esta descarga es de alrededor de 500 MB para todos los casos.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="instalacion-por-linea-de-comandos"&gt;
+&lt;h2&gt;Instalación por línea de comandos&lt;/h2&gt;
+&lt;p&gt;La instalación por línea de comandos aplica de la misma manera tanto para Mac
+como para Linux, usando ambos un instalador basado en código bash (indiferente
+si es Anaconda o Miniconda).&lt;/p&gt;
+&lt;p&gt;Para este caso nos basaremos en la instalación silenciosa &lt;a class="citation-reference" href="https://cosmoscalibur.github.io/blog/instalar-python-anaconda/#cmd" id="id1"&gt;[cmd]&lt;/a&gt; para evitar las
+preguntas interactivas y así despreocuparnos durante la instalación. Invocamos
+el instalador con Bash de la siguiente forma (asegurate de usar la ruta
+completa y correcta del instalador &lt;code&gt;sh&lt;/code&gt; que usarás).&lt;/p&gt;
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_ca06179cb09a4de7803b7c9113ad1a79-1"&gt;&lt;/a&gt;bash Anaconda3-2020.02-Linux-x86_64.sh -b -p &lt;span class="nv"&gt;$HOME&lt;/span&gt;/anaconda
+&lt;a name="rest_code_ca06179cb09a4de7803b7c9113ad1a79-2"&gt;&lt;/a&gt;&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;". &lt;/span&gt;&lt;span class="nv"&gt;$HOME&lt;/span&gt;&lt;span class="s2"&gt;/anaconda/etc/profile.d/conda.sh"&lt;/span&gt; &amp;gt;&amp;gt; &lt;span class="nv"&gt;$HOME&lt;/span&gt;/.bashrc
+&lt;a name="rest_code_ca06179cb09a4de7803b7c9113ad1a79-3"&gt;&lt;/a&gt;&lt;span class="nb"&gt;source&lt;/span&gt; &lt;span class="nv"&gt;$HOME&lt;/span&gt;/.bashrc
+&lt;/pre&gt;&lt;p&gt;En la invocación de Bash, el argumento &lt;code&gt;-b&lt;/code&gt; implica la aceptación de
+licencias y con &lt;code&gt;-p&lt;/code&gt; indicamos la ruta para la instalación de Anaconda
+(puedes cambiarla a tu deseo).&lt;/p&gt;
+&lt;p&gt;La segunda y tercera línea son específicas si usas una consola Bash. Esto
+permite reconocer el gestor Conda por la consola cuando se inicia una nueva
+sesión y la última línea que se aplique para la sesión actual.&lt;/p&gt;
+&lt;p&gt;Aunque no es mi preferencia y además puede generar potenciales conflictos, si
+deseas que el entorno de Python Anaconda esté activado por defecto puedes
+agregar en el &lt;code&gt;.bashrc&lt;/code&gt; la línea &lt;code&gt;conda activate&lt;/code&gt;.&lt;/p&gt;
+&lt;div class="youtube-video align-center"&gt;
+&lt;iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/UFfsg56qigY?rel=0&amp;amp;wmode=transparent" frameborder="0" allow="encrypted-media" allowfullscreen&gt;&lt;/iframe&gt;
+&lt;/div&gt;&lt;p&gt;La versión de &lt;em&gt;Anaconda Navigator&lt;/em&gt; incluida en 2020.02 en Linux presenta un
+error, por lo cual, si al ejecutarlo ves el mensaje
+&lt;code&gt;UnboundLocalError: local variable 'DISTRO_NAME' referenced before assignment&lt;/code&gt;
+bastará con actualizar el paquete &lt;a class="citation-reference" href="https://cosmoscalibur.github.io/blog/instalar-python-anaconda/#navigator" id="id2"&gt;[navigator]&lt;/a&gt;.&lt;/p&gt;
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_ae88fac26786429ca44037442bbf0354-1"&gt;&lt;/a&gt;conda update anaconda-navigator
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="section" id="instalacion-grafica"&gt;
+&lt;h2&gt;Instalación gráfica&lt;/h2&gt;
+&lt;p&gt;La instalación en Windows con el instalador gráfico &lt;a class="citation-reference" href="https://cosmoscalibur.github.io/blog/instalar-python-anaconda/#gui" id="id3"&gt;[gui]&lt;/a&gt; es sencilla. Las
+opciones por defecto son justamente las recomendadas por lo cual solo es
+necesario dar clic en "&lt;em&gt;Next&lt;/em&gt;" siempre.&lt;/p&gt;
+&lt;p&gt;Es fuertemente recomendado usar la instalación con las opciones por defecto,
+para evitar futuros conflictos. Esto es, instalar "&lt;em&gt;Just Me&lt;/em&gt;" para no requerir
+permisos de administrador, no agregar al &lt;code&gt;PATH&lt;/code&gt; (evitar conflictos con
+programas que hagan uso de Python u otros paquetes incluidos en Anaconda) y
+registrar Python Anaconda como Python por defecto (así será reconocido por los
+editores de código que detectan Anaconda).&lt;/p&gt;
+&lt;div class="youtube-video align-center"&gt;
+&lt;iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/zFk6beeQ-CU?rel=0&amp;amp;wmode=transparent" frameborder="0" allow="encrypted-media" allowfullscreen&gt;&lt;/iframe&gt;
+&lt;/div&gt;&lt;p&gt;La instalación gráfica en Mac puedes seguir también las opciones por defecto.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="verificar-instalacion"&gt;
+&lt;h2&gt;Verificar instalación&lt;/h2&gt;
+&lt;p&gt;Basta con validar la lista de paquetes incluidos para saber que funciona
+adecuadamente Anaconda. Abrimos la consola Bash (Linux o Mac) o
+&lt;em&gt;Anaconda Prompt&lt;/em&gt; (Windows, o con abrir &lt;em&gt;Anaconda Navigator&lt;/em&gt; es suficiente), y
+ejecutamos &lt;code&gt;conda list&lt;/code&gt;. Si observamos la lista de paquetes, funciona.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="referencias"&gt;
+&lt;h2&gt;Referencias&lt;/h2&gt;
+&lt;dl class="citation"&gt;
+&lt;dt class="label" id="cmd"&gt;&lt;span class="brackets"&gt;&lt;a class="fn-backref" href="https://cosmoscalibur.github.io/blog/instalar-python-anaconda/#id1"&gt;cmd&lt;/a&gt;&lt;/span&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;&lt;a class="reference external" href="https://conda.io/projects/conda/en/latest/user-guide/install/linux.html#installing-in-silent-mode"&gt;Installing in silent mode&lt;/a&gt;.
+conda.&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class="label" id="navigator"&gt;&lt;span class="brackets"&gt;&lt;a class="fn-backref" href="https://cosmoscalibur.github.io/blog/instalar-python-anaconda/#id2"&gt;navigator&lt;/a&gt;&lt;/span&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;&lt;a class="reference external" href="https://github.com/ContinuumIO/anaconda-issues/issues/11662"&gt;UnboundLocalError: local variable 'DISTRO_NAME' referenced before assignment&lt;/a&gt;. Anaconda issues.&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class="label" id="gui"&gt;&lt;span class="brackets"&gt;&lt;a class="fn-backref" href="https://cosmoscalibur.github.io/blog/instalar-python-anaconda/#id3"&gt;gui&lt;/a&gt;&lt;/span&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;&lt;a class="reference external" href="https://docs.anaconda.com/anaconda/install/windows/"&gt;Installing on Windows&lt;/a&gt;. Anaconda.&lt;/p&gt;
+&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;/div&gt;&lt;/div&gt;</description><category>instalar anaconda</category><category>instalar python</category><category>python</category><category>python anaconda</category><category>python linux</category><category>python mac</category><category>python windows</category><guid>https://cosmoscalibur.github.io/blog/instalar-python-anaconda/</guid><pubDate>Mon, 29 Jun 2020 17:18:07 GMT</pubDate></item><item><title>Calcular distancia geodésica con Python</title><link>https://cosmoscalibur.github.io/blog/calcular-distancia-geodesica-con-python/</link><dc:creator>Edward Villegas-Pulgarin</dc:creator><description>&lt;div&gt;&lt;p&gt;Aunque una de las cosas que más ha rondado en mi desarrollo académico y laboral es la programación, y buena parte de los años en ello con Python, nunca había realizado una entrada al respecto en el blog (lo más cercano ha sido una entrada sobre &lt;a href="https://cosmoscalibur.github.io/blog/crear-documentacion-de-un-proyecto-python-con-sphinx/"&gt;Crear documentación de un proyecto Python con Sphinx.&lt;/a&gt; y &lt;a href="https://cosmoscalibur.github.io/blog/crear-contenedor-docker-aplicacion-gui-ealite/"&gt;Crear contenedor Docker aplicación GUI - EALite&lt;/a&gt;).  &lt;/p&gt;
 &lt;p&gt;A partir de ahora, y usando &lt;em&gt;notebooks&lt;/em&gt; compartiré algunas entradas relacionadas con programación o algunas bibliotecas específicas. En esta ocasión, me interesa compartirles como calcular la distancia geodésica entre dos lugares con GeoPy (una biblioteca Python), una de las tantas cosas que por motivos laborales he necesitado en mi exploración con proyectos con sistemas de información geográfica y ruteos.&lt;/p&gt;
 &lt;!-- TEASER_END --&gt;
 
@@ -15,12 +114,12 @@ src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"&gt;&lt;/a&gt;</copy
 &lt;p&gt;Para el cómputo de geodésicas en Python, en buena medida todo se resume en &lt;a href="https://geographiclib.sourceforge.io/"&gt;GeographicLib&lt;/a&gt;. Tanto &lt;a href="https://gdal.org/"&gt;GDAL&lt;/a&gt;, &lt;a href="https://pyproj4.github.io/pyproj/stable/#"&gt;PyProj&lt;/a&gt; y &lt;a href="https://geopy.readthedocs.io/en/stable/#"&gt;GeoPy&lt;/a&gt; recurren a la implementación de GeographicLib como método por defecto de cálculo.  &lt;/p&gt;
 &lt;p&gt;Para referencia, usaremos GeoPy (incluido también en GeoPandas) y que dispone de 3 métodos de cálculo de distancia que discutiremos.&lt;/p&gt;
 &lt;p&gt;Primer paso vamos a instalar GeoPy. Para este fin usaremos el gestor de paquetes &lt;em&gt;conda&lt;/em&gt; de Anaconda, pero puedes usar &lt;em&gt;pip&lt;/em&gt;.&lt;/p&gt;
-&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;%%bash
+&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;%%bash
 conda install -c conda-forge geopy
-&lt;/pre&gt;
+&lt;/code&gt;&lt;/pre&gt;
 
 
-&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;Collecting&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;package&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;metadata&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;current_repodata&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;json&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="err"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;...&lt;/span&gt;&lt;span class="n"&gt;working&lt;/span&gt;&lt;span class="p"&gt;...&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;done&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;Collecting&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;package&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;metadata&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;current_repodata&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;json&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="err"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;...&lt;/span&gt;&lt;span class="n"&gt;working&lt;/span&gt;&lt;span class="p"&gt;...&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;done&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
 &lt;span class="n"&gt;Solving&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nl"&gt;environment&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;...&lt;/span&gt;&lt;span class="n"&gt;working&lt;/span&gt;&lt;span class="p"&gt;...&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;done&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
 
 &lt;span class="err"&gt;##&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Package&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;Plan&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;##&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
@@ -50,64 +149,64 @@ conda install -c conda-forge geopy
 &lt;span class="n"&gt;Preparing&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;transaction&lt;/span&gt;&lt;span class="err"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;...&lt;/span&gt;&lt;span class="n"&gt;working&lt;/span&gt;&lt;span class="p"&gt;...&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;done&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
 &lt;span class="n"&gt;Verifying&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;transaction&lt;/span&gt;&lt;span class="err"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;...&lt;/span&gt;&lt;span class="n"&gt;working&lt;/span&gt;&lt;span class="p"&gt;...&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;done&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
 &lt;span class="n"&gt;Executing&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;transaction&lt;/span&gt;&lt;span class="err"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;...&lt;/span&gt;&lt;span class="n"&gt;working&lt;/span&gt;&lt;span class="p"&gt;...&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;done&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;/pre&gt;
+&lt;/code&gt;&lt;/pre&gt;
 
 
 &lt;p&gt;Ahora, importamos el módulo de &lt;a href="https://geopy.readthedocs.io/en/stable/#module-geopy.distance"&gt;distancia de GeoPy&lt;/a&gt;.&lt;/p&gt;
-&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;geopy.distance&lt;/span&gt;
-&lt;/pre&gt;
+&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;geopy.distance&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
 
 
 &lt;p&gt;Para referencia usaremos las coordenadas de Medellín (MDE) y Envigado (ENV) según son ubicadas por Google Maps.&lt;/p&gt;
-&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;MDE&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mf"&gt;6.2443695&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mf"&gt;75.6512527&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;MDE&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mf"&gt;6.2443695&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mf"&gt;75.6512527&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="n"&gt;ENV&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mf"&gt;6.1663544&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mf"&gt;75.5994392&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/pre&gt;
+&lt;/code&gt;&lt;/pre&gt;
 
 
 &lt;p&gt;Para efectos de comparación, no solo presentaré la forma de uso de los métodos sino las distancias y los tiempos de ejecución.&lt;/p&gt;
 &lt;h3&gt;Método de círculo mayor&lt;/h3&gt;
 &lt;p&gt;El &lt;a href="https://en.wikipedia.org/wiki/Great-circle_distance"&gt;método de círculo mayor&lt;/a&gt; consiste en considerar la Tierra como una esfera perfecta de radio 6371.009 km (para el sistema de coordenadas geográficas &lt;a href="https://en.wikipedia.org/wiki/World_Geodetic_System#WGS84"&gt;WGS-84&lt;/a&gt;). Con esta aproximación se puede tener un error máximo del 0.5%. A pesar del error, es un método de cálculo directo (es una fórmula para reemplazar) y por ende puede obtener un resultado muy rápido y tiene asegurado entregar siempre una aproximación.  &lt;/p&gt;
 &lt;p&gt;Es llamado círculo mayor porque en una esfera sabemos que el camino más corto es el descrito por el círculo de mayor radio sobre la esfera que contenga a los dos puntos.&lt;/p&gt;
-&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="n"&gt;timeit&lt;/span&gt; &lt;span class="n"&gt;geopy&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;distance&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;great_circle&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;MDE&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;ENV&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;geopy&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;distance&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;great_circle&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;MDE&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;ENV&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-&lt;/pre&gt;
+&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="n"&gt;timeit&lt;/span&gt; &lt;span class="n"&gt;geopy&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;distance&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;great_circle&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;MDE&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;ENV&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;geopy&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;distance&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;great_circle&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;MDE&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;ENV&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
 
 
-&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="mi"&gt;14&lt;/span&gt;.&lt;span class="mi"&gt;9&lt;/span&gt; µ&lt;span class="nv"&gt;s&lt;/span&gt; ± &lt;span class="mi"&gt;238&lt;/span&gt; &lt;span class="nv"&gt;ns&lt;/span&gt; &lt;span class="nv"&gt;per&lt;/span&gt; &lt;span class="k"&gt;loop&lt;/span&gt; &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;mean&lt;/span&gt; ± &lt;span class="nv"&gt;std&lt;/span&gt;. &lt;span class="nv"&gt;dev&lt;/span&gt;. &lt;span class="nv"&gt;of&lt;/span&gt; &lt;span class="mi"&gt;7&lt;/span&gt; &lt;span class="nv"&gt;runs&lt;/span&gt;, &lt;span class="mi"&gt;100000&lt;/span&gt; &lt;span class="nv"&gt;loops&lt;/span&gt; &lt;span class="nv"&gt;each&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;
-&lt;span class="mi"&gt;10&lt;/span&gt;.&lt;span class="mi"&gt;395180481810051&lt;/span&gt; &lt;span class="nv"&gt;km&lt;/span&gt;
-&lt;/pre&gt;
+&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="err"&gt;14.9 µs ± 238 ns per loop (mean ± std. dev. of 7 runs, 100000 loops each)&lt;/span&gt;
+&lt;span class="err"&gt;10.395180481810051 km&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
 
 
 &lt;h3&gt;Método de Vincenty&lt;/h3&gt;
 &lt;p&gt;El &lt;a href="https://en.wikipedia.org/wiki/Vincenty%27s_formulae"&gt;método de Vincenty&lt;/a&gt; es un método iterativo para la aproximación de la distancia geodésica sobre un elipsoide, en este caso, el elipsoide de referencia del sistema coordenado WGS-84. Este método presenta problemas de convergencia entre puntos antinodales y hoy su uso no es aconsejado (GeoPy aún lo presenta en la versión 1.21 pero está marcado como obsoleto).&lt;/p&gt;
-&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="n"&gt;timeit&lt;/span&gt; &lt;span class="n"&gt;geopy&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;distance&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;vincenty&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;MDE&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;ENV&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;geopy&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;distance&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;vincenty&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;MDE&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;ENV&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-&lt;/pre&gt;
+&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="n"&gt;timeit&lt;/span&gt; &lt;span class="n"&gt;geopy&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;distance&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;vincenty&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;MDE&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;ENV&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;geopy&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;distance&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;vincenty&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;MDE&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;ENV&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
 
 
-&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nv"&gt;home&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nv"&gt;cosmoscalibur&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nv"&gt;anaconda&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nv"&gt;envs&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nv"&gt;geodesic&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nv"&gt;lib&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nv"&gt;python3&lt;/span&gt;.&lt;span class="mi"&gt;7&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nv"&gt;site&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;packages&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nv"&gt;ipykernel_launcher&lt;/span&gt;.&lt;span class="nv"&gt;py&lt;/span&gt;:&lt;span class="mi"&gt;1&lt;/span&gt;: &lt;span class="nv"&gt;DeprecationWarning&lt;/span&gt;: &lt;span class="nv"&gt;Vincenty&lt;/span&gt; &lt;span class="nv"&gt;is&lt;/span&gt; &lt;span class="nv"&gt;deprecated&lt;/span&gt; &lt;span class="nv"&gt;and&lt;/span&gt; &lt;span class="nv"&gt;is&lt;/span&gt; &lt;span class="nv"&gt;going&lt;/span&gt; &lt;span class="nv"&gt;to&lt;/span&gt; &lt;span class="nv"&gt;be&lt;/span&gt; &lt;span class="nv"&gt;removed&lt;/span&gt; &lt;span class="nv"&gt;in&lt;/span&gt; &lt;span class="nv"&gt;geopy&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;.&lt;span class="mi"&gt;0&lt;/span&gt;. &lt;span class="nv"&gt;Use&lt;/span&gt; `&lt;span class="nv"&gt;geopy&lt;/span&gt;.&lt;span class="nv"&gt;distance&lt;/span&gt;.&lt;span class="nv"&gt;geodesic&lt;/span&gt;` &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;or&lt;/span&gt; &lt;span class="nv"&gt;the&lt;/span&gt; &lt;span class="nv"&gt;default&lt;/span&gt; `&lt;span class="nv"&gt;geopy&lt;/span&gt;.&lt;span class="nv"&gt;distance&lt;/span&gt;.&lt;span class="nv"&gt;distance&lt;/span&gt;`&lt;span class="ss"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;instead&lt;/span&gt;, &lt;span class="nv"&gt;which&lt;/span&gt; &lt;span class="nv"&gt;is&lt;/span&gt; &lt;span class="nv"&gt;more&lt;/span&gt; &lt;span class="nv"&gt;accurate&lt;/span&gt; &lt;span class="nv"&gt;and&lt;/span&gt; &lt;span class="nv"&gt;always&lt;/span&gt; &lt;span class="nv"&gt;converges&lt;/span&gt;.
-  &lt;span class="s2"&gt;"""&lt;/span&gt;&lt;span class="s"&gt;Entry point for launching an IPython kernel.&lt;/span&gt;
+&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;home&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;cosmoscalibur&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;anaconda&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;envs&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;geodesic&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;lib&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;python3&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;7&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;site&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;packages&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;ipykernel_launcher&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;py&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;DeprecationWarning&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Vincenty&lt;/span&gt; &lt;span class="k"&gt;is&lt;/span&gt; &lt;span class="n"&gt;deprecated&lt;/span&gt; &lt;span class="k"&gt;and&lt;/span&gt; &lt;span class="k"&gt;is&lt;/span&gt; &lt;span class="n"&gt;going&lt;/span&gt; &lt;span class="k"&gt;to&lt;/span&gt; &lt;span class="n"&gt;be&lt;/span&gt; &lt;span class="n"&gt;removed&lt;/span&gt; &lt;span class="k"&gt;in&lt;/span&gt; &lt;span class="n"&gt;geopy&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt; &lt;span class="n"&gt;Use&lt;/span&gt; &lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="n"&gt;geopy&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;distance&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;geodesic&lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;or&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="k"&gt;default&lt;/span&gt; &lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="n"&gt;geopy&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;distance&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;distance&lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;instead&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;which&lt;/span&gt; &lt;span class="k"&gt;is&lt;/span&gt; &lt;span class="k"&gt;more&lt;/span&gt; &lt;span class="n"&gt;accurate&lt;/span&gt; &lt;span class="k"&gt;and&lt;/span&gt; &lt;span class="n"&gt;always&lt;/span&gt; &lt;span class="n"&gt;converges&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
+  &lt;span class="ss"&gt;""&lt;/span&gt;&lt;span class="err"&gt;"&lt;/span&gt;&lt;span class="n"&gt;Entry&lt;/span&gt; &lt;span class="n"&gt;point&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;launching&lt;/span&gt; &lt;span class="n"&gt;an&lt;/span&gt; &lt;span class="n"&gt;IPython&lt;/span&gt; &lt;span class="n"&gt;kernel&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
 
 
-&lt;span class="mi"&gt;29&lt;/span&gt;.&lt;span class="mi"&gt;7&lt;/span&gt; µ&lt;span class="nv"&gt;s&lt;/span&gt; ± &lt;span class="mi"&gt;964&lt;/span&gt; &lt;span class="nv"&gt;ns&lt;/span&gt; &lt;span class="nv"&gt;per&lt;/span&gt; &lt;span class="k"&gt;loop&lt;/span&gt; &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;mean&lt;/span&gt; ± &lt;span class="nv"&gt;std&lt;/span&gt;. &lt;span class="nv"&gt;dev&lt;/span&gt;. &lt;span class="nv"&gt;of&lt;/span&gt; &lt;span class="mi"&gt;7&lt;/span&gt; &lt;span class="nv"&gt;runs&lt;/span&gt;, &lt;span class="mi"&gt;10000&lt;/span&gt; &lt;span class="nv"&gt;loops&lt;/span&gt; &lt;span class="nv"&gt;each&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;
-&lt;span class="mi"&gt;10&lt;/span&gt;.&lt;span class="mi"&gt;359310623929353&lt;/span&gt; &lt;span class="nv"&gt;km&lt;/span&gt;
+&lt;span class="mi"&gt;29&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;7&lt;/span&gt; &lt;span class="err"&gt;µ&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt; &lt;span class="err"&gt;±&lt;/span&gt; &lt;span class="mi"&gt;964&lt;/span&gt; &lt;span class="n"&gt;ns&lt;/span&gt; &lt;span class="n"&gt;per&lt;/span&gt; &lt;span class="n"&gt;loop&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;mean&lt;/span&gt; &lt;span class="err"&gt;±&lt;/span&gt; &lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt; &lt;span class="n"&gt;dev&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt; &lt;span class="k"&gt;of&lt;/span&gt; &lt;span class="mi"&gt;7&lt;/span&gt; &lt;span class="n"&gt;runs&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;10000&lt;/span&gt; &lt;span class="n"&gt;loops&lt;/span&gt; &lt;span class="k"&gt;each&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;359310623929353&lt;/span&gt; &lt;span class="n"&gt;km&lt;/span&gt;
 
 
-&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nv"&gt;home&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nv"&gt;cosmoscalibur&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nv"&gt;anaconda&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nv"&gt;envs&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nv"&gt;geodesic&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nv"&gt;lib&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nv"&gt;python3&lt;/span&gt;.&lt;span class="mi"&gt;7&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nv"&gt;site&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;packages&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nv"&gt;ipykernel_launcher&lt;/span&gt;.&lt;span class="nv"&gt;py&lt;/span&gt;:&lt;span class="mi"&gt;2&lt;/span&gt;: &lt;span class="nv"&gt;DeprecationWarning&lt;/span&gt;: &lt;span class="nv"&gt;Vincenty&lt;/span&gt; &lt;span class="nv"&gt;is&lt;/span&gt; &lt;span class="nv"&gt;deprecated&lt;/span&gt; &lt;span class="nv"&gt;and&lt;/span&gt; &lt;span class="nv"&gt;is&lt;/span&gt; &lt;span class="nv"&gt;going&lt;/span&gt; &lt;span class="nv"&gt;to&lt;/span&gt; &lt;span class="nv"&gt;be&lt;/span&gt; &lt;span class="nv"&gt;removed&lt;/span&gt; &lt;span class="nv"&gt;in&lt;/span&gt; &lt;span class="nv"&gt;geopy&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;.&lt;span class="mi"&gt;0&lt;/span&gt;. &lt;span class="nv"&gt;Use&lt;/span&gt; `&lt;span class="nv"&gt;geopy&lt;/span&gt;.&lt;span class="nv"&gt;distance&lt;/span&gt;.&lt;span class="nv"&gt;geodesic&lt;/span&gt;` &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;or&lt;/span&gt; &lt;span class="nv"&gt;the&lt;/span&gt; &lt;span class="nv"&gt;default&lt;/span&gt; `&lt;span class="nv"&gt;geopy&lt;/span&gt;.&lt;span class="nv"&gt;distance&lt;/span&gt;.&lt;span class="nv"&gt;distance&lt;/span&gt;`&lt;span class="ss"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;instead&lt;/span&gt;, &lt;span class="nv"&gt;which&lt;/span&gt; &lt;span class="nv"&gt;is&lt;/span&gt; &lt;span class="nv"&gt;more&lt;/span&gt; &lt;span class="nv"&gt;accurate&lt;/span&gt; &lt;span class="nv"&gt;and&lt;/span&gt; &lt;span class="nv"&gt;always&lt;/span&gt; &lt;span class="nv"&gt;converges&lt;/span&gt;.
-&lt;/pre&gt;
+&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;home&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;cosmoscalibur&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;anaconda&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;envs&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;geodesic&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;lib&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;python3&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;7&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;site&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;packages&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;ipykernel_launcher&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;py&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;DeprecationWarning&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Vincenty&lt;/span&gt; &lt;span class="k"&gt;is&lt;/span&gt; &lt;span class="n"&gt;deprecated&lt;/span&gt; &lt;span class="k"&gt;and&lt;/span&gt; &lt;span class="k"&gt;is&lt;/span&gt; &lt;span class="n"&gt;going&lt;/span&gt; &lt;span class="k"&gt;to&lt;/span&gt; &lt;span class="n"&gt;be&lt;/span&gt; &lt;span class="n"&gt;removed&lt;/span&gt; &lt;span class="k"&gt;in&lt;/span&gt; &lt;span class="n"&gt;geopy&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt; &lt;span class="n"&gt;Use&lt;/span&gt; &lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="n"&gt;geopy&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;distance&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;geodesic&lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;or&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="k"&gt;default&lt;/span&gt; &lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="n"&gt;geopy&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;distance&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;distance&lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;instead&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;which&lt;/span&gt; &lt;span class="k"&gt;is&lt;/span&gt; &lt;span class="k"&gt;more&lt;/span&gt; &lt;span class="n"&gt;accurate&lt;/span&gt; &lt;span class="k"&gt;and&lt;/span&gt; &lt;span class="n"&gt;always&lt;/span&gt; &lt;span class="n"&gt;converges&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
 
 
 &lt;h3&gt;Método de Karney&lt;/h3&gt;
 &lt;p&gt;Este método al igual que el propuesto por Vincenty, es iterativo pero se asegura que siempre converge y con menor margen de error que Vincenty. Fue &lt;a href="https://link.springer.com/article/10.1007/s00190-012-0578-z"&gt;propuesto en 2013&lt;/a&gt;.  &lt;/p&gt;
 &lt;p&gt;La implementación disponible en GeoPy corresponde a la implementación C++ de GeographicLib.&lt;/p&gt;
-&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="n"&gt;timeit&lt;/span&gt; &lt;span class="n"&gt;geopy&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;distance&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;distance&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;MDE&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;ENV&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;geopy&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;distance&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;distance&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;MDE&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;ENV&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-&lt;/pre&gt;
+&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="n"&gt;timeit&lt;/span&gt; &lt;span class="n"&gt;geopy&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;distance&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;distance&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;MDE&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;ENV&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;geopy&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;distance&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;distance&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;MDE&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;ENV&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
 
 
-&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="mi"&gt;231&lt;/span&gt; µ&lt;span class="nv"&gt;s&lt;/span&gt; ± &lt;span class="mi"&gt;7&lt;/span&gt;.&lt;span class="mi"&gt;42&lt;/span&gt; µ&lt;span class="nv"&gt;s&lt;/span&gt; &lt;span class="nv"&gt;per&lt;/span&gt; &lt;span class="k"&gt;loop&lt;/span&gt; &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;mean&lt;/span&gt; ± &lt;span class="nv"&gt;std&lt;/span&gt;. &lt;span class="nv"&gt;dev&lt;/span&gt;. &lt;span class="nv"&gt;of&lt;/span&gt; &lt;span class="mi"&gt;7&lt;/span&gt; &lt;span class="nv"&gt;runs&lt;/span&gt;, &lt;span class="mi"&gt;1000&lt;/span&gt; &lt;span class="nv"&gt;loops&lt;/span&gt; &lt;span class="nv"&gt;each&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;
-&lt;span class="mi"&gt;10&lt;/span&gt;.&lt;span class="mi"&gt;35931062438337&lt;/span&gt; &lt;span class="nv"&gt;km&lt;/span&gt;
-&lt;/pre&gt;
+&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="err"&gt;231 µs ± 7.42 µs per loop (mean ± std. dev. of 7 runs, 1000 loops each)&lt;/span&gt;
+&lt;span class="err"&gt;10.35931062438337 km&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
 
 
 &lt;h2&gt;Consideraciones&lt;/h2&gt;
@@ -155,8 +254,8 @@ gestor de paquetes del sistema operativo. En la mayor parte de
 distribuciones Linux estará disponible a través del gestor.&lt;/p&gt;
 &lt;p&gt;En el caso de las distribuciones basadas en Debian (Ubuntu y Linux Mint
 entre otras) puedes instalar de la siguiente manera:&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_959aa50c355e44a5a4d1ac50ac190538-1"&gt;&lt;/a&gt;sudo apt install -y texlive texlive-latex-base texlive-latex-extra \
-&lt;a name="rest_code_959aa50c355e44a5a4d1ac50ac190538-2"&gt;&lt;/a&gt;    texlive-lang-spanish latexmk
+&lt;pre class="code text"&gt;&lt;a name="rest_code_a0538199010943adbcb3e0f3f1769cf6-1"&gt;&lt;/a&gt;sudo apt install -y texlive texlive-latex-base texlive-latex-extra \
+&lt;a name="rest_code_a0538199010943adbcb3e0f3f1769cf6-2"&gt;&lt;/a&gt;    texlive-lang-spanish latexmk
 &lt;/pre&gt;&lt;/dd&gt;
 &lt;/dl&gt;
 &lt;/div&gt;
@@ -186,11 +285,11 @@ proyecto destinemos un directorio &lt;code&gt;docs&lt;/code&gt; para este fin.&l
 &lt;p&gt;Ahora ejecutamos &lt;code&gt;sphinx-quickstart&lt;/code&gt; y respondemos las preguntas que
 saldrán. Es necesario tener en cuenta, que si usas Windows debes agregar al
 comando la terminación &lt;code&gt;.exe&lt;/code&gt;, ejemplo &lt;code&gt;sphinx-quickstart.exe&lt;/code&gt;.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_d275e26b6bbf462583be3ede9d010934-1"&gt;&lt;/a&gt;&amp;gt; Separate source and build directories (y/n) [n]: y
-&lt;a name="rest_code_d275e26b6bbf462583be3ede9d010934-2"&gt;&lt;/a&gt;&amp;gt; Project name: proyecto
-&lt;a name="rest_code_d275e26b6bbf462583be3ede9d010934-3"&gt;&lt;/a&gt;&amp;gt; Author name(s): Edward Villegas-Pulgarin
-&lt;a name="rest_code_d275e26b6bbf462583be3ede9d010934-4"&gt;&lt;/a&gt;&amp;gt; Project release []: 0.1.0
-&lt;a name="rest_code_d275e26b6bbf462583be3ede9d010934-5"&gt;&lt;/a&gt;&amp;gt; Project language [en]: es
+&lt;pre class="code text"&gt;&lt;a name="rest_code_d623e2217dc6496481409db784861343-1"&gt;&lt;/a&gt;&amp;gt; Separate source and build directories (y/n) [n]: y
+&lt;a name="rest_code_d623e2217dc6496481409db784861343-2"&gt;&lt;/a&gt;&amp;gt; Project name: proyecto
+&lt;a name="rest_code_d623e2217dc6496481409db784861343-3"&gt;&lt;/a&gt;&amp;gt; Author name(s): Edward Villegas-Pulgarin
+&lt;a name="rest_code_d623e2217dc6496481409db784861343-4"&gt;&lt;/a&gt;&amp;gt; Project release []: 0.1.0
+&lt;a name="rest_code_d623e2217dc6496481409db784861343-5"&gt;&lt;/a&gt;&amp;gt; Project language [en]: es
 &lt;/pre&gt;&lt;p&gt;Siempre recomiendo separar el directorio del código fuente de la documentación
 del directorio de compilados de la misma. Respecto al esquema de versiones me
 agrada el &lt;cite&gt;versionamiento semántico &amp;lt;https://semver.org/&amp;gt;&lt;/cite&gt; que permite al
@@ -212,13 +311,13 @@ Con Coverage puedes validar que funciones se han documentado y dcotest integra
 pruebas de código desde la documentación (comparar salidas con ejemplo de
 documentación).&lt;/p&gt;
 &lt;p&gt;Modificar en el archivo.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_8c2745548bb54f049e2bfa2e41f8600a-1"&gt;&lt;/a&gt;extensions = [
-&lt;a name="rest_code_8c2745548bb54f049e2bfa2e41f8600a-2"&gt;&lt;/a&gt;    'sphinx.ext.autodoc',
-&lt;a name="rest_code_8c2745548bb54f049e2bfa2e41f8600a-3"&gt;&lt;/a&gt;    'sphinx.ext.mathjax',
-&lt;a name="rest_code_8c2745548bb54f049e2bfa2e41f8600a-4"&gt;&lt;/a&gt;    'sphinx.ext.napoleon',
-&lt;a name="rest_code_8c2745548bb54f049e2bfa2e41f8600a-5"&gt;&lt;/a&gt;    'sphinx.ext.coverage',
-&lt;a name="rest_code_8c2745548bb54f049e2bfa2e41f8600a-6"&gt;&lt;/a&gt;    'sphinx.ext.doctest'
-&lt;a name="rest_code_8c2745548bb54f049e2bfa2e41f8600a-7"&gt;&lt;/a&gt;]
+&lt;pre class="code text"&gt;&lt;a name="rest_code_55cea48fd3604342969bb98edf2a6463-1"&gt;&lt;/a&gt;extensions = [
+&lt;a name="rest_code_55cea48fd3604342969bb98edf2a6463-2"&gt;&lt;/a&gt;    'sphinx.ext.autodoc',
+&lt;a name="rest_code_55cea48fd3604342969bb98edf2a6463-3"&gt;&lt;/a&gt;    'sphinx.ext.mathjax',
+&lt;a name="rest_code_55cea48fd3604342969bb98edf2a6463-4"&gt;&lt;/a&gt;    'sphinx.ext.napoleon',
+&lt;a name="rest_code_55cea48fd3604342969bb98edf2a6463-5"&gt;&lt;/a&gt;    'sphinx.ext.coverage',
+&lt;a name="rest_code_55cea48fd3604342969bb98edf2a6463-6"&gt;&lt;/a&gt;    'sphinx.ext.doctest'
+&lt;a name="rest_code_55cea48fd3604342969bb98edf2a6463-7"&gt;&lt;/a&gt;]
 &lt;/pre&gt;&lt;/div&gt;
 &lt;div class="section" id="importar-paquete"&gt;
 &lt;h3&gt;Importar paquete&lt;/h3&gt;
@@ -230,27 +329,27 @@ primeras líneas de código en la sección de &lt;em&gt;Path setup&lt;/em&gt;. E
 defecto indica la misma carpeta de &lt;code&gt;docs/source&lt;/code&gt;, por lo cual es
 necesario reemplazar por &lt;code&gt;../..&lt;/code&gt; que se devuelve los dos niveles
 necesarios.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_2c5dd9ed06244993aa33a1e9d0255039-1"&gt;&lt;/a&gt;import os
-&lt;a name="rest_code_2c5dd9ed06244993aa33a1e9d0255039-2"&gt;&lt;/a&gt;import sys
-&lt;a name="rest_code_2c5dd9ed06244993aa33a1e9d0255039-3"&gt;&lt;/a&gt;import datetime
-&lt;a name="rest_code_2c5dd9ed06244993aa33a1e9d0255039-4"&gt;&lt;/a&gt;sys.path.insert(0, os.path.abspath('../..'))
-&lt;a name="rest_code_2c5dd9ed06244993aa33a1e9d0255039-5"&gt;&lt;/a&gt;import proyecto
+&lt;pre class="code text"&gt;&lt;a name="rest_code_115b0b1797004580b0d80c7f642c7cef-1"&gt;&lt;/a&gt;import os
+&lt;a name="rest_code_115b0b1797004580b0d80c7f642c7cef-2"&gt;&lt;/a&gt;import sys
+&lt;a name="rest_code_115b0b1797004580b0d80c7f642c7cef-3"&gt;&lt;/a&gt;import datetime
+&lt;a name="rest_code_115b0b1797004580b0d80c7f642c7cef-4"&gt;&lt;/a&gt;sys.path.insert(0, os.path.abspath('../..'))
+&lt;a name="rest_code_115b0b1797004580b0d80c7f642c7cef-5"&gt;&lt;/a&gt;import proyecto
 &lt;/pre&gt;&lt;p&gt;Ahora, puedes hacer cosas como la siguiente, si está disponible en tu código.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_74d723d8ee2a4fe1974a779e9dfce46b-1"&gt;&lt;/a&gt;author = proyecto.__author__
-&lt;a name="rest_code_74d723d8ee2a4fe1974a779e9dfce46b-2"&gt;&lt;/a&gt;copyright = str(datetime.date.today().year) + ', ' + author
-&lt;a name="rest_code_74d723d8ee2a4fe1974a779e9dfce46b-3"&gt;&lt;/a&gt;release = proyecto.__version__
+&lt;pre class="code text"&gt;&lt;a name="rest_code_d43f6859b5314de7a097cf585d0560f1-1"&gt;&lt;/a&gt;author = proyecto.__author__
+&lt;a name="rest_code_d43f6859b5314de7a097cf585d0560f1-2"&gt;&lt;/a&gt;copyright = str(datetime.date.today().year) + ', ' + author
+&lt;a name="rest_code_d43f6859b5314de7a097cf585d0560f1-3"&gt;&lt;/a&gt;release = proyecto.__version__
 &lt;/pre&gt;&lt;/div&gt;
 &lt;div class="section" id="referencias-cruzadas"&gt;
 &lt;h3&gt;Referencias cruzadas&lt;/h3&gt;
 &lt;p&gt;Para usar referencias cruzadas, es decir, numeración de tablas, figuras,
 códigos y ecuaciones si poseen pie de objeto, y ser referenciados en el texto
 por el número, se requiere configurar lo siguiente.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_04d1113f91cf41188919971128c02af7-1"&gt;&lt;/a&gt;numfig = True
-&lt;a name="rest_code_04d1113f91cf41188919971128c02af7-2"&gt;&lt;/a&gt;numfig_format = {'figure': 'Fig. %s', 'table': 'Tabla %s',
-&lt;a name="rest_code_04d1113f91cf41188919971128c02af7-3"&gt;&lt;/a&gt;                 'code-block': 'Código %s', 'section': 'Sección %s'}
-&lt;a name="rest_code_04d1113f91cf41188919971128c02af7-4"&gt;&lt;/a&gt;numfig_secnum_depth = 1
-&lt;a name="rest_code_04d1113f91cf41188919971128c02af7-5"&gt;&lt;/a&gt;math_numfig = True
-&lt;a name="rest_code_04d1113f91cf41188919971128c02af7-6"&gt;&lt;/a&gt;math_eqref_format = 'Ec. {number}'
+&lt;pre class="code text"&gt;&lt;a name="rest_code_2f0b4bac2ee44d6189d4356b13726b98-1"&gt;&lt;/a&gt;numfig = True
+&lt;a name="rest_code_2f0b4bac2ee44d6189d4356b13726b98-2"&gt;&lt;/a&gt;numfig_format = {'figure': 'Fig. %s', 'table': 'Tabla %s',
+&lt;a name="rest_code_2f0b4bac2ee44d6189d4356b13726b98-3"&gt;&lt;/a&gt;                 'code-block': 'Código %s', 'section': 'Sección %s'}
+&lt;a name="rest_code_2f0b4bac2ee44d6189d4356b13726b98-4"&gt;&lt;/a&gt;numfig_secnum_depth = 1
+&lt;a name="rest_code_2f0b4bac2ee44d6189d4356b13726b98-5"&gt;&lt;/a&gt;math_numfig = True
+&lt;a name="rest_code_2f0b4bac2ee44d6189d4356b13726b98-6"&gt;&lt;/a&gt;math_eqref_format = 'Ec. {number}'
 &lt;/pre&gt;&lt;p&gt;Así, es posible usar &lt;code&gt;:label:&lt;/code&gt; para asignar una referencia a los objetos
 y &lt;code&gt;:numref:&lt;/code&gt; y &lt;code&gt;:eq:&lt;/code&gt; a la hora de mencionarlos. Con
 &lt;code&gt;numfig_secnum_depth&lt;/code&gt; configuras la numeración de los objetos, si es
@@ -262,11 +361,11 @@ continúa (0), por sección (1) y subsección (2).&lt;/p&gt;
 maestro, el nombre del archivo TeX, el nombre que nuestra documentación, el
 nombre del autor (que podemos usar la variable que ya definimos) y el tipo de
 documento (cuya clase &lt;em&gt;manual&lt;/em&gt; está definida por Sphinx).&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_2e642da484d443efb029e5d22b7f3d75-1"&gt;&lt;/a&gt;master_doc = 'index'
-&lt;a name="rest_code_2e642da484d443efb029e5d22b7f3d75-2"&gt;&lt;/a&gt;latex_documents = [
-&lt;a name="rest_code_2e642da484d443efb029e5d22b7f3d75-3"&gt;&lt;/a&gt;    (master_doc, 'proyecto.tex', 'Documentación Proyecto',
-&lt;a name="rest_code_2e642da484d443efb029e5d22b7f3d75-4"&gt;&lt;/a&gt;     author, 'manual'),
-&lt;a name="rest_code_2e642da484d443efb029e5d22b7f3d75-5"&gt;&lt;/a&gt;]
+&lt;pre class="code text"&gt;&lt;a name="rest_code_a3f5c59d94854314becca8ed58f087ad-1"&gt;&lt;/a&gt;master_doc = 'index'
+&lt;a name="rest_code_a3f5c59d94854314becca8ed58f087ad-2"&gt;&lt;/a&gt;latex_documents = [
+&lt;a name="rest_code_a3f5c59d94854314becca8ed58f087ad-3"&gt;&lt;/a&gt;    (master_doc, 'proyecto.tex', 'Documentación Proyecto',
+&lt;a name="rest_code_a3f5c59d94854314becca8ed58f087ad-4"&gt;&lt;/a&gt;     author, 'manual'),
+&lt;a name="rest_code_a3f5c59d94854314becca8ed58f087ad-5"&gt;&lt;/a&gt;]
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="section" id="escritura-en-restructuredtext"&gt;
@@ -299,16 +398,16 @@ adelante). Puedes agregar más archivos, por ejemplo, yo suelo usar un
 &lt;code&gt;concepts.rst&lt;/code&gt; para detallar los conceptos necesarios antes de usar el
 software o detallar teoría que ayuda a interpretar resultados o que expande la
 información para que alguien pueda analizar o continuar un desarrollo.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_e71132eee0934ccda3563b8e1becb68f-1"&gt;&lt;/a&gt;.. toctree::
-&lt;a name="rest_code_e71132eee0934ccda3563b8e1becb68f-2"&gt;&lt;/a&gt;   :maxdepth: 3
-&lt;a name="rest_code_e71132eee0934ccda3563b8e1becb68f-3"&gt;&lt;/a&gt;   :caption: Contenido:
-&lt;a name="rest_code_e71132eee0934ccda3563b8e1becb68f-4"&gt;&lt;/a&gt;
-&lt;a name="rest_code_e71132eee0934ccda3563b8e1becb68f-5"&gt;&lt;/a&gt;   README
-&lt;a name="rest_code_e71132eee0934ccda3563b8e1becb68f-6"&gt;&lt;/a&gt;   installation
-&lt;a name="rest_code_e71132eee0934ccda3563b8e1becb68f-7"&gt;&lt;/a&gt;   usage
-&lt;a name="rest_code_e71132eee0934ccda3563b8e1becb68f-8"&gt;&lt;/a&gt;   api/modules
-&lt;a name="rest_code_e71132eee0934ccda3563b8e1becb68f-9"&gt;&lt;/a&gt;   concepts
-&lt;a name="rest_code_e71132eee0934ccda3563b8e1becb68f-10"&gt;&lt;/a&gt;   history
+&lt;pre class="code text"&gt;&lt;a name="rest_code_8014d0e52f1e4271a6b31e123cdf98bc-1"&gt;&lt;/a&gt;.. toctree::
+&lt;a name="rest_code_8014d0e52f1e4271a6b31e123cdf98bc-2"&gt;&lt;/a&gt;   :maxdepth: 3
+&lt;a name="rest_code_8014d0e52f1e4271a6b31e123cdf98bc-3"&gt;&lt;/a&gt;   :caption: Contenido:
+&lt;a name="rest_code_8014d0e52f1e4271a6b31e123cdf98bc-4"&gt;&lt;/a&gt;
+&lt;a name="rest_code_8014d0e52f1e4271a6b31e123cdf98bc-5"&gt;&lt;/a&gt;   README
+&lt;a name="rest_code_8014d0e52f1e4271a6b31e123cdf98bc-6"&gt;&lt;/a&gt;   installation
+&lt;a name="rest_code_8014d0e52f1e4271a6b31e123cdf98bc-7"&gt;&lt;/a&gt;   usage
+&lt;a name="rest_code_8014d0e52f1e4271a6b31e123cdf98bc-8"&gt;&lt;/a&gt;   api/modules
+&lt;a name="rest_code_8014d0e52f1e4271a6b31e123cdf98bc-9"&gt;&lt;/a&gt;   concepts
+&lt;a name="rest_code_8014d0e52f1e4271a6b31e123cdf98bc-10"&gt;&lt;/a&gt;   history
 &lt;/pre&gt;&lt;p&gt;Y podemos borrar las líneas posteriores de &lt;em&gt;Indices and tables&lt;/em&gt;.&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -316,7 +415,7 @@ información para que alguien pueda analizar o continuar un desarrollo.&lt;/p&gt
 &lt;h2&gt;Ejecución de Sphinx&lt;/h2&gt;
 &lt;p&gt;Como estamos haciendo uso de &lt;em&gt;autodoc&lt;/em&gt;, nuestro primer paso es generar la
 extracción de la API.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_e09626796aa34e7d9009bab6e0ade476-1"&gt;&lt;/a&gt;sphinx-apidoc -f -M -o source/api/ ../proyecto
+&lt;pre class="code text"&gt;&lt;a name="rest_code_4abb9f485c9c4fd6bce413bb8980223b-1"&gt;&lt;/a&gt;sphinx-apidoc -f -M -o source/api/ ../proyecto
 &lt;/pre&gt;&lt;p&gt;Recordar que en Windows hay que agregar &lt;code&gt;.exe&lt;/code&gt;
 (&lt;code&gt;sphinx-apidoc.exe&lt;/code&gt;). &lt;code&gt;-f&lt;/code&gt; es para forzar la regeneración de los
 archivos (importante si actualizamos la documentación de la API), &lt;code&gt;-M&lt;/code&gt;
@@ -368,7 +467,7 @@ futuro.&lt;/p&gt;
 &lt;p&gt;Si bien puedes descargarlo desde el sitio del proyecto, aprovecharemos el
 gestor Conda para facilitar la tarea de descarga, instalación y configuración.&lt;/p&gt;
 &lt;p&gt;Abriremos Anaconda PowerShell o Anaconda Prompt, y ejecutaremos lo siguiente:&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_258892832aaa4b72b77f8f1a928c366d-1"&gt;&lt;/a&gt;conda create -n gitbash -c conda-forge git=2.24.0
+&lt;pre class="code text"&gt;&lt;a name="rest_code_0f9723a8a61043b0b1d0ba947ce65199-1"&gt;&lt;/a&gt;conda create -n gitbash -c conda-forge git=2.24.0
 &lt;/pre&gt;&lt;p&gt;Es importante el uso de &lt;code&gt;-c conda-forge&lt;/code&gt; porque de este canal vendrá la
 versión de Git que usaremos. Si se usa el canal por defecto, se instala solo el
 cliente de consola, mientras que en esta opción viene Git Bash. He indicado
@@ -389,9 +488,9 @@ posibles conflictos.&lt;/p&gt;
 típicos de Bash, como el &lt;code&gt;bashrc&lt;/code&gt;. Así, podemos usar la configuración que
 habitualmente se usa en Linux.&lt;/p&gt;
 &lt;p&gt;Abrimos Git Bash, y ejecutamos:&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_b163e9e1b76b47f69f410aa39c574782-1"&gt;&lt;/a&gt;cd
-&lt;a name="rest_code_b163e9e1b76b47f69f410aa39c574782-2"&gt;&lt;/a&gt;echo ". /c/Users/USUARIO/ANACONDA/etc/profile.d/conda.sh" &amp;gt;&amp;gt; .bashrc
-&lt;a name="rest_code_b163e9e1b76b47f69f410aa39c574782-3"&gt;&lt;/a&gt;source .bashrc
+&lt;pre class="code text"&gt;&lt;a name="rest_code_781fc3e1216a4b15a31bd685721e822f-1"&gt;&lt;/a&gt;cd
+&lt;a name="rest_code_781fc3e1216a4b15a31bd685721e822f-2"&gt;&lt;/a&gt;echo ". /c/Users/USUARIO/ANACONDA/etc/profile.d/conda.sh" &amp;gt;&amp;gt; .bashrc
+&lt;a name="rest_code_781fc3e1216a4b15a31bd685721e822f-3"&gt;&lt;/a&gt;source .bashrc
 &lt;/pre&gt;&lt;p&gt;Con la primera línea aseguramos ir al directorio del usuario. En la segunda
 línea, crearemos o editaremos el archivo de configuración, pero debes
 reemplazar &lt;code&gt;USUARIO&lt;/code&gt; por la carpeta de tu usuario y &lt;code&gt;ANACONDA&lt;/code&gt; por
