@@ -13,7 +13,7 @@
 <meta content="Nikola (getnikola.com)" name="generator">
 <link href="../../en/rss.xml" rel="alternate" title="RSS (en)" type="application/rss+xml">
 <link href="../../rss.xml" rel="alternate" title="RSS (es)" type="application/rss+xml">
-<link href="https://cosmoscalibur.github.io/blog/usar-anaconda-python-en-git-bash/" rel="canonical">
+<link href="https://www.cosmoscalibur.com/blog/usar-anaconda-python-en-git-bash/" rel="canonical">
 <link href="../../images/favicon.jpg" rel="icon" sizes="32x32"><!--[if lt IE 9]><script src="https://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]--><!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-150354242-1"></script>
 <script>
@@ -47,7 +47,7 @@
 <link href="../crear-documentacion-de-un-proyecto-python-con-sphinx/" rel="next" title="Crear documentación de un proyecto Python con Sphinx." type="text/html">
 <meta content="Cosmoscalibur" property="og:site_name">
 <meta content="Usar Anaconda Python en Git Bash" property="og:title">
-<meta content="https://cosmoscalibur.github.io/blog/usar-anaconda-python-en-git-bash/" property="og:url">
+<meta content="https://www.cosmoscalibur.com/blog/usar-anaconda-python-en-git-bash/" property="og:url">
 <meta content="En una sesión por defecto Git Bash no reconoce Anaconda. Aquí configuraremos Git Bash y Anaconda para que puedan ser usados en conjunto aprovechando el gestor Conda y el archivo bashrc." property="og:description">
 <meta content="article" property="og:type">
 <meta content="2019-12-31T14:43:50-05:00" property="article:published_time">
@@ -70,11 +70,11 @@
 <form action="https://duckduckgo.com/" class="navbar-form pull-left" id="search" method="get" name="search"><input name="sites" type="hidden" value="https://www.cosmoscalibur.com/"><input name="k8" type="hidden" value="#444444"><input name="k9" type="hidden" value="#D51920"><input name="kt" type="hidden" value="h"><input class="span2" maxlength="255" name="q" placeholder="Search…" style="margin-top: 4px;" type="text"><input style="visibility: hidden;" type="submit" value="DuckDuckGo Search"></form>
 <!-- End of custom search --></div>
 </div>
-<div class="col-md-6 col-xs-10 col-sm-10 bootblog4-brand" style="width: auto;"><a class="navbar-brand blog-header-logo text-dark" href="https://cosmoscalibur.github.io/"><span id="blog-title">Cosmoscalibur</span></a></div>
+<div class="col-md-6 col-xs-10 col-sm-10 bootblog4-brand" style="width: auto;"><a class="navbar-brand blog-header-logo text-dark" href="https://www.cosmoscalibur.com/"><span id="blog-title">Cosmoscalibur</span></a></div>
 <div class="col-md-3 justify-content-end align-items-center bs-nav-collapsible collapse flex-collapse bootblog4-right-nav">
 <nav class="navbar navbar-light bg-white">
 <ul class="navbar-nav bootblog4-right-nav">
-<li class="nav-item"><a class="nav-link" href="https://cosmoscalibur.github.io/en/" hreflang="en" rel="alternate">English</a></li>
+<li class="nav-item"><a class="nav-link" href="https://www.cosmoscalibur.com/en/" hreflang="en" rel="alternate">English</a></li>
 </ul>
 </nav>
 </div>
@@ -115,7 +115,7 @@
 <h2>Git Bash</h2>
 <p>Si bien puedes descargarlo desde el sitio del proyecto, aprovecharemos el gestor Conda para facilitar la tarea de descarga, instalación y configuración.</p>
 <p>Abriremos Anaconda PowerShell o Anaconda Prompt, y ejecutaremos lo siguiente:</p>
-<pre class="code text"><a id="rest_code_0f9723a8a61043b0b1d0ba947ce65199-1" name="rest_code_0f9723a8a61043b0b1d0ba947ce65199-1"></a>conda create -n gitbash -c conda-forge git=2.24.0
+<pre class="code text"><a id="rest_code_43042f0c84e54be6a842d0e749f3de08-1" name="rest_code_43042f0c84e54be6a842d0e749f3de08-1"></a>conda create -n gitbash -c conda-forge git=2.24.0
 </pre>
 <p>Es importante el uso de <code>-c conda-forge</code> porque de este canal vendrá la versión de Git que usaremos. Si se usa el canal por defecto, se instala solo el cliente de consola, mientras que en esta opción viene Git Bash. He indicado también el <code>-n gitbash</code> para evitar posibles conflictos entre los paquetes requeridos para usar Git y los paquetes disponibles en el ambiente base. En alguna publicación posterior hablaré sobre Conda para profundizar en esto.</p>
 <p>Una vez terminada la instalación, puedes abrir el menú de Windows y buscar Git Bash, el cual ya contará con Conda reconocido. Ahora solo debes empezar a usarlo, <code>conda activate base</code>.</p>
@@ -125,9 +125,9 @@
 </div>
 <p>¿Y qué pasa si ya teníamos instalado Git Bash? Git Bash soporta los archivos típicos de Bash, como el <code>bashrc</code>. Así, podemos usar la configuración que habitualmente se usa en Linux.</p>
 <p>Abrimos Git Bash, y ejecutamos:</p>
-<pre class="code text"><a id="rest_code_781fc3e1216a4b15a31bd685721e822f-1" name="rest_code_781fc3e1216a4b15a31bd685721e822f-1"></a>cd
-<a id="rest_code_781fc3e1216a4b15a31bd685721e822f-2" name="rest_code_781fc3e1216a4b15a31bd685721e822f-2"></a>echo ". /c/Users/USUARIO/ANACONDA/etc/profile.d/conda.sh" &gt;&gt; .bashrc
-<a id="rest_code_781fc3e1216a4b15a31bd685721e822f-3" name="rest_code_781fc3e1216a4b15a31bd685721e822f-3"></a>source .bashrc
+<pre class="code text"><a id="rest_code_e72d212dd92149e585bef23695d71c7f-1" name="rest_code_e72d212dd92149e585bef23695d71c7f-1"></a>cd
+<a id="rest_code_e72d212dd92149e585bef23695d71c7f-2" name="rest_code_e72d212dd92149e585bef23695d71c7f-2"></a>echo ". /c/Users/USUARIO/ANACONDA/etc/profile.d/conda.sh" &gt;&gt; .bashrc
+<a id="rest_code_e72d212dd92149e585bef23695d71c7f-3" name="rest_code_e72d212dd92149e585bef23695d71c7f-3"></a>source .bashrc
 </pre>
 <p>Con la primera línea aseguramos ir al directorio del usuario. En la segunda línea, crearemos o editaremos el archivo de configuración, pero debes reemplazar <code>USUARIO</code> por la carpeta de tu usuario y <code>ANACONDA</code> por la carpeta de Anaconda (habitualmente <code>Anaconda</code> o <code>Miniconda3</code> si usaste Miniconda). La tercera línea actualiza la configuración en la sesión actual de la consola permitiendo usar de forma inmediata Conda. Para la próxima apertura de Git Bash ya no tendrás que configurar nada, solo empezar a usar Conda (aún no hay ambiente activado).</p>
 </div>
@@ -153,7 +153,7 @@
 <div id="disqus_thread"></div>
 <script>
         var disqus_shortname ="cosmoscalibur",
-            disqus_url="https://cosmoscalibur.github.io/blog/usar-anaconda-python-en-git-bash/",
+            disqus_url="https://www.cosmoscalibur.com/blog/usar-anaconda-python-en-git-bash/",
         disqus_title="Usar Anaconda Python en Git Bash",
         disqus_identifier="cache/posts/usar-anaconda-python-en-git-bash.html",
         disqus_config = function () {

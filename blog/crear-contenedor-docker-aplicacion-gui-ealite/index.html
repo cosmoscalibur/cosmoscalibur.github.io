@@ -13,7 +13,7 @@
 <meta content="Nikola (getnikola.com)" name="generator">
 <link href="../../en/rss.xml" rel="alternate" title="RSS (en)" type="application/rss+xml">
 <link href="../../rss.xml" rel="alternate" title="RSS (es)" type="application/rss+xml">
-<link href="https://cosmoscalibur.github.io/blog/crear-contenedor-docker-aplicacion-gui-ealite/" rel="canonical">
+<link href="https://www.cosmoscalibur.com/blog/crear-contenedor-docker-aplicacion-gui-ealite/" rel="canonical">
 <link href="../../images/favicon.jpg" rel="icon" sizes="32x32"><!--[if lt IE 9]><script src="https://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]--><!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-150354242-1"></script>
 <script>
@@ -47,7 +47,7 @@
 <link href="../usar-anaconda-python-en-git-bash/" rel="next" title="Usar Anaconda Python en Git Bash" type="text/html">
 <meta content="Cosmoscalibur" property="og:site_name">
 <meta content="Crear contenedor Docker aplicación GUI - EALite" property="og:title">
-<meta content="https://cosmoscalibur.github.io/blog/crear-contenedor-docker-aplicacion-gui-ealite/" property="og:url">
+<meta content="https://www.cosmoscalibur.com/blog/crear-contenedor-docker-aplicacion-gui-ealite/" property="og:url">
 <meta content="Crearemos un contenedor Docker para lanzar una aplicación gráfica, en este caso Enterprise Architect Viewer (EALite)." property="og:description">
 <meta content="article" property="og:type">
 <meta content="2019-11-22T21:47:22-05:00" property="article:published_time">
@@ -71,11 +71,11 @@
 <form action="https://duckduckgo.com/" class="navbar-form pull-left" id="search" method="get" name="search"><input name="sites" type="hidden" value="https://www.cosmoscalibur.com/"><input name="k8" type="hidden" value="#444444"><input name="k9" type="hidden" value="#D51920"><input name="kt" type="hidden" value="h"><input class="span2" maxlength="255" name="q" placeholder="Search…" style="margin-top: 4px;" type="text"><input style="visibility: hidden;" type="submit" value="DuckDuckGo Search"></form>
 <!-- End of custom search --></div>
 </div>
-<div class="col-md-6 col-xs-10 col-sm-10 bootblog4-brand" style="width: auto;"><a class="navbar-brand blog-header-logo text-dark" href="https://cosmoscalibur.github.io/"><span id="blog-title">Cosmoscalibur</span></a></div>
+<div class="col-md-6 col-xs-10 col-sm-10 bootblog4-brand" style="width: auto;"><a class="navbar-brand blog-header-logo text-dark" href="https://www.cosmoscalibur.com/"><span id="blog-title">Cosmoscalibur</span></a></div>
 <div class="col-md-3 justify-content-end align-items-center bs-nav-collapsible collapse flex-collapse bootblog4-right-nav">
 <nav class="navbar navbar-light bg-white">
 <ul class="navbar-nav bootblog4-right-nav">
-<li class="nav-item"><a class="nav-link" href="https://cosmoscalibur.github.io/en/" hreflang="en" rel="alternate">English</a></li>
+<li class="nav-item"><a class="nav-link" href="https://www.cosmoscalibur.com/en/" hreflang="en" rel="alternate">English</a></li>
 </ul>
 </nav>
 </div>
@@ -111,12 +111,12 @@
 <div class="section" id="instalar-docker">
 <h2>Instalar Docker</h2>
 <p>Recomiendo en Linux instalar docker con snap.</p>
-<pre class="code text"><a id="rest_code_1a59264feff645e788e890b787d3b772-1" name="rest_code_1a59264feff645e788e890b787d3b772-1"></a>sudo snap install docker
+<pre class="code text"><a id="rest_code_aa6a22db29254e4eaee17c765ef8e44e-1" name="rest_code_aa6a22db29254e4eaee17c765ef8e44e-1"></a>sudo snap install docker
 </pre>
 <p>Posteriormente, podemos asociar nuestro usuario para la ejecución sin ser administrador.</p>
-<pre class="code text"><a id="rest_code_14db894eaa584f76978315873486e936-1" name="rest_code_14db894eaa584f76978315873486e936-1"></a>sudo groupadd docker
-<a id="rest_code_14db894eaa584f76978315873486e936-2" name="rest_code_14db894eaa584f76978315873486e936-2"></a>sudo usermod -aG docker $USER
-<a id="rest_code_14db894eaa584f76978315873486e936-3" name="rest_code_14db894eaa584f76978315873486e936-3"></a>newgrp docker
+<pre class="code text"><a id="rest_code_4f17d53daa854682a2309b7760f8e29c-1" name="rest_code_4f17d53daa854682a2309b7760f8e29c-1"></a>sudo groupadd docker
+<a id="rest_code_4f17d53daa854682a2309b7760f8e29c-2" name="rest_code_4f17d53daa854682a2309b7760f8e29c-2"></a>sudo usermod -aG docker $USER
+<a id="rest_code_4f17d53daa854682a2309b7760f8e29c-3" name="rest_code_4f17d53daa854682a2309b7760f8e29c-3"></a>newgrp docker
 </pre>
 <p>Puedes probar ejecutando como usuario regular, <code>docker run hello-world</code>.</p>
 </div>
@@ -135,34 +135,34 @@
 <div class="admonition note">
 <p class="admonition-title">Nota</p>
 <p>El directorio que moveremos se genero en el contenedor LXC que construimos en <a class="reference external" href="../crear-contenedor-lxc-para-aplicacion-gui-ealite/">Crear contenedor LXC para aplicación GUI - EALite</a>. Para ello, iniciamos el contenedor y extraemos el directorio.</p>
-<pre class="code text"><a id="rest_code_541080a2b8604905b90a4e5ae8a223aa-1" name="rest_code_541080a2b8604905b90a4e5ae8a223aa-1"></a>sudo lxc start ea
-<a id="rest_code_541080a2b8604905b90a4e5ae8a223aa-2" name="rest_code_541080a2b8604905b90a4e5ae8a223aa-2"></a>sudo lxc file pull -r ea/home/ubuntu/.wine .
+<pre class="code text"><a id="rest_code_d2872ac6b23b4f6f8e6ce80bd54653e8-1" name="rest_code_d2872ac6b23b4f6f8e6ce80bd54653e8-1"></a>sudo lxc start ea
+<a id="rest_code_d2872ac6b23b4f6f8e6ce80bd54653e8-2" name="rest_code_d2872ac6b23b4f6f8e6ce80bd54653e8-2"></a>sudo lxc file pull -r ea/home/ubuntu/.wine .
 </pre></div>
 <p>Con <code>USER</code> cambiamos el usuario que ejecuta los procesos. Es importante que a la hora de concluir, si un proceso es ejecutado por un usuario regular, nuestro último cambio de usuario debe apuntar a él, de otra forma el contenedor estará activo para el usuario administrador. Otro aspecto importante es el comportamiento por defecto en Linux, donde puede crear el usuario si no existe (pero no el directorio de usuario).</p>
 <p>Finalmente, es necesario indicar que se ejecuta cuando se lanza el contenedor. Esto es posible con <code>CMD</code> o con <code>ENTRYPOINT</code>. La diferencia es que el primero permite sobreescribir la ejecución enviando como parámetro lo que se desea ejecutar, mientras que la segunda opción solo ejecuta la configurada.</p>
-<pre class="code text"><a id="rest_code_bb91688667184070845aacf463a6d57d-1" name="rest_code_bb91688667184070845aacf463a6d57d-1"></a># escape=`
-<a id="rest_code_bb91688667184070845aacf463a6d57d-2" name="rest_code_bb91688667184070845aacf463a6d57d-2"></a>FROM i386/ubuntu:18.04
-<a id="rest_code_bb91688667184070845aacf463a6d57d-3" name="rest_code_bb91688667184070845aacf463a6d57d-3"></a>RUN apt update -q &amp;& apt install --install-recommends -y wine-stable
-<a id="rest_code_bb91688667184070845aacf463a6d57d-4" name="rest_code_bb91688667184070845aacf463a6d57d-4"></a>RUN apt install -y fonts-crosextra-carlito
-<a id="rest_code_bb91688667184070845aacf463a6d57d-5" name="rest_code_bb91688667184070845aacf463a6d57d-5"></a>RUN useradd -ms /bin/bash ubuntu
-<a id="rest_code_bb91688667184070845aacf463a6d57d-6" name="rest_code_bb91688667184070845aacf463a6d57d-6"></a>WORKDIR /home/ubuntu
-<a id="rest_code_bb91688667184070845aacf463a6d57d-7" name="rest_code_bb91688667184070845aacf463a6d57d-7"></a>COPY .wine .wine
-<a id="rest_code_bb91688667184070845aacf463a6d57d-8" name="rest_code_bb91688667184070845aacf463a6d57d-8"></a>RUN chown -R ubuntu .wine
-<a id="rest_code_bb91688667184070845aacf463a6d57d-9" name="rest_code_bb91688667184070845aacf463a6d57d-9"></a>USER ubuntu
-<a id="rest_code_bb91688667184070845aacf463a6d57d-10" name="rest_code_bb91688667184070845aacf463a6d57d-10"></a>RUN mkdir -p .local/bin &amp;& `
-<a id="rest_code_bb91688667184070845aacf463a6d57d-11" name="rest_code_bb91688667184070845aacf463a6d57d-11"></a>        echo "wine $HOME/.wine/drive_c/Program\ Files/Sparx\ Systems/EA\ LITE/EA.exe" &gt; .local/bin/ealite &amp;& `
-<a id="rest_code_bb91688667184070845aacf463a6d57d-12" name="rest_code_bb91688667184070845aacf463a6d57d-12"></a>        chmod 755 .local/bin/ealite
-<a id="rest_code_bb91688667184070845aacf463a6d57d-13" name="rest_code_bb91688667184070845aacf463a6d57d-13"></a>CMD ".local/bin/ealite"
+<pre class="code text"><a id="rest_code_dbeaf9de59d24f08a0138f76197c326e-1" name="rest_code_dbeaf9de59d24f08a0138f76197c326e-1"></a># escape=`
+<a id="rest_code_dbeaf9de59d24f08a0138f76197c326e-2" name="rest_code_dbeaf9de59d24f08a0138f76197c326e-2"></a>FROM i386/ubuntu:18.04
+<a id="rest_code_dbeaf9de59d24f08a0138f76197c326e-3" name="rest_code_dbeaf9de59d24f08a0138f76197c326e-3"></a>RUN apt update -q &amp;& apt install --install-recommends -y wine-stable
+<a id="rest_code_dbeaf9de59d24f08a0138f76197c326e-4" name="rest_code_dbeaf9de59d24f08a0138f76197c326e-4"></a>RUN apt install -y fonts-crosextra-carlito
+<a id="rest_code_dbeaf9de59d24f08a0138f76197c326e-5" name="rest_code_dbeaf9de59d24f08a0138f76197c326e-5"></a>RUN useradd -ms /bin/bash ubuntu
+<a id="rest_code_dbeaf9de59d24f08a0138f76197c326e-6" name="rest_code_dbeaf9de59d24f08a0138f76197c326e-6"></a>WORKDIR /home/ubuntu
+<a id="rest_code_dbeaf9de59d24f08a0138f76197c326e-7" name="rest_code_dbeaf9de59d24f08a0138f76197c326e-7"></a>COPY .wine .wine
+<a id="rest_code_dbeaf9de59d24f08a0138f76197c326e-8" name="rest_code_dbeaf9de59d24f08a0138f76197c326e-8"></a>RUN chown -R ubuntu .wine
+<a id="rest_code_dbeaf9de59d24f08a0138f76197c326e-9" name="rest_code_dbeaf9de59d24f08a0138f76197c326e-9"></a>USER ubuntu
+<a id="rest_code_dbeaf9de59d24f08a0138f76197c326e-10" name="rest_code_dbeaf9de59d24f08a0138f76197c326e-10"></a>RUN mkdir -p .local/bin &amp;& `
+<a id="rest_code_dbeaf9de59d24f08a0138f76197c326e-11" name="rest_code_dbeaf9de59d24f08a0138f76197c326e-11"></a>        echo "wine $HOME/.wine/drive_c/Program\ Files/Sparx\ Systems/EA\ LITE/EA.exe" &gt; .local/bin/ealite &amp;& `
+<a id="rest_code_dbeaf9de59d24f08a0138f76197c326e-12" name="rest_code_dbeaf9de59d24f08a0138f76197c326e-12"></a>        chmod 755 .local/bin/ealite
+<a id="rest_code_dbeaf9de59d24f08a0138f76197c326e-13" name="rest_code_dbeaf9de59d24f08a0138f76197c326e-13"></a>CMD ".local/bin/ealite"
 </pre></div>
 <div class="section" id="construir-imagen-docker">
 <h2>Construir imagen Docker</h2>
 <p>La construcción la realizamos con la opción <code>build</code>. Se usa el argumento <code>-t</code> para indicar la etiqueta que asignaremos a la imagen y <code>-f</code> para relacionar la ruta del archivo dockerfile que se usará. El siguiente argumento no posee marca para indicarlo y corresponde al contexto, que viene a ser la ruta donde se encuentran los archivos que usaremos (que puede ser reemplazado por un archivo de contexto con la ruta a los distintos archivos).</p>
-<pre class="code text"><a id="rest_code_5e00b0f22de7400586d9377aa95143cf-1" name="rest_code_5e00b0f22de7400586d9377aa95143cf-1"></a>docker build -t cosmoscalibur/ealite:latest -f dockerfile .
+<pre class="code text"><a id="rest_code_1a1a2b6230ae4411b617884e071a474b-1" name="rest_code_1a1a2b6230ae4411b617884e071a474b-1"></a>docker build -t cosmoscalibur/ealite:latest -f dockerfile .
 </pre></div>
 <div class="section" id="ejecutar-contenedor">
 <h2>Ejecutar contenedor</h2>
 <p>Ahora puedes lanzar un contenedor gráfico basado en la imagen construida con la siguiente instrucción.</p>
-<pre class="code text"><a id="rest_code_d8ba6418ab8443feb78b31388fd6ad7e-1" name="rest_code_d8ba6418ab8443feb78b31388fd6ad7e-1"></a>docker run --net=host --env="DISPLAY" --volume="$HOME/.Xauthority:/root/.Xauthority:rw" cosmoscalibur/ealite:latest
+<pre class="code text"><a id="rest_code_99200ca7938742b3a29d932901c21d3b-1" name="rest_code_99200ca7938742b3a29d932901c21d3b-1"></a>docker run --net=host --env="DISPLAY" --volume="$HOME/.Xauthority:/root/.Xauthority:rw" cosmoscalibur/ealite:latest
 </pre></div>
 <div class="section" id="referencias">
 <h2>Referencias</h2>
@@ -204,7 +204,7 @@
 <div id="disqus_thread"></div>
 <script>
         var disqus_shortname ="cosmoscalibur",
-            disqus_url="https://cosmoscalibur.github.io/blog/crear-contenedor-docker-aplicacion-gui-ealite/",
+            disqus_url="https://www.cosmoscalibur.com/blog/crear-contenedor-docker-aplicacion-gui-ealite/",
         disqus_title="Crear contenedor Docker aplicaci\u00f3n GUI - EALite",
         disqus_identifier="cache/posts/crear-contenedor-docker-aplicacion-gui-ealite.html",
         disqus_config = function () {
