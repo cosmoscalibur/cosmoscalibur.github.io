@@ -1,0 +1,75 @@
+<?xml version='1.0' encoding='utf-8'?>
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>Cosmoscalibur (Publicaciones sobre instalar snapd)</title><link>https://www.cosmoscalibur.com/</link><description/><atom:link href="https://www.cosmoscalibur.com/categories/instalar-snapd.xml" rel="self" type="application/rss+xml"/><language>es</language><copyright>Contents © 2020 &lt;a href="mailto:cosmoscalibur@gmail.com"&gt;Edward Villegas Pulgarin&lt;/a&gt; 
+&lt;a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"&gt;
+&lt;img alt="Creative Commons License BY-NC-SA"
+style="border-width:0; margin-bottom:12px;"
+src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"&gt;&lt;/a&gt;</copyright><lastBuildDate>Mon, 29 Jun 2020 23:52:13 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Instalar paquetes snap en Linux Mint 20</title><link>https://www.cosmoscalibur.com/blog/instalar-paquetes-snap-en-linux-mint-20/</link><dc:creator>Edward Villegas-Pulgarin</dc:creator><description>&lt;div&gt;&lt;p&gt;¿Ya tienes Linux Mint 20 y deseas
+&lt;a class="reference external" href="https://www.cosmoscalibur.com/blog/instalando-paquetes-en-linux-mint/#snap"&gt;instalar paquetes Snap&lt;/a&gt;? Mint ha
+decidido deshabilitar la instalación de Snap por defecto y es necesario cambiar
+la configuración de apt para poderlo hacer.&lt;/p&gt;
+&lt;!-- TEASER_END --&gt;
+&lt;p&gt;Si prefieres la versión en video:&lt;/p&gt;
+&lt;div class="youtube-video align-center"&gt;
+&lt;iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/i2GjXP8iB1I?rel=0&amp;amp;wmode=transparent" frameborder="0" allow="encrypted-media" allowfullscreen&gt;&lt;/iframe&gt;
+&lt;/div&gt;&lt;div class="section" id="el-problema"&gt;
+&lt;h2&gt;El problema&lt;/h2&gt;
+&lt;p&gt;Si ya cuentas con Linux Mint 20 observarás que al intentar instalar el paquete
+&lt;code&gt;snapd&lt;/code&gt; (el gestor snap), nos llevaremos la sorpresa de no poderlo
+instalar. Encontraremos un mensaje como el siguiente:&lt;/p&gt;
+&lt;pre&gt;&lt;font color="#8AE234"&gt;&lt;b&gt;cosmoscalibur@edliviano&lt;/b&gt;&lt;/font&gt;:&lt;font color="#739FCF"&gt;&lt;b&gt;~&lt;/b&gt;&lt;/font&gt;$ apt install snapd
+Reading package lists... Done
+Building dependency tree
+Reading state information... Done
+Package snapd is not available, but is referred to by another package.
+This may mean that the package is missing, has been obsoleted, or
+is only available from another source
+
+&lt;font color="#EF2929"&gt;&lt;b&gt;E: &lt;/b&gt;&lt;/font&gt;Package 'snapd' has no installation candidate&lt;/pre&gt;
+
+&lt;pre&gt;&lt;font color="#8AE234"&gt;&lt;b&gt;cosmoscalibur@edliviano&lt;/b&gt;&lt;/font&gt;:&lt;font color="#739FCF"&gt;&lt;b&gt;~&lt;/b&gt;&lt;/font&gt;$ apt show snapd
+Package: snapd
+State: not a real package (virtual)
+&lt;font color="#C4A000"&gt;N: &lt;/font&gt;Can't select candidate version from package snapd as it has no candidate
+&lt;font color="#C4A000"&gt;N: &lt;/font&gt;There is 1 additional record. Please use the '-a' switch to see it
+&lt;font color="#C4A000"&gt;N: &lt;/font&gt;No packages found&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="section" id="la-razon"&gt;
+&lt;h2&gt;La razón&lt;/h2&gt;
+&lt;p&gt;Este problema es originado por una modificación en las preferencias de
+&lt;code&gt;apt&lt;/code&gt; que lo engaña haciendo creer que no hay un paquete disponible que
+cumpla la solicitud. Esto es provocado por el comportamiento asociado al
+instalador de &lt;em&gt;Chromium&lt;/em&gt;, el cual, para su fácil mantenimiento por parte del
+equipo de Ubuntu, han decidido usar un paquete DEB cuya única función es
+invocar la instalación desde snap (instalando snap si este no lo está).&lt;/p&gt;
+&lt;p&gt;En lo personal no lo veo problemático, para mi el caso ideal es tener ojalá
+gestores de paquetes que terminen de instalar componentes desde otro gestor de
+forma automática en lugar de yo encargarme del trabajo sucio. Pero el equipo de
+Mint encuentra una falta de transparencia con sus usuarios que no son
+advertidos de esto e incluso considerar como una falla de seguridad &lt;a class="citation-reference" href="https://www.cosmoscalibur.com/blog/instalar-paquetes-snap-en-linux-mint-20/#snap-mint" id="id1"&gt;[snap-mint]&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="la-solucion"&gt;
+&lt;h2&gt;La solución&lt;/h2&gt;
+&lt;p&gt;Para solventar este problema, basta con eliminar o comentar las líneas de un
+archivo: &lt;code&gt;/etc/apt/preferences.d/nosnap.pref&lt;/code&gt;. En mi caso, no veo razón
+de mantenerlo, así que procedo a eliminarlo y posteriormente a instalar el
+gestor de snaps. Si te sientes más cómodo, puedes comentar las líneas y una vez
+instalado el gestor volver a descomentarlas &lt;a class="citation-reference" href="https://www.cosmoscalibur.com/blog/instalar-paquetes-snap-en-linux-mint-20/#snap-install" id="id2"&gt;[snap-install]&lt;/a&gt;.&lt;/p&gt;
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_4347f4d8ae5345579000c81da2ef9c5b-1"&gt;&lt;/a&gt;sudo rm /etc/apt/preferences.d/nosnap.pref
+&lt;a name="rest_code_4347f4d8ae5345579000c81da2ef9c5b-2"&gt;&lt;/a&gt;sudo apt install -y snapd
+&lt;a name="rest_code_4347f4d8ae5345579000c81da2ef9c5b-3"&gt;&lt;/a&gt;snap &lt;span class="nb"&gt;help&lt;/span&gt;
+&lt;/pre&gt;&lt;p&gt;Ahora puedes instalar tus paquetes snap en la forma como lo expliqué en un
+&lt;a class="reference external" href="https://www.cosmoscalibur.com/blog/instalando-paquetes-en-linux-mint/#snap"&gt;artículo anterior&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="referencias"&gt;
+&lt;h2&gt;Referencias&lt;/h2&gt;
+&lt;dl class="citation"&gt;
+&lt;dt class="label" id="snap-mint"&gt;&lt;span class="brackets"&gt;&lt;a class="fn-backref" href="https://www.cosmoscalibur.com/blog/instalar-paquetes-snap-en-linux-mint-20/#id1"&gt;snap-mint&lt;/a&gt;&lt;/span&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;Snapping at Canonical's Snap: Linux Mint team says no to Ubuntu
+store 'backdoor'.
+&lt;a class="reference external" href="https://www.theregister.com/2020/06/02/linux_mint_team_snap/"&gt;The register, 2 Jun 2020&lt;/a&gt;.&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class="label" id="snap-install"&gt;&lt;span class="brackets"&gt;&lt;a class="fn-backref" href="https://www.cosmoscalibur.com/blog/instalar-paquetes-snap-en-linux-mint-20/#id2"&gt;snap-install&lt;/a&gt;&lt;/span&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;How To Enable Snap And Install Snap Packages On Linux Mint 20?
+&lt;a class="reference external" href="https://fossbytes.com/how-to-enable-snap-and-install-snap-packages-on-linux-mint-20/"&gt;fossbytes, June 12, 2020&lt;/a&gt;&lt;/p&gt;
+&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;/div&gt;&lt;/div&gt;</description><category>instalar snap</category><category>instalar snapd</category><category>linux</category><category>linux mint</category><category>linux mint 20</category><category>paquetes snap</category><guid>https://www.cosmoscalibur.com/blog/instalar-paquetes-snap-en-linux-mint-20/</guid><pubDate>Mon, 29 Jun 2020 23:16:35 GMT</pubDate></item></channel></rss>

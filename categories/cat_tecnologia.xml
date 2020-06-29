@@ -3,7 +3,76 @@
 &lt;a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"&gt;
 &lt;img alt="Creative Commons License BY-NC-SA"
 style="border-width:0; margin-bottom:12px;"
-src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"&gt;&lt;/a&gt;</copyright><lastBuildDate>Mon, 29 Jun 2020 22:55:22 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Instalar Python Anaconda</title><link>https://www.cosmoscalibur.com/blog/instalar-python-anaconda/</link><dc:creator>Edward Villegas-Pulgarin</dc:creator><description>&lt;div&gt;&lt;p&gt;En los últimos años, una herramienta se ha popularizado no solo como una base
+src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"&gt;&lt;/a&gt;</copyright><lastBuildDate>Mon, 29 Jun 2020 23:57:32 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Instalar paquetes snap en Linux Mint 20</title><link>https://www.cosmoscalibur.com/blog/instalar-paquetes-snap-en-linux-mint-20/</link><dc:creator>Edward Villegas-Pulgarin</dc:creator><description>&lt;div&gt;&lt;p&gt;¿Ya tienes Linux Mint 20 y deseas
+&lt;a class="reference external" href="https://www.cosmoscalibur.com/blog/instalando-paquetes-en-linux-mint/#snap"&gt;instalar paquetes Snap&lt;/a&gt;? Mint ha
+decidido deshabilitar la instalación de Snap por defecto y es necesario cambiar
+la configuración de apt para poderlo hacer.&lt;/p&gt;
+&lt;!-- TEASER_END --&gt;
+&lt;p&gt;Si prefieres la versión en video:&lt;/p&gt;
+&lt;div class="youtube-video align-center"&gt;
+&lt;iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/i2GjXP8iB1I?rel=0&amp;amp;wmode=transparent" frameborder="0" allow="encrypted-media" allowfullscreen&gt;&lt;/iframe&gt;
+&lt;/div&gt;&lt;div class="section" id="el-problema"&gt;
+&lt;h2&gt;El problema&lt;/h2&gt;
+&lt;p&gt;Si ya cuentas con Linux Mint 20 observarás que al intentar instalar el paquete
+&lt;code&gt;snapd&lt;/code&gt; (el gestor snap), nos llevaremos la sorpresa de no poderlo
+instalar. Encontraremos un mensaje como el siguiente:&lt;/p&gt;
+&lt;pre&gt;&lt;font color="#8AE234"&gt;&lt;b&gt;cosmoscalibur@edliviano&lt;/b&gt;&lt;/font&gt;:&lt;font color="#739FCF"&gt;&lt;b&gt;~&lt;/b&gt;&lt;/font&gt;$ apt install snapd
+Reading package lists... Done
+Building dependency tree
+Reading state information... Done
+Package snapd is not available, but is referred to by another package.
+This may mean that the package is missing, has been obsoleted, or
+is only available from another source
+
+&lt;font color="#EF2929"&gt;&lt;b&gt;E: &lt;/b&gt;&lt;/font&gt;Package 'snapd' has no installation candidate&lt;/pre&gt;
+
+&lt;pre&gt;&lt;font color="#8AE234"&gt;&lt;b&gt;cosmoscalibur@edliviano&lt;/b&gt;&lt;/font&gt;:&lt;font color="#739FCF"&gt;&lt;b&gt;~&lt;/b&gt;&lt;/font&gt;$ apt show snapd
+Package: snapd
+State: not a real package (virtual)
+&lt;font color="#C4A000"&gt;N: &lt;/font&gt;Can't select candidate version from package snapd as it has no candidate
+&lt;font color="#C4A000"&gt;N: &lt;/font&gt;There is 1 additional record. Please use the '-a' switch to see it
+&lt;font color="#C4A000"&gt;N: &lt;/font&gt;No packages found&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="section" id="la-razon"&gt;
+&lt;h2&gt;La razón&lt;/h2&gt;
+&lt;p&gt;Este problema es originado por una modificación en las preferencias de
+&lt;code&gt;apt&lt;/code&gt; que lo engaña haciendo creer que no hay un paquete disponible que
+cumpla la solicitud. Esto es provocado por el comportamiento asociado al
+instalador de &lt;em&gt;Chromium&lt;/em&gt;, el cual, para su fácil mantenimiento por parte del
+equipo de Ubuntu, han decidido usar un paquete DEB cuya única función es
+invocar la instalación desde snap (instalando snap si este no lo está).&lt;/p&gt;
+&lt;p&gt;En lo personal no lo veo problemático, para mi el caso ideal es tener ojalá
+gestores de paquetes que terminen de instalar componentes desde otro gestor de
+forma automática en lugar de yo encargarme del trabajo sucio. Pero el equipo de
+Mint encuentra una falta de transparencia con sus usuarios que no son
+advertidos de esto e incluso considerar como una falla de seguridad &lt;a class="citation-reference" href="https://www.cosmoscalibur.com/blog/instalar-paquetes-snap-en-linux-mint-20/#snap-mint" id="id1"&gt;[snap-mint]&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="la-solucion"&gt;
+&lt;h2&gt;La solución&lt;/h2&gt;
+&lt;p&gt;Para solventar este problema, basta con eliminar o comentar las líneas de un
+archivo: &lt;code&gt;/etc/apt/preferences.d/nosnap.pref&lt;/code&gt;. En mi caso, no veo razón
+de mantenerlo, así que procedo a eliminarlo y posteriormente a instalar el
+gestor de snaps. Si te sientes más cómodo, puedes comentar las líneas y una vez
+instalado el gestor volver a descomentarlas &lt;a class="citation-reference" href="https://www.cosmoscalibur.com/blog/instalar-paquetes-snap-en-linux-mint-20/#snap-install" id="id2"&gt;[snap-install]&lt;/a&gt;.&lt;/p&gt;
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_4c236e5b48ff486b9525af51f8dba2d5-1"&gt;&lt;/a&gt;sudo rm /etc/apt/preferences.d/nosnap.pref
+&lt;a name="rest_code_4c236e5b48ff486b9525af51f8dba2d5-2"&gt;&lt;/a&gt;sudo apt install -y snapd
+&lt;a name="rest_code_4c236e5b48ff486b9525af51f8dba2d5-3"&gt;&lt;/a&gt;snap &lt;span class="nb"&gt;help&lt;/span&gt;
+&lt;/pre&gt;&lt;p&gt;Ahora puedes instalar tus paquetes snap en la forma como lo expliqué en un
+&lt;a class="reference external" href="https://www.cosmoscalibur.com/blog/instalando-paquetes-en-linux-mint/#snap"&gt;artículo anterior&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="referencias"&gt;
+&lt;h2&gt;Referencias&lt;/h2&gt;
+&lt;dl class="citation"&gt;
+&lt;dt class="label" id="snap-mint"&gt;&lt;span class="brackets"&gt;&lt;a class="fn-backref" href="https://www.cosmoscalibur.com/blog/instalar-paquetes-snap-en-linux-mint-20/#id1"&gt;snap-mint&lt;/a&gt;&lt;/span&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;Snapping at Canonical's Snap: Linux Mint team says no to Ubuntu
+store 'backdoor'.
+&lt;a class="reference external" href="https://www.theregister.com/2020/06/02/linux_mint_team_snap/"&gt;The register, 2 Jun 2020&lt;/a&gt;.&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class="label" id="snap-install"&gt;&lt;span class="brackets"&gt;&lt;a class="fn-backref" href="https://www.cosmoscalibur.com/blog/instalar-paquetes-snap-en-linux-mint-20/#id2"&gt;snap-install&lt;/a&gt;&lt;/span&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;How To Enable Snap And Install Snap Packages On Linux Mint 20?
+&lt;a class="reference external" href="https://fossbytes.com/how-to-enable-snap-and-install-snap-packages-on-linux-mint-20/"&gt;fossbytes, June 12, 2020&lt;/a&gt;&lt;/p&gt;
+&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;/div&gt;&lt;/div&gt;</description><category>instalar snap</category><category>linux</category><category>linux mint</category><category>linux mint 20</category><category>paquetes snap</category><guid>https://www.cosmoscalibur.com/blog/instalar-paquetes-snap-en-linux-mint-20/</guid><pubDate>Mon, 29 Jun 2020 23:16:35 GMT</pubDate></item><item><title>Instalar Python Anaconda</title><link>https://www.cosmoscalibur.com/blog/instalar-python-anaconda/</link><dc:creator>Edward Villegas-Pulgarin</dc:creator><description>&lt;div&gt;&lt;p&gt;En los últimos años, una herramienta se ha popularizado no solo como una base
 para el ecosistena de la analítica de datos ("ciencia de datos" como llaman
 también algunos) sino también en general para el desarrollo en Python
 (científico, web o de propósito general). Esta herramienta es Anaconda, que no
@@ -46,9 +115,9 @@ si es Anaconda o Miniconda).&lt;/p&gt;
 preguntas interactivas y así despreocuparnos durante la instalación. Invocamos
 el instalador con Bash de la siguiente forma (asegurate de usar la ruta
 completa y correcta del instalador &lt;code&gt;sh&lt;/code&gt; que usarás).&lt;/p&gt;
-&lt;pre class="code bash"&gt;&lt;a name="rest_code_8970223d5aa34319b245922a9bf6273b-1"&gt;&lt;/a&gt;bash Anaconda3-2020.02-Linux-x86_64.sh -b -p &lt;span class="nv"&gt;$HOME&lt;/span&gt;/anaconda
-&lt;a name="rest_code_8970223d5aa34319b245922a9bf6273b-2"&gt;&lt;/a&gt;&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;". &lt;/span&gt;&lt;span class="nv"&gt;$HOME&lt;/span&gt;&lt;span class="s2"&gt;/anaconda/etc/profile.d/conda.sh"&lt;/span&gt; &amp;gt;&amp;gt; &lt;span class="nv"&gt;$HOME&lt;/span&gt;/.bashrc
-&lt;a name="rest_code_8970223d5aa34319b245922a9bf6273b-3"&gt;&lt;/a&gt;&lt;span class="nb"&gt;source&lt;/span&gt; &lt;span class="nv"&gt;$HOME&lt;/span&gt;/.bashrc
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_6e8a53af11bd40e4b0a2b1cfb9ac5869-1"&gt;&lt;/a&gt;bash Anaconda3-2020.02-Linux-x86_64.sh -b -p &lt;span class="nv"&gt;$HOME&lt;/span&gt;/anaconda
+&lt;a name="rest_code_6e8a53af11bd40e4b0a2b1cfb9ac5869-2"&gt;&lt;/a&gt;&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;". &lt;/span&gt;&lt;span class="nv"&gt;$HOME&lt;/span&gt;&lt;span class="s2"&gt;/anaconda/etc/profile.d/conda.sh"&lt;/span&gt; &amp;gt;&amp;gt; &lt;span class="nv"&gt;$HOME&lt;/span&gt;/.bashrc
+&lt;a name="rest_code_6e8a53af11bd40e4b0a2b1cfb9ac5869-3"&gt;&lt;/a&gt;&lt;span class="nb"&gt;source&lt;/span&gt; &lt;span class="nv"&gt;$HOME&lt;/span&gt;/.bashrc
 &lt;/pre&gt;&lt;p&gt;En la invocación de Bash, el argumento &lt;code&gt;-b&lt;/code&gt; implica la aceptación de
 licencias y con &lt;code&gt;-p&lt;/code&gt; indicamos la ruta para la instalación de Anaconda
 (puedes cambiarla a tu deseo).&lt;/p&gt;
@@ -64,7 +133,7 @@ agregar en el &lt;code&gt;.bashrc&lt;/code&gt; la línea &lt;code&gt;conda activ
 error, por lo cual, si al ejecutarlo ves el mensaje
 &lt;code&gt;UnboundLocalError: local variable 'DISTRO_NAME' referenced before assignment&lt;/code&gt;
 bastará con actualizar el paquete &lt;a class="citation-reference" href="https://www.cosmoscalibur.com/blog/instalar-python-anaconda/#navigator" id="id2"&gt;[navigator]&lt;/a&gt;.&lt;/p&gt;
-&lt;pre class="code bash"&gt;&lt;a name="rest_code_9bd59e1f25bd4cabb229171fc90bd5f3-1"&gt;&lt;/a&gt;conda update anaconda-navigator
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_87672c7991494e8b9be4ce42a3e1d642-1"&gt;&lt;/a&gt;conda update anaconda-navigator
 &lt;/pre&gt;&lt;/div&gt;
 &lt;div class="section" id="instalacion-grafica"&gt;
 &lt;h2&gt;Instalación gráfica&lt;/h2&gt;
@@ -768,8 +837,8 @@ gestor de paquetes del sistema operativo. En la mayor parte de
 distribuciones Linux estará disponible a través del gestor.&lt;/p&gt;
 &lt;p&gt;En el caso de las distribuciones basadas en Debian (Ubuntu y Linux Mint
 entre otras) puedes instalar de la siguiente manera:&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_be1893e2a09c4c7ea00e9d6f77ba7553-1"&gt;&lt;/a&gt;sudo apt install -y texlive texlive-latex-base texlive-latex-extra \
-&lt;a name="rest_code_be1893e2a09c4c7ea00e9d6f77ba7553-2"&gt;&lt;/a&gt;    texlive-lang-spanish latexmk
+&lt;pre class="code text"&gt;&lt;a name="rest_code_c127c8dad08b47d289ac0c77aca74677-1"&gt;&lt;/a&gt;sudo apt install -y texlive texlive-latex-base texlive-latex-extra \
+&lt;a name="rest_code_c127c8dad08b47d289ac0c77aca74677-2"&gt;&lt;/a&gt;    texlive-lang-spanish latexmk
 &lt;/pre&gt;&lt;/dd&gt;
 &lt;/dl&gt;
 &lt;/div&gt;
@@ -799,11 +868,11 @@ proyecto destinemos un directorio &lt;code&gt;docs&lt;/code&gt; para este fin.&l
 &lt;p&gt;Ahora ejecutamos &lt;code&gt;sphinx-quickstart&lt;/code&gt; y respondemos las preguntas que
 saldrán. Es necesario tener en cuenta, que si usas Windows debes agregar al
 comando la terminación &lt;code&gt;.exe&lt;/code&gt;, ejemplo &lt;code&gt;sphinx-quickstart.exe&lt;/code&gt;.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_7155b5c8fc27474c801cad9d825e1bbb-1"&gt;&lt;/a&gt;&amp;gt; Separate source and build directories (y/n) [n]: y
-&lt;a name="rest_code_7155b5c8fc27474c801cad9d825e1bbb-2"&gt;&lt;/a&gt;&amp;gt; Project name: proyecto
-&lt;a name="rest_code_7155b5c8fc27474c801cad9d825e1bbb-3"&gt;&lt;/a&gt;&amp;gt; Author name(s): Edward Villegas-Pulgarin
-&lt;a name="rest_code_7155b5c8fc27474c801cad9d825e1bbb-4"&gt;&lt;/a&gt;&amp;gt; Project release []: 0.1.0
-&lt;a name="rest_code_7155b5c8fc27474c801cad9d825e1bbb-5"&gt;&lt;/a&gt;&amp;gt; Project language [en]: es
+&lt;pre class="code text"&gt;&lt;a name="rest_code_3cb4686872514f1aa37e73d2bd1f90ab-1"&gt;&lt;/a&gt;&amp;gt; Separate source and build directories (y/n) [n]: y
+&lt;a name="rest_code_3cb4686872514f1aa37e73d2bd1f90ab-2"&gt;&lt;/a&gt;&amp;gt; Project name: proyecto
+&lt;a name="rest_code_3cb4686872514f1aa37e73d2bd1f90ab-3"&gt;&lt;/a&gt;&amp;gt; Author name(s): Edward Villegas-Pulgarin
+&lt;a name="rest_code_3cb4686872514f1aa37e73d2bd1f90ab-4"&gt;&lt;/a&gt;&amp;gt; Project release []: 0.1.0
+&lt;a name="rest_code_3cb4686872514f1aa37e73d2bd1f90ab-5"&gt;&lt;/a&gt;&amp;gt; Project language [en]: es
 &lt;/pre&gt;&lt;p&gt;Siempre recomiendo separar el directorio del código fuente de la documentación
 del directorio de compilados de la misma. Respecto al esquema de versiones me
 agrada el &lt;cite&gt;versionamiento semántico &amp;lt;https://semver.org/&amp;gt;&lt;/cite&gt; que permite al
@@ -825,13 +894,13 @@ Con Coverage puedes validar que funciones se han documentado y dcotest integra
 pruebas de código desde la documentación (comparar salidas con ejemplo de
 documentación).&lt;/p&gt;
 &lt;p&gt;Modificar en el archivo.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_23d87692259743b5969952288a517bc3-1"&gt;&lt;/a&gt;extensions = [
-&lt;a name="rest_code_23d87692259743b5969952288a517bc3-2"&gt;&lt;/a&gt;    'sphinx.ext.autodoc',
-&lt;a name="rest_code_23d87692259743b5969952288a517bc3-3"&gt;&lt;/a&gt;    'sphinx.ext.mathjax',
-&lt;a name="rest_code_23d87692259743b5969952288a517bc3-4"&gt;&lt;/a&gt;    'sphinx.ext.napoleon',
-&lt;a name="rest_code_23d87692259743b5969952288a517bc3-5"&gt;&lt;/a&gt;    'sphinx.ext.coverage',
-&lt;a name="rest_code_23d87692259743b5969952288a517bc3-6"&gt;&lt;/a&gt;    'sphinx.ext.doctest'
-&lt;a name="rest_code_23d87692259743b5969952288a517bc3-7"&gt;&lt;/a&gt;]
+&lt;pre class="code text"&gt;&lt;a name="rest_code_89e290fbfb9e43acb541f127b74925ab-1"&gt;&lt;/a&gt;extensions = [
+&lt;a name="rest_code_89e290fbfb9e43acb541f127b74925ab-2"&gt;&lt;/a&gt;    'sphinx.ext.autodoc',
+&lt;a name="rest_code_89e290fbfb9e43acb541f127b74925ab-3"&gt;&lt;/a&gt;    'sphinx.ext.mathjax',
+&lt;a name="rest_code_89e290fbfb9e43acb541f127b74925ab-4"&gt;&lt;/a&gt;    'sphinx.ext.napoleon',
+&lt;a name="rest_code_89e290fbfb9e43acb541f127b74925ab-5"&gt;&lt;/a&gt;    'sphinx.ext.coverage',
+&lt;a name="rest_code_89e290fbfb9e43acb541f127b74925ab-6"&gt;&lt;/a&gt;    'sphinx.ext.doctest'
+&lt;a name="rest_code_89e290fbfb9e43acb541f127b74925ab-7"&gt;&lt;/a&gt;]
 &lt;/pre&gt;&lt;/div&gt;
 &lt;div class="section" id="importar-paquete"&gt;
 &lt;h3&gt;Importar paquete&lt;/h3&gt;
@@ -843,27 +912,27 @@ primeras líneas de código en la sección de &lt;em&gt;Path setup&lt;/em&gt;. E
 defecto indica la misma carpeta de &lt;code&gt;docs/source&lt;/code&gt;, por lo cual es
 necesario reemplazar por &lt;code&gt;../..&lt;/code&gt; que se devuelve los dos niveles
 necesarios.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_528fb3803f7d4757851890ca17f8697f-1"&gt;&lt;/a&gt;import os
-&lt;a name="rest_code_528fb3803f7d4757851890ca17f8697f-2"&gt;&lt;/a&gt;import sys
-&lt;a name="rest_code_528fb3803f7d4757851890ca17f8697f-3"&gt;&lt;/a&gt;import datetime
-&lt;a name="rest_code_528fb3803f7d4757851890ca17f8697f-4"&gt;&lt;/a&gt;sys.path.insert(0, os.path.abspath('../..'))
-&lt;a name="rest_code_528fb3803f7d4757851890ca17f8697f-5"&gt;&lt;/a&gt;import proyecto
+&lt;pre class="code text"&gt;&lt;a name="rest_code_247506ec72d045ceb1b318fccfba9fde-1"&gt;&lt;/a&gt;import os
+&lt;a name="rest_code_247506ec72d045ceb1b318fccfba9fde-2"&gt;&lt;/a&gt;import sys
+&lt;a name="rest_code_247506ec72d045ceb1b318fccfba9fde-3"&gt;&lt;/a&gt;import datetime
+&lt;a name="rest_code_247506ec72d045ceb1b318fccfba9fde-4"&gt;&lt;/a&gt;sys.path.insert(0, os.path.abspath('../..'))
+&lt;a name="rest_code_247506ec72d045ceb1b318fccfba9fde-5"&gt;&lt;/a&gt;import proyecto
 &lt;/pre&gt;&lt;p&gt;Ahora, puedes hacer cosas como la siguiente, si está disponible en tu código.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_cca65337164d4f1fa8fe8bf04973d8b4-1"&gt;&lt;/a&gt;author = proyecto.__author__
-&lt;a name="rest_code_cca65337164d4f1fa8fe8bf04973d8b4-2"&gt;&lt;/a&gt;copyright = str(datetime.date.today().year) + ', ' + author
-&lt;a name="rest_code_cca65337164d4f1fa8fe8bf04973d8b4-3"&gt;&lt;/a&gt;release = proyecto.__version__
+&lt;pre class="code text"&gt;&lt;a name="rest_code_600f747ecbd34b7db51108298ea3e269-1"&gt;&lt;/a&gt;author = proyecto.__author__
+&lt;a name="rest_code_600f747ecbd34b7db51108298ea3e269-2"&gt;&lt;/a&gt;copyright = str(datetime.date.today().year) + ', ' + author
+&lt;a name="rest_code_600f747ecbd34b7db51108298ea3e269-3"&gt;&lt;/a&gt;release = proyecto.__version__
 &lt;/pre&gt;&lt;/div&gt;
 &lt;div class="section" id="referencias-cruzadas"&gt;
 &lt;h3&gt;Referencias cruzadas&lt;/h3&gt;
 &lt;p&gt;Para usar referencias cruzadas, es decir, numeración de tablas, figuras,
 códigos y ecuaciones si poseen pie de objeto, y ser referenciados en el texto
 por el número, se requiere configurar lo siguiente.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_ce76098eda694b7f828817cc8109a2a1-1"&gt;&lt;/a&gt;numfig = True
-&lt;a name="rest_code_ce76098eda694b7f828817cc8109a2a1-2"&gt;&lt;/a&gt;numfig_format = {'figure': 'Fig. %s', 'table': 'Tabla %s',
-&lt;a name="rest_code_ce76098eda694b7f828817cc8109a2a1-3"&gt;&lt;/a&gt;                 'code-block': 'Código %s', 'section': 'Sección %s'}
-&lt;a name="rest_code_ce76098eda694b7f828817cc8109a2a1-4"&gt;&lt;/a&gt;numfig_secnum_depth = 1
-&lt;a name="rest_code_ce76098eda694b7f828817cc8109a2a1-5"&gt;&lt;/a&gt;math_numfig = True
-&lt;a name="rest_code_ce76098eda694b7f828817cc8109a2a1-6"&gt;&lt;/a&gt;math_eqref_format = 'Ec. {number}'
+&lt;pre class="code text"&gt;&lt;a name="rest_code_da63d9dfb35b4739bf76ae1ae2f5a6f3-1"&gt;&lt;/a&gt;numfig = True
+&lt;a name="rest_code_da63d9dfb35b4739bf76ae1ae2f5a6f3-2"&gt;&lt;/a&gt;numfig_format = {'figure': 'Fig. %s', 'table': 'Tabla %s',
+&lt;a name="rest_code_da63d9dfb35b4739bf76ae1ae2f5a6f3-3"&gt;&lt;/a&gt;                 'code-block': 'Código %s', 'section': 'Sección %s'}
+&lt;a name="rest_code_da63d9dfb35b4739bf76ae1ae2f5a6f3-4"&gt;&lt;/a&gt;numfig_secnum_depth = 1
+&lt;a name="rest_code_da63d9dfb35b4739bf76ae1ae2f5a6f3-5"&gt;&lt;/a&gt;math_numfig = True
+&lt;a name="rest_code_da63d9dfb35b4739bf76ae1ae2f5a6f3-6"&gt;&lt;/a&gt;math_eqref_format = 'Ec. {number}'
 &lt;/pre&gt;&lt;p&gt;Así, es posible usar &lt;code&gt;:label:&lt;/code&gt; para asignar una referencia a los objetos
 y &lt;code&gt;:numref:&lt;/code&gt; y &lt;code&gt;:eq:&lt;/code&gt; a la hora de mencionarlos. Con
 &lt;code&gt;numfig_secnum_depth&lt;/code&gt; configuras la numeración de los objetos, si es
@@ -875,11 +944,11 @@ continúa (0), por sección (1) y subsección (2).&lt;/p&gt;
 maestro, el nombre del archivo TeX, el nombre que nuestra documentación, el
 nombre del autor (que podemos usar la variable que ya definimos) y el tipo de
 documento (cuya clase &lt;em&gt;manual&lt;/em&gt; está definida por Sphinx).&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_fd92d89932084c269053ee1e78f20d27-1"&gt;&lt;/a&gt;master_doc = 'index'
-&lt;a name="rest_code_fd92d89932084c269053ee1e78f20d27-2"&gt;&lt;/a&gt;latex_documents = [
-&lt;a name="rest_code_fd92d89932084c269053ee1e78f20d27-3"&gt;&lt;/a&gt;    (master_doc, 'proyecto.tex', 'Documentación Proyecto',
-&lt;a name="rest_code_fd92d89932084c269053ee1e78f20d27-4"&gt;&lt;/a&gt;     author, 'manual'),
-&lt;a name="rest_code_fd92d89932084c269053ee1e78f20d27-5"&gt;&lt;/a&gt;]
+&lt;pre class="code text"&gt;&lt;a name="rest_code_ec43d565d4744a67b2e47d8c943ceb38-1"&gt;&lt;/a&gt;master_doc = 'index'
+&lt;a name="rest_code_ec43d565d4744a67b2e47d8c943ceb38-2"&gt;&lt;/a&gt;latex_documents = [
+&lt;a name="rest_code_ec43d565d4744a67b2e47d8c943ceb38-3"&gt;&lt;/a&gt;    (master_doc, 'proyecto.tex', 'Documentación Proyecto',
+&lt;a name="rest_code_ec43d565d4744a67b2e47d8c943ceb38-4"&gt;&lt;/a&gt;     author, 'manual'),
+&lt;a name="rest_code_ec43d565d4744a67b2e47d8c943ceb38-5"&gt;&lt;/a&gt;]
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="section" id="escritura-en-restructuredtext"&gt;
@@ -912,16 +981,16 @@ adelante). Puedes agregar más archivos, por ejemplo, yo suelo usar un
 &lt;code&gt;concepts.rst&lt;/code&gt; para detallar los conceptos necesarios antes de usar el
 software o detallar teoría que ayuda a interpretar resultados o que expande la
 información para que alguien pueda analizar o continuar un desarrollo.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_5d9b8cb4161348b7b8807d629622431a-1"&gt;&lt;/a&gt;.. toctree::
-&lt;a name="rest_code_5d9b8cb4161348b7b8807d629622431a-2"&gt;&lt;/a&gt;   :maxdepth: 3
-&lt;a name="rest_code_5d9b8cb4161348b7b8807d629622431a-3"&gt;&lt;/a&gt;   :caption: Contenido:
-&lt;a name="rest_code_5d9b8cb4161348b7b8807d629622431a-4"&gt;&lt;/a&gt;
-&lt;a name="rest_code_5d9b8cb4161348b7b8807d629622431a-5"&gt;&lt;/a&gt;   README
-&lt;a name="rest_code_5d9b8cb4161348b7b8807d629622431a-6"&gt;&lt;/a&gt;   installation
-&lt;a name="rest_code_5d9b8cb4161348b7b8807d629622431a-7"&gt;&lt;/a&gt;   usage
-&lt;a name="rest_code_5d9b8cb4161348b7b8807d629622431a-8"&gt;&lt;/a&gt;   api/modules
-&lt;a name="rest_code_5d9b8cb4161348b7b8807d629622431a-9"&gt;&lt;/a&gt;   concepts
-&lt;a name="rest_code_5d9b8cb4161348b7b8807d629622431a-10"&gt;&lt;/a&gt;   history
+&lt;pre class="code text"&gt;&lt;a name="rest_code_cf18dd0907174508a97dc432634659c0-1"&gt;&lt;/a&gt;.. toctree::
+&lt;a name="rest_code_cf18dd0907174508a97dc432634659c0-2"&gt;&lt;/a&gt;   :maxdepth: 3
+&lt;a name="rest_code_cf18dd0907174508a97dc432634659c0-3"&gt;&lt;/a&gt;   :caption: Contenido:
+&lt;a name="rest_code_cf18dd0907174508a97dc432634659c0-4"&gt;&lt;/a&gt;
+&lt;a name="rest_code_cf18dd0907174508a97dc432634659c0-5"&gt;&lt;/a&gt;   README
+&lt;a name="rest_code_cf18dd0907174508a97dc432634659c0-6"&gt;&lt;/a&gt;   installation
+&lt;a name="rest_code_cf18dd0907174508a97dc432634659c0-7"&gt;&lt;/a&gt;   usage
+&lt;a name="rest_code_cf18dd0907174508a97dc432634659c0-8"&gt;&lt;/a&gt;   api/modules
+&lt;a name="rest_code_cf18dd0907174508a97dc432634659c0-9"&gt;&lt;/a&gt;   concepts
+&lt;a name="rest_code_cf18dd0907174508a97dc432634659c0-10"&gt;&lt;/a&gt;   history
 &lt;/pre&gt;&lt;p&gt;Y podemos borrar las líneas posteriores de &lt;em&gt;Indices and tables&lt;/em&gt;.&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -929,7 +998,7 @@ información para que alguien pueda analizar o continuar un desarrollo.&lt;/p&gt
 &lt;h2&gt;Ejecución de Sphinx&lt;/h2&gt;
 &lt;p&gt;Como estamos haciendo uso de &lt;em&gt;autodoc&lt;/em&gt;, nuestro primer paso es generar la
 extracción de la API.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_f10fd32f20a54d0480a1b0dbe4b08663-1"&gt;&lt;/a&gt;sphinx-apidoc -f -M -o source/api/ ../proyecto
+&lt;pre class="code text"&gt;&lt;a name="rest_code_67da3a6d798745aab8d43aa7b138b989-1"&gt;&lt;/a&gt;sphinx-apidoc -f -M -o source/api/ ../proyecto
 &lt;/pre&gt;&lt;p&gt;Recordar que en Windows hay que agregar &lt;code&gt;.exe&lt;/code&gt;
 (&lt;code&gt;sphinx-apidoc.exe&lt;/code&gt;). &lt;code&gt;-f&lt;/code&gt; es para forzar la regeneración de los
 archivos (importante si actualizamos la documentación de la API), &lt;code&gt;-M&lt;/code&gt;
@@ -981,7 +1050,7 @@ futuro.&lt;/p&gt;
 &lt;p&gt;Si bien puedes descargarlo desde el sitio del proyecto, aprovecharemos el
 gestor Conda para facilitar la tarea de descarga, instalación y configuración.&lt;/p&gt;
 &lt;p&gt;Abriremos Anaconda PowerShell o Anaconda Prompt, y ejecutaremos lo siguiente:&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_43042f0c84e54be6a842d0e749f3de08-1"&gt;&lt;/a&gt;conda create -n gitbash -c conda-forge git=2.24.0
+&lt;pre class="code text"&gt;&lt;a name="rest_code_642a252812c645a88d412550460ab5be-1"&gt;&lt;/a&gt;conda create -n gitbash -c conda-forge git=2.24.0
 &lt;/pre&gt;&lt;p&gt;Es importante el uso de &lt;code&gt;-c conda-forge&lt;/code&gt; porque de este canal vendrá la
 versión de Git que usaremos. Si se usa el canal por defecto, se instala solo el
 cliente de consola, mientras que en esta opción viene Git Bash. He indicado
@@ -1002,9 +1071,9 @@ posibles conflictos.&lt;/p&gt;
 típicos de Bash, como el &lt;code&gt;bashrc&lt;/code&gt;. Así, podemos usar la configuración que
 habitualmente se usa en Linux.&lt;/p&gt;
 &lt;p&gt;Abrimos Git Bash, y ejecutamos:&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_e72d212dd92149e585bef23695d71c7f-1"&gt;&lt;/a&gt;cd
-&lt;a name="rest_code_e72d212dd92149e585bef23695d71c7f-2"&gt;&lt;/a&gt;echo ". /c/Users/USUARIO/ANACONDA/etc/profile.d/conda.sh" &amp;gt;&amp;gt; .bashrc
-&lt;a name="rest_code_e72d212dd92149e585bef23695d71c7f-3"&gt;&lt;/a&gt;source .bashrc
+&lt;pre class="code text"&gt;&lt;a name="rest_code_cfd1a3993a644fd0a80b84551000da1f-1"&gt;&lt;/a&gt;cd
+&lt;a name="rest_code_cfd1a3993a644fd0a80b84551000da1f-2"&gt;&lt;/a&gt;echo ". /c/Users/USUARIO/ANACONDA/etc/profile.d/conda.sh" &amp;gt;&amp;gt; .bashrc
+&lt;a name="rest_code_cfd1a3993a644fd0a80b84551000da1f-3"&gt;&lt;/a&gt;source .bashrc
 &lt;/pre&gt;&lt;p&gt;Con la primera línea aseguramos ir al directorio del usuario. En la segunda
 línea, crearemos o editaremos el archivo de configuración, pero debes
 reemplazar &lt;code&gt;USUARIO&lt;/code&gt; por la carpeta de tu usuario y &lt;code&gt;ANACONDA&lt;/code&gt; por
@@ -1029,12 +1098,12 @@ nuestras necesidades especificando en el archivo Dockerfile.&lt;/p&gt;
 &lt;div class="section" id="instalar-docker"&gt;
 &lt;h2&gt;Instalar Docker&lt;/h2&gt;
 &lt;p&gt;Recomiendo en Linux instalar docker con snap.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_aa6a22db29254e4eaee17c765ef8e44e-1"&gt;&lt;/a&gt;sudo snap install docker
+&lt;pre class="code text"&gt;&lt;a name="rest_code_468a535963cd4223be579232443900b1-1"&gt;&lt;/a&gt;sudo snap install docker
 &lt;/pre&gt;&lt;p&gt;Posteriormente, podemos asociar nuestro usuario para la ejecución sin ser
 administrador.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_4f17d53daa854682a2309b7760f8e29c-1"&gt;&lt;/a&gt;sudo groupadd docker
-&lt;a name="rest_code_4f17d53daa854682a2309b7760f8e29c-2"&gt;&lt;/a&gt;sudo usermod -aG docker $USER
-&lt;a name="rest_code_4f17d53daa854682a2309b7760f8e29c-3"&gt;&lt;/a&gt;newgrp docker
+&lt;pre class="code text"&gt;&lt;a name="rest_code_fb9b9b960ba74b8886b6faa91aefda52-1"&gt;&lt;/a&gt;sudo groupadd docker
+&lt;a name="rest_code_fb9b9b960ba74b8886b6faa91aefda52-2"&gt;&lt;/a&gt;sudo usermod -aG docker $USER
+&lt;a name="rest_code_fb9b9b960ba74b8886b6faa91aefda52-3"&gt;&lt;/a&gt;newgrp docker
 &lt;/pre&gt;&lt;p&gt;Puedes probar ejecutando como usuario regular, &lt;code&gt;docker run hello-world&lt;/code&gt;.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="dockerfile"&gt;
@@ -1079,8 +1148,8 @@ archivos &lt;em&gt;tar&lt;/em&gt;.&lt;/p&gt;
 &lt;p&gt;El directorio que moveremos se genero en el contenedor LXC que construimos
 en &lt;a class="reference external" href="https://www.cosmoscalibur.com/blog/crear-contenedor-lxc-para-aplicacion-gui-ealite/"&gt;Crear contenedor LXC para aplicación GUI - EALite&lt;/a&gt;. Para ello,
 iniciamos el contenedor y extraemos el directorio.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_d2872ac6b23b4f6f8e6ce80bd54653e8-1"&gt;&lt;/a&gt;sudo lxc start ea
-&lt;a name="rest_code_d2872ac6b23b4f6f8e6ce80bd54653e8-2"&gt;&lt;/a&gt;sudo lxc file pull -r ea/home/ubuntu/.wine .
+&lt;pre class="code text"&gt;&lt;a name="rest_code_f2767444c4e04c1085acaf2f3601c5bb-1"&gt;&lt;/a&gt;sudo lxc start ea
+&lt;a name="rest_code_f2767444c4e04c1085acaf2f3601c5bb-2"&gt;&lt;/a&gt;sudo lxc file pull -r ea/home/ubuntu/.wine .
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Con &lt;code&gt;USER&lt;/code&gt; cambiamos el usuario que ejecuta los procesos. Es importante
 que a la hora de concluir, si un proceso es ejecutado por un usuario regular,
@@ -1092,19 +1161,19 @@ existe (pero no el directorio de usuario).&lt;/p&gt;
 Esto es posible con &lt;code&gt;CMD&lt;/code&gt; o con &lt;code&gt;ENTRYPOINT&lt;/code&gt;. La diferencia es que
 el primero permite sobreescribir la ejecución enviando como parámetro lo que
 se desea ejecutar, mientras que la segunda opción solo ejecuta la configurada.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_dbeaf9de59d24f08a0138f76197c326e-1"&gt;&lt;/a&gt;# escape=`
-&lt;a name="rest_code_dbeaf9de59d24f08a0138f76197c326e-2"&gt;&lt;/a&gt;FROM i386/ubuntu:18.04
-&lt;a name="rest_code_dbeaf9de59d24f08a0138f76197c326e-3"&gt;&lt;/a&gt;RUN apt update -q &amp;amp;&amp;amp; apt install --install-recommends -y wine-stable
-&lt;a name="rest_code_dbeaf9de59d24f08a0138f76197c326e-4"&gt;&lt;/a&gt;RUN apt install -y fonts-crosextra-carlito
-&lt;a name="rest_code_dbeaf9de59d24f08a0138f76197c326e-5"&gt;&lt;/a&gt;RUN useradd -ms /bin/bash ubuntu
-&lt;a name="rest_code_dbeaf9de59d24f08a0138f76197c326e-6"&gt;&lt;/a&gt;WORKDIR /home/ubuntu
-&lt;a name="rest_code_dbeaf9de59d24f08a0138f76197c326e-7"&gt;&lt;/a&gt;COPY .wine .wine
-&lt;a name="rest_code_dbeaf9de59d24f08a0138f76197c326e-8"&gt;&lt;/a&gt;RUN chown -R ubuntu .wine
-&lt;a name="rest_code_dbeaf9de59d24f08a0138f76197c326e-9"&gt;&lt;/a&gt;USER ubuntu
-&lt;a name="rest_code_dbeaf9de59d24f08a0138f76197c326e-10"&gt;&lt;/a&gt;RUN mkdir -p .local/bin &amp;amp;&amp;amp; `
-&lt;a name="rest_code_dbeaf9de59d24f08a0138f76197c326e-11"&gt;&lt;/a&gt;        echo "wine $HOME/.wine/drive_c/Program\ Files/Sparx\ Systems/EA\ LITE/EA.exe" &amp;gt; .local/bin/ealite &amp;amp;&amp;amp; `
-&lt;a name="rest_code_dbeaf9de59d24f08a0138f76197c326e-12"&gt;&lt;/a&gt;        chmod 755 .local/bin/ealite
-&lt;a name="rest_code_dbeaf9de59d24f08a0138f76197c326e-13"&gt;&lt;/a&gt;CMD ".local/bin/ealite"
+&lt;pre class="code text"&gt;&lt;a name="rest_code_354f01ea464e4520a4929a88d4a4d1e5-1"&gt;&lt;/a&gt;# escape=`
+&lt;a name="rest_code_354f01ea464e4520a4929a88d4a4d1e5-2"&gt;&lt;/a&gt;FROM i386/ubuntu:18.04
+&lt;a name="rest_code_354f01ea464e4520a4929a88d4a4d1e5-3"&gt;&lt;/a&gt;RUN apt update -q &amp;amp;&amp;amp; apt install --install-recommends -y wine-stable
+&lt;a name="rest_code_354f01ea464e4520a4929a88d4a4d1e5-4"&gt;&lt;/a&gt;RUN apt install -y fonts-crosextra-carlito
+&lt;a name="rest_code_354f01ea464e4520a4929a88d4a4d1e5-5"&gt;&lt;/a&gt;RUN useradd -ms /bin/bash ubuntu
+&lt;a name="rest_code_354f01ea464e4520a4929a88d4a4d1e5-6"&gt;&lt;/a&gt;WORKDIR /home/ubuntu
+&lt;a name="rest_code_354f01ea464e4520a4929a88d4a4d1e5-7"&gt;&lt;/a&gt;COPY .wine .wine
+&lt;a name="rest_code_354f01ea464e4520a4929a88d4a4d1e5-8"&gt;&lt;/a&gt;RUN chown -R ubuntu .wine
+&lt;a name="rest_code_354f01ea464e4520a4929a88d4a4d1e5-9"&gt;&lt;/a&gt;USER ubuntu
+&lt;a name="rest_code_354f01ea464e4520a4929a88d4a4d1e5-10"&gt;&lt;/a&gt;RUN mkdir -p .local/bin &amp;amp;&amp;amp; `
+&lt;a name="rest_code_354f01ea464e4520a4929a88d4a4d1e5-11"&gt;&lt;/a&gt;        echo "wine $HOME/.wine/drive_c/Program\ Files/Sparx\ Systems/EA\ LITE/EA.exe" &amp;gt; .local/bin/ealite &amp;amp;&amp;amp; `
+&lt;a name="rest_code_354f01ea464e4520a4929a88d4a4d1e5-12"&gt;&lt;/a&gt;        chmod 755 .local/bin/ealite
+&lt;a name="rest_code_354f01ea464e4520a4929a88d4a4d1e5-13"&gt;&lt;/a&gt;CMD ".local/bin/ealite"
 &lt;/pre&gt;&lt;/div&gt;
 &lt;div class="section" id="construir-imagen-docker"&gt;
 &lt;h2&gt;Construir imagen Docker&lt;/h2&gt;
@@ -1114,13 +1183,13 @@ para relacionar la ruta del archivo dockerfile que se usará. El siguiente
 argumento no posee marca para indicarlo y corresponde al contexto, que viene a
 ser la ruta donde se encuentran los archivos que usaremos (que puede ser
 reemplazado por un archivo de contexto con la ruta a los distintos archivos).&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_1a1a2b6230ae4411b617884e071a474b-1"&gt;&lt;/a&gt;docker build -t cosmoscalibur/ealite:latest -f dockerfile .
+&lt;pre class="code text"&gt;&lt;a name="rest_code_a564d4b5648d4f3e9dd815ecae1979b3-1"&gt;&lt;/a&gt;docker build -t cosmoscalibur/ealite:latest -f dockerfile .
 &lt;/pre&gt;&lt;/div&gt;
 &lt;div class="section" id="ejecutar-contenedor"&gt;
 &lt;h2&gt;Ejecutar contenedor&lt;/h2&gt;
 &lt;p&gt;Ahora puedes lanzar un contenedor gráfico basado en la imagen construida con la
 siguiente instrucción.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_99200ca7938742b3a29d932901c21d3b-1"&gt;&lt;/a&gt;docker run --net=host --env="DISPLAY" --volume="$HOME/.Xauthority:/root/.Xauthority:rw" cosmoscalibur/ealite:latest
+&lt;pre class="code text"&gt;&lt;a name="rest_code_b75f2c12e0474a14be07af56ebf43619-1"&gt;&lt;/a&gt;docker run --net=host --env="DISPLAY" --volume="$HOME/.Xauthority:/root/.Xauthority:rw" cosmoscalibur/ealite:latest
 &lt;/pre&gt;&lt;/div&gt;
 &lt;div class="section" id="referencias"&gt;
 &lt;h2&gt;Referencias&lt;/h2&gt;
@@ -1130,199 +1199,4 @@ siguiente instrucción.&lt;/p&gt;
 &lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://medium.com/@SaravSun/running-gui-applications-inside-docker-containers-83d65c0db110"&gt;Running GUI Applications inside Docker Containers&lt;/a&gt;.&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://www.sparxsystems.com/enterprise_architect_user_guide/14.0/product_information/enterprise_architect_linux.html"&gt;Installing Enterprise Architect under Linux&lt;/a&gt;.&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;/div&gt;&lt;/div&gt;</description><category>contenedor</category><category>docker</category><category>ealite</category><category>enterprise architect</category><category>linux</category><category>wine</category><guid>https://www.cosmoscalibur.com/blog/crear-contenedor-docker-aplicacion-gui-ealite/</guid><pubDate>Sat, 23 Nov 2019 02:47:22 GMT</pubDate></item><item><title>Crear contenedor LXC para aplicación GUI - EALite</title><link>https://www.cosmoscalibur.com/blog/crear-contenedor-lxc-para-aplicacion-gui-ealite/</link><dc:creator>Edward Villegas-Pulgarin</dc:creator><description>&lt;div&gt;&lt;p&gt;El uso de contenedores en la industria del software se ha extendido ampliamente
-y no es de extrañar, ofrece a los desarrolladores la posibilidad de mejorar el
-aislamiento de sus servicios y de ahí hacerlo menos susceptible a errores por
-colisiones con otros servicios o conflictos de dependencias. Al mismo tiempo,
-son una alternativa más amigable en recursos respecto a las máquinas virtuales.&lt;/p&gt;
-&lt;p&gt;Múltiples proveedores de infraestructura para nube ofrecen la opción de
-desplegar los servicios a partir de un contenedor, y sin duda, facilita la
-distribución de entornos de desarrollo y aplicaciones.&lt;/p&gt;
-&lt;!-- TEASER_END --&gt;
-&lt;p&gt;Con estos beneficios (algo similar a lo discutido en
-&lt;a class="reference external" href="https://www.cosmoscalibur.com/blog/instalando-paquetes-en-linux-mint/"&gt;Instalando paquetes en Linux (Mint)&lt;/a&gt;), procederemos a crear un contenedor
-para la ejecución de Enterprise Architect (la versión del visor, pero es
-aplicable a la versión completa). De manera oficial hay instrucciones para su
-uso en Linux con Wine pero la receta está incompleta (hay que agregar una
-instrucción más) y es mejor no ensuciar nuestro sistema de 64 bits con
-bibliotecas de 32 bits de manera innecesaria. Así que empecemos.&lt;/p&gt;
-&lt;div class="section" id="instalar-lxd"&gt;
-&lt;h2&gt;Instalar LXD&lt;/h2&gt;
-&lt;p&gt;Nuestro primer paso será instalar el paquete LXD, el cual se encuentra
-disponible a través de múltiples gestores de paquetes de las distribuciones
-Linux pero también como paquete snap. Por facilidad, usaré el paquete snap.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_28de7a12eba44f84a40d3596f6bd832e-1"&gt;&lt;/a&gt;sudo snap install lxd
-&lt;/pre&gt;&lt;p&gt;Ahora, debemos inicializar (solo es necesario la primera vez tras instalar).&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_48f818d275d34e9e9c7a61ea3e6430a9-1"&gt;&lt;/a&gt;sudo lxd init
-&lt;/pre&gt;&lt;p&gt;En mi caso, todos los valores que son preguntados los he dejado en su valor
-por defecto. Personalmente, solo debería preocuparnos el tamaño de la unidad
-usado (en caso de tener limitaciones en espacio de almacenamiento).&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="crear-perfil-gui"&gt;
-&lt;h2&gt;Crear perfil GUI&lt;/h2&gt;
-&lt;p&gt;Por defecto, el comportamiento de los contenedores es para la ejecución de
-servicios y aplicaciones de consola. Por eso, la ejecución de una aplicación
-gráfica nos requiere una configuración adicional, que es realizar el paso al
-sistema gráfico de nuestro sistema hospedador.&lt;/p&gt;
-&lt;p&gt;El perfil gráfico es definido con el siguiente código (copia y pega en un nuevo
-archivo, &lt;code&gt;lxdguiprofile.txt&lt;/code&gt;).&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_bc7290b3d26c435ab9bd6189566c6b2c-1"&gt;&lt;/a&gt;config:
-&lt;a name="rest_code_bc7290b3d26c435ab9bd6189566c6b2c-2"&gt;&lt;/a&gt;  environment.DISPLAY: :0
-&lt;a name="rest_code_bc7290b3d26c435ab9bd6189566c6b2c-3"&gt;&lt;/a&gt;  raw.idmap: both 1000 1000
-&lt;a name="rest_code_bc7290b3d26c435ab9bd6189566c6b2c-4"&gt;&lt;/a&gt;  user.user-data: |
-&lt;a name="rest_code_bc7290b3d26c435ab9bd6189566c6b2c-5"&gt;&lt;/a&gt;    #cloud-config
-&lt;a name="rest_code_bc7290b3d26c435ab9bd6189566c6b2c-6"&gt;&lt;/a&gt;    runcmd:
-&lt;a name="rest_code_bc7290b3d26c435ab9bd6189566c6b2c-7"&gt;&lt;/a&gt;      - 'sed -i "s/; enable-shm = yes/enable-shm = no/g" /etc/pulse/client.conf'
-&lt;a name="rest_code_bc7290b3d26c435ab9bd6189566c6b2c-8"&gt;&lt;/a&gt;      - 'echo export PULSE_SERVER=unix:/tmp/.pulse-native | tee --append /home/ubuntu/.profile'
-&lt;a name="rest_code_bc7290b3d26c435ab9bd6189566c6b2c-9"&gt;&lt;/a&gt;    packages:
-&lt;a name="rest_code_bc7290b3d26c435ab9bd6189566c6b2c-10"&gt;&lt;/a&gt;      - x11-apps
-&lt;a name="rest_code_bc7290b3d26c435ab9bd6189566c6b2c-11"&gt;&lt;/a&gt;      - mesa-utils
-&lt;a name="rest_code_bc7290b3d26c435ab9bd6189566c6b2c-12"&gt;&lt;/a&gt;      - pulseaudio
-&lt;a name="rest_code_bc7290b3d26c435ab9bd6189566c6b2c-13"&gt;&lt;/a&gt;description: GUI LXD profile
-&lt;a name="rest_code_bc7290b3d26c435ab9bd6189566c6b2c-14"&gt;&lt;/a&gt;devices:
-&lt;a name="rest_code_bc7290b3d26c435ab9bd6189566c6b2c-15"&gt;&lt;/a&gt;  PASocket:
-&lt;a name="rest_code_bc7290b3d26c435ab9bd6189566c6b2c-16"&gt;&lt;/a&gt;    path: /tmp/.pulse-native
-&lt;a name="rest_code_bc7290b3d26c435ab9bd6189566c6b2c-17"&gt;&lt;/a&gt;    source: /run/user/1000/pulse/native
-&lt;a name="rest_code_bc7290b3d26c435ab9bd6189566c6b2c-18"&gt;&lt;/a&gt;    type: disk
-&lt;a name="rest_code_bc7290b3d26c435ab9bd6189566c6b2c-19"&gt;&lt;/a&gt;  X0:
-&lt;a name="rest_code_bc7290b3d26c435ab9bd6189566c6b2c-20"&gt;&lt;/a&gt;    path: /tmp/.X11-unix/X0
-&lt;a name="rest_code_bc7290b3d26c435ab9bd6189566c6b2c-21"&gt;&lt;/a&gt;    source: /tmp/.X11-unix/X0
-&lt;a name="rest_code_bc7290b3d26c435ab9bd6189566c6b2c-22"&gt;&lt;/a&gt;    type: disk
-&lt;a name="rest_code_bc7290b3d26c435ab9bd6189566c6b2c-23"&gt;&lt;/a&gt;  mygpu:
-&lt;a name="rest_code_bc7290b3d26c435ab9bd6189566c6b2c-24"&gt;&lt;/a&gt;    type: gpu
-&lt;a name="rest_code_bc7290b3d26c435ab9bd6189566c6b2c-25"&gt;&lt;/a&gt;name: gui
-&lt;a name="rest_code_bc7290b3d26c435ab9bd6189566c6b2c-26"&gt;&lt;/a&gt;used_by:
-&lt;/pre&gt;&lt;p&gt;Ahora, crearemos el perfil:&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_8facd2d4ff4647079a26b97947e1b0fc-1"&gt;&lt;/a&gt;sudo lxc profile create gui
-&lt;a name="rest_code_8facd2d4ff4647079a26b97947e1b0fc-2"&gt;&lt;/a&gt;cat lxdguiprofile.txt | sudo lxc profile edit gui
-&lt;/pre&gt;&lt;p&gt;Este procedimiento, solo es necesario hacerlo la primera vez.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="obtener-contenedor-base"&gt;
-&lt;h2&gt;Obtener contenedor base&lt;/h2&gt;
-&lt;p&gt;Una vez creado el perfil, lanzaremos un contenedor usando una imagen base, es
-decir, sobre la cual desarrollaremos nuestra necesidad. Estas imágenes base se
-encuentran disponibles en la página del proyecto y son bases de múltiples
-distribuciones Linux, con versiones y arquitecturas diferentes.&lt;/p&gt;
-&lt;p&gt;Para nuestro fin, usaremos una base de Ubuntu 18.04 para arquitectura i386, que
-corresponde a 32 bits. Puedes usar otra distribución siempre y cuando disponga
-de la forma de instalar los paquetes necesarios y en versiones recientes (entre
-más reciente sea Wine, mejor).&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_754379e38ba24fd5a66a9b1db0d7eac3-1"&gt;&lt;/a&gt;sudo lxc launch --profile default --profile gui images:ubuntu/18.04/i386 ea
-&lt;/pre&gt;&lt;p&gt;Cuando no requerimos la parte gráfica, podemos omitir
-&lt;code&gt;--profile default --profile gui&lt;/code&gt;. Los dos perfiles son un proceso de
-herencia, primero se carga el perfil por defecto y luego se añade lo necesario
-para las aplicaciones gráficas.&lt;/p&gt;
-&lt;p&gt;Este procedimiento es la primera vez de cada contenedor. Si por error omitimos
-el perfil gráfico, tendremos que volverlo a crear. Si por un error en la
-especificación del contenedor lo deseamos eliminar, podemos ejecutar
-&lt;code&gt;sudo lxc rm ea --force&lt;/code&gt;. El forzado es necesario para detener la
-ejecución del contenedor, o igual podríamos detenerlo primero,
-&lt;code&gt;sudo lxc stop ea&lt;/code&gt;.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="comandos-en-el-contenedor"&gt;
-&lt;h2&gt;Comandos en el contenedor&lt;/h2&gt;
-&lt;p&gt;Para instalar nuestro programa en el contenedor, necesitamos ejecutar comandos
-en este. Para ello, tenemos &lt;code&gt;lxc exec {contenedor} -- {comando}&lt;/code&gt;. Una
-forma interactiva, adecuada para pruebas, es ejecutar bash.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_5bc7fdc860024569aa161b4731ab6e2b-1"&gt;&lt;/a&gt;sudo lxc exec ea -- /bin/bash
-&lt;/pre&gt;&lt;p&gt;De esta manera podemos ejecutar los comandos de la misma manera que lo hacemos
-en nuestro sistema, ya que estamos en el contenedor.&lt;/p&gt;
-&lt;p&gt;Si deseamos automatizar, nos interesará enviar directamente las instrucciones
-en lugar de bash. Ejemplo, &lt;code&gt;sudo lxc exec ea -- apt update -q&lt;/code&gt;. Notemos
-que se ha usado un comando que requiere privilegios de administrador, y es
-porque por defecto el ingreso al contenedor es como administrador. Para hacer
-uso del usuario estándar debemos indicarlo de forma explícita (por defecto,
-tenemos el usuario ubuntu),
-&lt;code&gt;sudo lxc exec ea -- su - ubuntu -c 'echo $(uname -a)'&lt;/code&gt;.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="gestionar-archivos"&gt;
-&lt;h2&gt;Gestionar archivos&lt;/h2&gt;
-&lt;p&gt;La gestión de archivos es realizada con los comandos &lt;code&gt;file pull&lt;/code&gt; y
-&lt;code&gt;file push&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;Así, si deseamos enviar un archivo:&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_29bbe75011dc4d8d85ce9c4c7a01713d-1"&gt;&lt;/a&gt;sudo lxc file push {archivo local} {contenedor}/{ruta contenedor}
-&lt;/pre&gt;&lt;p&gt;Y si deseamos traer un archivo del contenedor:&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_55f596e024d94ce0a5884c68c18143c9-1"&gt;&lt;/a&gt;sudo lxc file pull {contenedor}/{ruta contenedor} {archivo local}
-&lt;/pre&gt;&lt;/div&gt;
-&lt;div class="section" id="instalar-ealite"&gt;
-&lt;h2&gt;Instalar EALite&lt;/h2&gt;
-&lt;p&gt;Ahora que sabemos ejecutar comandos en el contenedor, instalaremos las
-dependencias y finalmente EALite.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_025df31e8bd34f6f997a39ab67a67647-1"&gt;&lt;/a&gt;sudo lxc exec ea -- apt update -q
-&lt;a name="rest_code_025df31e8bd34f6f997a39ab67a67647-2"&gt;&lt;/a&gt;sudo lxc exec ea -- apt install --install-recommends -y wine-stable winetricks
-&lt;a name="rest_code_025df31e8bd34f6f997a39ab67a67647-3"&gt;&lt;/a&gt;sudo lxc exec ea -- apt install -y fonts-crosextra-carlito
-&lt;a name="rest_code_025df31e8bd34f6f997a39ab67a67647-4"&gt;&lt;/a&gt;sudo lxc exec ea -- su - ubuntu -c 'winetricks --unattended msxml3'
-&lt;a name="rest_code_025df31e8bd34f6f997a39ab67a67647-5"&gt;&lt;/a&gt;sudo lxc exec ea -- su - ubuntu -c 'winetricks --unattended msxml4'
-&lt;a name="rest_code_025df31e8bd34f6f997a39ab67a67647-6"&gt;&lt;/a&gt;sudo lxc exec ea -- su - ubuntu -c 'winetricks --unattended msxml6'
-&lt;a name="rest_code_025df31e8bd34f6f997a39ab67a67647-7"&gt;&lt;/a&gt;sudo lxc exec ea -- su - ubuntu -c 'winetricks --unattended mdac28'
-&lt;a name="rest_code_025df31e8bd34f6f997a39ab67a67647-8"&gt;&lt;/a&gt;sudo lxc exec ea -- su - ubuntu -c 'winetricks --unattended jet40'
-&lt;a name="rest_code_025df31e8bd34f6f997a39ab67a67647-9"&gt;&lt;/a&gt;wget http://www.sparxsystems.com.au/bin/EALite.exe
-&lt;a name="rest_code_025df31e8bd34f6f997a39ab67a67647-10"&gt;&lt;/a&gt;sudo lxc file push EALite.exe ea/home/ubuntu/EALite.exe
-&lt;a name="rest_code_025df31e8bd34f6f997a39ab67a67647-11"&gt;&lt;/a&gt;sudo lxc exec ea -- su - ubuntu -c 'wine msiexec /i EALite.exe'
-&lt;/pre&gt;&lt;p&gt;En este punto, procederemos de manera gráfica a la instalación final de EALite.&lt;/p&gt;
-&lt;div class="figure align-center"&gt;
-&lt;a class="reference external image-reference" href="https://www.cosmoscalibur.com/images/crear-contenedor-lxc-para-aplicacion-gui-ealite/instalacion-grafica-ealite-lxc.png"&gt;&lt;img alt="Ventana de instalación gráfica de EALite." src="https://www.cosmoscalibur.com/images/crear-contenedor-lxc-para-aplicacion-gui-ealite/instalacion-grafica-ealite-lxc.thumbnail.png" style="width: 480px;"&gt;&lt;/a&gt;
-&lt;p class="caption"&gt;Ventana de instalación gráfica de EALite.&lt;/p&gt;
-&lt;/div&gt;
-&lt;p&gt;Ahora, es necesario crear un mecanismo simple para la ejecución de EA.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_aad7935fb301487e8bdeb1af33d25d3b-1"&gt;&lt;/a&gt;sudo lxc exec ea -- su - ubuntu -c 'mkdir $HOME/.local/bin'
-&lt;a name="rest_code_aad7935fb301487e8bdeb1af33d25d3b-2"&gt;&lt;/a&gt;sudo lxc exec ea -- su - ubuntu -c 'echo "wine $HOME/.wine/drive_c/Program\ Files/Sparx\ Systems/EA\ LITE/EA.exe" &amp;gt; $HOME/.local/bin/ealite'
-&lt;a name="rest_code_aad7935fb301487e8bdeb1af33d25d3b-3"&gt;&lt;/a&gt;sudo lxc exec ea -- su - ubuntu -c 'chmod 755 $HOME/.local/bin/ealite'
-&lt;/pre&gt;&lt;/div&gt;
-&lt;div class="section" id="ejecutar-ealite"&gt;
-&lt;h2&gt;Ejecutar EALite&lt;/h2&gt;
-&lt;p&gt;Ahora, podemos usar el visor de Enterprise Architect.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_0b10a9163f3d405caa3284e461b60c2b-1"&gt;&lt;/a&gt;sudo lxc exec ea -- su - ubuntu -c 'ealite'
-&lt;/pre&gt;&lt;p&gt;Cuando iniciemos el sistema operativo, requerimos de iniciar el contenedores
-antes de ejecutar la instrucción anterior, &lt;code&gt;sudo lxc start ea&lt;/code&gt;.&lt;/p&gt;
-&lt;div class="figure align-center"&gt;
-&lt;a class="reference external image-reference" href="https://www.cosmoscalibur.com/images/crear-contenedor-lxc-para-aplicacion-gui-ealite/ealite-inicio-lxc.png"&gt;&lt;img alt="EA Viewer abierto." src="https://www.cosmoscalibur.com/images/crear-contenedor-lxc-para-aplicacion-gui-ealite/ealite-inicio-lxc.thumbnail.png" style="width: 480px;"&gt;&lt;/a&gt;
-&lt;p class="caption"&gt;EA Viewer abierto.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="figure align-center"&gt;
-&lt;img alt="Acceso al sistema de archivos del contenedor y no solo de la unidad de Wine." src="https://www.cosmoscalibur.com/images/crear-contenedor-lxc-para-aplicacion-gui-ealite/ealite-abrir-proyecto-lxc.png" style="width: 480px;"&gt;
-&lt;p class="caption"&gt;Acceso al sistema de archivos del contenedor y no solo de la unidad de Wine.&lt;/p&gt;
-&lt;/div&gt;
-&lt;p&gt;Puedes asegurar una forma simple de ejecutar EALite creando una rutina de
-lanzamiento con las dos líneas anteriores en un archivo que sea reconocido en
-el &lt;code&gt;path&lt;/code&gt;.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_cfe9df464209480f80cacc2eb0ff1368-1"&gt;&lt;/a&gt;mkdir -p $HOME/.local/bin
-&lt;a name="rest_code_cfe9df464209480f80cacc2eb0ff1368-2"&gt;&lt;/a&gt;cat &amp;lt;&amp;lt; EOF &amp;gt; $HOME/.local/bin/ealite
-&lt;a name="rest_code_cfe9df464209480f80cacc2eb0ff1368-3"&gt;&lt;/a&gt;sudo lxc start ea
-&lt;a name="rest_code_cfe9df464209480f80cacc2eb0ff1368-4"&gt;&lt;/a&gt;sudo lxc exec ea -- su - ubuntu -c 'ealite'
-&lt;a name="rest_code_cfe9df464209480f80cacc2eb0ff1368-5"&gt;&lt;/a&gt;EOF
-&lt;a name="rest_code_cfe9df464209480f80cacc2eb0ff1368-6"&gt;&lt;/a&gt;chmod 755 $HOME/.local/bin/ealite
-&lt;/pre&gt;&lt;p&gt;La ejecución con &lt;code&gt;sudo&lt;/code&gt; puede omitirse si se añade el usuario a un grupo
-que permita la ejecución de lxc. Más adelante, haré una publicación sobre como
-hacerlo. Por ahora, diviértete ejecutando &lt;code&gt;ealite&lt;/code&gt; e ingresando la
-contraseña de administrador.&lt;/p&gt;
-&lt;p&gt;Para abrir un proyecto, recuerda usar &lt;code&gt;file push&lt;/code&gt; y explorar dentro del
-contenedor.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="compartir"&gt;
-&lt;h2&gt;Compartir&lt;/h2&gt;
-&lt;p&gt;Para compartir el contenedor, puedes publicarlo y exportar la imagen.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_4e12d858e53e4bc598865565e88a9afc-1"&gt;&lt;/a&gt;sudo lxc publish ea --alias ealite
-&lt;a name="rest_code_4e12d858e53e4bc598865565e88a9afc-2"&gt;&lt;/a&gt;sudo lxc image export ealite
-&lt;/pre&gt;&lt;p&gt;La imagen exportada es un archivo &lt;code&gt;tar.gz&lt;/code&gt; con el nombre asociado al
-&lt;em&gt;fingerprint&lt;/em&gt; (una secuencia alfanumérica). Luego se debe importar la imagen
-y hacer &lt;code&gt;launch&lt;/code&gt; nuevamente con el perfil.&lt;/p&gt;
-&lt;p&gt;También puedes exportar directamente el contenedor, lo cual es recomendable
-porque lleva con ello la configuración del perfil GUI y es listo para usar
-una vez hagas la importación.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_168f873bae724ee1a42f0901f35ba1f0-1"&gt;&lt;/a&gt;sudo lxc export ea ea.tar.gz --optimized-storage
-&lt;/pre&gt;&lt;/div&gt;
-&lt;div class="section" id="referencias"&gt;
-&lt;h2&gt;Referencias&lt;/h2&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://www.sparxsystems.eu/enterprisearchitect/ea-lite-edition/"&gt;EA Viewer&lt;/a&gt;.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://askubuntu.com/questions/827070/cant-run-glxgears-in-root-on-lxc-2-0-container/827146"&gt;can't run “glxgears” in root on lxc 2.0 container&lt;/a&gt;.
-Solución a un posible error usando GUI en LXC.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://blog.simos.info/how-to-easily-run-graphics-accelerated-gui-apps-in-lxd-containers-on-your-ubuntu-desktop/"&gt;How to easily run graphics-accelerated GUI apps in LXD containers on your Ubuntu desktop&lt;/a&gt;.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://linuxcontainers.org/lxd/getting-started-cli/"&gt;LXD Getting started - command line&lt;/a&gt;.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://us.images.linuxcontainers.org/"&gt;Image server for LXC and LXD&lt;/a&gt;.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://www.sparxsystems.com/enterprise_architect_user_guide/14.0/product_information/enterprise_architect_linux.html"&gt;Installing Enterprise Architect under Linux&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://wiki.winehq.org/Winetricks"&gt;Winetricks&lt;/a&gt;.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://stackoverflow.com/questions/31228191/how-do-i-export-a-lxc-container"&gt;How do I export a lxc container?&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;&lt;/div&gt;</description><category>contenedor</category><category>ealite</category><category>enterprise architect</category><category>linux</category><category>lxc</category><category>lxd</category><category>wine</category><guid>https://www.cosmoscalibur.com/blog/crear-contenedor-lxc-para-aplicacion-gui-ealite/</guid><pubDate>Mon, 11 Nov 2019 23:21:26 GMT</pubDate></item></channel></rss>
+&lt;/div&gt;&lt;/div&gt;</description><category>contenedor</category><category>docker</category><category>ealite</category><category>enterprise architect</category><category>linux</category><category>wine</category><guid>https://www.cosmoscalibur.com/blog/crear-contenedor-docker-aplicacion-gui-ealite/</guid><pubDate>Sat, 23 Nov 2019 02:47:22 GMT</pubDate></item></channel></rss>
