@@ -51,11 +51,12 @@
 <meta content="En una sesión por defecto Git Bash no reconoce Anaconda. Aquí configuraremos Git Bash y Anaconda para que puedan ser usados en conjunto aprovechando el gestor Conda y el archivo bashrc." property="og:description">
 <meta content="article" property="og:type">
 <meta content="2019-12-31T14:43:50-05:00" property="article:published_time">
-<meta content="anaconda" property="article:tag">
-<meta content="bash" property="article:tag">
+<meta content="anaconda python" property="article:tag">
+<meta content="conda" property="article:tag">
+<meta content="gestor de paquetes" property="article:tag">
 <meta content="git" property="article:tag">
-<meta content="python" property="article:tag">
-<meta content="windows" property="article:tag">
+<meta content="git bash" property="article:tag">
+<meta content="instalación de software" property="article:tag">
 <meta content="summary" name="twitter:card">
 <meta content="cosmoscalibur" name="twitter:site">
 <meta content="eyvillegasp" name="twitter:creator">
@@ -97,7 +98,7 @@
 <h1 class="p-name entry-title" itemprop="headline name"><a class="u-url" href=".">Usar Anaconda Python en Git Bash</a></h1>
 <div class="metadata">
 <p class="byline author vcard p-author h-card"><span class="byline-name fn p-name" itemprop="author">Edward Villegas-Pulgarin</span></p>
-<p class="dateline"><a href="." rel="bookmark"><time class="published dt-published" datetime="2019-12-31T14:43:50-05:00" itemprop="datePublished" title="2019-12-31 14:43">2019-12-31 14:43</time></a></p>
+<p class="dateline"><a href="." rel="bookmark"><time class="published dt-published" datetime="2019-12-31T14:43:50-05:00" itemprop="datePublished" title="2019-12-31 14:43">2019-12-31 14:43</time> <span class="updated">(updated <time class="updated dt-updated" datetime="2020-07-02T20:55:00-05:00" itemprop="dateUpdated" title="2020-07-02 20:55">2020-07-02 20:55</time>)</span></a></p>
 <p class="commentline"><a data-disqus-identifier="cache/posts/usar-anaconda-python-en-git-bash.html" href="#disqus_thread">Comentarios</a></p>
 </div>
 </header>
@@ -110,12 +111,17 @@
 <p>Lo primero es proceder a instalar Anaconda Python desde su sitio oficial, pero recomiendo revisar primero la necesidad real de tener todo lo incluido en Anaconda o usar algo minimalista como Miniconda. Anaconda representará una instalación y descarga de casi 500 MB, y por ende un mayor tiempo en ambos pasos. Por otro lado, Miniconda solo instala lo mínimo requerido para tener Python y el gestor de paquetes Conda. Esta última opción es recomendable si posees poco espacio en disco, deseas instalar rápidamente, solo deseas probar lo básico de Python o el equipo es de bajas características (recuerdo casos en los cuales mis estudiantes -épocas de docente- la sola instalación de Anaconda bloqueaba el equipo y lo reiniciaba).</p>
 <p>Si usas Anaconda para tus proyectos de desarrollo y usando buenas prácticas, seguramente estarás acostumbrado a usar ambientes y en ese caso no necesitas tener tantas cosas en el base, siendo buena opción Miniconda también.</p>
 <p>Descarga <a class="reference external" href="https://www.anaconda.com/distribution/">Anaconda</a> o <a class="reference external" href="https://docs.conda.io/en/latest/miniconda.html">Miniconda</a> según tu necesidad e instala como cualquier programa de Windows. Lo importante durante la instalación es indicar que sea solo para el usuario actual y que no se asocie el <code>PATH</code>. Seguir este consejo les evitará dolores de cabeza en el futuro.</p>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Actualización (2 de julio de 2020)</p>
+<p>Para saber mayor detalle del proceso de instalación puedes consultar mi publicación <a class="reference external" href="../instalar-python-anaconda/">Instalar Anaconda Python</a>.</p>
+</div>
 </div>
 <div class="section" id="git-bash">
 <h2>Git Bash</h2>
 <p>Si bien puedes descargarlo desde el sitio del proyecto, aprovecharemos el gestor Conda para facilitar la tarea de descarga, instalación y configuración.</p>
 <p>Abriremos Anaconda PowerShell o Anaconda Prompt, y ejecutaremos lo siguiente:</p>
-<pre class="code text"><a id="rest_code_642a252812c645a88d412550460ab5be-1" name="rest_code_642a252812c645a88d412550460ab5be-1"></a>conda create -n gitbash -c conda-forge git=2.24.0
+<pre class="code bash"><a id="rest_code_8f28d375e2d54891810a37a52cad264f-1" name="rest_code_8f28d375e2d54891810a37a52cad264f-1"></a>conda create -n gitbash -c conda-forge <span class="nv">git</span><span class="o">=</span><span class="m">2</span>.24.0
 </pre>
 <p>Es importante el uso de <code>-c conda-forge</code> porque de este canal vendrá la versión de Git que usaremos. Si se usa el canal por defecto, se instala solo el cliente de consola, mientras que en esta opción viene Git Bash. He indicado también el <code>-n gitbash</code> para evitar posibles conflictos entre los paquetes requeridos para usar Git y los paquetes disponibles en el ambiente base. En alguna publicación posterior hablaré sobre Conda para profundizar en esto.</p>
 <p>Una vez terminada la instalación, puedes abrir el menú de Windows y buscar Git Bash, el cual ya contará con Conda reconocido. Ahora solo debes empezar a usarlo, <code>conda activate base</code>.</p>
@@ -125,22 +131,23 @@
 </div>
 <p>¿Y qué pasa si ya teníamos instalado Git Bash? Git Bash soporta los archivos típicos de Bash, como el <code>bashrc</code>. Así, podemos usar la configuración que habitualmente se usa en Linux.</p>
 <p>Abrimos Git Bash, y ejecutamos:</p>
-<pre class="code text"><a id="rest_code_cfd1a3993a644fd0a80b84551000da1f-1" name="rest_code_cfd1a3993a644fd0a80b84551000da1f-1"></a>cd
-<a id="rest_code_cfd1a3993a644fd0a80b84551000da1f-2" name="rest_code_cfd1a3993a644fd0a80b84551000da1f-2"></a>echo ". /c/Users/USUARIO/ANACONDA/etc/profile.d/conda.sh" &gt;&gt; .bashrc
-<a id="rest_code_cfd1a3993a644fd0a80b84551000da1f-3" name="rest_code_cfd1a3993a644fd0a80b84551000da1f-3"></a>source .bashrc
+<pre class="code bash"><a id="rest_code_ba378178125940d1af5421596c204372-1" name="rest_code_ba378178125940d1af5421596c204372-1"></a><span class="nb">cd</span> <span class="nv">$HOME</span>
+<a id="rest_code_ba378178125940d1af5421596c204372-2" name="rest_code_ba378178125940d1af5421596c204372-2"></a><span class="nb">echo</span> <span class="s2">". /c/Users/USUARIO/ANACONDA/etc/profile.d/conda.sh"</span> &gt;&gt; .bashrc
+<a id="rest_code_ba378178125940d1af5421596c204372-3" name="rest_code_ba378178125940d1af5421596c204372-3"></a><span class="nb">source</span> .bashrc
 </pre>
-<p>Con la primera línea aseguramos ir al directorio del usuario. En la segunda línea, crearemos o editaremos el archivo de configuración, pero debes reemplazar <code>USUARIO</code> por la carpeta de tu usuario y <code>ANACONDA</code> por la carpeta de Anaconda (habitualmente <code>Anaconda</code> o <code>Miniconda3</code> si usaste Miniconda). La tercera línea actualiza la configuración en la sesión actual de la consola permitiendo usar de forma inmediata Conda. Para la próxima apertura de Git Bash ya no tendrás que configurar nada, solo empezar a usar Conda (aún no hay ambiente activado).</p>
+<p>Con la primera línea aseguramos ir al directorio del usuario. En la segunda línea, crearemos o editaremos el archivo de configuración, pero debes reemplazar <code>USUARIO</code> por la carpeta de tu usuario y <code>ANACONDA</code> por la carpeta de Anaconda (habitualmente <code>Anaconda3</code> o <code>Miniconda3</code> si usaste Miniconda). La tercera línea actualiza la configuración en la sesión actual de la consola permitiendo usar de forma inmediata Conda. Para la próxima apertura de Git Bash ya no tendrás que configurar nada, solo empezar a usar Conda (aún no hay ambiente activado).</p>
 </div>
 </div>
 </div>
 <aside class="postpromonav">
 <nav>
 <ul class="tags" itemprop="keywords">
-<li><a class="tag p-category" href="../../categories/anaconda/" rel="tag">anaconda</a></li>
-<li><a class="tag p-category" href="../../categories/bash/" rel="tag">bash</a></li>
+<li><a class="tag p-category" href="../../categories/anaconda-python/" rel="tag">anaconda python</a></li>
+<li><a class="tag p-category" href="../../categories/conda/" rel="tag">conda</a></li>
+<li><a class="tag p-category" href="../../categories/gestor-de-paquetes/" rel="tag">gestor de paquetes</a></li>
 <li><a class="tag p-category" href="../../categories/git/" rel="tag">git</a></li>
-<li><a class="tag p-category" href="../../categories/python/" rel="tag">python</a></li>
-<li><a class="tag p-category" href="../../categories/windows/" rel="tag">windows</a></li>
+<li><a class="tag p-category" href="../../categories/git-bash/" rel="tag">git bash</a></li>
+<li><a class="tag p-category" href="../../categories/instalacion-de-software/" rel="tag">instalación de software</a></li>
 </ul>
 <ul class="pager hidden-print">
 <li class="previous"><a href="../crear-contenedor-docker-aplicacion-gui-ealite/" rel="prev" title="Crear contenedor Docker aplicación GUI - EALite">Publicación anterior</a></li>
