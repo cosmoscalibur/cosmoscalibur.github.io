@@ -15,7 +15,8 @@
 <link href="../../rss.xml" rel="alternate" title="RSS (es)" type="application/rss+xml">
 <link href="https://www.cosmoscalibur.com/blog/crear-contenedor-docker-aplicacion-gui-ealite/" rel="canonical">
 <link href="../../images/favicon.jpg" rel="icon" sizes="32x32"><!--[if lt IE 9]><script src="https://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]--><!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-150354242-1"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-150354242-1">
+</script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
@@ -23,7 +24,8 @@
 
   gtag('config', 'UA-150354242-1');
 </script><!-- Google Adsense -->
-<script async data-ad-client="ca-pub-0356238418278924" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><!-- Facebook Analytics -->
+<script async data-ad-client="ca-pub-0356238418278924" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js">
+</script><!-- Facebook Analytics -->
 <script async>
   window.fbAsyncInit = function() {
     FB.init({
@@ -111,12 +113,12 @@
 <div class="section" id="instalar-docker">
 <h2>Instalar Docker</h2>
 <p>Recomiendo en Linux instalar docker con snap.</p>
-<pre class="code text"><a id="rest_code_4c46e94dadc340f8a8ff6d1d386dc6e9-1" name="rest_code_4c46e94dadc340f8a8ff6d1d386dc6e9-1"></a>sudo snap install docker
+<pre class="code text"><a id="rest_code_7e3be09f3e3942c5aa88a096f4120e46-1" name="rest_code_7e3be09f3e3942c5aa88a096f4120e46-1"></a>sudo snap install docker
 </pre>
 <p>Posteriormente, podemos asociar nuestro usuario para la ejecución sin ser administrador.</p>
-<pre class="code text"><a id="rest_code_53b39de702a541378dd57e9f654d52b3-1" name="rest_code_53b39de702a541378dd57e9f654d52b3-1"></a>sudo groupadd docker
-<a id="rest_code_53b39de702a541378dd57e9f654d52b3-2" name="rest_code_53b39de702a541378dd57e9f654d52b3-2"></a>sudo usermod -aG docker $USER
-<a id="rest_code_53b39de702a541378dd57e9f654d52b3-3" name="rest_code_53b39de702a541378dd57e9f654d52b3-3"></a>newgrp docker
+<pre class="code text"><a id="rest_code_e0eb5702d3b34be2a9726a943845ed89-1" name="rest_code_e0eb5702d3b34be2a9726a943845ed89-1"></a>sudo groupadd docker
+<a id="rest_code_e0eb5702d3b34be2a9726a943845ed89-2" name="rest_code_e0eb5702d3b34be2a9726a943845ed89-2"></a>sudo usermod -aG docker $USER
+<a id="rest_code_e0eb5702d3b34be2a9726a943845ed89-3" name="rest_code_e0eb5702d3b34be2a9726a943845ed89-3"></a>newgrp docker
 </pre>
 <p>Puedes probar ejecutando como usuario regular, <code>docker run hello-world</code>.</p>
 </div>
@@ -135,34 +137,34 @@
 <div class="admonition note">
 <p class="admonition-title">Nota</p>
 <p>El directorio que moveremos se genero en el contenedor LXC que construimos en <a class="reference external" href="../crear-contenedor-lxc-para-aplicacion-gui-ealite/">Crear contenedor LXC para aplicación GUI - EALite</a>. Para ello, iniciamos el contenedor y extraemos el directorio.</p>
-<pre class="code text"><a id="rest_code_8196e9e1698046bc94207e0f20e0c055-1" name="rest_code_8196e9e1698046bc94207e0f20e0c055-1"></a>sudo lxc start ea
-<a id="rest_code_8196e9e1698046bc94207e0f20e0c055-2" name="rest_code_8196e9e1698046bc94207e0f20e0c055-2"></a>sudo lxc file pull -r ea/home/ubuntu/.wine .
+<pre class="code text"><a id="rest_code_a19e5dd84fa44a7eab9d4113414db65c-1" name="rest_code_a19e5dd84fa44a7eab9d4113414db65c-1"></a>sudo lxc start ea
+<a id="rest_code_a19e5dd84fa44a7eab9d4113414db65c-2" name="rest_code_a19e5dd84fa44a7eab9d4113414db65c-2"></a>sudo lxc file pull -r ea/home/ubuntu/.wine .
 </pre></div>
 <p>Con <code>USER</code> cambiamos el usuario que ejecuta los procesos. Es importante que a la hora de concluir, si un proceso es ejecutado por un usuario regular, nuestro último cambio de usuario debe apuntar a él, de otra forma el contenedor estará activo para el usuario administrador. Otro aspecto importante es el comportamiento por defecto en Linux, donde puede crear el usuario si no existe (pero no el directorio de usuario).</p>
 <p>Finalmente, es necesario indicar que se ejecuta cuando se lanza el contenedor. Esto es posible con <code>CMD</code> o con <code>ENTRYPOINT</code>. La diferencia es que el primero permite sobreescribir la ejecución enviando como parámetro lo que se desea ejecutar, mientras que la segunda opción solo ejecuta la configurada.</p>
-<pre class="code text"><a id="rest_code_01bdd196c0c84eca97a262ab52788088-1" name="rest_code_01bdd196c0c84eca97a262ab52788088-1"></a># escape=`
-<a id="rest_code_01bdd196c0c84eca97a262ab52788088-2" name="rest_code_01bdd196c0c84eca97a262ab52788088-2"></a>FROM i386/ubuntu:18.04
-<a id="rest_code_01bdd196c0c84eca97a262ab52788088-3" name="rest_code_01bdd196c0c84eca97a262ab52788088-3"></a>RUN apt update -q &amp;& apt install --install-recommends -y wine-stable
-<a id="rest_code_01bdd196c0c84eca97a262ab52788088-4" name="rest_code_01bdd196c0c84eca97a262ab52788088-4"></a>RUN apt install -y fonts-crosextra-carlito
-<a id="rest_code_01bdd196c0c84eca97a262ab52788088-5" name="rest_code_01bdd196c0c84eca97a262ab52788088-5"></a>RUN useradd -ms /bin/bash ubuntu
-<a id="rest_code_01bdd196c0c84eca97a262ab52788088-6" name="rest_code_01bdd196c0c84eca97a262ab52788088-6"></a>WORKDIR /home/ubuntu
-<a id="rest_code_01bdd196c0c84eca97a262ab52788088-7" name="rest_code_01bdd196c0c84eca97a262ab52788088-7"></a>COPY .wine .wine
-<a id="rest_code_01bdd196c0c84eca97a262ab52788088-8" name="rest_code_01bdd196c0c84eca97a262ab52788088-8"></a>RUN chown -R ubuntu .wine
-<a id="rest_code_01bdd196c0c84eca97a262ab52788088-9" name="rest_code_01bdd196c0c84eca97a262ab52788088-9"></a>USER ubuntu
-<a id="rest_code_01bdd196c0c84eca97a262ab52788088-10" name="rest_code_01bdd196c0c84eca97a262ab52788088-10"></a>RUN mkdir -p .local/bin &amp;& `
-<a id="rest_code_01bdd196c0c84eca97a262ab52788088-11" name="rest_code_01bdd196c0c84eca97a262ab52788088-11"></a>        echo "wine $HOME/.wine/drive_c/Program\ Files/Sparx\ Systems/EA\ LITE/EA.exe" &gt; .local/bin/ealite &amp;& `
-<a id="rest_code_01bdd196c0c84eca97a262ab52788088-12" name="rest_code_01bdd196c0c84eca97a262ab52788088-12"></a>        chmod 755 .local/bin/ealite
-<a id="rest_code_01bdd196c0c84eca97a262ab52788088-13" name="rest_code_01bdd196c0c84eca97a262ab52788088-13"></a>CMD ".local/bin/ealite"
+<pre class="code text"><a id="rest_code_2451b5cb89fc4b97b1555d23763b6bec-1" name="rest_code_2451b5cb89fc4b97b1555d23763b6bec-1"></a># escape=`
+<a id="rest_code_2451b5cb89fc4b97b1555d23763b6bec-2" name="rest_code_2451b5cb89fc4b97b1555d23763b6bec-2"></a>FROM i386/ubuntu:18.04
+<a id="rest_code_2451b5cb89fc4b97b1555d23763b6bec-3" name="rest_code_2451b5cb89fc4b97b1555d23763b6bec-3"></a>RUN apt update -q &amp;& apt install --install-recommends -y wine-stable
+<a id="rest_code_2451b5cb89fc4b97b1555d23763b6bec-4" name="rest_code_2451b5cb89fc4b97b1555d23763b6bec-4"></a>RUN apt install -y fonts-crosextra-carlito
+<a id="rest_code_2451b5cb89fc4b97b1555d23763b6bec-5" name="rest_code_2451b5cb89fc4b97b1555d23763b6bec-5"></a>RUN useradd -ms /bin/bash ubuntu
+<a id="rest_code_2451b5cb89fc4b97b1555d23763b6bec-6" name="rest_code_2451b5cb89fc4b97b1555d23763b6bec-6"></a>WORKDIR /home/ubuntu
+<a id="rest_code_2451b5cb89fc4b97b1555d23763b6bec-7" name="rest_code_2451b5cb89fc4b97b1555d23763b6bec-7"></a>COPY .wine .wine
+<a id="rest_code_2451b5cb89fc4b97b1555d23763b6bec-8" name="rest_code_2451b5cb89fc4b97b1555d23763b6bec-8"></a>RUN chown -R ubuntu .wine
+<a id="rest_code_2451b5cb89fc4b97b1555d23763b6bec-9" name="rest_code_2451b5cb89fc4b97b1555d23763b6bec-9"></a>USER ubuntu
+<a id="rest_code_2451b5cb89fc4b97b1555d23763b6bec-10" name="rest_code_2451b5cb89fc4b97b1555d23763b6bec-10"></a>RUN mkdir -p .local/bin &amp;& `
+<a id="rest_code_2451b5cb89fc4b97b1555d23763b6bec-11" name="rest_code_2451b5cb89fc4b97b1555d23763b6bec-11"></a>        echo "wine $HOME/.wine/drive_c/Program\ Files/Sparx\ Systems/EA\ LITE/EA.exe" &gt; .local/bin/ealite &amp;& `
+<a id="rest_code_2451b5cb89fc4b97b1555d23763b6bec-12" name="rest_code_2451b5cb89fc4b97b1555d23763b6bec-12"></a>        chmod 755 .local/bin/ealite
+<a id="rest_code_2451b5cb89fc4b97b1555d23763b6bec-13" name="rest_code_2451b5cb89fc4b97b1555d23763b6bec-13"></a>CMD ".local/bin/ealite"
 </pre></div>
 <div class="section" id="construir-imagen-docker">
 <h2>Construir imagen Docker</h2>
 <p>La construcción la realizamos con la opción <code>build</code>. Se usa el argumento <code>-t</code> para indicar la etiqueta que asignaremos a la imagen y <code>-f</code> para relacionar la ruta del archivo dockerfile que se usará. El siguiente argumento no posee marca para indicarlo y corresponde al contexto, que viene a ser la ruta donde se encuentran los archivos que usaremos (que puede ser reemplazado por un archivo de contexto con la ruta a los distintos archivos).</p>
-<pre class="code text"><a id="rest_code_de63a4cb07c048368c98cf7283359dea-1" name="rest_code_de63a4cb07c048368c98cf7283359dea-1"></a>docker build -t cosmoscalibur/ealite:latest -f dockerfile .
+<pre class="code text"><a id="rest_code_a4027ca3cb0f4182a1d2544662701c03-1" name="rest_code_a4027ca3cb0f4182a1d2544662701c03-1"></a>docker build -t cosmoscalibur/ealite:latest -f dockerfile .
 </pre></div>
 <div class="section" id="ejecutar-contenedor">
 <h2>Ejecutar contenedor</h2>
 <p>Ahora puedes lanzar un contenedor gráfico basado en la imagen construida con la siguiente instrucción.</p>
-<pre class="code text"><a id="rest_code_ab975e6ae4e141789351481dc8759d89-1" name="rest_code_ab975e6ae4e141789351481dc8759d89-1"></a>docker run --net=host --env="DISPLAY" --volume="$HOME/.Xauthority:/root/.Xauthority:rw" cosmoscalibur/ealite:latest
+<pre class="code text"><a id="rest_code_70a264d2ac264b3ca88edd13b94812d6-1" name="rest_code_70a264d2ac264b3ca88edd13b94812d6-1"></a>docker run --net=host --env="DISPLAY" --volume="$HOME/.Xauthority:/root/.Xauthority:rw" cosmoscalibur/ealite:latest
 </pre></div>
 <div class="section" id="referencias">
 <h2>Referencias</h2>
@@ -223,13 +225,17 @@ var disqus_shortname="cosmoscalibur";(function(){var a=document.createElement("s
 <footer id="footer">Contents © 2020 <a href="mailto:cosmoscalibur@gmail.com">Edward Villegas Pulgarin</a> - Powered by <a href="https://getnikola.com" rel="nofollow">Nikola</a> <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="license"><img alt="Creative Commons License BY-NC-SA" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" style="border-width:0; margin-bottom:12px;"></a></footer>
 </div>
 </div>
-<script crossorigin="anonymous" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-<script crossorigin="anonymous" integrity="sha256-/ijcOLwFf26xEYAjW75FizKVo5tnTYiQddPZoLUHHZ8=" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
-<script crossorigin="anonymous" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-<script crossorigin="anonymous" integrity="sha256-yQGjQhFs3LtyiN5hhr3k9s9TWZOh/RzCkD3gwwCKlkg=" src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.11.0/baguetteBox.min.js"></script>
-<script src="../../assets/js/all.js"></script>
+<script crossorigin="anonymous" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" src="https://code.jquery.com/jquery-3.4.1.min.js">
+</script>
+<script crossorigin="anonymous" integrity="sha256-/ijcOLwFf26xEYAjW75FizKVo5tnTYiQddPZoLUHHZ8=" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js">
+</script>
+<script crossorigin="anonymous" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js">
+</script>
+<script crossorigin="anonymous" integrity="sha256-yQGjQhFs3LtyiN5hhr3k9s9TWZOh/RzCkD3gwwCKlkg=" src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.11.0/baguetteBox.min.js">
+</script>
+<script src="../../assets/js/all.js">
+</script>
 <script>
-
     baguetteBox.run('div#content', {
         ignoreClass: 'islink',
         captions: function(element) {

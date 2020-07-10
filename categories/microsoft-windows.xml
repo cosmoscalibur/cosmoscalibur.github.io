@@ -1,0 +1,194 @@
+<?xml version='1.0' encoding='utf-8'?>
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>Cosmoscalibur (Publicaciones sobre microsoft windows)</title><link>https://www.cosmoscalibur.com/</link><description/><atom:link href="https://www.cosmoscalibur.com/categories/microsoft-windows.xml" rel="self" type="application/rss+xml"/><language>es</language><copyright>Contents © 2020 &lt;a href="mailto:cosmoscalibur@gmail.com"&gt;Edward Villegas Pulgarin&lt;/a&gt; 
+&lt;a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"&gt;
+&lt;img alt="Creative Commons License BY-NC-SA"
+style="border-width:0; margin-bottom:12px;"
+src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"&gt;&lt;/a&gt;</copyright><lastBuildDate>Fri, 10 Jul 2020 04:35:59 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Crear versión de Windows mínima con MSMG Toolkit</title><link>https://www.cosmoscalibur.com/blog/crear-version-de-windows-minima-con-msmg-toolkit/</link><dc:creator>Edward Villegas-Pulgarin</dc:creator><description>&lt;div&gt;&lt;p&gt;Reciente eliminé la partición de Windows de mi máquina por un problema en el
+qué probé crear la tabla de partición de nuevo, pero me dio pereza instalar en
+ese momento Windows porque mi sistema operativo principal es Linux. Además,
+Windows no funcioba fluidamente en la máquina.&lt;/p&gt;
+&lt;p&gt;Ahora, consideré instalarlo en máquina virtual, lo que limita aún más los
+recursos para Windows y decidí explorar como obtener un Windows que fuera
+básicamente el sistema operativo sin tanta cosa preinstalada (muchas
+asociadas a servicios que se ejecutan en segundo plano afectando el
+rendimiento o que nunca uso).&lt;/p&gt;
+&lt;!-- TEASER_END --&gt;
+&lt;div class="section" id="requisitos-para-crear-la-version-minima"&gt;
+&lt;h2&gt;Requisitos para crear la versión mínima&lt;/h2&gt;
+&lt;p&gt;Además de nuestro equipo con Windows para poder ejecutar el software que nos
+asistirá en el proceso, necesitamos dicho software y una imagen de Windows para
+modificar.&lt;/p&gt;
+&lt;div class="section" id="obtener-imagen-de-windows"&gt;
+&lt;h3&gt;Obtener imagen de Windows&lt;/h3&gt;
+&lt;p&gt;Este es nuestro punto base, así que lo explicaremos primero. La forma de
+obtener una imagen de Windows es a través de la página oficial &lt;a class="citation-reference" href="https://www.cosmoscalibur.com/blog/crear-version-de-windows-minima-con-msmg-toolkit/#win10" id="id1"&gt;[win10]&lt;/a&gt;
+(descarga gratuita pero no licenciada) seleccionando la edición, lenguaje y
+arquitectura (si es un equipo reciente, estamos seguros que es 64 bits).&lt;/p&gt;
+&lt;p&gt;Una segunda opción, es a través de Media Creation Tool &lt;a class="citation-reference" href="https://www.cosmoscalibur.com/blog/crear-version-de-windows-minima-con-msmg-toolkit/#mediacreation" id="id2"&gt;[mediacreation]&lt;/a&gt;, una
+utilidad de Microsoft para la descarga de la imagen de Windows. En esta
+seleccionanos la misma información anterior.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="descargar-msmg-toolkit"&gt;
+&lt;h3&gt;Descargar MSMG Toolkit&lt;/h3&gt;
+&lt;p&gt;Ahora sigue la herramienta, &lt;em&gt;MSMG Toolkit&lt;/em&gt; &lt;a class="citation-reference" href="https://www.cosmoscalibur.com/blog/crear-version-de-windows-minima-con-msmg-toolkit/#msmg" id="id3"&gt;[msmg]&lt;/a&gt;. Es una herramienta gratuita
+para la personalización del instalador de Windows, lo cual se traduce en la
+opción de reducir el impacto de los componentes preinstalados tanto en espacio
+como en rendimiento, pero también hacer uno que otro ajuste estético.&lt;/p&gt;
+&lt;p&gt;En la página descargamos la herramienta &lt;code&gt;MSMG Toolkit v10.1&lt;/code&gt;, y
+descargamos &lt;em&gt;MSMG Toolkit Packs&lt;/em&gt; solo en caso de querer reinstalar algunas
+componentes (es raro, pero la estrategia puede ser más rápida eliminando
+colecciones y luego agregar una que otra componente, pero esto no lo
+discutiré).&lt;/p&gt;
+&lt;div class="figure align-center"&gt;
+&lt;a class="reference external image-reference" href="https://www.cosmoscalibur.com/images/crear-version-de-windows-minima-con-msmg-toolkit/descargar-msmg-toolkit.png"&gt;&lt;img alt="Indicación del archivo a descargar de MSMG en Mega." src="https://www.cosmoscalibur.com/images/crear-version-de-windows-minima-con-msmg-toolkit/descargar-msmg-toolkit.thumbnail.png" style="width: 800px; height: 400px;"&gt;&lt;/a&gt;
+&lt;p class="caption"&gt;Indicación del archivo a descargar de MSMG en Mega.&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;Ahora descomprimimos el archivo.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="ejecutar-msmg-toolkit"&gt;
+&lt;h2&gt;Ejecutar MSMG Toolkit&lt;/h2&gt;
+&lt;p&gt;El foco de esta publucación se encuentra en eliminar componentes, pues es justo
+lo que impacta espacio de almacenamiento y rendimiento. La opción de
+integración depende de los &lt;em&gt;packs&lt;/em&gt; y consta de ubicar los instaladores en las
+carpetas respectivas pero hacer el seguimiento de algunas dependencias para
+ubicar los requeridos no me parece cómodo y prefiero sacrificarlos.&lt;/p&gt;
+&lt;div class="section" id="inicializar-imagen"&gt;
+&lt;h3&gt;Inicializar imagen&lt;/h3&gt;
+&lt;p&gt;La imagen de Windows que obtuvimos la ubicamos en la carpeta ISO de la carpeta
+generada al descomprimir la descarga de &lt;em&gt;MSMG Toolkit&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;También en la carpeta de &lt;em&gt;MSMG Toolkit&lt;/em&gt;, encontraremos un archivo &lt;em&gt;batch&lt;/em&gt;
+llamado &lt;code&gt;start&lt;/code&gt;. Daremos doble clic y aceptamos la licencia de uso
+ingresando &lt;code&gt;A&lt;/code&gt; y luego presionamos &lt;code&gt;↩&lt;/code&gt;.&lt;/p&gt;
+&lt;div class="admonition note"&gt;
+&lt;p class="admonition-title"&gt;Nota&lt;/p&gt;
+&lt;p&gt;Respecto a los ingresos de información, de ahora en adelante voy a referir
+al nombre de la opción y, debe entenderse como el número o letra que figura
+a su izquierda (al interior de los corchetes) en el menú y presionar
+&lt;code&gt;↩&lt;/code&gt; (enter).&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;En el menú, seleccionamos &lt;code&gt;Source&lt;/code&gt; y ahora
+&lt;code&gt;Extract Source from DVD ISO Image&lt;/code&gt;. A continuación ingresamos el nombre
+del archivo &lt;em&gt;ISO&lt;/em&gt; sin extensión (ejemplo, si es &lt;code&gt;Windows.iso&lt;/code&gt; debemos
+ingresar &lt;code&gt;Windows&lt;/code&gt;. Esta opción extrae los archivos del ISO de la imagen
+y los ubica en la carpeta DVD.&lt;/p&gt;
+&lt;p&gt;En este momento debemos convertir el formato de imagen extraída de &lt;em&gt;ESD&lt;/em&gt; a
+&lt;em&gt;WIM&lt;/em&gt;. Vamos a &lt;code&gt;Convert&lt;/code&gt; con la opción &lt;code&gt;Convert Install ESD Image
+to WIM Image&lt;/code&gt;. Aquí debemos indicar el índice de nuestra versión de Windows,
+que en mi caso corresponde a &lt;code&gt;Windows 10 Home Single Language&lt;/code&gt;.&lt;/p&gt;
+&lt;div class="figure align-center"&gt;
+&lt;a class="reference external image-reference" href="https://www.cosmoscalibur.com/images/crear-version-de-windows-minima-con-msmg-toolkit/convert-windows-esd-wim.png"&gt;&lt;img alt="Menú de convertir imagen ESD a WIM." src="https://www.cosmoscalibur.com/images/crear-version-de-windows-minima-con-msmg-toolkit/convert-windows-esd-wim.thumbnail.png" style="width: 400px; height: 600px;"&gt;&lt;/a&gt;
+&lt;p class="caption"&gt;Menú de conversión de imagen ESD a WIM con selección de la versión de Windows deseada.&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;Ahora volvemos a &lt;code&gt;Source&lt;/code&gt; y la opción &lt;code&gt;Select Source
+from &amp;lt;DVD&amp;gt; folder&lt;/code&gt;. Aquí indicamos el único índice que tendremos disponible y
+queda a decisión de cada quien las siguientes preguntas (no observé
+diferencia).&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="eliminar-componentes"&gt;
+&lt;h3&gt;Eliminar componentes&lt;/h3&gt;
+&lt;p&gt;Este es el paso importante del procedimiento y el más demorado. La forma más
+rápida de proceder es eliminar por conjuntos de componentes y no a nivel de
+detalle.&lt;/p&gt;
+&lt;p&gt;Para remover estas componentes vamos a &lt;code&gt;Remove&lt;/code&gt; y luego &lt;code&gt;Remove
+Windows Components&lt;/code&gt;. Ahora tenemos un menú asociado a los distintos conjuntos
+de componentes que podemos remover. Estos pueden ser removidos como conjunto
+o removemos componentes individuales (una a una, lo cual lo hace un
+procedimiento largo, aburridor y de mucha atención).&lt;/p&gt;
+&lt;p&gt;En mi caso he optado por remover todos los conjuntos de componentes ingresando
+a cada opción de conjunto y allí indicando &lt;code&gt;All XXX Components&lt;/code&gt; (donde
+&lt;code&gt;XXX&lt;/code&gt; es el nombre del conjunto de componentes) y luego aceptando que se
+remueven todas las componentes (&lt;code&gt;Removing All XXX Components Continue
+...&lt;/code&gt; y marcamos &lt;code&gt;Y&lt;/code&gt;).&lt;/p&gt;
+&lt;p&gt;Pero algo de detalle al respecto.&lt;/p&gt;
+&lt;dl class="simple"&gt;
+&lt;dt&gt;&lt;strong&gt;Windows Apps&lt;/strong&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;Perdemos &lt;em&gt;Windows Store&lt;/em&gt; y la calculadora. Otros extrañarán &lt;em&gt;Cortana&lt;/em&gt; y
+algunas componentes de &lt;em&gt;Xbox&lt;/em&gt;.&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt&gt;&lt;strong&gt;System Apps&lt;/strong&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;Perderemos &lt;em&gt;Edge&lt;/em&gt; y &lt;em&gt;OneDrive&lt;/em&gt; entre otras aplicaciones. Recomendaría que
+conserven esta categoría para poder usar &lt;em&gt;Edge&lt;/em&gt; como navegador web
+provisional.&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt&gt;&lt;strong&gt;System&lt;/strong&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;Perdemos &lt;em&gt;Paint&lt;/em&gt;, &lt;em&gt;Wordpad&lt;/em&gt; y la que más me duele, &lt;em&gt;Windows Subsystem For
+Linux&lt;/em&gt;. Por este motivo, generé una versión en la cual removía todos los
+conjuntos menos este.&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt&gt;&lt;strong&gt;Remoting&lt;/strong&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;Realmente no extraño los elementos de este punto y creo que para la mayor
+parte de usuarios no son necesarios (&lt;em&gt;Home group&lt;/em&gt;, &lt;em&gt;MultiPoint connector&lt;/em&gt; y
+&lt;em&gt;Remote Assistence&lt;/em&gt;).&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt&gt;&lt;strong&gt;Privacy&lt;/strong&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;Perdemos opciones como el uso del PIN para el ingreso de sesión o por
+reconocimiento facial.&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt&gt;&lt;strong&gt;Multimedia&lt;/strong&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;Perdemos &lt;em&gt;Windows Media Player&lt;/em&gt; y &lt;em&gt;Windows Photo Viewer&lt;/em&gt;.&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt&gt;&lt;strong&gt;Internet&lt;/strong&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;Perdemos &lt;em&gt;Internet Explorer&lt;/em&gt; y &lt;em&gt;Adobe flash&lt;/em&gt;.&lt;/p&gt;
+&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;p&gt;Puedes hacerlo de esta forma, o componente a componente, pero advertencia,
+algunas implican estar pendientes de dependencias de otros conjuntos.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="generar-imagen-de-windows-minima"&gt;
+&lt;h3&gt;Generar imagen de Windows mínima&lt;/h3&gt;
+&lt;p&gt;Terminado el proceso de eliminar las componentes no deseadas, accedemos a
+&lt;code&gt;Apply&lt;/code&gt; y luego a &lt;code&gt;Apply &amp;amp; Save Changes to Source Images&lt;/code&gt;.
+Terminada la aplicación de cambios procedemos a &lt;code&gt;Target&lt;/code&gt; y la opción
+&lt;code&gt;Make a DVD ISO Image&lt;/code&gt; (pero también puedes aprovechar a crear la USB
+para arranque &lt;code&gt;Copy Source to USB Flash Drive&lt;/code&gt;). Asignamos el nombre a
+nuestra imagen y procedemos. En el caso de la USB se selecciona la unidad de la
+USB.&lt;/p&gt;
+&lt;p&gt;Con nuestra imagen lista, ahora puedes quemarla o usarla para una máquina
+virtual (carga directamente &lt;em&gt;ISO&lt;/em&gt;).&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="consideraciones-finales"&gt;
+&lt;h2&gt;Consideraciones finales&lt;/h2&gt;
+&lt;p&gt;A diferencia de distintos sitios que "explican" el uso de MSMG, en este caso he
+detallado adecuadamente las opciones, y en especial parte de selección de la
+imagen de Windows que no suele decirse más que "una vez seleccionada".&lt;/p&gt;
+&lt;p&gt;Si como yo, decides remover todas las componentes posibles, vas a requerir
+Powershell para instalar por comandos al menos el navegador y de ahí instalar
+otros programas, o tener los instaladores listos en una USB. Mi sugerencia, es
+aprovechar el gestor de paquetes &lt;em&gt;scoop&lt;/em&gt; &lt;a class="citation-reference" href="https://www.cosmoscalibur.com/blog/crear-version-de-windows-minima-con-msmg-toolkit/#scoop" id="id4"&gt;[scoop]&lt;/a&gt; que puede
+instalarse con Powershell siguiendo los pasos del sitio web, y agregar el
+repositorio de &lt;code&gt;extras&lt;/code&gt; para instalar paquetes como &lt;em&gt;Firefox&lt;/em&gt;,
+&lt;em&gt;Imageglass&lt;/em&gt; y &lt;em&gt;LibreOffice&lt;/em&gt; (más adelante haré una publicación al respecto).&lt;/p&gt;
+&lt;p&gt;Finalmente, es bueno un menú como &lt;em&gt;Open Shell&lt;/em&gt; &lt;a class="citation-reference" href="https://www.cosmoscalibur.com/blog/crear-version-de-windows-minima-con-msmg-toolkit/#shell" id="id5"&gt;[shell]&lt;/a&gt; dado que perdimos las
+opciones de búsqueda de Windows 10 y el menú básico no es muy cómodo.&lt;/p&gt;
+&lt;div class="figure align-center"&gt;
+&lt;a class="reference external image-reference" href="https://www.cosmoscalibur.com/images/crear-version-de-windows-minima-con-msmg-toolkit/windows-minimal-openshell-scoop.png"&gt;&lt;img alt="Windows mínimo en máquina Virtual." src="https://www.cosmoscalibur.com/images/crear-version-de-windows-minima-con-msmg-toolkit/windows-minimal-openshell-scoop.thumbnail.png" style="width: 600px; height: 400px;"&gt;&lt;/a&gt;
+&lt;p class="caption"&gt;Windows mínimo en máquina virtual, haciendo uso de &lt;em&gt;Open Shell&lt;/em&gt; y aplicaciones de &lt;em&gt;scoop&lt;/em&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;Debes tener en cuenta que algunas componentes pueden perderse de forma
+definitiva (instalarlas es hacer reparación de instalación con el instalador
+original o simplemente no hay forma). Y esto tiene un efecto en otros
+posibles programas que ya no podrás instalar (en mi caso no puedo usar distros
+Linux para Windows porque no tengo WSL).&lt;/p&gt;
+&lt;p&gt;Puedo decir que con 4 GB de RAM asignados a la máquina virtual tengo fluido
+Windows cuando la instalación directa en la máquina con 8 GB de RAM hasta se
+tostaba con solo tener abierto &lt;em&gt;Firefox&lt;/em&gt; y &lt;em&gt;Word&lt;/em&gt;.&lt;/p&gt;
+&lt;dl class="citation"&gt;
+&lt;dt class="label" id="win10"&gt;&lt;span class="brackets"&gt;&lt;a class="fn-backref" href="https://www.cosmoscalibur.com/blog/crear-version-de-windows-minima-con-msmg-toolkit/#id1"&gt;win10&lt;/a&gt;&lt;/span&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;&lt;a class="reference external" href="https://www.microsoft.com/en-us/software-download/windows10ISO"&gt;Download Windows 10 Disc Image (ISO File)&lt;/a&gt;.&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class="label" id="mediacreation"&gt;&lt;span class="brackets"&gt;&lt;a class="fn-backref" href="https://www.cosmoscalibur.com/blog/crear-version-de-windows-minima-con-msmg-toolkit/#id2"&gt;mediacreation&lt;/a&gt;&lt;/span&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;&lt;a class="reference external" href="https://go.microsoft.com/fwlink/?LinkId=691209"&gt;Media Creation Tool (direct download)&lt;/a&gt;.&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class="label" id="msmg"&gt;&lt;span class="brackets"&gt;&lt;a class="fn-backref" href="https://www.cosmoscalibur.com/blog/crear-version-de-windows-minima-con-msmg-toolkit/#id3"&gt;msmg&lt;/a&gt;&lt;/span&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;&lt;a class="reference external" href="https://msmgtoolkit.in/download.html"&gt;MSMG Toolkit Downloads&lt;/a&gt;.&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class="label" id="scoop"&gt;&lt;span class="brackets"&gt;&lt;a class="fn-backref" href="https://www.cosmoscalibur.com/blog/crear-version-de-windows-minima-con-msmg-toolkit/#id4"&gt;scoop&lt;/a&gt;&lt;/span&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;&lt;a class="reference external" href="https://scoop.sh/"&gt;Scoop - A command-line installer for Windows&lt;/a&gt;&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class="label" id="shell"&gt;&lt;span class="brackets"&gt;&lt;a class="fn-backref" href="https://www.cosmoscalibur.com/blog/crear-version-de-windows-minima-con-msmg-toolkit/#id5"&gt;shell&lt;/a&gt;&lt;/span&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;&lt;a class="reference external" href="https://github.com/Open-Shell/Open-Shell-Menu/releases"&gt;Open Shell Menu - GitHub&lt;/a&gt;.&lt;/p&gt;
+&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;/div&gt;&lt;/div&gt;</description><category>microsoft windows</category><category>msmg toolkit</category><guid>https://www.cosmoscalibur.com/blog/crear-version-de-windows-minima-con-msmg-toolkit/</guid><pubDate>Fri, 10 Jul 2020 04:31:33 GMT</pubDate></item></channel></rss>

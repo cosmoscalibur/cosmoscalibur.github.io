@@ -3,7 +3,195 @@
 &lt;a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"&gt;
 &lt;img alt="Creative Commons License BY-NC-SA"
 style="border-width:0; margin-bottom:12px;"
-src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"&gt;&lt;/a&gt;</copyright><lastBuildDate>Fri, 03 Jul 2020 02:41:01 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Instalar paquetes snap en Linux Mint 20</title><link>https://www.cosmoscalibur.com/blog/instalar-paquetes-snap-en-linux-mint-20/</link><dc:creator>Edward Villegas-Pulgarin</dc:creator><description>&lt;div&gt;&lt;p&gt;¿Ya tienes Linux Mint 20 y deseas
+src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"&gt;&lt;/a&gt;</copyright><lastBuildDate>Fri, 10 Jul 2020 04:35:59 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Crear versión de Windows mínima con MSMG Toolkit</title><link>https://www.cosmoscalibur.com/blog/crear-version-de-windows-minima-con-msmg-toolkit/</link><dc:creator>Edward Villegas-Pulgarin</dc:creator><description>&lt;div&gt;&lt;p&gt;Reciente eliminé la partición de Windows de mi máquina por un problema en el
+qué probé crear la tabla de partición de nuevo, pero me dio pereza instalar en
+ese momento Windows porque mi sistema operativo principal es Linux. Además,
+Windows no funcioba fluidamente en la máquina.&lt;/p&gt;
+&lt;p&gt;Ahora, consideré instalarlo en máquina virtual, lo que limita aún más los
+recursos para Windows y decidí explorar como obtener un Windows que fuera
+básicamente el sistema operativo sin tanta cosa preinstalada (muchas
+asociadas a servicios que se ejecutan en segundo plano afectando el
+rendimiento o que nunca uso).&lt;/p&gt;
+&lt;!-- TEASER_END --&gt;
+&lt;div class="section" id="requisitos-para-crear-la-version-minima"&gt;
+&lt;h2&gt;Requisitos para crear la versión mínima&lt;/h2&gt;
+&lt;p&gt;Además de nuestro equipo con Windows para poder ejecutar el software que nos
+asistirá en el proceso, necesitamos dicho software y una imagen de Windows para
+modificar.&lt;/p&gt;
+&lt;div class="section" id="obtener-imagen-de-windows"&gt;
+&lt;h3&gt;Obtener imagen de Windows&lt;/h3&gt;
+&lt;p&gt;Este es nuestro punto base, así que lo explicaremos primero. La forma de
+obtener una imagen de Windows es a través de la página oficial &lt;a class="citation-reference" href="https://www.cosmoscalibur.com/blog/crear-version-de-windows-minima-con-msmg-toolkit/#win10" id="id1"&gt;[win10]&lt;/a&gt;
+(descarga gratuita pero no licenciada) seleccionando la edición, lenguaje y
+arquitectura (si es un equipo reciente, estamos seguros que es 64 bits).&lt;/p&gt;
+&lt;p&gt;Una segunda opción, es a través de Media Creation Tool &lt;a class="citation-reference" href="https://www.cosmoscalibur.com/blog/crear-version-de-windows-minima-con-msmg-toolkit/#mediacreation" id="id2"&gt;[mediacreation]&lt;/a&gt;, una
+utilidad de Microsoft para la descarga de la imagen de Windows. En esta
+seleccionanos la misma información anterior.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="descargar-msmg-toolkit"&gt;
+&lt;h3&gt;Descargar MSMG Toolkit&lt;/h3&gt;
+&lt;p&gt;Ahora sigue la herramienta, &lt;em&gt;MSMG Toolkit&lt;/em&gt; &lt;a class="citation-reference" href="https://www.cosmoscalibur.com/blog/crear-version-de-windows-minima-con-msmg-toolkit/#msmg" id="id3"&gt;[msmg]&lt;/a&gt;. Es una herramienta gratuita
+para la personalización del instalador de Windows, lo cual se traduce en la
+opción de reducir el impacto de los componentes preinstalados tanto en espacio
+como en rendimiento, pero también hacer uno que otro ajuste estético.&lt;/p&gt;
+&lt;p&gt;En la página descargamos la herramienta &lt;code&gt;MSMG Toolkit v10.1&lt;/code&gt;, y
+descargamos &lt;em&gt;MSMG Toolkit Packs&lt;/em&gt; solo en caso de querer reinstalar algunas
+componentes (es raro, pero la estrategia puede ser más rápida eliminando
+colecciones y luego agregar una que otra componente, pero esto no lo
+discutiré).&lt;/p&gt;
+&lt;div class="figure align-center"&gt;
+&lt;a class="reference external image-reference" href="https://www.cosmoscalibur.com/images/crear-version-de-windows-minima-con-msmg-toolkit/descargar-msmg-toolkit.png"&gt;&lt;img alt="Indicación del archivo a descargar de MSMG en Mega." src="https://www.cosmoscalibur.com/images/crear-version-de-windows-minima-con-msmg-toolkit/descargar-msmg-toolkit.thumbnail.png" style="width: 800px; height: 400px;"&gt;&lt;/a&gt;
+&lt;p class="caption"&gt;Indicación del archivo a descargar de MSMG en Mega.&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;Ahora descomprimimos el archivo.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="ejecutar-msmg-toolkit"&gt;
+&lt;h2&gt;Ejecutar MSMG Toolkit&lt;/h2&gt;
+&lt;p&gt;El foco de esta publucación se encuentra en eliminar componentes, pues es justo
+lo que impacta espacio de almacenamiento y rendimiento. La opción de
+integración depende de los &lt;em&gt;packs&lt;/em&gt; y consta de ubicar los instaladores en las
+carpetas respectivas pero hacer el seguimiento de algunas dependencias para
+ubicar los requeridos no me parece cómodo y prefiero sacrificarlos.&lt;/p&gt;
+&lt;div class="section" id="inicializar-imagen"&gt;
+&lt;h3&gt;Inicializar imagen&lt;/h3&gt;
+&lt;p&gt;La imagen de Windows que obtuvimos la ubicamos en la carpeta ISO de la carpeta
+generada al descomprimir la descarga de &lt;em&gt;MSMG Toolkit&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;También en la carpeta de &lt;em&gt;MSMG Toolkit&lt;/em&gt;, encontraremos un archivo &lt;em&gt;batch&lt;/em&gt;
+llamado &lt;code&gt;start&lt;/code&gt;. Daremos doble clic y aceptamos la licencia de uso
+ingresando &lt;code&gt;A&lt;/code&gt; y luego presionamos &lt;code&gt;↩&lt;/code&gt;.&lt;/p&gt;
+&lt;div class="admonition note"&gt;
+&lt;p class="admonition-title"&gt;Nota&lt;/p&gt;
+&lt;p&gt;Respecto a los ingresos de información, de ahora en adelante voy a referir
+al nombre de la opción y, debe entenderse como el número o letra que figura
+a su izquierda (al interior de los corchetes) en el menú y presionar
+&lt;code&gt;↩&lt;/code&gt; (enter).&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;En el menú, seleccionamos &lt;code&gt;Source&lt;/code&gt; y ahora
+&lt;code&gt;Extract Source from DVD ISO Image&lt;/code&gt;. A continuación ingresamos el nombre
+del archivo &lt;em&gt;ISO&lt;/em&gt; sin extensión (ejemplo, si es &lt;code&gt;Windows.iso&lt;/code&gt; debemos
+ingresar &lt;code&gt;Windows&lt;/code&gt;. Esta opción extrae los archivos del ISO de la imagen
+y los ubica en la carpeta DVD.&lt;/p&gt;
+&lt;p&gt;En este momento debemos convertir el formato de imagen extraída de &lt;em&gt;ESD&lt;/em&gt; a
+&lt;em&gt;WIM&lt;/em&gt;. Vamos a &lt;code&gt;Convert&lt;/code&gt; con la opción &lt;code&gt;Convert Install ESD Image
+to WIM Image&lt;/code&gt;. Aquí debemos indicar el índice de nuestra versión de Windows,
+que en mi caso corresponde a &lt;code&gt;Windows 10 Home Single Language&lt;/code&gt;.&lt;/p&gt;
+&lt;div class="figure align-center"&gt;
+&lt;a class="reference external image-reference" href="https://www.cosmoscalibur.com/images/crear-version-de-windows-minima-con-msmg-toolkit/convert-windows-esd-wim.png"&gt;&lt;img alt="Menú de convertir imagen ESD a WIM." src="https://www.cosmoscalibur.com/images/crear-version-de-windows-minima-con-msmg-toolkit/convert-windows-esd-wim.thumbnail.png" style="width: 400px; height: 600px;"&gt;&lt;/a&gt;
+&lt;p class="caption"&gt;Menú de conversión de imagen ESD a WIM con selección de la versión de Windows deseada.&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;Ahora volvemos a &lt;code&gt;Source&lt;/code&gt; y la opción &lt;code&gt;Select Source
+from &amp;lt;DVD&amp;gt; folder&lt;/code&gt;. Aquí indicamos el único índice que tendremos disponible y
+queda a decisión de cada quien las siguientes preguntas (no observé
+diferencia).&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="eliminar-componentes"&gt;
+&lt;h3&gt;Eliminar componentes&lt;/h3&gt;
+&lt;p&gt;Este es el paso importante del procedimiento y el más demorado. La forma más
+rápida de proceder es eliminar por conjuntos de componentes y no a nivel de
+detalle.&lt;/p&gt;
+&lt;p&gt;Para remover estas componentes vamos a &lt;code&gt;Remove&lt;/code&gt; y luego &lt;code&gt;Remove
+Windows Components&lt;/code&gt;. Ahora tenemos un menú asociado a los distintos conjuntos
+de componentes que podemos remover. Estos pueden ser removidos como conjunto
+o removemos componentes individuales (una a una, lo cual lo hace un
+procedimiento largo, aburridor y de mucha atención).&lt;/p&gt;
+&lt;p&gt;En mi caso he optado por remover todos los conjuntos de componentes ingresando
+a cada opción de conjunto y allí indicando &lt;code&gt;All XXX Components&lt;/code&gt; (donde
+&lt;code&gt;XXX&lt;/code&gt; es el nombre del conjunto de componentes) y luego aceptando que se
+remueven todas las componentes (&lt;code&gt;Removing All XXX Components Continue
+...&lt;/code&gt; y marcamos &lt;code&gt;Y&lt;/code&gt;).&lt;/p&gt;
+&lt;p&gt;Pero algo de detalle al respecto.&lt;/p&gt;
+&lt;dl class="simple"&gt;
+&lt;dt&gt;&lt;strong&gt;Windows Apps&lt;/strong&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;Perdemos &lt;em&gt;Windows Store&lt;/em&gt; y la calculadora. Otros extrañarán &lt;em&gt;Cortana&lt;/em&gt; y
+algunas componentes de &lt;em&gt;Xbox&lt;/em&gt;.&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt&gt;&lt;strong&gt;System Apps&lt;/strong&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;Perderemos &lt;em&gt;Edge&lt;/em&gt; y &lt;em&gt;OneDrive&lt;/em&gt; entre otras aplicaciones. Recomendaría que
+conserven esta categoría para poder usar &lt;em&gt;Edge&lt;/em&gt; como navegador web
+provisional.&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt&gt;&lt;strong&gt;System&lt;/strong&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;Perdemos &lt;em&gt;Paint&lt;/em&gt;, &lt;em&gt;Wordpad&lt;/em&gt; y la que más me duele, &lt;em&gt;Windows Subsystem For
+Linux&lt;/em&gt;. Por este motivo, generé una versión en la cual removía todos los
+conjuntos menos este.&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt&gt;&lt;strong&gt;Remoting&lt;/strong&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;Realmente no extraño los elementos de este punto y creo que para la mayor
+parte de usuarios no son necesarios (&lt;em&gt;Home group&lt;/em&gt;, &lt;em&gt;MultiPoint connector&lt;/em&gt; y
+&lt;em&gt;Remote Assistence&lt;/em&gt;).&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt&gt;&lt;strong&gt;Privacy&lt;/strong&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;Perdemos opciones como el uso del PIN para el ingreso de sesión o por
+reconocimiento facial.&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt&gt;&lt;strong&gt;Multimedia&lt;/strong&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;Perdemos &lt;em&gt;Windows Media Player&lt;/em&gt; y &lt;em&gt;Windows Photo Viewer&lt;/em&gt;.&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt&gt;&lt;strong&gt;Internet&lt;/strong&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;Perdemos &lt;em&gt;Internet Explorer&lt;/em&gt; y &lt;em&gt;Adobe flash&lt;/em&gt;.&lt;/p&gt;
+&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;p&gt;Puedes hacerlo de esta forma, o componente a componente, pero advertencia,
+algunas implican estar pendientes de dependencias de otros conjuntos.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="generar-imagen-de-windows-minima"&gt;
+&lt;h3&gt;Generar imagen de Windows mínima&lt;/h3&gt;
+&lt;p&gt;Terminado el proceso de eliminar las componentes no deseadas, accedemos a
+&lt;code&gt;Apply&lt;/code&gt; y luego a &lt;code&gt;Apply &amp;amp; Save Changes to Source Images&lt;/code&gt;.
+Terminada la aplicación de cambios procedemos a &lt;code&gt;Target&lt;/code&gt; y la opción
+&lt;code&gt;Make a DVD ISO Image&lt;/code&gt; (pero también puedes aprovechar a crear la USB
+para arranque &lt;code&gt;Copy Source to USB Flash Drive&lt;/code&gt;). Asignamos el nombre a
+nuestra imagen y procedemos. En el caso de la USB se selecciona la unidad de la
+USB.&lt;/p&gt;
+&lt;p&gt;Con nuestra imagen lista, ahora puedes quemarla o usarla para una máquina
+virtual (carga directamente &lt;em&gt;ISO&lt;/em&gt;).&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="consideraciones-finales"&gt;
+&lt;h2&gt;Consideraciones finales&lt;/h2&gt;
+&lt;p&gt;A diferencia de distintos sitios que "explican" el uso de MSMG, en este caso he
+detallado adecuadamente las opciones, y en especial parte de selección de la
+imagen de Windows que no suele decirse más que "una vez seleccionada".&lt;/p&gt;
+&lt;p&gt;Si como yo, decides remover todas las componentes posibles, vas a requerir
+Powershell para instalar por comandos al menos el navegador y de ahí instalar
+otros programas, o tener los instaladores listos en una USB. Mi sugerencia, es
+aprovechar el gestor de paquetes &lt;em&gt;scoop&lt;/em&gt; &lt;a class="citation-reference" href="https://www.cosmoscalibur.com/blog/crear-version-de-windows-minima-con-msmg-toolkit/#scoop" id="id4"&gt;[scoop]&lt;/a&gt; que puede
+instalarse con Powershell siguiendo los pasos del sitio web, y agregar el
+repositorio de &lt;code&gt;extras&lt;/code&gt; para instalar paquetes como &lt;em&gt;Firefox&lt;/em&gt;,
+&lt;em&gt;Imageglass&lt;/em&gt; y &lt;em&gt;LibreOffice&lt;/em&gt; (más adelante haré una publicación al respecto).&lt;/p&gt;
+&lt;p&gt;Finalmente, es bueno un menú como &lt;em&gt;Open Shell&lt;/em&gt; &lt;a class="citation-reference" href="https://www.cosmoscalibur.com/blog/crear-version-de-windows-minima-con-msmg-toolkit/#shell" id="id5"&gt;[shell]&lt;/a&gt; dado que perdimos las
+opciones de búsqueda de Windows 10 y el menú básico no es muy cómodo.&lt;/p&gt;
+&lt;div class="figure align-center"&gt;
+&lt;a class="reference external image-reference" href="https://www.cosmoscalibur.com/images/crear-version-de-windows-minima-con-msmg-toolkit/windows-minimal-openshell-scoop.png"&gt;&lt;img alt="Windows mínimo en máquina Virtual." src="https://www.cosmoscalibur.com/images/crear-version-de-windows-minima-con-msmg-toolkit/windows-minimal-openshell-scoop.thumbnail.png" style="width: 600px; height: 400px;"&gt;&lt;/a&gt;
+&lt;p class="caption"&gt;Windows mínimo en máquina virtual, haciendo uso de &lt;em&gt;Open Shell&lt;/em&gt; y aplicaciones de &lt;em&gt;scoop&lt;/em&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;Debes tener en cuenta que algunas componentes pueden perderse de forma
+definitiva (instalarlas es hacer reparación de instalación con el instalador
+original o simplemente no hay forma). Y esto tiene un efecto en otros
+posibles programas que ya no podrás instalar (en mi caso no puedo usar distros
+Linux para Windows porque no tengo WSL).&lt;/p&gt;
+&lt;p&gt;Puedo decir que con 4 GB de RAM asignados a la máquina virtual tengo fluido
+Windows cuando la instalación directa en la máquina con 8 GB de RAM hasta se
+tostaba con solo tener abierto &lt;em&gt;Firefox&lt;/em&gt; y &lt;em&gt;Word&lt;/em&gt;.&lt;/p&gt;
+&lt;dl class="citation"&gt;
+&lt;dt class="label" id="win10"&gt;&lt;span class="brackets"&gt;&lt;a class="fn-backref" href="https://www.cosmoscalibur.com/blog/crear-version-de-windows-minima-con-msmg-toolkit/#id1"&gt;win10&lt;/a&gt;&lt;/span&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;&lt;a class="reference external" href="https://www.microsoft.com/en-us/software-download/windows10ISO"&gt;Download Windows 10 Disc Image (ISO File)&lt;/a&gt;.&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class="label" id="mediacreation"&gt;&lt;span class="brackets"&gt;&lt;a class="fn-backref" href="https://www.cosmoscalibur.com/blog/crear-version-de-windows-minima-con-msmg-toolkit/#id2"&gt;mediacreation&lt;/a&gt;&lt;/span&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;&lt;a class="reference external" href="https://go.microsoft.com/fwlink/?LinkId=691209"&gt;Media Creation Tool (direct download)&lt;/a&gt;.&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class="label" id="msmg"&gt;&lt;span class="brackets"&gt;&lt;a class="fn-backref" href="https://www.cosmoscalibur.com/blog/crear-version-de-windows-minima-con-msmg-toolkit/#id3"&gt;msmg&lt;/a&gt;&lt;/span&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;&lt;a class="reference external" href="https://msmgtoolkit.in/download.html"&gt;MSMG Toolkit Downloads&lt;/a&gt;.&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class="label" id="scoop"&gt;&lt;span class="brackets"&gt;&lt;a class="fn-backref" href="https://www.cosmoscalibur.com/blog/crear-version-de-windows-minima-con-msmg-toolkit/#id4"&gt;scoop&lt;/a&gt;&lt;/span&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;&lt;a class="reference external" href="https://scoop.sh/"&gt;Scoop - A command-line installer for Windows&lt;/a&gt;&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class="label" id="shell"&gt;&lt;span class="brackets"&gt;&lt;a class="fn-backref" href="https://www.cosmoscalibur.com/blog/crear-version-de-windows-minima-con-msmg-toolkit/#id5"&gt;shell&lt;/a&gt;&lt;/span&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;&lt;a class="reference external" href="https://github.com/Open-Shell/Open-Shell-Menu/releases"&gt;Open Shell Menu - GitHub&lt;/a&gt;.&lt;/p&gt;
+&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;/div&gt;&lt;/div&gt;</description><category>microsoft windows</category><category>msmg toolkit</category><guid>https://www.cosmoscalibur.com/blog/crear-version-de-windows-minima-con-msmg-toolkit/</guid><pubDate>Fri, 10 Jul 2020 04:31:33 GMT</pubDate></item><item><title>Instalar paquetes snap en Linux Mint 20</title><link>https://www.cosmoscalibur.com/blog/instalar-paquetes-snap-en-linux-mint-20/</link><dc:creator>Edward Villegas-Pulgarin</dc:creator><description>&lt;div&gt;&lt;p&gt;¿Ya tienes Linux Mint 20 y deseas
 &lt;a class="reference external" href="https://www.cosmoscalibur.com/blog/instalando-paquetes-en-linux-mint/#snap"&gt;instalar paquetes Snap&lt;/a&gt;? Mint ha
 decidido deshabilitar la instalación de Snap por defecto y es necesario cambiar
 la configuración de apt para poderlo hacer.&lt;/p&gt;
@@ -53,9 +241,9 @@ archivo: &lt;code&gt;/etc/apt/preferences.d/nosnap.pref&lt;/code&gt;. En mi caso
 de mantenerlo, así que procedo a eliminarlo y posteriormente a instalar el
 gestor de snaps. Si te sientes más cómodo, puedes comentar las líneas y una vez
 instalado el gestor volver a descomentarlas &lt;a class="citation-reference" href="https://www.cosmoscalibur.com/blog/instalar-paquetes-snap-en-linux-mint-20/#snap-install" id="id2"&gt;[snap-install]&lt;/a&gt;.&lt;/p&gt;
-&lt;pre class="code bash"&gt;&lt;a name="rest_code_6d08446c739f4cdebdb43ded9b7f148a-1"&gt;&lt;/a&gt;sudo rm /etc/apt/preferences.d/nosnap.pref
-&lt;a name="rest_code_6d08446c739f4cdebdb43ded9b7f148a-2"&gt;&lt;/a&gt;sudo apt install -y snapd
-&lt;a name="rest_code_6d08446c739f4cdebdb43ded9b7f148a-3"&gt;&lt;/a&gt;snap &lt;span class="nb"&gt;help&lt;/span&gt;
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_18099be7c6314ff9b5faa5b31d76607d-1"&gt;&lt;/a&gt;sudo rm /etc/apt/preferences.d/nosnap.pref
+&lt;a name="rest_code_18099be7c6314ff9b5faa5b31d76607d-2"&gt;&lt;/a&gt;sudo apt install -y snapd
+&lt;a name="rest_code_18099be7c6314ff9b5faa5b31d76607d-3"&gt;&lt;/a&gt;snap &lt;span class="nb"&gt;help&lt;/span&gt;
 &lt;/pre&gt;&lt;p&gt;Ahora puedes instalar tus paquetes snap en la forma como lo expliqué en un
 &lt;a class="reference external" href="https://www.cosmoscalibur.com/blog/instalando-paquetes-en-linux-mint/#snap"&gt;artículo anterior&lt;/a&gt;.&lt;/p&gt;
 &lt;/div&gt;
@@ -115,9 +303,9 @@ si es Anaconda o Miniconda).&lt;/p&gt;
 preguntas interactivas y así despreocuparnos durante la instalación. Invocamos
 el instalador con Bash de la siguiente forma (asegurate de usar la ruta
 completa y correcta del instalador &lt;code&gt;sh&lt;/code&gt; que usarás).&lt;/p&gt;
-&lt;pre class="code bash"&gt;&lt;a name="rest_code_95ba86afb7544311a08de7e230505341-1"&gt;&lt;/a&gt;bash Anaconda3-2020.02-Linux-x86_64.sh -b -p &lt;span class="nv"&gt;$HOME&lt;/span&gt;/anaconda
-&lt;a name="rest_code_95ba86afb7544311a08de7e230505341-2"&gt;&lt;/a&gt;&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;". &lt;/span&gt;&lt;span class="nv"&gt;$HOME&lt;/span&gt;&lt;span class="s2"&gt;/anaconda/etc/profile.d/conda.sh"&lt;/span&gt; &amp;gt;&amp;gt; &lt;span class="nv"&gt;$HOME&lt;/span&gt;/.bashrc
-&lt;a name="rest_code_95ba86afb7544311a08de7e230505341-3"&gt;&lt;/a&gt;&lt;span class="nb"&gt;source&lt;/span&gt; &lt;span class="nv"&gt;$HOME&lt;/span&gt;/.bashrc
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_1bc9a7aae2bf4f469a331478ba579c53-1"&gt;&lt;/a&gt;bash Anaconda3-2020.02-Linux-x86_64.sh -b -p &lt;span class="nv"&gt;$HOME&lt;/span&gt;/anaconda
+&lt;a name="rest_code_1bc9a7aae2bf4f469a331478ba579c53-2"&gt;&lt;/a&gt;&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;". &lt;/span&gt;&lt;span class="nv"&gt;$HOME&lt;/span&gt;&lt;span class="s2"&gt;/anaconda/etc/profile.d/conda.sh"&lt;/span&gt; &amp;gt;&amp;gt; &lt;span class="nv"&gt;$HOME&lt;/span&gt;/.bashrc
+&lt;a name="rest_code_1bc9a7aae2bf4f469a331478ba579c53-3"&gt;&lt;/a&gt;&lt;span class="nb"&gt;source&lt;/span&gt; &lt;span class="nv"&gt;$HOME&lt;/span&gt;/.bashrc
 &lt;/pre&gt;&lt;p&gt;En la invocación de Bash, el argumento &lt;code&gt;-b&lt;/code&gt; implica la aceptación de
 licencias y con &lt;code&gt;-p&lt;/code&gt; indicamos la ruta para la instalación de Anaconda
 (puedes cambiarla a tu deseo).&lt;/p&gt;
@@ -133,7 +321,7 @@ agregar en el &lt;code&gt;.bashrc&lt;/code&gt; la línea &lt;code&gt;conda activ
 error, por lo cual, si al ejecutarlo ves el mensaje
 &lt;code&gt;UnboundLocalError: local variable 'DISTRO_NAME' referenced before assignment&lt;/code&gt;
 bastará con actualizar el paquete &lt;a class="citation-reference" href="https://www.cosmoscalibur.com/blog/instalar-python-anaconda/#navigator" id="id2"&gt;[navigator]&lt;/a&gt;.&lt;/p&gt;
-&lt;pre class="code bash"&gt;&lt;a name="rest_code_e84080f1db8049609ada1f38d11746db-1"&gt;&lt;/a&gt;conda update anaconda-navigator
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_e95ba5c32433445fa3ee8d9e8257c12a-1"&gt;&lt;/a&gt;conda update anaconda-navigator
 &lt;/pre&gt;&lt;/div&gt;
 &lt;div class="section" id="instalacion-grafica"&gt;
 &lt;h2&gt;Instalación gráfica&lt;/h2&gt;
@@ -239,9 +427,10 @@ Matarife en Youtube.&lt;/p&gt;
 &lt;/div&gt;
 &lt;p&gt;Es necesario resaltar que Rave requiere crear cuenta pero solo requieres pagar
 para eliminar publicidad. Todas las personas que participan deben tener también
-cuenta en Rave. Aparentemente no es necesario que todos tengan suscripción de
-Netflix (tal vez tienen convenio pero igual requiere gastar créditos "K", y
-esto podría explicarlo).&lt;/p&gt;
+cuenta en Rave y para usar Netflix cada usuario debera ingresar sus datos de
+cuenta en el navegador incorporado en Rave. Hay algo llamado créditos "K" y
+corresponden a monedas que te permiten crear o ingresar a salas Rave (en otras
+palabras, usar la aplicación con contenido).&lt;/p&gt;
 &lt;/div&gt;&lt;/div&gt;</description><category>compartir netflix</category><category>sincronizar netflix</category><category>sincronizar transmisión</category><category>sincronizar video</category><guid>https://www.cosmoscalibur.com/blog/ver-netflix-juntos-pero-separados/</guid><pubDate>Sun, 21 Jun 2020 21:47:01 GMT</pubDate></item><item><title>Determinar intersecciones en el diagrama de Venn con R</title><link>https://www.cosmoscalibur.com/blog/determinar-intersecciones-en-el-diagrama-de-venn-con-r/</link><dc:creator>Edward Villegas-Pulgarin</dc:creator><description>&lt;div&gt;&lt;p&gt;Esta entrada es mi primera entrada asociada al lenguaje R y sobre mi primer paquete en R: &lt;a href="https://github.com/cosmoscalibur/venn.compute"&gt;&lt;code&gt;venn.compute&lt;/code&gt;&lt;/a&gt;. Este paquete surge por un caso de uso particular que estaba ayudando a automatizar de determinar los elementos (no solo el dibujo ni la cantidad) de las intersecciones y específicos de un diagrama de Venn, útil en bioinformática para comparación de genes.  &lt;/p&gt;
 &lt;!-- TEASER_END --&gt;
 
@@ -823,8 +1012,8 @@ medidas como:&lt;/p&gt;
 &lt;p&gt;Estas medidas como se ha discutido en el curso no eliminan los riesgos, pero la
 toma de diversas medidas permite la reducción del riesgo.&lt;/p&gt;
 
-&lt;!-- Begin post-list post_list_1e418134eeef40a3813db1b30763fc75 --&gt;
-&lt;div id="post_list_1e418134eeef40a3813db1b30763fc75" class="post-list"&gt;
+&lt;!-- Begin post-list post_list_641bd4699cc24db58187b986429c0831 --&gt;
+&lt;div id="post_list_641bd4699cc24db58187b986429c0831" class="post-list"&gt;
     &lt;ul class="post-list"&gt;
             &lt;li class="post-list-item"&gt;
             2020-04-09 15:19
@@ -853,7 +1042,7 @@ toma de diversas medidas permite la reducción del riesgo.&lt;/p&gt;
             &lt;/li&gt;
     &lt;/ul&gt;
 &lt;/div&gt;
-&lt;!-- End post-list post_list_1e418134eeef40a3813db1b30763fc75 --&gt;
+&lt;!-- End post-list post_list_641bd4699cc24db58187b986429c0831 --&gt;
 
 &lt;p&gt;9 Tips For Keeping Your Customer Data Secure &lt;a class="reference external" href="https://www.decibelinsight.com/blog/9-privacy-tips-for-secure-customer-data"&gt;https://www.decibelinsight.com/blog/9-privacy-tips-for-secure-customer-data&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Azure customer data protection &lt;a class="reference external" href="https://docs.microsoft.com/en-us/azure/security/fundamentals/protection-customer-data"&gt;https://docs.microsoft.com/en-us/azure/security/fundamentals/protection-customer-data&lt;/a&gt;&lt;/p&gt;
@@ -874,8 +1063,8 @@ para crear diagnósticos de situaciones actuales, hacer optimización de
 escenarios y previsión de escenarios futuros, creando así una estrategia que
 asegure ventajas competitivas.&lt;/p&gt;
 
-&lt;!-- Begin post-list post_list_5077e19ff40d48c7a689be5cff470388 --&gt;
-&lt;div id="post_list_5077e19ff40d48c7a689be5cff470388" class="post-list"&gt;
+&lt;!-- Begin post-list post_list_600d1cc8672b465d8c253e9901784439 --&gt;
+&lt;div id="post_list_600d1cc8672b465d8c253e9901784439" class="post-list"&gt;
     &lt;ul class="post-list"&gt;
             &lt;li class="post-list-item"&gt;
             2020-04-09 16:37
@@ -904,55 +1093,7 @@ asegure ventajas competitivas.&lt;/p&gt;
             &lt;/li&gt;
     &lt;/ul&gt;
 &lt;/div&gt;
-&lt;!-- End post-list post_list_5077e19ff40d48c7a689be5cff470388 --&gt;
+&lt;!-- End post-list post_list_600d1cc8672b465d8c253e9901784439 --&gt;
 
 &lt;p&gt;Role of Data Analytics in Internet of Things (IoT) &lt;a class="reference external" href="https://www.fingent.com/blog/role-of-data-analytics-in-internet-of-things-iot"&gt;https://www.fingent.com/blog/role-of-data-analytics-in-internet-of-things-iot&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;4 Emerging Use Cases for IoT Data Analytics &lt;a class="reference external" href="https://www.softwareadvice.com/resources/iot-data-analytics-use-cases/"&gt;https://www.softwareadvice.com/resources/iot-data-analytics-use-cases/&lt;/a&gt;&lt;/p&gt;&lt;/div&gt;</description><category>internet de las cosas</category><category>iot</category><category>transformación digital</category><guid>https://www.cosmoscalibur.com/blog/aplicacion-de-iot-a-la-cadena-de-suministro/</guid><pubDate>Thu, 09 Apr 2020 20:19:21 GMT</pubDate></item><item><title>IoT ¿Merece la pena asumir los riesgos?</title><link>https://www.cosmoscalibur.com/blog/iot-merece-la-pena-asumir-los-riesgos/</link><dc:creator>Edward Villegas-Pulgarin</dc:creator><description>&lt;div&gt;&lt;p&gt;Sigo con algunas publicaciones asociadas a participaciones en foro y ensayos
-que he realizado para el curso de transformación digital que estoy realizando
-por estas semanas. Esta vez, el tema es sobre si amerita asumir los riesgos
-asociados a la implementación de tecnologías &lt;em&gt;IoT&lt;/em&gt; (Internet de las Cosas).&lt;/p&gt;
-&lt;!-- TEASER_END --&gt;
-&lt;p&gt;Se debe tener en cuenta que todo desarrollo siempre implica riesgos, pero estos
-no deben ser barreras para iniciarlos. Es importante afrontarlos de manera
-metodológica, con la respectiva identificación de los riesgos al inicio de los
-proyectos y planear las medidas de administración para estos. Igualmente, se
-debe evaluar respecto a una regla empírica que normalmente nos encontramos, y
-es que a mayor riesgo existe la posibilidad de un mayor retorno.&lt;/p&gt;
-&lt;p&gt;Desde el punto de vista técnico, estos retos asociados a los riesgos pueden
-atenuarse con una adecuada preparación de los protocolos usados, la continua
-actualización de software y la selección de las tecnologías.&lt;/p&gt;
-
-&lt;!-- Begin post-list post_list_069af704e96e4b5b822b9fa8738083e8 --&gt;
-&lt;div id="post_list_069af704e96e4b5b822b9fa8738083e8" class="post-list"&gt;
-    &lt;ul class="post-list"&gt;
-            &lt;li class="post-list-item"&gt;
-            2020-04-09 16:37
-             
-            &lt;a href="https://www.cosmoscalibur.com/blog/filtraciones-de-datos-en-el-siglo-xxi/"&gt;Filtraciones de datos en el siglo XXI&lt;/a&gt;
-            &lt;/li&gt;
-            &lt;li class="post-list-item"&gt;
-            2020-04-09 15:19
-             
-            &lt;a href="https://www.cosmoscalibur.com/blog/aplicacion-de-iot-a-la-cadena-de-suministro/"&gt;Aplicación de IoT a la cadena de suministro&lt;/a&gt;
-            &lt;/li&gt;
-            &lt;li class="post-list-item"&gt;
-            2020-03-14 23:02
-             
-            &lt;a href="https://www.cosmoscalibur.com/blog/seguridad-vs-flexibilidad-del-computo-en-nube/"&gt;Seguridad vs flexibilidad del cómputo en nube&lt;/a&gt;
-            &lt;/li&gt;
-            &lt;li class="post-list-item"&gt;
-            2020-03-01 21:18
-             
-            &lt;a href="https://www.cosmoscalibur.com/blog/sectores-que-se-ven-afectados-por-blockchain-sector-inmobiliario/"&gt;Sectores que se ven afectados por blockchain: sector inmobiliario&lt;/a&gt;
-            &lt;/li&gt;
-            &lt;li class="post-list-item"&gt;
-            2020-03-01 20:13
-             
-            &lt;a href="https://www.cosmoscalibur.com/blog/estamos-preparados-para-un-nuevo-tipo-de-monedas-completamente-digitales/"&gt;¿Estamos preparados para un nuevo tipo de monedas, completamente digitales?&lt;/a&gt;
-            &lt;/li&gt;
-    &lt;/ul&gt;
-&lt;/div&gt;
-&lt;!-- End post-list post_list_069af704e96e4b5b822b9fa8738083e8 --&gt;
-
-&lt;p&gt;IoT Vulnerabilities &amp;amp; Risk Mitigation. &lt;a class="reference external" href="https://www.iotforall.com/mitigate-iot-security-risks/"&gt;https://www.iotforall.com/mitigate-iot-security-risks/&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;6 Ways to Mitigate Software Implementation Risks &lt;a class="reference external" href="https://www.panorama-consulting.com/6-ways-to-mitigate-software-implementation-risks/"&gt;https://www.panorama-consulting.com/6-ways-to-mitigate-software-implementation-risks/&lt;/a&gt;&lt;/p&gt;&lt;/div&gt;</description><category>internet de las cosas</category><category>iot</category><category>transformación digital</category><guid>https://www.cosmoscalibur.com/blog/iot-merece-la-pena-asumir-los-riesgos/</guid><pubDate>Thu, 09 Apr 2020 19:56:33 GMT</pubDate></item></channel></rss>
+&lt;p&gt;4 Emerging Use Cases for IoT Data Analytics &lt;a class="reference external" href="https://www.softwareadvice.com/resources/iot-data-analytics-use-cases/"&gt;https://www.softwareadvice.com/resources/iot-data-analytics-use-cases/&lt;/a&gt;&lt;/p&gt;&lt;/div&gt;</description><category>internet de las cosas</category><category>iot</category><category>transformación digital</category><guid>https://www.cosmoscalibur.com/blog/aplicacion-de-iot-a-la-cadena-de-suministro/</guid><pubDate>Thu, 09 Apr 2020 20:19:21 GMT</pubDate></item></channel></rss>

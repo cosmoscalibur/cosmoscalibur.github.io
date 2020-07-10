@@ -3,7 +3,195 @@
 &lt;a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"&gt;
 &lt;img alt="Creative Commons License BY-NC-SA"
 style="border-width:0; margin-bottom:12px;"
-src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"&gt;&lt;/a&gt;</copyright><lastBuildDate>Fri, 03 Jul 2020 02:41:02 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Instalar paquetes snap en Linux Mint 20</title><link>https://www.cosmoscalibur.com/blog/instalar-paquetes-snap-en-linux-mint-20/</link><dc:creator>Edward Villegas-Pulgarin</dc:creator><description>&lt;div&gt;&lt;p&gt;¿Ya tienes Linux Mint 20 y deseas
+src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"&gt;&lt;/a&gt;</copyright><lastBuildDate>Fri, 10 Jul 2020 04:35:59 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Crear versión de Windows mínima con MSMG Toolkit</title><link>https://www.cosmoscalibur.com/blog/crear-version-de-windows-minima-con-msmg-toolkit/</link><dc:creator>Edward Villegas-Pulgarin</dc:creator><description>&lt;div&gt;&lt;p&gt;Reciente eliminé la partición de Windows de mi máquina por un problema en el
+qué probé crear la tabla de partición de nuevo, pero me dio pereza instalar en
+ese momento Windows porque mi sistema operativo principal es Linux. Además,
+Windows no funcioba fluidamente en la máquina.&lt;/p&gt;
+&lt;p&gt;Ahora, consideré instalarlo en máquina virtual, lo que limita aún más los
+recursos para Windows y decidí explorar como obtener un Windows que fuera
+básicamente el sistema operativo sin tanta cosa preinstalada (muchas
+asociadas a servicios que se ejecutan en segundo plano afectando el
+rendimiento o que nunca uso).&lt;/p&gt;
+&lt;!-- TEASER_END --&gt;
+&lt;div class="section" id="requisitos-para-crear-la-version-minima"&gt;
+&lt;h2&gt;Requisitos para crear la versión mínima&lt;/h2&gt;
+&lt;p&gt;Además de nuestro equipo con Windows para poder ejecutar el software que nos
+asistirá en el proceso, necesitamos dicho software y una imagen de Windows para
+modificar.&lt;/p&gt;
+&lt;div class="section" id="obtener-imagen-de-windows"&gt;
+&lt;h3&gt;Obtener imagen de Windows&lt;/h3&gt;
+&lt;p&gt;Este es nuestro punto base, así que lo explicaremos primero. La forma de
+obtener una imagen de Windows es a través de la página oficial &lt;a class="citation-reference" href="https://www.cosmoscalibur.com/blog/crear-version-de-windows-minima-con-msmg-toolkit/#win10" id="id1"&gt;[win10]&lt;/a&gt;
+(descarga gratuita pero no licenciada) seleccionando la edición, lenguaje y
+arquitectura (si es un equipo reciente, estamos seguros que es 64 bits).&lt;/p&gt;
+&lt;p&gt;Una segunda opción, es a través de Media Creation Tool &lt;a class="citation-reference" href="https://www.cosmoscalibur.com/blog/crear-version-de-windows-minima-con-msmg-toolkit/#mediacreation" id="id2"&gt;[mediacreation]&lt;/a&gt;, una
+utilidad de Microsoft para la descarga de la imagen de Windows. En esta
+seleccionanos la misma información anterior.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="descargar-msmg-toolkit"&gt;
+&lt;h3&gt;Descargar MSMG Toolkit&lt;/h3&gt;
+&lt;p&gt;Ahora sigue la herramienta, &lt;em&gt;MSMG Toolkit&lt;/em&gt; &lt;a class="citation-reference" href="https://www.cosmoscalibur.com/blog/crear-version-de-windows-minima-con-msmg-toolkit/#msmg" id="id3"&gt;[msmg]&lt;/a&gt;. Es una herramienta gratuita
+para la personalización del instalador de Windows, lo cual se traduce en la
+opción de reducir el impacto de los componentes preinstalados tanto en espacio
+como en rendimiento, pero también hacer uno que otro ajuste estético.&lt;/p&gt;
+&lt;p&gt;En la página descargamos la herramienta &lt;code&gt;MSMG Toolkit v10.1&lt;/code&gt;, y
+descargamos &lt;em&gt;MSMG Toolkit Packs&lt;/em&gt; solo en caso de querer reinstalar algunas
+componentes (es raro, pero la estrategia puede ser más rápida eliminando
+colecciones y luego agregar una que otra componente, pero esto no lo
+discutiré).&lt;/p&gt;
+&lt;div class="figure align-center"&gt;
+&lt;a class="reference external image-reference" href="https://www.cosmoscalibur.com/images/crear-version-de-windows-minima-con-msmg-toolkit/descargar-msmg-toolkit.png"&gt;&lt;img alt="Indicación del archivo a descargar de MSMG en Mega." src="https://www.cosmoscalibur.com/images/crear-version-de-windows-minima-con-msmg-toolkit/descargar-msmg-toolkit.thumbnail.png" style="width: 800px; height: 400px;"&gt;&lt;/a&gt;
+&lt;p class="caption"&gt;Indicación del archivo a descargar de MSMG en Mega.&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;Ahora descomprimimos el archivo.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="ejecutar-msmg-toolkit"&gt;
+&lt;h2&gt;Ejecutar MSMG Toolkit&lt;/h2&gt;
+&lt;p&gt;El foco de esta publucación se encuentra en eliminar componentes, pues es justo
+lo que impacta espacio de almacenamiento y rendimiento. La opción de
+integración depende de los &lt;em&gt;packs&lt;/em&gt; y consta de ubicar los instaladores en las
+carpetas respectivas pero hacer el seguimiento de algunas dependencias para
+ubicar los requeridos no me parece cómodo y prefiero sacrificarlos.&lt;/p&gt;
+&lt;div class="section" id="inicializar-imagen"&gt;
+&lt;h3&gt;Inicializar imagen&lt;/h3&gt;
+&lt;p&gt;La imagen de Windows que obtuvimos la ubicamos en la carpeta ISO de la carpeta
+generada al descomprimir la descarga de &lt;em&gt;MSMG Toolkit&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;También en la carpeta de &lt;em&gt;MSMG Toolkit&lt;/em&gt;, encontraremos un archivo &lt;em&gt;batch&lt;/em&gt;
+llamado &lt;code&gt;start&lt;/code&gt;. Daremos doble clic y aceptamos la licencia de uso
+ingresando &lt;code&gt;A&lt;/code&gt; y luego presionamos &lt;code&gt;↩&lt;/code&gt;.&lt;/p&gt;
+&lt;div class="admonition note"&gt;
+&lt;p class="admonition-title"&gt;Nota&lt;/p&gt;
+&lt;p&gt;Respecto a los ingresos de información, de ahora en adelante voy a referir
+al nombre de la opción y, debe entenderse como el número o letra que figura
+a su izquierda (al interior de los corchetes) en el menú y presionar
+&lt;code&gt;↩&lt;/code&gt; (enter).&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;En el menú, seleccionamos &lt;code&gt;Source&lt;/code&gt; y ahora
+&lt;code&gt;Extract Source from DVD ISO Image&lt;/code&gt;. A continuación ingresamos el nombre
+del archivo &lt;em&gt;ISO&lt;/em&gt; sin extensión (ejemplo, si es &lt;code&gt;Windows.iso&lt;/code&gt; debemos
+ingresar &lt;code&gt;Windows&lt;/code&gt;. Esta opción extrae los archivos del ISO de la imagen
+y los ubica en la carpeta DVD.&lt;/p&gt;
+&lt;p&gt;En este momento debemos convertir el formato de imagen extraída de &lt;em&gt;ESD&lt;/em&gt; a
+&lt;em&gt;WIM&lt;/em&gt;. Vamos a &lt;code&gt;Convert&lt;/code&gt; con la opción &lt;code&gt;Convert Install ESD Image
+to WIM Image&lt;/code&gt;. Aquí debemos indicar el índice de nuestra versión de Windows,
+que en mi caso corresponde a &lt;code&gt;Windows 10 Home Single Language&lt;/code&gt;.&lt;/p&gt;
+&lt;div class="figure align-center"&gt;
+&lt;a class="reference external image-reference" href="https://www.cosmoscalibur.com/images/crear-version-de-windows-minima-con-msmg-toolkit/convert-windows-esd-wim.png"&gt;&lt;img alt="Menú de convertir imagen ESD a WIM." src="https://www.cosmoscalibur.com/images/crear-version-de-windows-minima-con-msmg-toolkit/convert-windows-esd-wim.thumbnail.png" style="width: 400px; height: 600px;"&gt;&lt;/a&gt;
+&lt;p class="caption"&gt;Menú de conversión de imagen ESD a WIM con selección de la versión de Windows deseada.&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;Ahora volvemos a &lt;code&gt;Source&lt;/code&gt; y la opción &lt;code&gt;Select Source
+from &amp;lt;DVD&amp;gt; folder&lt;/code&gt;. Aquí indicamos el único índice que tendremos disponible y
+queda a decisión de cada quien las siguientes preguntas (no observé
+diferencia).&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="eliminar-componentes"&gt;
+&lt;h3&gt;Eliminar componentes&lt;/h3&gt;
+&lt;p&gt;Este es el paso importante del procedimiento y el más demorado. La forma más
+rápida de proceder es eliminar por conjuntos de componentes y no a nivel de
+detalle.&lt;/p&gt;
+&lt;p&gt;Para remover estas componentes vamos a &lt;code&gt;Remove&lt;/code&gt; y luego &lt;code&gt;Remove
+Windows Components&lt;/code&gt;. Ahora tenemos un menú asociado a los distintos conjuntos
+de componentes que podemos remover. Estos pueden ser removidos como conjunto
+o removemos componentes individuales (una a una, lo cual lo hace un
+procedimiento largo, aburridor y de mucha atención).&lt;/p&gt;
+&lt;p&gt;En mi caso he optado por remover todos los conjuntos de componentes ingresando
+a cada opción de conjunto y allí indicando &lt;code&gt;All XXX Components&lt;/code&gt; (donde
+&lt;code&gt;XXX&lt;/code&gt; es el nombre del conjunto de componentes) y luego aceptando que se
+remueven todas las componentes (&lt;code&gt;Removing All XXX Components Continue
+...&lt;/code&gt; y marcamos &lt;code&gt;Y&lt;/code&gt;).&lt;/p&gt;
+&lt;p&gt;Pero algo de detalle al respecto.&lt;/p&gt;
+&lt;dl class="simple"&gt;
+&lt;dt&gt;&lt;strong&gt;Windows Apps&lt;/strong&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;Perdemos &lt;em&gt;Windows Store&lt;/em&gt; y la calculadora. Otros extrañarán &lt;em&gt;Cortana&lt;/em&gt; y
+algunas componentes de &lt;em&gt;Xbox&lt;/em&gt;.&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt&gt;&lt;strong&gt;System Apps&lt;/strong&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;Perderemos &lt;em&gt;Edge&lt;/em&gt; y &lt;em&gt;OneDrive&lt;/em&gt; entre otras aplicaciones. Recomendaría que
+conserven esta categoría para poder usar &lt;em&gt;Edge&lt;/em&gt; como navegador web
+provisional.&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt&gt;&lt;strong&gt;System&lt;/strong&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;Perdemos &lt;em&gt;Paint&lt;/em&gt;, &lt;em&gt;Wordpad&lt;/em&gt; y la que más me duele, &lt;em&gt;Windows Subsystem For
+Linux&lt;/em&gt;. Por este motivo, generé una versión en la cual removía todos los
+conjuntos menos este.&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt&gt;&lt;strong&gt;Remoting&lt;/strong&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;Realmente no extraño los elementos de este punto y creo que para la mayor
+parte de usuarios no son necesarios (&lt;em&gt;Home group&lt;/em&gt;, &lt;em&gt;MultiPoint connector&lt;/em&gt; y
+&lt;em&gt;Remote Assistence&lt;/em&gt;).&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt&gt;&lt;strong&gt;Privacy&lt;/strong&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;Perdemos opciones como el uso del PIN para el ingreso de sesión o por
+reconocimiento facial.&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt&gt;&lt;strong&gt;Multimedia&lt;/strong&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;Perdemos &lt;em&gt;Windows Media Player&lt;/em&gt; y &lt;em&gt;Windows Photo Viewer&lt;/em&gt;.&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt&gt;&lt;strong&gt;Internet&lt;/strong&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;Perdemos &lt;em&gt;Internet Explorer&lt;/em&gt; y &lt;em&gt;Adobe flash&lt;/em&gt;.&lt;/p&gt;
+&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;p&gt;Puedes hacerlo de esta forma, o componente a componente, pero advertencia,
+algunas implican estar pendientes de dependencias de otros conjuntos.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="generar-imagen-de-windows-minima"&gt;
+&lt;h3&gt;Generar imagen de Windows mínima&lt;/h3&gt;
+&lt;p&gt;Terminado el proceso de eliminar las componentes no deseadas, accedemos a
+&lt;code&gt;Apply&lt;/code&gt; y luego a &lt;code&gt;Apply &amp;amp; Save Changes to Source Images&lt;/code&gt;.
+Terminada la aplicación de cambios procedemos a &lt;code&gt;Target&lt;/code&gt; y la opción
+&lt;code&gt;Make a DVD ISO Image&lt;/code&gt; (pero también puedes aprovechar a crear la USB
+para arranque &lt;code&gt;Copy Source to USB Flash Drive&lt;/code&gt;). Asignamos el nombre a
+nuestra imagen y procedemos. En el caso de la USB se selecciona la unidad de la
+USB.&lt;/p&gt;
+&lt;p&gt;Con nuestra imagen lista, ahora puedes quemarla o usarla para una máquina
+virtual (carga directamente &lt;em&gt;ISO&lt;/em&gt;).&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="consideraciones-finales"&gt;
+&lt;h2&gt;Consideraciones finales&lt;/h2&gt;
+&lt;p&gt;A diferencia de distintos sitios que "explican" el uso de MSMG, en este caso he
+detallado adecuadamente las opciones, y en especial parte de selección de la
+imagen de Windows que no suele decirse más que "una vez seleccionada".&lt;/p&gt;
+&lt;p&gt;Si como yo, decides remover todas las componentes posibles, vas a requerir
+Powershell para instalar por comandos al menos el navegador y de ahí instalar
+otros programas, o tener los instaladores listos en una USB. Mi sugerencia, es
+aprovechar el gestor de paquetes &lt;em&gt;scoop&lt;/em&gt; &lt;a class="citation-reference" href="https://www.cosmoscalibur.com/blog/crear-version-de-windows-minima-con-msmg-toolkit/#scoop" id="id4"&gt;[scoop]&lt;/a&gt; que puede
+instalarse con Powershell siguiendo los pasos del sitio web, y agregar el
+repositorio de &lt;code&gt;extras&lt;/code&gt; para instalar paquetes como &lt;em&gt;Firefox&lt;/em&gt;,
+&lt;em&gt;Imageglass&lt;/em&gt; y &lt;em&gt;LibreOffice&lt;/em&gt; (más adelante haré una publicación al respecto).&lt;/p&gt;
+&lt;p&gt;Finalmente, es bueno un menú como &lt;em&gt;Open Shell&lt;/em&gt; &lt;a class="citation-reference" href="https://www.cosmoscalibur.com/blog/crear-version-de-windows-minima-con-msmg-toolkit/#shell" id="id5"&gt;[shell]&lt;/a&gt; dado que perdimos las
+opciones de búsqueda de Windows 10 y el menú básico no es muy cómodo.&lt;/p&gt;
+&lt;div class="figure align-center"&gt;
+&lt;a class="reference external image-reference" href="https://www.cosmoscalibur.com/images/crear-version-de-windows-minima-con-msmg-toolkit/windows-minimal-openshell-scoop.png"&gt;&lt;img alt="Windows mínimo en máquina Virtual." src="https://www.cosmoscalibur.com/images/crear-version-de-windows-minima-con-msmg-toolkit/windows-minimal-openshell-scoop.thumbnail.png" style="width: 600px; height: 400px;"&gt;&lt;/a&gt;
+&lt;p class="caption"&gt;Windows mínimo en máquina virtual, haciendo uso de &lt;em&gt;Open Shell&lt;/em&gt; y aplicaciones de &lt;em&gt;scoop&lt;/em&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;Debes tener en cuenta que algunas componentes pueden perderse de forma
+definitiva (instalarlas es hacer reparación de instalación con el instalador
+original o simplemente no hay forma). Y esto tiene un efecto en otros
+posibles programas que ya no podrás instalar (en mi caso no puedo usar distros
+Linux para Windows porque no tengo WSL).&lt;/p&gt;
+&lt;p&gt;Puedo decir que con 4 GB de RAM asignados a la máquina virtual tengo fluido
+Windows cuando la instalación directa en la máquina con 8 GB de RAM hasta se
+tostaba con solo tener abierto &lt;em&gt;Firefox&lt;/em&gt; y &lt;em&gt;Word&lt;/em&gt;.&lt;/p&gt;
+&lt;dl class="citation"&gt;
+&lt;dt class="label" id="win10"&gt;&lt;span class="brackets"&gt;&lt;a class="fn-backref" href="https://www.cosmoscalibur.com/blog/crear-version-de-windows-minima-con-msmg-toolkit/#id1"&gt;win10&lt;/a&gt;&lt;/span&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;&lt;a class="reference external" href="https://www.microsoft.com/en-us/software-download/windows10ISO"&gt;Download Windows 10 Disc Image (ISO File)&lt;/a&gt;.&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class="label" id="mediacreation"&gt;&lt;span class="brackets"&gt;&lt;a class="fn-backref" href="https://www.cosmoscalibur.com/blog/crear-version-de-windows-minima-con-msmg-toolkit/#id2"&gt;mediacreation&lt;/a&gt;&lt;/span&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;&lt;a class="reference external" href="https://go.microsoft.com/fwlink/?LinkId=691209"&gt;Media Creation Tool (direct download)&lt;/a&gt;.&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class="label" id="msmg"&gt;&lt;span class="brackets"&gt;&lt;a class="fn-backref" href="https://www.cosmoscalibur.com/blog/crear-version-de-windows-minima-con-msmg-toolkit/#id3"&gt;msmg&lt;/a&gt;&lt;/span&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;&lt;a class="reference external" href="https://msmgtoolkit.in/download.html"&gt;MSMG Toolkit Downloads&lt;/a&gt;.&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class="label" id="scoop"&gt;&lt;span class="brackets"&gt;&lt;a class="fn-backref" href="https://www.cosmoscalibur.com/blog/crear-version-de-windows-minima-con-msmg-toolkit/#id4"&gt;scoop&lt;/a&gt;&lt;/span&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;&lt;a class="reference external" href="https://scoop.sh/"&gt;Scoop - A command-line installer for Windows&lt;/a&gt;&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class="label" id="shell"&gt;&lt;span class="brackets"&gt;&lt;a class="fn-backref" href="https://www.cosmoscalibur.com/blog/crear-version-de-windows-minima-con-msmg-toolkit/#id5"&gt;shell&lt;/a&gt;&lt;/span&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;&lt;a class="reference external" href="https://github.com/Open-Shell/Open-Shell-Menu/releases"&gt;Open Shell Menu - GitHub&lt;/a&gt;.&lt;/p&gt;
+&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;/div&gt;&lt;/div&gt;</description><category>microsoft windows</category><category>msmg toolkit</category><guid>https://www.cosmoscalibur.com/blog/crear-version-de-windows-minima-con-msmg-toolkit/</guid><pubDate>Fri, 10 Jul 2020 04:31:33 GMT</pubDate></item><item><title>Instalar paquetes snap en Linux Mint 20</title><link>https://www.cosmoscalibur.com/blog/instalar-paquetes-snap-en-linux-mint-20/</link><dc:creator>Edward Villegas-Pulgarin</dc:creator><description>&lt;div&gt;&lt;p&gt;¿Ya tienes Linux Mint 20 y deseas
 &lt;a class="reference external" href="https://www.cosmoscalibur.com/blog/instalando-paquetes-en-linux-mint/#snap"&gt;instalar paquetes Snap&lt;/a&gt;? Mint ha
 decidido deshabilitar la instalación de Snap por defecto y es necesario cambiar
 la configuración de apt para poderlo hacer.&lt;/p&gt;
@@ -53,9 +241,9 @@ archivo: &lt;code&gt;/etc/apt/preferences.d/nosnap.pref&lt;/code&gt;. En mi caso
 de mantenerlo, así que procedo a eliminarlo y posteriormente a instalar el
 gestor de snaps. Si te sientes más cómodo, puedes comentar las líneas y una vez
 instalado el gestor volver a descomentarlas &lt;a class="citation-reference" href="https://www.cosmoscalibur.com/blog/instalar-paquetes-snap-en-linux-mint-20/#snap-install" id="id2"&gt;[snap-install]&lt;/a&gt;.&lt;/p&gt;
-&lt;pre class="code bash"&gt;&lt;a name="rest_code_6d08446c739f4cdebdb43ded9b7f148a-1"&gt;&lt;/a&gt;sudo rm /etc/apt/preferences.d/nosnap.pref
-&lt;a name="rest_code_6d08446c739f4cdebdb43ded9b7f148a-2"&gt;&lt;/a&gt;sudo apt install -y snapd
-&lt;a name="rest_code_6d08446c739f4cdebdb43ded9b7f148a-3"&gt;&lt;/a&gt;snap &lt;span class="nb"&gt;help&lt;/span&gt;
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_18099be7c6314ff9b5faa5b31d76607d-1"&gt;&lt;/a&gt;sudo rm /etc/apt/preferences.d/nosnap.pref
+&lt;a name="rest_code_18099be7c6314ff9b5faa5b31d76607d-2"&gt;&lt;/a&gt;sudo apt install -y snapd
+&lt;a name="rest_code_18099be7c6314ff9b5faa5b31d76607d-3"&gt;&lt;/a&gt;snap &lt;span class="nb"&gt;help&lt;/span&gt;
 &lt;/pre&gt;&lt;p&gt;Ahora puedes instalar tus paquetes snap en la forma como lo expliqué en un
 &lt;a class="reference external" href="https://www.cosmoscalibur.com/blog/instalando-paquetes-en-linux-mint/#snap"&gt;artículo anterior&lt;/a&gt;.&lt;/p&gt;
 &lt;/div&gt;
@@ -115,9 +303,9 @@ si es Anaconda o Miniconda).&lt;/p&gt;
 preguntas interactivas y así despreocuparnos durante la instalación. Invocamos
 el instalador con Bash de la siguiente forma (asegurate de usar la ruta
 completa y correcta del instalador &lt;code&gt;sh&lt;/code&gt; que usarás).&lt;/p&gt;
-&lt;pre class="code bash"&gt;&lt;a name="rest_code_95ba86afb7544311a08de7e230505341-1"&gt;&lt;/a&gt;bash Anaconda3-2020.02-Linux-x86_64.sh -b -p &lt;span class="nv"&gt;$HOME&lt;/span&gt;/anaconda
-&lt;a name="rest_code_95ba86afb7544311a08de7e230505341-2"&gt;&lt;/a&gt;&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;". &lt;/span&gt;&lt;span class="nv"&gt;$HOME&lt;/span&gt;&lt;span class="s2"&gt;/anaconda/etc/profile.d/conda.sh"&lt;/span&gt; &amp;gt;&amp;gt; &lt;span class="nv"&gt;$HOME&lt;/span&gt;/.bashrc
-&lt;a name="rest_code_95ba86afb7544311a08de7e230505341-3"&gt;&lt;/a&gt;&lt;span class="nb"&gt;source&lt;/span&gt; &lt;span class="nv"&gt;$HOME&lt;/span&gt;/.bashrc
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_1bc9a7aae2bf4f469a331478ba579c53-1"&gt;&lt;/a&gt;bash Anaconda3-2020.02-Linux-x86_64.sh -b -p &lt;span class="nv"&gt;$HOME&lt;/span&gt;/anaconda
+&lt;a name="rest_code_1bc9a7aae2bf4f469a331478ba579c53-2"&gt;&lt;/a&gt;&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;". &lt;/span&gt;&lt;span class="nv"&gt;$HOME&lt;/span&gt;&lt;span class="s2"&gt;/anaconda/etc/profile.d/conda.sh"&lt;/span&gt; &amp;gt;&amp;gt; &lt;span class="nv"&gt;$HOME&lt;/span&gt;/.bashrc
+&lt;a name="rest_code_1bc9a7aae2bf4f469a331478ba579c53-3"&gt;&lt;/a&gt;&lt;span class="nb"&gt;source&lt;/span&gt; &lt;span class="nv"&gt;$HOME&lt;/span&gt;/.bashrc
 &lt;/pre&gt;&lt;p&gt;En la invocación de Bash, el argumento &lt;code&gt;-b&lt;/code&gt; implica la aceptación de
 licencias y con &lt;code&gt;-p&lt;/code&gt; indicamos la ruta para la instalación de Anaconda
 (puedes cambiarla a tu deseo).&lt;/p&gt;
@@ -133,7 +321,7 @@ agregar en el &lt;code&gt;.bashrc&lt;/code&gt; la línea &lt;code&gt;conda activ
 error, por lo cual, si al ejecutarlo ves el mensaje
 &lt;code&gt;UnboundLocalError: local variable 'DISTRO_NAME' referenced before assignment&lt;/code&gt;
 bastará con actualizar el paquete &lt;a class="citation-reference" href="https://www.cosmoscalibur.com/blog/instalar-python-anaconda/#navigator" id="id2"&gt;[navigator]&lt;/a&gt;.&lt;/p&gt;
-&lt;pre class="code bash"&gt;&lt;a name="rest_code_e84080f1db8049609ada1f38d11746db-1"&gt;&lt;/a&gt;conda update anaconda-navigator
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_e95ba5c32433445fa3ee8d9e8257c12a-1"&gt;&lt;/a&gt;conda update anaconda-navigator
 &lt;/pre&gt;&lt;/div&gt;
 &lt;div class="section" id="instalacion-grafica"&gt;
 &lt;h2&gt;Instalación gráfica&lt;/h2&gt;
@@ -239,9 +427,10 @@ Matarife en Youtube.&lt;/p&gt;
 &lt;/div&gt;
 &lt;p&gt;Es necesario resaltar que Rave requiere crear cuenta pero solo requieres pagar
 para eliminar publicidad. Todas las personas que participan deben tener también
-cuenta en Rave. Aparentemente no es necesario que todos tengan suscripción de
-Netflix (tal vez tienen convenio pero igual requiere gastar créditos "K", y
-esto podría explicarlo).&lt;/p&gt;
+cuenta en Rave y para usar Netflix cada usuario debera ingresar sus datos de
+cuenta en el navegador incorporado en Rave. Hay algo llamado créditos "K" y
+corresponden a monedas que te permiten crear o ingresar a salas Rave (en otras
+palabras, usar la aplicación con contenido).&lt;/p&gt;
 &lt;/div&gt;&lt;/div&gt;</description><category>compartir netflix</category><category>sincronizar netflix</category><category>sincronizar transmisión</category><category>sincronizar video</category><guid>https://www.cosmoscalibur.com/blog/ver-netflix-juntos-pero-separados/</guid><pubDate>Sun, 21 Jun 2020 21:47:01 GMT</pubDate></item><item><title>Determinar intersecciones en el diagrama de Venn con R</title><link>https://www.cosmoscalibur.com/blog/determinar-intersecciones-en-el-diagrama-de-venn-con-r/</link><dc:creator>Edward Villegas-Pulgarin</dc:creator><description>&lt;div&gt;&lt;p&gt;Esta entrada es mi primera entrada asociada al lenguaje R y sobre mi primer paquete en R: &lt;a href="https://github.com/cosmoscalibur/venn.compute"&gt;&lt;code&gt;venn.compute&lt;/code&gt;&lt;/a&gt;. Este paquete surge por un caso de uso particular que estaba ayudando a automatizar de determinar los elementos (no solo el dibujo ni la cantidad) de las intersecciones y específicos de un diagrama de Venn, útil en bioinformática para comparación de genes.  &lt;/p&gt;
 &lt;!-- TEASER_END --&gt;
 
@@ -842,8 +1031,8 @@ gestor de paquetes del sistema operativo. En la mayor parte de
 distribuciones Linux estará disponible a través del gestor.&lt;/p&gt;
 &lt;p&gt;En el caso de las distribuciones basadas en Debian (Ubuntu y Linux Mint
 entre otras) puedes instalar de la siguiente manera:&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_c26be00187a940adab5a292ce5895830-1"&gt;&lt;/a&gt;sudo apt install -y texlive texlive-latex-base texlive-latex-extra \
-&lt;a name="rest_code_c26be00187a940adab5a292ce5895830-2"&gt;&lt;/a&gt;    texlive-lang-spanish latexmk
+&lt;pre class="code text"&gt;&lt;a name="rest_code_4b9874dcae5e40519f91033ddd5cdefb-1"&gt;&lt;/a&gt;sudo apt install -y texlive texlive-latex-base texlive-latex-extra \
+&lt;a name="rest_code_4b9874dcae5e40519f91033ddd5cdefb-2"&gt;&lt;/a&gt;    texlive-lang-spanish latexmk
 &lt;/pre&gt;&lt;/dd&gt;
 &lt;/dl&gt;
 &lt;/div&gt;
@@ -873,16 +1062,16 @@ proyecto destinemos un directorio &lt;code&gt;docs&lt;/code&gt; para este fin.&l
 &lt;p&gt;Ahora ejecutamos &lt;code&gt;sphinx-quickstart&lt;/code&gt; y respondemos las preguntas que
 saldrán. Es necesario tener en cuenta, que si usas Windows debes agregar al
 comando la terminación &lt;code&gt;.exe&lt;/code&gt;, ejemplo &lt;code&gt;sphinx-quickstart.exe&lt;/code&gt;.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_e74f051d0566448e9013d1f5ca1a8fa1-1"&gt;&lt;/a&gt;&amp;gt; Separate source and build directories (y/n) [n]: y
-&lt;a name="rest_code_e74f051d0566448e9013d1f5ca1a8fa1-2"&gt;&lt;/a&gt;&amp;gt; Project name: proyecto
-&lt;a name="rest_code_e74f051d0566448e9013d1f5ca1a8fa1-3"&gt;&lt;/a&gt;&amp;gt; Author name(s): Edward Villegas-Pulgarin
-&lt;a name="rest_code_e74f051d0566448e9013d1f5ca1a8fa1-4"&gt;&lt;/a&gt;&amp;gt; Project release []: 0.1.0
-&lt;a name="rest_code_e74f051d0566448e9013d1f5ca1a8fa1-5"&gt;&lt;/a&gt;&amp;gt; Project language [en]: es
+&lt;pre class="code text"&gt;&lt;a name="rest_code_132a54c2dc9747abaf676c6fb1274127-1"&gt;&lt;/a&gt;&amp;gt; Separate source and build directories (y/n) [n]: y
+&lt;a name="rest_code_132a54c2dc9747abaf676c6fb1274127-2"&gt;&lt;/a&gt;&amp;gt; Project name: proyecto
+&lt;a name="rest_code_132a54c2dc9747abaf676c6fb1274127-3"&gt;&lt;/a&gt;&amp;gt; Author name(s): Edward Villegas-Pulgarin
+&lt;a name="rest_code_132a54c2dc9747abaf676c6fb1274127-4"&gt;&lt;/a&gt;&amp;gt; Project release []: 0.1.0
+&lt;a name="rest_code_132a54c2dc9747abaf676c6fb1274127-5"&gt;&lt;/a&gt;&amp;gt; Project language [en]: es
 &lt;/pre&gt;&lt;p&gt;Siempre recomiendo separar el directorio del código fuente de la documentación
 del directorio de compilados de la misma. Respecto al esquema de versiones me
-agrada el &lt;cite&gt;versionamiento semántico &amp;lt;https://semver.org/&amp;gt;&lt;/cite&gt; que permite al
+agrada el &lt;a class="reference external" href="https://semver.org/"&gt;versionamiento semántico&lt;/a&gt; que permite al
 usuario final intuir un poco más sobre la madurez del proyecto con el número,
-pero puedes usar el &lt;cite&gt;esquema basado en fecha de liberación &amp;lt;https://calver.org/&amp;gt;&lt;/cite&gt;.
+pero puedes usar el &lt;a class="reference external" href="https://calver.org/"&gt;esquema basado en fecha de liberación&lt;/a&gt;.
 En el lenguaje se especifica el lenguaje con el código a dos letras
 internacional, acorde a los
 &lt;a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/configuration.html#confval-language"&gt;soportados por Sphinx&lt;/a&gt;.&lt;/p&gt;
@@ -900,13 +1089,13 @@ Con Coverage puedes validar que funciones se han documentado y dcotest integra
 pruebas de código desde la documentación (comparar salidas con ejemplo de
 documentación).&lt;/p&gt;
 &lt;p&gt;Modificar en el archivo.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_f7945d64a3d54482ac6b52be8a9a7d51-1"&gt;&lt;/a&gt;extensions = [
-&lt;a name="rest_code_f7945d64a3d54482ac6b52be8a9a7d51-2"&gt;&lt;/a&gt;    'sphinx.ext.autodoc',
-&lt;a name="rest_code_f7945d64a3d54482ac6b52be8a9a7d51-3"&gt;&lt;/a&gt;    'sphinx.ext.mathjax',
-&lt;a name="rest_code_f7945d64a3d54482ac6b52be8a9a7d51-4"&gt;&lt;/a&gt;    'sphinx.ext.napoleon',
-&lt;a name="rest_code_f7945d64a3d54482ac6b52be8a9a7d51-5"&gt;&lt;/a&gt;    'sphinx.ext.coverage',
-&lt;a name="rest_code_f7945d64a3d54482ac6b52be8a9a7d51-6"&gt;&lt;/a&gt;    'sphinx.ext.doctest'
-&lt;a name="rest_code_f7945d64a3d54482ac6b52be8a9a7d51-7"&gt;&lt;/a&gt;]
+&lt;pre class="code text"&gt;&lt;a name="rest_code_d1774ffb6542427d888760a21a9759ca-1"&gt;&lt;/a&gt;extensions = [
+&lt;a name="rest_code_d1774ffb6542427d888760a21a9759ca-2"&gt;&lt;/a&gt;    'sphinx.ext.autodoc',
+&lt;a name="rest_code_d1774ffb6542427d888760a21a9759ca-3"&gt;&lt;/a&gt;    'sphinx.ext.mathjax',
+&lt;a name="rest_code_d1774ffb6542427d888760a21a9759ca-4"&gt;&lt;/a&gt;    'sphinx.ext.napoleon',
+&lt;a name="rest_code_d1774ffb6542427d888760a21a9759ca-5"&gt;&lt;/a&gt;    'sphinx.ext.coverage',
+&lt;a name="rest_code_d1774ffb6542427d888760a21a9759ca-6"&gt;&lt;/a&gt;    'sphinx.ext.doctest'
+&lt;a name="rest_code_d1774ffb6542427d888760a21a9759ca-7"&gt;&lt;/a&gt;]
 &lt;/pre&gt;&lt;/div&gt;
 &lt;div class="section" id="importar-paquete"&gt;
 &lt;h3&gt;Importar paquete&lt;/h3&gt;
@@ -918,33 +1107,33 @@ primeras líneas de código en la sección de &lt;em&gt;Path setup&lt;/em&gt;. E
 defecto indica la misma carpeta de &lt;code&gt;docs/source&lt;/code&gt;, por lo cual es
 necesario reemplazar por &lt;code&gt;../..&lt;/code&gt; que se devuelve los dos niveles
 necesarios.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_f1df876e7c374485bc0c13842adbd5ae-1"&gt;&lt;/a&gt;import os
-&lt;a name="rest_code_f1df876e7c374485bc0c13842adbd5ae-2"&gt;&lt;/a&gt;import sys
-&lt;a name="rest_code_f1df876e7c374485bc0c13842adbd5ae-3"&gt;&lt;/a&gt;import datetime
-&lt;a name="rest_code_f1df876e7c374485bc0c13842adbd5ae-4"&gt;&lt;/a&gt;sys.path.insert(0, os.path.abspath('../..'))
-&lt;a name="rest_code_f1df876e7c374485bc0c13842adbd5ae-5"&gt;&lt;/a&gt;import proyecto
+&lt;pre class="code text"&gt;&lt;a name="rest_code_f5957820089941a98fe210579ab49278-1"&gt;&lt;/a&gt;import os
+&lt;a name="rest_code_f5957820089941a98fe210579ab49278-2"&gt;&lt;/a&gt;import sys
+&lt;a name="rest_code_f5957820089941a98fe210579ab49278-3"&gt;&lt;/a&gt;import datetime
+&lt;a name="rest_code_f5957820089941a98fe210579ab49278-4"&gt;&lt;/a&gt;sys.path.insert(0, os.path.abspath('../..'))
+&lt;a name="rest_code_f5957820089941a98fe210579ab49278-5"&gt;&lt;/a&gt;import proyecto
 &lt;/pre&gt;&lt;p&gt;Ahora, puedes hacer cosas como la siguiente, si está disponible en tu código.&lt;/p&gt;
-&lt;pre class="code python"&gt;&lt;a name="rest_code_c9a24275ce1a40ad918c854931f05f8a-1"&gt;&lt;/a&gt;&lt;span class="n"&gt;author&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;proyecto&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;__author__&lt;/span&gt;
-&lt;a name="rest_code_c9a24275ce1a40ad918c854931f05f8a-2"&gt;&lt;/a&gt;&lt;span class="n"&gt;copyright&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;datetime&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;date&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;today&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;year&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s1"&gt;', '&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;author&lt;/span&gt;
-&lt;a name="rest_code_c9a24275ce1a40ad918c854931f05f8a-3"&gt;&lt;/a&gt;&lt;span class="n"&gt;release&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;proyecto&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;__version__&lt;/span&gt;
+&lt;pre class="code python"&gt;&lt;a name="rest_code_1e18f8974dab46e0b85acf49ee8c2922-1"&gt;&lt;/a&gt;&lt;span class="n"&gt;author&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;proyecto&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;__author__&lt;/span&gt;
+&lt;a name="rest_code_1e18f8974dab46e0b85acf49ee8c2922-2"&gt;&lt;/a&gt;&lt;span class="n"&gt;copyright&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;datetime&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;date&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;today&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;year&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s1"&gt;', '&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;author&lt;/span&gt;
+&lt;a name="rest_code_1e18f8974dab46e0b85acf49ee8c2922-3"&gt;&lt;/a&gt;&lt;span class="n"&gt;release&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;proyecto&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;__version__&lt;/span&gt;
 &lt;/pre&gt;&lt;p&gt;Esto tiene un impacto respecto a algunas dependencias, que pueden provocar
 fallos o si para la generación de la documentación no tenemos todas las
 dependencias del paquete. En mi caso, he tenido problemas cuando tengo como
 dependencia Tensorflow o cuando tengo arcpy pero no tengo la licencia
 instalada. En este caso, podemos hacer un falseo (&lt;em&gt;mock&lt;/em&gt;) de los paquetes:&lt;/p&gt;
-&lt;pre class="code python"&gt;&lt;a name="rest_code_e4df775883e647f58376fd2f016ed0bc-1"&gt;&lt;/a&gt;&lt;span class="n"&gt;autodoc_mock_imports&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;"tensorflow"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;"arcpy"&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;pre class="code python"&gt;&lt;a name="rest_code_292fd8c957d3443ea34ca9a96e825dd2-1"&gt;&lt;/a&gt;&lt;span class="n"&gt;autodoc_mock_imports&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;"tensorflow"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;"arcpy"&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;div class="section" id="referencias-cruzadas"&gt;
 &lt;h3&gt;Referencias cruzadas&lt;/h3&gt;
 &lt;p&gt;Para usar referencias cruzadas, es decir, numeración de tablas, figuras,
 códigos y ecuaciones si poseen pie de objeto, y ser referenciados en el texto
 por el número, se requiere configurar lo siguiente.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_43126e884b3e45c1801752d855df091d-1"&gt;&lt;/a&gt;numfig = True
-&lt;a name="rest_code_43126e884b3e45c1801752d855df091d-2"&gt;&lt;/a&gt;numfig_format = {'figure': 'Fig. %s', 'table': 'Tabla %s',
-&lt;a name="rest_code_43126e884b3e45c1801752d855df091d-3"&gt;&lt;/a&gt;                 'code-block': 'Código %s', 'section': 'Sección %s'}
-&lt;a name="rest_code_43126e884b3e45c1801752d855df091d-4"&gt;&lt;/a&gt;numfig_secnum_depth = 1
-&lt;a name="rest_code_43126e884b3e45c1801752d855df091d-5"&gt;&lt;/a&gt;math_numfig = True
-&lt;a name="rest_code_43126e884b3e45c1801752d855df091d-6"&gt;&lt;/a&gt;math_eqref_format = 'Ec. {number}'
+&lt;pre class="code text"&gt;&lt;a name="rest_code_2424632050cc41dd8af6952f1410b691-1"&gt;&lt;/a&gt;numfig = True
+&lt;a name="rest_code_2424632050cc41dd8af6952f1410b691-2"&gt;&lt;/a&gt;numfig_format = {'figure': 'Fig. %s', 'table': 'Tabla %s',
+&lt;a name="rest_code_2424632050cc41dd8af6952f1410b691-3"&gt;&lt;/a&gt;                 'code-block': 'Código %s', 'section': 'Sección %s'}
+&lt;a name="rest_code_2424632050cc41dd8af6952f1410b691-4"&gt;&lt;/a&gt;numfig_secnum_depth = 1
+&lt;a name="rest_code_2424632050cc41dd8af6952f1410b691-5"&gt;&lt;/a&gt;math_numfig = True
+&lt;a name="rest_code_2424632050cc41dd8af6952f1410b691-6"&gt;&lt;/a&gt;math_eqref_format = 'Ec. {number}'
 &lt;/pre&gt;&lt;p&gt;Así, es posible usar &lt;code&gt;:label:&lt;/code&gt; para asignar una referencia a los objetos
 y &lt;code&gt;:numref:&lt;/code&gt; y &lt;code&gt;:eq:&lt;/code&gt; a la hora de mencionarlos. Con
 &lt;code&gt;numfig_secnum_depth&lt;/code&gt; configuras la numeración de los objetos, si es
@@ -956,11 +1145,11 @@ continúa (0), por sección (1) y subsección (2).&lt;/p&gt;
 maestro, el nombre del archivo TeX, el nombre que nuestra documentación, el
 nombre del autor (que podemos usar la variable que ya definimos) y el tipo de
 documento (cuya clase &lt;em&gt;manual&lt;/em&gt; está definida por Sphinx).&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_69375457151349cca0d5bea7cde15dca-1"&gt;&lt;/a&gt;master_doc = 'index'
-&lt;a name="rest_code_69375457151349cca0d5bea7cde15dca-2"&gt;&lt;/a&gt;latex_documents = [
-&lt;a name="rest_code_69375457151349cca0d5bea7cde15dca-3"&gt;&lt;/a&gt;    (master_doc, 'proyecto.tex', 'Documentación Proyecto',
-&lt;a name="rest_code_69375457151349cca0d5bea7cde15dca-4"&gt;&lt;/a&gt;     author, 'manual'),
-&lt;a name="rest_code_69375457151349cca0d5bea7cde15dca-5"&gt;&lt;/a&gt;]
+&lt;pre class="code text"&gt;&lt;a name="rest_code_78298edf1f764bd99a1121862f78ae75-1"&gt;&lt;/a&gt;master_doc = 'index'
+&lt;a name="rest_code_78298edf1f764bd99a1121862f78ae75-2"&gt;&lt;/a&gt;latex_documents = [
+&lt;a name="rest_code_78298edf1f764bd99a1121862f78ae75-3"&gt;&lt;/a&gt;    (master_doc, 'proyecto.tex', 'Documentación Proyecto',
+&lt;a name="rest_code_78298edf1f764bd99a1121862f78ae75-4"&gt;&lt;/a&gt;     author, 'manual'),
+&lt;a name="rest_code_78298edf1f764bd99a1121862f78ae75-5"&gt;&lt;/a&gt;]
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="section" id="escritura-en-restructuredtext"&gt;
@@ -993,16 +1182,16 @@ adelante). Puedes agregar más archivos, por ejemplo, yo suelo usar un
 &lt;code&gt;concepts.rst&lt;/code&gt; para detallar los conceptos necesarios antes de usar el
 software o detallar teoría que ayuda a interpretar resultados o que expande la
 información para que alguien pueda analizar o continuar un desarrollo.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_2ad1c447ab0d4e619602582326158e9f-1"&gt;&lt;/a&gt;.. toctree::
-&lt;a name="rest_code_2ad1c447ab0d4e619602582326158e9f-2"&gt;&lt;/a&gt;   :maxdepth: 3
-&lt;a name="rest_code_2ad1c447ab0d4e619602582326158e9f-3"&gt;&lt;/a&gt;   :caption: Contenido:
-&lt;a name="rest_code_2ad1c447ab0d4e619602582326158e9f-4"&gt;&lt;/a&gt;
-&lt;a name="rest_code_2ad1c447ab0d4e619602582326158e9f-5"&gt;&lt;/a&gt;   README
-&lt;a name="rest_code_2ad1c447ab0d4e619602582326158e9f-6"&gt;&lt;/a&gt;   installation
-&lt;a name="rest_code_2ad1c447ab0d4e619602582326158e9f-7"&gt;&lt;/a&gt;   usage
-&lt;a name="rest_code_2ad1c447ab0d4e619602582326158e9f-8"&gt;&lt;/a&gt;   api/modules
-&lt;a name="rest_code_2ad1c447ab0d4e619602582326158e9f-9"&gt;&lt;/a&gt;   concepts
-&lt;a name="rest_code_2ad1c447ab0d4e619602582326158e9f-10"&gt;&lt;/a&gt;   history
+&lt;pre class="code text"&gt;&lt;a name="rest_code_6f7f7c2d12064d9b91599b3f1697b996-1"&gt;&lt;/a&gt;.. toctree::
+&lt;a name="rest_code_6f7f7c2d12064d9b91599b3f1697b996-2"&gt;&lt;/a&gt;   :maxdepth: 3
+&lt;a name="rest_code_6f7f7c2d12064d9b91599b3f1697b996-3"&gt;&lt;/a&gt;   :caption: Contenido:
+&lt;a name="rest_code_6f7f7c2d12064d9b91599b3f1697b996-4"&gt;&lt;/a&gt;
+&lt;a name="rest_code_6f7f7c2d12064d9b91599b3f1697b996-5"&gt;&lt;/a&gt;   README
+&lt;a name="rest_code_6f7f7c2d12064d9b91599b3f1697b996-6"&gt;&lt;/a&gt;   installation
+&lt;a name="rest_code_6f7f7c2d12064d9b91599b3f1697b996-7"&gt;&lt;/a&gt;   usage
+&lt;a name="rest_code_6f7f7c2d12064d9b91599b3f1697b996-8"&gt;&lt;/a&gt;   api/modules
+&lt;a name="rest_code_6f7f7c2d12064d9b91599b3f1697b996-9"&gt;&lt;/a&gt;   concepts
+&lt;a name="rest_code_6f7f7c2d12064d9b91599b3f1697b996-10"&gt;&lt;/a&gt;   history
 &lt;/pre&gt;&lt;p&gt;Y podemos borrar las líneas posteriores de &lt;em&gt;Indices and tables&lt;/em&gt;.&lt;/p&gt;
 &lt;p&gt;Vemos la mención a &lt;code&gt;api/modules&lt;/code&gt;, la cual es importante para incluir la
 documentación automática extraída con Sphinx, que se explicará en la próxima
@@ -1013,7 +1202,7 @@ sección.&lt;/p&gt;
 &lt;h2&gt;Ejecución de Sphinx&lt;/h2&gt;
 &lt;p&gt;Como estamos haciendo uso de &lt;em&gt;autodoc&lt;/em&gt;, nuestro primer paso es generar la
 extracción de la API.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_f9216526c9f14b67b2ce9b41a3e6f361-1"&gt;&lt;/a&gt;sphinx-apidoc -f -M -o source/api/ ../proyecto
+&lt;pre class="code text"&gt;&lt;a name="rest_code_ada9fcf8930547f980ad04081288ac6f-1"&gt;&lt;/a&gt;sphinx-apidoc -f -M -o source/api/ ../proyecto
 &lt;/pre&gt;&lt;p&gt;Recordar que en Windows hay que agregar &lt;code&gt;.exe&lt;/code&gt;
 (&lt;code&gt;sphinx-apidoc.exe&lt;/code&gt;). &lt;code&gt;-f&lt;/code&gt; es para forzar la regeneración de los
 archivos (importante si actualizamos la documentación de la API), &lt;code&gt;-M&lt;/code&gt;
@@ -1071,7 +1260,7 @@ publicación &lt;a class="reference external" href="https://www.cosmoscalibur.co
 &lt;p&gt;Si bien puedes descargarlo desde el sitio del proyecto, aprovecharemos el
 gestor Conda para facilitar la tarea de descarga, instalación y configuración.&lt;/p&gt;
 &lt;p&gt;Abriremos Anaconda PowerShell o Anaconda Prompt, y ejecutaremos lo siguiente:&lt;/p&gt;
-&lt;pre class="code bash"&gt;&lt;a name="rest_code_8f28d375e2d54891810a37a52cad264f-1"&gt;&lt;/a&gt;conda create -n gitbash -c conda-forge &lt;span class="nv"&gt;git&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="m"&gt;2&lt;/span&gt;.24.0
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_4b06d65238ea4ffba801efd0cd89a95e-1"&gt;&lt;/a&gt;conda create -n gitbash -c conda-forge &lt;span class="nv"&gt;git&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="m"&gt;2&lt;/span&gt;.24.0
 &lt;/pre&gt;&lt;p&gt;Es importante el uso de &lt;code&gt;-c conda-forge&lt;/code&gt; porque de este canal vendrá la
 versión de Git que usaremos. Si se usa el canal por defecto, se instala solo el
 cliente de consola, mientras que en esta opción viene Git Bash. He indicado
@@ -1092,9 +1281,9 @@ posibles conflictos.&lt;/p&gt;
 típicos de Bash, como el &lt;code&gt;bashrc&lt;/code&gt;. Así, podemos usar la configuración que
 habitualmente se usa en Linux.&lt;/p&gt;
 &lt;p&gt;Abrimos Git Bash, y ejecutamos:&lt;/p&gt;
-&lt;pre class="code bash"&gt;&lt;a name="rest_code_ba378178125940d1af5421596c204372-1"&gt;&lt;/a&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; &lt;span class="nv"&gt;$HOME&lt;/span&gt;
-&lt;a name="rest_code_ba378178125940d1af5421596c204372-2"&gt;&lt;/a&gt;&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;". /c/Users/USUARIO/ANACONDA/etc/profile.d/conda.sh"&lt;/span&gt; &amp;gt;&amp;gt; .bashrc
-&lt;a name="rest_code_ba378178125940d1af5421596c204372-3"&gt;&lt;/a&gt;&lt;span class="nb"&gt;source&lt;/span&gt; .bashrc
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_a723716c9d7943989e56ab6f6e282e85-1"&gt;&lt;/a&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; &lt;span class="nv"&gt;$HOME&lt;/span&gt;
+&lt;a name="rest_code_a723716c9d7943989e56ab6f6e282e85-2"&gt;&lt;/a&gt;&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;". /c/Users/USUARIO/ANACONDA/etc/profile.d/conda.sh"&lt;/span&gt; &amp;gt;&amp;gt; .bashrc
+&lt;a name="rest_code_a723716c9d7943989e56ab6f6e282e85-3"&gt;&lt;/a&gt;&lt;span class="nb"&gt;source&lt;/span&gt; .bashrc
 &lt;/pre&gt;&lt;p&gt;Con la primera línea aseguramos ir al directorio del usuario. En la segunda
 línea, crearemos o editaremos el archivo de configuración, pero debes
 reemplazar &lt;code&gt;USUARIO&lt;/code&gt; por la carpeta de tu usuario y &lt;code&gt;ANACONDA&lt;/code&gt; por
@@ -1103,121 +1292,4 @@ usaste Miniconda). La tercera línea actualiza la configuración en la sesión
 actual de la consola permitiendo usar de forma inmediata Conda. Para la próxima
 apertura de Git Bash ya no tendrás que configurar nada, solo empezar a usar
 Conda (aún no hay ambiente activado).&lt;/p&gt;
-&lt;/div&gt;&lt;/div&gt;</description><category>anaconda python</category><category>conda</category><category>gestor de paquetes</category><category>git</category><category>git bash</category><category>instalación de software</category><guid>https://www.cosmoscalibur.com/blog/usar-anaconda-python-en-git-bash/</guid><pubDate>Tue, 31 Dec 2019 19:43:50 GMT</pubDate></item><item><title>Crear contenedor Docker aplicación GUI - EALite</title><link>https://www.cosmoscalibur.com/blog/crear-contenedor-docker-aplicacion-gui-ealite/</link><dc:creator>Edward Villegas-Pulgarin</dc:creator><description>&lt;div&gt;&lt;p&gt;Dando continuidad al uso de contenedores que inicie en la publicación anterior,
-&lt;a class="reference external" href="https://www.cosmoscalibur.com/blog/crear-contenedor-lxc-para-aplicacion-gui-ealite/"&gt;Crear contenedor LXC para aplicación GUI - EALite&lt;/a&gt;, reproduciré la
-instalación de Enterprise Architect Viewer (EALite) con Docker (y por supuesto,
-Wine). Si deseas reproducir el ejemplo de este caso, requieres reproducir la
-el artículo mencionado para extraer el directorio de Wine.&lt;/p&gt;
-&lt;p&gt;A diferencia de LXC, Docker está más orientado al aislamiento de aplicaciones y
-no de sistema operativo (LXC cumple una función más cercana a una máquina
-virtual) lo cual ayuda a un mejor despliegue de aplicaciones y la
-estandarización de las etapas de desarrollo y de pruebas.&lt;/p&gt;
-&lt;p&gt;Común a LXC tenemos imágenes base que podemos usar, disponibles en
-&lt;a class="reference external" href="https://hub.docker.com"&gt;DockerHub&lt;/a&gt;. A partir de estas podemos completar
-nuestras necesidades especificando en el archivo Dockerfile.&lt;/p&gt;
-&lt;!-- TEASER_END --&gt;
-&lt;div class="section" id="instalar-docker"&gt;
-&lt;h2&gt;Instalar Docker&lt;/h2&gt;
-&lt;p&gt;Recomiendo en Linux instalar docker con snap.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_4c46e94dadc340f8a8ff6d1d386dc6e9-1"&gt;&lt;/a&gt;sudo snap install docker
-&lt;/pre&gt;&lt;p&gt;Posteriormente, podemos asociar nuestro usuario para la ejecución sin ser
-administrador.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_53b39de702a541378dd57e9f654d52b3-1"&gt;&lt;/a&gt;sudo groupadd docker
-&lt;a name="rest_code_53b39de702a541378dd57e9f654d52b3-2"&gt;&lt;/a&gt;sudo usermod -aG docker $USER
-&lt;a name="rest_code_53b39de702a541378dd57e9f654d52b3-3"&gt;&lt;/a&gt;newgrp docker
-&lt;/pre&gt;&lt;p&gt;Puedes probar ejecutando como usuario regular, &lt;code&gt;docker run hello-world&lt;/code&gt;.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="dockerfile"&gt;
-&lt;h2&gt;Dockerfile&lt;/h2&gt;
-&lt;p&gt;Este archivo es el mecanismo mediante el cual se especifican las reglas de
-construcción de nuestra imagen. Se define un lenguaje común sin importar el
-sistema operativo base y las funciones específicas del sistema son usadas con
-una instrucción que habilita a ejecución en él.&lt;/p&gt;
-&lt;p&gt;Los comentarios en el archivo son como tradicionalmente estamos acostumbrados
-en otros lenguajes (entre ellos, bash), con signo número &lt;code&gt;#&lt;/code&gt;. Esto posee
-una excepción, y es el caso donde existe una directriz después como el caso que
-se ejemplificara.&lt;/p&gt;
-&lt;p&gt;La directriz &lt;code&gt;escape&lt;/code&gt; es usada para cambiar el carácter de salto de línea
-para instrucciones de múltiples líneas. Se puede tener la habitual barra
-invertida (&lt;code class="docutils literal"&gt;\&lt;/code&gt;) que es conflictivo con rutas con espacios en Linux o
-rutas Windows, y la opción de la tilde invertida (&lt;code class="docutils literal"&gt;`&lt;/code&gt;).&lt;/p&gt;
-&lt;p&gt;Después podemos definir la imagen base usando &lt;code&gt;FROM&lt;/code&gt; seguido de la
-especificación de la imagen en &lt;a class="reference external" href="https://hub.docker.com"&gt;DockerHub&lt;/a&gt;. En este caso, usaremos la &lt;a class="reference external" href="https://hub.docker.com/_/ubuntu"&gt;imagen
-Docker de Ubuntu&lt;/a&gt; con arquitectura i386 y
-versión 18.04. En general, la estructura de invocación es
-&lt;code&gt;arquitectura/ubuntu:version&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;Las instrucciones son ejecutadas por defecto por el usuario &lt;em&gt;root&lt;/em&gt;
-(administrador), de manera que podemos ejecutar la instalación de paquetes
-invocando directamente el llamado al sistema iniciando con &lt;code&gt;RUN&lt;/code&gt;. Como se
-observa en el ejemplo, a continuación es una línea típica que se ejecuta en
-Ubuntu.&lt;/p&gt;
-&lt;div class="admonition note"&gt;
-&lt;p class="admonition-title"&gt;Nota&lt;/p&gt;
-&lt;p&gt;La creación del usuario es necesaria porque wine debe ejecutarse por un
-usuario regular. Adicional, el nombre de usuario corresponde al mismo nombre
-del usuario Linux del cual traemos la copia de la instalación en Wine (Wine
-asigna el nombre de usuario Windows igual al usuario Linux, luego, al copiar
-la carpeta de Wine, solo funcionará si encuentra el mismo usuario).&lt;/p&gt;
-&lt;/div&gt;
-&lt;p&gt;Podemos cambiar el directorio sobre el cual ejecutamos usando &lt;code&gt;WORKDIR&lt;/code&gt;.
-En la siguiente línea usamos &lt;code&gt;COPY&lt;/code&gt; para mover un directorio del sistema
-hospedador a la imagen. Existe una instrucción similar, &lt;code&gt;ADD&lt;/code&gt;, la cual
-soporta que la fuente sea una URL realizando la descarga, y descomprime
-archivos &lt;em&gt;tar&lt;/em&gt;.&lt;/p&gt;
-&lt;div class="admonition note"&gt;
-&lt;p class="admonition-title"&gt;Nota&lt;/p&gt;
-&lt;p&gt;El directorio que moveremos se genero en el contenedor LXC que construimos
-en &lt;a class="reference external" href="https://www.cosmoscalibur.com/blog/crear-contenedor-lxc-para-aplicacion-gui-ealite/"&gt;Crear contenedor LXC para aplicación GUI - EALite&lt;/a&gt;. Para ello,
-iniciamos el contenedor y extraemos el directorio.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_8196e9e1698046bc94207e0f20e0c055-1"&gt;&lt;/a&gt;sudo lxc start ea
-&lt;a name="rest_code_8196e9e1698046bc94207e0f20e0c055-2"&gt;&lt;/a&gt;sudo lxc file pull -r ea/home/ubuntu/.wine .
-&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;Con &lt;code&gt;USER&lt;/code&gt; cambiamos el usuario que ejecuta los procesos. Es importante
-que a la hora de concluir, si un proceso es ejecutado por un usuario regular,
-nuestro último cambio de usuario debe apuntar a él, de otra forma el
-contenedor estará activo para el usuario administrador. Otro aspecto importante
-es el comportamiento por defecto en Linux, donde puede crear el usuario si no
-existe (pero no el directorio de usuario).&lt;/p&gt;
-&lt;p&gt;Finalmente, es necesario indicar que se ejecuta cuando se lanza el contenedor.
-Esto es posible con &lt;code&gt;CMD&lt;/code&gt; o con &lt;code&gt;ENTRYPOINT&lt;/code&gt;. La diferencia es que
-el primero permite sobreescribir la ejecución enviando como parámetro lo que
-se desea ejecutar, mientras que la segunda opción solo ejecuta la configurada.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_01bdd196c0c84eca97a262ab52788088-1"&gt;&lt;/a&gt;# escape=`
-&lt;a name="rest_code_01bdd196c0c84eca97a262ab52788088-2"&gt;&lt;/a&gt;FROM i386/ubuntu:18.04
-&lt;a name="rest_code_01bdd196c0c84eca97a262ab52788088-3"&gt;&lt;/a&gt;RUN apt update -q &amp;amp;&amp;amp; apt install --install-recommends -y wine-stable
-&lt;a name="rest_code_01bdd196c0c84eca97a262ab52788088-4"&gt;&lt;/a&gt;RUN apt install -y fonts-crosextra-carlito
-&lt;a name="rest_code_01bdd196c0c84eca97a262ab52788088-5"&gt;&lt;/a&gt;RUN useradd -ms /bin/bash ubuntu
-&lt;a name="rest_code_01bdd196c0c84eca97a262ab52788088-6"&gt;&lt;/a&gt;WORKDIR /home/ubuntu
-&lt;a name="rest_code_01bdd196c0c84eca97a262ab52788088-7"&gt;&lt;/a&gt;COPY .wine .wine
-&lt;a name="rest_code_01bdd196c0c84eca97a262ab52788088-8"&gt;&lt;/a&gt;RUN chown -R ubuntu .wine
-&lt;a name="rest_code_01bdd196c0c84eca97a262ab52788088-9"&gt;&lt;/a&gt;USER ubuntu
-&lt;a name="rest_code_01bdd196c0c84eca97a262ab52788088-10"&gt;&lt;/a&gt;RUN mkdir -p .local/bin &amp;amp;&amp;amp; `
-&lt;a name="rest_code_01bdd196c0c84eca97a262ab52788088-11"&gt;&lt;/a&gt;        echo "wine $HOME/.wine/drive_c/Program\ Files/Sparx\ Systems/EA\ LITE/EA.exe" &amp;gt; .local/bin/ealite &amp;amp;&amp;amp; `
-&lt;a name="rest_code_01bdd196c0c84eca97a262ab52788088-12"&gt;&lt;/a&gt;        chmod 755 .local/bin/ealite
-&lt;a name="rest_code_01bdd196c0c84eca97a262ab52788088-13"&gt;&lt;/a&gt;CMD ".local/bin/ealite"
-&lt;/pre&gt;&lt;/div&gt;
-&lt;div class="section" id="construir-imagen-docker"&gt;
-&lt;h2&gt;Construir imagen Docker&lt;/h2&gt;
-&lt;p&gt;La construcción la realizamos con la opción &lt;code&gt;build&lt;/code&gt;. Se usa el argumento
-&lt;code&gt;-t&lt;/code&gt; para indicar la etiqueta que asignaremos a la imagen y &lt;code&gt;-f&lt;/code&gt;
-para relacionar la ruta del archivo dockerfile que se usará. El siguiente
-argumento no posee marca para indicarlo y corresponde al contexto, que viene a
-ser la ruta donde se encuentran los archivos que usaremos (que puede ser
-reemplazado por un archivo de contexto con la ruta a los distintos archivos).&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_de63a4cb07c048368c98cf7283359dea-1"&gt;&lt;/a&gt;docker build -t cosmoscalibur/ealite:latest -f dockerfile .
-&lt;/pre&gt;&lt;/div&gt;
-&lt;div class="section" id="ejecutar-contenedor"&gt;
-&lt;h2&gt;Ejecutar contenedor&lt;/h2&gt;
-&lt;p&gt;Ahora puedes lanzar un contenedor gráfico basado en la imagen construida con la
-siguiente instrucción.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_ab975e6ae4e141789351481dc8759d89-1"&gt;&lt;/a&gt;docker run --net=host --env="DISPLAY" --volume="$HOME/.Xauthority:/root/.Xauthority:rw" cosmoscalibur/ealite:latest
-&lt;/pre&gt;&lt;/div&gt;
-&lt;div class="section" id="referencias"&gt;
-&lt;h2&gt;Referencias&lt;/h2&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://docs.docker.com/install/linux/linux-postinstall/"&gt;Docker docs: Post-installation steps for Linux&lt;/a&gt;.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://docs.docker.com/reference/"&gt;Docker docs: Reference documentation&lt;/a&gt;.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://medium.com/@SaravSun/running-gui-applications-inside-docker-containers-83d65c0db110"&gt;Running GUI Applications inside Docker Containers&lt;/a&gt;.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://www.sparxsystems.com/enterprise_architect_user_guide/14.0/product_information/enterprise_architect_linux.html"&gt;Installing Enterprise Architect under Linux&lt;/a&gt;.&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;&lt;/div&gt;</description><category>contenedor</category><category>docker</category><category>ealite</category><category>enterprise architect</category><category>linux</category><category>wine</category><guid>https://www.cosmoscalibur.com/blog/crear-contenedor-docker-aplicacion-gui-ealite/</guid><pubDate>Sat, 23 Nov 2019 02:47:22 GMT</pubDate></item></channel></rss>
+&lt;/div&gt;&lt;/div&gt;</description><category>anaconda python</category><category>conda</category><category>gestor de paquetes</category><category>git</category><category>git bash</category><category>instalación de software</category><guid>https://www.cosmoscalibur.com/blog/usar-anaconda-python-en-git-bash/</guid><pubDate>Tue, 31 Dec 2019 19:43:50 GMT</pubDate></item></channel></rss>
