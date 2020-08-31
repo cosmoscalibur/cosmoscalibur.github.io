@@ -1,0 +1,616 @@
+<?xml version='1.0' encoding='utf-8'?>
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>Cosmoscalibur (Publicaciones sobre android)</title><link>https://www.cosmoscalibur.com/</link><description/><atom:link href="https://www.cosmoscalibur.com/categories/android.xml" rel="self" type="application/rss+xml"/><language>es</language><copyright>Contents © 2020 &lt;a href="mailto:cosmoscalibur&amp;#64;gmail.com"&gt;Edward Villegas-Pulgarin&lt;/a&gt; 
+&lt;a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"&gt;
+&lt;img alt="Creative Commons License BY-NC-SA"
+style="border-width:0; margin-bottom:12px;"
+src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"&gt;&lt;/a&gt;</copyright><lastBuildDate>Mon, 31 Aug 2020 02:37:26 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Usar la cámara de tu celular como webcam</title><link>https://www.cosmoscalibur.com/blog/usar-la-camara-de-tu-celular-como-webcam/</link><dc:creator>Edward Villegas-Pulgarin</dc:creator><description>&lt;div&gt;&lt;p&gt;Con la nueva normalidad que vivimos alrededor de la virtualidad, el uso de
+videollamadas se ha incrementado y muchas cámaras incorporadas en los
+equipos no poseen buenas características (o son ausentes). Adicional, el
+soporte de opciones como usar el celular, una buena alternativa para no
+comprar una cámara web, es amplio en Windows pero no en Linux.&lt;/p&gt;
+&lt;p&gt;Así que, por ese motivo hoy les compartiré como usar la cámara del celular
+(Android o iOS) como cámara web en Linux.&lt;/p&gt;
+&lt;!-- TEASER_END --&gt;
+&lt;div class="section" id="droidcam"&gt;
+&lt;h2&gt;DroidCam&lt;/h2&gt;
+&lt;p&gt;Sin hacer muchos rodeos y comparaciones, en este asunto seré muy práctico.
+La primera aplicación que me cumplió con las características y que
+funcionó adecuadamente, es DroidCam [&lt;a class="reference internal" href="https://www.cosmoscalibur.com/blog/usar-la-camara-de-tu-celular-como-webcam/#id1"&gt;droidcam&lt;/a&gt;]. Esta utilidad nos permite
+usar la cámara del celular para reemplazar los incorporados del equipo, y
+se puede hacer comunicación tanto por wifi como por el cable USB
+(instalando ADB).&lt;/p&gt;
+&lt;div class="section" id="instalacion-en-linux"&gt;
+&lt;h3&gt;Instalación en Linux&lt;/h3&gt;
+&lt;p&gt;El procedimiento de instalación puede seguirse en la página web de
+DroidCam [&lt;a class="reference internal" href="https://www.cosmoscalibur.com/blog/usar-la-camara-de-tu-celular-como-webcam/#linux"&gt;linux&lt;/a&gt;] pero lo lustraré para el caso de Linux Mint
+(aplicable para Debian y derivados). El aspecto dependiente de la
+distribución es la instalación de las 3 dependencias requeridas (GCC, Make
+y Linux Headers).&lt;/p&gt;
+&lt;pre&gt;&lt;font color="#8AE234"&gt;&lt;b&gt;cosmoscalibur@edliviano&lt;/b&gt;&lt;/font&gt;:&lt;font color="#729FCF"&gt;&lt;b&gt;/tmp&lt;/b&gt;&lt;/font&gt;$  wget https://files.dev47apps.net/linux/droidcam_latest.zip
+--2020-05-12 19:03:30--  https://files.dev47apps.net/linux/droidcam_latest.zip
+Resolving files.dev47apps.net (files.dev47apps.net)... 104.28.5.185, 104.28.4.185, 2606:4700:3037::681c:4b9, ...
+Connecting to files.dev47apps.net (files.dev47apps.net)|104.28.5.185|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 933306 (911K) [application/zip]
+Saving to: ‘droidcam_latest.zip’
+droidcam_latest.zip 100%[===================&amp;gt;] 911,43K  2,45MB/s    in 0,4s
+2020-05-12 19:03:30 (2,45 MB/s) - ‘droidcam_latest.zip’ saved [933306/933306]
+&lt;font color="#8AE234"&gt;&lt;b&gt;cosmoscalibur@edliviano&lt;/b&gt;&lt;/font&gt;:&lt;font color="#729FCF"&gt;&lt;b&gt;/tmp&lt;/b&gt;&lt;/font&gt;$  echo "5ff0e772a76befba4e37e03101b611d7 droidcam_latest.zip" | md5sum -c --
+droidcam_latest.zip: OK
+&lt;font color="#8AE234"&gt;&lt;b&gt;cosmoscalibur@edliviano&lt;/b&gt;&lt;/font&gt;:&lt;font color="#729FCF"&gt;&lt;b&gt;~/tmp&lt;/b&gt;&lt;/font&gt;$ sudo apt install -y gcc make linux-headers-`uname -r`
+Reading package lists... Done
+Building dependency tree
+Reading state information... Done
+make is already the newest version (4.1-9.1ubuntu1).
+gcc is already the newest version (4:7.4.0-1ubuntu2.3).
+linux-headers-5.3.0-51-generic is already the newest version (5.3.0-51.44~18.04.2).
+&lt;font color="#8AE234"&gt;&lt;b&gt;cosmoscalibur@edliviano&lt;/b&gt;&lt;/font&gt;:&lt;font color="#729FCF"&gt;&lt;b&gt;/tmp&lt;/b&gt;&lt;/font&gt;$  unzip droidcam_latest.zip -d droidcam &amp;amp;&amp;amp; cd droidcam
+Archive:  droidcam_latest.zip
+  inflating: droidcam/LICENCE
+  inflating: droidcam/Makefile
+  inflating: droidcam/README.md
+  inflating: droidcam/droidcam
+  inflating: droidcam/droidcam-cli
+  inflating: droidcam/install
+  creating: droidcam/src/
+  inflating: droidcam/uninstall
+  creating: droidcam/v4l2loopback/
+  inflating: droidcam/v4l2loopback/v4l2loopback-dc.c
+  inflating: droidcam/v4l2loopback/Makefile
+  inflating: droidcam/v4l2loopback/test-mmap.c
+  inflating: droidcam/v4l2loopback/test.c
+&lt;font color="#8AE234"&gt;&lt;b&gt;cosmoscalibur@edliviano&lt;/b&gt;&lt;/font&gt;:&lt;font color="#729FCF"&gt;&lt;b&gt;/tmp/droidcam&lt;/b&gt;&lt;/font&gt;$  sudo ./install
+[sudo] password for cosmoscalibur:
+Webcam parameters: '640' and '480'
+Building v4l2loopback-dc.ko
+make: Entering directory '/tmp/droidcam/v4l2loopback'
+make -C /lib/modules/`uname -r`/build M=`pwd`
+make[1]: Entering directory '/usr/src/linux-headers-5.3.0-51-generic'
+  CC [M]  /tmp/droidcam/v4l2loopback/v4l2loopback-dc.o
+  Building modules, stage 2.
+  MODPOST 1 modules
+  CC      /tmp/droidcam/v4l2loopback/v4l2loopback-dc.mod.o
+  LD [M]  /tmp/droidcam/v4l2loopback/v4l2loopback-dc.ko
+make[1]: Leaving directory '/usr/src/linux-headers-5.3.0-51-generic'
+make: Leaving directory '/tmp/droidcam/v4l2loopback'
+Moving driver and executable to system folders
++ cp v4l2loopback/v4l2loopback-dc.ko /lib/modules/5.3.0-51-generic/kernel/drivers/media/video/
++ cp droidcam /usr/bin/
++ cp droidcam-cli /usr/bin/
++ set +x
+Registering webcam device
+Running depmod
+make: Entering directory '/tmp/droidcam/v4l2loopback'
+make -C /lib/modules/`uname -r`/build M=`pwd` clean
+make[1]: Entering directory '/usr/src/linux-headers-5.3.0-51-generic'
+  CLEAN   /tmp/droidcam/v4l2loopback/Module.symvers
+make[1]: Leaving directory '/usr/src/linux-headers-5.3.0-51-generic'
+make: Leaving directory '/tmp/droidcam/v4l2loopback'
+Adding uninstall script
+Adding driver to /etc/modules
+Done
+&lt;font color="#8AE234"&gt;&lt;b&gt;cosmoscalibur@edliviano&lt;/b&gt;&lt;/font&gt;:&lt;font color="#729FCF"&gt;&lt;b&gt;/tmp/droidcam&lt;/b&gt;&lt;/font&gt;$ lsmod | grep v4l2loopback_dc
+&lt;font color="#EF2929"&gt;&lt;b&gt;v4l2loopback_dc&lt;/b&gt;&lt;/font&gt;        24576  0
+videodev              208896  5 v4l2_common,videobuf2_v4l2,&lt;font color="#EF2929"&gt;&lt;b&gt;v4l2loopback_dc&lt;/b&gt;&lt;/font&gt;,uvcvideo,videobuf2_common
+&lt;/pre&gt;&lt;p&gt;La última instrucción es solo para efectos de validación. Si sale
+&lt;code&gt;v4l2loopback_dc&lt;/code&gt;, estamos bien.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="instalacion-en-android"&gt;
+&lt;h3&gt;Instalación en Android&lt;/h3&gt;
+&lt;p&gt;Para instalar en Android, buscamos DroidCam en Google Play [&lt;a class="reference internal" href="https://www.cosmoscalibur.com/blog/usar-la-camara-de-tu-celular-como-webcam/#android"&gt;android&lt;/a&gt;].
+Encontrarán dos versiones, una gratuita y una paga. Podemos usar la
+gratuita para la funcionalidad requerida, siendo única limitación la
+resolución máxima a la que transmite.&lt;/p&gt;
+&lt;p&gt;Una vez instalada, procedemos a abrir y seguir los siguientes pasos:&lt;/p&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;&lt;p&gt;Mensaje de agradecimiento, presionamos "Próximo".&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Instrucciones para cámara web, presionamos "Obtener".&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;En la siguiente vista obtenemos la IP y el puerto que debemos
+configurar en nuestro equipo.&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="figure align-center"&gt;
+&lt;a class="reference external image-reference" href="https://www.cosmoscalibur.com/images/usar-la-camara-de-tu-celular-como-webcam/droidcam-activo-ip-puerto.jpg"&gt;&lt;img alt="DroidCam activo (información de IP y puerto)." src="https://www.cosmoscalibur.com/images/usar-la-camara-de-tu-celular-como-webcam/droidcam-activo-ip-puerto.thumbnail.jpg" style="width: 300px;"&gt;&lt;/a&gt;
+&lt;p class="caption"&gt;DroidCam activo (información de IP y puerto).&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;En la parte superior derecha, accedemos a la configuración. La
+configuración importante para nosotros está en la sección "CÁMARA", y es
+el límite de FPS (ayuda a ahorrar batería) y la cámara que se usará (en
+"Cámara" podemos seleccionar cual de las cámaras).&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="ejecutar"&gt;
+&lt;h2&gt;Ejecutar&lt;/h2&gt;
+&lt;p&gt;Finalmente, para hacer uso de DroidCam en Linux, debemos ejecutar en la
+consola &lt;code&gt;droidcam&lt;/code&gt; y esto abrirá un GUI para ingresar la IP y el
+puerto que usaremos.&lt;/p&gt;
+&lt;pre&gt;&lt;font color="#8AE234"&gt;&lt;b&gt;cosmoscalibur@edliviano&lt;/b&gt;&lt;/font&gt;:&lt;font color="#729FCF"&gt;&lt;b&gt;/tmp/droidcam&lt;/b&gt;&lt;/font&gt;$ droidcam
+Device: USB2.0 VGA UVC WebCam: USB2.0 V
+Device: USB2.0 VGA UVC WebCam: USB2.0 V
+Device: Droidcam
+Found driver: /dev/video2 (fd:7)
+connecting to 192.168.1.2:4747
+&lt;/pre&gt;&lt;div class="figure align-center"&gt;
+&lt;a class="reference external image-reference" href="https://www.cosmoscalibur.com/images/usar-la-camara-de-tu-celular-como-webcam/droidcam-linux-gui.png"&gt;&lt;img alt="Cliente GUI de DroidCam en Linux." src="https://www.cosmoscalibur.com/images/usar-la-camara-de-tu-celular-como-webcam/droidcam-linux-gui.thumbnail.png" style="width: 400px;"&gt;&lt;/a&gt;
+&lt;p class="caption"&gt;Cliente GUI de DroidCam en Linux. Aquí ingresamos IP y puerto.&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;Una vez configurado, presionamos "Connect". En este momento DroidCam del
+celular activará la vista de la cámara y podremos configurar la aplicación
+que requiera de la cámara.&lt;/p&gt;
+&lt;p&gt;Para ejemplo, tomaré Skype, pero será igual con toda aplicación que
+soporte selección de cámara (aplica para Hangout, OBS, Teams, entre otras).
+En el menú respectivo, seleccionamos "DroidCam" y estamos listos.&lt;/p&gt;
+&lt;div class="figure align-center"&gt;
+&lt;a class="reference external image-reference" href="https://www.cosmoscalibur.com/images/usar-la-camara-de-tu-celular-como-webcam/droidcam-seleccion-skype.jpg"&gt;&lt;img alt="Selección de DroidCam como cámara en Skype." src="https://www.cosmoscalibur.com/images/usar-la-camara-de-tu-celular-como-webcam/droidcam-seleccion-skype.thumbnail.jpg" style="width: 400px;"&gt;&lt;/a&gt;
+&lt;p class="caption"&gt;Selección de DroidCam como cámara en las aplicaciones.&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;Comparemos ahora la calidad incluyendo las dos vistas (DroidCam e
+incorporada) con OBS.&lt;/p&gt;
+&lt;div class="figure align-center"&gt;
+&lt;a class="reference external image-reference" href="https://www.cosmoscalibur.com/images/usar-la-camara-de-tu-celular-como-webcam/droidcam-vs-integrada.png"&gt;&lt;img alt="Comparación de cámara DroidCam y cámara integrada." src="https://www.cosmoscalibur.com/images/usar-la-camara-de-tu-celular-como-webcam/droidcam-vs-integrada.thumbnail.png" style="width: 600px;"&gt;&lt;/a&gt;
+&lt;p class="caption"&gt;Comparación incorporando la vista de DroidCam (izquierda) y la cámara integrada de mi equipo (derecha) en OBS.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="referencias"&gt;
+&lt;h2&gt;Referencias&lt;/h2&gt;
+&lt;dl class="citation"&gt;
+&lt;dt class="label" id="id1"&gt;&lt;span class="brackets"&gt;droidcam&lt;/span&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;DroidCam Wireless Webcam &lt;a class="reference external" href="https://www.dev47apps.com/"&gt;https://www.dev47apps.com/&lt;/a&gt; .&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class="label" id="linux"&gt;&lt;span class="brackets"&gt;linux&lt;/span&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;DroidCam Linux Install &lt;a class="reference external" href="https://www.dev47apps.com/droidcam/linuxx/"&gt;https://www.dev47apps.com/droidcam/linuxx/&lt;/a&gt; .&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class="label" id="android"&gt;&lt;span class="brackets"&gt;android&lt;/span&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;DroidCam Wireless Webcam (Android) &lt;a class="reference external" href="https://play.google.com/store/apps/details?id=com.dev47apps.droidcam"&gt;https://play.google.com/store/apps/details?id=com.dev47apps.droidcam&lt;/a&gt;&lt;/p&gt;
+&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;/div&gt;&lt;/div&gt;</description><category>android</category><category>cámara</category><category>droidcam</category><category>linux</category><category>webcam</category><guid>https://www.cosmoscalibur.com/blog/usar-la-camara-de-tu-celular-como-webcam/</guid><pubDate>Sun, 17 May 2020 20:02:25 GMT</pubDate></item><item><title>Recuperar el arranque de tu Moto G5 en Linux</title><link>https://www.cosmoscalibur.com/blog/recuperar-el-arranque-de-tu-moto-g5-en-linux/</link><dc:creator>Edward Villegas-Pulgarin</dc:creator><description>&lt;div&gt;&lt;p&gt;Recientemente, aunque cambié a un Moto G7, pensaba restaurar el celular de
+fábrica pero salió mal el proceso (no siempre es fácil si pretendes eliminar
+el acceso a &lt;a class="reference external" href="https://www.xda-developers.com/root/"&gt;administrador&lt;/a&gt; -&lt;em&gt;root&lt;/em&gt;- y
+el &lt;em&gt;recovery&lt;/em&gt; personalizado -&lt;a class="reference external" href="https://twrp.me/about/"&gt;TWRP&lt;/a&gt;-).&lt;/p&gt;
+&lt;p&gt;A raíz de esto, no funcionaba &lt;em&gt;play service&lt;/em&gt; y por ende no era posible llegar
+a la pantalla de ingreso de usuario ni omitirlo. Esto es un tipo de fallo
+denominado &lt;em&gt;soft brick&lt;/em&gt;, en el cual el celular es inservible a nivel de
+sistema operativo (se distingue de un &lt;em&gt;hard brick&lt;/em&gt;, en el cual el daño es
+físico).&lt;/p&gt;
+&lt;!-- TEASER_END --&gt;
+&lt;p&gt;A continuación, veremos como recuperar tu celular de este estado con Linux.&lt;/p&gt;
+&lt;div class="section" id="instalacion-de-herramientas-android"&gt;
+&lt;h2&gt;Instalación de herramientas Android&lt;/h2&gt;
+&lt;p&gt;Nuestro primer paso es la instalación de las herramientas de software o
+paquetes que necesitaremos para rescatar nuestro equipo. Este paso puede ser
+realizado con la ayuda de los gestores de paquete de nuestra distribución
+Linux pero por lo mismo dependerá de cual usemos.&lt;/p&gt;
+&lt;p&gt;En mi caso, uso Linux Mint 19, una distribución que es derivada de Ubuntu
+18.04, compartiendo mucho de la base de paquetes en sus repositorios. Así,
+en ambos casos, podremos proceder a instalar de la misma manera el SDK de
+Android, ADB, Fastboot y Platform Tools.&lt;/p&gt;
+&lt;pre class="code text"&gt;&lt;a name="rest_code_609cba4f81e94ff6994b23cc4224f146-1"&gt;&lt;/a&gt;sudo apt install -y android-sdk android-tools-fastboot android-tools-adb \
+&lt;a name="rest_code_609cba4f81e94ff6994b23cc4224f146-2"&gt;&lt;/a&gt;android-sdk-platform-tools
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="section" id="descargar-rom-de-fabrica"&gt;
+&lt;h2&gt;Descargar &lt;em&gt;ROM&lt;/em&gt; de fábrica&lt;/h2&gt;
+&lt;p&gt;Como lo advertía en &lt;a class="reference external" href="https://www.cosmoscalibur.com/blog/comprando-celular-para-personalizar/"&gt;Comprando celular para personalizar&lt;/a&gt;, un detalle
+importante al adquirir celular es revisar la existencia de la &lt;em&gt;ROM&lt;/em&gt; de fábrica
+(sistema operativo original) en los foros especializados como
+&lt;a class="reference external" href="https://www.xda-developers.com/"&gt;XDA&lt;/a&gt;. Pueden existir otras fuentes, pero
+la recomendada es esta.&lt;/p&gt;
+&lt;p&gt;Descargaremos la &lt;em&gt;ROM&lt;/em&gt; de la versión Android Oreo 8.1 para nuestro Moto G5.
+&lt;a class="reference external" href="https://mirrors.lolinet.com/firmware/moto/cedric/official/RETAIL/CEDRIC_RETAIL_8.1.0_OPP28.85-19-4-2_cid50_subsidy-DEFAULT_regulatory-DEFAULT_CFC.xml.zip"&gt;Descargar Android 8.1 Moto G5 cedric&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Una vez descargado el archivo, procedemos a descomprimirlo.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="fastboot-mode"&gt;
+&lt;h2&gt;&lt;em&gt;Fastboot mode&lt;/em&gt;&lt;/h2&gt;
+&lt;p&gt;Ya nos acercamos poco a poco. El siguiente paso es con nuestro celular.
+Debemos pasar a modo &lt;em&gt;fastboot&lt;/em&gt; y esto se logra de la siguiente manera.&lt;/p&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;&lt;p&gt;Apagar el celular.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Presionar de manera sostenida la parte inferior de la tecla de volumen.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Mientras sostienes la tecla de volumen, presionar la tecla de prendido, y
+soltar.&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;En este momento, hemos ingresado al modo &lt;em&gt;fastboot&lt;/em&gt; (o &lt;em&gt;bootloader&lt;/em&gt;).
+Conectamos el cable USB tanto al celular como a nuestro computador.&lt;/p&gt;
+&lt;p&gt;Podemos probar que todo vaya bien abriendo una terminal y ejecutando&lt;/p&gt;
+&lt;pre class="code text"&gt;&lt;a name="rest_code_442900ef38ec48a0bc24a97b45856b2d-1"&gt;&lt;/a&gt;fastboot devices
+&lt;/pre&gt;&lt;p&gt;Y sabremos que funciona si muestra una secuencia alfanumérica y luego la
+palabra &lt;em&gt;fastboot&lt;/em&gt;. En mi caso es:&lt;/p&gt;
+&lt;pre class="code text"&gt;&lt;a name="rest_code_08c1fc27fe3b4039a68dd4dee7d23e65-1"&gt;&lt;/a&gt;ZY3224RNMN   fastboot
+&lt;/pre&gt;&lt;p&gt;Algunas veces puede fallar por permisos, en cuyo caso deberías probar la
+ejecución con permiso de administrador.&lt;/p&gt;
+&lt;pre class="code text"&gt;&lt;a name="rest_code_3f57edfc6fce4e5887cd102a53464d51-1"&gt;&lt;/a&gt;sudo fastboot devices
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="section" id="instalar-sistema-operativo"&gt;
+&lt;h2&gt;Instalar sistema operativo&lt;/h2&gt;
+&lt;p&gt;Finalmente, necesitamos instalar el sistema operativo. Vamos a requerir de
+abrir una terminal y ubicarla en el directorio donde descomprimimos el sistema
+operativo (algunos exploradores de archivos admiten poseen la opción de abrir
+la terminal en el directorio abierto en el explorador o puedes moverte en la
+terminal con el comando &lt;code&gt;cd&lt;/code&gt;).&lt;/p&gt;
+&lt;p&gt;Una vez ubicados en el directorio desde la terminal, procedemos a ejecutar&lt;/p&gt;
+&lt;pre class="code text"&gt;&lt;a name="rest_code_5c6cf5f221c04fd6bdea2de3872a2dcc-1"&gt;&lt;/a&gt;fastboot getvar max-sparse-size
+&lt;a name="rest_code_5c6cf5f221c04fd6bdea2de3872a2dcc-2"&gt;&lt;/a&gt;fastboot oem fb_mode_set
+&lt;a name="rest_code_5c6cf5f221c04fd6bdea2de3872a2dcc-3"&gt;&lt;/a&gt;fastboot flash partition gpt.bin
+&lt;a name="rest_code_5c6cf5f221c04fd6bdea2de3872a2dcc-4"&gt;&lt;/a&gt;fastboot flash bootloader bootloader.img
+&lt;a name="rest_code_5c6cf5f221c04fd6bdea2de3872a2dcc-5"&gt;&lt;/a&gt;fastboot flash modem NON-HLOS.bin
+&lt;a name="rest_code_5c6cf5f221c04fd6bdea2de3872a2dcc-6"&gt;&lt;/a&gt;fastboot flash fsg fsg.mbn
+&lt;a name="rest_code_5c6cf5f221c04fd6bdea2de3872a2dcc-7"&gt;&lt;/a&gt;fastboot erase modemst1
+&lt;a name="rest_code_5c6cf5f221c04fd6bdea2de3872a2dcc-8"&gt;&lt;/a&gt;fastboot erase modemst2
+&lt;a name="rest_code_5c6cf5f221c04fd6bdea2de3872a2dcc-9"&gt;&lt;/a&gt;fastboot flash dsp adspso.bin
+&lt;a name="rest_code_5c6cf5f221c04fd6bdea2de3872a2dcc-10"&gt;&lt;/a&gt;fastboot flash logo logo.bin
+&lt;a name="rest_code_5c6cf5f221c04fd6bdea2de3872a2dcc-11"&gt;&lt;/a&gt;fastboot flash boot boot.img
+&lt;a name="rest_code_5c6cf5f221c04fd6bdea2de3872a2dcc-12"&gt;&lt;/a&gt;fastboot flash recovery recovery.img
+&lt;a name="rest_code_5c6cf5f221c04fd6bdea2de3872a2dcc-13"&gt;&lt;/a&gt;fastboot flash system system.img_sparsechunk.0
+&lt;a name="rest_code_5c6cf5f221c04fd6bdea2de3872a2dcc-14"&gt;&lt;/a&gt;fastboot flash system system.img_sparsechunk.1
+&lt;a name="rest_code_5c6cf5f221c04fd6bdea2de3872a2dcc-15"&gt;&lt;/a&gt;fastboot flash system system.img_sparsechunk.2
+&lt;a name="rest_code_5c6cf5f221c04fd6bdea2de3872a2dcc-16"&gt;&lt;/a&gt;fastboot flash system system.img_sparsechunk.3
+&lt;a name="rest_code_5c6cf5f221c04fd6bdea2de3872a2dcc-17"&gt;&lt;/a&gt;fastboot flash system system.img_sparsechunk.4
+&lt;a name="rest_code_5c6cf5f221c04fd6bdea2de3872a2dcc-18"&gt;&lt;/a&gt;fastboot flash system system.img_sparsechunk.5
+&lt;a name="rest_code_5c6cf5f221c04fd6bdea2de3872a2dcc-19"&gt;&lt;/a&gt;fastboot flash system system.img_sparsechunk.6
+&lt;a name="rest_code_5c6cf5f221c04fd6bdea2de3872a2dcc-20"&gt;&lt;/a&gt;fastboot flash system system.img_sparsechunk.7
+&lt;a name="rest_code_5c6cf5f221c04fd6bdea2de3872a2dcc-21"&gt;&lt;/a&gt;fastboot flash system system.img_sparsechunk.8
+&lt;a name="rest_code_5c6cf5f221c04fd6bdea2de3872a2dcc-22"&gt;&lt;/a&gt;fastboot flash oem oem.img
+&lt;a name="rest_code_5c6cf5f221c04fd6bdea2de3872a2dcc-23"&gt;&lt;/a&gt;fastboot erase cache
+&lt;a name="rest_code_5c6cf5f221c04fd6bdea2de3872a2dcc-24"&gt;&lt;/a&gt;fastboot erase userdata
+&lt;a name="rest_code_5c6cf5f221c04fd6bdea2de3872a2dcc-25"&gt;&lt;/a&gt;fastboot erase DDR
+&lt;a name="rest_code_5c6cf5f221c04fd6bdea2de3872a2dcc-26"&gt;&lt;/a&gt;fastboot oem fb_mode_clear
+&lt;a name="rest_code_5c6cf5f221c04fd6bdea2de3872a2dcc-27"&gt;&lt;/a&gt;fastboot reboot
+&lt;/pre&gt;&lt;p&gt;Muy bien, hemos terminado de instalar (si no hemos tenido ejecuciones
+fallidas). Para iniciar el celular, con la tecla de volumen buscamos &lt;em&gt;restart&lt;/em&gt;
+y luego presionamos el botón de encendido. En este momento, es como si
+estuviera nuevo el celular, por lo que tardará unos minutos que inicie.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="que-puede-salir-mal"&gt;
+&lt;h2&gt;¿Qué puede salir mal?&lt;/h2&gt;
+&lt;p&gt;Bueno, esto no es un procedimiento seguro ni asegura el funcionamiento. El
+primer detalle, es recordar que esto solo servirá si el problema era del
+sistema operativo, o sea, si era un &lt;em&gt;soft brick&lt;/em&gt;. En caso contrario,
+&lt;em&gt;hard brick&lt;/em&gt;, necesitarás un servicio técnico para el arreglo de tu equipo.&lt;/p&gt;
+&lt;p&gt;Otra opción para una posible falla en el proceso, es un cable USB deteriorado
+o un puerto USB deteriorado. En estos casos, es posible perder la conexión
+entre el celular y computador, y en muchas ocasiones no habrá una advertencia
+visible (en mi caso, lo he notado con demoras superiores a las habituales).&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="referencias"&gt;
+&lt;h2&gt;Referencias&lt;/h2&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://forum.xda-developers.com/g5/development/fastboot-cedricretail8-1-0opp28-85-19-4-t3930448"&gt;[FASTBOOT]CEDRIC_RETAIL_8.1.0_OPP28.85-19-4-2_cid50_subsidy-DEFAULT_regulatory-DEFAUL&lt;/a&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://www.hardreset.info/devices/motorola/motorola-moto-g5/recovery-mode/"&gt;HardReset.info: Recovery Mode MOTOROLA Moto G5&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://android.gadgethacks.com/how-to/know-your-android-tools-what-is-fastboot-do-you-use-it-0155640/"&gt;What Is Fastboot &amp;amp; How Do You Use It?&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;&lt;/div&gt;</description><category>android</category><category>celulares</category><category>fastboot</category><category>flash</category><category>linux</category><category>moto g5</category><category>motorola</category><category>smartphone</category><category>soft brick</category><guid>https://www.cosmoscalibur.com/blog/recuperar-el-arranque-de-tu-moto-g5-en-linux/</guid><pubDate>Tue, 22 Oct 2019 00:10:34 GMT</pubDate></item><item><title>Audiolibros con Overdrive y Biblioteca EPM</title><link>https://www.cosmoscalibur.com/blog/audiolibros-con-overdrive-y-biblioteca-epm/</link><dc:creator>Edward Villegas-Pulgarin</dc:creator><description>&lt;div&gt;&lt;p&gt;Vuelvo después de un largo tiempo al blog, con el fin de compartirles una
+excelente recomendación para aprovechar sus tiempos de espera en transporte o
+en las eternas filas. Se trata de aprovechar el tiempo escuchando audiolibros.&lt;/p&gt;
+&lt;p&gt;Para esto, se requiere de dos elementos, uno es tener una aplicación instalada
+en nuestro móvil y adicional tener acceso a los recursos de la Biblioteca de la
+Fundación EPM.&lt;/p&gt;
+&lt;!-- TEASER_END --&gt;
+&lt;div class="section" id="overdrive"&gt;
+&lt;h2&gt;Overdrive&lt;/h2&gt;
+&lt;p&gt;Bueno, el requisito de la aplicación se cumple con
+&lt;a class="reference external" href="https://www.overdrive.com/"&gt;Overdrive&lt;/a&gt;, una aplicación que permite la
+gestión del préstamo de libros electrónicos y audiolibros en las bibliotecas
+que tengan dispuesto espacio en esta plataforma. Ojo, no se trata de una
+aplicación general para audiolibros y libros, es solo para estos recursos en
+las bibliotecas aliadas.&lt;/p&gt;
+&lt;p&gt;Para nosotros en Colombia, tenemos más bien pocas opciones. Podrán explorar
+rápidamente las bibliotecas aliadas, categorizadas por &lt;em&gt;Antioquia&lt;/em&gt;, &lt;em&gt;Distrito
+Capital de Bogotá&lt;/em&gt;, &lt;em&gt;Medellín&lt;/em&gt; y &lt;em&gt;Valle del Cauca&lt;/em&gt;. Para esta exploración deben
+dirigirse a la opción "Administrar bibliotecas", el signo "+" para agregar una
+nueva biblioteca y finalmente "EXPLORAR BIBLIOTECAS".&lt;/p&gt;
+&lt;p&gt;La aplicación se encuentra disponible en:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://play.google.com/store/apps/details?id=com.overdrive.mobile.android.mediaconsole"&gt;Google Play&lt;/a&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://itunes.apple.com/us/app/overdrive-ebooks-audiobooks/id366869252"&gt;AppStore&lt;/a&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://www.microsoft.com/es-co/p/overdrive-library-ebooks-audiobooks/9wzdncrfj3sr?activetab=pivot:overviewtab"&gt;Microsoft Store&lt;/a&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Puedes crear una cuenta en Overdrive con el fin de sincronizar tus datos de
+bibliotecas (se puede con Facebook).&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="fundacion-epm-red-de-bibliotecas"&gt;
+&lt;h2&gt;Fundación EPM - Red de bibliotecas&lt;/h2&gt;
+&lt;p&gt;No es que sea la única opción, pero si es la opción para cualquier ciudadano
+colombiano. La biblioteca de la Fundación EPM es una biblioteca pública y por
+tenes acceso a ella de una forma muy simple, inscribiéndonos en un formulario
+web, tras el cual tendremos nuestro usuario y contraseña.&lt;/p&gt;
+&lt;p&gt;Este formulario se encuentra disponible en el sitio del
+&lt;a class="reference external" href="http://bibliotecasmedellin.gov.co/cms/servicios-en-linea/afiliacion/"&gt;Sistema de Bibliotecas Públicas de Medellín&lt;/a&gt;.
+El único pero, es estar forzado a diligenciar un número de contacto fijo en una
+época donde es poco común pero los datos no son validados para tener acceso (en
+mi caso registre el número parcial de mi celular).&lt;/p&gt;
+&lt;div class="figure align-center"&gt;
+&lt;a class="reference external image-reference" href="https://www.cosmoscalibur.com/images/audiolibros-con-overdrive-y-biblioteca-epm/menu-lateral-overdrive.png"&gt;&lt;img alt="Menú lateral de Overdrive." src="https://www.cosmoscalibur.com/images/audiolibros-con-overdrive-y-biblioteca-epm/menu-lateral-overdrive.thumbnail.png"&gt;&lt;/a&gt;
+&lt;p class="caption"&gt;Menú lateral de Overdrive con listado de bibliotecas agregadas.&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;Una vez diligenciado el formulario, te llegará un mensaje al correo electrónico
+que hayas indicado, donde se indica el usuario y contraseña. La verdad, no se
+para que es la contraseña, porque &lt;em&gt;Overdrive&lt;/em&gt; solo pide el usuario (número de
+documento de identificación) y un campo numérico que es el tipo de documento
+(1 si es cédula).&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="a-escuchar"&gt;
+&lt;h2&gt;A escuchar&lt;/h2&gt;
+&lt;p&gt;Una vez tenemos los datos, agregamos la biblioteca de la Fundación EPM,
+seleccionamos Red de Bibliotecas, ingresamos nuestros datos y procedemos a
+seleccionar el recurso que queremos prestar (en la próxima ocasión, accederemos
+desde el menú lateral seleccionando la biblioteca). En este caso, mi
+recomendación de audiolibros con experiencia inmersiva (tipo radionovela).&lt;/p&gt;
+&lt;div class="figure align-center"&gt;
+&lt;a class="reference external image-reference" href="https://www.cosmoscalibur.com/images/audiolibros-con-overdrive-y-biblioteca-epm/overdrive-audiolibros-prestados.png"&gt;&lt;img alt="Lista de audiolibros prestados." src="https://www.cosmoscalibur.com/images/audiolibros-con-overdrive-y-biblioteca-epm/overdrive-audiolibros-prestados.thumbnail.png"&gt;&lt;/a&gt;
+&lt;p class="caption"&gt;Lista de audiolibros prestados disponible en la estantería.&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;Vamos a la categoría de audiolibros, escogemos el título seleccionando
+"PEDIR PRESTADO" y luego "Descargar". Ahora, vamos al menú lateral,
+seleccionamos "Estantería" y seleccionamos el audiolibro que deseamos
+disfrutar.&lt;/p&gt;
+&lt;p&gt;Que tengan una agradable experiencia.&lt;/p&gt;
+&lt;/div&gt;&lt;/div&gt;</description><category>android</category><category>audiolibros</category><category>bibliotecas</category><category>colombia</category><category>epm</category><category>overdrive</category><guid>https://www.cosmoscalibur.com/blog/audiolibros-con-overdrive-y-biblioteca-epm/</guid><pubDate>Sat, 18 May 2019 00:14:07 GMT</pubDate></item><item><title>Problemas de audio en Moto G5</title><link>https://www.cosmoscalibur.com/blog/problemas-de-audio-en-moto-g5/</link><dc:creator>Edward Villegas-Pulgarin</dc:creator><description>&lt;div&gt;&lt;p&gt;Recién cambié mi celular Moto G3 por un Moto G5 y vaya susto el que me llevé
+inicialmente. La verdad, como el cambio fue más bien un asunto de afán no
+revisé foros previamente
+(&lt;a class="reference external" href="https://www.cosmoscalibur.com/blog/comprando-celular-para-personalizar/"&gt;ver recomendaciones a la hora de comprar&lt;/a&gt;)
+sobre los problemas y me confié de los conocidos que tienen este celular y que
+nunca les he escuchado de problemas.&lt;/p&gt;
+&lt;p&gt;El susto comenzó con la primera llamada (cuando lo compré no se hizo prueba de
+llamada) y la sorpresa de encontrarme sin audio. Hice dos intentos adicionales
+pensando que podía ser algún problema de señal pero persistía hasta que algo
+se escucho cuando iba a cortar la llamada. Nuevamente probé, y el audio
+empezaba 5 segundos después de conectarse la llamada.&lt;/p&gt;
+&lt;!-- TEASER_END --&gt;
+&lt;p&gt;Ante esto acudí al dios Google y me encontré una gran cantidad de noticias en
+páginas de celulares y foros técnicos que reportaban no solo mi problema, sino
+además otros problemas de audio (y otros problemas).&lt;/p&gt;
+&lt;div class="section" id="problema-y-origen"&gt;
+&lt;h2&gt;Problema y origen&lt;/h2&gt;
+&lt;p&gt;Del mes de mayo de 2017 (3 meses después de la fecha de lanzamiento) se
+observan en esta búsqueda los primeros reportes de problemas de audio como
+ausencia de sonido durante el inicio de las llamadas, mala calidad del audio e
+incluso la apreciación de voz digitalizada. En algunos foros se encuentra
+reportado como problemas específicos de algunos operadores móviles pero
+realmente no es así, y ya entenderemos por que.&lt;/p&gt;
+&lt;p&gt;La razón de este error es que por defecto el Moto G5 viene habilitado con una
+opción de mejora de audio a través de recursos LTE pero bueno, ¿es una mejora?&lt;/p&gt;
+&lt;p&gt;Esta mejora de audio con recursos LTE significa que la señal asociada al audio
+de la llamada posee un procesamiento adicional con el fin de realizar el
+filtrado de ruido y mejora del nivel de audio (volumen) pero esto significa
+que hay un trabajo extra del procesador que no solo representa recurso de
+procesamiento sino también de tiempo. Efectivamente en mis ensayos puedo decir
+que percibí ligeramente un audio mucho más limpio con la mejora LTE pero nadie
+espera que en una llamada toque gastar primero 5 segundos para iniciar el
+audio, por lo cual resulta impráctico.&lt;/p&gt;
+&lt;p&gt;La voz digitalizada referida en los foros corresponde al efecto del
+procesamiento de naturaleza digital y no analógica de la señal, algo que no
+todos sentimos pero que al igual que en la música, algunos logran diferenciar
+el sonido de un instrumento sintetizado de un instrumento tradicional
+analógico. La mala calidad de audio podría ser un efecto no deseado del filtro.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="solucion"&gt;
+&lt;h2&gt;Solución&lt;/h2&gt;
+&lt;p&gt;Bueno, sabiendo que la solución se encuentra en internet y no es difícil
+encontrarla, decidí publicarla porque no siempre quien la necesita sabe inglés
+así que esta es una forma de contribuir (al igual que las publicaciones de
+ciencia) y bueno, a veces puedo dar detalles adicionales.&lt;/p&gt;
+&lt;p&gt;Necesitamos entrar a &lt;cite&gt;Configuración&lt;/cite&gt; y en la sección de "Conexiones
+inalámbricas y redes" seleccionamos &lt;cite&gt;... Más&lt;/cite&gt;. Ahora nos dirigimos a
+&lt;cite&gt;Redes móviles&lt;/cite&gt; y deshabilitamos la opción &lt;cite&gt;Modo 4G LTE mejorado&lt;/cite&gt;. Aunque nos
+indica que se recomienda usarlo ya sabemos por experiencia que es el origen de
+nuestro problema de audio.&lt;/p&gt;
+&lt;/div&gt;&lt;/div&gt;</description><category>android</category><category>audio</category><category>celulares</category><category>moto g5</category><category>motorola</category><category>smartphone</category><guid>https://www.cosmoscalibur.com/blog/problemas-de-audio-en-moto-g5/</guid><pubDate>Fri, 05 Jan 2018 01:03:38 GMT</pubDate></item><item><title>Comprando celular para personalizar</title><link>https://www.cosmoscalibur.com/blog/comprando-celular-para-personalizar/</link><dc:creator>Edward Villegas-Pulgarin</dc:creator><description>&lt;div&gt;&lt;p&gt;Después de algún tiempo de no publicar aquí, vuelvo con la intención de tener
+regularidad en el blog. Para empezar este año y dado a mi cambio de celular,
+estuve pensando sobre cuales debían ser las características a revisar antes de
+comprar un celular. Bueno, aquí el detalle es que cuando yo tengo un celular
+me gusta personalizarlo pero personalizar no es simplemente una tapa o
+instalarle una aplicación sino cambiar la versión de Android por versiones
+modificadas y tener privilegios de administrador.&lt;/p&gt;
+&lt;p&gt;La razón de mi interés en lo último, es poder lograr mayor rendimiento en el
+celular, mayor capacidad de almacenamiento, mayor duración de batería y menor
+consumo de datos. En una entrada posterior comentare más al respecto. Por el
+momento, compartiré mi análisis sobre lo que debes mirar para comprar un
+celular si tu intención es la misma mía (algunos factores sirven para el
+usuario promedio también).&lt;/p&gt;
+&lt;!-- TEASER_END --&gt;
+&lt;div class="section" id="fecha-de-lanzamiento"&gt;
+&lt;h2&gt;Fecha de lanzamiento&lt;/h2&gt;
+&lt;p&gt;Algunos preguntaran porque la fecha de lanzamiento es un factor importante en
+la compra de celular. Hace unos años un amigo me decía que lo nuevo siempre
+tenía errores y que era mejor esperar a las mejoras, pero esto me lo decía
+cuando yo tenía la costumbre de instalar las nuevas versiones de Ubuntu tan
+pronto salían y justo con la versión 13.04 mi equipo se recalentaba por un
+problema asociado al &lt;em&gt;kernel&lt;/em&gt; linux. No tuve otra opción que reinstalar una
+versión anterior y decidí solo instalar versiones LTS (&lt;em&gt;long-term support&lt;/em&gt;,
+soporte de termino extendido) por lo que desde ahí he pasado solo por las
+versiones 12.04, 14.04 y 16.04 (ahora esperando la 18.04). Una experiencia
+desafortunada por poco me pasa también cuando compré el celular Google Nexus
+5, cuando a los pocos días de encargarlo empecé a encontrar reportes de fallos
+del parlante y unos meses después del botón de encendido. Afortunadamente el
+modelo del celular ya corregía el defecto original del parlante pero dos años
+después sufriría el problema del botón de encendido del cual había leído.&lt;/p&gt;
+&lt;p&gt;Con esto quiere llegar a que las novedades al inicio solo nos muestran el lado
+bueno que compraremos pero no el lado malo. Un celular recién lanzado no
+tendrá seguramente malas referencias ya que buena parte de ellas con las
+comunicaciones de los fabricantes, operadores móviles y distribuidores de
+equipos. Luego, ¿qué mala publicidad harán para afectar sus ventas? Me parece
+prudente con base los casos que recuerdo entre el momento de empezar a ver
+comentarios de usuarios "descontentos" y el lanzamiento un periodo de 6 meses.
+Antes puede ser un poco tiempo para los celulares menos populares o de gama
+alta y si esperas más de un año seguramente ya no será tan atractivo el
+celular en vista de los nuevos anuncios y el soporte para las nuevas versiones
+de Android (que son básicamente anuales).&lt;/p&gt;
+&lt;p&gt;Igualmente este tiempo ayudará a esperar la aparición de las referencias de
+desarrolladores y sus proyectos para el celular. Finalmente, las opciones de
+personalización asociadas a las versiones modificadas de android
+(&lt;em&gt;custom ROM&lt;/em&gt;) y los privilegios de administrador (&lt;em&gt;root&lt;/em&gt;) dependen de los
+desarrolladores que han adquirido dichos equipos.&lt;/p&gt;
+&lt;p&gt;Algunos casos para recordar (las fechas de reportes son aproximadas y con base
+a mis lecturas):&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;HTC Nexus One: Tuvo un problema de diseño y su procesador se recalentaba
+fácilmente conduciendo a que fuera sumamente factible quemarse. Fue
+lanzado en enero de 2010 y los reportes del fallo empiezan a ser evidentes
+en abril de 2010.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;LG Nexus 5 (D820/D821): Presento fallas en el primer modelo con los
+parlantes llevando a una mala calidad de audio y el botón de encendido
+fallaba (cortocircuito) llevando a continuos reinicios del celular. Fue
+lanzado en noviembre de 2013 y los primeros reportes del fallo del
+parlante aparecieron el mismo mes y del botón de encendido 6 meses después.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Samsung Galaxy Note7: Tal vez el más conocido por el impacto en medios
+dado que su fallo podía afectar la integridad de los usuarios y su
+entorno. Fue lanzado en agosto de 2016 y dos semanas después ya se
+conocían reportes oficiales de baterías que explotaban. La trascendencia
+fue tal que incluso en los aviones se prohibía transportarlo.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;¿Como consultar la fecha de lanzamiento?&lt;/strong&gt;: Recomiendo para su consulta y
+de otras características el sitio &lt;a class="reference external" href="https://www.gsmarena.com"&gt;gsmarena&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="foro-xda"&gt;
+&lt;h2&gt;Foro XDA&lt;/h2&gt;
+&lt;p&gt;Como el nivel de personalización que queremos es "avanzado", requerimos una
+fuente especializada para ello. Si bien es posible encontrar blogs y videos de
+Youtube sobre como obtener privilegios de administrador (mal llamado "rootear"
+-del inglés &lt;em&gt;rooting&lt;/em&gt;-) y cambiarnos a una versión modificada de Android,
+nuestra primera referencia debe ser el
+&lt;a class="reference external" href="https://forum.xda-developers.com/"&gt;foro técnico de XDA&lt;/a&gt;. Aquí hay varios
+detalles que nos importan:&lt;/p&gt;
+&lt;div class="section" id="existencia-de-foro-del-equipo"&gt;
+&lt;h3&gt;Existencia de foro del equipo&lt;/h3&gt;
+&lt;p&gt;Si la comunidad alrededor del equipo es grande a nivel de desarrolladores y no
+solo de usuarios, encontraremos una sección propia para este. Eso es favorable
+porque encontraremos discusiones diversas a nivel de revisiones, privilegios
+de administrador, cambio del sistema operativo, solución de problemas y
+accesorios y aplicaciones específicas para el equipo. Aquellos que solo están
+en la sección de miscelánea no los recomiendo por experiencia propia (me fue
+mal con un Lenovo Vibe B).&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="rom-de-fabrica"&gt;
+&lt;h3&gt;&lt;em&gt;ROM&lt;/em&gt; de fábrica&lt;/h3&gt;
+&lt;p&gt;Me parece vital este punto. En el mundo Android, una &lt;em&gt;ROM&lt;/em&gt; es un archivo que
+contiene la imagen del sistema operativo con las aplicaciones. Respecto a
+este concepto, hay dos tipos: de fábrica (&lt;em&gt;stock&lt;/em&gt;) o modificada (&lt;em&gt;custom&lt;/em&gt;). Si
+por algún motivo durante nuestra aventura de personalizar el celular fallamos,
+lo más probable es que nuestro celular quede inservible temporalmente. La
+única forma de recuperarlo es contar con la &lt;em&gt;ROM&lt;/em&gt; de fábrica y realizar su
+instalación (&lt;em&gt;flashing&lt;/em&gt;) que es más simple que instalar la modificada. Si no
+hay de fábrica, la personalización es riesgosa al no tener como recuperar
+nuestro sistema. Como recomendación adicional, ten en cuenta que los modelos
+de los celulares varían según las regiones y por ende debe ser una validación
+adicional para hacer (en mi caso, que corresponda al modelo que llega a
+Latinoamérica).&lt;/p&gt;
+&lt;p&gt;En este sentido los celulares de Google y Motorola pueden ser buena
+alternativa al disponerse fácilmente sus &lt;em&gt;ROM&lt;/em&gt; de fábrica directamente por
+ellos.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="rom-modificada"&gt;
+&lt;h3&gt;&lt;em&gt;ROM&lt;/em&gt; modificada&lt;/h3&gt;
+&lt;p&gt;La &lt;em&gt;ROM&lt;/em&gt; modificada (&lt;em&gt;custom ROM&lt;/em&gt;) es la imagen del sistema operativo
+modificada por terceros pensando en mejorar algunas características (en una
+entrada posterior lo discutiré). Aquí más que en el caso anterior, debes
+revisar los comentarios de la comunidad para ver los posibles fallos y las
+metidas de patas de otros. Nuevamente es importante revisar que funcione para
+el modelo de la región específica. Más allá de esto, es cuestión de
+preferencia o de riesgo. En mi caso mi preferencia es por el bajo riesgo, y
+por eso sigo un caso que ya he usado en varias versiones y equipos que es
+&lt;a class="reference external" href="https://lineageos.org/"&gt;LineageOS&lt;/a&gt; (una derivación de CyanogenOS, la cual
+también usé). Aparte de esta y que sea común a múltiples equipos puede ser
+&lt;a class="reference external" href="http://viper-os.com/"&gt;ViperOS&lt;/a&gt; y las de fábrica optimizadas.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="privilegios-de-administrador"&gt;
+&lt;h3&gt;Privilegios de administrador&lt;/h3&gt;
+&lt;p&gt;Nuestros equipos Android están basados en el sistema operativo Linux y de ahí
+que sea posible tener acceso a los privilegios de administrador. Sin embargo,
+por precaución, tanto Google (como desarrollador de android) y los
+fabricantes, no les interesa disponer de esta herramienta para el usuario y
+viene bloqueada por defecto, pero como decía el Tío Ben al joven Peter
+Parker: "un gran poder conlleva una gran responsabilidad", no todos están
+preparados para esto. Y es que con privilegios de administrador básicamente
+estás en capacidad de borrar el sistema operativo pero también tienes la
+opción de seguir optimizando por tu cuenta el almacenamiento o el consumo de
+datos. Debes buscar por &lt;em&gt;root&lt;/em&gt; o &lt;em&gt;rooting&lt;/em&gt;, y asociado a este normalmente
+encontrarás las indicaciones para el cambio de la partición de recuperación
+(&lt;em&gt;recovery&lt;/em&gt;) que sin duda facilitará el proceso, siendo la más recomendada
+TWRP.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="gama-o-precio"&gt;
+&lt;h2&gt;Gama o precio&lt;/h2&gt;
+&lt;p&gt;Tal vez aquí encontramos un criterio de como buscar lo que probablemente pueda
+tener mayor potencial para encontrar los desarrollos necesarios. Los equipos
+de gama baja o entrante (económicos) tienden a ser muy populares pero por la
+gran cantidad de modelos también el público de cada uno tiende a reducirse, y
+solo unos cuantos resaltan en términos de cantidad de usuarios para asegurar
+el interés de los desarrolladores. En su momento, recuerdo un ejemplo
+particular y que considero como algo difícil de superar en los gama baja el
+Samsung Galaxy Ace (S5830).&lt;/p&gt;
+&lt;p&gt;El caso de los gama media es prometedor porque desarrollan un balance adecuado
+entre accesibilidad económica y sus características, y como en pirámide,
+mientras mejor sean menos modelos desarrollan los fabricantes en una misma
+gama. Esto favorece sin duda a encontrar desarrolladores interesados y dadas
+las buenas características del equipo que sea un desarrollo estable en el
+tiempo (si el desarrollador cambia de celular, hasta ahí queda el proyecto).
+En este sentido, la serie de modelos Moto G me parece que ha tenido un gran
+éxito y los recomiendo si se piensa en un celular para personalizar.
+Actualmente, Moto G5 es una buena opción y se encuentra disponible versión
+oficial de ViperOS y versión no oficial de LineageOS.&lt;/p&gt;
+&lt;p&gt;Finalmente un celular gama alta por sus características puede conducir a
+desarrollos bastante estables no solo por aumentar la probabilidad de que el
+desarrollador no piense en cambiar de equipo sino también porque asegura
+contar la existencia de actualizaciones de android por mucho más tiempo
+reduciendo parte del trabajo de adaptar el nuevo código al &lt;em&gt;hardware&lt;/em&gt;
+específico. ¿Cuál es el punto negativo? Por el alto costo la comunidad de
+usuarios es menor y dificulta el reporte de errores al ser pocos probándolo y
+aparte de ello, en caso de algo salir mal sería una gran cantidad de dinero
+perdido, por lo cual no es un riesgo que todos quieran tener (y que en su
+momento, yo decidí correr con un Google Nexus 5 y un Motorola Moto X).&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;¿Como saber esta característica?&lt;/strong&gt;: Bueno, respecto al precio hay que saber
+revisar los distribuidores, que en el caso de Medellín recomiendo
+&lt;a class="reference external" href="http://www.ktronix.com/telefonos-celulares/celulares-libres/ver/androidtm/#lineal"&gt;Ktronix&lt;/a&gt;
+(últimamente he comprado y recomendado allí por ser los mejores precios -esta
+última vez hasta me obsequiaron seguro de un año-). Empíricamente diría que si
+el celular vale menos de 300.000 pesos colombianos es gama baja, si es entre
+300.000 y 900.000 es gama media, y finalmente superior a 900.000 es gama alta
+(pero esto puede variar según la marca, la disponibilidad de equipos y la tasa
+de cambio del dolar). Las descripciones de XDA y Wikipedia dan información
+relativa a la gama también.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="camara-y-audio"&gt;
+&lt;h2&gt;Cámara y audio&lt;/h2&gt;
+&lt;p&gt;Realmente indicar este factor aquí como algo a revisar no es estrictamente
+cierto. De hecho, lo ubico para resaltar que es el factor en el cual no hay
+que basarse nunca pues será el más decepcionante de todos. Si para ti es
+supremamente importante la cámara (los celulares que parecen cámaras con
+llamadas) o la calidad de audio (que quieren una miniteca en la palma de la
+mano), personalizar el celular es casi que contrario a esa experiencia. El
+soporte de la cámara y el audio son los dos detalles más retadores para el
+desarrollo de las modificaciones y normalmente constituyen sus falencias
+durante los primeras iteraciones del sistema. Sondeando XDA podrán ver como
+hacen parte frecuentemente de la lista de cosas que no funcionan o que
+funcionan a medias.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;¿Hay otras restricciones de hardware?&lt;/strong&gt;: Si, en realidad el tema de lograr
+el soporte de &lt;em&gt;hardware&lt;/em&gt; no muy extendido o específico es limitante. Aún
+sigue siendo común los fallos del uso de doble SIM o del lector de huella,
+así como los fallos en &lt;em&gt;hardware&lt;/em&gt; típico en el cual el fabricante promete
+alto rendimiento (como lo comentado de las cámaras y parlantes). El procesador
+puede ser una ligera limitante en el caso de ser Mediatek (MT), ya que a la
+hora de realizar la instalación de la &lt;em&gt;ROM&lt;/em&gt; de fábrica con el &lt;em&gt;software&lt;/em&gt;
+adecuado es usual que se presenten múltiples errores en la detección del mismo
+(por controladores o conflictos con los paquetes que usualmente vienen
+instalados en una distribución Linux).&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="conclusiones"&gt;
+&lt;h2&gt;Conclusiones&lt;/h2&gt;
+&lt;p&gt;Sin duda es bueno comprar un celular que ya tenga revisiones por usuarios y no
+por comercializadores y fabricantes, por lo cual un tiempo de 6 meses tras su
+lanzamiento puede ser una buena opción para poder explorar comentarios de
+posibles fallos o inconsistencias con las características anunciadas.&lt;/p&gt;
+&lt;p&gt;Igualmente, tras este tiempo, la revisión del foro técnico de XDA nos ampliara
+el panorama sobre la existencia de las características de personalización que
+deseamos siendo importante la validación la posibilidad de conseguir la &lt;em&gt;ROM&lt;/em&gt;
+de fábrica para recuperación tras fallos, existencia de &lt;em&gt;ROM&lt;/em&gt; modificadas para
+la optimización de nuestro equipo (LineageOS y ViperOS como principales
+alternativas), particiones de recuperación modificadas (principal opción TWRP)
+para facilitar los procesos de instalación y métodos para lograr privilegios
+de administrador para el detalle fino de la optimización.&lt;/p&gt;
+&lt;p&gt;Se recomienda celulares con &lt;em&gt;hardware&lt;/em&gt; y precio intermedio dado que las
+características específicas de &lt;em&gt;hardware&lt;/em&gt; puede representar funcionamiento
+limitado al instalar una versión modificada del sistema operativo y un riesgo
+alto ante un valor elevado pagado. Los celulares de bajo costo podrían verse
+muy beneficiados de la personalización pero no suelen encontrarse proyectos
+muy estables para estos modelos.&lt;/p&gt;
+&lt;/div&gt;&lt;/div&gt;</description><category>android</category><category>celular</category><category>smartphone</category><guid>https://www.cosmoscalibur.com/blog/comprando-celular-para-personalizar/</guid><pubDate>Thu, 04 Jan 2018 01:49:54 GMT</pubDate></item></channel></rss>

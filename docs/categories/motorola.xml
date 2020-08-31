@@ -1,0 +1,170 @@
+<?xml version='1.0' encoding='utf-8'?>
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>Cosmoscalibur (Publicaciones sobre motorola)</title><link>https://www.cosmoscalibur.com/</link><description/><atom:link href="https://www.cosmoscalibur.com/categories/motorola.xml" rel="self" type="application/rss+xml"/><language>es</language><copyright>Contents © 2020 &lt;a href="mailto:cosmoscalibur&amp;#64;gmail.com"&gt;Edward Villegas-Pulgarin&lt;/a&gt; 
+&lt;a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"&gt;
+&lt;img alt="Creative Commons License BY-NC-SA"
+style="border-width:0; margin-bottom:12px;"
+src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"&gt;&lt;/a&gt;</copyright><lastBuildDate>Mon, 31 Aug 2020 02:37:26 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Recuperar el arranque de tu Moto G5 en Linux</title><link>https://www.cosmoscalibur.com/blog/recuperar-el-arranque-de-tu-moto-g5-en-linux/</link><dc:creator>Edward Villegas-Pulgarin</dc:creator><description>&lt;div&gt;&lt;p&gt;Recientemente, aunque cambié a un Moto G7, pensaba restaurar el celular de
+fábrica pero salió mal el proceso (no siempre es fácil si pretendes eliminar
+el acceso a &lt;a class="reference external" href="https://www.xda-developers.com/root/"&gt;administrador&lt;/a&gt; -&lt;em&gt;root&lt;/em&gt;- y
+el &lt;em&gt;recovery&lt;/em&gt; personalizado -&lt;a class="reference external" href="https://twrp.me/about/"&gt;TWRP&lt;/a&gt;-).&lt;/p&gt;
+&lt;p&gt;A raíz de esto, no funcionaba &lt;em&gt;play service&lt;/em&gt; y por ende no era posible llegar
+a la pantalla de ingreso de usuario ni omitirlo. Esto es un tipo de fallo
+denominado &lt;em&gt;soft brick&lt;/em&gt;, en el cual el celular es inservible a nivel de
+sistema operativo (se distingue de un &lt;em&gt;hard brick&lt;/em&gt;, en el cual el daño es
+físico).&lt;/p&gt;
+&lt;!-- TEASER_END --&gt;
+&lt;p&gt;A continuación, veremos como recuperar tu celular de este estado con Linux.&lt;/p&gt;
+&lt;div class="section" id="instalacion-de-herramientas-android"&gt;
+&lt;h2&gt;Instalación de herramientas Android&lt;/h2&gt;
+&lt;p&gt;Nuestro primer paso es la instalación de las herramientas de software o
+paquetes que necesitaremos para rescatar nuestro equipo. Este paso puede ser
+realizado con la ayuda de los gestores de paquete de nuestra distribución
+Linux pero por lo mismo dependerá de cual usemos.&lt;/p&gt;
+&lt;p&gt;En mi caso, uso Linux Mint 19, una distribución que es derivada de Ubuntu
+18.04, compartiendo mucho de la base de paquetes en sus repositorios. Así,
+en ambos casos, podremos proceder a instalar de la misma manera el SDK de
+Android, ADB, Fastboot y Platform Tools.&lt;/p&gt;
+&lt;pre class="code text"&gt;&lt;a name="rest_code_609cba4f81e94ff6994b23cc4224f146-1"&gt;&lt;/a&gt;sudo apt install -y android-sdk android-tools-fastboot android-tools-adb \
+&lt;a name="rest_code_609cba4f81e94ff6994b23cc4224f146-2"&gt;&lt;/a&gt;android-sdk-platform-tools
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="section" id="descargar-rom-de-fabrica"&gt;
+&lt;h2&gt;Descargar &lt;em&gt;ROM&lt;/em&gt; de fábrica&lt;/h2&gt;
+&lt;p&gt;Como lo advertía en &lt;a class="reference external" href="https://www.cosmoscalibur.com/blog/comprando-celular-para-personalizar/"&gt;Comprando celular para personalizar&lt;/a&gt;, un detalle
+importante al adquirir celular es revisar la existencia de la &lt;em&gt;ROM&lt;/em&gt; de fábrica
+(sistema operativo original) en los foros especializados como
+&lt;a class="reference external" href="https://www.xda-developers.com/"&gt;XDA&lt;/a&gt;. Pueden existir otras fuentes, pero
+la recomendada es esta.&lt;/p&gt;
+&lt;p&gt;Descargaremos la &lt;em&gt;ROM&lt;/em&gt; de la versión Android Oreo 8.1 para nuestro Moto G5.
+&lt;a class="reference external" href="https://mirrors.lolinet.com/firmware/moto/cedric/official/RETAIL/CEDRIC_RETAIL_8.1.0_OPP28.85-19-4-2_cid50_subsidy-DEFAULT_regulatory-DEFAULT_CFC.xml.zip"&gt;Descargar Android 8.1 Moto G5 cedric&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Una vez descargado el archivo, procedemos a descomprimirlo.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="fastboot-mode"&gt;
+&lt;h2&gt;&lt;em&gt;Fastboot mode&lt;/em&gt;&lt;/h2&gt;
+&lt;p&gt;Ya nos acercamos poco a poco. El siguiente paso es con nuestro celular.
+Debemos pasar a modo &lt;em&gt;fastboot&lt;/em&gt; y esto se logra de la siguiente manera.&lt;/p&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;&lt;p&gt;Apagar el celular.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Presionar de manera sostenida la parte inferior de la tecla de volumen.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Mientras sostienes la tecla de volumen, presionar la tecla de prendido, y
+soltar.&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;En este momento, hemos ingresado al modo &lt;em&gt;fastboot&lt;/em&gt; (o &lt;em&gt;bootloader&lt;/em&gt;).
+Conectamos el cable USB tanto al celular como a nuestro computador.&lt;/p&gt;
+&lt;p&gt;Podemos probar que todo vaya bien abriendo una terminal y ejecutando&lt;/p&gt;
+&lt;pre class="code text"&gt;&lt;a name="rest_code_442900ef38ec48a0bc24a97b45856b2d-1"&gt;&lt;/a&gt;fastboot devices
+&lt;/pre&gt;&lt;p&gt;Y sabremos que funciona si muestra una secuencia alfanumérica y luego la
+palabra &lt;em&gt;fastboot&lt;/em&gt;. En mi caso es:&lt;/p&gt;
+&lt;pre class="code text"&gt;&lt;a name="rest_code_08c1fc27fe3b4039a68dd4dee7d23e65-1"&gt;&lt;/a&gt;ZY3224RNMN   fastboot
+&lt;/pre&gt;&lt;p&gt;Algunas veces puede fallar por permisos, en cuyo caso deberías probar la
+ejecución con permiso de administrador.&lt;/p&gt;
+&lt;pre class="code text"&gt;&lt;a name="rest_code_3f57edfc6fce4e5887cd102a53464d51-1"&gt;&lt;/a&gt;sudo fastboot devices
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="section" id="instalar-sistema-operativo"&gt;
+&lt;h2&gt;Instalar sistema operativo&lt;/h2&gt;
+&lt;p&gt;Finalmente, necesitamos instalar el sistema operativo. Vamos a requerir de
+abrir una terminal y ubicarla en el directorio donde descomprimimos el sistema
+operativo (algunos exploradores de archivos admiten poseen la opción de abrir
+la terminal en el directorio abierto en el explorador o puedes moverte en la
+terminal con el comando &lt;code&gt;cd&lt;/code&gt;).&lt;/p&gt;
+&lt;p&gt;Una vez ubicados en el directorio desde la terminal, procedemos a ejecutar&lt;/p&gt;
+&lt;pre class="code text"&gt;&lt;a name="rest_code_5c6cf5f221c04fd6bdea2de3872a2dcc-1"&gt;&lt;/a&gt;fastboot getvar max-sparse-size
+&lt;a name="rest_code_5c6cf5f221c04fd6bdea2de3872a2dcc-2"&gt;&lt;/a&gt;fastboot oem fb_mode_set
+&lt;a name="rest_code_5c6cf5f221c04fd6bdea2de3872a2dcc-3"&gt;&lt;/a&gt;fastboot flash partition gpt.bin
+&lt;a name="rest_code_5c6cf5f221c04fd6bdea2de3872a2dcc-4"&gt;&lt;/a&gt;fastboot flash bootloader bootloader.img
+&lt;a name="rest_code_5c6cf5f221c04fd6bdea2de3872a2dcc-5"&gt;&lt;/a&gt;fastboot flash modem NON-HLOS.bin
+&lt;a name="rest_code_5c6cf5f221c04fd6bdea2de3872a2dcc-6"&gt;&lt;/a&gt;fastboot flash fsg fsg.mbn
+&lt;a name="rest_code_5c6cf5f221c04fd6bdea2de3872a2dcc-7"&gt;&lt;/a&gt;fastboot erase modemst1
+&lt;a name="rest_code_5c6cf5f221c04fd6bdea2de3872a2dcc-8"&gt;&lt;/a&gt;fastboot erase modemst2
+&lt;a name="rest_code_5c6cf5f221c04fd6bdea2de3872a2dcc-9"&gt;&lt;/a&gt;fastboot flash dsp adspso.bin
+&lt;a name="rest_code_5c6cf5f221c04fd6bdea2de3872a2dcc-10"&gt;&lt;/a&gt;fastboot flash logo logo.bin
+&lt;a name="rest_code_5c6cf5f221c04fd6bdea2de3872a2dcc-11"&gt;&lt;/a&gt;fastboot flash boot boot.img
+&lt;a name="rest_code_5c6cf5f221c04fd6bdea2de3872a2dcc-12"&gt;&lt;/a&gt;fastboot flash recovery recovery.img
+&lt;a name="rest_code_5c6cf5f221c04fd6bdea2de3872a2dcc-13"&gt;&lt;/a&gt;fastboot flash system system.img_sparsechunk.0
+&lt;a name="rest_code_5c6cf5f221c04fd6bdea2de3872a2dcc-14"&gt;&lt;/a&gt;fastboot flash system system.img_sparsechunk.1
+&lt;a name="rest_code_5c6cf5f221c04fd6bdea2de3872a2dcc-15"&gt;&lt;/a&gt;fastboot flash system system.img_sparsechunk.2
+&lt;a name="rest_code_5c6cf5f221c04fd6bdea2de3872a2dcc-16"&gt;&lt;/a&gt;fastboot flash system system.img_sparsechunk.3
+&lt;a name="rest_code_5c6cf5f221c04fd6bdea2de3872a2dcc-17"&gt;&lt;/a&gt;fastboot flash system system.img_sparsechunk.4
+&lt;a name="rest_code_5c6cf5f221c04fd6bdea2de3872a2dcc-18"&gt;&lt;/a&gt;fastboot flash system system.img_sparsechunk.5
+&lt;a name="rest_code_5c6cf5f221c04fd6bdea2de3872a2dcc-19"&gt;&lt;/a&gt;fastboot flash system system.img_sparsechunk.6
+&lt;a name="rest_code_5c6cf5f221c04fd6bdea2de3872a2dcc-20"&gt;&lt;/a&gt;fastboot flash system system.img_sparsechunk.7
+&lt;a name="rest_code_5c6cf5f221c04fd6bdea2de3872a2dcc-21"&gt;&lt;/a&gt;fastboot flash system system.img_sparsechunk.8
+&lt;a name="rest_code_5c6cf5f221c04fd6bdea2de3872a2dcc-22"&gt;&lt;/a&gt;fastboot flash oem oem.img
+&lt;a name="rest_code_5c6cf5f221c04fd6bdea2de3872a2dcc-23"&gt;&lt;/a&gt;fastboot erase cache
+&lt;a name="rest_code_5c6cf5f221c04fd6bdea2de3872a2dcc-24"&gt;&lt;/a&gt;fastboot erase userdata
+&lt;a name="rest_code_5c6cf5f221c04fd6bdea2de3872a2dcc-25"&gt;&lt;/a&gt;fastboot erase DDR
+&lt;a name="rest_code_5c6cf5f221c04fd6bdea2de3872a2dcc-26"&gt;&lt;/a&gt;fastboot oem fb_mode_clear
+&lt;a name="rest_code_5c6cf5f221c04fd6bdea2de3872a2dcc-27"&gt;&lt;/a&gt;fastboot reboot
+&lt;/pre&gt;&lt;p&gt;Muy bien, hemos terminado de instalar (si no hemos tenido ejecuciones
+fallidas). Para iniciar el celular, con la tecla de volumen buscamos &lt;em&gt;restart&lt;/em&gt;
+y luego presionamos el botón de encendido. En este momento, es como si
+estuviera nuevo el celular, por lo que tardará unos minutos que inicie.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="que-puede-salir-mal"&gt;
+&lt;h2&gt;¿Qué puede salir mal?&lt;/h2&gt;
+&lt;p&gt;Bueno, esto no es un procedimiento seguro ni asegura el funcionamiento. El
+primer detalle, es recordar que esto solo servirá si el problema era del
+sistema operativo, o sea, si era un &lt;em&gt;soft brick&lt;/em&gt;. En caso contrario,
+&lt;em&gt;hard brick&lt;/em&gt;, necesitarás un servicio técnico para el arreglo de tu equipo.&lt;/p&gt;
+&lt;p&gt;Otra opción para una posible falla en el proceso, es un cable USB deteriorado
+o un puerto USB deteriorado. En estos casos, es posible perder la conexión
+entre el celular y computador, y en muchas ocasiones no habrá una advertencia
+visible (en mi caso, lo he notado con demoras superiores a las habituales).&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="referencias"&gt;
+&lt;h2&gt;Referencias&lt;/h2&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://forum.xda-developers.com/g5/development/fastboot-cedricretail8-1-0opp28-85-19-4-t3930448"&gt;[FASTBOOT]CEDRIC_RETAIL_8.1.0_OPP28.85-19-4-2_cid50_subsidy-DEFAULT_regulatory-DEFAUL&lt;/a&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://www.hardreset.info/devices/motorola/motorola-moto-g5/recovery-mode/"&gt;HardReset.info: Recovery Mode MOTOROLA Moto G5&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://android.gadgethacks.com/how-to/know-your-android-tools-what-is-fastboot-do-you-use-it-0155640/"&gt;What Is Fastboot &amp;amp; How Do You Use It?&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;&lt;/div&gt;</description><category>android</category><category>celulares</category><category>fastboot</category><category>flash</category><category>linux</category><category>moto g5</category><category>motorola</category><category>smartphone</category><category>soft brick</category><guid>https://www.cosmoscalibur.com/blog/recuperar-el-arranque-de-tu-moto-g5-en-linux/</guid><pubDate>Tue, 22 Oct 2019 00:10:34 GMT</pubDate></item><item><title>Problemas de audio en Moto G5</title><link>https://www.cosmoscalibur.com/blog/problemas-de-audio-en-moto-g5/</link><dc:creator>Edward Villegas-Pulgarin</dc:creator><description>&lt;div&gt;&lt;p&gt;Recién cambié mi celular Moto G3 por un Moto G5 y vaya susto el que me llevé
+inicialmente. La verdad, como el cambio fue más bien un asunto de afán no
+revisé foros previamente
+(&lt;a class="reference external" href="https://www.cosmoscalibur.com/blog/comprando-celular-para-personalizar/"&gt;ver recomendaciones a la hora de comprar&lt;/a&gt;)
+sobre los problemas y me confié de los conocidos que tienen este celular y que
+nunca les he escuchado de problemas.&lt;/p&gt;
+&lt;p&gt;El susto comenzó con la primera llamada (cuando lo compré no se hizo prueba de
+llamada) y la sorpresa de encontrarme sin audio. Hice dos intentos adicionales
+pensando que podía ser algún problema de señal pero persistía hasta que algo
+se escucho cuando iba a cortar la llamada. Nuevamente probé, y el audio
+empezaba 5 segundos después de conectarse la llamada.&lt;/p&gt;
+&lt;!-- TEASER_END --&gt;
+&lt;p&gt;Ante esto acudí al dios Google y me encontré una gran cantidad de noticias en
+páginas de celulares y foros técnicos que reportaban no solo mi problema, sino
+además otros problemas de audio (y otros problemas).&lt;/p&gt;
+&lt;div class="section" id="problema-y-origen"&gt;
+&lt;h2&gt;Problema y origen&lt;/h2&gt;
+&lt;p&gt;Del mes de mayo de 2017 (3 meses después de la fecha de lanzamiento) se
+observan en esta búsqueda los primeros reportes de problemas de audio como
+ausencia de sonido durante el inicio de las llamadas, mala calidad del audio e
+incluso la apreciación de voz digitalizada. En algunos foros se encuentra
+reportado como problemas específicos de algunos operadores móviles pero
+realmente no es así, y ya entenderemos por que.&lt;/p&gt;
+&lt;p&gt;La razón de este error es que por defecto el Moto G5 viene habilitado con una
+opción de mejora de audio a través de recursos LTE pero bueno, ¿es una mejora?&lt;/p&gt;
+&lt;p&gt;Esta mejora de audio con recursos LTE significa que la señal asociada al audio
+de la llamada posee un procesamiento adicional con el fin de realizar el
+filtrado de ruido y mejora del nivel de audio (volumen) pero esto significa
+que hay un trabajo extra del procesador que no solo representa recurso de
+procesamiento sino también de tiempo. Efectivamente en mis ensayos puedo decir
+que percibí ligeramente un audio mucho más limpio con la mejora LTE pero nadie
+espera que en una llamada toque gastar primero 5 segundos para iniciar el
+audio, por lo cual resulta impráctico.&lt;/p&gt;
+&lt;p&gt;La voz digitalizada referida en los foros corresponde al efecto del
+procesamiento de naturaleza digital y no analógica de la señal, algo que no
+todos sentimos pero que al igual que en la música, algunos logran diferenciar
+el sonido de un instrumento sintetizado de un instrumento tradicional
+analógico. La mala calidad de audio podría ser un efecto no deseado del filtro.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="solucion"&gt;
+&lt;h2&gt;Solución&lt;/h2&gt;
+&lt;p&gt;Bueno, sabiendo que la solución se encuentra en internet y no es difícil
+encontrarla, decidí publicarla porque no siempre quien la necesita sabe inglés
+así que esta es una forma de contribuir (al igual que las publicaciones de
+ciencia) y bueno, a veces puedo dar detalles adicionales.&lt;/p&gt;
+&lt;p&gt;Necesitamos entrar a &lt;cite&gt;Configuración&lt;/cite&gt; y en la sección de "Conexiones
+inalámbricas y redes" seleccionamos &lt;cite&gt;... Más&lt;/cite&gt;. Ahora nos dirigimos a
+&lt;cite&gt;Redes móviles&lt;/cite&gt; y deshabilitamos la opción &lt;cite&gt;Modo 4G LTE mejorado&lt;/cite&gt;. Aunque nos
+indica que se recomienda usarlo ya sabemos por experiencia que es el origen de
+nuestro problema de audio.&lt;/p&gt;
+&lt;/div&gt;&lt;/div&gt;</description><category>android</category><category>audio</category><category>celulares</category><category>moto g5</category><category>motorola</category><category>smartphone</category><guid>https://www.cosmoscalibur.com/blog/problemas-de-audio-en-moto-g5/</guid><pubDate>Fri, 05 Jan 2018 01:03:38 GMT</pubDate></item></channel></rss>
