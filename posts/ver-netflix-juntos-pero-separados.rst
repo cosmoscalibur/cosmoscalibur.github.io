@@ -1,6 +1,7 @@
 .. title: Ver Netflix juntos pero separados
 .. slug: ver-netflix-juntos-pero-separados
 .. date: 2020-06-21 16:47:01-05:00
+.. updated: 2020-09-22 20:54:00
 .. tags: sincronizar video, sincronizar transmisión, sincronizar netflix, compartir netflix
 .. category: tecnología
 .. link: 
@@ -97,4 +98,5 @@ para eliminar publicidad. Todas las personas que participan deben tener también
 cuenta en Rave y para usar Netflix cada usuario debera ingresar sus datos de
 cuenta en el navegador incorporado en Rave. Hay algo llamado créditos "K" y
 corresponden a monedas que te permiten crear o ingresar a salas Rave (en otras
-palabras, usar la aplicación con contenido).
+palabras, usar la aplicación con contenido), pero estas son dadas como recompensa
+por ingreso frecuente a la aplicación.

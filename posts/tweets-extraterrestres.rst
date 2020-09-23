@@ -1,6 +1,7 @@
 .. title: Tweets extraterrestres
 .. slug: tweets-extraterrestres
 .. date: 2011-07-26 23:46:00
+.. updated: 2020-09-22 20:54:00
 .. tags: nasa, twitter, iss, exploración espacial, internet
 .. description:
 .. category: tecnología
@@ -20,8 +21,8 @@ Polansky (@Astro\_127), comandante de la misión STS-127.
 
 .. TEASER_END
 
-Polansky no publico sino durante 2009 (ajusto 442 tuits y 44950
-seguidores), en cambio Massimino continua bastante activo en la red con
+Polansky no publicó sino durante 2009 (ajustó 442 tuits y 44950
+seguidores), en cambio Massimino continúa bastante activo en la red con
 mas de un millón de seguidores y ajustando prontamente los 900 tuits.
 
 .. thumbnail:: /images/tweets-extraterrestres/primer-tuit-extraterrestre.jpg
@@ -37,12 +38,12 @@ Sin embargo, podríamos considerar esto como trampa. El 23 de enero de
 al espacio, y los astronautas de la ISS publicaron en sus cuentas
 personales por primera vez sin intermediación en el espacio el tuit que
 figura en la imagen. De esta forma, fue como Timothy Creamer
-(@Astro\_TJ) se convirtió en el primer astronauta en enviar un tuit
-desde el espacio.
+(@Astro\_TJ) se convirtió en el primer astronauta en enviar un `tuit <https://twitter.com/Astro_TJ/status/8062317551>`_
+desde el espacio, el 22 de enero de 2010.
 
 Esta comunicación es posible gracias al sistema *Crew Support LAN* que
 utiliza las redes de comunicación ya existentes entre la ISS y la
-Tierra, con la red de alta velocidad en la banda K:sub:`u` , que es una
+Tierra, con la red de alta velocidad en la banda :math:`K_u`, que es una
 banda del espectro electromagnético usada ampliamente en comunicaciones
 satelitales y se ubica entre los 12 y 18 GHz. Esto les permite manejar
 un escritorio remoto ubicado en tierra en los centros espaciales, y para

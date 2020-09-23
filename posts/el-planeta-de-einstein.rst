@@ -10,7 +10,7 @@
 *El planeta de Einstein* como ha sido llamado el exoplaneta
 `Kepler-76b <http://en.wikipedia.org/wiki/Kepler-76b>`_ es la muestra
 de la reutilización de los datos del proyecto
-`Kepler <http://www.blogger.com/>`_ para búsqueda de nuevos
+`Kepler <http://www.blogger.com/>`_ para la búsqueda de nuevos
 exoplanetas.
 
 .. TEASER_END
