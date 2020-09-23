@@ -7,6 +7,7 @@
 .. description: 
 .. type: text
 .. author: Edward Villegas-Pulgarin
+.. has_math: true
 
 Había tratado de estar al margen de hacer muy público lo que pienso y analizo
 de los datos de la pandemia por covid19 en Colombia, y de las medidas tomadas.

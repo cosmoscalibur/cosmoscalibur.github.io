@@ -7,6 +7,7 @@
 .. category: tecnología
 .. type: text
 .. author: Edward Villegas-Pulgarin
+.. has_math: true
 
 Hace casi 2 semanas estaba mirando tuits en el Twitter oficial de NASA
 y me pareció curioso ver un tuit de uno de los astronautas que estaba
