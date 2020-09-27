@@ -1,6 +1,7 @@
 # Cosmoscalibur
 
-Este es el repositorio público de mi sitio web [cosmoscalibur.com](http://cosmoscalibur.github.io).  
+Este es el repositorio público de mi sitio web
+[cosmoscalibur.com](https://www.cosmoscalibur.com).  
 
 ## Lenguaje
 
@@ -10,7 +11,15 @@ _¿Significa que no habrán publicaciones en inglés?_ No, pero no serán mi pri
 
 ## Desarrollado con
 
-El sitio es generado con [Nikola](https://getnikola.com/) y alojado en GitHub. El código fuente de las publicaciones es ReStructuredText, LaTeX y Jupyter Notebooks y MarkDown, el cual puede consultar libremente en la rama [`src`](https://github.com/cosmoscalibur/cosmoscalibur.github.io/tree/src).  
+El sitio es generado con [Nikola](https://getnikola.com/) y alojado en GitHub. El código fuente de las
+publicaciones es ReStructuredText y MarkDown, el cual puede consultar libremente. Los archivos de generación
+del entorno son para entornos conda y el archivo apt.txt contiene paquetes adicionales de sistema para la
+aplicación de filtros (instalación en ubuntu y derivados).  
+
+    git clone https://github.com/cosmoscalibur/cosmoscalibur.github.io.git
+    cd cosmoscalibur.github.io
+    conda env create -f environment.yml
+    cat apt.txt | xargs sudo apt install -y
 
 ## Redes
 
@@ -18,7 +27,8 @@ Por lo pronto los veo en las redes sociales:
 
 +   Twitter [@cosmoscalibur](http://www.twitter.com/cosmoscalibur).  
 +   Facebook [cosmoscalibur](http://www.facebook.com/cosmoscalibur).  
-+   ResearchGate [Edward Villegas Pulgarin](https://www.researchgate.net/profile/Edward_Villegas_Pulgarin).  
++   Youtube [cosmoscalibur](https://www.youtube.com/channel/UC3am73vAC7qHgykOF-q06rQ).  
++   Instagram [blogcosmoscalibur](https://www.instagram.com/blogcosmoscalibur/).  
 +   LinkedIn [cosmoscalibur](https://co.linkedin.com/in/cosmoscalibur).  
 +   SlideShare [cosmoscalibur](www.slideshare.net/cosmoscalibur).  
 
