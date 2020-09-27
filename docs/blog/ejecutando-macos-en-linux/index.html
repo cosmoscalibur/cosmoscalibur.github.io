@@ -22,25 +22,6 @@
   gtag('js', new Date());
 
   gtag('config', 'UA-150354242-1');
-</script><!-- Google Adsense -->
-<script async data-ad-client="ca-pub-0356238418278924" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><!-- Facebook Analytics -->
-<script async>
-  window.fbAsyncInit = function() {
-    FB.init({
-      appId      : '595800477624602',
-      cookie     : true,
-      xfbml      : true,
-      version    : 'v7.0'
-    });
-    FB.AppEvents.logPageView();     
-  };
-  (function(d, s, id){
-     var js, fjs = d.getElementsByTagName(s)[0];
-     if (d.getElementById(id)) {return;}
-     js = d.createElement(s); js.id = id;
-     js.src = "https://connect.facebook.net/en_US/sdk.js";
-     fjs.parentNode.insertBefore(js, fjs);
-   }(document, 'script', 'facebook-jssdk'));
 </script>
 <meta content="Edward Villegas-Pulgarin" name="author">
 <link href="../problemas-de-audio-en-moto-g5/" rel="prev" title="Problemas de audio en Moto G5" type="text/html">
@@ -66,8 +47,10 @@
 <header class="blog-header py-3">
 <div class="row nbb-header align-items-center">
 <div class="col-md-3 col-xs-2 col-sm-2" style="width: auto;"><button aria-controls="bs-navbar" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler navbar-light bg-light nbb-navbar-toggler" data-target=".bs-nav-collapsible" data-toggle="collapse" type="button"><span class="navbar-toggler-icon"></span></button>
-<div class="collapse bs-nav-collapsible bootblog4-search-form-holder"><!-- DuckDuckGo custom search -->
-<form action="https://duckduckgo.com/" class="navbar-form pull-left" id="search" method="get" name="search"><input name="sites" type="hidden" value="https://www.cosmoscalibur.com/"><input name="k8" type="hidden" value="#444444"><input name="k9" type="hidden" value="#D51920"><input name="kt" type="hidden" value="h"><input class="span2" maxlength="255" name="q" placeholder="Search…" style="margin-top: 4px;" type="text"><input style="visibility: hidden;" type="submit" value="DuckDuckGo Search"></form>
+<div class="collapse bs-nav-collapsible bootblog4-search-form-holder"><!-- Google custom search -->
+<form action="https://www.google.com/search" class="navbar-form navbar-right" method="get" role="search">
+<div class="form-group"><input class="form-control" name="q" placeholder="Buscar en cosmoscalibur" type="text"></div>
+<button class="btn btn-primary" type="submit"><span class="glyphicon glyphicon-search"></span></button> <input name="sitesearch" type="hidden" value="https://www.cosmoscalibur.com/"></form>
 <!-- End of custom search --></div>
 </div>
 <div class="col-md-6 col-xs-10 col-sm-10 bootblog4-brand" style="width: auto;"><a class="navbar-brand blog-header-logo text-dark" href="../../"><span id="blog-title">Cosmoscalibur</span></a></div>
@@ -137,12 +120,12 @@
 </div>
 <p>Aquí hemos creado ya la máquina en si misma pero debemos configurar antes un par de cosas. En configuración de la máquina debemos ir a la sección de sistema (<em>system</em>) y luego placa madre (<em>Motherboard</em>) y habilitar las características extendidas (<em>Extended features</em>) y elegir <em>USB Tablet</em> en el puntero (<em>Pointing device</em>). En la misma sección vamos a la pestaña de procesador (<em>Processor</em>) e indicamos al menos 2 CPU. Por último, en la sección de monitor (<em>Display</em>) vamos a la pestaña <em>Screen</em> y asignamos 128 MB a la memoria de video (<em>Video Memory</em>).</p>
 <p>Ahora, pasamos a la consola (powershell o CMD en Windows) y ejecutamos lo siguiente (si es Windows hay que poner <code>VBoxManage.exe</code> estando en el directorio de VirtualBox -<code>cd "C:Program FilesOracleVirtualBox"</code>-):</p>
-<pre class="code bash"><a id="rest_code_1c3f468ecbf14d879b68239c7e177e45-1" name="rest_code_1c3f468ecbf14d879b68239c7e177e45-1"></a>VBoxManage modifyvm <span class="s2">"macos"</span> --cpuidset <span class="m">00000001</span> 000106e5 <span class="m">00100800</span> 0098e3fd bfebfbff
-<a id="rest_code_1c3f468ecbf14d879b68239c7e177e45-2" name="rest_code_1c3f468ecbf14d879b68239c7e177e45-2"></a>VBoxManage setextradata <span class="s2">"macos"</span> <span class="s2">"VBoxInternal/Devices/efi/0/Config/DmiSystemProduct"</span> <span class="s2">"iMac11,3"</span>
-<a id="rest_code_1c3f468ecbf14d879b68239c7e177e45-3" name="rest_code_1c3f468ecbf14d879b68239c7e177e45-3"></a>VBoxManage setextradata <span class="s2">"macos"</span> <span class="s2">"VBoxInternal/Devices/efi/0/Config/DmiSystemVersion"</span> <span class="s2">"1.0"</span>
-<a id="rest_code_1c3f468ecbf14d879b68239c7e177e45-4" name="rest_code_1c3f468ecbf14d879b68239c7e177e45-4"></a>VBoxManage setextradata <span class="s2">"macos"</span> <span class="s2">"VBoxInternal/Devices/efi/0/Config/DmiBoardProduct"</span> <span class="s2">"Iloveapple"</span>
-<a id="rest_code_1c3f468ecbf14d879b68239c7e177e45-5" name="rest_code_1c3f468ecbf14d879b68239c7e177e45-5"></a>VBoxManage setextradata <span class="s2">"macos"</span> <span class="s2">"VBoxInternal/Devices/smc/0/Config/DeviceKey"</span> <span class="s2">"ourhardworkbythesewordsguardedpleasedontsteal(c)AppleComputerInc"</span>
-<a id="rest_code_1c3f468ecbf14d879b68239c7e177e45-6" name="rest_code_1c3f468ecbf14d879b68239c7e177e45-6"></a>VBoxManage setextradata <span class="s2">"macos"</span> <span class="s2">"VBoxInternal/Devices/smc/0/Config/GetKeyFromRealSMC"</span> <span class="m">1</span>
+<pre class="code bash"><a id="rest_code_d5bbd8c865f64fa594830c49d344d832-1" name="rest_code_d5bbd8c865f64fa594830c49d344d832-1"></a>VBoxManage modifyvm <span class="s2">"macos"</span> --cpuidset <span class="m">00000001</span> 000106e5 <span class="m">00100800</span> 0098e3fd bfebfbff
+<a id="rest_code_d5bbd8c865f64fa594830c49d344d832-2" name="rest_code_d5bbd8c865f64fa594830c49d344d832-2"></a>VBoxManage setextradata <span class="s2">"macos"</span> <span class="s2">"VBoxInternal/Devices/efi/0/Config/DmiSystemProduct"</span> <span class="s2">"iMac11,3"</span>
+<a id="rest_code_d5bbd8c865f64fa594830c49d344d832-3" name="rest_code_d5bbd8c865f64fa594830c49d344d832-3"></a>VBoxManage setextradata <span class="s2">"macos"</span> <span class="s2">"VBoxInternal/Devices/efi/0/Config/DmiSystemVersion"</span> <span class="s2">"1.0"</span>
+<a id="rest_code_d5bbd8c865f64fa594830c49d344d832-4" name="rest_code_d5bbd8c865f64fa594830c49d344d832-4"></a>VBoxManage setextradata <span class="s2">"macos"</span> <span class="s2">"VBoxInternal/Devices/efi/0/Config/DmiBoardProduct"</span> <span class="s2">"Iloveapple"</span>
+<a id="rest_code_d5bbd8c865f64fa594830c49d344d832-5" name="rest_code_d5bbd8c865f64fa594830c49d344d832-5"></a>VBoxManage setextradata <span class="s2">"macos"</span> <span class="s2">"VBoxInternal/Devices/smc/0/Config/DeviceKey"</span> <span class="s2">"ourhardworkbythesewordsguardedpleasedontsteal(c)AppleComputerInc"</span>
+<a id="rest_code_d5bbd8c865f64fa594830c49d344d832-6" name="rest_code_d5bbd8c865f64fa594830c49d344d832-6"></a>VBoxManage setextradata <span class="s2">"macos"</span> <span class="s2">"VBoxInternal/Devices/smc/0/Config/GetKeyFromRealSMC"</span> <span class="m">1</span>
 </pre>
 <p>Tras esto estamos listos para encender la máquina virtual e instalar el sistema operativo en ella (nombre, usuario, contraseña, idioma, teclado). Lo único problemático aquí es que tendrás problema con el teclado pues esta pensado para los teclados Mac. Como cualquier instalación de sistema operativo es algo lento y más considerando que es una máquina virtual.</p>
 <div class="figure align-center"><a class="reference external image-reference" href="../../images/ejecutando-macos-en-linux/maquina-virtual-idioma-macos.png"><img alt="Selección de idioma en macOS." src="../../images/ejecutando-macos-en-linux/maquina-virtual-idioma-macos.thumbnail.png"></a>
@@ -153,19 +136,19 @@
 <h2>Después</h2>
 <p>No soy usuario Mac y mi propósito de hacer esto era muy específico, validar compatibilidad de códigos que uso, desarrollo o contribuyo. Pero en este mismo sentido, algo que recomiendo hacer, es instalar <a class="reference external" href="https://brew.sh/index_es.html">Homebrew</a> con el fin de tener listo nuestro macOS para pruebas y poder instalar distintos paquetes comunes a la hora de programar.</p>
 <p>Para ello debes abrir la consola que encontrarás en aplicaciones y ejecutar lo siguiente:</p>
-<pre class="code bash"><a id="rest_code_7f3fde3772ff4995b615bffb4d244790-1" name="rest_code_7f3fde3772ff4995b615bffb4d244790-1"></a>ruby -e <span class="s2">"</span><span class="k">$(</span>curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install<span class="k">)</span><span class="s2">"</span>
+<pre class="code bash"><a id="rest_code_8751332d02a5471f97e812d5feb736b1-1" name="rest_code_8751332d02a5471f97e812d5feb736b1-1"></a>ruby -e <span class="s2">"</span><span class="k">$(</span>curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install<span class="k">)</span><span class="s2">"</span>
 </pre>
 <p>Tendrás que tener paciencia pues el proceso me tomó 45 minutos (en foros reportan la instalación de <em>homebrew</em> de casi 2 horas) y necesitas estar pendiente pues hay dos solicitudes de tu contraseña.</p>
 <div class="figure align-center"><img alt="Instalación de homebrew en macOS" src="../../images/ejecutando-macos-en-linux/maquina-virtual-homebrew-macos.png">
 <p class="caption">Instalación por consola de homebrew en macOS.</p>
 </div>
 <p>Una vez instalado, puedes aprovechar a dejar listo python (actualiza la versión por defecto e instala el gestor pip). Igualmente es conveniente instalar otros paquetes de uso común por otras aplicaciones .</p>
-<pre class="code bash"><a id="rest_code_30c1d89b2ff040498ebe823ae577fd9d-1" name="rest_code_30c1d89b2ff040498ebe823ae577fd9d-1"></a>brew install pkg-config <span class="c1"># Ayuda a determinar la lista de paquetes existentes</span>
-<a id="rest_code_30c1d89b2ff040498ebe823ae577fd9d-2" name="rest_code_30c1d89b2ff040498ebe823ae577fd9d-2"></a>brew install python3 <span class="c1"># Python3 no viene por defecto</span>
-<a id="rest_code_30c1d89b2ff040498ebe823ae577fd9d-3" name="rest_code_30c1d89b2ff040498ebe823ae577fd9d-3"></a>brew install python2 <span class="c1"># Actualiza la versión existente. En ambos casos se instala pip (pip2 y pip3)</span>
-<a id="rest_code_30c1d89b2ff040498ebe823ae577fd9d-4" name="rest_code_30c1d89b2ff040498ebe823ae577fd9d-4"></a>brew install freetype <span class="c1"># Requerido para la manipulación de fuentes -por ejemplo en matplotlib-</span>
-<a id="rest_code_30c1d89b2ff040498ebe823ae577fd9d-5" name="rest_code_30c1d89b2ff040498ebe823ae577fd9d-5"></a>brew install libpng <span class="c1"># Requerido para la manipulación de imágenes png -por ejemplo en matplotlib-</span>
-<a id="rest_code_30c1d89b2ff040498ebe823ae577fd9d-6" name="rest_code_30c1d89b2ff040498ebe823ae577fd9d-6"></a>brew install pygtk <span class="c1"># Binding de GTK para python. Interfaces en pygtk son comunes.</span>
+<pre class="code bash"><a id="rest_code_1346314606e646789a145fe1899fd191-1" name="rest_code_1346314606e646789a145fe1899fd191-1"></a>brew install pkg-config <span class="c1"># Ayuda a determinar la lista de paquetes existentes</span>
+<a id="rest_code_1346314606e646789a145fe1899fd191-2" name="rest_code_1346314606e646789a145fe1899fd191-2"></a>brew install python3 <span class="c1"># Python3 no viene por defecto</span>
+<a id="rest_code_1346314606e646789a145fe1899fd191-3" name="rest_code_1346314606e646789a145fe1899fd191-3"></a>brew install python2 <span class="c1"># Actualiza la versión existente. En ambos casos se instala pip (pip2 y pip3)</span>
+<a id="rest_code_1346314606e646789a145fe1899fd191-4" name="rest_code_1346314606e646789a145fe1899fd191-4"></a>brew install freetype <span class="c1"># Requerido para la manipulación de fuentes -por ejemplo en matplotlib-</span>
+<a id="rest_code_1346314606e646789a145fe1899fd191-5" name="rest_code_1346314606e646789a145fe1899fd191-5"></a>brew install libpng <span class="c1"># Requerido para la manipulación de imágenes png -por ejemplo en matplotlib-</span>
+<a id="rest_code_1346314606e646789a145fe1899fd191-6" name="rest_code_1346314606e646789a145fe1899fd191-6"></a>brew install pygtk <span class="c1"># Binding de GTK para python. Interfaces en pygtk son comunes.</span>
 </pre></div>
 </div>
 </div>
@@ -205,7 +188,8 @@
 <script>
 var disqus_shortname="cosmoscalibur";(function(){var a=document.createElement("script");a.async=true;a.src="https://"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());
 </script><!--End of body content-->
-<footer id="footer">Contents © 2020 <a href="mailto:cosmoscalibur@gmail.com">Edward Villegas-Pulgarin</a> - Powered by <a href="https://getnikola.com" rel="nofollow">Nikola</a> <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="license"><img alt="Creative Commons License BY-NC-SA" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" style="border-width:0; margin-bottom:12px;"></a></footer>
+<footer id="footer">Si te ha sido útil o te ha gustado este contenido, <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=R6BHD346EBXMC&amp;source=url" rel="nofollow">invítame una cerveza 🍺</a>.<br>
+Contents © 2020 <a href="mailto:cosmoscalibur@gmail.com">Edward Villegas-Pulgarin</a> - Powered by <a href="https://getnikola.com" rel="nofollow">Nikola</a> <a href="https://creativecommons.org/licenses/by/4.0/" rel="license"><img alt="Creative Commons License BY 4.0" src="https://licensebuttons.net/l/by/4.0/88x31.png" style="border-width:0; margin-bottom:12px;"></a></footer>
 </div>
 </div>
 <script crossorigin="anonymous" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
