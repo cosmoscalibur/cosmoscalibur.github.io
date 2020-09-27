@@ -44,7 +44,7 @@ del parlante y unos meses después del botón de encendido. Afortunadamente el
 modelo del celular ya corregía el defecto original del parlante pero dos años
 después sufriría el problema del botón de encendido del cual había leído.
 
-Con esto quiere llegar a que las novedades al inicio solo nos muestran el lado
+Con esto quiero llegar a que las novedades al inicio solo nos muestran el lado
 bueno que compraremos pero no el lado malo. Un celular recién lanzado no
 tendrá seguramente malas referencias ya que buena parte de ellas con las
 comunicaciones de los fabricantes, operadores móviles y distribuidores de
@@ -237,7 +237,7 @@ por comercializadores y fabricantes, por lo cual un tiempo de 6 meses tras su
 lanzamiento puede ser una buena opción para poder explorar comentarios de
 posibles fallos o inconsistencias con las características anunciadas.
 
-Igualmente, tras este tiempo, la revisión del foro técnico de XDA nos ampliara
+Igualmente, tras este tiempo, la revisión del foro técnico de XDA nos ampliará
 el panorama sobre la existencia de las características de personalización que
 deseamos siendo importante la validación la posibilidad de conseguir la *ROM*
 de fábrica para recuperación tras fallos, existencia de *ROM* modificadas para
