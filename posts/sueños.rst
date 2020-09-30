@@ -18,7 +18,7 @@ sin barreras físicas.
 
 .. TEASER_END
 
-Seria más fácil vivir eternamente en un mundo de ensueño lleno de
+Sería más fácil vivir eternamente en un mundo de ensueño lleno de
 fantasías y no de duros golpes a tu corazón.
 
 Me pregunto insistentemente porque no puede trascender su realidad a

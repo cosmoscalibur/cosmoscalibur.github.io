@@ -34,7 +34,7 @@ milenio, dicha fecha se había acumulado un atraso de 10 (ocurría ya el
 
 Es así, como esta reforma al calendario impulsada por el
 jurista eclesiástico Ugo Buocompagni (Gregorio XIII), encargada
-al astrónomo jesuita alemán Cristóbal Clavio y, al medico y
+al astrónomo jesuita alemán Cristóbal Clavio y, al médico y
 cronologista italiano Luis Lilio, condujo a que al 4 de octubre de
 1582 le siguiera el 15 de octubre de 1582. Sin embargo, este cambio de
 calendario no ocurre simultáneamente dado a las distancias de las
