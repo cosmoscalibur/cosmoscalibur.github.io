@@ -27,7 +27,7 @@ Por lo pronto los veo en las redes sociales:
 
 +   Twitter [@cosmoscalibur](http://www.twitter.com/cosmoscalibur).  
 +   Facebook [cosmoscalibur](http://www.facebook.com/cosmoscalibur).  
-+   Youtube [cosmoscalibur](https://www.youtube.com/channel/UC3am73vAC7qHgykOF-q06rQ).  
++   Youtube [cosmoscalibur](https://www.youtube.com/user/cosmoscalibur).  
 +   Instagram [blogcosmoscalibur](https://www.instagram.com/blogcosmoscalibur/).  
 +   LinkedIn [cosmoscalibur](https://co.linkedin.com/in/cosmoscalibur).  
 +   SlideShare [cosmoscalibur](www.slideshare.net/cosmoscalibur).  
