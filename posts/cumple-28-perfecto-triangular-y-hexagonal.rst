@@ -48,7 +48,7 @@ Ahora, miremos porque el 28 cumple con ser perfecto, triangular y hexagonal.
 Números perfectos
 -----------------
 
-Los números perfectos cumples con una propiedad bastante particular: es número
+Los números perfectos cumplen con una propiedad bastante particular: es número
 perfecto aquel número cuyos divisores propios positivos sumados tengan como
 resultado el número mencionado [oeis_perfect]_ [wiki_perfect]_.
 

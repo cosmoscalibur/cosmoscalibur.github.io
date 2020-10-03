@@ -27,7 +27,7 @@
 | sin dejar escapar célula alguna.
 |
 | Sigo los rojos afluentes de tus canales
-| y en tus fuertes corrientes siento tu palpito.
+| y en tus fuertes corrientes siento tu pálpito.
 | Son los rápidos de tu fluido vital
 | la fuente dinámica y renovadora de aventura.
 |

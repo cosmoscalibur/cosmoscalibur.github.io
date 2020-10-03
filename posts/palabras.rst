@@ -9,7 +9,7 @@
 .. author: Edward Villegas-Pulgarin
 
 | Olvida los temores de la noche,
-| solos, tu y yo, nada nos acecha
+| solos, tú y yo, nada nos acecha
 | es mi mano seguridad.
 
 .. TEASER_END
