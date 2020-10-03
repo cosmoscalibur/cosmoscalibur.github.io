@@ -43,7 +43,7 @@ negativos por el símbolo negativo) sino por una formulación, una expresión
 matemática que puede representar su valor o por algún patrón en general exhibido
 por los valores (que no se asocia a su escritura o naturaleza).
 
-Ahora, miremos porque el 28 cumple con ser perfecto, triangular y hexagonal.
+Ahora, miremos porque el 28 cumple es perfecto, triangular y hexagonal.
 
 Números perfectos
 -----------------

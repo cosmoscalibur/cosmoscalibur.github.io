@@ -13,7 +13,7 @@ particularmente de la física que es mi especialidad. Pero resulta que a
 veces es un poco más fácil escribir sobre cosas que no toque justificar
 tanto.
 
-Soy usuario linux desde 2009, usando la distro Ubuntu con escritorio
+Soy usuario Linux desde 2009, usando la distro Ubuntu con escritorio
 gnome. Pero hace algún tiempo empece a comprar juegos en `Humble
 Bundle <https://www.humblebundle.com/>`__. Muy buenos titulos,
 excelentes gráficos y en otros excelentes historias, multiplataforma,
@@ -45,8 +45,8 @@ problemas. Ese fue mi caso, la pantalla después de la instalación quedo
 negra y por más truco de foros no revivió. Así que les recomiendo solo
 intentarlo si poseen tarjeta NVIDIA. La restricción que indican de
 espacio en disco realmente no es restrictiva, con menos solo implica
-menos juegos. Igualmente, si desean conservar otro sistema operativo (si
-distro anterior o windows) el arranque múltiple esta aún en fase
+menos juegos. Igualmente, si desean conservar otro sistema operativo (su
+distro anterior o Windows) el arranque múltiple esta aún en fase
 experimental y de hecho grub no identificará algunas veces sus sistemas
 anteriores (en mi caso, fue como si no tuviera instalado nada antes pero
 si reconoce la tabla de partición). Paquetes de uso cotidiano deberán
@@ -74,7 +74,7 @@ funcionalidades (los juegos Steam que no son linux no funcionarán), lo
 que es equivalente a que solo instalemos el cliente.
 
 Para terminar solo quiero comentar que me pareció algo genial del
-instalador (lo único que puse ver) la opción de tomar pantallazos
+instalador (lo único que pude ver) la opción de tomar pantallazos
 durante la instalación, archivos que quedan guardados en
 */var/log/\*png*. Aún así, quien quiera correr riesgos, puede descargar
 la versión 1.0 beta update 96 en el `repositorio
