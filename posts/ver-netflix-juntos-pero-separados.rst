@@ -2,7 +2,7 @@
 .. slug: ver-netflix-juntos-pero-separados
 .. date: 2020-06-21 16:47:01-05:00
 .. updated: 2020-09-22 20:54:00
-.. tags: sincronizar video, sincronizar transmisión, sincronizar netflix, compartir netflix
+.. tags: transmisión de video, netflix, aplicaciones android, extensiones de chrome
 .. category: tecnología
 .. link: 
 .. description: En esta cuarentena o para otros momentos de distancia física, los trucos tecnológicos para ver juntos videos de Netflix, YouTube y otras plataformas.

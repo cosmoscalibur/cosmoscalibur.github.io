@@ -1,7 +1,7 @@
 .. title: Audiolibros con Overdrive y Biblioteca EPM
 .. slug: audiolibros-con-overdrive-y-biblioteca-epm
 .. date: 2019-05-17 19:14:07 UTC-05:00
-.. tags: audiolibros, epm, overdrive, colombia, bibliotecas, android
+.. tags: audiolibros, epm, overdrive, bibliotecas, android, aplicaciones android
 .. category: cultura y entretenimiento
 .. link: 
 .. description: Aprovecha tu tiempo en filas o transporte escuchando audiolibros con Overdrive y en el caso de Colombia, asociando la biblioteca de la Fundación EPM - Red de Bibliotecas.

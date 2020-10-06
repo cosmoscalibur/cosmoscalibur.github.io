@@ -1,7 +1,7 @@
 .. title: Usar la cámara de tu celular como webcam
 .. slug: usar-la-camara-de-tu-celular-como-webcam
 .. date: 2020-05-17 15:02:25-05:00
-.. tags: linux, android, webcam, cámara, droidcam
+.. tags: linux, android, webcam, cámara, droidcam, aplicaciones android
 .. category: tecnología
 .. link: 
 .. description: Usar la cámara del celular (smartphone) Android o iOS como cámara web (webcam) en Linux (Mint).
