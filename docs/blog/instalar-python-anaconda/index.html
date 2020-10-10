@@ -110,16 +110,16 @@
 <h2>Instalación por línea de comandos</h2>
 <p>La instalación por línea de comandos aplica de la misma manera tanto para Mac como para Linux, usando ambos un instalador basado en código bash (indiferente si es Anaconda o Miniconda).</p>
 <p>Para este caso nos basaremos en la instalación silenciosa <a class="citation-reference" href="#cmd" id="id1">[cmd]</a> para evitar las preguntas interactivas y así despreocuparnos durante la instalación. Invocamos el instalador con Bash de la siguiente forma (asegurate de usar la ruta completa y correcta del instalador <code>sh</code> que usarás).</p>
-<pre class="code bash"><a id="rest_code_4e297533a6d14c818e2a0ede1a5649f1-1" name="rest_code_4e297533a6d14c818e2a0ede1a5649f1-1"></a>bash Anaconda3-2020.02-Linux-x86_64.sh -b -p <span class="nv">$HOME</span>/anaconda
-<a id="rest_code_4e297533a6d14c818e2a0ede1a5649f1-2" name="rest_code_4e297533a6d14c818e2a0ede1a5649f1-2"></a><span class="nb">echo</span> <span class="s2">". </span><span class="nv">$HOME</span><span class="s2">/anaconda/etc/profile.d/conda.sh"</span> &gt;&gt; <span class="nv">$HOME</span>/.bashrc
-<a id="rest_code_4e297533a6d14c818e2a0ede1a5649f1-3" name="rest_code_4e297533a6d14c818e2a0ede1a5649f1-3"></a><span class="nb">source</span> <span class="nv">$HOME</span>/.bashrc
+<pre class="code bash"><a id="rest_code_0992d85dd34346499306a7ada99caea8-1" name="rest_code_0992d85dd34346499306a7ada99caea8-1"></a>bash Anaconda3-2020.02-Linux-x86_64.sh -b -p <span class="nv">$HOME</span>/anaconda
+<a id="rest_code_0992d85dd34346499306a7ada99caea8-2" name="rest_code_0992d85dd34346499306a7ada99caea8-2"></a><span class="nb">echo</span> <span class="s2">". </span><span class="nv">$HOME</span><span class="s2">/anaconda/etc/profile.d/conda.sh"</span> &gt;&gt; <span class="nv">$HOME</span>/.bashrc
+<a id="rest_code_0992d85dd34346499306a7ada99caea8-3" name="rest_code_0992d85dd34346499306a7ada99caea8-3"></a><span class="nb">source</span> <span class="nv">$HOME</span>/.bashrc
 </pre>
 <p>En la invocación de Bash, el argumento <code>-b</code> implica la aceptación de licencias y con <code>-p</code> indicamos la ruta para la instalación de Anaconda (puedes cambiarla a tu deseo).</p>
 <p>La segunda y tercera línea son específicas si usas una consola Bash. Esto permite reconocer el gestor Conda por la consola cuando se inicia una nueva sesión y la última línea que se aplique para la sesión actual.</p>
 <p>Aunque no es mi preferencia y además puede generar potenciales conflictos, si deseas que el entorno de Anaconda Python esté activado por defecto puedes agregar en el <code>.bashrc</code> la línea <code>conda activate</code>.</p>
 <div class="youtube-video align-center"><iframe allow="encrypted-media" allowfullscreen frameborder="0" height="315" src="https://www.youtube-nocookie.com/embed/UFfsg56qigY?rel=0&amp;wmode=transparent" width="560"></iframe></div>
 <p>La versión de <em>Anaconda Navigator</em> incluida en 2020.02 en Linux presenta un error, por lo cual, si al ejecutarlo ves el mensaje <code>UnboundLocalError: local variable 'DISTRO_NAME' referenced before assignment</code> bastará con actualizar el paquete <a class="citation-reference" href="#navigator" id="id2">[navigator]</a>.</p>
-<pre class="code bash"><a id="rest_code_5c70ed37e0924013a88c22d12764d8e0-1" name="rest_code_5c70ed37e0924013a88c22d12764d8e0-1"></a>conda update anaconda-navigator
+<pre class="code bash"><a id="rest_code_b1efe6fe91d64f7e9337d1daa6d6878d-1" name="rest_code_b1efe6fe91d64f7e9337d1daa6d6878d-1"></a>conda update anaconda-navigator
 </pre></div>
 <div class="section" id="instalacion-grafica">
 <h2>Instalación gráfica</h2>
