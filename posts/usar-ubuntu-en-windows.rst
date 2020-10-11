@@ -13,7 +13,7 @@ en Windows pero es necesario en ocasiones tener Linux a la mano. Sin duda a
 nivel de desarrollo Linux toma cada vez mayor relevancia y es notorio cuando
 Microsoft le da relevancia al soporte de Linux en su ecosistema, no solo en
 despliegues en nube sino también en el mismo escritorio. En esto último,
-referimos a WSL (*Windows Subsystem for Linux*).
+referimos a WSL (*Windows Subsystem for Linux*) [wsl]_.
 
 .. TEASER_END
 
@@ -21,7 +21,8 @@ WSL es el componente de Windows que nos permite cumplir la promesa de este
 artículo, ejecutar distribuciones Linux desde Windows y con rendimiento alto
 (no se trata de una emulación sino la ejecución de un kernel Linux real) e
 incluso, vincula adecuadamente con la GPU (solo para
-*Microsoft Windows Insider Program*).
+*Microsoft Windows Insider Program* [cuda]_) y permite hacer uso de Docker en Windows
+Home [docker]_.
 
 Veremos como instalar una distribución Linux en Windows con WSL y es importante
 realizarlo en el orden mencionado.
@@ -65,9 +66,12 @@ Instalar distribución Linux
 ===========================
 
 A través de la tienda de aplicaciones podemos continuar con la instalación de
-la distribución Linux deseada, pero si te interesa Ubuntu en su versión
-20.04, podemos continuar en nuestra consola PowerShell ya abierta (cambiar el
-número de la versión LTS soportada en la URL).
+la distribución Linux deseada, pero si te interesa continuar con el uso de la
+consola, procedemos a revisar la dirección de descarga de nuestra distribución
+acorde a la lista disponible en la sección de descarga manual de la
+documentación oficial [wsl-manual]_. En nuestro ejemplo, instalaremos Ubuntu
+20.04 (cambiar el número de la versión LTS soportada en la URL si te interesa
+otra).
 
 .. code::
 
@@ -104,7 +108,7 @@ Aplicaciones gráficas
 =====================
 
 Para cerrar este tema, falta que lancemos nuestras aplicaciones gráficas. Para
-esto será necesario modificar el archivo :code:`.bashrc`.
+esto será necesario modificar el archivo :code:`.bashrc` [ubuntu-wiki]_.
 
 .. code::
 
@@ -169,9 +173,8 @@ convertimos.
 Referencias
 ===========
 
-+ `Windows Subsystem for Linux Installation Guide for Windows 10 <https://docs.microsoft.com/en-us/windows/wsl/install-win10>`_.
-+ `Manually download Windows Subsystem for Linux distro packages <https://docs.microsoft.com/en-us/windows/wsl/install-manual>`_.
-+ `WSL - Ubuntu Wiki <https://wiki.ubuntu.com/WSL>`_.
-+ `WSL Windows Toolbar Launcher <https://github.com/cascadium/wsl-windows-toolbar-launcher>`_.
-+ `CUDA on WSL User Guide <https://docs.nvidia.com/cuda/wsl-user-guide/index.html#abstract>`_.
-
+.. [wsl] `Windows Subsystem for Linux Installation Guide for Windows 10 <https://docs.microsoft.com/en-us/windows/wsl/install-win10>`_.
+.. [cuda] `CUDA on WSL User Guide <https://docs.nvidia.com/cuda/wsl-user-guide/index.html#abstract>`_.
+.. [docker] `Docker Desktop WSL 2 backend <https://docs.docker.com/docker-for-windows/wsl/>`_.
+.. [wsl-manual] `Manually download Windows Subsystem for Linux distro packages <https://docs.microsoft.com/en-us/windows/wsl/install-manual>`_.
+.. [ubuntu-wiki] `WSL - Ubuntu Wiki <https://wiki.ubuntu.com/WSL>`_.

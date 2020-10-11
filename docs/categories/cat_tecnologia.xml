@@ -3,25 +3,26 @@
 &lt;a rel="license" href="https://creativecommons.org/licenses/by/4.0/"&gt;
 &lt;img alt="Creative Commons License BY 4.0"
 style="border-width:0; margin-bottom:12px;"
-src="https://licensebuttons.net/l/by/4.0/88x31.png"&gt;&lt;/a&gt;</copyright><lastBuildDate>Sat, 10 Oct 2020 16:42:46 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Usar Ubuntu en Windows</title><link>https://www.cosmoscalibur.com/blog/usar-ubuntu-en-windows/</link><dc:creator>Edward Villegas-Pulgarin</dc:creator><description>&lt;div&gt;&lt;p&gt;Como contaba en una que otra publicación, por motivos laborales mantengo mucho
+src="https://licensebuttons.net/l/by/4.0/88x31.png"&gt;&lt;/a&gt;</copyright><lastBuildDate>Sun, 11 Oct 2020 21:34:00 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Usar Ubuntu en Windows</title><link>https://www.cosmoscalibur.com/blog/usar-ubuntu-en-windows/</link><dc:creator>Edward Villegas-Pulgarin</dc:creator><description>&lt;div&gt;&lt;p&gt;Como contaba en una que otra publicación, por motivos laborales mantengo mucho
 en Windows pero es necesario en ocasiones tener Linux a la mano. Sin duda a
 nivel de desarrollo Linux toma cada vez mayor relevancia y es notorio cuando
 Microsoft le da relevancia al soporte de Linux en su ecosistema, no solo en
 despliegues en nube sino también en el mismo escritorio. En esto último,
-referimos a WSL (&lt;em&gt;Windows Subsystem for Linux&lt;/em&gt;).&lt;/p&gt;
+referimos a WSL (&lt;em&gt;Windows Subsystem for Linux&lt;/em&gt;) &lt;a class="citation-reference" href="https://www.cosmoscalibur.com/blog/usar-ubuntu-en-windows/#wsl" id="id1"&gt;[wsl]&lt;/a&gt;.&lt;/p&gt;
 &lt;!-- TEASER_END --&gt;
 &lt;p&gt;WSL es el componente de Windows que nos permite cumplir la promesa de este
 artículo, ejecutar distribuciones Linux desde Windows y con rendimiento alto
 (no se trata de una emulación sino la ejecución de un kernel Linux real) e
 incluso, vincula adecuadamente con la GPU (solo para
-&lt;em&gt;Microsoft Windows Insider Program&lt;/em&gt;).&lt;/p&gt;
+&lt;em&gt;Microsoft Windows Insider Program&lt;/em&gt; &lt;a class="citation-reference" href="https://www.cosmoscalibur.com/blog/usar-ubuntu-en-windows/#cuda" id="id2"&gt;[cuda]&lt;/a&gt;) y permite hacer uso de Docker en Windows
+Home &lt;a class="citation-reference" href="https://www.cosmoscalibur.com/blog/usar-ubuntu-en-windows/#docker" id="id3"&gt;[docker]&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Veremos como instalar una distribución Linux en Windows con WSL y es importante
 realizarlo en el orden mencionado.&lt;/p&gt;
 &lt;div class="section" id="habilitar-wsl"&gt;
 &lt;h2&gt;Habilitar WSL&lt;/h2&gt;
 &lt;p&gt;Nuestro primer paso es abrir la consola de Power Shell en modo administrador y
 a continuación ejecutaremos:&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_48c5955096eb489c9206fc449d9d9a13-1"&gt;&lt;/a&gt;dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
+&lt;pre class="code text"&gt;&lt;a name="rest_code_d513746f65e04635bed1613f8c2dd653-1"&gt;&lt;/a&gt;dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
 &lt;/pre&gt;&lt;/div&gt;
 &lt;div class="section" id="actualizar-a-wsl2"&gt;
 &lt;h2&gt;Actualizar a WSL2&lt;/h2&gt;
@@ -31,12 +32,12 @@ siempre y cuando la versión sea 1903 o superior, con número de compilación
 la ventana que despliega.&lt;/p&gt;
 &lt;p&gt;En caso contrario, podemos recurrir al asistente de &lt;em&gt;Windows Update&lt;/em&gt; para
 tener dicha versión. Una vez con este requisito, podemos ejecutar:&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_ffd19635cc7e4e02861d04077ed16caf-1"&gt;&lt;/a&gt;dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
-&lt;a name="rest_code_ffd19635cc7e4e02861d04077ed16caf-2"&gt;&lt;/a&gt;$wsl_file="wsl_update_x64.msi"
-&lt;a name="rest_code_ffd19635cc7e4e02861d04077ed16caf-3"&gt;&lt;/a&gt;$wsl_file_path=$pwd.Path + "\" + $wsl_file
-&lt;a name="rest_code_ffd19635cc7e4e02861d04077ed16caf-4"&gt;&lt;/a&gt;Invoke-WebRequest -Uri https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi -OutFile $wsl_file_path -UseBasicParsing
-&lt;a name="rest_code_ffd19635cc7e4e02861d04077ed16caf-5"&gt;&lt;/a&gt;Start-Process $wsl_file_path
-&lt;a name="rest_code_ffd19635cc7e4e02861d04077ed16caf-6"&gt;&lt;/a&gt;wsl --set-default-version 2
+&lt;pre class="code text"&gt;&lt;a name="rest_code_8cd7da7591e945d1a13e37e446892e1e-1"&gt;&lt;/a&gt;dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
+&lt;a name="rest_code_8cd7da7591e945d1a13e37e446892e1e-2"&gt;&lt;/a&gt;$wsl_file="wsl_update_x64.msi"
+&lt;a name="rest_code_8cd7da7591e945d1a13e37e446892e1e-3"&gt;&lt;/a&gt;$wsl_file_path=$pwd.Path + "\" + $wsl_file
+&lt;a name="rest_code_8cd7da7591e945d1a13e37e446892e1e-4"&gt;&lt;/a&gt;Invoke-WebRequest -Uri https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi -OutFile $wsl_file_path -UseBasicParsing
+&lt;a name="rest_code_8cd7da7591e945d1a13e37e446892e1e-5"&gt;&lt;/a&gt;Start-Process $wsl_file_path
+&lt;a name="rest_code_8cd7da7591e945d1a13e37e446892e1e-6"&gt;&lt;/a&gt;wsl --set-default-version 2
 &lt;/pre&gt;&lt;p&gt;El procedimiento anterior es mi versión de ejecución por línea de comandos,
 pero la documentación oficial dispone para descarga e instalación manual.
 Asumo el interés en usar la WSL2 como versión por defecto, por lo cual es
@@ -45,12 +46,15 @@ necesario ejecutar la última línea del bloque.&lt;/p&gt;
 &lt;div class="section" id="instalar-distribucion-linux"&gt;
 &lt;h2&gt;Instalar distribución Linux&lt;/h2&gt;
 &lt;p&gt;A través de la tienda de aplicaciones podemos continuar con la instalación de
-la distribución Linux deseada, pero si te interesa Ubuntu en su versión
-20.04, podemos continuar en nuestra consola PowerShell ya abierta (cambiar el
-número de la versión LTS soportada en la URL).&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_e212698fb074403685b1b50e1f24b2d5-1"&gt;&lt;/a&gt;Invoke-WebRequest -Uri https://aka.ms/wslubuntu2004 -OutFile Ubuntu.appx -UseBasicParsing
-&lt;a name="rest_code_e212698fb074403685b1b50e1f24b2d5-2"&gt;&lt;/a&gt;Add-AppxPackage .\Ubuntu.appx
-&lt;a name="rest_code_e212698fb074403685b1b50e1f24b2d5-3"&gt;&lt;/a&gt;ubuntu2004.exe
+la distribución Linux deseada, pero si te interesa continuar con el uso de la
+consola, procedemos a revisar la dirección de descarga de nuestra distribución
+acorde a la lista disponible en la sección de descarga manual de la
+documentación oficial &lt;a class="citation-reference" href="https://www.cosmoscalibur.com/blog/usar-ubuntu-en-windows/#wsl-manual" id="id4"&gt;[wsl-manual]&lt;/a&gt;. En nuestro ejemplo, instalaremos Ubuntu
+20.04 (cambiar el número de la versión LTS soportada en la URL si te interesa
+otra).&lt;/p&gt;
+&lt;pre class="code text"&gt;&lt;a name="rest_code_867dd931c683414da6b2d77b72a3df26-1"&gt;&lt;/a&gt;Invoke-WebRequest -Uri https://aka.ms/wslubuntu2004 -OutFile Ubuntu.appx -UseBasicParsing
+&lt;a name="rest_code_867dd931c683414da6b2d77b72a3df26-2"&gt;&lt;/a&gt;Add-AppxPackage .\Ubuntu.appx
+&lt;a name="rest_code_867dd931c683414da6b2d77b72a3df26-3"&gt;&lt;/a&gt;ubuntu2004.exe
 &lt;/pre&gt;&lt;p&gt;Una vez se complete el proceso, debemos inicializar la distribución para que la
 configuración termine. Puedes hacerlo lanzando la distribución desde la
 aplicación o con el comando desde la consola como en este ejemplo.&lt;/p&gt;
@@ -59,8 +63,8 @@ contraseña durante la configuración inicial, podemos usar el gestor de paquete
 e incluso lanzar algunas aplicaciones gráficas habilitando el servidor X11.&lt;/p&gt;
 &lt;p&gt;Finalmente, actualicemos nuestra distribución (en el paso anterior la consola
 ha quedado ubicada en Ubuntu).&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_84d81d47d08a46379777976a477a0660-1"&gt;&lt;/a&gt;sudo apt update -q
-&lt;a name="rest_code_84d81d47d08a46379777976a477a0660-2"&gt;&lt;/a&gt;sudo apt dist-upgrade -y
+&lt;pre class="code text"&gt;&lt;a name="rest_code_e0277f61313f4823b5289c9b8ea579a1-1"&gt;&lt;/a&gt;sudo apt update -q
+&lt;a name="rest_code_e0277f61313f4823b5289c9b8ea579a1-2"&gt;&lt;/a&gt;sudo apt dist-upgrade -y
 &lt;/pre&gt;&lt;p&gt;Hay que tener en cuenta que no todo funcionará, uno de esos detalles es la
 instalación de paquetes snap al igual que docker.&lt;/p&gt;
 &lt;p&gt;Estamos listos para usar Ubuntu en Windows. Para este fin podemos abrir
@@ -72,9 +76,9 @@ lanzador de Ubuntu en el menú, usar la consola Ubuntu de Windows Terminal
 &lt;div class="section" id="aplicaciones-graficas"&gt;
 &lt;h2&gt;Aplicaciones gráficas&lt;/h2&gt;
 &lt;p&gt;Para cerrar este tema, falta que lancemos nuestras aplicaciones gráficas. Para
-esto será necesario modificar el archivo &lt;code&gt;.bashrc&lt;/code&gt;.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_e3574bf57cd14cfe98825a3ce5d9b9d0-1"&gt;&lt;/a&gt;echo "export DISPLAY=$(awk '/nameserver / {print $2; exit}' /etc/resolv.conf 2&amp;gt;/dev/null):0" &amp;gt;&amp;gt; $HOME/.bashrc
-&lt;a name="rest_code_e3574bf57cd14cfe98825a3ce5d9b9d0-2"&gt;&lt;/a&gt;echo "export LIBGL_ALWAYS_INDIRECT=1" &amp;gt;&amp;gt; $HOME/.bashrc
+esto será necesario modificar el archivo &lt;code&gt;.bashrc&lt;/code&gt; &lt;a class="citation-reference" href="https://www.cosmoscalibur.com/blog/usar-ubuntu-en-windows/#ubuntu-wiki" id="id5"&gt;[ubuntu-wiki]&lt;/a&gt;.&lt;/p&gt;
+&lt;pre class="code text"&gt;&lt;a name="rest_code_c694e7133f254e6e9b22daa7ab6ef26a-1"&gt;&lt;/a&gt;echo "export DISPLAY=$(awk '/nameserver / {print $2; exit}' /etc/resolv.conf 2&amp;gt;/dev/null):0" &amp;gt;&amp;gt; $HOME/.bashrc
+&lt;a name="rest_code_c694e7133f254e6e9b22daa7ab6ef26a-2"&gt;&lt;/a&gt;echo "export LIBGL_ALWAYS_INDIRECT=1" &amp;gt;&amp;gt; $HOME/.bashrc
 &lt;/pre&gt;&lt;div class="admonition note"&gt;
 &lt;p class="admonition-title"&gt;Nota&lt;/p&gt;
 &lt;p&gt;En ningún sitio encontré referencia a necesitar reiniciar o hacer algún
@@ -95,34 +99,44 @@ guardar la configuración y lanzarlo desde dicho archivo.&lt;/p&gt;
 aplicaciones y escoger instalar nuestra distribución.&lt;/p&gt;
 &lt;p&gt;Al intentar abrir la distribución de esta manera nos encontraremos con el error
 siguiente:&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_1f0390777c00464c88e2d77d23039f34-1"&gt;&lt;/a&gt;Installing, this may take a few minutes...
-&lt;a name="rest_code_1f0390777c00464c88e2d77d23039f34-2"&gt;&lt;/a&gt;WslRegisterDistribution failed with error: 0x8007019e
-&lt;a name="rest_code_1f0390777c00464c88e2d77d23039f34-3"&gt;&lt;/a&gt;The Windows Subsystem for Linux optional component is not enabled. Please enable it and try again.
-&lt;a name="rest_code_1f0390777c00464c88e2d77d23039f34-4"&gt;&lt;/a&gt;See https://aka.ms/wslinstall for details.
-&lt;a name="rest_code_1f0390777c00464c88e2d77d23039f34-5"&gt;&lt;/a&gt;Press any key to continue...
+&lt;pre class="code text"&gt;&lt;a name="rest_code_1546851f58014e679778e98ab5c5ea14-1"&gt;&lt;/a&gt;Installing, this may take a few minutes...
+&lt;a name="rest_code_1546851f58014e679778e98ab5c5ea14-2"&gt;&lt;/a&gt;WslRegisterDistribution failed with error: 0x8007019e
+&lt;a name="rest_code_1546851f58014e679778e98ab5c5ea14-3"&gt;&lt;/a&gt;The Windows Subsystem for Linux optional component is not enabled. Please enable it and try again.
+&lt;a name="rest_code_1546851f58014e679778e98ab5c5ea14-4"&gt;&lt;/a&gt;See https://aka.ms/wslinstall for details.
+&lt;a name="rest_code_1546851f58014e679778e98ab5c5ea14-5"&gt;&lt;/a&gt;Press any key to continue...
 &lt;/pre&gt;&lt;p&gt;Esto requiere ejecutar el paso de instalación de habilitación de WSL. Una vez
 habilitado, debemos reinstalar la distribución, de otra manera veremos el
 siguiente error:&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_467d38938aa64fc0af5c4fdb696e0f03-1"&gt;&lt;/a&gt;Installing, this may take a few minutes...
-&lt;a name="rest_code_467d38938aa64fc0af5c4fdb696e0f03-2"&gt;&lt;/a&gt;WslRegisterDistribution failed with error: 0x800700b7
-&lt;a name="rest_code_467d38938aa64fc0af5c4fdb696e0f03-3"&gt;&lt;/a&gt;The distribution installation has become corrupted.
-&lt;a name="rest_code_467d38938aa64fc0af5c4fdb696e0f03-4"&gt;&lt;/a&gt;Please select Reset from App Settings or uninstall and reinstall the app.
-&lt;a name="rest_code_467d38938aa64fc0af5c4fdb696e0f03-5"&gt;&lt;/a&gt;Error: 0x800700b7 Cannot create a file when that file already exists.
+&lt;pre class="code text"&gt;&lt;a name="rest_code_df447958c3f1420ca855d6cddb66f086-1"&gt;&lt;/a&gt;Installing, this may take a few minutes...
+&lt;a name="rest_code_df447958c3f1420ca855d6cddb66f086-2"&gt;&lt;/a&gt;WslRegisterDistribution failed with error: 0x800700b7
+&lt;a name="rest_code_df447958c3f1420ca855d6cddb66f086-3"&gt;&lt;/a&gt;The distribution installation has become corrupted.
+&lt;a name="rest_code_df447958c3f1420ca855d6cddb66f086-4"&gt;&lt;/a&gt;Please select Reset from App Settings or uninstall and reinstall the app.
+&lt;a name="rest_code_df447958c3f1420ca855d6cddb66f086-5"&gt;&lt;/a&gt;Error: 0x800700b7 Cannot create a file when that file already exists.
 &lt;/pre&gt;&lt;p&gt;Por esta misma razón, nuestra distro estará en WSL1 y será necesario convertir.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_b29454b20e51425fb694780c002d985b-1"&gt;&lt;/a&gt;wsl -l -v
-&lt;a name="rest_code_b29454b20e51425fb694780c002d985b-2"&gt;&lt;/a&gt;wsl --set-version Ubuntu 2
+&lt;pre class="code text"&gt;&lt;a name="rest_code_fec11ace2c574a24ab4fc83b5378347e-1"&gt;&lt;/a&gt;wsl -l -v
+&lt;a name="rest_code_fec11ace2c574a24ab4fc83b5378347e-2"&gt;&lt;/a&gt;wsl --set-version Ubuntu 2
 &lt;/pre&gt;&lt;p&gt;Con la primera línea verificamos la versión asignada y con el segundo
 convertimos.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="referencias"&gt;
 &lt;h2&gt;Referencias&lt;/h2&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://docs.microsoft.com/en-us/windows/wsl/install-win10"&gt;Windows Subsystem for Linux Installation Guide for Windows 10&lt;/a&gt;.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://docs.microsoft.com/en-us/windows/wsl/install-manual"&gt;Manually download Windows Subsystem for Linux distro packages&lt;/a&gt;.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://wiki.ubuntu.com/WSL"&gt;WSL - Ubuntu Wiki&lt;/a&gt;.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://github.com/cascadium/wsl-windows-toolbar-launcher"&gt;WSL Windows Toolbar Launcher&lt;/a&gt;.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://docs.nvidia.com/cuda/wsl-user-guide/index.html#abstract"&gt;CUDA on WSL User Guide&lt;/a&gt;.&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
+&lt;dl class="citation"&gt;
+&lt;dt class="label" id="wsl"&gt;&lt;span class="brackets"&gt;&lt;a class="fn-backref" href="https://www.cosmoscalibur.com/blog/usar-ubuntu-en-windows/#id1"&gt;wsl&lt;/a&gt;&lt;/span&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;&lt;a class="reference external" href="https://docs.microsoft.com/en-us/windows/wsl/install-win10"&gt;Windows Subsystem for Linux Installation Guide for Windows 10&lt;/a&gt;.&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class="label" id="cuda"&gt;&lt;span class="brackets"&gt;&lt;a class="fn-backref" href="https://www.cosmoscalibur.com/blog/usar-ubuntu-en-windows/#id2"&gt;cuda&lt;/a&gt;&lt;/span&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;&lt;a class="reference external" href="https://docs.nvidia.com/cuda/wsl-user-guide/index.html#abstract"&gt;CUDA on WSL User Guide&lt;/a&gt;.&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class="label" id="docker"&gt;&lt;span class="brackets"&gt;&lt;a class="fn-backref" href="https://www.cosmoscalibur.com/blog/usar-ubuntu-en-windows/#id3"&gt;docker&lt;/a&gt;&lt;/span&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;&lt;a class="reference external" href="https://docs.docker.com/docker-for-windows/wsl/"&gt;Docker Desktop WSL 2 backend&lt;/a&gt;.&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class="label" id="wsl-manual"&gt;&lt;span class="brackets"&gt;&lt;a class="fn-backref" href="https://www.cosmoscalibur.com/blog/usar-ubuntu-en-windows/#id4"&gt;wsl-manual&lt;/a&gt;&lt;/span&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;&lt;a class="reference external" href="https://docs.microsoft.com/en-us/windows/wsl/install-manual"&gt;Manually download Windows Subsystem for Linux distro packages&lt;/a&gt;.&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class="label" id="ubuntu-wiki"&gt;&lt;span class="brackets"&gt;&lt;a class="fn-backref" href="https://www.cosmoscalibur.com/blog/usar-ubuntu-en-windows/#id5"&gt;ubuntu-wiki&lt;/a&gt;&lt;/span&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;&lt;a class="reference external" href="https://wiki.ubuntu.com/WSL"&gt;WSL - Ubuntu Wiki&lt;/a&gt;.&lt;/p&gt;
+&lt;/dd&gt;
+&lt;/dl&gt;
 &lt;/div&gt;&lt;/div&gt;</description><category>linux</category><category>ubuntu</category><category>windows</category><category>wsl</category><guid>https://www.cosmoscalibur.com/blog/usar-ubuntu-en-windows/</guid><pubDate>Tue, 06 Oct 2020 02:22:55 GMT</pubDate></item><item><title>Crear versión de Windows mínima con MSMG Toolkit</title><link>https://www.cosmoscalibur.com/blog/crear-version-de-windows-minima-con-msmg-toolkit/</link><dc:creator>Edward Villegas-Pulgarin</dc:creator><description>&lt;div&gt;&lt;p&gt;Reciente eliminé la partición de Windows de mi máquina por un problema en el
 qué probé crear la tabla de partición de nuevo, pero me dio pereza instalar en
 ese momento Windows porque mi sistema operativo principal es Linux. Además,
@@ -361,9 +375,9 @@ archivo: &lt;code&gt;/etc/apt/preferences.d/nosnap.pref&lt;/code&gt;. En mi caso
 de mantenerlo, así que procedo a eliminarlo y posteriormente a instalar el
 gestor de snaps. Si te sientes más cómodo, puedes comentar las líneas y una vez
 instalado el gestor volver a descomentarlas &lt;a class="citation-reference" href="https://www.cosmoscalibur.com/blog/instalar-paquetes-snap-en-linux-mint-20/#snap-install" id="id2"&gt;[snap-install]&lt;/a&gt;.&lt;/p&gt;
-&lt;pre class="code bash"&gt;&lt;a name="rest_code_54e9443e426b4f2183aa8540c0aa3b68-1"&gt;&lt;/a&gt;sudo rm /etc/apt/preferences.d/nosnap.pref
-&lt;a name="rest_code_54e9443e426b4f2183aa8540c0aa3b68-2"&gt;&lt;/a&gt;sudo apt install -y snapd
-&lt;a name="rest_code_54e9443e426b4f2183aa8540c0aa3b68-3"&gt;&lt;/a&gt;snap &lt;span class="nb"&gt;help&lt;/span&gt;
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_e31ee962f62d4c98b24aeecad61cb2e9-1"&gt;&lt;/a&gt;sudo rm /etc/apt/preferences.d/nosnap.pref
+&lt;a name="rest_code_e31ee962f62d4c98b24aeecad61cb2e9-2"&gt;&lt;/a&gt;sudo apt install -y snapd
+&lt;a name="rest_code_e31ee962f62d4c98b24aeecad61cb2e9-3"&gt;&lt;/a&gt;snap &lt;span class="nb"&gt;help&lt;/span&gt;
 &lt;/pre&gt;&lt;p&gt;Ahora puedes instalar tus paquetes snap en la forma como lo expliqué en un
 &lt;a class="reference external" href="https://www.cosmoscalibur.com/blog/instalando-paquetes-en-linux-mint/#snap"&gt;artículo anterior&lt;/a&gt;.&lt;/p&gt;
 &lt;/div&gt;
@@ -423,9 +437,9 @@ si es Anaconda o Miniconda).&lt;/p&gt;
 preguntas interactivas y así despreocuparnos durante la instalación. Invocamos
 el instalador con Bash de la siguiente forma (asegurate de usar la ruta
 completa y correcta del instalador &lt;code&gt;sh&lt;/code&gt; que usarás).&lt;/p&gt;
-&lt;pre class="code bash"&gt;&lt;a name="rest_code_52fb0aa93ed8471b8d5a99a54281f624-1"&gt;&lt;/a&gt;bash Anaconda3-2020.02-Linux-x86_64.sh -b -p &lt;span class="nv"&gt;$HOME&lt;/span&gt;/anaconda
-&lt;a name="rest_code_52fb0aa93ed8471b8d5a99a54281f624-2"&gt;&lt;/a&gt;&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;". &lt;/span&gt;&lt;span class="nv"&gt;$HOME&lt;/span&gt;&lt;span class="s2"&gt;/anaconda/etc/profile.d/conda.sh"&lt;/span&gt; &amp;gt;&amp;gt; &lt;span class="nv"&gt;$HOME&lt;/span&gt;/.bashrc
-&lt;a name="rest_code_52fb0aa93ed8471b8d5a99a54281f624-3"&gt;&lt;/a&gt;&lt;span class="nb"&gt;source&lt;/span&gt; &lt;span class="nv"&gt;$HOME&lt;/span&gt;/.bashrc
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_c0e0d82d8d4745749071f6f175ae1a1c-1"&gt;&lt;/a&gt;bash Anaconda3-2020.02-Linux-x86_64.sh -b -p &lt;span class="nv"&gt;$HOME&lt;/span&gt;/anaconda
+&lt;a name="rest_code_c0e0d82d8d4745749071f6f175ae1a1c-2"&gt;&lt;/a&gt;&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;". &lt;/span&gt;&lt;span class="nv"&gt;$HOME&lt;/span&gt;&lt;span class="s2"&gt;/anaconda/etc/profile.d/conda.sh"&lt;/span&gt; &amp;gt;&amp;gt; &lt;span class="nv"&gt;$HOME&lt;/span&gt;/.bashrc
+&lt;a name="rest_code_c0e0d82d8d4745749071f6f175ae1a1c-3"&gt;&lt;/a&gt;&lt;span class="nb"&gt;source&lt;/span&gt; &lt;span class="nv"&gt;$HOME&lt;/span&gt;/.bashrc
 &lt;/pre&gt;&lt;p&gt;En la invocación de Bash, el argumento &lt;code&gt;-b&lt;/code&gt; implica la aceptación de
 licencias y con &lt;code&gt;-p&lt;/code&gt; indicamos la ruta para la instalación de Anaconda
 (puedes cambiarla a tu deseo).&lt;/p&gt;
@@ -441,7 +455,7 @@ agregar en el &lt;code&gt;.bashrc&lt;/code&gt; la línea &lt;code&gt;conda activ
 error, por lo cual, si al ejecutarlo ves el mensaje
 &lt;code&gt;UnboundLocalError: local variable 'DISTRO_NAME' referenced before assignment&lt;/code&gt;
 bastará con actualizar el paquete &lt;a class="citation-reference" href="https://www.cosmoscalibur.com/blog/instalar-python-anaconda/#navigator" id="id2"&gt;[navigator]&lt;/a&gt;.&lt;/p&gt;
-&lt;pre class="code bash"&gt;&lt;a name="rest_code_b96d4f2d163340be862e07dc1a565919-1"&gt;&lt;/a&gt;conda update anaconda-navigator
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_9db688c3ac4b4b69aba07887ad709cb2-1"&gt;&lt;/a&gt;conda update anaconda-navigator
 &lt;/pre&gt;&lt;/div&gt;
 &lt;div class="section" id="instalacion-grafica"&gt;
 &lt;h2&gt;Instalación gráfica&lt;/h2&gt;
@@ -1144,8 +1158,8 @@ gestor de paquetes del sistema operativo. En la mayor parte de
 distribuciones Linux estará disponible a través del gestor.&lt;/p&gt;
 &lt;p&gt;En el caso de las distribuciones basadas en Debian (Ubuntu y Linux Mint
 entre otras) puedes instalar de la siguiente manera:&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_ae042fd7796649648fefc08805a1f64d-1"&gt;&lt;/a&gt;sudo apt install -y texlive texlive-latex-base texlive-latex-extra \
-&lt;a name="rest_code_ae042fd7796649648fefc08805a1f64d-2"&gt;&lt;/a&gt;    texlive-lang-spanish latexmk
+&lt;pre class="code text"&gt;&lt;a name="rest_code_53579a10fd0e4cbebbbbb3b943b8d8ee-1"&gt;&lt;/a&gt;sudo apt install -y texlive texlive-latex-base texlive-latex-extra \
+&lt;a name="rest_code_53579a10fd0e4cbebbbbb3b943b8d8ee-2"&gt;&lt;/a&gt;    texlive-lang-spanish latexmk
 &lt;/pre&gt;&lt;/dd&gt;
 &lt;/dl&gt;
 &lt;/div&gt;
@@ -1175,11 +1189,11 @@ proyecto destinemos un directorio &lt;code&gt;docs&lt;/code&gt; para este fin.&l
 &lt;p&gt;Ahora ejecutamos &lt;code&gt;sphinx-quickstart&lt;/code&gt; y respondemos las preguntas que
 saldrán. Es necesario tener en cuenta, que si usas Windows debes agregar al
 comando la terminación &lt;code&gt;.exe&lt;/code&gt;, ejemplo &lt;code&gt;sphinx-quickstart.exe&lt;/code&gt;.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_dbd17d15d41c4aa2b34003bbb5019835-1"&gt;&lt;/a&gt;&amp;gt; Separate source and build directories (y/n) [n]: y
-&lt;a name="rest_code_dbd17d15d41c4aa2b34003bbb5019835-2"&gt;&lt;/a&gt;&amp;gt; Project name: proyecto
-&lt;a name="rest_code_dbd17d15d41c4aa2b34003bbb5019835-3"&gt;&lt;/a&gt;&amp;gt; Author name(s): Edward Villegas-Pulgarin
-&lt;a name="rest_code_dbd17d15d41c4aa2b34003bbb5019835-4"&gt;&lt;/a&gt;&amp;gt; Project release []: 0.1.0
-&lt;a name="rest_code_dbd17d15d41c4aa2b34003bbb5019835-5"&gt;&lt;/a&gt;&amp;gt; Project language [en]: es
+&lt;pre class="code text"&gt;&lt;a name="rest_code_a7d8af5a3e8549aba42b282457583198-1"&gt;&lt;/a&gt;&amp;gt; Separate source and build directories (y/n) [n]: y
+&lt;a name="rest_code_a7d8af5a3e8549aba42b282457583198-2"&gt;&lt;/a&gt;&amp;gt; Project name: proyecto
+&lt;a name="rest_code_a7d8af5a3e8549aba42b282457583198-3"&gt;&lt;/a&gt;&amp;gt; Author name(s): Edward Villegas-Pulgarin
+&lt;a name="rest_code_a7d8af5a3e8549aba42b282457583198-4"&gt;&lt;/a&gt;&amp;gt; Project release []: 0.1.0
+&lt;a name="rest_code_a7d8af5a3e8549aba42b282457583198-5"&gt;&lt;/a&gt;&amp;gt; Project language [en]: es
 &lt;/pre&gt;&lt;p&gt;Siempre recomiendo separar el directorio del código fuente de la documentación
 del directorio de compilados de la misma. Respecto al esquema de versiones me
 agrada el &lt;a class="reference external" href="https://semver.org/"&gt;versionamiento semántico&lt;/a&gt; que permite al
@@ -1202,13 +1216,13 @@ Con Coverage puedes validar que funciones se han documentado y dcotest integra
 pruebas de código desde la documentación (comparar salidas con ejemplo de
 documentación).&lt;/p&gt;
 &lt;p&gt;Modificar en el archivo.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_defacf3542e14fa9980d28d2aa773a13-1"&gt;&lt;/a&gt;extensions = [
-&lt;a name="rest_code_defacf3542e14fa9980d28d2aa773a13-2"&gt;&lt;/a&gt;    'sphinx.ext.autodoc',
-&lt;a name="rest_code_defacf3542e14fa9980d28d2aa773a13-3"&gt;&lt;/a&gt;    'sphinx.ext.mathjax',
-&lt;a name="rest_code_defacf3542e14fa9980d28d2aa773a13-4"&gt;&lt;/a&gt;    'sphinx.ext.napoleon',
-&lt;a name="rest_code_defacf3542e14fa9980d28d2aa773a13-5"&gt;&lt;/a&gt;    'sphinx.ext.coverage',
-&lt;a name="rest_code_defacf3542e14fa9980d28d2aa773a13-6"&gt;&lt;/a&gt;    'sphinx.ext.doctest'
-&lt;a name="rest_code_defacf3542e14fa9980d28d2aa773a13-7"&gt;&lt;/a&gt;]
+&lt;pre class="code text"&gt;&lt;a name="rest_code_77c3c8277e5d47abacaa6a3219241397-1"&gt;&lt;/a&gt;extensions = [
+&lt;a name="rest_code_77c3c8277e5d47abacaa6a3219241397-2"&gt;&lt;/a&gt;    'sphinx.ext.autodoc',
+&lt;a name="rest_code_77c3c8277e5d47abacaa6a3219241397-3"&gt;&lt;/a&gt;    'sphinx.ext.mathjax',
+&lt;a name="rest_code_77c3c8277e5d47abacaa6a3219241397-4"&gt;&lt;/a&gt;    'sphinx.ext.napoleon',
+&lt;a name="rest_code_77c3c8277e5d47abacaa6a3219241397-5"&gt;&lt;/a&gt;    'sphinx.ext.coverage',
+&lt;a name="rest_code_77c3c8277e5d47abacaa6a3219241397-6"&gt;&lt;/a&gt;    'sphinx.ext.doctest'
+&lt;a name="rest_code_77c3c8277e5d47abacaa6a3219241397-7"&gt;&lt;/a&gt;]
 &lt;/pre&gt;&lt;/div&gt;
 &lt;div class="section" id="importar-paquete"&gt;
 &lt;h3&gt;Importar paquete&lt;/h3&gt;
@@ -1220,33 +1234,33 @@ primeras líneas de código en la sección de &lt;em&gt;Path setup&lt;/em&gt;. E
 defecto indica la misma carpeta de &lt;code&gt;docs/source&lt;/code&gt;, por lo cual es
 necesario reemplazar por &lt;code&gt;../..&lt;/code&gt; que se devuelve los dos niveles
 necesarios.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_4aed5570474243abb46c566a763b0768-1"&gt;&lt;/a&gt;import os
-&lt;a name="rest_code_4aed5570474243abb46c566a763b0768-2"&gt;&lt;/a&gt;import sys
-&lt;a name="rest_code_4aed5570474243abb46c566a763b0768-3"&gt;&lt;/a&gt;import datetime
-&lt;a name="rest_code_4aed5570474243abb46c566a763b0768-4"&gt;&lt;/a&gt;sys.path.insert(0, os.path.abspath('../..'))
-&lt;a name="rest_code_4aed5570474243abb46c566a763b0768-5"&gt;&lt;/a&gt;import proyecto
+&lt;pre class="code text"&gt;&lt;a name="rest_code_2d2ebeed55ef436497d23a5e26b74716-1"&gt;&lt;/a&gt;import os
+&lt;a name="rest_code_2d2ebeed55ef436497d23a5e26b74716-2"&gt;&lt;/a&gt;import sys
+&lt;a name="rest_code_2d2ebeed55ef436497d23a5e26b74716-3"&gt;&lt;/a&gt;import datetime
+&lt;a name="rest_code_2d2ebeed55ef436497d23a5e26b74716-4"&gt;&lt;/a&gt;sys.path.insert(0, os.path.abspath('../..'))
+&lt;a name="rest_code_2d2ebeed55ef436497d23a5e26b74716-5"&gt;&lt;/a&gt;import proyecto
 &lt;/pre&gt;&lt;p&gt;Ahora, puedes hacer cosas como la siguiente, si está disponible en tu código.&lt;/p&gt;
-&lt;pre class="code python"&gt;&lt;a name="rest_code_0369f224421c4f8f96a2bbfe0efac923-1"&gt;&lt;/a&gt;&lt;span class="n"&gt;author&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;proyecto&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;__author__&lt;/span&gt;
-&lt;a name="rest_code_0369f224421c4f8f96a2bbfe0efac923-2"&gt;&lt;/a&gt;&lt;span class="n"&gt;copyright&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;datetime&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;date&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;today&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;year&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s1"&gt;', '&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;author&lt;/span&gt;
-&lt;a name="rest_code_0369f224421c4f8f96a2bbfe0efac923-3"&gt;&lt;/a&gt;&lt;span class="n"&gt;release&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;proyecto&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;__version__&lt;/span&gt;
+&lt;pre class="code python"&gt;&lt;a name="rest_code_1d2335db58e34770abfb8daef0d066a4-1"&gt;&lt;/a&gt;&lt;span class="n"&gt;author&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;proyecto&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;__author__&lt;/span&gt;
+&lt;a name="rest_code_1d2335db58e34770abfb8daef0d066a4-2"&gt;&lt;/a&gt;&lt;span class="n"&gt;copyright&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;datetime&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;date&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;today&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;year&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s1"&gt;', '&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;author&lt;/span&gt;
+&lt;a name="rest_code_1d2335db58e34770abfb8daef0d066a4-3"&gt;&lt;/a&gt;&lt;span class="n"&gt;release&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;proyecto&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;__version__&lt;/span&gt;
 &lt;/pre&gt;&lt;p&gt;Esto tiene un impacto respecto a algunas dependencias, que pueden provocar
 fallos o si para la generación de la documentación no tenemos todas las
 dependencias del paquete. En mi caso, he tenido problemas cuando tengo como
 dependencia Tensorflow o cuando tengo arcpy pero no tengo la licencia
 instalada. En este caso, podemos hacer un falseo (&lt;em&gt;mock&lt;/em&gt;) de los paquetes:&lt;/p&gt;
-&lt;pre class="code python"&gt;&lt;a name="rest_code_806ad9843529416fac6d510736f9caa8-1"&gt;&lt;/a&gt;&lt;span class="n"&gt;autodoc_mock_imports&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;"tensorflow"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;"arcpy"&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;pre class="code python"&gt;&lt;a name="rest_code_3d1702194ba145159cf2fd234224111d-1"&gt;&lt;/a&gt;&lt;span class="n"&gt;autodoc_mock_imports&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;"tensorflow"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;"arcpy"&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;div class="section" id="referencias-cruzadas"&gt;
 &lt;h3&gt;Referencias cruzadas&lt;/h3&gt;
 &lt;p&gt;Para usar referencias cruzadas, es decir, numeración de tablas, figuras,
 códigos y ecuaciones si poseen pie de objeto, y ser referenciados en el texto
 por el número, se requiere configurar lo siguiente.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_c7acdce1ee674a8b92ed8830614943f0-1"&gt;&lt;/a&gt;numfig = True
-&lt;a name="rest_code_c7acdce1ee674a8b92ed8830614943f0-2"&gt;&lt;/a&gt;numfig_format = {'figure': 'Fig. %s', 'table': 'Tabla %s',
-&lt;a name="rest_code_c7acdce1ee674a8b92ed8830614943f0-3"&gt;&lt;/a&gt;                 'code-block': 'Código %s', 'section': 'Sección %s'}
-&lt;a name="rest_code_c7acdce1ee674a8b92ed8830614943f0-4"&gt;&lt;/a&gt;numfig_secnum_depth = 1
-&lt;a name="rest_code_c7acdce1ee674a8b92ed8830614943f0-5"&gt;&lt;/a&gt;math_numfig = True
-&lt;a name="rest_code_c7acdce1ee674a8b92ed8830614943f0-6"&gt;&lt;/a&gt;math_eqref_format = 'Ec. {number}'
+&lt;pre class="code text"&gt;&lt;a name="rest_code_1229e372c9e94ecfb25dbccdad571962-1"&gt;&lt;/a&gt;numfig = True
+&lt;a name="rest_code_1229e372c9e94ecfb25dbccdad571962-2"&gt;&lt;/a&gt;numfig_format = {'figure': 'Fig. %s', 'table': 'Tabla %s',
+&lt;a name="rest_code_1229e372c9e94ecfb25dbccdad571962-3"&gt;&lt;/a&gt;                 'code-block': 'Código %s', 'section': 'Sección %s'}
+&lt;a name="rest_code_1229e372c9e94ecfb25dbccdad571962-4"&gt;&lt;/a&gt;numfig_secnum_depth = 1
+&lt;a name="rest_code_1229e372c9e94ecfb25dbccdad571962-5"&gt;&lt;/a&gt;math_numfig = True
+&lt;a name="rest_code_1229e372c9e94ecfb25dbccdad571962-6"&gt;&lt;/a&gt;math_eqref_format = 'Ec. {number}'
 &lt;/pre&gt;&lt;p&gt;Así, es posible usar &lt;code&gt;:label:&lt;/code&gt; para asignar una referencia a los objetos
 y &lt;code&gt;:numref:&lt;/code&gt; y &lt;code&gt;:eq:&lt;/code&gt; a la hora de mencionarlos. Con
 &lt;code&gt;numfig_secnum_depth&lt;/code&gt; configuras la numeración de los objetos, si es
@@ -1258,11 +1272,11 @@ continúa (0), por sección (1) y subsección (2).&lt;/p&gt;
 maestro, el nombre del archivo TeX, el nombre que nuestra documentación, el
 nombre del autor (que podemos usar la variable que ya definimos) y el tipo de
 documento (cuya clase &lt;em&gt;manual&lt;/em&gt; está definida por Sphinx).&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_1490ab7da8ee48ddbb297461fe4ada43-1"&gt;&lt;/a&gt;master_doc = 'index'
-&lt;a name="rest_code_1490ab7da8ee48ddbb297461fe4ada43-2"&gt;&lt;/a&gt;latex_documents = [
-&lt;a name="rest_code_1490ab7da8ee48ddbb297461fe4ada43-3"&gt;&lt;/a&gt;    (master_doc, 'proyecto.tex', 'Documentación Proyecto',
-&lt;a name="rest_code_1490ab7da8ee48ddbb297461fe4ada43-4"&gt;&lt;/a&gt;     author, 'manual'),
-&lt;a name="rest_code_1490ab7da8ee48ddbb297461fe4ada43-5"&gt;&lt;/a&gt;]
+&lt;pre class="code text"&gt;&lt;a name="rest_code_8b582fb803fa4aa7acb1379c0cd89182-1"&gt;&lt;/a&gt;master_doc = 'index'
+&lt;a name="rest_code_8b582fb803fa4aa7acb1379c0cd89182-2"&gt;&lt;/a&gt;latex_documents = [
+&lt;a name="rest_code_8b582fb803fa4aa7acb1379c0cd89182-3"&gt;&lt;/a&gt;    (master_doc, 'proyecto.tex', 'Documentación Proyecto',
+&lt;a name="rest_code_8b582fb803fa4aa7acb1379c0cd89182-4"&gt;&lt;/a&gt;     author, 'manual'),
+&lt;a name="rest_code_8b582fb803fa4aa7acb1379c0cd89182-5"&gt;&lt;/a&gt;]
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="section" id="escritura-en-restructuredtext"&gt;
@@ -1295,16 +1309,16 @@ adelante). Puedes agregar más archivos, por ejemplo, yo suelo usar un
 &lt;code&gt;concepts.rst&lt;/code&gt; para detallar los conceptos necesarios antes de usar el
 software o detallar teoría que ayuda a interpretar resultados o que expande la
 información para que alguien pueda analizar o continuar un desarrollo.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_7c0eb4535a2d4adb822a2e86504b3091-1"&gt;&lt;/a&gt;.. toctree::
-&lt;a name="rest_code_7c0eb4535a2d4adb822a2e86504b3091-2"&gt;&lt;/a&gt;   :maxdepth: 3
-&lt;a name="rest_code_7c0eb4535a2d4adb822a2e86504b3091-3"&gt;&lt;/a&gt;   :caption: Contenido:
-&lt;a name="rest_code_7c0eb4535a2d4adb822a2e86504b3091-4"&gt;&lt;/a&gt;
-&lt;a name="rest_code_7c0eb4535a2d4adb822a2e86504b3091-5"&gt;&lt;/a&gt;   README
-&lt;a name="rest_code_7c0eb4535a2d4adb822a2e86504b3091-6"&gt;&lt;/a&gt;   installation
-&lt;a name="rest_code_7c0eb4535a2d4adb822a2e86504b3091-7"&gt;&lt;/a&gt;   usage
-&lt;a name="rest_code_7c0eb4535a2d4adb822a2e86504b3091-8"&gt;&lt;/a&gt;   api/modules
-&lt;a name="rest_code_7c0eb4535a2d4adb822a2e86504b3091-9"&gt;&lt;/a&gt;   concepts
-&lt;a name="rest_code_7c0eb4535a2d4adb822a2e86504b3091-10"&gt;&lt;/a&gt;   history
+&lt;pre class="code text"&gt;&lt;a name="rest_code_f13e474458c844f1a1cdb4f731cb3a35-1"&gt;&lt;/a&gt;.. toctree::
+&lt;a name="rest_code_f13e474458c844f1a1cdb4f731cb3a35-2"&gt;&lt;/a&gt;   :maxdepth: 3
+&lt;a name="rest_code_f13e474458c844f1a1cdb4f731cb3a35-3"&gt;&lt;/a&gt;   :caption: Contenido:
+&lt;a name="rest_code_f13e474458c844f1a1cdb4f731cb3a35-4"&gt;&lt;/a&gt;
+&lt;a name="rest_code_f13e474458c844f1a1cdb4f731cb3a35-5"&gt;&lt;/a&gt;   README
+&lt;a name="rest_code_f13e474458c844f1a1cdb4f731cb3a35-6"&gt;&lt;/a&gt;   installation
+&lt;a name="rest_code_f13e474458c844f1a1cdb4f731cb3a35-7"&gt;&lt;/a&gt;   usage
+&lt;a name="rest_code_f13e474458c844f1a1cdb4f731cb3a35-8"&gt;&lt;/a&gt;   api/modules
+&lt;a name="rest_code_f13e474458c844f1a1cdb4f731cb3a35-9"&gt;&lt;/a&gt;   concepts
+&lt;a name="rest_code_f13e474458c844f1a1cdb4f731cb3a35-10"&gt;&lt;/a&gt;   history
 &lt;/pre&gt;&lt;p&gt;Y podemos borrar las líneas posteriores de &lt;em&gt;Indices and tables&lt;/em&gt;.&lt;/p&gt;
 &lt;p&gt;Vemos la mención a &lt;code&gt;api/modules&lt;/code&gt;, la cual es importante para incluir la
 documentación automática extraída con Sphinx, que se explicará en la próxima
@@ -1315,7 +1329,7 @@ sección.&lt;/p&gt;
 &lt;h2&gt;Ejecución de Sphinx&lt;/h2&gt;
 &lt;p&gt;Como estamos haciendo uso de &lt;em&gt;autodoc&lt;/em&gt;, nuestro primer paso es generar la
 extracción de la API.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_19966831f48b465fa9e43adabbef96bb-1"&gt;&lt;/a&gt;sphinx-apidoc -f -M -o source/api/ ../proyecto
+&lt;pre class="code text"&gt;&lt;a name="rest_code_a02a67907a4c4f2aa3e37ab6028d5161-1"&gt;&lt;/a&gt;sphinx-apidoc -f -M -o source/api/ ../proyecto
 &lt;/pre&gt;&lt;p&gt;Recordar que en Windows hay que agregar &lt;code&gt;.exe&lt;/code&gt;
 (&lt;code&gt;sphinx-apidoc.exe&lt;/code&gt;). &lt;code&gt;-f&lt;/code&gt; es para forzar la regeneración de los
 archivos (importante si actualizamos la documentación de la API), &lt;code&gt;-M&lt;/code&gt;
