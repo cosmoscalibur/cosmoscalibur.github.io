@@ -1,7 +1,7 @@
-.. title: Usar Ubuntu en Windows
+.. title: Usar Ubuntu en Windows con WSL2
 .. slug: usar-ubuntu-en-windows
 .. date: 2020-10-05 21:22:55-05:00
-.. tags: windows, linux, wsl, ubuntu
+.. tags: windows, linux, wsl, wsl2, ubuntu, windows subsystem for linux
 .. category: tecnología
 .. link: 
 .. description: 
