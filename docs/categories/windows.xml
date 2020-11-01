@@ -3,7 +3,7 @@
 &lt;a rel="license" href="https://creativecommons.org/licenses/by/4.0/"&gt;
 &lt;img alt="Creative Commons License BY 4.0"
 style="border-width:0; margin-bottom:12px;"
-src="https://licensebuttons.net/l/by/4.0/88x31.png"&gt;&lt;/a&gt;</copyright><lastBuildDate>Sun, 11 Oct 2020 21:33:57 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Usar Ubuntu en Windows</title><link>https://www.cosmoscalibur.com/blog/usar-ubuntu-en-windows/</link><dc:creator>Edward Villegas-Pulgarin</dc:creator><description>&lt;div&gt;&lt;p&gt;Como contaba en una que otra publicación, por motivos laborales mantengo mucho
+src="https://licensebuttons.net/l/by/4.0/88x31.png"&gt;&lt;/a&gt;</copyright><lastBuildDate>Sun, 01 Nov 2020 19:19:52 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Usar Ubuntu en Windows con WSL2</title><link>https://www.cosmoscalibur.com/blog/usar-ubuntu-en-windows/</link><dc:creator>Edward Villegas-Pulgarin</dc:creator><description>&lt;div&gt;&lt;p&gt;Como contaba en una que otra publicación, por motivos laborales mantengo mucho
 en Windows pero es necesario en ocasiones tener Linux a la mano. Sin duda a
 nivel de desarrollo Linux toma cada vez mayor relevancia y es notorio cuando
 Microsoft le da relevancia al soporte de Linux en su ecosistema, no solo en
@@ -22,7 +22,7 @@ realizarlo en el orden mencionado.&lt;/p&gt;
 &lt;h2&gt;Habilitar WSL&lt;/h2&gt;
 &lt;p&gt;Nuestro primer paso es abrir la consola de Power Shell en modo administrador y
 a continuación ejecutaremos:&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_d513746f65e04635bed1613f8c2dd653-1"&gt;&lt;/a&gt;dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
+&lt;pre class="code text"&gt;&lt;a name="rest_code_9663816e18a549ef8f732e247c6653c3-1"&gt;&lt;/a&gt;dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
 &lt;/pre&gt;&lt;/div&gt;
 &lt;div class="section" id="actualizar-a-wsl2"&gt;
 &lt;h2&gt;Actualizar a WSL2&lt;/h2&gt;
@@ -32,12 +32,12 @@ siempre y cuando la versión sea 1903 o superior, con número de compilación
 la ventana que despliega.&lt;/p&gt;
 &lt;p&gt;En caso contrario, podemos recurrir al asistente de &lt;em&gt;Windows Update&lt;/em&gt; para
 tener dicha versión. Una vez con este requisito, podemos ejecutar:&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_8cd7da7591e945d1a13e37e446892e1e-1"&gt;&lt;/a&gt;dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
-&lt;a name="rest_code_8cd7da7591e945d1a13e37e446892e1e-2"&gt;&lt;/a&gt;$wsl_file="wsl_update_x64.msi"
-&lt;a name="rest_code_8cd7da7591e945d1a13e37e446892e1e-3"&gt;&lt;/a&gt;$wsl_file_path=$pwd.Path + "\" + $wsl_file
-&lt;a name="rest_code_8cd7da7591e945d1a13e37e446892e1e-4"&gt;&lt;/a&gt;Invoke-WebRequest -Uri https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi -OutFile $wsl_file_path -UseBasicParsing
-&lt;a name="rest_code_8cd7da7591e945d1a13e37e446892e1e-5"&gt;&lt;/a&gt;Start-Process $wsl_file_path
-&lt;a name="rest_code_8cd7da7591e945d1a13e37e446892e1e-6"&gt;&lt;/a&gt;wsl --set-default-version 2
+&lt;pre class="code text"&gt;&lt;a name="rest_code_e2d27c08b4c94b70961b45891bb45193-1"&gt;&lt;/a&gt;dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
+&lt;a name="rest_code_e2d27c08b4c94b70961b45891bb45193-2"&gt;&lt;/a&gt;$wsl_file="wsl_update_x64.msi"
+&lt;a name="rest_code_e2d27c08b4c94b70961b45891bb45193-3"&gt;&lt;/a&gt;$wsl_file_path=$pwd.Path + "\" + $wsl_file
+&lt;a name="rest_code_e2d27c08b4c94b70961b45891bb45193-4"&gt;&lt;/a&gt;Invoke-WebRequest -Uri https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi -OutFile $wsl_file_path -UseBasicParsing
+&lt;a name="rest_code_e2d27c08b4c94b70961b45891bb45193-5"&gt;&lt;/a&gt;Start-Process $wsl_file_path
+&lt;a name="rest_code_e2d27c08b4c94b70961b45891bb45193-6"&gt;&lt;/a&gt;wsl --set-default-version 2
 &lt;/pre&gt;&lt;p&gt;El procedimiento anterior es mi versión de ejecución por línea de comandos,
 pero la documentación oficial dispone para descarga e instalación manual.
 Asumo el interés en usar la WSL2 como versión por defecto, por lo cual es
@@ -52,9 +52,9 @@ acorde a la lista disponible en la sección de descarga manual de la
 documentación oficial &lt;a class="citation-reference" href="https://www.cosmoscalibur.com/blog/usar-ubuntu-en-windows/#wsl-manual" id="id4"&gt;[wsl-manual]&lt;/a&gt;. En nuestro ejemplo, instalaremos Ubuntu
 20.04 (cambiar el número de la versión LTS soportada en la URL si te interesa
 otra).&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_867dd931c683414da6b2d77b72a3df26-1"&gt;&lt;/a&gt;Invoke-WebRequest -Uri https://aka.ms/wslubuntu2004 -OutFile Ubuntu.appx -UseBasicParsing
-&lt;a name="rest_code_867dd931c683414da6b2d77b72a3df26-2"&gt;&lt;/a&gt;Add-AppxPackage .\Ubuntu.appx
-&lt;a name="rest_code_867dd931c683414da6b2d77b72a3df26-3"&gt;&lt;/a&gt;ubuntu2004.exe
+&lt;pre class="code text"&gt;&lt;a name="rest_code_0151b0d4d90140528c10c4c685b80d60-1"&gt;&lt;/a&gt;Invoke-WebRequest -Uri https://aka.ms/wslubuntu2004 -OutFile Ubuntu.appx -UseBasicParsing
+&lt;a name="rest_code_0151b0d4d90140528c10c4c685b80d60-2"&gt;&lt;/a&gt;Add-AppxPackage .\Ubuntu.appx
+&lt;a name="rest_code_0151b0d4d90140528c10c4c685b80d60-3"&gt;&lt;/a&gt;ubuntu2004.exe
 &lt;/pre&gt;&lt;p&gt;Una vez se complete el proceso, debemos inicializar la distribución para que la
 configuración termine. Puedes hacerlo lanzando la distribución desde la
 aplicación o con el comando desde la consola como en este ejemplo.&lt;/p&gt;
@@ -63,8 +63,8 @@ contraseña durante la configuración inicial, podemos usar el gestor de paquete
 e incluso lanzar algunas aplicaciones gráficas habilitando el servidor X11.&lt;/p&gt;
 &lt;p&gt;Finalmente, actualicemos nuestra distribución (en el paso anterior la consola
 ha quedado ubicada en Ubuntu).&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_e0277f61313f4823b5289c9b8ea579a1-1"&gt;&lt;/a&gt;sudo apt update -q
-&lt;a name="rest_code_e0277f61313f4823b5289c9b8ea579a1-2"&gt;&lt;/a&gt;sudo apt dist-upgrade -y
+&lt;pre class="code text"&gt;&lt;a name="rest_code_12ef3af882d04089ae5bfcd50c9a03e5-1"&gt;&lt;/a&gt;sudo apt update -q
+&lt;a name="rest_code_12ef3af882d04089ae5bfcd50c9a03e5-2"&gt;&lt;/a&gt;sudo apt dist-upgrade -y
 &lt;/pre&gt;&lt;p&gt;Hay que tener en cuenta que no todo funcionará, uno de esos detalles es la
 instalación de paquetes snap al igual que docker.&lt;/p&gt;
 &lt;p&gt;Estamos listos para usar Ubuntu en Windows. Para este fin podemos abrir
@@ -77,8 +77,8 @@ lanzador de Ubuntu en el menú, usar la consola Ubuntu de Windows Terminal
 &lt;h2&gt;Aplicaciones gráficas&lt;/h2&gt;
 &lt;p&gt;Para cerrar este tema, falta que lancemos nuestras aplicaciones gráficas. Para
 esto será necesario modificar el archivo &lt;code&gt;.bashrc&lt;/code&gt; &lt;a class="citation-reference" href="https://www.cosmoscalibur.com/blog/usar-ubuntu-en-windows/#ubuntu-wiki" id="id5"&gt;[ubuntu-wiki]&lt;/a&gt;.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_c694e7133f254e6e9b22daa7ab6ef26a-1"&gt;&lt;/a&gt;echo "export DISPLAY=$(awk '/nameserver / {print $2; exit}' /etc/resolv.conf 2&amp;gt;/dev/null):0" &amp;gt;&amp;gt; $HOME/.bashrc
-&lt;a name="rest_code_c694e7133f254e6e9b22daa7ab6ef26a-2"&gt;&lt;/a&gt;echo "export LIBGL_ALWAYS_INDIRECT=1" &amp;gt;&amp;gt; $HOME/.bashrc
+&lt;pre class="code text"&gt;&lt;a name="rest_code_feb19abe9ed84c3dbefdce020056fa38-1"&gt;&lt;/a&gt;echo "export DISPLAY=$(awk '/nameserver / {print $2; exit}' /etc/resolv.conf 2&amp;gt;/dev/null):0" &amp;gt;&amp;gt; $HOME/.bashrc
+&lt;a name="rest_code_feb19abe9ed84c3dbefdce020056fa38-2"&gt;&lt;/a&gt;echo "export LIBGL_ALWAYS_INDIRECT=1" &amp;gt;&amp;gt; $HOME/.bashrc
 &lt;/pre&gt;&lt;div class="admonition note"&gt;
 &lt;p class="admonition-title"&gt;Nota&lt;/p&gt;
 &lt;p&gt;En ningún sitio encontré referencia a necesitar reiniciar o hacer algún
@@ -99,22 +99,22 @@ guardar la configuración y lanzarlo desde dicho archivo.&lt;/p&gt;
 aplicaciones y escoger instalar nuestra distribución.&lt;/p&gt;
 &lt;p&gt;Al intentar abrir la distribución de esta manera nos encontraremos con el error
 siguiente:&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_1546851f58014e679778e98ab5c5ea14-1"&gt;&lt;/a&gt;Installing, this may take a few minutes...
-&lt;a name="rest_code_1546851f58014e679778e98ab5c5ea14-2"&gt;&lt;/a&gt;WslRegisterDistribution failed with error: 0x8007019e
-&lt;a name="rest_code_1546851f58014e679778e98ab5c5ea14-3"&gt;&lt;/a&gt;The Windows Subsystem for Linux optional component is not enabled. Please enable it and try again.
-&lt;a name="rest_code_1546851f58014e679778e98ab5c5ea14-4"&gt;&lt;/a&gt;See https://aka.ms/wslinstall for details.
-&lt;a name="rest_code_1546851f58014e679778e98ab5c5ea14-5"&gt;&lt;/a&gt;Press any key to continue...
+&lt;pre class="code text"&gt;&lt;a name="rest_code_701e88de2f1a4a95b5a34c22cb6a1551-1"&gt;&lt;/a&gt;Installing, this may take a few minutes...
+&lt;a name="rest_code_701e88de2f1a4a95b5a34c22cb6a1551-2"&gt;&lt;/a&gt;WslRegisterDistribution failed with error: 0x8007019e
+&lt;a name="rest_code_701e88de2f1a4a95b5a34c22cb6a1551-3"&gt;&lt;/a&gt;The Windows Subsystem for Linux optional component is not enabled. Please enable it and try again.
+&lt;a name="rest_code_701e88de2f1a4a95b5a34c22cb6a1551-4"&gt;&lt;/a&gt;See https://aka.ms/wslinstall for details.
+&lt;a name="rest_code_701e88de2f1a4a95b5a34c22cb6a1551-5"&gt;&lt;/a&gt;Press any key to continue...
 &lt;/pre&gt;&lt;p&gt;Esto requiere ejecutar el paso de instalación de habilitación de WSL. Una vez
 habilitado, debemos reinstalar la distribución, de otra manera veremos el
 siguiente error:&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_df447958c3f1420ca855d6cddb66f086-1"&gt;&lt;/a&gt;Installing, this may take a few minutes...
-&lt;a name="rest_code_df447958c3f1420ca855d6cddb66f086-2"&gt;&lt;/a&gt;WslRegisterDistribution failed with error: 0x800700b7
-&lt;a name="rest_code_df447958c3f1420ca855d6cddb66f086-3"&gt;&lt;/a&gt;The distribution installation has become corrupted.
-&lt;a name="rest_code_df447958c3f1420ca855d6cddb66f086-4"&gt;&lt;/a&gt;Please select Reset from App Settings or uninstall and reinstall the app.
-&lt;a name="rest_code_df447958c3f1420ca855d6cddb66f086-5"&gt;&lt;/a&gt;Error: 0x800700b7 Cannot create a file when that file already exists.
+&lt;pre class="code text"&gt;&lt;a name="rest_code_764344b167e8444aaf0b8f461a1120c4-1"&gt;&lt;/a&gt;Installing, this may take a few minutes...
+&lt;a name="rest_code_764344b167e8444aaf0b8f461a1120c4-2"&gt;&lt;/a&gt;WslRegisterDistribution failed with error: 0x800700b7
+&lt;a name="rest_code_764344b167e8444aaf0b8f461a1120c4-3"&gt;&lt;/a&gt;The distribution installation has become corrupted.
+&lt;a name="rest_code_764344b167e8444aaf0b8f461a1120c4-4"&gt;&lt;/a&gt;Please select Reset from App Settings or uninstall and reinstall the app.
+&lt;a name="rest_code_764344b167e8444aaf0b8f461a1120c4-5"&gt;&lt;/a&gt;Error: 0x800700b7 Cannot create a file when that file already exists.
 &lt;/pre&gt;&lt;p&gt;Por esta misma razón, nuestra distro estará en WSL1 y será necesario convertir.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_fec11ace2c574a24ab4fc83b5378347e-1"&gt;&lt;/a&gt;wsl -l -v
-&lt;a name="rest_code_fec11ace2c574a24ab4fc83b5378347e-2"&gt;&lt;/a&gt;wsl --set-version Ubuntu 2
+&lt;pre class="code text"&gt;&lt;a name="rest_code_0879f3f3755f44c89e2162ff973e7379-1"&gt;&lt;/a&gt;wsl -l -v
+&lt;a name="rest_code_0879f3f3755f44c89e2162ff973e7379-2"&gt;&lt;/a&gt;wsl --set-version Ubuntu 2
 &lt;/pre&gt;&lt;p&gt;Con la primera línea verificamos la versión asignada y con el segundo
 convertimos.&lt;/p&gt;
 &lt;/div&gt;
@@ -137,4 +137,4 @@ convertimos.&lt;/p&gt;
 &lt;dd&gt;&lt;p&gt;&lt;a class="reference external" href="https://wiki.ubuntu.com/WSL"&gt;WSL - Ubuntu Wiki&lt;/a&gt;.&lt;/p&gt;
 &lt;/dd&gt;
 &lt;/dl&gt;
-&lt;/div&gt;&lt;/div&gt;</description><category>linux</category><category>ubuntu</category><category>windows</category><category>wsl</category><guid>https://www.cosmoscalibur.com/blog/usar-ubuntu-en-windows/</guid><pubDate>Tue, 06 Oct 2020 02:22:55 GMT</pubDate></item></channel></rss>
+&lt;/div&gt;&lt;/div&gt;</description><category>linux</category><category>ubuntu</category><category>windows</category><category>windows subsystem for linux</category><category>wsl</category><category>wsl2</category><guid>https://www.cosmoscalibur.com/blog/usar-ubuntu-en-windows/</guid><pubDate>Tue, 06 Oct 2020 02:22:55 GMT</pubDate></item></channel></rss>

@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta content="width=device-width, initial-scale=1" name="viewport">
-<title>Usar Ubuntu en Windows | Cosmoscalibur</title>
+<title>Usar Ubuntu en Windows con WSL2 | Cosmoscalibur</title>
 <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" rel="stylesheet">
 <link crossorigin="anonymous" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.11.1/baguetteBox.min.css" integrity="sha256-cLMYWYYutHkt+KpNqjg7NVkYSQ+E2VbrXsEvOqU7mL0=" rel="stylesheet">
 <link href="../../assets/css/all.css" rel="stylesheet" type="text/css">
@@ -25,7 +25,7 @@
 <meta content="Edward Villegas-Pulgarin" name="author">
 <link href="../crear-version-de-windows-minima-con-msmg-toolkit/" rel="prev" title="Crear versión de Windows mínima con MSMG Toolkit" type="text/html">
 <meta content="Cosmoscalibur" property="og:site_name">
-<meta content="Usar Ubuntu en Windows" property="og:title">
+<meta content="Usar Ubuntu en Windows con WSL2" property="og:title">
 <meta content="https://www.cosmoscalibur.com/blog/usar-ubuntu-en-windows/" property="og:url">
 <meta content="Como contaba en una que otra publicación, por motivos laborales mantengo mucho en Windows pero es necesario en ocasiones tener Linux a la mano. Sin duda a nivel de desarrollo Linux toma cada vez mayor" property="og:description">
 <meta content="article" property="og:type">
@@ -33,7 +33,9 @@
 <meta content="linux" property="article:tag">
 <meta content="ubuntu" property="article:tag">
 <meta content="windows" property="article:tag">
+<meta content="windows subsystem for linux" property="article:tag">
 <meta content="wsl" property="article:tag">
+<meta content="wsl2" property="article:tag">
 <meta content="summary" name="twitter:card">
 <meta content="cosmoscalibur" name="twitter:site">
 <meta content="eyvillegasp" name="twitter:creator">
@@ -74,7 +76,7 @@
 <div class="body-content"><!--Body content-->
 <article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article">
 <header>
-<h1 class="p-name entry-title" itemprop="headline name"><a class="u-url" href=".">Usar Ubuntu en Windows</a></h1>
+<h1 class="p-name entry-title" itemprop="headline name"><a class="u-url" href=".">Usar Ubuntu en Windows con WSL2</a></h1>
 <div class="metadata">
 <p class="byline author vcard p-author h-card"><span class="byline-name fn p-name" itemprop="author">Edward Villegas-Pulgarin</span></p>
 <p class="dateline"><a href="." rel="bookmark"><time class="published dt-published" datetime="2020-10-05T21:22:55-05:00" itemprop="datePublished" title="2020-10-05 21:22">2020-10-05 21:22</time></a></p>
@@ -90,33 +92,33 @@
 <div class="section" id="habilitar-wsl">
 <h2>Habilitar WSL</h2>
 <p>Nuestro primer paso es abrir la consola de Power Shell en modo administrador y a continuación ejecutaremos:</p>
-<pre class="code text"><a id="rest_code_d513746f65e04635bed1613f8c2dd653-1" name="rest_code_d513746f65e04635bed1613f8c2dd653-1"></a>dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
+<pre class="code text"><a id="rest_code_9663816e18a549ef8f732e247c6653c3-1" name="rest_code_9663816e18a549ef8f732e247c6653c3-1"></a>dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
 </pre></div>
 <div class="section" id="actualizar-a-wsl2">
 <h2>Actualizar a WSL2</h2>
 <p>Si disponemos de un sistema de 64 bits (<em>x64</em>), podemos actualizar a WSL2 siempre y cuando la versión sea 1903 o superior, con número de compilación 18362 o superior. Podemos verificar ejecutando <code>winver</code> y verificar en la ventana que despliega.</p>
 <p>En caso contrario, podemos recurrir al asistente de <em>Windows Update</em> para tener dicha versión. Una vez con este requisito, podemos ejecutar:</p>
-<pre class="code text"><a id="rest_code_8cd7da7591e945d1a13e37e446892e1e-1" name="rest_code_8cd7da7591e945d1a13e37e446892e1e-1"></a>dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
-<a id="rest_code_8cd7da7591e945d1a13e37e446892e1e-2" name="rest_code_8cd7da7591e945d1a13e37e446892e1e-2"></a>$wsl_file="wsl_update_x64.msi"
-<a id="rest_code_8cd7da7591e945d1a13e37e446892e1e-3" name="rest_code_8cd7da7591e945d1a13e37e446892e1e-3"></a>$wsl_file_path=$pwd.Path + "\" + $wsl_file
-<a id="rest_code_8cd7da7591e945d1a13e37e446892e1e-4" name="rest_code_8cd7da7591e945d1a13e37e446892e1e-4"></a>Invoke-WebRequest -Uri https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi -OutFile $wsl_file_path -UseBasicParsing
-<a id="rest_code_8cd7da7591e945d1a13e37e446892e1e-5" name="rest_code_8cd7da7591e945d1a13e37e446892e1e-5"></a>Start-Process $wsl_file_path
-<a id="rest_code_8cd7da7591e945d1a13e37e446892e1e-6" name="rest_code_8cd7da7591e945d1a13e37e446892e1e-6"></a>wsl --set-default-version 2
+<pre class="code text"><a id="rest_code_e2d27c08b4c94b70961b45891bb45193-1" name="rest_code_e2d27c08b4c94b70961b45891bb45193-1"></a>dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
+<a id="rest_code_e2d27c08b4c94b70961b45891bb45193-2" name="rest_code_e2d27c08b4c94b70961b45891bb45193-2"></a>$wsl_file="wsl_update_x64.msi"
+<a id="rest_code_e2d27c08b4c94b70961b45891bb45193-3" name="rest_code_e2d27c08b4c94b70961b45891bb45193-3"></a>$wsl_file_path=$pwd.Path + "\" + $wsl_file
+<a id="rest_code_e2d27c08b4c94b70961b45891bb45193-4" name="rest_code_e2d27c08b4c94b70961b45891bb45193-4"></a>Invoke-WebRequest -Uri https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi -OutFile $wsl_file_path -UseBasicParsing
+<a id="rest_code_e2d27c08b4c94b70961b45891bb45193-5" name="rest_code_e2d27c08b4c94b70961b45891bb45193-5"></a>Start-Process $wsl_file_path
+<a id="rest_code_e2d27c08b4c94b70961b45891bb45193-6" name="rest_code_e2d27c08b4c94b70961b45891bb45193-6"></a>wsl --set-default-version 2
 </pre>
 <p>El procedimiento anterior es mi versión de ejecución por línea de comandos, pero la documentación oficial dispone para descarga e instalación manual. Asumo el interés en usar la WSL2 como versión por defecto, por lo cual es necesario ejecutar la última línea del bloque.</p>
 </div>
 <div class="section" id="instalar-distribucion-linux">
 <h2>Instalar distribución Linux</h2>
 <p>A través de la tienda de aplicaciones podemos continuar con la instalación de la distribución Linux deseada, pero si te interesa continuar con el uso de la consola, procedemos a revisar la dirección de descarga de nuestra distribución acorde a la lista disponible en la sección de descarga manual de la documentación oficial <a class="citation-reference" href="#wsl-manual" id="id4">[wsl-manual]</a>. En nuestro ejemplo, instalaremos Ubuntu 20.04 (cambiar el número de la versión LTS soportada en la URL si te interesa otra).</p>
-<pre class="code text"><a id="rest_code_867dd931c683414da6b2d77b72a3df26-1" name="rest_code_867dd931c683414da6b2d77b72a3df26-1"></a>Invoke-WebRequest -Uri https://aka.ms/wslubuntu2004 -OutFile Ubuntu.appx -UseBasicParsing
-<a id="rest_code_867dd931c683414da6b2d77b72a3df26-2" name="rest_code_867dd931c683414da6b2d77b72a3df26-2"></a>Add-AppxPackage .\Ubuntu.appx
-<a id="rest_code_867dd931c683414da6b2d77b72a3df26-3" name="rest_code_867dd931c683414da6b2d77b72a3df26-3"></a>ubuntu2004.exe
+<pre class="code text"><a id="rest_code_0151b0d4d90140528c10c4c685b80d60-1" name="rest_code_0151b0d4d90140528c10c4c685b80d60-1"></a>Invoke-WebRequest -Uri https://aka.ms/wslubuntu2004 -OutFile Ubuntu.appx -UseBasicParsing
+<a id="rest_code_0151b0d4d90140528c10c4c685b80d60-2" name="rest_code_0151b0d4d90140528c10c4c685b80d60-2"></a>Add-AppxPackage .\Ubuntu.appx
+<a id="rest_code_0151b0d4d90140528c10c4c685b80d60-3" name="rest_code_0151b0d4d90140528c10c4c685b80d60-3"></a>ubuntu2004.exe
 </pre>
 <p>Una vez se complete el proceso, debemos inicializar la distribución para que la configuración termine. Puedes hacerlo lanzando la distribución desde la aplicación o con el comando desde la consola como en este ejemplo.</p>
 <p>Concluido el proceso, será como estamos acostumbrados, creamos un usuario y contraseña durante la configuración inicial, podemos usar el gestor de paquetes e incluso lanzar algunas aplicaciones gráficas habilitando el servidor X11.</p>
 <p>Finalmente, actualicemos nuestra distribución (en el paso anterior la consola ha quedado ubicada en Ubuntu).</p>
-<pre class="code text"><a id="rest_code_e0277f61313f4823b5289c9b8ea579a1-1" name="rest_code_e0277f61313f4823b5289c9b8ea579a1-1"></a>sudo apt update -q
-<a id="rest_code_e0277f61313f4823b5289c9b8ea579a1-2" name="rest_code_e0277f61313f4823b5289c9b8ea579a1-2"></a>sudo apt dist-upgrade -y
+<pre class="code text"><a id="rest_code_12ef3af882d04089ae5bfcd50c9a03e5-1" name="rest_code_12ef3af882d04089ae5bfcd50c9a03e5-1"></a>sudo apt update -q
+<a id="rest_code_12ef3af882d04089ae5bfcd50c9a03e5-2" name="rest_code_12ef3af882d04089ae5bfcd50c9a03e5-2"></a>sudo apt dist-upgrade -y
 </pre>
 <p>Hay que tener en cuenta que no todo funcionará, uno de esos detalles es la instalación de paquetes snap al igual que docker.</p>
 <p>Estamos listos para usar Ubuntu en Windows. Para este fin podemos abrir nuevamente desde PowerShell y ejecutar <code>ubuntu2004.exe</code>, abrir el lanzador de Ubuntu en el menú, usar la consola Ubuntu de Windows Terminal (lo recomiendo y la reconocerá de forma inmediata) o VSCode con la extensión de <em>Remote - WSL</em>.</p>
@@ -124,8 +126,8 @@
 <div class="section" id="aplicaciones-graficas">
 <h2>Aplicaciones gráficas</h2>
 <p>Para cerrar este tema, falta que lancemos nuestras aplicaciones gráficas. Para esto será necesario modificar el archivo <code>.bashrc</code> <a class="citation-reference" href="#ubuntu-wiki" id="id5">[ubuntu-wiki]</a>.</p>
-<pre class="code text"><a id="rest_code_c694e7133f254e6e9b22daa7ab6ef26a-1" name="rest_code_c694e7133f254e6e9b22daa7ab6ef26a-1"></a>echo "export DISPLAY=$(awk '/nameserver / {print $2; exit}' /etc/resolv.conf 2&gt;/dev/null):0" &gt;&gt; $HOME/.bashrc
-<a id="rest_code_c694e7133f254e6e9b22daa7ab6ef26a-2" name="rest_code_c694e7133f254e6e9b22daa7ab6ef26a-2"></a>echo "export LIBGL_ALWAYS_INDIRECT=1" &gt;&gt; $HOME/.bashrc
+<pre class="code text"><a id="rest_code_feb19abe9ed84c3dbefdce020056fa38-1" name="rest_code_feb19abe9ed84c3dbefdce020056fa38-1"></a>echo "export DISPLAY=$(awk '/nameserver / {print $2; exit}' /etc/resolv.conf 2&gt;/dev/null):0" &gt;&gt; $HOME/.bashrc
+<a id="rest_code_feb19abe9ed84c3dbefdce020056fa38-2" name="rest_code_feb19abe9ed84c3dbefdce020056fa38-2"></a>echo "export LIBGL_ALWAYS_INDIRECT=1" &gt;&gt; $HOME/.bashrc
 </pre>
 <div class="admonition note">
 <p class="admonition-title">Nota</p>
@@ -138,22 +140,22 @@
 <h2>Errores comunes</h2>
 <p>Estos errores comunes son basados en lo natural que se ve ir a la tienda de aplicaciones y escoger instalar nuestra distribución.</p>
 <p>Al intentar abrir la distribución de esta manera nos encontraremos con el error siguiente:</p>
-<pre class="code text"><a id="rest_code_1546851f58014e679778e98ab5c5ea14-1" name="rest_code_1546851f58014e679778e98ab5c5ea14-1"></a>Installing, this may take a few minutes...
-<a id="rest_code_1546851f58014e679778e98ab5c5ea14-2" name="rest_code_1546851f58014e679778e98ab5c5ea14-2"></a>WslRegisterDistribution failed with error: 0x8007019e
-<a id="rest_code_1546851f58014e679778e98ab5c5ea14-3" name="rest_code_1546851f58014e679778e98ab5c5ea14-3"></a>The Windows Subsystem for Linux optional component is not enabled. Please enable it and try again.
-<a id="rest_code_1546851f58014e679778e98ab5c5ea14-4" name="rest_code_1546851f58014e679778e98ab5c5ea14-4"></a>See https://aka.ms/wslinstall for details.
-<a id="rest_code_1546851f58014e679778e98ab5c5ea14-5" name="rest_code_1546851f58014e679778e98ab5c5ea14-5"></a>Press any key to continue...
+<pre class="code text"><a id="rest_code_701e88de2f1a4a95b5a34c22cb6a1551-1" name="rest_code_701e88de2f1a4a95b5a34c22cb6a1551-1"></a>Installing, this may take a few minutes...
+<a id="rest_code_701e88de2f1a4a95b5a34c22cb6a1551-2" name="rest_code_701e88de2f1a4a95b5a34c22cb6a1551-2"></a>WslRegisterDistribution failed with error: 0x8007019e
+<a id="rest_code_701e88de2f1a4a95b5a34c22cb6a1551-3" name="rest_code_701e88de2f1a4a95b5a34c22cb6a1551-3"></a>The Windows Subsystem for Linux optional component is not enabled. Please enable it and try again.
+<a id="rest_code_701e88de2f1a4a95b5a34c22cb6a1551-4" name="rest_code_701e88de2f1a4a95b5a34c22cb6a1551-4"></a>See https://aka.ms/wslinstall for details.
+<a id="rest_code_701e88de2f1a4a95b5a34c22cb6a1551-5" name="rest_code_701e88de2f1a4a95b5a34c22cb6a1551-5"></a>Press any key to continue...
 </pre>
 <p>Esto requiere ejecutar el paso de instalación de habilitación de WSL. Una vez habilitado, debemos reinstalar la distribución, de otra manera veremos el siguiente error:</p>
-<pre class="code text"><a id="rest_code_df447958c3f1420ca855d6cddb66f086-1" name="rest_code_df447958c3f1420ca855d6cddb66f086-1"></a>Installing, this may take a few minutes...
-<a id="rest_code_df447958c3f1420ca855d6cddb66f086-2" name="rest_code_df447958c3f1420ca855d6cddb66f086-2"></a>WslRegisterDistribution failed with error: 0x800700b7
-<a id="rest_code_df447958c3f1420ca855d6cddb66f086-3" name="rest_code_df447958c3f1420ca855d6cddb66f086-3"></a>The distribution installation has become corrupted.
-<a id="rest_code_df447958c3f1420ca855d6cddb66f086-4" name="rest_code_df447958c3f1420ca855d6cddb66f086-4"></a>Please select Reset from App Settings or uninstall and reinstall the app.
-<a id="rest_code_df447958c3f1420ca855d6cddb66f086-5" name="rest_code_df447958c3f1420ca855d6cddb66f086-5"></a>Error: 0x800700b7 Cannot create a file when that file already exists.
+<pre class="code text"><a id="rest_code_764344b167e8444aaf0b8f461a1120c4-1" name="rest_code_764344b167e8444aaf0b8f461a1120c4-1"></a>Installing, this may take a few minutes...
+<a id="rest_code_764344b167e8444aaf0b8f461a1120c4-2" name="rest_code_764344b167e8444aaf0b8f461a1120c4-2"></a>WslRegisterDistribution failed with error: 0x800700b7
+<a id="rest_code_764344b167e8444aaf0b8f461a1120c4-3" name="rest_code_764344b167e8444aaf0b8f461a1120c4-3"></a>The distribution installation has become corrupted.
+<a id="rest_code_764344b167e8444aaf0b8f461a1120c4-4" name="rest_code_764344b167e8444aaf0b8f461a1120c4-4"></a>Please select Reset from App Settings or uninstall and reinstall the app.
+<a id="rest_code_764344b167e8444aaf0b8f461a1120c4-5" name="rest_code_764344b167e8444aaf0b8f461a1120c4-5"></a>Error: 0x800700b7 Cannot create a file when that file already exists.
 </pre>
 <p>Por esta misma razón, nuestra distro estará en WSL1 y será necesario convertir.</p>
-<pre class="code text"><a id="rest_code_fec11ace2c574a24ab4fc83b5378347e-1" name="rest_code_fec11ace2c574a24ab4fc83b5378347e-1"></a>wsl -l -v
-<a id="rest_code_fec11ace2c574a24ab4fc83b5378347e-2" name="rest_code_fec11ace2c574a24ab4fc83b5378347e-2"></a>wsl --set-version Ubuntu 2
+<pre class="code text"><a id="rest_code_0879f3f3755f44c89e2162ff973e7379-1" name="rest_code_0879f3f3755f44c89e2162ff973e7379-1"></a>wsl -l -v
+<a id="rest_code_0879f3f3755f44c89e2162ff973e7379-2" name="rest_code_0879f3f3755f44c89e2162ff973e7379-2"></a>wsl --set-version Ubuntu 2
 </pre>
 <p>Con la primera línea verificamos la versión asignada y con el segundo convertimos.</p>
 </div>
@@ -190,7 +192,9 @@
 <li><a class="tag p-category" href="../../categories/linux/" rel="tag">linux</a></li>
 <li><a class="tag p-category" href="../../categories/ubuntu/" rel="tag">ubuntu</a></li>
 <li><a class="tag p-category" href="../../categories/windows/" rel="tag">windows</a></li>
+<li><a class="tag p-category" href="../../categories/windows-subsystem-for-linux/" rel="tag">windows subsystem for linux</a></li>
 <li><a class="tag p-category" href="../../categories/wsl/" rel="tag">wsl</a></li>
+<li><a class="tag p-category" href="../../categories/wsl2/" rel="tag">wsl2</a></li>
 </ul>
 <ul class="pager hidden-print">
 <li class="previous"><a href="../crear-version-de-windows-minima-con-msmg-toolkit/" rel="prev" title="Crear versión de Windows mínima con MSMG Toolkit">Publicación anterior</a></li>
@@ -203,7 +207,7 @@
 <script>
         var disqus_shortname ="cosmoscalibur",
             disqus_url="https://www.cosmoscalibur.com/blog/usar-ubuntu-en-windows/",
-        disqus_title="Usar Ubuntu en Windows",
+        disqus_title="Usar Ubuntu en Windows con WSL2",
         disqus_identifier="cache/posts/usar-ubuntu-en-windows.html",
         disqus_config = function () {
             this.language = "es_ES";

@@ -3,7 +3,7 @@
 &lt;a rel="license" href="https://creativecommons.org/licenses/by/4.0/"&gt;
 &lt;img alt="Creative Commons License BY 4.0"
 style="border-width:0; margin-bottom:12px;"
-src="https://licensebuttons.net/l/by/4.0/88x31.png"&gt;&lt;/a&gt;</copyright><lastBuildDate>Sun, 11 Oct 2020 21:34:00 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Usar Ubuntu en Windows</title><link>https://www.cosmoscalibur.com/blog/usar-ubuntu-en-windows/</link><dc:creator>Edward Villegas-Pulgarin</dc:creator><description>&lt;div&gt;&lt;p&gt;Como contaba en una que otra publicación, por motivos laborales mantengo mucho
+src="https://licensebuttons.net/l/by/4.0/88x31.png"&gt;&lt;/a&gt;</copyright><lastBuildDate>Sun, 01 Nov 2020 19:19:52 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Usar Ubuntu en Windows con WSL2</title><link>https://www.cosmoscalibur.com/blog/usar-ubuntu-en-windows/</link><dc:creator>Edward Villegas-Pulgarin</dc:creator><description>&lt;div&gt;&lt;p&gt;Como contaba en una que otra publicación, por motivos laborales mantengo mucho
 en Windows pero es necesario en ocasiones tener Linux a la mano. Sin duda a
 nivel de desarrollo Linux toma cada vez mayor relevancia y es notorio cuando
 Microsoft le da relevancia al soporte de Linux en su ecosistema, no solo en
@@ -22,7 +22,7 @@ realizarlo en el orden mencionado.&lt;/p&gt;
 &lt;h2&gt;Habilitar WSL&lt;/h2&gt;
 &lt;p&gt;Nuestro primer paso es abrir la consola de Power Shell en modo administrador y
 a continuación ejecutaremos:&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_d513746f65e04635bed1613f8c2dd653-1"&gt;&lt;/a&gt;dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
+&lt;pre class="code text"&gt;&lt;a name="rest_code_9663816e18a549ef8f732e247c6653c3-1"&gt;&lt;/a&gt;dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
 &lt;/pre&gt;&lt;/div&gt;
 &lt;div class="section" id="actualizar-a-wsl2"&gt;
 &lt;h2&gt;Actualizar a WSL2&lt;/h2&gt;
@@ -32,12 +32,12 @@ siempre y cuando la versión sea 1903 o superior, con número de compilación
 la ventana que despliega.&lt;/p&gt;
 &lt;p&gt;En caso contrario, podemos recurrir al asistente de &lt;em&gt;Windows Update&lt;/em&gt; para
 tener dicha versión. Una vez con este requisito, podemos ejecutar:&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_8cd7da7591e945d1a13e37e446892e1e-1"&gt;&lt;/a&gt;dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
-&lt;a name="rest_code_8cd7da7591e945d1a13e37e446892e1e-2"&gt;&lt;/a&gt;$wsl_file="wsl_update_x64.msi"
-&lt;a name="rest_code_8cd7da7591e945d1a13e37e446892e1e-3"&gt;&lt;/a&gt;$wsl_file_path=$pwd.Path + "\" + $wsl_file
-&lt;a name="rest_code_8cd7da7591e945d1a13e37e446892e1e-4"&gt;&lt;/a&gt;Invoke-WebRequest -Uri https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi -OutFile $wsl_file_path -UseBasicParsing
-&lt;a name="rest_code_8cd7da7591e945d1a13e37e446892e1e-5"&gt;&lt;/a&gt;Start-Process $wsl_file_path
-&lt;a name="rest_code_8cd7da7591e945d1a13e37e446892e1e-6"&gt;&lt;/a&gt;wsl --set-default-version 2
+&lt;pre class="code text"&gt;&lt;a name="rest_code_e2d27c08b4c94b70961b45891bb45193-1"&gt;&lt;/a&gt;dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
+&lt;a name="rest_code_e2d27c08b4c94b70961b45891bb45193-2"&gt;&lt;/a&gt;$wsl_file="wsl_update_x64.msi"
+&lt;a name="rest_code_e2d27c08b4c94b70961b45891bb45193-3"&gt;&lt;/a&gt;$wsl_file_path=$pwd.Path + "\" + $wsl_file
+&lt;a name="rest_code_e2d27c08b4c94b70961b45891bb45193-4"&gt;&lt;/a&gt;Invoke-WebRequest -Uri https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi -OutFile $wsl_file_path -UseBasicParsing
+&lt;a name="rest_code_e2d27c08b4c94b70961b45891bb45193-5"&gt;&lt;/a&gt;Start-Process $wsl_file_path
+&lt;a name="rest_code_e2d27c08b4c94b70961b45891bb45193-6"&gt;&lt;/a&gt;wsl --set-default-version 2
 &lt;/pre&gt;&lt;p&gt;El procedimiento anterior es mi versión de ejecución por línea de comandos,
 pero la documentación oficial dispone para descarga e instalación manual.
 Asumo el interés en usar la WSL2 como versión por defecto, por lo cual es
@@ -52,9 +52,9 @@ acorde a la lista disponible en la sección de descarga manual de la
 documentación oficial &lt;a class="citation-reference" href="https://www.cosmoscalibur.com/blog/usar-ubuntu-en-windows/#wsl-manual" id="id4"&gt;[wsl-manual]&lt;/a&gt;. En nuestro ejemplo, instalaremos Ubuntu
 20.04 (cambiar el número de la versión LTS soportada en la URL si te interesa
 otra).&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_867dd931c683414da6b2d77b72a3df26-1"&gt;&lt;/a&gt;Invoke-WebRequest -Uri https://aka.ms/wslubuntu2004 -OutFile Ubuntu.appx -UseBasicParsing
-&lt;a name="rest_code_867dd931c683414da6b2d77b72a3df26-2"&gt;&lt;/a&gt;Add-AppxPackage .\Ubuntu.appx
-&lt;a name="rest_code_867dd931c683414da6b2d77b72a3df26-3"&gt;&lt;/a&gt;ubuntu2004.exe
+&lt;pre class="code text"&gt;&lt;a name="rest_code_0151b0d4d90140528c10c4c685b80d60-1"&gt;&lt;/a&gt;Invoke-WebRequest -Uri https://aka.ms/wslubuntu2004 -OutFile Ubuntu.appx -UseBasicParsing
+&lt;a name="rest_code_0151b0d4d90140528c10c4c685b80d60-2"&gt;&lt;/a&gt;Add-AppxPackage .\Ubuntu.appx
+&lt;a name="rest_code_0151b0d4d90140528c10c4c685b80d60-3"&gt;&lt;/a&gt;ubuntu2004.exe
 &lt;/pre&gt;&lt;p&gt;Una vez se complete el proceso, debemos inicializar la distribución para que la
 configuración termine. Puedes hacerlo lanzando la distribución desde la
 aplicación o con el comando desde la consola como en este ejemplo.&lt;/p&gt;
@@ -63,8 +63,8 @@ contraseña durante la configuración inicial, podemos usar el gestor de paquete
 e incluso lanzar algunas aplicaciones gráficas habilitando el servidor X11.&lt;/p&gt;
 &lt;p&gt;Finalmente, actualicemos nuestra distribución (en el paso anterior la consola
 ha quedado ubicada en Ubuntu).&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_e0277f61313f4823b5289c9b8ea579a1-1"&gt;&lt;/a&gt;sudo apt update -q
-&lt;a name="rest_code_e0277f61313f4823b5289c9b8ea579a1-2"&gt;&lt;/a&gt;sudo apt dist-upgrade -y
+&lt;pre class="code text"&gt;&lt;a name="rest_code_12ef3af882d04089ae5bfcd50c9a03e5-1"&gt;&lt;/a&gt;sudo apt update -q
+&lt;a name="rest_code_12ef3af882d04089ae5bfcd50c9a03e5-2"&gt;&lt;/a&gt;sudo apt dist-upgrade -y
 &lt;/pre&gt;&lt;p&gt;Hay que tener en cuenta que no todo funcionará, uno de esos detalles es la
 instalación de paquetes snap al igual que docker.&lt;/p&gt;
 &lt;p&gt;Estamos listos para usar Ubuntu en Windows. Para este fin podemos abrir
@@ -77,8 +77,8 @@ lanzador de Ubuntu en el menú, usar la consola Ubuntu de Windows Terminal
 &lt;h2&gt;Aplicaciones gráficas&lt;/h2&gt;
 &lt;p&gt;Para cerrar este tema, falta que lancemos nuestras aplicaciones gráficas. Para
 esto será necesario modificar el archivo &lt;code&gt;.bashrc&lt;/code&gt; &lt;a class="citation-reference" href="https://www.cosmoscalibur.com/blog/usar-ubuntu-en-windows/#ubuntu-wiki" id="id5"&gt;[ubuntu-wiki]&lt;/a&gt;.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_c694e7133f254e6e9b22daa7ab6ef26a-1"&gt;&lt;/a&gt;echo "export DISPLAY=$(awk '/nameserver / {print $2; exit}' /etc/resolv.conf 2&amp;gt;/dev/null):0" &amp;gt;&amp;gt; $HOME/.bashrc
-&lt;a name="rest_code_c694e7133f254e6e9b22daa7ab6ef26a-2"&gt;&lt;/a&gt;echo "export LIBGL_ALWAYS_INDIRECT=1" &amp;gt;&amp;gt; $HOME/.bashrc
+&lt;pre class="code text"&gt;&lt;a name="rest_code_feb19abe9ed84c3dbefdce020056fa38-1"&gt;&lt;/a&gt;echo "export DISPLAY=$(awk '/nameserver / {print $2; exit}' /etc/resolv.conf 2&amp;gt;/dev/null):0" &amp;gt;&amp;gt; $HOME/.bashrc
+&lt;a name="rest_code_feb19abe9ed84c3dbefdce020056fa38-2"&gt;&lt;/a&gt;echo "export LIBGL_ALWAYS_INDIRECT=1" &amp;gt;&amp;gt; $HOME/.bashrc
 &lt;/pre&gt;&lt;div class="admonition note"&gt;
 &lt;p class="admonition-title"&gt;Nota&lt;/p&gt;
 &lt;p&gt;En ningún sitio encontré referencia a necesitar reiniciar o hacer algún
@@ -99,22 +99,22 @@ guardar la configuración y lanzarlo desde dicho archivo.&lt;/p&gt;
 aplicaciones y escoger instalar nuestra distribución.&lt;/p&gt;
 &lt;p&gt;Al intentar abrir la distribución de esta manera nos encontraremos con el error
 siguiente:&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_1546851f58014e679778e98ab5c5ea14-1"&gt;&lt;/a&gt;Installing, this may take a few minutes...
-&lt;a name="rest_code_1546851f58014e679778e98ab5c5ea14-2"&gt;&lt;/a&gt;WslRegisterDistribution failed with error: 0x8007019e
-&lt;a name="rest_code_1546851f58014e679778e98ab5c5ea14-3"&gt;&lt;/a&gt;The Windows Subsystem for Linux optional component is not enabled. Please enable it and try again.
-&lt;a name="rest_code_1546851f58014e679778e98ab5c5ea14-4"&gt;&lt;/a&gt;See https://aka.ms/wslinstall for details.
-&lt;a name="rest_code_1546851f58014e679778e98ab5c5ea14-5"&gt;&lt;/a&gt;Press any key to continue...
+&lt;pre class="code text"&gt;&lt;a name="rest_code_701e88de2f1a4a95b5a34c22cb6a1551-1"&gt;&lt;/a&gt;Installing, this may take a few minutes...
+&lt;a name="rest_code_701e88de2f1a4a95b5a34c22cb6a1551-2"&gt;&lt;/a&gt;WslRegisterDistribution failed with error: 0x8007019e
+&lt;a name="rest_code_701e88de2f1a4a95b5a34c22cb6a1551-3"&gt;&lt;/a&gt;The Windows Subsystem for Linux optional component is not enabled. Please enable it and try again.
+&lt;a name="rest_code_701e88de2f1a4a95b5a34c22cb6a1551-4"&gt;&lt;/a&gt;See https://aka.ms/wslinstall for details.
+&lt;a name="rest_code_701e88de2f1a4a95b5a34c22cb6a1551-5"&gt;&lt;/a&gt;Press any key to continue...
 &lt;/pre&gt;&lt;p&gt;Esto requiere ejecutar el paso de instalación de habilitación de WSL. Una vez
 habilitado, debemos reinstalar la distribución, de otra manera veremos el
 siguiente error:&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_df447958c3f1420ca855d6cddb66f086-1"&gt;&lt;/a&gt;Installing, this may take a few minutes...
-&lt;a name="rest_code_df447958c3f1420ca855d6cddb66f086-2"&gt;&lt;/a&gt;WslRegisterDistribution failed with error: 0x800700b7
-&lt;a name="rest_code_df447958c3f1420ca855d6cddb66f086-3"&gt;&lt;/a&gt;The distribution installation has become corrupted.
-&lt;a name="rest_code_df447958c3f1420ca855d6cddb66f086-4"&gt;&lt;/a&gt;Please select Reset from App Settings or uninstall and reinstall the app.
-&lt;a name="rest_code_df447958c3f1420ca855d6cddb66f086-5"&gt;&lt;/a&gt;Error: 0x800700b7 Cannot create a file when that file already exists.
+&lt;pre class="code text"&gt;&lt;a name="rest_code_764344b167e8444aaf0b8f461a1120c4-1"&gt;&lt;/a&gt;Installing, this may take a few minutes...
+&lt;a name="rest_code_764344b167e8444aaf0b8f461a1120c4-2"&gt;&lt;/a&gt;WslRegisterDistribution failed with error: 0x800700b7
+&lt;a name="rest_code_764344b167e8444aaf0b8f461a1120c4-3"&gt;&lt;/a&gt;The distribution installation has become corrupted.
+&lt;a name="rest_code_764344b167e8444aaf0b8f461a1120c4-4"&gt;&lt;/a&gt;Please select Reset from App Settings or uninstall and reinstall the app.
+&lt;a name="rest_code_764344b167e8444aaf0b8f461a1120c4-5"&gt;&lt;/a&gt;Error: 0x800700b7 Cannot create a file when that file already exists.
 &lt;/pre&gt;&lt;p&gt;Por esta misma razón, nuestra distro estará en WSL1 y será necesario convertir.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_fec11ace2c574a24ab4fc83b5378347e-1"&gt;&lt;/a&gt;wsl -l -v
-&lt;a name="rest_code_fec11ace2c574a24ab4fc83b5378347e-2"&gt;&lt;/a&gt;wsl --set-version Ubuntu 2
+&lt;pre class="code text"&gt;&lt;a name="rest_code_0879f3f3755f44c89e2162ff973e7379-1"&gt;&lt;/a&gt;wsl -l -v
+&lt;a name="rest_code_0879f3f3755f44c89e2162ff973e7379-2"&gt;&lt;/a&gt;wsl --set-version Ubuntu 2
 &lt;/pre&gt;&lt;p&gt;Con la primera línea verificamos la versión asignada y con el segundo
 convertimos.&lt;/p&gt;
 &lt;/div&gt;
@@ -137,7 +137,7 @@ convertimos.&lt;/p&gt;
 &lt;dd&gt;&lt;p&gt;&lt;a class="reference external" href="https://wiki.ubuntu.com/WSL"&gt;WSL - Ubuntu Wiki&lt;/a&gt;.&lt;/p&gt;
 &lt;/dd&gt;
 &lt;/dl&gt;
-&lt;/div&gt;&lt;/div&gt;</description><category>linux</category><category>ubuntu</category><category>windows</category><category>wsl</category><guid>https://www.cosmoscalibur.com/blog/usar-ubuntu-en-windows/</guid><pubDate>Tue, 06 Oct 2020 02:22:55 GMT</pubDate></item><item><title>Instalar paquetes snap en Linux Mint 20</title><link>https://www.cosmoscalibur.com/blog/instalar-paquetes-snap-en-linux-mint-20/</link><dc:creator>Edward Villegas-Pulgarin</dc:creator><description>&lt;div&gt;&lt;p&gt;¿Ya tienes Linux Mint 20 y deseas
+&lt;/div&gt;&lt;/div&gt;</description><category>linux</category><category>ubuntu</category><category>windows</category><category>windows subsystem for linux</category><category>wsl</category><category>wsl2</category><guid>https://www.cosmoscalibur.com/blog/usar-ubuntu-en-windows/</guid><pubDate>Tue, 06 Oct 2020 02:22:55 GMT</pubDate></item><item><title>Instalar paquetes snap en Linux Mint 20</title><link>https://www.cosmoscalibur.com/blog/instalar-paquetes-snap-en-linux-mint-20/</link><dc:creator>Edward Villegas-Pulgarin</dc:creator><description>&lt;div&gt;&lt;p&gt;¿Ya tienes Linux Mint 20 y deseas
 &lt;a class="reference external" href="https://www.cosmoscalibur.com/blog/instalando-paquetes-en-linux-mint/#snap"&gt;instalar paquetes Snap&lt;/a&gt;? Mint ha
 decidido deshabilitar la instalación de Snap por defecto y es necesario cambiar
 la configuración de apt para poderlo hacer.&lt;/p&gt;
@@ -187,9 +187,9 @@ archivo: &lt;code&gt;/etc/apt/preferences.d/nosnap.pref&lt;/code&gt;. En mi caso
 de mantenerlo, así que procedo a eliminarlo y posteriormente a instalar el
 gestor de snaps. Si te sientes más cómodo, puedes comentar las líneas y una vez
 instalado el gestor volver a descomentarlas &lt;a class="citation-reference" href="https://www.cosmoscalibur.com/blog/instalar-paquetes-snap-en-linux-mint-20/#snap-install" id="id2"&gt;[snap-install]&lt;/a&gt;.&lt;/p&gt;
-&lt;pre class="code bash"&gt;&lt;a name="rest_code_e31ee962f62d4c98b24aeecad61cb2e9-1"&gt;&lt;/a&gt;sudo rm /etc/apt/preferences.d/nosnap.pref
-&lt;a name="rest_code_e31ee962f62d4c98b24aeecad61cb2e9-2"&gt;&lt;/a&gt;sudo apt install -y snapd
-&lt;a name="rest_code_e31ee962f62d4c98b24aeecad61cb2e9-3"&gt;&lt;/a&gt;snap &lt;span class="nb"&gt;help&lt;/span&gt;
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_8e6f7781a46e48db8a45d8052a89a8f3-1"&gt;&lt;/a&gt;sudo rm /etc/apt/preferences.d/nosnap.pref
+&lt;a name="rest_code_8e6f7781a46e48db8a45d8052a89a8f3-2"&gt;&lt;/a&gt;sudo apt install -y snapd
+&lt;a name="rest_code_8e6f7781a46e48db8a45d8052a89a8f3-3"&gt;&lt;/a&gt;snap &lt;span class="nb"&gt;help&lt;/span&gt;
 &lt;/pre&gt;&lt;p&gt;Ahora puedes instalar tus paquetes snap en la forma como lo expliqué en un
 &lt;a class="reference external" href="https://www.cosmoscalibur.com/blog/instalando-paquetes-en-linux-mint/#snap"&gt;artículo anterior&lt;/a&gt;.&lt;/p&gt;
 &lt;/div&gt;
@@ -382,12 +382,12 @@ nuestras necesidades especificando en el archivo Dockerfile.&lt;/p&gt;
 &lt;div class="section" id="instalar-docker"&gt;
 &lt;h2&gt;Instalar Docker&lt;/h2&gt;
 &lt;p&gt;Recomiendo en Linux instalar docker con snap.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_eb47118e5f5942e88145ef4dcfffb47a-1"&gt;&lt;/a&gt;sudo snap install docker
+&lt;pre class="code text"&gt;&lt;a name="rest_code_80dfabf68613446c8789380feea067a1-1"&gt;&lt;/a&gt;sudo snap install docker
 &lt;/pre&gt;&lt;p&gt;Posteriormente, podemos asociar nuestro usuario para la ejecución sin ser
 administrador.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_0cb22df951ab4514b730735d132ac503-1"&gt;&lt;/a&gt;sudo groupadd docker
-&lt;a name="rest_code_0cb22df951ab4514b730735d132ac503-2"&gt;&lt;/a&gt;sudo usermod -aG docker $USER
-&lt;a name="rest_code_0cb22df951ab4514b730735d132ac503-3"&gt;&lt;/a&gt;newgrp docker
+&lt;pre class="code text"&gt;&lt;a name="rest_code_60cb032e3d14466fac02b701f6cdc55f-1"&gt;&lt;/a&gt;sudo groupadd docker
+&lt;a name="rest_code_60cb032e3d14466fac02b701f6cdc55f-2"&gt;&lt;/a&gt;sudo usermod -aG docker $USER
+&lt;a name="rest_code_60cb032e3d14466fac02b701f6cdc55f-3"&gt;&lt;/a&gt;newgrp docker
 &lt;/pre&gt;&lt;p&gt;Puedes probar ejecutando como usuario regular, &lt;code&gt;docker run hello-world&lt;/code&gt;.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="dockerfile"&gt;
@@ -432,8 +432,8 @@ archivos &lt;em&gt;tar&lt;/em&gt;.&lt;/p&gt;
 &lt;p&gt;El directorio que moveremos se genero en el contenedor LXC que construimos
 en &lt;a class="reference external" href="https://www.cosmoscalibur.com/blog/crear-contenedor-lxc-para-aplicacion-gui-ealite/"&gt;Crear contenedor LXC para aplicación GUI - EALite&lt;/a&gt;. Para ello,
 iniciamos el contenedor y extraemos el directorio.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_49becbfc9e2c4a7fa5a4ae51e3e397bf-1"&gt;&lt;/a&gt;sudo lxc start ea
-&lt;a name="rest_code_49becbfc9e2c4a7fa5a4ae51e3e397bf-2"&gt;&lt;/a&gt;sudo lxc file pull -r ea/home/ubuntu/.wine .
+&lt;pre class="code text"&gt;&lt;a name="rest_code_98aba70f28cd44bf83072a91818487f7-1"&gt;&lt;/a&gt;sudo lxc start ea
+&lt;a name="rest_code_98aba70f28cd44bf83072a91818487f7-2"&gt;&lt;/a&gt;sudo lxc file pull -r ea/home/ubuntu/.wine .
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Con &lt;code&gt;USER&lt;/code&gt; cambiamos el usuario que ejecuta los procesos. Es importante
 que a la hora de concluir, si un proceso es ejecutado por un usuario regular,
@@ -445,19 +445,19 @@ existe (pero no el directorio de usuario).&lt;/p&gt;
 Esto es posible con &lt;code&gt;CMD&lt;/code&gt; o con &lt;code&gt;ENTRYPOINT&lt;/code&gt;. La diferencia es que
 el primero permite sobreescribir la ejecución enviando como parámetro lo que
 se desea ejecutar, mientras que la segunda opción solo ejecuta la configurada.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_4eca036856524632b98b1e09d2c7fa40-1"&gt;&lt;/a&gt;# escape=`
-&lt;a name="rest_code_4eca036856524632b98b1e09d2c7fa40-2"&gt;&lt;/a&gt;FROM i386/ubuntu:18.04
-&lt;a name="rest_code_4eca036856524632b98b1e09d2c7fa40-3"&gt;&lt;/a&gt;RUN apt update -q &amp;amp;&amp;amp; apt install --install-recommends -y wine-stable
-&lt;a name="rest_code_4eca036856524632b98b1e09d2c7fa40-4"&gt;&lt;/a&gt;RUN apt install -y fonts-crosextra-carlito
-&lt;a name="rest_code_4eca036856524632b98b1e09d2c7fa40-5"&gt;&lt;/a&gt;RUN useradd -ms /bin/bash ubuntu
-&lt;a name="rest_code_4eca036856524632b98b1e09d2c7fa40-6"&gt;&lt;/a&gt;WORKDIR /home/ubuntu
-&lt;a name="rest_code_4eca036856524632b98b1e09d2c7fa40-7"&gt;&lt;/a&gt;COPY .wine .wine
-&lt;a name="rest_code_4eca036856524632b98b1e09d2c7fa40-8"&gt;&lt;/a&gt;RUN chown -R ubuntu .wine
-&lt;a name="rest_code_4eca036856524632b98b1e09d2c7fa40-9"&gt;&lt;/a&gt;USER ubuntu
-&lt;a name="rest_code_4eca036856524632b98b1e09d2c7fa40-10"&gt;&lt;/a&gt;RUN mkdir -p .local/bin &amp;amp;&amp;amp; `
-&lt;a name="rest_code_4eca036856524632b98b1e09d2c7fa40-11"&gt;&lt;/a&gt;        echo "wine $HOME/.wine/drive_c/Program\ Files/Sparx\ Systems/EA\ LITE/EA.exe" &amp;gt; .local/bin/ealite &amp;amp;&amp;amp; `
-&lt;a name="rest_code_4eca036856524632b98b1e09d2c7fa40-12"&gt;&lt;/a&gt;        chmod 755 .local/bin/ealite
-&lt;a name="rest_code_4eca036856524632b98b1e09d2c7fa40-13"&gt;&lt;/a&gt;CMD ".local/bin/ealite"
+&lt;pre class="code text"&gt;&lt;a name="rest_code_19db2635969b454691cfeb542be25e90-1"&gt;&lt;/a&gt;# escape=`
+&lt;a name="rest_code_19db2635969b454691cfeb542be25e90-2"&gt;&lt;/a&gt;FROM i386/ubuntu:18.04
+&lt;a name="rest_code_19db2635969b454691cfeb542be25e90-3"&gt;&lt;/a&gt;RUN apt update -q &amp;amp;&amp;amp; apt install --install-recommends -y wine-stable
+&lt;a name="rest_code_19db2635969b454691cfeb542be25e90-4"&gt;&lt;/a&gt;RUN apt install -y fonts-crosextra-carlito
+&lt;a name="rest_code_19db2635969b454691cfeb542be25e90-5"&gt;&lt;/a&gt;RUN useradd -ms /bin/bash ubuntu
+&lt;a name="rest_code_19db2635969b454691cfeb542be25e90-6"&gt;&lt;/a&gt;WORKDIR /home/ubuntu
+&lt;a name="rest_code_19db2635969b454691cfeb542be25e90-7"&gt;&lt;/a&gt;COPY .wine .wine
+&lt;a name="rest_code_19db2635969b454691cfeb542be25e90-8"&gt;&lt;/a&gt;RUN chown -R ubuntu .wine
+&lt;a name="rest_code_19db2635969b454691cfeb542be25e90-9"&gt;&lt;/a&gt;USER ubuntu
+&lt;a name="rest_code_19db2635969b454691cfeb542be25e90-10"&gt;&lt;/a&gt;RUN mkdir -p .local/bin &amp;amp;&amp;amp; `
+&lt;a name="rest_code_19db2635969b454691cfeb542be25e90-11"&gt;&lt;/a&gt;        echo "wine $HOME/.wine/drive_c/Program\ Files/Sparx\ Systems/EA\ LITE/EA.exe" &amp;gt; .local/bin/ealite &amp;amp;&amp;amp; `
+&lt;a name="rest_code_19db2635969b454691cfeb542be25e90-12"&gt;&lt;/a&gt;        chmod 755 .local/bin/ealite
+&lt;a name="rest_code_19db2635969b454691cfeb542be25e90-13"&gt;&lt;/a&gt;CMD ".local/bin/ealite"
 &lt;/pre&gt;&lt;/div&gt;
 &lt;div class="section" id="construir-imagen-docker"&gt;
 &lt;h2&gt;Construir imagen Docker&lt;/h2&gt;
@@ -467,13 +467,13 @@ para relacionar la ruta del archivo dockerfile que se usará. El siguiente
 argumento no posee marca para indicarlo y corresponde al contexto, que viene a
 ser la ruta donde se encuentran los archivos que usaremos (que puede ser
 reemplazado por un archivo de contexto con la ruta a los distintos archivos).&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_82bcb94cbd874fe7a4cfa6734674ebc9-1"&gt;&lt;/a&gt;docker build -t cosmoscalibur/ealite:latest -f dockerfile .
+&lt;pre class="code text"&gt;&lt;a name="rest_code_33ae1ffe5668423bae71840165701414-1"&gt;&lt;/a&gt;docker build -t cosmoscalibur/ealite:latest -f dockerfile .
 &lt;/pre&gt;&lt;/div&gt;
 &lt;div class="section" id="ejecutar-contenedor"&gt;
 &lt;h2&gt;Ejecutar contenedor&lt;/h2&gt;
 &lt;p&gt;Ahora puedes lanzar un contenedor gráfico basado en la imagen construida con la
 siguiente instrucción.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_7e671b85597441f89926a6cd622a60c0-1"&gt;&lt;/a&gt;docker run --net=host --env="DISPLAY" --volume="$HOME/.Xauthority:/root/.Xauthority:rw" cosmoscalibur/ealite:latest
+&lt;pre class="code text"&gt;&lt;a name="rest_code_f657e38ab3b74746841b4be3f09a553a-1"&gt;&lt;/a&gt;docker run --net=host --env="DISPLAY" --volume="$HOME/.Xauthority:/root/.Xauthority:rw" cosmoscalibur/ealite:latest
 &lt;/pre&gt;&lt;/div&gt;
 &lt;div class="section" id="referencias"&gt;
 &lt;h2&gt;Referencias&lt;/h2&gt;
@@ -504,9 +504,9 @@ bibliotecas de 32 bits de manera innecesaria. Así que empecemos.&lt;/p&gt;
 &lt;p&gt;Nuestro primer paso será instalar el paquete LXD, el cual se encuentra
 disponible a través de múltiples gestores de paquetes de las distribuciones
 Linux pero también como paquete snap. Por facilidad, usaré el paquete snap.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_dde30d2d790044da8558a58af0f3eedb-1"&gt;&lt;/a&gt;sudo snap install lxd
+&lt;pre class="code text"&gt;&lt;a name="rest_code_e947bca7fc364e08b9981f8f2010ca22-1"&gt;&lt;/a&gt;sudo snap install lxd
 &lt;/pre&gt;&lt;p&gt;Ahora, debemos inicializar (solo es necesario la primera vez tras instalar).&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_c9980dcf22b648f181651acc26fd3c1c-1"&gt;&lt;/a&gt;sudo lxd init
+&lt;pre class="code text"&gt;&lt;a name="rest_code_d0632ea2a06143b4b3187f6f024d0352-1"&gt;&lt;/a&gt;sudo lxd init
 &lt;/pre&gt;&lt;p&gt;En mi caso, todos los valores que son preguntados los he dejado en su valor
 por defecto. Personalmente, solo debería preocuparnos el tamaño de la unidad
 usado (en caso de tener limitaciones en espacio de almacenamiento).&lt;/p&gt;
@@ -519,35 +519,35 @@ gráfica nos requiere una configuración adicional, que es realizar el paso al
 sistema gráfico de nuestro sistema hospedador.&lt;/p&gt;
 &lt;p&gt;El perfil gráfico es definido con el siguiente código (copia y pega en un nuevo
 archivo, &lt;code&gt;lxdguiprofile.txt&lt;/code&gt;).&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_af8df8b883184331b0ea9c0b5f9398ac-1"&gt;&lt;/a&gt;config:
-&lt;a name="rest_code_af8df8b883184331b0ea9c0b5f9398ac-2"&gt;&lt;/a&gt;  environment.DISPLAY: :0
-&lt;a name="rest_code_af8df8b883184331b0ea9c0b5f9398ac-3"&gt;&lt;/a&gt;  raw.idmap: both 1000 1000
-&lt;a name="rest_code_af8df8b883184331b0ea9c0b5f9398ac-4"&gt;&lt;/a&gt;  user.user-data: |
-&lt;a name="rest_code_af8df8b883184331b0ea9c0b5f9398ac-5"&gt;&lt;/a&gt;    #cloud-config
-&lt;a name="rest_code_af8df8b883184331b0ea9c0b5f9398ac-6"&gt;&lt;/a&gt;    runcmd:
-&lt;a name="rest_code_af8df8b883184331b0ea9c0b5f9398ac-7"&gt;&lt;/a&gt;      - 'sed -i "s/; enable-shm = yes/enable-shm = no/g" /etc/pulse/client.conf'
-&lt;a name="rest_code_af8df8b883184331b0ea9c0b5f9398ac-8"&gt;&lt;/a&gt;      - 'echo export PULSE_SERVER=unix:/tmp/.pulse-native | tee --append /home/ubuntu/.profile'
-&lt;a name="rest_code_af8df8b883184331b0ea9c0b5f9398ac-9"&gt;&lt;/a&gt;    packages:
-&lt;a name="rest_code_af8df8b883184331b0ea9c0b5f9398ac-10"&gt;&lt;/a&gt;      - x11-apps
-&lt;a name="rest_code_af8df8b883184331b0ea9c0b5f9398ac-11"&gt;&lt;/a&gt;      - mesa-utils
-&lt;a name="rest_code_af8df8b883184331b0ea9c0b5f9398ac-12"&gt;&lt;/a&gt;      - pulseaudio
-&lt;a name="rest_code_af8df8b883184331b0ea9c0b5f9398ac-13"&gt;&lt;/a&gt;description: GUI LXD profile
-&lt;a name="rest_code_af8df8b883184331b0ea9c0b5f9398ac-14"&gt;&lt;/a&gt;devices:
-&lt;a name="rest_code_af8df8b883184331b0ea9c0b5f9398ac-15"&gt;&lt;/a&gt;  PASocket:
-&lt;a name="rest_code_af8df8b883184331b0ea9c0b5f9398ac-16"&gt;&lt;/a&gt;    path: /tmp/.pulse-native
-&lt;a name="rest_code_af8df8b883184331b0ea9c0b5f9398ac-17"&gt;&lt;/a&gt;    source: /run/user/1000/pulse/native
-&lt;a name="rest_code_af8df8b883184331b0ea9c0b5f9398ac-18"&gt;&lt;/a&gt;    type: disk
-&lt;a name="rest_code_af8df8b883184331b0ea9c0b5f9398ac-19"&gt;&lt;/a&gt;  X0:
-&lt;a name="rest_code_af8df8b883184331b0ea9c0b5f9398ac-20"&gt;&lt;/a&gt;    path: /tmp/.X11-unix/X0
-&lt;a name="rest_code_af8df8b883184331b0ea9c0b5f9398ac-21"&gt;&lt;/a&gt;    source: /tmp/.X11-unix/X0
-&lt;a name="rest_code_af8df8b883184331b0ea9c0b5f9398ac-22"&gt;&lt;/a&gt;    type: disk
-&lt;a name="rest_code_af8df8b883184331b0ea9c0b5f9398ac-23"&gt;&lt;/a&gt;  mygpu:
-&lt;a name="rest_code_af8df8b883184331b0ea9c0b5f9398ac-24"&gt;&lt;/a&gt;    type: gpu
-&lt;a name="rest_code_af8df8b883184331b0ea9c0b5f9398ac-25"&gt;&lt;/a&gt;name: gui
-&lt;a name="rest_code_af8df8b883184331b0ea9c0b5f9398ac-26"&gt;&lt;/a&gt;used_by:
+&lt;pre class="code text"&gt;&lt;a name="rest_code_20033c9ee959403cb2b0757f96e8289e-1"&gt;&lt;/a&gt;config:
+&lt;a name="rest_code_20033c9ee959403cb2b0757f96e8289e-2"&gt;&lt;/a&gt;  environment.DISPLAY: :0
+&lt;a name="rest_code_20033c9ee959403cb2b0757f96e8289e-3"&gt;&lt;/a&gt;  raw.idmap: both 1000 1000
+&lt;a name="rest_code_20033c9ee959403cb2b0757f96e8289e-4"&gt;&lt;/a&gt;  user.user-data: |
+&lt;a name="rest_code_20033c9ee959403cb2b0757f96e8289e-5"&gt;&lt;/a&gt;    #cloud-config
+&lt;a name="rest_code_20033c9ee959403cb2b0757f96e8289e-6"&gt;&lt;/a&gt;    runcmd:
+&lt;a name="rest_code_20033c9ee959403cb2b0757f96e8289e-7"&gt;&lt;/a&gt;      - 'sed -i "s/; enable-shm = yes/enable-shm = no/g" /etc/pulse/client.conf'
+&lt;a name="rest_code_20033c9ee959403cb2b0757f96e8289e-8"&gt;&lt;/a&gt;      - 'echo export PULSE_SERVER=unix:/tmp/.pulse-native | tee --append /home/ubuntu/.profile'
+&lt;a name="rest_code_20033c9ee959403cb2b0757f96e8289e-9"&gt;&lt;/a&gt;    packages:
+&lt;a name="rest_code_20033c9ee959403cb2b0757f96e8289e-10"&gt;&lt;/a&gt;      - x11-apps
+&lt;a name="rest_code_20033c9ee959403cb2b0757f96e8289e-11"&gt;&lt;/a&gt;      - mesa-utils
+&lt;a name="rest_code_20033c9ee959403cb2b0757f96e8289e-12"&gt;&lt;/a&gt;      - pulseaudio
+&lt;a name="rest_code_20033c9ee959403cb2b0757f96e8289e-13"&gt;&lt;/a&gt;description: GUI LXD profile
+&lt;a name="rest_code_20033c9ee959403cb2b0757f96e8289e-14"&gt;&lt;/a&gt;devices:
+&lt;a name="rest_code_20033c9ee959403cb2b0757f96e8289e-15"&gt;&lt;/a&gt;  PASocket:
+&lt;a name="rest_code_20033c9ee959403cb2b0757f96e8289e-16"&gt;&lt;/a&gt;    path: /tmp/.pulse-native
+&lt;a name="rest_code_20033c9ee959403cb2b0757f96e8289e-17"&gt;&lt;/a&gt;    source: /run/user/1000/pulse/native
+&lt;a name="rest_code_20033c9ee959403cb2b0757f96e8289e-18"&gt;&lt;/a&gt;    type: disk
+&lt;a name="rest_code_20033c9ee959403cb2b0757f96e8289e-19"&gt;&lt;/a&gt;  X0:
+&lt;a name="rest_code_20033c9ee959403cb2b0757f96e8289e-20"&gt;&lt;/a&gt;    path: /tmp/.X11-unix/X0
+&lt;a name="rest_code_20033c9ee959403cb2b0757f96e8289e-21"&gt;&lt;/a&gt;    source: /tmp/.X11-unix/X0
+&lt;a name="rest_code_20033c9ee959403cb2b0757f96e8289e-22"&gt;&lt;/a&gt;    type: disk
+&lt;a name="rest_code_20033c9ee959403cb2b0757f96e8289e-23"&gt;&lt;/a&gt;  mygpu:
+&lt;a name="rest_code_20033c9ee959403cb2b0757f96e8289e-24"&gt;&lt;/a&gt;    type: gpu
+&lt;a name="rest_code_20033c9ee959403cb2b0757f96e8289e-25"&gt;&lt;/a&gt;name: gui
+&lt;a name="rest_code_20033c9ee959403cb2b0757f96e8289e-26"&gt;&lt;/a&gt;used_by:
 &lt;/pre&gt;&lt;p&gt;Ahora, crearemos el perfil:&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_58b5eb3a39f3489dab7a58c2c1b426bb-1"&gt;&lt;/a&gt;sudo lxc profile create gui
-&lt;a name="rest_code_58b5eb3a39f3489dab7a58c2c1b426bb-2"&gt;&lt;/a&gt;cat lxdguiprofile.txt | sudo lxc profile edit gui
+&lt;pre class="code text"&gt;&lt;a name="rest_code_84058579f95e49cfa3c39cc128e8365c-1"&gt;&lt;/a&gt;sudo lxc profile create gui
+&lt;a name="rest_code_84058579f95e49cfa3c39cc128e8365c-2"&gt;&lt;/a&gt;cat lxdguiprofile.txt | sudo lxc profile edit gui
 &lt;/pre&gt;&lt;p&gt;Este procedimiento, solo es necesario hacerlo la primera vez.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="obtener-contenedor-base"&gt;
@@ -560,7 +560,7 @@ distribuciones Linux, con versiones y arquitecturas diferentes.&lt;/p&gt;
 corresponde a 32 bits. Puedes usar otra distribución siempre y cuando disponga
 de la forma de instalar los paquetes necesarios y en versiones recientes (entre
 más reciente sea Wine, mejor).&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_ac39d2a40cd147aeb5360df57055c758-1"&gt;&lt;/a&gt;sudo lxc launch --profile default --profile gui images:ubuntu/18.04/i386 ea
+&lt;pre class="code text"&gt;&lt;a name="rest_code_2f6a522b82ae472da5d6760b3249bbad-1"&gt;&lt;/a&gt;sudo lxc launch --profile default --profile gui images:ubuntu/18.04/i386 ea
 &lt;/pre&gt;&lt;p&gt;Cuando no requerimos la parte gráfica, podemos omitir
 &lt;code&gt;--profile default --profile gui&lt;/code&gt;. Los dos perfiles son un proceso de
 herencia, primero se carga el perfil por defecto y luego se añade lo necesario
@@ -577,7 +577,7 @@ ejecución del contenedor, o igual podríamos detenerlo primero,
 &lt;p&gt;Para instalar nuestro programa en el contenedor, necesitamos ejecutar comandos
 en este. Para ello, tenemos &lt;code&gt;lxc exec {contenedor} -- {comando}&lt;/code&gt;. Una
 forma interactiva, adecuada para pruebas, es ejecutar bash.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_47d7706ca84442c4a07237dc13b1935a-1"&gt;&lt;/a&gt;sudo lxc exec ea -- /bin/bash
+&lt;pre class="code text"&gt;&lt;a name="rest_code_7a91cbf3dacb41f28247ef277c18a8de-1"&gt;&lt;/a&gt;sudo lxc exec ea -- /bin/bash
 &lt;/pre&gt;&lt;p&gt;De esta manera podemos ejecutar los comandos de la misma manera que lo hacemos
 en nuestro sistema, ya que estamos en el contenedor.&lt;/p&gt;
 &lt;p&gt;Si deseamos automatizar, nos interesará enviar directamente las instrucciones
@@ -593,39 +593,39 @@ tenemos el usuario ubuntu),
 &lt;p&gt;La gestión de archivos es realizada con los comandos &lt;code&gt;file pull&lt;/code&gt; y
 &lt;code&gt;file push&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;Así, si deseamos enviar un archivo:&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_05f7d5e90d524c7a8c73f6da265869a0-1"&gt;&lt;/a&gt;sudo lxc file push {archivo local} {contenedor}/{ruta contenedor}
+&lt;pre class="code text"&gt;&lt;a name="rest_code_8014ea9e5e45486e8d35205da8f0af43-1"&gt;&lt;/a&gt;sudo lxc file push {archivo local} {contenedor}/{ruta contenedor}
 &lt;/pre&gt;&lt;p&gt;Y si deseamos traer un archivo del contenedor:&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_982847b9558347f3a08a6ba7258f0362-1"&gt;&lt;/a&gt;sudo lxc file pull {contenedor}/{ruta contenedor} {archivo local}
+&lt;pre class="code text"&gt;&lt;a name="rest_code_7139be89c1414d4bbf2254602c15e54c-1"&gt;&lt;/a&gt;sudo lxc file pull {contenedor}/{ruta contenedor} {archivo local}
 &lt;/pre&gt;&lt;/div&gt;
 &lt;div class="section" id="instalar-ealite"&gt;
 &lt;h2&gt;Instalar EALite&lt;/h2&gt;
 &lt;p&gt;Ahora que sabemos ejecutar comandos en el contenedor, instalaremos las
 dependencias y finalmente EALite.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_078963e5aea1438393facbf97baa0630-1"&gt;&lt;/a&gt;sudo lxc exec ea -- apt update -q
-&lt;a name="rest_code_078963e5aea1438393facbf97baa0630-2"&gt;&lt;/a&gt;sudo lxc exec ea -- apt install --install-recommends -y wine-stable winetricks
-&lt;a name="rest_code_078963e5aea1438393facbf97baa0630-3"&gt;&lt;/a&gt;sudo lxc exec ea -- apt install -y fonts-crosextra-carlito
-&lt;a name="rest_code_078963e5aea1438393facbf97baa0630-4"&gt;&lt;/a&gt;sudo lxc exec ea -- su - ubuntu -c 'winetricks --unattended msxml3'
-&lt;a name="rest_code_078963e5aea1438393facbf97baa0630-5"&gt;&lt;/a&gt;sudo lxc exec ea -- su - ubuntu -c 'winetricks --unattended msxml4'
-&lt;a name="rest_code_078963e5aea1438393facbf97baa0630-6"&gt;&lt;/a&gt;sudo lxc exec ea -- su - ubuntu -c 'winetricks --unattended msxml6'
-&lt;a name="rest_code_078963e5aea1438393facbf97baa0630-7"&gt;&lt;/a&gt;sudo lxc exec ea -- su - ubuntu -c 'winetricks --unattended mdac28'
-&lt;a name="rest_code_078963e5aea1438393facbf97baa0630-8"&gt;&lt;/a&gt;sudo lxc exec ea -- su - ubuntu -c 'winetricks --unattended jet40'
-&lt;a name="rest_code_078963e5aea1438393facbf97baa0630-9"&gt;&lt;/a&gt;wget http://www.sparxsystems.com.au/bin/EALite.exe
-&lt;a name="rest_code_078963e5aea1438393facbf97baa0630-10"&gt;&lt;/a&gt;sudo lxc file push EALite.exe ea/home/ubuntu/EALite.exe
-&lt;a name="rest_code_078963e5aea1438393facbf97baa0630-11"&gt;&lt;/a&gt;sudo lxc exec ea -- su - ubuntu -c 'wine msiexec /i EALite.exe'
+&lt;pre class="code text"&gt;&lt;a name="rest_code_eae8355ff36747d293e5f273849162a4-1"&gt;&lt;/a&gt;sudo lxc exec ea -- apt update -q
+&lt;a name="rest_code_eae8355ff36747d293e5f273849162a4-2"&gt;&lt;/a&gt;sudo lxc exec ea -- apt install --install-recommends -y wine-stable winetricks
+&lt;a name="rest_code_eae8355ff36747d293e5f273849162a4-3"&gt;&lt;/a&gt;sudo lxc exec ea -- apt install -y fonts-crosextra-carlito
+&lt;a name="rest_code_eae8355ff36747d293e5f273849162a4-4"&gt;&lt;/a&gt;sudo lxc exec ea -- su - ubuntu -c 'winetricks --unattended msxml3'
+&lt;a name="rest_code_eae8355ff36747d293e5f273849162a4-5"&gt;&lt;/a&gt;sudo lxc exec ea -- su - ubuntu -c 'winetricks --unattended msxml4'
+&lt;a name="rest_code_eae8355ff36747d293e5f273849162a4-6"&gt;&lt;/a&gt;sudo lxc exec ea -- su - ubuntu -c 'winetricks --unattended msxml6'
+&lt;a name="rest_code_eae8355ff36747d293e5f273849162a4-7"&gt;&lt;/a&gt;sudo lxc exec ea -- su - ubuntu -c 'winetricks --unattended mdac28'
+&lt;a name="rest_code_eae8355ff36747d293e5f273849162a4-8"&gt;&lt;/a&gt;sudo lxc exec ea -- su - ubuntu -c 'winetricks --unattended jet40'
+&lt;a name="rest_code_eae8355ff36747d293e5f273849162a4-9"&gt;&lt;/a&gt;wget http://www.sparxsystems.com.au/bin/EALite.exe
+&lt;a name="rest_code_eae8355ff36747d293e5f273849162a4-10"&gt;&lt;/a&gt;sudo lxc file push EALite.exe ea/home/ubuntu/EALite.exe
+&lt;a name="rest_code_eae8355ff36747d293e5f273849162a4-11"&gt;&lt;/a&gt;sudo lxc exec ea -- su - ubuntu -c 'wine msiexec /i EALite.exe'
 &lt;/pre&gt;&lt;p&gt;En este punto, procederemos de manera gráfica a la instalación final de EALite.&lt;/p&gt;
 &lt;div class="figure align-center"&gt;
 &lt;a class="reference external image-reference" href="https://www.cosmoscalibur.com/images/crear-contenedor-lxc-para-aplicacion-gui-ealite/instalacion-grafica-ealite-lxc.png"&gt;&lt;img alt="Ventana de instalación gráfica de EALite." src="https://www.cosmoscalibur.com/images/crear-contenedor-lxc-para-aplicacion-gui-ealite/instalacion-grafica-ealite-lxc.thumbnail.png" style="width: 480px;"&gt;&lt;/a&gt;
 &lt;p class="caption"&gt;Ventana de instalación gráfica de EALite.&lt;/p&gt;
 &lt;/div&gt;
 &lt;p&gt;Ahora, es necesario crear un mecanismo simple para la ejecución de EA.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_6dd489f073334199993de5f8264ea1ae-1"&gt;&lt;/a&gt;sudo lxc exec ea -- su - ubuntu -c 'mkdir $HOME/.local/bin'
-&lt;a name="rest_code_6dd489f073334199993de5f8264ea1ae-2"&gt;&lt;/a&gt;sudo lxc exec ea -- su - ubuntu -c 'echo "wine $HOME/.wine/drive_c/Program\ Files/Sparx\ Systems/EA\ LITE/EA.exe" &amp;gt; $HOME/.local/bin/ealite'
-&lt;a name="rest_code_6dd489f073334199993de5f8264ea1ae-3"&gt;&lt;/a&gt;sudo lxc exec ea -- su - ubuntu -c 'chmod 755 $HOME/.local/bin/ealite'
+&lt;pre class="code text"&gt;&lt;a name="rest_code_2d2a480b04414ea0b6c37c21cc051aae-1"&gt;&lt;/a&gt;sudo lxc exec ea -- su - ubuntu -c 'mkdir $HOME/.local/bin'
+&lt;a name="rest_code_2d2a480b04414ea0b6c37c21cc051aae-2"&gt;&lt;/a&gt;sudo lxc exec ea -- su - ubuntu -c 'echo "wine $HOME/.wine/drive_c/Program\ Files/Sparx\ Systems/EA\ LITE/EA.exe" &amp;gt; $HOME/.local/bin/ealite'
+&lt;a name="rest_code_2d2a480b04414ea0b6c37c21cc051aae-3"&gt;&lt;/a&gt;sudo lxc exec ea -- su - ubuntu -c 'chmod 755 $HOME/.local/bin/ealite'
 &lt;/pre&gt;&lt;/div&gt;
 &lt;div class="section" id="ejecutar-ealite"&gt;
 &lt;h2&gt;Ejecutar EALite&lt;/h2&gt;
 &lt;p&gt;Ahora, podemos usar el visor de Enterprise Architect.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_ab68f022fc9e42bdb5e735b005e0b749-1"&gt;&lt;/a&gt;sudo lxc exec ea -- su - ubuntu -c 'ealite'
+&lt;pre class="code text"&gt;&lt;a name="rest_code_bb24242433534b69a0c2a55688fc8a0a-1"&gt;&lt;/a&gt;sudo lxc exec ea -- su - ubuntu -c 'ealite'
 &lt;/pre&gt;&lt;p&gt;Cuando iniciemos el sistema operativo, requerimos de iniciar el contenedores
 antes de ejecutar la instrucción anterior, &lt;code&gt;sudo lxc start ea&lt;/code&gt;.&lt;/p&gt;
 &lt;div class="figure align-center"&gt;
@@ -639,12 +639,12 @@ antes de ejecutar la instrucción anterior, &lt;code&gt;sudo lxc start ea&lt;/co
 &lt;p&gt;Puedes asegurar una forma simple de ejecutar EALite creando una rutina de
 lanzamiento con las dos líneas anteriores en un archivo que sea reconocido en
 el &lt;code&gt;path&lt;/code&gt;.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_5b1ed2191b4545728fe3cfa6a012b684-1"&gt;&lt;/a&gt;mkdir -p $HOME/.local/bin
-&lt;a name="rest_code_5b1ed2191b4545728fe3cfa6a012b684-2"&gt;&lt;/a&gt;cat &amp;lt;&amp;lt; EOF &amp;gt; $HOME/.local/bin/ealite
-&lt;a name="rest_code_5b1ed2191b4545728fe3cfa6a012b684-3"&gt;&lt;/a&gt;sudo lxc start ea
-&lt;a name="rest_code_5b1ed2191b4545728fe3cfa6a012b684-4"&gt;&lt;/a&gt;sudo lxc exec ea -- su - ubuntu -c 'ealite'
-&lt;a name="rest_code_5b1ed2191b4545728fe3cfa6a012b684-5"&gt;&lt;/a&gt;EOF
-&lt;a name="rest_code_5b1ed2191b4545728fe3cfa6a012b684-6"&gt;&lt;/a&gt;chmod 755 $HOME/.local/bin/ealite
+&lt;pre class="code text"&gt;&lt;a name="rest_code_07f41c9d1a034398b692b260b08f4d91-1"&gt;&lt;/a&gt;mkdir -p $HOME/.local/bin
+&lt;a name="rest_code_07f41c9d1a034398b692b260b08f4d91-2"&gt;&lt;/a&gt;cat &amp;lt;&amp;lt; EOF &amp;gt; $HOME/.local/bin/ealite
+&lt;a name="rest_code_07f41c9d1a034398b692b260b08f4d91-3"&gt;&lt;/a&gt;sudo lxc start ea
+&lt;a name="rest_code_07f41c9d1a034398b692b260b08f4d91-4"&gt;&lt;/a&gt;sudo lxc exec ea -- su - ubuntu -c 'ealite'
+&lt;a name="rest_code_07f41c9d1a034398b692b260b08f4d91-5"&gt;&lt;/a&gt;EOF
+&lt;a name="rest_code_07f41c9d1a034398b692b260b08f4d91-6"&gt;&lt;/a&gt;chmod 755 $HOME/.local/bin/ealite
 &lt;/pre&gt;&lt;p&gt;La ejecución con &lt;code&gt;sudo&lt;/code&gt; puede omitirse si se añade el usuario a un grupo
 que permita la ejecución de lxc. Más adelante, haré una publicación sobre como
 hacerlo. Por ahora, diviértete ejecutando &lt;code&gt;ealite&lt;/code&gt; e ingresando la
@@ -655,15 +655,15 @@ contenedor.&lt;/p&gt;
 &lt;div class="section" id="compartir"&gt;
 &lt;h2&gt;Compartir&lt;/h2&gt;
 &lt;p&gt;Para compartir el contenedor, puedes publicarlo y exportar la imagen.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_c0b6aa27296942cb8f4951811c23402a-1"&gt;&lt;/a&gt;sudo lxc publish ea --alias ealite
-&lt;a name="rest_code_c0b6aa27296942cb8f4951811c23402a-2"&gt;&lt;/a&gt;sudo lxc image export ealite
+&lt;pre class="code text"&gt;&lt;a name="rest_code_ea0606ffc2604a2a91b7081c96b82956-1"&gt;&lt;/a&gt;sudo lxc publish ea --alias ealite
+&lt;a name="rest_code_ea0606ffc2604a2a91b7081c96b82956-2"&gt;&lt;/a&gt;sudo lxc image export ealite
 &lt;/pre&gt;&lt;p&gt;La imagen exportada es un archivo &lt;code&gt;tar.gz&lt;/code&gt; con el nombre asociado al
 &lt;em&gt;fingerprint&lt;/em&gt; (una secuencia alfanumérica). Luego se debe importar la imagen
 y hacer &lt;code&gt;launch&lt;/code&gt; nuevamente con el perfil.&lt;/p&gt;
 &lt;p&gt;También puedes exportar directamente el contenedor, lo cual es recomendable
 porque lleva con ello la configuración del perfil GUI y es listo para usar
 una vez hagas la importación.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_e5ed31e367f140fdb926ddf326470c72-1"&gt;&lt;/a&gt;sudo lxc export ea ea.tar.gz --optimized-storage
+&lt;pre class="code text"&gt;&lt;a name="rest_code_834893d167da4051873ac75933626b6c-1"&gt;&lt;/a&gt;sudo lxc export ea ea.tar.gz --optimized-storage
 &lt;/pre&gt;&lt;/div&gt;
 &lt;div class="section" id="referencias"&gt;
 &lt;h2&gt;Referencias&lt;/h2&gt;
@@ -713,8 +713,8 @@ los recomiendo como última opción.&lt;/p&gt;
 (preinstalado) o Synaptic (preinstalado en Linux Mint), para realizar la
 gestión de manera gráfica. Pero también puedes usar &lt;code&gt;apt-get&lt;/code&gt; o
 &lt;code&gt;apt&lt;/code&gt; (recomendado) para la gestión a través de consola.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_4b49ff4d9e534c9e9819bce17334841a-1"&gt;&lt;/a&gt;sudo apt update -q
-&lt;a name="rest_code_4b49ff4d9e534c9e9819bce17334841a-2"&gt;&lt;/a&gt;sudo apt install -y okular
+&lt;pre class="code text"&gt;&lt;a name="rest_code_3e0c51ac713b48da9a64ec0d654b4e74-1"&gt;&lt;/a&gt;sudo apt update -q
+&lt;a name="rest_code_3e0c51ac713b48da9a64ec0d654b4e74-2"&gt;&lt;/a&gt;sudo apt install -y okular
 &lt;/pre&gt;&lt;p&gt;Ahora dispones del lector de archivos PDF en tu sistema. Puedes accederlo por
 el menú o por comando (&lt;code&gt;okular&lt;/code&gt;). La primera línea es recomendable para
 actualizar las direcciones desde las cuales se descarga el software y los
@@ -738,14 +738,14 @@ múltiples instancias o exponga una brecha de seguridad).&lt;/p&gt;
 disponibles.&lt;/p&gt;
 &lt;p id="appimagecode"&gt;Descargamos el &lt;a class="reference external" href="https://stellarium.org/"&gt;AppImage de Stellarium&lt;/a&gt; del sitio
 oficial del software (el segundo pingüino).&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_21cde0da4fbe4aa38728f35be72d7042-1"&gt;&lt;/a&gt;chmod 755 Stellarium-0.19.2-x86_64.AppImage
-&lt;a name="rest_code_21cde0da4fbe4aa38728f35be72d7042-2"&gt;&lt;/a&gt;./Stellarium-0.19.2-x86_64.AppImage
+&lt;pre class="code text"&gt;&lt;a name="rest_code_eac2ba81eb34429095e28e34239c7f38-1"&gt;&lt;/a&gt;chmod 755 Stellarium-0.19.2-x86_64.AppImage
+&lt;a name="rest_code_eac2ba81eb34429095e28e34239c7f38-2"&gt;&lt;/a&gt;./Stellarium-0.19.2-x86_64.AppImage
 &lt;/pre&gt;&lt;p&gt;La primera línea solo es necesario ejecutarla la primera vez.&lt;/p&gt;
 &lt;p&gt;Si queremos ejecutarlo de una manera más cómoda, podemos mover el archivo al
 directorio de ejecución de binarios del usuario o a uno de ejecución de sistema
 para estar disponible para todos los usuarios (&lt;code&gt;/usr/local/bin/&lt;/code&gt;).&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_85b32023d7134b66b8012663a880460c-1"&gt;&lt;/a&gt;mv Stellarium-0.19.2-x86_64.AppImage ~/.local/bin/stellarium
-&lt;a name="rest_code_85b32023d7134b66b8012663a880460c-2"&gt;&lt;/a&gt;stellarium
+&lt;pre class="code text"&gt;&lt;a name="rest_code_41d95aebcc6048cc9834d3fc889944b6-1"&gt;&lt;/a&gt;mv Stellarium-0.19.2-x86_64.AppImage ~/.local/bin/stellarium
+&lt;a name="rest_code_41d95aebcc6048cc9834d3fc889944b6-2"&gt;&lt;/a&gt;stellarium
 &lt;/pre&gt;&lt;p&gt;Nuevamente, la primera línea es solo la primera vez.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="snap"&gt;
@@ -755,10 +755,10 @@ para estar disponible para todos los usuarios (&lt;code&gt;/usr/local/bin/&lt;/c
 requiere aprobación de Canonical para ser admitido el paquete y requiere ser
 administrador para la instalación.&lt;/p&gt;
 &lt;p&gt;En Ubuntu viene preinstalado pero en Linux Mint es necesario instalarlo.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_8a76700aa2154a65974b1861df17384a-1"&gt;&lt;/a&gt;sudo apt install -y snapd
+&lt;pre class="code text"&gt;&lt;a name="rest_code_207926e10bcd4c56acc2c2d4a3988dad-1"&gt;&lt;/a&gt;sudo apt install -y snapd
 &lt;/pre&gt;&lt;p&gt;Una vez instalado, podemos proceder a instalar un paquete snap.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_44e98e03bc9a4b66952279cd95c888aa-1"&gt;&lt;/a&gt;sudo snap install code --classic
-&lt;a name="rest_code_44e98e03bc9a4b66952279cd95c888aa-2"&gt;&lt;/a&gt;snap run code # Ejecuta
+&lt;pre class="code text"&gt;&lt;a name="rest_code_d0cadcd1368f4051b5ebcf5d3f1678ad-1"&gt;&lt;/a&gt;sudo snap install code --classic
+&lt;a name="rest_code_d0cadcd1368f4051b5ebcf5d3f1678ad-2"&gt;&lt;/a&gt;snap run code # Ejecuta
 &lt;/pre&gt;&lt;p&gt;La ejecución con &lt;code&gt;snap run&lt;/code&gt; es necesaria si tras instalar no reconoce
 el paquete. Después de la primera ejecución o tras abrir una nueva terminal
 o reiniciar el equipo, será ya reconocido el paquete sin problema para
@@ -781,20 +781,20 @@ administrador.&lt;/p&gt;
 &lt;p&gt;En Linux Mint viene preconfigurado a partir de la versión 18.3, pero si usas
 Ubuntu necesitas instalarlo. Desde la 18.10 se encuentra en los repositorios
 oficiales.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_1448fd50347146afb6f2c1f740eba61a-1"&gt;&lt;/a&gt;sudo apt install flatpak
-&lt;a name="rest_code_1448fd50347146afb6f2c1f740eba61a-2"&gt;&lt;/a&gt;sudo apt install gnome-software-plugin-flatpak
-&lt;a name="rest_code_1448fd50347146afb6f2c1f740eba61a-3"&gt;&lt;/a&gt;flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+&lt;pre class="code text"&gt;&lt;a name="rest_code_3652c900e9834844a4b14e9957ac6210-1"&gt;&lt;/a&gt;sudo apt install flatpak
+&lt;a name="rest_code_3652c900e9834844a4b14e9957ac6210-2"&gt;&lt;/a&gt;sudo apt install gnome-software-plugin-flatpak
+&lt;a name="rest_code_3652c900e9834844a4b14e9957ac6210-3"&gt;&lt;/a&gt;flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 &lt;/pre&gt;&lt;p&gt;La primera línea instala el gestor de flatpak. La segunda línea permite usar
 flatpak con el Centro de Software de Gnome. Y la tercera línea agrega el
 repositorio de paquetes flatpak más popular, &lt;a class="reference external" href="https://flathub.org/home"&gt;flathub&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Para ejemplificar, instalaremos el paquete peek&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_56b2359b1cd04fe3bab8135f688c0de9-1"&gt;&lt;/a&gt;flatpak install -y flathub com.uploadedlobster.peek
-&lt;a name="rest_code_56b2359b1cd04fe3bab8135f688c0de9-2"&gt;&lt;/a&gt;flatpak run com.uploadedlobster.peek
+&lt;pre class="code text"&gt;&lt;a name="rest_code_c3012ae2c9144ade99f3f80ef57de195-1"&gt;&lt;/a&gt;flatpak install -y flathub com.uploadedlobster.peek
+&lt;a name="rest_code_c3012ae2c9144ade99f3f80ef57de195-2"&gt;&lt;/a&gt;flatpak run com.uploadedlobster.peek
 &lt;/pre&gt;&lt;p&gt;Desafortunadamente la ejecución es siempre así, pero puedes crear un archivo
 que te facilite la labor.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_09bac27800b347b5a829698d7307adf3-1"&gt;&lt;/a&gt;echo "flatpak run com.uploadedlobster.peek" &amp;gt; ~/.local/bin/peek
-&lt;a name="rest_code_09bac27800b347b5a829698d7307adf3-2"&gt;&lt;/a&gt;chmod 755 ~/.local/bin/peek
-&lt;a name="rest_code_09bac27800b347b5a829698d7307adf3-3"&gt;&lt;/a&gt;peek
+&lt;pre class="code text"&gt;&lt;a name="rest_code_fae3de9e48ee4209a286c201660f4f86-1"&gt;&lt;/a&gt;echo "flatpak run com.uploadedlobster.peek" &amp;gt; ~/.local/bin/peek
+&lt;a name="rest_code_fae3de9e48ee4209a286c201660f4f86-2"&gt;&lt;/a&gt;chmod 755 ~/.local/bin/peek
+&lt;a name="rest_code_fae3de9e48ee4209a286c201660f4f86-3"&gt;&lt;/a&gt;peek
 &lt;/pre&gt;&lt;p&gt;A nivel gráfico, por defecto si es agregado al menú.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="compilacion-y-binarios"&gt;
@@ -854,8 +854,8 @@ Linux pero por lo mismo dependerá de cual usemos.&lt;/p&gt;
 18.04, compartiendo mucho de la base de paquetes en sus repositorios. Así,
 en ambos casos, podremos proceder a instalar de la misma manera el SDK de
 Android, ADB, Fastboot y Platform Tools.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_fe5125cb19e449dcad7e3e4ee8e621f1-1"&gt;&lt;/a&gt;sudo apt install -y android-sdk android-tools-fastboot android-tools-adb \
-&lt;a name="rest_code_fe5125cb19e449dcad7e3e4ee8e621f1-2"&gt;&lt;/a&gt;android-sdk-platform-tools
+&lt;pre class="code text"&gt;&lt;a name="rest_code_1a98e27447c0499fb48d6c69f74826df-1"&gt;&lt;/a&gt;sudo apt install -y android-sdk android-tools-fastboot android-tools-adb \
+&lt;a name="rest_code_1a98e27447c0499fb48d6c69f74826df-2"&gt;&lt;/a&gt;android-sdk-platform-tools
 &lt;/pre&gt;&lt;/div&gt;
 &lt;div class="section" id="descargar-rom-de-fabrica"&gt;
 &lt;h2&gt;Descargar &lt;em&gt;ROM&lt;/em&gt; de fábrica&lt;/h2&gt;
@@ -881,13 +881,13 @@ soltar.&lt;/p&gt;&lt;/li&gt;
 &lt;p&gt;En este momento, hemos ingresado al modo &lt;em&gt;fastboot&lt;/em&gt; (o &lt;em&gt;bootloader&lt;/em&gt;).
 Conectamos el cable USB tanto al celular como a nuestro computador.&lt;/p&gt;
 &lt;p&gt;Podemos probar que todo vaya bien abriendo una terminal y ejecutando&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_95655c1de0f341bca0450a60ea583550-1"&gt;&lt;/a&gt;fastboot devices
+&lt;pre class="code text"&gt;&lt;a name="rest_code_509bbb954f244244a8250744c9fceb64-1"&gt;&lt;/a&gt;fastboot devices
 &lt;/pre&gt;&lt;p&gt;Y sabremos que funciona si muestra una secuencia alfanumérica y luego la
 palabra &lt;em&gt;fastboot&lt;/em&gt;. En mi caso es:&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_e51e3e9ae15846709760904cf2cb778f-1"&gt;&lt;/a&gt;ZY3224RNMN   fastboot
+&lt;pre class="code text"&gt;&lt;a name="rest_code_bef45fd1330f45cba8d11210b26b7883-1"&gt;&lt;/a&gt;ZY3224RNMN   fastboot
 &lt;/pre&gt;&lt;p&gt;Algunas veces puede fallar por permisos, en cuyo caso deberías probar la
 ejecución con permiso de administrador.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_a0c8fe5b174b4b1d95ae037d582d633a-1"&gt;&lt;/a&gt;sudo fastboot devices
+&lt;pre class="code text"&gt;&lt;a name="rest_code_3ff7176556154adaa81708b129041e8b-1"&gt;&lt;/a&gt;sudo fastboot devices
 &lt;/pre&gt;&lt;/div&gt;
 &lt;div class="section" id="instalar-sistema-operativo"&gt;
 &lt;h2&gt;Instalar sistema operativo&lt;/h2&gt;
@@ -897,33 +897,33 @@ operativo (algunos exploradores de archivos admiten poseen la opción de abrir
 la terminal en el directorio abierto en el explorador o puedes moverte en la
 terminal con el comando &lt;code&gt;cd&lt;/code&gt;).&lt;/p&gt;
 &lt;p&gt;Una vez ubicados en el directorio desde la terminal, procedemos a ejecutar&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a name="rest_code_7d8a8eb17f0044529ffd15dc50328c2e-1"&gt;&lt;/a&gt;fastboot getvar max-sparse-size
-&lt;a name="rest_code_7d8a8eb17f0044529ffd15dc50328c2e-2"&gt;&lt;/a&gt;fastboot oem fb_mode_set
-&lt;a name="rest_code_7d8a8eb17f0044529ffd15dc50328c2e-3"&gt;&lt;/a&gt;fastboot flash partition gpt.bin
-&lt;a name="rest_code_7d8a8eb17f0044529ffd15dc50328c2e-4"&gt;&lt;/a&gt;fastboot flash bootloader bootloader.img
-&lt;a name="rest_code_7d8a8eb17f0044529ffd15dc50328c2e-5"&gt;&lt;/a&gt;fastboot flash modem NON-HLOS.bin
-&lt;a name="rest_code_7d8a8eb17f0044529ffd15dc50328c2e-6"&gt;&lt;/a&gt;fastboot flash fsg fsg.mbn
-&lt;a name="rest_code_7d8a8eb17f0044529ffd15dc50328c2e-7"&gt;&lt;/a&gt;fastboot erase modemst1
-&lt;a name="rest_code_7d8a8eb17f0044529ffd15dc50328c2e-8"&gt;&lt;/a&gt;fastboot erase modemst2
-&lt;a name="rest_code_7d8a8eb17f0044529ffd15dc50328c2e-9"&gt;&lt;/a&gt;fastboot flash dsp adspso.bin
-&lt;a name="rest_code_7d8a8eb17f0044529ffd15dc50328c2e-10"&gt;&lt;/a&gt;fastboot flash logo logo.bin
-&lt;a name="rest_code_7d8a8eb17f0044529ffd15dc50328c2e-11"&gt;&lt;/a&gt;fastboot flash boot boot.img
-&lt;a name="rest_code_7d8a8eb17f0044529ffd15dc50328c2e-12"&gt;&lt;/a&gt;fastboot flash recovery recovery.img
-&lt;a name="rest_code_7d8a8eb17f0044529ffd15dc50328c2e-13"&gt;&lt;/a&gt;fastboot flash system system.img_sparsechunk.0
-&lt;a name="rest_code_7d8a8eb17f0044529ffd15dc50328c2e-14"&gt;&lt;/a&gt;fastboot flash system system.img_sparsechunk.1
-&lt;a name="rest_code_7d8a8eb17f0044529ffd15dc50328c2e-15"&gt;&lt;/a&gt;fastboot flash system system.img_sparsechunk.2
-&lt;a name="rest_code_7d8a8eb17f0044529ffd15dc50328c2e-16"&gt;&lt;/a&gt;fastboot flash system system.img_sparsechunk.3
-&lt;a name="rest_code_7d8a8eb17f0044529ffd15dc50328c2e-17"&gt;&lt;/a&gt;fastboot flash system system.img_sparsechunk.4
-&lt;a name="rest_code_7d8a8eb17f0044529ffd15dc50328c2e-18"&gt;&lt;/a&gt;fastboot flash system system.img_sparsechunk.5
-&lt;a name="rest_code_7d8a8eb17f0044529ffd15dc50328c2e-19"&gt;&lt;/a&gt;fastboot flash system system.img_sparsechunk.6
-&lt;a name="rest_code_7d8a8eb17f0044529ffd15dc50328c2e-20"&gt;&lt;/a&gt;fastboot flash system system.img_sparsechunk.7
-&lt;a name="rest_code_7d8a8eb17f0044529ffd15dc50328c2e-21"&gt;&lt;/a&gt;fastboot flash system system.img_sparsechunk.8
-&lt;a name="rest_code_7d8a8eb17f0044529ffd15dc50328c2e-22"&gt;&lt;/a&gt;fastboot flash oem oem.img
-&lt;a name="rest_code_7d8a8eb17f0044529ffd15dc50328c2e-23"&gt;&lt;/a&gt;fastboot erase cache
-&lt;a name="rest_code_7d8a8eb17f0044529ffd15dc50328c2e-24"&gt;&lt;/a&gt;fastboot erase userdata
-&lt;a name="rest_code_7d8a8eb17f0044529ffd15dc50328c2e-25"&gt;&lt;/a&gt;fastboot erase DDR
-&lt;a name="rest_code_7d8a8eb17f0044529ffd15dc50328c2e-26"&gt;&lt;/a&gt;fastboot oem fb_mode_clear
-&lt;a name="rest_code_7d8a8eb17f0044529ffd15dc50328c2e-27"&gt;&lt;/a&gt;fastboot reboot
+&lt;pre class="code text"&gt;&lt;a name="rest_code_03155a071544445a9b3a275af0bfbbcd-1"&gt;&lt;/a&gt;fastboot getvar max-sparse-size
+&lt;a name="rest_code_03155a071544445a9b3a275af0bfbbcd-2"&gt;&lt;/a&gt;fastboot oem fb_mode_set
+&lt;a name="rest_code_03155a071544445a9b3a275af0bfbbcd-3"&gt;&lt;/a&gt;fastboot flash partition gpt.bin
+&lt;a name="rest_code_03155a071544445a9b3a275af0bfbbcd-4"&gt;&lt;/a&gt;fastboot flash bootloader bootloader.img
+&lt;a name="rest_code_03155a071544445a9b3a275af0bfbbcd-5"&gt;&lt;/a&gt;fastboot flash modem NON-HLOS.bin
+&lt;a name="rest_code_03155a071544445a9b3a275af0bfbbcd-6"&gt;&lt;/a&gt;fastboot flash fsg fsg.mbn
+&lt;a name="rest_code_03155a071544445a9b3a275af0bfbbcd-7"&gt;&lt;/a&gt;fastboot erase modemst1
+&lt;a name="rest_code_03155a071544445a9b3a275af0bfbbcd-8"&gt;&lt;/a&gt;fastboot erase modemst2
+&lt;a name="rest_code_03155a071544445a9b3a275af0bfbbcd-9"&gt;&lt;/a&gt;fastboot flash dsp adspso.bin
+&lt;a name="rest_code_03155a071544445a9b3a275af0bfbbcd-10"&gt;&lt;/a&gt;fastboot flash logo logo.bin
+&lt;a name="rest_code_03155a071544445a9b3a275af0bfbbcd-11"&gt;&lt;/a&gt;fastboot flash boot boot.img
+&lt;a name="rest_code_03155a071544445a9b3a275af0bfbbcd-12"&gt;&lt;/a&gt;fastboot flash recovery recovery.img
+&lt;a name="rest_code_03155a071544445a9b3a275af0bfbbcd-13"&gt;&lt;/a&gt;fastboot flash system system.img_sparsechunk.0
+&lt;a name="rest_code_03155a071544445a9b3a275af0bfbbcd-14"&gt;&lt;/a&gt;fastboot flash system system.img_sparsechunk.1
+&lt;a name="rest_code_03155a071544445a9b3a275af0bfbbcd-15"&gt;&lt;/a&gt;fastboot flash system system.img_sparsechunk.2
+&lt;a name="rest_code_03155a071544445a9b3a275af0bfbbcd-16"&gt;&lt;/a&gt;fastboot flash system system.img_sparsechunk.3
+&lt;a name="rest_code_03155a071544445a9b3a275af0bfbbcd-17"&gt;&lt;/a&gt;fastboot flash system system.img_sparsechunk.4
+&lt;a name="rest_code_03155a071544445a9b3a275af0bfbbcd-18"&gt;&lt;/a&gt;fastboot flash system system.img_sparsechunk.5
+&lt;a name="rest_code_03155a071544445a9b3a275af0bfbbcd-19"&gt;&lt;/a&gt;fastboot flash system system.img_sparsechunk.6
+&lt;a name="rest_code_03155a071544445a9b3a275af0bfbbcd-20"&gt;&lt;/a&gt;fastboot flash system system.img_sparsechunk.7
+&lt;a name="rest_code_03155a071544445a9b3a275af0bfbbcd-21"&gt;&lt;/a&gt;fastboot flash system system.img_sparsechunk.8
+&lt;a name="rest_code_03155a071544445a9b3a275af0bfbbcd-22"&gt;&lt;/a&gt;fastboot flash oem oem.img
+&lt;a name="rest_code_03155a071544445a9b3a275af0bfbbcd-23"&gt;&lt;/a&gt;fastboot erase cache
+&lt;a name="rest_code_03155a071544445a9b3a275af0bfbbcd-24"&gt;&lt;/a&gt;fastboot erase userdata
+&lt;a name="rest_code_03155a071544445a9b3a275af0bfbbcd-25"&gt;&lt;/a&gt;fastboot erase DDR
+&lt;a name="rest_code_03155a071544445a9b3a275af0bfbbcd-26"&gt;&lt;/a&gt;fastboot oem fb_mode_clear
+&lt;a name="rest_code_03155a071544445a9b3a275af0bfbbcd-27"&gt;&lt;/a&gt;fastboot reboot
 &lt;/pre&gt;&lt;p&gt;Muy bien, hemos terminado de instalar (si no hemos tenido ejecuciones
 fallidas). Para iniciar el celular, con la tecla de volumen buscamos &lt;em&gt;restart&lt;/em&gt;
 y luego presionamos el botón de encendido. En este momento, es como si
@@ -1056,12 +1056,12 @@ memoria de video (&lt;em&gt;Video Memory&lt;/em&gt;).&lt;/p&gt;
 &lt;p&gt;Ahora, pasamos a la consola (powershell o CMD en Windows) y ejecutamos lo
 siguiente (si es Windows hay que poner &lt;code&gt;VBoxManage.exe&lt;/code&gt; estando en el
 directorio de VirtualBox -&lt;code&gt;cd "C:Program FilesOracleVirtualBox"&lt;/code&gt;-):&lt;/p&gt;
-&lt;pre class="code bash"&gt;&lt;a name="rest_code_49b7f7009f9d49c5b2b08dff5c5bb655-1"&gt;&lt;/a&gt;VBoxManage modifyvm &lt;span class="s2"&gt;"macos"&lt;/span&gt; --cpuidset &lt;span class="m"&gt;00000001&lt;/span&gt; 000106e5 &lt;span class="m"&gt;00100800&lt;/span&gt; 0098e3fd bfebfbff
-&lt;a name="rest_code_49b7f7009f9d49c5b2b08dff5c5bb655-2"&gt;&lt;/a&gt;VBoxManage setextradata &lt;span class="s2"&gt;"macos"&lt;/span&gt; &lt;span class="s2"&gt;"VBoxInternal/Devices/efi/0/Config/DmiSystemProduct"&lt;/span&gt; &lt;span class="s2"&gt;"iMac11,3"&lt;/span&gt;
-&lt;a name="rest_code_49b7f7009f9d49c5b2b08dff5c5bb655-3"&gt;&lt;/a&gt;VBoxManage setextradata &lt;span class="s2"&gt;"macos"&lt;/span&gt; &lt;span class="s2"&gt;"VBoxInternal/Devices/efi/0/Config/DmiSystemVersion"&lt;/span&gt; &lt;span class="s2"&gt;"1.0"&lt;/span&gt;
-&lt;a name="rest_code_49b7f7009f9d49c5b2b08dff5c5bb655-4"&gt;&lt;/a&gt;VBoxManage setextradata &lt;span class="s2"&gt;"macos"&lt;/span&gt; &lt;span class="s2"&gt;"VBoxInternal/Devices/efi/0/Config/DmiBoardProduct"&lt;/span&gt; &lt;span class="s2"&gt;"Iloveapple"&lt;/span&gt;
-&lt;a name="rest_code_49b7f7009f9d49c5b2b08dff5c5bb655-5"&gt;&lt;/a&gt;VBoxManage setextradata &lt;span class="s2"&gt;"macos"&lt;/span&gt; &lt;span class="s2"&gt;"VBoxInternal/Devices/smc/0/Config/DeviceKey"&lt;/span&gt; &lt;span class="s2"&gt;"ourhardworkbythesewordsguardedpleasedontsteal(c)AppleComputerInc"&lt;/span&gt;
-&lt;a name="rest_code_49b7f7009f9d49c5b2b08dff5c5bb655-6"&gt;&lt;/a&gt;VBoxManage setextradata &lt;span class="s2"&gt;"macos"&lt;/span&gt; &lt;span class="s2"&gt;"VBoxInternal/Devices/smc/0/Config/GetKeyFromRealSMC"&lt;/span&gt; &lt;span class="m"&gt;1&lt;/span&gt;
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_e9a94b7cfcd246c899cfdf2072d20ddb-1"&gt;&lt;/a&gt;VBoxManage modifyvm &lt;span class="s2"&gt;"macos"&lt;/span&gt; --cpuidset &lt;span class="m"&gt;00000001&lt;/span&gt; 000106e5 &lt;span class="m"&gt;00100800&lt;/span&gt; 0098e3fd bfebfbff
+&lt;a name="rest_code_e9a94b7cfcd246c899cfdf2072d20ddb-2"&gt;&lt;/a&gt;VBoxManage setextradata &lt;span class="s2"&gt;"macos"&lt;/span&gt; &lt;span class="s2"&gt;"VBoxInternal/Devices/efi/0/Config/DmiSystemProduct"&lt;/span&gt; &lt;span class="s2"&gt;"iMac11,3"&lt;/span&gt;
+&lt;a name="rest_code_e9a94b7cfcd246c899cfdf2072d20ddb-3"&gt;&lt;/a&gt;VBoxManage setextradata &lt;span class="s2"&gt;"macos"&lt;/span&gt; &lt;span class="s2"&gt;"VBoxInternal/Devices/efi/0/Config/DmiSystemVersion"&lt;/span&gt; &lt;span class="s2"&gt;"1.0"&lt;/span&gt;
+&lt;a name="rest_code_e9a94b7cfcd246c899cfdf2072d20ddb-4"&gt;&lt;/a&gt;VBoxManage setextradata &lt;span class="s2"&gt;"macos"&lt;/span&gt; &lt;span class="s2"&gt;"VBoxInternal/Devices/efi/0/Config/DmiBoardProduct"&lt;/span&gt; &lt;span class="s2"&gt;"Iloveapple"&lt;/span&gt;
+&lt;a name="rest_code_e9a94b7cfcd246c899cfdf2072d20ddb-5"&gt;&lt;/a&gt;VBoxManage setextradata &lt;span class="s2"&gt;"macos"&lt;/span&gt; &lt;span class="s2"&gt;"VBoxInternal/Devices/smc/0/Config/DeviceKey"&lt;/span&gt; &lt;span class="s2"&gt;"ourhardworkbythesewordsguardedpleasedontsteal(c)AppleComputerInc"&lt;/span&gt;
+&lt;a name="rest_code_e9a94b7cfcd246c899cfdf2072d20ddb-6"&gt;&lt;/a&gt;VBoxManage setextradata &lt;span class="s2"&gt;"macos"&lt;/span&gt; &lt;span class="s2"&gt;"VBoxInternal/Devices/smc/0/Config/GetKeyFromRealSMC"&lt;/span&gt; &lt;span class="m"&gt;1&lt;/span&gt;
 &lt;/pre&gt;&lt;p&gt;Tras esto estamos listos para encender la máquina virtual e instalar el
 sistema operativo en ella (nombre, usuario, contraseña, idioma, teclado). Lo
 único problemático aquí es que tendrás problema con el teclado pues esta
@@ -1082,7 +1082,7 @@ macOS para pruebas y poder instalar distintos paquetes comunes a la hora de
 programar.&lt;/p&gt;
 &lt;p&gt;Para ello debes abrir la consola que encontrarás en aplicaciones y ejecutar lo
 siguiente:&lt;/p&gt;
-&lt;pre class="code bash"&gt;&lt;a name="rest_code_e1f4d89dd12549d1845dfbde960759b5-1"&gt;&lt;/a&gt;ruby -e &lt;span class="s2"&gt;"&lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install&lt;span class="k"&gt;)&lt;/span&gt;&lt;span class="s2"&gt;"&lt;/span&gt;
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_9aead69b27504598bb2162b76454027d-1"&gt;&lt;/a&gt;ruby -e &lt;span class="s2"&gt;"&lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install&lt;span class="k"&gt;)&lt;/span&gt;&lt;span class="s2"&gt;"&lt;/span&gt;
 &lt;/pre&gt;&lt;p&gt;Tendrás que tener paciencia pues el proceso me tomó 45 minutos (en foros
 reportan la instalación de &lt;em&gt;homebrew&lt;/em&gt; de casi 2 horas) y necesitas estar
 pendiente pues hay dos solicitudes de tu contraseña.&lt;/p&gt;
@@ -1093,12 +1093,12 @@ pendiente pues hay dos solicitudes de tu contraseña.&lt;/p&gt;
 &lt;p&gt;Una vez instalado, puedes aprovechar a dejar listo python (actualiza la
 versión por defecto e instala el gestor pip). Igualmente es conveniente
 instalar otros paquetes de uso común por otras aplicaciones .&lt;/p&gt;
-&lt;pre class="code bash"&gt;&lt;a name="rest_code_f59c45a8a30e44e48cea99932982fc3f-1"&gt;&lt;/a&gt;brew install pkg-config &lt;span class="c1"&gt;# Ayuda a determinar la lista de paquetes existentes&lt;/span&gt;
-&lt;a name="rest_code_f59c45a8a30e44e48cea99932982fc3f-2"&gt;&lt;/a&gt;brew install python3 &lt;span class="c1"&gt;# Python3 no viene por defecto&lt;/span&gt;
-&lt;a name="rest_code_f59c45a8a30e44e48cea99932982fc3f-3"&gt;&lt;/a&gt;brew install python2 &lt;span class="c1"&gt;# Actualiza la versión existente. En ambos casos se instala pip (pip2 y pip3)&lt;/span&gt;
-&lt;a name="rest_code_f59c45a8a30e44e48cea99932982fc3f-4"&gt;&lt;/a&gt;brew install freetype &lt;span class="c1"&gt;# Requerido para la manipulación de fuentes -por ejemplo en matplotlib-&lt;/span&gt;
-&lt;a name="rest_code_f59c45a8a30e44e48cea99932982fc3f-5"&gt;&lt;/a&gt;brew install libpng &lt;span class="c1"&gt;# Requerido para la manipulación de imágenes png -por ejemplo en matplotlib-&lt;/span&gt;
-&lt;a name="rest_code_f59c45a8a30e44e48cea99932982fc3f-6"&gt;&lt;/a&gt;brew install pygtk &lt;span class="c1"&gt;# Binding de GTK para python. Interfaces en pygtk son comunes.&lt;/span&gt;
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_23ed304ccadc4393b09efadf1c59ae98-1"&gt;&lt;/a&gt;brew install pkg-config &lt;span class="c1"&gt;# Ayuda a determinar la lista de paquetes existentes&lt;/span&gt;
+&lt;a name="rest_code_23ed304ccadc4393b09efadf1c59ae98-2"&gt;&lt;/a&gt;brew install python3 &lt;span class="c1"&gt;# Python3 no viene por defecto&lt;/span&gt;
+&lt;a name="rest_code_23ed304ccadc4393b09efadf1c59ae98-3"&gt;&lt;/a&gt;brew install python2 &lt;span class="c1"&gt;# Actualiza la versión existente. En ambos casos se instala pip (pip2 y pip3)&lt;/span&gt;
+&lt;a name="rest_code_23ed304ccadc4393b09efadf1c59ae98-4"&gt;&lt;/a&gt;brew install freetype &lt;span class="c1"&gt;# Requerido para la manipulación de fuentes -por ejemplo en matplotlib-&lt;/span&gt;
+&lt;a name="rest_code_23ed304ccadc4393b09efadf1c59ae98-5"&gt;&lt;/a&gt;brew install libpng &lt;span class="c1"&gt;# Requerido para la manipulación de imágenes png -por ejemplo en matplotlib-&lt;/span&gt;
+&lt;a name="rest_code_23ed304ccadc4393b09efadf1c59ae98-6"&gt;&lt;/a&gt;brew install pygtk &lt;span class="c1"&gt;# Binding de GTK para python. Interfaces en pygtk son comunes.&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</description><category>emulación</category><category>hackintosh</category><category>linux</category><category>macos</category><category>máquina virtual</category><guid>https://www.cosmoscalibur.com/blog/ejecutando-macos-en-linux/</guid><pubDate>Fri, 19 Jan 2018 03:16:55 GMT</pubDate></item><item><title>Con calma para SteamOS</title><link>https://www.cosmoscalibur.com/blog/con-calma-para-steamos/</link><dc:creator>Edward Villegas-Pulgarin</dc:creator><description>&lt;div&gt;&lt;p&gt;Bueno, es un poco raro que sin escribir hace mucho, lo primero que
 escriba sea del mundo linux que del mundo de la ciencia y
 particularmente de la física que es mi especialidad. Pero resulta que a
