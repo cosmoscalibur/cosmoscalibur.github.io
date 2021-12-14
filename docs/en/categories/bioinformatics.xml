@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='utf-8'?>
-<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>Cosmoscalibur (Posts about bioinformatics)</title><link>https://www.cosmoscalibur.com/</link><description/><atom:link href="https://www.cosmoscalibur.com/en/categories/bioinformatics.xml" rel="self" type="application/rss+xml"/><language>en</language><copyright>Contents © 2020 &lt;a href="mailto:cosmoscalibur&amp;#64;gmail.com"&gt;Edward Villegas-Pulgarin&lt;/a&gt; 
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>Cosmoscalibur (Posts about bioinformatics)</title><link>https://www.cosmoscalibur.com/</link><description/><atom:link href="https://www.cosmoscalibur.com/en/categories/bioinformatics.xml" rel="self" type="application/rss+xml"/><language>en</language><copyright>Contents © 2021 &lt;a href="mailto:cosmoscalibur&amp;#64;gmail.com"&gt;Edward Villegas-Pulgarin&lt;/a&gt; 
 &lt;a rel="license" href="https://creativecommons.org/licenses/by/4.0/"&gt;
 &lt;img alt="Creative Commons License BY 4.0"
 style="border-width:0; margin-bottom:12px;"
-src="https://licensebuttons.net/l/by/4.0/88x31.png"&gt;&lt;/a&gt;</copyright><lastBuildDate>Sun, 01 Nov 2020 19:19:50 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Compute specific and intersection elements with R</title><link>https://www.cosmoscalibur.com/en/blog/determinar-intersecciones-en-el-diagrama-de-venn-con-r/</link><dc:creator>Edward Villegas-Pulgarin</dc:creator><description>&lt;div&gt;&lt;p&gt;This is my first posts about R language, my first english post and my first R
+src="https://licensebuttons.net/l/by/4.0/88x31.png"&gt;&lt;/a&gt;</copyright><lastBuildDate>Tue, 14 Dec 2021 21:00:15 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Compute specific and intersection elements with R</title><link>https://www.cosmoscalibur.com/en/blog/determinar-intersecciones-en-el-diagrama-de-venn-con-r/</link><dc:creator>Edward Villegas-Pulgarin</dc:creator><description>&lt;div&gt;&lt;p&gt;This is my first posts about R language, my first english post and my first R
 package: &lt;a href="https://github.com/cosmoscalibur/venn.compute"&gt;&lt;code&gt;venn.compute&lt;/code&gt;&lt;/a&gt;, which
 use case in bioinformatics is compare list of genes.&lt;/p&gt;
 &lt;!-- TEASER_END --&gt;
@@ -25,7 +25,6 @@ diagram instead of plot.&lt;/p&gt;
 &lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;devtools&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="nf"&gt;install_github&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"cosmoscalibur/venn.compute"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;
 
-
 &lt;p&gt;Downloading GitHub repo cosmoscalibur/venn.compute@master&lt;/p&gt;
 &lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;formatR&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mf"&gt;1.6&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mf"&gt;1.7&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="n"&gt;CRAN&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
 
@@ -43,18 +42,15 @@ diagram instead of plot.&lt;/p&gt;
 &lt;span class="err"&gt;─&lt;/span&gt;&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="n"&gt;building&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;‘&lt;/span&gt;&lt;span class="n"&gt;venn&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;compute_1&lt;/span&gt;&lt;span class="mf"&gt;.1.0&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;tar&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;gz&lt;/span&gt;&lt;span class="err"&gt;’&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;
 
-
 &lt;p&gt;If an error about TAR executable is showed (common in Linux with Anaconda,
 &lt;code&gt;sh: 1: /bin/gtar: not found&lt;/code&gt;), you need to setup your TAR path.&lt;/p&gt;
 &lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nf"&gt;Sys.setenv&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;TAR&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;"/bin/tar"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;
 
-
 &lt;h2&gt;How to use&lt;/h2&gt;
 &lt;p&gt;First, load the package.&lt;/p&gt;
 &lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nf"&gt;library&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;venn.compute&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;
-
 
 &lt;h3&gt;Lectura de archivos&lt;/h3&gt;
 &lt;h3&gt;Read files&lt;/h3&gt;
@@ -68,23 +64,20 @@ line of the file).&lt;/p&gt;
 &lt;span class="nf"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sets&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;
 
+&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$primes
+[1] "1"  "2"  "3"  "5"  "7"  "11" "13" "17"
 
-&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="n"&gt;primes&lt;/span&gt;
-&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="ss"&gt;"1"&lt;/span&gt;  &lt;span class="ss"&gt;"2"&lt;/span&gt;  &lt;span class="ss"&gt;"3"&lt;/span&gt;  &lt;span class="ss"&gt;"5"&lt;/span&gt;  &lt;span class="ss"&gt;"7"&lt;/span&gt;  &lt;span class="ss"&gt;"11"&lt;/span&gt; &lt;span class="ss"&gt;"13"&lt;/span&gt; &lt;span class="ss"&gt;"17"&lt;/span&gt;
+$even
+ [1] "0"  "2"  "4"  "6"  "8"  "10" "12" "14" "16" "18"
 
-&lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="n"&gt;even&lt;/span&gt;
- &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="ss"&gt;"0"&lt;/span&gt;  &lt;span class="ss"&gt;"2"&lt;/span&gt;  &lt;span class="ss"&gt;"4"&lt;/span&gt;  &lt;span class="ss"&gt;"6"&lt;/span&gt;  &lt;span class="ss"&gt;"8"&lt;/span&gt;  &lt;span class="ss"&gt;"10"&lt;/span&gt; &lt;span class="ss"&gt;"12"&lt;/span&gt; &lt;span class="ss"&gt;"14"&lt;/span&gt; &lt;span class="ss"&gt;"16"&lt;/span&gt; &lt;span class="ss"&gt;"18"&lt;/span&gt;
-
-&lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="n"&gt;fibo&lt;/span&gt;
-&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="ss"&gt;"1"&lt;/span&gt;  &lt;span class="ss"&gt;"2"&lt;/span&gt;  &lt;span class="ss"&gt;"3"&lt;/span&gt;  &lt;span class="ss"&gt;"5"&lt;/span&gt;  &lt;span class="ss"&gt;"8"&lt;/span&gt;  &lt;span class="ss"&gt;"13"&lt;/span&gt;
+$fibo
+[1] "1"  "2"  "3"  "5"  "8"  "13"
 &lt;/code&gt;&lt;/pre&gt;
-
 
 &lt;h3&gt;Compute intersections and specific elements&lt;/h3&gt;
 &lt;p&gt;Now you can compute specific elements of Venn diagram intersections.&lt;/p&gt;
 &lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nf"&gt;venn.compute_specific&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sets&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;
-
 
 &lt;dl&gt;
     &lt;dt&gt;$primes_even_fibo&lt;/dt&gt;
@@ -129,11 +122,9 @@ using convention of join sets name with underscore.&lt;/p&gt;
 &lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nf"&gt;venn.compute_specific&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sets&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;output_dir&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nf"&gt;file.path&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"tests"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;"output"&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;
 
-
 &lt;p&gt;We can verify written files.&lt;/p&gt;
 &lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nf"&gt;dir&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;file.path&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"tests"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;"output"&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;
-
 
 &lt;ol class="list-inline"&gt;
     &lt;li&gt;'even_fibo.txt'&lt;/li&gt;
@@ -151,7 +142,6 @@ as before (internally using
 &lt;a href="https://cran.r-project.org/web/packages/VennDiagram/index.html"&gt;&lt;code&gt;VennDiagram&lt;/code&gt;&lt;/a&gt;)&lt;/p&gt;
 &lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nf"&gt;venn.compute_plot&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sets&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;output_dir&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nf"&gt;file.path&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"tests"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;"output"&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;
-
 
 &lt;p&gt;Now, we have a &lt;code&gt;primes_even_fibo.png&lt;/code&gt; file.  &lt;/p&gt;
 &lt;p&gt;&lt;/p&gt;&lt;div class="figure "&gt;&lt;a href="https://www.cosmoscalibur.com/images/determinar-intersecciones-en-el-diagrama-de-venn-con-r/primes_even_fibo.png" class="image-reference"&gt;&lt;img src="https://www.cosmoscalibur.com/images/determinar-intersecciones-en-el-diagrama-de-venn-con-r/primes_even_fibo.thumbnail.png"&gt;&lt;/a&gt;&lt;p&gt;Venn diagram generate here with VennDiagram.&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;</description><category>bioinformatics</category><category>r language</category><category>venn diagram</category><guid>https://www.cosmoscalibur.com/en/blog/determinar-intersecciones-en-el-diagrama-de-venn-con-r/</guid><pubDate>Sun, 14 Jun 2020 00:40:00 GMT</pubDate></item></channel></rss>

@@ -5,7 +5,7 @@
 <meta content="En esta publicación explicaremos como crear una versión ligera de Windows con la herramienta MSMG Toolkit." name="description">
 <meta content="width=device-width, initial-scale=1" name="viewport">
 <title>Crear versión de Windows mínima con MSMG Toolkit | Cosmoscalibur</title>
-<link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" rel="stylesheet">
+<link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" rel="stylesheet">
 <link crossorigin="anonymous" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.11.1/baguetteBox.min.css" integrity="sha256-cLMYWYYutHkt+KpNqjg7NVkYSQ+E2VbrXsEvOqU7mL0=" rel="stylesheet">
 <link href="../../assets/css/all.css" rel="stylesheet" type="text/css">
 <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900" rel="stylesheet">
@@ -86,43 +86,47 @@
 <p>Reciente eliminé la partición de Windows de mi máquina por un problema en el qué probé crear la tabla de partición de nuevo, pero me dio pereza instalar en ese momento Windows porque mi sistema operativo principal es Linux. Además, Windows no funcioba fluidamente en la máquina.</p>
 <p>Ahora, consideré instalarlo en máquina virtual, lo que limita aún más los recursos para Windows y decidí explorar como obtener un Windows que fuera básicamente el sistema operativo sin tanta cosa preinstalada (muchas asociadas a servicios que se ejecutan en segundo plano afectando el rendimiento o que nunca uso).</p>
 <!-- TEASER_END -->
-<div class="section" id="requisitos-para-crear-la-version-minima">
+<section id="requisitos-para-crear-la-version-minima">
 <h2>Requisitos para crear la versión mínima</h2>
 <p>Además de nuestro equipo con Windows para poder ejecutar el software que nos asistirá en el proceso, necesitamos dicho software y una imagen de Windows para modificar.</p>
-<div class="section" id="obtener-imagen-de-windows">
+<section id="obtener-imagen-de-windows">
 <h3>Obtener imagen de Windows</h3>
-<p>Este es nuestro punto base, así que lo explicaremos primero. La forma de obtener una imagen de Windows es a través de la página oficial <a class="citation-reference" href="#win10" id="id1">[win10]</a> (descarga gratuita pero no licenciada) seleccionando la edición, lenguaje y arquitectura (si es un equipo reciente, estamos seguros que es 64 bits).</p>
-<p>Una segunda opción, es a través de Media Creation Tool <a class="citation-reference" href="#mediacreation" id="id2">[mediacreation]</a>, una utilidad de Microsoft para la descarga de la imagen de Windows. En esta seleccionanos la misma información anterior.</p>
-</div>
-<div class="section" id="descargar-msmg-toolkit">
+<p>Este es nuestro punto base, así que lo explicaremos primero. La forma de obtener una imagen de Windows es a través de la página oficial <a class="citation-reference" href="#win10" id="citation-reference-1" role="doc-biblioref">[win10]</a> (descarga gratuita pero no licenciada) seleccionando la edición, lenguaje y arquitectura (si es un equipo reciente, estamos seguros que es 64 bits).</p>
+<p>Una segunda opción, es a través de Media Creation Tool <a class="citation-reference" href="#mediacreation" id="citation-reference-2" role="doc-biblioref">[mediacreation]</a>, una utilidad de Microsoft para la descarga de la imagen de Windows. En esta seleccionanos la misma información anterior.</p>
+</section>
+<section id="descargar-msmg-toolkit">
 <h3>Descargar MSMG Toolkit</h3>
-<p>Ahora sigue la herramienta, <em>MSMG Toolkit</em> <a class="citation-reference" href="#msmg" id="id3">[msmg]</a>. Es una herramienta gratuita para la personalización del instalador de Windows, lo cual se traduce en la opción de reducir el impacto de los componentes preinstalados tanto en espacio como en rendimiento, pero también hacer uno que otro ajuste estético.</p>
+<p>Ahora sigue la herramienta, <em>MSMG Toolkit</em> <a class="citation-reference" href="#msmg" id="citation-reference-3" role="doc-biblioref">[msmg]</a>. Es una herramienta gratuita para la personalización del instalador de Windows, lo cual se traduce en la opción de reducir el impacto de los componentes preinstalados tanto en espacio como en rendimiento, pero también hacer uno que otro ajuste estético.</p>
 <p>En la página descargamos la herramienta <code>MSMG Toolkit v10.1</code>, y descargamos <em>MSMG Toolkit Packs</em> solo en caso de querer reinstalar algunas componentes (es raro, pero la estrategia puede ser más rápida eliminando colecciones y luego agregar una que otra componente, pero esto no lo discutiré).</p>
-<div class="figure align-center"><a class="reference external image-reference" href="../../images/crear-version-de-windows-minima-con-msmg-toolkit/descargar-msmg-toolkit.png"><img alt="Indicación del archivo a descargar de MSMG en Mega." src="../../images/crear-version-de-windows-minima-con-msmg-toolkit/descargar-msmg-toolkit.thumbnail.png" style="width: 800px; height: 400px;"></a>
-<p class="caption">Indicación del archivo a descargar de MSMG en Mega.</p>
-</div>
+<figure class="align-center"><a class="reference external image-reference" href="../../images/crear-version-de-windows-minima-con-msmg-toolkit/descargar-msmg-toolkit.png"><img alt="Indicación del archivo a descargar de MSMG en Mega." src="../../images/crear-version-de-windows-minima-con-msmg-toolkit/descargar-msmg-toolkit.thumbnail.png" style="width: 800px; height: 400px;"></a>
+<figcaption>
+<p>Indicación del archivo a descargar de MSMG en Mega.</p>
+</figcaption>
+</figure>
 <p>Ahora descomprimimos el archivo.</p>
-</div>
-</div>
-<div class="section" id="ejecutar-msmg-toolkit">
+</section>
+</section>
+<section id="ejecutar-msmg-toolkit">
 <h2>Ejecutar MSMG Toolkit</h2>
 <p>El foco de esta publucación se encuentra en eliminar componentes, pues es justo lo que impacta espacio de almacenamiento y rendimiento. La opción de integración depende de los <em>packs</em> y consta de ubicar los instaladores en las carpetas respectivas pero hacer el seguimiento de algunas dependencias para ubicar los requeridos no me parece cómodo y prefiero sacrificarlos.</p>
-<div class="section" id="inicializar-imagen">
+<section id="inicializar-imagen">
 <h3>Inicializar imagen</h3>
 <p>La imagen de Windows que obtuvimos la ubicamos en la carpeta ISO de la carpeta generada al descomprimir la descarga de <em>MSMG Toolkit</em>.</p>
 <p>También en la carpeta de <em>MSMG Toolkit</em>, encontraremos un archivo <em>batch</em> llamado <code>start</code>. Daremos doble clic y aceptamos la licencia de uso ingresando <code>A</code> y luego presionamos <code>↩</code>.</p>
-<div class="admonition note">
+<aside class="admonition note">
 <p class="admonition-title">Nota</p>
 <p>Respecto a los ingresos de información, de ahora en adelante voy a referir al nombre de la opción y, debe entenderse como el número o letra que figura a su izquierda (al interior de los corchetes) en el menú y presionar <code>↩</code> (enter).</p>
-</div>
+</aside>
 <p>En el menú, seleccionamos <code>Source</code> y ahora <code>Extract Source from DVD ISO Image</code>. A continuación ingresamos el nombre del archivo <em>ISO</em> sin extensión (ejemplo, si es <code>Windows.iso</code> debemos ingresar <code>Windows</code>. Esta opción extrae los archivos del ISO de la imagen y los ubica en la carpeta DVD.</p>
 <p>En este momento debemos convertir el formato de imagen extraída de <em>ESD</em> a <em>WIM</em>. Vamos a <code>Convert</code> con la opción <code>Convert Install ESD Image to WIM Image</code>. Aquí debemos indicar el índice de nuestra versión de Windows, que en mi caso corresponde a <code>Windows 10 Home Single Language</code>.</p>
-<div class="figure align-center"><a class="reference external image-reference" href="../../images/crear-version-de-windows-minima-con-msmg-toolkit/convert-windows-esd-wim.png"><img alt="Menú de convertir imagen ESD a WIM." src="../../images/crear-version-de-windows-minima-con-msmg-toolkit/convert-windows-esd-wim.thumbnail.png" style="width: 400px; height: 600px;"></a>
-<p class="caption">Menú de conversión de imagen ESD a WIM con selección de la versión de Windows deseada.</p>
-</div>
+<figure class="align-center"><a class="reference external image-reference" href="../../images/crear-version-de-windows-minima-con-msmg-toolkit/convert-windows-esd-wim.png"><img alt="Menú de convertir imagen ESD a WIM." src="../../images/crear-version-de-windows-minima-con-msmg-toolkit/convert-windows-esd-wim.thumbnail.png" style="width: 400px; height: 600px;"></a>
+<figcaption>
+<p>Menú de conversión de imagen ESD a WIM con selección de la versión de Windows deseada.</p>
+</figcaption>
+</figure>
 <p>Ahora volvemos a <code>Source</code> y la opción <code>Select Source from &lt;DVD&gt; folder</code>. Aquí indicamos el único índice que tendremos disponible y queda a decisión de cada quien las siguientes preguntas (no observé diferencia).</p>
-</div>
-<div class="section" id="eliminar-componentes">
+</section>
+<section id="eliminar-componentes">
 <h3>Eliminar componentes</h3>
 <p>Este es el paso importante del procedimiento y el más demorado. La forma más rápida de proceder es eliminar por conjuntos de componentes y no a nivel de detalle.</p>
 <p>Para remover estas componentes vamos a <code>Remove</code> y luego <code>Remove Windows Components</code>. Ahora tenemos un menú asociado a los distintos conjuntos de componentes que podemos remover. Estos pueden ser removidos como conjunto o removemos componentes individuales (una a una, lo cual lo hace un procedimiento largo, aburridor y de mucha atención).</p>
@@ -159,46 +163,43 @@
 </dd>
 </dl>
 <p>Puedes hacerlo de esta forma, o componente a componente, pero advertencia, algunas implican estar pendientes de dependencias de otros conjuntos.</p>
-</div>
-<div class="section" id="generar-imagen-de-windows-minima">
+</section>
+<section id="generar-imagen-de-windows-minima">
 <h3>Generar imagen de Windows mínima</h3>
 <p>Terminado el proceso de eliminar las componentes no deseadas, accedemos a <code>Apply</code> y luego a <code>Apply & Save Changes to Source Images</code>. Terminada la aplicación de cambios procedemos a <code>Target</code> y la opción <code>Make a DVD ISO Image</code> (pero también puedes aprovechar a crear la USB para arranque <code>Copy Source to USB Flash Drive</code>). Asignamos el nombre a nuestra imagen y procedemos. En el caso de la USB se selecciona la unidad de la USB.</p>
 <p>Con nuestra imagen lista, ahora puedes quemarla o usarla para una máquina virtual (carga directamente <em>ISO</em>).</p>
-</div>
-</div>
-<div class="section" id="consideraciones-finales">
+</section>
+</section>
+<section id="consideraciones-finales">
 <h2>Consideraciones finales</h2>
 <p>A diferencia de distintos sitios que "explican" el uso de MSMG, en este caso he detallado adecuadamente las opciones, y en especial parte de selección de la imagen de Windows que no suele decirse más que "una vez seleccionada".</p>
-<p>Si como yo, decides remover todas las componentes posibles, vas a requerir Powershell para instalar por comandos al menos el navegador y de ahí instalar otros programas, o tener los instaladores listos en una USB. Mi sugerencia, es aprovechar el gestor de paquetes <em>scoop</em> <a class="citation-reference" href="#scoop" id="id4">[scoop]</a> que puede instalarse con Powershell siguiendo los pasos del sitio web, y agregar el repositorio de <code>extras</code> para instalar paquetes como <em>Firefox</em>, <em>Imageglass</em> y <em>LibreOffice</em> (más adelante haré una publicación al respecto).</p>
-<p>Finalmente, es bueno un menú como <em>Open Shell</em> <a class="citation-reference" href="#shell" id="id5">[shell]</a> dado que perdimos las opciones de búsqueda de Windows 10 y el menú básico no es muy cómodo.</p>
-<div class="figure align-center"><a class="reference external image-reference" href="../../images/crear-version-de-windows-minima-con-msmg-toolkit/windows-minimal-openshell-scoop.png"><img alt="Windows mínimo en máquina Virtual." src="../../images/crear-version-de-windows-minima-con-msmg-toolkit/windows-minimal-openshell-scoop.thumbnail.png" style="width: 600px; height: 400px;"></a>
-<p class="caption">Windows mínimo en máquina virtual, haciendo uso de <em>Open Shell</em> y aplicaciones de <em>scoop</em>.</p>
-</div>
+<p>Si como yo, decides remover todas las componentes posibles, vas a requerir Powershell para instalar por comandos al menos el navegador y de ahí instalar otros programas, o tener los instaladores listos en una USB. Mi sugerencia, es aprovechar el gestor de paquetes <em>scoop</em> <a class="citation-reference" href="#scoop" id="citation-reference-4" role="doc-biblioref">[scoop]</a> que puede instalarse con Powershell siguiendo los pasos del sitio web, y agregar el repositorio de <code>extras</code> para instalar paquetes como <em>Firefox</em>, <em>Imageglass</em> y <em>LibreOffice</em> (más adelante haré una publicación al respecto).</p>
+<p>Finalmente, es bueno un menú como <em>Open Shell</em> <a class="citation-reference" href="#shell" id="citation-reference-5" role="doc-biblioref">[shell]</a> dado que perdimos las opciones de búsqueda de Windows 10 y el menú básico no es muy cómodo.</p>
+<figure class="align-center"><a class="reference external image-reference" href="../../images/crear-version-de-windows-minima-con-msmg-toolkit/windows-minimal-openshell-scoop.png"><img alt="Windows mínimo en máquina Virtual." src="../../images/crear-version-de-windows-minima-con-msmg-toolkit/windows-minimal-openshell-scoop.thumbnail.png" style="width: 600px; height: 400px;"></a>
+<figcaption>
+<p>Windows mínimo en máquina virtual, haciendo uso de <em>Open Shell</em> y aplicaciones de <em>scoop</em>.</p>
+</figcaption>
+</figure>
 <p>Debes tener en cuenta que algunas componentes pueden perderse de forma definitiva (instalarlas es hacer reparación de instalación con el instalador original o simplemente no hay forma). Y esto tiene un efecto en otros posibles programas que ya no podrás instalar (en mi caso no puedo usar distros Linux para Windows porque no tengo WSL).</p>
 <p>Puedo decir que con 4 GB de RAM asignados a la máquina virtual tengo fluido Windows cuando la instalación directa en la máquina con 8 GB de RAM hasta se tostaba con solo tener abierto <em>Firefox</em> y <em>Word</em>.</p>
-<dl class="citation">
-<dt class="label" id="win10"><span class="brackets"><a class="fn-backref" href="#id1">win10</a></span></dt>
-<dd>
+<div class="citation-list" role="list">
+<div class="citation" id="win10" role="doc-biblioentry"><span class="label"><span class="fn-bracket">[</span><a href="#citation-reference-1" role="doc-backlink">win10</a><span class="fn-bracket">]</span></span>
 <p><a class="reference external" href="https://www.microsoft.com/en-us/software-download/windows10ISO">Download Windows 10 Disc Image (ISO File)</a>.</p>
-</dd>
-<dt class="label" id="mediacreation"><span class="brackets"><a class="fn-backref" href="#id2">mediacreation</a></span></dt>
-<dd>
-<p><a class="reference external" href="https://go.microsoft.com/fwlink/?LinkId=691209">Media Creation Tool (direct download)</a>.</p>
-</dd>
-<dt class="label" id="msmg"><span class="brackets"><a class="fn-backref" href="#id3">msmg</a></span></dt>
-<dd>
-<p><a class="reference external" href="https://msmgtoolkit.in/download.html">MSMG Toolkit Downloads</a>.</p>
-</dd>
-<dt class="label" id="scoop"><span class="brackets"><a class="fn-backref" href="#id4">scoop</a></span></dt>
-<dd>
-<p><a class="reference external" href="https://scoop.sh/">Scoop - A command-line installer for Windows</a></p>
-</dd>
-<dt class="label" id="shell"><span class="brackets"><a class="fn-backref" href="#id5">shell</a></span></dt>
-<dd>
-<p><a class="reference external" href="https://github.com/Open-Shell/Open-Shell-Menu/releases">Open Shell Menu - GitHub</a>.</p>
-</dd>
-</dl>
 </div>
+<div class="citation" id="mediacreation" role="doc-biblioentry"><span class="label"><span class="fn-bracket">[</span><a href="#citation-reference-2" role="doc-backlink">mediacreation</a><span class="fn-bracket">]</span></span>
+<p><a class="reference external" href="https://go.microsoft.com/fwlink/?LinkId=691209">Media Creation Tool (direct download)</a>.</p>
+</div>
+<div class="citation" id="msmg" role="doc-biblioentry"><span class="label"><span class="fn-bracket">[</span><a href="#citation-reference-3" role="doc-backlink">msmg</a><span class="fn-bracket">]</span></span>
+<p><a class="reference external" href="https://msmgtoolkit.in/download.html">MSMG Toolkit Downloads</a>.</p>
+</div>
+<div class="citation" id="scoop" role="doc-biblioentry"><span class="label"><span class="fn-bracket">[</span><a href="#citation-reference-4" role="doc-backlink">scoop</a><span class="fn-bracket">]</span></span>
+<p><a class="reference external" href="https://scoop.sh/">Scoop - A command-line installer for Windows</a></p>
+</div>
+<div class="citation" id="shell" role="doc-biblioentry"><span class="label"><span class="fn-bracket">[</span><a href="#citation-reference-5" role="doc-backlink">shell</a><span class="fn-bracket">]</span></span>
+<p><a class="reference external" href="https://github.com/Open-Shell/Open-Shell-Menu/releases">Open Shell Menu - GitHub</a>.</p>
+</div>
+</div>
+</section>
 </div>
 </div>
 <aside class="postpromonav">
@@ -235,21 +236,19 @@
 var disqus_shortname="cosmoscalibur";(function(){var a=document.createElement("script");a.async=true;a.src="https://"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());
 </script><!--End of body content-->
 <footer id="footer">Si te ha sido útil o te ha gustado este contenido, <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=R6BHD346EBXMC&amp;source=url" rel="nofollow">invítame una cerveza 🍺</a>.<br>
-Contents © 2020 <a href="mailto:cosmoscalibur@gmail.com">Edward Villegas-Pulgarin</a> - Powered by <a href="https://getnikola.com" rel="nofollow">Nikola</a> <a href="https://creativecommons.org/licenses/by/4.0/" rel="license"><img alt="Creative Commons License BY 4.0" src="https://licensebuttons.net/l/by/4.0/88x31.png" style="border-width:0; margin-bottom:12px;"></a></footer>
+Contents © 2021 <a href="mailto:cosmoscalibur@gmail.com">Edward Villegas-Pulgarin</a> - Powered by <a href="https://getnikola.com" rel="nofollow">Nikola</a> <a href="https://creativecommons.org/licenses/by/4.0/" rel="license"><img alt="Creative Commons License BY 4.0" src="https://licensebuttons.net/l/by/4.0/88x31.png" style="border-width:0; margin-bottom:12px;"></a></footer>
 </div>
 </div>
-<script crossorigin="anonymous" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script crossorigin="anonymous" integrity="sha256-/ijcOLwFf26xEYAjW75FizKVo5tnTYiQddPZoLUHHZ8=" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
-<script crossorigin="anonymous" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<script crossorigin="anonymous" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script crossorigin="anonymous" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<script crossorigin="anonymous" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js"></script>
 <script crossorigin="anonymous" integrity="sha256-ULQV01VS9LCI2ePpLsmka+W0mawFpEA0rtxnezUj4A4=" src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.11.1/baguetteBox.min.js"></script>
 <script src="../../assets/js/all.js"></script>
 <script>
 
     baguetteBox.run('div#content', {
         ignoreClass: 'islink',
-        captions: function(element) {
-            return element.getElementsByTagName('img')[0].alt;
-    }});
+        captions: function(element){var i=element.getElementsByTagName('img')[0];return i===undefined?'':i.alt;}});
 </script>
 </body>
 </html>

@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta content="width=device-width, initial-scale=1" name="viewport">
 <title>Datos y responsabilidad: Covid19 | Cosmoscalibur</title>
-<link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" rel="stylesheet">
+<link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" rel="stylesheet">
 <link crossorigin="anonymous" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.11.1/baguetteBox.min.css" integrity="sha256-cLMYWYYutHkt+KpNqjg7NVkYSQ+E2VbrXsEvOqU7mL0=" rel="stylesheet">
 <link href="../../assets/css/all.css" rel="stylesheet" type="text/css">
 <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900" rel="stylesheet">
@@ -88,12 +88,12 @@
 <div class="e-content entry-content" itemprop="articleBody text">
 <div>
 <p>Había tratado de estar al margen de hacer muy público lo que pienso y analizo de los datos de la pandemia por covid19 en Colombia, y de las medidas tomadas. Sin embargo, finalmente me motivé a hacer una segunda afirmación del todo pública (si, ya les contaré que fue lo anterior) porque veo algo recurrente en colegas "científicos de datos" (<em>data scientists</em> que se gustan decir en inglés), donde creen prudente hacer ajustes de curvas básicas y hacer interpretaciones del futuro y observaciones sin contexto del fenómeno.</p>
-<div class="admonition note">
+<aside class="admonition note">
 <p class="admonition-title">Nota</p>
 <p>No soy epidemiólogo, médico, biólogo o similar. Trabajo en analítica de datos y modelización matemática, graduado de ingeniería física y maestría en física aplicada. Y esto es un llamado a la prudencia y responsabilidad de mis colegas.</p>
-</div>
+</aside>
 <!-- TEASER_END -->
-<div class="section" id="ruido-y-desinformacion">
+<section id="ruido-y-desinformacion">
 <h2>Ruido y desinformación</h2>
 <p>Esta es la razón de hacer esta publicación, así que empezaré con mencionar algunas señales de ruido en medio de esta pandemia y, luego brevemente comentaré porque no debe considerarse esa situación y que si podríamos decir sanamente.</p>
 <p>Ha sido días con mucha agitación en redes con menciones basadas en los datos pero no revisadas por epidemiólogos, los expertos a los cuales debemos escuchar en medio de esta crisis, sino por "expertos" en analítica de datos y como les gusta en inglés, "<em>data scientists</em>". El porque de las comillas es parte de mi crítica, y es que no estamos en una situación que permita salir públicamente a llenarse el ego de sé predecir con modelos de juguetes e impresionar a público que no tiene formación ni en datos ni en epidemiología. ¿Usan esos modelos en sus trabajos?</p>
@@ -113,13 +113,15 @@
 </li>
 </ul>
 <p>Pues todas estas cosas, son afirmaciones que no son posibles y debemos entender el fenómeno y la captura de datos (ambos importantes en cualquier análisis de datos). Mi idea no es difamar a los colegas, por lo cual no enlazo a las publicaciones (ya en los casos respectivos he comentado porque no debería hacerse).</p>
-</div>
-<div class="section" id="subestimacion-de-los-datos">
+</section>
+<section id="subestimacion-de-los-datos">
 <h2>Subestimación de los datos</h2>
 <p>Una de las cosas más importantes al iniciar a revisar la información de los casos de covid19 en todo el mundo, es la mención a "Casos positivos confirmados". Y aquí, <strong>confirmados</strong> es la clave.</p>
-<div class="figure align-center"><img alt="Comunicado gráfico de los casos de Covid19 en Colombia del 4 de abril de 2020." src="../../images/datos-y-responsabilidad-covid19/comunicado-covid-colombia-4-abril-2020.png" style="width: 150px; height: 300px;">
-<p class="caption">Se resalta la mención de <strong>confirmados</strong> en los comunicados oficiales. En el ejemplo, comunicado del 5 de abril de 2020.</p>
-</div>
+<figure class="align-center"><img alt="Comunicado gráfico de los casos de Covid19 en Colombia del 4 de abril de 2020." src="../../images/datos-y-responsabilidad-covid19/comunicado-covid-colombia-4-abril-2020.png" style="width: 150px; height: 300px;">
+<figcaption>
+<p>Se resalta la mención de <strong>confirmados</strong> en los comunicados oficiales. En el ejemplo, comunicado del 5 de abril de 2020.</p>
+</figcaption>
+</figure>
 <p>Esto es importante porque es claro con esta mención, que la cifra dada en todos los casos (infectados, muertos e incluso recuperados) siempre será una subestimación. Pero, ¿por qué es así? Resulta que la sola política o criterio de toma de muestras afecta. Dado que las muestras poseen un costo asociado y no hay presupuesto infinito (si, todo es plata), la cantidad de pruebas es limitada y priorizadas según los casos que puedan preveerse de mayor complejidad, o que tengan motivos para considerar una alta probabilidad de contagio. Ejemplo de esta subestimación en rechazos a pruebas es que al inicio del fenómeno si no procedías del extranjero, no eras consciente del contacto con personas provenientes del extranjero o con personas positivas a covid19, simplemente no te hacían el examen y el diagnóstico era una enfermedad respiratoria adicional. Igual, si no tenías fiebre tampoco te hacían la prueba. ¿Y si eres asintomático? Pues ni siquiera vas a solicitar la prueba.</p>
 <p>¿Y esto a nivel de datos qué representa? En el reporte de la Organización Mundial de la Salud, el 87.9% de los infectados confirmados presentó fiebre [<a class="reference internal" href="#who-report">who-report</a>], así que usando los criterios de pruebas tenemos un potencial 12.1% de casos que tuvieron que esperar complicaciones o simplemente están como si nada. Pero también, hay otro porcentaje, que en el mismo reporte se considera bajo, pero que en una gran cantidad representa muchas personas, y son los asintomáticos.</p>
 <p>Siendo esto claro, vemos que también en la medida que se puedan realizar más pruebas conoceremos mejor la realidad del país. Algo de estadística básica nos dice que siempre tenemos incertidumbre en la medida que no se conozca información de cada individuo de la población sino de una muestra. Pero adicional, la muestra desde el punto de vista estadístico para la aplicación de las pruebas presenta un sesgo (depende de tener ciertos síntomas y condición de vulnerabilidad). Con la llegada de las pruebas rápidas al país podremos ver eventualmente una realidad más clara de la condición real, pues los casos confirmados son limitados por la capacidad de hacer pruebas.</p>
@@ -128,8 +130,8 @@
 <p>8) What are the typical testing practices in the country? Having a sense of how often and when individuals are tested, can help the users of these statistics understand how estimates of tests performed and individuals tested might relate to each other. For instance, how many tests does a case investigation require? What are the eligibility criteria to be tested? Are health workers, or other specific groups, being routinely retested?</p>
 </blockquote>
 <p>Finalmente, no todos los países tienen las mismas políticas y medidas implementadas, así como sus dinámicas sociales e incluso ambiente son diferentes. Esto lleva a que la comparación con otros países no sirve de referente para un análisis más allá de un consuelo de tontos de ver que otros lloran más muertos que nosotros.</p>
-</div>
-<div class="section" id="prediccion-y-aplanamiento-de-la-curva">
+</section>
+<section id="prediccion-y-aplanamiento-de-la-curva">
 <h2>Predicción y aplanamiento de la curva</h2>
 <p>Si es posible hacer pronósticos matemáticos sobre la evolución de la pandemia, eso es algo claro y es uno de los insumos importantes para tomar decisiones sobre las medidas a implementar para controlar su propagación. Y entonces, ¿por qué la crítica a mis colegas?</p>
 <p>No están considerando múltiples variables, las cuales describiré:</p>
@@ -203,110 +205,92 @@
 </li>
 </ul>
 <p>¿Y entonces qué? Bueno, en buena medida muchas de estas fechas deberían llevar a ingresar consideraciones en el modelo pero sino, mínimamente deben ser usadas adecuadamente para interpretar los datos y tendencias. Esto, contrastando con los 15 días típicos de tiempo de incubación.</p>
-<div class="figure align-center"><img alt="Casos acumulados de Covid19 al 4 de abril de 2020 por tipo en Colombia." src="../../images/datos-y-responsabilidad-covid19/casos-covid-colombia-tipo-4-abril-2020.png">
-<p class="caption">Acumulado de casos positivos confirmados de covid19 por tipología incluyendo el total. La curva azul presenta crecimiento exponencial.</p>
-</div>
+<figure class="align-center"><img alt="Casos acumulados de Covid19 al 4 de abril de 2020 por tipo en Colombia." src="../../images/datos-y-responsabilidad-covid19/casos-covid-colombia-tipo-4-abril-2020.png">
+<figcaption>
+<p>Acumulado de casos positivos confirmados de covid19 por tipología incluyendo el total. La curva azul presenta crecimiento exponencial.</p>
+</figcaption>
+</figure>
 <p>Con lo anterior en mente, vemos que la interpretación de los datos debe hacerse a la vista de los 3 tipos de contagio, donde notamos al separar la evolución que el aplanamiento observado está en las curvas de importados y relacionados, pero la curva de los casos de estudio (alias comunitarios) crece exponencialmente e incluso ha alcanzado los valores de los relacionados. Esto nos hace esperar que el aplanamiento observado sea temporal y probablemente en el transcurso de la semana evidenciemos nuevamente un incremento exponencial pero no tan pronunciado porque los casos importados deberán ser poco apreciables sobre el fin de semana.</p>
 <p>Vale recordar la afirmación de los expertos y compartida por el ministro de salud en entrevista el día de ayer por el canal Caracol, "Las cifras de hoy son de pacientes de hace 14 días" [<a class="reference internal" href="#tt-caracol">tt-caracol</a>].</p>
-</div>
-<div class="section" id="conceptos">
+</section>
+<section id="conceptos">
 <h2>Conceptos</h2>
 <p>Generalmente los comportamientos de crecimientos de población o de la propagación en poblaciones se modelan con comportamientos de tipo exponencial, gausianas y logísticas (si, igual las otras tienen exponenciales por dentro).</p>
 <p>Normalmente nos encontramos que la manera como interactuamos con las personas y manteniendo el trazado de la interacción de estas, lleva a consolidar el número de personas con interacción directa e indirecta con el crecimiento exponencial (<span class="math">\(A\exp(r t)\)</span>, donde <span class="math">\(r\)</span> es la tasa de crecimiento y <span class="math">\(A\)</span> es la población inicial afectada).</p>
 <p>Las curvas gausianas [<a class="reference internal" href="#wiki-gausiana">wiki-gausiana</a>] pueden describir los casos activos, es decir, los casos actuales que se encuentran afectados actualizando respecto a los casos de recuperados y muertos que se descuentan de los infectados. Esta es la famosa curva que nos comunican que debemos aplanar [<a class="reference internal" href="#bbc-aplanar">bbc-aplanar</a>] mediante medidas como el distanciamiento social, el aislamiento [<a class="reference internal" href="#elcolombiano-distancia">elcolombiano-distancia</a>] y el uso masivo de tapabocas [<a class="reference internal" href="#minsalud-tapabocas">minsalud-tapabocas</a>].</p>
 <p>Las curvas logísticas [<a class="reference internal" href="#wiki-logistica">wiki-logistica</a>] sirven para describir los casos acumulados de registros nuevos (en el caso de infectados, así se recuperen o mueran no se reduce el conteo).</p>
 <p>Las menciones anteriores son solo resultados rápidos que se pueden usar de modelos más elaborados [<a class="reference internal" href="#wiki-modelling">wiki-modelling</a>] que dependen de resolver sistemas de ecuaciones diferenciales, pero aún así, estos modelos resultan ser muy simples comparando con la dinámica real que se debe capturar. Es por este motivo que se usan modelos estocásticos si hablamos de un modelo serio que permita reflejar incluso el comportamiento de las interacciones humanas en un mayor detalle y las medidas implementadas [<a class="reference internal" href="#wiki-stochastic">wiki-stochastic</a>].</p>
-</div>
-<div class="section" id="recomendaciones-para-saber-mas">
+</section>
+<section id="recomendaciones-para-saber-mas">
 <h2>Recomendaciones para saber más</h2>
 <p>Siga fuentes oficiales de información y las recomendaciones de las autoridades sanitarias. Y antes de consumir información sobre este tema, le recomiendo leer las publicaciones que epidemiólogos y expertos afines han realizado en una forma digerible y divulgativa. Respecto a esto último recomiendo los hilos en twitter de <a class="reference external" href="https://twitter.com/ZulmaCucunuba">Zulma Cucunubá</a>, epidemióloga, doctora en dinámica de enfermedades infecciosas.</p>
 <p>A nivel de gráficos, es posible que actualice el <a class="reference external" href="https://www.facebook.com/pg/cosmoscalibur/photos/?tab=album&amp;album_id=2580908872196780">álbum en facebook</a>.</p>
-</div>
-<div class="section" id="referencias">
+</section>
+<section id="referencias">
 <h2>Referencias</h2>
-<dl class="citation">
-<dt class="label" id="wiki-gausiana"><span class="brackets">wiki-gausiana</span></dt>
-<dd>
+<div class="citation-list" role="list">
+<div class="citation" id="wiki-gausiana" role="doc-biblioentry"><span class="label"><span class="fn-bracket">[</span>wiki-gausiana<span class="fn-bracket">]</span></span>
 <p><a class="reference external" href="https://es.wikipedia.org/wiki/Funci%C3%B3n_gaussiana">https://es.wikipedia.org/wiki/Funci%C3%B3n_gaussiana</a></p>
-</dd>
-<dt class="label" id="bbc-aplanar"><span class="brackets">bbc-aplanar</span></dt>
-<dd>
-<p><a class="reference external" href="https://www.bbc.com/mundo/noticias-51835806">https://www.bbc.com/mundo/noticias-51835806</a></p>
-</dd>
-<dt class="label" id="elcolombiano-distancia"><span class="brackets">elcolombiano-distancia</span></dt>
-<dd>
-<p><a class="reference external" href="https://www.elcolombiano.com/colombia/salud/coronavirus-que-es-el-distanciamiento-social-BG12632636">https://www.elcolombiano.com/colombia/salud/coronavirus-que-es-el-distanciamiento-social-BG12632636</a></p>
-</dd>
-<dt class="label" id="minsalud-tapabocas"><span class="brackets">minsalud-tapabocas</span></dt>
-<dd>
-<p><a class="reference external" href="https://www.minsalud.gov.co/Paginas/El-uso-de-tapabocas-se-hace-obligatorio-en-el-sistema-de-transporte-publico.aspx">https://www.minsalud.gov.co/Paginas/El-uso-de-tapabocas-se-hace-obligatorio-en-el-sistema-de-transporte-publico.aspx</a></p>
-</dd>
-<dt class="label" id="wiki-modelling"><span class="brackets">wiki-modelling</span></dt>
-<dd>
-<p><a class="reference external" href="https://en.wikipedia.org/wiki/Mathematical_modelling_of_infectious_disease">https://en.wikipedia.org/wiki/Mathematical_modelling_of_infectious_disease</a></p>
-</dd>
-<dt class="label" id="wiki-stochastic"><span class="brackets">wiki-stochastic</span></dt>
-<dd>
-<p><a class="reference external" href="https://en.wikipedia.org/wiki/Compartmental_models_in_epidemiology">https://en.wikipedia.org/wiki/Compartmental_models_in_epidemiology</a></p>
-</dd>
-<dt class="label" id="who-report"><span class="brackets">who-report</span></dt>
-<dd>
-<p><a class="reference external" href="https://www.who.int/docs/default-source/coronaviruse/who-china-joint-mission-on-covid-19-final-report.pdf">https://www.who.int/docs/default-source/coronaviruse/who-china-joint-mission-on-covid-19-final-report.pdf</a></p>
-</dd>
-<dt class="label" id="ourworldindata"><span class="brackets">ourworldindata</span></dt>
-<dd>
-<p><a class="reference external" href="https://ourworldindata.org/covid-testing">https://ourworldindata.org/covid-testing</a></p>
-</dd>
-<dt class="label" id="cnn-fronteras"><span class="brackets">cnn-fronteras</span></dt>
-<dd>
-<p><a class="reference external" href="https://cnnespanol.cnn.com/2020/03/16/alerta-colombia-cerrara-sus-fronteras-desde-el-17-de-marzo-hasta-el-30-de-mayo-como-medida-contra-el-coronavirus/">https://cnnespanol.cnn.com/2020/03/16/alerta-colombia-cerrara-sus-fronteras-desde-el-17-de-marzo-hasta-el-30-de-mayo-como-medida-contra-el-coronavirus/</a></p>
-</dd>
-<dt class="label" id="tt-duque"><span class="brackets">tt-duque</span></dt>
-<dd>
-<p><a class="reference external" href="https://twitter.com/IvanDuque/status/1238666927779823618">https://twitter.com/IvanDuque/status/1238666927779823618</a></p>
-</dd>
-<dt class="label" id="tt-presidencia-nal"><span class="brackets">tt-presidencia-nal</span></dt>
-<dd>
-<p><a class="reference external" href="https://twitter.com/infopresidencia/status/1241790747571077122">https://twitter.com/infopresidencia/status/1241790747571077122</a></p>
-</dd>
-<dt class="label" id="tt-presidencia-int"><span class="brackets">tt-presidencia-int</span></dt>
-<dd>
-<p><a class="reference external" href="https://twitter.com/infopresidencia/status/1240646520287961089">https://twitter.com/infopresidencia/status/1240646520287961089</a></p>
-</dd>
-<dt class="label" id="tt-ins-dano"><span class="brackets">tt-INS-daño</span></dt>
-<dd>
-<p><a class="reference external" href="https://twitter.com/INSColombia/status/1243617211186544640">https://twitter.com/INSColombia/status/1243617211186544640</a></p>
-</dd>
-<dt class="label" id="presidencia-covid"><span class="brackets">presidencia-covid</span></dt>
-<dd>
-<p><a class="reference external" href="https://id.presidencia.gov.co/Paginas/prensa/2020/Instituto-Nacional-Salud-anuncia-que-22-nuevos-laboratorios-preparan-para-iniciar-diagnosticos-COVID-19-en-el-pais-200322.aspx">https://id.presidencia.gov.co/Paginas/prensa/2020/Instituto-Nacional-Salud-anuncia-que-22-nuevos-laboratorios-preparan-para-iniciar-diagnosticos-COVID-19-en-el-pais-200322.aspx</a></p>
-</dd>
-<dt class="label" id="tiempo-cuarentena"><span class="brackets">tiempo-cuarentena</span></dt>
-<dd>
-<p><a class="reference external" href="https://www.eltiempo.com/salud/cuarentena-total-en-colombia-por-el-coronavirus-declara-el-presidente-ivan-duque-475512">https://www.eltiempo.com/salud/cuarentena-total-en-colombia-por-el-coronavirus-declara-el-presidente-ivan-duque-475512</a></p>
-</dd>
-<dt class="label" id="tiempo-simulacro"><span class="brackets">tiempo-simulacro</span></dt>
-<dd>
-<p><a class="reference external" href="https://www.eltiempo.com/bogota/preguntas-y-respuestas-sobre-el-simulacro-de-cuarentena-en-bogota-474192">https://www.eltiempo.com/bogota/preguntas-y-respuestas-sobre-el-simulacro-de-cuarentena-en-bogota-474192</a></p>
-</dd>
-<dt class="label" id="covid-colombia"><span class="brackets">covid-colombia</span></dt>
-<dd>
-<p>Revisar en el archivo de datos. <a class="reference external" href="https://coronaviruscolombia.gov.co/Covid19/index.html">https://coronaviruscolombia.gov.co/Covid19/index.html</a></p>
-</dd>
-<dt class="label" id="tt-caracol"><span class="brackets">tt-caracol</span></dt>
-<dd>
-<p><a class="reference external" href="https://twitter.com/NoticiasCaracol/status/1246957124858585088">https://twitter.com/NoticiasCaracol/status/1246957124858585088</a></p>
-</dd>
-<dt class="label" id="wiki-logistica"><span class="brackets">wiki-logistica</span></dt>
-<dd>
-<p><a class="reference external" href="https://es.wikipedia.org/wiki/Funci%C3%B3n_log%C3%ADstica">https://es.wikipedia.org/wiki/Funci%C3%B3n_log%C3%ADstica</a></p>
-</dd>
-<dt class="label" id="tt-quintero"><span class="brackets">tt-quintero</span></dt>
-<dd>
-<p><a class="reference external" href="https://twitter.com/QuinteroCalle/status/1246049721334018050">https://twitter.com/QuinteroCalle/status/1246049721334018050</a></p>
-</dd>
-</dl>
 </div>
+<div class="citation" id="bbc-aplanar" role="doc-biblioentry"><span class="label"><span class="fn-bracket">[</span>bbc-aplanar<span class="fn-bracket">]</span></span>
+<p><a class="reference external" href="https://www.bbc.com/mundo/noticias-51835806">https://www.bbc.com/mundo/noticias-51835806</a></p>
+</div>
+<div class="citation" id="elcolombiano-distancia" role="doc-biblioentry"><span class="label"><span class="fn-bracket">[</span>elcolombiano-distancia<span class="fn-bracket">]</span></span>
+<p><a class="reference external" href="https://www.elcolombiano.com/colombia/salud/coronavirus-que-es-el-distanciamiento-social-BG12632636">https://www.elcolombiano.com/colombia/salud/coronavirus-que-es-el-distanciamiento-social-BG12632636</a></p>
+</div>
+<div class="citation" id="minsalud-tapabocas" role="doc-biblioentry"><span class="label"><span class="fn-bracket">[</span>minsalud-tapabocas<span class="fn-bracket">]</span></span>
+<p><a class="reference external" href="https://www.minsalud.gov.co/Paginas/El-uso-de-tapabocas-se-hace-obligatorio-en-el-sistema-de-transporte-publico.aspx">https://www.minsalud.gov.co/Paginas/El-uso-de-tapabocas-se-hace-obligatorio-en-el-sistema-de-transporte-publico.aspx</a></p>
+</div>
+<div class="citation" id="wiki-modelling" role="doc-biblioentry"><span class="label"><span class="fn-bracket">[</span>wiki-modelling<span class="fn-bracket">]</span></span>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Mathematical_modelling_of_infectious_disease">https://en.wikipedia.org/wiki/Mathematical_modelling_of_infectious_disease</a></p>
+</div>
+<div class="citation" id="wiki-stochastic" role="doc-biblioentry"><span class="label"><span class="fn-bracket">[</span>wiki-stochastic<span class="fn-bracket">]</span></span>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Compartmental_models_in_epidemiology">https://en.wikipedia.org/wiki/Compartmental_models_in_epidemiology</a></p>
+</div>
+<div class="citation" id="who-report" role="doc-biblioentry"><span class="label"><span class="fn-bracket">[</span>who-report<span class="fn-bracket">]</span></span>
+<p><a class="reference external" href="https://www.who.int/docs/default-source/coronaviruse/who-china-joint-mission-on-covid-19-final-report.pdf">https://www.who.int/docs/default-source/coronaviruse/who-china-joint-mission-on-covid-19-final-report.pdf</a></p>
+</div>
+<div class="citation" id="ourworldindata" role="doc-biblioentry"><span class="label"><span class="fn-bracket">[</span>ourworldindata<span class="fn-bracket">]</span></span>
+<p><a class="reference external" href="https://ourworldindata.org/covid-testing">https://ourworldindata.org/covid-testing</a></p>
+</div>
+<div class="citation" id="cnn-fronteras" role="doc-biblioentry"><span class="label"><span class="fn-bracket">[</span>cnn-fronteras<span class="fn-bracket">]</span></span>
+<p><a class="reference external" href="https://cnnespanol.cnn.com/2020/03/16/alerta-colombia-cerrara-sus-fronteras-desde-el-17-de-marzo-hasta-el-30-de-mayo-como-medida-contra-el-coronavirus/">https://cnnespanol.cnn.com/2020/03/16/alerta-colombia-cerrara-sus-fronteras-desde-el-17-de-marzo-hasta-el-30-de-mayo-como-medida-contra-el-coronavirus/</a></p>
+</div>
+<div class="citation" id="tt-duque" role="doc-biblioentry"><span class="label"><span class="fn-bracket">[</span>tt-duque<span class="fn-bracket">]</span></span>
+<p><a class="reference external" href="https://twitter.com/IvanDuque/status/1238666927779823618">https://twitter.com/IvanDuque/status/1238666927779823618</a></p>
+</div>
+<div class="citation" id="tt-presidencia-nal" role="doc-biblioentry"><span class="label"><span class="fn-bracket">[</span>tt-presidencia-nal<span class="fn-bracket">]</span></span>
+<p><a class="reference external" href="https://twitter.com/infopresidencia/status/1241790747571077122">https://twitter.com/infopresidencia/status/1241790747571077122</a></p>
+</div>
+<div class="citation" id="tt-presidencia-int" role="doc-biblioentry"><span class="label"><span class="fn-bracket">[</span>tt-presidencia-int<span class="fn-bracket">]</span></span>
+<p><a class="reference external" href="https://twitter.com/infopresidencia/status/1240646520287961089">https://twitter.com/infopresidencia/status/1240646520287961089</a></p>
+</div>
+<div class="citation" id="tt-ins-dano" role="doc-biblioentry"><span class="label"><span class="fn-bracket">[</span>tt-INS-daño<span class="fn-bracket">]</span></span>
+<p><a class="reference external" href="https://twitter.com/INSColombia/status/1243617211186544640">https://twitter.com/INSColombia/status/1243617211186544640</a></p>
+</div>
+<div class="citation" id="presidencia-covid" role="doc-biblioentry"><span class="label"><span class="fn-bracket">[</span>presidencia-covid<span class="fn-bracket">]</span></span>
+<p><a class="reference external" href="https://id.presidencia.gov.co/Paginas/prensa/2020/Instituto-Nacional-Salud-anuncia-que-22-nuevos-laboratorios-preparan-para-iniciar-diagnosticos-COVID-19-en-el-pais-200322.aspx">https://id.presidencia.gov.co/Paginas/prensa/2020/Instituto-Nacional-Salud-anuncia-que-22-nuevos-laboratorios-preparan-para-iniciar-diagnosticos-COVID-19-en-el-pais-200322.aspx</a></p>
+</div>
+<div class="citation" id="tiempo-cuarentena" role="doc-biblioentry"><span class="label"><span class="fn-bracket">[</span>tiempo-cuarentena<span class="fn-bracket">]</span></span>
+<p><a class="reference external" href="https://www.eltiempo.com/salud/cuarentena-total-en-colombia-por-el-coronavirus-declara-el-presidente-ivan-duque-475512">https://www.eltiempo.com/salud/cuarentena-total-en-colombia-por-el-coronavirus-declara-el-presidente-ivan-duque-475512</a></p>
+</div>
+<div class="citation" id="tiempo-simulacro" role="doc-biblioentry"><span class="label"><span class="fn-bracket">[</span>tiempo-simulacro<span class="fn-bracket">]</span></span>
+<p><a class="reference external" href="https://www.eltiempo.com/bogota/preguntas-y-respuestas-sobre-el-simulacro-de-cuarentena-en-bogota-474192">https://www.eltiempo.com/bogota/preguntas-y-respuestas-sobre-el-simulacro-de-cuarentena-en-bogota-474192</a></p>
+</div>
+<div class="citation" id="covid-colombia" role="doc-biblioentry"><span class="label"><span class="fn-bracket">[</span>covid-colombia<span class="fn-bracket">]</span></span>
+<p>Revisar en el archivo de datos. <a class="reference external" href="https://coronaviruscolombia.gov.co/Covid19/index.html">https://coronaviruscolombia.gov.co/Covid19/index.html</a></p>
+</div>
+<div class="citation" id="tt-caracol" role="doc-biblioentry"><span class="label"><span class="fn-bracket">[</span>tt-caracol<span class="fn-bracket">]</span></span>
+<p><a class="reference external" href="https://twitter.com/NoticiasCaracol/status/1246957124858585088">https://twitter.com/NoticiasCaracol/status/1246957124858585088</a></p>
+</div>
+<div class="citation" id="wiki-logistica" role="doc-biblioentry"><span class="label"><span class="fn-bracket">[</span>wiki-logistica<span class="fn-bracket">]</span></span>
+<p><a class="reference external" href="https://es.wikipedia.org/wiki/Funci%C3%B3n_log%C3%ADstica">https://es.wikipedia.org/wiki/Funci%C3%B3n_log%C3%ADstica</a></p>
+</div>
+<div class="citation" id="tt-quintero" role="doc-biblioentry"><span class="label"><span class="fn-bracket">[</span>tt-quintero<span class="fn-bracket">]</span></span>
+<p><a class="reference external" href="https://twitter.com/QuinteroCalle/status/1246049721334018050">https://twitter.com/QuinteroCalle/status/1246049721334018050</a></p>
+</div>
+</div>
+</section>
 </div>
 </div>
 <aside class="postpromonav">
@@ -361,21 +345,19 @@
 var disqus_shortname="cosmoscalibur";(function(){var a=document.createElement("script");a.async=true;a.src="https://"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());
 </script><!--End of body content-->
 <footer id="footer">Si te ha sido útil o te ha gustado este contenido, <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=R6BHD346EBXMC&amp;source=url" rel="nofollow">invítame una cerveza 🍺</a>.<br>
-Contents © 2020 <a href="mailto:cosmoscalibur@gmail.com">Edward Villegas-Pulgarin</a> - Powered by <a href="https://getnikola.com" rel="nofollow">Nikola</a> <a href="https://creativecommons.org/licenses/by/4.0/" rel="license"><img alt="Creative Commons License BY 4.0" src="https://licensebuttons.net/l/by/4.0/88x31.png" style="border-width:0; margin-bottom:12px;"></a></footer>
+Contents © 2021 <a href="mailto:cosmoscalibur@gmail.com">Edward Villegas-Pulgarin</a> - Powered by <a href="https://getnikola.com" rel="nofollow">Nikola</a> <a href="https://creativecommons.org/licenses/by/4.0/" rel="license"><img alt="Creative Commons License BY 4.0" src="https://licensebuttons.net/l/by/4.0/88x31.png" style="border-width:0; margin-bottom:12px;"></a></footer>
 </div>
 </div>
-<script crossorigin="anonymous" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script crossorigin="anonymous" integrity="sha256-/ijcOLwFf26xEYAjW75FizKVo5tnTYiQddPZoLUHHZ8=" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
-<script crossorigin="anonymous" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<script crossorigin="anonymous" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script crossorigin="anonymous" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<script crossorigin="anonymous" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js"></script>
 <script crossorigin="anonymous" integrity="sha256-ULQV01VS9LCI2ePpLsmka+W0mawFpEA0rtxnezUj4A4=" src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.11.1/baguetteBox.min.js"></script>
 <script src="../../assets/js/all.js"></script>
 <script>
 
     baguetteBox.run('div#content', {
         ignoreClass: 'islink',
-        captions: function(element) {
-            return element.getElementsByTagName('img')[0].alt;
-    }});
+        captions: function(element){var i=element.getElementsByTagName('img')[0];return i===undefined?'':i.alt;}});
 </script>
 </body>
 </html>

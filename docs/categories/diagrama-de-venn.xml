@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='utf-8'?>
-<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>Cosmoscalibur (Publicaciones sobre diagrama de Venn)</title><link>https://www.cosmoscalibur.com/</link><description/><atom:link href="https://www.cosmoscalibur.com/categories/diagrama-de-venn.xml" rel="self" type="application/rss+xml"/><language>es</language><copyright>Contents © 2020 &lt;a href="mailto:cosmoscalibur&amp;#64;gmail.com"&gt;Edward Villegas-Pulgarin&lt;/a&gt; 
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>Cosmoscalibur (Publicaciones sobre diagrama de Venn)</title><link>https://www.cosmoscalibur.com/</link><description/><atom:link href="https://www.cosmoscalibur.com/categories/diagrama-de-venn.xml" rel="self" type="application/rss+xml"/><language>es</language><copyright>Contents © 2021 &lt;a href="mailto:cosmoscalibur&amp;#64;gmail.com"&gt;Edward Villegas-Pulgarin&lt;/a&gt; 
 &lt;a rel="license" href="https://creativecommons.org/licenses/by/4.0/"&gt;
 &lt;img alt="Creative Commons License BY 4.0"
 style="border-width:0; margin-bottom:12px;"
-src="https://licensebuttons.net/l/by/4.0/88x31.png"&gt;&lt;/a&gt;</copyright><lastBuildDate>Sun, 01 Nov 2020 19:19:52 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Determinar intersecciones en el diagrama de Venn con R</title><link>https://www.cosmoscalibur.com/blog/determinar-intersecciones-en-el-diagrama-de-venn-con-r/</link><dc:creator>Edward Villegas-Pulgarin</dc:creator><description>&lt;div&gt;&lt;p&gt;Esta entrada es mi primera entrada asociada al lenguaje R y sobre mi primer paquete en R: &lt;a href="https://github.com/cosmoscalibur/venn.compute"&gt;&lt;code&gt;venn.compute&lt;/code&gt;&lt;/a&gt;. Este paquete surge por un caso de uso particular que estaba ayudando a automatizar de determinar los elementos (no solo el dibujo ni la cantidad) de las intersecciones y específicos de un diagrama de Venn, útil en bioinformática para comparación de genes.  &lt;/p&gt;
+src="https://licensebuttons.net/l/by/4.0/88x31.png"&gt;&lt;/a&gt;</copyright><lastBuildDate>Tue, 14 Dec 2021 21:00:15 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Determinar intersecciones en el diagrama de Venn con R</title><link>https://www.cosmoscalibur.com/blog/determinar-intersecciones-en-el-diagrama-de-venn-con-r/</link><dc:creator>Edward Villegas-Pulgarin</dc:creator><description>&lt;div&gt;&lt;p&gt;Esta entrada es mi primera entrada asociada al lenguaje R y sobre mi primer paquete en R: &lt;a href="https://github.com/cosmoscalibur/venn.compute"&gt;&lt;code&gt;venn.compute&lt;/code&gt;&lt;/a&gt;. Este paquete surge por un caso de uso particular que estaba ayudando a automatizar de determinar los elementos (no solo el dibujo ni la cantidad) de las intersecciones y específicos de un diagrama de Venn, útil en bioinformática para comparación de genes.  &lt;/p&gt;
 &lt;!-- TEASER_END --&gt;
 
 &lt;p&gt;Así, esta entrada es tipo tutorial de como usar el paquete que hice para este fin.  &lt;/p&gt;
@@ -15,11 +15,9 @@ src="https://licensebuttons.net/l/by/4.0/88x31.png"&gt;&lt;/a&gt;</copyright><la
 &lt;p&gt;Si usas Anaconda en Linux, probablemente debas configurar la ruta del ejecutable de &lt;code&gt;tar&lt;/code&gt; (al instalar desde GitHub genera un error indicando que no encuentra el ejecuta &lt;code&gt;sh: 1: /bin/gtar: not found&lt;/code&gt;).&lt;/p&gt;
 &lt;pre class="code literal-block"&gt;&lt;span class="nf"&gt;Sys.setenv&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;TAR&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;"/bin/tar"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="c1"&gt;# Si es Anaconda Linux&lt;/span&gt;
 &lt;/pre&gt;
-
 &lt;p&gt;Ahora sí, haremos la instalación desde el repositorio de GitHub del paquete (se indica &lt;code&gt;usuario/paquete&lt;/code&gt;).&lt;/p&gt;
 &lt;pre class="code literal-block"&gt;&lt;span class="n"&gt;devtools&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="nf"&gt;install_github&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"cosmoscalibur/venn.compute"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;
-
 &lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;Downloading&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;GitHub&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;repo&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;cosmoscalibur&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;venn&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="k"&gt;compute&lt;/span&gt;&lt;span class="nv"&gt;@master&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
 
 
@@ -39,12 +37,10 @@ src="https://licensebuttons.net/l/by/4.0/88x31.png"&gt;&lt;/a&gt;</copyright><la
 &lt;span class="err"&gt;─&lt;/span&gt;&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="n"&gt;building&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;‘&lt;/span&gt;&lt;span class="n"&gt;venn&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;compute_1&lt;/span&gt;&lt;span class="mf"&gt;.1.0&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;tar&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;gz&lt;/span&gt;&lt;span class="err"&gt;’&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;
 
-
 &lt;h2&gt;Ejecución&lt;/h2&gt;
 &lt;p&gt;Lo primero que debemos hacer es cargar el paquete.&lt;/p&gt;
 &lt;pre class="code literal-block"&gt;&lt;span class="nf"&gt;library&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;venn.compute&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;
-
 &lt;h3&gt;Lectura de archivos&lt;/h3&gt;
 &lt;p&gt;Para leer los archivos, he creado una función específica para la lectura, de manera que el contenido de los archivos sea cargado a arreglos de caracteres y estos se anexan a una lista. Adicional, se asocian los nombres personalizados a los conjuntos de elementos de cada archivo.&lt;/p&gt;
 &lt;p&gt;Las rutas a los archivos y los nombres que asociaremos, se agregan como
@@ -56,24 +52,21 @@ a la ilustrada.&lt;/p&gt;
                               &lt;span class="nf"&gt;c&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"primes"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;"even"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;"fibo"&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
 &lt;span class="nf"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sets&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;
+&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$primes
+[1] "1"  "2"  "3"  "5"  "7"  "11" "13" "17"
 
-&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="n"&gt;primes&lt;/span&gt;
-&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="ss"&gt;"1"&lt;/span&gt;  &lt;span class="ss"&gt;"2"&lt;/span&gt;  &lt;span class="ss"&gt;"3"&lt;/span&gt;  &lt;span class="ss"&gt;"5"&lt;/span&gt;  &lt;span class="ss"&gt;"7"&lt;/span&gt;  &lt;span class="ss"&gt;"11"&lt;/span&gt; &lt;span class="ss"&gt;"13"&lt;/span&gt; &lt;span class="ss"&gt;"17"&lt;/span&gt;
+$even
+ [1] "0"  "2"  "4"  "6"  "8"  "10" "12" "14" "16" "18"
 
-&lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="n"&gt;even&lt;/span&gt;
- &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="ss"&gt;"0"&lt;/span&gt;  &lt;span class="ss"&gt;"2"&lt;/span&gt;  &lt;span class="ss"&gt;"4"&lt;/span&gt;  &lt;span class="ss"&gt;"6"&lt;/span&gt;  &lt;span class="ss"&gt;"8"&lt;/span&gt;  &lt;span class="ss"&gt;"10"&lt;/span&gt; &lt;span class="ss"&gt;"12"&lt;/span&gt; &lt;span class="ss"&gt;"14"&lt;/span&gt; &lt;span class="ss"&gt;"16"&lt;/span&gt; &lt;span class="ss"&gt;"18"&lt;/span&gt;
-
-&lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="n"&gt;fibo&lt;/span&gt;
-&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="ss"&gt;"1"&lt;/span&gt;  &lt;span class="ss"&gt;"2"&lt;/span&gt;  &lt;span class="ss"&gt;"3"&lt;/span&gt;  &lt;span class="ss"&gt;"5"&lt;/span&gt;  &lt;span class="ss"&gt;"8"&lt;/span&gt;  &lt;span class="ss"&gt;"13"&lt;/span&gt;
+$fibo
+[1] "1"  "2"  "3"  "5"  "8"  "13"
 &lt;/code&gt;&lt;/pre&gt;
-
 
 &lt;p&gt;Como observamos, se han creado las listas nombradas con los contenidos de los archivos. Estos nombres son los usados para crear los archivos, asociar las listas nombradas de las intersecciones y el gráfico (usa un paquete externo donde el ingreso de esta manera permite pasarlo como única variable).&lt;/p&gt;
 &lt;h3&gt;Determinar elementos&lt;/h3&gt;
 &lt;p&gt;Ya con los conjuntos cargados en la lista, podemos determinar los elementos que van en cada área del diagrama de Venn (intersecciones y específicos).&lt;/p&gt;
 &lt;pre class="code literal-block"&gt;&lt;span class="nf"&gt;venn.compute_specific&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sets&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;
-
 &lt;dl&gt;
     &lt;dt&gt;$primes_even_fibo&lt;/dt&gt;
         &lt;dd&gt;'2'&lt;/dd&gt;
@@ -116,11 +109,9 @@ a la ilustrada.&lt;/p&gt;
 &lt;p&gt;Si esta información es masiva, es conveniente escribir el resultado en archivos y no en memoria. Así, debemos crear una carpeta para los archivos e indicamos su ruta como segundo argumento.&lt;/p&gt;
 &lt;pre class="code literal-block"&gt;&lt;span class="nf"&gt;venn.compute_specific&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sets&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;output_dir&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nf"&gt;file.path&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"tests"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;"output"&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
 &lt;/pre&gt;
-
 &lt;p&gt;Podemos verificar la creación de los archivos con la misma convención de nombre y extensión &lt;code&gt;txt&lt;/code&gt;.&lt;/p&gt;
 &lt;pre class="code literal-block"&gt;&lt;span class="nf"&gt;dir&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;file.path&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"tests"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;"output"&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
 &lt;/pre&gt;
-
 &lt;ol class="list-inline"&gt;
     &lt;li&gt;'even_fibo.txt'&lt;/li&gt;
     &lt;li&gt;'even.txt'&lt;/li&gt;
@@ -135,6 +126,5 @@ a la ilustrada.&lt;/p&gt;
 &lt;p&gt;Para obtener el diagrama tengo una función que define un flujo por defecto que crea los archivos del paso anterior y adicional el gráfico del diagrama con el paquete &lt;a href="https://cran.r-project.org/web/packages/VennDiagram/index.html"&gt;&lt;code&gt;VennDiagram&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;
 &lt;pre class="code literal-block"&gt;&lt;span class="nf"&gt;venn.compute_plot&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sets&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;output_dir&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nf"&gt;file.path&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"tests"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;"output"&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
 &lt;/pre&gt;
-
 &lt;p&gt;Además de generar como les conté, los archivos de las intersecciones y específicos, se generó un archivo cuyo nombre es la convención seguida para la intersección de la totalidad de conjuntos y con extensión &lt;code&gt;png&lt;/code&gt;, &lt;code&gt;primes_even_fibo.png&lt;/code&gt;.  &lt;/p&gt;
 &lt;p&gt;&lt;/p&gt;&lt;div class="figure "&gt;&lt;a href="https://www.cosmoscalibur.com/images/determinar-intersecciones-en-el-diagrama-de-venn-con-r/primes_even_fibo.png" class="image-reference"&gt;&lt;img src="https://www.cosmoscalibur.com/images/determinar-intersecciones-en-el-diagrama-de-venn-con-r/primes_even_fibo.thumbnail.png"&gt;&lt;/a&gt;&lt;p&gt;Diagrama de Venn generado para los 3 conjuntos.&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;</description><category>bioinformática</category><category>diagrama de Venn</category><category>lenguaje r</category><guid>https://www.cosmoscalibur.com/blog/determinar-intersecciones-en-el-diagrama-de-venn-con-r/</guid><pubDate>Sun, 14 Jun 2020 00:40:00 GMT</pubDate></item></channel></rss>
