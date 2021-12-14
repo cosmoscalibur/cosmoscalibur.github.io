@@ -2,7 +2,7 @@
 .. slug: eterna
 .. date: 2011-01-15 18:53:25 UTC-05:00
 .. updated: 2020-10-10 11:12:25 UTC-05:00
-.. tags: arn, investigación, juegos, simulación, biología
+.. tags: arn, investigación, videojuegos, simulación, biología
 .. category: ciencia
 .. link:
 .. description: Uso de videojuegos para la investigación en ARN.
