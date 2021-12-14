@@ -1,9 +1,9 @@
 .. title: Con calma para SteamOS
 .. slug: con-calma-para-steamos
 .. date: 2014-04-20 18:21:00
-.. tags: linux, steamos, videojuegos
+.. tags: linux, steamos, videojuegos, steam
 .. description: Exploración de la distribución Linux desarrollada por Valve, como plataforma especializada para videojuegos de Steam.
-.. category:
+.. category: tecnología/videojuegos
 .. type: text
 .. author: Edward Villegas-Pulgarin
 
