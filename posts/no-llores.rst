@@ -27,7 +27,7 @@
 |
 | Vivir duele
 | y mas si vez colapsar
-| el que creías claro sedimento de la realidad.
+| el que creías claro sedimento de la realidad.
 |
 | Pero mira tu alrededor
 | aun habrán pilares de roca firma

@@ -20,17 +20,17 @@ falta de cultura y de criterio de nuestro periodismo científico y de
 la falta de ética en la investigación científica de algunos casos, sin
 desmeritar en ningún momento sus competencias en ciencia. Todo sale a
 la luz en un artículo del Dr. `Rodrigo
-Bernal <http://es.wikipedia.org/wiki/Rodrigo_Bernal>`__ que salió en
+Bernal <http://es.wikipedia.org/wiki/Rodrigo_Bernal>`__ que salió en
 El Espectador, `Los dudosos honores del científico colombiano Raúl
 Cuero <http://www.elespectador.com/noticias/actualidad/el-dudoso-idolo-de-cuero-articulo-454167>`__,
 a lo cual siguieron distintos debates y posiciones de respaldo tanto a
 Bernal
-(`ejemplo <http://www.elespectador.com/noticias/actualidad/cientificos-respaldan-rodrigo-bernal-quien-desenmascaro-articulo-454563>`__ en
+(`ejemplo <http://www.elespectador.com/noticias/actualidad/cientificos-respaldan-rodrigo-bernal-quien-desenmascaro-articulo-454563>`__ en
 El Espectador que hace una recopilación, y `carta de defensa de
 Carolina
 Murcia <http://www.elespectador.com/noticias/actualidad/carta-carolina-murcia-articulo-454842>`__
 indicando los logros del Dr. Bernal) como a Cuero
-(`ejemplo <http://lasillavacia.com/content/raul-cuero-y-rodrigo-bernal-una-discusion-impar-46053>`__ en
+(`ejemplo <http://lasillavacia.com/content/raul-cuero-y-rodrigo-bernal-una-discusion-impar-46053>`__ en
 La Silla Vacía, el cual me duele por pretende un fuerte apoyo de
 criterios objetivos, pero sin saberlos usar, y su
 `autodefensa <http://www.elespectador.com/noticias/actualidad/no-he-sido-deshonesto-raul-cuero-articulo-454168>`__).
@@ -58,7 +58,7 @@ educada" <http://www.parquedelacreatividad.org/prensa/documentos/revista_debates
 que en un aparte reza "En el pasado, el paso de la antología a la
 epistemología era teórico.", lo cual no dice absolutamente nada (y
 como mi colega `+Nicolas
-Guarin <http://plus.google.com/115230888269190537809>`__ lo hace
+Guarin <http://plus.google.com/115230888269190537809>`__ lo hace
 notar, hasta con errores de ortografía se fue dicho texto de Cuero),
 pero se acerca al "confunde y reinarás" como indicó el físico Cesar
 Díaz tras la `cátedra de Cuero en el
@@ -124,20 +124,20 @@ suerte (tipo Macarena del dúo español musical Los del río, que fue su
 único éxito) o esas publicaciones excepcionalmente buenas o trafico
 con algunos co-autores, como lo es el índice *h*.
 
-El `índice *h* <http://es.wikipedia.org/wiki/%C3%8Dndice_h>`__ nos
+El `índice *h* <http://es.wikipedia.org/wiki/%C3%8Dndice_h>`__ nos
 indica un poco más sobre la regularidad del impacto que posee cada
 publicación del autor (o sea, de su impacto a lo largo de su
 trayectoria). Se define como el número mínimo de artículos publicados
 que cuentan con mínimo un número de citaciones iguales a los artículos
 considerados (gráficamente es la intersección de las citaciones
-ordenadas de mayor a menor con la recta *y=x*). Así, un índice *h* de
+ordenadas de mayor a menor con la recta *y=x*). Así, un índice *h* de
 4 (el cual posee Cuero) indica que posee 4 artículos que como mínimo
 han sido citados 4 veces cada uno. Pero el Dr. Bernal posee un índice
-*h* de 6, lo cual nos habla que ha poseído un mayor impacto en su
+*h* de 6, lo cual nos habla que ha poseído un mayor impacto en su
 trayectoria. Si miramos el referente temporal de *La Silla Vacía*,
 Scopus nos muestra nuevamente que el Dr. Bernal ha impactado justo en
-el periodo 2000-2013 con un índice *h* de 5, en comparación al índice
-*h* de 2 para el Dr. Cuero en el mismo periodo. Estos valores en el
+el periodo 2000-2013 con un índice *h* de 5, en comparación al índice
+*h* de 2 para el Dr. Cuero en el mismo periodo. Estos valores en el
 párrafo incluyen autocitaciones.
 
 Cuando un trabajo impacta fuertemente un área de estudio, es evidente
@@ -154,7 +154,7 @@ de citaciones y publicaciones. Sin embargo, una rápida búsqueda en
 google académico para notar que los autores prominentes en el tema
 (solo contando los que poseen perfil en google académico y que
 explícitamente tengan en su perfil que es su área de trabajo) poseen
-hasta 20055 citaciones [#mas]_ a lo largo de su trayectoria, en
+hasta 20055 citaciones [#mas]_ a lo largo de su trayectoria, en
 comparación a las 341 del Dr. Cuero. Tampoco es excusa la novedad del
 trabajo particular o del tópico de trabajo.
 
@@ -190,6 +190,6 @@ impacto e índice *h*).
 | Artículos citados       | 6               | 13              |
 +-------------------------+-----------------+-----------------+
 
-.. [#if] Por facilidad en esta publicación, he flexibilizado la definición de *Factor de impacto* ya que en Scopus no esta automatizado consultar las citaciones en un periodo de tiempo asociada a publicaciones en el mismo periodo de tiempo, que es como se calcula el factor de impacto. Así que solo he considerado citaciones totales en el periodo de tiempo entre las publicaciones de cualquier momento.
+.. [#if] Por facilidad en esta publicación, he flexibilizado la definición de *Factor de impacto* ya que en Scopus no esta automatizado consultar las citaciones en un periodo de tiempo asociada a publicaciones en el mismo periodo de tiempo, que es como se calcula el factor de impacto. Así que solo he considerado citaciones totales en el periodo de tiempo entre las publicaciones de cualquier momento.
 
-.. [#mas] Andrew Ellington, quien en Scopus registra 329 documentos con 13285 citaciones e índice *h* de 51 en el periodo 1996-2013.
+.. [#mas] Andrew Ellington, quien en Scopus registra 329 documentos con 13285 citaciones e índice *h* de 51 en el periodo 1996-2013.

@@ -22,7 +22,7 @@
 |
 | Entre luces y oscuridad
 | ya no van a despertar,
-| perdidos ya están
+| perdidos ya están
 | ahora ya que mas da.
 |
 

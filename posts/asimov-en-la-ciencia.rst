@@ -14,27 +14,27 @@ fue un científico.
 
 .. TEASER_END
 
-Isaac Asimov, o en ruso *Isaak Yudovich
-Ozimov*, nació el 2 de enero de 1920 en Petrovichi, Rusia. Asimov obtuvó
-título de pregrado, maestría y doctorado en química de la *Columbia
+Isaac Asimov, o en ruso *Isaak Yudovich
+Ozimov*, nació el 2 de enero de 1920 en Petrovichi, Rusia. Asimov obtuvó
+título de pregrado, maestría y doctorado en química de la *Columbia
 University* en la ciudad de Nueva York. Recordando un poco,
-los títulos a nivel de posgrado te confieren las habilidades de
-investigador (o lo popularmente conocido como científico).
+los títulos a nivel de posgrado te confieren las habilidades de
+investigador (o lo popularmente conocido como científico).
 
 Para obtener un doctorado es necesario aportar nuevo conocimiento sobre
-un tema, particularmente su tesis doctoral fue en bioquímica (área en la
-que se desempeño también como profesor titular en *Boston University*)
+un tema, particularmente su tesis doctoral fue en bioquímica (área en la
+que se desempeño también como profesor titular en *Boston University*)
 con la tesis "*Kinetics of the Reaction Inactivation of Tyrosinase
 During Its Catalysis of the Aerobic Oxidation of Catechol*". Fue
 investigador químico (científico) de la naval y posteriormente de la
-armada, en la cual participó de las pruebas de la bomba atómica en
+armada, en la cual participó de las pruebas de la bomba atómica en
 Bikini. Igualmente publicó libros no precisamente de divulgación, sino
 textos de carácter formal y científico, como el más conocido de estos
-"*Modern Biology*" (1961). Igualmente publicó otros textos científicos,
+"*Modern Biology*" (1961). Igualmente publicó otros textos científicos,
 como "*Biochemistry and Human Metabolism*" (1952), el primer texto que
 no era ciencia ficción, en compañía de 2 de sus colegas de trabajo de
-la *Boston University School of Medicine* y "*The Human Body*"
-(1963). Y en la sección "*Letters*" de la revista *Science* también fue
+la *Boston University School of Medicine* y "*The Human Body*"
+(1963). Y en la sección "*Letters*" de la revista *Science* también fue
 contribuyente frente a debates de gran impacto en la década de los 60 y
 70 en biología.
 
@@ -44,7 +44,7 @@ contribuyente frente a debates de gran impacto en la década de los 60 y
 1. `Isaac Asimov <http://en.wikipedia.org/wiki/Isaac_Asimov>`__. Wikipedia
 in english.
 
-2. `Biography for Isaac Asimov <http://www.imdb.com/name/nm0001920/bio>`__.
+2. `Biography for Isaac Asimov <http://www.imdb.com/name/nm0001920/bio>`__.
 IMDb.
 
 3. `Isaac Asimov <http://www.biography.com/people/isaac-asimov-9190737>`__.

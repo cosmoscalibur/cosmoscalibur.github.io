@@ -8,9 +8,9 @@
 .. author: Edward Villegas-Pulgarin
 
 Como toda una historia futurista y ciencia ficción, como la de William
-Gibson es su obra *Idoru* que en japones significa "ídolo", una
+Gibson es su obra *Idoru* que en japones significa "ídolo", una
 cantante totalmente virtual se encuentra en el top de ventas de las
-listas japonesas, y ademas da increíbles conciertos a sus seguidores.
+listas japonesas, y ademas da increíbles conciertos a sus seguidores.
 
 .. TEASER_END
 
@@ -24,7 +24,7 @@ listas japonesas, y ademas da increíbles conciertos a sus seguidores.
 
 Se trata de la cantante virtual japonesa Hatsune Miku de 19
 años (nació el 31 de agosto de 2007 teniendo 16 años). Su voz, es el
-patrón de voz de la actriz japonesa Saki Fujita, sintetizada por un
+patrón de voz de la actriz japonesa Saki Fujita, sintetizada por un
 programa de computadora llamado Vocaloid.
 
 Vocaloid es un programa diseñado en trabajo conjunto por un equipo
@@ -36,14 +36,14 @@ japoneses.
 
 
 El 9 marzo de 2010, Hatsune Miku dio un concierto espectacular a sus
-seguidores ... su primera aparición en vivo y con músicos de verdad.
+seguidores ... su primera aparición en vivo y con músicos de verdad.
 Antes, solo lo hacia en pantallas.
 
 Como esta, existen varios cantantes virtuales tanto femeninos como
-masculinos, de lengua inglesa o japonesa, así como dúos como el formado
+masculinos, de lengua inglesa o japonesa, así como dúos como el formado
 por Rin (femenino) y Len (masculino) de lengua japonesa.
 
-Aquí, les dejo una muestra del concierto en vivo del 10 de junio de 2013 (enlace actualizado).
+Aquí, les dejo una muestra del concierto en vivo del 10 de junio de 2013 (enlace actualizado).
 
 .. youtube:: jhl5afLEKdo
    :align: center

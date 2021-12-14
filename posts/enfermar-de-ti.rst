@@ -21,23 +21,23 @@
 | la cual no requiero consultas
 | ni esperar largas filas para aliviar.
 |
-| Igual, aborrezco los fríos,
-| pálidos y blancos hospitales,
+| Igual, aborrezco los fríos,
+| pálidos y blancos hospitales,
 | con blancos y azules en sus pasillos
 | y angustia espera.
 |
 | Enfermar de ti...
-| Que si pierdo mi respiración
+| Que si pierdo mi respiración
 | sea el aire que me robas,
 | y pierdo en tu boca
 | con probar tus besos.
 |
-| Y al aumentar mi tensión
+| Y al aumentar mi tensión
 | sea de sentir tu tacto,
 | dejar nuestras manos libres
 | al recorrer nuestros cuerpos.
 |
-| Que sea esta mi única enfermedad
+| Que sea esta mi única enfermedad
 | sin cura conocida,
 | enfermar de ti.
 |

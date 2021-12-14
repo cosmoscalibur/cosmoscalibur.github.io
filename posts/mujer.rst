@@ -17,7 +17,7 @@
 
 |
 | Mujer,
-| armonía celeste,
+| armonía celeste,
 | es tu fortaleza disfrazada de delicadeza
 | soporte del hombre.
 |
@@ -27,12 +27,12 @@
 | no tendría la fuerza de todos los días.
 |
 | Mujer,
-| manifestación única de la bella,
+| manifestación única de la bella,
 | grande e indomable naturaleza,
 | libre y llena de vida.
 |
 | Es tu cuerpo y ser
-| sinónimo de perfección,
+| sinónimo de perfección,
 | inundado de la rítmica universal
 | que contemplan los dioses.
 |

@@ -33,7 +33,7 @@ Luz que nunca reconstruyo aquellos momentos de un futuro planeado
 nunca ejecutado, del presente que siempre podía ser más tarde, y ahora
 hace parte de un pasado imperfecto.
 
-Pensé que el tiempo en su marcha disipaba continuamente, pero solo era
+Pensé que el tiempo en su marcha disipaba continuamente, pero solo era
 un elemento más en la periodicidad de la naturaleza, ahora alcanzando
 su máximo acercamiento.
 

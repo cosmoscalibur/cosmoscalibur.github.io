@@ -17,9 +17,9 @@
 |
 | Rondar en tu blanco de pureza, de tu inocencia,
 | de tu gozo vívido de cada sonrisa al aire
-| que cuan infante fueses contagias de alegría.
+| que cuan infante fueses contagias de alegría.
 |
-| Mi espíritu ahora caído en tu hechizo
+| Mi espíritu ahora caído en tu hechizo
 | no quiere huir, no quiere escapar de este,
 | solo quiere que sea un hechizo más fuerte
 | que finalice a tu lado.

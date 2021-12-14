@@ -10,14 +10,14 @@
 .. author: Edward Villegas-Pulgarin
 
 Ya últimamente nos encontramos con una gran cantidad de actividades, servicios
-y contenidos en internet. Ya somos parte de la red, así no estemos en su
-interior como sucede en la película TRON, pero si nos absorbe una parte
+y contenidos en internet. Ya somos parte de la red, así no estemos en su
+interior como sucede en la película TRON, pero si nos absorbe una parte
 considerable de nuestro tiempo.
 
-Bajo este, no esta demás que ideemos estrategias para pasar el rato en él, de
+Bajo este, no esta demás que ideemos estrategias para pasar el rato en él, de
 forma divertida y al mismo tiempo haciendo algo provechoso (aprendiendo). A
-principios de esta semana me encontré con EteRNA [#eterna]_, un juego en línea
-ideado por investigadores Carnegie Mellon University y Stanford University.
+principios de esta semana me encontré con EteRNA [#eterna]_, un juego en línea
+ideado por investigadores Carnegie Mellon University y Stanford University.
 
 .. TEASER_END
 
@@ -27,8 +27,8 @@ ideado por investigadores Carnegie Mellon University y Stanford University.
 
    Juego Eterna para diseño de ARN.
 
-EteRNA es un juego con fundamento científico, que cubre los principios de
-diseño de moléculas de ARN, y consiste en retos en los cuales se debe lograr
+EteRNA es un juego con fundamento científico, que cubre los principios de
+diseño de moléculas de ARN, y consiste en retos en los cuales se debe lograr
 estabilizar una determinada geometría de cadena de ARN con ciertas condiciones
 en la secuencia y los pares de nucleótidos que la formen.
 

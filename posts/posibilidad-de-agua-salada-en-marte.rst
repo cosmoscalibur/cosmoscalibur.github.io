@@ -8,17 +8,17 @@
 .. author: Edward Villegas-Pulgarin
 .. has_math: true
 
-Después de un largo periodo de ausencia en el blog, vuelvo por estos
+Después de un largo periodo de ausencia en el blog, vuelvo por estos
 lados a seguir publicando sobre los temas de la ciencia que tanto nos
 apasiona aprovechando la imagen que expuse en la sesiones del `Club
 Orión del Parque
 Explora <http://www.facebook.com/groups/376416784920/>`__.
 
-En el mes de Mayo, la sonda *Mars Reconnaissance Orbiter* (MRO) tomo una
-serie de imágenes sobre el sector del Cráter Newton en el hemisferio sur
-del planeta Marte que tras un análisis de imágenes para la composición
-del sector a partir de los múltiples sectores obtenidos en el proceso de
-mapeo de la superficie marciana (misión principal del MRO múltiples) y
+En el mes de Mayo, la sonda *Mars Reconnaissance Orbiter* (MRO) tomo una
+serie de imágenes sobre el sector del Cráter Newton en el hemisferio sur
+del planeta Marte que tras un análisis de imágenes para la composición
+del sector a partir de los múltiples sectores obtenidos en el proceso de
+mapeo de la superficie marciana (misión principal del MRO múltiples) y
 la detección de posibles cuerpos como rocas, dunas o sedimentos que
 hallan cambiado de posición, se encuentran con algo realmente
 sorprendente.
@@ -42,20 +42,20 @@ como parte del trabajo de grado de Lujendra Ojha (estudiante becado
 nepalí de 21 años de ciencias planetarias).
 
 El lugar del hallazgo fue en el cráter Newton, a 40.5°S y 158.1°W.
-El cráter fue descubierto en 1973 y tiene aproximadamente 298km
-de diámetro.
+El cráter fue descubierto en 1973 y tiene aproximadamente 298km
+de diámetro.
 
 .. youtube:: r8HoZrCk-94
    :align: center
 
-El análisis de las imágenes en este sector, mostraron la aparición de
+El análisis de las imágenes en este sector, mostraron la aparición de
 una serie de surcos que presentan una variación estacional no solo en
-longitud, sino también en ancho. El ancho de estos surcos puede alcanzar
+longitud, sino también en ancho. El ancho de estos surcos puede alcanzar
 entre medio metro y 5 metros, y longitud de hasta 200 a 300 metros.
 Estos surcos y su coloración, la cual es estacional son los posibles
 indicios de agua salada en marte. El tamaño de los surcos no
 necesariamente implica grandes cantidades de agua, pues el paso de
-agua humidifica el terreno y hace que el surco se note mayor.
+agua humidifica el terreno y hace que el surco se note mayor.
 
 Dado que la temperatura media de Marte es inferior al punto de
 congelación del agua (la media es de -46°C, y oscila entre -87°C y -5°C;
@@ -66,31 +66,31 @@ reducir el punto de congelación del agua.
 
 Pero no necesariamente debe ser agua fluyendo sobre la superficie, sino
 agua presente en el subsuelo y de un caudal tal que tenga efectos sobre
-la configuración del terreno superficial causando la modificación de la
+la configuración del terreno superficial causando la modificación de la
 configuración de algunos elementos como piedras, polvo y otros que
 provoquen la observación de los surcos, al igual que el efecto de
-humidificación. Otra posible hipótesis es la presencia de material
+humidificación. Otra posible hipótesis es la presencia de material
 arcilloso, lo cual igualmente implica la existencia de agua
 (:math:`Al_2O_3 \cdot 2SiO_2 \cdot H_2O`).
 
-Para su confirmación final habrá que esperar las próximas misiones a
-Marte que irán a las zonas identificadas con cambios estacionales.
+Para su confirmación final habrá que esperar las próximas misiones a
+Marte que irán a las zonas identificadas con cambios estacionales.
 
 **Referencias**
 
 1. HiRISE. Seasonal flows on warm martian slopes. Science, 5 Aug 2011. (`HiRISE <http://hirise.lpl.arizona.edu/sim/science-2011-aug-4.php>`__; `Science <http://www.sciencemag.org/content/333/6043/740>`__).
 
-2. Discovery News. `TRICKLE OF SALT WATER -- ON MARS <http://news.discovery.com/space/mars-salt-water-surface-110804.html>`__. Aug 4, 2011.
+2. Discovery News. `TRICKLE OF SALT WATER -- ON MARS <http://news.discovery.com/space/mars-salt-water-surface-110804.html>`__. Aug 4, 2011.
 
-3. UANews. `Briny Water May be at Work in Seasonal Flows on Mars <http://uanews.org/node/41010>`__. Aug 4, 2011.
+3. UANews. `Briny Water May be at Work in Seasonal Flows on Mars <http://uanews.org/node/41010>`__. Aug 4, 2011.
 
 4. NASA Missions. Mars Reconnaissance Orbiter, `Multimedia <http://www.nasa.gov/mission_pages/MRO/multimedia/pia14472.html>`__.
 
-5. Jet Propulsion Laboratory. `Mars Reconnaissance Orbiter <http://mars.jpl.nasa.gov/mro/>`__.
+5. Jet Propulsion Laboratory. `Mars Reconnaissance Orbiter <http://mars.jpl.nasa.gov/mro/>`__.
 
-6. Wikipedia (english version). `Mars Reconnaissance Orbiter <http://en.wikipedia.org/wiki/Mars_Reconnaissance_Orbiter>`__.
+6. Wikipedia (english version). `Mars Reconnaissance Orbiter <http://en.wikipedia.org/wiki/Mars_Reconnaissance_Orbiter>`__.
 
-7. NASA Missions. `Mars Reconnaissance Orbiter <http://www.nasa.gov/mission_pages/MRO/main/index.html>`__.
+7. NASA Missions. `Mars Reconnaissance Orbiter <http://www.nasa.gov/mission_pages/MRO/main/index.html>`__.
 
 8. `Google Mars <http://www.google.com/mars/>`__.
 

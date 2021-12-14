@@ -23,7 +23,7 @@
 | este momento sin igual.
 |
 | Era un ahora,
-| un después ya no habría
+| un después ya no habría
 | y el tiempo transcurría.
 |
 | Una mirada cruzada,
@@ -40,6 +40,6 @@
 |
 | Palabras no faltaban
 | nuestro sentir claro estaba,
-| en ese beso de colibrí.
+| en ese beso de colibrí.
 |
 

@@ -20,4 +20,4 @@ federaciones. El lema del IYC2011 es "Chemistry–our life, our future" /
 
 
 
-Más información en: \ http://www.chemistry2011.org/
+Más información en: \ http://www.chemistry2011.org/

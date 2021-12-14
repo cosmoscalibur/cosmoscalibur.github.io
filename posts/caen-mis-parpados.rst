@@ -19,11 +19,11 @@
 | hasta que finalmente y muy lentamente
 | caen mis párpados.
 |
-| Normalmente todo terminaría aquí
+| Normalmente todo terminaría aquí
 | y ya no más hasta el otro día,
 | pero este no es el caso.
 |
-| Miles de imágenes por segundo
+| Miles de imágenes por segundo
 | se contemplan en el dilatado tiempo del sueño
 | y solo unas cuantas recordaré.
 |

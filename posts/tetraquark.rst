@@ -47,10 +47,10 @@ Zc(3900) <http://phys.org/news/2013-06-collider-teams-evidence-particle-z3900.ht
 Physorg June 18, 2013.
 
 2. `Observation of the Charged Hadron Zc(3900) at sqrt(s)=4170
-MeV <http://arxiv.org/abs/1304.3036>`__. T. Xiao, S. Dobbs, A.
-Tomaradze, Kamal K. Seth. ArXiv. April 10, 2013.
+MeV <http://arxiv.org/abs/1304.3036>`__. T. Xiao, S. Dobbs, A.
+Tomaradze, Kamal K. Seth. ArXiv. April 10, 2013.
 
-3. `Zc(3900) - what is inside? <http://arxiv.org/abs/1304.0380>`__ M.B.
+3. `Zc(3900) - what is inside? <http://arxiv.org/abs/1304.0380>`__ M.B.
 Voloshin. ArXiv. April 1, 2013.
 
 4. `Quarkonium <http://en.wikipedia.org/wiki/Quarkonium>`__. Wikipedia

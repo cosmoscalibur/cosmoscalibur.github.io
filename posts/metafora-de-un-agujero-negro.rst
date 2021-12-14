@@ -10,7 +10,7 @@
 
 | Hay un agujero negro supermasivo
 | en el centro de mi galaxia,
-| su gravedad rige mi dinámica
+| su gravedad rige mi dinámica
 | y no paro de caer en él.
 | Es esta singularidad
 | mi atracción fatal.

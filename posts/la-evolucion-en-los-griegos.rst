@@ -7,7 +7,7 @@
 .. type: text
 .. author: Edward Villegas-Pulgarin
 
-Hablando un poco de la evolución biológica el día de ayer, dando
+Hablando un poco de la evolución biológica el día de ayer, dando
 inicio a las actividades del ciclo de astrobiología en el Club Orión,
 se genero la inquietud sobre el origen griego de la evolución, motivo
 por el cual me di a la tarea de buscar un poco y realizar esta breve
@@ -34,16 +34,16 @@ la vida. Los cuatro elementales son:
 
 Empédocles considero que la solución a la cuestión del arjé era un
 origen a partir de los 4 elementales. La combinación entre los 4
-elementales aportaban las características de básicas de la materia, el
-ser fríos  calientes, secos y húmedos. Aristóteles, igualmente
+elementales aportaban las características de básicas de la materia, el
+ser fríos  calientes, secos y húmedos. Aristóteles, igualmente
 adoptaría este pensamiento unificador pero diferenciaría un momento
 creador a partir de los elementales, a partir del cual la naturaleza
-formada es inmutable, tesis aristotélica (pensamiento que más
-tarde influenciaría el concepto inicial del origen en muchas
-religiones, la tesis creacionista).
+formada es inmutable, tesis aristotélica (pensamiento que más
+tarde influenciaría el concepto inicial del origen en muchas
+religiones, la tesis creacionista).
 
 
-Probablemente, el primer concepto "moderno" de evolución biológica y
+Probablemente, el primer concepto "moderno" de evolución biológica y
 muy adelantado a su época, surgió del pensamiento de Anaximándro de
 Mileto, para quien la vida debió surgir del agua de seres envueltos de
 cortezas espinosas y el sol, evaporando lo húmedo de la Tierra,

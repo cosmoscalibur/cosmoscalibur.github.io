@@ -17,7 +17,7 @@ Soy usuario Linux desde 2009, usando la distro Ubuntu con escritorio
 gnome. Pero hace algún tiempo empece a comprar juegos en `Humble
 Bundle <https://www.humblebundle.com/>`__. Muy buenos titulos,
 excelentes gráficos y en otros excelentes historias, multiplataforma,
-mejor dicho un paraíso *gamer* y al mejor precio (créanme! máximo he
+mejor dicho un paraíso *gamer* y al mejor precio (créanme! máximo he
 pagado 15 dolares por 10 títulos en varias plataformas y sus audios).
 Parte de estos títulos son de la corporación
 `Valve <http://www.valvesoftware.com/>`__, desarrolladora de la
@@ -29,7 +29,7 @@ Pero donde esta la gracia de este post... bueno, quienes saben de Steam
 un poco más allá de sus juegos, sabrán del proyecto
 `SteamOS <http://store.steampowered.com/livingroom/SteamOS/?l=spanish>`__.
 Valve ahora apuesta al desarrollo de un sistema operativo exclusivo para
-*gamers* optimizado para su plataforma. Se posee doble escritorio, uno
+*gamers* optimizado para su plataforma. Se posee doble escritorio, uno
 para la plataforma de juegos y otro para un escritorio linux tradicional
 con gnome basado en Debian 7. En teoría todo lo que funcione en Debian 7
 y Ubuntu 12.04 les funcionaría en SteamOS.
@@ -65,9 +65,9 @@ basado en él. Instalamos el cliente Steam (a través de APT *apt-get
 install -y steam* o descargando el
 `paquete <http://media.steampowered.com/client/installer/steam.deb>`__
 de la página oficial). Luego debemos instalar los paquetes del
-`compositor <http://repo.steampowered.com/steamos/pool/main/s/steamos-compositor/>`__ y
+`compositor <http://repo.steampowered.com/steamos/pool/main/s/steamos-compositor/>`__ y
 el `modeswitch
-inhibitor <http://repo.steampowered.com/steamos/pool/main/s/steamos-modeswitch-inhibitor/>`__ (como
+inhibitor <http://repo.steampowered.com/steamos/pool/main/s/steamos-modeswitch-inhibitor/>`__ (como
 sabremos doble click y usar el centro de software o *dpkg -i \*.deb*).
 Esto nos permitirá probar un poco Steam pero no con todas las
 funcionalidades (los juegos Steam que no son linux no funcionarán), lo
