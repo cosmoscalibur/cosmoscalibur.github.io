@@ -3,7 +3,7 @@
 &lt;a rel="license" href="https://creativecommons.org/licenses/by/4.0/"&gt;
 &lt;img alt="Creative Commons License BY 4.0"
 style="border-width:0; margin-bottom:12px;"
-src="https://licensebuttons.net/l/by/4.0/88x31.png"&gt;&lt;/a&gt;</copyright><lastBuildDate>Tue, 14 Dec 2021 21:03:51 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Configurar RetroArch en Steam</title><link>https://www.cosmoscalibur.com/blog/configurar-retroarch-en-steam/</link><dc:creator>Edward Villegas-Pulgarin</dc:creator><description>&lt;div&gt;&lt;p&gt;&lt;a class="reference external" href="https://www.retroarch.com/"&gt;RetroArch&lt;/a&gt; es un agregador de emuladores y
+src="https://licensebuttons.net/l/by/4.0/88x31.png"&gt;&lt;/a&gt;</copyright><lastBuildDate>Mon, 20 Dec 2021 15:51:09 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Configurar RetroArch en Steam</title><link>https://www.cosmoscalibur.com/blog/configurar-retroarch-en-steam/</link><dc:creator>Edward Villegas-Pulgarin</dc:creator><description>&lt;div&gt;&lt;p&gt;&lt;a class="reference external" href="https://www.retroarch.com/"&gt;RetroArch&lt;/a&gt; es un agregador de emuladores y
 videojuegos para estos, multiplataforma
 (&lt;a class="reference external" href="https://www.retroarch.com/?page=platforms"&gt;descargas de plataformas soportadas&lt;/a&gt;)
 y de código abierto. Es posible instalar RetroArch de forma directa en el
@@ -49,7 +49,7 @@ realizarlo en el orden mencionado.&lt;/p&gt;
 &lt;h2&gt;Habilitar WSL&lt;/h2&gt;
 &lt;p&gt;Nuestro primer paso es abrir la consola de Power Shell en modo administrador y
 a continuación ejecutaremos:&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a id="rest_code_9264516496b748c2b2a7a2e447a54df6-1" name="rest_code_9264516496b748c2b2a7a2e447a54df6-1"&gt;&lt;/a&gt;dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
+&lt;pre class="code text"&gt;&lt;a id="rest_code_fd1ddcd0280b491297c35254ce6fbcf8-1" name="rest_code_fd1ddcd0280b491297c35254ce6fbcf8-1"&gt;&lt;/a&gt;dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
 &lt;/pre&gt;&lt;/section&gt;
 &lt;section id="actualizar-a-wsl2"&gt;
 &lt;h2&gt;Actualizar a WSL2&lt;/h2&gt;
@@ -59,12 +59,12 @@ siempre y cuando la versión sea 1903 o superior, con número de compilación
 la ventana que despliega.&lt;/p&gt;
 &lt;p&gt;En caso contrario, podemos recurrir al asistente de &lt;em&gt;Windows Update&lt;/em&gt; para
 tener dicha versión. Una vez con este requisito, podemos ejecutar:&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a id="rest_code_a4be4c9b1d844b62a525d91e85db086f-1" name="rest_code_a4be4c9b1d844b62a525d91e85db086f-1"&gt;&lt;/a&gt;dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
-&lt;a id="rest_code_a4be4c9b1d844b62a525d91e85db086f-2" name="rest_code_a4be4c9b1d844b62a525d91e85db086f-2"&gt;&lt;/a&gt;$wsl_file="wsl_update_x64.msi"
-&lt;a id="rest_code_a4be4c9b1d844b62a525d91e85db086f-3" name="rest_code_a4be4c9b1d844b62a525d91e85db086f-3"&gt;&lt;/a&gt;$wsl_file_path=$pwd.Path + "\" + $wsl_file
-&lt;a id="rest_code_a4be4c9b1d844b62a525d91e85db086f-4" name="rest_code_a4be4c9b1d844b62a525d91e85db086f-4"&gt;&lt;/a&gt;Invoke-WebRequest -Uri https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi -OutFile $wsl_file_path -UseBasicParsing
-&lt;a id="rest_code_a4be4c9b1d844b62a525d91e85db086f-5" name="rest_code_a4be4c9b1d844b62a525d91e85db086f-5"&gt;&lt;/a&gt;Start-Process $wsl_file_path
-&lt;a id="rest_code_a4be4c9b1d844b62a525d91e85db086f-6" name="rest_code_a4be4c9b1d844b62a525d91e85db086f-6"&gt;&lt;/a&gt;wsl --set-default-version 2
+&lt;pre class="code text"&gt;&lt;a id="rest_code_d2bf302a942f4b4e87aef0101c6e5a68-1" name="rest_code_d2bf302a942f4b4e87aef0101c6e5a68-1"&gt;&lt;/a&gt;dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
+&lt;a id="rest_code_d2bf302a942f4b4e87aef0101c6e5a68-2" name="rest_code_d2bf302a942f4b4e87aef0101c6e5a68-2"&gt;&lt;/a&gt;$wsl_file="wsl_update_x64.msi"
+&lt;a id="rest_code_d2bf302a942f4b4e87aef0101c6e5a68-3" name="rest_code_d2bf302a942f4b4e87aef0101c6e5a68-3"&gt;&lt;/a&gt;$wsl_file_path=$pwd.Path + "\" + $wsl_file
+&lt;a id="rest_code_d2bf302a942f4b4e87aef0101c6e5a68-4" name="rest_code_d2bf302a942f4b4e87aef0101c6e5a68-4"&gt;&lt;/a&gt;Invoke-WebRequest -Uri https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi -OutFile $wsl_file_path -UseBasicParsing
+&lt;a id="rest_code_d2bf302a942f4b4e87aef0101c6e5a68-5" name="rest_code_d2bf302a942f4b4e87aef0101c6e5a68-5"&gt;&lt;/a&gt;Start-Process $wsl_file_path
+&lt;a id="rest_code_d2bf302a942f4b4e87aef0101c6e5a68-6" name="rest_code_d2bf302a942f4b4e87aef0101c6e5a68-6"&gt;&lt;/a&gt;wsl --set-default-version 2
 &lt;/pre&gt;&lt;p&gt;El procedimiento anterior es mi versión de ejecución por línea de comandos,
 pero la documentación oficial dispone para descarga e instalación manual.
 Asumo el interés en usar la WSL2 como versión por defecto, por lo cual es
@@ -79,9 +79,9 @@ acorde a la lista disponible en la sección de descarga manual de la
 documentación oficial &lt;a class="citation-reference" href="https://www.cosmoscalibur.com/blog/usar-ubuntu-en-windows/#wsl-manual" id="citation-reference-4" role="doc-biblioref"&gt;[wsl-manual]&lt;/a&gt;. En nuestro ejemplo, instalaremos Ubuntu
 20.04 (cambiar el número de la versión LTS soportada en la URL si te interesa
 otra).&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a id="rest_code_b684a165288f44a29323ca2cad2783a1-1" name="rest_code_b684a165288f44a29323ca2cad2783a1-1"&gt;&lt;/a&gt;Invoke-WebRequest -Uri https://aka.ms/wslubuntu2004 -OutFile Ubuntu.appx -UseBasicParsing
-&lt;a id="rest_code_b684a165288f44a29323ca2cad2783a1-2" name="rest_code_b684a165288f44a29323ca2cad2783a1-2"&gt;&lt;/a&gt;Add-AppxPackage .\Ubuntu.appx
-&lt;a id="rest_code_b684a165288f44a29323ca2cad2783a1-3" name="rest_code_b684a165288f44a29323ca2cad2783a1-3"&gt;&lt;/a&gt;ubuntu2004.exe
+&lt;pre class="code text"&gt;&lt;a id="rest_code_b898381f69bd499b80edc12020d09dd3-1" name="rest_code_b898381f69bd499b80edc12020d09dd3-1"&gt;&lt;/a&gt;Invoke-WebRequest -Uri https://aka.ms/wslubuntu2004 -OutFile Ubuntu.appx -UseBasicParsing
+&lt;a id="rest_code_b898381f69bd499b80edc12020d09dd3-2" name="rest_code_b898381f69bd499b80edc12020d09dd3-2"&gt;&lt;/a&gt;Add-AppxPackage .\Ubuntu.appx
+&lt;a id="rest_code_b898381f69bd499b80edc12020d09dd3-3" name="rest_code_b898381f69bd499b80edc12020d09dd3-3"&gt;&lt;/a&gt;ubuntu2004.exe
 &lt;/pre&gt;&lt;p&gt;Una vez se complete el proceso, debemos inicializar la distribución para que la
 configuración termine. Puedes hacerlo lanzando la distribución desde la
 aplicación o con el comando desde la consola como en este ejemplo.&lt;/p&gt;
@@ -90,8 +90,8 @@ contraseña durante la configuración inicial, podemos usar el gestor de paquete
 e incluso lanzar algunas aplicaciones gráficas habilitando el servidor X11.&lt;/p&gt;
 &lt;p&gt;Finalmente, actualicemos nuestra distribución (en el paso anterior la consola
 ha quedado ubicada en Ubuntu).&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a id="rest_code_2039b374c07940c4aee898a549f7eea5-1" name="rest_code_2039b374c07940c4aee898a549f7eea5-1"&gt;&lt;/a&gt;sudo apt update -q
-&lt;a id="rest_code_2039b374c07940c4aee898a549f7eea5-2" name="rest_code_2039b374c07940c4aee898a549f7eea5-2"&gt;&lt;/a&gt;sudo apt dist-upgrade -y
+&lt;pre class="code text"&gt;&lt;a id="rest_code_67c85c8224f1479dada0645f4d87f645-1" name="rest_code_67c85c8224f1479dada0645f4d87f645-1"&gt;&lt;/a&gt;sudo apt update -q
+&lt;a id="rest_code_67c85c8224f1479dada0645f4d87f645-2" name="rest_code_67c85c8224f1479dada0645f4d87f645-2"&gt;&lt;/a&gt;sudo apt dist-upgrade -y
 &lt;/pre&gt;&lt;p&gt;Hay que tener en cuenta que no todo funcionará, uno de esos detalles es la
 instalación de paquetes snap al igual que docker.&lt;/p&gt;
 &lt;p&gt;Estamos listos para usar Ubuntu en Windows. Para este fin podemos abrir
@@ -104,8 +104,8 @@ lanzador de Ubuntu en el menú, usar la consola Ubuntu de Windows Terminal
 &lt;h2&gt;Aplicaciones gráficas&lt;/h2&gt;
 &lt;p&gt;Para cerrar este tema, falta que lancemos nuestras aplicaciones gráficas. Para
 esto será necesario modificar el archivo &lt;code&gt;.bashrc&lt;/code&gt; &lt;a class="citation-reference" href="https://www.cosmoscalibur.com/blog/usar-ubuntu-en-windows/#ubuntu-wiki" id="citation-reference-5" role="doc-biblioref"&gt;[ubuntu-wiki]&lt;/a&gt;.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a id="rest_code_2a308195c125410481e546c318bcb9fc-1" name="rest_code_2a308195c125410481e546c318bcb9fc-1"&gt;&lt;/a&gt;echo "export DISPLAY=$(awk '/nameserver / {print $2; exit}' /etc/resolv.conf 2&amp;gt;/dev/null):0" &amp;gt;&amp;gt; $HOME/.bashrc
-&lt;a id="rest_code_2a308195c125410481e546c318bcb9fc-2" name="rest_code_2a308195c125410481e546c318bcb9fc-2"&gt;&lt;/a&gt;echo "export LIBGL_ALWAYS_INDIRECT=1" &amp;gt;&amp;gt; $HOME/.bashrc
+&lt;pre class="code text"&gt;&lt;a id="rest_code_c609531dffde4b2fb325b31c2bf5149b-1" name="rest_code_c609531dffde4b2fb325b31c2bf5149b-1"&gt;&lt;/a&gt;echo "export DISPLAY=$(awk '/nameserver / {print $2; exit}' /etc/resolv.conf 2&amp;gt;/dev/null):0" &amp;gt;&amp;gt; $HOME/.bashrc
+&lt;a id="rest_code_c609531dffde4b2fb325b31c2bf5149b-2" name="rest_code_c609531dffde4b2fb325b31c2bf5149b-2"&gt;&lt;/a&gt;echo "export LIBGL_ALWAYS_INDIRECT=1" &amp;gt;&amp;gt; $HOME/.bashrc
 &lt;/pre&gt;&lt;aside class="admonition note"&gt;
 &lt;p class="admonition-title"&gt;Nota&lt;/p&gt;
 &lt;p&gt;En ningún sitio encontré referencia a necesitar reiniciar o hacer algún
@@ -126,22 +126,22 @@ guardar la configuración y lanzarlo desde dicho archivo.&lt;/p&gt;
 aplicaciones y escoger instalar nuestra distribución.&lt;/p&gt;
 &lt;p&gt;Al intentar abrir la distribución de esta manera nos encontraremos con el error
 siguiente:&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a id="rest_code_94799ab0873c48f3949a3deca7d66752-1" name="rest_code_94799ab0873c48f3949a3deca7d66752-1"&gt;&lt;/a&gt;Installing, this may take a few minutes...
-&lt;a id="rest_code_94799ab0873c48f3949a3deca7d66752-2" name="rest_code_94799ab0873c48f3949a3deca7d66752-2"&gt;&lt;/a&gt;WslRegisterDistribution failed with error: 0x8007019e
-&lt;a id="rest_code_94799ab0873c48f3949a3deca7d66752-3" name="rest_code_94799ab0873c48f3949a3deca7d66752-3"&gt;&lt;/a&gt;The Windows Subsystem for Linux optional component is not enabled. Please enable it and try again.
-&lt;a id="rest_code_94799ab0873c48f3949a3deca7d66752-4" name="rest_code_94799ab0873c48f3949a3deca7d66752-4"&gt;&lt;/a&gt;See https://aka.ms/wslinstall for details.
-&lt;a id="rest_code_94799ab0873c48f3949a3deca7d66752-5" name="rest_code_94799ab0873c48f3949a3deca7d66752-5"&gt;&lt;/a&gt;Press any key to continue...
+&lt;pre class="code text"&gt;&lt;a id="rest_code_713ed8df73b14984b96208fa4d8cfa14-1" name="rest_code_713ed8df73b14984b96208fa4d8cfa14-1"&gt;&lt;/a&gt;Installing, this may take a few minutes...
+&lt;a id="rest_code_713ed8df73b14984b96208fa4d8cfa14-2" name="rest_code_713ed8df73b14984b96208fa4d8cfa14-2"&gt;&lt;/a&gt;WslRegisterDistribution failed with error: 0x8007019e
+&lt;a id="rest_code_713ed8df73b14984b96208fa4d8cfa14-3" name="rest_code_713ed8df73b14984b96208fa4d8cfa14-3"&gt;&lt;/a&gt;The Windows Subsystem for Linux optional component is not enabled. Please enable it and try again.
+&lt;a id="rest_code_713ed8df73b14984b96208fa4d8cfa14-4" name="rest_code_713ed8df73b14984b96208fa4d8cfa14-4"&gt;&lt;/a&gt;See https://aka.ms/wslinstall for details.
+&lt;a id="rest_code_713ed8df73b14984b96208fa4d8cfa14-5" name="rest_code_713ed8df73b14984b96208fa4d8cfa14-5"&gt;&lt;/a&gt;Press any key to continue...
 &lt;/pre&gt;&lt;p&gt;Esto requiere ejecutar el paso de instalación de habilitación de WSL. Una vez
 habilitado, debemos reinstalar la distribución, de otra manera veremos el
 siguiente error:&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a id="rest_code_e079f8bb6eb84dc2823ff22455dd5b0e-1" name="rest_code_e079f8bb6eb84dc2823ff22455dd5b0e-1"&gt;&lt;/a&gt;Installing, this may take a few minutes...
-&lt;a id="rest_code_e079f8bb6eb84dc2823ff22455dd5b0e-2" name="rest_code_e079f8bb6eb84dc2823ff22455dd5b0e-2"&gt;&lt;/a&gt;WslRegisterDistribution failed with error: 0x800700b7
-&lt;a id="rest_code_e079f8bb6eb84dc2823ff22455dd5b0e-3" name="rest_code_e079f8bb6eb84dc2823ff22455dd5b0e-3"&gt;&lt;/a&gt;The distribution installation has become corrupted.
-&lt;a id="rest_code_e079f8bb6eb84dc2823ff22455dd5b0e-4" name="rest_code_e079f8bb6eb84dc2823ff22455dd5b0e-4"&gt;&lt;/a&gt;Please select Reset from App Settings or uninstall and reinstall the app.
-&lt;a id="rest_code_e079f8bb6eb84dc2823ff22455dd5b0e-5" name="rest_code_e079f8bb6eb84dc2823ff22455dd5b0e-5"&gt;&lt;/a&gt;Error: 0x800700b7 Cannot create a file when that file already exists.
+&lt;pre class="code text"&gt;&lt;a id="rest_code_a61ea3db95784b26a6eb66163e00fb7d-1" name="rest_code_a61ea3db95784b26a6eb66163e00fb7d-1"&gt;&lt;/a&gt;Installing, this may take a few minutes...
+&lt;a id="rest_code_a61ea3db95784b26a6eb66163e00fb7d-2" name="rest_code_a61ea3db95784b26a6eb66163e00fb7d-2"&gt;&lt;/a&gt;WslRegisterDistribution failed with error: 0x800700b7
+&lt;a id="rest_code_a61ea3db95784b26a6eb66163e00fb7d-3" name="rest_code_a61ea3db95784b26a6eb66163e00fb7d-3"&gt;&lt;/a&gt;The distribution installation has become corrupted.
+&lt;a id="rest_code_a61ea3db95784b26a6eb66163e00fb7d-4" name="rest_code_a61ea3db95784b26a6eb66163e00fb7d-4"&gt;&lt;/a&gt;Please select Reset from App Settings or uninstall and reinstall the app.
+&lt;a id="rest_code_a61ea3db95784b26a6eb66163e00fb7d-5" name="rest_code_a61ea3db95784b26a6eb66163e00fb7d-5"&gt;&lt;/a&gt;Error: 0x800700b7 Cannot create a file when that file already exists.
 &lt;/pre&gt;&lt;p&gt;Por esta misma razón, nuestra distro estará en WSL1 y será necesario convertir.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a id="rest_code_3fb4dd73dff44248a0d8adaed7eb3b31-1" name="rest_code_3fb4dd73dff44248a0d8adaed7eb3b31-1"&gt;&lt;/a&gt;wsl -l -v
-&lt;a id="rest_code_3fb4dd73dff44248a0d8adaed7eb3b31-2" name="rest_code_3fb4dd73dff44248a0d8adaed7eb3b31-2"&gt;&lt;/a&gt;wsl --set-version Ubuntu 2
+&lt;pre class="code text"&gt;&lt;a id="rest_code_6f3e2e185cdd4beb933714bddbf59ffa-1" name="rest_code_6f3e2e185cdd4beb933714bddbf59ffa-1"&gt;&lt;/a&gt;wsl -l -v
+&lt;a id="rest_code_6f3e2e185cdd4beb933714bddbf59ffa-2" name="rest_code_6f3e2e185cdd4beb933714bddbf59ffa-2"&gt;&lt;/a&gt;wsl --set-version Ubuntu 2
 &lt;/pre&gt;&lt;p&gt;Con la primera línea verificamos la versión asignada y con el segundo
 convertimos.&lt;/p&gt;
 &lt;/section&gt;
@@ -418,9 +418,9 @@ archivo: &lt;code&gt;/etc/apt/preferences.d/nosnap.pref&lt;/code&gt;. En mi caso
 de mantenerlo, así que procedo a eliminarlo y posteriormente a instalar el
 gestor de snaps. Si te sientes más cómodo, puedes comentar las líneas y una vez
 instalado el gestor volver a descomentarlas &lt;a class="citation-reference" href="https://www.cosmoscalibur.com/blog/instalar-paquetes-snap-en-linux-mint-20/#snap-install" id="citation-reference-2" role="doc-biblioref"&gt;[snap-install]&lt;/a&gt;.&lt;/p&gt;
-&lt;pre class="code bash"&gt;&lt;a id="rest_code_b68763ca879d42bd8822050c24010ae7-1" name="rest_code_b68763ca879d42bd8822050c24010ae7-1"&gt;&lt;/a&gt;sudo rm /etc/apt/preferences.d/nosnap.pref
-&lt;a id="rest_code_b68763ca879d42bd8822050c24010ae7-2" name="rest_code_b68763ca879d42bd8822050c24010ae7-2"&gt;&lt;/a&gt;sudo apt install -y snapd
-&lt;a id="rest_code_b68763ca879d42bd8822050c24010ae7-3" name="rest_code_b68763ca879d42bd8822050c24010ae7-3"&gt;&lt;/a&gt;snap &lt;span class="nb"&gt;help&lt;/span&gt;
+&lt;pre class="code bash"&gt;&lt;a id="rest_code_89d198c08c7040b7a67cd149f8292f6d-1" name="rest_code_89d198c08c7040b7a67cd149f8292f6d-1"&gt;&lt;/a&gt;sudo rm /etc/apt/preferences.d/nosnap.pref
+&lt;a id="rest_code_89d198c08c7040b7a67cd149f8292f6d-2" name="rest_code_89d198c08c7040b7a67cd149f8292f6d-2"&gt;&lt;/a&gt;sudo apt install -y snapd
+&lt;a id="rest_code_89d198c08c7040b7a67cd149f8292f6d-3" name="rest_code_89d198c08c7040b7a67cd149f8292f6d-3"&gt;&lt;/a&gt;snap &lt;span class="nb"&gt;help&lt;/span&gt;
 &lt;/pre&gt;&lt;p&gt;Ahora puedes instalar tus paquetes snap en la forma como lo expliqué en un
 &lt;a class="reference external" href="https://www.cosmoscalibur.com/blog/instalando-paquetes-en-linux-mint/#snap"&gt;artículo anterior&lt;/a&gt;.&lt;/p&gt;
 &lt;/section&gt;
@@ -482,9 +482,9 @@ si es Anaconda o Miniconda).&lt;/p&gt;
 preguntas interactivas y así despreocuparnos durante la instalación. Invocamos
 el instalador con Bash de la siguiente forma (asegurate de usar la ruta
 completa y correcta del instalador &lt;code&gt;sh&lt;/code&gt; que usarás).&lt;/p&gt;
-&lt;pre class="code bash"&gt;&lt;a id="rest_code_80b5707b4c4941fb96900b286c173f13-1" name="rest_code_80b5707b4c4941fb96900b286c173f13-1"&gt;&lt;/a&gt;bash Anaconda3-2020.02-Linux-x86_64.sh -b -p &lt;span class="nv"&gt;$HOME&lt;/span&gt;/anaconda
-&lt;a id="rest_code_80b5707b4c4941fb96900b286c173f13-2" name="rest_code_80b5707b4c4941fb96900b286c173f13-2"&gt;&lt;/a&gt;&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;". &lt;/span&gt;&lt;span class="nv"&gt;$HOME&lt;/span&gt;&lt;span class="s2"&gt;/anaconda/etc/profile.d/conda.sh"&lt;/span&gt; &amp;gt;&amp;gt; &lt;span class="nv"&gt;$HOME&lt;/span&gt;/.bashrc
-&lt;a id="rest_code_80b5707b4c4941fb96900b286c173f13-3" name="rest_code_80b5707b4c4941fb96900b286c173f13-3"&gt;&lt;/a&gt;&lt;span class="nb"&gt;source&lt;/span&gt; &lt;span class="nv"&gt;$HOME&lt;/span&gt;/.bashrc
+&lt;pre class="code bash"&gt;&lt;a id="rest_code_7db740cbe0ca430b8771398c5aa5dd9b-1" name="rest_code_7db740cbe0ca430b8771398c5aa5dd9b-1"&gt;&lt;/a&gt;bash Anaconda3-2020.02-Linux-x86_64.sh -b -p &lt;span class="nv"&gt;$HOME&lt;/span&gt;/anaconda
+&lt;a id="rest_code_7db740cbe0ca430b8771398c5aa5dd9b-2" name="rest_code_7db740cbe0ca430b8771398c5aa5dd9b-2"&gt;&lt;/a&gt;&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;". &lt;/span&gt;&lt;span class="nv"&gt;$HOME&lt;/span&gt;&lt;span class="s2"&gt;/anaconda/etc/profile.d/conda.sh"&lt;/span&gt; &amp;gt;&amp;gt; &lt;span class="nv"&gt;$HOME&lt;/span&gt;/.bashrc
+&lt;a id="rest_code_7db740cbe0ca430b8771398c5aa5dd9b-3" name="rest_code_7db740cbe0ca430b8771398c5aa5dd9b-3"&gt;&lt;/a&gt;&lt;span class="nb"&gt;source&lt;/span&gt; &lt;span class="nv"&gt;$HOME&lt;/span&gt;/.bashrc
 &lt;/pre&gt;&lt;p&gt;En la invocación de Bash, el argumento &lt;code&gt;-b&lt;/code&gt; implica la aceptación de
 licencias y con &lt;code&gt;-p&lt;/code&gt; indicamos la ruta para la instalación de Anaconda
 (puedes cambiarla a tu deseo).&lt;/p&gt;
@@ -500,7 +500,7 @@ agregar en el &lt;code&gt;.bashrc&lt;/code&gt; la línea &lt;code&gt;conda activ
 error, por lo cual, si al ejecutarlo ves el mensaje
 &lt;code&gt;UnboundLocalError: local variable 'DISTRO_NAME' referenced before assignment&lt;/code&gt;
 bastará con actualizar el paquete &lt;a class="citation-reference" href="https://www.cosmoscalibur.com/blog/instalar-python-anaconda/#navigator" id="citation-reference-2" role="doc-biblioref"&gt;[navigator]&lt;/a&gt;.&lt;/p&gt;
-&lt;pre class="code bash"&gt;&lt;a id="rest_code_37dadf2e58f54f339003583ecfb840b5-1" name="rest_code_37dadf2e58f54f339003583ecfb840b5-1"&gt;&lt;/a&gt;conda update anaconda-navigator
+&lt;pre class="code bash"&gt;&lt;a id="rest_code_1ae5e5b2abc34d33a40a7f0f4a08f5d9-1" name="rest_code_1ae5e5b2abc34d33a40a7f0f4a08f5d9-1"&gt;&lt;/a&gt;conda update anaconda-navigator
 &lt;/pre&gt;&lt;/section&gt;
 &lt;section id="instalacion-grafica"&gt;
 &lt;h2&gt;Instalación gráfica&lt;/h2&gt;

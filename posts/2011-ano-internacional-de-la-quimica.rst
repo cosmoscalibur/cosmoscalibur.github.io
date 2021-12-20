@@ -15,7 +15,7 @@ alcanzados en la química, y sus contribución a la humanidad.
 
 Diferentes actividades para este año han sido planeadas, coordinadas por
 la IUPAC, UNESCO y las distintas sociedades nacionales de química y
-federaciones. El lema del IYC2011 es "Chemistry–our life, our future" /
+federaciones. El lema del IYC2011 es "Chemistry - our life, our future" /
 "Química, nuestra vida, nuestro futuro".
 
 

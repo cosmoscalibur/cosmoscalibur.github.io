@@ -93,33 +93,33 @@
 <section id="habilitar-wsl">
 <h2>Habilitar WSL</h2>
 <p>Nuestro primer paso es abrir la consola de Power Shell en modo administrador y a continuación ejecutaremos:</p>
-<pre class="code text"><a id="rest_code_9264516496b748c2b2a7a2e447a54df6-1" name="rest_code_9264516496b748c2b2a7a2e447a54df6-1"></a>dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
+<pre class="code text"><a id="rest_code_fd1ddcd0280b491297c35254ce6fbcf8-1" name="rest_code_fd1ddcd0280b491297c35254ce6fbcf8-1"></a>dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
 </pre></section>
 <section id="actualizar-a-wsl2">
 <h2>Actualizar a WSL2</h2>
 <p>Si disponemos de un sistema de 64 bits (<em>x64</em>), podemos actualizar a WSL2 siempre y cuando la versión sea 1903 o superior, con número de compilación 18362 o superior. Podemos verificar ejecutando <code>winver</code> y verificar en la ventana que despliega.</p>
 <p>En caso contrario, podemos recurrir al asistente de <em>Windows Update</em> para tener dicha versión. Una vez con este requisito, podemos ejecutar:</p>
-<pre class="code text"><a id="rest_code_a4be4c9b1d844b62a525d91e85db086f-1" name="rest_code_a4be4c9b1d844b62a525d91e85db086f-1"></a>dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
-<a id="rest_code_a4be4c9b1d844b62a525d91e85db086f-2" name="rest_code_a4be4c9b1d844b62a525d91e85db086f-2"></a>$wsl_file="wsl_update_x64.msi"
-<a id="rest_code_a4be4c9b1d844b62a525d91e85db086f-3" name="rest_code_a4be4c9b1d844b62a525d91e85db086f-3"></a>$wsl_file_path=$pwd.Path + "\" + $wsl_file
-<a id="rest_code_a4be4c9b1d844b62a525d91e85db086f-4" name="rest_code_a4be4c9b1d844b62a525d91e85db086f-4"></a>Invoke-WebRequest -Uri https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi -OutFile $wsl_file_path -UseBasicParsing
-<a id="rest_code_a4be4c9b1d844b62a525d91e85db086f-5" name="rest_code_a4be4c9b1d844b62a525d91e85db086f-5"></a>Start-Process $wsl_file_path
-<a id="rest_code_a4be4c9b1d844b62a525d91e85db086f-6" name="rest_code_a4be4c9b1d844b62a525d91e85db086f-6"></a>wsl --set-default-version 2
+<pre class="code text"><a id="rest_code_d2bf302a942f4b4e87aef0101c6e5a68-1" name="rest_code_d2bf302a942f4b4e87aef0101c6e5a68-1"></a>dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
+<a id="rest_code_d2bf302a942f4b4e87aef0101c6e5a68-2" name="rest_code_d2bf302a942f4b4e87aef0101c6e5a68-2"></a>$wsl_file="wsl_update_x64.msi"
+<a id="rest_code_d2bf302a942f4b4e87aef0101c6e5a68-3" name="rest_code_d2bf302a942f4b4e87aef0101c6e5a68-3"></a>$wsl_file_path=$pwd.Path + "\" + $wsl_file
+<a id="rest_code_d2bf302a942f4b4e87aef0101c6e5a68-4" name="rest_code_d2bf302a942f4b4e87aef0101c6e5a68-4"></a>Invoke-WebRequest -Uri https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi -OutFile $wsl_file_path -UseBasicParsing
+<a id="rest_code_d2bf302a942f4b4e87aef0101c6e5a68-5" name="rest_code_d2bf302a942f4b4e87aef0101c6e5a68-5"></a>Start-Process $wsl_file_path
+<a id="rest_code_d2bf302a942f4b4e87aef0101c6e5a68-6" name="rest_code_d2bf302a942f4b4e87aef0101c6e5a68-6"></a>wsl --set-default-version 2
 </pre>
 <p>El procedimiento anterior es mi versión de ejecución por línea de comandos, pero la documentación oficial dispone para descarga e instalación manual. Asumo el interés en usar la WSL2 como versión por defecto, por lo cual es necesario ejecutar la última línea del bloque.</p>
 </section>
 <section id="instalar-distribucion-linux">
 <h2>Instalar distribución Linux</h2>
 <p>A través de la tienda de aplicaciones podemos continuar con la instalación de la distribución Linux deseada, pero si te interesa continuar con el uso de la consola, procedemos a revisar la dirección de descarga de nuestra distribución acorde a la lista disponible en la sección de descarga manual de la documentación oficial <a class="citation-reference" href="#wsl-manual" id="citation-reference-4" role="doc-biblioref">[wsl-manual]</a>. En nuestro ejemplo, instalaremos Ubuntu 20.04 (cambiar el número de la versión LTS soportada en la URL si te interesa otra).</p>
-<pre class="code text"><a id="rest_code_b684a165288f44a29323ca2cad2783a1-1" name="rest_code_b684a165288f44a29323ca2cad2783a1-1"></a>Invoke-WebRequest -Uri https://aka.ms/wslubuntu2004 -OutFile Ubuntu.appx -UseBasicParsing
-<a id="rest_code_b684a165288f44a29323ca2cad2783a1-2" name="rest_code_b684a165288f44a29323ca2cad2783a1-2"></a>Add-AppxPackage .\Ubuntu.appx
-<a id="rest_code_b684a165288f44a29323ca2cad2783a1-3" name="rest_code_b684a165288f44a29323ca2cad2783a1-3"></a>ubuntu2004.exe
+<pre class="code text"><a id="rest_code_b898381f69bd499b80edc12020d09dd3-1" name="rest_code_b898381f69bd499b80edc12020d09dd3-1"></a>Invoke-WebRequest -Uri https://aka.ms/wslubuntu2004 -OutFile Ubuntu.appx -UseBasicParsing
+<a id="rest_code_b898381f69bd499b80edc12020d09dd3-2" name="rest_code_b898381f69bd499b80edc12020d09dd3-2"></a>Add-AppxPackage .\Ubuntu.appx
+<a id="rest_code_b898381f69bd499b80edc12020d09dd3-3" name="rest_code_b898381f69bd499b80edc12020d09dd3-3"></a>ubuntu2004.exe
 </pre>
 <p>Una vez se complete el proceso, debemos inicializar la distribución para que la configuración termine. Puedes hacerlo lanzando la distribución desde la aplicación o con el comando desde la consola como en este ejemplo.</p>
 <p>Concluido el proceso, será como estamos acostumbrados, creamos un usuario y contraseña durante la configuración inicial, podemos usar el gestor de paquetes e incluso lanzar algunas aplicaciones gráficas habilitando el servidor X11.</p>
 <p>Finalmente, actualicemos nuestra distribución (en el paso anterior la consola ha quedado ubicada en Ubuntu).</p>
-<pre class="code text"><a id="rest_code_2039b374c07940c4aee898a549f7eea5-1" name="rest_code_2039b374c07940c4aee898a549f7eea5-1"></a>sudo apt update -q
-<a id="rest_code_2039b374c07940c4aee898a549f7eea5-2" name="rest_code_2039b374c07940c4aee898a549f7eea5-2"></a>sudo apt dist-upgrade -y
+<pre class="code text"><a id="rest_code_67c85c8224f1479dada0645f4d87f645-1" name="rest_code_67c85c8224f1479dada0645f4d87f645-1"></a>sudo apt update -q
+<a id="rest_code_67c85c8224f1479dada0645f4d87f645-2" name="rest_code_67c85c8224f1479dada0645f4d87f645-2"></a>sudo apt dist-upgrade -y
 </pre>
 <p>Hay que tener en cuenta que no todo funcionará, uno de esos detalles es la instalación de paquetes snap al igual que docker.</p>
 <p>Estamos listos para usar Ubuntu en Windows. Para este fin podemos abrir nuevamente desde PowerShell y ejecutar <code>ubuntu2004.exe</code>, abrir el lanzador de Ubuntu en el menú, usar la consola Ubuntu de Windows Terminal (lo recomiendo y la reconocerá de forma inmediata) o VSCode con la extensión de <em>Remote - WSL</em>.</p>
@@ -127,8 +127,8 @@
 <section id="aplicaciones-graficas">
 <h2>Aplicaciones gráficas</h2>
 <p>Para cerrar este tema, falta que lancemos nuestras aplicaciones gráficas. Para esto será necesario modificar el archivo <code>.bashrc</code> <a class="citation-reference" href="#ubuntu-wiki" id="citation-reference-5" role="doc-biblioref">[ubuntu-wiki]</a>.</p>
-<pre class="code text"><a id="rest_code_2a308195c125410481e546c318bcb9fc-1" name="rest_code_2a308195c125410481e546c318bcb9fc-1"></a>echo "export DISPLAY=$(awk '/nameserver / {print $2; exit}' /etc/resolv.conf 2&gt;/dev/null):0" &gt;&gt; $HOME/.bashrc
-<a id="rest_code_2a308195c125410481e546c318bcb9fc-2" name="rest_code_2a308195c125410481e546c318bcb9fc-2"></a>echo "export LIBGL_ALWAYS_INDIRECT=1" &gt;&gt; $HOME/.bashrc
+<pre class="code text"><a id="rest_code_c609531dffde4b2fb325b31c2bf5149b-1" name="rest_code_c609531dffde4b2fb325b31c2bf5149b-1"></a>echo "export DISPLAY=$(awk '/nameserver / {print $2; exit}' /etc/resolv.conf 2&gt;/dev/null):0" &gt;&gt; $HOME/.bashrc
+<a id="rest_code_c609531dffde4b2fb325b31c2bf5149b-2" name="rest_code_c609531dffde4b2fb325b31c2bf5149b-2"></a>echo "export LIBGL_ALWAYS_INDIRECT=1" &gt;&gt; $HOME/.bashrc
 </pre>
 <aside class="admonition note">
 <p class="admonition-title">Nota</p>
@@ -141,22 +141,22 @@
 <h2>Errores comunes</h2>
 <p>Estos errores comunes son basados en lo natural que se ve ir a la tienda de aplicaciones y escoger instalar nuestra distribución.</p>
 <p>Al intentar abrir la distribución de esta manera nos encontraremos con el error siguiente:</p>
-<pre class="code text"><a id="rest_code_94799ab0873c48f3949a3deca7d66752-1" name="rest_code_94799ab0873c48f3949a3deca7d66752-1"></a>Installing, this may take a few minutes...
-<a id="rest_code_94799ab0873c48f3949a3deca7d66752-2" name="rest_code_94799ab0873c48f3949a3deca7d66752-2"></a>WslRegisterDistribution failed with error: 0x8007019e
-<a id="rest_code_94799ab0873c48f3949a3deca7d66752-3" name="rest_code_94799ab0873c48f3949a3deca7d66752-3"></a>The Windows Subsystem for Linux optional component is not enabled. Please enable it and try again.
-<a id="rest_code_94799ab0873c48f3949a3deca7d66752-4" name="rest_code_94799ab0873c48f3949a3deca7d66752-4"></a>See https://aka.ms/wslinstall for details.
-<a id="rest_code_94799ab0873c48f3949a3deca7d66752-5" name="rest_code_94799ab0873c48f3949a3deca7d66752-5"></a>Press any key to continue...
+<pre class="code text"><a id="rest_code_713ed8df73b14984b96208fa4d8cfa14-1" name="rest_code_713ed8df73b14984b96208fa4d8cfa14-1"></a>Installing, this may take a few minutes...
+<a id="rest_code_713ed8df73b14984b96208fa4d8cfa14-2" name="rest_code_713ed8df73b14984b96208fa4d8cfa14-2"></a>WslRegisterDistribution failed with error: 0x8007019e
+<a id="rest_code_713ed8df73b14984b96208fa4d8cfa14-3" name="rest_code_713ed8df73b14984b96208fa4d8cfa14-3"></a>The Windows Subsystem for Linux optional component is not enabled. Please enable it and try again.
+<a id="rest_code_713ed8df73b14984b96208fa4d8cfa14-4" name="rest_code_713ed8df73b14984b96208fa4d8cfa14-4"></a>See https://aka.ms/wslinstall for details.
+<a id="rest_code_713ed8df73b14984b96208fa4d8cfa14-5" name="rest_code_713ed8df73b14984b96208fa4d8cfa14-5"></a>Press any key to continue...
 </pre>
 <p>Esto requiere ejecutar el paso de instalación de habilitación de WSL. Una vez habilitado, debemos reinstalar la distribución, de otra manera veremos el siguiente error:</p>
-<pre class="code text"><a id="rest_code_e079f8bb6eb84dc2823ff22455dd5b0e-1" name="rest_code_e079f8bb6eb84dc2823ff22455dd5b0e-1"></a>Installing, this may take a few minutes...
-<a id="rest_code_e079f8bb6eb84dc2823ff22455dd5b0e-2" name="rest_code_e079f8bb6eb84dc2823ff22455dd5b0e-2"></a>WslRegisterDistribution failed with error: 0x800700b7
-<a id="rest_code_e079f8bb6eb84dc2823ff22455dd5b0e-3" name="rest_code_e079f8bb6eb84dc2823ff22455dd5b0e-3"></a>The distribution installation has become corrupted.
-<a id="rest_code_e079f8bb6eb84dc2823ff22455dd5b0e-4" name="rest_code_e079f8bb6eb84dc2823ff22455dd5b0e-4"></a>Please select Reset from App Settings or uninstall and reinstall the app.
-<a id="rest_code_e079f8bb6eb84dc2823ff22455dd5b0e-5" name="rest_code_e079f8bb6eb84dc2823ff22455dd5b0e-5"></a>Error: 0x800700b7 Cannot create a file when that file already exists.
+<pre class="code text"><a id="rest_code_a61ea3db95784b26a6eb66163e00fb7d-1" name="rest_code_a61ea3db95784b26a6eb66163e00fb7d-1"></a>Installing, this may take a few minutes...
+<a id="rest_code_a61ea3db95784b26a6eb66163e00fb7d-2" name="rest_code_a61ea3db95784b26a6eb66163e00fb7d-2"></a>WslRegisterDistribution failed with error: 0x800700b7
+<a id="rest_code_a61ea3db95784b26a6eb66163e00fb7d-3" name="rest_code_a61ea3db95784b26a6eb66163e00fb7d-3"></a>The distribution installation has become corrupted.
+<a id="rest_code_a61ea3db95784b26a6eb66163e00fb7d-4" name="rest_code_a61ea3db95784b26a6eb66163e00fb7d-4"></a>Please select Reset from App Settings or uninstall and reinstall the app.
+<a id="rest_code_a61ea3db95784b26a6eb66163e00fb7d-5" name="rest_code_a61ea3db95784b26a6eb66163e00fb7d-5"></a>Error: 0x800700b7 Cannot create a file when that file already exists.
 </pre>
 <p>Por esta misma razón, nuestra distro estará en WSL1 y será necesario convertir.</p>
-<pre class="code text"><a id="rest_code_3fb4dd73dff44248a0d8adaed7eb3b31-1" name="rest_code_3fb4dd73dff44248a0d8adaed7eb3b31-1"></a>wsl -l -v
-<a id="rest_code_3fb4dd73dff44248a0d8adaed7eb3b31-2" name="rest_code_3fb4dd73dff44248a0d8adaed7eb3b31-2"></a>wsl --set-version Ubuntu 2
+<pre class="code text"><a id="rest_code_6f3e2e185cdd4beb933714bddbf59ffa-1" name="rest_code_6f3e2e185cdd4beb933714bddbf59ffa-1"></a>wsl -l -v
+<a id="rest_code_6f3e2e185cdd4beb933714bddbf59ffa-2" name="rest_code_6f3e2e185cdd4beb933714bddbf59ffa-2"></a>wsl --set-version Ubuntu 2
 </pre>
 <p>Con la primera línea verificamos la versión asignada y con el segundo convertimos.</p>
 </section>

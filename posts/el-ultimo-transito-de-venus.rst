@@ -53,7 +53,7 @@ evento ocurre con una regularidad de 4 tránsitos cada 243 años,
 presentados como 2 pares de tránsitos apartados 8 años que ocurren tras
 121.5 años y 105.5 años (121.5+8+105.5+8=243). El último tránsito fue el
 8 de junio de 2004 y no volveremos a presenciar (realmente no lo
-presenciaremos, pero nuestros descendientes si) uno hasta el 11 de
+presenciaremos, pero nuestros descendientes sí) uno hasta el 11 de
 diciembre de 2117. Esta periodicidad esta asociada a la resonancia
 orbital entre Venus y la Tierra la cual esta entre 8:13 y 243:395.
 
@@ -65,14 +65,14 @@ orbital entre Venus y la Tierra la cual esta entre 8:13 y 243:395.
 
    Visibilidad global del tránsito de Venus de 2012.
 
-La mejor zona de observación del tránsito sera el océano pacifico
-, y para quienes tenga la oportunidad económica en `Tahiti se celebrara
+La mejor zona de observación del tránsito será el océano pacifico,
+y para quienes tenga la oportunidad económica en `Tahiti se celebrará
 este tránsito <http://www.venus-tahiti2012.org.pf/en/Welcome.html>`_.
 Sin embargo, en nuestra ubicación podremos apreciar solo la primera hora
-del tránsito, el cual comenzara a las 17:05:30 hora colombiana y termina
+del tránsito, el cual comenzará a las 17:05:30 hora colombiana y termina
 a las 23:50:20 hora colombiana.
 
-No esta demás recordar que la observación directa del sol (y de
+No esta de más recordar que la observación directa del sol (y de
 este fenómeno) puede provocar daños visuales, y se recomiendan algunos
 elementos como lentes de eclipse, filtro de soldadura #14 y proyectores.
 
