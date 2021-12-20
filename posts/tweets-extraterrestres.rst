@@ -14,8 +14,8 @@ y me pareció curioso ver un tuit de uno de los astronautas que estaba
 en la última misión del transbordador Atlantis.
 
 Los primeros tuits espaciales eran enviados por los tripulantes de la
-ISS a NASA, quienes a través de una cuenta twitter genérica para los
-astronautas, lo tuiteaban desde tierra. Así fue el caso de los primero
+ISS a NASA, quienes a través de una cuenta de Twitter genérica para los
+astronautas, lo tuiteaban desde tierra. Así fue el caso de los primeros
 astronautas en establecer comunicación en las redes sociales: Michael J.
 Massimino (@Astro\_Mike), especialista de la misión STS-125 y Mark L.
 Polansky (@Astro\_127), comandante de la misión STS-127.
