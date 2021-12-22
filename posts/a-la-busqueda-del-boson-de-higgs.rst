@@ -1,7 +1,7 @@
 .. title: A la búsqueda del bosón de Higgs
 .. slug: a-la-busqueda-del-boson-de-higgs
 .. date: 2011-02-21 21:37:27 UTC-05:00
-.. tags: bosón de higgs, lhc, física de partículas
+.. tags: bosón de higgs, lhc, física de partículas, partícula de dios
 .. category: ciencia
 .. link:
 .. description:

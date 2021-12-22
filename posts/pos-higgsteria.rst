@@ -1,7 +1,7 @@
 .. title: Pos-higgsteria
 .. slug: pos-higgsteria
 .. date: 2012-11-28 15:02:47 UTC-05:00
-.. tags: bosón de higgs, física de partículas, lhc
+.. tags: bosón de higgs, física de partículas, lhc, partícula de dios
 .. category: ciencia
 .. link:
 .. description:
