@@ -3,7 +3,7 @@
 &lt;a rel="license" href="https://creativecommons.org/licenses/by/4.0/"&gt;
 &lt;img alt="Creative Commons License BY 4.0"
 style="border-width:0; margin-bottom:12px;"
-src="https://licensebuttons.net/l/by/4.0/88x31.png"&gt;&lt;/a&gt;</copyright><lastBuildDate>Mon, 20 Dec 2021 17:38:11 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Crear documentación de un proyecto Python con Sphinx.</title><link>https://www.cosmoscalibur.com/blog/crear-documentacion-de-un-proyecto-python-con-sphinx/</link><dc:creator>Edward Villegas-Pulgarin</dc:creator><description>&lt;div&gt;&lt;p&gt;Sin duda, una etapa importante en cualquier proyecto de desarrollo (y no solo
+src="https://licensebuttons.net/l/by/4.0/88x31.png"&gt;&lt;/a&gt;</copyright><lastBuildDate>Wed, 22 Dec 2021 20:15:17 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Crear documentación de un proyecto Python con Sphinx.</title><link>https://www.cosmoscalibur.com/blog/crear-documentacion-de-un-proyecto-python-con-sphinx/</link><dc:creator>Edward Villegas-Pulgarin</dc:creator><description>&lt;div&gt;&lt;p&gt;Sin duda, una etapa importante en cualquier proyecto de desarrollo (y no solo
 de &lt;em&gt;software&lt;/em&gt;) es la generación de la documentación. En el caso de &lt;em&gt;software&lt;/em&gt;
 es posible asistirse de herramientas que ayudan a automatizar la generación de
 la documentación mediante extracción de comentarios en el código, usar palabras
@@ -49,8 +49,8 @@ gestor de paquetes del sistema operativo. En la mayor parte de
 distribuciones Linux estará disponible a través del gestor.&lt;/p&gt;
 &lt;p&gt;En el caso de las distribuciones basadas en Debian (Ubuntu y Linux Mint
 entre otras) puedes instalar de la siguiente manera:&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a id="rest_code_7df59a4696b74e429129b20a3ce34232-1" name="rest_code_7df59a4696b74e429129b20a3ce34232-1"&gt;&lt;/a&gt;sudo apt install -y texlive texlive-latex-base texlive-latex-extra \
-&lt;a id="rest_code_7df59a4696b74e429129b20a3ce34232-2" name="rest_code_7df59a4696b74e429129b20a3ce34232-2"&gt;&lt;/a&gt;    texlive-lang-spanish latexmk
+&lt;pre class="code text"&gt;&lt;a id="rest_code_f047624b4ea543c2851522950e7564cf-1" name="rest_code_f047624b4ea543c2851522950e7564cf-1"&gt;&lt;/a&gt;sudo apt install -y texlive texlive-latex-base texlive-latex-extra \
+&lt;a id="rest_code_f047624b4ea543c2851522950e7564cf-2" name="rest_code_f047624b4ea543c2851522950e7564cf-2"&gt;&lt;/a&gt;    texlive-lang-spanish latexmk
 &lt;/pre&gt;&lt;/dd&gt;
 &lt;/dl&gt;
 &lt;/section&gt;
@@ -80,11 +80,11 @@ proyecto destinemos un directorio &lt;code&gt;docs&lt;/code&gt; para este fin.&l
 &lt;p&gt;Ahora ejecutamos &lt;code&gt;sphinx-quickstart&lt;/code&gt; y respondemos las preguntas que
 saldrán. Es necesario tener en cuenta, que si usas Windows debes agregar al
 comando la terminación &lt;code&gt;.exe&lt;/code&gt;, ejemplo &lt;code&gt;sphinx-quickstart.exe&lt;/code&gt;.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a id="rest_code_3a648e517637487aae18309d78b4378a-1" name="rest_code_3a648e517637487aae18309d78b4378a-1"&gt;&lt;/a&gt;&amp;gt; Separate source and build directories (y/n) [n]: y
-&lt;a id="rest_code_3a648e517637487aae18309d78b4378a-2" name="rest_code_3a648e517637487aae18309d78b4378a-2"&gt;&lt;/a&gt;&amp;gt; Project name: proyecto
-&lt;a id="rest_code_3a648e517637487aae18309d78b4378a-3" name="rest_code_3a648e517637487aae18309d78b4378a-3"&gt;&lt;/a&gt;&amp;gt; Author name(s): Edward Villegas-Pulgarin
-&lt;a id="rest_code_3a648e517637487aae18309d78b4378a-4" name="rest_code_3a648e517637487aae18309d78b4378a-4"&gt;&lt;/a&gt;&amp;gt; Project release []: 0.1.0
-&lt;a id="rest_code_3a648e517637487aae18309d78b4378a-5" name="rest_code_3a648e517637487aae18309d78b4378a-5"&gt;&lt;/a&gt;&amp;gt; Project language [en]: es
+&lt;pre class="code text"&gt;&lt;a id="rest_code_7f969931b6274a7bb797954ff2a12a9d-1" name="rest_code_7f969931b6274a7bb797954ff2a12a9d-1"&gt;&lt;/a&gt;&amp;gt; Separate source and build directories (y/n) [n]: y
+&lt;a id="rest_code_7f969931b6274a7bb797954ff2a12a9d-2" name="rest_code_7f969931b6274a7bb797954ff2a12a9d-2"&gt;&lt;/a&gt;&amp;gt; Project name: proyecto
+&lt;a id="rest_code_7f969931b6274a7bb797954ff2a12a9d-3" name="rest_code_7f969931b6274a7bb797954ff2a12a9d-3"&gt;&lt;/a&gt;&amp;gt; Author name(s): Edward Villegas-Pulgarin
+&lt;a id="rest_code_7f969931b6274a7bb797954ff2a12a9d-4" name="rest_code_7f969931b6274a7bb797954ff2a12a9d-4"&gt;&lt;/a&gt;&amp;gt; Project release []: 0.1.0
+&lt;a id="rest_code_7f969931b6274a7bb797954ff2a12a9d-5" name="rest_code_7f969931b6274a7bb797954ff2a12a9d-5"&gt;&lt;/a&gt;&amp;gt; Project language [en]: es
 &lt;/pre&gt;&lt;p&gt;Siempre recomiendo separar el directorio del código fuente de la documentación
 del directorio de compilados de la misma. Respecto al esquema de versiones me
 agrada el &lt;a class="reference external" href="https://semver.org/"&gt;versionamiento semántico&lt;/a&gt; que permite al
@@ -107,13 +107,13 @@ Con Coverage puedes validar que funciones se han documentado y dcotest integra
 pruebas de código desde la documentación (comparar salidas con ejemplo de
 documentación).&lt;/p&gt;
 &lt;p&gt;Modificar en el archivo.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a id="rest_code_15a0c1fbc47e43cfb9dd5a7e1e4c44d7-1" name="rest_code_15a0c1fbc47e43cfb9dd5a7e1e4c44d7-1"&gt;&lt;/a&gt;extensions = [
-&lt;a id="rest_code_15a0c1fbc47e43cfb9dd5a7e1e4c44d7-2" name="rest_code_15a0c1fbc47e43cfb9dd5a7e1e4c44d7-2"&gt;&lt;/a&gt;    'sphinx.ext.autodoc',
-&lt;a id="rest_code_15a0c1fbc47e43cfb9dd5a7e1e4c44d7-3" name="rest_code_15a0c1fbc47e43cfb9dd5a7e1e4c44d7-3"&gt;&lt;/a&gt;    'sphinx.ext.mathjax',
-&lt;a id="rest_code_15a0c1fbc47e43cfb9dd5a7e1e4c44d7-4" name="rest_code_15a0c1fbc47e43cfb9dd5a7e1e4c44d7-4"&gt;&lt;/a&gt;    'sphinx.ext.napoleon',
-&lt;a id="rest_code_15a0c1fbc47e43cfb9dd5a7e1e4c44d7-5" name="rest_code_15a0c1fbc47e43cfb9dd5a7e1e4c44d7-5"&gt;&lt;/a&gt;    'sphinx.ext.coverage',
-&lt;a id="rest_code_15a0c1fbc47e43cfb9dd5a7e1e4c44d7-6" name="rest_code_15a0c1fbc47e43cfb9dd5a7e1e4c44d7-6"&gt;&lt;/a&gt;    'sphinx.ext.doctest'
-&lt;a id="rest_code_15a0c1fbc47e43cfb9dd5a7e1e4c44d7-7" name="rest_code_15a0c1fbc47e43cfb9dd5a7e1e4c44d7-7"&gt;&lt;/a&gt;]
+&lt;pre class="code text"&gt;&lt;a id="rest_code_99353b80da8046baa8f550e338ad8970-1" name="rest_code_99353b80da8046baa8f550e338ad8970-1"&gt;&lt;/a&gt;extensions = [
+&lt;a id="rest_code_99353b80da8046baa8f550e338ad8970-2" name="rest_code_99353b80da8046baa8f550e338ad8970-2"&gt;&lt;/a&gt;    'sphinx.ext.autodoc',
+&lt;a id="rest_code_99353b80da8046baa8f550e338ad8970-3" name="rest_code_99353b80da8046baa8f550e338ad8970-3"&gt;&lt;/a&gt;    'sphinx.ext.mathjax',
+&lt;a id="rest_code_99353b80da8046baa8f550e338ad8970-4" name="rest_code_99353b80da8046baa8f550e338ad8970-4"&gt;&lt;/a&gt;    'sphinx.ext.napoleon',
+&lt;a id="rest_code_99353b80da8046baa8f550e338ad8970-5" name="rest_code_99353b80da8046baa8f550e338ad8970-5"&gt;&lt;/a&gt;    'sphinx.ext.coverage',
+&lt;a id="rest_code_99353b80da8046baa8f550e338ad8970-6" name="rest_code_99353b80da8046baa8f550e338ad8970-6"&gt;&lt;/a&gt;    'sphinx.ext.doctest'
+&lt;a id="rest_code_99353b80da8046baa8f550e338ad8970-7" name="rest_code_99353b80da8046baa8f550e338ad8970-7"&gt;&lt;/a&gt;]
 &lt;/pre&gt;&lt;/section&gt;
 &lt;section id="importar-paquete"&gt;
 &lt;h3&gt;Importar paquete&lt;/h3&gt;
@@ -125,33 +125,33 @@ primeras líneas de código en la sección de &lt;em&gt;Path setup&lt;/em&gt;. E
 defecto indica la misma carpeta de &lt;code&gt;docs/source&lt;/code&gt;, por lo cual es
 necesario reemplazar por &lt;code&gt;../..&lt;/code&gt; que se devuelve los dos niveles
 necesarios.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a id="rest_code_a0aeb1dd6f7d46f8b31d921fd08a26d2-1" name="rest_code_a0aeb1dd6f7d46f8b31d921fd08a26d2-1"&gt;&lt;/a&gt;import os
-&lt;a id="rest_code_a0aeb1dd6f7d46f8b31d921fd08a26d2-2" name="rest_code_a0aeb1dd6f7d46f8b31d921fd08a26d2-2"&gt;&lt;/a&gt;import sys
-&lt;a id="rest_code_a0aeb1dd6f7d46f8b31d921fd08a26d2-3" name="rest_code_a0aeb1dd6f7d46f8b31d921fd08a26d2-3"&gt;&lt;/a&gt;import datetime
-&lt;a id="rest_code_a0aeb1dd6f7d46f8b31d921fd08a26d2-4" name="rest_code_a0aeb1dd6f7d46f8b31d921fd08a26d2-4"&gt;&lt;/a&gt;sys.path.insert(0, os.path.abspath('../..'))
-&lt;a id="rest_code_a0aeb1dd6f7d46f8b31d921fd08a26d2-5" name="rest_code_a0aeb1dd6f7d46f8b31d921fd08a26d2-5"&gt;&lt;/a&gt;import proyecto
+&lt;pre class="code text"&gt;&lt;a id="rest_code_329fea6b37ee41dca5933f5a7dc8f736-1" name="rest_code_329fea6b37ee41dca5933f5a7dc8f736-1"&gt;&lt;/a&gt;import os
+&lt;a id="rest_code_329fea6b37ee41dca5933f5a7dc8f736-2" name="rest_code_329fea6b37ee41dca5933f5a7dc8f736-2"&gt;&lt;/a&gt;import sys
+&lt;a id="rest_code_329fea6b37ee41dca5933f5a7dc8f736-3" name="rest_code_329fea6b37ee41dca5933f5a7dc8f736-3"&gt;&lt;/a&gt;import datetime
+&lt;a id="rest_code_329fea6b37ee41dca5933f5a7dc8f736-4" name="rest_code_329fea6b37ee41dca5933f5a7dc8f736-4"&gt;&lt;/a&gt;sys.path.insert(0, os.path.abspath('../..'))
+&lt;a id="rest_code_329fea6b37ee41dca5933f5a7dc8f736-5" name="rest_code_329fea6b37ee41dca5933f5a7dc8f736-5"&gt;&lt;/a&gt;import proyecto
 &lt;/pre&gt;&lt;p&gt;Ahora, puedes hacer cosas como la siguiente, si está disponible en tu código.&lt;/p&gt;
-&lt;pre class="code python"&gt;&lt;a id="rest_code_47d95ebdcd814deca734ad8febc5639a-1" name="rest_code_47d95ebdcd814deca734ad8febc5639a-1"&gt;&lt;/a&gt;&lt;span class="n"&gt;author&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;proyecto&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;__author__&lt;/span&gt;
-&lt;a id="rest_code_47d95ebdcd814deca734ad8febc5639a-2" name="rest_code_47d95ebdcd814deca734ad8febc5639a-2"&gt;&lt;/a&gt;&lt;span class="n"&gt;copyright&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;datetime&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;date&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;today&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;year&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s1"&gt;', '&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;author&lt;/span&gt;
-&lt;a id="rest_code_47d95ebdcd814deca734ad8febc5639a-3" name="rest_code_47d95ebdcd814deca734ad8febc5639a-3"&gt;&lt;/a&gt;&lt;span class="n"&gt;release&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;proyecto&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;__version__&lt;/span&gt;
+&lt;pre class="code python"&gt;&lt;a id="rest_code_923e586185bd4c96b3d424652c2782fa-1" name="rest_code_923e586185bd4c96b3d424652c2782fa-1"&gt;&lt;/a&gt;&lt;span class="n"&gt;author&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;proyecto&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;__author__&lt;/span&gt;
+&lt;a id="rest_code_923e586185bd4c96b3d424652c2782fa-2" name="rest_code_923e586185bd4c96b3d424652c2782fa-2"&gt;&lt;/a&gt;&lt;span class="n"&gt;copyright&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;datetime&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;date&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;today&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;year&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s1"&gt;', '&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;author&lt;/span&gt;
+&lt;a id="rest_code_923e586185bd4c96b3d424652c2782fa-3" name="rest_code_923e586185bd4c96b3d424652c2782fa-3"&gt;&lt;/a&gt;&lt;span class="n"&gt;release&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;proyecto&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;__version__&lt;/span&gt;
 &lt;/pre&gt;&lt;p&gt;Esto tiene un impacto respecto a algunas dependencias, que pueden provocar
 fallos o si para la generación de la documentación no tenemos todas las
 dependencias del paquete. En mi caso, he tenido problemas cuando tengo como
 dependencia Tensorflow o cuando tengo arcpy pero no tengo la licencia
 instalada. En este caso, podemos hacer un falseo (&lt;em&gt;mock&lt;/em&gt;) de los paquetes:&lt;/p&gt;
-&lt;pre class="code python"&gt;&lt;a id="rest_code_9b87aa58f306411a89fcc5bac7a572dc-1" name="rest_code_9b87aa58f306411a89fcc5bac7a572dc-1"&gt;&lt;/a&gt;&lt;span class="n"&gt;autodoc_mock_imports&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;"tensorflow"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;"arcpy"&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;pre class="code python"&gt;&lt;a id="rest_code_b2658044aa334a9a96815829e095d981-1" name="rest_code_b2658044aa334a9a96815829e095d981-1"&gt;&lt;/a&gt;&lt;span class="n"&gt;autodoc_mock_imports&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;"tensorflow"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;"arcpy"&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
 &lt;/pre&gt;&lt;/section&gt;
 &lt;section id="referencias-cruzadas"&gt;
 &lt;h3&gt;Referencias cruzadas&lt;/h3&gt;
 &lt;p&gt;Para usar referencias cruzadas, es decir, numeración de tablas, figuras,
 códigos y ecuaciones si poseen pie de objeto, y ser referenciados en el texto
 por el número, se requiere configurar lo siguiente.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a id="rest_code_8e6894810173469fb09734a55181ef80-1" name="rest_code_8e6894810173469fb09734a55181ef80-1"&gt;&lt;/a&gt;numfig = True
-&lt;a id="rest_code_8e6894810173469fb09734a55181ef80-2" name="rest_code_8e6894810173469fb09734a55181ef80-2"&gt;&lt;/a&gt;numfig_format = {'figure': 'Fig. %s', 'table': 'Tabla %s',
-&lt;a id="rest_code_8e6894810173469fb09734a55181ef80-3" name="rest_code_8e6894810173469fb09734a55181ef80-3"&gt;&lt;/a&gt;                 'code-block': 'Código %s', 'section': 'Sección %s'}
-&lt;a id="rest_code_8e6894810173469fb09734a55181ef80-4" name="rest_code_8e6894810173469fb09734a55181ef80-4"&gt;&lt;/a&gt;numfig_secnum_depth = 1
-&lt;a id="rest_code_8e6894810173469fb09734a55181ef80-5" name="rest_code_8e6894810173469fb09734a55181ef80-5"&gt;&lt;/a&gt;math_numfig = True
-&lt;a id="rest_code_8e6894810173469fb09734a55181ef80-6" name="rest_code_8e6894810173469fb09734a55181ef80-6"&gt;&lt;/a&gt;math_eqref_format = 'Ec. {number}'
+&lt;pre class="code text"&gt;&lt;a id="rest_code_dfded292fb4a4802891fd27e93b1bc37-1" name="rest_code_dfded292fb4a4802891fd27e93b1bc37-1"&gt;&lt;/a&gt;numfig = True
+&lt;a id="rest_code_dfded292fb4a4802891fd27e93b1bc37-2" name="rest_code_dfded292fb4a4802891fd27e93b1bc37-2"&gt;&lt;/a&gt;numfig_format = {'figure': 'Fig. %s', 'table': 'Tabla %s',
+&lt;a id="rest_code_dfded292fb4a4802891fd27e93b1bc37-3" name="rest_code_dfded292fb4a4802891fd27e93b1bc37-3"&gt;&lt;/a&gt;                 'code-block': 'Código %s', 'section': 'Sección %s'}
+&lt;a id="rest_code_dfded292fb4a4802891fd27e93b1bc37-4" name="rest_code_dfded292fb4a4802891fd27e93b1bc37-4"&gt;&lt;/a&gt;numfig_secnum_depth = 1
+&lt;a id="rest_code_dfded292fb4a4802891fd27e93b1bc37-5" name="rest_code_dfded292fb4a4802891fd27e93b1bc37-5"&gt;&lt;/a&gt;math_numfig = True
+&lt;a id="rest_code_dfded292fb4a4802891fd27e93b1bc37-6" name="rest_code_dfded292fb4a4802891fd27e93b1bc37-6"&gt;&lt;/a&gt;math_eqref_format = 'Ec. {number}'
 &lt;/pre&gt;&lt;p&gt;Así, es posible usar &lt;code&gt;:label:&lt;/code&gt; para asignar una referencia a los objetos
 y &lt;code&gt;:numref:&lt;/code&gt; y &lt;code&gt;:eq:&lt;/code&gt; a la hora de mencionarlos. Con
 &lt;code&gt;numfig_secnum_depth&lt;/code&gt; configuras la numeración de los objetos, si es
@@ -163,11 +163,11 @@ continúa (0), por sección (1) y subsección (2).&lt;/p&gt;
 maestro, el nombre del archivo TeX, el nombre que nuestra documentación, el
 nombre del autor (que podemos usar la variable que ya definimos) y el tipo de
 documento (cuya clase &lt;em&gt;manual&lt;/em&gt; está definida por Sphinx).&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a id="rest_code_7700e33c027d47ee89b732f7ccdc018a-1" name="rest_code_7700e33c027d47ee89b732f7ccdc018a-1"&gt;&lt;/a&gt;master_doc = 'index'
-&lt;a id="rest_code_7700e33c027d47ee89b732f7ccdc018a-2" name="rest_code_7700e33c027d47ee89b732f7ccdc018a-2"&gt;&lt;/a&gt;latex_documents = [
-&lt;a id="rest_code_7700e33c027d47ee89b732f7ccdc018a-3" name="rest_code_7700e33c027d47ee89b732f7ccdc018a-3"&gt;&lt;/a&gt;    (master_doc, 'proyecto.tex', 'Documentación Proyecto',
-&lt;a id="rest_code_7700e33c027d47ee89b732f7ccdc018a-4" name="rest_code_7700e33c027d47ee89b732f7ccdc018a-4"&gt;&lt;/a&gt;     author, 'manual'),
-&lt;a id="rest_code_7700e33c027d47ee89b732f7ccdc018a-5" name="rest_code_7700e33c027d47ee89b732f7ccdc018a-5"&gt;&lt;/a&gt;]
+&lt;pre class="code text"&gt;&lt;a id="rest_code_1a62d52df52947b78e06541012f347e6-1" name="rest_code_1a62d52df52947b78e06541012f347e6-1"&gt;&lt;/a&gt;master_doc = 'index'
+&lt;a id="rest_code_1a62d52df52947b78e06541012f347e6-2" name="rest_code_1a62d52df52947b78e06541012f347e6-2"&gt;&lt;/a&gt;latex_documents = [
+&lt;a id="rest_code_1a62d52df52947b78e06541012f347e6-3" name="rest_code_1a62d52df52947b78e06541012f347e6-3"&gt;&lt;/a&gt;    (master_doc, 'proyecto.tex', 'Documentación Proyecto',
+&lt;a id="rest_code_1a62d52df52947b78e06541012f347e6-4" name="rest_code_1a62d52df52947b78e06541012f347e6-4"&gt;&lt;/a&gt;     author, 'manual'),
+&lt;a id="rest_code_1a62d52df52947b78e06541012f347e6-5" name="rest_code_1a62d52df52947b78e06541012f347e6-5"&gt;&lt;/a&gt;]
 &lt;/pre&gt;&lt;/section&gt;
 &lt;/section&gt;
 &lt;section id="escritura-en-restructuredtext"&gt;
@@ -200,16 +200,16 @@ adelante). Puedes agregar más archivos, por ejemplo, yo suelo usar un
 &lt;code&gt;concepts.rst&lt;/code&gt; para detallar los conceptos necesarios antes de usar el
 software o detallar teoría que ayuda a interpretar resultados o que expande la
 información para que alguien pueda analizar o continuar un desarrollo.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a id="rest_code_9745bb9d87124c2985c62b3b22d86743-1" name="rest_code_9745bb9d87124c2985c62b3b22d86743-1"&gt;&lt;/a&gt;.. toctree::
-&lt;a id="rest_code_9745bb9d87124c2985c62b3b22d86743-2" name="rest_code_9745bb9d87124c2985c62b3b22d86743-2"&gt;&lt;/a&gt;   :maxdepth: 3
-&lt;a id="rest_code_9745bb9d87124c2985c62b3b22d86743-3" name="rest_code_9745bb9d87124c2985c62b3b22d86743-3"&gt;&lt;/a&gt;   :caption: Contenido:
-&lt;a id="rest_code_9745bb9d87124c2985c62b3b22d86743-4" name="rest_code_9745bb9d87124c2985c62b3b22d86743-4"&gt;&lt;/a&gt;
-&lt;a id="rest_code_9745bb9d87124c2985c62b3b22d86743-5" name="rest_code_9745bb9d87124c2985c62b3b22d86743-5"&gt;&lt;/a&gt;   README
-&lt;a id="rest_code_9745bb9d87124c2985c62b3b22d86743-6" name="rest_code_9745bb9d87124c2985c62b3b22d86743-6"&gt;&lt;/a&gt;   installation
-&lt;a id="rest_code_9745bb9d87124c2985c62b3b22d86743-7" name="rest_code_9745bb9d87124c2985c62b3b22d86743-7"&gt;&lt;/a&gt;   usage
-&lt;a id="rest_code_9745bb9d87124c2985c62b3b22d86743-8" name="rest_code_9745bb9d87124c2985c62b3b22d86743-8"&gt;&lt;/a&gt;   api/modules
-&lt;a id="rest_code_9745bb9d87124c2985c62b3b22d86743-9" name="rest_code_9745bb9d87124c2985c62b3b22d86743-9"&gt;&lt;/a&gt;   concepts
-&lt;a id="rest_code_9745bb9d87124c2985c62b3b22d86743-10" name="rest_code_9745bb9d87124c2985c62b3b22d86743-10"&gt;&lt;/a&gt;   history
+&lt;pre class="code text"&gt;&lt;a id="rest_code_7c57eff770d14500bd28e7f98678f41c-1" name="rest_code_7c57eff770d14500bd28e7f98678f41c-1"&gt;&lt;/a&gt;.. toctree::
+&lt;a id="rest_code_7c57eff770d14500bd28e7f98678f41c-2" name="rest_code_7c57eff770d14500bd28e7f98678f41c-2"&gt;&lt;/a&gt;   :maxdepth: 3
+&lt;a id="rest_code_7c57eff770d14500bd28e7f98678f41c-3" name="rest_code_7c57eff770d14500bd28e7f98678f41c-3"&gt;&lt;/a&gt;   :caption: Contenido:
+&lt;a id="rest_code_7c57eff770d14500bd28e7f98678f41c-4" name="rest_code_7c57eff770d14500bd28e7f98678f41c-4"&gt;&lt;/a&gt;
+&lt;a id="rest_code_7c57eff770d14500bd28e7f98678f41c-5" name="rest_code_7c57eff770d14500bd28e7f98678f41c-5"&gt;&lt;/a&gt;   README
+&lt;a id="rest_code_7c57eff770d14500bd28e7f98678f41c-6" name="rest_code_7c57eff770d14500bd28e7f98678f41c-6"&gt;&lt;/a&gt;   installation
+&lt;a id="rest_code_7c57eff770d14500bd28e7f98678f41c-7" name="rest_code_7c57eff770d14500bd28e7f98678f41c-7"&gt;&lt;/a&gt;   usage
+&lt;a id="rest_code_7c57eff770d14500bd28e7f98678f41c-8" name="rest_code_7c57eff770d14500bd28e7f98678f41c-8"&gt;&lt;/a&gt;   api/modules
+&lt;a id="rest_code_7c57eff770d14500bd28e7f98678f41c-9" name="rest_code_7c57eff770d14500bd28e7f98678f41c-9"&gt;&lt;/a&gt;   concepts
+&lt;a id="rest_code_7c57eff770d14500bd28e7f98678f41c-10" name="rest_code_7c57eff770d14500bd28e7f98678f41c-10"&gt;&lt;/a&gt;   history
 &lt;/pre&gt;&lt;p&gt;Y podemos borrar las líneas posteriores de &lt;em&gt;Indices and tables&lt;/em&gt;.&lt;/p&gt;
 &lt;p&gt;Vemos la mención a &lt;code&gt;api/modules&lt;/code&gt;, la cual es importante para incluir la
 documentación automática extraída con Sphinx, que se explicará en la próxima
@@ -220,7 +220,7 @@ sección.&lt;/p&gt;
 &lt;h2&gt;Ejecución de Sphinx&lt;/h2&gt;
 &lt;p&gt;Como estamos haciendo uso de &lt;em&gt;autodoc&lt;/em&gt;, nuestro primer paso es generar la
 extracción de la API.&lt;/p&gt;
-&lt;pre class="code text"&gt;&lt;a id="rest_code_53df003cad274b8c9e6688ace790bb5c-1" name="rest_code_53df003cad274b8c9e6688ace790bb5c-1"&gt;&lt;/a&gt;sphinx-apidoc -f -M -o source/api/ ../proyecto
+&lt;pre class="code text"&gt;&lt;a id="rest_code_affa3bc884ef43d88ce9781faec20737-1" name="rest_code_affa3bc884ef43d88ce9781faec20737-1"&gt;&lt;/a&gt;sphinx-apidoc -f -M -o source/api/ ../proyecto
 &lt;/pre&gt;&lt;p&gt;Recordar que en Windows hay que agregar &lt;code&gt;.exe&lt;/code&gt;
 (&lt;code&gt;sphinx-apidoc.exe&lt;/code&gt;). &lt;code&gt;-f&lt;/code&gt; es para forzar la regeneración de los
 archivos (importante si actualizamos la documentación de la API), &lt;code&gt;-M&lt;/code&gt;
