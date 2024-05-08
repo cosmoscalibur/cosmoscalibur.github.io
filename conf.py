@@ -257,7 +257,10 @@ exclude_patterns = [
     'README.md',
     'requirements*.txt',
     '.vscode',
-    '.venv'
+    '.venv',
+    'docs',
+    '.doctrees',
+    '.gitignore',
 ]
 
 # The reST default role (used for this markup: `text`) to use for all
