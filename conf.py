@@ -32,6 +32,8 @@ ogp_site_url = "https://www.cosmoscalibur.com"
 # up project building.
 # blog_archive_titles = False
 
+ablog_website = 'docs'
+
 # -- Blog Authors, Languages, and Locations -----------------------------------
 
 # A dictionary of author names mapping to author full display names and
@@ -246,7 +248,7 @@ language = "es"
 # today_fmt = '%%B %%d, %%Y'
 
 # Add any paths that contain templates here, relative to this directory.
-templates_path = ["_templates"]
+templates_path = ["templates"]
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
 exclude_patterns = [
@@ -322,7 +324,7 @@ html_short_title = 'Cosmoscalibur'
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
-html_static_path = ["_static"]
+html_static_path = ["static"]
 
 # Add any extra paths that contain custom files (such as robots.txt or
 # .htaccess) here, relative to this directory. These files are copied
