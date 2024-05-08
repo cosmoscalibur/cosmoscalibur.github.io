@@ -29,8 +29,12 @@ código fuente de las publicaciones es ReStructuredText y MarkDown/Myst
     cd cosmoscalibur.github.io
     uv pip install -r requirements.txt
     pipenv shell
-    cd docs
     ablog clean && ablog build && ablog serve
+
+Para fines de despliegue en GitHub Pages, es necesario ajustar el
+directorio de salida.
+
+    mv _website docs
 
 ## Redes
 
