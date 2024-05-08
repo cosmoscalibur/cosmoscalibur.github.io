@@ -1,0 +1,733 @@
+
+<!DOCTYPE html>
+
+
+<html lang="es" data-content_root="../../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="og:title" content="La experiencia de PyCon Colombia 2018" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://www.cosmoscalibur.com/es/blog/2018/la-experiencia-de-pycon-colombia-2018/" />
+<meta property="og:site_name" content="Blog Cosmoscalibur" />
+<meta property="og:description" content="Tras mi primera participación en PyCon Colombia (segunda versión del evento), me encuentro con una comunidad bastante amplia y que hace honor a una de las características más importantes del lengua..." />
+<meta property="og:image:width" content="1146" />
+<meta property="og:image:height" content="600" />
+<meta property="og:image" content="https://www.cosmoscalibur.com/_images/social_previews/summary_es_blog_2018_la-experiencia-de-pycon-colombia-2018_645429b2.png" />
+<meta property="og:image:alt" content="Tras mi primera participación en PyCon Colombia (segunda versión del evento), me encuentro con una comunidad bastante amplia y que hace honor a una de las ca..." />
+<meta name="description" content="Tras mi primera participación en PyCon Colombia (segunda versión del evento), me encuentro con una comunidad bastante amplia y que hace honor a una de las características más importantes del lengua..." />
+<meta name="twitter:card" content="summary_large_image" />
+
+    <title>La experiencia de PyCon Colombia 2018 &#8212; Blog Cosmoscalibur</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../../../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../../../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../../../../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../../../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../../../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="../../../../_static/documentation_options.js?v=a20647df"></script>
+    <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../_static/translations.js?v=efdbd0b9"></script>
+    <script src="../../../../_static/design-tabs.js?v=36754332"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'es/blog/2018/la-experiencia-de-pycon-colombia-2018';</script>
+    <link rel="index" title="Índice" href="../../../../genindex/" />
+    <link rel="search" title="Búsqueda" href="../../../../search/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="es"/>
+
+<link
+  rel="alternate"
+  type="application/atom+xml"
+  href="../../../../blog/atom.xml"
+  title="Blog Cosmoscalibur"
+/>
+
+
+
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Saltar al contenido principal</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../../../search/"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+<div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+    <span class="fa-solid fa-bars"></span>
+  </label>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+
+<a class="navbar-brand logo" href="../../../../">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Blog Cosmoscalibur</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav class="navbar-nav">
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../me/">
+                        Edward Villegas
+                      </a>
+                    </li>
+                
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Búsqueda</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="claro/oscuro" aria-label="claro/oscuro" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Búsqueda</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+    </div>
+  
+
+  
+    <label class="sidebar-toggle secondary-toggle" for="__secondary" tabindex="0">
+      <span class="fa-solid fa-outdent"></span>
+    </label>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          <div class="navbar-item">
+<nav class="navbar-nav">
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../me/">
+                        Edward Villegas
+                      </a>
+                    </li>
+                
+  </ul>
+</nav></div>
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="claro/oscuro" aria-label="claro/oscuro" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script></div>
+        
+      </div>
+    
+  </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+
+
+<nav aria-label="Miga de pan">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../../../" class="nav-link" aria-label="Inicio">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page">La...</li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+<section id="la-experiencia-de-pycon-colombia-2018">
+<h1>La experiencia de PyCon Colombia 2018<a class="headerlink" href="#la-experiencia-de-pycon-colombia-2018" title="Link to this heading">#</a></h1>
+<p>Tras mi primera participación en PyCon Colombia (segunda versión del evento), me
+encuentro con una comunidad bastante amplia y que hace honor a una de las
+características más importantes del lenguaje, y es lo extensa y variada que es
+su comunidad. Colombia no es la excepción a esto.</p>
+<p>Como cualquier evento, presenta elemento para mejorar pero se encuentra un
+equipo de organizadores dispuestos a escuchar a la comunidad para mejorar y
+aprender de las dos versiones realizadas para llegar a una tercera versión aún
+mejor. Puedes enviar tu retroalimentación a <a class="reference external" href="mailto:feedback&#37;&#52;&#48;pycon&#46;co">feedback<span>&#64;</span>pycon<span>&#46;</span>co</a>.</p>
+<p>Llamó en particular mi atención el aspecto humano del evento. Creo que las
+conferencias de los invitados (<em>keynotes</em>) nos recordaron que en todo momento
+llevamos una responsabilidad sobre como se pueden afectar otros por nuestro
+trabajo y no desde una perspectiva de ser nuestros clientes, sino en las
+consecuencias éticas de algunas decisiones durante nuestros desarrollos como la
+selección de datos en procesos de aprendizaje automático (que pueden estar
+sesgados) o la exclusión en nuestros equipos de trabajo.</p>
+<figure class="align-center" id="id1">
+<a class="reference internal image-reference" href="../../../../_images/pycon-colombia-2018-grupo.jpg"><img alt="Foto de grupo de asistentes, conferencistas y organizadores de PyCon Colombia 2018." src="../../../../_images/pycon-colombia-2018-grupo.jpg" style="width: 623.0px; height: 467.0px;" /></a>
+<figcaption>
+<p><span class="caption-text">Foto de grupo de asistentes, conferencistas y organizadores de PyCon Colombia 2018.</span><a class="headerlink" href="#id1" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>La presencia de personal del lado empresarial es predominante por sobre el
+personal que proviene de la academia, y esto fue notorio en las conferencias,
+con un fuerte común, y es el uso de python en aplicaciones comerciales, uso
+interno en empresas y el tema de aprendizaje automático en la industria. Espero
+en la próxima versión exista una mayor participación de la academia, pues es
+importante mostrar como python se ha permeado en este medio, para la
+investigación científica y la educación.</p>
+<section id="recopilacion-de-material">
+<h2>Recopilación de material<a class="headerlink" href="#recopilacion-de-material" title="Link to this heading">#</a></h2>
+<p>Si bien los organizadores de PyCon Colombia compartirán los videos de las
+conferencias en su
+<a class="reference external" href="https://www.youtube.com/channel/UCjor6U0ZF5zGAYLJJt9gr0A">canal</a>, hay
+material accesible de las conferencias y talleres a través de repositorios de
+github y presentaciones en sitios web personales, drive y otros servicios para
+compartir documentos que no están recopiladas. Aquí, trato de hacer seguimiento
+a este importante material (puedes dejarme un comentario si conoces de un recurso
+de las conferencias y talleres que no este aquí).</p>
+<section id="conferencias-principales">
+<h3>Conferencias principales<a class="headerlink" href="#conferencias-principales" title="Link to this heading">#</a></h3>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Conferencista</p></th>
+<th class="head"><p>Recurso</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference external" href="https://twitter.com/loooorenanicole">Lorena Mesa</a></p></td>
+<td><p><a class="reference external" href="https://docs.google.com/presentation/d/1VJpw_h95B0yfWEJDGn9Hj1qeGRk0b9_TOFqDXOo2pwA/edit#slide=id.g2c36140c5b_0_555">Your model is bias, but so is your data</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://twitter.com/NaomiCeder">Naomi Ceder</a></p></td>
+<td><p><a class="reference external" href="https://docs.google.com/presentation/d/19FTLXRXHX6dyxS5GJYLLK4NGYaeT280vIZm9ncSjdd8/edit#slide=id.p">Obstáculos para la inclusión</a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="https://twitter.com/ch_doig">Christine Doig</a></p></td>
+<td><p><a class="reference external" href="https://speakerdeck.com/chdoig/pycon-colombia-2018">Data Science: Past, Present and Future</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://twitter.com/audreyr">Audrey Roy</a> y <a class="reference external" href="https://twitter.com/pydanny">Daniel Roy</a></p></td>
+<td><p><a class="reference external" href="https://github.com/pydanny/arepa">Empaquetado en python</a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="https://twitter.com/learnopencv">Satya Mallick</a></p></td>
+<td><p><a class="reference external" href="http://www.learnopencv.com/satya-mallick-pycon-colombia-keynote-2018/">Computer Vision Machine Learning &amp; AI</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://www.twitter.com/deborahhanus">Deborah Hanus</a></p></td>
+<td><p><a class="reference external" href="https://www.slideshare.net/DeborahHanus/pycon-colombia-keynote-2018">With great machine learning comes great responsibility</a></p></td>
+</tr>
+</tbody>
+</table>
+<p>Las conferencias principales fueron en general espacios de inspiración mas que
+espacios llenos de formalismo y tecnicismos. Aunque esperaba conferencias
+técnicas, realmente fue grato ver conferencias que permitieron realizar reflexión
+sobre diferentes aspectos como la inclusión y diversidad, la ética y los sesgos,
+y por supuesto el romper barreras para el avance y generar nuevas revoluciones.</p>
+<p>Es difícil decir mucho sobre personas que solo vez en una conferencia en medio
+de muchos más asistentes, pero con sus charlas mostraron ser grandes personas
+además del papel que desempeñan en la comunidad de python (en particular, con
+Deborah Hanus tuve la oportunidad de compartir mesa durante la cena del sábado,
+y es una persona bastante atenta). Al poder escoger entre tantos temas,
+orientarnos en como contribuir y mejorar dice mucho.</p>
+<p>En medio de las conferencias hubo espacio para la <em>selfie</em> de Lorena Mesa, con
+su personalidad bastante extrovertida, las divertidas historias de amor en
+código de Audrey Roy y Daniel Roy (<em>pair programming</em> 💗), la historia de vida y
+superación de Naomi Ceder (es alguien habla de primera mano el tema de inclusión,
+como se diría en Antioquia, es una berraca) y un profundo repensar de nuestra
+responsabilidad cuando trabajamos con el análisis de datos (y en particular, el
+aprendizaje automático) con Deborah Hanus.</p>
+<section id="python-software-foundation">
+<h4>Python Software Foundation<a class="headerlink" href="#python-software-foundation" title="Link to this heading">#</a></h4>
+<p>Naomi Ceder nos invita a unirnos como
+<a class="reference external" href="https://www.python.org/psf/membership/">miembros</a> y
+<a class="reference external" href="https://www.python.org/psf/sponsorship/">patrocinadores</a> de la
+Python Software Foundation, fundación encargada de velar por la propiedad
+intelectual de Python, el soporte de la infraestructura de <a class="reference external" href="https://www.python.org">Python.org</a>
+y <a class="reference external" href="https://www.pypa.io/en/latest/">PyPA</a>. Igualmente, el apoyo al desarrollo y
+participación de eventos que promueven python y el desarrollo de software en el
+mismo. Igualmente, organiza PyCon US. Existe una membresía básica sin costo.</p>
+<p>Hay una invitación general a presentar propuestas para las <em>PyCon Charlas</em>,
+conferencias en la PyCon US pero en español, formato que se hará por primera vez
+este año.</p>
+</section>
+<section id="taller-de-empaquetado-en-python">
+<h4>Taller de empaquetado en python<a class="headerlink" href="#taller-de-empaquetado-en-python" title="Link to this heading">#</a></h4>
+<p>Audrey y Daniel Roy nos invitan a participar del taller de empaquetamiento que
+dirigirán el 10 de marzo en Medellín. Igualmente, tendrán en descuento su libro
+sobre django. El taller busca profundizar mucho más en el empaquetamiento (que lo
+presentado durante la conferencia) para compartir nuestros desarrollos de la manera
+más simple a la comunidad python.</p>
+<p>Para poderte registrar y conocer más de la actividad, sigue el
+<a class="reference external" href="https://www.meetup.com/es/Medellin-Python-y-Django-Meetup/events/247775417/?eventId=247775417">enlace</a>.</p>
+<p>Para este taller puedes participar como instructor si posees experiencia en generar
+paquetes de python (y disponerlos en PyPI) y el uso de <em>cookiecutter</em> (en especial
+<a class="reference external" href="https://cookiecutter-pypackage.readthedocs.io/en/latest/tutorial.html">cookiecutter-pypackage</a>).</p>
+</section>
+</section>
+<section id="conferencias-sometidas">
+<h3>Conferencias sometidas<a class="headerlink" href="#conferencias-sometidas" title="Link to this heading">#</a></h3>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Conferencista</p></th>
+<th class="head"><p>Recurso</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference external" href="https://twitter.com/joserzapata">Jose Zapata</a></p></td>
+<td><p><a class="reference external" href="https://github.com/JoseRZapata/Pycon2018Colombia">Audio Analysis with Python</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://twitter.com/maigfrga">Manuel Franco</a></p></td>
+<td><p><a class="reference external" href="https://github.com/maigfrga/nt-recommend/blob/master/documentation/pycon/Intro%20Recsys.odp">Introduction to Recommendation Systems</a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="https://twitter.com/DasIstHerrKuska">Robert Kuska</a></p></td>
+<td><p><a class="reference external" href="https://docs.google.com/presentation/d/1DYSYqu1bsODQVOAZupdPZ4afYeAuuze0mEGC0b-9bAw/edit#slide=id.p">Bits and bytes of python memory management</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://twitter.com/_JorgeMartinezG">Jorge Martinez</a></p></td>
+<td><p><a class="reference external" href="https://github.com/JorgeMartinezG/KalmanTemplateTracker">Detection vs tracking</a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="https://twitter.com/iris9112">Isabel Ruiz Buriticá</a></p></td>
+<td><p><a class="reference external" href="https://github.com/iris9112/Pycon2018_Fractals">Pintando el caos con python</a></p></td>
+</tr>
+<tr class="row-odd"><td><p>Rocky Bernstein</p></td>
+<td><p><a class="reference external" href="http://rocky.github.io/pycon2018.co/#/">Decompilation and Pandora’s Box</a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="https://twitter.com/cosmoscalibur">Edward Villegas-Pulgarin</a></p></td>
+<td><p><a class="reference external" href="https://github.com/cosmoscalibur/aula-notebook">Usando Jupyter Notebook en el aula</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://twitter.com/nicoguaro">Nicolás Guarín Zapata</a></p></td>
+<td><p><a class="reference external" href="https://github.com/AppliedMechanics-EAFIT/SolidsPy">SolidsPy: A FEM Framework for Teaching Computational Modeling with Python</a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="https://twitter.com/santiagomv1127">Santiago Mesa</a></p></td>
+<td><p><a class="reference external" href="https://github.com/samez21/leyes-kepler">Solar System Simulator</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://twitter.com/dav009">David Przybilla</a></p></td>
+<td><p><a class="reference external" href="https://github.com/dav009/pyconco">Python in the land of Serverless</a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="https://twitter.com/MiltonLn">Milton Lenis</a></p></td>
+<td><p><a class="reference external" href="https://github.com/MiltonLn/pycon-multitenant">Multitenant Architectures in Python</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://twitter.com/GudarJs">Dario Guzman</a></p></td>
+<td><p><a class="reference external" href="https://github.com/GudarJs/Facial-Recognition-Tensorflow">Facial recognition with neural networks</a></p></td>
+</tr>
+<tr class="row-even"><td><p>Jonathan Sandoval Cardona</p></td>
+<td><p><a class="reference external" href="https://github.com/jsandovalc/pycon2018">Introduction to asynchronous programming with Python and Twisted</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://twitter.com/carlosmart626">Carlos Alberto Martinez Morales</a></p></td>
+<td><p><a class="reference external" href="https://github.com/CarlosMart626/graphql-pycon.co2018">Creating a GraphQL api in Django</a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="https://twitter.com/jorlugaqui">Jorge Luis Galvis Quintero</a></p></td>
+<td><p><a class="reference external" href="https://github.com/jorlugaqui/pycon">Architecture for machine learning apps (Django flavored)</a></p></td>
+</tr>
+<tr class="row-odd"><td><p>Manuela Jaramillo</p></td>
+<td><p><a class="reference external" href="https://github.com/manuela98/talkscript2media">TalkScript2Media</a></p></td>
+</tr>
+</tbody>
+</table>
+<p>Se presentaron una gran cantidad de conferencias y esta es solo una muestra de
+aquellas que pude encontrar a través de los perfiles de twitter y github de los
+conferencistas, y de los tuits compartidos durante el evento.</p>
+</section>
+<section id="talleres">
+<h3>Talleres<a class="headerlink" href="#talleres" title="Link to this heading">#</a></h3>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Conferencista</p></th>
+<th class="head"><p>Recurso</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Sebastián Parada, María Camila Guerrero Giraldo</p></td>
+<td><p><a class="reference external" href="https://github.com/NeftaliChana/PyCon-2018">Programación funcional con python</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://twitter.com/serpulga">Sergio Pulgarin</a></p></td>
+<td><p><a class="reference external" href="https://docs.google.com/presentation/d/1meKI2I_sX3avnQcU2gK1j-RcSzXcyYC4-Y4Ol1Pu35E/edit#slide=id.p">Python API for C programs</a> <a class="reference external" href="https://github.com/serpulga/python-accounts">(ejemplo)</a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="https://twitter.com/__mharrison__">Matt Harrison</a></p></td>
+<td><p><a class="reference external" href="https://github.com/mattharrison/Jungle-PyconCo-2018">Welcome to the Jungle: Random Forests for Fun and Profit</a></p></td>
+</tr>
+<tr class="row-odd"><td><p>Juan Nicolás Táutiva</p></td>
+<td><p><a class="reference external" href="https://github.com/NickATC/Taller_Python_OOP_2018">Programming for non-programmers: The four pillars of object-oriented programming</a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="https://twitter.com/tebanep">Esteban Echeverry</a></p></td>
+<td><p><a class="reference external" href="https://github.com/nubark/clean-architecture-python">Clean architecture with python</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://twitter.com/moisesvw">Moises Vargas</a></p></td>
+<td><p><a class="reference external" href="https://github.com/moisesvw/pyconMDE2018">Classifying human faces using Convolutional Neural Networks</a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="https://twitter.com/rafa_laverde">Rafael Laverde</a></p></td>
+<td><p><a class="reference external" href="https://github.com/rlaverde/pycon-demo">Build a powerful static website using Lektor</a></p></td>
+</tr>
+</tbody>
+</table>
+<p>Al igual que las conferencias, esto no representa la totalidad de talleres y
+solo son aquellos que pude encontrar en los perfiles de github de los
+orientadores de los talleres.</p>
+</section>
+</section>
+<section id="mi-participacion">
+<h2>Mi participación<a class="headerlink" href="#mi-participacion" title="Link to this heading">#</a></h2>
+<p>Que puedo decir, con lo visto en el primer día de como las conferencias afines a
+temas de empresa no esperaba la asistencia que finalmente tuve, y más aún, la
+posibilidad de continuar una comunicación con interesados en el tema de python
+en educación.</p>
+<p>Mi conferencia, «Jupyter Notebook en el aula de clase», fue la manera de
+compartir mi experiencia de usar esta herramienta de distintas maneras en cursos
+que imparto o he impartido como métodos numéricos, herramientas computacionales,
+el uso en el semillero de física teórica y computacional y en la Organización
+Scalibur.</p>
+<figure class="align-center" id="id2">
+<a class="reference internal image-reference" href="../../../../_images/jupyter-notebook-aula-edward-villegas.jpg"><img alt="Fotografía del inicio de la presentación de &quot;Usando Jupyter Notebook en el aula.&quot;" src="../../../../_images/jupyter-notebook-aula-edward-villegas.jpg" style="width: 623.0px; height: 467.0px;" /></a>
+<figcaption>
+<p><span class="caption-text">Fotografía del inicio de la presentación de «Usando Jupyter Notebook en el aula.»</span><a class="headerlink" href="#id2" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Puedes acceder al repositorio de los ejemplos de mi conferencia en
+<a class="reference external" href="https://github.com/cosmoscalibur/aula-notebook">github</a>.</p>
+</section>
+</section>
+
+<div class="section ablog__blog_comments">
+  
+  
+
+
+<div class="section ablog__prev-next">
+  <span class="ablog__prev">
+    
+    
+    <a href="../ejecutando-macos-en-linux/">
+      
+      <i class="fa fa-arrow-circle-left"></i>
+      
+      <span>Ejecutando macOS en Linux</span>
+    </a>
+    
+  </span>
+  <span class="ablog__spacer">&nbsp;</span>
+  <span class="ablog__next">
+    
+    
+    <a href="../cumple-28-perfecto-triangular-y-hexagonal/">
+      <span>Cumple 28: perfecto, triangular y hexagonal</span>
+      
+      <i class="fa fa-arrow-circle-right" ></i>
+      
+    </a>
+    
+  </span>
+</div>
+
+  
+  
+  <div class="section ablog__comments">
+    <h2>Comments</h2>
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+      var disqus_shortname = "cosmoscalibur";
+      var disqus_identifier = "/es/blog/2018/la-experiencia-de-pycon-colombia-2018/";
+      var disqus_title = "La experiencia de PyCon Colombia 2018";
+      var disqus_url = "https://www.cosmoscalibur.com/es/blog/2018/la-experiencia-de-pycon-colombia-2018";
+
+      (function () {
+        var dsq = document.createElement("script");
+        dsq.type = "text/javascript";
+        dsq.async = true;
+        dsq.src = "//" + disqus_shortname + ".disqus.com/embed.js";
+        (
+          document.getElementsByTagName("head")[0] ||
+          document.getElementsByTagName("body")[0]
+        ).appendChild(dsq);
+      })();
+    </script>
+    <noscript>
+      Please enable JavaScript to view the
+      <a href="https://disqus.com/?ref_noscript">
+        comments powered by Disqus.</a ></noscript >
+    <a href="https://disqus.com" class="dsq-brlink">
+      comments powered by <span class="logo-disqus">Disqus</span>
+    </a >
+  </div>
+  
+</div>
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> En esta página
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#recopilacion-de-material">Recopilación de material</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conferencias-principales">Conferencias principales</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#python-software-foundation">Python Software Foundation</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#taller-de-empaquetado-en-python">Taller de empaquetado en python</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conferencias-sometidas">Conferencias sometidas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#talleres">Talleres</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mi-participacion">Mi participación</a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+
+  <div class="tocsection sourcelink">
+    <a href="../../../../_sources/es/blog/2018/la-experiencia-de-pycon-colombia-2018.rst.txt">
+      <i class="fa-solid fa-file-lines"></i> Mostrar el código
+    </a>
+  </div>
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../../../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2024, Edward Villegas.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Creado usando <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.3.7.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  Construido con el <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">Tema PyData Sphinx</a> 0.15.2.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

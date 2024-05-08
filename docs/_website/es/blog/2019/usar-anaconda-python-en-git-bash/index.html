@@ -1,0 +1,565 @@
+
+<!DOCTYPE html>
+
+
+<html lang="es" data-content_root="../../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="og:title" content="Usar Anaconda Python en Git Bash" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://www.cosmoscalibur.com/es/blog/2019/usar-anaconda-python-en-git-bash/" />
+<meta property="og:site_name" content="Blog Cosmoscalibur" />
+<meta property="og:description" content="Recientemente, por motivos laborales he tenido que trabajar en Windows y es por esto que tuve la necesidad de buscar una opción cómoda de usar Git en Windows, con soporte de Bash a lo que estoy aco..." />
+<meta property="og:image:width" content="1146" />
+<meta property="og:image:height" content="600" />
+<meta property="og:image" content="https://www.cosmoscalibur.com/_images/social_previews/summary_es_blog_2019_usar-anaconda-python-en-git-bash_414dcfd1.png" />
+<meta property="og:image:alt" content="Recientemente, por motivos laborales he tenido que trabajar en Windows y es por esto que tuve la necesidad de buscar una opción cómoda de usar Git en Windows..." />
+<meta name="description" content="Recientemente, por motivos laborales he tenido que trabajar en Windows y es por esto que tuve la necesidad de buscar una opción cómoda de usar Git en Windows, con soporte de Bash a lo que estoy aco..." />
+<meta name="twitter:card" content="summary_large_image" />
+
+    <title>Usar Anaconda Python en Git Bash &#8212; Blog Cosmoscalibur</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../../../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../../../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../../../../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../../../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../../../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="../../../../_static/documentation_options.js?v=a20647df"></script>
+    <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../_static/translations.js?v=efdbd0b9"></script>
+    <script src="../../../../_static/design-tabs.js?v=36754332"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'es/blog/2019/usar-anaconda-python-en-git-bash';</script>
+    <link rel="index" title="Índice" href="../../../../genindex/" />
+    <link rel="search" title="Búsqueda" href="../../../../search/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="es"/>
+
+<link
+  rel="alternate"
+  type="application/atom+xml"
+  href="../../../../blog/atom.xml"
+  title="Blog Cosmoscalibur"
+/>
+
+
+
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Saltar al contenido principal</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../../../search/"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+<div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+    <span class="fa-solid fa-bars"></span>
+  </label>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+
+<a class="navbar-brand logo" href="../../../../">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Blog Cosmoscalibur</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav class="navbar-nav">
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../me/">
+                        Edward Villegas
+                      </a>
+                    </li>
+                
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Búsqueda</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="claro/oscuro" aria-label="claro/oscuro" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Búsqueda</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+    </div>
+  
+
+  
+    <label class="sidebar-toggle secondary-toggle" for="__secondary" tabindex="0">
+      <span class="fa-solid fa-outdent"></span>
+    </label>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          <div class="navbar-item">
+<nav class="navbar-nav">
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../me/">
+                        Edward Villegas
+                      </a>
+                    </li>
+                
+  </ul>
+</nav></div>
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="claro/oscuro" aria-label="claro/oscuro" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script></div>
+        
+      </div>
+    
+  </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+
+
+<nav aria-label="Miga de pan">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../../../" class="nav-link" aria-label="Inicio">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page">Usar...</li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+<section id="usar-anaconda-python-en-git-bash">
+<h1>Usar Anaconda Python en Git Bash<a class="headerlink" href="#usar-anaconda-python-en-git-bash" title="Link to this heading">#</a></h1>
+<p>Recientemente, por motivos laborales he tenido que trabajar en Windows y es
+por esto que tuve la necesidad de buscar una opción cómoda de usar <a class="reference external" href="https://git-scm.com/">Git</a>
+en Windows, con soporte de <a class="reference external" href="https://www.gnu.org/software/bash/">Bash</a> a lo
+que estoy acostumbrado en Linux y con Python Anaconda reconocido. De alguna
+manera, la versión mínima de como usar Windows sin morir en el intento.</p>
+<section id="anaconda-python">
+<h2>Anaconda Python<a class="headerlink" href="#anaconda-python" title="Link to this heading">#</a></h2>
+<p>Lo primero es proceder a instalar Anaconda Python desde su sitio oficial, pero
+recomiendo revisar primero la necesidad real de tener todo lo incluido en
+Anaconda o usar algo minimalista como Miniconda. Anaconda representará una
+instalación y descarga de casi 500 MB, y por ende un mayor tiempo en ambos
+pasos. Por otro lado, Miniconda solo instala lo mínimo requerido para tener
+Python y el gestor de paquetes Conda. Esta última opción es recomendable si
+posees poco espacio en disco, deseas instalar rápidamente, solo deseas probar
+lo básico de Python o el equipo es de bajas características (recuerdo casos en
+los cuales mis estudiantes -épocas de docente- la sola instalación de Anaconda
+bloqueaba el equipo y lo reiniciaba).</p>
+<p>Si usas Anaconda para tus proyectos de desarrollo y usando buenas prácticas,
+seguramente estarás acostumbrado a usar ambientes y en ese caso no necesitas
+tener tantas cosas en el base, siendo buena opción Miniconda también.</p>
+<p>Descarga <a class="reference external" href="https://www.anaconda.com/distribution/">Anaconda</a> o
+<a class="reference external" href="https://docs.conda.io/en/latest/miniconda.html">Miniconda</a> según tu
+necesidad e instala como cualquier programa de Windows. Lo importante durante
+la instalación es indicar que sea solo para el usuario actual y que no se
+asocie el <code class="code docutils literal notranslate"><span class="pre">PATH</span></code>. Seguir este consejo les evitará dolores de cabeza en el
+futuro.</p>
+<div class="note update admonition">
+<p class="admonition-title">Updated on %Y-%m-%d %H-%M-%S</p>
+<p>Para saber mayor detalle del proceso de instalación puedes consultar mi
+publicación <a class="reference internal" href="../../2020/instalar-python-anaconda/"><span class="doc">Instalar Anaconda Python</span></a>.</p>
+</div>
+</section>
+<section id="git-bash">
+<h2>Git Bash<a class="headerlink" href="#git-bash" title="Link to this heading">#</a></h2>
+<p>Si bien puedes descargarlo desde el sitio del proyecto, aprovecharemos el
+gestor Conda para facilitar la tarea de descarga, instalación y configuración.</p>
+<p>Abriremos Anaconda PowerShell o Anaconda Prompt, y ejecutaremos lo siguiente:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>create<span class="w"> </span>-n<span class="w"> </span>gitbash<span class="w"> </span>-c<span class="w"> </span>conda-forge<span class="w"> </span><span class="nv">git</span><span class="o">=</span><span class="m">2</span>.24.0
+</pre></div>
+</div>
+<p>Es importante el uso de <code class="code docutils literal notranslate"><span class="pre">-c</span> <span class="pre">conda-forge</span></code> porque de este canal vendrá la
+versión de Git que usaremos. Si se usa el canal por defecto, se instala solo el
+cliente de consola, mientras que en esta opción viene Git Bash. He indicado
+también el <code class="code docutils literal notranslate"><span class="pre">-n</span> <span class="pre">gitbash</span></code> para evitar posibles conflictos entre los
+paquetes requeridos para usar Git y los paquetes disponibles en el ambiente
+base. En alguna publicación posterior hablaré sobre Conda para profundizar en
+esto.</p>
+<p>Una vez terminada la instalación, puedes abrir el menú de Windows y buscar Git
+Bash, el cual ya contará con Conda reconocido. Ahora solo debes empezar a
+usarlo, <code class="code docutils literal notranslate"><span class="pre">conda</span> <span class="pre">activate</span> <span class="pre">base</span></code>.</p>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>En este momento, nuestro ambiente por defecto será gitbash. Si instalas sin
+indicar el ambiente, tendrás el base por defecto habilitado pero con
+posibles conflictos.</p>
+</div>
+<p>¿Y qué pasa si ya teníamos instalado Git Bash? Git Bash soporta los archivos
+típicos de Bash, como el <code class="code docutils literal notranslate"><span class="pre">bashrc</span></code>. Así, podemos usar la configuración que
+habitualmente se usa en Linux.</p>
+<p>Abrimos Git Bash, y ejecutamos:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span><span class="nv">$HOME</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;. /c/Users/USUARIO/ANACONDA/etc/profile.d/conda.sh&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>.bashrc
+<span class="nb">source</span><span class="w"> </span>.bashrc
+</pre></div>
+</div>
+<p>Con la primera línea aseguramos ir al directorio del usuario. En la segunda
+línea, crearemos o editaremos el archivo de configuración, pero debes
+reemplazar <code class="code docutils literal notranslate"><span class="pre">USUARIO</span></code> por la carpeta de tu usuario y <code class="code docutils literal notranslate"><span class="pre">ANACONDA</span></code> por
+la carpeta de Anaconda (habitualmente <code class="code docutils literal notranslate"><span class="pre">Anaconda3</span></code> o <code class="code docutils literal notranslate"><span class="pre">Miniconda3</span></code> si
+usaste Miniconda). La tercera línea actualiza la configuración en la sesión
+actual de la consola permitiendo usar de forma inmediata Conda. Para la próxima
+apertura de Git Bash ya no tendrás que configurar nada, solo empezar a usar
+Conda (aún no hay ambiente activado).</p>
+</section>
+</section>
+
+<div class="section ablog__blog_comments">
+  
+  
+
+
+<div class="section ablog__prev-next">
+  <span class="ablog__prev">
+    
+    
+    <a href="../crear-contenedor-docker-aplicacion-gui-ealite/">
+      
+      <i class="fa fa-arrow-circle-left"></i>
+      
+      <span>Crear contenedor Docker aplicación GUI - EALite</span>
+    </a>
+    
+  </span>
+  <span class="ablog__spacer">&nbsp;</span>
+  <span class="ablog__next">
+    
+    
+    <a href="../../2020/crear-documentacion-de-un-proyecto-python-con-sphinx/">
+      <span>Crear documentación de un proyecto Python con Sphinx</span>
+      
+      <i class="fa fa-arrow-circle-right" ></i>
+      
+    </a>
+    
+  </span>
+</div>
+
+  
+  
+  <div class="section ablog__comments">
+    <h2>Comments</h2>
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+      var disqus_shortname = "cosmoscalibur";
+      var disqus_identifier = "/es/blog/2019/usar-anaconda-python-en-git-bash/";
+      var disqus_title = "Usar Anaconda Python en Git Bash";
+      var disqus_url = "https://www.cosmoscalibur.com/es/blog/2019/usar-anaconda-python-en-git-bash";
+
+      (function () {
+        var dsq = document.createElement("script");
+        dsq.type = "text/javascript";
+        dsq.async = true;
+        dsq.src = "//" + disqus_shortname + ".disqus.com/embed.js";
+        (
+          document.getElementsByTagName("head")[0] ||
+          document.getElementsByTagName("body")[0]
+        ).appendChild(dsq);
+      })();
+    </script>
+    <noscript>
+      Please enable JavaScript to view the
+      <a href="https://disqus.com/?ref_noscript">
+        comments powered by Disqus.</a ></noscript >
+    <a href="https://disqus.com" class="dsq-brlink">
+      comments powered by <span class="logo-disqus">Disqus</span>
+    </a >
+  </div>
+  
+</div>
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> En esta página
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#anaconda-python">Anaconda Python</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#git-bash">Git Bash</a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+
+  <div class="tocsection sourcelink">
+    <a href="../../../../_sources/es/blog/2019/usar-anaconda-python-en-git-bash.rst.txt">
+      <i class="fa-solid fa-file-lines"></i> Mostrar el código
+    </a>
+  </div>
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../../../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2024, Edward Villegas.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Creado usando <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.3.7.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  Construido con el <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">Tema PyData Sphinx</a> 0.15.2.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

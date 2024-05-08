@@ -1,0 +1,757 @@
+
+<!DOCTYPE html>
+
+
+<html lang="es" data-content_root="../../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="og:title" content="Crear documentación de un proyecto Python con Sphinx" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://www.cosmoscalibur.com/es/blog/2020/crear-documentacion-de-un-proyecto-python-con-sphinx/" />
+<meta property="og:site_name" content="Blog Cosmoscalibur" />
+<meta property="og:description" content="Sin duda, una etapa importante en cualquier proyecto de desarrollo (y no solo de software) es la generación de la documentación. En el caso de software es posible asistirse de herramientas que ayud..." />
+<meta property="og:image:width" content="1146" />
+<meta property="og:image:height" content="600" />
+<meta property="og:image" content="https://www.cosmoscalibur.com/_images/social_previews/summary_es_blog_2020_crear-documentacion-de-un-proyecto-python-con-sphinx_6f5a979e.png" />
+<meta property="og:image:alt" content="Sin duda, una etapa importante en cualquier proyecto de desarrollo (y no solo de software) es la generación de la documentación. En el caso de software es po..." />
+<meta name="description" content="Sin duda, una etapa importante en cualquier proyecto de desarrollo (y no solo de software) es la generación de la documentación. En el caso de software es posible asistirse de herramientas que ayud..." />
+<meta name="twitter:card" content="summary_large_image" />
+
+    <title>Crear documentación de un proyecto Python con Sphinx &#8212; Blog Cosmoscalibur</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../../../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../../../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../../../../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../../../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../../../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="../../../../_static/documentation_options.js?v=a20647df"></script>
+    <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../_static/translations.js?v=efdbd0b9"></script>
+    <script src="../../../../_static/design-tabs.js?v=36754332"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'es/blog/2020/crear-documentacion-de-un-proyecto-python-con-sphinx';</script>
+    <link rel="index" title="Índice" href="../../../../genindex/" />
+    <link rel="search" title="Búsqueda" href="../../../../search/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="es"/>
+
+<link
+  rel="alternate"
+  type="application/atom+xml"
+  href="../../../../blog/atom.xml"
+  title="Blog Cosmoscalibur"
+/>
+
+
+
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Saltar al contenido principal</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../../../search/"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+<div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+    <span class="fa-solid fa-bars"></span>
+  </label>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+
+<a class="navbar-brand logo" href="../../../../">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Blog Cosmoscalibur</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav class="navbar-nav">
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../me/">
+                        Edward Villegas
+                      </a>
+                    </li>
+                
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Búsqueda</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="claro/oscuro" aria-label="claro/oscuro" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Búsqueda</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+    </div>
+  
+
+  
+    <label class="sidebar-toggle secondary-toggle" for="__secondary" tabindex="0">
+      <span class="fa-solid fa-outdent"></span>
+    </label>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          <div class="navbar-item">
+<nav class="navbar-nav">
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../me/">
+                        Edward Villegas
+                      </a>
+                    </li>
+                
+  </ul>
+</nav></div>
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="claro/oscuro" aria-label="claro/oscuro" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script></div>
+        
+      </div>
+    
+  </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+
+
+<nav aria-label="Miga de pan">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../../../" class="nav-link" aria-label="Inicio">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page">Crear...</li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+<section id="crear-documentacion-de-un-proyecto-python-con-sphinx">
+<h1>Crear documentación de un proyecto Python con Sphinx<a class="headerlink" href="#crear-documentacion-de-un-proyecto-python-con-sphinx" title="Link to this heading">#</a></h1>
+<p>Sin duda, una etapa importante en cualquier proyecto de desarrollo (y no solo
+de <em>software</em>) es la generación de la documentación. En el caso de <em>software</em>
+es posible asistirse de herramientas que ayudan a automatizar la generación de
+la documentación mediante extracción de comentarios en el código, usar palabras
+claves y lenguaje de marcado para modificación de estilo en el texto o
+inclusión de otros elementos que no sean solo texto plano (imágenes,
+ecuaciones, enlaces entre otros).</p>
+<p>Algunas herramientas para este fin son <a class="reference external" href="http://doxygen.nl/">Doxygen</a>
+(habitual para proyectos en C/C++), <a class="reference external" href="https://www.oracle.com/technetwork/java/javase/documentation/index-jsp-135444.html">Javadoc</a>
+(para Java, pero habitual también en TypeScript), <a class="reference external" href="https://esdoc.org/">ESDoc</a>
+(para Javascript) y por supuesto, Sphinx, para Python.</p>
+<p>En esta entrada instalaremos lo necesario para generar nuestra documentación de
+un proyecto Python y haremos un pequeño ejemplo.</p>
+<section id="latex">
+<h2>LaTeX<a class="headerlink" href="#latex" title="Link to this heading">#</a></h2>
+<p>Si deseamos generar documentación web, este paquete no es necesario, pero para
+generar nuestra documentación en PDF es una dependencia obligatoria. La
+instalación recomendada dependerá del sistema operativo que se use.</p>
+<dl>
+<dt>Mac</dt><dd><p>Puedes usar <a class="reference external" href="https://www.tug.org/mactex/">MacTex</a> el cual incluye el
+compilador TeXLive y editores como TeXShop, y otras dependencias para el
+funcionamiento de LaTeX en Mac.</p>
+</dd>
+<dt>Windows</dt><dd><p>La opción más cómoda es el compilador <a class="reference external" href="https://miktex.org/download">MikTeX</a>,
+el cual permite de forma predeterminada la descarga automática de paquetes
+adicionales en la medida que sean requeridos (instalación <em>on the fly</em>).</p>
+<p>Es importante que en la configuración no cambies al modo silencioso, pues
+esto puede afectar la ejecución posterior en los casos que requieran de
+instalación.</p>
+<p>Si usas Anaconda, puedes incluirlo desde el canal de <em>conda-forge</em>,
+<code class="code docutils literal notranslate"><span class="pre">conda</span> <span class="pre">install</span> <span class="pre">-c</span> <span class="pre">conda-forge</span> <span class="pre">miktex</span></code>.</p>
+<p>En la primera forma de instalación requieres instalar Perl, en la segunda,
+este viene como dependencia instalada por el gestor de paquetes. También
+puedes usar <a class="reference external" href="https://tug.org/texlive/acquire.html">TeXLive</a> para Windows,
+el cual asegura la consistencia en el resultado entre los 3 sistemas
+operativos.</p>
+</dd>
+<dt>Linux</dt><dd><p>En Linux usaremos TeXLive pero su instalación la haremos directamente del
+gestor de paquetes del sistema operativo. En la mayor parte de
+distribuciones Linux estará disponible a través del gestor.</p>
+<p>En el caso de las distribuciones basadas en Debian (Ubuntu y Linux Mint
+entre otras) puedes instalar de la siguiente manera:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span> <span class="n">install</span> <span class="o">-</span><span class="n">y</span> <span class="n">texlive</span> <span class="n">texlive</span><span class="o">-</span><span class="n">latex</span><span class="o">-</span><span class="n">base</span> <span class="n">texlive</span><span class="o">-</span><span class="n">latex</span><span class="o">-</span><span class="n">extra</span> \
+    <span class="n">texlive</span><span class="o">-</span><span class="n">lang</span><span class="o">-</span><span class="n">spanish</span> <span class="n">latexmk</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</section>
+<section id="sphinx">
+<h2>Sphinx<a class="headerlink" href="#sphinx" title="Link to this heading">#</a></h2>
+<p>Si usamos Python a través de Anaconda podemos usar el gestor <em>conda</em> para la
+instalación, así <code class="code docutils literal notranslate"><span class="pre">conda</span> <span class="pre">install</span> <span class="pre">sphinx</span></code>, en caso contrario, podemos usar
+el gestor de paquetes <em>PIP</em>: <code class="code docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-U</span> <span class="pre">Sphinx</span></code>.</p>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Si deseas una experiencia en Windows similar a Linux, usando el
+<code class="code docutils literal notranslate"><span class="pre">Makefile</span></code> tradicional y la posibilidad de usar en combinación con
+Bash, te recomiendo usar Git Bash, y si es en conjunto con Anaconda puedes
+leer mi publicación al respecto, <a class="reference internal" href="../../2019/usar-anaconda-python-en-git-bash/"><span class="doc">Usar Anaconda Python en Git Bash</span></a> e
+instalar el paquete <code class="code docutils literal notranslate"><span class="pre">make</span></code> con Anaconda (<code class="code docutils literal notranslate"><span class="pre">conda</span> <span class="pre">install</span> <span class="pre">make</span></code>) o
+instalar <a class="reference external" href="http://mingw-w64.org/doku.php">Mingw-w64</a>.</p>
+</div>
+</section>
+<section id="configuracion-de-sphinx">
+<h2>Configuración de Sphinx<a class="headerlink" href="#configuracion-de-sphinx" title="Link to this heading">#</a></h2>
+<p>Abriremos una consola (si es Windows, debes tener en cuenta que para usar
+paquetes de Anaconda debes usar las consolas Anaconda Prompt, Anaconda
+PowerShell u otra si la configuraste -como el caso de Git Bash que
+mencioné en la sección anterior-) y debemos ubicarnos en el directorio que
+destinaremos para la documentación. Es habitual que en la estructura de nuestro
+proyecto destinemos un directorio <code class="code docutils literal notranslate"><span class="pre">docs</span></code> para este fin.</p>
+<p>Ahora ejecutamos <code class="code docutils literal notranslate"><span class="pre">sphinx-quickstart</span></code> y respondemos las preguntas que
+saldrán. Es necesario tener en cuenta, que si usas Windows debes agregar al
+comando la terminación <code class="code docutils literal notranslate"><span class="pre">.exe</span></code>, ejemplo <code class="code docutils literal notranslate"><span class="pre">sphinx-quickstart.exe</span></code>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="n">Separate</span> <span class="n">source</span> <span class="ow">and</span> <span class="n">build</span> <span class="n">directories</span> <span class="p">(</span><span class="n">y</span><span class="o">/</span><span class="n">n</span><span class="p">)</span> <span class="p">[</span><span class="n">n</span><span class="p">]:</span> <span class="n">y</span>
+<span class="o">&gt;</span> <span class="n">Project</span> <span class="n">name</span><span class="p">:</span> <span class="n">proyecto</span>
+<span class="o">&gt;</span> <span class="n">Author</span> <span class="n">name</span><span class="p">(</span><span class="n">s</span><span class="p">):</span> <span class="n">Edward</span> <span class="n">Villegas</span><span class="o">-</span><span class="n">Pulgarin</span>
+<span class="o">&gt;</span> <span class="n">Project</span> <span class="n">release</span> <span class="p">[]:</span> <span class="mf">0.1.0</span>
+<span class="o">&gt;</span> <span class="n">Project</span> <span class="n">language</span> <span class="p">[</span><span class="n">en</span><span class="p">]:</span> <span class="n">es</span>
+</pre></div>
+</div>
+<p>Siempre recomiendo separar el directorio del código fuente de la documentación
+del directorio de compilados de la misma. Respecto al esquema de versiones me
+agrada el <a class="reference external" href="https://semver.org/">versionamiento semántico</a> que permite al
+usuario final intuir un poco más sobre la madurez del proyecto con el número,
+pero puedes usar el <a class="reference external" href="https://calver.org/">esquema basado en fecha de liberación</a>.
+En el lenguaje se especifica el lenguaje con el código a dos letras
+internacional, acorde a los
+<a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/configuration.html#confval-language">soportados por Sphinx</a>.</p>
+<p>Aunque en la terminal nos indican que podemos continuar con el archivo
+<code class="code docutils literal notranslate"><span class="pre">index.rst</span></code>, debemos hacer unos pequeños cambios en el archivo
+<code class="code docutils literal notranslate"><span class="pre">conf.py</span></code> que encontraremos en <code class="code docutils literal notranslate"><span class="pre">docs/source</span></code>.</p>
+<p>Puedes saber más opciones de configuración en la documentación de Sphinx sobre
+<a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/configuration.html">conf.py</a>.</p>
+<section id="extensiones">
+<h3>Extensiones<a class="headerlink" href="#extensiones" title="Link to this heading">#</a></h3>
+<p>Recomiendo incluir la extensión de Autodoc para extraer automáticamente la
+documentación de la API, MathJax para el soporte de ecuaciones matemáticas en
+la versión Web y Napoleon para el estilo de Numpy y Google en la documentación.
+Con Coverage puedes validar que funciones se han documentado y dcotest integra
+pruebas de código desde la documentación (comparar salidas con ejemplo de
+documentación).</p>
+<p>Modificar en el archivo.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">extensions</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;sphinx.ext.autodoc&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;sphinx.ext.mathjax&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;sphinx.ext.napoleon&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;sphinx.ext.coverage&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;sphinx.ext.doctest&#39;</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</section>
+<section id="importar-paquete">
+<h3>Importar paquete<a class="headerlink" href="#importar-paquete" title="Link to this heading">#</a></h3>
+<p>Para apoyarte de ejemplos actualizados automáticamente, uso de metadatos desde
+el código (ejemplo, el autor o la versión) puedes importar el paquete en el
+archivo de configuración. Dado que estarás en modo de desarrollo probablemente,
+el paquete no ha sido instalado y lo deberás hacer descomentando las tres
+primeras líneas de código en la sección de <em>Path setup</em>. El punto que hay por
+defecto indica la misma carpeta de <code class="code docutils literal notranslate"><span class="pre">docs/source</span></code>, por lo cual es
+necesario reemplazar por <code class="code docutils literal notranslate"><span class="pre">../..</span></code> que se devuelve los dos niveles
+necesarios.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">datetime</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s1">&#39;../..&#39;</span><span class="p">))</span>
+<span class="kn">import</span> <span class="nn">proyecto</span>
+</pre></div>
+</div>
+<p>Ahora, puedes hacer cosas como la siguiente, si está disponible en tu código.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">author</span> <span class="o">=</span> <span class="n">proyecto</span><span class="o">.</span><span class="n">__author__</span>
+<span class="n">copyright</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">datetime</span><span class="o">.</span><span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">()</span><span class="o">.</span><span class="n">year</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;, &#39;</span> <span class="o">+</span> <span class="n">author</span>
+<span class="n">release</span> <span class="o">=</span> <span class="n">proyecto</span><span class="o">.</span><span class="n">__version__</span>
+</pre></div>
+</div>
+<p>Esto tiene un impacto respecto a algunas dependencias, que pueden provocar
+fallos o si para la generación de la documentación no tenemos todas las
+dependencias del paquete. En mi caso, he tenido problemas cuando tengo como
+dependencia Tensorflow o cuando tengo arcpy pero no tengo la licencia
+instalada. En este caso, podemos hacer un falseo (<em>mock</em>) de los paquetes:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">autodoc_mock_imports</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;tensorflow&quot;</span><span class="p">,</span> <span class="s2">&quot;arcpy&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</section>
+<section id="referencias-cruzadas">
+<h3>Referencias cruzadas<a class="headerlink" href="#referencias-cruzadas" title="Link to this heading">#</a></h3>
+<p>Para usar referencias cruzadas, es decir, numeración de tablas, figuras,
+códigos y ecuaciones si poseen pie de objeto, y ser referenciados en el texto
+por el número, se requiere configurar lo siguiente.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">numfig</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">numfig_format</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;figure&#39;</span><span class="p">:</span> <span class="s1">&#39;Fig. </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39;table&#39;</span><span class="p">:</span> <span class="s1">&#39;Tabla </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span>
+                 <span class="s1">&#39;code-block&#39;</span><span class="p">:</span> <span class="s1">&#39;Código </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39;section&#39;</span><span class="p">:</span> <span class="s1">&#39;Sección </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">}</span>
+<span class="n">numfig_secnum_depth</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">math_numfig</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">math_eqref_format</span> <span class="o">=</span> <span class="s1">&#39;Ec. </span><span class="si">{number}</span><span class="s1">&#39;</span>
+</pre></div>
+</div>
+<p>Así, es posible usar <code class="code docutils literal notranslate"><span class="pre">:label:</span></code> para asignar una referencia a los objetos
+y <code class="code docutils literal notranslate"><span class="pre">:numref:</span></code> y <code class="code docutils literal notranslate"><span class="pre">:eq:</span></code> a la hora de mencionarlos. Con
+<code class="code docutils literal notranslate"><span class="pre">numfig_secnum_depth</span></code> configuras la numeración de los objetos, si es
+continúa (0), por sección (1) y subsección (2).</p>
+</section>
+<section id="id1">
+<h3>LaTeX<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
+<p>Hay una configuración básica para LaTeX que puedes agregar. El documento
+maestro, el nombre del archivo TeX, el nombre que nuestra documentación, el
+nombre del autor (que podemos usar la variable que ya definimos) y el tipo de
+documento (cuya clase <em>manual</em> está definida por Sphinx).</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">master_doc</span> <span class="o">=</span> <span class="s1">&#39;index&#39;</span>
+<span class="n">latex_documents</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">(</span><span class="n">master_doc</span><span class="p">,</span> <span class="s1">&#39;proyecto.tex&#39;</span><span class="p">,</span> <span class="s1">&#39;Documentación Proyecto&#39;</span><span class="p">,</span>
+     <span class="n">author</span><span class="p">,</span> <span class="s1">&#39;manual&#39;</span><span class="p">),</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="escritura-en-restructuredtext">
+<h2>Escritura en ReStructuredText<a class="headerlink" href="#escritura-en-restructuredtext" title="Link to this heading">#</a></h2>
+<p>Sobre esto, es referencia ver la documentación de
+<a class="reference external" href="https://docutils.readthedocs.io/en/sphinx-docs/user/rst/quickstart.html">DocUtils</a>
+y de Sphinx <a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html">ReStructuredText Primer</a>.</p>
+<p>Una vez tienes las bases de ReStructuredText puedes editar lo básico. De ahí, y
+para tener todo el provecho de Sphinx hay elementos como los roles, directivas
+y dominios que debes aprender a usar,
+<a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/restructuredtext/index.html">Sphinx ReStructuredText</a>.</p>
+<p>¿Y por qué los dominios? Estos añaden sintaxis para manejar las relaciones con
+el código, como enlazar a funciones relacionadas que se generaron con <em>autodoc</em>
+y además la forma de como documentar la función (u otro elemento del código) en
+su código fuente y que pueda ser extraída. Por ejemplo, el
+<a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/restructuredtext/domains.html#the-python-domain">dominio de Python</a>.</p>
+<section id="que-archivos-debo-editar">
+<h3>¿Qué archivos debo editar?<a class="headerlink" href="#que-archivos-debo-editar" title="Link to this heading">#</a></h3>
+<p>Primero, editaremos <code class="code docutils literal notranslate"><span class="pre">docs/source/index.rst</span></code>, donde deberemos agregar los
+nombres de los archivos que se incluyen en la documentación, tanto los
+generados como los automáticos. Se agrega uno por línea, sin extensión y la
+posición es relativa a la ubicación del archivo <code class="code docutils literal notranslate"><span class="pre">index.rst</span></code>.</p>
+<p>Te recomiendo siempre un archivo <code class="code docutils literal notranslate"><span class="pre">README.rst</span></code> que fija la generalidad e
+intención del proyecto, <code class="code docutils literal notranslate"><span class="pre">history.rst</span></code> para tener documentados los cambios
+entre versiones (como un <em>changelog</em> pero a mano, más condensado), un
+<code class="code docutils literal notranslate"><span class="pre">usage.rst</span></code> documentando el uso de nuestro proyecto,
+<code class="code docutils literal notranslate"><span class="pre">installation.rst</span></code> con instrucciones de instalación y adicional, agregar
+una ruta a la documentación de la API (la misma ruta la debemos indicar más
+adelante). Puedes agregar más archivos, por ejemplo, yo suelo usar un
+<code class="code docutils literal notranslate"><span class="pre">concepts.rst</span></code> para detallar los conceptos necesarios antes de usar el
+software o detallar teoría que ayuda a interpretar resultados o que expande la
+información para que alguien pueda analizar o continuar un desarrollo.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">..</span> <span class="n">toctree</span><span class="p">::</span>
+   <span class="p">:</span><span class="n">maxdepth</span><span class="p">:</span> <span class="mi">3</span>
+   <span class="p">:</span><span class="n">caption</span><span class="p">:</span> <span class="n">Contenido</span><span class="p">:</span>
+
+   <span class="n">README</span>
+   <span class="n">installation</span>
+   <span class="n">usage</span>
+   <span class="n">api</span><span class="o">/</span><span class="n">modules</span>
+   <span class="n">concepts</span>
+   <span class="n">history</span>
+</pre></div>
+</div>
+<p>Y podemos borrar las líneas posteriores de <em>Indices and tables</em>.</p>
+<p>Vemos la mención a <code class="code docutils literal notranslate"><span class="pre">api/modules</span></code>, la cual es importante para incluir la
+documentación automática extraída con Sphinx, que se explicará en la próxima
+sección.</p>
+</section>
+</section>
+<section id="ejecucion-de-sphinx">
+<h2>Ejecución de Sphinx<a class="headerlink" href="#ejecucion-de-sphinx" title="Link to this heading">#</a></h2>
+<p>Como estamos haciendo uso de <em>autodoc</em>, nuestro primer paso es generar la
+extracción de la API.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sphinx</span><span class="o">-</span><span class="n">apidoc</span> <span class="o">-</span><span class="n">f</span> <span class="o">-</span><span class="n">M</span> <span class="o">-</span><span class="n">o</span> <span class="n">source</span><span class="o">/</span><span class="n">api</span><span class="o">/</span> <span class="o">../</span><span class="n">proyecto</span>
+</pre></div>
+</div>
+<p>Recordar que en Windows hay que agregar <code class="code docutils literal notranslate"><span class="pre">.exe</span></code>
+(<code class="code docutils literal notranslate"><span class="pre">sphinx-apidoc.exe</span></code>). <code class="code docutils literal notranslate"><span class="pre">-f</span></code> es para forzar la regeneración de los
+archivos (importante si actualizamos la documentación de la API), <code class="code docutils literal notranslate"><span class="pre">-M</span></code>
+para ubicar primero la documentación de los módulos (por defecto primero son
+las funciones, y esto no me parece natural). Luego, es la ruta para la
+documentación de la API (uno de los archivos será el <code class="code docutils literal notranslate"><span class="pre">api/modules.rst</span></code>)
+y finalmente la ruta donde se encuentra el paquete. Ambas rutas son relativas
+al directorio de documentación.</p>
+<p>Ahora, solo es necesario generar la documentación: <code class="code docutils literal notranslate"><span class="pre">make</span> <span class="pre">latexpdf</span></code> si es
+con el <em>Makefile</em> o <code class="code docutils literal notranslate"><span class="pre">make.bat</span> <span class="pre">latexpdf</span></code> si no instalaste <em>make</em> en
+Windows. Aquí debemos devolvernos un nivel en la carpeta para ejecutarlo.</p>
+</section>
+<section id="publicar">
+<h2>Publicar<a class="headerlink" href="#publicar" title="Link to this heading">#</a></h2>
+<p>Ahora encontrarás en la carpeta <em>build</em> los archivos LaTeX, y uno de ellos será
+el PDF que queremos. También puedes hacer compilación HTML (<code class="code docutils literal notranslate"><span class="pre">make</span> <span class="pre">html</span></code>)
+y usar esta para publicar como un <a class="reference external" href="https://pages.github.com/">GitHub Pages</a> o
+en <a class="reference external" href="https://docs.readthedocs.io/en/stable/intro/getting-started-with-sphinx.html">ReadTheDocs</a>.</p>
+</section>
+</section>
+
+<div class="section ablog__blog_comments">
+  
+  
+
+
+<div class="section ablog__prev-next">
+  <span class="ablog__prev">
+    
+    
+    <a href="../../2019/usar-anaconda-python-en-git-bash/">
+      
+      <i class="fa fa-arrow-circle-left"></i>
+      
+      <span>Usar Anaconda Python en Git Bash</span>
+    </a>
+    
+  </span>
+  <span class="ablog__spacer">&nbsp;</span>
+  <span class="ablog__next">
+    
+    
+    <a href="../estamos-preparados-para-un-nuevo-tipo-de-monedas-completamente-digitales/">
+      <span>¿Estamos preparados para un nuevo tipo de monedas, completamente digitales?</span>
+      
+      <i class="fa fa-arrow-circle-right" ></i>
+      
+    </a>
+    
+  </span>
+</div>
+
+  
+  
+  <div class="section ablog__comments">
+    <h2>Comments</h2>
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+      var disqus_shortname = "cosmoscalibur";
+      var disqus_identifier = "/es/blog/2020/crear-documentacion-de-un-proyecto-python-con-sphinx/";
+      var disqus_title = "Crear documentación de un proyecto Python con Sphinx";
+      var disqus_url = "https://www.cosmoscalibur.com/es/blog/2020/crear-documentacion-de-un-proyecto-python-con-sphinx";
+
+      (function () {
+        var dsq = document.createElement("script");
+        dsq.type = "text/javascript";
+        dsq.async = true;
+        dsq.src = "//" + disqus_shortname + ".disqus.com/embed.js";
+        (
+          document.getElementsByTagName("head")[0] ||
+          document.getElementsByTagName("body")[0]
+        ).appendChild(dsq);
+      })();
+    </script>
+    <noscript>
+      Please enable JavaScript to view the
+      <a href="https://disqus.com/?ref_noscript">
+        comments powered by Disqus.</a ></noscript >
+    <a href="https://disqus.com" class="dsq-brlink">
+      comments powered by <span class="logo-disqus">Disqus</span>
+    </a >
+  </div>
+  
+</div>
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> En esta página
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#latex">LaTeX</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sphinx">Sphinx</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#configuracion-de-sphinx">Configuración de Sphinx</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#extensiones">Extensiones</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#importar-paquete">Importar paquete</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#referencias-cruzadas">Referencias cruzadas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">LaTeX</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#escritura-en-restructuredtext">Escritura en ReStructuredText</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#que-archivos-debo-editar">¿Qué archivos debo editar?</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejecucion-de-sphinx">Ejecución de Sphinx</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#publicar">Publicar</a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+
+  <div class="tocsection sourcelink">
+    <a href="../../../../_sources/es/blog/2020/crear-documentacion-de-un-proyecto-python-con-sphinx.rst.txt">
+      <i class="fa-solid fa-file-lines"></i> Mostrar el código
+    </a>
+  </div>
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../../../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2024, Edward Villegas.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Creado usando <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.3.7.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  Construido con el <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">Tema PyData Sphinx</a> 0.15.2.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>
