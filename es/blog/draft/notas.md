@@ -18,6 +18,9 @@ El nombre del proyecto, por defecto ya incluye _Blog_ al final del nombre
 asignado. Si es en inglés, está bien, de otra forma lo modificaremos en `conf.py`.
 Variables: `project`, `blog_title`.
 
+.nojekyll
+Además, cambiar _templates y _static por las versiones sin guion bajo
+
 html_title y html_short_title
 
 Por defecto el tema es _alabaster_. Esto se encuentra tanto en el bloque de importaciones
