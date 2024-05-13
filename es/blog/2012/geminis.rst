@@ -1,4 +1,4 @@
-:redirect: geminis
+:redirect: blog/geminis
 :date: 2012-06-22 19:32:37
 :tags: escritos, literatura, géminis, cumpleaños
 :category: cultura y entretenimiento/la flecha temporal

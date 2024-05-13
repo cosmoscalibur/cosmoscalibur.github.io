@@ -1,4 +1,4 @@
-:redirect: 2011-ano-internacional-de-la-quimica
+:redirect: blog/2011-ano-internacional-de-la-quimica
 :date: 2011-01-10 17:56:00
 :tags: año internacional de la química, año internacional, química
 :category: ciencia

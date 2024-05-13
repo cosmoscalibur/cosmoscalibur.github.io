@@ -1,4 +1,4 @@
-:redirect: iot-merece-la-pena-asumir-los-riesgos
+:redirect: blog/iot-merece-la-pena-asumir-los-riesgos
 :date: 2020-04-09 14:56:33
 :tags: internet de las cosas, iot, transformación digital
 :category: opinión/mitpeonline/transformación digital

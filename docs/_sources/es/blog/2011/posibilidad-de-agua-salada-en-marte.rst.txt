@@ -1,4 +1,4 @@
-:redirect: posibilidad-de-agua-salada-en-marte
+:redirect: blog/posibilidad-de-agua-salada-en-marte
 :date: 2011-09-18 17:44:00
 :tags: marte, planetas, exploración espacial, agua, astronomía
 :category: ciencia

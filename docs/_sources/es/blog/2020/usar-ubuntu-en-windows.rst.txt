@@ -1,4 +1,4 @@
-:redirect: usar-ubuntu-en-windows
+:redirect: blog/usar-ubuntu-en-windows
 :date: 2020-10-05 21:22:55
 :tags: windows, linux, wsl, wsl2, ubuntu, windows subsystem for linux
 :category: tecnología

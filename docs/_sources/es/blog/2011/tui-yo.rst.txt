@@ -1,4 +1,4 @@
-:redirect: tui-yo
+:redirect: blog/tui-yo
 :date: 2011-01-10 01:13:00
 :tags: amor, matemáticas, poesía, escritos, literatura
 :category: cultura y entretenimiento/la flecha temporal

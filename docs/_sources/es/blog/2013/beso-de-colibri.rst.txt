@@ -1,4 +1,4 @@
-:redirect: beso-de-colibri
+:redirect: blog/beso-de-colibri
 :date: 2013-03-06 12:56:00
 :tags: amor, beso, poesía, escritos, literatura
 :category: cultura y entretenimiento/la flecha temporal

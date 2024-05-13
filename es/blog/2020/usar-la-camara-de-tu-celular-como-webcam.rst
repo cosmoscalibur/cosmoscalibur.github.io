@@ -1,4 +1,4 @@
-:redirect: usar-la-camara-de-tu-celular-como-webcam
+:redirect: blog/usar-la-camara-de-tu-celular-como-webcam
 :date: 2020-05-17 15:02:25
 :tags: linux, android, webcam, cámara, droidcam, aplicaciones android
 :category: tecnología

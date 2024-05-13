@@ -1,4 +1,4 @@
-:redirect: cerebro-prehistorico
+:redirect: blog/cerebro-prehistorico
 :date: 2011-07-06 23:05:00
 :tags: cerebro, antropología, fósil, cerebro
 :category: ciencia

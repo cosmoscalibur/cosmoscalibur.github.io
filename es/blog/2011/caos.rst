@@ -1,4 +1,4 @@
-:redirect: caos
+:redirect: blog/caos
 :date: 2011-02-21 00:21:00
 :tags: amor, oscuridad, caos, poesía, escritos, literatura
 :category: cultura y entretenimiento/la flecha temporal

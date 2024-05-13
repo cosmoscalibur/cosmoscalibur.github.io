@@ -1,4 +1,4 @@
-:redirect: usar-anaconda-python-en-git-bash
+:redirect: blog/usar-anaconda-python-en-git-bash
 :date: 2019-12-31 14:43:50
 :tags: git, anaconda python, git bash, instalación de software, gestor de paquetes, conda
 :category: tecnología

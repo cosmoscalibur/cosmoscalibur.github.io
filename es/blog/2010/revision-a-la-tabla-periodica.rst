@@ -1,4 +1,4 @@
-:redirect: revision-a-la-tabla-periodica
+:redirect: blog/revision-a-la-tabla-periodica
 :date: 2010-12-22 14:17:51
 :tags: química, tabla periódica
 :category: ciencia

@@ -1,4 +1,4 @@
-:redirect: aplicacion-de-iot-a-la-cadena-de-suministro
+:redirect: blog/aplicacion-de-iot-a-la-cadena-de-suministro
 :date: 2020-04-09 15:19:21
 :tags: internet de las cosas, iot, transformación digital
 :category: opinión/mitpeonline/transformación digital

@@ -1,4 +1,4 @@
-:redirect: instalar-paquetes-snap-en-linux-mint-20
+:redirect: blog/instalar-paquetes-snap-en-linux-mint-20
 :date: 2020-06-29 18:16:35
 :tags: linux, linux mint, paquetes snap, instalación de software, gestor de paquetes
 :category: tecnología

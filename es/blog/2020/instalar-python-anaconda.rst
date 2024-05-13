@@ -1,4 +1,4 @@
-:redirect: instalar-python-anaconda
+:redirect: blog/instalar-python-anaconda
 :date: 2020-06-29 12:18:07
 :tags: python, anaconda python, instalación de software, gestor de paquetes, conda
 :category: tecnología

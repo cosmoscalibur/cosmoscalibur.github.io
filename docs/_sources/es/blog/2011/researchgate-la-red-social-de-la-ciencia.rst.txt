@@ -1,4 +1,4 @@
-:redirect: researchgate-la-red-social-de-la-ciencia
+:redirect: blog/researchgate-la-red-social-de-la-ciencia
 :date: 2011-05-11 14:58:22
 :tags: ciencia 2.0, redes sociales, researchgate, internet
 :category: ciencia

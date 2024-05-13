@@ -1,4 +1,4 @@
-:redirect: instalando-paquetes-en-linux-mint
+:redirect: blog/instalando-paquetes-en-linux-mint
 :date: 2019-10-22 20:21:34
 :tags: linux, linux mint, paquetes snap, flatpak, appimage, apt, gestor de paquetes, instalación de software
 :category: tecnología/aprendiendo a usar linux

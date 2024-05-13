@@ -1,4 +1,4 @@
-:redirect: el-doble-cumpleanos-de-newton-y-el-calendario-gregoriano
+:redirect: blog/el-doble-cumpleanos-de-newton-y-el-calendario-gregoriano
 :date: 2013-01-04 21:57:00
 :tags: isaac newton, calendario, historia, navidad
 :category: ciencia

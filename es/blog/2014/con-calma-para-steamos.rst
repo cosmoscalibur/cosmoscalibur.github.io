@@ -1,4 +1,4 @@
-:redirect: con-calma-para-steamos
+:redirect: blog/con-calma-para-steamos
 :date: 2014-04-20 18:21:00
 :tags: linux, steamos, videojuegos, steam
 :category: tecnología/videojuegos

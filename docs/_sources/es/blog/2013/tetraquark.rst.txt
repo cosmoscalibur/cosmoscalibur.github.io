@@ -1,4 +1,4 @@
-:redirect: tetracuark
+:redirect: blog/tetracuark
 :date: 2013-06-18 15:42:00
 :tags: física de partículas, tetracuark
 :category: ciencia

@@ -1,4 +1,4 @@
-:redirect: mala-hierba
+:redirect: blog/mala-hierba
 :date: 2012-10-03 22:17:00
 :tags: poesía, escritos, literatura
 :category: cultura y entretenimiento/la flecha temporal

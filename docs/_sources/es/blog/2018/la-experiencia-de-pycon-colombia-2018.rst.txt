@@ -1,4 +1,4 @@
-:redirect: la-experiencia-de-pycon-colombia-2018
+:redirect: blog/la-experiencia-de-pycon-colombia-2018
 :date: 2018-02-18 18:43:22
 :tags: python, pycon colombia, conferencias, eventos
 :category: tecnología/programación

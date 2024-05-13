@@ -1,4 +1,4 @@
-:redirect: caen-mis-parpados
+:redirect: blog/caen-mis-parpados
 :date: 2012-11-29 22:21:00
 :tags: poesía, noche, escritos, literatura
 :category: cultura y entretenimiento/la flecha temporal

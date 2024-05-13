@@ -1,4 +1,4 @@
-:redirect: de-particulas
+:redirect: blog/de-particulas
 :date: 2011-04-10 23:14:00
 :tags: amor, partículas, poesía, escritos, literatura
 :category: cultura y entretenimiento/la flecha temporal

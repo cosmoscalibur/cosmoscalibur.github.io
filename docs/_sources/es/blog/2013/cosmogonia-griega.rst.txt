@@ -1,4 +1,4 @@
-:redirect: cosmogonia-griega
+:redirect: blog/cosmogonia-griega
 :date: 2013-05-26 23:10:00
 :tags: cosmogonía griega, mitología griega, arqueoastronomía, historia de la astronomía, cosmología
 :category: ciencia

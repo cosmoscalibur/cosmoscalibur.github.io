@@ -2,7 +2,7 @@
 :tags: linux, software libre
 :category: tecnología
 :author: Edward Villegas-Pulgarin
-:redirect: 20-anos-de-linux
+:redirect: blog/20-anos-de-linux
 
 20 años de Linux
 ================

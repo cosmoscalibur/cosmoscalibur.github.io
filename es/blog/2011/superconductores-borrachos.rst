@@ -1,4 +1,4 @@
-:redirect: superconductores-borrachos
+:redirect: blog/superconductores-borrachos
 :date: 2011-01-11 11:49:49
 :tags: materiales, estado sólido, alcohol, superconductores
 :category: ciencia

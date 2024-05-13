@@ -1,4 +1,4 @@
-:redirect: estamos-preparados-para-un-nuevo-tipo-de-monedas-completamente-digitales
+:redirect: blog/estamos-preparados-para-un-nuevo-tipo-de-monedas-completamente-digitales
 :date: 2020-03-01 20:13:18
 :tags: criptomonedas, blockchain, monedas digitales, transformación digital
 :category: opinión/mitpeonline/transformación digital

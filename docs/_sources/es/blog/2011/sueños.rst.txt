@@ -1,4 +1,4 @@
-:redirect: sueños
+:redirect: blog/sueños
 :date: 2011-01-03 17:22:00
 :tags: autoconversación,sueños,escritos,literatura
 :category: cultura y entretenimiento/la flecha temporal

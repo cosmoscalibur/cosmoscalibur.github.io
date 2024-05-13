@@ -1,4 +1,4 @@
-:redirect: el-planeta-x
+:redirect: blog/el-planeta-x
 :date: 2011-02-20 18:44:33
 :tags: planeta x, sistema solar, planetas, astronomía
 :category: ciencia

@@ -1,4 +1,4 @@
-:redirect: no-llores
+:redirect: blog/no-llores
 :date: 2011-03-15 03:48:00
 :tags: llorar, lágrimas, poesía, escritos, literatura
 :category: cultura y entretenimiento/la flecha temporal

@@ -1,4 +1,4 @@
-:redirect: eterna
+:redirect: blog/eterna
 :date: 2011-01-15 18:53:25
 :tags: arn, investigación, videojuegos, simulación, biología
 :category: ciencia

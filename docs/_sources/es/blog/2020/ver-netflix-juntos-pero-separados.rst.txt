@@ -1,4 +1,4 @@
-:redirect: ver-netflix-juntos-pero-separados
+:redirect: blog/ver-netflix-juntos-pero-separados
 :date: 2020-06-21 16:47:01
 :tags: transmisión de video, netflix, aplicaciones android, extensiones de chrome
 :category: tecnología

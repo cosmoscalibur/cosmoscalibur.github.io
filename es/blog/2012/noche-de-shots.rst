@@ -1,4 +1,4 @@
-:redirect: noche-de-shots
+:redirect: blog/noche-de-shots
 :date: 2012-10-20 16:41:00
 :tags: shots, noche, escritos, literatura
 :category: cultura y entretenimiento/la flecha temporal

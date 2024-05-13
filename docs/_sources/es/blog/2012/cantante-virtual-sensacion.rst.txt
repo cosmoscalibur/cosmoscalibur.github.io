@@ -1,4 +1,4 @@
-:redirect: cantante-virtual-sensacion
+:redirect: blog/cantante-virtual-sensacion
 :date: 2012-09-25 00:13:00
 :tags: síntesis de voz, entretenimiento, manga, geek, software
 :category: tecnología

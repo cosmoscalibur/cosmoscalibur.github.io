@@ -1,4 +1,4 @@
-:redirect: sin-ti
+:redirect: blog/sin-ti
 :date: 2011-07-28 14:59:00
 :tags: amor, soledad, poesía, escritos, literatura
 :category: cultura y entretenimiento/la flecha temporal

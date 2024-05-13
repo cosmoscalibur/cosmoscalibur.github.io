@@ -1,4 +1,4 @@
-:redirect: gravitomagnetismo-y-gravity-probe-b
+:redirect: blog/gravitomagnetismo-y-gravity-probe-b
 :date: 2011-07-07 23:43:00
 :tags: astrofísica, relatividad general, gravedad
 :category: ciencia

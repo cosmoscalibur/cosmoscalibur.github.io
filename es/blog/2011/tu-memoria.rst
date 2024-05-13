@@ -1,4 +1,4 @@
-:redirect: tu-memoria
+:redirect: blog/tu-memoria
 :date: 2011-07-02 02:51:00
 :tags: padre, vida, muerte, poesía, escritos, literatura
 :category: cultura y entretenimiento/la flecha temporal

@@ -1,4 +1,4 @@
-:redirect: el-debate-cuero-bernal
+:redirect: blog/el-debate-cuero-bernal
 :date: 2013-11-11 19:51:00
 :tags: bibliometría, rodrigo bernal, raúl cuero, colombia
 :category: opinión

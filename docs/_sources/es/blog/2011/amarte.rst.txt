@@ -1,4 +1,4 @@
-:redirect: amarte
+:redirect: blog/amarte
 :date: 2011-01-15 20:19:00
 :tags: amor, autoconversación, escritos, literatura
 :category: cultura y entretenimiento/la flecha temporal

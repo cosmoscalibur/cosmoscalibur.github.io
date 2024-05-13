@@ -1,4 +1,4 @@
-:redirect: datos-y-responsabilidad-covid19
+:redirect: blog/datos-y-responsabilidad-covid19
 :date: 2020-04-05 19:11:52
 :tags: datos, responsabilidad, covid19, coronavirus, pandemia, colombia
 :category: opinión

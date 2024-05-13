@@ -1,4 +1,4 @@
-:redirect: filtraciones-de-datos-en-el-siglo-xxi
+:redirect: blog/filtraciones-de-datos-en-el-siglo-xxi
 :date: 2020-04-09 16:37:26
 :tags: transformación digital, datos
 :category: opinión/mitpeonline/transformación digital

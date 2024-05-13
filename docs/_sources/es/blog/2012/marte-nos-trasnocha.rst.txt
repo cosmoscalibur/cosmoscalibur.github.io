@@ -1,4 +1,4 @@
-:redirect: marte-nos-trasnocha
+:redirect: blog/marte-nos-trasnocha
 :date: 2012-08-06 01:12:00
 :tags: nasa, exploración espacial, msl, mars rover curiosity, marte, planetas
 :category: ciencia/astronomía

@@ -1,4 +1,4 @@
-:redirect: asimov-en-la-ciencia
+:redirect: blog/asimov-en-la-ciencia
 :date: 2013-01-18 02:06:00
 :tags: ciencia ficción, isaac asimov, literatura, biografías, química
 :category: ciencia

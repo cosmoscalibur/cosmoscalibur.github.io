@@ -1,4 +1,4 @@
-:redirect: viendo-carga-molecular
+:redirect: blog/viendo-carga-molecular
 :date: 2012-02-28 11:22:00
 :tags: afm, microscopía, nanotecnología, fuerza atómica, ibm
 :category: tecnología

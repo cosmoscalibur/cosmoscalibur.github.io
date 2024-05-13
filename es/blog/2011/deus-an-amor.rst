@@ -1,4 +1,4 @@
-:redirect: deus-an-amor
+:redirect: blog/deus-an-amor
 :date: 2011-01-30 20:37:00
 :tags: amor, dios, poesía, escritos, literatura
 :category: cultura y entretenimiento/la flecha temporal

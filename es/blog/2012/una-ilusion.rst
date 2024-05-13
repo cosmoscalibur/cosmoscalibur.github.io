@@ -1,4 +1,4 @@
-:redirect: una-ilusion
+:redirect: blog/una-ilusion
 :date: 2012-11-29 22:19:00
 :tags: poesía, ilusión, escritos, literatura
 :category: cultura y entretenimiento/la flecha temporal

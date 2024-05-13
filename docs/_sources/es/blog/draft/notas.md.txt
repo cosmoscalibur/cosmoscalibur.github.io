@@ -166,7 +166,7 @@ mientras que en Nikola es un metadato.
 
 Descomentar post_date_format y ajustar formato = '%%Y-%%m-%%d %%H-%%M-%%S' y
 Para redireccionar, con 0 segundos, ajustar post_redirect_refresh (descomentar)
-y agregar :redirect: con la ruta antigua (.. slug:)
+y agregar :redirect: blog/con la ruta antigua (.. slug:)
 rediraffe
 https://chrisholdgraf.com/blog/2022/sphinx-redirects-folder/
 

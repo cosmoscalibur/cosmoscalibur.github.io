@@ -1,4 +1,4 @@
-:redirect: toponimos-colombianos-en-rla-es
+:redirect: blog/toponimos-colombianos-en-rla-es
 :date: 2017-07-11 18:19:13
 :tags: español, topónimos, rla-es, diccionario, corrector de ortografía, software libre, colombia, hunspell
 :category: tecnología

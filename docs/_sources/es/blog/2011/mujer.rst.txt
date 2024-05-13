@@ -1,4 +1,4 @@
-:redirect: mujer
+:redirect: blog/mujer
 :date: 2011-03-08 02:13:00
 :tags: día de la mujer, mujer, poesía, escritos, literatura
 :category: cultura y entretenimiento/la flecha temporal

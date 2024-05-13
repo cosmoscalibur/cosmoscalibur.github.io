@@ -1,4 +1,4 @@
-:redirect: crear-contenedor-lxc-para-aplicacion-gui-ealite
+:redirect: blog/crear-contenedor-lxc-para-aplicacion-gui-ealite
 :date: 2019-11-11 18:21:26
 :tags: contenedor, lxc, lxd, linux, wine, enterprise architect, ealite
 :category: tecnología
