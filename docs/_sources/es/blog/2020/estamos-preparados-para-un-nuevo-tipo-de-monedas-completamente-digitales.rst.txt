@@ -1,5 +1,5 @@
 :redirect: blog/estamos-preparados-para-un-nuevo-tipo-de-monedas-completamente-digitales
-:date: 2020-03-01 20:13:18
+:date: 2020-03-01
 :tags: criptomonedas, blockchain, monedas digitales, transformación digital
 :category: opinión/mitpeonline/transformación digital
 :author: Edward Villegas-Pulgarin

@@ -1,5 +1,5 @@
 :redirect: blog/con-calma-para-steamos
-:date: 2014-04-20 18:21:00
+:date: 2014-04-20
 :tags: linux, steamos, videojuegos, steam
 :category: tecnología/videojuegos
 :author: Edward Villegas-Pulgarin

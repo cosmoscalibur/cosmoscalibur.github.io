@@ -1,5 +1,5 @@
 :redirect: blog/el-ultimo-transito-de-venus
-:date: 2012-02-26 15:58:00
+:date: 2012-02-26
 :tags: tránsito de venus, planetas, efemérides astronómicas, astronomía
 :category: ciencia
 :author: Edward Villegas-Pulgarin

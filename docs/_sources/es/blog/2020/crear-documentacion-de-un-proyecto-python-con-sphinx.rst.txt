@@ -1,5 +1,5 @@
 :redirect: blog/crear-documentacion-de-un-proyecto-python-con-sphinx
-:date: 2020-01-06 19:24:48
+:date: 2020-01-06
 :tags: python, sphinx, documentación, restructuredtext, generador de documentación
 :category: tecnología
 :author: Edward Villegas-Pulgarin

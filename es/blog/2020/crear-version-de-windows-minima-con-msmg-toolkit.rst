@@ -1,5 +1,5 @@
 :redirect: blog/crear-version-de-windows-minima-con-msmg-toolkit
-:date: 2020-07-09 23:31:33
+:date: 2020-07-09
 :tags: msmg toolkit, microsoft windows
 :category: tecnología
 :author: Edward Villegas-Pulgarin

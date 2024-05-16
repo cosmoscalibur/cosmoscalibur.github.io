@@ -1,5 +1,5 @@
 :redirect: blog/revision-a-la-tabla-periodica
-:date: 2010-12-22 14:17:51
+:date: 2010-12-22
 :tags: química, tabla periódica
 :category: ciencia
 :author: Edward Villegas-Pulgarin

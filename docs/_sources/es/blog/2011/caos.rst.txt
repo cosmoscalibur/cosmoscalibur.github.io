@@ -1,5 +1,5 @@
 :redirect: blog/caos
-:date: 2011-02-21 00:21:00
+:date: 2011-02-21
 :tags: amor, oscuridad, caos, poesía, escritos, literatura
 :category: cultura y entretenimiento/la flecha temporal
 :author: Edward Villegas-Pulgarin

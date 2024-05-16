@@ -1,5 +1,5 @@
 :redirect: blog/cumple-28-perfecto-triangular-y-hexagonal
-:date: 2018-04-01 14:14:10
+:date: 2018-04-01
 :tags: números, número perfecto, número triangular, número hexagonal
 :category: ciencia/matemáticas
 :author: Edward Villegas-Pulgarin

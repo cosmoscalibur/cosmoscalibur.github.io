@@ -1,5 +1,5 @@
 :redirect: blog/datos-y-responsabilidad-covid19
-:date: 2020-04-05 19:11:52
+:date: 2020-04-05
 :tags: datos, responsabilidad, covid19, coronavirus, pandemia, colombia
 :category: opinión
 :author: Edward Villegas-Pulgarin

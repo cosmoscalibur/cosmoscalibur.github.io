@@ -1,5 +1,5 @@
 :redirect: blog/imagenes-de-puntos-cuanticos
-:date: 2011-02-22 22:56:41
+:date: 2011-02-22
 :tags: fotónica, puntos cuánticos
 :category: tecnología
 :author: Edward Villegas-Pulgarin

@@ -1,9 +1,9 @@
 ---
-:redirect: blog/calcular-distancia-geodesica-con-python
-:date: 2020-05-10 18:35:00-05:00
-:tags: python, gis, geoide, distancia geodésica, geopy
-:category: tecnología
-:author: Edward Villegas-Pulgarin
+redirect: blog/calcular-distancia-geodesica-con-python
+date: 2020-05-10
+tags: python, gis, geoide, distancia geodésica, geopy
+category: tecnología
+author: Edward Villegas-Pulgarin
 ---
 
 # Calcular distancia geodésica con Python

@@ -1,5 +1,5 @@
 :redirect: blog/energia-alternativa-para-dispositivos
-:date: 2011-07-07 02:08:00
+:date: 2011-07-07
 :tags: materiales, piezoeléctricos, dispositivos móviles, energía
 :category: tecnología
 :author: Edward Villegas-Pulgarin

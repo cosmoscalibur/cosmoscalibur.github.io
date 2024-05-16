@@ -1,5 +1,5 @@
 :redirect: blog/tui-yo
-:date: 2011-01-10 01:13:00
+:date: 2011-01-10
 :tags: amor, matemáticas, poesía, escritos, literatura
 :category: cultura y entretenimiento/la flecha temporal
 :author: Edward Villegas-Pulgarin

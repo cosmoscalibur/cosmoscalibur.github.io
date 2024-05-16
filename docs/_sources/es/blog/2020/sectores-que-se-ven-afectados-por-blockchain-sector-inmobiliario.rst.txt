@@ -1,5 +1,5 @@
 :redirect: blog/sectores-que-se-ven-afectados-por-blockchain-sector-inmobiliario
-:date: 2020-03-01 21:18:43
+:date: 2020-03-01
 :tags: blockchain, transformación digital
 :category: opinión/mitpeonline/transformación digital
 :author: Edward Villegas-Pulgarin

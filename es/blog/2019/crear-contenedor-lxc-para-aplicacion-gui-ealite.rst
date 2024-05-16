@@ -1,5 +1,5 @@
 :redirect: blog/crear-contenedor-lxc-para-aplicacion-gui-ealite
-:date: 2019-11-11 18:21:26
+:date: 2019-11-11
 :tags: contenedor, lxc, lxd, linux, wine, enterprise architect, ealite
 :category: tecnología
 :author: Edward Villegas-Pulgarin
@@ -18,7 +18,7 @@ desplegar los servicios a partir de un contenedor, y sin duda, facilita la
 distribución de entornos de desarrollo y aplicaciones.
 
 Con estos beneficios (algo similar a lo discutido en
-:doc:`instalando-paquetes-en-linux-mint`), procederemos a crear un contenedor
+:doc:`/es/blog/2019/instalando-paquetes-en-linux-mint`), procederemos a crear un contenedor
 para la ejecución de Enterprise Architect (la versión del visor, pero es
 aplicable a la versión completa). De manera oficial hay instrucciones para su
 uso en Linux con Wine pero la receta está incompleta (hay que agregar una

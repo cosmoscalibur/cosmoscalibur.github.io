@@ -1,5 +1,5 @@
 :redirect: blog/deus-an-amor
-:date: 2011-01-30 20:37:00
+:date: 2011-01-30
 :tags: amor, dios, poesía, escritos, literatura
 :category: cultura y entretenimiento/la flecha temporal
 :author: Edward Villegas-Pulgarin

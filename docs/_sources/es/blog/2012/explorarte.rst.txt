@@ -1,5 +1,5 @@
 :redirect: blog/explorarte
-:date: 2012-09-24 00:13:00
+:date: 2012-09-24
 :tags: amor, exploración, cuerpo, poesía, escritos, literatura
 :category: cultura y entretenimiento/la flecha temporal
 :author: Edward Villegas-Pulgarin

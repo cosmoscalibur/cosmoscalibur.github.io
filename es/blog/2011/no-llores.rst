@@ -1,5 +1,5 @@
 :redirect: blog/no-llores
-:date: 2011-03-15 03:48:00
+:date: 2011-03-15
 :tags: llorar, lágrimas, poesía, escritos, literatura
 :category: cultura y entretenimiento/la flecha temporal
 :author: Edward Villegas-Pulgarin

@@ -1,5 +1,5 @@
 :redirect: blog/la-tierra-cambio-despues-del-terremoto-de-japon
-:date: 2011-03-13 20:24:49
+:date: 2011-03-13
 :tags: terremoto, japón, alerta nuclear, geofísica, geología
 :category: ciencia
 :author: Edward Villegas-Pulgarin

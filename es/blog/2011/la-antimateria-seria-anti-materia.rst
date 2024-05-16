@@ -1,5 +1,5 @@
 :redirect: blog/la-antimateria-seria-anti-materia
-:date: 2011-04-13 12:01:31
+:date: 2011-04-13
 :tags: antimateria, antigravedad, gravedad, astrofísica, física de partículas
 :category: ciencia/física
 :author: Edward Villegas-Pulgarin

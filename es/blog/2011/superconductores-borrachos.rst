@@ -1,5 +1,5 @@
 :redirect: blog/superconductores-borrachos
-:date: 2011-01-11 11:49:49
+:date: 2011-01-11
 :tags: materiales, estado sólido, alcohol, superconductores
 :category: ciencia
 :author: Edward Villegas-Pulgarin

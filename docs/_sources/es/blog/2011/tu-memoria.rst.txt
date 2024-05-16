@@ -1,5 +1,5 @@
 :redirect: blog/tu-memoria
-:date: 2011-07-02 02:51:00
+:date: 2011-07-02
 :tags: padre, vida, muerte, poesía, escritos, literatura
 :category: cultura y entretenimiento/la flecha temporal
 :author: Edward Villegas-Pulgarin

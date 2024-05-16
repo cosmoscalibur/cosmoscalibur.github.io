@@ -1,5 +1,5 @@
 :redirect: blog/cerebro-prehistorico
-:date: 2011-07-06 23:05:00
+:date: 2011-07-06
 :tags: cerebro, antropología, fósil, cerebro
 :category: ciencia
 :author: Edward Villegas-Pulgarin

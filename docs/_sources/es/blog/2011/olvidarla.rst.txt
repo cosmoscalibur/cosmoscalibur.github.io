@@ -1,5 +1,5 @@
 :redirect: blog/olvidarla
-:date: 2011-07-28 14:58:00
+:date: 2011-07-28
 :tags: amor, poesía, olvidar, escritos, literatura
 :category: cultura y entretenimiento/la flecha temporal
 :author: Edward Villegas-Pulgarin

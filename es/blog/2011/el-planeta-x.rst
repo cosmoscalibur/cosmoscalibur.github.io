@@ -1,5 +1,5 @@
 :redirect: blog/el-planeta-x
-:date: 2011-02-20 18:44:33
+:date: 2011-02-20
 :tags: planeta x, sistema solar, planetas, astronomía
 :category: ciencia
 :author: Edward Villegas-Pulgarin

@@ -1,5 +1,5 @@
 :redirect: blog/de-particulas
-:date: 2011-04-10 23:14:00
+:date: 2011-04-10
 :tags: amor, partículas, poesía, escritos, literatura
 :category: cultura y entretenimiento/la flecha temporal
 :author: Edward Villegas-Pulgarin

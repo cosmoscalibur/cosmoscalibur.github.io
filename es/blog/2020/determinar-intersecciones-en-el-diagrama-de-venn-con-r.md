@@ -1,9 +1,9 @@
 ---
-:redirect: blog/determinar-intersecciones-en-el-diagrama-de-venn-con-r
-:date: 2020-06-13 19:40:00-05:00
-:tags: lenguaje r, bioinformática, diagrama de Venn
-:category: tecnología
-:author: Edward Villegas-Pulgarin
+redirect: blog/determinar-intersecciones-en-el-diagrama-de-venn-con-r
+date: 2020-06-13
+tags: lenguaje r, bioinformática, diagrama de Venn
+category: tecnología
+author: Edward Villegas-Pulgarin
 ---
 
 # Determinar intersecciones en el diagrama de Venn con R

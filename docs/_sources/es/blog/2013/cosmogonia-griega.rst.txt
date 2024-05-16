@@ -1,5 +1,5 @@
 :redirect: blog/cosmogonia-griega
-:date: 2013-05-26 23:10:00
+:date: 2013-05-26
 :tags: cosmogonía griega, mitología griega, arqueoastronomía, historia de la astronomía, cosmología
 :category: ciencia
 :author: Edward Villegas-Pulgarin
@@ -74,7 +74,7 @@ con formas circulares y esféricas, y de naturaleza de fuego.
    Cosmología mesopotámica con una Tierra plana, extendida en las primeras cosmogonías. Adaptación de *New American Bible*.
 
 .. note::
-   La continuación de esta publicación (como segunda parte, generada a partir de una charla), es :doc:`orden-y-origen-del-cosmos-griego`.
+   La continuación de esta publicación (como segunda parte, generada a partir de una charla), es :doc:`/es/blog/2013/orden-y-origen-del-cosmos-griego`.
 
 **Fuentes**
 

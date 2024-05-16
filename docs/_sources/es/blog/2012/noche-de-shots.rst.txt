@@ -1,5 +1,5 @@
 :redirect: blog/noche-de-shots
-:date: 2012-10-20 16:41:00
+:date: 2012-10-20
 :tags: shots, noche, escritos, literatura
 :category: cultura y entretenimiento/la flecha temporal
 :author: Edward Villegas-Pulgarin

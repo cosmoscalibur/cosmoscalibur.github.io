@@ -1,5 +1,5 @@
 :redirect: blog/posibilidad-de-agua-salada-en-marte
-:date: 2011-09-18 17:44:00
+:date: 2011-09-18
 :tags: marte, planetas, exploración espacial, agua, astronomía
 :category: ciencia
 :author: Edward Villegas-Pulgarin

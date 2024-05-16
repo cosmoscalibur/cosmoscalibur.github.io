@@ -1,5 +1,5 @@
 :redirect: blog/crear-contenedor-docker-aplicacion-gui-ealite
-:date: 2019-11-22 21:47:22
+:date: 2019-11-22
 :tags: contenedor, docker, linux, wine, enterprise architect, ealite
 :category: tecnología
 :author: Edward Villegas-Pulgarin
@@ -89,7 +89,7 @@ archivos *tar*.
 .. note::
 
    El directorio que moveremos se genero en el contenedor LXC que construimos
-   en :doc:`crear-contenedor-lxc-para-aplicacion-gui-ealite`. Para ello,
+   en :doc:`/es/blog/2019/crear-contenedor-lxc-para-aplicacion-gui-ealite`. Para ello,
    iniciamos el contenedor y extraemos el directorio.
 
    .. code::

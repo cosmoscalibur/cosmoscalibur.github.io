@@ -1,5 +1,5 @@
 :redirect: blog/reformas-del-blog-parte-1
-:date: 2020-05-26 16:51:39
+:date: 2020-05-26
 :tags: blog, nikola, amazon, disqus, facebook, comentarios, publicidad, adsense
 :category: tecnología
 :author: Edward Villegas-Pulgarin

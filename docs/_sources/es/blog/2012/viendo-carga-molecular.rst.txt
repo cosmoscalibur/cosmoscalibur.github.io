@@ -1,5 +1,5 @@
 :redirect: blog/viendo-carga-molecular
-:date: 2012-02-28 11:22:00
+:date: 2012-02-28
 :tags: afm, microscopía, nanotecnología, fuerza atómica, ibm
 :category: tecnología
 :author: Edward Villegas-Pulgarin

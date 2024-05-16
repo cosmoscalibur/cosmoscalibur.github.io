@@ -1,5 +1,5 @@
 :redirect: blog/audiolibros-con-overdrive-y-biblioteca-epm
-:date: 2019-05-17 19:14:07
+:date: 2019-05-17
 :tags: audiolibros, epm, overdrive, bibliotecas, android, aplicaciones android
 :category: cultura y entretenimiento
 :author: Edward Villegas-Pulgarin
