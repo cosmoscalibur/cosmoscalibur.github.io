@@ -74,14 +74,5 @@ Cuando agreguemos el título, es necesario aumentar el nivel de los títulos ya 
 PRETTY_URLS es para que no salga html, y se convierte en por defceto en sphinx.
 
 
-
-Referencias
-https://chrisholdgraf.com/blog/2020/sphinx-blogging/
-https://www.errbufferoverfl.me/posts/2020/sphinx-blog/
-https://www.errbufferoverfl.me/posts/2020/sphinx-blog-part-one/
-https://pydata-sphinx-theme.readthedocs.io/en/stable/user_guide/ablog.html
-https://ablog.readthedocs.io/en/stable/manual/ablog-quick-start.html
-https://chrisholdgraf.com/blog/2022/sphinx-redirects-folder/, se establece el redireccinamiento
-https://jdsalaro.com/cheatsheet/sphinx-myst-markdown/#code
 uv
 pipenv
