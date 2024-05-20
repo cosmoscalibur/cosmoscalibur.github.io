@@ -1,7 +1,7 @@
 # --- Ablog
 blog_path = 'blog'
 blog_post_pattern = '*/blog/*/*'
-blog_title = 'Blog Cosmoscalibur'
+blog_title = 'Cosmoscalibur'
 blog_baseurl = 'https://www.cosmoscalibur.com/'
 
 # OpenGraph config
@@ -54,7 +54,7 @@ myst_enable_extensions = ['colon_fence', 'substitution', 'dollarmath']
 myst_heading_anchors = 3
 
 # General information about the project.
-project = "Blog Cosmoscalibur"
+project = "Cosmoscalibur"
 copyright = "2024, Edward Villegas"
 author = "Edward Villegas"
 language = 'es'
@@ -69,7 +69,7 @@ html_theme_options = {
     'twitter_url': 'https://twitter.com/cosmoscalibur',
     'github_url': 'https://github.com/cosmoscalibur/',
 }
-html_title = 'Blog Cosmoscalibur'
+html_title = 'Cosmoscalibur'
 html_short_title = 'Cosmoscalibur'
 
 # The name of an image file (relative to this directory) to place at the top
