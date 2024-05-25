@@ -2,10 +2,176 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="es">
   <id>https://www.cosmoscalibur.com/</id>
   <title>Cosmoscalibur</title>
-  <updated>2024-05-20T03:17:20.359404+00:00</updated>
+  <updated>2024-05-25T03:01:26.296185+00:00</updated>
   <link href="https://www.cosmoscalibur.com/"/>
   <link href="https://www.cosmoscalibur.com/blog/atom.xml" rel="self"/>
   <generator uri="https://ablog.readthedocs.io/" version="0.11.8">ABlog</generator>
+  <entry>
+    <id>https://www.cosmoscalibur.com/es/blog/2024/migrando-mi-blog-de-nikola-a-sphinx/</id>
+    <title>Migrando mi blog de Nikola a Sphinx</title>
+    <updated>2024-05-24T00:00:00-05:00</updated>
+    <author>
+      <name>Edward Villegas-Pulgarin</name>
+    </author>
+    <content type="html">&lt;section class="tex2jax_ignore mathjax_ignore" id="migrando-mi-blog-de-nikola-a-sphinx"&gt;
+
+&lt;p&gt;Migrar de un generador estático a otro no es un proceso del todo transparente,
+así que aquí te explico algunos por menores para hacer una migración de Nikola
+a Sphinx.&lt;/p&gt;
+&lt;p&gt;Pero antes, es necesario tener presente, que lo básico del proceso de migración,
+inicia por tener lo mínimo desde cero, con Sphinx. Para este fin, debes seguir las
+indicaciones dadas en &lt;a class="reference internal" href="../es/blog/2024/crear-un-blog-con-sphinx/"&gt;&lt;span class="std std-doc"&gt;Crear un blog con Sphinx&lt;/span&gt;&lt;/a&gt;.&lt;/p&gt;
+&lt;section id="migrando"&gt;
+&lt;h2&gt;Migrando&lt;/h2&gt;
+&lt;p&gt;Bueno, una vez tenemos la base de nuestro blog, sigue hacer los ajustes para que
+nuestras entradas previas sigan funcionando.&lt;/p&gt;
+&lt;section id="publicacion"&gt;
+&lt;h3&gt;Publicación&lt;/h3&gt;
+&lt;section id="front-matter"&gt;
+&lt;h4&gt;Front matter&lt;/h4&gt;
+&lt;p&gt;Dado que en la configuración inicial añadimos un
+&lt;a class="reference internal" href="../es/blog/2024/crear-un-blog-con-sphinx/#blog-conf"&gt;&lt;span class="std std-ref"&gt;patrón de ruta&lt;/span&gt;&lt;/a&gt; para las publicaciones,
+no es necesario agregar la directiva de &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;..post:&lt;/span&gt;&lt;/code&gt; o el atributo de &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;:blogpost:&lt;/span&gt; &lt;span class="pre"&gt;true&lt;/span&gt;&lt;/code&gt;.
+Solo ubica los archivos en la ruta que cumpla el patrón 👀.&lt;/p&gt;
+&lt;p&gt;Importante, en Nikola definíamos la ruta de navegación mediante el &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;..slug:&lt;/span&gt;&lt;/code&gt;, pero
+esto en Sphinx depende del nombre del archivo y su ruta en el directorio. Asegurate
+de usar la misma ruta de directorios al definido en el &lt;em&gt;slug&lt;/em&gt; y el nombre del archivo
+igual a la parte final de este 👀. Otra opción, es que sin importar el nombre y ruta de
+directorios, uses el valor del &lt;em&gt;slug&lt;/em&gt; como valor de &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;:redirect:&lt;/span&gt;&lt;/code&gt; (en este caso, añade
+al archivo de configuración &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;post_redirect_refresh=0&lt;/span&gt;&lt;/code&gt;).&lt;/p&gt;
+&lt;p&gt;Para indicar el título en &lt;em&gt;Nikola&lt;/em&gt;, se usaba el atributo de &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;..&lt;/span&gt; &lt;span class="pre"&gt;title:&lt;/span&gt;&lt;/code&gt;, pero
+ahora este debe ser explícito en la marcación de la publicación. Ejemplo:&lt;/p&gt;
+&lt;div class="sd-tab-set docutils"&gt;
+&lt;input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio"&gt;
+&lt;/input&gt;&lt;label class="sd-tab-label" for="sd-tab-item-0"&gt;
+RST&lt;/label&gt;&lt;div class="sd-tab-content docutils"&gt;
+&lt;div class="highlight-rst notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gh"&gt;Migrando mi blog de Nikola a Sphinx&lt;/span&gt;
+&lt;span class="gh"&gt;===================================&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;input id="sd-tab-item-1" name="sd-tab-set-0" type="radio"&gt;
+&lt;/input&gt;&lt;label class="sd-tab-label" for="sd-tab-item-1"&gt;
+MD&lt;/label&gt;&lt;div class="sd-tab-content docutils"&gt;
+&lt;div class="highlight-md notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gh"&gt;# Migrando mi blog de Nikola a Sphinx&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Esto hace que los títulos ya existentes, deban aumentar de nivel 👀.&lt;/p&gt;
+&lt;p&gt;En &lt;em&gt;ablog&lt;/em&gt; no tenemos el equivalente del &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;..status:&lt;/span&gt;&lt;/code&gt; de Nikola, pero se puede controlar
+que una fecha actual o pasada sea equivalente a &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;published&lt;/span&gt;&lt;/code&gt; y si es una fecha futura o
+sin fecha es el equivalente de &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;draft&lt;/span&gt;&lt;/code&gt;. El caso del &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;private&lt;/span&gt;&lt;/code&gt; podríamos hacerlo
+&lt;a class="reference internal" href="../es/blog/2024/crear-un-blog-con-sphinx/#exclude-files"&gt;&lt;span class="std std-ref"&gt;excluyendo el archivo&lt;/span&gt;&lt;/a&gt;. El caso
+&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;featured&lt;/span&gt;&lt;/code&gt; es más personalizado, pero se podría explorar con el objeto de las &lt;em&gt;cards&lt;/em&gt;
+en el índice.&lt;/p&gt;
+&lt;p&gt;Si queremos indicar la imagen de previsualización, en Nikola se usaba &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;..&lt;/span&gt; &lt;span class="pre"&gt;previewimage:&lt;/span&gt;&lt;/code&gt;,
+pero en &lt;em&gt;ablog&lt;/em&gt; lo hacemos con &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;:image:&lt;/span&gt;&lt;/code&gt; y el valor no es la ruta de la imagen, sino el
+número asociado en orden de aparición en la publicación. Esto se puede dejar con un valor
+por defecto acorde a la variable en el archivo de configuración de &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;post_auto_image&lt;/span&gt;&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;El atributo de &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;..&lt;/span&gt; &lt;span class="pre"&gt;description:&lt;/span&gt;&lt;/code&gt; es tomado por defecto por truncamiento del primer
+párrafo de la publicación (esto se usa en los metadatos de la publicación).&lt;/p&gt;
+&lt;p&gt;El caso de &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;..&lt;/span&gt; &lt;span class="pre"&gt;link:&lt;/span&gt;&lt;/code&gt; se debe convertir en &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;:external_link:&lt;/span&gt;&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Para la las actualizaciones, esto en lugar de ser un atributo, pasa a ser una
+anotación con marca de tiempo, pero con información de contexto.&lt;/p&gt;
+&lt;div class="sd-tab-set docutils"&gt;
+&lt;input checked="checked" id="sd-tab-item-2" name="sd-tab-set-1" type="radio"&gt;
+&lt;/input&gt;&lt;label class="sd-tab-label" for="sd-tab-item-2"&gt;
+RST&lt;/label&gt;&lt;div class="sd-tab-content docutils"&gt;
+&lt;div class="highlight-rst notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="p"&gt;..&lt;/span&gt; &lt;span class="ow"&gt;update&lt;/span&gt;&lt;span class="p"&gt;::&lt;/span&gt; 2011-12-15
+
+   Se añade info extra
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;input id="sd-tab-item-3" name="sd-tab-set-1" type="radio"&gt;
+&lt;/input&gt;&lt;label class="sd-tab-label" for="sd-tab-item-3"&gt;
+MD&lt;/label&gt;&lt;div class="sd-tab-content docutils"&gt;
+&lt;div class="highlight-md notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;```{update} 2011-12-15
+
+Se añade info extra
+```
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Con los atributos de &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;..&lt;/span&gt; &lt;span class="pre"&gt;nocomments:&lt;/span&gt;&lt;/code&gt;, &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;..&lt;/span&gt; &lt;span class="pre"&gt;tags:&lt;/span&gt;&lt;/code&gt;, &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;..&lt;/span&gt; &lt;span class="pre"&gt;date:&lt;/span&gt;&lt;/code&gt;, &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;..&lt;/span&gt; &lt;span class="pre"&gt;author:&lt;/span&gt;&lt;/code&gt; y &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;..&lt;/span&gt; &lt;span class="pre"&gt;category:&lt;/span&gt;&lt;/code&gt;,
+basta con cambiar &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;..&lt;/span&gt; &lt;/code&gt; inicial por &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;:&lt;/span&gt;&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Respecto a la fecha es importante tener claro, que a diferencia de Nikola no podemos
+mezclar tipos de formato de fecha. Estos deben añadirse según la definición que se
+tenga en el archivo de configuración, en la variable &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;post_date_format&lt;/span&gt;&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;No es necesario un atributo para habilitar las ecuaciones, ya que Sphinx las habilita
+por defecto. En Nikola era necesario con &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;..&lt;/span&gt; &lt;span class="pre"&gt;has_math:&lt;/span&gt; &lt;span class="pre"&gt;true&lt;/span&gt;&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;El caso de &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;..&lt;/span&gt; &lt;span class="pre"&gt;type:&lt;/span&gt;&lt;/code&gt; no posee equivalente.&lt;/p&gt;
+&lt;p&gt;⚠️ Si estamos usando &lt;em&gt;markdown&lt;/em&gt;, la diferencia es quitar el &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;:&lt;/span&gt;&lt;/code&gt; inicial, tal
+como se evidencia en la sección de
+&lt;a class="reference internal" href="../es/blog/2024/crear-un-blog-con-sphinx/#primera-publicacion"&gt;&lt;span class="std std-ref"&gt;primera publicación&lt;/span&gt;&lt;/a&gt;, y el separador
+&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;&amp;lt;!--&lt;/span&gt; &lt;span class="pre"&gt;--&amp;gt;&lt;/span&gt; &lt;/code&gt; pasa a &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;---&lt;/span&gt;&lt;/code&gt;.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="contenido"&gt;
+&lt;h4&gt;Contenido&lt;/h4&gt;
+&lt;p&gt;En algunos casos, podíamos recurrir a listados de publicaciones mediante algún
+filtro con &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;..&lt;/span&gt; &lt;span class="pre"&gt;post-list::&lt;/span&gt;&lt;/code&gt; y el atributo de &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;:categories&lt;/span&gt;&lt;/code&gt;. Esto ahora pasa a
+&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;..&lt;/span&gt; &lt;span class="pre"&gt;postlist::&lt;/span&gt;&lt;/code&gt; con el atributo &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;:category:&lt;/span&gt;&lt;/code&gt; (puedes usar otros filtros también).&lt;/p&gt;
+&lt;p&gt;Respecto a &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;..&lt;/span&gt; &lt;span class="pre"&gt;thumbnail::&lt;/span&gt;&lt;/code&gt; esta directiva no existe, y se reemplaza por &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;..&lt;/span&gt; &lt;span class="pre"&gt;figure::&lt;/span&gt;&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;La definición del &lt;em&gt;teaser&lt;/em&gt; en Nikola dependía de una marcación específica como directiva
+para el texto, pero en &lt;em&gt;ablog&lt;/em&gt; esto es controlado por el atributo &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;:excerpt:&lt;/span&gt;&lt;/code&gt;, para denotar
+el número de párrafos a incluir. Pero podemos dejarlo con un valor por defecto acorde a
+&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;post_auto_excerpt&lt;/span&gt;&lt;/code&gt; en el archivo de configuración.&lt;/p&gt;
+&lt;p&gt;Para las referencias a documentos, en Markdown pasamos de &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;{{%&lt;/span&gt; &lt;span class="pre"&gt;doc&lt;/span&gt; &lt;span class="pre"&gt;%}}&lt;/span&gt; &lt;span class="pre"&gt;path&lt;/span&gt; &lt;span class="pre"&gt;{{%&lt;/span&gt; &lt;span class="pre"&gt;/doc&lt;/span&gt; &lt;span class="pre"&gt;%}}&lt;/span&gt;&lt;/code&gt; a
+&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;&amp;lt;project:path&amp;gt;&lt;/span&gt;&lt;/code&gt; o &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;[](path)&lt;/span&gt;&lt;/code&gt;, mientras que en RST podemos mantener &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;:doc:&lt;/span&gt;&lt;/code&gt; siempre y cuando
+no apunte a una etiqueta, en cuyo caso sería &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;:ref:&lt;/span&gt;&lt;/code&gt;.&lt;/p&gt;
+&lt;/section&gt;
+&lt;/section&gt;
+&lt;section id="configuracion"&gt;
+&lt;h3&gt;Configuración&lt;/h3&gt;
+&lt;section id="archivos-en-el-raiz"&gt;
+&lt;h4&gt;Archivos en el raíz&lt;/h4&gt;
+&lt;p&gt;Los archvos en el raíz, se definen en un directorio que disponemos con la variable
+&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;html_extra_path&lt;/span&gt;&lt;/code&gt;, la cual podemos definir con el mismo nombre que viene en Nikola
+(&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;files&lt;/span&gt;&lt;/code&gt;).&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="sistema-de-comentarios"&gt;
+&lt;h4&gt;Sistema de comentarios&lt;/h4&gt;
+&lt;p&gt;Si usamos Disqus (en Nikola, &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;COMMENT_SYSTEM='disqus'&lt;/span&gt;&lt;/code&gt;), el &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;disqus_shortname&lt;/span&gt;&lt;/code&gt; en
+el archivo de configuración toma el valor del antiguo &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;COMMENT_SYSTEM_ID&lt;/span&gt;&lt;/code&gt;.&lt;/p&gt;
+&lt;div class="admonition note"&gt;
+&lt;p class="admonition-title"&gt;Nota&lt;/p&gt;
+&lt;p&gt;La verdad, he decidido retirar el sistema de comentarios de Disqus. Aporta poco valor
+respecto a lo que introduce en tiempo de carga. Posiblemente explore disponer el enlace
+de la publicación en Mastodon para que se desarrolle la eventual discusión.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/section&gt;
+&lt;section id="youtube"&gt;
+&lt;h4&gt;Youtube&lt;/h4&gt;
+&lt;p&gt;Necesitamos instalar &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;sphinxcontrib-youtube&lt;/span&gt;&lt;/code&gt; y habilitar &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;sphinxcontrib.youtube&lt;/span&gt;&lt;/code&gt;
+en las extensiones. De esta forma, la directiva de &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;..&lt;/span&gt; &lt;span class="pre"&gt;youtube::&lt;/span&gt;&lt;/code&gt; sigue tal cual.&lt;/p&gt;
+&lt;/section&gt;
+&lt;/section&gt;
+&lt;/section&gt;
+&lt;section id="referencias"&gt;
+&lt;h2&gt;Referencias&lt;/h2&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://adriaanrol.com/posts/2023/sphinx_migration/"&gt;Migrating the website to Sphinx + ABlog&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://dailystuff.nl/blog/2021/migration-to-cloudflare-pages"&gt;Migration to Cloudflare Pages&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://ablog.readthedocs.io/en/stable/manual/ablog-quick-start.html"&gt;Ablog&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://myst-parser.readthedocs.io/en/latest/"&gt;Myst Parser&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/section&gt;
+&lt;/section&gt;
+</content>
+    <link href="https://www.cosmoscalibur.com/es/blog/2024/migrando-mi-blog-de-nikola-a-sphinx/"/>
+    <summary>Migrar de un generador estático a otro no es un proceso del todo transparente,
+así que aquí te explico algunos por menores para hacer una migración de Nikola
+a Sphinx.</summary>
+    <category term="ablog" label="ablog"/>
+    <category term="blog" label="blog"/>
+    <category term="pydata" label="pydata"/>
+    <category term="python" label="python"/>
+    <category term="sitioestático" label="sitio estático"/>
+    <category term="sphinx" label="sphinx"/>
+    <published>2024-05-24T00:00:00-05:00</published>
+  </entry>
   <entry>
     <id>https://www.cosmoscalibur.com/es/blog/2024/configurar-segundo-teclado-en-linux/</id>
     <title>Configurar segundo teclado en Linux</title>
@@ -19,7 +185,7 @@
 de lenguaje es diferente, te explico como configurar aquí.&lt;/p&gt;
 &lt;p&gt;Resulta que, cuando ingresé a mi empleo actual, me entregaron como dotación un
 equipo con teclado inglés. Y bueno, que problema acostumbrarme a la
-configuración de teclado internacional para poder escribir con tildes o con «ñ».
+configuración de teclado internacional para poder escribir con tildes o con “ñ”.
 Así que decidí comprar un teclado USB.&lt;/p&gt;
 &lt;p&gt;Resulta que, configurar el lenguaje del teclado en Linux es simple, incluso a
 través de la interfaz gráfica, pero tiene un problema: la distribución de
@@ -273,9 +439,12 @@ cambiar directamente el segmento de &lt;code class="docutils literal notranslate
 patrón de ruta para que se reconozcan automáticamente las publicaciones (no es
 necesario añadir la etiqueta).
 Adicional, es necesario definir la ruta para el archivo de publicaciones.&lt;/p&gt;
+&lt;div class="literal-block-wrapper docutils container" id="blog-conf"&gt;
+&lt;div class="code-block-caption"&gt;&lt;span class="caption-text"&gt;Definición de ruta de índice del blog y patrón de ruta de publicaciones.&lt;/span&gt;&lt;/div&gt;
 &lt;div class="highlight-python notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;blog_path&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;blog&amp;#39;&lt;/span&gt;
 &lt;span class="n"&gt;blog_post_pattern&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;*/blog/*/*&amp;#39;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
 &lt;/div&gt;
 &lt;p&gt;Es necesario configurar también otros directorios y archivos. Para fines de
 facilidad en GitHub Pages, vamos a remover el guion bajo de los directorios
@@ -296,6 +465,8 @@ importante porque al estar el directorio de Sphinx al mismo nivel del
 directorio del repositorio, se ven todos los archivos. Adicional a esto, hay
 archivos generados por Sphinx que si no los borramos, en un despliegue posterior
 se intentarán procesar.&lt;/p&gt;
+&lt;div class="literal-block-wrapper docutils container" id="exclude-files"&gt;
+&lt;div class="code-block-caption"&gt;&lt;span class="caption-text"&gt;Definición de archivos y directorios a excluir de la compilación.&lt;/span&gt;&lt;/div&gt;
 &lt;div class="highlight-python notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;exclude_patterns&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;
     &lt;span class="s2"&gt;&amp;quot;_build&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
     &lt;span class="s2"&gt;&amp;quot;***/.ipynb_checkpoints/*&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
@@ -310,6 +481,7 @@ se intentarán procesar.&lt;/p&gt;
     &lt;span class="s1"&gt;&amp;#39;.gitignore&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
 &lt;span class="p"&gt;]&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
 &lt;/div&gt;
 &lt;p&gt;Para habilitar las extensiones que vamos a usar, es necesario listarlas en
 &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;extensions&lt;/span&gt;&lt;/code&gt;. Un detalle es que, aunque tenemos instalado Myst Parser, no lo
@@ -344,12 +516,28 @@ otros proyectos de Sphinx (en futuras entradas lo revisaremos).&lt;/p&gt;
 &lt;p&gt;Ahora que tenemos habilitado Myst NB, podemos remover la línea de &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;source_suffix&lt;/span&gt;&lt;/code&gt;
 porque esta es configurada por la extensión, y el valor por defecto evita que se
 compilen los archivos Markdown.&lt;/p&gt;
-&lt;p&gt;Respecto a las opciones de Myst, vamos a habilitar de momento tres extensiones,
+&lt;p&gt;Respecto a las opciones de Myst, vamos a habilitar varias extensiones,
 que nos permitan usar más fácilmente las directivas (no usar el &lt;em&gt;backtick&lt;/em&gt;),
 hacer sustituciones y habilitar el símbolo de dólar para las ecuaciones. adicional,
 vamos a crear referencias (&lt;em&gt;targets&lt;/em&gt;) para los títulos hasta de tercer nivel
-(h1, h2 y h3).&lt;/p&gt;
-&lt;div class="highlight-python notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;myst_enable_extensions&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;colon_fence&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;substitution&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;dollarmath&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+(h1, h2 y h3). También podemos añadir etiquteas más fácilmente en bloques o
+líneas, sustituciones con Jinja2, bloques de definiciones, reemplazos o listas
+de tareas. Solo omití linkify, pues no le veo mucha utilidad.&lt;/p&gt;
+&lt;div class="highlight-python notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;myst_enable_extensions&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;
+    &lt;span class="s2"&gt;&amp;quot;amsmath&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s2"&gt;&amp;quot;attrs_inline&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s2"&gt;&amp;quot;colon_fence&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s2"&gt;&amp;quot;deflist&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s2"&gt;&amp;quot;dollarmath&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s2"&gt;&amp;quot;fieldlist&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s2"&gt;&amp;quot;html_admonition&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s2"&gt;&amp;quot;html_image&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s2"&gt;&amp;quot;replacements&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s2"&gt;&amp;quot;smartquotes&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s2"&gt;&amp;quot;strikethrough&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s2"&gt;&amp;quot;substitution&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s2"&gt;&amp;quot;tasklist&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="p"&gt;]&lt;/span&gt;
 &lt;span class="n"&gt;myst_heading_anchors&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
@@ -515,6 +703,7 @@ queda algo de exploración todavía.&lt;/p&gt;
 &lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://jdsalaro.com/cheatsheet/sphinx-myst-markdown/"&gt;Sphinx Myst Markdown&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://myst-parser.readthedocs.io/en/latest/"&gt;Myst Parser&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://adriaanrol.com/posts/2023/sphinx_migration/"&gt;Migrating the website to Sphinx + ABlog&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://dailystuff.nl/blog/2021/migration-to-cloudflare-pages"&gt;Migration to Cloudflare Pages&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/section&gt;
 &lt;/section&gt;
@@ -2063,7 +2252,7 @@ comprar una cámara web, es amplio en Windows pero no en Linux.DroidCam activo (
 &lt;p&gt;A partir de ahora, y usando &lt;em&gt;notebooks&lt;/em&gt; compartiré algunas entradas relacionadas con programación o algunas bibliotecas específicas. En esta ocasión, me interesa compartirles como calcular la distancia geodésica entre dos lugares con GeoPy (una biblioteca Python), una de las tantas cosas que por motivos laborales he necesitado en mi exploración con proyectos con sistemas de información geográfica y ruteos.&lt;/p&gt;
 &lt;section id="geoide-y-geodesicas"&gt;
 &lt;h2&gt;Geoide y geodésicas&lt;/h2&gt;
-&lt;p&gt;¿Habían escuchado antes «geoide» y «geodésica»? Bueno, resulta que el concepto de distancia entre puntos es dependiente de la geometría sobre la cual sea válido el desplazamiento. Así, si ubicamos dos puntos sobre la superficie de la Tierra, uno podría pensar en tomar como distancia la separación en línea recta entre los dos puntos atravesando el interior de la Tierra, y sí, eso es una distancia pero es impráctica porque nadie por ahora atravesará el interior para desplazarse. A esta distancia la conocemos como distancia euclideana (supone una geometría plana, como nos enseñan en el colegio y para muchos en universidad, donde Pitágoras funciona para esta cuenta).&lt;/p&gt;
+&lt;p&gt;¿Habían escuchado antes “geoide” y “geodésica”? Bueno, resulta que el concepto de distancia entre puntos es dependiente de la geometría sobre la cual sea válido el desplazamiento. Así, si ubicamos dos puntos sobre la superficie de la Tierra, uno podría pensar en tomar como distancia la separación en línea recta entre los dos puntos atravesando el interior de la Tierra, y sí, eso es una distancia pero es impráctica porque nadie por ahora atravesará el interior para desplazarse. A esta distancia la conocemos como distancia euclideana (supone una geometría plana, como nos enseñan en el colegio y para muchos en universidad, donde Pitágoras funciona para esta cuenta).&lt;/p&gt;
 &lt;p&gt;Pues bien, si la distancia implica una restricción para moverse sobre una geometría en particular, las líneas rectas no son los caminos más cortos (sobre el cual se define la distancia) sino un tipo de líneas que llamaremos geodésicas. Así, la distancia sobre la superficie de la Tierra se mide sobre la geodésica que une los dos puntos de interés y a esa forma superficie de referencia de la Tierra es llamada geoide.&lt;/p&gt;
 &lt;/section&gt;
 &lt;section id="calculo-de-distancia"&gt;

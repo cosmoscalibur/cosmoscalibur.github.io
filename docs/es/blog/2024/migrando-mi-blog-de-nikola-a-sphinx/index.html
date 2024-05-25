@@ -1,0 +1,893 @@
+
+<!DOCTYPE html>
+
+
+<html lang="es" data-content_root="../../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="og:title" content="Migrando mi blog de Nikola a Sphinx" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://www.cosmoscalibur.com/es/blog/2024/migrando-mi-blog-de-nikola-a-sphinx/" />
+<meta property="og:site_name" content="Cosmoscalibur" />
+<meta property="og:description" content="Migrar de un generador estático a otro no es un proceso del todo transparente, así que aquí te explico algunos por menores para hacer una migración de Nikola a Sphinx. Pero antes, es necesario tene..." />
+<meta property="og:image:width" content="1146" />
+<meta property="og:image:height" content="600" />
+<meta property="og:image" content="https://www.cosmoscalibur.com/_images/social_previews/summary_es_blog_2024_migrando-mi-blog-de-nikola-a-sphinx_0eadc0de.png" />
+<meta property="og:image:alt" content="Migrar de un generador estático a otro no es un proceso del todo transparente, así que aquí te explico algunos por menores para hacer una migración de Nikola..." />
+<meta name="description" content="Migrar de un generador estático a otro no es un proceso del todo transparente, así que aquí te explico algunos por menores para hacer una migración de Nikola a Sphinx. Pero antes, es necesario tene..." />
+<meta name="twitter:card" content="summary_large_image" />
+
+    <title>Migrando mi blog de Nikola a Sphinx &#8212; Cosmoscalibur</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../../../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../../../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../../../../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../../../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../../../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="../../../../_static/documentation_options.js?v=a20647df"></script>
+    <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../../_static/translations.js?v=efdbd0b9"></script>
+    <script src="../../../../_static/design-tabs.js?v=36754332"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-4YFQBC69LB"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-4YFQBC69LB');
+            </script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-4YFQBC69LB');
+            </script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'es/blog/2024/migrando-mi-blog-de-nikola-a-sphinx';</script>
+    <link rel="canonical" href="https://www.cosmoscalibur.com/es/blog/2024/migrando-mi-blog-de-nikola-a-sphinx.html" />
+    <link rel="index" title="Índice" href="../../../../genindex/" />
+    <link rel="search" title="Búsqueda" href="../../../../search/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="es"/>
+
+<link
+  rel="alternate"
+  type="application/atom+xml"
+  href="../../../../blog/atom.xml"
+  title="Cosmoscalibur"
+/>
+
+
+
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Saltar al contenido principal</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../../../search/"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+<div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+    <span class="fa-solid fa-bars"></span>
+  </label>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+
+<a class="navbar-brand logo" href="../../../../">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Cosmoscalibur</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav class="navbar-nav">
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../me/">
+                        Edward Villegas
+                      </a>
+                    </li>
+                
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Búsqueda</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="claro/oscuro" aria-label="claro/oscuro" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/cosmoscalibur/" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/cosmoscalibur" title="Twitter" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-twitter fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">Twitter</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Búsqueda</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+    </div>
+  
+
+  
+    <label class="sidebar-toggle secondary-toggle" for="__secondary" tabindex="0">
+      <span class="fa-solid fa-outdent"></span>
+    </label>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          <div class="navbar-item">
+<nav class="navbar-nav">
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../me/">
+                        Edward Villegas
+                      </a>
+                    </li>
+                
+  </ul>
+</nav></div>
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="claro/oscuro" aria-label="claro/oscuro" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/cosmoscalibur/" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/cosmoscalibur" title="Twitter" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-twitter fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">Twitter</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<div class="ablog-sidebar-item ablog__postcard">
+
+
+<h2>
+  
+  
+  <i class="fa fa-calendar"></i>
+  
+  <span>2024-05-24</span>
+  
+</h2>
+<ul>
+  <div class="ablog-sidebar-item ablog__postcard2">
+
+
+<li id="ablog-sidebar-item author ablog__author">
+  <span>
+    
+    <i class="fa-fw fa fa-user"></i>
+    
+    </span>
+  
+  
+  <a href="../../../../blog/author/edward-villegas-pulgarin/">Edward Villegas-Pulgarin</a>
+  
+  
+  
+</li>
+
+
+
+
+<li id="ablog-sidebar-item category ablog__category">
+  <span>
+    
+    <i class="fa-fw fa fa-folder-open"></i>
+    
+    </span>
+  
+  
+  <a href="../../../../blog/category/tecnologia/">tecnología</a>
+  
+  
+  
+</li>
+
+
+<li id="ablog-sidebar-item tags ablog__tags">
+  <span>
+    
+    
+    <i class="fa-fw fa fa-tags"></i>
+    
+    
+    </span>
+  
+  
+  <a href="../../../../blog/tag/sitio-estatico/">sitio estático</a>
+  
+  
+  
+  
+  
+  <a href="../../../../blog/tag/pydata/">pydata</a>
+  
+  
+  
+  
+  
+  <a href="../../../../blog/tag/sphinx/">sphinx</a>
+  
+  
+  
+  
+  
+  <a href="../../../../blog/tag/python/">python</a>
+  
+  
+  
+  
+  
+  <a href="../../../../blog/tag/blog/">blog</a>
+  
+  
+  
+  
+  
+  <a href="../../../../blog/tag/ablog/">ablog</a>
+  
+  
+  
+</li>
+
+
+</div>
+</ul>
+</div>
+</div>
+        <div class="sidebar-primary-item">
+<div class="ablog-sidebar-item ablog__recentposts">
+<h3>
+  <a href="../../../../blog/">Entradas recientes</a>
+</h3>
+<ul>
+  
+  
+  <li>
+    <a href="../configurar-segundo-teclado-en-linux/">
+      19 mayo - Configurar segundo teclado en Linux
+    </a>
+  </li>
+  
+  <li>
+    <a href="../crear-un-blog-con-sphinx/">
+      16 mayo - Crear un blog con Sphinx
+    </a>
+  </li>
+  
+  <li>
+    <a href="../../2021/configurar-retroarch-en-steam/">
+      14 diciembre - Configurar RetroArch en Steam
+    </a>
+  </li>
+  
+  <li>
+    <a href="../../2020/usar-ubuntu-en-windows/">
+      05 octubre - Usar Ubuntu en Windows con WSL2
+    </a>
+  </li>
+  
+  <li>
+    <a href="../../2020/crear-version-de-windows-minima-con-msmg-toolkit/">
+      09 julio - Crear versión de Windows mínima con MSMG Toolkit
+    </a>
+  </li>
+  
+</ul>
+</div>
+</div>
+        <div class="sidebar-primary-item">
+<div class="ablog-sidebar-item ablog__archive">
+<h3>
+  <a href="../../../../blog/archive/">Archivos</a>
+</h3>
+<ul>
+  
+  
+  <li>
+    <a href="../../../../blog/2024/">2024 (3)</a>
+  </li>
+  
+  
+  
+  <li>
+    <a href="../../../../blog/2021/">2021 (1)</a>
+  </li>
+  
+  
+  
+  <li>
+    <a href="../../../../blog/2020/">2020 (18)</a>
+  </li>
+  
+  
+  
+  <li>
+    <a href="../../../../blog/2019/">2019 (7)</a>
+  </li>
+  
+  
+  
+  <li>
+    <a href="../../../../blog/2018/">2018 (5)</a>
+  </li>
+  
+  
+  
+  <li>
+    <a href="../../../../blog/2017/">2017 (2)</a>
+  </li>
+  
+  
+  
+  <li>
+    <a href="../../../../blog/2014/">2014 (1)</a>
+  </li>
+  
+  
+  
+  <li>
+    <a href="../../../../blog/2013/">2013 (8)</a>
+  </li>
+  
+  
+  
+  <li>
+    <a href="../../../../blog/2012/">2012 (19)</a>
+  </li>
+  
+  
+  
+  <li>
+    <a href="../../../../blog/2011/">2011 (30)</a>
+  </li>
+  
+  
+  
+  <li>
+    <a href="../../../../blog/2010/">2010 (7)</a>
+  </li>
+  
+  
+</ul>
+</div>
+</div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+
+
+<nav aria-label="Miga de pan">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../../../" class="nav-link" aria-label="Inicio">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page">Migrando mi...</li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+<section class="tex2jax_ignore mathjax_ignore" id="migrando-mi-blog-de-nikola-a-sphinx">
+<h1>Migrando mi blog de Nikola a Sphinx<a class="headerlink" href="#migrando-mi-blog-de-nikola-a-sphinx" title="Link to this heading">#</a></h1>
+<p>Migrar de un generador estático a otro no es un proceso del todo transparente,
+así que aquí te explico algunos por menores para hacer una migración de Nikola
+a Sphinx.</p>
+<p>Pero antes, es necesario tener presente, que lo básico del proceso de migración,
+inicia por tener lo mínimo desde cero, con Sphinx. Para este fin, debes seguir las
+indicaciones dadas en <a class="reference internal" href="../crear-un-blog-con-sphinx/"><span class="std std-doc">Crear un blog con Sphinx</span></a>.</p>
+<section id="migrando">
+<h2>Migrando<a class="headerlink" href="#migrando" title="Link to this heading">#</a></h2>
+<p>Bueno, una vez tenemos la base de nuestro blog, sigue hacer los ajustes para que
+nuestras entradas previas sigan funcionando.</p>
+<section id="publicacion">
+<h3>Publicación<a class="headerlink" href="#publicacion" title="Link to this heading">#</a></h3>
+<section id="front-matter">
+<h4>Front matter<a class="headerlink" href="#front-matter" title="Link to this heading">#</a></h4>
+<p>Dado que en la configuración inicial añadimos un
+<a class="reference internal" href="../crear-un-blog-con-sphinx/#blog-conf"><span class="std std-ref">patrón de ruta</span></a> para las publicaciones,
+no es necesario agregar la directiva de <code class="docutils literal notranslate"><span class="pre">..post:</span></code> o el atributo de <code class="docutils literal notranslate"><span class="pre">:blogpost:</span> <span class="pre">true</span></code>.
+Solo ubica los archivos en la ruta que cumpla el patrón 👀.</p>
+<p>Importante, en Nikola definíamos la ruta de navegación mediante el <code class="docutils literal notranslate"><span class="pre">..slug:</span></code>, pero
+esto en Sphinx depende del nombre del archivo y su ruta en el directorio. Asegurate
+de usar la misma ruta de directorios al definido en el <em>slug</em> y el nombre del archivo
+igual a la parte final de este 👀. Otra opción, es que sin importar el nombre y ruta de
+directorios, uses el valor del <em>slug</em> como valor de <code class="docutils literal notranslate"><span class="pre">:redirect:</span></code> (en este caso, añade
+al archivo de configuración <code class="docutils literal notranslate"><span class="pre">post_redirect_refresh=0</span></code>).</p>
+<p>Para indicar el título en <em>Nikola</em>, se usaba el atributo de <code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">title:</span></code>, pero
+ahora este debe ser explícito en la marcación de la publicación. Ejemplo:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-0">
+RST</label><div class="sd-tab-content docutils">
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="gh">Migrando mi blog de Nikola a Sphinx</span>
+<span class="gh">===================================</span>
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-1" name="sd-tab-set-0" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-1">
+MD</label><div class="sd-tab-content docutils">
+<div class="highlight-md notranslate"><div class="highlight"><pre><span></span><span class="gh"># Migrando mi blog de Nikola a Sphinx</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Esto hace que los títulos ya existentes, deban aumentar de nivel 👀.</p>
+<p>En <em>ablog</em> no tenemos el equivalente del <code class="docutils literal notranslate"><span class="pre">..status:</span></code> de Nikola, pero se puede controlar
+que una fecha actual o pasada sea equivalente a <code class="docutils literal notranslate"><span class="pre">published</span></code> y si es una fecha futura o
+sin fecha es el equivalente de <code class="docutils literal notranslate"><span class="pre">draft</span></code>. El caso del <code class="docutils literal notranslate"><span class="pre">private</span></code> podríamos hacerlo
+<a class="reference internal" href="../crear-un-blog-con-sphinx/#exclude-files"><span class="std std-ref">excluyendo el archivo</span></a>. El caso
+<code class="docutils literal notranslate"><span class="pre">featured</span></code> es más personalizado, pero se podría explorar con el objeto de las <em>cards</em>
+en el índice.</p>
+<p>Si queremos indicar la imagen de previsualización, en Nikola se usaba <code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">previewimage:</span></code>,
+pero en <em>ablog</em> lo hacemos con <code class="docutils literal notranslate"><span class="pre">:image:</span></code> y el valor no es la ruta de la imagen, sino el
+número asociado en orden de aparición en la publicación. Esto se puede dejar con un valor
+por defecto acorde a la variable en el archivo de configuración de <code class="docutils literal notranslate"><span class="pre">post_auto_image</span></code>.</p>
+<p>El atributo de <code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">description:</span></code> es tomado por defecto por truncamiento del primer
+párrafo de la publicación (esto se usa en los metadatos de la publicación).</p>
+<p>El caso de <code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">link:</span></code> se debe convertir en <code class="docutils literal notranslate"><span class="pre">:external_link:</span></code>.</p>
+<p>Para la las actualizaciones, esto en lugar de ser un atributo, pasa a ser una
+anotación con marca de tiempo, pero con información de contexto.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-2" name="sd-tab-set-1" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-2">
+RST</label><div class="sd-tab-content docutils">
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">update</span><span class="p">::</span> 2011-12-15
+
+   Se añade info extra
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-3" name="sd-tab-set-1" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-3">
+MD</label><div class="sd-tab-content docutils">
+<div class="highlight-md notranslate"><div class="highlight"><pre><span></span>```{update} 2011-12-15
+
+Se añade info extra
+```
+</pre></div>
+</div>
+</div>
+</div>
+<p>Con los atributos de <code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">nocomments:</span></code>, <code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">tags:</span></code>, <code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">date:</span></code>, <code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">author:</span></code> y <code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">category:</span></code>,
+basta con cambiar <code class="docutils literal notranslate"><span class="pre">..</span> </code> inicial por <code class="docutils literal notranslate"><span class="pre">:</span></code>.</p>
+<p>Respecto a la fecha es importante tener claro, que a diferencia de Nikola no podemos
+mezclar tipos de formato de fecha. Estos deben añadirse según la definición que se
+tenga en el archivo de configuración, en la variable <code class="docutils literal notranslate"><span class="pre">post_date_format</span></code>.</p>
+<p>No es necesario un atributo para habilitar las ecuaciones, ya que Sphinx las habilita
+por defecto. En Nikola era necesario con <code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">has_math:</span> <span class="pre">true</span></code>.</p>
+<p>El caso de <code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">type:</span></code> no posee equivalente.</p>
+<p>⚠️ Si estamos usando <em>markdown</em>, la diferencia es quitar el <code class="docutils literal notranslate"><span class="pre">:</span></code> inicial, tal
+como se evidencia en la sección de
+<a class="reference internal" href="../crear-un-blog-con-sphinx/#primera-publicacion"><span class="std std-ref">primera publicación</span></a>, y el separador
+<code class="docutils literal notranslate"><span class="pre">&lt;!--</span> <span class="pre">--&gt;</span> </code> pasa a <code class="docutils literal notranslate"><span class="pre">---</span></code>.</p>
+</section>
+<section id="contenido">
+<h4>Contenido<a class="headerlink" href="#contenido" title="Link to this heading">#</a></h4>
+<p>En algunos casos, podíamos recurrir a listados de publicaciones mediante algún
+filtro con <code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">post-list::</span></code> y el atributo de <code class="docutils literal notranslate"><span class="pre">:categories</span></code>. Esto ahora pasa a
+<code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">postlist::</span></code> con el atributo <code class="docutils literal notranslate"><span class="pre">:category:</span></code> (puedes usar otros filtros también).</p>
+<p>Respecto a <code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">thumbnail::</span></code> esta directiva no existe, y se reemplaza por <code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">figure::</span></code>.</p>
+<p>La definición del <em>teaser</em> en Nikola dependía de una marcación específica como directiva
+para el texto, pero en <em>ablog</em> esto es controlado por el atributo <code class="docutils literal notranslate"><span class="pre">:excerpt:</span></code>, para denotar
+el número de párrafos a incluir. Pero podemos dejarlo con un valor por defecto acorde a
+<code class="docutils literal notranslate"><span class="pre">post_auto_excerpt</span></code> en el archivo de configuración.</p>
+<p>Para las referencias a documentos, en Markdown pasamos de <code class="docutils literal notranslate"><span class="pre">{{%</span> <span class="pre">doc</span> <span class="pre">%}}</span> <span class="pre">path</span> <span class="pre">{{%</span> <span class="pre">/doc</span> <span class="pre">%}}</span></code> a
+<code class="docutils literal notranslate"><span class="pre">&lt;project:path&gt;</span></code> o <code class="docutils literal notranslate"><span class="pre">[](path)</span></code>, mientras que en RST podemos mantener <code class="docutils literal notranslate"><span class="pre">:doc:</span></code> siempre y cuando
+no apunte a una etiqueta, en cuyo caso sería <code class="docutils literal notranslate"><span class="pre">:ref:</span></code>.</p>
+</section>
+</section>
+<section id="configuracion">
+<h3>Configuración<a class="headerlink" href="#configuracion" title="Link to this heading">#</a></h3>
+<section id="archivos-en-el-raiz">
+<h4>Archivos en el raíz<a class="headerlink" href="#archivos-en-el-raiz" title="Link to this heading">#</a></h4>
+<p>Los archvos en el raíz, se definen en un directorio que disponemos con la variable
+<code class="docutils literal notranslate"><span class="pre">html_extra_path</span></code>, la cual podemos definir con el mismo nombre que viene en Nikola
+(<code class="docutils literal notranslate"><span class="pre">files</span></code>).</p>
+</section>
+<section id="sistema-de-comentarios">
+<h4>Sistema de comentarios<a class="headerlink" href="#sistema-de-comentarios" title="Link to this heading">#</a></h4>
+<p>Si usamos Disqus (en Nikola, <code class="docutils literal notranslate"><span class="pre">COMMENT_SYSTEM='disqus'</span></code>), el <code class="docutils literal notranslate"><span class="pre">disqus_shortname</span></code> en
+el archivo de configuración toma el valor del antiguo <code class="docutils literal notranslate"><span class="pre">COMMENT_SYSTEM_ID</span></code>.</p>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>La verdad, he decidido retirar el sistema de comentarios de Disqus. Aporta poco valor
+respecto a lo que introduce en tiempo de carga. Posiblemente explore disponer el enlace
+de la publicación en Mastodon para que se desarrolle la eventual discusión.</p>
+</div>
+</section>
+<section id="youtube">
+<h4>Youtube<a class="headerlink" href="#youtube" title="Link to this heading">#</a></h4>
+<p>Necesitamos instalar <code class="docutils literal notranslate"><span class="pre">sphinxcontrib-youtube</span></code> y habilitar <code class="docutils literal notranslate"><span class="pre">sphinxcontrib.youtube</span></code>
+en las extensiones. De esta forma, la directiva de <code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">youtube::</span></code> sigue tal cual.</p>
+</section>
+</section>
+</section>
+<section id="referencias">
+<h2>Referencias<a class="headerlink" href="#referencias" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://adriaanrol.com/posts/2023/sphinx_migration/">Migrating the website to Sphinx + ABlog</a></p></li>
+<li><p><a class="reference external" href="https://dailystuff.nl/blog/2021/migration-to-cloudflare-pages">Migration to Cloudflare Pages</a></p></li>
+<li><p><a class="reference external" href="https://ablog.readthedocs.io/en/stable/manual/ablog-quick-start.html">Ablog</a></p></li>
+<li><p><a class="reference external" href="https://myst-parser.readthedocs.io/en/latest/">Myst Parser</a></p></li>
+</ul>
+</section>
+</section>
+
+<div class="section ablog__blog_comments">
+  
+  
+
+
+<div class="section ablog__prev-next">
+  <span class="ablog__prev">
+    
+    
+    <a href="../configurar-segundo-teclado-en-linux/">
+      
+      <i class="fa fa-arrow-circle-left"></i>
+      
+      <span>Configurar segundo teclado en Linux</span>
+    </a>
+    
+  </span>
+  <span class="ablog__spacer">&nbsp;</span>
+  <span class="ablog__next">
+    
+  </span>
+</div>
+
+  
+  
+</div>
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> En esta página
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#migrando">Migrando</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#publicacion">Publicación</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#front-matter">Front matter</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#contenido">Contenido</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#configuracion">Configuración</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#archivos-en-el-raiz">Archivos en el raíz</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sistema-de-comentarios">Sistema de comentarios</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#youtube">Youtube</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#referencias">Referencias</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../../../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2024, Edward Villegas.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Creado usando <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.3.7.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  Construido con el <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">Tema PyData Sphinx</a> 0.15.2.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

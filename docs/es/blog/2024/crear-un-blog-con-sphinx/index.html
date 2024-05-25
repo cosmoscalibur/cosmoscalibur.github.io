@@ -412,25 +412,25 @@ document.write(`
   
   
   
-  <a href="../../../../blog/tag/python/">python</a>
-  
-  
-  
-  
-  
   <a href="../../../../blog/tag/pydata/">pydata</a>
   
   
   
   
   
-  <a href="../../../../blog/tag/blog/">blog</a>
-  
-  
-  
-  
-  
   <a href="../../../../blog/tag/sphinx/">sphinx</a>
+  
+  
+  
+  
+  
+  <a href="../../../../blog/tag/python/">python</a>
+  
+  
+  
+  
+  
+  <a href="../../../../blog/tag/blog/">blog</a>
   
   
   
@@ -443,29 +443,6 @@ document.write(`
 </li>
 
 
-<li id="ablog-sidebar-item comments ablog__comments">
-  <script type="text/javascript">
-    var disqus_shortname = "cosmoscalibur";
-
-    (function () {
-      var s = document.createElement("script");
-      s.async = true;
-      s.type = "text/javascript";
-      s.src = "//" + disqus_shortname + ".disqus.com/count.js";
-      (
-        document.getElementsByTagName("HEAD")[0] ||
-        document.getElementsByTagName("BODY")[0]
-      ).appendChild(s);
-    })();
-  </script>
-  
-  <i class="fa-fw fa fa-comments"></i>
-  
-  <a href="#disqus_thread" data-disqus-identifier="/es/blog/2024/crear-un-blog-con-sphinx/" >
-    
-  </a >
-</li>
-
 </div>
 </ul>
 </div>
@@ -477,6 +454,12 @@ document.write(`
 </h3>
 <ul>
   
+  
+  <li>
+    <a href="../migrando-mi-blog-de-nikola-a-sphinx/">
+      24 mayo - Migrando mi blog de Nikola a Sphinx
+    </a>
+  </li>
   
   <li>
     <a href="../configurar-segundo-teclado-en-linux/">
@@ -502,12 +485,6 @@ document.write(`
     </a>
   </li>
   
-  <li>
-    <a href="../../2020/instalar-paquetes-snap-en-linux-mint-20/">
-      29 junio - Instalar paquetes snap en Linux Mint 20
-    </a>
-  </li>
-  
 </ul>
 </div>
 </div>
@@ -520,7 +497,7 @@ document.write(`
   
   
   <li>
-    <a href="../../../../blog/2024/">2024 (2)</a>
+    <a href="../../../../blog/2024/">2024 (3)</a>
   </li>
   
   
@@ -812,9 +789,12 @@ cambiar directamente el segmento de <code class="docutils literal notranslate"><
 patrón de ruta para que se reconozcan automáticamente las publicaciones (no es
 necesario añadir la etiqueta).
 Adicional, es necesario definir la ruta para el archivo de publicaciones.</p>
+<div class="literal-block-wrapper docutils container" id="blog-conf">
+<div class="code-block-caption"><span class="caption-text">Definición de ruta de índice del blog y patrón de ruta de publicaciones.</span><a class="headerlink" href="#blog-conf" title="Link to this code">#</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">blog_path</span> <span class="o">=</span> <span class="s1">&#39;blog&#39;</span>
 <span class="n">blog_post_pattern</span> <span class="o">=</span> <span class="s1">&#39;*/blog/*/*&#39;</span>
 </pre></div>
+</div>
 </div>
 <p>Es necesario configurar también otros directorios y archivos. Para fines de
 facilidad en GitHub Pages, vamos a remover el guion bajo de los directorios
@@ -835,6 +815,8 @@ importante porque al estar el directorio de Sphinx al mismo nivel del
 directorio del repositorio, se ven todos los archivos. Adicional a esto, hay
 archivos generados por Sphinx que si no los borramos, en un despliegue posterior
 se intentarán procesar.</p>
+<div class="literal-block-wrapper docutils container" id="exclude-files">
+<div class="code-block-caption"><span class="caption-text">Definición de archivos y directorios a excluir de la compilación.</span><a class="headerlink" href="#exclude-files" title="Link to this code">#</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">exclude_patterns</span> <span class="o">=</span> <span class="p">[</span>
     <span class="s2">&quot;_build&quot;</span><span class="p">,</span>
     <span class="s2">&quot;***/.ipynb_checkpoints/*&quot;</span><span class="p">,</span>
@@ -849,6 +831,7 @@ se intentarán procesar.</p>
     <span class="s1">&#39;.gitignore&#39;</span><span class="p">,</span>
 <span class="p">]</span>
 </pre></div>
+</div>
 </div>
 <p>Para habilitar las extensiones que vamos a usar, es necesario listarlas en
 <code class="docutils literal notranslate"><span class="pre">extensions</span></code>. Un detalle es que, aunque tenemos instalado Myst Parser, no lo
@@ -883,12 +866,28 @@ otros proyectos de Sphinx (en futuras entradas lo revisaremos).</p>
 <p>Ahora que tenemos habilitado Myst NB, podemos remover la línea de <code class="docutils literal notranslate"><span class="pre">source_suffix</span></code>
 porque esta es configurada por la extensión, y el valor por defecto evita que se
 compilen los archivos Markdown.</p>
-<p>Respecto a las opciones de Myst, vamos a habilitar de momento tres extensiones,
+<p>Respecto a las opciones de Myst, vamos a habilitar varias extensiones,
 que nos permitan usar más fácilmente las directivas (no usar el <em>backtick</em>),
 hacer sustituciones y habilitar el símbolo de dólar para las ecuaciones. adicional,
 vamos a crear referencias (<em>targets</em>) para los títulos hasta de tercer nivel
-(h1, h2 y h3).</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">myst_enable_extensions</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;colon_fence&#39;</span><span class="p">,</span> <span class="s1">&#39;substitution&#39;</span><span class="p">,</span> <span class="s1">&#39;dollarmath&#39;</span><span class="p">]</span>
+(h1, h2 y h3). También podemos añadir etiquteas más fácilmente en bloques o
+líneas, sustituciones con Jinja2, bloques de definiciones, reemplazos o listas
+de tareas. Solo omití linkify, pues no le veo mucha utilidad.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">myst_enable_extensions</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;amsmath&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;attrs_inline&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;colon_fence&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;deflist&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;dollarmath&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;fieldlist&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;html_admonition&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;html_image&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;replacements&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;smartquotes&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;strikethrough&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;substitution&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;tasklist&quot;</span><span class="p">,</span>
+<span class="p">]</span>
 <span class="n">myst_heading_anchors</span> <span class="o">=</span> <span class="mi">3</span>
 </pre></div>
 </div>
@@ -1054,6 +1053,7 @@ queda algo de exploración todavía.</p>
 <li><p><a class="reference external" href="https://jdsalaro.com/cheatsheet/sphinx-myst-markdown/">Sphinx Myst Markdown</a></p></li>
 <li><p><a class="reference external" href="https://myst-parser.readthedocs.io/en/latest/">Myst Parser</a></p></li>
 <li><p><a class="reference external" href="https://adriaanrol.com/posts/2023/sphinx_migration/">Migrating the website to Sphinx + ABlog</a></p></li>
+<li><p><a class="reference external" href="https://dailystuff.nl/blog/2021/migration-to-cloudflare-pages">Migration to Cloudflare Pages</a></p></li>
 </ul>
 </section>
 </section>
@@ -1090,35 +1090,6 @@ queda algo de exploración todavía.</p>
 </div>
 
   
-  
-  <div class="section ablog__comments">
-    <h2>Comments</h2>
-    <div id="disqus_thread"></div>
-    <script type="text/javascript">
-      var disqus_shortname = "cosmoscalibur";
-      var disqus_identifier = "/es/blog/2024/crear-un-blog-con-sphinx/";
-      var disqus_title = "Crear un blog con Sphinx";
-      var disqus_url = "https://www.cosmoscalibur.com/es/blog/2024/crear-un-blog-con-sphinx";
-
-      (function () {
-        var dsq = document.createElement("script");
-        dsq.type = "text/javascript";
-        dsq.async = true;
-        dsq.src = "//" + disqus_shortname + ".disqus.com/embed.js";
-        (
-          document.getElementsByTagName("head")[0] ||
-          document.getElementsByTagName("body")[0]
-        ).appendChild(dsq);
-      })();
-    </script>
-    <noscript>
-      Please enable JavaScript to view the
-      <a href="https://disqus.com/?ref_noscript">
-        comments powered by Disqus.</a ></noscript >
-    <a href="https://disqus.com" class="dsq-brlink">
-      comments powered by <span class="logo-disqus">Disqus</span>
-    </a >
-  </div>
   
 </div>
 

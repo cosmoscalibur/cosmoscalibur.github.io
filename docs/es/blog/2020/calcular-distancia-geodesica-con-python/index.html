@@ -406,6 +406,18 @@ document.write(`
     </span>
   
   
+  <a href="../../../../blog/tag/distancia-geodesica/">distancia geodésica</a>
+  
+  
+  
+  
+  
+  <a href="../../../../blog/tag/geoide/">geoide</a>
+  
+  
+  
+  
+  
   <a href="../../../../blog/tag/geopy/">geopy</a>
   
   
@@ -418,47 +430,12 @@ document.write(`
   
   
   
-  <a href="../../../../blog/tag/geoide/">geoide</a>
-  
-  
-  
-  
-  
   <a href="../../../../blog/tag/gis/">gis</a>
   
   
   
-  
-  
-  <a href="../../../../blog/tag/distancia-geodesica/">distancia geodésica</a>
-  
-  
-  
 </li>
 
-
-<li id="ablog-sidebar-item comments ablog__comments">
-  <script type="text/javascript">
-    var disqus_shortname = "cosmoscalibur";
-
-    (function () {
-      var s = document.createElement("script");
-      s.async = true;
-      s.type = "text/javascript";
-      s.src = "//" + disqus_shortname + ".disqus.com/count.js";
-      (
-        document.getElementsByTagName("HEAD")[0] ||
-        document.getElementsByTagName("BODY")[0]
-      ).appendChild(s);
-    })();
-  </script>
-  
-  <i class="fa-fw fa fa-comments"></i>
-  
-  <a href="#disqus_thread" data-disqus-identifier="/es/blog/2020/calcular-distancia-geodesica-con-python/" >
-    
-  </a >
-</li>
 
 </div>
 </ul>
@@ -471,6 +448,12 @@ document.write(`
 </h3>
 <ul>
   
+  
+  <li>
+    <a href="../../2024/migrando-mi-blog-de-nikola-a-sphinx/">
+      24 mayo - Migrando mi blog de Nikola a Sphinx
+    </a>
+  </li>
   
   <li>
     <a href="../../2024/configurar-segundo-teclado-en-linux/">
@@ -496,12 +479,6 @@ document.write(`
     </a>
   </li>
   
-  <li>
-    <a href="../crear-version-de-windows-minima-con-msmg-toolkit/">
-      09 julio - Crear versión de Windows mínima con MSMG Toolkit
-    </a>
-  </li>
-  
 </ul>
 </div>
 </div>
@@ -514,7 +491,7 @@ document.write(`
   
   
   <li>
-    <a href="../../../../blog/2024/">2024 (2)</a>
+    <a href="../../../../blog/2024/">2024 (3)</a>
   </li>
   
   
@@ -638,7 +615,7 @@ document.write(`
 <p>A partir de ahora, y usando <em>notebooks</em> compartiré algunas entradas relacionadas con programación o algunas bibliotecas específicas. En esta ocasión, me interesa compartirles como calcular la distancia geodésica entre dos lugares con GeoPy (una biblioteca Python), una de las tantas cosas que por motivos laborales he necesitado en mi exploración con proyectos con sistemas de información geográfica y ruteos.</p>
 <section id="geoide-y-geodesicas">
 <h2>Geoide y geodésicas<a class="headerlink" href="#geoide-y-geodesicas" title="Link to this heading">#</a></h2>
-<p>¿Habían escuchado antes «geoide» y «geodésica»? Bueno, resulta que el concepto de distancia entre puntos es dependiente de la geometría sobre la cual sea válido el desplazamiento. Así, si ubicamos dos puntos sobre la superficie de la Tierra, uno podría pensar en tomar como distancia la separación en línea recta entre los dos puntos atravesando el interior de la Tierra, y sí, eso es una distancia pero es impráctica porque nadie por ahora atravesará el interior para desplazarse. A esta distancia la conocemos como distancia euclideana (supone una geometría plana, como nos enseñan en el colegio y para muchos en universidad, donde Pitágoras funciona para esta cuenta).</p>
+<p>¿Habían escuchado antes “geoide” y “geodésica”? Bueno, resulta que el concepto de distancia entre puntos es dependiente de la geometría sobre la cual sea válido el desplazamiento. Así, si ubicamos dos puntos sobre la superficie de la Tierra, uno podría pensar en tomar como distancia la separación en línea recta entre los dos puntos atravesando el interior de la Tierra, y sí, eso es una distancia pero es impráctica porque nadie por ahora atravesará el interior para desplazarse. A esta distancia la conocemos como distancia euclideana (supone una geometría plana, como nos enseñan en el colegio y para muchos en universidad, donde Pitágoras funciona para esta cuenta).</p>
 <p>Pues bien, si la distancia implica una restricción para moverse sobre una geometría en particular, las líneas rectas no son los caminos más cortos (sobre el cual se define la distancia) sino un tipo de líneas que llamaremos geodésicas. Así, la distancia sobre la superficie de la Tierra se mide sobre la geodésica que une los dos puntos de interés y a esa forma superficie de referencia de la Tierra es llamada geoide.</p>
 </section>
 <section id="calculo-de-distancia">
@@ -780,35 +757,6 @@ Executing transaction: ...working... done
 </div>
 
   
-  
-  <div class="section ablog__comments">
-    <h2>Comments</h2>
-    <div id="disqus_thread"></div>
-    <script type="text/javascript">
-      var disqus_shortname = "cosmoscalibur";
-      var disqus_identifier = "/es/blog/2020/calcular-distancia-geodesica-con-python/";
-      var disqus_title = "Calcular distancia geodésica con Python";
-      var disqus_url = "https://www.cosmoscalibur.com/es/blog/2020/calcular-distancia-geodesica-con-python";
-
-      (function () {
-        var dsq = document.createElement("script");
-        dsq.type = "text/javascript";
-        dsq.async = true;
-        dsq.src = "//" + disqus_shortname + ".disqus.com/embed.js";
-        (
-          document.getElementsByTagName("head")[0] ||
-          document.getElementsByTagName("body")[0]
-        ).appendChild(dsq);
-      })();
-    </script>
-    <noscript>
-      Please enable JavaScript to view the
-      <a href="https://disqus.com/?ref_noscript">
-        comments powered by Disqus.</a ></noscript >
-    <a href="https://disqus.com" class="dsq-brlink">
-      comments powered by <span class="logo-disqus">Disqus</span>
-    </a >
-  </div>
   
 </div>
 
