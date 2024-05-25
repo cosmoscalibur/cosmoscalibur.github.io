@@ -195,10 +195,13 @@ patrón de ruta para que se reconozcan automáticamente las publicaciones (no es
 necesario añadir la etiqueta).
 Adicional, es necesario definir la ruta para el archivo de publicaciones.
 
-```python
+:::{code-block} python
+:name: blog-conf
+:caption: Definición de ruta de índice del blog y patrón de ruta de publicaciones.
+
 blog_path = 'blog'
 blog_post_pattern = '*/blog/*/*'
-```
+:::
 
 Es necesario configurar también otros directorios y archivos. Para fines de
 facilidad en GitHub Pages, vamos a remover el guion bajo de los directorios
@@ -223,7 +226,10 @@ directorio del repositorio, se ven todos los archivos. Adicional a esto, hay
 archivos generados por Sphinx que si no los borramos, en un despliegue posterior
 se intentarán procesar.
 
-```python
+:::{code-block} python
+:name: exclude-files
+:caption: Definición de archivos y directorios a excluir de la compilación.
+
 exclude_patterns = [
     "_build",
     "***/.ipynb_checkpoints/*",
@@ -237,7 +243,7 @@ exclude_patterns = [
     '.doctrees',
     '.gitignore',
 ]
-```
+:::
 
 Para habilitar las extensiones que vamos a usar, es necesario listarlas en
 `extensions`. Un detalle es que, aunque tenemos instalado Myst Parser, no lo
@@ -279,14 +285,30 @@ Ahora que tenemos habilitado Myst NB, podemos remover la línea de `source_suffi
 porque esta es configurada por la extensión, y el valor por defecto evita que se
 compilen los archivos Markdown.
 
-Respecto a las opciones de Myst, vamos a habilitar de momento tres extensiones,
+Respecto a las opciones de Myst, vamos a habilitar varias extensiones,
 que nos permitan usar más fácilmente las directivas (no usar el _backtick_),
 hacer sustituciones y habilitar el símbolo de dólar para las ecuaciones. adicional,
 vamos a crear referencias (_targets_) para los títulos hasta de tercer nivel
-(h1, h2 y h3).
+(h1, h2 y h3). También podemos añadir etiquteas más fácilmente en bloques o 
+líneas, sustituciones con Jinja2, bloques de definiciones, reemplazos o listas
+de tareas. Solo omití linkify, pues no le veo mucha utilidad.
 
 :::{code} python
-myst_enable_extensions = ['colon_fence', 'substitution', 'dollarmath']
+myst_enable_extensions = [
+    "amsmath",
+    "attrs_inline",
+    "colon_fence",
+    "deflist",
+    "dollarmath",
+    "fieldlist",
+    "html_admonition",
+    "html_image",
+    "replacements",
+    "smartquotes",
+    "strikethrough",
+    "substitution",
+    "tasklist",
+]
 myst_heading_anchors = 3
 :::
 
@@ -476,3 +498,4 @@ De mi parte, algunos detalles que quiero próximamente
 - [Sphinx Myst Markdown](https://jdsalaro.com/cheatsheet/sphinx-myst-markdown/)
 - [Myst Parser](https://myst-parser.readthedocs.io/en/latest/)
 - [Migrating the website to Sphinx + ABlog](https://adriaanrol.com/posts/2023/sphinx_migration/)
+- [Migration to Cloudflare Pages](https://dailystuff.nl/blog/2021/migration-to-cloudflare-pages)
