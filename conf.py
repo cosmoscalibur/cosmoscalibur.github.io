@@ -28,10 +28,6 @@ blog_feed_fulltext = True
 
 fontawesome_included = True
 
-# -- Disqus Integration -------------------------------------------------------
-disqus_shortname = 'cosmoscalibur'
-
-
 # -- Sphinx Options -----------------------------------------------------------
 extensions = [
     'sphinx.ext.extlinks',
@@ -50,7 +46,21 @@ html_baseurl = 'https://www.cosmoscalibur.com/'
 
 # -- MyST options ------------------------------------------------------------
 
-myst_enable_extensions = ['colon_fence', 'substitution', 'dollarmath']
+myst_enable_extensions = [
+    "amsmath",
+    "attrs_inline",
+    "colon_fence",
+    "deflist",
+    "dollarmath",
+    "fieldlist",
+    "html_admonition",
+    "html_image",
+    "replacements",
+    "smartquotes",
+    "strikethrough",
+    "substitution",
+    "tasklist",
+]
 myst_heading_anchors = 3
 
 # General information about the project.
@@ -63,12 +73,11 @@ language = 'es'
 html_theme = 'pydata_sphinx_theme'
 html_theme_options = {
     'show_toc_level': 2,
-    'analytics': {
-        'google_analytics_id': 'G-4YFQBC69LB'
-    },
     'twitter_url': 'https://twitter.com/cosmoscalibur',
     'github_url': 'https://github.com/cosmoscalibur/',
 }
+# Después, esto servirá para separar local de desplegado con Action
+html_theme_options['analytics'] = {'google_analytics_id': 'G-4YFQBC69LB'}
 html_title = 'Cosmoscalibur'
 html_short_title = 'Cosmoscalibur'
 
@@ -85,8 +94,8 @@ html_extra_path = ['files']
 ablog_website = 'docs'
 templates_path = ["templates"]
 exclude_patterns = [
-    "_build",
-    "***/.ipynb_checkpoints/*",
+    '_build',
+    '***/.ipynb_checkpoints/*',
     'Pipfile',
     'LICENSE',
     'README.md',
@@ -96,6 +105,7 @@ exclude_patterns = [
     'docs',
     '.doctrees',
     '.gitignore',
+    '**/draft/*',
 ]
 
 html_show_sourcelink = False
