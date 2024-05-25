@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="es">
   <id>https://www.cosmoscalibur.com/</id>
   <title>Cosmoscalibur</title>
-  <updated>2024-05-25T20:14:48.243481+00:00</updated>
+  <updated>2024-05-25T20:26:32.385518+00:00</updated>
   <link href="https://www.cosmoscalibur.com/"/>
   <link href="https://www.cosmoscalibur.com/blog/atom.xml" rel="self"/>
   <generator uri="https://ablog.readthedocs.io/" version="0.11.8">ABlog</generator>
@@ -321,7 +321,6 @@ Esto me encanta, porque será natural publicar notas sobre código con sus resul
 internacionalización que deseo, tendré que cambiarlo en el futuro.&lt;/p&gt;
 &lt;p&gt;Copy button nos ayudará a crear la opción de copiar al portapapeles los bloques
 de código.&lt;/p&gt;
-&lt;p&gt;Y finalmente, Tippy, me encanta la opción de mostrar un &lt;em&gt;hover&lt;/em&gt; sobre los enlaces.&lt;/p&gt;
 &lt;p&gt;Con estos detalles, nuestro archivo &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;requirements.txt&lt;/span&gt;&lt;/code&gt; lucirá de la siguiente forma:&lt;/p&gt;
 &lt;div class="highlight-default notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# Generación estática blog y tema&lt;/span&gt;
 &lt;span class="n"&gt;sphinx&lt;/span&gt;
@@ -331,7 +330,6 @@ de código.&lt;/p&gt;
 &lt;span class="c1"&gt;# Componentes&lt;/span&gt;
 &lt;span class="n"&gt;sphinx&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;design&lt;/span&gt;
 &lt;span class="n"&gt;sphinx&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;copybutton&lt;/span&gt;
-&lt;span class="n"&gt;sphinx&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;tippy&lt;/span&gt;
 &lt;span class="n"&gt;sphinxcontrib&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;youtube&lt;/span&gt;
 
 &lt;span class="c1"&gt;# Metadatos para compartir en redes&lt;/span&gt;
@@ -463,24 +461,11 @@ agregar archivos directamente al raíz del despliegue (por ejemplo, para añadir
 el archivo CNAME).&lt;/p&gt;
 &lt;p&gt;Importante para la generación con GitHub Pages, el directorio de salida debe
 ser &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;docs&lt;/span&gt;&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;Para usar &lt;em&gt;tippy&lt;/em&gt; necesitamos incluir un ajuste de CSS, pero esto es dependiente
-del tema. En Pydata es&lt;/p&gt;
-&lt;div class="highlight-css notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nc"&gt;tippy-box&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;background-color&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="nf"&gt;var&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;--pst-color-surface&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;color&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="nf"&gt;var&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;--pst-color-text-base&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;border&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="kt"&gt;px&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kc"&gt;solid&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;var&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;--pst-color-border&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
-&lt;span class="p"&gt;}&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
 &lt;p&gt;Finalmente, las variables de configuración en &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;conf.py&lt;/span&gt;&lt;/code&gt;.&lt;/p&gt;
 &lt;div class="highlight-python notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;templates_path&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;templates&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
 &lt;span class="n"&gt;html_static_path&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;static&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
 &lt;span class="n"&gt;html_extra_path&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;files&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
 &lt;span class="n"&gt;ablog_website&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;docs&amp;#39;&lt;/span&gt;
-
-&lt;span class="n"&gt;html_css_files&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;tippy.css&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
-&lt;span class="n"&gt;tippy_skip_anchor_classes&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;headerlink&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;sd-stretched-link&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;sd-rounded-pill&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="n"&gt;tippy_anchor_parent_selector&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;article.bd-article&amp;quot;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
 &lt;p&gt;Ahora vamos a definir los archivos que no deben ser procesados. Esto es
@@ -530,7 +515,6 @@ de Myst NB.&lt;/p&gt;
     &lt;span class="s1"&gt;&amp;#39;ablog&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
     &lt;span class="s1"&gt;&amp;#39;sphinx_sitemap&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
     &lt;span class="s1"&gt;&amp;#39;sphinx_copybutton&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-    &lt;span class="s1"&gt;&amp;#39;sphinx_tippy&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
 &lt;span class="p"&gt;]&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
@@ -736,7 +720,6 @@ queda algo de exploración todavía.&lt;/p&gt;
 &lt;p class="admonition-title"&gt;Updated on 2024-05-25&lt;/p&gt;
 &lt;ul class="simple"&gt;
 &lt;li&gt;&lt;p&gt;Se agrega información extra sobre open graph para incluir marca de creador.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Se agrega Tippy para incluir &lt;em&gt;hover&lt;/em&gt; en los enlaces (dependencia y extensión).&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;Se incluye información sobre todas las extensiones de Myst Parser a la fecha.&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;Se incluye extensión VSCode de Font Awesome Gallery.&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;Explicación extra de analytics para deshabilitar en pruebas&lt;/p&gt;&lt;/li&gt;

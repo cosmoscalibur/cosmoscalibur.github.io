@@ -71,8 +71,6 @@ internacionalización que deseo, tendré que cambiarlo en el futuro.
 Copy button nos ayudará a crear la opción de copiar al portapapeles los bloques
 de código.
 
-Y finalmente, Tippy, me encanta la opción de mostrar un _hover_ sobre los enlaces.
-
 Con estos detalles, nuestro archivo `requirements.txt` lucirá de la siguiente forma:
 
 ```
@@ -84,7 +82,6 @@ pydata-sphinx-theme
 # Componentes
 sphinx-design
 sphinx-copybutton
-sphinx-tippy
 sphinxcontrib-youtube
 
 # Metadatos para compartir en redes
@@ -222,18 +219,6 @@ el archivo CNAME).
 Importante para la generación con GitHub Pages, el directorio de salida debe
 ser `docs`.
 
-Para usar _tippy_ necesitamos incluir un ajuste de CSS, pero esto es dependiente
-del tema. En Pydata es
-
-:::{code-block} css
-
-.tippy-box {
-    background-color:var(--pst-color-surface);
-    color:var(--pst-color-text-base);
-    border: 1px solid var(--pst-color-border);
-}
-:::
-
 Finalmente, las variables de configuración en `conf.py`.
 
 ```python
@@ -241,10 +226,6 @@ templates_path = ['templates']
 html_static_path = ['static']
 html_extra_path = ['files']
 ablog_website = 'docs'
-
-html_css_files = ['tippy.css']
-tippy_skip_anchor_classes = ("headerlink", "sd-stretched-link", "sd-rounded-pill")
-tippy_anchor_parent_selector = "article.bd-article"
 ```
 
 Ahora vamos a definir los archivos que no deben ser procesados. Esto es
@@ -301,7 +282,6 @@ extensions = [
     'ablog',
     'sphinx_sitemap',
     'sphinx_copybutton',
-    'sphinx_tippy',
 ]
 ```
 
@@ -535,7 +515,6 @@ De mi parte, algunos detalles que quiero próximamente
 :::{update} 2024-05-25
 
 - Se agrega información extra sobre open graph para incluir marca de creador.
-- Se agrega Tippy para incluir _hover_ en los enlaces (dependencia y extensión).
 - Se incluye información sobre todas las extensiones de Myst Parser a la fecha.
 - Se incluye extensión VSCode de Font Awesome Gallery.
 - Explicación extra de analytics para deshabilitar en pruebas
