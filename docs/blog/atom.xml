@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="es">
   <id>https://www.cosmoscalibur.com/</id>
   <title>Cosmoscalibur</title>
-  <updated>2024-05-25T03:01:26.296185+00:00</updated>
+  <updated>2024-05-25T20:14:48.243481+00:00</updated>
   <link href="https://www.cosmoscalibur.com/"/>
   <link href="https://www.cosmoscalibur.com/blog/atom.xml" rel="self"/>
   <generator uri="https://ablog.readthedocs.io/" version="0.11.8">ABlog</generator>
@@ -70,7 +70,8 @@ pero en &lt;em&gt;ablog&lt;/em&gt; lo hacemos con &lt;code class="docutils liter
 número asociado en orden de aparición en la publicación. Esto se puede dejar con un valor
 por defecto acorde a la variable en el archivo de configuración de &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;post_auto_image&lt;/span&gt;&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;El atributo de &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;..&lt;/span&gt; &lt;span class="pre"&gt;description:&lt;/span&gt;&lt;/code&gt; es tomado por defecto por truncamiento del primer
-párrafo de la publicación (esto se usa en los metadatos de la publicación).&lt;/p&gt;
+párrafo de la publicación (esto se usa en los metadatos de la publicación), pero también
+podemos dejarlo si lo queremos personalizado (esto se hace con la extensión de open-graph).&lt;/p&gt;
 &lt;p&gt;El caso de &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;..&lt;/span&gt; &lt;span class="pre"&gt;link:&lt;/span&gt;&lt;/code&gt; se debe convertir en &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;:external_link:&lt;/span&gt;&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;Para la las actualizaciones, esto en lugar de ser un atributo, pasa a ser una
 anotación con marca de tiempo, pero con información de contexto.&lt;/p&gt;
@@ -261,7 +262,7 @@ de lenguaje es diferente, te explico como configurar aquí.</summary>
   <entry>
     <id>https://www.cosmoscalibur.com/es/blog/2024/crear-un-blog-con-sphinx/</id>
     <title>Crear un blog con Sphinx</title>
-    <updated>2024-05-16T00:00:00-05:00</updated>
+    <updated>2024-05-25T00:00:00-05:00</updated>
     <author>
       <name>Edward Villegas-Pulgarin</name>
     </author>
@@ -320,17 +321,17 @@ Esto me encanta, porque será natural publicar notas sobre código con sus resul
 internacionalización que deseo, tendré que cambiarlo en el futuro.&lt;/p&gt;
 &lt;p&gt;Copy button nos ayudará a crear la opción de copiar al portapapeles los bloques
 de código.&lt;/p&gt;
+&lt;p&gt;Y finalmente, Tippy, me encanta la opción de mostrar un &lt;em&gt;hover&lt;/em&gt; sobre los enlaces.&lt;/p&gt;
 &lt;p&gt;Con estos detalles, nuestro archivo &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;requirements.txt&lt;/span&gt;&lt;/code&gt; lucirá de la siguiente forma:&lt;/p&gt;
-&lt;div class="highlight-default notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# Generación estática blog&lt;/span&gt;
+&lt;div class="highlight-default notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# Generación estática blog y tema&lt;/span&gt;
 &lt;span class="n"&gt;sphinx&lt;/span&gt;
 &lt;span class="n"&gt;ablog&lt;/span&gt;
-
-&lt;span class="c1"&gt;# Tema y componentes&lt;/span&gt;
 &lt;span class="n"&gt;pydata&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;sphinx&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;theme&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Componentes&lt;/span&gt;
 &lt;span class="n"&gt;sphinx&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;design&lt;/span&gt;
 &lt;span class="n"&gt;sphinx&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;copybutton&lt;/span&gt;
-
-&lt;span class="c1"&gt;# Mostrar Youtube&lt;/span&gt;
+&lt;span class="n"&gt;sphinx&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;tippy&lt;/span&gt;
 &lt;span class="n"&gt;sphinxcontrib&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;youtube&lt;/span&gt;
 
 &lt;span class="c1"&gt;# Metadatos para compartir en redes&lt;/span&gt;
@@ -341,6 +342,7 @@ de código.&lt;/p&gt;
 &lt;span class="c1"&gt;# Soporte de Markdown y Notebook&lt;/span&gt;
 &lt;span class="n"&gt;myst&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;parser&lt;/span&gt;
 &lt;span class="n"&gt;jupyterlab&lt;/span&gt;
+&lt;span class="n"&gt;jupyterlab_myst&lt;/span&gt;
 &lt;span class="n"&gt;myst&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;nb&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
@@ -370,6 +372,7 @@ para ayudar en el renderizado en el Notebook mientras redactamos.&lt;/p&gt;
 &lt;li&gt;&lt;p class="sd-card-text"&gt;Jupyter: Para manipular notebooks&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p class="sd-card-text"&gt;Emoji: Para insertar emoji con la paleta de comandos 😀&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p class="sd-card-text"&gt;Spell Right: Para corrección de ortografía.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p class="sd-card-text"&gt;Font Awesome Gallery: Para buscar la notación de los íconos &lt;span class="fa fa-rocket"&gt;&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
 &lt;/details&gt;&lt;details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3"&gt;
@@ -422,8 +425,14 @@ usaremos el tema de PyData y podemos retirar alabaster del &lt;em&gt;import&lt;/
 &lt;div class="highlight-python notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;html_theme&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;pydata_sphinx_theme&amp;#39;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
-&lt;p&gt;Para incluir los metadatos de OpenGraph, añadiremos la dirección base.&lt;/p&gt;
+&lt;p&gt;Para incluir los metadatos de OpenGraph, añadiremos la dirección base y podemos
+añadir marcas personalizadas. Así, que aprovecharé a incluir la de creador para
+Twitter &lt;span class="fa fa-twitter-square"&gt;&lt;/span&gt; (ahora X), y la especificación de tipo viene por defecto
+en &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;summary_large_image&lt;/span&gt;&lt;/code&gt; (esto no encontré como cambiarlo).&lt;/p&gt;
 &lt;div class="highlight-python notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;ogp_site_url&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;https://www.cosmoscalibur.com&amp;#39;&lt;/span&gt;
+&lt;span class="n"&gt;ogp_custom_meta_tags&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;
+    &lt;span class="s1"&gt;&amp;#39;&amp;lt;meta name=&amp;quot;twitter:creator&amp;quot; content=&amp;quot;@cosmoscalibur&amp;quot; /&amp;gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="p"&gt;]&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
 &lt;p&gt;Para configurar el idioma por defecto, usamos la variable respectiva con el
@@ -454,10 +463,24 @@ agregar archivos directamente al raíz del despliegue (por ejemplo, para añadir
 el archivo CNAME).&lt;/p&gt;
 &lt;p&gt;Importante para la generación con GitHub Pages, el directorio de salida debe
 ser &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;docs&lt;/span&gt;&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Para usar &lt;em&gt;tippy&lt;/em&gt; necesitamos incluir un ajuste de CSS, pero esto es dependiente
+del tema. En Pydata es&lt;/p&gt;
+&lt;div class="highlight-css notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nc"&gt;tippy-box&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;background-color&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="nf"&gt;var&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;--pst-color-surface&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;color&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="nf"&gt;var&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;--pst-color-text-base&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;border&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="kt"&gt;px&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kc"&gt;solid&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;var&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;--pst-color-border&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Finalmente, las variables de configuración en &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;conf.py&lt;/span&gt;&lt;/code&gt;.&lt;/p&gt;
 &lt;div class="highlight-python notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;templates_path&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;templates&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
 &lt;span class="n"&gt;html_static_path&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;static&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
 &lt;span class="n"&gt;html_extra_path&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;files&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
 &lt;span class="n"&gt;ablog_website&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;docs&amp;#39;&lt;/span&gt;
+
+&lt;span class="n"&gt;html_css_files&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;tippy.css&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="n"&gt;tippy_skip_anchor_classes&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;headerlink&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;sd-stretched-link&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;sd-rounded-pill&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;tippy_anchor_parent_selector&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;article.bd-article&amp;quot;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
 &lt;p&gt;Ahora vamos a definir los archivos que no deben ser procesados. Esto es
@@ -506,7 +529,8 @@ de Myst NB.&lt;/p&gt;
     &lt;span class="s2"&gt;&amp;quot;sphinxcontrib.youtube&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
     &lt;span class="s1"&gt;&amp;#39;ablog&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
     &lt;span class="s1"&gt;&amp;#39;sphinx_sitemap&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-    &lt;span class="s1"&gt;&amp;#39;sphinx_copybutton&amp;#39;&lt;/span&gt;
+    &lt;span class="s1"&gt;&amp;#39;sphinx_copybutton&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s1"&gt;&amp;#39;sphinx_tippy&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
 &lt;span class="p"&gt;]&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
@@ -550,14 +574,17 @@ parte (PyData soporta también Plausible).&lt;/p&gt;
 configuración del tema.&lt;/p&gt;
 &lt;div class="highlight-python notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;html_theme_options&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
     &lt;span class="s1"&gt;&amp;#39;show_toc_level&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-    &lt;span class="s1"&gt;&amp;#39;analytics&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-        &lt;span class="s1"&gt;&amp;#39;google_analytics_id&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;G-XXXXXXXXXX&amp;#39;&lt;/span&gt;
-    &lt;span class="p"&gt;},&lt;/span&gt;
     &lt;span class="s1"&gt;&amp;#39;twitter_url&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;https://twitter.com/cosmoscalibur&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
     &lt;span class="s1"&gt;&amp;#39;github_url&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;https://github.com/cosmoscalibur/&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
 &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="c1"&gt;# Después, esto servirá para separar local de desplegado con Action&lt;/span&gt;
+&lt;span class="n"&gt;html_theme_options&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;analytics&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;google_analytics_id&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;G-4YFQBC69LB&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
+&lt;p&gt;Hemos separado la línea de &lt;em&gt;analytics&lt;/em&gt; con el fin de deshabilitarla
+fácilmente en pruebas, para que esto no afecte métricas (más adelante, el
+ideal es hacerlo con despliegue automático en GitHub Actions y así dependiente
+de una variable de entorno).&lt;/p&gt;
 &lt;p&gt;Respecto a los paneles laterales, haremos la siguiente configuración de momento&lt;/p&gt;
 &lt;div class="highlight-python notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;html_sidebars&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
     &lt;span class="s1"&gt;&amp;#39;index&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[],&lt;/span&gt;
@@ -705,6 +732,17 @@ queda algo de exploración todavía.&lt;/p&gt;
 &lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://adriaanrol.com/posts/2023/sphinx_migration/"&gt;Migrating the website to Sphinx + ABlog&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://dailystuff.nl/blog/2021/migration-to-cloudflare-pages"&gt;Migration to Cloudflare Pages&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
+&lt;div class="note update admonition"&gt;
+&lt;p class="admonition-title"&gt;Updated on 2024-05-25&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;Se agrega información extra sobre open graph para incluir marca de creador.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Se agrega Tippy para incluir &lt;em&gt;hover&lt;/em&gt; en los enlaces (dependencia y extensión).&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Se incluye información sobre todas las extensiones de Myst Parser a la fecha.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Se incluye extensión VSCode de Font Awesome Gallery.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Explicación extra de analytics para deshabilitar en pruebas&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Se añaden más referencias.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
 &lt;/section&gt;
 &lt;/section&gt;
 </content>

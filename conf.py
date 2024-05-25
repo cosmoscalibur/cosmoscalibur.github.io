@@ -6,6 +6,9 @@ blog_baseurl = 'https://www.cosmoscalibur.com/'
 
 # OpenGraph config
 ogp_site_url = 'https://www.cosmoscalibur.com'
+ogp_custom_meta_tags = [
+    '<meta name="twitter:creator" content="@cosmoscalibur" />',
+]
 
 # -- Blog Post Related --------------------------------------------------------
 post_date_format = '%Y-%m-%d'
@@ -38,7 +41,8 @@ extensions = [
     "sphinxcontrib.youtube",
     'ablog',
     'sphinx_sitemap',
-    'sphinx_copybutton'
+    'sphinx_copybutton',
+    'sphinx_tippy',
 ]
 
 sitemap_url_scheme = '{link}'
@@ -77,7 +81,7 @@ html_theme_options = {
     'github_url': 'https://github.com/cosmoscalibur/',
 }
 # Después, esto servirá para separar local de desplegado con Action
-html_theme_options['analytics'] = {'google_analytics_id': 'G-4YFQBC69LB'}
+#html_theme_options['analytics'] = {'google_analytics_id': 'G-4YFQBC69LB'}
 html_title = 'Cosmoscalibur'
 html_short_title = 'Cosmoscalibur'
 
@@ -89,7 +93,7 @@ html_short_title = 'Cosmoscalibur'
 # pixels large.
 # html_favicon = None
 
-html_static_path = ["static"]
+html_static_path = ['static']
 html_extra_path = ['files']
 ablog_website = 'docs'
 templates_path = ["templates"]
@@ -109,6 +113,15 @@ exclude_patterns = [
 ]
 
 html_show_sourcelink = False
+
+html_css_files = ['tippy.css']
+tippy_enable_mathjax = True
+tippy_anchor_parent_selector = "article.bd-article"
+tippy_enable_wikitips = True
+tippy_enable_doitips = False
+tippy_enable_mathjax= False
+tippy_rtd_urls = []
+tippy_skip_anchor_classes = ("headerlink", "sd-stretched-link")
 
 # If true, an OpenSearch description file will be output, and all pages will
 # contain a <link> tag referring to it.  The value of this option must be the

@@ -18,6 +18,7 @@
 <meta property="og:image:alt" content="Migrar de un generador estático a otro no es un proceso del todo transparente, así que aquí te explico algunos por menores para hacer una migración de Nikola..." />
 <meta name="description" content="Migrar de un generador estático a otro no es un proceso del todo transparente, así que aquí te explico algunos por menores para hacer una migración de Nikola a Sphinx. Pero antes, es necesario tene..." />
 <meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:creator" content="@cosmoscalibur" />
 
     <title>Migrando mi blog de Nikola a Sphinx &#8212; Cosmoscalibur</title>
   
@@ -43,6 +44,7 @@
     <link rel="stylesheet" type="text/css" href="../../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/tippy.css?v=51a9431c" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="../../../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
@@ -56,19 +58,9 @@
     <script src="../../../../_static/copybutton.js?v=f281be69"></script>
     <script src="../../../../_static/translations.js?v=efdbd0b9"></script>
     <script src="../../../../_static/design-tabs.js?v=36754332"></script>
-    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-4YFQBC69LB"></script>
-    <script>
-                window.dataLayer = window.dataLayer || [];
-                function gtag(){ dataLayer.push(arguments); }
-                gtag('js', new Date());
-                gtag('config', 'G-4YFQBC69LB');
-            </script>
-    <script>
-                window.dataLayer = window.dataLayer || [];
-                function gtag(){ dataLayer.push(arguments); }
-                gtag('js', new Date());
-                gtag('config', 'G-4YFQBC69LB');
-            </script>
+    <script defer="defer" src="https://unpkg.com/@popperjs/core@2"></script>
+    <script defer="defer" src="https://unpkg.com/tippy.js@6"></script>
+    <script defer="defer" src="../../../../_static/tippy/es/blog/2024/migrando-mi-blog-de-nikola-a-sphinx.c974e19e-365e-4356-ba5f-442781e8e9d4.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'es/blog/2024/migrando-mi-blog-de-nikola-a-sphinx';</script>
     <link rel="canonical" href="https://www.cosmoscalibur.com/es/blog/2024/migrando-mi-blog-de-nikola-a-sphinx.html" />
     <link rel="index" title="Índice" href="../../../../genindex/" />
@@ -406,13 +398,13 @@ document.write(`
     </span>
   
   
+  <a href="../../../../blog/tag/ablog/">ablog</a>
+  
+  
+  
+  
+  
   <a href="../../../../blog/tag/sitio-estatico/">sitio estático</a>
-  
-  
-  
-  
-  
-  <a href="../../../../blog/tag/pydata/">pydata</a>
   
   
   
@@ -424,7 +416,7 @@ document.write(`
   
   
   
-  <a href="../../../../blog/tag/python/">python</a>
+  <a href="../../../../blog/tag/pydata/">pydata</a>
   
   
   
@@ -436,7 +428,7 @@ document.write(`
   
   
   
-  <a href="../../../../blog/tag/ablog/">ablog</a>
+  <a href="../../../../blog/tag/python/">python</a>
   
   
   
@@ -672,7 +664,8 @@ pero en <em>ablog</em> lo hacemos con <code class="docutils literal notranslate"
 número asociado en orden de aparición en la publicación. Esto se puede dejar con un valor
 por defecto acorde a la variable en el archivo de configuración de <code class="docutils literal notranslate"><span class="pre">post_auto_image</span></code>.</p>
 <p>El atributo de <code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">description:</span></code> es tomado por defecto por truncamiento del primer
-párrafo de la publicación (esto se usa en los metadatos de la publicación).</p>
+párrafo de la publicación (esto se usa en los metadatos de la publicación), pero también
+podemos dejarlo si lo queremos personalizado (esto se hace con la extensión de open-graph).</p>
 <p>El caso de <code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">link:</span></code> se debe convertir en <code class="docutils literal notranslate"><span class="pre">:external_link:</span></code>.</p>
 <p>Para la las actualizaciones, esto en lugar de ser un atributo, pasa a ser una
 anotación con marca de tiempo, pero con información de contexto.</p>

@@ -73,7 +73,8 @@ número asociado en orden de aparición en la publicación. Esto se puede dejar 
 por defecto acorde a la variable en el archivo de configuración de `post_auto_image`.
 
 El atributo de `.. description:` es tomado por defecto por truncamiento del primer
-párrafo de la publicación (esto se usa en los metadatos de la publicación).
+párrafo de la publicación (esto se usa en los metadatos de la publicación), pero también
+podemos dejarlo si lo queremos personalizado (esto se hace con la extensión de open-graph).
 
 El caso de `.. link:` se debe convertir en `:external_link:`.
 

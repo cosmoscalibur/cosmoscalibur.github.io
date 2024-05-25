@@ -18,6 +18,7 @@
 <meta property="og:image:alt" content="Por fin he dado el paso de retomar el blog, y con ello un proceso de migración que deseaba, generar el blog con Sphinx. Sobre este proceso les estaré contand..." />
 <meta name="description" content="Por fin he dado el paso de retomar el blog, y con ello un proceso de migración que deseaba, generar el blog con Sphinx. Sobre este proceso les estaré contando en varias entradas, ya que la migració..." />
 <meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:creator" content="@cosmoscalibur" />
 
     <title>Crear un blog con Sphinx &#8212; Cosmoscalibur</title>
   
@@ -43,6 +44,7 @@
     <link rel="stylesheet" type="text/css" href="../../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/tippy.css?v=51a9431c" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="../../../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
@@ -56,19 +58,9 @@
     <script src="../../../../_static/copybutton.js?v=f281be69"></script>
     <script src="../../../../_static/translations.js?v=efdbd0b9"></script>
     <script src="../../../../_static/design-tabs.js?v=36754332"></script>
-    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-4YFQBC69LB"></script>
-    <script>
-                window.dataLayer = window.dataLayer || [];
-                function gtag(){ dataLayer.push(arguments); }
-                gtag('js', new Date());
-                gtag('config', 'G-4YFQBC69LB');
-            </script>
-    <script>
-                window.dataLayer = window.dataLayer || [];
-                function gtag(){ dataLayer.push(arguments); }
-                gtag('js', new Date());
-                gtag('config', 'G-4YFQBC69LB');
-            </script>
+    <script defer="defer" src="https://unpkg.com/@popperjs/core@2"></script>
+    <script defer="defer" src="https://unpkg.com/tippy.js@6"></script>
+    <script defer="defer" src="../../../../_static/tippy/es/blog/2024/crear-un-blog-con-sphinx.c4a18a57-a73d-44f0-ba17-ce0869b07daa.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'es/blog/2024/crear-un-blog-con-sphinx';</script>
     <link rel="canonical" href="https://www.cosmoscalibur.com/es/blog/2024/crear-un-blog-con-sphinx.html" />
     <link rel="index" title="Índice" href="../../../../genindex/" />
@@ -363,6 +355,15 @@ document.write(`
 <ul>
   <div class="ablog-sidebar-item ablog__postcard2">
 
+<li id="published">
+  <span>
+    
+    <i class="fa fa-fw fa-edit"></i>
+    
+    </span>
+  2024-05-25
+</li>
+
 
 <li id="ablog-sidebar-item author ablog__author">
   <span>
@@ -406,13 +407,13 @@ document.write(`
     </span>
   
   
+  <a href="../../../../blog/tag/ablog/">ablog</a>
+  
+  
+  
+  
+  
   <a href="../../../../blog/tag/sitio-estatico/">sitio estático</a>
-  
-  
-  
-  
-  
-  <a href="../../../../blog/tag/pydata/">pydata</a>
   
   
   
@@ -424,7 +425,7 @@ document.write(`
   
   
   
-  <a href="../../../../blog/tag/python/">python</a>
+  <a href="../../../../blog/tag/pydata/">pydata</a>
   
   
   
@@ -436,7 +437,7 @@ document.write(`
   
   
   
-  <a href="../../../../blog/tag/ablog/">ablog</a>
+  <a href="../../../../blog/tag/python/">python</a>
   
   
   
@@ -670,17 +671,17 @@ Esto me encanta, porque será natural publicar notas sobre código con sus resul
 internacionalización que deseo, tendré que cambiarlo en el futuro.</p>
 <p>Copy button nos ayudará a crear la opción de copiar al portapapeles los bloques
 de código.</p>
+<p>Y finalmente, Tippy, me encanta la opción de mostrar un <em>hover</em> sobre los enlaces.</p>
 <p>Con estos detalles, nuestro archivo <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code> lucirá de la siguiente forma:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Generación estática blog</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Generación estática blog y tema</span>
 <span class="n">sphinx</span>
 <span class="n">ablog</span>
-
-<span class="c1"># Tema y componentes</span>
 <span class="n">pydata</span><span class="o">-</span><span class="n">sphinx</span><span class="o">-</span><span class="n">theme</span>
+
+<span class="c1"># Componentes</span>
 <span class="n">sphinx</span><span class="o">-</span><span class="n">design</span>
 <span class="n">sphinx</span><span class="o">-</span><span class="n">copybutton</span>
-
-<span class="c1"># Mostrar Youtube</span>
+<span class="n">sphinx</span><span class="o">-</span><span class="n">tippy</span>
 <span class="n">sphinxcontrib</span><span class="o">-</span><span class="n">youtube</span>
 
 <span class="c1"># Metadatos para compartir en redes</span>
@@ -691,6 +692,7 @@ de código.</p>
 <span class="c1"># Soporte de Markdown y Notebook</span>
 <span class="n">myst</span><span class="o">-</span><span class="n">parser</span>
 <span class="n">jupyterlab</span>
+<span class="n">jupyterlab_myst</span>
 <span class="n">myst</span><span class="o">-</span><span class="n">nb</span>
 </pre></div>
 </div>
@@ -720,6 +722,7 @@ para ayudar en el renderizado en el Notebook mientras redactamos.</p>
 <li><p class="sd-card-text">Jupyter: Para manipular notebooks</p></li>
 <li><p class="sd-card-text">Emoji: Para insertar emoji con la paleta de comandos 😀</p></li>
 <li><p class="sd-card-text">Spell Right: Para corrección de ortografía.</p></li>
+<li><p class="sd-card-text">Font Awesome Gallery: Para buscar la notación de los íconos <span class="fa fa-rocket"></span></p></li>
 </ul>
 </div>
 </details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
@@ -772,8 +775,14 @@ usaremos el tema de PyData y podemos retirar alabaster del <em>import</em>.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">html_theme</span> <span class="o">=</span> <span class="s1">&#39;pydata_sphinx_theme&#39;</span>
 </pre></div>
 </div>
-<p>Para incluir los metadatos de OpenGraph, añadiremos la dirección base.</p>
+<p>Para incluir los metadatos de OpenGraph, añadiremos la dirección base y podemos
+añadir marcas personalizadas. Así, que aprovecharé a incluir la de creador para
+Twitter <span class="fa fa-twitter-square"></span> (ahora X), y la especificación de tipo viene por defecto
+en <code class="docutils literal notranslate"><span class="pre">summary_large_image</span></code> (esto no encontré como cambiarlo).</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ogp_site_url</span> <span class="o">=</span> <span class="s1">&#39;https://www.cosmoscalibur.com&#39;</span>
+<span class="n">ogp_custom_meta_tags</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;&lt;meta name=&quot;twitter:creator&quot; content=&quot;@cosmoscalibur&quot; /&gt;&#39;</span><span class="p">,</span>
+<span class="p">]</span>
 </pre></div>
 </div>
 <p>Para configurar el idioma por defecto, usamos la variable respectiva con el
@@ -804,10 +813,24 @@ agregar archivos directamente al raíz del despliegue (por ejemplo, para añadir
 el archivo CNAME).</p>
 <p>Importante para la generación con GitHub Pages, el directorio de salida debe
 ser <code class="docutils literal notranslate"><span class="pre">docs</span></code>.</p>
+<p>Para usar <em>tippy</em> necesitamos incluir un ajuste de CSS, pero esto es dependiente
+del tema. En Pydata es</p>
+<div class="highlight-css notranslate"><div class="highlight"><pre><span></span><span class="p">.</span><span class="nc">tippy-box</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">background-color</span><span class="p">:</span><span class="nf">var</span><span class="p">(</span><span class="nv">--pst-color-surface</span><span class="p">);</span>
+<span class="w">    </span><span class="k">color</span><span class="p">:</span><span class="nf">var</span><span class="p">(</span><span class="nv">--pst-color-text-base</span><span class="p">);</span>
+<span class="w">    </span><span class="k">border</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="kt">px</span><span class="w"> </span><span class="kc">solid</span><span class="w"> </span><span class="nf">var</span><span class="p">(</span><span class="nv">--pst-color-border</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Finalmente, las variables de configuración en <code class="docutils literal notranslate"><span class="pre">conf.py</span></code>.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">templates_path</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;templates&#39;</span><span class="p">]</span>
 <span class="n">html_static_path</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;static&#39;</span><span class="p">]</span>
 <span class="n">html_extra_path</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;files&#39;</span><span class="p">]</span>
 <span class="n">ablog_website</span> <span class="o">=</span> <span class="s1">&#39;docs&#39;</span>
+
+<span class="n">html_css_files</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;tippy.css&#39;</span><span class="p">]</span>
+<span class="n">tippy_skip_anchor_classes</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;headerlink&quot;</span><span class="p">,</span> <span class="s2">&quot;sd-stretched-link&quot;</span><span class="p">,</span> <span class="s2">&quot;sd-rounded-pill&quot;</span><span class="p">)</span>
+<span class="n">tippy_anchor_parent_selector</span> <span class="o">=</span> <span class="s2">&quot;article.bd-article&quot;</span>
 </pre></div>
 </div>
 <p>Ahora vamos a definir los archivos que no deben ser procesados. Esto es
@@ -856,7 +879,8 @@ de Myst NB.</p>
     <span class="s2">&quot;sphinxcontrib.youtube&quot;</span><span class="p">,</span>
     <span class="s1">&#39;ablog&#39;</span><span class="p">,</span>
     <span class="s1">&#39;sphinx_sitemap&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;sphinx_copybutton&#39;</span>
+    <span class="s1">&#39;sphinx_copybutton&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;sphinx_tippy&#39;</span><span class="p">,</span>
 <span class="p">]</span>
 </pre></div>
 </div>
@@ -900,14 +924,17 @@ parte (PyData soporta también Plausible).</p>
 configuración del tema.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">html_theme_options</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s1">&#39;show_toc_level&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
-    <span class="s1">&#39;analytics&#39;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s1">&#39;google_analytics_id&#39;</span><span class="p">:</span> <span class="s1">&#39;G-XXXXXXXXXX&#39;</span>
-    <span class="p">},</span>
     <span class="s1">&#39;twitter_url&#39;</span><span class="p">:</span> <span class="s1">&#39;https://twitter.com/cosmoscalibur&#39;</span><span class="p">,</span>
     <span class="s1">&#39;github_url&#39;</span><span class="p">:</span> <span class="s1">&#39;https://github.com/cosmoscalibur/&#39;</span><span class="p">,</span>
 <span class="p">}</span>
+<span class="c1"># Después, esto servirá para separar local de desplegado con Action</span>
+<span class="n">html_theme_options</span><span class="p">[</span><span class="s1">&#39;analytics&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;google_analytics_id&#39;</span><span class="p">:</span> <span class="s1">&#39;G-4YFQBC69LB&#39;</span><span class="p">}</span>
 </pre></div>
 </div>
+<p>Hemos separado la línea de <em>analytics</em> con el fin de deshabilitarla
+fácilmente en pruebas, para que esto no afecte métricas (más adelante, el
+ideal es hacerlo con despliegue automático en GitHub Actions y así dependiente
+de una variable de entorno).</p>
 <p>Respecto a los paneles laterales, haremos la siguiente configuración de momento</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">html_sidebars</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s1">&#39;index&#39;</span><span class="p">:</span> <span class="p">[],</span>
@@ -1055,6 +1082,17 @@ queda algo de exploración todavía.</p>
 <li><p><a class="reference external" href="https://adriaanrol.com/posts/2023/sphinx_migration/">Migrating the website to Sphinx + ABlog</a></p></li>
 <li><p><a class="reference external" href="https://dailystuff.nl/blog/2021/migration-to-cloudflare-pages">Migration to Cloudflare Pages</a></p></li>
 </ul>
+<div class="note update admonition">
+<p class="admonition-title">Updated on 2024-05-25</p>
+<ul class="simple">
+<li><p>Se agrega información extra sobre open graph para incluir marca de creador.</p></li>
+<li><p>Se agrega Tippy para incluir <em>hover</em> en los enlaces (dependencia y extensión).</p></li>
+<li><p>Se incluye información sobre todas las extensiones de Myst Parser a la fecha.</p></li>
+<li><p>Se incluye extensión VSCode de Font Awesome Gallery.</p></li>
+<li><p>Explicación extra de analytics para deshabilitar en pruebas</p></li>
+<li><p>Se añaden más referencias.</p></li>
+</ul>
+</div>
 </section>
 </section>
 

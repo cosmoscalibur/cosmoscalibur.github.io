@@ -71,19 +71,20 @@ internacionalización que deseo, tendré que cambiarlo en el futuro.
 Copy button nos ayudará a crear la opción de copiar al portapapeles los bloques
 de código.
 
+Y finalmente, Tippy, me encanta la opción de mostrar un _hover_ sobre los enlaces.
+
 Con estos detalles, nuestro archivo `requirements.txt` lucirá de la siguiente forma:
 
 ```
-# Generación estática blog
+# Generación estática blog y tema
 sphinx
 ablog
-
-# Tema y componentes
 pydata-sphinx-theme
+
+# Componentes
 sphinx-design
 sphinx-copybutton
-
-# Mostrar Youtube
+sphinx-tippy
 sphinxcontrib-youtube
 
 # Metadatos para compartir en redes
@@ -94,6 +95,7 @@ sphinx-sitemap
 # Soporte de Markdown y Notebook
 myst-parser
 jupyterlab
+jupyterlab_myst
 myst-nb
 ```
 
@@ -120,6 +122,7 @@ Si usamos además VSCode, vale la pena las siguientes extensiones:
 - Jupyter: Para manipular notebooks
 - Emoji: Para insertar emoji con la paleta de comandos 😀
 - Spell Right: Para corrección de ortografía.
+- Font Awesome Gallery: Para buscar la notación de los íconos {fa}`rocket`
 :::
 
 :::{dropdown} Otros
@@ -172,10 +175,16 @@ usaremos el tema de PyData y podemos retirar alabaster del _import_.
 html_theme = 'pydata_sphinx_theme'
 ```
 
-Para incluir los metadatos de OpenGraph, añadiremos la dirección base.
+Para incluir los metadatos de OpenGraph, añadiremos la dirección base y podemos
+añadir marcas personalizadas. Así, que aprovecharé a incluir la de creador para
+Twitter {fa}`twitter-square` (ahora X), y la especificación de tipo viene por defecto
+en `summary_large_image` (esto no encontré como cambiarlo).
 
 ```python
 ogp_site_url = 'https://www.cosmoscalibur.com'
+ogp_custom_meta_tags = [
+    '<meta name="twitter:creator" content="@cosmoscalibur" />',
+]
 ```
 
 Para configurar el idioma por defecto, usamos la variable respectiva con el
@@ -213,11 +222,29 @@ el archivo CNAME).
 Importante para la generación con GitHub Pages, el directorio de salida debe
 ser `docs`.
 
+Para usar _tippy_ necesitamos incluir un ajuste de CSS, pero esto es dependiente
+del tema. En Pydata es
+
+:::{code-block} css
+
+.tippy-box {
+    background-color:var(--pst-color-surface);
+    color:var(--pst-color-text-base);
+    border: 1px solid var(--pst-color-border);
+}
+:::
+
+Finalmente, las variables de configuración en `conf.py`.
+
 ```python
 templates_path = ['templates']
 html_static_path = ['static']
 html_extra_path = ['files']
 ablog_website = 'docs'
+
+html_css_files = ['tippy.css']
+tippy_skip_anchor_classes = ("headerlink", "sd-stretched-link", "sd-rounded-pill")
+tippy_anchor_parent_selector = "article.bd-article"
 ```
 
 Ahora vamos a definir los archivos que no deben ser procesados. Esto es
@@ -273,7 +300,8 @@ extensions = [
     "sphinxcontrib.youtube",
     'ablog',
     'sphinx_sitemap',
-    'sphinx_copybutton'
+    'sphinx_copybutton',
+    'sphinx_tippy',
 ]
 ```
 
@@ -325,13 +353,17 @@ configuración del tema.
 :::{code} python
 html_theme_options = {
     'show_toc_level': 2,
-    'analytics': {
-        'google_analytics_id': 'G-XXXXXXXXXX'
-    },
     'twitter_url': 'https://twitter.com/cosmoscalibur',
     'github_url': 'https://github.com/cosmoscalibur/',
 }
+# Después, esto servirá para separar local de desplegado con Action
+html_theme_options['analytics'] = {'google_analytics_id': 'G-4YFQBC69LB'}
 :::
+
+Hemos separado la línea de _analytics_ con el fin de deshabilitarla
+fácilmente en pruebas, para que esto no afecte métricas (más adelante, el
+ideal es hacerlo con despliegue automático en GitHub Actions y así dependiente
+de una variable de entorno).
 
 Respecto a los paneles laterales, haremos la siguiente configuración de momento
 
@@ -499,3 +531,13 @@ De mi parte, algunos detalles que quiero próximamente
 - [Myst Parser](https://myst-parser.readthedocs.io/en/latest/)
 - [Migrating the website to Sphinx + ABlog](https://adriaanrol.com/posts/2023/sphinx_migration/)
 - [Migration to Cloudflare Pages](https://dailystuff.nl/blog/2021/migration-to-cloudflare-pages)
+
+:::{update} 2024-05-25
+
+- Se agrega información extra sobre open graph para incluir marca de creador.
+- Se agrega Tippy para incluir _hover_ en los enlaces (dependencia y extensión).
+- Se incluye información sobre todas las extensiones de Myst Parser a la fecha.
+- Se incluye extensión VSCode de Font Awesome Gallery.
+- Explicación extra de analytics para deshabilitar en pruebas
+- Se añaden más referencias.
+:::
