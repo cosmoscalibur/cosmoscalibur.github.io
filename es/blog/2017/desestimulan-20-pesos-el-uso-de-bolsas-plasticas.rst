@@ -3,6 +3,7 @@
 :tags: impuesto verde, bolsas plásticas, colombia, medio ambiente
 :category: opinión
 :author: Edward Villegas-Pulgarin
+:language: es
 
 
 ¿Desestimulan 20 pesos el uso de bolsas plásticas?

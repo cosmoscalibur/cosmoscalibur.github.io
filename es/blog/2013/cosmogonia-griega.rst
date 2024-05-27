@@ -3,6 +3,7 @@
 :tags: cosmogonía griega, mitología griega, arqueoastronomía, historia de la astronomía, cosmología
 :category: ciencia
 :author: Edward Villegas-Pulgarin
+:language: es
 
 Cosmogonía griega
 =================

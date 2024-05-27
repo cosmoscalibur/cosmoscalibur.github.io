@@ -3,6 +3,7 @@
 :tags: windows, linux, wsl, wsl2, ubuntu, windows subsystem for linux
 :category: tecnología
 :author: Edward Villegas-Pulgarin
+:language: es
 
 Usar Ubuntu en Windows con WSL2
 ===============================

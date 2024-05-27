@@ -3,6 +3,7 @@
 :tags: cosmogonía griega, mitología griega, cosmología, arjé, historia de la astronomía, arqueoastronomía
 :category: ciencia
 :author: Edward Villegas-Pulgarin
+:language: es
 
 Orden y origen del cosmos griego
 ================================

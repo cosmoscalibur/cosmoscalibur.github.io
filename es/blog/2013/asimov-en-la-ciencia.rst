@@ -3,6 +3,7 @@
 :tags: ciencia ficción, isaac asimov, literatura, biografías, química
 :category: ciencia
 :author: Edward Villegas-Pulgarin
+:language: es
 
 Asimov en la ciencia
 ====================

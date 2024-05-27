@@ -1,8 +1,9 @@
 :redirect: blog/sectores-que-se-ven-afectados-por-blockchain-sector-inmobiliario
 :date: 2020-03-01
 :tags: blockchain, transformación digital
-:category: opinión/mitpeonline/transformación digital
+:category: opinión, mitpeonline transformación digital
 :author: Edward Villegas-Pulgarin
+:language: es
 
 Sectores que se ven afectados por blockchain: sector inmobiliario
 =================================================================
@@ -40,7 +41,7 @@ reformas necesarias legales podría suceder) [3_].
 Otras publicaciones basadas en el curso de transformación digital:
 
 .. postlist::
-   :category: opinión/mitpeonline/transformación digital
+   :category: mitpeonline transformación digital
    :excerpts:
 
 .. [1] `¿Qué aporta el blockchain al sector inmobiliario? <https://www.pisos.com/aldia/que-aporta-el-blockchain-al-sector-inmobiliario/1628532/>`_.

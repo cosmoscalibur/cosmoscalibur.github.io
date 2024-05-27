@@ -1,8 +1,9 @@
 :redirect: blog/cumple-28-perfecto-triangular-y-hexagonal
 :date: 2018-04-01
-:tags: números, número perfecto, número triangular, número hexagonal
-:category: ciencia/matemáticas
+:tags: números, número perfecto, número triangular, número hexagonal, matemáticas
+:category: ciencia
 :author: Edward Villegas-Pulgarin
+:language: es
 
 
 Cumple 28: perfecto, triangular y hexagonal
@@ -55,7 +56,7 @@ Tal como menciona el mensaje indicado al inicio, el siguiente está alrededor de
 
 n = 6
     Hallamos inicialmente los divisores propios de 6, que corresponde a: 1, 2 y
-    3. A continuación: :math:`1+2+3=6` Como es igual, 6 es un número perfecto.
+    1. A continuación: :math:`1+2+3=6` Como es igual, 6 es un número perfecto.
 n = 28
     Hallamos nuevamente los divisores propios positivos: 1, 2, 4, 7 y 14. Y
     realizamos su suma: :math:`1+2+4+7+14=28`. Por lo cual, es número perfecto.

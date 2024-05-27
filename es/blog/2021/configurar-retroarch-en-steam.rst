@@ -1,8 +1,9 @@
 :redirect: blog/configurar-retroarch-en-steam
 :date: 2021-12-14
 :tags: steam, retroarch, libretro, gaming, linux, controles, videojuegos, emuladores
-:category: tecnología/videojuegos
+:category: tecnología
 :author: Edward Villegas-Pulgarin
+:language: es
 
 Configurar RetroArch en Steam
 =============================

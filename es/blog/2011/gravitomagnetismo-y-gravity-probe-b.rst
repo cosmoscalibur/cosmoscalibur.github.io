@@ -3,6 +3,7 @@
 :tags: astrofísica, relatividad general, gravedad
 :category: ciencia
 :author: Edward Villegas-Pulgarin
+:language: es
 
 Gravitomagnetismo y Gravity Probe B
 ===================================

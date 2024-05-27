@@ -3,6 +3,7 @@
 :tags: materiales, piezoeléctricos, dispositivos móviles, energía
 :category: tecnología
 :author: Edward Villegas-Pulgarin
+:language: es
 
 Energía alternativa para dispositivos móviles
 =============================================

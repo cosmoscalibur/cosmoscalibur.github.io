@@ -3,6 +3,7 @@
 :tags: linux, linux mint, paquetes snap, instalación de software, gestor de paquetes
 :category: tecnología
 :author: Edward Villegas-Pulgarin
+:language: es
 
 Instalar paquetes snap en Linux Mint 20
 =======================================

@@ -3,6 +3,7 @@
 :tags: bibliometría, rodrigo bernal, raúl cuero, colombia
 :category: opinión
 :author: Edward Villegas-Pulgarin
+:language: es
 
 El debate Cuero - Bernal
 ========================

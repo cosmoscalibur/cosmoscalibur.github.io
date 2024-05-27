@@ -1,8 +1,9 @@
 :redirect: blog/nuestra-nariz-mas-vieja-que-los-pies
 :date: 2010-12-17
-:tags: relatividad general, curiosidades, tiempo, gravedad
-:category: ciencia/curiosidades físicas
+:tags: relatividad general, física, tiempo, gravedad
+:category: ciencia, curiosidades físicas
 :author: Edward Villegas-Pulgarin
+:language: es
 
 Nuestra nariz más vieja que los pies
 ====================================

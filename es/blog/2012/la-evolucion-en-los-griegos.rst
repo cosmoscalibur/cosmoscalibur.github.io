@@ -1,8 +1,9 @@
 :redirect: blog/la-evolucion-en-los-griegos
 :date: 2012-05-13
-:tags: cosmogonía griega, mitología griega, evolución
-:category: ciencia/astronomía
+:tags: cosmogonía griega, mitología griega, evolución, historia de la astronomía
+:category: ciencia
 :author: Edward Villegas-Pulgarin
+:language: es
 
 La evolución en los griegos
 ===========================

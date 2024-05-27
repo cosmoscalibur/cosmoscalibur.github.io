@@ -3,6 +3,7 @@
 :tags: disco duro, estado sólido, ssd, hardware
 :category: tecnología
 :author: Edward Villegas-Pulgarin
+:language: es
 
 SSD
 ===

@@ -3,6 +3,7 @@
 :tags: python, sphinx, documentación, restructuredtext, generador de documentación
 :category: tecnología
 :author: Edward Villegas-Pulgarin
+:language: es
 
 Crear documentación de un proyecto Python con Sphinx
 ====================================================

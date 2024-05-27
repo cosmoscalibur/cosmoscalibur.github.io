@@ -1,8 +1,9 @@
 :redirect: blog/resignacion
 :date: 2011-07-28
 :tags: amor, autoconversación, resignación, escritos, literatura
-:category: cultura y entretenimiento/la flecha temporal
+:category: cultura y entretenimiento, la flecha temporal
 :author: Edward Villegas-Pulgarin
+:language: es
 
 Resignación
 ===========

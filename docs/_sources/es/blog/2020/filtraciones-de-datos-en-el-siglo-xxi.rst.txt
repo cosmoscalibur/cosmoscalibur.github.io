@@ -1,8 +1,9 @@
 :redirect: blog/filtraciones-de-datos-en-el-siglo-xxi
 :date: 2020-04-09
 :tags: transformación digital, datos
-:category: opinión/mitpeonline/transformación digital
+:category: opinión, mitpeonline transformación digital
 :author: Edward Villegas-Pulgarin
+:language: es
 
 Filtraciones de datos en el siglo XXI
 =====================================
@@ -36,7 +37,7 @@ Estas medidas como se ha discutido en el curso no eliminan los riesgos, pero la
 toma de diversas medidas permite la reducción del riesgo.
 
 .. postlist::
-   :category: opinión/mitpeonline/transformación digital
+   :category: mitpeonline transformación digital
    :excerpts:
 
 9 Tips For Keeping Your Customer Data Secure https://www.decibelinsight.com/blog/9-privacy-tips-for-secure-customer-data

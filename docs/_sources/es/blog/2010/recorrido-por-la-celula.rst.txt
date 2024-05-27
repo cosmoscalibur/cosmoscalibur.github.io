@@ -3,6 +3,7 @@
 :tags: animación, célula, biología
 :category: ciencia
 :author: Edward Villegas-Pulgarin
+:language: es
 
 Recorrido por la célula
 =======================

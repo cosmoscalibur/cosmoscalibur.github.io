@@ -1,8 +1,9 @@
 :redirect: blog/sin-ti
 :date: 2011-07-28
 :tags: amor, soledad, poesía, escritos, literatura
-:category: cultura y entretenimiento/la flecha temporal
+:category: cultura y entretenimiento, la flecha temporal
 :author: Edward Villegas-Pulgarin
+:language: es
 
 Sin ti
 ======

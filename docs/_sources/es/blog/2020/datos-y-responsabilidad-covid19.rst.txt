@@ -3,6 +3,7 @@
 :tags: datos, responsabilidad, covid19, coronavirus, pandemia, colombia
 :category: opinión
 :author: Edward Villegas-Pulgarin
+:language: es
 
 
 Datos y responsabilidad: Covid19

@@ -3,6 +3,7 @@
 :tags: síntesis de voz, entretenimiento, manga, geek, software
 :category: tecnología
 :author: Edward Villegas-Pulgarin
+:language: es
 
 Cantante virtual sensación
 ==========================

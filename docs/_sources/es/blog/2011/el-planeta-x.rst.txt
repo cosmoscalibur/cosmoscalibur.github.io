@@ -3,6 +3,7 @@
 :tags: planeta x, sistema solar, planetas, astronomía
 :category: ciencia
 :author: Edward Villegas-Pulgarin
+:language: es
 
 El planeta X
 ============

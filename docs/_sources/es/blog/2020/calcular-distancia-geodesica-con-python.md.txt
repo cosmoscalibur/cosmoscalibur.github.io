@@ -4,6 +4,7 @@ date: 2020-05-10
 tags: python, gis, geoide, distancia geodésica, geopy
 category: tecnología
 author: Edward Villegas-Pulgarin
+language: es
 ---
 
 # Calcular distancia geodésica con Python

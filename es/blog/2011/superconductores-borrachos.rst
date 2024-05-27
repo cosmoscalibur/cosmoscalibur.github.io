@@ -3,6 +3,7 @@
 :tags: materiales, estado sólido, alcohol, superconductores
 :category: ciencia
 :author: Edward Villegas-Pulgarin
+:language: es
 
 Superconductores borrachos
 ==========================

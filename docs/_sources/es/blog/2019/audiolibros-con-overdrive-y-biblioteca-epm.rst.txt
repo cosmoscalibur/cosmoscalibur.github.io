@@ -3,6 +3,7 @@
 :tags: audiolibros, epm, overdrive, bibliotecas, android, aplicaciones android
 :category: cultura y entretenimiento
 :author: Edward Villegas-Pulgarin
+:language: es
 
 Audiolibros con Overdrive y Biblioteca EPM
 ==========================================

@@ -1,8 +1,9 @@
 :redirect: blog/caen-mis-parpados
 :date: 2012-11-29
 :tags: poesía, noche, escritos, literatura
-:category: cultura y entretenimiento/la flecha temporal
+:category: cultura y entretenimiento, la flecha temporal
 :author: Edward Villegas-Pulgarin
+:language: es
 
 Caen mis párpados
 =================

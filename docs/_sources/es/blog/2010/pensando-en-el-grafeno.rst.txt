@@ -1,8 +1,9 @@
 :redirect: blog/pensando-en-el-grafeno
 :date: 2010-12-10
-:tags: grafeno, materiales, estado sólido, mecánica cuántica
+:tags: grafeno, materiales, estado sólido, mecánica cuántica, física
 :category: ciencia
 :author: Edward Villegas-Pulgarin
+:language: es
 
 Pensando en el grafeno
 ======================

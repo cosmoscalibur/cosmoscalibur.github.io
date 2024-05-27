@@ -1,8 +1,9 @@
 :redirect: blog/la-vida
 :date: 2011-07-02
 :tags: vida, muerte, autoconversación, escritos, literatura
-:category: cultura y entretenimiento/la flecha temporal
+:category: cultura y entretenimiento, la flecha temporal
 :author: Edward Villegas-Pulgarin
+:language: es
 
 La Vida
 =======

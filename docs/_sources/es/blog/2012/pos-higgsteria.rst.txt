@@ -3,6 +3,7 @@
 :tags: bosón de higgs, física de partículas, lhc, partícula de dios
 :category: ciencia
 :author: Edward Villegas-Pulgarin
+:language: es
 
 Pos-higgsteria
 ==============

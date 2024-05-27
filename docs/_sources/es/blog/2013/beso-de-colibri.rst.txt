@@ -1,8 +1,9 @@
 :redirect: blog/beso-de-colibri
 :date: 2013-03-06
 :tags: amor, beso, poesía, escritos, literatura
-:category: cultura y entretenimiento/la flecha temporal
+:category: cultura y entretenimiento, la flecha temporal
 :author: Edward Villegas-Pulgarin
+:language: es
 
 Beso de colibrí
 ===============

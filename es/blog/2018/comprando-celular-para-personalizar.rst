@@ -1,8 +1,9 @@
 :redirect: blog/comprando-celular-para-personalizar
 :date: 2018-01-03
 :tags: celular, smartphone, android
-:category: tecnología/trucos para android
+:category: tecnología
 :author: Edward Villegas-Pulgarin
+:language: es
 
 Comprando celular para personalizar
 ===================================

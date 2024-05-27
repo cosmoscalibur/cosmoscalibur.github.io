@@ -1,8 +1,9 @@
 :redirect: blog/iot-merece-la-pena-asumir-los-riesgos
 :date: 2020-04-09
 :tags: internet de las cosas, iot, transformación digital
-:category: opinión/mitpeonline/transformación digital
+:category: opinión, mitpeonline transformación digital
 :author: Edward Villegas-Pulgarin
+:language: es
 
 IoT ¿Merece la pena asumir los riesgos?
 =======================================
@@ -24,7 +25,7 @@ atenuarse con una adecuada preparación de los protocolos usados, la continua
 actualización de software y la selección de las tecnologías.
 
 .. postlist::
-   :category: opinión/mitpeonline/transformación digital
+   :category: mitpeonline transformación digital
    :excerpts:
 
 IoT Vulnerabilities & Risk Mitigation. https://www.iotforall.com/mitigate-iot-security-risks/

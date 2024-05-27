@@ -1,8 +1,9 @@
 :redirect: blog/seguridad-vs-flexibilidad-del-computo-en-nube
 :date: 2020-03-14
 :tags: computación en nube, xaas, transformación digital
-:category: opinión/mitpeonline/transformación digital
+:category: opinión, mitpeonline transformación digital
 :author: Edward Villegas-Pulgarin
+:language: es
 
 Seguridad vs flexibilidad del cómputo en nube
 =============================================
@@ -35,7 +36,7 @@ información mediante la red redundante del proveedor [3_, 5_].
 Otras publicaciones basadas en el curso de transformación digital:
 
 .. postlist::
-   :category: opinión/mitpeonline/transformación digital
+   :category: mitpeonline transformación digital
    :excerpts:
 
 .. [1] XaaS: create your own adventure. BBVA API Market. 14 de marzo de 2020.

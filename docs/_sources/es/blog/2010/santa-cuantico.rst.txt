@@ -1,8 +1,9 @@
 :redirect: blog/santa-cuantico
 :date: 2010-12-21
-:tags: navidad, santa claus, papá noel, mecánica cuántica
-:category: ciencia/curiosidades físicas
+:tags: navidad, santa claus, papá noel, mecánica cuántica, física
+:category: ciencia, curiosidades físicas
 :author: Edward Villegas-Pulgarin
+:language: es
 
 Santa cuántico
 ==============

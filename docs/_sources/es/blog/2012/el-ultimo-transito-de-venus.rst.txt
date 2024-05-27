@@ -3,6 +3,7 @@
 :tags: tránsito de venus, planetas, efemérides astronómicas, astronomía
 :category: ciencia
 :author: Edward Villegas-Pulgarin
+:language: es
 
 El último tránsito de Venus
 ===========================

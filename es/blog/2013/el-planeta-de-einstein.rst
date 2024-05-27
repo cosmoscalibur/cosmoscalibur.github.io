@@ -3,6 +3,7 @@
 :tags: exoplanetas, astronomía, kepler-76b, relatividad especial, planetas
 :category: ciencia
 :author: Edward Villegas-Pulgarin
+:language: es
 
 El planeta de Einstein
 ======================

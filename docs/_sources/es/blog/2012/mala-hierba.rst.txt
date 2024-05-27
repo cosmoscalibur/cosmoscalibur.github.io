@@ -1,8 +1,9 @@
 :redirect: blog/mala-hierba
 :date: 2012-10-03
 :tags: poesía, escritos, literatura
-:category: cultura y entretenimiento/la flecha temporal
+:category: cultura y entretenimiento, la flecha temporal
 :author: Edward Villegas-Pulgarin
+:language: es
 
 Mala hierba
 ===========

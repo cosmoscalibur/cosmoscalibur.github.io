@@ -1,8 +1,9 @@
 :redirect: blog/problemas-de-audio-en-moto-g5
 :date: 2018-01-04
 :tags: android, motorola, celulares, smartphone, audio, moto g5
-:category: tecnología/trucos para android
+:category: tecnología
 :author: Edward Villegas-Pulgarin
+:language: es
 
 Problemas de audio en Moto G5
 =============================

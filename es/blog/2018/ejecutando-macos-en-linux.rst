@@ -1,8 +1,9 @@
 :redirect: blog/ejecutando-macos-en-linux
 :date: 2018-01-18
 :tags: linux, macos, máquina virtual, hackintosh, emulación
-:category: tecnología/software
+:category: tecnología
 :author: Edward Villegas-Pulgarin
+:language: es
 
 Ejecutando macOS en Linux
 =========================

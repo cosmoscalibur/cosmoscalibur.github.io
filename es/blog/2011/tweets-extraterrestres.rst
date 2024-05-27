@@ -3,6 +3,7 @@
 :tags: nasa, twitter, iss, exploración espacial, internet
 :category: tecnología
 :author: Edward Villegas-Pulgarin
+:language: es
 
 Tweets extraterrestres
 ======================

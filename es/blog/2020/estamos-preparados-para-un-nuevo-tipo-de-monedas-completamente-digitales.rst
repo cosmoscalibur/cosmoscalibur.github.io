@@ -1,8 +1,9 @@
 :redirect: blog/estamos-preparados-para-un-nuevo-tipo-de-monedas-completamente-digitales
 :date: 2020-03-01
 :tags: criptomonedas, blockchain, monedas digitales, transformación digital
-:category: opinión/mitpeonline/transformación digital
+:category: opinión, mitpeonline transformación digital
 :author: Edward Villegas-Pulgarin
+:language: es
 
 ¿Estamos preparados para un nuevo tipo de monedas, completamente digitales?
 ===========================================================================
@@ -44,7 +45,7 @@ habilitador [10_], tenga pronto resultados.
 Otras publicaciones basadas en el curso de transformación digital:
 
 .. postlist::
-   :category: opinión/mitpeonline/transformación digital
+   :category: mitpeonline transformación digital
    :excerpts:
 
 .. [1] `Las transacciones digitales representaron 8,5% del PIB de Colombia para 2018 <https://www.larepublica.co/empresas/las-transacciones-digitales-representaron-85-del-pib-de-colombia-para-2018-2891715>`_.

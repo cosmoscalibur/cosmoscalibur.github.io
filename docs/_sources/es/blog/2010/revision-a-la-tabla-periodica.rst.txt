@@ -3,6 +3,7 @@
 :tags: química, tabla periódica
 :category: ciencia
 :author: Edward Villegas-Pulgarin
+:language: es
 
 Revisión a la tabla periódica
 =============================

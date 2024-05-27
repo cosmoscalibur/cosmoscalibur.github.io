@@ -3,6 +3,7 @@
 :tags: contenedor, lxc, lxd, linux, wine, enterprise architect, ealite
 :category: tecnología
 :author: Edward Villegas-Pulgarin
+:language: es
 
 Crear contenedor LXC para aplicación GUI - EALite
 =================================================

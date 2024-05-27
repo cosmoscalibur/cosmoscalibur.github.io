@@ -3,6 +3,7 @@
 :tags: msmg toolkit, microsoft windows
 :category: tecnología
 :author: Edward Villegas-Pulgarin
+:language: es
 
 Crear versión de Windows mínima con MSMG Toolkit
 ================================================

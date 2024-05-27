@@ -3,6 +3,7 @@
 :tags: blog, nikola, amazon, disqus, facebook, comentarios, publicidad, adsense
 :category: tecnología
 :author: Edward Villegas-Pulgarin
+:language: es
 
 Reformas del blog: Parte 1
 ==========================

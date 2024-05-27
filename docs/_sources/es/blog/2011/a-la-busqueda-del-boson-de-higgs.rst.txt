@@ -3,6 +3,7 @@
 :tags: bosón de higgs, lhc, física de partículas, partícula de dios
 :category: ciencia
 :author: Edward Villegas-Pulgarin
+:language: es
 
 A la búsqueda del bosón de Higgs
 ================================

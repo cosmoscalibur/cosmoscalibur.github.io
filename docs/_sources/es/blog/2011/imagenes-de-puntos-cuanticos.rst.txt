@@ -3,6 +3,7 @@
 :tags: fotónica, puntos cuánticos
 :category: tecnología
 :author: Edward Villegas-Pulgarin
+:language: es
 
 Imágenes de puntos cuánticos
 ============================

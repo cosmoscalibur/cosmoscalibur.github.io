@@ -3,6 +3,7 @@
 :tags: transmisión de video, netflix, aplicaciones android, extensiones de chrome
 :category: tecnología
 :author: Edward Villegas-Pulgarin
+:language: es
 
 Ver Netflix juntos pero separados
 =================================

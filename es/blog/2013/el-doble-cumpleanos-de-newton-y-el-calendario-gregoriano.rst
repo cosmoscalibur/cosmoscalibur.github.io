@@ -3,6 +3,7 @@
 :tags: isaac newton, calendario, historia, navidad
 :category: ciencia
 :author: Edward Villegas-Pulgarin
+:language: es
 
 El doble cumpleaños de Newton y el calendario gregoriano
 ========================================================

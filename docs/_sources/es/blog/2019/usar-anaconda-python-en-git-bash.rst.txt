@@ -3,6 +3,7 @@
 :tags: git, anaconda python, git bash, instalación de software, gestor de paquetes, conda
 :category: tecnología
 :author: Edward Villegas-Pulgarin
+:language: es
 
 Usar Anaconda Python en Git Bash
 ================================

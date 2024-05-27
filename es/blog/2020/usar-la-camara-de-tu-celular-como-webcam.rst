@@ -3,6 +3,7 @@
 :tags: linux, android, webcam, cámara, droidcam, aplicaciones android
 :category: tecnología
 :author: Edward Villegas-Pulgarin
+:language: es
 
 Usar la cámara de tu celular como webcam
 ========================================

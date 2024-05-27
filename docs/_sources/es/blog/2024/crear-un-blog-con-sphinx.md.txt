@@ -1,8 +1,9 @@
 ---
 date: 2024-05-16
 tags: blog, sphinx, python, ablog, pydata, sitio estático
-category: tecnología
+category: tecnología, blog con sphinx
 author: Edward Villegas-Pulgarin
+language: es
 ---
 
 # Crear un blog con Sphinx
@@ -456,6 +457,7 @@ no es necesario seguir las directivas sino el _front matter_, ejemplo:
 :tags: steam, retroarch, libretro, gaming, linux, controles, videojuegos, emuladores
 :category: tecnología/videojuegos
 :author: Edward Villegas-Pulgarin
+:language: es
 :::
 ::::
 
@@ -467,6 +469,7 @@ date: 2024-05-14
 tags: blog, sphinx, python, ablog, pydata
 category: tecnología
 author: Edward Villegas-Pulgarin
+language: es
 ---
 :::
 ::::

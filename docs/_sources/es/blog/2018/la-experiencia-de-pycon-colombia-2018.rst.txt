@@ -1,8 +1,9 @@
 :redirect: blog/la-experiencia-de-pycon-colombia-2018
 :date: 2018-02-18
 :tags: python, pycon colombia, conferencias, eventos
-:category: tecnología/programación
+:category: tecnología
 :author: Edward Villegas-Pulgarin
+:language: es
 
 La experiencia de PyCon Colombia 2018
 =====================================

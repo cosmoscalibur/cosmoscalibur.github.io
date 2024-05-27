@@ -1,8 +1,9 @@
 :redirect: blog/con-calma-para-steamos
 :date: 2014-04-20
 :tags: linux, steamos, videojuegos, steam
-:category: tecnología/videojuegos
+:category: tecnología
 :author: Edward Villegas-Pulgarin
+:language: es
 
 Con calma para SteamOS
 ======================

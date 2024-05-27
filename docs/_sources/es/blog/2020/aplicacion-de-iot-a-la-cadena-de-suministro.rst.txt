@@ -1,8 +1,9 @@
 :redirect: blog/aplicacion-de-iot-a-la-cadena-de-suministro
 :date: 2020-04-09
 :tags: internet de las cosas, iot, transformación digital
-:category: opinión/mitpeonline/transformación digital
+:category: opinión, mitpeonline transformación digital
 :author: Edward Villegas-Pulgarin
+:language: es
 
 Aplicación de IoT a la cadena de suministro
 ===========================================
@@ -26,7 +27,7 @@ escenarios y previsión de escenarios futuros, creando así una estrategia que
 asegure ventajas competitivas.
 
 .. postlist::
-   :category: opinión/mitpeonline/transformación digital
+   :category: mitpeonline transformación digital
 
 Role of Data Analytics in Internet of Things (IoT) https://www.fingent.com/blog/role-of-data-analytics-in-internet-of-things-iot
 

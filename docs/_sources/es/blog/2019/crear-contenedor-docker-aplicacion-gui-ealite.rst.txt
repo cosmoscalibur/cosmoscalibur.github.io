@@ -3,6 +3,7 @@
 :tags: contenedor, docker, linux, wine, enterprise architect, ealite
 :category: tecnología
 :author: Edward Villegas-Pulgarin
+:language: es
 
 Crear contenedor Docker aplicación GUI - EALite
 ===============================================

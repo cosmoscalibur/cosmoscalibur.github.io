@@ -3,6 +3,7 @@
 :tags: afm, microscopía, nanotecnología, fuerza atómica, ibm
 :category: tecnología
 :author: Edward Villegas-Pulgarin
+:language: es
 
 Viendo carga molecular
 ======================

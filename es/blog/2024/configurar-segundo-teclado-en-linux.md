@@ -3,6 +3,7 @@ date: 2024-05-19
 tags: linux, xinput, teclado usb, configuración lenguaje, setxkbmap
 category: tecnología
 author: Edward Villegas-Pulgarin
+language: es
 ---
 
 # Configurar segundo teclado en Linux

@@ -3,6 +3,7 @@
 :tags: python, anaconda python, instalación de software, gestor de paquetes, conda
 :category: tecnología
 :author: Edward Villegas-Pulgarin
+:language: es
 
 Instalar Anaconda Python
 ========================

@@ -1,8 +1,9 @@
 :redirect: blog/amarte
 :date: 2011-01-15
 :tags: amor, autoconversación, escritos, literatura
-:category: cultura y entretenimiento/la flecha temporal
+:category: cultura y entretenimiento, la flecha temporal
 :author: Edward Villegas-Pulgarin
+:language: es
 
 Amarte
 ======

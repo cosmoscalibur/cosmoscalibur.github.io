@@ -3,6 +3,7 @@
 :tags: arn, investigación, videojuegos, simulación, biología
 :category: ciencia
 :author: Edward Villegas-Pulgarin
+:language: es
 
 EteRNA
 ======

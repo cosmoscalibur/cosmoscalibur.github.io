@@ -3,6 +3,7 @@
 :tags: español, topónimos, rla-es, diccionario, corrector de ortografía, software libre, colombia, hunspell
 :category: tecnología
 :author: Edward Villegas-Pulgarin
+:language: es
 
 Topónimos colombianos en RLA-ES
 ===============================

@@ -3,6 +3,7 @@
 :tags: marte, planetas, exploración espacial, agua, astronomía
 :category: ciencia
 :author: Edward Villegas-Pulgarin
+:language: es
 
 Posibilidad de Agua Salada en Marte
 ===================================

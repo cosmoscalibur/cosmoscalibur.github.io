@@ -3,6 +3,7 @@
 :tags: cerebro, antropología, fósil, cerebro
 :category: ciencia
 :author: Edward Villegas-Pulgarin
+:language: es
 
 Cerebro prehistórico
 ====================

@@ -3,6 +3,7 @@
 :tags: terremoto, japón, alerta nuclear, geofísica, geología
 :category: ciencia
 :author: Edward Villegas-Pulgarin
+:language: es
 
 La Tierra cambio después del terremoto de Japón
 ===============================================

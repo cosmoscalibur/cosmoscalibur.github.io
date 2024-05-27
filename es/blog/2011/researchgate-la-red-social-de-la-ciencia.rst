@@ -3,6 +3,7 @@
 :tags: ciencia 2.0, redes sociales, researchgate, internet
 :category: ciencia
 :author: Edward Villegas-Pulgarin
+:language: es
 
 ResearchGate, la red social de la ciencia
 =========================================
