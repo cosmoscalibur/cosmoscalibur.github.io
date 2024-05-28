@@ -20,7 +20,8 @@ Publicaciones recientes:
 
 .. postlist:: 5
    :date: %Y-%m-%d
-   :format: ({date}) {title} 
+   :format: ({date}) {title}
+   :language: es
    :excerpts:
 
 .. `toctree` directive, below, contains list of non-post `.rst` files.

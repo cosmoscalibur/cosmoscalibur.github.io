@@ -74,8 +74,8 @@ fijas es tan distante que es imposible detectar paralaje.
 
 **Fuentes**
 
-1. `The cosmological ideas among the Greeks <http://articles.adsabs.harvard.edu//full/1916PA.....24..358M/0000358.000.html>`__. Hector MacPherson, Popular Astronomy, Vol. 24, p.358 (1916).
+1. `The cosmological ideas among the Greeks <http://articles.adsabs.harvard.edu//full/1916PA.....24..358M/0000358.000.html>`_. Hector MacPherson, Popular Astronomy, Vol. 24, p.358 (1916).
 
 2. :doc:`/es/blog/2012/la-evolucion-en-los-griegos`. Cosmoscalibur, Mayo 13 de 2012.
 
-3. `Arche <http://en.wikipedia.org/wiki/Arche>`__. Wikipedia (english version). June 18, 2013.
+3. `Arche <http://en.wikipedia.org/wiki/Arche>`_. Wikipedia (english version). June 18, 2013.

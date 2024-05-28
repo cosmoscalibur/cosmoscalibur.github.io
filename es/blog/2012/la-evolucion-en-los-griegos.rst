@@ -59,6 +59,6 @@ de evolución geológica a partir de la observación de fósiles.
 
 **Fuentes**
 
-1. `Early models of evolution <http://biology.clc.uc.edu/courses/bio106/earlymod.htm>`__. Biology 106 Course at Clerment College.
-2. `Arche <http://en.wikipedia.org/wiki/Arche>`__. Wikipedia (english version).
-3. `History of evolution <http://www.iep.utm.edu/evolutio/>`__. Internet Encyclopedia of Phylosophy.
+1. `Early models of evolution <http://biology.clc.uc.edu/courses/bio106/earlymod.htm>`_. Biology 106 Course at Clerment College.
+2. `Arche <http://en.wikipedia.org/wiki/Arche>`_. Wikipedia (english version).
+3. `History of evolution <http://www.iep.utm.edu/evolutio/>`_. Internet Encyclopedia of Phylosophy.
