@@ -385,6 +385,7 @@ caso de tener redireccionamiento, el tiempo en segundos para su ejecución.
 
 :::{code} python
 post_date_format = '%Y-%m-%d'
+post_date_format_short = '%Y-%m-%d'
 post_auto_excerpt = 1
 post_auto_image = 1
 post_redirect_refresh = 0
@@ -477,6 +478,22 @@ language: es
 :::::
 
 La sintaxis ya propia de MD y RST la puedes consultar. No es difícil.
+
+En mi caso, soy el único autor del blog y en general, publicaré en español, así
+que vale la pena definir el autor y lenguaje por defecto en el `conf.py`.
+
+:::{code-block} python
+
+blog_default_author = 'Edward'
+blog_authors = {
+    'Edward': ('Edward Villegas-Pulgarin', None),
+}
+blog_default_language = 'es'
+blog_languages = {
+    'es': ('Español', None),
+    'en': ('English', None),
+}
+:::
 
 ### Generación
 

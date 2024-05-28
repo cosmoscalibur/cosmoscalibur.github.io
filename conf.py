@@ -1,37 +1,50 @@
-# --- Ablog
+## --- Ablog ---
+
+# Blog
 blog_path = 'blog'
 blog_post_pattern = '*/blog/*/*'
 blog_title = 'Cosmoscalibur'
 blog_baseurl = 'https://www.cosmoscalibur.com/'
+blog_default_author = 'Edward'
+blog_authors = {
+    'Edward': ('Edward Villegas-Pulgarin', None),
+}
+blog_default_language = 'es'
+blog_languages = {
+    'es': ('Español', None),
+    'en': ('English', None),
+}
 
-# OpenGraph config
-ogp_site_url = 'https://www.cosmoscalibur.com'
-ogp_custom_meta_tags = [
-    '<meta name="twitter:creator" content="@cosmoscalibur" />',
-]
-
-# -- Blog Post Related --------------------------------------------------------
+# Post
 post_date_format = '%Y-%m-%d'
+post_date_format_short = '%Y-%m-%d'
 post_auto_excerpt = 1
 post_auto_image = 1
 post_redirect_refresh = 0
 
-# -- ABlog Sidebars -------------------------------------------------------
+# Feed
+blog_feed_fulltext = True
 
-# categories, tagcloud, archives, postcard, recentposts, authors, languages, locations
+# Font Awesome
+fontawesome_included = True
+
+## categories, tagcloud, archives, postcard, recentposts, authors, languages, locations
 html_sidebars = {
     'index': [],
     "blog": ["ablog/categories.html", "ablog/archives.html"],
     "*/blog/**": ["ablog/postcard.html", "ablog/recentposts.html", "ablog/archives.html"],
 }
+ablog_website = 'docs'
 
-# -- Blog Feed Options --------------------------------------------------------
 
-blog_feed_fulltext = True
+# --- Opengraph ---
+ogp_site_url = 'https://www.cosmoscalibur.com'
+ogp_custom_meta_tags = [
+    '<meta name="twitter:creator" content="@cosmoscalibur" />',
+]
 
-fontawesome_included = True
 
-# -- Sphinx Options -----------------------------------------------------------
+# --- Sphinx Options ---
 extensions = [
     'sphinx.ext.extlinks',
     'sphinx.ext.intersphinx',
@@ -68,8 +81,8 @@ myst_heading_anchors = 3
 
 # General information about the project.
 project = "Cosmoscalibur"
-copyright = "2024, Edward Villegas"
-author = "Edward Villegas"
+copyright = "2024, Edward Villegas-Pulgarin"
+author = "Edward Villegas-Pulgarin"
 language = 'es'
 
 # -- Options for HTML output ----------------------------------------------
@@ -80,7 +93,7 @@ html_theme_options = {
     'github_url': 'https://github.com/cosmoscalibur/',
 }
 # Después, esto servirá para separar local de desplegado con Action
-#html_theme_options['analytics'] = {'google_analytics_id': 'G-4YFQBC69LB'}
+html_theme_options['analytics'] = {'google_analytics_id': 'G-4YFQBC69LB'}
 html_title = 'Cosmoscalibur'
 html_short_title = 'Cosmoscalibur'
 
@@ -94,7 +107,6 @@ html_short_title = 'Cosmoscalibur'
 
 html_static_path = ['static']
 html_extra_path = ['files']
-ablog_website = 'docs'
 templates_path = ["templates"]
 exclude_patterns = [
     '_build',

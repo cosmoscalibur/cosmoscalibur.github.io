@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="es">
   <id>https://www.cosmoscalibur.com/</id>
   <title>Cosmoscalibur</title>
-  <updated>2024-05-27T04:14:27.120400+00:00</updated>
+  <updated>2024-05-28T02:59:20.528422+00:00</updated>
   <link href="https://www.cosmoscalibur.com/"/>
   <link href="https://www.cosmoscalibur.com/blog/atom.xml" rel="self"/>
   <generator uri="https://ablog.readthedocs.io/" version="0.11.8">ABlog</generator>
@@ -706,6 +706,7 @@ publicaciones). También podemos indicar cuántos párrafos serán usados en la
 descripción y cuál imagen considerar para la previsualización. Finalmente, en
 caso de tener redireccionamiento, el tiempo en segundos para su ejecución.&lt;/p&gt;
 &lt;div class="highlight-python notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;post_date_format&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;%Y-%m-&lt;/span&gt;&lt;span class="si"&gt;%d&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&lt;/span&gt;
+&lt;span class="n"&gt;post_date_format_short&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;%Y-%m-&lt;/span&gt;&lt;span class="si"&gt;%d&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&lt;/span&gt;
 &lt;span class="n"&gt;post_auto_excerpt&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
 &lt;span class="n"&gt;post_auto_image&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
 &lt;span class="n"&gt;post_redirect_refresh&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;
@@ -787,6 +788,19 @@ author: Edward Villegas-Pulgarin
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;p&gt;La sintaxis ya propia de MD y RST la puedes consultar. No es difícil.&lt;/p&gt;
+&lt;p&gt;En mi caso, soy el único autor del blog y en general, publicaré en español, así
+que vale la pena definir el autor y lenguaje por defecto en el &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;conf.py&lt;/span&gt;&lt;/code&gt;.&lt;/p&gt;
+&lt;div class="highlight-python notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;blog_default_author&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;Edward&amp;#39;&lt;/span&gt;
+&lt;span class="n"&gt;blog_authors&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="s1"&gt;&amp;#39;Edward&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Edward Villegas-Pulgarin&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="n"&gt;blog_default_language&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;es&amp;#39;&lt;/span&gt;
+&lt;span class="n"&gt;blog_languages&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="s1"&gt;&amp;#39;es&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Español&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+    &lt;span class="s1"&gt;&amp;#39;en&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;English&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
 &lt;/section&gt;
 &lt;section id="generacion"&gt;
 &lt;h3&gt;Generación&lt;/h3&gt;
@@ -2524,23 +2538,23 @@ es que a mayor riesgo existe la posibilidad de un mayor retorno.&lt;/p&gt;
 atenuarse con una adecuada preparación de los protocolos usados, la continua
 actualización de software y la selección de las tecnologías.&lt;/p&gt;
 &lt;ul class="postlist-style-none postlist"&gt;
-&lt;li class="ablog-post"&gt;&lt;p class="ablog-post-title"&gt;09 abril - &lt;a class="reference internal" href="../es/blog/2020/iot-merece-la-pena-asumir-los-riesgos/"&gt;IoT ¿Merece la pena asumir los riesgos?&lt;/a&gt;&lt;/p&gt;
+&lt;li class="ablog-post"&gt;&lt;p class="ablog-post-title"&gt;2020-04-09 - &lt;a class="reference internal" href="../es/blog/2020/iot-merece-la-pena-asumir-los-riesgos/"&gt;IoT ¿Merece la pena asumir los riesgos?&lt;/a&gt;&lt;/p&gt;
 &lt;p class="ablog-post-excerpt"&gt;Sigo con algunas publicaciones asociadas a participaciones en foro y ensayos
 que he realizado para el curso de transformación digital que estoy realizando
 por estas semanas. Esta vez, el tema es sobre si amerita asumir los riesgos
 asociados a la implementación de tecnologías &lt;em&gt;IoT&lt;/em&gt; (Internet de las Cosas).&lt;/p&gt;
 &lt;/li&gt;
-&lt;li class="ablog-post"&gt;&lt;p class="ablog-post-title"&gt;09 abril - &lt;a class="reference internal" href="../es/blog/2020/filtraciones-de-datos-en-el-siglo-xxi/"&gt;Filtraciones de datos en el siglo XXI&lt;/a&gt;&lt;/p&gt;
+&lt;li class="ablog-post"&gt;&lt;p class="ablog-post-title"&gt;2020-04-09 - &lt;a class="reference internal" href="../es/blog/2020/filtraciones-de-datos-en-el-siglo-xxi/"&gt;Filtraciones de datos en el siglo XXI&lt;/a&gt;&lt;/p&gt;
 &lt;p class="ablog-post-excerpt"&gt;Otra publicación sobre el curso de transformación digital. Esta vez, sobre la
 precauciones respecto a las filtraciones de datos. Son participaciones en foros
 del curso.&lt;/p&gt;
 &lt;/li&gt;
-&lt;li class="ablog-post"&gt;&lt;p class="ablog-post-title"&gt;09 abril - &lt;a class="reference internal" href="../es/blog/2020/aplicacion-de-iot-a-la-cadena-de-suministro/"&gt;Aplicación de IoT a la cadena de suministro&lt;/a&gt;&lt;/p&gt;
+&lt;li class="ablog-post"&gt;&lt;p class="ablog-post-title"&gt;2020-04-09 - &lt;a class="reference internal" href="../es/blog/2020/aplicacion-de-iot-a-la-cadena-de-suministro/"&gt;Aplicación de IoT a la cadena de suministro&lt;/a&gt;&lt;/p&gt;
 &lt;p class="ablog-post-excerpt"&gt;Otra publicación sobre el curso de transformación digital. Esta vez, sobre la
 aplicación de &lt;em&gt;IoT&lt;/em&gt; (Internet de las Cosas) a la cadena de suministro. Son
 participaciones en foros del curso.&lt;/p&gt;
 &lt;/li&gt;
-&lt;li class="ablog-post"&gt;&lt;p class="ablog-post-title"&gt;14 marzo - &lt;a class="reference internal" href="../es/blog/2020/seguridad-vs-flexibilidad-del-computo-en-nube/"&gt;Seguridad vs flexibilidad del cómputo en nube&lt;/a&gt;&lt;/p&gt;
+&lt;li class="ablog-post"&gt;&lt;p class="ablog-post-title"&gt;2020-03-14 - &lt;a class="reference internal" href="../es/blog/2020/seguridad-vs-flexibilidad-del-computo-en-nube/"&gt;Seguridad vs flexibilidad del cómputo en nube&lt;/a&gt;&lt;/p&gt;
 &lt;p class="ablog-post-excerpt"&gt;Bueno, con el fin de compartir un poco y sacar provecho de la formación en la
 cual me encuentro, esta es la tercera entrega basada en el curso de
 &lt;a class="reference external" href="https://programasprofesionales.mit.edu/transformacion-digital-descarga-folleto-old/"&gt;transformación digital&lt;/a&gt;
@@ -2548,13 +2562,13 @@ que estoy realizando. En esta ocasión, la participación requerida en el foro
 es sobre la seguridad respecto a la flexibilidad de las soluciones de cómputo
 en la nube.&lt;/p&gt;
 &lt;/li&gt;
-&lt;li class="ablog-post"&gt;&lt;p class="ablog-post-title"&gt;01 marzo - &lt;a class="reference internal" href="../es/blog/2020/estamos-preparados-para-un-nuevo-tipo-de-monedas-completamente-digitales/"&gt;¿Estamos preparados para un nuevo tipo de monedas, completamente digitales?&lt;/a&gt;&lt;/p&gt;
+&lt;li class="ablog-post"&gt;&lt;p class="ablog-post-title"&gt;2020-03-01 - &lt;a class="reference internal" href="../es/blog/2020/estamos-preparados-para-un-nuevo-tipo-de-monedas-completamente-digitales/"&gt;¿Estamos preparados para un nuevo tipo de monedas, completamente digitales?&lt;/a&gt;&lt;/p&gt;
 &lt;p class="ablog-post-excerpt"&gt;Recién he comenzado un curso sobre &lt;a class="reference external" href="https://programasprofesionales.mit.edu/transformacion-digital-descarga-folleto-old/"&gt;transformación digital&lt;/a&gt;,
 patrocinado por la empresa en la cual trabajo (SIER, &lt;a class="reference external" href="https://sistemasinteligentesenred.com.co/"&gt;Sistemas Inteligentes en Red&lt;/a&gt;). El tema por estos
 días es la tecnología blockchain y de este tuve que presentar un ensayo sobre la aceptación de monedas digitales basadas en blockchain. Los dejó con
 mi participación.&lt;/p&gt;
 &lt;/li&gt;
-&lt;li class="ablog-post"&gt;&lt;p class="ablog-post-title"&gt;01 marzo - &lt;a class="reference internal" href="../es/blog/2020/sectores-que-se-ven-afectados-por-blockchain-sector-inmobiliario/"&gt;Sectores que se ven afectados por blockchain: sector inmobiliario&lt;/a&gt;&lt;/p&gt;
+&lt;li class="ablog-post"&gt;&lt;p class="ablog-post-title"&gt;2020-03-01 - &lt;a class="reference internal" href="../es/blog/2020/sectores-que-se-ven-afectados-por-blockchain-sector-inmobiliario/"&gt;Sectores que se ven afectados por blockchain: sector inmobiliario&lt;/a&gt;&lt;/p&gt;
 &lt;p class="ablog-post-excerpt"&gt;Como les conté en la &lt;a class="reference internal" href="../es/blog/2020/estamos-preparados-para-un-nuevo-tipo-de-monedas-completamente-digitales/"&gt;&lt;span class="doc"&gt;publicación anterior&lt;/span&gt;&lt;/a&gt;,
 estoy en un curso de transformación digital. Pues bueno, la idea es que
 compartiré algunas de mis participaciones en el curso y así mantener activo el
@@ -2612,23 +2626,23 @@ medidas como:&lt;/p&gt;
 &lt;p&gt;Estas medidas como se ha discutido en el curso no eliminan los riesgos, pero la
 toma de diversas medidas permite la reducción del riesgo.&lt;/p&gt;
 &lt;ul class="postlist-style-none postlist"&gt;
-&lt;li class="ablog-post"&gt;&lt;p class="ablog-post-title"&gt;09 abril - &lt;a class="reference internal" href="../es/blog/2020/iot-merece-la-pena-asumir-los-riesgos/"&gt;IoT ¿Merece la pena asumir los riesgos?&lt;/a&gt;&lt;/p&gt;
+&lt;li class="ablog-post"&gt;&lt;p class="ablog-post-title"&gt;2020-04-09 - &lt;a class="reference internal" href="../es/blog/2020/iot-merece-la-pena-asumir-los-riesgos/"&gt;IoT ¿Merece la pena asumir los riesgos?&lt;/a&gt;&lt;/p&gt;
 &lt;p class="ablog-post-excerpt"&gt;Sigo con algunas publicaciones asociadas a participaciones en foro y ensayos
 que he realizado para el curso de transformación digital que estoy realizando
 por estas semanas. Esta vez, el tema es sobre si amerita asumir los riesgos
 asociados a la implementación de tecnologías &lt;em&gt;IoT&lt;/em&gt; (Internet de las Cosas).&lt;/p&gt;
 &lt;/li&gt;
-&lt;li class="ablog-post"&gt;&lt;p class="ablog-post-title"&gt;09 abril - &lt;a class="reference internal" href="../es/blog/2020/filtraciones-de-datos-en-el-siglo-xxi/"&gt;Filtraciones de datos en el siglo XXI&lt;/a&gt;&lt;/p&gt;
+&lt;li class="ablog-post"&gt;&lt;p class="ablog-post-title"&gt;2020-04-09 - &lt;a class="reference internal" href="../es/blog/2020/filtraciones-de-datos-en-el-siglo-xxi/"&gt;Filtraciones de datos en el siglo XXI&lt;/a&gt;&lt;/p&gt;
 &lt;p class="ablog-post-excerpt"&gt;Otra publicación sobre el curso de transformación digital. Esta vez, sobre la
 precauciones respecto a las filtraciones de datos. Son participaciones en foros
 del curso.&lt;/p&gt;
 &lt;/li&gt;
-&lt;li class="ablog-post"&gt;&lt;p class="ablog-post-title"&gt;09 abril - &lt;a class="reference internal" href="../es/blog/2020/aplicacion-de-iot-a-la-cadena-de-suministro/"&gt;Aplicación de IoT a la cadena de suministro&lt;/a&gt;&lt;/p&gt;
+&lt;li class="ablog-post"&gt;&lt;p class="ablog-post-title"&gt;2020-04-09 - &lt;a class="reference internal" href="../es/blog/2020/aplicacion-de-iot-a-la-cadena-de-suministro/"&gt;Aplicación de IoT a la cadena de suministro&lt;/a&gt;&lt;/p&gt;
 &lt;p class="ablog-post-excerpt"&gt;Otra publicación sobre el curso de transformación digital. Esta vez, sobre la
 aplicación de &lt;em&gt;IoT&lt;/em&gt; (Internet de las Cosas) a la cadena de suministro. Son
 participaciones en foros del curso.&lt;/p&gt;
 &lt;/li&gt;
-&lt;li class="ablog-post"&gt;&lt;p class="ablog-post-title"&gt;14 marzo - &lt;a class="reference internal" href="../es/blog/2020/seguridad-vs-flexibilidad-del-computo-en-nube/"&gt;Seguridad vs flexibilidad del cómputo en nube&lt;/a&gt;&lt;/p&gt;
+&lt;li class="ablog-post"&gt;&lt;p class="ablog-post-title"&gt;2020-03-14 - &lt;a class="reference internal" href="../es/blog/2020/seguridad-vs-flexibilidad-del-computo-en-nube/"&gt;Seguridad vs flexibilidad del cómputo en nube&lt;/a&gt;&lt;/p&gt;
 &lt;p class="ablog-post-excerpt"&gt;Bueno, con el fin de compartir un poco y sacar provecho de la formación en la
 cual me encuentro, esta es la tercera entrega basada en el curso de
 &lt;a class="reference external" href="https://programasprofesionales.mit.edu/transformacion-digital-descarga-folleto-old/"&gt;transformación digital&lt;/a&gt;
@@ -2636,13 +2650,13 @@ que estoy realizando. En esta ocasión, la participación requerida en el foro
 es sobre la seguridad respecto a la flexibilidad de las soluciones de cómputo
 en la nube.&lt;/p&gt;
 &lt;/li&gt;
-&lt;li class="ablog-post"&gt;&lt;p class="ablog-post-title"&gt;01 marzo - &lt;a class="reference internal" href="../es/blog/2020/estamos-preparados-para-un-nuevo-tipo-de-monedas-completamente-digitales/"&gt;¿Estamos preparados para un nuevo tipo de monedas, completamente digitales?&lt;/a&gt;&lt;/p&gt;
+&lt;li class="ablog-post"&gt;&lt;p class="ablog-post-title"&gt;2020-03-01 - &lt;a class="reference internal" href="../es/blog/2020/estamos-preparados-para-un-nuevo-tipo-de-monedas-completamente-digitales/"&gt;¿Estamos preparados para un nuevo tipo de monedas, completamente digitales?&lt;/a&gt;&lt;/p&gt;
 &lt;p class="ablog-post-excerpt"&gt;Recién he comenzado un curso sobre &lt;a class="reference external" href="https://programasprofesionales.mit.edu/transformacion-digital-descarga-folleto-old/"&gt;transformación digital&lt;/a&gt;,
 patrocinado por la empresa en la cual trabajo (SIER, &lt;a class="reference external" href="https://sistemasinteligentesenred.com.co/"&gt;Sistemas Inteligentes en Red&lt;/a&gt;). El tema por estos
 días es la tecnología blockchain y de este tuve que presentar un ensayo sobre la aceptación de monedas digitales basadas en blockchain. Los dejó con
 mi participación.&lt;/p&gt;
 &lt;/li&gt;
-&lt;li class="ablog-post"&gt;&lt;p class="ablog-post-title"&gt;01 marzo - &lt;a class="reference internal" href="../es/blog/2020/sectores-que-se-ven-afectados-por-blockchain-sector-inmobiliario/"&gt;Sectores que se ven afectados por blockchain: sector inmobiliario&lt;/a&gt;&lt;/p&gt;
+&lt;li class="ablog-post"&gt;&lt;p class="ablog-post-title"&gt;2020-03-01 - &lt;a class="reference internal" href="../es/blog/2020/sectores-que-se-ven-afectados-por-blockchain-sector-inmobiliario/"&gt;Sectores que se ven afectados por blockchain: sector inmobiliario&lt;/a&gt;&lt;/p&gt;
 &lt;p class="ablog-post-excerpt"&gt;Como les conté en la &lt;a class="reference internal" href="../es/blog/2020/estamos-preparados-para-un-nuevo-tipo-de-monedas-completamente-digitales/"&gt;&lt;span class="doc"&gt;publicación anterior&lt;/span&gt;&lt;/a&gt;,
 estoy en un curso de transformación digital. Pues bueno, la idea es que
 compartiré algunas de mis participaciones en el curso y así mantener activo el
@@ -2689,12 +2703,12 @@ para crear diagnósticos de situaciones actuales, hacer optimización de
 escenarios y previsión de escenarios futuros, creando así una estrategia que
 asegure ventajas competitivas.&lt;/p&gt;
 &lt;ul class="postlist-style-none postlist simple"&gt;
-&lt;li class="ablog-post"&gt;&lt;p class="ablog-post-title"&gt;09 abril - &lt;a class="reference internal" href="../es/blog/2020/iot-merece-la-pena-asumir-los-riesgos/"&gt;IoT ¿Merece la pena asumir los riesgos?&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li class="ablog-post"&gt;&lt;p class="ablog-post-title"&gt;09 abril - &lt;a class="reference internal" href="../es/blog/2020/filtraciones-de-datos-en-el-siglo-xxi/"&gt;Filtraciones de datos en el siglo XXI&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li class="ablog-post"&gt;&lt;p class="ablog-post-title"&gt;09 abril - &lt;a class="reference internal" href="../es/blog/2020/aplicacion-de-iot-a-la-cadena-de-suministro/"&gt;Aplicación de IoT a la cadena de suministro&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li class="ablog-post"&gt;&lt;p class="ablog-post-title"&gt;14 marzo - &lt;a class="reference internal" href="../es/blog/2020/seguridad-vs-flexibilidad-del-computo-en-nube/"&gt;Seguridad vs flexibilidad del cómputo en nube&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li class="ablog-post"&gt;&lt;p class="ablog-post-title"&gt;01 marzo - &lt;a class="reference internal" href="../es/blog/2020/estamos-preparados-para-un-nuevo-tipo-de-monedas-completamente-digitales/"&gt;¿Estamos preparados para un nuevo tipo de monedas, completamente digitales?&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li class="ablog-post"&gt;&lt;p class="ablog-post-title"&gt;01 marzo - &lt;a class="reference internal" href="../es/blog/2020/sectores-que-se-ven-afectados-por-blockchain-sector-inmobiliario/"&gt;Sectores que se ven afectados por blockchain: sector inmobiliario&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li class="ablog-post"&gt;&lt;p class="ablog-post-title"&gt;2020-04-09 - &lt;a class="reference internal" href="../es/blog/2020/iot-merece-la-pena-asumir-los-riesgos/"&gt;IoT ¿Merece la pena asumir los riesgos?&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li class="ablog-post"&gt;&lt;p class="ablog-post-title"&gt;2020-04-09 - &lt;a class="reference internal" href="../es/blog/2020/filtraciones-de-datos-en-el-siglo-xxi/"&gt;Filtraciones de datos en el siglo XXI&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li class="ablog-post"&gt;&lt;p class="ablog-post-title"&gt;2020-04-09 - &lt;a class="reference internal" href="../es/blog/2020/aplicacion-de-iot-a-la-cadena-de-suministro/"&gt;Aplicación de IoT a la cadena de suministro&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li class="ablog-post"&gt;&lt;p class="ablog-post-title"&gt;2020-03-14 - &lt;a class="reference internal" href="../es/blog/2020/seguridad-vs-flexibilidad-del-computo-en-nube/"&gt;Seguridad vs flexibilidad del cómputo en nube&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li class="ablog-post"&gt;&lt;p class="ablog-post-title"&gt;2020-03-01 - &lt;a class="reference internal" href="../es/blog/2020/estamos-preparados-para-un-nuevo-tipo-de-monedas-completamente-digitales/"&gt;¿Estamos preparados para un nuevo tipo de monedas, completamente digitales?&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li class="ablog-post"&gt;&lt;p class="ablog-post-title"&gt;2020-03-01 - &lt;a class="reference internal" href="../es/blog/2020/sectores-que-se-ven-afectados-por-blockchain-sector-inmobiliario/"&gt;Sectores que se ven afectados por blockchain: sector inmobiliario&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;Role of Data Analytics in Internet of Things (IoT) &lt;a class="reference external" href="https://www.fingent.com/blog/role-of-data-analytics-in-internet-of-things-iot"&gt;https://www.fingent.com/blog/role-of-data-analytics-in-internet-of-things-iot&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;4 Emerging Use Cases for IoT Data Analytics &lt;a class="reference external" href="https://www.softwareadvice.com/resources/iot-data-analytics-use-cases/"&gt;https://www.softwareadvice.com/resources/iot-data-analytics-use-cases/&lt;/a&gt;&lt;/p&gt;
@@ -2725,11 +2739,6 @@ pública (si, ya les contaré que fue lo anterior) porque veo algo recurrente en
 colegas «científicos de datos» (&lt;em&gt;data scientists&lt;/em&gt; que se gustan decir en
 inglés), donde creen prudente hacer ajustes de curvas básicas y hacer
 interpretaciones del futuro y observaciones sin contexto del fenómeno.&lt;/p&gt;
-&lt;aside class="system-message"&gt;
-&lt;p class="system-message-title"&gt;System Message: INFO/1 (&lt;span class="docutils literal"&gt;/home/cosmoscalibur/Documentos/github/cosmoscalibur.github.io/es/blog/2020/datos-y-responsabilidad-covid19.rst&lt;/span&gt;, line 20)&lt;/p&gt;
-&lt;p&gt;No directive entry for «note» in module «docutils.parsers.rst.languages.es».
-Using English fallback for directive «note».&lt;/p&gt;
-&lt;/aside&gt;
 &lt;div class="admonition note"&gt;
 &lt;p class="admonition-title"&gt;Nota&lt;/p&gt;
 &lt;p&gt;No soy epidemiólogo, médico, biólogo o similar. Trabajo en analítica de
@@ -3090,23 +3099,23 @@ seguridad que ofrecen los servicios y una alta disponibilidad de la
 información mediante la red redundante del proveedor [&lt;a class="reference internal" href="#id3"&gt;3&lt;/a&gt;, &lt;a class="reference internal" href="#id5"&gt;5&lt;/a&gt;].&lt;/p&gt;
 &lt;p&gt;Otras publicaciones basadas en el curso de transformación digital:&lt;/p&gt;
 &lt;ul class="postlist-style-none postlist"&gt;
-&lt;li class="ablog-post"&gt;&lt;p class="ablog-post-title"&gt;09 abril - &lt;a class="reference internal" href="../es/blog/2020/iot-merece-la-pena-asumir-los-riesgos/"&gt;IoT ¿Merece la pena asumir los riesgos?&lt;/a&gt;&lt;/p&gt;
+&lt;li class="ablog-post"&gt;&lt;p class="ablog-post-title"&gt;2020-04-09 - &lt;a class="reference internal" href="../es/blog/2020/iot-merece-la-pena-asumir-los-riesgos/"&gt;IoT ¿Merece la pena asumir los riesgos?&lt;/a&gt;&lt;/p&gt;
 &lt;p class="ablog-post-excerpt"&gt;Sigo con algunas publicaciones asociadas a participaciones en foro y ensayos
 que he realizado para el curso de transformación digital que estoy realizando
 por estas semanas. Esta vez, el tema es sobre si amerita asumir los riesgos
 asociados a la implementación de tecnologías &lt;em&gt;IoT&lt;/em&gt; (Internet de las Cosas).&lt;/p&gt;
 &lt;/li&gt;
-&lt;li class="ablog-post"&gt;&lt;p class="ablog-post-title"&gt;09 abril - &lt;a class="reference internal" href="../es/blog/2020/filtraciones-de-datos-en-el-siglo-xxi/"&gt;Filtraciones de datos en el siglo XXI&lt;/a&gt;&lt;/p&gt;
+&lt;li class="ablog-post"&gt;&lt;p class="ablog-post-title"&gt;2020-04-09 - &lt;a class="reference internal" href="../es/blog/2020/filtraciones-de-datos-en-el-siglo-xxi/"&gt;Filtraciones de datos en el siglo XXI&lt;/a&gt;&lt;/p&gt;
 &lt;p class="ablog-post-excerpt"&gt;Otra publicación sobre el curso de transformación digital. Esta vez, sobre la
 precauciones respecto a las filtraciones de datos. Son participaciones en foros
 del curso.&lt;/p&gt;
 &lt;/li&gt;
-&lt;li class="ablog-post"&gt;&lt;p class="ablog-post-title"&gt;09 abril - &lt;a class="reference internal" href="../es/blog/2020/aplicacion-de-iot-a-la-cadena-de-suministro/"&gt;Aplicación de IoT a la cadena de suministro&lt;/a&gt;&lt;/p&gt;
+&lt;li class="ablog-post"&gt;&lt;p class="ablog-post-title"&gt;2020-04-09 - &lt;a class="reference internal" href="../es/blog/2020/aplicacion-de-iot-a-la-cadena-de-suministro/"&gt;Aplicación de IoT a la cadena de suministro&lt;/a&gt;&lt;/p&gt;
 &lt;p class="ablog-post-excerpt"&gt;Otra publicación sobre el curso de transformación digital. Esta vez, sobre la
 aplicación de &lt;em&gt;IoT&lt;/em&gt; (Internet de las Cosas) a la cadena de suministro. Son
 participaciones en foros del curso.&lt;/p&gt;
 &lt;/li&gt;
-&lt;li class="ablog-post"&gt;&lt;p class="ablog-post-title"&gt;14 marzo - &lt;a class="reference internal" href="../es/blog/2020/seguridad-vs-flexibilidad-del-computo-en-nube/"&gt;Seguridad vs flexibilidad del cómputo en nube&lt;/a&gt;&lt;/p&gt;
+&lt;li class="ablog-post"&gt;&lt;p class="ablog-post-title"&gt;2020-03-14 - &lt;a class="reference internal" href="../es/blog/2020/seguridad-vs-flexibilidad-del-computo-en-nube/"&gt;Seguridad vs flexibilidad del cómputo en nube&lt;/a&gt;&lt;/p&gt;
 &lt;p class="ablog-post-excerpt"&gt;Bueno, con el fin de compartir un poco y sacar provecho de la formación en la
 cual me encuentro, esta es la tercera entrega basada en el curso de
 &lt;a class="reference external" href="https://programasprofesionales.mit.edu/transformacion-digital-descarga-folleto-old/"&gt;transformación digital&lt;/a&gt;
@@ -3114,13 +3123,13 @@ que estoy realizando. En esta ocasión, la participación requerida en el foro
 es sobre la seguridad respecto a la flexibilidad de las soluciones de cómputo
 en la nube.&lt;/p&gt;
 &lt;/li&gt;
-&lt;li class="ablog-post"&gt;&lt;p class="ablog-post-title"&gt;01 marzo - &lt;a class="reference internal" href="../es/blog/2020/estamos-preparados-para-un-nuevo-tipo-de-monedas-completamente-digitales/"&gt;¿Estamos preparados para un nuevo tipo de monedas, completamente digitales?&lt;/a&gt;&lt;/p&gt;
+&lt;li class="ablog-post"&gt;&lt;p class="ablog-post-title"&gt;2020-03-01 - &lt;a class="reference internal" href="../es/blog/2020/estamos-preparados-para-un-nuevo-tipo-de-monedas-completamente-digitales/"&gt;¿Estamos preparados para un nuevo tipo de monedas, completamente digitales?&lt;/a&gt;&lt;/p&gt;
 &lt;p class="ablog-post-excerpt"&gt;Recién he comenzado un curso sobre &lt;a class="reference external" href="https://programasprofesionales.mit.edu/transformacion-digital-descarga-folleto-old/"&gt;transformación digital&lt;/a&gt;,
 patrocinado por la empresa en la cual trabajo (SIER, &lt;a class="reference external" href="https://sistemasinteligentesenred.com.co/"&gt;Sistemas Inteligentes en Red&lt;/a&gt;). El tema por estos
 días es la tecnología blockchain y de este tuve que presentar un ensayo sobre la aceptación de monedas digitales basadas en blockchain. Los dejó con
 mi participación.&lt;/p&gt;
 &lt;/li&gt;
-&lt;li class="ablog-post"&gt;&lt;p class="ablog-post-title"&gt;01 marzo - &lt;a class="reference internal" href="../es/blog/2020/sectores-que-se-ven-afectados-por-blockchain-sector-inmobiliario/"&gt;Sectores que se ven afectados por blockchain: sector inmobiliario&lt;/a&gt;&lt;/p&gt;
+&lt;li class="ablog-post"&gt;&lt;p class="ablog-post-title"&gt;2020-03-01 - &lt;a class="reference internal" href="../es/blog/2020/sectores-que-se-ven-afectados-por-blockchain-sector-inmobiliario/"&gt;Sectores que se ven afectados por blockchain: sector inmobiliario&lt;/a&gt;&lt;/p&gt;
 &lt;p class="ablog-post-excerpt"&gt;Como les conté en la &lt;a class="reference internal" href="../es/blog/2020/estamos-preparados-para-un-nuevo-tipo-de-monedas-completamente-digitales/"&gt;&lt;span class="doc"&gt;publicación anterior&lt;/span&gt;&lt;/a&gt;,
 estoy en un curso de transformación digital. Pues bueno, la idea es que
 compartiré algunas de mis participaciones en el curso y así mantener activo el
@@ -3214,23 +3223,23 @@ presencia y acciones del Centro para la Cuarta Revolución Industrial como un
 habilitador [&lt;a class="reference internal" href="#id10"&gt;10&lt;/a&gt;], tenga pronto resultados.&lt;/p&gt;
 &lt;p&gt;Otras publicaciones basadas en el curso de transformación digital:&lt;/p&gt;
 &lt;ul class="postlist-style-none postlist"&gt;
-&lt;li class="ablog-post"&gt;&lt;p class="ablog-post-title"&gt;09 abril - &lt;a class="reference internal" href="../es/blog/2020/iot-merece-la-pena-asumir-los-riesgos/"&gt;IoT ¿Merece la pena asumir los riesgos?&lt;/a&gt;&lt;/p&gt;
+&lt;li class="ablog-post"&gt;&lt;p class="ablog-post-title"&gt;2020-04-09 - &lt;a class="reference internal" href="../es/blog/2020/iot-merece-la-pena-asumir-los-riesgos/"&gt;IoT ¿Merece la pena asumir los riesgos?&lt;/a&gt;&lt;/p&gt;
 &lt;p class="ablog-post-excerpt"&gt;Sigo con algunas publicaciones asociadas a participaciones en foro y ensayos
 que he realizado para el curso de transformación digital que estoy realizando
 por estas semanas. Esta vez, el tema es sobre si amerita asumir los riesgos
 asociados a la implementación de tecnologías &lt;em&gt;IoT&lt;/em&gt; (Internet de las Cosas).&lt;/p&gt;
 &lt;/li&gt;
-&lt;li class="ablog-post"&gt;&lt;p class="ablog-post-title"&gt;09 abril - &lt;a class="reference internal" href="../es/blog/2020/filtraciones-de-datos-en-el-siglo-xxi/"&gt;Filtraciones de datos en el siglo XXI&lt;/a&gt;&lt;/p&gt;
+&lt;li class="ablog-post"&gt;&lt;p class="ablog-post-title"&gt;2020-04-09 - &lt;a class="reference internal" href="../es/blog/2020/filtraciones-de-datos-en-el-siglo-xxi/"&gt;Filtraciones de datos en el siglo XXI&lt;/a&gt;&lt;/p&gt;
 &lt;p class="ablog-post-excerpt"&gt;Otra publicación sobre el curso de transformación digital. Esta vez, sobre la
 precauciones respecto a las filtraciones de datos. Son participaciones en foros
 del curso.&lt;/p&gt;
 &lt;/li&gt;
-&lt;li class="ablog-post"&gt;&lt;p class="ablog-post-title"&gt;09 abril - &lt;a class="reference internal" href="../es/blog/2020/aplicacion-de-iot-a-la-cadena-de-suministro/"&gt;Aplicación de IoT a la cadena de suministro&lt;/a&gt;&lt;/p&gt;
+&lt;li class="ablog-post"&gt;&lt;p class="ablog-post-title"&gt;2020-04-09 - &lt;a class="reference internal" href="../es/blog/2020/aplicacion-de-iot-a-la-cadena-de-suministro/"&gt;Aplicación de IoT a la cadena de suministro&lt;/a&gt;&lt;/p&gt;
 &lt;p class="ablog-post-excerpt"&gt;Otra publicación sobre el curso de transformación digital. Esta vez, sobre la
 aplicación de &lt;em&gt;IoT&lt;/em&gt; (Internet de las Cosas) a la cadena de suministro. Son
 participaciones en foros del curso.&lt;/p&gt;
 &lt;/li&gt;
-&lt;li class="ablog-post"&gt;&lt;p class="ablog-post-title"&gt;14 marzo - &lt;a class="reference internal" href="../es/blog/2020/seguridad-vs-flexibilidad-del-computo-en-nube/"&gt;Seguridad vs flexibilidad del cómputo en nube&lt;/a&gt;&lt;/p&gt;
+&lt;li class="ablog-post"&gt;&lt;p class="ablog-post-title"&gt;2020-03-14 - &lt;a class="reference internal" href="../es/blog/2020/seguridad-vs-flexibilidad-del-computo-en-nube/"&gt;Seguridad vs flexibilidad del cómputo en nube&lt;/a&gt;&lt;/p&gt;
 &lt;p class="ablog-post-excerpt"&gt;Bueno, con el fin de compartir un poco y sacar provecho de la formación en la
 cual me encuentro, esta es la tercera entrega basada en el curso de
 &lt;a class="reference external" href="https://programasprofesionales.mit.edu/transformacion-digital-descarga-folleto-old/"&gt;transformación digital&lt;/a&gt;
@@ -3238,13 +3247,13 @@ que estoy realizando. En esta ocasión, la participación requerida en el foro
 es sobre la seguridad respecto a la flexibilidad de las soluciones de cómputo
 en la nube.&lt;/p&gt;
 &lt;/li&gt;
-&lt;li class="ablog-post"&gt;&lt;p class="ablog-post-title"&gt;01 marzo - &lt;a class="reference internal" href="../es/blog/2020/estamos-preparados-para-un-nuevo-tipo-de-monedas-completamente-digitales/"&gt;¿Estamos preparados para un nuevo tipo de monedas, completamente digitales?&lt;/a&gt;&lt;/p&gt;
+&lt;li class="ablog-post"&gt;&lt;p class="ablog-post-title"&gt;2020-03-01 - &lt;a class="reference internal" href="../es/blog/2020/estamos-preparados-para-un-nuevo-tipo-de-monedas-completamente-digitales/"&gt;¿Estamos preparados para un nuevo tipo de monedas, completamente digitales?&lt;/a&gt;&lt;/p&gt;
 &lt;p class="ablog-post-excerpt"&gt;Recién he comenzado un curso sobre &lt;a class="reference external" href="https://programasprofesionales.mit.edu/transformacion-digital-descarga-folleto-old/"&gt;transformación digital&lt;/a&gt;,
 patrocinado por la empresa en la cual trabajo (SIER, &lt;a class="reference external" href="https://sistemasinteligentesenred.com.co/"&gt;Sistemas Inteligentes en Red&lt;/a&gt;). El tema por estos
 días es la tecnología blockchain y de este tuve que presentar un ensayo sobre la aceptación de monedas digitales basadas en blockchain. Los dejó con
 mi participación.&lt;/p&gt;
 &lt;/li&gt;
-&lt;li class="ablog-post"&gt;&lt;p class="ablog-post-title"&gt;01 marzo - &lt;a class="reference internal" href="../es/blog/2020/sectores-que-se-ven-afectados-por-blockchain-sector-inmobiliario/"&gt;Sectores que se ven afectados por blockchain: sector inmobiliario&lt;/a&gt;&lt;/p&gt;
+&lt;li class="ablog-post"&gt;&lt;p class="ablog-post-title"&gt;2020-03-01 - &lt;a class="reference internal" href="../es/blog/2020/sectores-que-se-ven-afectados-por-blockchain-sector-inmobiliario/"&gt;Sectores que se ven afectados por blockchain: sector inmobiliario&lt;/a&gt;&lt;/p&gt;
 &lt;p class="ablog-post-excerpt"&gt;Como les conté en la &lt;a class="reference internal" href="../es/blog/2020/estamos-preparados-para-un-nuevo-tipo-de-monedas-completamente-digitales/"&gt;&lt;span class="doc"&gt;publicación anterior&lt;/span&gt;&lt;/a&gt;,
 estoy en un curso de transformación digital. Pues bueno, la idea es que
 compartiré algunas de mis participaciones en el curso y así mantener activo el
@@ -3354,23 +3363,23 @@ intermediación actual en el sector inmobiliario (pero que un futuro con las
 reformas necesarias legales podría suceder) [&lt;a class="reference internal" href="#id3"&gt;3&lt;/a&gt;].&lt;/p&gt;
 &lt;p&gt;Otras publicaciones basadas en el curso de transformación digital:&lt;/p&gt;
 &lt;ul class="postlist-style-none postlist"&gt;
-&lt;li class="ablog-post"&gt;&lt;p class="ablog-post-title"&gt;09 abril - &lt;a class="reference internal" href="../es/blog/2020/iot-merece-la-pena-asumir-los-riesgos/"&gt;IoT ¿Merece la pena asumir los riesgos?&lt;/a&gt;&lt;/p&gt;
+&lt;li class="ablog-post"&gt;&lt;p class="ablog-post-title"&gt;2020-04-09 - &lt;a class="reference internal" href="../es/blog/2020/iot-merece-la-pena-asumir-los-riesgos/"&gt;IoT ¿Merece la pena asumir los riesgos?&lt;/a&gt;&lt;/p&gt;
 &lt;p class="ablog-post-excerpt"&gt;Sigo con algunas publicaciones asociadas a participaciones en foro y ensayos
 que he realizado para el curso de transformación digital que estoy realizando
 por estas semanas. Esta vez, el tema es sobre si amerita asumir los riesgos
 asociados a la implementación de tecnologías &lt;em&gt;IoT&lt;/em&gt; (Internet de las Cosas).&lt;/p&gt;
 &lt;/li&gt;
-&lt;li class="ablog-post"&gt;&lt;p class="ablog-post-title"&gt;09 abril - &lt;a class="reference internal" href="../es/blog/2020/filtraciones-de-datos-en-el-siglo-xxi/"&gt;Filtraciones de datos en el siglo XXI&lt;/a&gt;&lt;/p&gt;
+&lt;li class="ablog-post"&gt;&lt;p class="ablog-post-title"&gt;2020-04-09 - &lt;a class="reference internal" href="../es/blog/2020/filtraciones-de-datos-en-el-siglo-xxi/"&gt;Filtraciones de datos en el siglo XXI&lt;/a&gt;&lt;/p&gt;
 &lt;p class="ablog-post-excerpt"&gt;Otra publicación sobre el curso de transformación digital. Esta vez, sobre la
 precauciones respecto a las filtraciones de datos. Son participaciones en foros
 del curso.&lt;/p&gt;
 &lt;/li&gt;
-&lt;li class="ablog-post"&gt;&lt;p class="ablog-post-title"&gt;09 abril - &lt;a class="reference internal" href="../es/blog/2020/aplicacion-de-iot-a-la-cadena-de-suministro/"&gt;Aplicación de IoT a la cadena de suministro&lt;/a&gt;&lt;/p&gt;
+&lt;li class="ablog-post"&gt;&lt;p class="ablog-post-title"&gt;2020-04-09 - &lt;a class="reference internal" href="../es/blog/2020/aplicacion-de-iot-a-la-cadena-de-suministro/"&gt;Aplicación de IoT a la cadena de suministro&lt;/a&gt;&lt;/p&gt;
 &lt;p class="ablog-post-excerpt"&gt;Otra publicación sobre el curso de transformación digital. Esta vez, sobre la
 aplicación de &lt;em&gt;IoT&lt;/em&gt; (Internet de las Cosas) a la cadena de suministro. Son
 participaciones en foros del curso.&lt;/p&gt;
 &lt;/li&gt;
-&lt;li class="ablog-post"&gt;&lt;p class="ablog-post-title"&gt;14 marzo - &lt;a class="reference internal" href="../es/blog/2020/seguridad-vs-flexibilidad-del-computo-en-nube/"&gt;Seguridad vs flexibilidad del cómputo en nube&lt;/a&gt;&lt;/p&gt;
+&lt;li class="ablog-post"&gt;&lt;p class="ablog-post-title"&gt;2020-03-14 - &lt;a class="reference internal" href="../es/blog/2020/seguridad-vs-flexibilidad-del-computo-en-nube/"&gt;Seguridad vs flexibilidad del cómputo en nube&lt;/a&gt;&lt;/p&gt;
 &lt;p class="ablog-post-excerpt"&gt;Bueno, con el fin de compartir un poco y sacar provecho de la formación en la
 cual me encuentro, esta es la tercera entrega basada en el curso de
 &lt;a class="reference external" href="https://programasprofesionales.mit.edu/transformacion-digital-descarga-folleto-old/"&gt;transformación digital&lt;/a&gt;
@@ -3378,13 +3387,13 @@ que estoy realizando. En esta ocasión, la participación requerida en el foro
 es sobre la seguridad respecto a la flexibilidad de las soluciones de cómputo
 en la nube.&lt;/p&gt;
 &lt;/li&gt;
-&lt;li class="ablog-post"&gt;&lt;p class="ablog-post-title"&gt;01 marzo - &lt;a class="reference internal" href="../es/blog/2020/estamos-preparados-para-un-nuevo-tipo-de-monedas-completamente-digitales/"&gt;¿Estamos preparados para un nuevo tipo de monedas, completamente digitales?&lt;/a&gt;&lt;/p&gt;
+&lt;li class="ablog-post"&gt;&lt;p class="ablog-post-title"&gt;2020-03-01 - &lt;a class="reference internal" href="../es/blog/2020/estamos-preparados-para-un-nuevo-tipo-de-monedas-completamente-digitales/"&gt;¿Estamos preparados para un nuevo tipo de monedas, completamente digitales?&lt;/a&gt;&lt;/p&gt;
 &lt;p class="ablog-post-excerpt"&gt;Recién he comenzado un curso sobre &lt;a class="reference external" href="https://programasprofesionales.mit.edu/transformacion-digital-descarga-folleto-old/"&gt;transformación digital&lt;/a&gt;,
 patrocinado por la empresa en la cual trabajo (SIER, &lt;a class="reference external" href="https://sistemasinteligentesenred.com.co/"&gt;Sistemas Inteligentes en Red&lt;/a&gt;). El tema por estos
 días es la tecnología blockchain y de este tuve que presentar un ensayo sobre la aceptación de monedas digitales basadas en blockchain. Los dejó con
 mi participación.&lt;/p&gt;
 &lt;/li&gt;
-&lt;li class="ablog-post"&gt;&lt;p class="ablog-post-title"&gt;01 marzo - &lt;a class="reference internal" href="../es/blog/2020/sectores-que-se-ven-afectados-por-blockchain-sector-inmobiliario/"&gt;Sectores que se ven afectados por blockchain: sector inmobiliario&lt;/a&gt;&lt;/p&gt;
+&lt;li class="ablog-post"&gt;&lt;p class="ablog-post-title"&gt;2020-03-01 - &lt;a class="reference internal" href="../es/blog/2020/sectores-que-se-ven-afectados-por-blockchain-sector-inmobiliario/"&gt;Sectores que se ven afectados por blockchain: sector inmobiliario&lt;/a&gt;&lt;/p&gt;
 &lt;p class="ablog-post-excerpt"&gt;Como les conté en la &lt;a class="reference internal" href="../es/blog/2020/estamos-preparados-para-un-nuevo-tipo-de-monedas-completamente-digitales/"&gt;&lt;span class="doc"&gt;publicación anterior&lt;/span&gt;&lt;/a&gt;,
 estoy en un curso de transformación digital. Pues bueno, la idea es que
 compartiré algunas de mis participaciones en el curso y así mantener activo el
@@ -5336,11 +5345,6 @@ varias distribuciones) y en Windows, igual por ser gratuito te lo recomiendo
 &lt;code class="code docutils literal notranslate"&gt;&lt;span class="pre"&gt;rar&lt;/span&gt;&lt;/code&gt;). De los archivos que encontrarás solo es necesario el archivo con
 extensión &lt;code class="code docutils literal notranslate"&gt;&lt;span class="pre"&gt;vmdk&lt;/span&gt;&lt;/code&gt; (puedes renombrar el archivo si deseas). Ahora abrimos
 VirtualBox y seleccionamos el botón de nuevo.&lt;/p&gt;
-&lt;aside class="system-message"&gt;
-&lt;p class="system-message-title"&gt;System Message: INFO/1 (&lt;span class="docutils literal"&gt;/home/cosmoscalibur/Documentos/github/cosmoscalibur.github.io/es/blog/2018/ejecutando-macos-en-linux.rst&lt;/span&gt;, line 100)&lt;/p&gt;
-&lt;p&gt;No role entry for «code» in module «docutils.parsers.rst.languages.es».
-Using English fallback for role «code».&lt;/p&gt;
-&lt;/aside&gt;
 &lt;p&gt;Ahora vamos a seleccionar el sistema operativo, indicando como se ve en la
 imagen y luego asignamos la RAM deseada (2 GB son el mínimo del sistema pero
 hay que considerar que además es una máquina virtual, lo cual conviene asignar
@@ -7073,11 +7077,6 @@ universidad.</summary>
 &lt;/iframe&gt;&lt;/div&gt;&lt;p&gt;El anuncio oficial, y aún lo que conocemos frente a los datos de dicho experimento, no son contundentes frente a que lo descubierto corresponda propiamente al bosón de Higgs, sin embargo otra serie de datos tienden a favorecer las predicciones del modelo estándar, y por ende a incrementar la expectativa de un positivo para este hallazgo.&lt;/p&gt;
 &lt;p&gt;Lo observado en el LHC indico ser un bosón dado el decaimiento característico en pares de fotones, y masivo (el más masivo de los bosones conocidos) determinado por las tasas de decaimiento y energías detectadas, 125.3 GeV (+/-0.6 GeV) (algo insignificativo en lo cotidiano, equivalente a &lt;span class="math notranslate nohighlight"&gt;\(5\cdot 10^{-16}\)&lt;/span&gt; gramos). En su momento genero gran confusión la popular mención de 5 &lt;span class="math notranslate nohighlight"&gt;\(\sigma\)&lt;/span&gt; (sigma) (exactamente 4.9), que para muchos fue asumido como una certeza estadística de tratarse del bosón de Higgs cuando solo corresponde a la certeza de la medida de la masa del bosón hallado (sea o no Higgs).
 Se destaca la importancia de la posibilidad que corresponda al Higgs por constituir un elemento adicional para ratificar el modelo estándar de la física de partículas y por ser una pieza fundamental en la comprensión de los mecanismos de generación de masa (si bien, no es el único mecanismo, si el de importancia para las partículas fundamentales). Este vídeo resulta bastante útil para mayor detalle y en lenguaje popular, al cual fui invitado.&lt;/p&gt;
-&lt;aside class="system-message"&gt;
-&lt;p class="system-message-title"&gt;System Message: INFO/1 (&lt;span class="docutils literal"&gt;/home/cosmoscalibur/Documentos/github/cosmoscalibur.github.io/es/blog/2012/pos-higgsteria.rst&lt;/span&gt;, line 19)&lt;/p&gt;
-&lt;p&gt;No role entry for «math» in module «docutils.parsers.rst.languages.es».
-Using English fallback for role «math».&lt;/p&gt;
-&lt;/aside&gt;
 &lt;div class="video_wrapper align-center" style="text-align: center"&gt;
 &lt;iframe allowfullscreen="true" src="https://www.youtube.com/embed/anlDNYFvELs" style="border: 0; height: 345px; width: 560px"&gt;
 &lt;/iframe&gt;&lt;/div&gt;&lt;p&gt;Al día de hoy seguimos esperando mediciones de propiedades como el espín, la paridad y otras, que en conjunto pueden dar la unicidad de las partículas para dar como un verdadero hecho su hallazgo. Los modulas ATLAS y CMS posteriormente anunciaron el aumento de la confidencialidad estadística de los datos de masa del bosón hallado a 6 y 7 &lt;span class="math notranslate nohighlight"&gt;\(\sigma\)&lt;/span&gt;.&lt;/p&gt;
