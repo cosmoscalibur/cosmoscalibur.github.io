@@ -96,6 +96,10 @@ tienen el compromiso de una política de datos abiertos para el desarrollo de la
     y también en _arXiv_ para la publicación como HTML5.
   - [Math, Statistics, and Computational Science](https://math.nist.gov/): compilación de recursos abiertos
     del NIST relacionados con matemáticas aplicadas, estadística y ciencias de la computación.
+- [Max Planck Institute for Solar System Research](https://www.mps.mpg.de/publications/): encontraremos acceso
+  a reportes técnicos, artículos internos, trabajos de grado y una revista de acceso abierto. Salvo por la revista,
+  la mayor parte del contenido descargable es en Alemán. Aunque encontraremos las
+  [notas de prensa en inglés](https://www.mps.mpg.de/press-releases).
 - [The Review of Particle Physics](https://pdg.lbl.gov/): _Handbook_ de física de partículas.
 - [Zenodo](https://zenodo.org/): herramienta de archivo digital y repositorio dispuesto
   por el CERN para la promoción del acceso abierto y la ciencia abierta. Permite la asignación
@@ -141,7 +145,16 @@ que la revisión por pares no asegura calidad, y tal vez, las contaré en otra e
   - [JOSE](https://jose.theoj.org/): revista de recursos abiertos en educación.
   - [The Proceedings of the JuliaCon Conferences](https://proceedings.juliacon.org/): memorias de congreso
     de Julia.
+  - [The Open Journal of Astrophysics](https://astro.theoj.org/): Este es un _overlay_ sobre arXiv.
 - [SciPy Conference](https://proceedings.scipy.org/): memorias del congreso SciPy.
+- [Living Reviews in Solar Physics](https://www.mps.mpg.de/publications/lrsp): Es una revista de acceso abierto
+  sobre física solar, posee alto impacto y posee una particularidad en la cual los autores pueden realizar
+  actualizaciones tras su publicación en línea (y de ahí su nombre también).
+
+En este listado, es necesario mencionar el caso de los [_overlay journal_](https://en.wikipedia.org/wiki/Overlay_journal),
+que son un tipo de revistas con revisión por pares de acceso abierto y sin costos para los
+autores, que funcionan realizando selección de artículos (o aceptando sometimiento), desde
+_preprints_. Hay varios casos basados en arXiv y familia.
 
 ## Redes colaborativas
 
