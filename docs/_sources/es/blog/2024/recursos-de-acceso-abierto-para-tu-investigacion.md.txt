@@ -150,6 +150,8 @@ que la revisión por pares no asegura calidad, y tal vez, las contaré en otra e
 - [Living Reviews in Solar Physics](https://www.mps.mpg.de/publications/lrsp): Es una revista de acceso abierto
   sobre física solar, posee alto impacto y posee una particularidad en la cual los autores pueden realizar
   actualizaciones tras su publicación en línea (y de ahí su nombre también).
+- [Sage Journals](https://journals.sagepub.com/): Editorial con revistas en diversas disciplinas en modelo
+  de acceso abierto.
 
 En este listado, es necesario mencionar el caso de los [_overlay journal_](https://en.wikipedia.org/wiki/Overlay_journal),
 que son un tipo de revistas con revisión por pares de acceso abierto y sin costos para los
