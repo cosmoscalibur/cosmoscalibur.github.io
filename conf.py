@@ -123,7 +123,7 @@ exclude_patterns = [
     '**/draft/*',
 ]
 
-html_show_sourcelink = False
+html_show_sourcelink = True
 
 # If true, an OpenSearch description file will be output, and all pages will
 # contain a <link> tag referring to it.  The value of this option must be the

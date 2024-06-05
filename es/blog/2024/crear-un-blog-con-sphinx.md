@@ -370,10 +370,12 @@ fontawesome_included = True
 Debo decir que no me gusta la idea de habilitar que se muestre el código fuente
 de la publicación desde el sitio mismo, pues eso genera copia de los archivos en
 el directorio de salida duplicando estos. Si alguien lo desea ver, considero que
-para eso es el repositorio. Así que lo deshabilitamos.
+para eso es el repositorio. Pero desafortunadamente, deshabilitarlo, igual hace
+el copiado, así que lo dejaré mostrando (si descubro como remover las copias, lo
+deshabilito).
 
 :::{code} python
-html_show_sourcelink = False
+html_show_sourcelink = True
 :::
 
 Ahora, la configuración para las publicaciones.
