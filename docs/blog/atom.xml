@@ -2,10 +2,138 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="es">
   <id>https://www.cosmoscalibur.com/</id>
   <title>Cosmoscalibur</title>
-  <updated>2024-06-05T03:35:40.532209+00:00</updated>
+  <updated>2024-06-24T02:25:36.496925+00:00</updated>
   <link href="https://www.cosmoscalibur.com/"/>
   <link href="https://www.cosmoscalibur.com/blog/atom.xml" rel="self"/>
   <generator uri="https://ablog.readthedocs.io/" version="0.11.8">ABlog</generator>
+  <entry>
+    <id>https://www.cosmoscalibur.com/es/blog/2024/instalar-rust-en-linux/</id>
+    <title>Instalar Rust en Linux</title>
+    <updated>2024-06-15T00:00:00-05:00</updated>
+    <author>
+      <name>Edward Villegas-Pulgarin</name>
+    </author>
+    <content type="html">&lt;section class="tex2jax_ignore mathjax_ignore" id="instalar-rust-en-linux"&gt;
+
+&lt;p&gt;En mi proceso por aprender Rust, iré compartiendo algunos pasos con ustedes. En
+esta ocasión, como instalar Rust en Linux, y prepararnos para usarlo en VSCode y
+en Notebook.&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://www.rust-lang.org/"&gt;Rust&lt;/a&gt; es un lenguaje de bajo nivel, desarrollado con
+el patrocinio de Mozilla, enfocado en el rendimiento y seguridad, con muy buenas
+validaciones en tiempo de compilación que nos ayudará a prevenir algunos errores
+en tiempo de ejecución. Por diseño, intenta dar mayor ergonomía que un lenguaje
+de bajo nivel, al tiempo que permite un mayor control.&lt;/p&gt;
+&lt;section id="instalacion"&gt;
+&lt;h2&gt;Instalación&lt;/h2&gt;
+&lt;p&gt;La &lt;a class="reference external" href="https://www.rust-lang.org/tools/install"&gt;instalación recomendada&lt;/a&gt; es con la
+herramienta &lt;em&gt;rustup&lt;/em&gt;, para esto procedemos con&lt;/p&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;curl&lt;span class="w"&gt; &lt;/span&gt;--proto&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;=https&amp;#39;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;--tlsv1.2&lt;span class="w"&gt; &lt;/span&gt;-sSf&lt;span class="w"&gt; &lt;/span&gt;https://sh.rustup.rs&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;sh
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Esto descarga &lt;em&gt;rustup&lt;/em&gt;, e inicia el proceso de instalación de Rust y otras utilidades.
+Allí podemos aceptar la opción por defecto con &lt;em&gt;enter&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;Así tendremos instalados &lt;a class="reference external" href="https://doc.rust-lang.org/cargo/"&gt;&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;cargo&lt;/span&gt;&lt;/code&gt;&lt;/a&gt; (el gestor de paquetes de Rust),
+&lt;a class="reference external" href="https://doc.rust-lang.org/clippy/"&gt;&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;clippy&lt;/span&gt;&lt;/code&gt;&lt;/a&gt; (el linter integrado de Rust),
+&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;rust-docs&lt;/span&gt;&lt;/code&gt; (documentación de Rust),
+&lt;a class="reference external" href="https://doc.rust-lang.org/std/"&gt;&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;rust-std&lt;/span&gt;&lt;/code&gt;&lt;/a&gt; (la biblioteca estándar de Rust),
+&lt;a class="reference external" href="https://doc.rust-lang.org/rustc/what-is-rustc.html"&gt;&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;rustc&lt;/span&gt;&lt;/code&gt;&lt;/a&gt; (el compilador de Rust) y
+&lt;a class="reference external" href="https://github.com/rust-lang/rustfmt"&gt;&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;rustfmt&lt;/span&gt;&lt;/code&gt;&lt;/a&gt; (el formateador de código Rust).
+Y por supuesto, el mismo &lt;a class="reference external" href="https://rust-lang.github.io/rustup/"&gt;&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;rustup&lt;/span&gt;&lt;/code&gt;&lt;/a&gt; que nos permite
+gestionar el &lt;em&gt;toolchain&lt;/em&gt; de Rust.&lt;/p&gt;
+&lt;p&gt;Respecto a &lt;em&gt;cargo&lt;/em&gt;, hay que decir algo interesante, y es que el gestor integra
+la ejecución de pruebas (&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;cargo&lt;/span&gt; &lt;span class="pre"&gt;test&lt;/span&gt;&lt;/code&gt;) que es una opción también del compilador,
+y la generación de documentación (&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;cargo&lt;/span&gt; &lt;span class="pre"&gt;doc&lt;/span&gt;&lt;/code&gt;) con
+&lt;a class="reference external" href="https://doc.rust-lang.org/rustdoc/index.html"&gt;&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;rustdoc&lt;/span&gt;&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Ahora terminamos con&lt;/p&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nb"&gt;source&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="nv"&gt;$HOME&lt;/span&gt;&lt;span class="s2"&gt;/.cargo/env&amp;quot;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Esto nos permite asociar las variables de ambiente necesarias en la consola actual.&lt;/p&gt;
+&lt;p&gt;Si ahora ejecutamos &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;rustc&lt;/span&gt; &lt;span class="pre"&gt;--version&lt;/span&gt;&lt;/code&gt;, debemos ver la versión del compilador.
+Si no lo ves, puede que hayas omitido el paso anterior para asociar la variable
+de entorno.&lt;/p&gt;
+&lt;p&gt;Cuando deseemos actualizar la versión del compilador, usaremos &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;rustup&lt;/span&gt; &lt;span class="pre"&gt;update&lt;/span&gt;&lt;/code&gt;.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="configurar-vscode"&gt;
+&lt;h2&gt;Configurar VSCode&lt;/h2&gt;
+&lt;p&gt;Para tener la ayuda necesaria en nuestra IDE de VSCode al programar en Rust,
+vamos a instalar la extensión &lt;a class="reference external" href="https://rust-analyzer.github.io"&gt;rust-analyzer&lt;/a&gt;.
+Esta extensión nos provee de opciones de autocompletado, ir a definiciones,
+búsqueda de referencias, acceso a documentación, resaltado semántico, asistencia
+y sugerencias. Esto lo tenemos como beneficio gracias a la implementación del LSP
+(&lt;em&gt;Language Server Protocol&lt;/em&gt;) para Rust.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Rust Analyzer&lt;/em&gt; se encuentra disponible también para otros editores.&lt;/p&gt;
+&lt;p&gt;Podemos iniciar con un pequeño proyecto por defecto para ver la extensión en acción,
+así como nuestra instalación base. Para crear un nuevo, usamos&lt;/p&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;cargo&lt;span class="w"&gt; &lt;/span&gt;new&lt;span class="w"&gt; &lt;/span&gt;miniproyecto
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Esto crea una plantilla básica de proyecto de aplicación Rust, con los archivos de
+dependencias de Cargo y el directorio de fuente con un hola mundo. Podemos usar un
+código básico errónea y verlo en acción.&lt;/p&gt;
+&lt;figure class="align-center" id="id1"&gt;
+&lt;img alt="Diagnóstico de rust analyzer sugiriendo el uso de let para asignar una variable" src="https://www.cosmoscalibur.com/_images/rust-analyzer.png" style="width: 800px; height: 400px;" /&gt;
+&lt;figcaption&gt;
+&lt;p&gt;&lt;span class="caption-text"&gt;Diagnóstico de rust analyzer sugiriendo el uso de let para asignar una variable.&lt;/span&gt;&lt;/p&gt;
+&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;/section&gt;
+&lt;section id="rust-notebook"&gt;
+&lt;h2&gt;Rust Notebook&lt;/h2&gt;
+&lt;p&gt;Ahora, tenemos opción de agregar un &lt;em&gt;kernel&lt;/em&gt; Rust a Jupyter Notebook para tener una
+experiencia interactiva de Rust, mezclada con el beneficio de documentar de forma
+natural. Esto lo podemos lograr gracias al &lt;em&gt;kernel&lt;/em&gt; &lt;a class="reference external" href="https://github.com/evcxr/evcxr"&gt;Evcxr&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Instalamos con &lt;em&gt;cargo&lt;/em&gt; la dependencia necesaria primero.&lt;/p&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;cargo&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;--locked&lt;span class="w"&gt; &lt;/span&gt;evcxr_jupyter
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Una vez instalado, debemos tener en cuenta de tener activo el ambiente en el que
+disponemos nuestra instalación de Jupyter Notebook (en caso de tenerlo en un
+ambiente). Si no tenemos instalado, en Ubuntu podemos proceder como:&lt;/p&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo&lt;span class="w"&gt; &lt;/span&gt;apt&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;-y&lt;span class="w"&gt; &lt;/span&gt;jupyter-notebook
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;O con el gestor de paquetes de Python (instalamos también jupyterlab), como:&lt;/p&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;pip&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;notebook&lt;span class="w"&gt; &lt;/span&gt;jupyterlab
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Ahora, agreguemos el &lt;em&gt;Kernel&lt;/em&gt; a Notebook.&lt;/p&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;evcxr_jupyter&lt;span class="w"&gt; &lt;/span&gt;--install
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Una vez agregado, podemos abrir Notebook o Jupyterlab, y veremos la opción para
+usar Rust.&lt;/p&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;jupyter&lt;span class="w"&gt; &lt;/span&gt;notebook&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="c1"&gt;# Abrir notebook&lt;/span&gt;
+jupyter&lt;span class="w"&gt; &lt;/span&gt;lab&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="c1"&gt;# Abrir Jupyterlab (recomendado)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;figure class="align-center" id="id2"&gt;
+&lt;img alt="Disponibilidad de Rust como Kernel en Jupyter Notebook" src="https://www.cosmoscalibur.com/_images/jupyter-evcxr.png" style="width: 800px; height: 400px;" /&gt;
+&lt;figcaption&gt;
+&lt;p&gt;&lt;span class="caption-text"&gt;Disponibilidad de Rust como Kernel en Jupyter Notebook&lt;/span&gt;&lt;/p&gt;
+&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;figure class="align-center" id="id3"&gt;
+&lt;img alt="Ejemplo básico de asignación de variable de Rust en Notebook" src="https://www.cosmoscalibur.com/_images/jupyter-cells-rust.png" style="width: 800px; height: 400px;" /&gt;
+&lt;figcaption&gt;
+&lt;p&gt;&lt;span class="caption-text"&gt;Ejemplo básico de asignación de variable de Rust en Notebook&lt;/span&gt;&lt;/p&gt;
+&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;/section&gt;
+&lt;/section&gt;
+</content>
+    <link href="https://www.cosmoscalibur.com/es/blog/2024/instalar-rust-en-linux/"/>
+    <summary>En mi proceso por aprender Rust, iré compartiendo algunos pasos con ustedes. En
+esta ocasión, como instalar Rust en Linux, y prepararnos para usarlo en VSCode y
+en Notebook.Diagnóstico de rust analyzer sugiriendo el uso de let para asignar una variable</summary>
+    <category term="evcxr" label="evcxr"/>
+    <category term="notebook" label="notebook"/>
+    <category term="rust" label="rust"/>
+    <category term="rust-analyzer" label="rust-analyzer"/>
+    <category term="rustlang" label="rustlang"/>
+    <category term="vscode" label="vscode"/>
+    <published>2024-06-15T00:00:00-05:00</published>
+  </entry>
   <entry>
     <id>https://www.cosmoscalibur.com/es/blog/2024/proton-modo-de-compatibilidad-de-steam/</id>
     <title>Proton: Modo de compatibilidad de Steam</title>
