@@ -7,7 +7,7 @@ category: tecnología
 # UV, alternativa rápida a PIP y VENV
 
 UV es un gestor de paquetes y entornos virtuales alternativo para _Python_,
-desarrollado en _Rust_ y que nos promote ser muy rápido en los procesos que
+desarrollado en _Rust_ y que nos promete ser muy rápido en los procesos que
 pretende reemplazar de PIP y VENV. En este sentido, solo es añadir `uv` antes
 de las instrucciones habituales y debe funcionar (salvo algunos casos particulares
 de compatibilidad o de no existir implementación).
