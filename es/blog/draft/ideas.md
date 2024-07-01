@@ -6,6 +6,8 @@ pikepdf mupdf pypdf2
 
 sympy gamma - wolfram alpha - maple
 
+vulture django https://adamj.eu/tech/2023/07/12/django-clean-up-unused-code-vulture/
+
 simulación placas
 agros2d
 freecad

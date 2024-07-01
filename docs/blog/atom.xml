@@ -2,10 +2,131 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="es">
   <id>https://www.cosmoscalibur.com/</id>
   <title>Cosmoscalibur</title>
-  <updated>2024-06-24T02:25:36.496925+00:00</updated>
+  <updated>2024-07-01T03:14:52.755916+00:00</updated>
   <link href="https://www.cosmoscalibur.com/"/>
   <link href="https://www.cosmoscalibur.com/blog/atom.xml" rel="self"/>
   <generator uri="https://ablog.readthedocs.io/" version="0.11.8">ABlog</generator>
+  <entry>
+    <id>https://www.cosmoscalibur.com/es/blog/2024/uv-alternativa-rapida-a-pip-y-venv/</id>
+    <title>UV, alternativa rápida a PIP y VENV</title>
+    <updated>2024-06-30T00:00:00-05:00</updated>
+    <author>
+      <name>Edward Villegas-Pulgarin</name>
+    </author>
+    <content type="html">&lt;section class="tex2jax_ignore mathjax_ignore" id="uv-alternativa-rapida-a-pip-y-venv"&gt;
+
+&lt;p&gt;UV es un gestor de paquetes y entornos virtuales alternativo para &lt;em&gt;Python&lt;/em&gt;,
+desarrollado en &lt;em&gt;Rust&lt;/em&gt; y que nos promote ser muy rápido en los procesos que
+pretende reemplazar de PIP y VENV. En este sentido, solo es añadir &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;uv&lt;/span&gt;&lt;/code&gt; antes
+de las instrucciones habituales y debe funcionar (salvo algunos casos particulares
+de compatibilidad o de no existir implementación).&lt;/p&gt;
+&lt;p&gt;Esta es una de tantas herramientas que vienen en la era &lt;em&gt;Rust&lt;/em&gt; a permear el
+ecosistema de &lt;em&gt;Python&lt;/em&gt; generando un nuevo valor, como lo es la mejora de
+rendimiento. Y es que del mismo creador, tenemos también &lt;em&gt;Ruff&lt;/em&gt; como un reemplazo
+eficiente de &lt;em&gt;linters&lt;/em&gt;, y también hay otras herramientas como &lt;em&gt;PyO3&lt;/em&gt; para
+crear bibliotecas Python en Rust, Polars como un reemplazo a Pandas o Robyn como
+alternativa a Flask.&lt;/p&gt;
+&lt;p&gt;Este proyecto, &lt;a class="reference external" href="https://astral.sh/blog/uv"&gt;UV&lt;/a&gt;, pretende ser el equivalente de
+un &lt;em&gt;cargo&lt;/em&gt; (el gestor de &lt;em&gt;Rust&lt;/em&gt;) para Python, integrando en un único binario,
+múltiples utilidades.&lt;/p&gt;
+&lt;section id="instalacion-de-uv"&gt;
+&lt;h2&gt;Instalación de UV&lt;/h2&gt;
+&lt;p&gt;Si tenemos en nuestro sistema más de una versión Python, la forma recomendada para
+instalar será a partir del &lt;em&gt;script&lt;/em&gt; de instalación que provee, ya que de esta forma
+queda disponible para todas nuestras instalaciones sin depender de un ambiente Python
+en particular. Esto es porque el binario evalúa la instalación de Python correspondiente
+a través de las variables de entorno y soporta las funciones de gestión para el ambiente
+detectado.&lt;/p&gt;
+&lt;p&gt;Si estamos en Linux, podemos proceder como&lt;/p&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;curl&lt;span class="w"&gt; &lt;/span&gt;-LsSf&lt;span class="w"&gt; &lt;/span&gt;https://astral.sh/uv/install.sh&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;sh
+&lt;span class="nb"&gt;source&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;$HOME&lt;/span&gt;/.cargo/env
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;La primera línea, descarga el &lt;em&gt;script&lt;/em&gt; de instalación y lo ejecuta. En la segunda línea,
+se configura el entorno (en mi caso uso &lt;em&gt;bash&lt;/em&gt;) y con esto queda disponible de forma inmediata
+(también si abres una nueva consola estará disponible).&lt;/p&gt;
+&lt;p&gt;También se encuentra como un paquete Python, por lo que podrás usar &lt;em&gt;pip&lt;/em&gt; para instalarlo. Si necesitas
+validar otro método o sistema operativo, puedes revisar el
+&lt;a class="reference external" href="https://github.com/astral-sh/uv?tab=readme-ov-file#getting-started"&gt;repositorio oficial&lt;/a&gt;.&lt;/p&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;pip&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;uv
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Como veremos adelante, tendremos unas buenas mejoras en los tiempos de instalación de paquetes
+y de creación de ambientes, pero es importante que si piensas esta herramienta para reducir el
+tiempo de ejecución de GitHub Actions, el tiempo de instalación de UV o de su
+&lt;a class="reference external" href="https://github.com/actions/setup-python/issues/822"&gt;gestión de caché&lt;/a&gt;
+puede no ser una alternativa de momento, salvo que el tiempo de resolución efectivamente lo valga.
+En mi caso, el método directo tomó 7.8 s, mientras que la instalación con PIP tomó 5.8 s.&lt;/p&gt;
+&lt;div class="admonition note"&gt;
+&lt;p class="admonition-title"&gt;Nota&lt;/p&gt;
+&lt;p&gt;La manera como mediremos los tiempos de los procesos, será mediante la utilidad &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;time&lt;/span&gt;&lt;/code&gt;. Esta se
+puede anteceder a las instrucciones que usaremos y nos permitirá evaluar el tiempo total (&lt;em&gt;real&lt;/em&gt;),
+así como el tiempo en espacio de usuario y de sistema.&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;Para actualizar &lt;em&gt;UV&lt;/em&gt; desde el binario, podemos usar &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;uv&lt;/span&gt; &lt;span class="pre"&gt;self&lt;/span&gt; &lt;span class="pre"&gt;update&lt;/span&gt;&lt;/code&gt; (disponible desde la versión
+0.1.23).&lt;/p&gt;
+&lt;section id="desinstalar-uv"&gt;
+&lt;h3&gt;Desinstalar UV&lt;/h3&gt;
+&lt;p&gt;Esto no es algo bien documentado, pero se encuentra disponible en un
+&lt;a class="reference external" href="https://github.com/astral-sh/uv/issues/1696#issuecomment-2031776112"&gt;reporte al repositorio&lt;/a&gt;,
+considerando que es simplemente un binario. Así que nos interesa borrar la caché de UV y el binario.&lt;/p&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;rm&lt;span class="w"&gt; &lt;/span&gt;-rf&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;$HOME&lt;/span&gt;/.cache/uv
+rm&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;$HOME&lt;/span&gt;/.cargo/bin/uv
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/section&gt;
+&lt;/section&gt;
+&lt;section id="creacion-de-ambientes-virtuales"&gt;
+&lt;h2&gt;Creación de ambientes virtuales&lt;/h2&gt;
+&lt;p&gt;Igual que con la utilidad de &lt;em&gt;venv&lt;/em&gt;, el ambiente creado depende de la instalación Python usada (detectado
+por las variables de entorno), y tendremos opción de manejarlo con el nombre por defecto o asignando uno.&lt;/p&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;python3&lt;span class="w"&gt; &lt;/span&gt;-m&lt;span class="w"&gt; &lt;/span&gt;venv&lt;span class="w"&gt; &lt;/span&gt;testvenv&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="c1"&gt;# VENV: Toma 2.5 s&lt;/span&gt;
+uv&lt;span class="w"&gt; &lt;/span&gt;venv&lt;span class="w"&gt; &lt;/span&gt;testuv&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="c1"&gt;# UV: Toma 0.01 s&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;La opción de &lt;em&gt;UV&lt;/em&gt; es bastante rápida en la creación del ambiente virtual.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="instalacion-de-paquetes-python"&gt;
+&lt;h2&gt;Instalación de paquetes Python&lt;/h2&gt;
+&lt;p&gt;En general, es buena práctica usar ambientes, y UV lo espera por defecto.
+Pero en caso de una instalación global, podemos pasar &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;--system&lt;/span&gt;&lt;/code&gt; como argumento
+(adecuado para CI o contenedores).&lt;/p&gt;
+&lt;p&gt;En mi caso, igual para poder hacer las pruebas, activaré los ambientes para
+comparar la instalación de &lt;em&gt;pip&lt;/em&gt; y &lt;em&gt;UV&lt;/em&gt;. El caso de uso para la prueba, será
+la instalación de las dependencias usadas en el &lt;a class="reference internal" href="../es/blog/2024/crear-un-blog-con-sphinx/#dependencias"&gt;&lt;span class="std std-ref"&gt;repositorio del blog&lt;/span&gt;&lt;/a&gt;.&lt;/p&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nb"&gt;source&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;testenv/bin/activate
+python3&lt;span class="w"&gt; &lt;/span&gt;-m&lt;span class="w"&gt; &lt;/span&gt;pip&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;-r&lt;span class="w"&gt; &lt;/span&gt;requirements.txt&lt;span class="w"&gt; &lt;/span&gt;-r&lt;span class="w"&gt; &lt;/span&gt;requirements-dev.txt
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nb"&gt;source&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;testuv/bin/activate
+uv&lt;span class="w"&gt; &lt;/span&gt;pip&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;-r&lt;span class="w"&gt; &lt;/span&gt;requirements.txt&lt;span class="w"&gt; &lt;/span&gt;-r&lt;span class="w"&gt; &lt;/span&gt;requirements-dev.txt
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Mientras que la versión &lt;em&gt;pip&lt;/em&gt; tomó 25.5 s, la versión &lt;em&gt;UV&lt;/em&gt; tomó 5.9 s. Aquí notamos ya
+diferencias importantes que en un flujo de CI (ejemplo, GitHub Actions), puede representar
+ahorros interesantes.&lt;/p&gt;
+&lt;p&gt;Este mismo ejercicio lo realicé para el repositorio principal en mi trabajo, toma 3.1 s
+con UV, mientras que usando PIP toma 19.8 s.&lt;/p&gt;
+&lt;p&gt;Es importante tener presente el cambio de sintaxis cuando se instala un paquete desde un repositorio,
+y es el uso de &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;&amp;quot;paquete&lt;/span&gt; &lt;span class="pre"&gt;&amp;#64;&lt;/span&gt; &lt;span class="pre"&gt;url_repo&amp;quot;&lt;/span&gt;&lt;/code&gt;, y en particular si posee credenciales considerar
+el soporte acorde a las &lt;a class="reference external" href="https://github.com/astral-sh/uv?tab=readme-ov-file#git-authentication"&gt;indicaciones&lt;/a&gt;.&lt;/p&gt;
+&lt;/section&gt;
+&lt;/section&gt;
+</content>
+    <link href="https://www.cosmoscalibur.com/es/blog/2024/uv-alternativa-rapida-a-pip-y-venv/"/>
+    <summary>UV es un gestor de paquetes y entornos virtuales alternativo para Python,
+desarrollado en Rust y que nos promote ser muy rápido en los procesos que
+pretende reemplazar de PIP y VENV. En este sentido, solo es añadir uv antes
+de las instrucciones habituales y debe funcionar (salvo algunos casos particulares
+de compatibilidad o de no existir implementación).</summary>
+    <category term="astral" label="astral"/>
+    <category term="pip" label="pip"/>
+    <category term="python" label="python"/>
+    <category term="rustlang" label="rustlang"/>
+    <category term="uv" label="uv"/>
+    <category term="venv" label="venv"/>
+    <published>2024-06-30T00:00:00-05:00</published>
+  </entry>
   <entry>
     <id>https://www.cosmoscalibur.com/es/blog/2024/instalar-rust-en-linux/</id>
     <title>Instalar Rust en Linux</title>
