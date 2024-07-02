@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="es">
   <id>https://www.cosmoscalibur.com/</id>
   <title>Cosmoscalibur</title>
-  <updated>2024-07-01T03:19:20.049571+00:00</updated>
+  <updated>2024-07-02T01:47:00.391599+00:00</updated>
   <link href="https://www.cosmoscalibur.com/"/>
   <link href="https://www.cosmoscalibur.com/blog/atom.xml" rel="self"/>
   <generator uri="https://ablog.readthedocs.io/" version="0.11.8">ABlog</generator>
@@ -105,8 +105,13 @@ uv&lt;span class="w"&gt; &lt;/span&gt;pip&lt;span class="w"&gt; &lt;/span&gt;ins
 &lt;p&gt;Mientras que la versión &lt;em&gt;pip&lt;/em&gt; tomó 25.5 s, la versión &lt;em&gt;UV&lt;/em&gt; tomó 5.9 s. Aquí notamos ya
 diferencias importantes que en un flujo de CI (ejemplo, GitHub Actions), puede representar
 ahorros interesantes.&lt;/p&gt;
-&lt;p&gt;Este mismo ejercicio lo realicé para el repositorio principal en mi trabajo, toma 3.1 s
-con UV, mientras que usando PIP toma 19.8 s.&lt;/p&gt;
+&lt;p&gt;Este mismo ejercicio lo realicé para el repositorio principal en mi trabajo, toma 6 s
+con UV sin caché e instalando UV, mientras que usando PIP toma típicamente 32 s sin caché y 24 s con caché.
+En este caso, es importante pasar la opción de sistema para usarlo en GitHub Actions.&lt;/p&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;pip&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;uv
+uv&lt;span class="w"&gt; &lt;/span&gt;pip&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;--system&lt;span class="w"&gt; &lt;/span&gt;-r&lt;span class="w"&gt; &lt;/span&gt;requirements.txt&lt;span class="w"&gt; &lt;/span&gt;-r&lt;span class="w"&gt; &lt;/span&gt;requirements-dev.txt
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
 &lt;p&gt;Es importante tener presente el cambio de sintaxis cuando se instala un paquete desde un repositorio,
 y es el uso de &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;&amp;quot;paquete&lt;/span&gt; &lt;span class="pre"&gt;&amp;#64;&lt;/span&gt; &lt;span class="pre"&gt;url_repo&amp;quot;&lt;/span&gt;&lt;/code&gt;, y en particular si posee credenciales considerar
 el soporte acorde a las &lt;a class="reference external" href="https://github.com/astral-sh/uv?tab=readme-ov-file#git-authentication"&gt;indicaciones&lt;/a&gt;.&lt;/p&gt;
@@ -119,7 +124,10 @@ desarrollado en Rust y que nos promete ser muy rápido en los procesos que
 pretende reemplazar de PIP y VENV. En este sentido, solo es añadir uv antes
 de las instrucciones habituales y debe funcionar (salvo algunos casos particulares
 de compatibilidad o de no existir implementación).</summary>
-    <category term="astral" label="astral"/>
+    <category term="acelerarpython" label="acelerar python"/>
+    <category term="gestordeambientesvirtuales" label="gestor de ambientes virtuales"/>
+    <category term="gestordepaquetes" label="gestor de paquetes"/>
+    <category term="herramientasdesarrolladasenrust" label="herramientas desarrolladas en rust"/>
     <category term="pip" label="pip"/>
     <category term="python" label="python"/>
     <category term="rustlang" label="rustlang"/>
@@ -501,10 +509,10 @@ En LibGen, no he podido acceder, pero Sci-Hub está perfectamente funcional (des
     <link href="https://www.cosmoscalibur.com/es/blog/2024/recursos-de-acceso-abierto-para-tu-investigacion/"/>
     <summary>Ante la barrera de acceso de información especializada, típicamente por requerir
 de pago, existe una variedad de alternativas de acceso abierto.</summary>
-    <category term="accesoabierto" label="acceso abierto"/>
     <category term="artículosacadémicos" label="artículos académicos"/>
     <category term="openaccess" label="open access"/>
-    <category term="preprints" label="preprints"/>
+    <category term="recursosdeaccesoabierto" label="recursos de acceso abierto"/>
+    <category term="repositoriosdepreprints" label="repositorios de preprints"/>
     <published>2024-06-02T00:00:00-05:00</published>
   </entry>
   <entry>

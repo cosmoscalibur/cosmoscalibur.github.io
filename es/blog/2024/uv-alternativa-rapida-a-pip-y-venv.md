@@ -1,6 +1,6 @@
 ---
 date: 2024-06-30
-tags: python, rustlang, uv, pip, venv, astral
+tags: acelerar python, gestor de paquetes, gestor de ambientes virtuales, herramientas desarrolladas en rust, python, uv, pip, venv, rustlang
 category: tecnología
 ---
 
@@ -115,10 +115,15 @@ Mientras que la versión _pip_ tomó 25.5 s, la versión _UV_ tomó 5.9 s. Aquí
 diferencias importantes que en un flujo de CI (ejemplo, GitHub Actions), puede representar
 ahorros interesantes.
 
-Este mismo ejercicio lo realicé para el repositorio principal en mi trabajo, toma 3.1 s
-con UV, mientras que usando PIP toma 19.8 s.
+Este mismo ejercicio lo realicé para el repositorio principal en mi trabajo, toma 6 s
+con UV sin caché e instalando UV, mientras que usando PIP toma típicamente 32 s sin caché y 24 s con caché.
+En este caso, es importante pasar la opción de sistema para usarlo en GitHub Actions.
+
+:::{code} bash
+pip install uv
+uv pip install --system -r requirements.txt -r requirements-dev.txt
+:::
 
 Es importante tener presente el cambio de sintaxis cuando se instala un paquete desde un repositorio,
 y es el uso de `"paquete @ url_repo"`, y en particular si posee credenciales considerar
 el soporte acorde a las [indicaciones](https://github.com/astral-sh/uv?tab=readme-ov-file#git-authentication).
-

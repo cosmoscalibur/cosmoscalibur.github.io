@@ -421,25 +421,25 @@ document.write(`
     </span>
   
   
-  <a href="../../../../blog/tag/venv/">venv</a>
+  <a href="../../../../blog/tag/gestor-de-ambientes-virtuales/">gestor de ambientes virtuales</a>
   
   
   
   
   
-  <a href="../../../../blog/tag/astral/">astral</a>
+  <a href="../../../../blog/tag/herramientas-desarrolladas-en-rust/">herramientas desarrolladas en rust</a>
   
   
   
   
   
-  <a href="../../../../blog/tag/rustlang/">rustlang</a>
+  <a href="../../../../blog/tag/gestor-de-paquetes/">gestor de paquetes</a>
   
   
   
   
   
-  <a href="../../../../blog/tag/python/">python</a>
+  <a href="../../../../blog/tag/acelerar-python/">acelerar python</a>
   
   
   
@@ -451,7 +451,25 @@ document.write(`
   
   
   
+  <a href="../../../../blog/tag/python/">python</a>
+  
+  
+  
+  
+  
+  <a href="../../../../blog/tag/rustlang/">rustlang</a>
+  
+  
+  
+  
+  
   <a href="../../../../blog/tag/uv/">uv</a>
+  
+  
+  
+  
+  
+  <a href="../../../../blog/tag/venv/">venv</a>
   
   
   
@@ -722,8 +740,13 @@ uv<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </s
 <p>Mientras que la versión <em>pip</em> tomó 25.5 s, la versión <em>UV</em> tomó 5.9 s. Aquí notamos ya
 diferencias importantes que en un flujo de CI (ejemplo, GitHub Actions), puede representar
 ahorros interesantes.</p>
-<p>Este mismo ejercicio lo realicé para el repositorio principal en mi trabajo, toma 3.1 s
-con UV, mientras que usando PIP toma 19.8 s.</p>
+<p>Este mismo ejercicio lo realicé para el repositorio principal en mi trabajo, toma 6 s
+con UV sin caché e instalando UV, mientras que usando PIP toma típicamente 32 s sin caché y 24 s con caché.
+En este caso, es importante pasar la opción de sistema para usarlo en GitHub Actions.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>uv
+uv<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>--system<span class="w"> </span>-r<span class="w"> </span>requirements.txt<span class="w"> </span>-r<span class="w"> </span>requirements-dev.txt
+</pre></div>
+</div>
 <p>Es importante tener presente el cambio de sintaxis cuando se instala un paquete desde un repositorio,
 y es el uso de <code class="docutils literal notranslate"><span class="pre">&quot;paquete</span> <span class="pre">&#64;</span> <span class="pre">url_repo&quot;</span></code>, y en particular si posee credenciales considerar
 el soporte acorde a las <a class="reference external" href="https://github.com/astral-sh/uv?tab=readme-ov-file#git-authentication">indicaciones</a>.</p>
