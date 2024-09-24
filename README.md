@@ -1,7 +1,7 @@
 # Cosmoscalibur
 
 Este es el repositorio público de mi sitio web,
-[cosmoscalibur.com](https://www.cosmoscalibur.com).  
+[cosmoscalibur.com](https://www.cosmoscalibur.com) `> ⚛️ _|`.  
 
 ## Lenguaje
 
@@ -38,7 +38,7 @@ Por lo pronto los veo en las redes sociales:
 +   GitHub [cosmoscalibur](https://github.com/cosmoscalibur).  
 +   Mastodon [@cosmoscalibur@col.social](https://col.social/@cosmoscalibur).  
 +   Youtube [cosmoscalibur](https://www.youtube.com/c/CosmoscaliburCo).  
-+   Twitter [@cosmoscalibur](http://www.twitter.com/cosmoscalibur).  
++   X (Twitter) [@cosmoscalibur](http://www.twitter.com/cosmoscalibur).  
 +   Facebook [cosmoscalibur](http://www.facebook.com/cosmoscalibur).  
 +   Instagram [blogcosmoscalibur](https://www.instagram.com/cosmoscalibur/).  
 +   LinkedIn [cosmoscalibur](https://co.linkedin.com/in/cosmoscalibur).  
