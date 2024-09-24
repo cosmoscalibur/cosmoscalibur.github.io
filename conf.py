@@ -99,11 +99,13 @@ html_short_title = 'Cosmoscalibur'
 
 # The name of an image file (relative to this directory) to place at the top
 # of the sidebar.
-# html_logo = None
+html_logo = 'static/logo/cosmoscalibur.png'
 # The name of an image file (within the static path) to use as favicon of the
 # docs.  This file should be a Windows icon file (.ico) being 16x16 or 32x32
 # pixels large.
-# html_favicon = None
+# Generar ico con inkscape e imagemagick
+# https://graphicdesign.stackexchange.com/a/77466
+html_favicon = 'static/logo/cosmoscalibur.ico'
 
 html_static_path = ['static']
 html_extra_path = ['files']
