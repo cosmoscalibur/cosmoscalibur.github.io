@@ -1,3 +1,13 @@
+ngrok
+
+https://github.com/sts10/rust-command-line-utilities
+zellij
+zed
+dog
+eza
+
+
+
 uv y pipenv
 
 ruff pylint y otros
