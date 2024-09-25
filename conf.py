@@ -104,7 +104,7 @@ html_favicon = 'static/cosmoscalibur_favicon.png'
 
 html_static_path = ['static']
 html_extra_path = ['files']
-templates_path = ["templates"]
+templates_path = ['templates']
 exclude_patterns = [
     '_build',
     '***/.ipynb_checkpoints/*',
