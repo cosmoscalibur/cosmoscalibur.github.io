@@ -99,7 +99,7 @@ Pero en caso de una instalación global, podemos pasar `--system` como argumento
 
 En mi caso, igual para poder hacer las pruebas, activaré los ambientes para
 comparar la instalación de _pip_ y _UV_. El caso de uso para la prueba, será
-la instalación de las dependencias usadas en el [repositorio del blog](/es/blog/2024/crear-un-blog-con-sphinx.md#dependencias).
+la instalación de las dependencias usadas en el [repositorio del blog](./crear-un-blog-con-sphinx.md#dependencias).
 
 :::{code} bash
 source testenv/bin/activate

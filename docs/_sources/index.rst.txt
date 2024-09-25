@@ -16,7 +16,8 @@ personales que me sirven de recordatorio.
 
 Y sobre mí, pueden conocer más en :doc:`/es/me/index`
 
-Publicaciones recientes:
+Mis últimas publicaciones las listo a continuación, pero puedes ver el listado
+completo en :ref:`blog-posts`.
 
 .. postlist:: 5
    :date: %Y-%m-%d

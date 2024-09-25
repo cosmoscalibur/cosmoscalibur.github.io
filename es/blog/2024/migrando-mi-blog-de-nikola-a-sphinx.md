@@ -26,7 +26,7 @@ nuestras entradas previas sigan funcionando.
 #### Front matter
 
 Dado que en la configuración inicial añadimos un
-[patrón de ruta](./crear-un-blog-con-sphinx.md#blog-conf) para las publicaciones,
+[patrón de ruta](#blog-conf) para las publicaciones,
 no es necesario agregar la directiva de `..post:` o el atributo de `:blogpost: true`.
 Solo ubica los archivos en la ruta que cumpla el patrón 👀.
 
@@ -64,7 +64,7 @@ Esto hace que los títulos ya existentes, deban aumentar de nivel 👀.
 En _ablog_ no tenemos el equivalente del `..status:` de Nikola, pero se puede controlar
 que una fecha actual o pasada sea equivalente a `published` y si es una fecha futura o
 sin fecha es el equivalente de `draft`. El caso del `private` podríamos hacerlo
-[excluyendo el archivo](./crear-un-blog-con-sphinx.md#exclude-files). El caso
+[excluyendo el archivo](#exclude-files). El caso
 `featured` es más personalizado, pero se podría explorar con el objeto de las _cards_
 en el índice.
 

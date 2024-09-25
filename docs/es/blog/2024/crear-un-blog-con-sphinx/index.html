@@ -72,7 +72,7 @@
             </script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'es/blog/2024/crear-un-blog-con-sphinx';</script>
     <link rel="canonical" href="https://www.cosmoscalibur.com/es/blog/2024/crear-un-blog-con-sphinx.html" />
-    <link rel="icon" href="../../../../_static/cosmoscalibur.ico"/>
+    <link rel="icon" href="../../../../_static/cosmoscalibur_favicon.png"/>
     <link rel="index" title="Índice" href="../../../../genindex/" />
     <link rel="search" title="Búsqueda" href="../../../../search/" />
 
@@ -163,8 +163,8 @@
       
     
     
-    <img src="../../../../_static/cosmoscalibur.png" class="logo__image only-light" alt="Cosmoscalibur - Home"/>
-    <script>document.write(`<img src="../../../../_static/cosmoscalibur.png" class="logo__image only-dark" alt="Cosmoscalibur - Home"/>`);</script>
+    <img src="../../../../_static/cosmoscalibur_logo.png" class="logo__image only-light" alt="Cosmoscalibur - Home"/>
+    <script>document.write(`<img src="../../../../_static/cosmoscalibur_logo.png" class="logo__image only-dark" alt="Cosmoscalibur - Home"/>`);</script>
   
   
 </a></div>
@@ -495,6 +495,12 @@ document.write(`
   
   
   <li>
+    <a href="../agregar-logo-y-favicon-en-sphinx/">
+      2024-09-24 - Agregar logo y favicon en Sphinx
+    </a>
+  </li>
+  
+  <li>
     <a href="../uv-alternativa-rapida-a-pip-y-venv/">
       2024-06-30 - UV, alternativa rápida a PIP y VENV
     </a>
@@ -518,12 +524,6 @@ document.write(`
     </a>
   </li>
   
-  <li>
-    <a href="../../../../en/blog/2013/orden-y-origen-del-cosmos-griego/">
-      2024-05-27 - Order and Origin of the Greek Cosmos
-    </a>
-  </li>
-  
 </ul>
 </div>
 </div>
@@ -536,7 +536,7 @@ document.write(`
   
   
   <li>
-    <a href="../../../../blog/2024/">2024 (11)</a>
+    <a href="../../../../blog/2024/">2024 (12)</a>
   </li>
   
   
@@ -850,11 +850,14 @@ el archivo CNAME).</p>
 <p>Importante para la generación con GitHub Pages, el directorio de salida debe
 ser <code class="docutils literal notranslate"><span class="pre">docs</span></code>.</p>
 <p>Finalmente, las variables de configuración en <code class="docutils literal notranslate"><span class="pre">conf.py</span></code>.</p>
+<div class="literal-block-wrapper docutils container" id="sphinx-dir-setup">
+<div class="code-block-caption"><span class="caption-text">Definición de directorios de entradas y salidas para Sphinx y Ablog</span><a class="headerlink" href="#sphinx-dir-setup" title="Link to this code">#</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">templates_path</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;templates&#39;</span><span class="p">]</span>
 <span class="n">html_static_path</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;static&#39;</span><span class="p">]</span>
 <span class="n">html_extra_path</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;files&#39;</span><span class="p">]</span>
 <span class="n">ablog_website</span> <span class="o">=</span> <span class="s1">&#39;docs&#39;</span>
 </pre></div>
+</div>
 </div>
 <p>Ahora vamos a definir los archivos que no deben ser procesados. Esto es
 importante porque al estar el directorio de Sphinx al mismo nivel del

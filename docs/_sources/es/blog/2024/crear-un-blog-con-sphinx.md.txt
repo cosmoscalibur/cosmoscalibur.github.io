@@ -222,12 +222,15 @@ ser `docs`.
 
 Finalmente, las variables de configuración en `conf.py`.
 
-```python
+:::{code-block} python
+:name: sphinx-dir-setup
+:caption: Definición de directorios de entradas y salidas para Sphinx y Ablog
+
 templates_path = ['templates']
 html_static_path = ['static']
 html_extra_path = ['files']
 ablog_website = 'docs'
-```
+:::
 
 Ahora vamos a definir los archivos que no deben ser procesados. Esto es
 importante porque al estar el directorio de Sphinx al mismo nivel del
