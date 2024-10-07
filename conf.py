@@ -79,6 +79,9 @@ myst_enable_extensions = [
 ]
 myst_heading_anchors = 3
 
+nb_execution_mode = 'off'
+nb_render_markdown_format = 'myst'
+
 # General information about the project.
 project = "Cosmoscalibur"
 copyright = "2024, Edward Villegas-Pulgarin"
@@ -108,6 +111,7 @@ templates_path = ['templates']
 exclude_patterns = [
     '_build',
     '***/.ipynb_checkpoints/*',
+    'jupyter_execute',
     'Pipfile',
     'LICENSE',
     'README.md',
