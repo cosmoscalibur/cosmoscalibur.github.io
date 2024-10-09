@@ -95,8 +95,6 @@ html_theme_options = {
     'twitter_url': 'https://twitter.com/cosmoscalibur',
     'github_url': 'https://github.com/cosmoscalibur/',
 }
-# Después, esto servirá para separar local de desplegado con Action
-html_theme_options['analytics'] = {'google_analytics_id': 'G-4YFQBC69LB'}
 html_title = 'Cosmoscalibur'
 html_short_title = 'Cosmoscalibur'
 
