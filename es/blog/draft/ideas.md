@@ -23,14 +23,13 @@ weazyprint
 pandoc
 
 sympy gamma
-wolfram alpha
-maple
 
 vulture django https://adamj.eu/tech/2023/07/12/django-clean-up-unused-code-vulture/
 
 simulación placas
-agros2d
-freecad
+diferencias finitas
+mallas gmsh
+visualización paraview - vtk
 
 three.js
 d3.js
