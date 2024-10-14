@@ -57,6 +57,19 @@
     <script src="../../../../_static/copybutton.js?v=f281be69"></script>
     <script src="../../../../_static/translations.js?v=efdbd0b9"></script>
     <script src="../../../../_static/design-tabs.js?v=36754332"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-4YFQBC69LB"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-4YFQBC69LB');
+            </script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-4YFQBC69LB');
+            </script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'es/blog/2024/espiral-de-parker-con-python';</script>
@@ -72,9 +85,6 @@
 <!-- Usado para mostrar publicidad -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-0356238418278924"
 crossorigin="anonymous"></script>
-
-<!-- Google Analytics-->
-<script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-4YFQBC69LB"></script>
 
 
 
@@ -434,19 +444,13 @@ document.write(`
     </span>
   
   
-  <a href="../../../../blog/tag/python/">python</a>
-  
-  
-  
-  
-  
-  <a href="../../../../blog/tag/metodo-de-runge-kutta/">método de runge kutta</a>
-  
-  
-  
-  
-  
   <a href="../../../../blog/tag/viento-solar/">viento solar</a>
+  
+  
+  
+  
+  
+  <a href="../../../../blog/tag/python/">python</a>
   
   
   
@@ -459,6 +463,12 @@ document.write(`
   
   
   <a href="../../../../blog/tag/sympy/">sympy</a>
+  
+  
+  
+  
+  
+  <a href="../../../../blog/tag/metodo-de-runge-kutta/">método de runge kutta</a>
   
   
   
@@ -649,27 +659,27 @@ document.write(`
 <section id="perfil-de-velocidad-del-viento-solar">
 <h2>Perfil de velocidad del viento solar<a class="headerlink" href="#perfil-de-velocidad-del-viento-solar" title="Link to this heading">#</a></h2>
 <p>En el trabajo de Parker bajo condiciones de expansión isotérmica (<span class="math notranslate nohighlight">\(\gamma = 1\)</span>) de un fluido neutro (primera aproximación al comportamiento del viendo solar), lleva a una ecuación diferencial no lineal de primer orden que relaciona la velocidad del viento solar (<span class="math notranslate nohighlight">\(u(r)\)</span>) y la distancia heliocéntrica (<span class="math notranslate nohighlight">\(r\)</span>) ((Parker, 1958), (Kivelson, 1995)).</p>
-<div class="amsmath math notranslate nohighlight" id="equation-93945c9c-a5a5-4372-aa76-e13acdf71c29">
-<span class="eqno">(1)<a class="headerlink" href="#equation-93945c9c-a5a5-4372-aa76-e13acdf71c29" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-40da79f4-26bb-4abd-aa40-dcbca57e17f0">
+<span class="eqno">(1)<a class="headerlink" href="#equation-40da79f4-26bb-4abd-aa40-dcbca57e17f0" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \frac{du(r)}{dr} = \left(\frac{4kT}{mr} - \frac{GM}{r^2} \right)u(r)\left(u(r)^2 - \frac{2kT}{m} \right)^{-1}
 \end{equation}\]</div>
 <p>Con el fin de reducir la propagación de error por los ordenes de magnitud de las variables involucradas, se procede a adimensionalizar la ecuación diferencial, con base al radio y velocidad en el punto crítico (punto sónico) (Piso, 2008).</p>
-<div class="amsmath math notranslate nohighlight" id="equation-7d718f22-0b03-4c23-bea3-37e110e86c73">
-<span class="eqno">(2)<a class="headerlink" href="#equation-7d718f22-0b03-4c23-bea3-37e110e86c73" title="Permalink to this equation">#</a></span>\[\begin{eqnarray}
+<div class="amsmath math notranslate nohighlight" id="equation-80c4a1f6-5e0c-4f9c-a2cc-f3fbb870db1d">
+<span class="eqno">(2)<a class="headerlink" href="#equation-80c4a1f6-5e0c-4f9c-a2cc-f3fbb870db1d" title="Permalink to this equation">#</a></span>\[\begin{eqnarray}
 c_s^2 &amp; = &amp; \frac{2kT}{m}\\
 r_c &amp;=&amp; \frac{GM}{2c_s^2}\\
 \frac{dv}{dR} &amp;=&amp; \frac{2\left(\frac{1}{R} - \frac{1}{R^2}\right)}{v - \frac{1}{v}}
 \end{eqnarray}\]</div>
 <p>Donde <span class="math notranslate nohighlight">\(v\)</span> es la velocidad en velocidades sónicas (<span class="math notranslate nohighlight">\(c_s\)</span>) y <span class="math notranslate nohighlight">\(R\)</span> es el radio en radios sónicos (<span class="math notranslate nohighlight">\(r_c\)</span>). Observamos que alrededor del radio sónico y de la velocidad sónica se presenta un punto crítico que debe satisfacerse para asegurar el sentido físico de la solución. También, tenemos que esta ecuación representa un problema de valores de frontera, y en este caso la condición de frontera del problema en unidades adimensionales es <span class="math notranslate nohighlight">\(v(R_{sol}) = v_0\)</span>, donde <span class="math notranslate nohighlight">\(R_{sol}\)</span> es el radio del Sol, y es la posición desde la cuál comienza a desplazarse el flujo de partículas con una velocidad inicial <span class="math notranslate nohighlight">\(v_0\)</span> que dependerá de la densidad de partículas y la temperatura.</p>
 <p>La generación de la espiral de Parker es efecto de la rotación del sol, por lo cual se aplica la transformación de coordenadas lagrangianas para sistemas rotantes, llevando a la ecuación diferencial</p>
-<div class="amsmath math notranslate nohighlight" id="equation-09d9b03f-867a-4218-bd1c-d176f6d850d5">
-<span class="eqno">(3)<a class="headerlink" href="#equation-09d9b03f-867a-4218-bd1c-d176f6d850d5" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-31899408-335a-4233-8414-b43c7194d18c">
+<span class="eqno">(3)<a class="headerlink" href="#equation-31899408-335a-4233-8414-b43c7194d18c" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \frac{d\varphi}{dR} = \frac{-\omega}{v(R)}
 \end{equation}\]</div>
 </section>
 <section id="solucion-analitica-y-numerica-con-python">
 <h2>Solución analítica y numérica con Python<a class="headerlink" href="#solucion-analitica-y-numerica-con-python" title="Link to this heading">#</a></h2>
-<p>Esta ecuación se puede solucionar analíticamente ya que la ecuación permite separación de variables y mediante integración encontrar la solución implícita. Podemos usar <a class="reference external" href="https://www.sympy.org/es/">SymPy</a>, un paquete de álgebra computacional de código abierto y libre, disponible en Python (una alternatica a paquetes comerciales como Maple y Mathematica).</p>
+<p>Esta ecuación se puede solucionar analíticamente ya que la ecuación permite separación de variables y mediante integración encontrar la solución implícita. Podemos usar <a class="reference external" href="https://www.sympy.org/es/">SymPy</a>, un paquete de álgebra computacional de código abierto y libre, disponible en Python (una alternativa a paquetes comerciales como Maple y Mathematica).</p>
 <p>Respecto a la solución numérica, implementaremos el método de <a class="reference external" href="https://es.wikipedia.org/wiki/M%C3%A9todo_de_Runge-Kutta#M%C3%A9todos_de_Runge-Kutta_de_cuarto_orden">Runge-Kutta 4 (RK4)</a>, y para la solución de la componente angular lo realizaremos de forma simple con el <a class="reference external" href="https://es.wikipedia.org/wiki/M%C3%A9todo_de_Euler">método de Euler</a> ya que esto evita tener que interpolar la solución de velocidad radial para conocer puntos intermedios requeridos por RK4. Para su implementación vamos a necesitar el manejo de arreglos, y esto los usaremos con <a class="reference external" href="https://numpy.org/">NumPy</a>. Por supuesto, queremos ver gráficos para entender la solución, así que usaremos <a class="reference external" href="https://matplotlib.org/">Matplotlib</a>.</p>
 <p>Así que vamos a instalar, en este caso con la ayuda de UV, el cual es <a class="reference internal" href="../uv-alternativa-rapida-a-pip-y-venv/"><span class="std std-doc">una alternativa más rápida a <em>PIP</em></span></a>. El <code class="docutils literal notranslate"><span class="pre">!</span></code> es porque es una celda de Notebook, pero si estás en la terminal, puedes omitirla.</p>
 <div class="cell docutils container">
