@@ -120,7 +120,8 @@ Si usamos además VSCode, vale la pena las siguientes extensiones:
 - Jupyter: Para manipular notebooks
 - Emoji: Para insertar emoji con la paleta de comandos 😀
 - Spell Right: Para corrección de ortografía.
-- Font Awesome Gallery: Para buscar la notación de los íconos {fa}`rocket`
+- Font Awesome Gallery: Para buscar la notación de los íconos de Font Awesome
+  si los piensas usar (tiene alto impacto en el tiempo de carga).
 :::
 
 :::{dropdown} Otros
@@ -301,7 +302,7 @@ Respecto a las opciones de Myst, vamos a habilitar varias extensiones,
 que nos permitan usar más fácilmente las directivas (no usar el _backtick_),
 hacer sustituciones y habilitar el símbolo de dólar para las ecuaciones. adicional,
 vamos a crear referencias (_targets_) para los títulos hasta de tercer nivel
-(h1, h2 y h3). También podemos añadir etiquteas más fácilmente en bloques o 
+(h1, h2 y h3). También podemos añadir etiquteas más fácilmente en bloques o
 líneas, sustituciones con Jinja2, bloques de definiciones, reemplazos o listas
 de tareas. Solo omití linkify, pues no le veo mucha utilidad.
 
@@ -365,7 +366,11 @@ y quiero pensar bien que poner cuando no sean entradas de blog (en los cuales
 los casos dispuestos me parecen perfectos).
 
 
-También podemos incluir los íconos de Font Awesome {fa}`rocket` con 
+También podemos incluir los íconos de Font Awesome {fa}`rocket`, pero ten
+presente que puede tener un impacto importante en el tiempo de carga del sitio
+ya que esto no es optimizado. En mi caso, al hacer pruebas veo que es el mayor
+castigo en los tiempos de carga del blog a nivel de los _scripts_.
+
 :::{code} python
 fontawesome_included = True
 :::
@@ -544,4 +549,10 @@ De mi parte, algunos detalles que quiero próximamente
 - Se incluye extensión VSCode de Font Awesome Gallery.
 - Explicación extra de analytics para deshabilitar en pruebas
 - Se añaden más referencias.
+:::
+
+:::{update} 2024-10-20
+
+- No hago uso recurrente de Font Awesome, por lo cual lo retiro. Dejo
+  anotación de su impacto.
 :::

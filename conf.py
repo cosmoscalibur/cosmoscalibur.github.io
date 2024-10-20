@@ -26,7 +26,7 @@ post_redirect_refresh = 0
 blog_feed_fulltext = True
 
 # Font Awesome
-fontawesome_included = True
+fontawesome_included = False
 
 ## categories, tagcloud, archives, postcard, recentposts, authors, languages, locations
 html_sidebars = {
