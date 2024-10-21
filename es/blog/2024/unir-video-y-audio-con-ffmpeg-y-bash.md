@@ -78,6 +78,13 @@ directamente, preservando calidad y formato original.
 Por último, se indica la ruta del archivo de salida, es decir, el archivo
 resultado de nuestra unión de video y audio.
 
+:::{hint}
+FFMPEG y su documentación, no es muy cómoda para alguien que no sea familiar
+con la línea de comandos, por lo que si tienes dudas de donde empezar, te
+recomiendo visitar los recetarios de
+[ffmprovisr](https://amiaopensource.github.io/ffmprovisr/).
+:::
+
 Podemos abrir el video, y veremos que el video con el audio incluido. Y ahora,
 ¿qué sucede si son 56 videos con sus 56 audios?
 
@@ -172,3 +179,17 @@ Las últimas dos opciones son el motivo de usar el *shebang* de la línea 1,
 para distinguir la _shell_ a usar.
 
 Es hora de ejecutar, y deja que esto trabaje por ti con tu colección de videos.
+
+:::{hint}
+Los 3 recursos que te recomiendo para Bash:
+
+- [Explain Shell](https://explainshell.com/): Escribes una instrucción y te
+  la explica.
+- [Bash Pitfalls](https://mywiki.wooledge.org/BashPitfalls): Una compilación
+  de errores comunes de los usuarios en Bash. Una forma de ver los
+  antipatrones y ver las buenas prácticas.
+- [Bash Guide for Beginners](https://tldp.org/LDP/Bash-Beginners-Guide/html/index.html)
+  y [BASH Programming - Introduction HOW-TO](https://tldp.org/HOWTO/Bash-Prog-Intro-HOWTO.html):
+  Los puntos iniciales de referencia que recomiendo para Bash, del proyecto de
+  documentación de Linux, *TLDP*.
+:::
