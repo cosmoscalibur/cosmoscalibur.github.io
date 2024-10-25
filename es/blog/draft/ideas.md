@@ -1,13 +1,152 @@
 ngrok
 
 https://github.com/sts10/rust-command-line-utilities
-zellij
-zed
-dog
-eza
-bat
-hyperfine
-diffstatic
+
+
+
+apt update -q && apt dist-upgrade -y
+
+Instalar manual (web)
+    Dropbox
+    Google Chrome
+
+Common dependencies to compile
+
+sudo apt install -y build-essential cmake curl pkg-config git ca-certificates
+sudo apt install -y libfreetype6-dev libfontconfig1-dev libxcb-xfixes0-dev libxkbcommon-dev
+
+sudo apt install -y flatpak
+flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+
+Activar teclado numérico desde booteo
+https://wiki.archlinux.org/title/Activating_numlock_on_bootup#KDE_Plasma
+
+rust
+    # Viene 1.79 a 1.81. Defecto 1.80. Ahora es 1.82
+    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+
+Linux utilities
+    # bat: cat
+    # bottom (btm): top
+    # du-dust (dust): du
+    # eza: ls
+    # fd-find: find
+    # ripgrep: grep
+    # bottom: top/htop
+    # procs: ps
+    cargo install --locked bat bottom du-dust eza fd-find procs ripgrep
+    sudo apt install -y fzf
+
+alacritty: terminal emulator (rs)
+    sudo apt install -y alacritty  # man pages, logo, desktop entry
+    sudo update-alternatives --install /usr/bin/x-terminal-emulator x-terminal-emulator $(which alacritty) 70
+    # sudo update-alternatives --config x-terminal-emulator ## check
+
+    # Atajo de teclado
+    # Aplicaciones por defecto
+
+zellij: multiplexer (rs)
+    cargo install --locked zellij
+    # Ejecutar zellij en alacritty
+    mkdir -p ~/.config/alacritty
+    cat << EOF >  ~/.config/alacritty/alacritty.toml
+    [shell]
+    args = ["-l", "-c", "zellij attach --index 0 || zellij"]
+    program = "/usr/bin/bash"
+    EOF
+
+starship: prompt (rs)
+    curl -sS https://starship.rs/install.sh | sh
+    echo 'eval "$(starship init bash)"' >> ~/.bashrc
+
+
+Development (rs)
+    cargo install --locked difftastic just hyperfine
+
+    curl -f https://zed.dev/install.sh | sh
+    echo 'export PATH=$HOME/.local/bin:$PATH' >> ~/.bashrc
+    source ~/.bashrc
+    # https://github.com/zed-industries/zed/issues/10943
+
+    sudo snap install --classic helix
+    cargo install --locked evcxr_jupyter  # Rust jupyter kernel
+    cargo install --locked shellharden  # shellcheck
+    sudo apt install -y shellcheck shfmt
+
+    curl -LsSf https://astral.sh/uv/install.sh | sh  # Python
+
+
+https://github.com/vitallium/zed-ltex
+
+
+cargo install --locked yazi-fm yazi-cli  # file manager terminal
+
+code: IDE
+    sudo snap install --classic code
+    extensions:
+        timonwong.shellcheck
+        mads-hartmann.bash-ide-vscode
+        eamodio.gitlens
+        executablebookproject.myst-highlight
+        ms-python.python
+        rust-lang.rust-analyzer
+        swyddfa.esbonio
+        ms-azuretools.vscode-docker
+        ban.spellright
+    ln -s /usr/share/hunspell/* ~/.config/Code/Dictionaries
+
+sudo apt install -y imagemagick ffmpeg
+sudo apt install -y gimp inkscape
+flatpak install -y flathub com.obsproject.Studio
+
+sudo apt install -y steam-installer
+flatpak install -y flathub com.stremio.Stremio
+sudo snap install spotify
+
+sudo snap install telegram-desktop discord slack
+
+
+git config --global user.email "cosmoscalibur@gmail.com"
+git config --global user.name "Edward Villegas-Pulgarin"
+git config --global pull.rebase true
+
+# https://ollama.com/download
+# https://ollama.com/library/llama3.1:8b
+# https://ollama.com/blog/continue-code-assistant
+
+curl -fsSL https://ollama.com/install.sh | sh  # Puede tomar un buen rato 14m30s
+ollama run llama3.1:8b
+ollama run llama3.2:3b
+#>>> The Ollama API is now available at 127.0.0.1:11434.
+#>>> Install complete. Run "ollama" from the command line.
+#>>> AMD GPU ready.
+
+
+Defecto
+- krita (3rd package - 2d)
+- libreoffice
+- haruna (video, en lugar de vlc)
+- elisa (música)
+- okular (pdf)
+- dolphin (gestor de directorios/archivos)
+- spectacle (captura de pantalla, en lugar de flameshot)
+- 7zip 7zip-rar (compressión, línea de comandos)
+- kwallet (contraseña)
+
+hunspell es
+rla-es
+spellchecker vscode
+
+Se produjo un error mientras se accedía a «EdDisk», el sistema respondió: La operación solicitada ha fallado: Error mounting /dev/sda1 at /media/cosmoscalibur/EdDisk: wrong fs type, bad option, bad superblock on /dev/sda1, missing codepage or helper program, or other error
+
+
+
+
+
+
+
+https://deno.com/
+https://voidzero.dev/
 
 ibis
 polars
@@ -69,7 +208,11 @@ LaTeX a HTML
 -> Pandoc https://medium.com/@hjhuney/how-to-convert-latex-into-html-a4334ffda3f4 https://www.homepages.ucl.ac.uk/~ucahmto/elearning/latex/2019/06/10/pandoc.html
 
 
+matomo en vez de analytics
+https://matomo.org/plausible-vs-matomo/
 
+multiple kernel en un notebook
+https://vatlab.github.io/sos-docs/
 
 Recomendaciones python
 
@@ -155,3 +298,33 @@ postman
 
 tauri https://tauri.app/
 slint https://slint.dev/
+
+
+Problema de actualización posiblemente por internet era
+sudo rm /usr/share/keyrings/cloud.google.gpg~
+sudo rm /usr/share/keyrings/cloud.google.gpg~
+sudo rm /etc/apt/sources.list.d/google-cloud-sdk.list
+
+
+cosmoscalibur@edgamer:~$ sudo do-release-upgrade
+[sudo] contraseña para cosmoscalibur:
+Comprobar si hay una nueva versión de Ubuntu
+No hay una versión de desarrollo de una LTS disponible.
+Para actualizar al último lanzamiento de desarrollo sin LTS
+defina «Prompt=normal» en /etc/update-manager/release-upgrades.
+el valor cuando es lts es lts y solo salta a lts
+
+Comprobar si hay una nueva versión de Ubuntu
+Instale todas las actualizaciones disponibles de su versión antes de actualizar la distribución.
+
+sudo apt update && sudo apt full-upgrade -y
+
+sudo do-release-upgrade
+
+No te voy a mentir, es algo irresponsable, pero la respuesta a casi todo es "Sí" (`s`).
+Salvo que realmente entiendas a que se refiere la pregunta y seas consciente de la necesidad
+de responder "No" (`n`), indica `s`. La primera pregunta es si realmente deseas actualizar la
+versión de la distribución, pero las siguientes son sobre actualización de configuración de paquetes específicos que probablemente ni sabes que existen
+y que su configuración cambió por el mismo desarrollador y no por un cambio tuyo. Igualmente tendremos
+pasos de única opción en los cuales la pantalla completa solo nos permite dar _enter_ a un "Aceptar".
+Y sobre desinstalación (que puede tomar horas). Finalmente, es sobre aceptar el reinicio.
