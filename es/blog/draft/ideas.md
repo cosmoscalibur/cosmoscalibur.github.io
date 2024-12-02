@@ -1,7 +1,5 @@
 ngrok
 
-https://github.com/sts10/rust-command-line-utilities
-
 rust # Viene 1.79 a 1.81. Defecto 1.80. Ahora es 1.82 curl --proto '=https'
 --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
@@ -16,9 +14,6 @@ sudo apt install -y shellcheck shfmt
 curl -LsSf https://astral.sh/uv/install.sh | sh  # Python
 cargo install --git https://github.com/bbqsrc/xml-pretty
 ```
-
-manjaro no shutdown
-https://forum.manjaro.org/t/kde-dont-shut-down-anymore-since-last-update/168818/2
 
 Instalar Code
 
@@ -48,13 +43,6 @@ flatpak install -y flathub com.obsproject.Studio
 sudo snap install drawio
 ```
 
-```
-flatpak install -y flathub com.valvesoftware.Steam
-flatpak install -y flathub com.stremio.Stremio
-sudo snap install spotify
-```
-
-sudo snap install telegram-desktop discord slack
 
 ```
 git config --global user.email "cosmoscalibur@gmail.com"
@@ -77,21 +65,13 @@ Defecto
 
 - krita (3rd package - 2d)
 - libreoffice
-- haruna (video, en lugar de vlc)
-- elisa (música)
 - okular (pdf)
 - dolphin (gestor de directorios/archivos)
-- spectacle (captura de pantalla, en lugar de flameshot)
 - 7zip 7zip-rar (compressión, línea de comandos)
 - kwallet (contraseña)
 
-# File manipulation
-
-sudo snap install pdftk
 
 ## appimage:stellarium
-
-sudo apt install -y pinta
 
 ```
 # LaTeX compiler and common packages
@@ -116,9 +96,6 @@ sudo dd bs=4M if=manjaro-kde-24.1.2-241104-linux610.iso of=/dev/sda status=progr
 
 Plasma Settings> Accessibility> Shake Cursor.
 
-https://snapcraft.io/docs/installing-snap-on-manjaro-linux
-https://wiki.manjaro.org/index.php/Snap
-
 - script oficial (con opciones de actualización): rust, uv, zed, ollama
 - PIP/UV (uv tool install): ruff, python-lsp-analyzer, sphinx, mdformat
 - manjaro repo: flameshot, dbeaver
@@ -137,61 +114,27 @@ https://wiki.manjaro.org/index.php/Snap
   Arch. Puede tener componentes privativas que en otros no vienen): vscode (vs
   code de repo)
 
-Si usas
 
-```{code}
-sudo pamac build dropbox
-
-dropbox-lnx.x86_64-211.4.6008.tar.gz ... cat: error de escritura: Tubería rota
-FIRMA NO ENCONTRADA
-HA FALLADO
-==> ERROR: ¡No se ha podido verificar alguna de las firmas PGP!
-Finished with result: exit-code
-Main processes terminated with: code=exited, status=1/FAILURE
-Service runtime: 7.592s
-CPU time consumed: 3.329s
-Memory peak: 118.2M (swap: 0B)
-Error: Fallo al construir dropbox
-```
-
-El error se soluciona con
-
-```{code}
-pamac build dropbox
-```
-
-El problema ocurre porque la firma debe agregarse a nivel de usuario y no de
-sistema.
-
-https://forum.manjaro.org/t/cant-upgrade-dropbox-due-to-key-error/105830
-
-spotify tiene la misma situación
 
 Crear cartera con blowfish. Revisar como habilitar por defecto
 https://forum.manjaro.org/t/set-up-new-gpg-key-for-kdewallet/113742/2
 
-Gmail
 
-- Slack
-- Notion
-- Sentry GitHub
-- Extensión de ZenHub 1Password (tech@tributi.com)
-- Loom
-- Airtable
-- Wompi
+- Gmail
+  - Slack
+  - Notion
+  - Sentry
+- GitHub
+  - Extensión de ZenHub
+- 1Password (tech@tributi.com)
+  - Loom
+  - Airtable
+  - Wompi
 
 ```{code}
-pamac install discord
-pamac build slack-desktop
-
 pamac build zed-preview-bin
-pamac install libreoffice-fresh libreoffice-fresh-es
 
-pamac install code
-pamac install hunspell-es_co hunspell-en_us
-pamac install libreoffice-fresh --no-confirm
-pamac build wps-office-bin ttf-wps-fonts libtiff5 --no-confirm
-pamac install flameshot --no-confirm
+
 pamac install dbeaver --no-confirm
 
 pamac install alacritty zellij starship zoxide helix yazi --no-confirm
