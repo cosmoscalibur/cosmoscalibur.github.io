@@ -36,13 +36,6 @@ Extensiones
 - ms-python.python
 - james-yu.latex-workshop
 
-```
-sudo apt install -y imagemagick ffmpeg
-sudo apt install -y gimp inkscape
-flatpak install -y flathub com.obsproject.Studio
-sudo snap install drawio
-```
-
 
 ```
 git config --global user.email "cosmoscalibur@gmail.com"
@@ -61,32 +54,6 @@ ollama run llama3.1:8b ollama run llama3.2:3b #>>> The Ollama API is now
 available at 127.0.0.1:11434. #>>> Install complete. Run "ollama" from the
 command line. #>>> AMD GPU ready.
 
-Defecto
-
-- krita (3rd package - 2d)
-- libreoffice
-- okular (pdf)
-- dolphin (gestor de directorios/archivos)
-- 7zip 7zip-rar (compressión, línea de comandos)
-- kwallet (contraseña)
-
-
-## appimage:stellarium
-
-```
-# LaTeX compiler and common packages
-sudo apt install -y texlive texlive-latex-base \
-    texlive-pictures texlive-pstricks \
-    texlive-science texlive-publishers texlive-games \
-    texlive-bibtex-extra texlive-latex-extra \
-    texlive-xetex texlive-luatex
-# LaTeX local packages for english and spanish (set language dependent packages)
-sudo apt install -y texlive-lang-spanish texlive-lang-english
-# External utilities
-sudo apt install -y latexml latexmk chktex jabref
-# LaTeX editors
-sudo apt install -y texstudio
-```
 
 ```
 sudo dd bs=4M if=manjaro-kde-24.1.2-241104-linux610.iso of=/dev/sda status=progress oflang=sync

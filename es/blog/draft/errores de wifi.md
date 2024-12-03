@@ -21,7 +21,7 @@ listado de redes estas han desaparecido, algunos detalles por evaluar son:
 Estos dos ajustes fueron suficientes en mi escenario, sin embargo, no fue tan
 claro que debían ser las dos cosas. Esto fue una mezcla de probar distintas
 soluciones que reportaban y de probar efectos de las combinaciones. Ejemplo, al
-tener deshabilitado "*fast boot*" ya me conectába siempre desde el inicio, pero
+tener deshabilitado "*fast boot*" ya me conectaba siempre desde el inicio, pero
 se perdían las redes al rato. Si tenía deshabilitado el ahorro de energía
 solamente, permanecían las redes, pero nunca conectaba. Solo al tener las dos
 en conjunto funcionó.

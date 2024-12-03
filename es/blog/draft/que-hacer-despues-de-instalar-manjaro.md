@@ -10,6 +10,22 @@ Hace poco decidí pasarme a Manjaro KDE (24.1) y estoy muy contento del cambio.
 Así que con motivo a esto, les cuento sobre las cosas por hacer después de
 completar la instalación.
 
+Debo aclarar que no soy de los usuarios Linux en modo fanático, así que las
+cosas que verás aquí son acordes a mi facilidad para adecuar rápidamente el
+equipo y solo resolver los problemas que realmente afectan la experiencia que
+busco. Respecto a muchos paquetes populares y tradicionales con GUI, no veo
+problema en el uso de ambientes tipo Flatpak o AppImage, pero el movimiento a
+Manjaro lo realicé por utilidades más nuevas, algunas no muy populares
+todavía y que su instalación en Ubuntu es usar un PPA, compilar o usar un
+directorio comprimido. Así que, por el momento, no me complicaré con lo que
+pueda saltarme el dolor de cabeza. Ejemplo, disponer del nuevo ecosistema de
+utilidades que ha acompañado la onda de Rust (y no depender de descargar y
+compilar con _cargo_). También un poco hacer un _desnapping_, empezando por no
+ser forzado a usar Firefox en snap.
+
+Para fines de estabilidad y consistencia, la preferencia por los paquetes
+_flatpak_ es si estos son empaquetados oficiales o verificados.
+
 ## Revisa los anuncios
 
 Es importante revisar los [anuncios de liberación](https://forum.manjaro.org/t/stable-update-2024-10-10-kernels-pacman-7-0-kde-frameworks-6-6-virtualbox-7-1-2-mesa/169192/2),
@@ -128,15 +144,7 @@ vienen instalados por defecto en Manjaro al ser usados de forma directa por
 `pamac`.
 
 Como alternativa de instalación de paquetes, Manjaro viene con Flatpak
-preconfigurado, así como Ubuntu viene con Snap preconfigurado. En lo personal,
-mi meta es no usar Snap en Manjaro, pero igual probé que tal iba el
-[snap](https://snapcraft.io/docs/installing-snap-on-manjaro-linux).
-
-```{code}
-sudo pamac install snapd --no-confirm
-sudo systemctl enable --now snapd.socket
-sudo ln -s /var/lib/snapd/snap /snap
-```
+preconfigurado, así como Ubuntu viene con Snap preconfigurado.
 
 ```{code}
 sudo apt install -y flatpak
@@ -198,7 +206,7 @@ Instala la corrección de ortografía, en mi caso, de español Colombia.
 Configura LibreOffice para usar Hunspell con este diccionario.
 
 ```{code}
-sudo pamac install hunspell hunspell-es_co  --no-confirm
+sudo pamac install hunspell hunspell-es_co --no-confirm
 ```
 
 ```{code}
@@ -251,13 +259,15 @@ nuestras opciones en el PC. Telegram y WhatsApp que las uso por motivos
 personales, y Discord y Slack por motivos laborales.
 
 ```{code}
-sudo pamac install telegram-desktop discord --no-confirm
+flatpak install flathub org.telegram.desktop
+flatpak install flathub com.discordapp.Discord
 pamac build whatsapp-for-linux slack-desktop --no-confirm
 ```
 
 ```{code}
 flatpak install flathub org.telegram.desktop
-sudo snap install whatsapp-for-linux discord slack
+flatpak install flathub com.discordapp.Discord
+sudo snap install whatsapp-for-linux slack
 ```
 
 ## Toma pantallazos
@@ -278,24 +288,39 @@ sudo snap install flameshot
 
 Para escribir una entrada en el blog, nuestro trabajo de grado, un informe de
 laboratorio, el reporte ejecutivo, la presentación de _marketing_, el diagrama
-de flujo de nuestro código o proceso, necesitamos hacer dibujos y diagramas.
+de flujo de nuestro código o proceso, necesitamos hacer dibujos, diagramas,
+videos, convertir formatos o ediciones básicas.
 
 Así que por eso aquí queda nuestro combo creativo.
 
 ```{code}
-pamac install imagemagick ffmpeg gimp drawio-desktop krita --no-confirm
-pamac install inkscape --no-confirm
-pamac install --as-deps gvfs pstoedit texlive-pstricks --no-confirm
-pamac install obs-studio --no-confirm
-pamac install --as-deps v4l2loopback-dkms --no-confirm
+pamac install imagemagick ffmpeg drawio-desktop --no-confirm
+flatpak install -y flathub org.gimp.GIMP
+flatpak install -y flathub org.inkscape.Inkscape
+flatpak install -y flathub org.kde.krita
+flatpak install -y flathub com.obsproject.Studio
 ```
 
 ```{code}
 sudo apt install -y imagemagick ffmpeg
-sudo apt install -y gimp inkscape
-flatpak install -y flathub com.obsproject.Studio
 sudo snap install drawio
+flatpak install -y flathub org.gimp.GIMP
+flatpak install -y flathub org.inkscape.Inkscape
+flatpak install -y flathub org.kde.krita
+flatpak install -y flathub com.obsproject.Studio
 ```
+
+Un ejemplo de lo que puedes hacer con _FFMPEG_ si no lo conoces lo comento en
+[](/es/blog/2024/unir-video-y-audio-con-ffmpeg-y-bash.md).
+
+Durante las pruebas de instalación con _pamac_, tuve problemas con OBS y esto
+me motivó a usar los _flatpak_ en general para varios casos y así evitar el
+manejo de dependencias opcionales o algunos problemas de controladores. En este
+caso particular, OBS genera problemas con `DeckLink` que se relaciona con el
+controlador `libva-vdpau-driver `. Acorde al mensaje de error, no se encuentra
+instalado y por eso no puede configurar las [cámaras virtuales](/es/blog/2020/usar-la-camara-de-tu-celular-como-webcam.rst),
+sin embargo el controlador sí estaba instalado. Esto viendo foros es un
+problema común, pero no encontré algo que ayudara a solucionar.
 
 ## Momentos de ocio
 
@@ -318,4 +343,16 @@ flatpak install -y flathub com.stremio.Stremio
 flatpak install -y flathub com.valvesoftware.Steam
 flatpak install -y flathub com.stremio.Stremio
 sudo snap install spotify
+```
+
+## Ahora mira el firmamento
+
+Un pequeño _bonus_, es para los amantes de la astronomía.
+
+La instalación del software planetario Stellarium y un software de
+visualización 3D del universo, Gaia Sky.
+
+```{code}
+flatpak install flathub org.stellarium.Stellarium
+flatpak install flathub de.uni_heidelberg.zah.GaiaSky
 ```
