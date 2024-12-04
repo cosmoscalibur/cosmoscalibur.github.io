@@ -1,7 +1,20 @@
-rust # Viene 1.79 a 1.81. Defecto 1.80. Ahora es 1.82 curl --proto '=https'
---tlsv1.2 -sSf https://sh.rustup.rs | sh
+UV
 
-Development cargo install --locked difftastic just hyperfine
+curl -LsSf https://astral.sh/uv/install.sh | sh
+
+Rust
+
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+
+Zed
+
+curl -f https://zed.dev/install.sh | sh
+
+
+Development
+
+cargo install --locked difftastic just hyperfine
+sudo pamac install difftastic just hyperfine --no-confirm
 
 ```
 sudo snap install --classic helix

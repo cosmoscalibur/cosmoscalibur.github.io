@@ -25,7 +25,6 @@ El sitio está alojado en GitHub, servido a través de GitHub Pages, y el
 código fuente de las publicaciones es ReStructuredText y MarkDown/Myst
 (incluyendo Notebook), el cual puede consultar libremente.
 
-    sudo apt install -y git
     curl -LsSf https://astral.sh/uv/install.sh | sh
     uv tool install pipenv
 

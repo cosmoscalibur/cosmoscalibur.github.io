@@ -37,11 +37,6 @@ Plasma Settings> Accessibility> Shake Cursor.
 
 
 
-
-Crear cartera con blowfish. Revisar como habilitar por defecto
-https://forum.manjaro.org/t/set-up-new-gpg-key-for-kdewallet/113742/2
-
-
 - Gmail
   - Slack
   - Notion
@@ -54,17 +49,11 @@ https://forum.manjaro.org/t/set-up-new-gpg-key-for-kdewallet/113742/2
   - Wompi
 
 ```{code}
-pamac build zed-preview-bin
-
-
 pamac install dbeaver --no-confirm
 
 pamac install alacritty zellij starship zoxide helix yazi --no-confirm
 pamac install python-lsp-server rust-analyzer
 pamac install jq fd ripgrep bat eza bottom dust procs --no-confirm
-pamac install --as-deps ffmpegthumbnailer chafa fzf --no-confirm
---as-deps -> revisar para instalar opcionales de los paquetes.
-
 flatpak install flathub org.dbgate.DbGate
 ```
 

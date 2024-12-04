@@ -319,7 +319,22 @@ Algunas conclusiones en el caso de mis necesidades:
   que muchos otros paquetes que uso se basan en Qt que es la base de KDE. Y en
   aplicaciones base, que normalmente uso poco, igual el conjunto base de KDE es
   más sofisticado (ejemplo, su herramienta de captura de pantalla y los
-  gestores de configuración).
+  gestores de configuración). El proyecto KDE posee una distribución basada
+  Ubuntu llamada Neon, y acorde a múltiples sitios las mejores experiencias en
+  KDE se han percibido en Kubuntu, lo cual pueden ser dos buenas opciones en
+  caso de mantenerse en las familias de Ubuntu.
++ Distribuciones bien documentadas y de comunidad activa: En mi apreciación,
+  esto es un punto fuerte de las distribuciones Arch y Ubuntu, y por extensión
+  a sus derivadas.
++ Distribuciones con repositorios extensos: Si quiero que algunas de mis
+  actividades diarias estén cubiertas en paquetes preinstalados o que en su
+  defecto, se instalen fácilmente, lo mejor es depender de distribuciones con
+  repositorios extensos. En este punto, pero solo como deseo y no un criterio
+  firme, favorecemos nuevamente a Arch, Ubuntu y sus deivados. Ejemplo de
+  elementos mínimos, debería tener LibreOffice y Firefox en lo preinstalado,
+  y no otros procesadores de texto y navegadores. Una sorpresa es que Manjaro
+  incluye git, y esto me sirve hasta para sincronizar mis *scripts* para
+  instalación.
 
 ### Ten presente los problemas comunes
 
