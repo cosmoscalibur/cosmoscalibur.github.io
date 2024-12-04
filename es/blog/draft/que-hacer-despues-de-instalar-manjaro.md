@@ -1,9 +1,3 @@
-vincular entrada ffmpeg
-vincular entrada obs-studio
-Diccionario hunspell en admon informativa
-En Chrome depósito de contraseñas kdewallet con blowfish. Si la contraseña es la misma de usuario y el login es manual, se habilita el depósito.
-
-
 # ¿Qué hacer después de instalar Manjaro KDE?
 
 Hace poco decidí pasarme a Manjaro KDE (24.1) y estoy muy contento del cambio.
@@ -17,14 +11,11 @@ busco. Respecto a muchos paquetes populares y tradicionales con GUI, no veo
 problema en el uso de ambientes tipo Flatpak o AppImage, pero el movimiento a
 Manjaro lo realicé por utilidades más nuevas, algunas no muy populares
 todavía y que su instalación en Ubuntu es usar un PPA, compilar o usar un
-directorio comprimido. Así que, por el momento, no me complicaré con lo que
-pueda saltarme el dolor de cabeza. Ejemplo, disponer del nuevo ecosistema de
-utilidades que ha acompañado la onda de Rust (y no depender de descargar y
-compilar con _cargo_). También un poco hacer un _desnapping_, empezando por no
-ser forzado a usar Firefox en snap.
+directorio comprimido.
 
 Para fines de estabilidad y consistencia, la preferencia por los paquetes
-_flatpak_ es si estos son empaquetados oficiales o verificados.
+_flatpak_ es si estos son oficiales o verificados, por sobre los paquetes del
+AUR.
 
 ## Revisa los anuncios
 
@@ -151,6 +142,32 @@ sudo apt install -y flatpak
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 ```
 
+## Instala un núcleo estable
+
+Aprovecha el último núcleo (*kernel*) disponible en Manjaro, pero es bueno
+que instales un *kernel* estable (a la fecha, sería de la rama 6.6, pero
+posiblemente 6.12 se perfile como estable también). Esto será necesario en
+caso de tener una actualización de *kernel* que rompa el sistema, y sea
+necesario usar uno anterior. Ten presente que parte de como sucede esto en
+Manjaro, es que las versiones no estables son retiradas de los repositorios,
+entonces no hay forma de volverlas a instalar y de ahí otro riesgo.
+
+Puedes instalar el núcleo estable usando el "Gestor de configuración de
+Manjaro" con la opción de "Núcleo".
+
+Recuerda editar el archivo `/etc/default/grub` para cambiar el valor de las
+líneas de estilo y tiempo de espera. Lo más importante es la opción de
+*menu* en la variable de estilo.
+
+```{code}
+GRUB_TIMEOUT=5
+
+GRUB_TIMEOUT_STYLE=menu
+```
+
+De esta forma, tendremos el *grub* visible al inicio y podremos usar las
+opciones avanzadas para cambiar de núcleo.
+
 ## Protege tus ojos
 
 Selecciona un tema oscuro en el sistema. Puedes buscar por el menú la opción
@@ -213,6 +230,13 @@ sudo pamac install hunspell hunspell-es_co --no-confirm
 sudo apt install hunspell hunspell-es
 ```
 
+## Depósito de constraseñas
+
+Cuando las aplicaciones comiencen a solicitar la creación de la cartera
+*kdewallet*, vamos a aceptar la creación con *blowfish*. Además, si la
+contraseña es la misma de nuestro inicio de sesión, este se activará
+automáticamente.
+
 ## Instala Google Chrome
 
 Tanto en Manjaro como en Ubuntu tendremos a Firefox como navegador por defecto,
@@ -259,8 +283,7 @@ nuestras opciones en el PC. Telegram y WhatsApp que las uso por motivos
 personales, y Discord y Slack por motivos laborales.
 
 ```{code}
-flatpak install flathub org.telegram.desktop
-flatpak install flathub com.discordapp.Discord
+sudo pamac install telegram-desktop discord --no-confirm
 pamac build whatsapp-for-linux slack-desktop --no-confirm
 ```
 
@@ -294,10 +317,7 @@ videos, convertir formatos o ediciones básicas.
 Así que por eso aquí queda nuestro combo creativo.
 
 ```{code}
-pamac install imagemagick ffmpeg drawio-desktop --no-confirm
-flatpak install -y flathub org.gimp.GIMP
-flatpak install -y flathub org.inkscape.Inkscape
-flatpak install -y flathub org.kde.krita
+pamac install imagemagick ffmpeg drawio-desktop gimp inkscape krita --no-confirm
 flatpak install -y flathub com.obsproject.Studio
 ```
 

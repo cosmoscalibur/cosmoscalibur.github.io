@@ -1,47 +1,6 @@
 ngrok
 
-rust # Viene 1.79 a 1.81. Defecto 1.80. Ahora es 1.82 curl --proto '=https'
---tlsv1.2 -sSf https://sh.rustup.rs | sh
 
-Development cargo install --locked difftastic just hyperfine
-
-```
-sudo snap install --classic helix
-cargo install --locked evcxr_jupyter  # Rust jupyter kernel
-cargo install --locked shellharden  # shellcheck
-sudo apt install -y shellcheck shfmt
-
-curl -LsSf https://astral.sh/uv/install.sh | sh  # Python
-cargo install --git https://github.com/bbqsrc/xml-pretty
-```
-
-Instalar Code
-
-```{code} bash
-sudo snap install --classic code
-pamac install code
-ln -s /usr/share/hunspell/\* ~/.config/Code/Dictionaries
-```
-
-Extensiones
-
-- timonwong.shellcheck
-- mads-hartmann.bash-ide-vscode
-- eamodio.gitlens
-- executablebookproject.myst-highlight
-- rust-lang.rust-analyzer
-- swyddfa.esbonio
-- ms-azuretools.vscode-docker
-- ban.spellright
-- ms-python.python
-- james-yu.latex-workshop
-
-
-```
-git config --global user.email "cosmoscalibur@gmail.com"
-git config --global user.name "Edward Villegas-Pulgarin"
-git config --global pull.rebase true
-```
 
 # https://ollama.com/download
 
@@ -64,22 +23,18 @@ sudo dd bs=4M if=manjaro-kde-24.1.2-241104-linux610.iso of=/dev/sda status=progr
 Plasma Settings> Accessibility> Shake Cursor.
 
 - script oficial (con opciones de actualización): rust, uv, zed, ollama
-- PIP/UV (uv tool install): ruff, python-lsp-analyzer, sphinx, mdformat
+- PIP/UV/Pixi (uv tool install): ruff, python-lsp-analyzer, sphinx, mdformat
+- Cargo (requiere descargar muchas dependencias y tiempo de compilación, acumula
+  caché): rust-analyzer
 - manjaro repo: flameshot, dbeaver
 - Flatpak (viene preinstalado y con la configuración del repositorio. Instalar
   solo si el autor es verificado): dbgate, stremio, stellarium
-- AppImage (no está centralizado, pero se puede descargar por URL fácil, usar
-  solo si es fuente oficial)
 - AUR (no hay verificación, de manera responsable requiere inspección o al menos
   validar popularidad y votos de confianza, leer comentarios y trazabilidad, y
   suele requerir compilación o pasos intermedios de transformaciones. Puede que
   se omitan componentes privativas si es un tercero el empaquetador):
   wps-office-bin, google-chrome, dropbox, slack-desktop
-- Cargo (requiere descargar muchas dependencias y tiempo de compilación, acumula
-  caché): rust-analyzer
-- Snap (problemas con Wayland, ejemplo en Slack, no es natural configurarlo en
-  Arch. Puede tener componentes privativas que en otros no vienen): vscode (vs
-  code de repo)
+
 
 
 

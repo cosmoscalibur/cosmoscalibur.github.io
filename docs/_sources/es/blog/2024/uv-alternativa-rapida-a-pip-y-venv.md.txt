@@ -36,7 +36,6 @@ Si estamos en Linux, podemos proceder como
 
 :::{code} bash
 curl -LsSf https://astral.sh/uv/install.sh | sh
-source $HOME/.cargo/env
 :::
 
 La primera línea, descarga el _script_ de instalación y lo ejecuta. En la segunda línea,

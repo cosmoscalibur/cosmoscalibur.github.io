@@ -14,7 +14,7 @@
 <meta property="og:description" content="Bienvenidos a mi blog, Cosmoscalibur. Este es un espacio para compartir sobre distintos temas, no solo contenido divulgativo. Principalmente, hay publicaciones de ciencia, tecnología y poemas propi..." />
 <meta property="og:image:width" content="1146" />
 <meta property="og:image:height" content="600" />
-<meta property="og:image" content="https://www.cosmoscalibur.com/None" />
+<meta property="og:image" content="https://www.cosmoscalibur.com/_images/social_previews/summary_index_d6576123.png" />
 <meta property="og:image:alt" content="Bienvenidos a mi blog, Cosmoscalibur. Este es un espacio para compartir sobre distintos temas, no solo contenido divulgativo. Principalmente, hay publicacion..." />
 <meta name="description" content="Bienvenidos a mi blog, Cosmoscalibur. Este es un espacio para compartir sobre distintos temas, no solo contenido divulgativo. Principalmente, hay publicaciones de ciencia, tecnología y poemas propi..." />
 <meta name="twitter:card" content="summary_large_image" />
@@ -28,27 +28,30 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-
-  
-  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+  <link href="_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=a746c00c" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
+  <!-- So that users can add custom icons -->
+  <script src="_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
-  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
 
     <script src="_static/documentation_options.js?v=a20647df"></script>
     <script src="_static/doctools.js?v=9bcbadda"></script>
@@ -99,27 +102,16 @@ crossorigin="anonymous"></script>
 
   
   
-  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Saltar al contenido principal</a></div>
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
   
   <div id="pst-scroll-pixel-helper"></div>
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
-    <i class="fa-solid fa-arrow-up"></i>Volver arriba</button>
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-primary-sidebar-checkbox"/>
-  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-secondary-sidebar-checkbox"/>
-  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
-  
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
+  <dialog id="pst-search-dialog">
+    
 <form class="bd-search d-flex align-items-center"
       action="search/"
       method="get">
@@ -127,7 +119,6 @@ crossorigin="anonymous"></script>
   <input type="search"
          class="form-control"
          name="q"
-         id="search-input"
          placeholder="Search the docs ..."
          aria-label="Search the docs ..."
          autocomplete="off"
@@ -135,17 +126,17 @@ crossorigin="anonymous"></script>
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
+</form>
+  </dialog>
 
   <div class="pst-async-banner-revealer d-none">
-  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Advertencia de versión"></aside>
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
 </div>
 
   
     <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
 <div class="bd-header__inner bd-page-width">
-  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Navegación del sitio">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
     <span class="fa-solid fa-bars"></span>
   </button>
   
@@ -170,7 +161,7 @@ crossorigin="anonymous"></script>
     
     
     <img src="_static/cosmoscalibur_logo.png" class="logo__image only-light" alt="Cosmoscalibur - Home"/>
-    <script>document.write(`<img src="_static/cosmoscalibur_logo.png" class="logo__image only-dark" alt="Cosmoscalibur - Home"/>`);</script>
+    <img src="_static/cosmoscalibur_logo.png" class="logo__image only-dark pst-js-only" alt="Cosmoscalibur - Home"/>
   
   
 </a></div>
@@ -202,29 +193,21 @@ crossorigin="anonymous"></script>
         <div class="navbar-item navbar-persistent--container">
           
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Búsqueda</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script>
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
         </div>
       
       
         <div class="navbar-item">
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="claro/oscuro" aria-label="claro/oscuro" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script></div>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
       
         <div class="navbar-item"><ul class="navbar-icon-links"
     aria-label="Icon Links">
@@ -261,20 +244,16 @@ document.write(`
   
     <div class="navbar-persistent--mobile">
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Búsqueda</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script>
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
     </div>
   
 
   
-    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="En esta página">
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
       <span class="fa-solid fa-outdent"></span>
     </button>
   
@@ -290,7 +269,8 @@ document.write(`
       
         
       
-      <div class="bd-sidebar-primary bd-sidebar hide-on-wide">
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar hide-on-wide">
         
 
   
@@ -323,15 +303,11 @@ document.write(`
         
           <div class="navbar-item">
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="claro/oscuro" aria-label="claro/oscuro" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script></div>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
         
           <div class="navbar-item"><ul class="navbar-icon-links"
     aria-label="Icon Links">
@@ -399,6 +375,14 @@ personales que me sirven de recordatorio.</p>
 <p>Mis últimas publicaciones las listo a continuación, pero puedes ver el listado
 completo en <a class="reference internal" href="blog/" title="Posts"><em>Posts</em></a>.</p>
 <ul class="postlist-style-none postlist">
+<li class="ablog-post"><p class="ablog-post-title">(2024-12-03) <a class="reference internal" href="es/blog/2024/distrohopping-cambiar-de-distribución-linux-y-no-morir-en-el-intento/">Distrohopping: Cambiar de distribución Linux y no morir en el intento</a></p>
+<p class="ablog-post-excerpt">Vengo de dos cambios de distribución Linux recientes, y eso me hizo pensar un
+poco en el esfuerzo asociado y en como ese esfuerzo se puede reducir.
+Igualmente, recordé el concepto asociado de “<em>distrohopping</em>” y las discusiones
+alrededor de esta práctica, en la cual muchos terminan afirmando que realmente
+es perder el tiempo y que aporta poco valor, pero yo no lo veo así y quiero
+compartirles el valor que le veo y el como facilitarlo.</p>
+</li>
 <li class="ablog-post"><p class="ablog-post-title">(2024-10-21) <a class="reference internal" href="es/blog/2024/la-mejor-alternativa-gratis-a-netflix/">La mejor alternativa gratis a Netflix</a></p>
 <p class="ablog-post-excerpt">¿Cansado de que las cuentas de <em>streaming</em> que requieres para ver todo tu
 contenido favorito sean ese gasto hormiga que te desangra hasta más no poder?
@@ -425,14 +409,6 @@ configurarlo a través de la modificación de las plantillas por defecto.</p>
 <a class="ablog-post-excerpt reference internal image-reference" href="_images/ads-en-sphinx.png"><img alt="Visualización de anuncios en sitio generado con Sphinx." class="ablog-post-excerpt" src="_images/ads-en-sphinx.png" style="width: 500px; height: 250px;" />
 </a>
 </li>
-<li class="ablog-post"><p class="ablog-post-title">(2024-09-24) <a class="reference internal" href="es/blog/2024/agregar-logo-y-favicon-en-sphinx/">Agregar logo y favicon en Sphinx</a></p>
-<p class="ablog-post-excerpt">Un nuevo paso en mi blog, es que decidí dejar una huella de personalización a
-través de un logo, algo sencillo, pero propio, distinto a una imagen descargada
-como lo era antes y que por lo mismo no lo había configurado. Les cuento como
-configurar el logo y el <em>favicon</em> en Sphinx.</p>
-<a class="ablog-post-excerpt reference internal image-reference" href="_images/logo-en-sphinx.png"><img alt="Visual del logo agregado en Sphinx en el blog." class="ablog-post-excerpt" src="_images/logo-en-sphinx.png" style="width: 800px; height: 250px;" />
-</a>
-</li>
 </ul>
 <div class="toctree-wrapper compound">
 </div>
@@ -453,7 +429,7 @@ configurar el logo y el <em>favicon</em> en Sphinx.</p>
 <div class="prev-next-area">
     <a class="right-next"
        href="es/me/"
-       title="siguiente página">
+       title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">siguiente</p>
         <p class="prev-next-title">Edward Villegas</p>
@@ -467,7 +443,8 @@ configurar el logo y el <em>favicon</em> en Sphinx.</p>
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
   <div class="sidebar-secondary-item">
@@ -492,8 +469,8 @@ configurar el logo y el <em>favicon</em> en Sphinx.</p>
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <script defer src="_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
@@ -526,7 +503,7 @@ configurar el logo y el <em>favicon</em> en Sphinx.</p>
       
         <div class="footer-item">
 <p class="theme-version">
-  Construido con el <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">Tema PyData Sphinx</a> 0.15.4.
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.0.
 </p></div>
       
     </div>

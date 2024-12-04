@@ -1,3 +1,9 @@
+---
+date: 2024-12-03
+tags: distrohopping, distribución linux, ubuntu, manjaro, kde
+category: tecnología, linux
+---
+
 # *Distrohopping*: Cambiar de distribución Linux y no morir en el intento
 
 Vengo de dos cambios de distribución Linux recientes, y eso me hizo pensar un
@@ -12,14 +18,8 @@ Antix, Lubuntu, Antergos, Arch, Gentoo, Funtoo, Linux Mint, Xubuntu, y ahora
 Kubuntu y Manjaro KDE.
 
 En cuáles he tenido periodos estables de años: Ubuntu, Lubuntu, Linux Mint y
-Xubuntu. La transición este año a Kubuntu me enamoró de KDE (aquí aparece no
-una necesidad sino un deseo, y es tener las opciones de configuración o gestión
-que me sirven, de forma intuitiva, amigable, y con conjuntos de aplicaciones
-preinstaladas que realmente me son útiles). Sobre el último detalle, también
-deja un deseo y no necesidad, y es que lo preinstalado de la distribución sea
-acorde a mis actividades. Los deseos son válidos, son parte de nuestra
-experiencia positiva en una distribución, pero no deben ser el criterio de
-selección.
+Xubuntu. La transición este año a Kubuntu me enamoró de KDE y se convierte
+en mi escritorio (*DE*) favorito.
 
 ## ¿Es buena idea hacer *distrohopping*?
 
@@ -266,7 +266,7 @@ Y mis necesidades satisfechas:
   con una buena documentación del proyecto o con una comunidad muy activa o de
   buen tamaño.
 
-Y por último, una que me genera sentimientos encontrados:
+Y por último, unas que me generan sentimientos encontrados:
 
 + Soporte de *hardware*: En Ubuntu y derivados, esto ha sido un problema cuando
   cambio de equipo (generalmente, equipo nuevo). El periodo de transición para
@@ -278,6 +278,10 @@ Y por último, una que me genera sentimientos encontrados:
   continúa tras los cambios de equipo, tengo ese soporte, pero típicamente
   perdía el sistema a los días o semanas, o el tiempo demandado en procesos de
   instalación era alto.
++ Software preinstalado acorde a mis actividades: Esto no debe ser un criterio
+  principal porque si es fácil instalarlo, lo puedo hacer, pero sin duda, si
+  hay preintalado puedo empezar a usar más rápido. Además, esto evita tener
+  que configurar la integración de estos paquetes.
 
 Es importante que en el proceso, tengamos claro en las necesidades, cuales son
 sacrificables. En mi caso, puedo perder un poco la libertad de elección del
@@ -287,16 +291,140 @@ privativo, si dispongo de alternativas.
 Con estas necesidades claras, es posible indagar un poco en los foros, blogs y
 [DistroWatch](https://distrowatch.com/), los posibles candidatos.
 
+Algunas conclusiones en el caso de mis necesidades:
 
++ Distribución con modelo de liberación continuo: Me permite disponer de
+  software nuevo y actualizado, y estoy dispuesto al monitoreo de información
+  y ajustes que puede venir de algo de inestabilidad. Para compensar, se puede
+  usar fuentes de *flatpak* para los software GUI, con muchas dependencias o
+  que poseen fuentes inestables en el gestor tradicional. Así como usar
+  PIP/UV, Pixi o Cargo para algunos paquetes cuyo uso principal sea en
+  desarrollo en lugar de uso general. Esta forma de compensar ayuda a facilitar
+  también el *distrohopping* pues independiza la instalación de muchos
+  paquetes del gestor de paquetes específico de la distribución.
++ Evitar modelos de liberación inmutables o derivados de Ubuntu (excepto
+  [Linux Mint](/es/blog/2020/instalar-paquetes-snap-en-linux-mint-20.rst)): Los
+  casos inmutables recurren continuamente a usar opciones tipo aislamiento
+  (*sandboxing*) como los *flatpak*, *snap* o *AppImage* para las aplicaciones
+  de usuario. Esto no solo reduce la libertad de elección, sino el conjunto de
+  aplicaciones disponibles. Ubuntu se descarta por su tendencia a usar *snap*
+  por debajo de *apt*.
++ Evitar distribuciones FOSS: Una distribución FOSS (como Fedora) no permite
+  fácilmente ni soporta software privativo. Esto es un problema fuerte para el
+  soporte de hardware como tarjeta gráfica NVIDIA o algunos controladores de
+  WiFi, o incluso la ola de *machine learning* que hace uso de CUDA. Esto
+  descarta una distribución como Fedora.
++ Entorno de escritorio KDE: Algo que con el tiempo me ha pasado, es que he
+  usado cada vez más software asociado a proyectos de KDE, también es común
+  que muchos otros paquetes que uso se basan en Qt que es la base de KDE. Y en
+  aplicaciones base, que normalmente uso poco, igual el conjunto base de KDE es
+  más sofisticado (ejemplo, su herramienta de captura de pantalla y los
+  gestores de configuración).
+
+### Ten presente los problemas comunes
+
+Hay cuatro grandes padecimientos en Linux para los cuales debes prepararte y
+validar antes del cambio.
+
++ WiFi: Fácilmente es lo que más vas a romper con los cambios de
+  distribución o posterior a una actualización de núcleo o de versión de
+  controladores. He tenido equipos en los cuales el WiFi funciona perfectamente
+  en las versiones *live*, pero al instalar ya la distribución, el controlador
+  no es soportado directamente, o al actualizar el núcleo la versión del
+  controlador no está compilada para dicho núcleo y es necesario ajustar
+  manualmente el *header* del código fuente y compilarlo. En otros casos como
+  me ocurrió en el reciente cambio a Manjaro, el WiFi empezó a perder las
+  redes disponibles aleatoriamente después de actualizar el núcleo y fue
+  necesario ajustes en BIOS y en archivo de configuración del controlador. Ten
+  disponible una conexión cableada de red.
++ Tarjeta gráfica NVIDIA: Definitivamente un gran dolor si requieres el
+  máximo aprovechamiento. En Wayland esto es una limitante en múltiples
+  distribuciones, pero si es realmente importante para ti, probablemente un
+  derivado de Ubuntu sea lo mejor. Algunos software que usan aceleración de
+  video por GPU también se pueden ver afectados y sea conveniente omitir la
+  aceleración, usar una versión *sandbox* o esperar unos meses que el soporte
+  se logre (en mi caso, espero que la rama de NVIDIA 560 llegue pronto a
+  *Manjaro Stable*). Esto me afecta parcialmente la experiencia en Wayland y de
+  aplicaciones que usan para el renderizado Vulkan (como Zed), pero mientras
+  uso la versión KDE X11 en este equipo y el equipo con tarjeta integrada
+  funciona sin problema Wayland. En algunos casos, el problema puede ser tener
+  una pantalla completamente negra o errores de visualización continuamente si
+  el controlador no se soporta adecuadamente (nada funcional). Valida el
+  soporte de tu tarjeta NVIDIA con las versiones de los controladores
+  disponibles y de la integración de Wayland.
++ Procesadores (o hardware en general) nuevos: Si la distribución no es de
+  liberación continua, la versión del núcleo no será la necesaria para
+  soportar un equipo de última  generación, contrario a lo que sucede con tu
+  Windows preinstalado. Valida si tu procesador es soportado en la versión del
+  núcleo de la distribución a probar.
++ Software privativo: A veces no podemos simplemente buscar una
+  alternativa, porque esto no compensa que debemos interactuar con otras
+  personas. Si esto es algo importante, ejemplo, para fines laborales o de
+  estudio, seguramente tu transición debe implicar seguir con el uso de
+  Windows o alternativas para las cuales haya versión oficial. Valida si el
+  software existe para la distribución.
 
 ### Crea un entorno de pruebas o un plan de respaldo
 
+Sin duda, las cosas pueden fallar si haces un cambio radical de distribución,
+como cuando se cambia de familia de distribución. Por este motivo, es bueno ir
+con pequeños pasos seguros como:
 
++ Empieza pruebas con una máquina virtual: Puedes usar QEMU-KVM o VirtualBox.
+  Esto te ayudará al primer acercamiento de instalación del sistema operativo,
+  explorar rápidamente el entorno de escritorio y el flujo de adecuación
+  inicial como instalar el software que sea más importante para ti y verificar
+  que funciona aecuadamente. Prueba así unos días para ver la estabilidad,
+  pero esto no es una victoria, debido a que en la emulación no tienes el
+  mismo hardware.
++ Al pasar al hardware real, sería preferible mantener una partición para el
+  nuevo sistema mientras que conservas otra para la anterior. En caso de fallo,
+  puedes retomar tu trabajo y actividades en la distro anterior.
++ Documenta o crea *scripts* de los pasos realizados. Esto será importante
+  cuando requieras de una instalación desde cero nuevamente o replicar en otra
+  máquina.
++ En la medida que ya sea tu distribución diaria, crea respaldo de tus datos
+  (documentos y otros archivos personales), así como de archivos de
+  configuración. Aprovecha servicios de sincronización como Drive, Dropbox o
+  GitHub. También puede ser mantener copias en un disco externo o tener una
+  partición para el directorio `/home`.
++ Considera tener un núcleo estable instalado en las distribuciones de
+  liberación continúa. De esta forma, puedes pasar a este núcleo en caso de
+  fallo.
 
 ### Crea una transición uniforme
 
+**Instalación de paquetes**
 
-+ No seas fanático o purista.
-+ Resuelve los conflictos que realmente te generan valor.
-    + Extensiones solo disponibles para VSCode y no para Code (OSS).
-    + Errores de instalación con el gestor y repositorio oficial de paquetes disponibles en mecanismos más simples.
+Una opción rápida para enfocarte en los verdaderos problemas que pueden
+existir en la distribución que has escogido, es depender menos del gestor de
+paquetes de la distribución. Esto te permite documentar o tener *scripts* que
+serán replicables en un eventual nuevo cambio y a reducir el impacto de buscar
+como adecuar tu sistema.
+
+**Entorno de escritorio**
+
+Explora los entornos de escritorio en la distribución Linux que ya usas. Esto
+te facilitará explorar el comportamiento visual y de las herramientas de
+gestión generales y aplicaciones básicas con bajo esfuerzo y bajo riesgo. Una
+vez tengas claro el entorno de escritorio, busca la nueva distribución con
+este entorno de escritorio. En mi caso, pude explorar KDE a través de Kubuntu
+(variante de Ubuntu) y así notar que se ajustaba a mi interés por sobre otros
+entornos. Luego, esto me lleva a solo evaluar respecto a las distribuciones que
+tengan soporte adecuado de KDE.
+
+**Internet cableado y WiFi**
+
+Recuerda que ante posibles problemas del controlador de WiFi, siempre es bueno
+poder contar con una conexión cableada.
+
+## Despedida
+
+Espero que esto te permita tener una mejor apreciación de como iniciar tu
+proceso de exploración de una nueva distribución Linux y estar mejor
+preparado ante los inconvenientes que podrías tener.
+
+En mi caso, les cuento que esta distribución es Manjaro KDE, y que la sorpresa
+interesante es encontrar que incluso *git* y *flatpak* vienen preinstalados.
+
+¡Buen *distrohopping*!
