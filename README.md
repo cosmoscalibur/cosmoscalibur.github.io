@@ -25,8 +25,10 @@ El sitio está alojado en GitHub, servido a través de GitHub Pages, y el
 código fuente de las publicaciones es ReStructuredText y MarkDown/Myst
 (incluyendo Notebook), el cual puede consultar libremente.
 
-    curl -LsSf https://astral.sh/uv/install.sh | sh
-    uv tool install pipenv
+Requisitos:
+
++ UV
++ Git
 
     git clone https://github.com/cosmoscalibur/cosmoscalibur.github.io.git
     cd cosmoscalibur.github.io

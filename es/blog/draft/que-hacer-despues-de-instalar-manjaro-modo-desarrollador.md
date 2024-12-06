@@ -22,7 +22,7 @@ cargo install --locked evcxr_jupyter  # Rust jupyter kernel
 cargo install --locked shellharden  # shellcheck
 sudo apt install -y shellcheck shfmt
 
-curl -LsSf https://astral.sh/uv/install.sh | sh  # Python
+
 cargo install --git https://github.com/bbqsrc/xml-pretty
 ```
 

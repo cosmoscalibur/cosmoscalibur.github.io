@@ -2,10 +2,511 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="es">
   <id>https://www.cosmoscalibur.com/</id>
   <title>Cosmoscalibur</title>
-  <updated>2024-12-04T12:41:25.522631+00:00</updated>
+  <updated>2024-12-06T02:56:06.704273+00:00</updated>
   <link href="https://www.cosmoscalibur.com/"/>
   <link href="https://www.cosmoscalibur.com/blog/atom.xml" rel="self"/>
   <generator uri="https://ablog.readthedocs.io/" version="0.11.12">ABlog</generator>
+  <entry>
+    <id>https://www.cosmoscalibur.com/es/blog/2024/que-hacer-despues-de-instalar-manjaro/</id>
+    <title>¿Qué hacer después de instalar Manjaro KDE 24?</title>
+    <updated>2024-12-05T00:00:00-05:00</updated>
+    <author>
+      <name>Edward Villegas-Pulgarin</name>
+    </author>
+    <content type="html">&lt;section class="tex2jax_ignore mathjax_ignore" id="que-hacer-despues-de-instalar-manjaro-kde-24"&gt;
+
+&lt;p&gt;Hace poco decidí pasarme a Manjaro KDE (24.1) y estoy muy contento del cambio.
+Así que con motivo a esto, les cuento sobre las cosas por hacer después de
+completar la instalación.&lt;/p&gt;
+&lt;p&gt;Respecto a muchos paquetes populares y tradicionales con GUI, no veo problema
+en el uso de ambientes tipo Flatpak si los nativos representan un problema o
+potencial problema. Ejemplo, OBS no funciona si lo instalo nativo, pero sí en
+flatpak, pero además, si está disponible como flatpak verificado prefiero esto
+a un paquete disponible en el AUR. Un poco de esto lo discuto en
+&lt;a class="reference internal" href="../es/blog/2024/distrohopping-cambiar-de-distribución-linux-y-no-morir-en-el-intento/"&gt;&lt;span class="std std-doc"&gt;Distrohopping: Cambiar de distribución Linux y no morir en el intento&lt;/span&gt;&lt;/a&gt;,
+ya que esto me permite adecuar más rápido y compensar algo de estabilidad.&lt;/p&gt;
+&lt;section id="revisa-los-anuncios"&gt;
+&lt;h2&gt;Revisa los anuncios&lt;/h2&gt;
+&lt;p&gt;Es importante revisar los &lt;a class="reference external" href="https://forum.manjaro.org/t/stable-update-2024-10-10-kernels-pacman-7-0-kde-frameworks-6-6-virtualbox-7-1-2-mesa/169192/2"&gt;anuncios de liberación&lt;/a&gt;,
+en especial, para estar al tanto de los potenciales conflictos y errores que
+tendremos, así como la opción para manejar el error. Ejemplo, en la versión
+de liberación 24.1 que dispongo al momento de instalar, presenté los
+siguientes errores documentados:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://forum.manjaro.org/t/kde-dont-shut-down-anymore-since-last-update/168818/2"&gt;Manjaro KDE no apaga y se queda la pantalla negra con el puntero&lt;/a&gt;:
+La solución a este caso es dirigirnos a “Sesión de escritorio” y en las
+opciones de “Restaurar sesión” seleccionar “Comenzar con una sesión
+vacía”.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://bbs.archlinux.org/viewtopic.php?pid=2180537#p2180537"&gt;Después de suspención el sistema queda congelado&lt;/a&gt;:
+Este caso me sucedió, pero tras la actualización general no se replicó
+nuevamente así que no tuve oportunidad de probar la solución.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Un detalle extra, durante la instalación si inicias con los controladores
+privativos de NVIDIA, puede que tu pantalla se quede gris. En mi caso, bastó
+con esperar un tiempo un poco más prolongado para que el proceso retomara la
+normalidad (comparativamente contra lo que observé al instalarlo en una VM y
+en el PC que no tiene tarjeta gráfica dedicada).&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="actualiza-replicas-del-repositorio"&gt;
+&lt;h2&gt;Actualiza réplicas del repositorio&lt;/h2&gt;
+&lt;p&gt;Este paso es conveniente para que tengas descargas desde los servidores con
+mejor tiempo de respuesta, pero además que se encuentren actualizados. En mi
+caso me sucedió que la réplica usada comenzó a fallar, y con esto podemos
+remover aquellas que ya no son funcionales.&lt;/p&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo&lt;span class="w"&gt; &lt;/span&gt;pacman-mirrors&lt;span class="w"&gt; &lt;/span&gt;--fasttrack
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/section&gt;
+&lt;section id="actualizar-el-sistema"&gt;
+&lt;h2&gt;Actualizar el sistema&lt;/h2&gt;
+&lt;p&gt;Nuestra herramienta de gestión de paquetes en Manjaro, es &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;pamac&lt;/span&gt;&lt;/code&gt;. Es una
+herramienta amigable, que no requiere el esfuerzo extra de memorizar las formas
+de argumentos de una sola letra de &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;pacman&lt;/span&gt;&lt;/code&gt;, y con cierta similitud a &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;apt&lt;/span&gt;&lt;/code&gt; de
+Ubuntu.&lt;/p&gt;
+&lt;p&gt;Usamos &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;-a&lt;/span&gt;&lt;/code&gt; para indicar que se considera también la fuente del AUR. Esta
+instrucción al mismo tiempo actualiza las fuentes de los paquetes (repositorio
+oficial y AUR), no solo los paquetes.&lt;/p&gt;
+&lt;p&gt;El AUR es el equivalente de los PPA de Ubuntu, pero de una forma unificada,
+contrario a la forma segmentado por mantenedor de Ubuntu que lleva fácilmente a
+muchos más conflictos y representa archivos de configuración por PPA.&lt;/p&gt;
+&lt;p&gt;En general, en una distribución tipo &lt;em&gt;rolling release&lt;/em&gt; (RR) como Manjaro y
+derivadas de Arch, es una buena práctica que esta actualización del sistema
+sea frecuente para evitar conflictos de actualizaciones acumuladas.&lt;/p&gt;
+&lt;div class="sd-tab-set docutils"&gt;
+&lt;input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio"&gt;
+&lt;label class="sd-tab-label" data-sync-group="tab" data-sync-id="manjaro" for="sd-tab-item-0"&gt;
+Manjaro&lt;/label&gt;&lt;div class="sd-tab-content docutils"&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;pamac&lt;span class="w"&gt; &lt;/span&gt;upgrade&lt;span class="w"&gt; &lt;/span&gt;-a
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;input id="sd-tab-item-1" name="sd-tab-set-0" type="radio"&gt;
+&lt;label class="sd-tab-label" data-sync-group="tab" data-sync-id="ubuntu" for="sd-tab-item-1"&gt;
+Ubuntu&lt;/label&gt;&lt;div class="sd-tab-content docutils"&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;apt&lt;span class="w"&gt; &lt;/span&gt;update&lt;span class="w"&gt; &lt;/span&gt;-q&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;apt&lt;span class="w"&gt; &lt;/span&gt;dist-upgrade&lt;span class="w"&gt; &lt;/span&gt;-y
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Para la gestión general de paquetes desde el repo, nos interesa saber como
+instalar desde el repositorio oficial, desde el AUR y remover paquetes.&lt;/p&gt;
+&lt;div class="sd-tab-set docutils"&gt;
+&lt;input checked="checked" id="sd-tab-item-2" name="sd-tab-set-1" type="radio"&gt;
+&lt;label class="sd-tab-label" data-sync-group="tab" data-sync-id="manjaro" for="sd-tab-item-2"&gt;
+Manjaro&lt;/label&gt;&lt;div class="sd-tab-content docutils"&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo&lt;span class="w"&gt; &lt;/span&gt;pamac&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;PACKAGE&lt;span class="w"&gt; &lt;/span&gt;--no-confirm&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="c1"&gt;# Repositorio oficial&lt;/span&gt;
+pamac&lt;span class="w"&gt; &lt;/span&gt;build&lt;span class="w"&gt; &lt;/span&gt;PACKAGE_AUR&lt;span class="w"&gt; &lt;/span&gt;--no-confirm&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="c1"&gt;# AUR&lt;/span&gt;
+sudo&lt;span class="w"&gt; &lt;/span&gt;pamac&lt;span class="w"&gt; &lt;/span&gt;remove&lt;span class="w"&gt; &lt;/span&gt;PACKAGE&lt;span class="w"&gt; &lt;/span&gt;--no-confirm
+pamac&lt;span class="w"&gt; &lt;/span&gt;search&lt;span class="w"&gt; &lt;/span&gt;-a&lt;span class="w"&gt; &lt;/span&gt;KEY
+pamac&lt;span class="w"&gt; &lt;/span&gt;info&lt;span class="w"&gt; &lt;/span&gt;PACKAGE
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Hay una variante interesante de la instalación con la bandera &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;--as-deps&lt;/span&gt;&lt;/code&gt; para
+marcar explícitamente los paquetes instalados como dependencias en lugar de
+instalación explícita. Así, cuando se remuevan los paquetes por los cuales
+nos vimos en la necesidad de instalarlos, estos quedaran marcados como
+huérfanos.&lt;/p&gt;
+&lt;p&gt;Puede que sea “irresponsable” el uso de &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;--no-confirm&lt;/span&gt;&lt;/code&gt;, pero siendo la primera
+instalación de los paquetes y que son casos previamente validados, estamos
+bien. Sin embargo, esto debemos hacerlo con cuidado y en algunos casos se
+podría requerir la validación e incluso cancelación de la transacción. Si
+vas a actualizar o agregar paquetes posteriores a tu tanda inicial, puede ser
+recomendable hacerlo en modo interactivo como chequeo y ya luego dejarlos para
+tus rutinas sin la confirmación. Igual, te recomiendo no usarlo y que tomes
+tus propias definiciones.&lt;/p&gt;
+&lt;p&gt;En caso de usar la instalación desde el AUR, mi recomendación es siempre
+proceder sin &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;sudo&lt;/span&gt;&lt;/code&gt; salvo que tengamos contexto que no se requiere clave GPG.
+De otra forma, esta se intenta almacenar a nivel del administrador provocando
+el error de “&lt;em&gt;tubería rota&lt;/em&gt;”, y es porque la clave debe almacenarse en un
+usuario común. Ejemplo, esto sucede con Dropbox y Spotify.&lt;/p&gt;
+&lt;/div&gt;
+&lt;input id="sd-tab-item-3" name="sd-tab-set-1" type="radio"&gt;
+&lt;label class="sd-tab-label" data-sync-group="tab" data-sync-id="ubuntu" for="sd-tab-item-3"&gt;
+Ubuntu&lt;/label&gt;&lt;div class="sd-tab-content docutils"&gt;
+&lt;div class="highlight-default notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;apt&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt; &lt;span class="n"&gt;PACKAGE&lt;/span&gt;
+&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;dpkg&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="n"&gt;PACKAGE&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;deb&lt;/span&gt;  &lt;span class="c1"&gt;# Descarga manual&lt;/span&gt;
+&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;apt&lt;/span&gt; &lt;span class="n"&gt;remove&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt; &lt;span class="n"&gt;PACKAGE&lt;/span&gt;
+&lt;span class="n"&gt;apt&lt;/span&gt; &lt;span class="n"&gt;search&lt;/span&gt; &lt;span class="n"&gt;KEY&lt;/span&gt;
+&lt;span class="n"&gt;apt&lt;/span&gt; &lt;span class="n"&gt;show&lt;/span&gt; &lt;span class="n"&gt;PACKAGE&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;En Ubuntu la instalación desde el PPA es igual, pero requiere un manejo previo
+para agregar la fuente del PPA.&lt;/p&gt;
+&lt;p&gt;En ocasiones, al instalar desde un paquete &lt;em&gt;DEB&lt;/em&gt; o desde un PPA, puede ser
+común problemas en los cuales no se disponen las dependencias o no se
+resuelven adecuadamente, y es necesario aplicar al final &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;sudo&lt;/span&gt; &lt;span class="pre"&gt;apt&lt;/span&gt; &lt;span class="pre"&gt;install&lt;/span&gt; &lt;span class="pre"&gt;-f&lt;/span&gt;&lt;/code&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/section&gt;
+&lt;section id="instala-dependencias-para-compilacion-de-paquetes"&gt;
+&lt;h2&gt;Instala dependencias para compilación de paquetes&lt;/h2&gt;
+&lt;p&gt;Cuando usamos fuentes diferentes al repositorio oficial, será necesario
+disponer de una serie de dependencias adicionales que nos ayudan a este
+proceso. Esto sería el equivalente del &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;build-essential&lt;/span&gt;&lt;/code&gt; de Ubuntu.&lt;/p&gt;
+&lt;div class="sd-tab-set docutils"&gt;
+&lt;input checked="checked" id="sd-tab-item-4" name="sd-tab-set-2" type="radio"&gt;
+&lt;label class="sd-tab-label" data-sync-group="tab" data-sync-id="manjaro" for="sd-tab-item-4"&gt;
+Manjaro&lt;/label&gt;&lt;div class="sd-tab-content docutils"&gt;
+&lt;div class="highlight-default notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;pamac&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;base&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;devel&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;no&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;confirm&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;input id="sd-tab-item-5" name="sd-tab-set-2" type="radio"&gt;
+&lt;label class="sd-tab-label" data-sync-group="tab" data-sync-id="ubuntu" for="sd-tab-item-5"&gt;
+Ubuntu&lt;/label&gt;&lt;div class="sd-tab-content docutils"&gt;
+&lt;div class="highlight-default notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;apt&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt; &lt;span class="n"&gt;build&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;essential&lt;/span&gt; &lt;span class="n"&gt;curl&lt;/span&gt; &lt;span class="n"&gt;git&lt;/span&gt; &lt;span class="n"&gt;ca&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;certificates&lt;/span&gt; &lt;span class="n"&gt;pkg&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;config&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Es de resaltar que los paquetes adicionales indicados en el caso de Ubuntu,
+vienen instalados por defecto en Manjaro al ser usados de forma directa por
+&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;pamac&lt;/span&gt;&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Como alternativa de instalación de paquetes, Manjaro viene con Flatpak
+preconfigurado, así como Ubuntu viene con Snap preconfigurado.&lt;/p&gt;
+&lt;div class="sd-tab-set docutils"&gt;
+&lt;input checked="checked" id="sd-tab-item-6" name="sd-tab-set-3" type="radio"&gt;
+&lt;label class="sd-tab-label" data-sync-group="tab" data-sync-id="manjaro" for="sd-tab-item-6"&gt;
+Manjaro&lt;/label&gt;&lt;div class="sd-tab-content docutils"&gt;
+&lt;p&gt;Flatpak está listo para usar.&lt;/p&gt;
+&lt;/div&gt;
+&lt;input id="sd-tab-item-7" name="sd-tab-set-3" type="radio"&gt;
+&lt;label class="sd-tab-label" data-sync-group="tab" data-sync-id="ubuntu" for="sd-tab-item-7"&gt;
+Ubuntu&lt;/label&gt;&lt;div class="sd-tab-content docutils"&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo&lt;span class="w"&gt; &lt;/span&gt;apt&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;-y&lt;span class="w"&gt; &lt;/span&gt;flatpak
+flatpak&lt;span class="w"&gt; &lt;/span&gt;remote-add&lt;span class="w"&gt; &lt;/span&gt;--if-not-exists&lt;span class="w"&gt; &lt;/span&gt;flathub&lt;span class="w"&gt; &lt;/span&gt;https://flathub.org/repo/flathub.flatpakrepo
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/section&gt;
+&lt;section id="instala-un-nucleo-estable"&gt;
+&lt;h2&gt;Instala un núcleo estable&lt;/h2&gt;
+&lt;p&gt;Aprovecha el último núcleo (&lt;em&gt;kernel&lt;/em&gt;) disponible en Manjaro, pero es bueno
+que instales un &lt;em&gt;kernel&lt;/em&gt; estable (a la fecha, sería de la rama 6.6, pero
+posiblemente 6.12 se perfile como estable también). Esto será necesario en
+caso de tener una actualización de &lt;em&gt;kernel&lt;/em&gt; que rompa el sistema, y sea
+necesario usar uno anterior. Ten presente que parte de como sucede esto en
+Manjaro, es que las versiones no estables son retiradas de los repositorios,
+entonces no hay forma de volverlas a instalar y de ahí otro riesgo.&lt;/p&gt;
+&lt;p&gt;Puedes instalar el núcleo estable usando el “Gestor de configuración de
+Manjaro” con la opción de “Núcleo”.&lt;/p&gt;
+&lt;p&gt;Recuerda editar el archivo &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;/etc/default/grub&lt;/span&gt;&lt;/code&gt; para cambiar el valor de las
+líneas de estilo y tiempo de espera. Lo más importante es la opción de
+&lt;em&gt;menu&lt;/em&gt; en la variable de estilo.&lt;/p&gt;
+&lt;div class="highlight-text notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;GRUB_TIMEOUT=5
+
+GRUB_TIMEOUT_STYLE=menu
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;De esta forma, tendremos el &lt;em&gt;grub&lt;/em&gt; visible al inicio y podremos usar las
+opciones avanzadas para cambiar de núcleo.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="protege-tus-ojos"&gt;
+&lt;h2&gt;Protege tus ojos&lt;/h2&gt;
+&lt;p&gt;Selecciona un tema oscuro en el sistema. Puedes buscar por el menú la opción
+de “Colores”, y escoger entre “Breath Dark” o “Brisa oscuro”. En mi caso me
+agradó más la primera. Esta selección influye a lo largo de las aplicaciones
+que permitan tomar el tema de sistema. También podemos buscar en el menú la
+opción “Estilo de Plasma”, podemos usar “Breath”.&lt;/p&gt;
+&lt;p&gt;Si usas KDE Plasma como yo, puedes usar el modo de “Luz nocturna” (“Night
+Color”). Puedes ajustar el modo de ubicación manual, seleccionas en el mapa y
+configuras la temperatura de color que consideres adecuada. En mi caso, uso
+4500 K para la luz diurna y 3700 K para la luz nocturna.&lt;/p&gt;
+&lt;p&gt;Si no usas KDE puedes instalar &lt;a class="reference external" href="https://github.com/jonls/redshift"&gt;RedShift&lt;/a&gt;,
+pero ten presente que esta herramienta no soporta Wayland.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="activar-teclado-numerico-al-arranque"&gt;
+&lt;h2&gt;Activar teclado numérico al arranque&lt;/h2&gt;
+&lt;p&gt;Si deseas que el teclado numérico se active desde el arranque, vamos a
+dirigirnos a la opción de bloqueo numérico de &lt;em&gt;hardware&lt;/em&gt; de teclado y
+seleccionamos “Activar”. Puedes acceder rápidamente a esta opción mediante el
+buscador por “Teclado”.&lt;/p&gt;
+&lt;p&gt;Esto es dependiente del entorno gráfico, por lo cual si no usas KDE Plasma te
+sugiero revisar directamente la documentación de
+&lt;a class="reference external" href="https://wiki.archlinux.org/title/Activating_numlock_on_bootup"&gt;Arch: Activating numlock on bootup&lt;/a&gt;.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="prepara-tus-documentos"&gt;
+&lt;h2&gt;Prepara tus documentos&lt;/h2&gt;
+&lt;p&gt;Durante la instalación de Manjaro, tenemos la opción de escoger entre
+LibreOffice y OnlyOffice como paquete ofimático. Mi preferencia es por
+&lt;a class="reference external" href="https://wiki.archlinux.org/title/LibreOffice#Installation"&gt;LibreOffice&lt;/a&gt;,
+pero el paquete instalado de esta forma no es la versión más reciente, por lo
+cual lo omito y lo instalo ahora.&lt;/p&gt;
+&lt;p&gt;Adicional, a veces requerimos de una alternativa compatible con Office, que en
+mi caso ocurre por motivos laborales con Excel, y requiero usar WPS. Existen un
+par de problemas que me afectaron y fue útil la documentación Arch sobre
+&lt;a class="reference external" href="https://wiki.archlinux.org/title/WPS_Office#Troubleshooting"&gt;WPS Office: Troubleshooting&lt;/a&gt;.&lt;/p&gt;
+&lt;div class="sd-tab-set docutils"&gt;
+&lt;input checked="checked" id="sd-tab-item-8" name="sd-tab-set-4" type="radio"&gt;
+&lt;label class="sd-tab-label" data-sync-group="tab" data-sync-id="manjaro" for="sd-tab-item-8"&gt;
+Manjaro&lt;/label&gt;&lt;div class="sd-tab-content docutils"&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo&lt;span class="w"&gt; &lt;/span&gt;pamac&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;libreoffice-fresh&lt;span class="w"&gt; &lt;/span&gt;--no-confirm
+sudo&lt;span class="w"&gt; &lt;/span&gt;pamac&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;--as-deps&lt;span class="w"&gt; &lt;/span&gt;libreoffice-extension-texmaths&lt;span class="w"&gt; &lt;/span&gt;libreoffice-fresh-es&lt;span class="w"&gt; &lt;/span&gt;--no-confirm
+pamac&lt;span class="w"&gt; &lt;/span&gt;build&lt;span class="w"&gt; &lt;/span&gt;wps-office-bin&lt;span class="w"&gt; &lt;/span&gt;ttf-wps-fonts&lt;span class="w"&gt; &lt;/span&gt;libtiff5&lt;span class="w"&gt; &lt;/span&gt;--no-confirm
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;input id="sd-tab-item-9" name="sd-tab-set-4" type="radio"&gt;
+&lt;label class="sd-tab-label" data-sync-group="tab" data-sync-id="ubuntu" for="sd-tab-item-9"&gt;
+Ubuntu&lt;/label&gt;&lt;div class="sd-tab-content docutils"&gt;
+&lt;p&gt;En el caso de Ubuntu, este viene con LibreOffice preinstalado. Y para instalar
+WPS será necesario descargar manualmente el archivo &lt;em&gt;DEB&lt;/em&gt; de su
+&lt;a class="reference external" href="https://es.wps.com/office/linux/"&gt;sitio web&lt;/a&gt; e instalar con &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;dpkg&lt;/span&gt;&lt;/code&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Instala la corrección de ortografía, en mi caso, de español Colombia. Configura
+LibreOffice para usar Hunspell con este diccionario.&lt;/p&gt;
+&lt;div class="sd-tab-set docutils"&gt;
+&lt;input checked="checked" id="sd-tab-item-10" name="sd-tab-set-5" type="radio"&gt;
+&lt;label class="sd-tab-label" data-sync-group="tab" data-sync-id="manjaro" for="sd-tab-item-10"&gt;
+Manjaro&lt;/label&gt;&lt;div class="sd-tab-content docutils"&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo&lt;span class="w"&gt; &lt;/span&gt;pamac&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;hunspell&lt;span class="w"&gt; &lt;/span&gt;hunspell-es_co&lt;span class="w"&gt; &lt;/span&gt;--no-confirm
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;input id="sd-tab-item-11" name="sd-tab-set-5" type="radio"&gt;
+&lt;label class="sd-tab-label" data-sync-group="tab" data-sync-id="ubuntu" for="sd-tab-item-11"&gt;
+Ubuntu&lt;/label&gt;&lt;div class="sd-tab-content docutils"&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo&lt;span class="w"&gt; &lt;/span&gt;apt&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;hunspell&lt;span class="w"&gt; &lt;/span&gt;hunspell-es
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Ahora vamos a “Herramientas &amp;gt; Opciones” y en la sección de “Idiomas y regiones”
+y “Generales”, escogemos la variante de Idioma predeterminado para los
+documentos. Y en “Ayudas de escritura” validamos que esté activo “Revisor
+ortográfico Hunspell”.&lt;/p&gt;
+&lt;div class="admonition attention"&gt;
+&lt;p class="admonition-title"&gt;Atención&lt;/p&gt;
+&lt;p&gt;Al tener un tema oscuro, LibreOffice por defecto no tendrá buena visibilidad de
+los íconos. Para corregir esto vamos a “Herramientas &amp;gt; Opciones” y allí en la
+sección de “Ver” evaluamos cual se ajusta mejor. En mi caso he escogido “Breeze
+(SVG + Dark)”&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="admonition note"&gt;
+&lt;p class="admonition-title"&gt;Nota&lt;/p&gt;
+&lt;p&gt;Si encuentras errores en las palabras detectadas o sugeridas por el diccionario
+de &lt;em&gt;Hunspell&lt;/em&gt; en español, lo puedes reportar en el repositorio GitHub de
+&lt;a class="reference external" href="https://github.com/sbosio/rla-es"&gt;RLA ES&lt;/a&gt;, del cual
+&lt;a class="reference internal" href="../es/blog/2017/toponimos-colombianos-en-rla-es/"&gt;&lt;span class="std std-doc"&gt;soy contribuidor&lt;/span&gt;&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/section&gt;
+&lt;section id="deposito-de-constrasenas"&gt;
+&lt;h2&gt;Depósito de constraseñas&lt;/h2&gt;
+&lt;p&gt;Cuando las aplicaciones comiencen a solicitar la creación de la cartera
+&lt;em&gt;kdewallet&lt;/em&gt;, vamos a aceptar la creación con &lt;em&gt;blowfish&lt;/em&gt;. Además, si la
+contraseña es la misma de nuestro inicio de sesión, este se activará
+automáticamente.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="instala-google-chrome"&gt;
+&lt;h2&gt;Instala Google Chrome&lt;/h2&gt;
+&lt;p&gt;Tanto en Manjaro como en Ubuntu tendremos a Firefox como navegador por defecto,
+pero es necesario reconocer que Google Chrome termina siendo necesario muchas
+veces.&lt;/p&gt;
+&lt;div class="sd-tab-set docutils"&gt;
+&lt;input checked="checked" id="sd-tab-item-12" name="sd-tab-set-6" type="radio"&gt;
+&lt;label class="sd-tab-label" data-sync-group="tab" data-sync-id="manjaro" for="sd-tab-item-12"&gt;
+Manjaro&lt;/label&gt;&lt;div class="sd-tab-content docutils"&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;pamac&lt;span class="w"&gt; &lt;/span&gt;build&lt;span class="w"&gt; &lt;/span&gt;google-chrome&lt;span class="w"&gt; &lt;/span&gt;--no-confirm
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;input id="sd-tab-item-13" name="sd-tab-set-6" type="radio"&gt;
+&lt;label class="sd-tab-label" data-sync-group="tab" data-sync-id="ubuntu" for="sd-tab-item-13"&gt;
+Ubuntu&lt;/label&gt;&lt;div class="sd-tab-content docutils"&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;wget&lt;span class="w"&gt; &lt;/span&gt;https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+sudo&lt;span class="w"&gt; &lt;/span&gt;dpkg&lt;span class="w"&gt; &lt;/span&gt;-i&lt;span class="w"&gt; &lt;/span&gt;google-chrome-stable_current_amd64.deb
+sudo&lt;span class="w"&gt; &lt;/span&gt;apt&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;-f
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Esto dejará configurado el PPA requerido para las actualizaciones.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Recuerda aplicar la sincronización de tu cuenta en ambos navegadores.&lt;/p&gt;
+&lt;p&gt;Instala la variante de idioma para corregir de tu interés en Firefox, en mi
+caso, Español (Colombia) con la extensión
+&lt;a class="reference external" href="https://addons.mozilla.org/es/firefox/addon/diccionario-mozilla-es-co"&gt;Diccionario Ortográfico de Español Colombia&lt;/a&gt;,
+de la cual &lt;a class="reference external" href="https://github.com/cosmoscalibur/diccionario-mozilla-es-co"&gt;soy mantenedor&lt;/a&gt;
+(y pronto actualizaré versión).&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="sincroniza-tus-archivos"&gt;
+&lt;h2&gt;Sincroniza tus archivos&lt;/h2&gt;
+&lt;p&gt;Existen múltiples opciones de sincronización de archivos, pero sin duda
+&lt;a class="reference external" href="https://www.dropbox.com/referrals/AABBG1MmL-hedPRRiOrFIiDH6UePOg71THw?src=global9"&gt;Dropbox&lt;/a&gt;
+sigue siendo un servicio común para muchos de nosotros al ofrecer una
+alternativa gratuita alojada y con soporte para Linux del cliente de escritorio.&lt;/p&gt;
+&lt;div class="sd-tab-set docutils"&gt;
+&lt;input checked="checked" id="sd-tab-item-14" name="sd-tab-set-7" type="radio"&gt;
+&lt;label class="sd-tab-label" data-sync-group="tab" data-sync-id="manjaro" for="sd-tab-item-14"&gt;
+Manjaro&lt;/label&gt;&lt;div class="sd-tab-content docutils"&gt;
+&lt;div class="highlight-default notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;pamac&lt;/span&gt; &lt;span class="n"&gt;build&lt;/span&gt; &lt;span class="n"&gt;dropbox&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;no&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;confirm&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;input id="sd-tab-item-15" name="sd-tab-set-7" type="radio"&gt;
+&lt;label class="sd-tab-label" data-sync-group="tab" data-sync-id="ubuntu" for="sd-tab-item-15"&gt;
+Ubuntu&lt;/label&gt;&lt;div class="sd-tab-content docutils"&gt;
+&lt;div class="highlight-default notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;wget -O https://www.dropbox.com/download?dl=packages/ubuntu/dropbox_2024.04.17_amd64.deb
+sudo dpkg -i dropbox_2024.04.17_amd64.deb
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Esto dejará configurado el PPA requerido para las actualizaciones.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Una vez instalado, inicia la ejecución. En este punto vamos al administrador
+de sesión de Dropbox y podremos vincular la cuenta.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="listos-para-chatear"&gt;
+&lt;h2&gt;Listos para chatear&lt;/h2&gt;
+&lt;p&gt;No solo chateamos desde nuestros celulares, así que es bueno que tengamos
+nuestras opciones en el PC. Telegram y WhatsApp que las uso por motivos
+personales, y Discord y Slack por motivos laborales.&lt;/p&gt;
+&lt;div class="sd-tab-set docutils"&gt;
+&lt;input checked="checked" id="sd-tab-item-16" name="sd-tab-set-8" type="radio"&gt;
+&lt;label class="sd-tab-label" data-sync-group="tab" data-sync-id="manjaro" for="sd-tab-item-16"&gt;
+Manjaro&lt;/label&gt;&lt;div class="sd-tab-content docutils"&gt;
+&lt;div class="highlight-default notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;pamac&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;telegram&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;desktop&lt;/span&gt; &lt;span class="n"&gt;discord&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;no&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;confirm&lt;/span&gt;
+&lt;span class="n"&gt;pamac&lt;/span&gt; &lt;span class="n"&gt;build&lt;/span&gt; &lt;span class="n"&gt;slack&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;desktop&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;no&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;confirm&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;input id="sd-tab-item-17" name="sd-tab-set-8" type="radio"&gt;
+&lt;label class="sd-tab-label" data-sync-group="tab" data-sync-id="ubuntu" for="sd-tab-item-17"&gt;
+Ubuntu&lt;/label&gt;&lt;div class="sd-tab-content docutils"&gt;
+&lt;div class="highlight-default notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;flatpak&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;flathub&lt;/span&gt; &lt;span class="n"&gt;org&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;telegram&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;desktop&lt;/span&gt;
+&lt;span class="n"&gt;flatpak&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;flathub&lt;/span&gt; &lt;span class="n"&gt;com&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;discordapp&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Discord&lt;/span&gt;
+&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;snap&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;slack&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/section&gt;
+&lt;section id="toma-pantallazos"&gt;
+&lt;h2&gt;Toma pantallazos&lt;/h2&gt;
+&lt;p&gt;KDE tiene una herramienta de capturas de pantalla muy buena y sofisticada
+(&lt;em&gt;Spectacle&lt;/em&gt;), pero esto último también me parece que desborda para el uso
+rápido. Para esta labor prefiero típicamente &lt;em&gt;Flameshot&lt;/em&gt;.&lt;/p&gt;
+&lt;div class="sd-tab-set docutils"&gt;
+&lt;input checked="checked" id="sd-tab-item-18" name="sd-tab-set-9" type="radio"&gt;
+&lt;label class="sd-tab-label" data-sync-group="tab" data-sync-id="manjaro" for="sd-tab-item-18"&gt;
+Manjaro&lt;/label&gt;&lt;div class="sd-tab-content docutils"&gt;
+&lt;div class="highlight-default notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;pamac&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;flameshot&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;no&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;confirm&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;input id="sd-tab-item-19" name="sd-tab-set-9" type="radio"&gt;
+&lt;label class="sd-tab-label" data-sync-group="tab" data-sync-id="ubuntu" for="sd-tab-item-19"&gt;
+Ubuntu&lt;/label&gt;&lt;div class="sd-tab-content docutils"&gt;
+&lt;div class="highlight-default notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;snap&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;flameshot&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/section&gt;
+&lt;section id="listos-para-la-creatividad"&gt;
+&lt;h2&gt;Listos para la creatividad&lt;/h2&gt;
+&lt;p&gt;Para escribir una entrada en el blog, nuestro trabajo de grado, un informe de
+laboratorio, el reporte ejecutivo, la presentación de &lt;em&gt;marketing&lt;/em&gt;, el diagrama
+de flujo de nuestro código o proceso, necesitamos hacer dibujos, diagramas,
+videos, convertir formatos o ediciones básicas.&lt;/p&gt;
+&lt;p&gt;Así que por eso aquí queda nuestro combo creativo.&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;&lt;em&gt;Imagemagick&lt;/em&gt;: Es útil para la conversión entre formatos de imagen.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;em&gt;FFMPEG&lt;/em&gt;: Utilidad de comandos para procesamiento de audio y video. Ejemplo:
+&lt;a class="reference internal" href="../es/blog/2024/unir-video-y-audio-con-ffmpeg-y-bash/"&gt;&lt;span class="std std-doc"&gt;Unir video y audio con ffmpeg y bash&lt;/span&gt;&lt;/a&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;em&gt;OBS Studio&lt;/em&gt;: Herramienta avanzada para grabación y edición de video.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;em&gt;DrawIO&lt;/em&gt;: Permite realizar diagramas y ofrece una gran cantidad de símbolos.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;em&gt;InkScape&lt;/em&gt;: Herramienta de dibujo vectorial. Una alternativa a Corel Draw.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;em&gt;Krita&lt;/em&gt;: Herramienta de dibujo y edición de mapas de bits. Es una
+alternativa a Photoshop. También puedes explorar &lt;em&gt;Gimp&lt;/em&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="sd-tab-set docutils"&gt;
+&lt;input checked="checked" id="sd-tab-item-20" name="sd-tab-set-10" type="radio"&gt;
+&lt;label class="sd-tab-label" data-sync-group="tab" data-sync-id="manjaro" for="sd-tab-item-20"&gt;
+Manjaro&lt;/label&gt;&lt;div class="sd-tab-content docutils"&gt;
+&lt;div class="highlight-default notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;pamac&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;imagemagick&lt;/span&gt; &lt;span class="n"&gt;ffmpeg&lt;/span&gt; &lt;span class="n"&gt;drawio&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;desktop&lt;/span&gt; &lt;span class="n"&gt;inkscape&lt;/span&gt; &lt;span class="n"&gt;krita&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;no&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;confirm&lt;/span&gt;
+&lt;span class="n"&gt;flatpak&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt; &lt;span class="n"&gt;flathub&lt;/span&gt; &lt;span class="n"&gt;com&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;obsproject&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Studio&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;input id="sd-tab-item-21" name="sd-tab-set-10" type="radio"&gt;
+&lt;label class="sd-tab-label" data-sync-group="tab" data-sync-id="ubuntu" for="sd-tab-item-21"&gt;
+Ubuntu&lt;/label&gt;&lt;div class="sd-tab-content docutils"&gt;
+&lt;div class="highlight-default notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;apt&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt; &lt;span class="n"&gt;imagemagick&lt;/span&gt; &lt;span class="n"&gt;ffmpeg&lt;/span&gt;
+&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;snap&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;drawio&lt;/span&gt;
+&lt;span class="n"&gt;flatpak&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt; &lt;span class="n"&gt;flathub&lt;/span&gt; &lt;span class="n"&gt;org&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;inkscape&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Inkscape&lt;/span&gt;
+&lt;span class="n"&gt;flatpak&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt; &lt;span class="n"&gt;flathub&lt;/span&gt; &lt;span class="n"&gt;org&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;kde&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;krita&lt;/span&gt;
+&lt;span class="n"&gt;flatpak&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt; &lt;span class="n"&gt;flathub&lt;/span&gt; &lt;span class="n"&gt;com&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;obsproject&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Studio&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Durante las pruebas de instalación con &lt;em&gt;pamac&lt;/em&gt;, tuve problemas con OBS y esto
+me motivó a usar los &lt;em&gt;flatpak&lt;/em&gt; en general para varios casos y así evitar el
+manejo de dependencias opcionales o algunos problemas de controladores. En este
+caso particular, OBS genera problemas con &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;DeckLink&lt;/span&gt;&lt;/code&gt; que se relaciona con el
+controlador &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;libva-vdpau-driver&lt;/span&gt; &lt;/code&gt;. Acorde al mensaje de error, no se encuentra
+instalado y por eso no puede configurar las &lt;a class="reference internal" href="../es/blog/2020/usar-la-camara-de-tu-celular-como-webcam/"&gt;&lt;span class="std std-doc"&gt;cámaras virtuales&lt;/span&gt;&lt;/a&gt;,
+sin embargo el controlador sí estaba instalado. Esto viendo foros es un
+problema común, pero no encontré algo que ayudara a solucionar.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="momentos-de-ocio"&gt;
+&lt;h2&gt;Momentos de ocio&lt;/h2&gt;
+&lt;p&gt;Mi combo 3S de entretenimiento es Spotify, Stremio y Steam (en este orden de
+uso). Spotify se volvió en mi opción para pasar el día a día mientras
+trabajo desde casa y ante la ausencia de otros sonidos, necesito que por lo
+menos haya música o un &lt;em&gt;podcast&lt;/em&gt;. Stremio es mi alternativa a los servicios a
+los servicios de Streaming (&lt;a class="reference internal" href="../es/blog/2024/la-mejor-alternativa-gratis-a-netflix/"&gt;&lt;span class="std std-doc"&gt;La mejor alternativa gratis a Netflix&lt;/span&gt;&lt;/a&gt;)
+y en Steam tengo buenos ratos de ocio sobre los cuales he comentado un poco ya
+antes en el blog (&lt;a class="reference internal" href="../es/blog/2021/configurar-retroarch-en-steam/"&gt;&lt;span class="std std-doc"&gt;Configurar RetroArch en Steam&lt;/span&gt;&lt;/a&gt; y
+&lt;a class="reference internal" href="../es/blog/2024/proton-modo-de-compatibilidad-de-steam/"&gt;&lt;span class="std std-doc"&gt;Proton: Modo de compatibilidad de Steam&lt;/span&gt;&lt;/a&gt;).&lt;/p&gt;
+&lt;div class="sd-tab-set docutils"&gt;
+&lt;input checked="checked" id="sd-tab-item-22" name="sd-tab-set-11" type="radio"&gt;
+&lt;label class="sd-tab-label" data-sync-group="tab" data-sync-id="manjaro" for="sd-tab-item-22"&gt;
+Manjaro&lt;/label&gt;&lt;div class="sd-tab-content docutils"&gt;
+&lt;div class="highlight-default notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;pamac&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;steam&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;no&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;confirm&lt;/span&gt;
+&lt;span class="n"&gt;pamac&lt;/span&gt; &lt;span class="n"&gt;build&lt;/span&gt; &lt;span class="n"&gt;spotify&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;no&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;confirm&lt;/span&gt;
+&lt;span class="n"&gt;flatpak&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt; &lt;span class="n"&gt;flathub&lt;/span&gt; &lt;span class="n"&gt;com&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;stremio&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Stremio&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;input id="sd-tab-item-23" name="sd-tab-set-11" type="radio"&gt;
+&lt;label class="sd-tab-label" data-sync-group="tab" data-sync-id="ubuntu" for="sd-tab-item-23"&gt;
+Ubuntu&lt;/label&gt;&lt;div class="sd-tab-content docutils"&gt;
+&lt;div class="highlight-default notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;flatpak&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt; &lt;span class="n"&gt;flathub&lt;/span&gt; &lt;span class="n"&gt;com&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;valvesoftware&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Steam&lt;/span&gt;
+&lt;span class="n"&gt;flatpak&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt; &lt;span class="n"&gt;flathub&lt;/span&gt; &lt;span class="n"&gt;com&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;stremio&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Stremio&lt;/span&gt;
+&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;snap&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;spotify&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/section&gt;
+&lt;section id="ahora-mira-el-firmamento"&gt;
+&lt;h2&gt;Ahora mira el firmamento&lt;/h2&gt;
+&lt;p&gt;Un pequeño &lt;em&gt;bonus&lt;/em&gt;, es para los amantes de la astronomía.&lt;/p&gt;
+&lt;p&gt;La instalación del software planetario Stellarium y un software de
+visualización 3D del universo, Gaia Sky.&lt;/p&gt;
+&lt;div class="highlight-default notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;flatpak&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;flathub&lt;/span&gt; &lt;span class="n"&gt;org&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;stellarium&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Stellarium&lt;/span&gt;
+&lt;span class="n"&gt;flatpak&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;flathub&lt;/span&gt; &lt;span class="n"&gt;de&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;uni_heidelberg&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;zah&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;GaiaSky&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/section&gt;
+&lt;/section&gt;
+</content>
+    <link href="https://www.cosmoscalibur.com/es/blog/2024/que-hacer-despues-de-instalar-manjaro/"/>
+    <summary>Hace poco decidí pasarme a Manjaro KDE (24.1) y estoy muy contento del cambio.
+Así que con motivo a esto, les cuento sobre las cosas por hacer después de
+completar la instalación.</summary>
+    <category term="arch" label="arch"/>
+    <category term="flatpak" label="flatpak"/>
+    <category term="kde" label="kde"/>
+    <category term="kubuntu" label="kubuntu"/>
+    <category term="manjaro" label="manjaro"/>
+    <category term="pamac" label="pamac"/>
+    <category term="ubuntu" label="ubuntu"/>
+    <published>2024-12-05T00:00:00-05:00</published>
+  </entry>
   <entry>
     <id>https://www.cosmoscalibur.com/es/blog/2024/distrohopping-cambiar-de-distribución-linux-y-no-morir-en-el-intento/</id>
     <title>Distrohopping: Cambiar de distribución Linux y no morir en el intento</title>
@@ -765,12 +1266,12 @@ y Bash.</summary>
 &lt;section id="perfil-de-velocidad-del-viento-solar"&gt;
 &lt;h2&gt;Perfil de velocidad del viento solar&lt;/h2&gt;
 &lt;p&gt;En el trabajo de Parker bajo condiciones de expansión isotérmica (&lt;span class="math notranslate nohighlight"&gt;\(\gamma = 1\)&lt;/span&gt;) de un fluido neutro (primera aproximación al comportamiento del viendo solar), lleva a una ecuación diferencial no lineal de primer orden que relaciona la velocidad del viento solar (&lt;span class="math notranslate nohighlight"&gt;\(u(r)\)&lt;/span&gt;) y la distancia heliocéntrica (&lt;span class="math notranslate nohighlight"&gt;\(r\)&lt;/span&gt;) ((Parker, 1958), (Kivelson, 1995)).&lt;/p&gt;
-&lt;div class="amsmath math notranslate nohighlight" id="equation-b8414abe-ace6-457c-8119-39117bf1b1e4"&gt;
+&lt;div class="amsmath math notranslate nohighlight" id="equation-80916e23-bd5c-4eae-802b-f2a30b91feee"&gt;
 &lt;span class="eqno"&gt;(1)&lt;/span&gt;\[\begin{equation}
 \frac{du(r)}{dr} = \left(\frac{4kT}{mr} - \frac{GM}{r^2} \right)u(r)\left(u(r)^2 - \frac{2kT}{m} \right)^{-1}
 \end{equation}\]&lt;/div&gt;
 &lt;p&gt;Con el fin de reducir la propagación de error por los ordenes de magnitud de las variables involucradas, se procede a adimensionalizar la ecuación diferencial, con base al radio y velocidad en el punto crítico (punto sónico) (Piso, 2008).&lt;/p&gt;
-&lt;div class="amsmath math notranslate nohighlight" id="equation-683d0a11-e5ff-4c81-bef8-0bbacd6b06b6"&gt;
+&lt;div class="amsmath math notranslate nohighlight" id="equation-514e894b-0784-475d-b01d-72234c506cc1"&gt;
 &lt;span class="eqno"&gt;(2)&lt;/span&gt;\[\begin{eqnarray}
 c_s^2 &amp;amp; = &amp;amp; \frac{2kT}{m}\\
 r_c &amp;amp;=&amp;amp; \frac{GM}{2c_s^2}\\
@@ -778,7 +1279,7 @@ r_c &amp;amp;=&amp;amp; \frac{GM}{2c_s^2}\\
 \end{eqnarray}\]&lt;/div&gt;
 &lt;p&gt;Donde &lt;span class="math notranslate nohighlight"&gt;\(v\)&lt;/span&gt; es la velocidad en velocidades sónicas (&lt;span class="math notranslate nohighlight"&gt;\(c_s\)&lt;/span&gt;) y &lt;span class="math notranslate nohighlight"&gt;\(R\)&lt;/span&gt; es el radio en radios sónicos (&lt;span class="math notranslate nohighlight"&gt;\(r_c\)&lt;/span&gt;). Observamos que alrededor del radio sónico y de la velocidad sónica se presenta un punto crítico que debe satisfacerse para asegurar el sentido físico de la solución. También, tenemos que esta ecuación representa un problema de valores de frontera, y en este caso la condición de frontera del problema en unidades adimensionales es &lt;span class="math notranslate nohighlight"&gt;\(v(R_{sol}) = v_0\)&lt;/span&gt;, donde &lt;span class="math notranslate nohighlight"&gt;\(R_{sol}\)&lt;/span&gt; es el radio del Sol, y es la posición desde la cuál comienza a desplazarse el flujo de partículas con una velocidad inicial &lt;span class="math notranslate nohighlight"&gt;\(v_0\)&lt;/span&gt; que dependerá de la densidad de partículas y la temperatura.&lt;/p&gt;
 &lt;p&gt;La generación de la espiral de Parker es efecto de la rotación del sol, por lo cual se aplica la transformación de coordenadas lagrangianas para sistemas rotantes, llevando a la ecuación diferencial&lt;/p&gt;
-&lt;div class="amsmath math notranslate nohighlight" id="equation-95a5ed65-1677-4fd7-9d13-747a8a344205"&gt;
+&lt;div class="amsmath math notranslate nohighlight" id="equation-f0983cb7-d7ac-4ccd-82cc-dd4946501e2c"&gt;
 &lt;span class="eqno"&gt;(3)&lt;/span&gt;\[\begin{equation}
 \frac{d\varphi}{dR} = \frac{-\omega}{v(R)}
 \end{equation}\]&lt;/div&gt;

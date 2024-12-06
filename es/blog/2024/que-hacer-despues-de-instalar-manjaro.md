@@ -1,21 +1,22 @@
-# ¿Qué hacer después de instalar Manjaro KDE?
+---
+date: 2024-12-05
+tags: manjaro, arch, ubuntu, kubuntu, kde, pamac, flatpak
+category: tecnología, linux
+---
+
+# ¿Qué hacer después de instalar Manjaro KDE 24?
 
 Hace poco decidí pasarme a Manjaro KDE (24.1) y estoy muy contento del cambio.
 Así que con motivo a esto, les cuento sobre las cosas por hacer después de
 completar la instalación.
 
-Debo aclarar que no soy de los usuarios Linux en modo fanático, así que las
-cosas que verás aquí son acordes a mi facilidad para adecuar rápidamente el
-equipo y solo resolver los problemas que realmente afectan la experiencia que
-busco. Respecto a muchos paquetes populares y tradicionales con GUI, no veo
-problema en el uso de ambientes tipo Flatpak o AppImage, pero el movimiento a
-Manjaro lo realicé por utilidades más nuevas, algunas no muy populares
-todavía y que su instalación en Ubuntu es usar un PPA, compilar o usar un
-directorio comprimido.
-
-Para fines de estabilidad y consistencia, la preferencia por los paquetes
-_flatpak_ es si estos son oficiales o verificados, por sobre los paquetes del
-AUR.
+Respecto a muchos paquetes populares y tradicionales con GUI, no veo problema
+en el uso de ambientes tipo Flatpak si los nativos representan un problema o
+potencial problema. Ejemplo, OBS no funciona si lo instalo nativo, pero sí en
+flatpak, pero además, si está disponible como flatpak verificado prefiero esto
+a un paquete disponible en el AUR. Un poco de esto lo discuto en
+[](/es/blog/2024/distrohopping-cambiar-de-distribución-linux-y-no-morir-en-el-intento.md),
+ya que esto me permite adecuar más rápido y compensar algo de estabilidad.
 
 ## Revisa los anuncios
 
@@ -39,6 +40,17 @@ con esperar un tiempo un poco más prolongado para que el proceso retomara la
 normalidad (comparativamente contra lo que observé al instalarlo en una VM y
 en el PC que no tiene tarjeta gráfica dedicada).
 
+## Actualiza réplicas del repositorio
+
+Este paso es conveniente para que tengas descargas desde los servidores con
+mejor tiempo de respuesta, pero además que se encuentren actualizados. En mi
+caso me sucedió que la réplica usada comenzó a fallar, y con esto podemos
+remover aquellas que ya no son funcionales.
+
+```{code} bash
+sudo pacman-mirrors --fasttrack
+```
+
 ## Actualizar el sistema
 
 Nuestra herramienta de gestión de paquetes en Manjaro, es `pamac`. Es una
@@ -46,33 +58,43 @@ herramienta amigable, que no requiere el esfuerzo extra de memorizar las formas
 de argumentos de una sola letra de `pacman`, y con cierta similitud a `apt` de
 Ubuntu.
 
-```{code} manjaro
-pamac upgrade -a
-```
+Usamos `-a` para indicar que se considera también la fuente del AUR. Esta
+instrucción al mismo tiempo actualiza las fuentes de los paquetes (repositorio
+oficial y AUR), no solo los paquetes.
 
-Usamos `-a` para indicar que se considera también la fuente del AUR. El AUR es
-el equivalente de los PPA de Ubuntu, pero de una forma unificada, contrario a
-la forma segmentado por mantenedor de Ubuntu que lleva fácilmente a muchos
-más conflictos. Pero el AUR tiene un soporte de primer nivel podríamos
-decirlo, por lo cual a diferencia de los PPA no posee los continuos problemas
-por GPG vencida o que su existencia sea un problema para actualizar la
-distribución o problemas por repetición de fuentes.
-
-Esta instrucción al mismo tiempo actualiza las fuentes de los paquetes
-(repositorio oficial y AUR), no solo los paquetes.
-
-```{code} ubuntu
-apt update -q && apt dist-upgrade -y
-```
+El AUR es el equivalente de los PPA de Ubuntu, pero de una forma unificada,
+contrario a la forma segmentado por mantenedor de Ubuntu que lleva fácilmente a
+muchos más conflictos y representa archivos de configuración por PPA.
 
 En general, en una distribución tipo _rolling release_ (RR) como Manjaro y
 derivadas de Arch, es una buena práctica que esta actualización del sistema
 sea frecuente para evitar conflictos de actualizaciones acumuladas.
 
+::::{tab-set}
+:::{tab-item} Manjaro
+:sync: manjaro
+
+```{code} bash
+pamac upgrade -a
+```
+:::
+:::{tab-item} Ubuntu
+:sync: ubuntu
+
+```{code} bash
+apt update -q && apt dist-upgrade -y
+```
+:::
+::::
+
 Para la gestión general de paquetes desde el repo, nos interesa saber como
 instalar desde el repositorio oficial, desde el AUR y remover paquetes.
 
-```{code}
+::::{tab-set}
+:::{tab-item} Manjaro
+:sync: manjaro
+
+```{code} bash
 sudo pamac install PACKAGE --no-confirm # Repositorio oficial
 pamac build PACKAGE_AUR --no-confirm # AUR
 sudo pamac remove PACKAGE --no-confirm
@@ -101,12 +123,16 @@ De otra forma, esta se intenta almacenar a nivel del administrador provocando
 el error de "_tubería rota_", y es porque la clave debe almacenarse en un
 usuario común. Ejemplo, esto sucede con Dropbox y Spotify.
 
+:::
+:::{tab-item} Ubuntu
+:sync: ubuntu
+
 ```{code}
 sudo apt install -y PACKAGE
+sudo dpkg -i PACKAGE.deb  # Descarga manual
 sudo apt remove -y PACKAGE
 apt search KEY
 apt show PACKAGE
-sudo dpkg -i PACKAGE.deb
 ```
 
 En Ubuntu la instalación desde el PPA es igual, pero requiere un manejo previo
@@ -116,19 +142,33 @@ En ocasiones, al instalar desde un paquete _DEB_ o desde un PPA, puede ser
 común problemas en los cuales no se disponen las dependencias o no se
 resuelven adecuadamente, y es necesario aplicar al final `sudo apt install -f`.
 
+:::
+::::
+
 ## Instala dependencias para compilación de paquetes
 
 Cuando usamos fuentes diferentes al repositorio oficial, será necesario
 disponer de una serie de dependencias adicionales que nos ayudan a este
 proceso. Esto sería el equivalente del `build-essential` de Ubuntu.
 
+::::{tab-set}
+:::{tab-item} Manjaro
+:sync: manjaro
+
 ```{code}
 pamac install base-devel --no-confirm
 ```
 
+:::
+:::{tab-item} Ubuntu
+:sync: ubuntu
+
 ```{code}
 sudo apt install -y build-essential curl git ca-certificates pkg-config
 ```
+
+:::
+::::
 
 Es de resaltar que los paquetes adicionales indicados en el caso de Ubuntu,
 vienen instalados por defecto en Manjaro al ser usados de forma directa por
@@ -137,10 +177,22 @@ vienen instalados por defecto en Manjaro al ser usados de forma directa por
 Como alternativa de instalación de paquetes, Manjaro viene con Flatpak
 preconfigurado, así como Ubuntu viene con Snap preconfigurado.
 
-```{code}
+::::{tab-set}
+:::{tab-item} Manjaro
+:sync: manjaro
+
+Flatpak está listo para usar.
+
+:::
+:::{tab-item} Ubuntu
+:sync: ubuntu
+
+```{code} bash
 sudo apt install -y flatpak
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 ```
+:::
+::::
 
 ## Instala un núcleo estable
 
@@ -159,7 +211,7 @@ Recuerda editar el archivo `/etc/default/grub` para cambiar el valor de las
 líneas de estilo y tiempo de espera. Lo más importante es la opción de
 *menu* en la variable de estilo.
 
-```{code}
+```{code} text
 GRUB_TIMEOUT=5
 
 GRUB_TIMEOUT_STYLE=menu
@@ -176,11 +228,10 @@ agradó más la primera. Esta selección influye a lo largo de las aplicaciones
 que permitan tomar el tema de sistema. También podemos buscar en el menú la
 opción "Estilo de Plasma", podemos usar "Breath".
 
-Si usas KDE Plasma como yo (Manjaro KDE o Kubuntu), puedes usar el modo de "Luz
-nocturna" ("Night Color"). Puedes ajustar el modo de ubicación manual,
-seleccionas en el mapa y configuras la temperatura de color que consideres
-adecuada. En mi caso, uso 4500 K para la luz diurna y 3700 K para la luz
-nocturna.
+Si usas KDE Plasma como yo, puedes usar el modo de "Luz nocturna" ("Night
+Color"). Puedes ajustar el modo de ubicación manual, seleccionas en el mapa y
+configuras la temperatura de color que consideres adecuada. En mi caso, uso
+4500 K para la luz diurna y 3700 K para la luz nocturna.
 
 Si no usas KDE puedes instalar [RedShift](https://github.com/jonls/redshift),
 pero ten presente que esta herramienta no soporta Wayland.
@@ -207,28 +258,66 @@ cual lo omito y lo instalo ahora.
 Adicional, a veces requerimos de una alternativa compatible con Office, que en
 mi caso ocurre por motivos laborales con Excel, y requiero usar WPS. Existen un
 par de problemas que me afectaron y fue útil la documentación Arch sobre
-[WPS: Troubleshooting](https://wiki.archlinux.org/title/WPS_Office#Troubleshooting).
+[WPS Office: Troubleshooting](https://wiki.archlinux.org/title/WPS_Office#Troubleshooting).
 
-```{code}
+::::{tab-set}
+:::{tab-item} Manjaro
+:sync: manjaro
+
+```{code} bash
 sudo pamac install libreoffice-fresh --no-confirm
 sudo pamac install --as-deps libreoffice-extension-texmaths libreoffice-fresh-es --no-confirm
 pamac build wps-office-bin ttf-wps-fonts libtiff5 --no-confirm
 ```
 
+:::
+:::{tab-item} Ubuntu
+:sync: ubuntu
+
 En el caso de Ubuntu, este viene con LibreOffice preinstalado. Y para instalar
 WPS será necesario descargar manualmente el archivo _DEB_ de su
 [sitio web](https://es.wps.com/office/linux/) e instalar con `dpkg`.
+:::
+::::
 
-Instala la corrección de ortografía, en mi caso, de español Colombia.
-Configura LibreOffice para usar Hunspell con este diccionario.
+Instala la corrección de ortografía, en mi caso, de español Colombia. Configura
+LibreOffice para usar Hunspell con este diccionario.
 
-```{code}
+::::{tab-set}
+:::{tab-item} Manjaro
+:sync: manjaro
+
+```{code} bash
 sudo pamac install hunspell hunspell-es_co --no-confirm
 ```
+:::
+:::{tab-item} Ubuntu
+:sync: ubuntu
 
-```{code}
+```{code} bash
 sudo apt install hunspell hunspell-es
 ```
+:::
+::::
+
+Ahora vamos a "Herramientas > Opciones" y en la sección de "Idiomas y regiones"
+y "Generales", escogemos la variante de Idioma predeterminado para los
+documentos. Y en "Ayudas de escritura" validamos que esté activo "Revisor
+ortográfico Hunspell".
+
+:::{attention}
+Al tener un tema oscuro, LibreOffice por defecto no tendrá buena visibilidad de
+los íconos. Para corregir esto vamos a "Herramientas > Opciones" y allí en la
+sección de "Ver" evaluamos cual se ajusta mejor. En mi caso he escogido "Breeze
+(SVG + Dark)"
+:::
+
+:::{note}
+Si encuentras errores en las palabras detectadas o sugeridas por el diccionario
+de *Hunspell* en español, lo puedes reportar en el repositorio GitHub de
+[RLA ES](https://github.com/sbosio/rla-es), del cual
+[soy contribuidor](/es/blog/2017/toponimos-colombianos-en-rla-es.rst).
+:::
 
 ## Depósito de constraseñas
 
@@ -243,35 +332,62 @@ Tanto en Manjaro como en Ubuntu tendremos a Firefox como navegador por defecto,
 pero es necesario reconocer que Google Chrome termina siendo necesario muchas
 veces.
 
-```{code}
+::::{tab-set}
+:::{tab-item} Manjaro
+:sync: manjaro
+
+```{code} bash
 pamac build google-chrome --no-confirm
 ```
 
-```{code}
+:::
+:::{tab-item} Ubuntu
+:sync: ubuntu
+
+```{code} bash
 wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 sudo dpkg -i google-chrome-stable_current_amd64.deb
 sudo apt install -f
 ```
 
 Esto dejará configurado el PPA requerido para las actualizaciones.
+:::
+::::
 
 Recuerda aplicar la sincronización de tu cuenta en ambos navegadores.
+
+Instala la variante de idioma para corregir de tu interés en Firefox, en mi
+caso, Español (Colombia) con la extensión
+[Diccionario Ortográfico de Español Colombia](https://addons.mozilla.org/es/firefox/addon/diccionario-mozilla-es-co),
+de la cual [soy mantenedor](https://github.com/cosmoscalibur/diccionario-mozilla-es-co)
+(y pronto actualizaré versión).
 
 ## Sincroniza tus archivos
 
 Existen múltiples opciones de sincronización de archivos, pero sin duda
-Dropbox sigue siendo un servicio común para muchos de nosotros al ofrecer una
-alternativa gratuita alojada y con soporte para Linux del cliente de
-escritorio.
+[Dropbox](https://www.dropbox.com/referrals/AABBG1MmL-hedPRRiOrFIiDH6UePOg71THw?src=global9)
+sigue siendo un servicio común para muchos de nosotros al ofrecer una
+alternativa gratuita alojada y con soporte para Linux del cliente de escritorio.
+
+::::{tab-set}
+:::{tab-item} Manjaro
+:sync: manjaro
 
 ```{code}
 pamac build dropbox --no-confirm
 ```
+:::
+:::{tab-item} Ubuntu
+:sync: ubuntu
 
 ```{code}
 wget -O https://www.dropbox.com/download?dl=packages/ubuntu/dropbox_2024.04.17_amd64.deb
 sudo dpkg -i dropbox_2024.04.17_amd64.deb
 ```
+
+Esto dejará configurado el PPA requerido para las actualizaciones.
+:::
+::::
 
 Una vez instalado, inicia la ejecución. En este punto vamos al administrador
 de sesión de Dropbox y podremos vincular la cuenta.
@@ -282,16 +398,25 @@ No solo chateamos desde nuestros celulares, así que es bueno que tengamos
 nuestras opciones en el PC. Telegram y WhatsApp que las uso por motivos
 personales, y Discord y Slack por motivos laborales.
 
+::::{tab-set}
+:::{tab-item} Manjaro
+:sync: manjaro
+
 ```{code}
 sudo pamac install telegram-desktop discord --no-confirm
-pamac build whatsapp-for-linux slack-desktop --no-confirm
+pamac build slack-desktop --no-confirm
 ```
+:::
+:::{tab-item} Ubuntu
+:sync: ubuntu
 
 ```{code}
 flatpak install flathub org.telegram.desktop
 flatpak install flathub com.discordapp.Discord
-sudo snap install whatsapp-for-linux slack
+sudo snap install slack
 ```
+:::
+::::
 
 ## Toma pantallazos
 
@@ -299,13 +424,22 @@ KDE tiene una herramienta de capturas de pantalla muy buena y sofisticada
 (*Spectacle*), pero esto último también me parece que desborda para el uso
 rápido. Para esta labor prefiero típicamente _Flameshot_.
 
+::::{tab-set}
+:::{tab-item} Manjaro
+:sync: manjaro
+
 ```{code}
 sudo pamac install flameshot --no-confirm
 ```
+:::
+:::{tab-item} Ubuntu
+:sync: ubuntu
 
 ```{code}
 sudo snap install flameshot
 ```
+:::
+::::
 
 ## Listos para la creatividad
 
@@ -316,22 +450,36 @@ videos, convertir formatos o ediciones básicas.
 
 Así que por eso aquí queda nuestro combo creativo.
 
++ *Imagemagick*: Es útil para la conversión entre formatos de imagen.
++ *FFMPEG*: Utilidad de comandos para procesamiento de audio y video. Ejemplo:
+  [](/es/blog/2024/unir-video-y-audio-con-ffmpeg-y-bash.md).
++ *OBS Studio*: Herramienta avanzada para grabación y edición de video.
++ *DrawIO*: Permite realizar diagramas y ofrece una gran cantidad de símbolos.
++ *InkScape*: Herramienta de dibujo vectorial. Una alternativa a Corel Draw.
++ *Krita*: Herramienta de dibujo y edición de mapas de bits. Es una
+  alternativa a Photoshop. También puedes explorar *Gimp*.
+
+::::{tab-set}
+:::{tab-item} Manjaro
+:sync: manjaro
+
 ```{code}
-pamac install imagemagick ffmpeg drawio-desktop gimp inkscape krita --no-confirm
+pamac install imagemagick ffmpeg drawio-desktop inkscape krita --no-confirm
 flatpak install -y flathub com.obsproject.Studio
 ```
+:::
+:::{tab-item} Ubuntu
+:sync: ubuntu
 
 ```{code}
 sudo apt install -y imagemagick ffmpeg
 sudo snap install drawio
-flatpak install -y flathub org.gimp.GIMP
 flatpak install -y flathub org.inkscape.Inkscape
 flatpak install -y flathub org.kde.krita
 flatpak install -y flathub com.obsproject.Studio
 ```
-
-Un ejemplo de lo que puedes hacer con _FFMPEG_ si no lo conoces lo comento en
-[](/es/blog/2024/unir-video-y-audio-con-ffmpeg-y-bash.md).
+:::
+::::
 
 Durante las pruebas de instalación con _pamac_, tuve problemas con OBS y esto
 me motivó a usar los _flatpak_ en general para varios casos y así evitar el
@@ -353,17 +501,24 @@ y en Steam tengo buenos ratos de ocio sobre los cuales he comentado un poco ya
 antes en el blog ([](/es/blog/2021/configurar-retroarch-en-steam.rst) y
 [](/es/blog/2024/proton-modo-de-compatibilidad-de-steam.md)).
 
-```{code} manjaro
+::::{tab-set}
+:::{tab-item} Manjaro
+:sync: manjaro
+```{code}
 sudo pamac install steam --no-confirm
-pamac build spotify --no-confirm  # GPG
+pamac build spotify --no-confirm
 flatpak install -y flathub com.stremio.Stremio
 ```
-
-```{code} ubuntu
+:::
+:::{tab-item} Ubuntu
+:sync: ubuntu
+```{code}
 flatpak install -y flathub com.valvesoftware.Steam
 flatpak install -y flathub com.stremio.Stremio
 sudo snap install spotify
 ```
+:::
+::::
 
 ## Ahora mira el firmamento
 
