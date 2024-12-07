@@ -42,6 +42,12 @@ También suelen reportar que
 [deshabilitar la aleatorización de la MAC](https://forum.manjaro.org/t/wifi-not-connecting-at-start-up/113193/3)
 ayuda, pero en mi caso esta prueba no tuvo efectos.
 
+```{code} text
+## File: /etc/NetworkManager/conf.d/wifi_rand_mac.conf
+[device]
+wifi.scan-rand-mac-address=no
+```
+
 ## Obtén información útil para diagnóstico
 
 Uno de los puntos importantes para buscar como solucionar tus problemas y será
