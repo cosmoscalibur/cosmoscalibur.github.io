@@ -10,6 +10,10 @@ Hace poco decidí pasarme a Manjaro KDE (24.1) y estoy muy contento del cambio.
 Así que con motivo a esto, les cuento sobre las cosas por hacer después de
 completar la instalación.
 
+Aprovechando que vengo de una transición de Kubuntu (24.10) y Xubuntu (22.10),
+haré paralelos de estos pasos, así que te servirá como una lista de "qué
+hacer después de instalar Kubuntu 24.10".
+
 Respecto a muchos paquetes populares y tradicionales con GUI, no veo problema
 en el uso de ambientes tipo Flatpak si los nativos representan un problema o
 potencial problema. Ejemplo, OBS no funciona si lo instalo nativo, pero sí en
@@ -51,6 +55,9 @@ remover aquellas que ya no son funcionales.
 sudo pacman-mirrors --fasttrack
 ```
 
+Este paso en Ubuntu no es nativo y representa una complejidad alta para el tipo
+de público objetivo de la distribución.
+
 ## Actualizar el sistema
 
 Nuestra herramienta de gestión de paquetes en Manjaro, es `pamac`. Es una
@@ -77,6 +84,10 @@ sea frecuente para evitar conflictos de actualizaciones acumuladas.
 ```{code} bash
 pamac upgrade -a
 ```
+
+También puedes usar `update` en lugar de `upgrade`. Esto es la actualización
+general de la distribución y no solo de los paquetes instalados.
+
 :::
 :::{tab-item} Ubuntu
 :sync: ubuntu
@@ -84,6 +95,11 @@ pamac upgrade -a
 ```{code} bash
 apt update -q && apt dist-upgrade -y
 ```
+
+El primer paso actualiza el índice de los repositorios (incluyendo los PPA) y
+el segundo paso actualiza en sí los paquetes instalados incluyendo cambios
+propios del sistema que no necesariamente se relacionan con los paquetes
+instalados.
 :::
 ::::
 
@@ -219,6 +235,11 @@ GRUB_TIMEOUT_STYLE=menu
 
 De esta forma, tendremos el *grub* visible al inicio y podremos usar las
 opciones avanzadas para cambiar de núcleo.
+
+En Ubuntu debido a su estabilidad y que el núcleo en sí es parte de lo que se
+vincula a la versión de la distribución, no es un paso de prevención a
+considerar, y solo sería útil si por el soporte de hardware o alguna
+característica muy específica lo requieres.
 
 ## Protege tus ojos
 

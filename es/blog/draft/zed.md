@@ -44,8 +44,7 @@
 
 ```
 curl -f https://zed.dev/install.sh | sh
-echo 'export PATH=$HOME/.local/bin:$PATH' >> ~/.bashrc
-source ~/.bashrc
+
 # https://github.com/zed-industries/zed/issues/10943
 https://benswift.me/blog/2024/09/20/format-markdown-on-save-in-zed-using-prettier/
 https://github.com/vitallium/zed-ltex
@@ -56,13 +55,4 @@ embargo si es en Wayland, falla. En Wayland el problema es con los
 controladores de NVIDIA y se aprecia si pruebas vkcube-wayland (mensaje de
 error) y vkcube ejecuta normal.
 
-echo $XDG_SESSION_TYPE
-echo $WAYLAND_DISPLAY
-WAYLAND_DISPLAY=''
-
 desinstalar zed https://askubuntu.com/questions/1520457/how-do-i-uninstall-zed-editor-from-my-ubuntu-24
-
-Probar con open source driver desde la instalación.
-Puede tener menor rendimiento que el privativo, pero puede ser más completo en características.
-
-configuración de hardware de manjaro. Auto install de open source driver

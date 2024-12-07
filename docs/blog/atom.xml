@@ -2,10 +2,105 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="es">
   <id>https://www.cosmoscalibur.com/</id>
   <title>Cosmoscalibur</title>
-  <updated>2024-12-06T02:56:06.704273+00:00</updated>
+  <updated>2024-12-07T19:09:09.011385+00:00</updated>
   <link href="https://www.cosmoscalibur.com/"/>
   <link href="https://www.cosmoscalibur.com/blog/atom.xml" rel="self"/>
   <generator uri="https://ablog.readthedocs.io/" version="0.11.12">ABlog</generator>
+  <entry>
+    <id>https://www.cosmoscalibur.com/es/blog/2024/problemas-de-conexion-wifi-en-linux/</id>
+    <title>Problemas de conexión wifi en Linux</title>
+    <updated>2024-12-07T00:00:00-05:00</updated>
+    <author>
+      <name>Edward Villegas-Pulgarin</name>
+    </author>
+    <content type="html">&lt;section class="tex2jax_ignore mathjax_ignore" id="problemas-de-conexion-wifi-en-linux"&gt;
+
+&lt;p&gt;Si el WiFi de manera aleatoria comienza a desconectarse, y al revisar el
+listado de redes estas han desaparecido, algunos detalles por evaluar son:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://bbs.archlinux.org/viewtopic.php?pid=2134101#p2134101"&gt;Deshabilitar “fast boot” de la BIOS&lt;/a&gt;:
+En Ubuntu pareciera no ser un problema actualmente (no me había sucedido en
+el mismo equipo con esa configuración, pero existen publicaciones de años
+anteriores relacionadas a Ubuntu con esto), pero al movernos a Manjaro o
+derivadas de Arch, esto es un problema replicable. Asegúrate de deshabilitar
+“Fast boot” en la BIOS.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://forum.manjaro.org/t/wifi-random-disconnects-after-update/142876/3"&gt;Deshabilitar el ahorro de energía de la tarjeta de wifi&lt;/a&gt;:
+Es recurrente que el modo de ahorro de energía con la tarjeta de wifi lleve a
+que dejemos de ver las conexiones disponibles. Por lo cual es necesario crear
+el archivo de configuración que apague esta característica y reiniciamos.
+Debes crear el archivo como administrador.&lt;/p&gt;
+&lt;div class="highlight-text notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;## File: /etc/NetworkManager/conf.d/default-wifi-powersave-on.conf
+[connection]
+wifi.powersave = 2
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Estos dos ajustes fueron suficientes en mi escenario, sin embargo, no fue tan
+claro que debían ser las dos cosas. Esto fue una mezcla de probar distintas
+soluciones que reportaban y de probar efectos de las combinaciones. Ejemplo, al
+tener deshabilitado “&lt;em&gt;fast boot&lt;/em&gt;” ya me conectaba siempre desde el inicio, pero
+se perdían las redes al rato. Si tenía deshabilitado el ahorro de energía
+solamente, permanecían las redes, pero nunca conectaba. Solo al tener las dos
+en conjunto funcionó.&lt;/p&gt;
+&lt;p&gt;Para dar contexto de mi caso específico, tengo Manjaro KDE 24.1 con núcleo 6.11.
+La tarjeta de red es &lt;em&gt;Realtek&lt;/em&gt; y el equipo es ASUS TUF Gaming A15 FA506IV.&lt;/p&gt;
+&lt;p&gt;También suelen reportar que
+&lt;a class="reference external" href="https://forum.manjaro.org/t/wifi-not-connecting-at-start-up/113193/3"&gt;deshabilitar la aleatorización de la MAC&lt;/a&gt;
+ayuda, pero en mi caso esta prueba no tuvo efectos.&lt;/p&gt;
+&lt;section id="obten-informacion-util-para-diagnostico"&gt;
+&lt;h2&gt;Obtén información útil para diagnóstico&lt;/h2&gt;
+&lt;p&gt;Uno de los puntos importantes para buscar como solucionar tus problemas y será
+clave si escribes en los foros, es conocer información sobre tu hardware y
+controladores.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Obtener información general de sistema&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Para este caos específico puede ser útil la información de la sección
+&lt;em&gt;Network&lt;/em&gt; y &lt;em&gt;System&lt;/em&gt;, pero no cortes el resultado si lo publicas en un foro.
+Estas utilidades no son solo cuando el error es de wifi, también te aporta
+información para otros problemas de hardware.&lt;/p&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;inxi&lt;span class="w"&gt; &lt;/span&gt;--full&lt;span class="w"&gt; &lt;/span&gt;--admin&lt;span class="w"&gt; &lt;/span&gt;--filter&lt;span class="w"&gt; &lt;/span&gt;--width
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;Obtener información de controladores&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;En este punto podemos detallar el controlador y versión de controlador,
+buscando la mención de &lt;em&gt;Network&lt;/em&gt;.&lt;/p&gt;
+&lt;div class="sd-tab-set docutils"&gt;
+&lt;input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio"&gt;
+&lt;label class="sd-tab-label" for="sd-tab-item-0"&gt;
+Manjaro&lt;/label&gt;&lt;div class="sd-tab-content docutils"&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo&lt;span class="w"&gt; &lt;/span&gt;mhwd&lt;span class="w"&gt; &lt;/span&gt;-l&lt;span class="w"&gt; &lt;/span&gt;-li
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;input id="sd-tab-item-1" name="sd-tab-set-0" type="radio"&gt;
+&lt;label class="sd-tab-label" for="sd-tab-item-1"&gt;
+Ubuntu&lt;/label&gt;&lt;div class="sd-tab-content docutils"&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo&lt;span class="w"&gt; &lt;/span&gt;lshw
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;Mensajes de diagnóstico del núcleo&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Podemos buscar por mensajes del núcleo asociados al controlador. Ten presente
+el controlador desde la sección de &lt;em&gt;Network&lt;/em&gt; de &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;inxi&lt;/span&gt;&lt;/code&gt;. En mi caso, es &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;r8169&lt;/span&gt;&lt;/code&gt;
+y &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;rtw_8822ce&lt;/span&gt;&lt;/code&gt;.&lt;/p&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo&lt;span class="w"&gt; &lt;/span&gt;dmesg&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;grep&lt;span class="w"&gt; &lt;/span&gt;r8169
+sudo&lt;span class="w"&gt; &lt;/span&gt;dmesg&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;grep&lt;span class="w"&gt; &lt;/span&gt;rtw_8822ce
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/section&gt;
+&lt;/section&gt;
+</content>
+    <link href="https://www.cosmoscalibur.com/es/blog/2024/problemas-de-conexion-wifi-en-linux/"/>
+    <summary>Si el WiFi de manera aleatoria comienza a desconectarse, y al revisar el
+listado de redes estas han desaparecido, algunos detalles por evaluar son:</summary>
+    <category term="arch" label="arch"/>
+    <category term="eewifi" label="eewifi"/>
+    <category term="fastboot" label="fast boot"/>
+    <category term="manjaro" label="manjaro"/>
+    <category term="ubuntu" label="ubuntu"/>
+    <published>2024-12-07T00:00:00-05:00</published>
+  </entry>
   <entry>
     <id>https://www.cosmoscalibur.com/es/blog/2024/que-hacer-despues-de-instalar-manjaro/</id>
     <title>¿Qué hacer después de instalar Manjaro KDE 24?</title>
@@ -18,6 +113,9 @@
 &lt;p&gt;Hace poco decidí pasarme a Manjaro KDE (24.1) y estoy muy contento del cambio.
 Así que con motivo a esto, les cuento sobre las cosas por hacer después de
 completar la instalación.&lt;/p&gt;
+&lt;p&gt;Aprovechando que vengo de una transición de Kubuntu (24.10) y Xubuntu (22.10),
+haré paralelos de estos pasos, así que te servirá como una lista de “qué
+hacer después de instalar Kubuntu 24.10”.&lt;/p&gt;
 &lt;p&gt;Respecto a muchos paquetes populares y tradicionales con GUI, no veo problema
 en el uso de ambientes tipo Flatpak si los nativos representan un problema o
 potencial problema. Ejemplo, OBS no funciona si lo instalo nativo, pero sí en
@@ -56,6 +154,8 @@ remover aquellas que ya no son funcionales.&lt;/p&gt;
 &lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo&lt;span class="w"&gt; &lt;/span&gt;pacman-mirrors&lt;span class="w"&gt; &lt;/span&gt;--fasttrack
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
+&lt;p&gt;Este paso en Ubuntu no es nativo y representa una complejidad alta para el tipo
+de público objetivo de la distribución.&lt;/p&gt;
 &lt;/section&gt;
 &lt;section id="actualizar-el-sistema"&gt;
 &lt;h2&gt;Actualizar el sistema&lt;/h2&gt;
@@ -79,6 +179,8 @@ Manjaro&lt;/label&gt;&lt;div class="sd-tab-content docutils"&gt;
 &lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;pamac&lt;span class="w"&gt; &lt;/span&gt;upgrade&lt;span class="w"&gt; &lt;/span&gt;-a
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
+&lt;p&gt;También puedes usar &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;update&lt;/span&gt;&lt;/code&gt; en lugar de &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;upgrade&lt;/span&gt;&lt;/code&gt;. Esto es la actualización
+general de la distribución y no solo de los paquetes instalados.&lt;/p&gt;
 &lt;/div&gt;
 &lt;input id="sd-tab-item-1" name="sd-tab-set-0" type="radio"&gt;
 &lt;label class="sd-tab-label" data-sync-group="tab" data-sync-id="ubuntu" for="sd-tab-item-1"&gt;
@@ -86,6 +188,10 @@ Ubuntu&lt;/label&gt;&lt;div class="sd-tab-content docutils"&gt;
 &lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;apt&lt;span class="w"&gt; &lt;/span&gt;update&lt;span class="w"&gt; &lt;/span&gt;-q&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;apt&lt;span class="w"&gt; &lt;/span&gt;dist-upgrade&lt;span class="w"&gt; &lt;/span&gt;-y
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
+&lt;p&gt;El primer paso actualiza el índice de los repositorios (incluyendo los PPA) y
+el segundo paso actualiza en sí los paquetes instalados incluyendo cambios
+propios del sistema que no necesariamente se relacionan con los paquetes
+instalados.&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;p&gt;Para la gestión general de paquetes desde el repo, nos interesa saber como
@@ -201,6 +307,10 @@ GRUB_TIMEOUT_STYLE=menu
 &lt;/div&gt;
 &lt;p&gt;De esta forma, tendremos el &lt;em&gt;grub&lt;/em&gt; visible al inicio y podremos usar las
 opciones avanzadas para cambiar de núcleo.&lt;/p&gt;
+&lt;p&gt;En Ubuntu debido a su estabilidad y que el núcleo en sí es parte de lo que se
+vincula a la versión de la distribución, no es un paso de prevención a
+considerar, y solo sería útil si por el soporte de hardware o alguna
+característica muy específica lo requieres.&lt;/p&gt;
 &lt;/section&gt;
 &lt;section id="protege-tus-ojos"&gt;
 &lt;h2&gt;Protege tus ojos&lt;/h2&gt;
