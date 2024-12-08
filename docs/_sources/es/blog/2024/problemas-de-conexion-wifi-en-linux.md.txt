@@ -1,6 +1,6 @@
 ---
 date: 2024-12-07
-tags: manjaro, arch, ubuntu, fast boot, eewifi
+tags: manjaro, arch, ubuntu, problemas de wifi, detección de hardware
 category: tecnología, linux
 ---
 
