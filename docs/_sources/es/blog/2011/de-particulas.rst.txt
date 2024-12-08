@@ -1,4 +1,3 @@
-:redirect: blog/de-particulas
 :date: 2011-04-10
 :tags: amor, partículas, poesía, escritos, literatura
 :category: cultura y entretenimiento, la flecha temporal
@@ -8,7 +7,7 @@
 De Partículas
 =============
 
-| 
+|
 | En la inmensidad cósmica
 | fuertes interacciones se ocurren cada instante
 | liberando no solo inconmensurables cantidades de energía radiante

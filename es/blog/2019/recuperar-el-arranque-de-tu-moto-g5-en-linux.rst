@@ -1,4 +1,3 @@
-:redirect: blog/recuperar-el-arranque-de-tu-moto-g5-en-linux
 :date: 2019-10-21
 :tags: android, motorola, smartphone, celulares, soft brick, flash, moto g5, fastboot, linux
 :category: tecnología

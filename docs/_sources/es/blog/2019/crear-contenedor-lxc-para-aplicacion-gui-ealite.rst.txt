@@ -1,4 +1,3 @@
-:redirect: blog/crear-contenedor-lxc-para-aplicacion-gui-ealite
 :date: 2019-11-11
 :tags: contenedor, lxc, lxd, linux, wine, enterprise architect, ealite
 :category: tecnología
@@ -269,7 +268,7 @@ una vez hagas la importación.
 
 .. code::
 
-   sudo lxc export ea ea.tar.gz --optimized-storage 
+   sudo lxc export ea ea.tar.gz --optimized-storage
 
 Referencias
 -----------

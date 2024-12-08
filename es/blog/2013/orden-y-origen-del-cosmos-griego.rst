@@ -1,4 +1,3 @@
-:redirect: blog/orden-y-origen-del-cosmos-griego
 :date: 2013-06-18
 :tags: cosmogonía griega, mitología griega, cosmología, arjé, historia de la astronomía, arqueoastronomía
 :category: ciencia

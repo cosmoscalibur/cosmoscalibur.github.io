@@ -1,4 +1,3 @@
-:redirect: blog/desestimulan-20-pesos-el-uso-de-bolsas-plasticas
 :date: 2017-07-12
 :tags: impuesto verde, bolsas plásticas, colombia, medio ambiente
 :category: opinión

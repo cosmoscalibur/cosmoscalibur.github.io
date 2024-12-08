@@ -1,4 +1,3 @@
-:redirect: blog/flor
 :date: 2011-07-28
 :tags: amor, flores, poesía, escritos, literatura
 :category: cultura y entretenimiento, la flecha temporal

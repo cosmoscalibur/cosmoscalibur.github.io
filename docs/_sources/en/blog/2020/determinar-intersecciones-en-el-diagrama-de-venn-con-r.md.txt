@@ -1,9 +1,7 @@
 ---
-redirect: blog/determinar-intersecciones-en-el-diagrama-de-venn-con-r
 date: 2020-06-13
 tags: r language, bioinformatics, venn diagram
 category: technology
-author: Edward Villegas-Pulgarin
 language: en
 ---
 
@@ -21,7 +19,7 @@ diagram instead of plot.
 - Compute specific elements in intersections of Venn diagram in memory or write
   to files.
 - Plot with VennDiagram.
-  
+
 
 ## Example
 
@@ -63,7 +61,7 @@ Sys.setenv(TAR = "/bin/tar")
 ```
 
 
- 
+
 ## How to use
 
 
@@ -91,13 +89,13 @@ print(sets)
 
     $primes
     [1] "1"  "2"  "3"  "5"  "7"  "11" "13" "17"
-    
+
     $even
      [1] "0"  "2"  "4"  "6"  "8"  "10" "12" "14" "16" "18"
-    
+
     $fibo
     [1] "1"  "2"  "3"  "5"  "8"  "13"
-    
+
 
 
 ### Compute intersections and specific elements
@@ -182,7 +180,7 @@ as before (internally using
 venn.compute_plot(sets, output_dir = file.path("tests", "output"))
 ```
 
-Now, we have a `primes_even_fibo.png` file.  
+Now, we have a `primes_even_fibo.png` file.
 
 ```{figure} /images/determinar-intersecciones-en-el-diagrama-de-venn-con-r/primes_even_fibo.png
 :name: r_venn_1_en

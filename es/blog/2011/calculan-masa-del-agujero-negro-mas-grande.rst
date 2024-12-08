@@ -1,4 +1,3 @@
-:redirect: blog/calculan-masa-del-agujero-negro-mas-grande
 :date: 2011-01-30
 :tags: agujeros negros, astronomía
 :category: ciencia

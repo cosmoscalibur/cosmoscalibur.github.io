@@ -1,4 +1,3 @@
-:redirect: blog/metafora-de-un-agujero-negro
 :date: 2012-10-20
 :tags: amor, agujero negro, poesía, escritos, literatura
 :category: cultura y entretenimiento, la flecha temporal

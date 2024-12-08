@@ -1,4 +1,3 @@
-:redirect: blog/usar-anaconda-python-en-git-bash
 :date: 2019-12-31
 :tags: git, anaconda python, git bash, instalación de software, gestor de paquetes, conda
 :category: tecnología
@@ -94,4 +93,3 @@ usaste Miniconda). La tercera línea actualiza la configuración en la sesión
 actual de la consola permitiendo usar de forma inmediata Conda. Para la próxima
 apertura de Git Bash ya no tendrás que configurar nada, solo empezar a usar
 Conda (aún no hay ambiente activado).
-

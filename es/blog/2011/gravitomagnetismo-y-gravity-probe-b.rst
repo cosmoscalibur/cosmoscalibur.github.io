@@ -1,4 +1,3 @@
-:redirect: blog/gravitomagnetismo-y-gravity-probe-b
 :date: 2011-07-07
 :tags: astrofísica, relatividad general, gravedad
 :category: ciencia
@@ -38,7 +37,7 @@ estamos sumergidos en el campo terrestre). Imaginemos una tela sobre la
 cual hemos dibujado una cuadricula, y ponemos un cuerpo masivo en ella;
 la tela se hunde, y al hundirse la cuadricula exhibe lineas que no son
 rectas. Estas líneas resultado de la deformación se llaman geodésicas (y
-son los caminos mas cortos en el espacio-tiempo). 
+son los caminos mas cortos en el espacio-tiempo).
 
 Como la modificación es del espacio, quiere decir que los cuerpos sin
 masa también son perturbados, y por ende la luz modifica su trayectoria

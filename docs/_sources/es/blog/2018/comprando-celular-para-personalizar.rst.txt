@@ -1,4 +1,3 @@
-:redirect: blog/comprando-celular-para-personalizar
 :date: 2018-01-03
 :tags: celular, smartphone, android
 :category: tecnología

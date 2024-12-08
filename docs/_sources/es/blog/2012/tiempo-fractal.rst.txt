@@ -1,4 +1,3 @@
-:redirect: blog/tiempo-fractal
 :date: 2012-11-30
 :tags: tiempo, fractal, poesía, escritos, literatura
 :category: cultura y entretenimiento, la flecha temporal

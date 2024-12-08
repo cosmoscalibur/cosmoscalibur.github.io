@@ -1,4 +1,3 @@
-:redirect: blog/viendo-carga-molecular
 :date: 2012-02-28
 :tags: afm, microscopía, nanotecnología, fuerza atómica, ibm
 :category: tecnología
@@ -19,7 +18,7 @@ Esta observación se logro mediante el uso de una modificación de la
 técnica de microscopia de fuerza atómica (AFM por sus siglas en ingles).
 Esta técnica usa una muy pequeña punta (cuya terminación es de
 tamaño atómico) que interactúa con las nubes de carga de la superficie
-de interés experimentando repulsión/atracción conforme nos acercamos. 
+de interés experimentando repulsión/atracción conforme nos acercamos.
 
 Esta fuerza sobre la punta no es medida directamente pero se establece
 a través de la medición de la deflexión de la ménsula en el cual se

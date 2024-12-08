@@ -56,3 +56,8 @@ controladores de NVIDIA y se aprecia si pruebas vkcube-wayland (mensaje de
 error) y vkcube ejecuta normal.
 
 desinstalar zed https://askubuntu.com/questions/1520457/how-do-i-uninstall-zed-editor-from-my-ubuntu-24
+
+
+búsqueda general control shift f
+modo multibuffer con control shift l
+alt clic para selección individual

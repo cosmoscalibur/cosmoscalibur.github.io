@@ -1,4 +1,3 @@
-:redirect: blog/energia-alternativa-para-dispositivos
 :date: 2011-07-07
 :tags: materiales, piezoeléctricos, dispositivos móviles, energía
 :category: tecnología

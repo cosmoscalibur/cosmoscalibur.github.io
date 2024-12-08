@@ -1,4 +1,3 @@
-:redirect: blog/tweets-extraterrestres
 :date: 2011-07-26
 :tags: nasa, twitter, iss, exploración espacial, internet
 :category: tecnología

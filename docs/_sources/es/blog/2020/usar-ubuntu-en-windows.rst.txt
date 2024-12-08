@@ -1,4 +1,3 @@
-:redirect: blog/usar-ubuntu-en-windows
 :date: 2020-10-05
 :tags: windows, linux, wsl, wsl2, ubuntu, windows subsystem for linux
 :category: tecnología
@@ -32,7 +31,7 @@ Nuestro primer paso es abrir la consola de Power Shell en modo administrador y
 a continuación ejecutaremos:
 
 .. code::
-    
+
    dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
 
 Actualizar a WSL2
@@ -76,7 +75,7 @@ otra).
    Invoke-WebRequest -Uri https://aka.ms/wslubuntu2004 -OutFile Ubuntu.appx -UseBasicParsing
    Add-AppxPackage .\Ubuntu.appx
    ubuntu2004.exe
-   
+
 Una vez se complete el proceso, debemos inicializar la distribución para que la
 configuración termine. Puedes hacerlo lanzando la distribución desde la
 aplicación o con el comando desde la consola como en este ejemplo.

@@ -3,7 +3,6 @@
 :category: tecnología
 :author: Edward Villegas-Pulgarin
 :language: es
-:redirect: blog/20-anos-de-linux
 
 20 años de Linux
 ================

@@ -1,4 +1,3 @@
-:redirect: blog/audiolibros-con-overdrive-y-biblioteca-epm
 :date: 2019-05-17
 :tags: audiolibros, epm, overdrive, bibliotecas, android, aplicaciones android
 :category: cultura y entretenimiento

@@ -1,4 +1,3 @@
-:redirect: blog/secreto
 :date: 2012-11-29
 :tags: secreto, poesía, voz, escritos, literatura
 :category: cultura y entretenimiento, la flecha temporal

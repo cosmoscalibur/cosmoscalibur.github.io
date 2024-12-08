@@ -1,4 +1,3 @@
-:redirect: blog/seguridad-vs-flexibilidad-del-computo-en-nube
 :date: 2020-03-14
 :tags: computación en nube, xaas, transformación digital
 :category: opinión, mitpeonline transformación digital

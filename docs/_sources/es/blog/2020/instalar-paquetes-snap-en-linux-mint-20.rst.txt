@@ -1,4 +1,3 @@
-:redirect: blog/instalar-paquetes-snap-en-linux-mint-20
 :date: 2020-06-29
 :tags: linux, linux mint, paquetes snap, instalación de software, gestor de paquetes
 :category: tecnología
@@ -29,7 +28,7 @@ instalar. Encontraremos un mensaje como el siguiente:
 
     <pre><font color="#8AE234"><b>cosmoscalibur@edliviano</b></font>:<font color="#739FCF"><b>~</b></font>$ apt install snapd
     Reading package lists... Done
-    Building dependency tree       
+    Building dependency tree
     Reading state information... Done
     Package snapd is not available, but is referred to by another package.
     This may mean that the package is missing, has been obsoleted, or

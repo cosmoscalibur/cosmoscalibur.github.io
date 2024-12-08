@@ -1,4 +1,3 @@
-:redirect: blog/crear-version-de-windows-minima-con-msmg-toolkit
 :date: 2020-07-09
 :tags: msmg toolkit, microsoft windows
 :category: tecnología

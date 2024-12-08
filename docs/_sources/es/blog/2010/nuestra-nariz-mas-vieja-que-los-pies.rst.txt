@@ -1,4 +1,3 @@
-:redirect: blog/nuestra-nariz-mas-vieja-que-los-pies
 :date: 2010-12-17
 :tags: relatividad general, física, tiempo, gravedad
 :category: ciencia, curiosidades físicas

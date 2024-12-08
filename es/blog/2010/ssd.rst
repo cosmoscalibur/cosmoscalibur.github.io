@@ -1,4 +1,3 @@
-:redirect: blog/ssd
 :date: 2010-12-11
 :tags: disco duro, estado sólido, ssd, hardware
 :category: tecnología

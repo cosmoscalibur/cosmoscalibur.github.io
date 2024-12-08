@@ -1,4 +1,3 @@
-:redirect: blog/recorrido-por-la-celula
 :date: 2010-12-12
 :tags: animación, célula, biología
 :category: ciencia

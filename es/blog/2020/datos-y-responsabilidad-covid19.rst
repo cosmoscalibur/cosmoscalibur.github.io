@@ -1,4 +1,3 @@
-:redirect: blog/datos-y-responsabilidad-covid19
 :date: 2020-04-05
 :tags: datos, responsabilidad, covid19, coronavirus, pandemia, colombia
 :category: opinión
@@ -139,14 +138,14 @@ No están considerando múltiples variables, las cuales describiré:
      extranjero, la frecuencia de viajes internacionales y la distribución de
      orígenes. Esto lleva a una medida de suspensión de vuelos internacionales
      y cierre de fronteras.
-   
+
    Relacionados
       Son los casos que se establecen como infectados por interacción directa
       con los casos positivos. Su control en buena medida depende de la
       trazabilidad de las interacciones de los casos importados al inicio de la
       pandemia (son los únicos positivos al inicio) pero después se amplia al
       trabajo de seguimiento sobre los demás relacionados.
-   
+
    Autóctonos
       Autóctonos o de transmisión comunitaria, no es más que la forma bonita de
       decir que le perdimos el rastro a los infectados. Es por eso que los
@@ -182,7 +181,7 @@ No están considerando múltiples variables, las cuales describiré:
      en el país para hacer pruebas de covid19 [presidencia-covid_].
    + Distintas regiones han aplicado pico y cédula pero el inicio ha sido en
      fechas diferentes.
-   
+
 ¿Y entonces qué? Bueno, en buena medida muchas de estas fechas deberían llevar
 a ingresar consideraciones en el modelo pero sino, mínimamente deben ser usadas
 adecuadamente para interpretar los datos y tendencias. Esto, contrastando con

@@ -1,4 +1,3 @@
-:redirect: blog/enfermar-de-ti
 :date: 2012-10-05
 :tags: amor, enfermedad, poesía, escritos, literatura
 :category: cultura y entretenimiento, la flecha temporal

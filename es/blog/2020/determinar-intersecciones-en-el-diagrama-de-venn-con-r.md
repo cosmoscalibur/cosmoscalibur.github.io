@@ -1,5 +1,4 @@
 ---
-redirect: blog/determinar-intersecciones-en-el-diagrama-de-venn-con-r
 date: 2020-06-13
 tags: lenguaje r, bioinformática, diagrama de Venn
 category: tecnología
@@ -9,19 +8,19 @@ language: es
 
 # Determinar intersecciones en el diagrama de Venn con R
 
-Esta entrada es mi primera entrada asociada al lenguaje R y sobre mi primer paquete en R: [`venn.compute`](https://github.com/cosmoscalibur/venn.compute). Este paquete surge por un caso de uso particular que estaba ayudando a automatizar de determinar los elementos (no solo el dibujo ni la cantidad) de las intersecciones y específicos de un diagrama de Venn, útil en bioinformática para comparación de genes.  
+Esta entrada es mi primera entrada asociada al lenguaje R y sobre mi primer paquete en R: [`venn.compute`](https://github.com/cosmoscalibur/venn.compute). Este paquete surge por un caso de uso particular que estaba ayudando a automatizar de determinar los elementos (no solo el dibujo ni la cantidad) de las intersecciones y específicos de un diagrama de Venn, útil en bioinformática para comparación de genes.
 
-Así, esta entrada es tipo tutorial de como usar el paquete que hice para este fin.  
+Así, esta entrada es tipo tutorial de como usar el paquete que hice para este fin.
 
 ## Caso de uso
 
-Se posee la información de múltiples conjuntos en archivos de texto plano, en donde cada elemento es una línea de dicho archivo. No siempre es la misma cantidad de conjuntos y se desea poder generar archivos de salida para revisar las intersecciones y elementos específicos. Usualmente, puede importar el gráfico por lo cual se puede incluir.  
+Se posee la información de múltiples conjuntos en archivos de texto plano, en donde cada elemento es una línea de dicho archivo. No siempre es la misma cantidad de conjuntos y se desea poder generar archivos de salida para revisar las intersecciones y elementos específicos. Usualmente, puede importar el gráfico por lo cual se puede incluir.
 
 Como ejemplo se usarán 3 archivos ubicados en una carpeta `tests`, con los nombres `primes.txt`, `even.txt` y `fibo.txt` con el contenido de los números primos, pares y de Fibonacci hasta el 20.
 
 ## Instalación
 
-Por el momento, se debe instalar el paquete a partir de GitHub, por lo cual debes usar la utilidad incluida en `devtools` en lugar del mecanismo de instalación habitual (ya está sometido el paquete, así que en el futura podría usarse).  
+Por el momento, se debe instalar el paquete a partir de GitHub, por lo cual debes usar la utilidad incluida en `devtools` en lugar del mecanismo de instalación habitual (ya está sometido el paquete, así que en el futura podría usarse).
 
 Si usas Anaconda en Linux, probablemente debas configurar la ruta del ejecutable de `tar` (al instalar desde GitHub genera un error indicando que no encuentra el ejecuta `sh: 1: /bin/gtar: not found`).
 
@@ -54,8 +53,8 @@ devtools::install_github("cosmoscalibur/venn.compute")
     ─  checking for LF line-endings in source and make files and shell scripts
     ─  checking for empty or unneeded directories
     ─  building ‘venn.compute_1.1.0.tar.gz’
-       
-    
+
+
 
 ## Ejecución
 
@@ -85,13 +84,13 @@ print(sets)
 
     $primes
     [1] "1"  "2"  "3"  "5"  "7"  "11" "13" "17"
-    
+
     $even
      [1] "0"  "2"  "4"  "6"  "8"  "10" "12" "14" "16" "18"
-    
+
     $fibo
     [1] "1"  "2"  "3"  "5"  "8"  "13"
-    
+
 
 
 Como observamos, se han creado las listas nombradas con los contenidos de los archivos. Estos nombres son los usados para crear los archivos, asociar las listas nombradas de las intersecciones y el gráfico (usa un paquete externo donde el ingreso de esta manera permite pasarlo como única variable).
@@ -146,7 +145,7 @@ venn.compute_specific(sets)
 
 
 
-Usando la convención del nombre asignado a los conjuntos unidos por guion bajo, se distinguen las áreas asociadas. Así, **\$primes_even_fibo** representa el área de intersección de los tres conjuntos, y posee solo un elemento (`'2'`), y **\$fibo** representa los específicos de dicho conjunto, es decir, los que pertenecen exclusivamente a este y no a intersecciones con otros, el cual en este caso es vacío.  
+Usando la convención del nombre asignado a los conjuntos unidos por guion bajo, se distinguen las áreas asociadas. Así, **\$primes_even_fibo** representa el área de intersección de los tres conjuntos, y posee solo un elemento (`'2'`), y **\$fibo** representa los específicos de dicho conjunto, es decir, los que pertenecen exclusivamente a este y no a intersecciones con otros, el cual en este caso es vacío.
 
 Si esta información es masiva, es conveniente escribir el resultado en archivos y no en memoria. Así, debemos crear una carpeta para los archivos e indicamos su ruta como segundo argumento.
 
@@ -185,7 +184,7 @@ venn.compute_plot(sets, output_dir = file.path("tests", "output"))
 ```
 
 
-Además de generar como les conté, los archivos de las intersecciones y específicos, se generó un archivo cuyo nombre es la convención seguida para la intersección de la totalidad de conjuntos y con extensión `png`, `primes_even_fibo.png`.  
+Además de generar como les conté, los archivos de las intersecciones y específicos, se generó un archivo cuyo nombre es la convención seguida para la intersección de la totalidad de conjuntos y con extensión `png`, `primes_even_fibo.png`.
 
 ```{figure} /images/determinar-intersecciones-en-el-diagrama-de-venn-con-r/primes_even_fibo.png
 :name: r_venn_1

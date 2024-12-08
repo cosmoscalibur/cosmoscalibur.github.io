@@ -1,4 +1,3 @@
-:redirect: blog/pos-higgsteria
 :date: 2012-11-28
 :tags: bosón de higgs, física de partículas, lhc, partícula de dios
 :category: ciencia

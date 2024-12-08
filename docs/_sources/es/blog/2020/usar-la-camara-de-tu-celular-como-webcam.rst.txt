@@ -1,4 +1,3 @@
-:redirect: blog/usar-la-camara-de-tu-celular-como-webcam
 :date: 2020-05-17
 :tags: linux, android, webcam, cámara, droidcam, aplicaciones android
 :category: tecnología
@@ -45,34 +44,34 @@ y Linux Headers).
     HTTP request sent, awaiting response... 200 OK
     Length: 933306 (911K) [application/zip]
     Saving to: ‘droidcam_latest.zip’
-    droidcam_latest.zip 100%[===================&gt;] 911,43K  2,45MB/s    in 0,4s    
+    droidcam_latest.zip 100%[===================&gt;] 911,43K  2,45MB/s    in 0,4s
     2020-05-12 19:03:30 (2,45 MB/s) - ‘droidcam_latest.zip’ saved [933306/933306]
     <font color="#8AE234"><b>cosmoscalibur@edliviano</b></font>:<font color="#729FCF"><b>/tmp</b></font>$  echo &quot;5ff0e772a76befba4e37e03101b611d7 droidcam_latest.zip&quot; | md5sum -c --
     droidcam_latest.zip: OK
     <font color="#8AE234"><b>cosmoscalibur@edliviano</b></font>:<font color="#729FCF"><b>~/tmp</b></font>$ sudo apt install -y gcc make linux-headers-`uname -r`
     Reading package lists... Done
-    Building dependency tree       
+    Building dependency tree
     Reading state information... Done
     make is already the newest version (4.1-9.1ubuntu1).
     gcc is already the newest version (4:7.4.0-1ubuntu2.3).
     linux-headers-5.3.0-51-generic is already the newest version (5.3.0-51.44~18.04.2).
     <font color="#8AE234"><b>cosmoscalibur@edliviano</b></font>:<font color="#729FCF"><b>/tmp</b></font>$  unzip droidcam_latest.zip -d droidcam &amp;&amp; cd droidcam
     Archive:  droidcam_latest.zip
-      inflating: droidcam/LICENCE        
-      inflating: droidcam/Makefile       
-      inflating: droidcam/README.md      
-      inflating: droidcam/droidcam       
-      inflating: droidcam/droidcam-cli   
-      inflating: droidcam/install        
+      inflating: droidcam/LICENCE
+      inflating: droidcam/Makefile
+      inflating: droidcam/README.md
+      inflating: droidcam/droidcam
+      inflating: droidcam/droidcam-cli
+      inflating: droidcam/install
       creating: droidcam/src/
-      inflating: droidcam/uninstall      
+      inflating: droidcam/uninstall
       creating: droidcam/v4l2loopback/
-      inflating: droidcam/v4l2loopback/v4l2loopback-dc.c  
-      inflating: droidcam/v4l2loopback/Makefile  
-      inflating: droidcam/v4l2loopback/test-mmap.c  
-      inflating: droidcam/v4l2loopback/test.c  
+      inflating: droidcam/v4l2loopback/v4l2loopback-dc.c
+      inflating: droidcam/v4l2loopback/Makefile
+      inflating: droidcam/v4l2loopback/test-mmap.c
+      inflating: droidcam/v4l2loopback/test.c
     <font color="#8AE234"><b>cosmoscalibur@edliviano</b></font>:<font color="#729FCF"><b>/tmp/droidcam</b></font>$  sudo ./install
-    [sudo] password for cosmoscalibur:            
+    [sudo] password for cosmoscalibur:
     Webcam parameters: &apos;640&apos; and &apos;480&apos;
     Building v4l2loopback-dc.ko
     make: Entering directory &apos;/tmp/droidcam/v4l2loopback&apos;
@@ -191,4 +190,3 @@ Referencias
 .. [droidcam] DroidCam Wireless Webcam https://www.dev47apps.com/ .
 .. [linux] DroidCam Linux Install https://www.dev47apps.com/droidcam/linuxx/ .
 .. [android] DroidCam Wireless Webcam (Android) https://play.google.com/store/apps/details?id=com.dev47apps.droidcam
-

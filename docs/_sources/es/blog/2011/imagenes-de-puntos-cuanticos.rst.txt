@@ -1,4 +1,3 @@
-:redirect: blog/imagenes-de-puntos-cuanticos
 :date: 2011-02-22
 :tags: fotónica, puntos cuánticos
 :category: tecnología

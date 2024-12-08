@@ -1,4 +1,3 @@
-:redirect: blog/la-evolucion-en-los-griegos
 :date: 2012-05-13
 :tags: cosmogonía griega, mitología griega, evolución, historia de la astronomía
 :category: ciencia

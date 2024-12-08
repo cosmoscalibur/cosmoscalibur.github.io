@@ -1,4 +1,3 @@
-:redirect: blog/nos-atraemos-gravitacionalmente
 :date: 2019-11-08
 :tags: física, fuerza de gravedad, atracción gravitacional, gravedad
 :category: ciencia, curiosidades físicas

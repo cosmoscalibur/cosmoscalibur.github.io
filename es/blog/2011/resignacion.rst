@@ -1,4 +1,3 @@
-:redirect: blog/resignacion
 :date: 2011-07-28
 :tags: amor, autoconversación, resignación, escritos, literatura
 :category: cultura y entretenimiento, la flecha temporal

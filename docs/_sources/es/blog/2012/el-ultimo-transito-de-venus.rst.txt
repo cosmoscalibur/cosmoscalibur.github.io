@@ -1,4 +1,3 @@
-:redirect: blog/el-ultimo-transito-de-venus
 :date: 2012-02-26
 :tags: tránsito de venus, planetas, efemérides astronómicas, astronomía
 :category: ciencia

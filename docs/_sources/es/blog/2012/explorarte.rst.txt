@@ -1,4 +1,3 @@
-:redirect: blog/explorarte
 :date: 2012-09-24
 :tags: amor, exploración, cuerpo, poesía, escritos, literatura
 :category: cultura y entretenimiento, la flecha temporal

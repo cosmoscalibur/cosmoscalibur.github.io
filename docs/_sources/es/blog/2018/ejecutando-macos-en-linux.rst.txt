@@ -1,4 +1,3 @@
-:redirect: blog/ejecutando-macos-en-linux
 :date: 2018-01-18
 :tags: linux, macos, máquina virtual, hackintosh, emulación
 :category: tecnología

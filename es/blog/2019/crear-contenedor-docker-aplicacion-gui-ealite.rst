@@ -1,4 +1,3 @@
-:redirect: blog/crear-contenedor-docker-aplicacion-gui-ealite
 :date: 2019-11-22
 :tags: contenedor, docker, linux, wine, enterprise architect, ealite
 :category: tecnología

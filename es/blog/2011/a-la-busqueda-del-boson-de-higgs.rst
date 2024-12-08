@@ -1,4 +1,3 @@
-:redirect: blog/a-la-busqueda-del-boson-de-higgs
 :date: 2011-02-21
 :tags: bosón de higgs, lhc, física de partículas, partícula de dios
 :category: ciencia

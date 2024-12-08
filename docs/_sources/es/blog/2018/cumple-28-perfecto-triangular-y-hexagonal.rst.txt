@@ -1,4 +1,3 @@
-:redirect: blog/cumple-28-perfecto-triangular-y-hexagonal
 :date: 2018-04-01
 :tags: números, número perfecto, número triangular, número hexagonal, matemáticas
 :category: ciencia

@@ -1,4 +1,3 @@
-:redirect: blog/configurar-retroarch-en-steam
 :date: 2021-12-14
 :tags: steam, retroarch, libretro, gaming, linux, controles, videojuegos, emuladores
 :category: tecnología
@@ -42,4 +41,3 @@ Finalmente podemos navegar en el Menú Principal por las opciones de
 fácil encontrarlas con Google).
 
 Feliz momento Retro Gamer.
-

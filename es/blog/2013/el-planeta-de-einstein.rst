@@ -1,4 +1,3 @@
-:redirect: blog/el-planeta-de-einstein
 :date: 2013-06-02
 :tags: exoplanetas, astronomía, kepler-76b, relatividad especial, planetas
 :category: ciencia

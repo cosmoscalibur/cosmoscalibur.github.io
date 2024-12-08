@@ -1,4 +1,3 @@
-:redirect: blog/tu-hechizo
 :date: 2012-05-13
 :tags: amor, hechizo, poesía, escritos, literatura
 :category: cultura y entretenimiento, la flecha temporal
