@@ -26,6 +26,7 @@ Plasma Settings> Accessibility> Shake Cursor.
 - PIP/UV/Pixi (uv tool install): ruff, python-lsp-analyzer, sphinx, mdformat
 - Cargo (requiere descargar muchas dependencias y tiempo de compilación, acumula
   caché): rust-analyzer
+- snap (algunos casos privativos): vscode
 - manjaro repo: flameshot, dbeaver
 - Flatpak (viene preinstalado y con la configuración del repositorio. Instalar
   solo si el autor es verificado): dbgate, stremio, stellarium
@@ -49,17 +50,14 @@ Plasma Settings> Accessibility> Shake Cursor.
   - Wompi
 
 ```{code}
-pamac install dbeaver --no-confirm
-
-pamac install alacritty zellij starship zoxide helix yazi --no-confirm
 pamac install python-lsp-server rust-analyzer
-pamac install jq fd ripgrep bat eza bottom dust procs --no-confirm
-flatpak install flathub org.dbgate.DbGate
 ```
 
 https://deno.com/ https://voidzero.dev/
 
 ibis polars pandas fireducks
+probar que pasa entre pandas y fireducs si hay una tabla con columna sin consistencia de datos y subtabla muy pequeña que deja muchos vacíos
+
 
 graphviz
 

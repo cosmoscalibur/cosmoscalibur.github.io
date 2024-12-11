@@ -120,20 +120,22 @@ estás en el límite de lo que otorga tu equipo si lleva varios años. Y sobre
 todo, pon mucha atención en los servicios que se activan durante el arranque.
 
 Aprovecha los gestores de limpieza, paquetes y procesos de tu distribución, o
-usa un software de optimización y monitoreo como [Stacer](https://oguzhaninan.github.io/Stacer-Web/).
+usa un software de optimización y monitoreo como
+[Stacer](https://oguzhaninan.github.io/Stacer-Web/).
 
 ### Software actualizado: No
 
 Es claro que existen distribuciones con software más actualizado, esto es la
 diferencia que se ofrecen entre los modelos de liberación continúa
-(_rolling release_), liberación periódica o las liberaciones de soporte largo
-(LTS). Si deseamos algo muy nuevo, la preferencia sería una liberación
-continúa, pero su estabilidad puede estar comprometida. Si queremos mayor
-estabilidad, usaremos una LTS, pero fácilmente esto implica retraso de años en
-el uso de nuevo software o de mejorar soporte de hardware. Un punto intermedio
-son las liberaciones periódicas (que acorde al compromiso con la estabilidad de
-las distribuciones, algunas periódicas pueden ser más o menos lentas para
-actualizar paquetes, ejemplo, Ubuntu es lenta).
+(_rolling release_), liberación periódica (*fixed release* o *point release*)
+o las liberaciones de soporte largo (LTS). Si deseamos algo muy nuevo, la
+preferencia sería una liberación continúa, pero su estabilidad puede estar
+comprometida. Si queremos mayor estabilidad, usaremos una LTS, pero fácilmente
+esto implica retraso de años en el uso de nuevo software o de mejorar soporte
+de hardware. Un punto intermedio son las liberaciones periódicas (que acorde
+al compromiso con la estabilidad de las distribuciones, algunas periódicas
+pueden ser más o menos lentas para actualizar paquetes, ejemplo, Ubuntu es
+lenta).
 
 Sin embargo, los repositorios oficiales no son el único mecanismo para tener
 software actualizado. Puedes usar fácilmente _snap_ si estás en Ubuntu o
@@ -147,7 +149,7 @@ son las versiones oficiales), sino también omitir problemas asociados a
 dependencias. Ejemplo, en Manjaro en mi equipo con tarjeta gráfica NVIDIA tengo
 problemas para instalar OBS Studio con _pamac_ por una dependencia (aclaro la
 tarjeta gráfica porque el problema no es replicable si lo instalo en un equipo
-con tarjeta gráfica integrafa), pero si uso _Flatpak_ lo tengo funcional sin
+con tarjeta gráfica integrada), pero si uso _Flatpak_ lo tengo funcional sin
 problema.
 
 También existen opciones de instalación simples de usar a través de los

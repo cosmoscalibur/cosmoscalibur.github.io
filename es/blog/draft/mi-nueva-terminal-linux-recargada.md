@@ -1,29 +1,90 @@
-Linux utilities # bat: cat # bottom (btm): top # du-dust (dust): du # eza: ls #
-fd-find: find # ripgrep: grep # bottom: top/htop # procs: ps
+# Recarga la terminal Linux
+
+
+## Nuevo ecosistema de utilidades
+
++ `bat`: Sustituto de `cat`.
++ `bottom` (`btm`): Sustituto de `top`.
++ `eza`: Sustituto de `ls`.
++ `fd-find`: Sustituto de `find`.
++ `procs`: Sustituto de `ps`.
++ `du-dust` (`dust`): Sustituto de `du`.
++ `ripgrep`: Sustituto de `grep`.
++ `fzf`: Buscador difuso en Go.
+
+::::{tab-set}
+:::{tab-item} Manjaro
+:sync: manjaro
+```{code} bash
+sudo pamac install bat bottom dust eza fd fzf procs ripgrep --no-confirm
+```
+:::
+:::{tab-item} Ubuntu
+:sync: ubuntu
+```{code} bash
+sudo apt install -y bat du-dust eza fd-find fzf ripgrep
+cargo install --locked bottom procs
 
 ```
-cargo install --locked bat bottom du-dust eza fd-find procs ripgrep
-sudo apt install -y fzf
+:::
+
+
+
+## Kit de terminal
+
++ *Alacritty*: Emulador de terminal
++ *Zellij*: Multiplexador de terminal
++ *Starship*: *Prompt* de terminal.
++ *Zsh*: *Shell* (lenguaje de terminal)
++ zoxide: Alternativa a cd
++ yazi
++ helix
+
+
+::::{tab-set}
+:::{tab-item} Manjaro
+:sync: manjaro
+```{code} bash
+sudo pamac install zsh alacritty zellij starship zoxide yazi helix --no-confirm
+```
+:::
+:::{tab-item} Ubuntu
+:sync: ubuntu
+```{code} bash
+sudo apt install -y zsh alacritty zoxide
+cargo install --locked zellij yazi-fm yazi-cli
+curl -sS https://starship.rs/install.sh | sh
+flatpak install flathub com.helix_editor.Helix
+```
+:::
+::::
+
+
+```{code} bash
+chsh -s /bin/zsh  # Configurar shell por defecto: ingresamos contraseña
 ```
 
-alacritty: terminal emulator (rs) sudo apt install -y alacritty # man pages,
-logo, desktop entry sudo update-alternatives --install
-/usr/bin/x-terminal-emulator x-terminal-emulator \$(which alacritty) 70 # sudo
-update-alternatives --config x-terminal-emulator ## check
-
-```
-# Atajo de teclado
-# Aplicaciones por defecto
+```{code} bash
+echo 'eval "$(starship init zsh)"' >> ~/.zshrc
+echo 'eval "$(zoxide init zsh)"' >> .~/zshrc
+source ~/.zshrc
 ```
 
-zellij: multiplexer (rs) cargo install --locked zellij # Ejecutar zellij en
-alacritty mkdir -p ~/.config/alacritty cat \<< EOF >
-~/.config/alacritty/alacritty.toml [shell] args = \["-l", "-c", "zellij attach
---index 0 || zellij"\] program = "/usr/bin/bash" EOF
+```{code} bash
+bat << 'EOF' > ~/.config/alacritty.toml
+[terminal.shell]
+args = ["-l", "-c", "zellij attach --index 0 || zellij"]
+program = "/bin/zsh"
+EOF
+```
 
-starship: prompt (rs) curl -sS https://starship.rs/install.sh | sh echo 'eval
-"\$(starship init bash)"' >> ~/.bashrc
 
-zsh zoxide
+KDE
 
-cargo install --locked yazi-fm yazi-cli # file manager terminal
+{menuselection}`Aplicaciones predeterminadas --> Emulador de terminal --> Alacritty`
+
+{menuselection}`Atajos de teclado --> Añadir nuevo --> Aplicación --> Alacritty`
+
+Configuramos atajo de "Lanzar" dando clic a {guilabel}`Añadir`, y tras ello el atajo
+deseado. En mi caso prefiero el habitual de la terminal de {kbd}`Control-Alt-T`.
+Aplicamos el cambio ({guilabel}`Aplicar`).
