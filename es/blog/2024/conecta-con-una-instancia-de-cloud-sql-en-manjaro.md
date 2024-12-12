@@ -127,8 +127,8 @@ pareció interesante y fue el que estuve usando hasta que conocí
 {program}`DbGate`. Estos dos se encuentran disponibles como *flatpak*.
 
 ```{code} bash
-flatpak install flathub org.dbgate.DbGate  # Verificado
-flatpak install flathub io.dbeaver.DBeaverCommunity  # No verificado
+flatpak install -y flathub org.dbgate.DbGate  # Verificado
+flatpak install -y flathub io.dbeaver.DBeaverCommunity  # No verificado
 ```
 
 Un punto extra para no usar {program}`MySQL Workbench` es usar no solo un

@@ -477,15 +477,17 @@ Así que por eso aquí queda nuestro combo creativo.
 + *OBS Studio*: Herramienta avanzada para grabación y edición de video.
 + *DrawIO*: Permite realizar diagramas y ofrece una gran cantidad de símbolos.
 + *InkScape*: Herramienta de dibujo vectorial. Una alternativa a Corel Draw.
-+ *Krita*: Herramienta de dibujo y edición de mapas de bits. Es una
-  alternativa a Photoshop. También puedes explorar *Gimp*.
++ *Gimp*: Herramienta de dibujo y edición de mapas de bits. Es una
+  alternativa a Photoshop. También puedes explorar *Krita* (ten presente que
+  los archivos {filename}`csv` quedan asociados a este). Si requieres editar,
+  es recomendable {program}`gimp`, y si es dibujar, {program}`krita`.
 
 ::::{tab-set}
 :::{tab-item} Manjaro
 :sync: manjaro
 
 ```{code}
-pamac install imagemagick ffmpeg drawio-desktop inkscape krita --no-confirm
+pamac install imagemagick ffmpeg drawio-desktop inkscape gimp krita --no-confirm
 flatpak install -y flathub com.obsproject.Studio
 ```
 :::
@@ -496,6 +498,7 @@ flatpak install -y flathub com.obsproject.Studio
 sudo apt install -y imagemagick ffmpeg
 sudo snap install drawio
 flatpak install -y flathub org.inkscape.Inkscape
+flatpak install -y sflathub org.gimp.GIMP
 flatpak install -y flathub org.kde.krita
 flatpak install -y flathub com.obsproject.Studio
 ```

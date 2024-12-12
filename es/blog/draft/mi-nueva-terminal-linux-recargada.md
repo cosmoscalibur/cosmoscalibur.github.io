@@ -66,7 +66,7 @@ chsh -s /bin/zsh  # Configurar shell por defecto: ingresamos contraseña
 
 ```{code} bash
 echo 'eval "$(starship init zsh)"' >> ~/.zshrc
-echo 'eval "$(zoxide init zsh)"' >> .~/zshrc
+echo 'eval "$(zoxide init zsh)"' >> ~/.zshrc
 source ~/.zshrc
 ```
 
@@ -82,9 +82,7 @@ EOF
 KDE
 
 {menuselection}`Aplicaciones predeterminadas --> Emulador de terminal --> Alacritty`
-
 {menuselection}`Atajos de teclado --> Añadir nuevo --> Aplicación --> Alacritty`
-
 Configuramos atajo de "Lanzar" dando clic a {guilabel}`Añadir`, y tras ello el atajo
 deseado. En mi caso prefiero el habitual de la terminal de {kbd}`Control-Alt-T`.
 Aplicamos el cambio ({guilabel}`Aplicar`).

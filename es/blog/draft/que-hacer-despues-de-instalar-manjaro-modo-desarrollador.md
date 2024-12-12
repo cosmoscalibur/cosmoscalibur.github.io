@@ -17,7 +17,6 @@ cargo install --locked difftastic just hyperfine
 sudo pamac install difftastic just hyperfine --no-confirm
 
 ```
-sudo snap install --classic helix
 cargo install --locked evcxr_jupyter  # Rust jupyter kernel
 cargo install --locked shellharden  # shellcheck
 sudo apt install -y shellcheck shfmt
