@@ -1,6 +1,6 @@
 ---
 date: 2024-12-15
-tags: blog, sphinx, google ads
+tags: zsh, manjaro, starship, shell prompt, utilidades en rust
 category: tecnología, linux
 ---
 
@@ -16,7 +16,8 @@ Para empezar, primero, un indicador de terminal es un programa que genera los
 textos asociados a cada ejecución de comandos en la terminal y lo que hay
 antes del cursor. Un buen indicador de terminal nos aporta información útil
 rápidamente del directorio en el cual nos ubicamos, de la ejecución de una
-línea de comandos o incluso la batería.
+línea de comandos o incluso la batería. Starship nos entrega esto, y hace parte
+del nuevo ecosistema de utilidades desarrolladas en rust.
 
 ## Instalar *Starship*
 

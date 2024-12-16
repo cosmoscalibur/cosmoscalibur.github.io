@@ -1,6 +1,6 @@
 ---
 date: 2024-06-30
-tags: acelerar python, gestor de paquetes, gestor de ambientes virtuales, herramientas desarrolladas en rust, python, uv, pip, venv, rustlang
+tags: gestor de paquetes, gestor de ambientes virtuales, utilidades en rust, python, uv, pip, venv
 category: tecnología
 ---
 
