@@ -479,7 +479,7 @@ Así que por eso aquí queda nuestro combo creativo.
 + *InkScape*: Herramienta de dibujo vectorial. Una alternativa a Corel Draw.
 + *Gimp*: Herramienta de dibujo y edición de mapas de bits. Es una
   alternativa a Photoshop. También puedes explorar *Krita* (ten presente que
-  los archivos {filename}`csv` quedan asociados a este). Si requieres editar,
+  los archivos {file}`*.csv` quedan asociados a este). Si requieres editar,
   es recomendable {program}`gimp`, y si es dibujar, {program}`krita`.
 
 ::::{tab-set}
