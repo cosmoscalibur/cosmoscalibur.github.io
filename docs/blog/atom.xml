@@ -2,10 +2,148 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="es">
   <id>https://www.cosmoscalibur.com/</id>
   <title>Cosmoscalibur</title>
-  <updated>2024-12-11T02:44:34.833562+00:00</updated>
+  <updated>2024-12-16T04:00:36.324887+00:00</updated>
   <link href="https://www.cosmoscalibur.com/"/>
   <link href="https://www.cosmoscalibur.com/blog/atom.xml" rel="self"/>
   <generator uri="https://ablog.readthedocs.io/" version="0.11.12">ABlog</generator>
+  <entry>
+    <id>https://www.cosmoscalibur.com/es/blog/2024/configurar-starship-en-manjaro-y-zsh/</id>
+    <title>Configurar Starship en Manjaro y Zsh</title>
+    <updated>2024-12-15T00:00:00-05:00</updated>
+    <author>
+      <name>Edward Villegas-Pulgarin</name>
+    </author>
+    <content type="html">&lt;section class="tex2jax_ignore mathjax_ignore" id="configurar-starship-en-manjaro-y-zsh"&gt;
+
+&lt;p&gt;Hace poco vengo cambiando múltiples herramientas en mi día a día, y en el
+manejo de la terminal Linux hay varios de esos cambios. Uno de esos es el
+&lt;em&gt;shell prompt&lt;/em&gt; (que podría traducirse tal vez como “indicador de terminal”),
+y estoy usando &lt;strong class="program"&gt;starship&lt;/strong&gt;. Sin embargo, hay detalles no documentados
+sobre como habilitarlo en Manjaro con &lt;strong class="program"&gt;zsh&lt;/strong&gt;, que aquí les cuento.&lt;/p&gt;
+&lt;p&gt;Para empezar, primero, un indicador de terminal es un programa que genera los
+textos asociados a cada ejecución de comandos en la terminal y lo que hay
+antes del cursor. Un buen indicador de terminal nos aporta información útil
+rápidamente del directorio en el cual nos ubicamos, de la ejecución de una
+línea de comandos o incluso la batería.&lt;/p&gt;
+&lt;section id="instalar-starship"&gt;
+&lt;h2&gt;Instalar &lt;em&gt;Starship&lt;/em&gt;&lt;/h2&gt;
+&lt;p&gt;En Manjaro, disponemos de &lt;a class="reference external" href="https://starship.rs/"&gt;&lt;em&gt;starship&lt;/em&gt;&lt;/a&gt; en el repositorio
+oficial, pero igual puedes instalar a partir de la rutina de instalación
+oficial que aplica a cualquier distribución Linux (útil si usas una distro
+como Ubuntu).&lt;/p&gt;
+&lt;div class="sd-tab-set docutils"&gt;
+&lt;input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio"&gt;
+&lt;label class="sd-tab-label" data-sync-group="tab" data-sync-id="m" for="sd-tab-item-0"&gt;
+Manjaro&lt;/label&gt;&lt;div class="sd-tab-content docutils"&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo&lt;span class="w"&gt; &lt;/span&gt;pamac&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;starship&lt;span class="w"&gt; &lt;/span&gt;--no-confirm
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;input id="sd-tab-item-1" name="sd-tab-set-0" type="radio"&gt;
+&lt;label class="sd-tab-label" data-sync-group="tab" data-sync-id="u" for="sd-tab-item-1"&gt;
+Ubuntu&lt;/label&gt;&lt;div class="sd-tab-content docutils"&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;curl&lt;span class="w"&gt; &lt;/span&gt;-sS&lt;span class="w"&gt; &lt;/span&gt;https://starship.rs/install.sh&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;sh
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/section&gt;
+&lt;section id="iniciar-starship"&gt;
+&lt;h2&gt;Iniciar &lt;em&gt;Starship&lt;/em&gt;&lt;/h2&gt;
+&lt;p&gt;Al usar &lt;strong class="program"&gt;zsh&lt;/strong&gt;, la inicialización la podemos hacer añadiendo el
+&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;init&lt;/span&gt;&lt;/code&gt; al archivo &lt;code class="file docutils literal notranslate"&gt;&lt;span class="pre"&gt;~/.zshrc&lt;/span&gt;&lt;/code&gt;.&lt;/p&gt;
+&lt;div class="sd-tab-set docutils"&gt;
+&lt;input checked="checked" id="sd-tab-item-2" name="sd-tab-set-1" type="radio"&gt;
+&lt;label class="sd-tab-label" for="sd-tab-item-2"&gt;
+zsh&lt;/label&gt;&lt;div class="sd-tab-content docutils"&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nb"&gt;echo&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;eval &amp;quot;$(starship init zsh)&amp;quot;&amp;#39;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&amp;gt;&amp;gt;&lt;span class="w"&gt; &lt;/span&gt;~/.zshrc
+&lt;span class="nb"&gt;source&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;~/.zshrc
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;input id="sd-tab-item-3" name="sd-tab-set-1" type="radio"&gt;
+&lt;label class="sd-tab-label" for="sd-tab-item-3"&gt;
+bash&lt;/label&gt;&lt;div class="sd-tab-content docutils"&gt;
+&lt;p&gt;El lenguaje de terminal por defecto es &lt;strong class="program"&gt;bash&lt;/strong&gt; y si estás cómodo con
+este, la forma de inicializar es la siguiente.&lt;/p&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nb"&gt;echo&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;eval &amp;quot;$(starship init bash)&amp;quot;&amp;#39;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&amp;gt;&amp;gt;&lt;span class="w"&gt; &lt;/span&gt;~/.bashrc
+&lt;span class="nb"&gt;source&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;~/.bashrc
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Finalmente, estamos listos, o al menos, según el procedimiento oficial.&lt;/p&gt;
+&lt;p&gt;En Manjaro, &lt;strong class="program"&gt;zsh&lt;/strong&gt; posee una configuración predeterminada para el
+indicador de terminal, en el archivo &lt;code class="file docutils literal notranslate"&gt;&lt;span class="pre"&gt;~/.zshrc&lt;/span&gt;&lt;/code&gt; y en el archivo
+&lt;code class="file docutils literal notranslate"&gt;&lt;span class="pre"&gt;/usr/share/zsh/manjaro-zsh-prompt&lt;/span&gt;&lt;/code&gt;. Esta configuración es para
+habilitar &lt;em&gt;powerline&lt;/em&gt; y &lt;em&gt;powerlevel10k&lt;/em&gt; (&lt;em&gt;p10k&lt;/em&gt;) y evita el uso de un &lt;em&gt;prompt&lt;/em&gt;
+adicional.&lt;/p&gt;
+&lt;p&gt;Es necesario deshabilitar el uso de estos dos. Para ello, debemos pasar a falso
+el uso de &lt;em&gt;powerline&lt;/em&gt; y comentar (o borrar) las líneas de la configuración
+del &lt;em&gt;prompt&lt;/em&gt;.&lt;/p&gt;
+&lt;div class="highlight-text notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;# Use powerline
+&lt;span class="hll"&gt;USE_POWERLINE=&amp;quot;false&amp;quot;
+&lt;/span&gt;# Has weird character width
+# Example:
+#    is not a diamond
+HAS_WIDECHARS=&amp;quot;false&amp;quot;
+# Source manjaro-zsh-configuration
+if [[ -e /usr/share/zsh/manjaro-zsh-config ]]; then
+  source /usr/share/zsh/manjaro-zsh-config
+fi
+# Use manjaro zsh prompt
+&lt;span class="hll"&gt;#if [[ -e /usr/share/zsh/manjaro-zsh-prompt ]]; then
+&lt;/span&gt;&lt;span class="hll"&gt;#  source /usr/share/zsh/manjaro-zsh-prompt
+&lt;/span&gt;&lt;span class="hll"&gt;#fi
+&lt;/span&gt;eval &amp;quot;$(starship init zsh)&amp;quot;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Ahora, reconstruimos la configuración y tenemos &lt;em&gt;starship&lt;/em&gt; en Manjaro con
+&lt;em&gt;Zsh&lt;/em&gt;.&lt;/p&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nb"&gt;source&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;~/.zshrc
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/section&gt;
+&lt;section id="archivo-de-configuracion"&gt;
+&lt;h2&gt;Archivo de configuración&lt;/h2&gt;
+&lt;p&gt;En general, la configuración por defecto es buena y no hay una necesidad de
+cambios fuertes. Sin embargo, el módulo de &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;gcloud&lt;/span&gt;&lt;/code&gt; se muestra en general en
+la sesión lo cual no me es agradable y poco útil en mi caso. Por este motivo
+creo el archivo de configuración &lt;code class="file docutils literal notranslate"&gt;&lt;span class="pre"&gt;~/.config/starship.toml&lt;/span&gt;&lt;/code&gt; y deshabilito
+el módulo.&lt;/p&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;bat&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;lt;&amp;lt; &amp;#39;EOF&amp;#39; &amp;gt; ~/.config/starship.toml&lt;/span&gt;
+&lt;span class="s"&gt;[gcloud]&lt;/span&gt;
+&lt;span class="s"&gt;disabled = true&lt;/span&gt;
+&lt;span class="s"&gt;EOF&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Puedes consultar otras opciones de configuración en
+&lt;a class="reference external" href="https://starship.rs/config/"&gt;Starship: Configuration&lt;/a&gt;.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="referencias"&gt;
+&lt;h2&gt;Referencias&lt;/h2&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://github.com/starship/starship"&gt;GitHub: Starship&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://forum.manjaro.org/t/starship-prompt-wont-work-on-manjaro-kde-plasma/83608"&gt;Starship prompt won’t work on manjaro KDE plasma&lt;/a&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://forum.manjaro.org/t/starship-prompt-for-zsh-need-help-installing/93481"&gt;Starship prompt for zsh - need help installing&lt;/a&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://forum.manjaro.org/t/powerline-in-manjaro-zsh-config/42941"&gt;Powerline in manjaro-zsh-config&lt;/a&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://github.com/powerline/powerline"&gt;Powerline&lt;/a&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://github.com/romkatv/powerlevel10k"&gt;Powerlevel10k&lt;/a&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/section&gt;
+&lt;/section&gt;
+</content>
+    <link href="https://www.cosmoscalibur.com/es/blog/2024/configurar-starship-en-manjaro-y-zsh/"/>
+    <summary>Hace poco vengo cambiando múltiples herramientas en mi día a día, y en el
+manejo de la terminal Linux hay varios de esos cambios. Uno de esos es el
+shell prompt (que podría traducirse tal vez como “indicador de terminal”),
+y estoy usando starship. Sin embargo, hay detalles no documentados
+sobre como habilitarlo en Manjaro con zsh, que aquí les cuento.</summary>
+    <category term="blog" label="blog"/>
+    <category term="googleads" label="google ads"/>
+    <category term="sphinx" label="sphinx"/>
+    <published>2024-12-15T00:00:00-05:00</published>
+  </entry>
   <entry>
     <id>https://www.cosmoscalibur.com/es/blog/2024/conecta-con-una-instancia-de-cloud-sql-en-manjaro/</id>
     <title>Conecta con una instancia de Cloud SQL en Manjaro</title>

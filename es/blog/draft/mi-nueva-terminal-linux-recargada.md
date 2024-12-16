@@ -34,7 +34,8 @@ cargo install --locked bottom procs
 
 + *Alacritty*: Emulador de terminal
 + *Zellij*: Multiplexador de terminal
-+ *Starship*: *Prompt* de terminal.
++ [Starship](/es/blog/2024/configurar-starship-en-manjaro.md): Indicador de
+  terminal (*shell prompt*).
 + *Zsh*: *Shell* (lenguaje de terminal)
 + zoxide: Alternativa a cd
 + yazi
@@ -53,7 +54,6 @@ sudo pamac install zsh alacritty zellij starship zoxide yazi helix --no-confirm
 ```{code} bash
 sudo apt install -y zsh alacritty zoxide
 cargo install --locked zellij yazi-fm yazi-cli
-curl -sS https://starship.rs/install.sh | sh
 flatpak install flathub com.helix_editor.Helix
 ```
 :::
@@ -65,8 +65,7 @@ chsh -s /bin/zsh  # Configurar shell por defecto: ingresamos contraseña
 ```
 
 ```{code} bash
-echo 'eval "$(starship init zsh)"' >> ~/.zshrc
-echo 'eval "$(zoxide init zsh)"' >> ~/.zshrc
+echo 'eval "$(zoxide init zsh)"' >> .~/zshrc
 source ~/.zshrc
 ```
 
