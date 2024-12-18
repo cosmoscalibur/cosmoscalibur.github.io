@@ -1,6 +1,6 @@
 ---
 date: 2024-12-18
-tags: manjaro, arch, wayland, x11, zed, gráficos híbridos, nvidia, radeon, vulkan
+tags: manjaro, wayland, x11, zed, gráficos híbridos, nvidia, radeon, vulkan, gpu, tarjeta gráfica
 category: tecnología, linux
 ---
 
@@ -10,7 +10,6 @@ Los [gráficos híbridos](https://wiki.archlinux.org/title/Hybrid_graphics) son
 una estrategia de los equipos modernos a incorporar dos tarjetas gráficas, una
 integrada y una dedicada, con capacidades y consumo de energía diferentes. La
 idea es no usar la dedicada, salvo que sea requerido para el renderizado 3D.
-
 Sin embargo, esto no es un problema resuelto en Linux y afecta a las
 aplicaciones nativas en Wayland, el cual es el nuevo y moderno protocolo para
 comunicación de servidor gráfico usado por los compositores de ventanas en
@@ -21,6 +20,8 @@ Una de estas aplicaciones afectadas es el editor de código
 controlador NVIDIA es 550.135 en la rama estable de Manjaro.
 
 ## Síntomas del problema
+
+### Caso Zed
 
 Considerando el ejemplo de {program}`zed`, al ejecutar en Wayland, veremos por
 un breve momento que se intenta lanzar una ventana, pero a los pocos segundos
@@ -34,6 +35,8 @@ información útil al proyecto de Zed, reportando la salida de `vulkaninfo` y
 siguiente que veremos para entender si el problema es más cercano a
 Vulkan/Wayland, o propiamente a Zed. Es el reporte
 [zed/8168](https://github.com/zed-industries/zed/issues/8168).
+
+### Caso VkCube (demo)
 
 Resulta que Vulkan posee unas aplicaciones de demostración para X11 y Wayland,
 `vkcube` y `vkcube-wayland` (disponibles en el paquete `vulkan-tools`), y lo

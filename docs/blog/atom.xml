@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="es">
   <id>https://www.cosmoscalibur.com/</id>
   <title>Cosmoscalibur</title>
-  <updated>2024-12-18T19:53:20.541757+00:00</updated>
+  <updated>2024-12-18T21:25:37.385260+00:00</updated>
   <link href="https://www.cosmoscalibur.com/"/>
   <link href="https://www.cosmoscalibur.com/blog/atom.xml" rel="self"/>
   <generator uri="https://ablog.readthedocs.io/" version="0.11.12">ABlog</generator>
@@ -18,8 +18,8 @@
 &lt;p&gt;Los &lt;a class="reference external" href="https://wiki.archlinux.org/title/Hybrid_graphics"&gt;gráficos híbridos&lt;/a&gt; son
 una estrategia de los equipos modernos a incorporar dos tarjetas gráficas, una
 integrada y una dedicada, con capacidades y consumo de energía diferentes. La
-idea es no usar la dedicada, salvo que sea requerido para el renderizado 3D.&lt;/p&gt;
-&lt;p&gt;Sin embargo, esto no es un problema resuelto en Linux y afecta a las
+idea es no usar la dedicada, salvo que sea requerido para el renderizado 3D.
+Sin embargo, esto no es un problema resuelto en Linux y afecta a las
 aplicaciones nativas en Wayland, el cual es el nuevo y moderno protocolo para
 comunicación de servidor gráfico usado por los compositores de ventanas en
 Linux (en reemplazo de X11), que hagan uso de Vulkan.&lt;/p&gt;
@@ -28,6 +28,8 @@ Linux (en reemplazo de X11), que hagan uso de Vulkan.&lt;/p&gt;
 controlador NVIDIA es 550.135 en la rama estable de Manjaro.&lt;/p&gt;
 &lt;section id="sintomas-del-problema"&gt;
 &lt;h2&gt;Síntomas del problema&lt;/h2&gt;
+&lt;section id="caso-zed"&gt;
+&lt;h3&gt;Caso Zed&lt;/h3&gt;
 &lt;p&gt;Considerando el ejemplo de &lt;strong class="program"&gt;zed&lt;/strong&gt;, al ejecutar en Wayland, veremos por
 un breve momento que se intenta lanzar una ventana, pero a los pocos segundos
 se cierra. Podemos entrar a detallar mucho más, y podemos probar en la
@@ -39,6 +41,9 @@ información útil al proyecto de Zed, reportando la salida de &lt;code class="d
 siguiente que veremos para entender si el problema es más cercano a
 Vulkan/Wayland, o propiamente a Zed. Es el reporte
 &lt;a class="reference external" href="https://github.com/zed-industries/zed/issues/8168"&gt;zed/8168&lt;/a&gt;.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="caso-vkcube-demo"&gt;
+&lt;h3&gt;Caso VkCube (demo)&lt;/h3&gt;
 &lt;p&gt;Resulta que Vulkan posee unas aplicaciones de demostración para X11 y Wayland,
 &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;vkcube&lt;/span&gt;&lt;/code&gt; y &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;vkcube-wayland&lt;/span&gt;&lt;/code&gt; (disponibles en el paquete &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;vulkan-tools&lt;/span&gt;&lt;/code&gt;), y lo
 esperado es que si estas funcionan, Zed (y otras basadas en Vulkan) deberían
@@ -54,6 +59,7 @@ con solo integrada, era suficiente con instalar el controlador Vulkan adecuado
 para solucionar el problema. Y en Kubuntu 24.10 (que lo probé unas semanas),
 Zed me funcionó perfectamente en Wayland (pero entiendo que el controlador
 NVIDIA es de la serie 560).&lt;/p&gt;
+&lt;/section&gt;
 &lt;/section&gt;
 &lt;section id="saber-si-tengo-graficos-hibridos"&gt;
 &lt;h2&gt;Saber si tengo gráficos híbridos&lt;/h2&gt;
@@ -112,11 +118,11 @@ la lista a la
 &lt;p&gt;Una vez realices este cambio, puedes probar nuevamente
 &lt;strong class="program"&gt;vkcube-wayland&lt;/strong&gt; o &lt;strong class="program"&gt;zed&lt;/strong&gt;, y si funciona, hacer este cambio
 permanente en el archivo &lt;aside class="system-message"&gt;
-&lt;p class="system-message-title"&gt;System Message: WARNING/2 (&lt;span class="docutils literal"&gt;/home/cosmoscalibur/Documentos/git/cosmoscalibur.github.io/es/blog/2024/problema-de-wayland-y-graficos-hibridos-en-linux.md&lt;/span&gt;, line 115)&lt;/p&gt;
+&lt;p class="system-message-title"&gt;System Message: WARNING/2 (&lt;span class="docutils literal"&gt;/home/cosmoscalibur/Documentos/git/cosmoscalibur.github.io/es/blog/2024/problema-de-wayland-y-graficos-hibridos-en-linux.md&lt;/span&gt;, line 118)&lt;/p&gt;
 &lt;p&gt;Unknown interpreted text role «filename». [myst.role_unknown]&lt;/p&gt;
 &lt;/aside&gt;
 &lt;aside class="system-message"&gt;
-&lt;p class="system-message-title"&gt;System Message: INFO/1 (&lt;span class="docutils literal"&gt;/home/cosmoscalibur/Documentos/git/cosmoscalibur.github.io/es/blog/2024/problema-de-wayland-y-graficos-hibridos-en-linux.md&lt;/span&gt;, line 115)&lt;/p&gt;
+&lt;p class="system-message-title"&gt;System Message: INFO/1 (&lt;span class="docutils literal"&gt;/home/cosmoscalibur/Documentos/git/cosmoscalibur.github.io/es/blog/2024/problema-de-wayland-y-graficos-hibridos-en-linux.md&lt;/span&gt;, line 118)&lt;/p&gt;
 &lt;p&gt;No role entry for «filename» in module «docutils.parsers.rst.languages.es».
 Trying «filename» as canonical role name.&lt;/p&gt;
 &lt;/aside&gt;
@@ -143,12 +149,17 @@ hacerlo, puedes desasignar la variable con &lt;code class="docutils literal notr
     <summary>Los gráficos híbridos son
 una estrategia de los equipos modernos a incorporar dos tarjetas gráficas, una
 integrada y una dedicada, con capacidades y consumo de energía diferentes. La
-idea es no usar la dedicada, salvo que sea requerido para el renderizado 3D.</summary>
-    <category term="arch" label="arch"/>
+idea es no usar la dedicada, salvo que sea requerido para el renderizado 3D.
+Sin embargo, esto no es un problema resuelto en Linux y afecta a las
+aplicaciones nativas en Wayland, el cual es el nuevo y moderno protocolo para
+comunicación de servidor gráfico usado por los compositores de ventanas en
+Linux (en reemplazo de X11), que hagan uso de Vulkan.</summary>
+    <category term="gpu" label="gpu"/>
     <category term="gráficoshíbridos" label="gráficos híbridos"/>
     <category term="manjaro" label="manjaro"/>
     <category term="nvidia" label="nvidia"/>
     <category term="radeon" label="radeon"/>
+    <category term="tarjetagráfica" label="tarjeta gráfica"/>
     <category term="vulkan" label="vulkan"/>
     <category term="wayland" label="wayland"/>
     <category term="x11" label="x11"/>
