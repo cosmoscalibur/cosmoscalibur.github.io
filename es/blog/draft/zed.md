@@ -34,7 +34,7 @@
         "ltex": {
           "language": "es",
           "enabled": ["latex", "markdown"],
-          "completionEnabled": true
+          "completionEnabled": false
         }
       }
     }
@@ -50,10 +50,7 @@ https://benswift.me/blog/2024/09/20/format-markdown-on-save-in-zed-using-prettie
 https://github.com/vitallium/zed-ltex
 ```
 
-Se presenta error de no abrir. Si se ejecuta en X11 abre transparente, sin
-embargo si es en Wayland, falla. En Wayland el problema es con los
-controladores de NVIDIA y se aprecia si pruebas vkcube-wayland (mensaje de
-error) y vkcube ejecuta normal.
+
 
 desinstalar zed https://askubuntu.com/questions/1520457/how-do-i-uninstall-zed-editor-from-my-ubuntu-24
 
@@ -61,3 +58,6 @@ desinstalar zed https://askubuntu.com/questions/1520457/how-do-i-uninstall-zed-e
 búsqueda general control shift f
 modo multibuffer con control shift l
 alt clic para selección individual
+
+
+[Problemas con Wayland y NVIDIA](/es/blog/2024/problema-de-wayland-y-graficos-hibridos-en-linux.md)

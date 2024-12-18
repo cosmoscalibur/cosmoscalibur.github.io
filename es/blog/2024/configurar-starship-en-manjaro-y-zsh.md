@@ -119,7 +119,7 @@ creo el archivo de configuración {file}`~/.config/starship.toml` y deshabilito
 el módulo.
 
 ```{code} bash
-bat << 'EOF' > ~/.config/starship.toml
+cat << 'EOF' > ~/.config/starship.toml
 [gcloud]
 disabled = true
 EOF

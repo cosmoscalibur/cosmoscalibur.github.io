@@ -34,7 +34,7 @@ siguientes errores documentados:
   La solución a este caso es dirigirnos a "Sesión de escritorio" y en las
   opciones de "Restaurar sesión" seleccionar "Comenzar con una sesión
   vacía".
-+ [Después de suspención el sistema queda congelado](https://bbs.archlinux.org/viewtopic.php?pid=2180537#p2180537):
++ [Después de suspensión el sistema queda congelado](https://bbs.archlinux.org/viewtopic.php?pid=2180537#p2180537):
   Este caso me sucedió, pero tras la actualización general no se replicó
   nuevamente así que no tuve oportunidad de probar la solución.
 
@@ -110,7 +110,9 @@ instalar desde el repositorio oficial, desde el AUR y remover paquetes.
 :::{tab-item} Manjaro
 :sync: manjaro
 
-```{code} bash
+```{code-block} bash
+:name: pamac-commands
+
 sudo pamac install PACKAGE --no-confirm # Repositorio oficial
 pamac build PACKAGE_AUR --no-confirm # AUR
 sudo pamac remove PACKAGE --no-confirm

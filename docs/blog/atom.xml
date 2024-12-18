@@ -2,10 +2,159 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="es">
   <id>https://www.cosmoscalibur.com/</id>
   <title>Cosmoscalibur</title>
-  <updated>2024-12-16T04:37:28.568636+00:00</updated>
+  <updated>2024-12-18T19:53:20.541757+00:00</updated>
   <link href="https://www.cosmoscalibur.com/"/>
   <link href="https://www.cosmoscalibur.com/blog/atom.xml" rel="self"/>
   <generator uri="https://ablog.readthedocs.io/" version="0.11.12">ABlog</generator>
+  <entry>
+    <id>https://www.cosmoscalibur.com/es/blog/2024/problema-de-wayland-y-graficos-hibridos-en-linux/</id>
+    <title>Problema de Wayland y gráficos híbridos en Linux</title>
+    <updated>2024-12-18T00:00:00-05:00</updated>
+    <author>
+      <name>Edward Villegas-Pulgarin</name>
+    </author>
+    <content type="html">&lt;section class="tex2jax_ignore mathjax_ignore" id="problema-de-wayland-y-graficos-hibridos-en-linux"&gt;
+
+&lt;p&gt;Los &lt;a class="reference external" href="https://wiki.archlinux.org/title/Hybrid_graphics"&gt;gráficos híbridos&lt;/a&gt; son
+una estrategia de los equipos modernos a incorporar dos tarjetas gráficas, una
+integrada y una dedicada, con capacidades y consumo de energía diferentes. La
+idea es no usar la dedicada, salvo que sea requerido para el renderizado 3D.&lt;/p&gt;
+&lt;p&gt;Sin embargo, esto no es un problema resuelto en Linux y afecta a las
+aplicaciones nativas en Wayland, el cual es el nuevo y moderno protocolo para
+comunicación de servidor gráfico usado por los compositores de ventanas en
+Linux (en reemplazo de X11), que hagan uso de Vulkan.&lt;/p&gt;
+&lt;p&gt;Una de estas aplicaciones afectadas es el editor de código
+&lt;strong class="program"&gt;zed&lt;/strong&gt;. Al momento de escribir esta entrada, la versión del
+controlador NVIDIA es 550.135 en la rama estable de Manjaro.&lt;/p&gt;
+&lt;section id="sintomas-del-problema"&gt;
+&lt;h2&gt;Síntomas del problema&lt;/h2&gt;
+&lt;p&gt;Considerando el ejemplo de &lt;strong class="program"&gt;zed&lt;/strong&gt;, al ejecutar en Wayland, veremos por
+un breve momento que se intenta lanzar una ventana, pero a los pocos segundos
+se cierra. Podemos entrar a detallar mucho más, y podemos probar en la
+terminal &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;zed&lt;/span&gt; &lt;span class="pre"&gt;--foreground&lt;/span&gt;&lt;/code&gt;, y allí veremos el error
+&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;&amp;quot;payload&amp;quot;:&lt;/span&gt; &lt;span class="pre"&gt;&amp;quot;called&lt;/span&gt; &lt;/code&gt;Result::unwrap()&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;on&lt;/span&gt; &lt;span class="pre"&gt;an&lt;/span&gt;&lt;/code&gt;Err&lt;code class="docutils literal notranslate"&gt; &lt;span class="pre"&gt;value:&lt;/span&gt; &lt;span class="pre"&gt;ERROR_INITIALIZATION_FAILED&amp;quot;&lt;/span&gt;&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Si como yo, te ves afectado por este problema, puedes también contribuir con
+información útil al proyecto de Zed, reportando la salida de &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;vulkaninfo&lt;/span&gt;&lt;/code&gt; y
+&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;RUST_LOG=blade_graphics=debug&lt;/span&gt; &lt;span class="pre"&gt;zed&lt;/span&gt; &lt;span class="pre"&gt;--foreground&lt;/span&gt;&lt;/code&gt;, con info extra de lo
+siguiente que veremos para entender si el problema es más cercano a
+Vulkan/Wayland, o propiamente a Zed. Es el reporte
+&lt;a class="reference external" href="https://github.com/zed-industries/zed/issues/8168"&gt;zed/8168&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Resulta que Vulkan posee unas aplicaciones de demostración para X11 y Wayland,
+&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;vkcube&lt;/span&gt;&lt;/code&gt; y &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;vkcube-wayland&lt;/span&gt;&lt;/code&gt; (disponibles en el paquete &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;vulkan-tools&lt;/span&gt;&lt;/code&gt;), y lo
+esperado es que si estas funcionan, Zed (y otras basadas en Vulkan) deberían
+funcionarte, al menos por soporte de la plataforma.&lt;/p&gt;
+&lt;p&gt;En mi caso, &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;vkcube&lt;/span&gt;&lt;/code&gt; funciona sin problema y Zed en X11 al menos abre la
+primera vez de la sesión, pero &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;vkcube-wayland&lt;/span&gt;&lt;/code&gt; reporta
+&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;segmentation&lt;/span&gt; &lt;span class="pre"&gt;fault&lt;/span&gt; &lt;span class="pre"&gt;(core&lt;/span&gt; &lt;span class="pre"&gt;dumped)&lt;/span&gt;&lt;/code&gt;. Esto último lleva a que probablemente
+las aplicaciones nativas de Wayland con Vulkan no funcionen adecuadamente.&lt;/p&gt;
+&lt;p&gt;Ahora, posiblemente esto depende realmente de NVIDIA para los casos híbridos,
+porque en lo observado en Zed y con reportes de Vulkan, la afectación no
+ocurre en equipos con solo integrada o solo NVIDIA. Los casos reportados en Zed
+con solo integrada, era suficiente con instalar el controlador Vulkan adecuado
+para solucionar el problema. Y en Kubuntu 24.10 (que lo probé unas semanas),
+Zed me funcionó perfectamente en Wayland (pero entiendo que el controlador
+NVIDIA es de la serie 560).&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="saber-si-tengo-graficos-hibridos"&gt;
+&lt;h2&gt;Saber si tengo gráficos híbridos&lt;/h2&gt;
+&lt;p&gt;Para conocer si tu caso es por gráficos híbridos, puedes revisar la salida de
+las siguientes instrucciones&lt;/p&gt;
+&lt;div class="literal-block-wrapper docutils container" id="id1"&gt;
+&lt;div class="code-block-caption"&gt;&lt;span class="caption-text"&gt;Consulta de controladores compatibles con salida VGA. Cualquier distribución Linux.&lt;/span&gt;&lt;/div&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;❯&lt;span class="w"&gt; &lt;/span&gt;lspci&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;grep&lt;span class="w"&gt; &lt;/span&gt;VGA
+&lt;span class="m"&gt;01&lt;/span&gt;:00.0&lt;span class="w"&gt; &lt;/span&gt;VGA&lt;span class="w"&gt; &lt;/span&gt;compatible&lt;span class="w"&gt; &lt;/span&gt;controller:&lt;span class="w"&gt; &lt;/span&gt;NVIDIA&lt;span class="w"&gt; &lt;/span&gt;Corporation&lt;span class="w"&gt; &lt;/span&gt;TU106M&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;GeForce&lt;span class="w"&gt; &lt;/span&gt;RTX&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;2060&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;Mobile&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;rev&lt;span class="w"&gt; &lt;/span&gt;a1&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;span class="m"&gt;05&lt;/span&gt;:00.0&lt;span class="w"&gt; &lt;/span&gt;VGA&lt;span class="w"&gt; &lt;/span&gt;compatible&lt;span class="w"&gt; &lt;/span&gt;controller:&lt;span class="w"&gt; &lt;/span&gt;Advanced&lt;span class="w"&gt; &lt;/span&gt;Micro&lt;span class="w"&gt; &lt;/span&gt;Devices,&lt;span class="w"&gt; &lt;/span&gt;Inc.&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;AMD/ATI&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;Renoir&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;Radeon&lt;span class="w"&gt; &lt;/span&gt;Vega&lt;span class="w"&gt; &lt;/span&gt;Series&lt;span class="w"&gt; &lt;/span&gt;/&lt;span class="w"&gt; &lt;/span&gt;Radeon&lt;span class="w"&gt; &lt;/span&gt;Vega&lt;span class="w"&gt; &lt;/span&gt;Mobile&lt;span class="w"&gt; &lt;/span&gt;Series&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;rev&lt;span class="w"&gt; &lt;/span&gt;f0&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="literal-block-wrapper docutils container" id="id2"&gt;
+&lt;div class="code-block-caption"&gt;&lt;span class="caption-text"&gt;Utilidad de Manjaro para consultar controladores.&lt;/span&gt;&lt;/div&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;❯&lt;span class="w"&gt; &lt;/span&gt;mhwd&lt;span class="w"&gt; &lt;/span&gt;-li
+&amp;gt;&lt;span class="w"&gt; &lt;/span&gt;Installed&lt;span class="w"&gt; &lt;/span&gt;PCI&lt;span class="w"&gt; &lt;/span&gt;configs:
+--------------------------------------------------------------------------------
+&lt;span class="w"&gt;                  &lt;/span&gt;NAME&lt;span class="w"&gt;               &lt;/span&gt;VERSION&lt;span class="w"&gt;          &lt;/span&gt;FREEDRIVER&lt;span class="w"&gt;           &lt;/span&gt;TYPE
+--------------------------------------------------------------------------------
+&lt;span class="w"&gt;           &lt;/span&gt;video-linux&lt;span class="w"&gt;            &lt;/span&gt;&lt;span class="m"&gt;2024&lt;/span&gt;.05.06&lt;span class="w"&gt;                &lt;/span&gt;&lt;span class="nb"&gt;true&lt;/span&gt;&lt;span class="w"&gt;            &lt;/span&gt;PCI
+video-hybrid-amd-nvidia-prime&lt;span class="w"&gt;            &lt;/span&gt;&lt;span class="m"&gt;2023&lt;/span&gt;.03.23&lt;span class="w"&gt;               &lt;/span&gt;&lt;span class="nb"&gt;false&lt;/span&gt;&lt;span class="w"&gt;            &lt;/span&gt;PC
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;En ambos casos de puede apreciar la disponibilidad de una tarjeta gráfica
+NVIDIA y la tarjeta gráfica AMD (también podría ser Intel). Así que, esto
+puede ser la causa (considerando la versión del controlador NVIDIA).&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="saber-la-version-del-controlador-nvidia"&gt;
+&lt;h2&gt;Saber la versión del controlador NVIDIA&lt;/h2&gt;
+&lt;p&gt;Si no eres consciente de la versión del controlador, puedes usar tu
+&lt;a class="reference internal" href="../es/blog/2024/que-hacer-despues-de-instalar-manjaro/#pamac-commands"&gt;&lt;span class="std std-ref"&gt;gestor de paquetes para consultarlo&lt;/span&gt;&lt;/a&gt;, validando la versión
+del paquete de &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;nvidia-utils&lt;/span&gt;&lt;/code&gt;. En mi caso, sería &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;pamac&lt;/span&gt; &lt;span class="pre"&gt;info&lt;/span&gt; &lt;span class="pre"&gt;nvidia-utils&lt;/span&gt;&lt;/code&gt; o
+en derivados de Ubuntu, &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;apt&lt;/span&gt; &lt;span class="pre"&gt;show&lt;/span&gt; &lt;span class="pre"&gt;nvidia-utils&lt;/span&gt;&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;También puedes ejecutar &lt;strong class="program"&gt;nvidia-smi&lt;/strong&gt;, y lo verás en la primera fila,
+&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;Driver&lt;/span&gt; &lt;span class="pre"&gt;version&lt;/span&gt;&lt;/code&gt;.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="solucion-provisional"&gt;
+&lt;h2&gt;Solución provisional&lt;/h2&gt;
+&lt;p&gt;Es claro que queremos poder usar nuestras aplicaciones favoritas, como en mi
+caso lo es poder usar &lt;strong class="program"&gt;zed&lt;/strong&gt;. Sobre algunos problemas de Wayland en
+Manjaro, asociados con la tarjeta gráfica NVIDIA, he visto que la conclusión
+es esperar la serie 560, pero esta sigue en la rama inestable.&lt;/p&gt;
+&lt;p&gt;Pero mientras esto ocurre, podemos
+&lt;a class="reference external" href="https://vulkan.lunarg.com/doc/view/1.3.250.1/windows/LoaderDriverInterface.html#overriding-the-default-driver-discovery"&gt;indicar explícitamente al controlador de Vulkan&lt;/a&gt;
+que haga uso de la configuración de la tarjeta integrada. Los archivos de
+configuración disponibles se encuentran en el directorio
+&lt;code class="file docutils literal notranslate"&gt;&lt;span class="pre"&gt;/usr/share/vulkan/icd.d/&lt;/span&gt;&lt;/code&gt;. Si es la tarjeta AMD, son los archivos que
+mencionan &lt;em&gt;radeon&lt;/em&gt;, y el caso de Intel dirá &lt;em&gt;intel&lt;/em&gt;. Esto se logra asignando
+la lista a la
+&lt;a class="reference external" href="https://wiki.archlinux.org/title/Vulkan#NVIDIA_-_vulkan_is_not_working_and_can_not_initialize"&gt;variable de entorno &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;VK_DRIVER_FILES&lt;/span&gt;&lt;/code&gt;&lt;/a&gt;. En mi caso, sería:&lt;/p&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nb"&gt;export&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;VK_DRIVER_FILES&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;/usr/share/vulkan/icd.d/radeon_icd.i686.json:/usr/share/vulkan/icd.d/radeon_icd.x86_64.json
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Una vez realices este cambio, puedes probar nuevamente
+&lt;strong class="program"&gt;vkcube-wayland&lt;/strong&gt; o &lt;strong class="program"&gt;zed&lt;/strong&gt;, y si funciona, hacer este cambio
+permanente en el archivo &lt;aside class="system-message"&gt;
+&lt;p class="system-message-title"&gt;System Message: WARNING/2 (&lt;span class="docutils literal"&gt;/home/cosmoscalibur/Documentos/git/cosmoscalibur.github.io/es/blog/2024/problema-de-wayland-y-graficos-hibridos-en-linux.md&lt;/span&gt;, line 115)&lt;/p&gt;
+&lt;p&gt;Unknown interpreted text role «filename». [myst.role_unknown]&lt;/p&gt;
+&lt;/aside&gt;
+&lt;aside class="system-message"&gt;
+&lt;p class="system-message-title"&gt;System Message: INFO/1 (&lt;span class="docutils literal"&gt;/home/cosmoscalibur/Documentos/git/cosmoscalibur.github.io/es/blog/2024/problema-de-wayland-y-graficos-hibridos-en-linux.md&lt;/span&gt;, line 115)&lt;/p&gt;
+&lt;p&gt;No role entry for «filename» in module «docutils.parsers.rst.languages.es».
+Trying «filename» as canonical role name.&lt;/p&gt;
+&lt;/aside&gt;
+.&lt;/p&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;echo&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;VK_DRIVER_FILES=/usr/share/vulkan/icd.d/radeon_icd.i686.json:/usr/share/vulkan/icd.d/radeon_icd.x86_64.json&amp;#39;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&amp;gt;&amp;gt;&lt;span class="w"&gt; &lt;/span&gt;/etc/environment
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Este cambio también soluciona el error en X11 en la cual las aperturas
+posteriores dejan una ventana invisible.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="solucion-definitiva"&gt;
+&lt;h2&gt;Solución definitiva&lt;/h2&gt;
+&lt;p&gt;Cuando se encuentre disponible la serie 560 espero contarles si esto en Manjaro
+resolvió el problema, y para ese momento es necesario remover la línea
+anterior de las variables de entorno. Y cuando deseemos ejecutar algo
+directamente con la tarjeta NVIDIA, deberemos usar &lt;strong class="program"&gt;prime-run&lt;/strong&gt;, que en
+este momento no hace diferencia.&lt;/p&gt;
+&lt;p&gt;Sin remover la línea, y solo para probar con el fin de saber si vale la pena
+hacerlo, puedes desasignar la variable con &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;unset&lt;/span&gt; &lt;span class="pre"&gt;VK_DRIVER_FILES&lt;/span&gt;&lt;/code&gt;.&lt;/p&gt;
+&lt;/section&gt;
+&lt;/section&gt;
+</content>
+    <link href="https://www.cosmoscalibur.com/es/blog/2024/problema-de-wayland-y-graficos-hibridos-en-linux/"/>
+    <summary>Los gráficos híbridos son
+una estrategia de los equipos modernos a incorporar dos tarjetas gráficas, una
+integrada y una dedicada, con capacidades y consumo de energía diferentes. La
+idea es no usar la dedicada, salvo que sea requerido para el renderizado 3D.</summary>
+    <category term="arch" label="arch"/>
+    <category term="gráficoshíbridos" label="gráficos híbridos"/>
+    <category term="manjaro" label="manjaro"/>
+    <category term="nvidia" label="nvidia"/>
+    <category term="radeon" label="radeon"/>
+    <category term="vulkan" label="vulkan"/>
+    <category term="wayland" label="wayland"/>
+    <category term="x11" label="x11"/>
+    <category term="zed" label="zed"/>
+    <published>2024-12-18T00:00:00-05:00</published>
+  </entry>
   <entry>
     <id>https://www.cosmoscalibur.com/es/blog/2024/configurar-starship-en-manjaro-y-zsh/</id>
     <title>Configurar Starship en Manjaro y Zsh</title>
@@ -112,7 +261,7 @@ cambios fuertes. Sin embargo, el módulo de &lt;code class="docutils literal not
 la sesión lo cual no me es agradable y poco útil en mi caso. Por este motivo
 creo el archivo de configuración &lt;code class="file docutils literal notranslate"&gt;&lt;span class="pre"&gt;~/.config/starship.toml&lt;/span&gt;&lt;/code&gt; y deshabilito
 el módulo.&lt;/p&gt;
-&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;bat&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;lt;&amp;lt; &amp;#39;EOF&amp;#39; &amp;gt; ~/.config/starship.toml&lt;/span&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;cat&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;lt;&amp;lt; &amp;#39;EOF&amp;#39; &amp;gt; ~/.config/starship.toml&lt;/span&gt;
 &lt;span class="s"&gt;[gcloud]&lt;/span&gt;
 &lt;span class="s"&gt;disabled = true&lt;/span&gt;
 &lt;span class="s"&gt;EOF&lt;/span&gt;
@@ -426,7 +575,7 @@ siguientes errores documentados:&lt;/p&gt;
 La solución a este caso es dirigirnos a “Sesión de escritorio” y en las
 opciones de “Restaurar sesión” seleccionar “Comenzar con una sesión
 vacía”.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://bbs.archlinux.org/viewtopic.php?pid=2180537#p2180537"&gt;Después de suspención el sistema queda congelado&lt;/a&gt;:
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://bbs.archlinux.org/viewtopic.php?pid=2180537#p2180537"&gt;Después de suspensión el sistema queda congelado&lt;/a&gt;:
 Este caso me sucedió, pero tras la actualización general no se replicó
 nuevamente así que no tuve oportunidad de probar la solución.&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
@@ -491,7 +640,7 @@ instalar desde el repositorio oficial, desde el AUR y remover paquetes.&lt;/p&gt
 &lt;input checked="checked" id="sd-tab-item-2" name="sd-tab-set-1" type="radio"&gt;
 &lt;label class="sd-tab-label" data-sync-group="tab" data-sync-id="manjaro" for="sd-tab-item-2"&gt;
 Manjaro&lt;/label&gt;&lt;div class="sd-tab-content docutils"&gt;
-&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo&lt;span class="w"&gt; &lt;/span&gt;pamac&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;PACKAGE&lt;span class="w"&gt; &lt;/span&gt;--no-confirm&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="c1"&gt;# Repositorio oficial&lt;/span&gt;
+&lt;div class="highlight-bash notranslate" id="pamac-commands"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo&lt;span class="w"&gt; &lt;/span&gt;pamac&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;PACKAGE&lt;span class="w"&gt; &lt;/span&gt;--no-confirm&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="c1"&gt;# Repositorio oficial&lt;/span&gt;
 pamac&lt;span class="w"&gt; &lt;/span&gt;build&lt;span class="w"&gt; &lt;/span&gt;PACKAGE_AUR&lt;span class="w"&gt; &lt;/span&gt;--no-confirm&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="c1"&gt;# AUR&lt;/span&gt;
 sudo&lt;span class="w"&gt; &lt;/span&gt;pamac&lt;span class="w"&gt; &lt;/span&gt;remove&lt;span class="w"&gt; &lt;/span&gt;PACKAGE&lt;span class="w"&gt; &lt;/span&gt;--no-confirm
 pamac&lt;span class="w"&gt; &lt;/span&gt;search&lt;span class="w"&gt; &lt;/span&gt;-a&lt;span class="w"&gt; &lt;/span&gt;KEY
