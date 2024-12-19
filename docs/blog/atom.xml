@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="es">
   <id>https://www.cosmoscalibur.com/</id>
   <title>Cosmoscalibur</title>
-  <updated>2024-12-18T21:25:37.385260+00:00</updated>
+  <updated>2024-12-19T14:47:09.507183+00:00</updated>
   <link href="https://www.cosmoscalibur.com/"/>
   <link href="https://www.cosmoscalibur.com/blog/atom.xml" rel="self"/>
   <generator uri="https://ablog.readthedocs.io/" version="0.11.12">ABlog</generator>
@@ -421,13 +421,32 @@ credenciales por defecto de aplicación que se describe
 &lt;/section&gt;
 &lt;section id="conectar-a-la-base-de-datos"&gt;
 &lt;h2&gt;Conectar a la base de datos&lt;/h2&gt;
-&lt;p&gt;En Tributi usamos MySQL, y auqnue comencé usando &lt;strong class="program"&gt;MySQL Workbench&lt;/strong&gt;,
-este no era muy cómodo y mis compañeros usaban &lt;strong class="program"&gt;Dbeaver&lt;/strong&gt;. Este me
-pareció interesante y fue el que estuve usando hasta que conocí
-&lt;strong class="program"&gt;DbGate&lt;/strong&gt;. Estos dos se encuentran disponibles como &lt;em&gt;flatpak&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;En mi trabajo usamos MySQL, y aunque comencé usando &lt;em&gt;MySQL Workbench&lt;/em&gt;,
+este no era muy cómodo y mis compañeros usaban &lt;a class="reference external" href="https://dbeaver.io/"&gt;&lt;strong class="program"&gt;dbeaver&lt;/strong&gt;&lt;/a&gt;.
+Este me pareció interesante y fue el que estuve usando hasta que conocí
+&lt;a class="reference external" href="https://dbgate.org/"&gt;&lt;strong class="program"&gt;dbgate&lt;/strong&gt;&lt;/a&gt;. Estos dos se encuentran disponibles
+como &lt;em&gt;flatpak&lt;/em&gt; para que los instales cómodamente en cualquier distro Linux,
+pero el caso particular de &lt;strong class="program"&gt;dbeaver&lt;/strong&gt; no se visualiza bien en Wayland
+cuando se instala de esta forma, por lo que es preferible la instalación del
+repo oficial.&lt;/p&gt;
+&lt;div class="sd-tab-set docutils"&gt;
+&lt;input checked="checked" id="sd-tab-item-4" name="sd-tab-set-2" type="radio"&gt;
+&lt;label class="sd-tab-label" data-sync-group="tab" data-sync-id="manjaro" for="sd-tab-item-4"&gt;
+Manjaro&lt;/label&gt;&lt;div class="sd-tab-content docutils"&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo&lt;span class="w"&gt; &lt;/span&gt;pamac&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;dbeaver&lt;span class="w"&gt; &lt;/span&gt;--no-confirm
+sudo&lt;span class="w"&gt; &lt;/span&gt;pamac&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;dbeaver-plugin-office&lt;span class="w"&gt; &lt;/span&gt;dbeaver-plugin-svg-format&lt;span class="w"&gt; &lt;/span&gt;--as-deps&lt;span class="w"&gt; &lt;/span&gt;--no-confirm
+pamac&lt;span class="w"&gt; &lt;/span&gt;build&lt;span class="w"&gt; &lt;/span&gt;dbgate-bin
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;input id="sd-tab-item-5" name="sd-tab-set-2" type="radio"&gt;
+&lt;label class="sd-tab-label" data-sync-group="tab" data-sync-id="ubuntu" for="sd-tab-item-5"&gt;
+Flatpak&lt;/label&gt;&lt;div class="sd-tab-content docutils"&gt;
 &lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;flatpak&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;-y&lt;span class="w"&gt; &lt;/span&gt;flathub&lt;span class="w"&gt; &lt;/span&gt;org.dbgate.DbGate&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="c1"&gt;# Verificado&lt;/span&gt;
 flatpak&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;-y&lt;span class="w"&gt; &lt;/span&gt;flathub&lt;span class="w"&gt; &lt;/span&gt;io.dbeaver.DBeaverCommunity&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="c1"&gt;# No verificado&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
 &lt;/div&gt;
 &lt;p&gt;Un punto extra para no usar &lt;strong class="program"&gt;MySQL Workbench&lt;/strong&gt; es usar no solo un
 cliente moderno, sino también con soporte para múltiples bases de datos (no

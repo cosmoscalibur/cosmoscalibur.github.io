@@ -651,13 +651,32 @@ credenciales por defecto de aplicación que se describe
 </section>
 <section id="conectar-a-la-base-de-datos">
 <h2>Conectar a la base de datos<a class="headerlink" href="#conectar-a-la-base-de-datos" title="Link to this heading">#</a></h2>
-<p>En Tributi usamos MySQL, y auqnue comencé usando <strong class="program">MySQL Workbench</strong>,
-este no era muy cómodo y mis compañeros usaban <strong class="program">Dbeaver</strong>. Este me
-pareció interesante y fue el que estuve usando hasta que conocí
-<strong class="program">DbGate</strong>. Estos dos se encuentran disponibles como <em>flatpak</em>.</p>
+<p>En mi trabajo usamos MySQL, y aunque comencé usando <em>MySQL Workbench</em>,
+este no era muy cómodo y mis compañeros usaban <a class="reference external" href="https://dbeaver.io/"><strong class="program">dbeaver</strong></a>.
+Este me pareció interesante y fue el que estuve usando hasta que conocí
+<a class="reference external" href="https://dbgate.org/"><strong class="program">dbgate</strong></a>. Estos dos se encuentran disponibles
+como <em>flatpak</em> para que los instales cómodamente en cualquier distro Linux,
+pero el caso particular de <strong class="program">dbeaver</strong> no se visualiza bien en Wayland
+cuando se instala de esta forma, por lo que es preferible la instalación del
+repo oficial.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-4" name="sd-tab-set-2" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="manjaro" for="sd-tab-item-4">
+Manjaro</label><div class="sd-tab-content docutils">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>pamac<span class="w"> </span>install<span class="w"> </span>dbeaver<span class="w"> </span>--no-confirm
+sudo<span class="w"> </span>pamac<span class="w"> </span>install<span class="w"> </span>dbeaver-plugin-office<span class="w"> </span>dbeaver-plugin-svg-format<span class="w"> </span>--as-deps<span class="w"> </span>--no-confirm
+pamac<span class="w"> </span>build<span class="w"> </span>dbgate-bin
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-5" name="sd-tab-set-2" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="ubuntu" for="sd-tab-item-5">
+Flatpak</label><div class="sd-tab-content docutils">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>flatpak<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>flathub<span class="w"> </span>org.dbgate.DbGate<span class="w">  </span><span class="c1"># Verificado</span>
 flatpak<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>flathub<span class="w"> </span>io.dbeaver.DBeaverCommunity<span class="w">  </span><span class="c1"># No verificado</span>
 </pre></div>
+</div>
+</div>
 </div>
 <p>Un punto extra para no usar <strong class="program">MySQL Workbench</strong> es usar no solo un
 cliente moderno, sino también con soporte para múltiples bases de datos (no

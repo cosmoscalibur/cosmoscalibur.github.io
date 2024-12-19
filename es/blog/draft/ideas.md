@@ -2,11 +2,9 @@ ngrok
 
 
 
-# https://ollama.com/download
-
-# https://ollama.com/library/llama3.1:8b
-
-# https://ollama.com/blog/continue-code-assistant
+https://ollama.com/download
+https://ollama.com/library/llama3.1:8b
+https://ollama.com/blog/continue-code-assistant
 
 curl -fsSL https://ollama.com/install.sh | sh # Puede tomar un buen rato 14m30s
 ollama run llama3.1:8b ollama run llama3.2:3b #>>> The Ollama API is now
@@ -17,10 +15,7 @@ command line. #>>> AMD GPU ready.
 ```
 sudo dd bs=4M if=manjaro-kde-24.1.2-241104-linux610.iso of=/dev/sda status=progress oflang=sync
 ```
-
 (sin número, solo letra) lsblk/lsusb - mount
-
-Plasma Settings> Accessibility> Shake Cursor.
 
 - script oficial (con opciones de actualización): rust, uv, zed, ollama
 - PIP/UV/Pixi (uv tool install): ruff, python-lsp-analyzer, sphinx, mdformat

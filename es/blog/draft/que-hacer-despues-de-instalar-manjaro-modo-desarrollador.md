@@ -11,6 +11,8 @@ Zed
 curl -f https://zed.dev/install.sh | sh
 
 
+zip
+
 Development
 
 cargo install --locked difftastic just hyperfine

@@ -121,15 +121,34 @@ credenciales por defecto de aplicación que se describe
 
 ## Conectar a la base de datos
 
-En Tributi usamos MySQL, y auqnue comencé usando {program}`MySQL Workbench`,
-este no era muy cómodo y mis compañeros usaban {program}`Dbeaver`. Este me
-pareció interesante y fue el que estuve usando hasta que conocí
-{program}`DbGate`. Estos dos se encuentran disponibles como *flatpak*.
+En mi trabajo usamos MySQL, y aunque comencé usando *MySQL Workbench*,
+este no era muy cómodo y mis compañeros usaban [{program}`dbeaver`](https://dbeaver.io/).
+Este me pareció interesante y fue el que estuve usando hasta que conocí
+[{program}`dbgate`](https://dbgate.org/). Estos dos se encuentran disponibles
+como *flatpak* para que los instales cómodamente en cualquier distro Linux,
+pero el caso particular de {program}`dbeaver` no se visualiza bien en Wayland
+cuando se instala de esta forma, por lo que es preferible la instalación del
+repo oficial.
+
+::::{tab-set}
+:::{tab-item} Manjaro
+:sync: manjaro
+
+```{code} bash
+sudo pamac install dbeaver --no-confirm
+sudo pamac install dbeaver-plugin-office dbeaver-plugin-svg-format --as-deps --no-confirm
+pamac build dbgate-bin
+```
+:::
+:::{tab-item} Flatpak
+:sync: ubuntu
 
 ```{code} bash
 flatpak install -y flathub org.dbgate.DbGate  # Verificado
 flatpak install -y flathub io.dbeaver.DBeaverCommunity  # No verificado
 ```
+:::
+::::
 
 Un punto extra para no usar {program}`MySQL Workbench` es usar no solo un
 cliente moderno, sino también con soporte para múltiples bases de datos (no
