@@ -12,6 +12,16 @@ manejo de la terminal Linux hay varios de esos cambios. Uno de esos es el
 y estoy usando {program}`starship`. Sin embargo, hay detalles no documentados
 sobre como habilitarlo en Manjaro con {program}`zsh`, que aquí les cuento.
 
+:::{figure} /images/configurar-starship-en-manjaro-y-zsh/indicador-starship.png
+   :alt: Apariencia visual de mensajes del indicador starship en la terminal para git, python y batería baja.
+   :align: center
+   :width: 500px
+   :height: 250px
+
+   Apariencia del indicador *Starship* en un directorio *git* con ambiente
+   Python, y con indicación de batería baja.
+:::
+
 Para empezar, primero, un indicador de terminal es un programa que genera los
 textos asociados a cada ejecución de comandos en la terminal y lo que hay
 antes del cursor. Un buen indicador de terminal nos aporta información útil
