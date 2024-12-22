@@ -60,6 +60,8 @@ git config --global user.email "cosmoscalibur@gmail.com"
 git config --global user.name "Edward Villegas-Pulgarin"
 ```
 
+git config --global core.editor helix
+
 A la hora de recuperar cambios de un repositorio remoto, necesitamos definir
 una estrategia de manejo para nuestros cambios locales. Una forma de reducir
 conflictos puede ser mover estos cambios sobre los cambios remotos, manteniendo

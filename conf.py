@@ -1,5 +1,7 @@
 ## --- Ablog ---
-
+import sys
+from pathlib import Path
+sys.path.append(str(Path('_ext').resolve()))
 # Blog
 blog_path = 'blog'
 blog_post_pattern = '*/blog/*/*'
@@ -53,12 +55,17 @@ extensions = [
     "sphinxext.opengraph",
     "sphinxcontrib.youtube",
     'ablog',
-    'sphinx_sitemap',
+    'ed_sitemap',
     'sphinx_copybutton',
 ]
 
 sitemap_url_scheme = '{link}'
 html_baseurl = 'https://www.cosmoscalibur.com/'
+sitemap_locales = ['es', 'en']
+sitemap_excludes = [
+    "search/",
+    "genindex/",
+]
 
 # -- MyST options ------------------------------------------------------------
 
