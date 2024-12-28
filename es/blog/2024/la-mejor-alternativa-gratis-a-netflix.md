@@ -32,24 +32,20 @@ los contenidos en lista, el avance del contenido, sino también las extensiones
 instaladas, y esto es clave para luego poder usar Stremio con la extensión para
 *torrents* en el móvil o en el televisor.
 
+::::{tab-set}
+:::{tab-item} Linux
 En Linux, puedes instalar el paquete de forma cómoda con la versión oficial
 dispuesta como flatpak.
 
-Si no tienes instalado flatpak, en Debian/Ubuntu procedemos así:
-
-:::{code} bash
-sudo apt install -y flatpak
-flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-:::
-
-Ahora, podemos instalar Stremio.
-
-:::{code} bash
+```{code} bash
 flatpak install -y flathub com.stremio.Stremio
+```
 :::
-
+:::{tab-item} Windows
 En [Windows](https://www.stremio.com/downloads), disponemos el tradicional
 `.exe` para la instalación.
+:::
+::::
 
 ### Torrentio
 

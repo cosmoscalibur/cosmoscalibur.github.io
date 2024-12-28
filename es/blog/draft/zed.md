@@ -3,7 +3,7 @@
   "assistant": {
     "default_model": {
       "provider": "ollama",
-      "model": "llama3.2:3b"
+      "model": "llama3.2:1b"
     },
     "version": "2"
   },

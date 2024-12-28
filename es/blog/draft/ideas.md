@@ -6,8 +6,8 @@ https://ollama.com/download
 https://ollama.com/library/llama3.1:8b
 https://ollama.com/blog/continue-code-assistant
 
-curl -fsSL https://ollama.com/install.sh | sh # Puede tomar un buen rato 14m30s
-ollama run llama3.1:8b ollama run llama3.2:3b #>>> The Ollama API is now
+curl -fsSL https://ollama.com/install.sh | sh
+ollama run llama3.2:3b #>>> The Ollama API is now
 available at 127.0.0.1:11434. #>>> Install complete. Run "ollama" from the
 command line. #>>> AMD GPU ready.
 

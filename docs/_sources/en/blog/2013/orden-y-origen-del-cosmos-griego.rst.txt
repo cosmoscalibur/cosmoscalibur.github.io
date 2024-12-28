@@ -1,4 +1,4 @@
-:date: 2024-05-27
+:date: 2013-06-18
 :tags: greek cosmogony, greek mythology, archaeoastronomy, astronomy history
 :category: science
 :language: en
@@ -55,7 +55,7 @@ called ether, above which the celestial bodies are found.
 
 Aristarchus introduces the first mention of the sun in the center, in which, following the line of
 thought of Philolaus (the Pythagorean who proposes the first non-geocentric model with a central fire),
-he identified the central fire with the sun and assigned the correct positions to the planets. 
+he identified the central fire with the sun and assigned the correct positions to the planets.
 he Earth rotates and orbits the sun. The sphere of fixed stars is so distant that it is impossible
 to detect parallax.
 
