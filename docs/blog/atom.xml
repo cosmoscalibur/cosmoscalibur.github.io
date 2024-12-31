@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="es">
   <id>https://www.cosmoscalibur.com/</id>
   <title>Cosmoscalibur</title>
-  <updated>2024-12-31T05:06:05.386073+00:00</updated>
+  <updated>2024-12-31T19:07:36.647230+00:00</updated>
   <link href="https://www.cosmoscalibur.com/"/>
   <link href="https://www.cosmoscalibur.com/blog/atom.xml" rel="self"/>
   <generator uri="https://ablog.readthedocs.io/" version="0.11.12">ABlog</generator>
@@ -92,7 +92,7 @@ puede ser la causa (considerando la versión del controlador NVIDIA).&lt;/p&gt;
 &lt;section id="saber-la-version-del-controlador-nvidia"&gt;
 &lt;h2&gt;Saber la versión del controlador NVIDIA&lt;/h2&gt;
 &lt;p&gt;Si no eres consciente de la versión del controlador, puedes usar tu
-&lt;a class="reference internal" href="../es/blog/2024/que-hacer-despues-de-instalar-manjaro/#pamac-commands"&gt;&lt;span class="std std-ref"&gt;gestor de paquetes para consultarlo&lt;/span&gt;&lt;/a&gt;, validando la versión
+&lt;a class="reference internal" href="../en/blog/2024/que-hacer-despues-de-instalar-manjaro/#pamac-commands"&gt;&lt;span class="std std-ref"&gt;gestor de paquetes para consultarlo&lt;/span&gt;&lt;/a&gt;, validando la versión
 del paquete de &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;nvidia-utils&lt;/span&gt;&lt;/code&gt;. En mi caso, sería &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;pamac&lt;/span&gt; &lt;span class="pre"&gt;info&lt;/span&gt; &lt;span class="pre"&gt;nvidia-utils&lt;/span&gt;&lt;/code&gt; o
 en derivados de Ubuntu, &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;apt&lt;/span&gt; &lt;span class="pre"&gt;show&lt;/span&gt; &lt;span class="pre"&gt;nvidia-utils&lt;/span&gt;&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;También puedes ejecutar &lt;strong class="program"&gt;nvidia-smi&lt;/strong&gt;, y lo verás en la primera fila,
@@ -1088,6 +1088,490 @@ visualización 3D del universo, Gaia Sky.&lt;/p&gt;
     <summary>Hace poco decidí pasarme a Manjaro KDE (24.1) y estoy muy contento del cambio.
 Así que con motivo a esto, les cuento sobre las cosas por hacer después de
 completar la instalación.</summary>
+    <category term="arch" label="arch"/>
+    <category term="flatpak" label="flatpak"/>
+    <category term="kde" label="kde"/>
+    <category term="kubuntu" label="kubuntu"/>
+    <category term="manjaro" label="manjaro"/>
+    <category term="pamac" label="pamac"/>
+    <category term="ubuntu" label="ubuntu"/>
+    <published>2024-12-05T00:00:00-05:00</published>
+  </entry>
+  <entry>
+    <id>https://www.cosmoscalibur.com/en/blog/2024/que-hacer-despues-de-instalar-manjaro/</id>
+    <title>What to do after installing Manjaro KDE 24?</title>
+    <updated>2024-12-05T00:00:00-05:00</updated>
+    <author>
+      <name>Edward Villegas-Pulgarin</name>
+    </author>
+    <content type="html">&lt;section class="tex2jax_ignore mathjax_ignore" id="what-to-do-after-installing-manjaro-kde-24"&gt;
+
+&lt;p&gt;I recently decided to switch to Manjaro KDE (24.1) and I’m very happy with the
+change. So, taking this opportunity, I’ll share some things to do after
+completing the installation.&lt;/p&gt;
+&lt;p&gt;Since I’m coming from a transition from Kubuntu (24.10) and Xubuntu (22.10),
+I’ll draw parallels with these steps, so it can also serve as a list of “what to
+do after installing Kubuntu 24.10”.&lt;/p&gt;
+&lt;p&gt;Regarding many popular and traditional GUI applications, I don’t see a problem
+with using Flatpak environments if the native packages represent a problem or
+potential problem. For example, OBS doesn’t work if I install it natively, but
+it does in Flatpak. Moreover, if it’s available as a verified Flatpak, I prefer
+this over a package available in the AUR. I discuss this a bit more in
+&lt;a class="reference internal" href="../en/blog/2024/distrohopping-cambiar-de-distribución-linux-y-no-morir-en-el-intento/"&gt;&lt;span class="std std-doc"&gt;“Distrohopping”: Switching Linux Distributions Without Losing Your Mind&lt;/span&gt;&lt;/a&gt;,
+as this allows me to adapt more quickly and compensate for some stability
+issues.&lt;/p&gt;
+&lt;section id="review-the-release-announcements"&gt;
+&lt;h2&gt;Review the release announcements&lt;/h2&gt;
+&lt;p&gt;It’s important to review the
+&lt;a class="reference external" href="https://forum.manjaro.org/t/stable-update-2024-10-10-kernels-pacman-7-0-kde-frameworks-6-6-virtualbox-7-1-2-mesa/169192/2"&gt;release announcements&lt;/a&gt;,
+especially to be aware of potential conflicts and errors that we might
+encounter, as well as the options for handling the errors. For example, in the
+24.1 release version that I had when installing, I encountered the following
+documented errors:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://forum.manjaro.org/t/kde-dont-shut-down-anymore-since-last-update/168818/2"&gt;Manjaro KDE doesn’t shut down and the screen is left black with the pointer&lt;/a&gt;:
+The solution to this case is to go to “Desktop Session” and in the “Restore
+session” options, select “Start with an empty session”.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://bbs.archlinux.org/viewtopic.php?pid=2180537#p2180537"&gt;After suspension the system freezes&lt;/a&gt;:
+This happened to me, but after the general update it didn’t happen again, so I
+didn’t have a chance to test the solution.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;An extra detail, during the installation if you start with the NVIDIA
+proprietary drivers, your screen may turn gray. In my case, it was enough to
+wait a little longer for the process to resume normality (compared to what I
+observed when installing it in a VM and on the PC that doesn’t have a dedicated
+graphics card).&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="update-repository-mirrors"&gt;
+&lt;h2&gt;Update repository mirrors&lt;/h2&gt;
+&lt;p&gt;This step is useful for ensuring that you download packages from the fastest and
+most up-to-date servers. In my case, the mirror I was using started to fail, and
+this process allows you to remove those that are no longer functional.&lt;/p&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo&lt;span class="w"&gt; &lt;/span&gt;pacman-mirrors&lt;span class="w"&gt; &lt;/span&gt;--fasttrack
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;This step is not native to Ubuntu and presents a high level of complexity for
+the target audience of the distribution.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="update-the-system"&gt;
+&lt;h2&gt;Update the system&lt;/h2&gt;
+&lt;p&gt;Our package management tool on Manjaro is &lt;strong class="command"&gt;pamac&lt;/strong&gt;. It’s an easy-to-use
+tool that doesn’t require extra effort to memorize the single-letter argument
+options of &lt;strong class="command"&gt;pacman&lt;/strong&gt;, and shares similarities with &lt;strong class="command"&gt;apt&lt;/strong&gt; from
+Ubuntu.&lt;/p&gt;
+&lt;p&gt;We use &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;-a&lt;/span&gt;&lt;/code&gt; to indicate that we also consider the AUR (Arch User Repository)
+source. This instruction updates both the package sources (official repository
+and AUR), not just the packages. The AUR is equivalent to the PPA (Personal
+Package Archive) on Ubuntu, but in a unified form, unlike the segmented approach
+by Ubuntu maintainers, which can lead to many more conflicts and configuration
+files.&lt;/p&gt;
+&lt;p&gt;In general, for a rolling release distribution like Manjaro and its derivatives
+(Arch), it’s a good practice to frequently update the system to avoid
+accumulated updates conflicts.&lt;/p&gt;
+&lt;div class="sd-tab-set docutils"&gt;
+&lt;input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio"&gt;
+&lt;label class="sd-tab-label" data-sync-group="tab" data-sync-id="manjaro" for="sd-tab-item-0"&gt;
+Manjaro&lt;/label&gt;&lt;div class="sd-tab-content docutils"&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;pamac&lt;span class="w"&gt; &lt;/span&gt;upgrade&lt;span class="w"&gt; &lt;/span&gt;-a
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Also, you can use &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;update&lt;/span&gt;&lt;/code&gt; instead of &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;upgrade&lt;/span&gt;&lt;/code&gt;. This updates the entire
+distribution and not just the installed packages.&lt;/p&gt;
+&lt;/div&gt;
+&lt;input id="sd-tab-item-1" name="sd-tab-set-0" type="radio"&gt;
+&lt;label class="sd-tab-label" data-sync-group="tab" data-sync-id="ubuntu" for="sd-tab-item-1"&gt;
+Ubuntu&lt;/label&gt;&lt;div class="sd-tab-content docutils"&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;apt&lt;span class="w"&gt; &lt;/span&gt;update&lt;span class="w"&gt; &lt;/span&gt;-q&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;apt&lt;span class="w"&gt; &lt;/span&gt;dist-upgrade&lt;span class="w"&gt; &lt;/span&gt;-y
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;The first step updates the repository indexes (including PPAs) and the second
+step updates the installed packages themselves, including system changes that
+may not necessarily be related to the installed packages.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;For general package management from the repository, we are interested in knowing
+how to:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;Install packages from the official repository,&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Install packages from the Arch User Repository (AUR),&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Remove packages.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="sd-tab-set docutils"&gt;
+&lt;input checked="checked" id="sd-tab-item-2" name="sd-tab-set-1" type="radio"&gt;
+&lt;label class="sd-tab-label" data-sync-group="tab" data-sync-id="manjaro" for="sd-tab-item-2"&gt;
+Manjaro&lt;/label&gt;&lt;div class="sd-tab-content docutils"&gt;
+&lt;div class="highlight-bash notranslate" id="pamac-commands"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo&lt;span class="w"&gt; &lt;/span&gt;pamac&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;PACKAGE&lt;span class="w"&gt; &lt;/span&gt;--no-confirm&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="c1"&gt;# Official Repository&lt;/span&gt;
+pamac&lt;span class="w"&gt; &lt;/span&gt;build&lt;span class="w"&gt; &lt;/span&gt;PACKAGE_AUR&lt;span class="w"&gt; &lt;/span&gt;--no-confirm&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="c1"&gt;# AUR&lt;/span&gt;
+sudo&lt;span class="w"&gt; &lt;/span&gt;pamac&lt;span class="w"&gt; &lt;/span&gt;remove&lt;span class="w"&gt; &lt;/span&gt;PACKAGE&lt;span class="w"&gt; &lt;/span&gt;--no-confirm
+pamac&lt;span class="w"&gt; &lt;/span&gt;search&lt;span class="w"&gt; &lt;/span&gt;-a&lt;span class="w"&gt; &lt;/span&gt;KEY
+pamac&lt;span class="w"&gt; &lt;/span&gt;info&lt;span class="w"&gt; &lt;/span&gt;PACKAGE
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;There’s an interesting variant of package installation using the &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;--as-deps&lt;/span&gt;&lt;/code&gt;
+flag to explicitly mark installed packages as dependencies rather than explicit
+installations. This means that when packages are removed that were previously
+installed for us, they will be marked as orphaned.&lt;/p&gt;
+&lt;p&gt;While it might seem “irresponsible” to use the &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;--no-confirm&lt;/span&gt;&lt;/code&gt; option, since it’s
+only used on the first installation of packages that have been validated
+beforehand, we’re fine with it. However, this must be done with caution and in
+some cases, it may require validation and even cancellation of the transaction.&lt;/p&gt;
+&lt;p&gt;If you plan to update or add packages after your initial install, it might be a
+good idea to do so interactively as a check and then leave them for your
+routines without confirmation. I recommend not using this option at all and make
+your own decisions.&lt;/p&gt;
+&lt;p&gt;When installing from the AUR, my recommendation is always to proceed without
+&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;sudo&lt;/span&gt;&lt;/code&gt; unless we have context that doesn’t require a GPG key. Otherwise, this
+will be stored at an administrative level, causing errors of “&lt;em&gt;broken pipe&lt;/em&gt;”,
+which happens because the key needs to be stored in a common user. For example,
+this happens with services like Dropbox and Spotify.&lt;/p&gt;
+&lt;/div&gt;
+&lt;input id="sd-tab-item-3" name="sd-tab-set-1" type="radio"&gt;
+&lt;label class="sd-tab-label" data-sync-group="tab" data-sync-id="ubuntu" for="sd-tab-item-3"&gt;
+Ubuntu&lt;/label&gt;&lt;div class="sd-tab-content docutils"&gt;
+&lt;div class="highlight-default notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;apt&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt; &lt;span class="n"&gt;PACKAGE&lt;/span&gt;
+&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;dpkg&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="n"&gt;PACKAGE&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;deb&lt;/span&gt;  &lt;span class="c1"&gt;# After manually download&lt;/span&gt;
+&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;apt&lt;/span&gt; &lt;span class="n"&gt;remove&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt; &lt;span class="n"&gt;PACKAGE&lt;/span&gt;
+&lt;span class="n"&gt;apt&lt;/span&gt; &lt;span class="n"&gt;search&lt;/span&gt; &lt;span class="n"&gt;KEY&lt;/span&gt;
+&lt;span class="n"&gt;apt&lt;/span&gt; &lt;span class="n"&gt;show&lt;/span&gt; &lt;span class="n"&gt;PACKAGE&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;On Ubuntu, installing from a PPA (Personal Package Archive) is similar, but it
+requires prior setup to add the PPA source.&lt;/p&gt;
+&lt;p&gt;Occasionally, when installing from a &lt;em&gt;DEB&lt;/em&gt; package or from a PPA, common issues
+arise where dependencies aren’t met or aren’t resolved correctly. In such cases,
+&lt;strong class="command"&gt;sudo apt install -f&lt;/strong&gt; needs to be applied at the end to fix these
+problems.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/section&gt;
+&lt;section id="installs-dependencies-for-package-compilation"&gt;
+&lt;h2&gt;Installs dependencies for package compilation&lt;/h2&gt;
+&lt;p&gt;When using different source repositories other than the official repository,
+you’ll need to have a set of additional dependencies that help facilitate this
+process. This would be equivalent to the &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;build-essential&lt;/span&gt;&lt;/code&gt; package on Ubuntu.&lt;/p&gt;
+&lt;div class="sd-tab-set docutils"&gt;
+&lt;input checked="checked" id="sd-tab-item-4" name="sd-tab-set-2" type="radio"&gt;
+&lt;label class="sd-tab-label" data-sync-group="tab" data-sync-id="manjaro" for="sd-tab-item-4"&gt;
+Manjaro&lt;/label&gt;&lt;div class="sd-tab-content docutils"&gt;
+&lt;div class="highlight-default notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;pamac&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;base&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;devel&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;no&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;confirm&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;input id="sd-tab-item-5" name="sd-tab-set-2" type="radio"&gt;
+&lt;label class="sd-tab-label" data-sync-group="tab" data-sync-id="ubuntu" for="sd-tab-item-5"&gt;
+Ubuntu&lt;/label&gt;&lt;div class="sd-tab-content docutils"&gt;
+&lt;div class="highlight-default notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;apt&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt; &lt;span class="n"&gt;build&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;essential&lt;/span&gt; &lt;span class="n"&gt;curl&lt;/span&gt; &lt;span class="n"&gt;git&lt;/span&gt; &lt;span class="n"&gt;ca&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;certificates&lt;/span&gt; &lt;span class="n"&gt;pkg&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;config&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;It’s worth noting that the additional packages mentioned for Ubuntu are
+installed by default in Manjaro when used directly with &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;pamac&lt;/span&gt;&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;As an alternative to package installation, Manjaro comes with Flatpak
+preconfigured, while Ubuntu also comes with Snap preconfigured.&lt;/p&gt;
+&lt;div class="sd-tab-set docutils"&gt;
+&lt;input checked="checked" id="sd-tab-item-6" name="sd-tab-set-3" type="radio"&gt;
+&lt;label class="sd-tab-label" data-sync-group="tab" data-sync-id="manjaro" for="sd-tab-item-6"&gt;
+Manjaro&lt;/label&gt;&lt;div class="sd-tab-content docutils"&gt;
+&lt;p&gt;Flatpak is ready to use.&lt;/p&gt;
+&lt;/div&gt;
+&lt;input id="sd-tab-item-7" name="sd-tab-set-3" type="radio"&gt;
+&lt;label class="sd-tab-label" data-sync-group="tab" data-sync-id="ubuntu" for="sd-tab-item-7"&gt;
+Ubuntu&lt;/label&gt;&lt;div class="sd-tab-content docutils"&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo&lt;span class="w"&gt; &lt;/span&gt;apt&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;-y&lt;span class="w"&gt; &lt;/span&gt;flatpak
+flatpak&lt;span class="w"&gt; &lt;/span&gt;remote-add&lt;span class="w"&gt; &lt;/span&gt;--if-not-exists&lt;span class="w"&gt; &lt;/span&gt;flathub&lt;span class="w"&gt; &lt;/span&gt;https://flathub.org/repo/flathub.flatpakrepo
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/section&gt;
+&lt;section id="installs-a-stable-kernel"&gt;
+&lt;h2&gt;Installs a stable kernel&lt;/h2&gt;
+&lt;p&gt;Use the latest available kernel in Manjaro, but it’s recommended to install a
+stable kernel (currently 6.6, but possibly 6.12 as well) at this time. This will
+be necessary if you need to upgrade your kernel and one of them breaks the
+system, requiring you to use an older one. Keep in mind that, as it happens with
+Manjaro, unstable kernel versions are removed from the repositories, so they
+can’t be reinstalled, leaving another risk.&lt;/p&gt;
+&lt;p&gt;You can install a stable kernel using the Manjaro configuration manager with the
+“Kernel” option.&lt;/p&gt;
+&lt;p&gt;Remember to edit the &lt;code class="file docutils literal notranslate"&gt;&lt;span class="pre"&gt;/etc/default/grub&lt;/span&gt;&lt;/code&gt; file to change the style and time
+out lines. The most important thing is the &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;menu&lt;/span&gt;&lt;/code&gt; option in the style variable.&lt;/p&gt;
+&lt;div class="highlight-text notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;GRUB_TIMEOUT=5
+
+GRUB_TIMEOUT_STYLE=menu
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;This way, we will have GRUB visible at boot and be able to use advanced options
+to change kernels.&lt;/p&gt;
+&lt;p&gt;On Ubuntu, due to its stability, as the kernel is tightly tied to the
+distribution version, this is not a preventive step to consider, and it would
+only be useful if you require specific hardware support or a very particular
+feature.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="protect-your-eyes"&gt;
+&lt;h2&gt;Protect your eyes&lt;/h2&gt;
+&lt;p&gt;Select a dark theme in the system. You can search for the menu option “Colors”
+and choose between “Breath Dark” or “Breeze Dark”. I prefer the first one. This
+selection has an impact on how long-term applications take into account the
+system theme. You can also search for the “Plasma Styles” option in the menu,
+and use “Breath”.&lt;/p&gt;
+&lt;p&gt;If you’re using KDE Plasma like me, you can use the “Night Color” mode. You can
+adjust the location manually and configure the color temperature that you think
+is suitable. In my case, I use 4500K for daytime light and 3700K for nighttime.&lt;/p&gt;
+&lt;p&gt;If you don’t use KDE, you can install
+&lt;a class="reference external" href="https://github.com/jonls/redshift"&gt;RedShift&lt;/a&gt;, but keep in mind that this tool
+does not support Wayland.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="enable-numeric-keypad-at-startup"&gt;
+&lt;h2&gt;Enable numeric keypad at startup&lt;/h2&gt;
+&lt;p&gt;If you want the numeric keypad to be active from boot, we need to go to the
+numeric lock setting of hardware keyboard and select ‘Activate’. You can quickly
+access this option by searching for “Keyboard” in the menu.&lt;/p&gt;
+&lt;p&gt;This is environment-dependent, so if you don’t use KDE Plasma, I recommend
+checking the documentation of
+&lt;a class="reference external" href="https://wiki.archlinux.org/title/Activating_numlock_on_bootup"&gt;Arch: Activating numlock on bootup&lt;/a&gt;
+directly.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="prepare-your-documents"&gt;
+&lt;h2&gt;Prepare your documents&lt;/h2&gt;
+&lt;p&gt;During Manjaro installation, we have the option to choose between LibreOffice
+and OnlyOffice as an office suite. My preference is for
+&lt;a class="reference external" href="https://wiki.archlinux.org/title/LibreOffice#Installation"&gt;LibreOffice&lt;/a&gt;, but
+since the installed package is not the latest version, I skip it and install it
+now.&lt;/p&gt;
+&lt;p&gt;Additionally, there are times when we need a compatible alternative with Office,
+which occurs in my case due to work-related reasons with Excel, and I need to
+use WPS. There were two issues that affected me and was useful the Arch
+documentation on
+&lt;a class="reference external" href="https://wiki.archlinux.org/title/WPS_Office#Troubleshooting"&gt;WPS Office: Troubleshooting&lt;/a&gt;.&lt;/p&gt;
+&lt;div class="sd-tab-set docutils"&gt;
+&lt;input checked="checked" id="sd-tab-item-8" name="sd-tab-set-4" type="radio"&gt;
+&lt;label class="sd-tab-label" data-sync-group="tab" data-sync-id="manjaro" for="sd-tab-item-8"&gt;
+Manjaro&lt;/label&gt;&lt;div class="sd-tab-content docutils"&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo&lt;span class="w"&gt; &lt;/span&gt;pamac&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;libreoffice-fresh&lt;span class="w"&gt; &lt;/span&gt;--no-confirm
+sudo&lt;span class="w"&gt; &lt;/span&gt;pamac&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;--as-deps&lt;span class="w"&gt; &lt;/span&gt;libreoffice-extension-texmaths&lt;span class="w"&gt; &lt;/span&gt;--no-confirm
+pamac&lt;span class="w"&gt; &lt;/span&gt;build&lt;span class="w"&gt; &lt;/span&gt;wps-office-bin&lt;span class="w"&gt; &lt;/span&gt;ttf-wps-fonts&lt;span class="w"&gt; &lt;/span&gt;libtiff5&lt;span class="w"&gt; &lt;/span&gt;--no-confirm
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;input id="sd-tab-item-9" name="sd-tab-set-4" type="radio"&gt;
+&lt;label class="sd-tab-label" data-sync-group="tab" data-sync-id="ubuntu" for="sd-tab-item-9"&gt;
+Ubuntu&lt;/label&gt;&lt;div class="sd-tab-content docutils"&gt;
+&lt;p&gt;In the case of Ubuntu, this comes with LibreOffice pre-installed. And to install
+WPS, you will need to download the manual &lt;em&gt;DEB&lt;/em&gt; file from its
+&lt;a class="reference external" href="https://es.wps.com/office/linux/"&gt;website&lt;/a&gt; and install it using
+&lt;strong class="command"&gt;dpkg&lt;/strong&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="admonition attention"&gt;
+&lt;p class="admonition-title"&gt;Atención&lt;/p&gt;
+&lt;p&gt;With a dark theme, LibreOffice icons may not have good visibility by default.
+To fix this, go to “Tools &amp;gt; Options” and in the “View” section, evaluate which
+option suits you best. In my case, I chose “Breeze (SVG + Dark)”&lt;/p&gt;
+&lt;/div&gt;
+&lt;/section&gt;
+&lt;section id="password-storage"&gt;
+&lt;h2&gt;Password storage&lt;/h2&gt;
+&lt;p&gt;When applications start asking to create a wallet (&lt;em&gt;kdewallet&lt;/em&gt;), we will accept
+it with &lt;em&gt;blowfish&lt;/em&gt;. Additionally, if the password is the same as our login, this
+will be automatically activated.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="instala-google-chrome"&gt;
+&lt;h2&gt;Instala Google Chrome&lt;/h2&gt;
+&lt;p&gt;Both in Manjaro and Ubuntu, we will have Firefox as our default browser, but
+it’s essential to note that Google Chrome becomes necessary many times.&lt;/p&gt;
+&lt;div class="sd-tab-set docutils"&gt;
+&lt;input checked="checked" id="sd-tab-item-10" name="sd-tab-set-5" type="radio"&gt;
+&lt;label class="sd-tab-label" data-sync-group="tab" data-sync-id="manjaro" for="sd-tab-item-10"&gt;
+Manjaro&lt;/label&gt;&lt;div class="sd-tab-content docutils"&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;pamac&lt;span class="w"&gt; &lt;/span&gt;build&lt;span class="w"&gt; &lt;/span&gt;google-chrome&lt;span class="w"&gt; &lt;/span&gt;--no-confirm
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;input id="sd-tab-item-11" name="sd-tab-set-5" type="radio"&gt;
+&lt;label class="sd-tab-label" data-sync-group="tab" data-sync-id="ubuntu" for="sd-tab-item-11"&gt;
+Ubuntu&lt;/label&gt;&lt;div class="sd-tab-content docutils"&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;wget&lt;span class="w"&gt; &lt;/span&gt;https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+sudo&lt;span class="w"&gt; &lt;/span&gt;dpkg&lt;span class="w"&gt; &lt;/span&gt;-i&lt;span class="w"&gt; &lt;/span&gt;google-chrome-stable_current_amd64.deb
+sudo&lt;span class="w"&gt; &lt;/span&gt;apt&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;-f
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;This will leave configured the required PPA (Personal Package Archive) for
+updates.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Remember to synchronize your account in both browsers.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="synchronize-your-files"&gt;
+&lt;h2&gt;Synchronize your files&lt;/h2&gt;
+&lt;p&gt;There are multiple options for file synchronization, but undoubtedly
+&lt;a class="reference external" href="https://www.dropbox.com/referrals/AABBG1MmL-hedPRRiOrFIiDH6UePOg71THw?src=global9"&gt;Dropbox&lt;/a&gt;
+remains a common service among many of us as it offers a free hosted alternative
+with Linux desktop client support.&lt;/p&gt;
+&lt;div class="sd-tab-set docutils"&gt;
+&lt;input checked="checked" id="sd-tab-item-12" name="sd-tab-set-6" type="radio"&gt;
+&lt;label class="sd-tab-label" data-sync-group="tab" data-sync-id="manjaro" for="sd-tab-item-12"&gt;
+Manjaro&lt;/label&gt;&lt;div class="sd-tab-content docutils"&gt;
+&lt;div class="highlight-default notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;pamac&lt;/span&gt; &lt;span class="n"&gt;build&lt;/span&gt; &lt;span class="n"&gt;dropbox&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;no&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;confirm&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;input id="sd-tab-item-13" name="sd-tab-set-6" type="radio"&gt;
+&lt;label class="sd-tab-label" data-sync-group="tab" data-sync-id="ubuntu" for="sd-tab-item-13"&gt;
+Ubuntu&lt;/label&gt;&lt;div class="sd-tab-content docutils"&gt;
+&lt;div class="highlight-default notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;wget -O https://www.dropbox.com/download?dl=packages/ubuntu/dropbox_2024.04.17_amd64.deb
+sudo dpkg -i dropbox_2024.04.17_amd64.deb
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;This will leave configured the required PPA (Personal Package Archive) for
+updates.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;After installation, start using it. At this point, we go to the session manager
+of Dropbox and can link our account.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="ready-to-chat"&gt;
+&lt;h2&gt;Ready to chat&lt;/h2&gt;
+&lt;p&gt;We don’t just chat on our mobile devices, so it’s good that we have options on
+our PC. I use Telegram for personal reasons, and Discord and Slack for
+work-related purposes.&lt;/p&gt;
+&lt;div class="sd-tab-set docutils"&gt;
+&lt;input checked="checked" id="sd-tab-item-14" name="sd-tab-set-7" type="radio"&gt;
+&lt;label class="sd-tab-label" data-sync-group="tab" data-sync-id="manjaro" for="sd-tab-item-14"&gt;
+Manjaro&lt;/label&gt;&lt;div class="sd-tab-content docutils"&gt;
+&lt;div class="highlight-default notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;pamac&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;telegram&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;desktop&lt;/span&gt; &lt;span class="n"&gt;discord&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;no&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;confirm&lt;/span&gt;
+&lt;span class="n"&gt;pamac&lt;/span&gt; &lt;span class="n"&gt;build&lt;/span&gt; &lt;span class="n"&gt;slack&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;desktop&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;no&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;confirm&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;input id="sd-tab-item-15" name="sd-tab-set-7" type="radio"&gt;
+&lt;label class="sd-tab-label" data-sync-group="tab" data-sync-id="ubuntu" for="sd-tab-item-15"&gt;
+Ubuntu&lt;/label&gt;&lt;div class="sd-tab-content docutils"&gt;
+&lt;div class="highlight-default notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;flatpak&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;flathub&lt;/span&gt; &lt;span class="n"&gt;org&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;telegram&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;desktop&lt;/span&gt;
+&lt;span class="n"&gt;flatpak&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;flathub&lt;/span&gt; &lt;span class="n"&gt;com&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;discordapp&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Discord&lt;/span&gt;
+&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;snap&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;slack&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/section&gt;
+&lt;section id="take-screenshots"&gt;
+&lt;h2&gt;Take screenshots&lt;/h2&gt;
+&lt;p&gt;KDE has a very good and sophisticated screenshot tool (&lt;em&gt;Spectacle&lt;/em&gt;), but I find
+that it also overflows for quick use. For this task, I prefer &lt;em&gt;Flameshot&lt;/em&gt;
+typically.&lt;/p&gt;
+&lt;div class="sd-tab-set docutils"&gt;
+&lt;input checked="checked" id="sd-tab-item-16" name="sd-tab-set-8" type="radio"&gt;
+&lt;label class="sd-tab-label" data-sync-group="tab" data-sync-id="manjaro" for="sd-tab-item-16"&gt;
+Manjaro&lt;/label&gt;&lt;div class="sd-tab-content docutils"&gt;
+&lt;div class="highlight-default notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;pamac&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;flameshot&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;no&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;confirm&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;input id="sd-tab-item-17" name="sd-tab-set-8" type="radio"&gt;
+&lt;label class="sd-tab-label" data-sync-group="tab" data-sync-id="ubuntu" for="sd-tab-item-17"&gt;
+Ubuntu&lt;/label&gt;&lt;div class="sd-tab-content docutils"&gt;
+&lt;div class="highlight-default notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;snap&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;flameshot&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/section&gt;
+&lt;section id="ready-for-creativity"&gt;
+&lt;h2&gt;Ready for creativity&lt;/h2&gt;
+&lt;p&gt;To write an entry on our blog, our thesis project, a lab report, executive
+report, marketing presentation, our process flow diagram or code diagram, we
+need to do drawings, diagrams, videos, format conversions or basic edits.&lt;/p&gt;
+&lt;p&gt;That’s why here is our creative combo.&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;&lt;em&gt;ImageMagick&lt;/em&gt;: Useful for converting image file formats.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;em&gt;FFmpeg&lt;/em&gt;: A command-line utility for audio and video processing.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;em&gt;OBS Studio&lt;/em&gt;: An advanced tool for recording and editing video.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;em&gt;Draw.io&lt;/em&gt;: Allows creating diagrams and offers a wide range of symbols.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;em&gt;Inkscape&lt;/em&gt;: A vector drawing tool, an alternative to Corel Draw.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;em&gt;GIMP&lt;/em&gt;: A painting and bit-map editing tool, an alternative to Photoshop. You
+can also explore &lt;em&gt;Krita&lt;/em&gt; (keep in mind that files with the &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;.csv&lt;/span&gt;&lt;/code&gt; extension
+are associated with this). If you need to edit, it’s recommended to use
+&lt;strong class="program"&gt;gimp&lt;/strong&gt;, and if you want to draw, &lt;strong class="program"&gt;krita&lt;/strong&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="sd-tab-set docutils"&gt;
+&lt;input checked="checked" id="sd-tab-item-18" name="sd-tab-set-9" type="radio"&gt;
+&lt;label class="sd-tab-label" data-sync-group="tab" data-sync-id="manjaro" for="sd-tab-item-18"&gt;
+Manjaro&lt;/label&gt;&lt;div class="sd-tab-content docutils"&gt;
+&lt;div class="highlight-default notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;pamac&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;imagemagick&lt;/span&gt; &lt;span class="n"&gt;ffmpeg&lt;/span&gt; &lt;span class="n"&gt;drawio&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;desktop&lt;/span&gt; &lt;span class="n"&gt;inkscape&lt;/span&gt; &lt;span class="n"&gt;gimp&lt;/span&gt; &lt;span class="n"&gt;krita&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;no&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;confirm&lt;/span&gt;
+&lt;span class="n"&gt;flatpak&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt; &lt;span class="n"&gt;flathub&lt;/span&gt; &lt;span class="n"&gt;com&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;obsproject&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Studio&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;input id="sd-tab-item-19" name="sd-tab-set-9" type="radio"&gt;
+&lt;label class="sd-tab-label" data-sync-group="tab" data-sync-id="ubuntu" for="sd-tab-item-19"&gt;
+Ubuntu&lt;/label&gt;&lt;div class="sd-tab-content docutils"&gt;
+&lt;div class="highlight-default notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;apt&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt; &lt;span class="n"&gt;imagemagick&lt;/span&gt; &lt;span class="n"&gt;ffmpeg&lt;/span&gt;
+&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;snap&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;drawio&lt;/span&gt;
+&lt;span class="n"&gt;flatpak&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt; &lt;span class="n"&gt;flathub&lt;/span&gt; &lt;span class="n"&gt;org&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;inkscape&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Inkscape&lt;/span&gt;
+&lt;span class="n"&gt;flatpak&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt; &lt;span class="n"&gt;sflathub&lt;/span&gt; &lt;span class="n"&gt;org&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;gimp&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;GIMP&lt;/span&gt;
+&lt;span class="n"&gt;flatpak&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt; &lt;span class="n"&gt;flathub&lt;/span&gt; &lt;span class="n"&gt;org&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;kde&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;krita&lt;/span&gt;
+&lt;span class="n"&gt;flatpak&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt; &lt;span class="n"&gt;flathub&lt;/span&gt; &lt;span class="n"&gt;com&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;obsproject&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Studio&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;During my installation with &lt;em&gt;pamac&lt;/em&gt;, I had problems with OBS and this motivated
+me to use &lt;em&gt;flatpak&lt;/em&gt; in general for various cases and thus avoid managing
+optional dependencies or some controller issues. In this particular case, OBS
+generated problems with &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;DeckLink&lt;/span&gt;&lt;/code&gt; that is related to the &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;libva-vdpau-driver&lt;/span&gt;&lt;/code&gt;
+controller. According to the error message, it couldn’t find the installation
+and therefore couldn’t configure virtual cameras, although the controller was
+installed. This is a common issue, according to forums, but I didn’t find
+anything that helped solve it.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="leisure-time"&gt;
+&lt;h2&gt;Leisure time&lt;/h2&gt;
+&lt;p&gt;My entertainment 3-in-1 combo is Spotify, Stremio, and Steam (in that order of
+use). Spotify has become my go-to option for passing the time while working from
+home and in the absence of other sounds, I need to have at least some music or a
+podcast. Stremio is my alternative to streaming services
+(&lt;a class="reference internal" href="../en/blog/2024/la-mejor-alternativa-gratis-a-netflix/"&gt;&lt;span class="std std-doc"&gt;The Best Free Netflix Alternative&lt;/span&gt;&lt;/a&gt;) and on Steam, I
+have good times with my collection of video games and
+&lt;a class="reference internal" href="../es/blog/2021/configurar-retroarch-en-steam/"&gt;&lt;span class="std std-doc"&gt;retro games&lt;/span&gt;&lt;/a&gt;.&lt;/p&gt;
+&lt;div class="sd-tab-set docutils"&gt;
+&lt;input checked="checked" id="sd-tab-item-20" name="sd-tab-set-10" type="radio"&gt;
+&lt;label class="sd-tab-label" data-sync-group="tab" data-sync-id="manjaro" for="sd-tab-item-20"&gt;
+Manjaro&lt;/label&gt;&lt;div class="sd-tab-content docutils"&gt;
+&lt;div class="highlight-default notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;pamac&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;steam&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;no&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;confirm&lt;/span&gt;
+&lt;span class="n"&gt;pamac&lt;/span&gt; &lt;span class="n"&gt;build&lt;/span&gt; &lt;span class="n"&gt;spotify&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;no&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;confirm&lt;/span&gt;
+&lt;span class="n"&gt;flatpak&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt; &lt;span class="n"&gt;flathub&lt;/span&gt; &lt;span class="n"&gt;com&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;stremio&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Stremio&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;input id="sd-tab-item-21" name="sd-tab-set-10" type="radio"&gt;
+&lt;label class="sd-tab-label" data-sync-group="tab" data-sync-id="ubuntu" for="sd-tab-item-21"&gt;
+Ubuntu&lt;/label&gt;&lt;div class="sd-tab-content docutils"&gt;
+&lt;div class="highlight-default notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;flatpak&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt; &lt;span class="n"&gt;flathub&lt;/span&gt; &lt;span class="n"&gt;com&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;valvesoftware&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Steam&lt;/span&gt;
+&lt;span class="n"&gt;flatpak&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt; &lt;span class="n"&gt;flathub&lt;/span&gt; &lt;span class="n"&gt;com&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;stremio&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Stremio&lt;/span&gt;
+&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;snap&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;spotify&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/section&gt;
+&lt;section id="now-look-at-the-sky"&gt;
+&lt;h2&gt;Now look at the sky&lt;/h2&gt;
+&lt;p&gt;A small bonus for astronomy enthusiasts.&lt;/p&gt;
+&lt;p&gt;The installation of the planetarium software Stellarium and a 3D universe
+visualization tool, Gaia Sky.&lt;/p&gt;
+&lt;div class="highlight-default notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;flatpak&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;flathub&lt;/span&gt; &lt;span class="n"&gt;org&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;stellarium&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Stellarium&lt;/span&gt;
+&lt;span class="n"&gt;flatpak&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;flathub&lt;/span&gt; &lt;span class="n"&gt;de&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;uni_heidelberg&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;zah&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;GaiaSky&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/section&gt;
+&lt;/section&gt;
+</content>
+    <link href="https://www.cosmoscalibur.com/en/blog/2024/que-hacer-despues-de-instalar-manjaro/"/>
+    <summary>I recently decided to switch to Manjaro KDE (24.1) and I’m very happy with the
+change. So, taking this opportunity, I’ll share some things to do after
+completing the installation.</summary>
     <category term="arch" label="arch"/>
     <category term="flatpak" label="flatpak"/>
     <category term="kde" label="kde"/>
@@ -2185,43 +2669,43 @@ te permitirá obtener el contenido a partir de torrents.</summary>
     </author>
     <content type="html">&lt;section class="tex2jax_ignore mathjax_ignore" id="unir-video-y-audio-con-ffmpeg-y-bash"&gt;
 
-&lt;p&gt;Recién mi novia me pidió el favor de ayudarle a descargar los videos de un
-curso antes de que se venciera el acceso a la cuenta, y tocaba descargar los
-videos de Vimeo. Pero el truco de descarga de estos videos, hace que luego
-toque unir el audio y el video, así que les contaré como hacerlo con FFMPEG
-y Bash.&lt;/p&gt;
+&lt;p&gt;Recién mi novia me pidió el favor de ayudarle a descargar los videos de un curso
+antes de que se venciera el acceso a la cuenta, y tocaba descargar los videos de
+Vimeo. Pero el truco de descarga de estos videos, hace que luego toque unir el
+audio y el video, así que les contaré como hacerlo con FFMPEG y Bash.&lt;/p&gt;
 &lt;section id="descargar-video-de-vimeo"&gt;
 &lt;h2&gt;Descargar video de Vimeo&lt;/h2&gt;
-&lt;p&gt;Bueno, este es el punto inicial de la aventura, y es cómo descargar un video
-de Vimeo a través de un sitio que posee autenticación. Resulta que si fuera
+&lt;p&gt;Bueno, este es el punto inicial de la aventura, y es cómo descargar un video de
+Vimeo a través de un sitio que posee autenticación. Resulta que si fuera
 directamente de Vimeo, bastaría con la extracción con uso de &lt;em&gt;cookies&lt;/em&gt; que
 ofrece &lt;a class="reference external" href="https://github.com/yt-dlp/yt-dlp"&gt;yt-dlp&lt;/a&gt;, pero como el video de Vimeo
-está embebido en otro sitio, esto no funciona (o no encontré cómo, pues
-salía un error de portal no reconocido para hacer el ingreso).&lt;/p&gt;
-&lt;p&gt;Al continuar la búsqueda, la única opción que encontré fue una extensión
-de Chrome que se llama &lt;a class="reference external" href="https://chromewebstore.google.com/detail/free-vimeo-downloader/migiikaijhclkmlpnnfficpopgmcpgia?hl=es-419"&gt;Free Vimeo Downloader&lt;/a&gt;,
-que te habilita la opción de descarga desde el navegador de los videos de
-Vimeo embebidos en cualquier portal. Te ofrece la opción de descargar los
-videos en distintas calidades, aunque debes tener presente que el audio se
-descarga por separado, y para poderlo descargar debes primero iniciar la
-reproducción.&lt;/p&gt;
+está embebido en otro sitio, esto no funciona (o no encontré cómo, pues salía un
+error de portal no reconocido para hacer el ingreso).&lt;/p&gt;
+&lt;p&gt;Al continuar la búsqueda, la única opción que encontré fue una extensión de
+Chrome que se llama
+&lt;a class="reference external" href="https://chromewebstore.google.com/detail/free-vimeo-downloader/migiikaijhclkmlpnnfficpopgmcpgia?hl=es-419"&gt;Free Vimeo Downloader&lt;/a&gt;,
+que te habilita la opción de descarga desde el navegador de los videos de Vimeo
+embebidos en cualquier portal. Te ofrece la opción de descargar los videos en
+distintas calidades, aunque debes tener presente que el audio se descarga por
+separado, y para poderlo descargar debes primero iniciar la reproducción.&lt;/p&gt;
 &lt;div class="admonition attention"&gt;
 &lt;p class="admonition-title"&gt;Atención&lt;/p&gt;
 &lt;p&gt;Recuerda reproducir el video para habilitar la descarga del audio.&lt;/p&gt;
 &lt;/div&gt;
-&lt;p&gt;Los archivos descargados tienen como patrón, el nombre del video seguido de
-la calidad de video, y en el caso del audio, seguido de &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;-audio&lt;/span&gt;&lt;/code&gt;, ambos en
-formato MP4. Ahora, ¿cómo unimos el video y el audio?&lt;/p&gt;
+&lt;p&gt;Los archivos descargados tienen como patrón, el nombre del video seguido de la
+calidad de video, y en el caso del audio, seguido de &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;-audio&lt;/span&gt;&lt;/code&gt;, ambos en formato
+MP4. Ahora, ¿cómo unimos el video y el audio?&lt;/p&gt;
 &lt;/section&gt;
 &lt;section id="procesamiento-con-ffmpeg"&gt;
 &lt;h2&gt;Procesamiento con FFMPEG&lt;/h2&gt;
 &lt;p&gt;Ahora, la tarea asociada al procesamiento para unir los archivos de audio con
-los archivos de video, la vamos a delegar en &lt;a class="reference external" href="https://ffmpeg.org/download.html"&gt;FFMPEG&lt;/a&gt;,
-una potente utilidad de línea de comandos para el procesamiento de audio y
-video que es gratuita y de código abierto.&lt;/p&gt;
-&lt;p&gt;Si usas Debian/Ubuntu o algún derivado, como yo, puedes instalar de la forma
-que indico a continuación. Si no, puedes remitirte a la página oficial o
-también instalarla con el gestor de paquetes de conda (aplica a todos los
+los archivos de video, la vamos a delegar en
+&lt;a class="reference external" href="https://ffmpeg.org/download.html"&gt;FFMPEG&lt;/a&gt;, una potente utilidad de línea de
+comandos para el procesamiento de audio y video que es gratuita y de código
+abierto.&lt;/p&gt;
+&lt;p&gt;Si usas Debian/Ubuntu o algún derivado, como yo, puedes instalar de la forma que
+indico a continuación. Si no, puedes remitirte a la página oficial o también
+instalarla con el gestor de paquetes &lt;strong class="program"&gt;conda&lt;/strong&gt; (aplica a todos los
 sistemas operativos).&lt;/p&gt;
 &lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo&lt;span class="w"&gt; &lt;/span&gt;apt&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;-y&lt;span class="w"&gt; &lt;/span&gt;ffmpeg
 &lt;/pre&gt;&lt;/div&gt;
@@ -2239,10 +2723,10 @@ de audio, video o incluso imágenes y de texto. En este caso, lo usamos para
 indicar el archivo de video y el archivo de audio que queremos emparejar (cada
 archivo debe estar precedido de &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;-i&lt;/span&gt;&lt;/code&gt;).&lt;/p&gt;
 &lt;p&gt;Si fuera necesario aplicar un &lt;em&gt;codec&lt;/em&gt; a estos, se debería indicar la opción
-respectiva después de la ruta de cada archivo. En este caso, no nos interesa
-y esto nos ayuda a que ejecute más rápido. De tal forma que simplemente
-indicamos después del segundo archivo &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;-c&lt;/span&gt; &lt;span class="pre"&gt;copy&lt;/span&gt;&lt;/code&gt; para indicar que se copia
-directamente, preservando calidad y formato original.&lt;/p&gt;
+respectiva después de la ruta de cada archivo. En este caso, no nos interesa y
+esto nos ayuda a que ejecute más rápido. De tal forma que simplemente indicamos
+después del segundo archivo &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;-c&lt;/span&gt; &lt;span class="pre"&gt;copy&lt;/span&gt;&lt;/code&gt; para indicar que se copia directamente,
+preservando calidad y formato original.&lt;/p&gt;
 &lt;p&gt;Por último, se indica la ruta del archivo de salida, es decir, el archivo
 resultado de nuestra unión de video y audio.&lt;/p&gt;
 &lt;div class="admonition hint"&gt;
@@ -2258,17 +2742,17 @@ recomiendo visitar los recetarios de
 &lt;section id="procesamiento-en-lote-con-bash"&gt;
 &lt;h2&gt;Procesamiento en lote con Bash&lt;/h2&gt;
 &lt;p&gt;Como los archivos tienen un patrón en sus nombres, y pueden ser listados en
-orden, y el proceso que se ejecuta sobre cada par es el mismo, podemos crear
-una rutina para este procesamiento en lote, y evitar así posibles errores
-como omitir un par de archivos, mezclar un video con el audio de otro o
-errores de digitación.&lt;/p&gt;
+orden, y el proceso que se ejecuta sobre cada par es el mismo, podemos crear una
+rutina para este procesamiento en lote, y evitar así posibles errores como
+omitir un par de archivos, mezclar un video con el audio de otro o errores de
+digitación.&lt;/p&gt;
 &lt;p&gt;Necesitaremos almacenar los listados por separado de los archivos de video y
 audio, de tal forma que iteremos de manera general sobre el total de videos y
 avancemos en los dos listados, que al estar ordenados y con el patrón de nombre
 iniciando por el nombre general del video, permitirá emparejarlos.&lt;/p&gt;
 &lt;p&gt;Luego, de manera cíclica obtenemos estas parejas, con las cuales formaremos los
-archivos para los parámetros &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;-i&lt;/span&gt;&lt;/code&gt; de &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;ffmpeg&lt;/span&gt;&lt;/code&gt;, y la asignación de la ruta de
-salida.&lt;/p&gt;
+archivos para los parámetros &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;-i&lt;/span&gt;&lt;/code&gt; de &lt;strong class="program"&gt;ffmpeg&lt;/strong&gt;, y la asignación de la
+ruta de salida.&lt;/p&gt;
 &lt;p&gt;Esto lo haremos en &lt;em&gt;bash&lt;/em&gt; (bueno, esto es para usuarios Linux, pero si usas
 Windows, te invito a replicarlo en PowerShell o tu lenguaje favorito).&lt;/p&gt;
 &lt;div class="literal-block-wrapper docutils container" id="bash-ffmpeg-unir"&gt;
@@ -2290,36 +2774,36 @@ Windows, te invito a replicarlo en PowerShell o tu lenguaje favorito).&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;p&gt;Te explico el código.&lt;/p&gt;
-&lt;p&gt;Línea 1, es una línea &lt;em&gt;shebang&lt;/em&gt; para indicar la ruta absoluta del interprete
-de &lt;em&gt;shell&lt;/em&gt;, en este caso, &lt;em&gt;bash&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;Línea 1, es una línea &lt;em&gt;shebang&lt;/em&gt; para indicar la ruta absoluta del interprete de
+&lt;em&gt;shell&lt;/em&gt;, en este caso, &lt;strong class="program"&gt;bash&lt;/strong&gt;.&lt;/p&gt;
 &lt;p&gt;En la línea 3, asignamos el nombre para el directorio de salida, que usaremos
 para crear dicho directorio en la línea 4 y para formar la ruta completa de
 salida en la línea 12.&lt;/p&gt;
 &lt;p&gt;En la línea 4 vemos la primera aparición de &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;$&lt;/span&gt;&lt;/code&gt; que usamos para expandir un
 resultado que puede ser de una variable como en este caso, o incluso de una
-ejecución. Aquí, sobre &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;mkdir&lt;/span&gt; &lt;span class="pre"&gt;-p&lt;/span&gt;&lt;/code&gt; tenemos para decir que esto crea la carpeta,
-y su opción &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;-p&lt;/span&gt;&lt;/code&gt; es para que no falle en caso de ya existir.&lt;/p&gt;
-&lt;p&gt;Para obtener el listado de archivos podríamos usar &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;ls&lt;/span&gt;&lt;/code&gt;, pero para conertir a
+ejecución. Aquí, sobre &lt;strong class="command"&gt;mkdir -p&lt;/strong&gt; tenemos para decir que esto crea la
+carpeta, y su opción &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;-p&lt;/span&gt;&lt;/code&gt; es para que no falle en caso de ya existir.&lt;/p&gt;
+&lt;p&gt;Para obtener el listado de archivos podríamos usar &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;ls&lt;/span&gt;&lt;/code&gt;, pero para convertir a
 un arreglo tenemos que hacer ajustes en el &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;IFS&lt;/span&gt;&lt;/code&gt;, y resulta más simple usar
 directamente la expansión global de nombre de archivo, como lo hacemos en las
 líneas 4 y 5.&lt;/p&gt;
 &lt;p&gt;La manera como nos referimos a un arreglo en Bash, es con &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;${&lt;/span&gt; &lt;span class="pre"&gt;}&lt;/span&gt;&lt;/code&gt; rodeando lo
-requerido del arreglo, como la indicación a un elemento específico
-(&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;${ARR[0]}&lt;/span&gt;&lt;/code&gt;) usado en la línea 11 y 12, la totalidad de elementos (&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;${ARR[*]}&lt;/span&gt;&lt;/code&gt;
-o &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;${ARR[&amp;#64;]}&lt;/span&gt;&lt;/code&gt;) o una variante con el símbolo &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;#&lt;/span&gt;&lt;/code&gt; antes del nombre del arreglo
-para hacer el conteo como se usa en la línea 7.&lt;/p&gt;
+requerido del arreglo, como la indicación a un elemento específico (&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;${ARR[0]}&lt;/span&gt;&lt;/code&gt;)
+usado en la línea 11 y 12, la totalidad de elementos (&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;${ARR[*]}&lt;/span&gt;&lt;/code&gt; o &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;${ARR[&amp;#64;]}&lt;/span&gt;&lt;/code&gt;)
+o una variante con el símbolo &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;#&lt;/span&gt;&lt;/code&gt; antes del nombre del arreglo para hacer el
+conteo como se usa en la línea 7.&lt;/p&gt;
 &lt;p&gt;La sentencia &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;echo&lt;/span&gt;&lt;/code&gt; la usamos para imprimir en la terminal, y vemos que el
 mensaje está en comillas dobles, lo que evita que el resultado se intente
 expandir (ejecutar), pues solo nos interesa hasta ese punto.&lt;/p&gt;
-&lt;p&gt;En las líneas 9 y 10 notamos la existencia de doble paréntesis, esto permite
-la expansión aritmética. Siempre que necesitemos operaciones aritméticas,
-usamos doble paréntesis. En particular, la línea 9 es el inicio del ciclo
-&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;for&lt;/span&gt;&lt;/code&gt; en Bash, que usa expansión aritmética con la asignación del valor
-inicial de la variable para recorrer las listas, la condición del recorrido
-la cual es mientras sea menor que la longitud de las listas y finalmente el
-avance en uno para poder pasar al siguiente elemento. Luego sigue la
-indicación del &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;do&lt;/span&gt;&lt;/code&gt; con el bloque que repetiremos, y que depende de nuestra
-variable del ciclo (&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;i&lt;/span&gt;&lt;/code&gt;). Y para cerrar el ciclo, terminamos en &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;done&lt;/span&gt;&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;En las líneas 9 y 10 notamos la existencia de doble paréntesis, esto permite la
+expansión aritmética. Siempre que necesitemos operaciones aritméticas, usamos
+doble paréntesis. En particular, la línea 9 es el inicio del ciclo &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;for&lt;/span&gt;&lt;/code&gt; en
+Bash, que usa expansión aritmética con la asignación del valor inicial de la
+variable para recorrer las listas, la condición del recorrido la cual es
+mientras sea menor que la longitud de las listas y finalmente el avance en uno
+para poder pasar al siguiente elemento. Luego sigue la indicación del &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;do&lt;/span&gt;&lt;/code&gt; con
+el bloque que repetiremos, y que depende de nuestra variable del ciclo (&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;i&lt;/span&gt;&lt;/code&gt;). Y
+para cerrar el ciclo, terminamos en &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;done&lt;/span&gt;&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;Bueno, con esto, estamos listos para ejecutar nuestro código que podemos
 disponer en un archivo &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;unir_video.sh&lt;/span&gt;&lt;/code&gt; y ejecutar como:&lt;/p&gt;
 &lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;bash&lt;span class="w"&gt; &lt;/span&gt;unir_video.sh&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="c1"&gt;# opción 1&lt;/span&gt;
@@ -2327,8 +2811,8 @@ disponer en un archivo &lt;code class="docutils literal notranslate"&gt;&lt;span
 &lt;span class="nb"&gt;source&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;unir_video.sh&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="c1"&gt;# opción 3&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
-&lt;p&gt;Las últimas dos opciones son el motivo de usar el &lt;em&gt;shebang&lt;/em&gt; de la línea 1,
-para distinguir la &lt;em&gt;shell&lt;/em&gt; a usar.&lt;/p&gt;
+&lt;p&gt;Las últimas dos opciones son el motivo de usar el &lt;em&gt;shebang&lt;/em&gt; de la línea 1, para
+distinguir la &lt;em&gt;shell&lt;/em&gt; a usar.&lt;/p&gt;
 &lt;p&gt;Es hora de ejecutar, y deja que esto trabaje por ti con tu colección de videos.&lt;/p&gt;
 &lt;div class="admonition hint"&gt;
 &lt;p class="admonition-title"&gt;Consejo&lt;/p&gt;
@@ -2349,11 +2833,10 @@ documentación de Linux, &lt;em&gt;TLDP&lt;/em&gt;.&lt;/p&gt;&lt;/li&gt;
 &lt;/section&gt;
 </content>
     <link href="https://www.cosmoscalibur.com/es/blog/2024/unir-video-y-audio-con-ffmpeg-y-bash/"/>
-    <summary>Recién mi novia me pidió el favor de ayudarle a descargar los videos de un
-curso antes de que se venciera el acceso a la cuenta, y tocaba descargar los
-videos de Vimeo. Pero el truco de descarga de estos videos, hace que luego
-toque unir el audio y el video, así que les contaré como hacerlo con FFMPEG
-y Bash.</summary>
+    <summary>Recién mi novia me pidió el favor de ayudarle a descargar los videos de un curso
+antes de que se venciera el acceso a la cuenta, y tocaba descargar los videos de
+Vimeo. Pero el truco de descarga de estos videos, hace que luego toque unir el
+audio y el video, así que les contaré como hacerlo con FFMPEG y Bash.</summary>
     <category term="ffmpeg" label="ffmpeg"/>
     <category term="procesamientodeaudioyvideo" label="procesamiento de audio y video"/>
     <category term="programaciónenbash" label="programación en bash"/>

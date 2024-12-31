@@ -448,7 +448,7 @@ crossorigin="anonymous"></script>
   <ul>
      
     <li>
-      <a href="../../../../blog/2024/">2024 (21)</a>
+      <a href="../../../../blog/2024/">2024 (22)</a>
     </li>
       
     <li>
@@ -544,43 +544,43 @@ crossorigin="anonymous"></script>
                 <article class="bd-article">
                    <section class="tex2jax_ignore mathjax_ignore" id="unir-video-y-audio-con-ffmpeg-y-bash">
 <h1>Unir video y audio con ffmpeg y bash<a class="headerlink" href="#unir-video-y-audio-con-ffmpeg-y-bash" title="Link to this heading">#</a></h1>
-<p>Recién mi novia me pidió el favor de ayudarle a descargar los videos de un
-curso antes de que se venciera el acceso a la cuenta, y tocaba descargar los
-videos de Vimeo. Pero el truco de descarga de estos videos, hace que luego
-toque unir el audio y el video, así que les contaré como hacerlo con FFMPEG
-y Bash.</p>
+<p>Recién mi novia me pidió el favor de ayudarle a descargar los videos de un curso
+antes de que se venciera el acceso a la cuenta, y tocaba descargar los videos de
+Vimeo. Pero el truco de descarga de estos videos, hace que luego toque unir el
+audio y el video, así que les contaré como hacerlo con FFMPEG y Bash.</p>
 <section id="descargar-video-de-vimeo">
 <h2>Descargar video de Vimeo<a class="headerlink" href="#descargar-video-de-vimeo" title="Link to this heading">#</a></h2>
-<p>Bueno, este es el punto inicial de la aventura, y es cómo descargar un video
-de Vimeo a través de un sitio que posee autenticación. Resulta que si fuera
+<p>Bueno, este es el punto inicial de la aventura, y es cómo descargar un video de
+Vimeo a través de un sitio que posee autenticación. Resulta que si fuera
 directamente de Vimeo, bastaría con la extracción con uso de <em>cookies</em> que
 ofrece <a class="reference external" href="https://github.com/yt-dlp/yt-dlp">yt-dlp</a>, pero como el video de Vimeo
-está embebido en otro sitio, esto no funciona (o no encontré cómo, pues
-salía un error de portal no reconocido para hacer el ingreso).</p>
-<p>Al continuar la búsqueda, la única opción que encontré fue una extensión
-de Chrome que se llama <a class="reference external" href="https://chromewebstore.google.com/detail/free-vimeo-downloader/migiikaijhclkmlpnnfficpopgmcpgia?hl=es-419">Free Vimeo Downloader</a>,
-que te habilita la opción de descarga desde el navegador de los videos de
-Vimeo embebidos en cualquier portal. Te ofrece la opción de descargar los
-videos en distintas calidades, aunque debes tener presente que el audio se
-descarga por separado, y para poderlo descargar debes primero iniciar la
-reproducción.</p>
+está embebido en otro sitio, esto no funciona (o no encontré cómo, pues salía un
+error de portal no reconocido para hacer el ingreso).</p>
+<p>Al continuar la búsqueda, la única opción que encontré fue una extensión de
+Chrome que se llama
+<a class="reference external" href="https://chromewebstore.google.com/detail/free-vimeo-downloader/migiikaijhclkmlpnnfficpopgmcpgia?hl=es-419">Free Vimeo Downloader</a>,
+que te habilita la opción de descarga desde el navegador de los videos de Vimeo
+embebidos en cualquier portal. Te ofrece la opción de descargar los videos en
+distintas calidades, aunque debes tener presente que el audio se descarga por
+separado, y para poderlo descargar debes primero iniciar la reproducción.</p>
 <div class="admonition attention">
 <p class="admonition-title">Atención</p>
 <p>Recuerda reproducir el video para habilitar la descarga del audio.</p>
 </div>
-<p>Los archivos descargados tienen como patrón, el nombre del video seguido de
-la calidad de video, y en el caso del audio, seguido de <code class="docutils literal notranslate"><span class="pre">-audio</span></code>, ambos en
-formato MP4. Ahora, ¿cómo unimos el video y el audio?</p>
+<p>Los archivos descargados tienen como patrón, el nombre del video seguido de la
+calidad de video, y en el caso del audio, seguido de <code class="docutils literal notranslate"><span class="pre">-audio</span></code>, ambos en formato
+MP4. Ahora, ¿cómo unimos el video y el audio?</p>
 </section>
 <section id="procesamiento-con-ffmpeg">
 <h2>Procesamiento con FFMPEG<a class="headerlink" href="#procesamiento-con-ffmpeg" title="Link to this heading">#</a></h2>
 <p>Ahora, la tarea asociada al procesamiento para unir los archivos de audio con
-los archivos de video, la vamos a delegar en <a class="reference external" href="https://ffmpeg.org/download.html">FFMPEG</a>,
-una potente utilidad de línea de comandos para el procesamiento de audio y
-video que es gratuita y de código abierto.</p>
-<p>Si usas Debian/Ubuntu o algún derivado, como yo, puedes instalar de la forma
-que indico a continuación. Si no, puedes remitirte a la página oficial o
-también instalarla con el gestor de paquetes de conda (aplica a todos los
+los archivos de video, la vamos a delegar en
+<a class="reference external" href="https://ffmpeg.org/download.html">FFMPEG</a>, una potente utilidad de línea de
+comandos para el procesamiento de audio y video que es gratuita y de código
+abierto.</p>
+<p>Si usas Debian/Ubuntu o algún derivado, como yo, puedes instalar de la forma que
+indico a continuación. Si no, puedes remitirte a la página oficial o también
+instalarla con el gestor de paquetes <strong class="program">conda</strong> (aplica a todos los
 sistemas operativos).</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>ffmpeg
 </pre></div>
@@ -598,10 +598,10 @@ de audio, video o incluso imágenes y de texto. En este caso, lo usamos para
 indicar el archivo de video y el archivo de audio que queremos emparejar (cada
 archivo debe estar precedido de <code class="docutils literal notranslate"><span class="pre">-i</span></code>).</p>
 <p>Si fuera necesario aplicar un <em>codec</em> a estos, se debería indicar la opción
-respectiva después de la ruta de cada archivo. En este caso, no nos interesa
-y esto nos ayuda a que ejecute más rápido. De tal forma que simplemente
-indicamos después del segundo archivo <code class="docutils literal notranslate"><span class="pre">-c</span> <span class="pre">copy</span></code> para indicar que se copia
-directamente, preservando calidad y formato original.</p>
+respectiva después de la ruta de cada archivo. En este caso, no nos interesa y
+esto nos ayuda a que ejecute más rápido. De tal forma que simplemente indicamos
+después del segundo archivo <code class="docutils literal notranslate"><span class="pre">-c</span> <span class="pre">copy</span></code> para indicar que se copia directamente,
+preservando calidad y formato original.</p>
 <p>Por último, se indica la ruta del archivo de salida, es decir, el archivo
 resultado de nuestra unión de video y audio.</p>
 <div class="admonition hint">
@@ -617,17 +617,17 @@ recomiendo visitar los recetarios de
 <section id="procesamiento-en-lote-con-bash">
 <h2>Procesamiento en lote con Bash<a class="headerlink" href="#procesamiento-en-lote-con-bash" title="Link to this heading">#</a></h2>
 <p>Como los archivos tienen un patrón en sus nombres, y pueden ser listados en
-orden, y el proceso que se ejecuta sobre cada par es el mismo, podemos crear
-una rutina para este procesamiento en lote, y evitar así posibles errores
-como omitir un par de archivos, mezclar un video con el audio de otro o
-errores de digitación.</p>
+orden, y el proceso que se ejecuta sobre cada par es el mismo, podemos crear una
+rutina para este procesamiento en lote, y evitar así posibles errores como
+omitir un par de archivos, mezclar un video con el audio de otro o errores de
+digitación.</p>
 <p>Necesitaremos almacenar los listados por separado de los archivos de video y
 audio, de tal forma que iteremos de manera general sobre el total de videos y
 avancemos en los dos listados, que al estar ordenados y con el patrón de nombre
 iniciando por el nombre general del video, permitirá emparejarlos.</p>
 <p>Luego, de manera cíclica obtenemos estas parejas, con las cuales formaremos los
-archivos para los parámetros <code class="docutils literal notranslate"><span class="pre">-i</span></code> de <code class="docutils literal notranslate"><span class="pre">ffmpeg</span></code>, y la asignación de la ruta de
-salida.</p>
+archivos para los parámetros <code class="docutils literal notranslate"><span class="pre">-i</span></code> de <strong class="program">ffmpeg</strong>, y la asignación de la
+ruta de salida.</p>
 <p>Esto lo haremos en <em>bash</em> (bueno, esto es para usuarios Linux, pero si usas
 Windows, te invito a replicarlo en PowerShell o tu lenguaje favorito).</p>
 <div class="literal-block-wrapper docutils container" id="bash-ffmpeg-unir">
@@ -649,36 +649,36 @@ Windows, te invito a replicarlo en PowerShell o tu lenguaje favorito).</p>
 </div>
 </div>
 <p>Te explico el código.</p>
-<p>Línea 1, es una línea <em>shebang</em> para indicar la ruta absoluta del interprete
-de <em>shell</em>, en este caso, <em>bash</em>.</p>
+<p>Línea 1, es una línea <em>shebang</em> para indicar la ruta absoluta del interprete de
+<em>shell</em>, en este caso, <strong class="program">bash</strong>.</p>
 <p>En la línea 3, asignamos el nombre para el directorio de salida, que usaremos
 para crear dicho directorio en la línea 4 y para formar la ruta completa de
 salida en la línea 12.</p>
 <p>En la línea 4 vemos la primera aparición de <code class="docutils literal notranslate"><span class="pre">$</span></code> que usamos para expandir un
 resultado que puede ser de una variable como en este caso, o incluso de una
-ejecución. Aquí, sobre <code class="docutils literal notranslate"><span class="pre">mkdir</span> <span class="pre">-p</span></code> tenemos para decir que esto crea la carpeta,
-y su opción <code class="docutils literal notranslate"><span class="pre">-p</span></code> es para que no falle en caso de ya existir.</p>
-<p>Para obtener el listado de archivos podríamos usar <code class="docutils literal notranslate"><span class="pre">ls</span></code>, pero para conertir a
+ejecución. Aquí, sobre <strong class="command">mkdir -p</strong> tenemos para decir que esto crea la
+carpeta, y su opción <code class="docutils literal notranslate"><span class="pre">-p</span></code> es para que no falle en caso de ya existir.</p>
+<p>Para obtener el listado de archivos podríamos usar <code class="docutils literal notranslate"><span class="pre">ls</span></code>, pero para convertir a
 un arreglo tenemos que hacer ajustes en el <code class="docutils literal notranslate"><span class="pre">IFS</span></code>, y resulta más simple usar
 directamente la expansión global de nombre de archivo, como lo hacemos en las
 líneas 4 y 5.</p>
 <p>La manera como nos referimos a un arreglo en Bash, es con <code class="docutils literal notranslate"><span class="pre">${</span> <span class="pre">}</span></code> rodeando lo
-requerido del arreglo, como la indicación a un elemento específico
-(<code class="docutils literal notranslate"><span class="pre">${ARR[0]}</span></code>) usado en la línea 11 y 12, la totalidad de elementos (<code class="docutils literal notranslate"><span class="pre">${ARR[*]}</span></code>
-o <code class="docutils literal notranslate"><span class="pre">${ARR[&#64;]}</span></code>) o una variante con el símbolo <code class="docutils literal notranslate"><span class="pre">#</span></code> antes del nombre del arreglo
-para hacer el conteo como se usa en la línea 7.</p>
+requerido del arreglo, como la indicación a un elemento específico (<code class="docutils literal notranslate"><span class="pre">${ARR[0]}</span></code>)
+usado en la línea 11 y 12, la totalidad de elementos (<code class="docutils literal notranslate"><span class="pre">${ARR[*]}</span></code> o <code class="docutils literal notranslate"><span class="pre">${ARR[&#64;]}</span></code>)
+o una variante con el símbolo <code class="docutils literal notranslate"><span class="pre">#</span></code> antes del nombre del arreglo para hacer el
+conteo como se usa en la línea 7.</p>
 <p>La sentencia <code class="docutils literal notranslate"><span class="pre">echo</span></code> la usamos para imprimir en la terminal, y vemos que el
 mensaje está en comillas dobles, lo que evita que el resultado se intente
 expandir (ejecutar), pues solo nos interesa hasta ese punto.</p>
-<p>En las líneas 9 y 10 notamos la existencia de doble paréntesis, esto permite
-la expansión aritmética. Siempre que necesitemos operaciones aritméticas,
-usamos doble paréntesis. En particular, la línea 9 es el inicio del ciclo
-<code class="docutils literal notranslate"><span class="pre">for</span></code> en Bash, que usa expansión aritmética con la asignación del valor
-inicial de la variable para recorrer las listas, la condición del recorrido
-la cual es mientras sea menor que la longitud de las listas y finalmente el
-avance en uno para poder pasar al siguiente elemento. Luego sigue la
-indicación del <code class="docutils literal notranslate"><span class="pre">do</span></code> con el bloque que repetiremos, y que depende de nuestra
-variable del ciclo (<code class="docutils literal notranslate"><span class="pre">i</span></code>). Y para cerrar el ciclo, terminamos en <code class="docutils literal notranslate"><span class="pre">done</span></code>.</p>
+<p>En las líneas 9 y 10 notamos la existencia de doble paréntesis, esto permite la
+expansión aritmética. Siempre que necesitemos operaciones aritméticas, usamos
+doble paréntesis. En particular, la línea 9 es el inicio del ciclo <code class="docutils literal notranslate"><span class="pre">for</span></code> en
+Bash, que usa expansión aritmética con la asignación del valor inicial de la
+variable para recorrer las listas, la condición del recorrido la cual es
+mientras sea menor que la longitud de las listas y finalmente el avance en uno
+para poder pasar al siguiente elemento. Luego sigue la indicación del <code class="docutils literal notranslate"><span class="pre">do</span></code> con
+el bloque que repetiremos, y que depende de nuestra variable del ciclo (<code class="docutils literal notranslate"><span class="pre">i</span></code>). Y
+para cerrar el ciclo, terminamos en <code class="docutils literal notranslate"><span class="pre">done</span></code>.</p>
 <p>Bueno, con esto, estamos listos para ejecutar nuestro código que podemos
 disponer en un archivo <code class="docutils literal notranslate"><span class="pre">unir_video.sh</span></code> y ejecutar como:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>bash<span class="w"> </span>unir_video.sh<span class="w">  </span><span class="c1"># opción 1</span>
@@ -686,8 +686,8 @@ disponer en un archivo <code class="docutils literal notranslate"><span class="p
 <span class="nb">source</span><span class="w"> </span>unir_video.sh<span class="w">  </span><span class="c1"># opción 3</span>
 </pre></div>
 </div>
-<p>Las últimas dos opciones son el motivo de usar el <em>shebang</em> de la línea 1,
-para distinguir la <em>shell</em> a usar.</p>
+<p>Las últimas dos opciones son el motivo de usar el <em>shebang</em> de la línea 1, para
+distinguir la <em>shell</em> a usar.</p>
 <p>Es hora de ejecutar, y deja que esto trabaje por ti con tu colección de videos.</p>
 <div class="admonition hint">
 <p class="admonition-title">Consejo</p>
