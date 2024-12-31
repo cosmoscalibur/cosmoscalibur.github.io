@@ -50,7 +50,14 @@ https://benswift.me/blog/2024/09/20/format-markdown-on-save-in-zed-using-prettie
 https://github.com/vitallium/zed-ltex
 ```
 
-
+```{code} bash
+uv tool install mdformat \
+  --with mdformat-gfm \
+  --with mdformat-frontmatter \
+  --with mdformat-footnote \
+  --with mdformat-gfm-alerts \
+  --with mdformat-myst
+```
 
 desinstalar zed https://askubuntu.com/questions/1520457/how-do-i-uninstall-zed-editor-from-my-ubuntu-24
 

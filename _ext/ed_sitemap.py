@@ -216,9 +216,7 @@ def create_sitemap(app: Sphinx, exception):
     for page, lang_page in pages.items():
         url = ElementTree.SubElement(root, "url")
         ElementTree.SubElement(url, "loc").text = site_url + (lang_page[language] if language in lang_page else next(iter(lang_page.keys())))
-        logger.info(f'{page}')
         for lang, link in lang_page.items():
-            logger.info(f'{link}')
             ElementTree.SubElement(
                 url,
                 "{http://www.w3.org/1999/xhtml}link",
