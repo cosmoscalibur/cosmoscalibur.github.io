@@ -432,6 +432,12 @@ crossorigin="anonymous"></script>
     </li>
     
     <li>
+      <a href="../conecta-con-una-instancia-de-cloud-sql-en-manjaro/">
+        2024-12-10 - Connecting to a Cloud SQL instance on Manjaro
+      </a>
+    </li>
+    
+    <li>
       <a href="../../../../es/blog/2024/conecta-con-una-instancia-de-cloud-sql-en-manjaro/">
         2024-12-10 - Conecta con una instancia de Cloud SQL en Manjaro
       </a>
@@ -440,12 +446,6 @@ crossorigin="anonymous"></script>
     <li>
       <a href="../../../../es/blog/2024/problemas-de-conexion-wifi-en-linux/">
         2024-12-07 - Problemas de conexión wifi en Linux
-      </a>
-    </li>
-    
-    <li>
-      <a href="../../../../es/blog/2024/que-hacer-despues-de-instalar-manjaro/">
-        2024-12-05 - ¿Qué hacer después de instalar Manjaro KDE 24?
       </a>
     </li>
     
@@ -460,7 +460,7 @@ crossorigin="anonymous"></script>
   <ul>
      
     <li>
-      <a href="../../../../blog/2024/">2024 (22)</a>
+      <a href="../../../../blog/2024/">2024 (24)</a>
     </li>
       
     <li>
@@ -561,20 +561,20 @@ share a trick to comfortably, safely, and freely access a lot of content. I’ll
 be talking about Stremio and an extension that pulls content from torrents.</p>
 <section id="stremio">
 <h2>Stremio<a class="headerlink" href="#stremio" title="Link to this heading">#</a></h2>
-<p><a class="reference external" href="https://www.stremio.com/">Stremio</a> is a multimedia content aggregator
-that allows you to search for providers to play the content you’re
-interested in. This provider search is done through an extension system for
-different services (you can link your streaming accounts like Netflix,
-Disney+, Prime Video, Apple TV) to have everything unified in a single
-multimedia hub. Because it’s based on extensions, you can also get
-extensions to play content from torrent indexes, giving you access to free
-and safe content. It’s also available for Linux, Mac, Windows,
+<p><a class="reference external" href="https://www.stremio.com/">Stremio</a> is a multimedia content aggregator that
+allows you to search for providers to play the content you’re interested in.
+This provider search is done through an extension system for different services
+(you can link your streaming accounts like Netflix, Disney+, Prime Video, Apple
+TV) to have everything unified in a single multimedia hub. Because it’s based on
+extensions, you can also get extensions to play content from torrent indexes,
+giving you access to free and safe content. It’s also available for Linux, Mac,
+Windows,
 <a class="reference external" href="https://play.google.com/store/apps/details?id=com.stremio.one&amp;amp;hl=es_CO">Android</a>,
 and even <a class="reference external" href="https://web.stremio.com/">Web</a>.</p>
-<p>While Stremio can run without an account, creating one is important. This
-allows you to synchronize not only what you watch, your watchlists, and
-progress, but also installed extensions. This is key for using Stremio with
-the torrent extension on your mobile or TV.</p>
+<p>While Stremio can run without an account, creating one is important. This allows
+you to synchronize not only what you watch, your watchlists, and progress, but
+also installed extensions. This is key for using Stremio with the torrent
+extension on your mobile or TV.</p>
 <div class="sd-tab-set docutils">
 <input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio">
 <label class="sd-tab-label" for="sd-tab-item-0">
@@ -595,59 +595,56 @@ is available.</p>
 </section>
 <section id="torrentio">
 <h2>Torrentio<a class="headerlink" href="#torrentio" title="Link to this heading">#</a></h2>
-<p>The magic for watching free movies and series comes from an extension that
-lets you play torrent content in Stremio and has several torrent servers
-available. I’ll highlight <em>The Pirate Bay</em>, <em>Torrent Galaxy</em> (for English
-content), <em>Cinecalidad</em> (for Latin American Spanish audio), <em>Mejor Torrent</em>
-(for Spanish audio), and <em>Nyaasi</em> (for anime).</p>
+<p>The magic for watching free movies and series comes from an extension that lets
+you play torrent content in Stremio and has several torrent servers available.
+I’ll highlight <em>The Pirate Bay</em>, <em>Torrent Galaxy</em> (for English content),
+<em>Cinecalidad</em> (for Latin American Spanish audio), <em>Mejor Torrent</em> (for Spanish
+audio), and <em>Nyaasi</em> (for anime).</p>
 <p>To install Torrentio, use this
 <a class="reference external" href="https://torrentio.strem.fun/providers=yts,eztv,rarbg,1337x,thepiratebay,kickasstorrents,torrentgalaxy,magnetdl,horriblesubs,nyaasi,tokyotosho,anidex,mejortorrent,wolfmax4k,cinecalidad%7Csort=seeders%7Clanguage=spanish,latino%7Cqualityfilter=cam/configure">link</a>,
 which has the configuration I recommend. The special features of this
 configuration are:</p>
 <ol class="arabic simple">
 <li><p><em>Providers</em>: We exclude <em>Rutor</em>, <em>Rutracker</em>, <em>Comando</em>, <em>BluDV</em>, and
-<em>Torrent9</em>. Excluding these removes content primarily in Russian,
-Portuguese, and Italian, leaving content in English, Spanish, and
-Japanese (anime).</p></li>
-<li><p><em>Sorting</em>: We apply <em>By seeders</em>, prioritizing content that will
-potentially play best. If there are few seeders, playback might be
-problematic, especially with large files, but sometimes there are
-surprises, so you can try even with few seeders.</p></li>
-<li><p><em>Priority foreign language</em>: <em>Spanish</em> and <em>Latino</em>. This prioritizes
-content in Spanish, following the seeder sorting and then again by
-seeders but in any other language. Usually, the declared language
-corresponds to the available audio language.</p></li>
-<li><p><em>Exclude qualities/resolutions</em>: <em>CAM</em>. You don’t want to watch this
-content. These are recordings made with a camera over a cinema or
-home playback. The image and audio are terrible.</p></li>
+<em>Torrent9</em>. Excluding these removes content primarily in Russian, Portuguese,
+and Italian, leaving content in English, Spanish, and Japanese (anime).</p></li>
+<li><p><em>Sorting</em>: We apply <em>By seeders</em>, prioritizing content that will potentially
+play best. If there are few seeders, playback might be problematic,
+especially with large files, but sometimes there are surprises, so you can
+try even with few seeders.</p></li>
+<li><p><em>Priority foreign language</em>: <em>Spanish</em> and <em>Latino</em>. This prioritizes content
+in Spanish, following the seeder sorting and then again by seeders but in any
+other language. Usually, the declared language corresponds to the available
+audio language.</p></li>
+<li><p><em>Exclude qualities/resolutions</em>: <em>CAM</em>. You don’t want to watch this content.
+These are recordings made with a camera over a cinema or home playback. The
+image and audio are terrible.</p></li>
 </ol>
-<p>If you want to modify anything, go ahead, and then click the <em>INSTALL</em>
-button.</p>
-<p>In my experience, there’s a good chance of finding popular content in both
-Latin American and Spain Spanish, but it’s always best to be willing to
-watch content in English for reliable and smooth playback. Thanks to the
-OpenSubtitles v3 and OpenSubtitles extensions (both official), we have a
-repository of subtitles for our content, even if they aren’t embedded
-(embedded is much better).</p>
+<p>If you want to modify anything, go ahead, and then click the <em>INSTALL</em> button.</p>
+<p>In my experience, there’s a good chance of finding popular content in both Latin
+American and Spain Spanish, but it’s always best to be willing to watch content
+in English for reliable and smooth playback. Thanks to the OpenSubtitles v3 and
+OpenSubtitles extensions (both official), we have a repository of subtitles for
+our content, even if they aren’t embedded (embedded is much better).</p>
 </section>
 <section id="installing-on-tv">
 <h2>Installing on TV<a class="headerlink" href="#installing-on-tv" title="Link to this heading">#</a></h2>
-<p>Stremio and its extensions work on Android, so you can use this not only on
-your mobile but also on your Android TV. As I previously mentioned, it’s
-important that you’ve created a Stremio account because there’s no login
-form on TV, and you’ll have to use a login link or QR code to access it
-from your mobile or computer.</p>
-<p>Installation is the best option, but if Stremio isn’t available for your
-TV, you can also cast from your mobile or connect your computer or mobile
-via cable to the TV.</p>
+<p>Stremio and its extensions work on Android, so you can use this not only on your
+mobile but also on your Android TV. As I previously mentioned, it’s important
+that you’ve created a Stremio account because there’s no login form on TV, and
+you’ll have to use a login link or QR code to access it from your mobile or
+computer.</p>
+<p>Installation is the best option, but if Stremio isn’t available for your TV, you
+can also cast from your mobile or connect your computer or mobile via cable to
+the TV.</p>
 </section>
 <section id="extra-pluto-tv">
 <h2>Extra: Pluto TV<a class="headerlink" href="#extra-pluto-tv" title="Link to this heading">#</a></h2>
-<p>This isn’t exactly a good alternative to replace your streaming
-subscriptions, but you’ll find good free content in Latin American
-Spanish. If you create an account, you can opt for progress sync options.
-<a class="reference external" href="https://www.pluto.tv/welcome">Pluto TV</a> is available on the web, Android,
-and iOS.</p>
+<p>This isn’t exactly a good alternative to replace your streaming subscriptions,
+but you’ll find good free content in Latin American Spanish. If you create an
+account, you can opt for progress sync options.
+<a class="reference external" href="https://www.pluto.tv/welcome">Pluto TV</a> is available on the web, Android, and
+iOS.</p>
 </section>
 </section>
 

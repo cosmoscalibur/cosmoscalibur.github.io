@@ -1,6 +1,6 @@
 ---
 date: 2024-10-20
-tags: ffmpeg, programación en bash, videos de vimeo, procesamiento de audio y video
+tags: ffmpeg, programación en bash, vimeo, procesamiento de audio y video
 category: tecnología, linux
 ---
 
@@ -49,9 +49,18 @@ indico a continuación. Si no, puedes remitirte a la página oficial o también
 instalarla con el gestor de paquetes {program}`conda` (aplica a todos los
 sistemas operativos).
 
+`````{tab-set}
+````{tab-item} Ubuntu
 ```{code} bash
 sudo apt install -y ffmpeg
 ```
+````
+````{tab-item} Manjaro
+```{code} bash
+sudo pamac install --no-confirm ffmpeg
+```
+````
+`````
 
 Para probar el concepto, usaremos uno de los pares de archivos.
 

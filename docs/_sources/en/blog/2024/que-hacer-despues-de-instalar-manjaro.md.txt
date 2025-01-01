@@ -495,8 +495,9 @@ use). Spotify has become my go-to option for passing the time while working from
 home and in the absence of other sounds, I need to have at least some music or a
 podcast. Stremio is my alternative to streaming services
 ([](/en/blog/2024/la-mejor-alternativa-gratis-a-netflix.md)) and on Steam, I
-have good times with my collection of video games and
-[retro games](/es/blog/2021/configurar-retroarch-en-steam.rst).
+have good times with my collection of
+[video games](/en/blog/2024/proton-modo-de-compatibilidad-de-steam.md) and
+[retro games](/en/blog/2021/configurar-retroarch-en-steam.rst).
 
 `````{tab-set}
 ````{tab-item} Manjaro

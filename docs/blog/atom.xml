@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="es">
   <id>https://www.cosmoscalibur.com/</id>
   <title>Cosmoscalibur</title>
-  <updated>2024-12-31T19:07:36.647230+00:00</updated>
+  <updated>2025-01-01T04:23:29.077827+00:00</updated>
   <link href="https://www.cosmoscalibur.com/"/>
   <link href="https://www.cosmoscalibur.com/blog/atom.xml" rel="self"/>
   <generator uri="https://ablog.readthedocs.io/" version="0.11.12">ABlog</generator>
@@ -315,6 +315,172 @@ sobre como habilitarlo en Manjaro con zsh, que aquí les cuento.Apariencia visua
     <published>2024-12-15T00:00:00-05:00</published>
   </entry>
   <entry>
+    <id>https://www.cosmoscalibur.com/en/blog/2024/conecta-con-una-instancia-de-cloud-sql-en-manjaro/</id>
+    <title>Connecting to a Cloud SQL instance on Manjaro</title>
+    <updated>2024-12-10T00:00:00-05:00</updated>
+    <author>
+      <name>Edward Villegas-Pulgarin</name>
+    </author>
+    <content type="html">&lt;section class="tex2jax_ignore mathjax_ignore" id="connecting-to-a-cloud-sql-instance-on-manjaro"&gt;
+
+&lt;p&gt;Since I’m currently in a full system installation process following
+&lt;a class="reference internal" href="../en/blog/2024/que-hacer-despues-de-instalar-manjaro/"&gt;&lt;span class="std std-doc"&gt;the transition from (X/K)Ubuntu to Manjaro&lt;/span&gt;&lt;/a&gt;,
+I’ll explain how to connect to a Cloud SQL instance on Manjaro.&lt;/p&gt;
+&lt;section id="google-cloud-sdk"&gt;
+&lt;h2&gt;Google Cloud SDK&lt;/h2&gt;
+&lt;section id="installation-of-google-cloud-sdk"&gt;
+&lt;h3&gt;Installation of Google Cloud SDK&lt;/h3&gt;
+&lt;p&gt;To manage infrastructure elements, including database connections, you need to
+have &lt;em&gt;Google Cloud SDK&lt;/em&gt; installed. The installation process depends on the
+operating system, and if you have any doubts, you can refer to the
+&lt;a class="reference external" href="https://cloud.google.com/sdk/docs/install"&gt;official documentation&lt;/a&gt;.&lt;/p&gt;
+&lt;div class="sd-tab-set docutils"&gt;
+&lt;input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio"&gt;
+&lt;label class="sd-tab-label" data-sync-group="tab" data-sync-id="manjaro" for="sd-tab-item-0"&gt;
+Manjaro&lt;/label&gt;&lt;div class="sd-tab-content docutils"&gt;
+&lt;p&gt;This package is available in the AUR (Arch User Repository), so it can be used
+on Arch.&lt;/p&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;pamac&lt;span class="w"&gt; &lt;/span&gt;build&lt;span class="w"&gt; &lt;/span&gt;google-cloud-cli&lt;span class="w"&gt; &lt;/span&gt;--no-confirm
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="admonition hint"&gt;
+&lt;p class="admonition-title"&gt;Consejo&lt;/p&gt;
+&lt;p&gt;If it doesn’t detect the binary, you can try restarting and closing, then
+opening the terminal again. In my case, only this worked for me. Neither using
+&lt;strong class="command"&gt;source&lt;/strong&gt; of &lt;code class="file docutils literal notranslate"&gt;&lt;span class="pre"&gt;~/.zshrc&lt;/span&gt;&lt;/code&gt; nor &lt;code class="file docutils literal notranslate"&gt;&lt;span class="pre"&gt;~/.bashrc&lt;/span&gt;&lt;/code&gt; worked either,
+despite that it was detected by &lt;strong class="command"&gt;whereis&lt;/strong&gt; and &lt;strong class="command"&gt;which&lt;/strong&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;input id="sd-tab-item-1" name="sd-tab-set-0" type="radio"&gt;
+&lt;label class="sd-tab-label" data-sync-group="tab" data-sync-id="ubuntu" for="sd-tab-item-1"&gt;
+Ubuntu&lt;/label&gt;&lt;div class="sd-tab-content docutils"&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nb"&gt;echo&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.cloud.google.com/apt cloud-sdk main&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;sudo&lt;span class="w"&gt; &lt;/span&gt;tee&lt;span class="w"&gt; &lt;/span&gt;-a&lt;span class="w"&gt; &lt;/span&gt;/etc/apt/sources.list.d/google-cloud-sdk.list
+sudo&lt;span class="w"&gt; &lt;/span&gt;apt-get&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;apt-transport-https&lt;span class="w"&gt; &lt;/span&gt;ca-certificates&lt;span class="w"&gt; &lt;/span&gt;gnupg
+curl&lt;span class="w"&gt; &lt;/span&gt;https://packages.cloud.google.com/apt/doc/apt-key.gpg&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;sudo&lt;span class="w"&gt; &lt;/span&gt;apt-key&lt;span class="w"&gt; &lt;/span&gt;--keyring&lt;span class="w"&gt; &lt;/span&gt;/usr/share/keyrings/cloud.google.gpg&lt;span class="w"&gt; &lt;/span&gt;add&lt;span class="w"&gt; &lt;/span&gt;-
+sudo&lt;span class="w"&gt; &lt;/span&gt;apt&lt;span class="w"&gt; &lt;/span&gt;update&lt;span class="w"&gt; &lt;/span&gt;-q
+sudo&lt;span class="w"&gt; &lt;/span&gt;apt&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;-y&lt;span class="w"&gt; &lt;/span&gt;google-cloud-sdk
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/section&gt;
+&lt;section id="google-cloud-sdk-authentication"&gt;
+&lt;h3&gt;Google Cloud SDK Authentication&lt;/h3&gt;
+&lt;p&gt;Once installed, we need to authenticate in order to manage projects and handle
+application credentials. If you use multiple browsers and separate your personal
+and professional profiles according to the browser, or use multiple profiles in
+the browser, or even if it’s a remote desktop or a container used from Windows
+and can’t use the browser, I recommend managing authentication by manually
+copying and pasting the authentication link (&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;--no-launch-browser&lt;/span&gt;&lt;/code&gt;). Both
+authentication methods require validation in a browser.&lt;/p&gt;
+&lt;div class="highlight-bash notranslate" id="cloud-sdk-auth"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;gcloud&lt;span class="w"&gt; &lt;/span&gt;init&lt;span class="w"&gt; &lt;/span&gt;--no-launch-browser
+&lt;span class="hll"&gt;gcloud&lt;span class="w"&gt; &lt;/span&gt;auth&lt;span class="w"&gt; &lt;/span&gt;application-default&lt;span class="w"&gt; &lt;/span&gt;login&lt;span class="w"&gt; &lt;/span&gt;--no-launch-browser
+&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/section&gt;
+&lt;/section&gt;
+&lt;section id="cloud-sql-proxy"&gt;
+&lt;h2&gt;Cloud SQL Proxy&lt;/h2&gt;
+&lt;section id="instalacion-de-cloud-sql-proxy"&gt;
+&lt;h3&gt;Instalación de Cloud SQL Proxy&lt;/h3&gt;
+&lt;p&gt;In order to create the proxy for database connection, in cases where we need
+query functions and not general administration functions, we must have &lt;em&gt;Cloud
+SQL Proxy&lt;/em&gt;. For more detail, you can refer to the
+&lt;a class="reference external" href="https://cloud.google.com/sql/docs/mysql/sql-proxy"&gt;official documentation&lt;/a&gt;.&lt;/p&gt;
+&lt;div class="sd-tab-set docutils"&gt;
+&lt;input checked="checked" id="sd-tab-item-2" name="sd-tab-set-1" type="radio"&gt;
+&lt;label class="sd-tab-label" data-sync-group="tab" data-sync-id="manjaro" for="sd-tab-item-2"&gt;
+Manjaro&lt;/label&gt;&lt;div class="sd-tab-content docutils"&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;pamac&lt;span class="w"&gt; &lt;/span&gt;build&lt;span class="w"&gt; &lt;/span&gt;cloud-sql-proxy
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;input id="sd-tab-item-3" name="sd-tab-set-1" type="radio"&gt;
+&lt;label class="sd-tab-label" data-sync-group="tab" data-sync-id="ubuntu" for="sd-tab-item-3"&gt;
+Ubuntu&lt;/label&gt;&lt;div class="sd-tab-content docutils"&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;curl&lt;span class="w"&gt; &lt;/span&gt;-o&lt;span class="w"&gt; &lt;/span&gt;cloud-sql-proxy&lt;span class="w"&gt; &lt;/span&gt;https://storage.googleapis.com/cloud-sql-connectors/cloud-sql-proxy/v2.14.1/cloud-sql-proxy.linux.amd64
+chmod&lt;span class="w"&gt; &lt;/span&gt;+x&lt;span class="w"&gt; &lt;/span&gt;cloud-sql-proxy
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;This approach is universal across Linux distributions and will keep the version
+static.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/section&gt;
+&lt;section id="start-cloud-sql-proxy"&gt;
+&lt;h3&gt;Start Cloud SQL Proxy&lt;/h3&gt;
+&lt;p&gt;With the aim of creating a connection to the database instance, we must start
+the proxy in the following way:&lt;/p&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;cloud-sql-proxy&lt;span class="w"&gt; &lt;/span&gt;&amp;lt;INSTANCE&lt;span class="w"&gt; &lt;/span&gt;NAME&amp;gt;&lt;span class="w"&gt; &lt;/span&gt;-p&lt;span class="w"&gt; &lt;/span&gt;&amp;lt;PORT&amp;gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Esto nos habilitará el acceso por &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;127.0.0.1:&amp;lt;PORT&amp;gt;&lt;/span&gt;&lt;/code&gt;.&lt;/p&gt;
+&lt;div class="admonition error"&gt;
+&lt;p class="admonition-title"&gt;Error&lt;/p&gt;
+&lt;div class="highlight-default notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="mi"&gt;2024&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mi"&gt;12&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt; &lt;span class="mi"&gt;16&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;36&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;44&lt;/span&gt; &lt;span class="n"&gt;Authorizing&lt;/span&gt; &lt;span class="k"&gt;with&lt;/span&gt; &lt;span class="n"&gt;Application&lt;/span&gt; &lt;span class="n"&gt;Default&lt;/span&gt; &lt;span class="n"&gt;Credentials&lt;/span&gt;
+&lt;span class="mi"&gt;2024&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mi"&gt;12&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt; &lt;span class="mi"&gt;16&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;36&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;44&lt;/span&gt; &lt;span class="n"&gt;Error&lt;/span&gt; &lt;span class="n"&gt;starting&lt;/span&gt; &lt;span class="n"&gt;proxy&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;error&lt;/span&gt; &lt;span class="n"&gt;initializing&lt;/span&gt; &lt;span class="n"&gt;dialer&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;failed&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="n"&gt;create&lt;/span&gt; &lt;span class="n"&gt;default&lt;/span&gt; &lt;span class="n"&gt;credentials&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;google&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;could&lt;/span&gt; &lt;span class="ow"&gt;not&lt;/span&gt; &lt;span class="n"&gt;find&lt;/span&gt; &lt;span class="n"&gt;default&lt;/span&gt; &lt;span class="n"&gt;credentials&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt; &lt;span class="n"&gt;See&lt;/span&gt; &lt;span class="n"&gt;https&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="n"&gt;cloud&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;google&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;docs&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;authentication&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;external&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nb"&gt;set&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;up&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;adc&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;more&lt;/span&gt; &lt;span class="n"&gt;information&lt;/span&gt;
+&lt;span class="mi"&gt;2024&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mi"&gt;12&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt; &lt;span class="mi"&gt;16&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;36&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;44&lt;/span&gt; &lt;span class="n"&gt;The&lt;/span&gt; &lt;span class="n"&gt;proxy&lt;/span&gt; &lt;span class="n"&gt;has&lt;/span&gt; &lt;span class="n"&gt;encountered&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="n"&gt;terminal&lt;/span&gt; &lt;span class="n"&gt;error&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;unable&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="n"&gt;start&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;error&lt;/span&gt; &lt;span class="n"&gt;initializing&lt;/span&gt; &lt;span class="n"&gt;dialer&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;failed&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="n"&gt;create&lt;/span&gt; &lt;span class="n"&gt;default&lt;/span&gt; &lt;span class="n"&gt;credentials&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;google&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;could&lt;/span&gt; &lt;span class="ow"&gt;not&lt;/span&gt; &lt;span class="n"&gt;find&lt;/span&gt; &lt;span class="n"&gt;default&lt;/span&gt; &lt;span class="n"&gt;credentials&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt; &lt;span class="n"&gt;See&lt;/span&gt; &lt;span class="n"&gt;https&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="n"&gt;cloud&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;google&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;docs&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;authentication&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;external&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nb"&gt;set&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;up&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;adc&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;more&lt;/span&gt; &lt;span class="n"&gt;information&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;This error corresponds to the need to apply the default authentication for
+application credentials, which is described previously in
+&lt;a class="reference internal" href="#cloud-sdk-auth"&gt;Cloud SDK Authentication&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/section&gt;
+&lt;/section&gt;
+&lt;section id="connecting-to-database"&gt;
+&lt;h2&gt;Connecting to database&lt;/h2&gt;
+&lt;p&gt;In my work, we use MySQL, and although I initially used &lt;em&gt;MySQL Workbench&lt;/em&gt;, it
+wasn’t very comfortable and my colleagues were using
+&lt;a class="reference external" href="https://dbeaver.io/"&gt;&lt;strong class="program"&gt;dbeaver&lt;/strong&gt;&lt;/a&gt;. This caught my attention and was the
+one I was using until I discovered &lt;a class="reference external" href="https://dbgate.org/"&gt;&lt;strong class="program"&gt;dbgate&lt;/strong&gt;&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;These two are available as &lt;em&gt;flatpak&lt;/em&gt; so that they can be installed comfortably
+on any Linux distribution, but the particular case of &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;{program}&lt;/span&gt;&lt;/code&gt;dbeaver` does
+not look well on Wayland when installed in this way, making it more preferred to
+install from the official repository.&lt;/p&gt;
+&lt;div class="sd-tab-set docutils"&gt;
+&lt;input checked="checked" id="sd-tab-item-4" name="sd-tab-set-2" type="radio"&gt;
+&lt;label class="sd-tab-label" data-sync-group="tab" data-sync-id="manjaro" for="sd-tab-item-4"&gt;
+Manjaro&lt;/label&gt;&lt;div class="sd-tab-content docutils"&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo&lt;span class="w"&gt; &lt;/span&gt;pamac&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;dbeaver&lt;span class="w"&gt; &lt;/span&gt;--no-confirm
+sudo&lt;span class="w"&gt; &lt;/span&gt;pamac&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;dbeaver-plugin-office&lt;span class="w"&gt; &lt;/span&gt;dbeaver-plugin-svg-format&lt;span class="w"&gt; &lt;/span&gt;--as-deps&lt;span class="w"&gt; &lt;/span&gt;--no-confirm
+pamac&lt;span class="w"&gt; &lt;/span&gt;build&lt;span class="w"&gt; &lt;/span&gt;dbgate-bin
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;input id="sd-tab-item-5" name="sd-tab-set-2" type="radio"&gt;
+&lt;label class="sd-tab-label" data-sync-group="tab" data-sync-id="ubuntu" for="sd-tab-item-5"&gt;
+Flatpak&lt;/label&gt;&lt;div class="sd-tab-content docutils"&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;flatpak&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;-y&lt;span class="w"&gt; &lt;/span&gt;flathub&lt;span class="w"&gt; &lt;/span&gt;org.dbgate.DbGate&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="c1"&gt;# Verificado&lt;/span&gt;
+flatpak&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;-y&lt;span class="w"&gt; &lt;/span&gt;flathub&lt;span class="w"&gt; &lt;/span&gt;io.dbeaver.DBeaverCommunity&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="c1"&gt;# No verificado&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;An additional point for not using &lt;strong class="program"&gt;MySQL Workbench&lt;/strong&gt; is that it doesn’t
+just offer a modern client, but also comes with support for multiple databases
+(not just &lt;em&gt;MySQL&lt;/em&gt;).&lt;/p&gt;
+&lt;div class="admonition hint"&gt;
+&lt;p class="admonition-title"&gt;Consejo&lt;/p&gt;
+&lt;p&gt;In the past, I have had conflicts with using &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;localhost&lt;/span&gt;&lt;/code&gt; as an assignment for
+the &lt;em&gt;host&lt;/em&gt; in clients, and that’s why it’s not always resolved as &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;127.0.0.1&lt;/span&gt;&lt;/code&gt;.
+That’s why it’s better to use the IP address consistently in the configuration.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/section&gt;
+&lt;/section&gt;
+</content>
+    <link href="https://www.cosmoscalibur.com/en/blog/2024/conecta-con-una-instancia-de-cloud-sql-en-manjaro/"/>
+    <summary>Since I’m currently in a full system installation process following
+the transition from (X/K)Ubuntu to Manjaro,
+I’ll explain how to connect to a Cloud SQL instance on Manjaro.</summary>
+    <category term="cloudsqlproxy" label="cloud sql proxy"/>
+    <category term="database" label="database"/>
+    <category term="googlecloudsdk" label="google cloud sdk"/>
+    <category term="manjaro" label="manjaro"/>
+    <category term="ubuntu" label="ubuntu"/>
+    <published>2024-12-10T00:00:00-05:00</published>
+  </entry>
+  <entry>
     <id>https://www.cosmoscalibur.com/es/blog/2024/conecta-con-una-instancia-de-cloud-sql-en-manjaro/</id>
     <title>Conecta con una instancia de Cloud SQL en Manjaro</title>
     <updated>2024-12-10T00:00:00-05:00</updated>
@@ -333,7 +499,8 @@ les contaré sobre como conectar a una instancia de Cloud SQL en Manjaro.&lt;/p&
 &lt;p&gt;Para la gestión de elementos de infraestructura, lo cual incluye la conexión a
 la base de datos, se requiere disponer de &lt;em&gt;Google Cloud SDK&lt;/em&gt;. El proceso de
 instalación depende del sistema operativo, y ante inquietudes, siempre puedes
-remitirte a la &lt;a class="reference external" href="https://cloud.google.com/sdk/docs/install"&gt;documentación oficial&lt;/a&gt;.&lt;/p&gt;
+remitirte a la
+&lt;a class="reference external" href="https://cloud.google.com/sdk/docs/install"&gt;documentación oficial&lt;/a&gt;.&lt;/p&gt;
 &lt;div class="sd-tab-set docutils"&gt;
 &lt;input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio"&gt;
 &lt;label class="sd-tab-label" data-sync-group="tab" data-sync-id="manjaro" for="sd-tab-item-0"&gt;
@@ -347,7 +514,7 @@ Manjaro&lt;/label&gt;&lt;div class="sd-tab-content docutils"&gt;
 &lt;p&gt;Si no detecta el binario, puedes reiniciar cerrar y abrir la terminal. En mi
 caso solo me funcionó de esta forma, ni con &lt;strong class="program"&gt;source&lt;/strong&gt; de
 &lt;code class="file docutils literal notranslate"&gt;&lt;span class="pre"&gt;~/.zshrc&lt;/span&gt;&lt;/code&gt; ni &lt;code class="file docutils literal notranslate"&gt;&lt;span class="pre"&gt;~/.bashrc&lt;/span&gt;&lt;/code&gt; funcionó. A pesar de esto, era detectado
-por &lt;strong class="program"&gt;whereis&lt;/strong&gt; y &lt;strong class="program"&gt;which&lt;/strong&gt;.&lt;/p&gt;
+por &lt;strong class="command"&gt;whereis&lt;/strong&gt; y &lt;strong class="command"&gt;which&lt;/strong&gt;.&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;input id="sd-tab-item-1" name="sd-tab-set-0" type="radio"&gt;
@@ -407,8 +574,8 @@ chmod&lt;span class="w"&gt; &lt;/span&gt;+x&lt;span class="w"&gt; &lt;/span&gt;c
 &lt;/section&gt;
 &lt;section id="iniciar-cloud-sql-proxy"&gt;
 &lt;h3&gt;Iniciar Cloud SQL Proxy&lt;/h3&gt;
-&lt;p&gt;Con el fin de crear la conexión a la instancia de base de datos, debemos
-iniciar el &lt;em&gt;proxy&lt;/em&gt; de la siguiente forma:&lt;/p&gt;
+&lt;p&gt;Con el fin de crear la conexión a la instancia de base de datos, debemos iniciar
+el &lt;em&gt;proxy&lt;/em&gt; de la siguiente forma:&lt;/p&gt;
 &lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;cloud-sql-proxy&lt;span class="w"&gt; &lt;/span&gt;&amp;lt;NOMBRE&lt;span class="w"&gt; &lt;/span&gt;DE&lt;span class="w"&gt; &lt;/span&gt;INSTANCIA&amp;gt;&lt;span class="w"&gt; &lt;/span&gt;-p&lt;span class="w"&gt; &lt;/span&gt;&amp;lt;PUERTO&amp;gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
@@ -420,50 +587,54 @@ iniciar el &lt;em&gt;proxy&lt;/em&gt; de la siguiente forma:&lt;/p&gt;
 &lt;span class="mi"&gt;2024&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mi"&gt;12&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt; &lt;span class="mi"&gt;16&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;36&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;44&lt;/span&gt; &lt;span class="n"&gt;The&lt;/span&gt; &lt;span class="n"&gt;proxy&lt;/span&gt; &lt;span class="n"&gt;has&lt;/span&gt; &lt;span class="n"&gt;encountered&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="n"&gt;terminal&lt;/span&gt; &lt;span class="n"&gt;error&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;unable&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="n"&gt;start&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;error&lt;/span&gt; &lt;span class="n"&gt;initializing&lt;/span&gt; &lt;span class="n"&gt;dialer&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;failed&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="n"&gt;create&lt;/span&gt; &lt;span class="n"&gt;default&lt;/span&gt; &lt;span class="n"&gt;credentials&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;google&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;could&lt;/span&gt; &lt;span class="ow"&gt;not&lt;/span&gt; &lt;span class="n"&gt;find&lt;/span&gt; &lt;span class="n"&gt;default&lt;/span&gt; &lt;span class="n"&gt;credentials&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt; &lt;span class="n"&gt;See&lt;/span&gt; &lt;span class="n"&gt;https&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="n"&gt;cloud&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;google&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;docs&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;authentication&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;external&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nb"&gt;set&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;up&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;adc&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;more&lt;/span&gt; &lt;span class="n"&gt;information&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
+&lt;/div&gt;
 &lt;p&gt;Este error corresponde a la necesidad de aplicar la autenticación de
 credenciales por defecto de aplicación que se describe
 &lt;a class="reference internal" href="#cloud-sdk-auth"&gt;previamente&lt;/a&gt;.&lt;/p&gt;
-&lt;/div&gt;
-&lt;/section&gt;
-&lt;/section&gt;
-&lt;section id="conectar-a-la-base-de-datos"&gt;
-&lt;h2&gt;Conectar a la base de datos&lt;/h2&gt;
-&lt;p&gt;En mi trabajo usamos MySQL, y aunque comencé usando &lt;em&gt;MySQL Workbench&lt;/em&gt;,
-este no era muy cómodo y mis compañeros usaban &lt;a class="reference external" href="https://dbeaver.io/"&gt;&lt;strong class="program"&gt;dbeaver&lt;/strong&gt;&lt;/a&gt;.
-Este me pareció interesante y fue el que estuve usando hasta que conocí
-&lt;a class="reference external" href="https://dbgate.org/"&gt;&lt;strong class="program"&gt;dbgate&lt;/strong&gt;&lt;/a&gt;. Estos dos se encuentran disponibles
-como &lt;em&gt;flatpak&lt;/em&gt; para que los instales cómodamente en cualquier distro Linux,
-pero el caso particular de &lt;strong class="program"&gt;dbeaver&lt;/strong&gt; no se visualiza bien en Wayland
-cuando se instala de esta forma, por lo que es preferible la instalación del
-repo oficial.&lt;/p&gt;
-&lt;div class="sd-tab-set docutils"&gt;
-&lt;input checked="checked" id="sd-tab-item-4" name="sd-tab-set-2" type="radio"&gt;
-&lt;label class="sd-tab-label" data-sync-group="tab" data-sync-id="manjaro" for="sd-tab-item-4"&gt;
-Manjaro&lt;/label&gt;&lt;div class="sd-tab-content docutils"&gt;
-&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo&lt;span class="w"&gt; &lt;/span&gt;pamac&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;dbeaver&lt;span class="w"&gt; &lt;/span&gt;--no-confirm
-sudo&lt;span class="w"&gt; &lt;/span&gt;pamac&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;dbeaver-plugin-office&lt;span class="w"&gt; &lt;/span&gt;dbeaver-plugin-svg-format&lt;span class="w"&gt; &lt;/span&gt;--as-deps&lt;span class="w"&gt; &lt;/span&gt;--no-confirm
-pamac&lt;span class="w"&gt; &lt;/span&gt;build&lt;span class="w"&gt; &lt;/span&gt;dbgate-bin
+&lt;div class="highlight-default notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;
+## Conectar a la base de datos
+
+En mi trabajo usamos MySQL, y aunque comencé usando *MySQL Workbench*, este no
+era muy cómodo y mis compañeros usaban
+[{program}`dbeaver`](https://dbeaver.io/). Este me pareció interesante y fue el
+que estuve usando hasta que conocí [{program}`dbgate`](https://dbgate.org/).
+Estos dos se encuentran disponibles como *flatpak* para que los instales
+cómodamente en cualquier distro Linux, pero el caso particular de
+{program}`dbeaver` no se visualiza bien en Wayland cuando se instala de esta
+forma, por lo que es preferible la instalación del repo oficial.
+
+`````{tab-set}
+````{tab-item} Manjaro
+:sync: manjaro
+
+```{code} bash
+sudo pamac install dbeaver --no-confirm
+sudo pamac install dbeaver-plugin-office dbeaver-plugin-svg-format --as-deps --no-confirm
+pamac build dbgate-bin
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;input id="sd-tab-item-5" name="sd-tab-set-2" type="radio"&gt;
-&lt;label class="sd-tab-label" data-sync-group="tab" data-sync-id="ubuntu" for="sd-tab-item-5"&gt;
-Flatpak&lt;/label&gt;&lt;div class="sd-tab-content docutils"&gt;
-&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;flatpak&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;-y&lt;span class="w"&gt; &lt;/span&gt;flathub&lt;span class="w"&gt; &lt;/span&gt;org.dbgate.DbGate&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="c1"&gt;# Verificado&lt;/span&gt;
-flatpak&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;-y&lt;span class="w"&gt; &lt;/span&gt;flathub&lt;span class="w"&gt; &lt;/span&gt;io.dbeaver.DBeaverCommunity&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="c1"&gt;# No verificado&lt;/span&gt;
+&lt;div class="highlight-default notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;````{tab-item} Flatpak
+:sync: ubuntu
+
+```{code} bash
+flatpak install -y flathub org.dbgate.DbGate  # Verificado
+flatpak install -y flathub io.dbeaver.DBeaverCommunity  # No verificado
+```
+
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
+&lt;div class="highlight-default notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;
+Un punto extra para no usar {program}`MySQL Workbench` es usar no solo un
+cliente moderno, sino también con soporte para múltiples bases de datos (no solo
+*MySQL*).
+
+```{hint} En el pasado, he tenido conflictos con el uso de `localhost` como
+asignación del *host* en los clientes, y esto es que no siempre debe resolverse
+como `127.0.0.1`, por lo cual es mejor usar siempre en la configuración la IP.
+```
+&lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;p&gt;Un punto extra para no usar &lt;strong class="program"&gt;MySQL Workbench&lt;/strong&gt; es usar no solo un
-cliente moderno, sino también con soporte para múltiples bases de datos (no
-solo &lt;em&gt;MySQL&lt;/em&gt;).&lt;/p&gt;
-&lt;div class="admonition hint"&gt;
-&lt;p class="admonition-title"&gt;Consejo&lt;/p&gt;
-&lt;p&gt;En el pasado, he tenido conflictos con el uso de &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;localhost&lt;/span&gt;&lt;/code&gt; como asignación
-del &lt;em&gt;host&lt;/em&gt; en los clientes, y esto es que no siempre debe resolverse como
-&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;127.0.0.1&lt;/span&gt;&lt;/code&gt;, por lo cual es mejor usar siempre en la configuración la IP.&lt;/p&gt;
-&lt;/div&gt;
+&lt;/section&gt;
 &lt;/section&gt;
 &lt;/section&gt;
 </content>
@@ -1533,8 +1704,9 @@ use). Spotify has become my go-to option for passing the time while working from
 home and in the absence of other sounds, I need to have at least some music or a
 podcast. Stremio is my alternative to streaming services
 (&lt;a class="reference internal" href="../en/blog/2024/la-mejor-alternativa-gratis-a-netflix/"&gt;&lt;span class="std std-doc"&gt;The Best Free Netflix Alternative&lt;/span&gt;&lt;/a&gt;) and on Steam, I
-have good times with my collection of video games and
-&lt;a class="reference internal" href="../es/blog/2021/configurar-retroarch-en-steam/"&gt;&lt;span class="std std-doc"&gt;retro games&lt;/span&gt;&lt;/a&gt;.&lt;/p&gt;
+have good times with my collection of
+&lt;a class="reference internal" href="../en/blog/2024/proton-modo-de-compatibilidad-de-steam/"&gt;&lt;span class="std std-doc"&gt;video games&lt;/span&gt;&lt;/a&gt; and
+&lt;a class="reference internal" href="../en/blog/2021/configurar-retroarch-en-steam/"&gt;&lt;span class="std std-doc"&gt;retro games&lt;/span&gt;&lt;/a&gt;.&lt;/p&gt;
 &lt;div class="sd-tab-set docutils"&gt;
 &lt;input checked="checked" id="sd-tab-item-20" name="sd-tab-set-10" type="radio"&gt;
 &lt;label class="sd-tab-label" data-sync-group="tab" data-sync-id="manjaro" for="sd-tab-item-20"&gt;
@@ -2429,20 +2601,20 @@ share a trick to comfortably, safely, and freely access a lot of content. I’ll
 be talking about Stremio and an extension that pulls content from torrents.&lt;/p&gt;
 &lt;section id="stremio"&gt;
 &lt;h2&gt;Stremio&lt;/h2&gt;
-&lt;p&gt;&lt;a class="reference external" href="https://www.stremio.com/"&gt;Stremio&lt;/a&gt; is a multimedia content aggregator
-that allows you to search for providers to play the content you’re
-interested in. This provider search is done through an extension system for
-different services (you can link your streaming accounts like Netflix,
-Disney+, Prime Video, Apple TV) to have everything unified in a single
-multimedia hub. Because it’s based on extensions, you can also get
-extensions to play content from torrent indexes, giving you access to free
-and safe content. It’s also available for Linux, Mac, Windows,
+&lt;p&gt;&lt;a class="reference external" href="https://www.stremio.com/"&gt;Stremio&lt;/a&gt; is a multimedia content aggregator that
+allows you to search for providers to play the content you’re interested in.
+This provider search is done through an extension system for different services
+(you can link your streaming accounts like Netflix, Disney+, Prime Video, Apple
+TV) to have everything unified in a single multimedia hub. Because it’s based on
+extensions, you can also get extensions to play content from torrent indexes,
+giving you access to free and safe content. It’s also available for Linux, Mac,
+Windows,
 &lt;a class="reference external" href="https://play.google.com/store/apps/details?id=com.stremio.one&amp;amp;amp;hl=es_CO"&gt;Android&lt;/a&gt;,
 and even &lt;a class="reference external" href="https://web.stremio.com/"&gt;Web&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;While Stremio can run without an account, creating one is important. This
-allows you to synchronize not only what you watch, your watchlists, and
-progress, but also installed extensions. This is key for using Stremio with
-the torrent extension on your mobile or TV.&lt;/p&gt;
+&lt;p&gt;While Stremio can run without an account, creating one is important. This allows
+you to synchronize not only what you watch, your watchlists, and progress, but
+also installed extensions. This is key for using Stremio with the torrent
+extension on your mobile or TV.&lt;/p&gt;
 &lt;div class="sd-tab-set docutils"&gt;
 &lt;input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio"&gt;
 &lt;label class="sd-tab-label" for="sd-tab-item-0"&gt;
@@ -2463,59 +2635,56 @@ is available.&lt;/p&gt;
 &lt;/section&gt;
 &lt;section id="torrentio"&gt;
 &lt;h2&gt;Torrentio&lt;/h2&gt;
-&lt;p&gt;The magic for watching free movies and series comes from an extension that
-lets you play torrent content in Stremio and has several torrent servers
-available. I’ll highlight &lt;em&gt;The Pirate Bay&lt;/em&gt;, &lt;em&gt;Torrent Galaxy&lt;/em&gt; (for English
-content), &lt;em&gt;Cinecalidad&lt;/em&gt; (for Latin American Spanish audio), &lt;em&gt;Mejor Torrent&lt;/em&gt;
-(for Spanish audio), and &lt;em&gt;Nyaasi&lt;/em&gt; (for anime).&lt;/p&gt;
+&lt;p&gt;The magic for watching free movies and series comes from an extension that lets
+you play torrent content in Stremio and has several torrent servers available.
+I’ll highlight &lt;em&gt;The Pirate Bay&lt;/em&gt;, &lt;em&gt;Torrent Galaxy&lt;/em&gt; (for English content),
+&lt;em&gt;Cinecalidad&lt;/em&gt; (for Latin American Spanish audio), &lt;em&gt;Mejor Torrent&lt;/em&gt; (for Spanish
+audio), and &lt;em&gt;Nyaasi&lt;/em&gt; (for anime).&lt;/p&gt;
 &lt;p&gt;To install Torrentio, use this
 &lt;a class="reference external" href="https://torrentio.strem.fun/providers=yts,eztv,rarbg,1337x,thepiratebay,kickasstorrents,torrentgalaxy,magnetdl,horriblesubs,nyaasi,tokyotosho,anidex,mejortorrent,wolfmax4k,cinecalidad%7Csort=seeders%7Clanguage=spanish,latino%7Cqualityfilter=cam/configure"&gt;link&lt;/a&gt;,
 which has the configuration I recommend. The special features of this
 configuration are:&lt;/p&gt;
 &lt;ol class="arabic simple"&gt;
 &lt;li&gt;&lt;p&gt;&lt;em&gt;Providers&lt;/em&gt;: We exclude &lt;em&gt;Rutor&lt;/em&gt;, &lt;em&gt;Rutracker&lt;/em&gt;, &lt;em&gt;Comando&lt;/em&gt;, &lt;em&gt;BluDV&lt;/em&gt;, and
-&lt;em&gt;Torrent9&lt;/em&gt;. Excluding these removes content primarily in Russian,
-Portuguese, and Italian, leaving content in English, Spanish, and
-Japanese (anime).&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;em&gt;Sorting&lt;/em&gt;: We apply &lt;em&gt;By seeders&lt;/em&gt;, prioritizing content that will
-potentially play best. If there are few seeders, playback might be
-problematic, especially with large files, but sometimes there are
-surprises, so you can try even with few seeders.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;em&gt;Priority foreign language&lt;/em&gt;: &lt;em&gt;Spanish&lt;/em&gt; and &lt;em&gt;Latino&lt;/em&gt;. This prioritizes
-content in Spanish, following the seeder sorting and then again by
-seeders but in any other language. Usually, the declared language
-corresponds to the available audio language.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;em&gt;Exclude qualities/resolutions&lt;/em&gt;: &lt;em&gt;CAM&lt;/em&gt;. You don’t want to watch this
-content. These are recordings made with a camera over a cinema or
-home playback. The image and audio are terrible.&lt;/p&gt;&lt;/li&gt;
+&lt;em&gt;Torrent9&lt;/em&gt;. Excluding these removes content primarily in Russian, Portuguese,
+and Italian, leaving content in English, Spanish, and Japanese (anime).&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;em&gt;Sorting&lt;/em&gt;: We apply &lt;em&gt;By seeders&lt;/em&gt;, prioritizing content that will potentially
+play best. If there are few seeders, playback might be problematic,
+especially with large files, but sometimes there are surprises, so you can
+try even with few seeders.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;em&gt;Priority foreign language&lt;/em&gt;: &lt;em&gt;Spanish&lt;/em&gt; and &lt;em&gt;Latino&lt;/em&gt;. This prioritizes content
+in Spanish, following the seeder sorting and then again by seeders but in any
+other language. Usually, the declared language corresponds to the available
+audio language.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;em&gt;Exclude qualities/resolutions&lt;/em&gt;: &lt;em&gt;CAM&lt;/em&gt;. You don’t want to watch this content.
+These are recordings made with a camera over a cinema or home playback. The
+image and audio are terrible.&lt;/p&gt;&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;If you want to modify anything, go ahead, and then click the &lt;em&gt;INSTALL&lt;/em&gt;
-button.&lt;/p&gt;
-&lt;p&gt;In my experience, there’s a good chance of finding popular content in both
-Latin American and Spain Spanish, but it’s always best to be willing to
-watch content in English for reliable and smooth playback. Thanks to the
-OpenSubtitles v3 and OpenSubtitles extensions (both official), we have a
-repository of subtitles for our content, even if they aren’t embedded
-(embedded is much better).&lt;/p&gt;
+&lt;p&gt;If you want to modify anything, go ahead, and then click the &lt;em&gt;INSTALL&lt;/em&gt; button.&lt;/p&gt;
+&lt;p&gt;In my experience, there’s a good chance of finding popular content in both Latin
+American and Spain Spanish, but it’s always best to be willing to watch content
+in English for reliable and smooth playback. Thanks to the OpenSubtitles v3 and
+OpenSubtitles extensions (both official), we have a repository of subtitles for
+our content, even if they aren’t embedded (embedded is much better).&lt;/p&gt;
 &lt;/section&gt;
 &lt;section id="installing-on-tv"&gt;
 &lt;h2&gt;Installing on TV&lt;/h2&gt;
-&lt;p&gt;Stremio and its extensions work on Android, so you can use this not only on
-your mobile but also on your Android TV. As I previously mentioned, it’s
-important that you’ve created a Stremio account because there’s no login
-form on TV, and you’ll have to use a login link or QR code to access it
-from your mobile or computer.&lt;/p&gt;
-&lt;p&gt;Installation is the best option, but if Stremio isn’t available for your
-TV, you can also cast from your mobile or connect your computer or mobile
-via cable to the TV.&lt;/p&gt;
+&lt;p&gt;Stremio and its extensions work on Android, so you can use this not only on your
+mobile but also on your Android TV. As I previously mentioned, it’s important
+that you’ve created a Stremio account because there’s no login form on TV, and
+you’ll have to use a login link or QR code to access it from your mobile or
+computer.&lt;/p&gt;
+&lt;p&gt;Installation is the best option, but if Stremio isn’t available for your TV, you
+can also cast from your mobile or connect your computer or mobile via cable to
+the TV.&lt;/p&gt;
 &lt;/section&gt;
 &lt;section id="extra-pluto-tv"&gt;
 &lt;h2&gt;Extra: Pluto TV&lt;/h2&gt;
-&lt;p&gt;This isn’t exactly a good alternative to replace your streaming
-subscriptions, but you’ll find good free content in Latin American
-Spanish. If you create an account, you can opt for progress sync options.
-&lt;a class="reference external" href="https://www.pluto.tv/welcome"&gt;Pluto TV&lt;/a&gt; is available on the web, Android,
-and iOS.&lt;/p&gt;
+&lt;p&gt;This isn’t exactly a good alternative to replace your streaming subscriptions,
+but you’ll find good free content in Latin American Spanish. If you create an
+account, you can opt for progress sync options.
+&lt;a class="reference external" href="https://www.pluto.tv/welcome"&gt;Pluto TV&lt;/a&gt; is available on the web, Android, and
+iOS.&lt;/p&gt;
 &lt;/section&gt;
 &lt;/section&gt;
 </content>
@@ -2707,8 +2876,21 @@ abierto.&lt;/p&gt;
 indico a continuación. Si no, puedes remitirte a la página oficial o también
 instalarla con el gestor de paquetes &lt;strong class="program"&gt;conda&lt;/strong&gt; (aplica a todos los
 sistemas operativos).&lt;/p&gt;
+&lt;div class="sd-tab-set docutils"&gt;
+&lt;input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio"&gt;
+&lt;label class="sd-tab-label" for="sd-tab-item-0"&gt;
+Ubuntu&lt;/label&gt;&lt;div class="sd-tab-content docutils"&gt;
 &lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo&lt;span class="w"&gt; &lt;/span&gt;apt&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;-y&lt;span class="w"&gt; &lt;/span&gt;ffmpeg
 &lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;input id="sd-tab-item-1" name="sd-tab-set-0" type="radio"&gt;
+&lt;label class="sd-tab-label" for="sd-tab-item-1"&gt;
+Manjaro&lt;/label&gt;&lt;div class="sd-tab-content docutils"&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo&lt;span class="w"&gt; &lt;/span&gt;pamac&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;--no-confirm&lt;span class="w"&gt; &lt;/span&gt;ffmpeg
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
 &lt;/div&gt;
 &lt;p&gt;Para probar el concepto, usaremos uno de los pares de archivos.&lt;/p&gt;
 &lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;ffmpeg&lt;span class="w"&gt; &lt;/span&gt;-i&lt;span class="w"&gt; &lt;/span&gt;Modulo&lt;span class="se"&gt;\ &lt;/span&gt;&lt;span class="m"&gt;2&lt;/span&gt;&lt;span class="se"&gt;\ &lt;/span&gt;Clase&lt;span class="se"&gt;\ &lt;/span&gt;&lt;span class="m"&gt;2&lt;/span&gt;&lt;span class="se"&gt;\ &lt;/span&gt;Parte&lt;span class="se"&gt;\ &lt;/span&gt;&lt;span class="m"&gt;5&lt;/span&gt;&lt;span class="se"&gt;\ \(&lt;/span&gt;720p&lt;span class="se"&gt;\ &lt;/span&gt;with&lt;span class="se"&gt;\ &lt;/span&gt;30fps&lt;span class="se"&gt;\)&lt;/span&gt;.mp4&lt;span class="w"&gt; &lt;/span&gt;-i&lt;span class="w"&gt; &lt;/span&gt;Modulo&lt;span class="se"&gt;\ &lt;/span&gt;&lt;span class="m"&gt;2&lt;/span&gt;&lt;span class="se"&gt;\ &lt;/span&gt;Clase&lt;span class="se"&gt;\ &lt;/span&gt;&lt;span class="m"&gt;2&lt;/span&gt;&lt;span class="se"&gt;\ &lt;/span&gt;Parte&lt;span class="se"&gt;\ &lt;/span&gt;&lt;span class="m"&gt;5&lt;/span&gt;-audio.mp4&lt;span class="w"&gt; &lt;/span&gt;-c&lt;span class="w"&gt; &lt;/span&gt;copy&lt;span class="w"&gt; &lt;/span&gt;output/Modulo&lt;span class="se"&gt;\ &lt;/span&gt;&lt;span class="m"&gt;2&lt;/span&gt;&lt;span class="se"&gt;\ &lt;/span&gt;Clase&lt;span class="se"&gt;\ &lt;/span&gt;&lt;span class="m"&gt;2&lt;/span&gt;&lt;span class="se"&gt;\ &lt;/span&gt;Parte&lt;span class="se"&gt;\ &lt;/span&gt;&lt;span class="m"&gt;5&lt;/span&gt;.mp4
@@ -2840,7 +3022,7 @@ audio y el video, así que les contaré como hacerlo con FFMPEG y Bash.</summary
     <category term="ffmpeg" label="ffmpeg"/>
     <category term="procesamientodeaudioyvideo" label="procesamiento de audio y video"/>
     <category term="programaciónenbash" label="programación en bash"/>
-    <category term="videosdevimeo" label="videos de vimeo"/>
+    <category term="vimeo" label="vimeo"/>
     <published>2024-10-20T00:00:00-05:00</published>
   </entry>
   <entry>
@@ -3372,58 +3554,64 @@ configurar el logo y el favicon en Sphinx.Visual del logo agregado en Sphinx en 
 
 &lt;p&gt;UV es un gestor de paquetes y entornos virtuales alternativo para &lt;em&gt;Python&lt;/em&gt;,
 desarrollado en &lt;em&gt;Rust&lt;/em&gt; y que nos promete ser muy rápido en los procesos que
-pretende reemplazar de PIP y VENV. En este sentido, solo es añadir &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;uv&lt;/span&gt;&lt;/code&gt; antes
-de las instrucciones habituales y debe funcionar (salvo algunos casos particulares
+pretende reemplazar de PIP y VENV. En este sentido, solo es añadir &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;uv&lt;/span&gt;&lt;/code&gt; antes de
+las instrucciones habituales y debe funcionar (salvo algunos casos particulares
 de compatibilidad o de no existir implementación).&lt;/p&gt;
 &lt;p&gt;Esta es una de tantas herramientas que vienen en la era &lt;em&gt;Rust&lt;/em&gt; a permear el
 ecosistema de &lt;em&gt;Python&lt;/em&gt; generando un nuevo valor, como lo es la mejora de
-rendimiento. Y es que del mismo creador, tenemos también &lt;em&gt;Ruff&lt;/em&gt; como un reemplazo
-eficiente de &lt;em&gt;linters&lt;/em&gt;, y también hay otras herramientas como &lt;em&gt;PyO3&lt;/em&gt; para
-crear bibliotecas Python en Rust, Polars como un reemplazo a Pandas o Robyn como
-alternativa a Flask.&lt;/p&gt;
+rendimiento. Y es que del mismo creador, tenemos también &lt;em&gt;Ruff&lt;/em&gt; como un
+reemplazo eficiente de &lt;em&gt;linters&lt;/em&gt;, y también hay otras herramientas como &lt;em&gt;PyO3&lt;/em&gt;
+para crear bibliotecas Python en Rust, Polars como un reemplazo a Pandas o Robyn
+como alternativa a Flask.&lt;/p&gt;
 &lt;p&gt;Este proyecto, &lt;a class="reference external" href="https://astral.sh/blog/uv"&gt;UV&lt;/a&gt;, pretende ser el equivalente de
 un &lt;em&gt;cargo&lt;/em&gt; (el gestor de &lt;em&gt;Rust&lt;/em&gt;) para Python, integrando en un único binario,
 múltiples utilidades.&lt;/p&gt;
 &lt;section id="instalacion-de-uv"&gt;
 &lt;h2&gt;Instalación de UV&lt;/h2&gt;
-&lt;p&gt;Si tenemos en nuestro sistema más de una versión Python, la forma recomendada para
-instalar será a partir del &lt;em&gt;script&lt;/em&gt; de instalación que provee, ya que de esta forma
-queda disponible para todas nuestras instalaciones sin depender de un ambiente Python
-en particular. Esto es porque el binario evalúa la instalación de Python correspondiente
-a través de las variables de entorno y soporta las funciones de gestión para el ambiente
-detectado.&lt;/p&gt;
+&lt;p&gt;Si tenemos en nuestro sistema más de una versión Python, la forma recomendada
+para instalar será a partir del &lt;em&gt;script&lt;/em&gt; de instalación que provee, ya que de
+esta forma queda disponible para todas nuestras instalaciones sin depender de un
+ambiente Python en particular. Esto es porque el binario evalúa la instalación
+de Python correspondiente a través de las variables de entorno y soporta las
+funciones de gestión para el ambiente detectado.&lt;/p&gt;
 &lt;p&gt;Si estamos en Linux, podemos proceder como&lt;/p&gt;
 &lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;curl&lt;span class="w"&gt; &lt;/span&gt;-LsSf&lt;span class="w"&gt; &lt;/span&gt;https://astral.sh/uv/install.sh&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;sh
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
-&lt;p&gt;La primera línea, descarga el &lt;em&gt;script&lt;/em&gt; de instalación y lo ejecuta. En la segunda línea,
-se configura el entorno (en mi caso uso &lt;em&gt;bash&lt;/em&gt;) y con esto queda disponible de forma inmediata
-(también si abres una nueva consola estará disponible).&lt;/p&gt;
-&lt;p&gt;También se encuentra como un paquete Python, por lo que podrás usar &lt;em&gt;pip&lt;/em&gt; para instalarlo. Si necesitas
-validar otro método o sistema operativo, puedes revisar el
+&lt;p&gt;La primera línea, descarga el &lt;em&gt;script&lt;/em&gt; de instalación y lo ejecuta. En la
+segunda línea, se configura el entorno (en mi caso uso &lt;em&gt;bash&lt;/em&gt;) y con esto queda
+disponible de forma inmediata (también si abres una nueva consola estará
+disponible).&lt;/p&gt;
+&lt;p&gt;También se encuentra como un paquete Python, por lo que podrás usar &lt;em&gt;pip&lt;/em&gt; para
+instalarlo. Si necesitas validar otro método o sistema operativo, puedes revisar
+el
 &lt;a class="reference external" href="https://github.com/astral-sh/uv?tab=readme-ov-file#getting-started"&gt;repositorio oficial&lt;/a&gt;.&lt;/p&gt;
 &lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;pip&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;uv
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
-&lt;p&gt;Como veremos adelante, tendremos unas buenas mejoras en los tiempos de instalación de paquetes
-y de creación de ambientes, pero es importante que si piensas esta herramienta para reducir el
-tiempo de ejecución de GitHub Actions, el tiempo de instalación de UV o de su
-&lt;a class="reference external" href="https://github.com/actions/setup-python/issues/822"&gt;gestión de caché&lt;/a&gt;
-puede no ser una alternativa de momento, salvo que el tiempo de resolución efectivamente lo valga.
-En mi caso, el método directo tomó 7.8 s, mientras que la instalación con PIP tomó 5.8 s.&lt;/p&gt;
+&lt;p&gt;Como veremos adelante, tendremos unas buenas mejoras en los tiempos de
+instalación de paquetes y de creación de ambientes, pero es importante que si
+piensas esta herramienta para reducir el tiempo de ejecución de GitHub Actions,
+el tiempo de instalación de UV o de su
+&lt;a class="reference external" href="https://github.com/actions/setup-python/issues/822"&gt;gestión de caché&lt;/a&gt; puede no
+ser una alternativa de momento, salvo que el tiempo de resolución efectivamente
+lo valga. En mi caso, el método directo tomó 7.8 s, mientras que la instalación
+con PIP tomó 5.8 s.&lt;/p&gt;
 &lt;div class="admonition note"&gt;
 &lt;p class="admonition-title"&gt;Nota&lt;/p&gt;
-&lt;p&gt;La manera como mediremos los tiempos de los procesos, será mediante la utilidad &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;time&lt;/span&gt;&lt;/code&gt;. Esta se
-puede anteceder a las instrucciones que usaremos y nos permitirá evaluar el tiempo total (&lt;em&gt;real&lt;/em&gt;),
-así como el tiempo en espacio de usuario y de sistema.&lt;/p&gt;
+&lt;p&gt;La manera como mediremos los tiempos de los procesos, será mediante la
+utilidad &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;time&lt;/span&gt;&lt;/code&gt;. Esta se puede anteceder a las instrucciones que usaremos y nos
+permitirá evaluar el tiempo total (&lt;em&gt;real&lt;/em&gt;), así como el tiempo en espacio de
+usuario y de sistema.&lt;/p&gt;
 &lt;/div&gt;
-&lt;p&gt;Para actualizar &lt;em&gt;UV&lt;/em&gt; desde el binario, podemos usar &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;uv&lt;/span&gt; &lt;span class="pre"&gt;self&lt;/span&gt; &lt;span class="pre"&gt;update&lt;/span&gt;&lt;/code&gt; (disponible desde la versión
-0.1.23).&lt;/p&gt;
+&lt;p&gt;Para actualizar &lt;em&gt;UV&lt;/em&gt; desde el binario, podemos usar &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;uv&lt;/span&gt; &lt;span class="pre"&gt;self&lt;/span&gt; &lt;span class="pre"&gt;update&lt;/span&gt;&lt;/code&gt; (disponible
+desde la versión 0.1.23).&lt;/p&gt;
 &lt;section id="desinstalar-uv"&gt;
 &lt;h3&gt;Desinstalar UV&lt;/h3&gt;
 &lt;p&gt;Esto no es algo bien documentado, pero se encuentra disponible en un
 &lt;a class="reference external" href="https://github.com/astral-sh/uv/issues/1696#issuecomment-2031776112"&gt;reporte al repositorio&lt;/a&gt;,
-considerando que es simplemente un binario. Así que nos interesa borrar la caché de UV y el binario.&lt;/p&gt;
+considerando que es simplemente un binario. Así que nos interesa borrar la caché
+de UV y el binario.&lt;/p&gt;
 &lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;rm&lt;span class="w"&gt; &lt;/span&gt;-rf&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;$HOME&lt;/span&gt;/.cache/uv
 rm&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;$HOME&lt;/span&gt;/.cargo/bin/uv
 &lt;/pre&gt;&lt;/div&gt;
@@ -3432,8 +3620,9 @@ rm&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;$HOME&lt;/span&gt;/
 &lt;/section&gt;
 &lt;section id="creacion-de-ambientes-virtuales"&gt;
 &lt;h2&gt;Creación de ambientes virtuales&lt;/h2&gt;
-&lt;p&gt;Igual que con la utilidad de &lt;em&gt;venv&lt;/em&gt;, el ambiente creado depende de la instalación Python usada (detectado
-por las variables de entorno), y tendremos opción de manejarlo con el nombre por defecto o asignando uno.&lt;/p&gt;
+&lt;p&gt;Igual que con la utilidad de &lt;em&gt;venv&lt;/em&gt;, el ambiente creado depende de la
+instalación Python usada (detectado por las variables de entorno), y tendremos
+opción de manejarlo con el nombre por defecto o asignando uno.&lt;/p&gt;
 &lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;python3&lt;span class="w"&gt; &lt;/span&gt;-m&lt;span class="w"&gt; &lt;/span&gt;venv&lt;span class="w"&gt; &lt;/span&gt;testvenv&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="c1"&gt;# VENV: Toma 2.5 s&lt;/span&gt;
 uv&lt;span class="w"&gt; &lt;/span&gt;venv&lt;span class="w"&gt; &lt;/span&gt;testuv&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="c1"&gt;# UV: Toma 0.01 s&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
@@ -3442,12 +3631,13 @@ uv&lt;span class="w"&gt; &lt;/span&gt;venv&lt;span class="w"&gt; &lt;/span&gt;te
 &lt;/section&gt;
 &lt;section id="instalacion-de-paquetes-python"&gt;
 &lt;h2&gt;Instalación de paquetes Python&lt;/h2&gt;
-&lt;p&gt;En general, es buena práctica usar ambientes, y UV lo espera por defecto.
-Pero en caso de una instalación global, podemos pasar &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;--system&lt;/span&gt;&lt;/code&gt; como argumento
+&lt;p&gt;En general, es buena práctica usar ambientes, y UV lo espera por defecto. Pero
+en caso de una instalación global, podemos pasar &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;--system&lt;/span&gt;&lt;/code&gt; como argumento
 (adecuado para CI o contenedores).&lt;/p&gt;
 &lt;p&gt;En mi caso, igual para poder hacer las pruebas, activaré los ambientes para
-comparar la instalación de &lt;em&gt;pip&lt;/em&gt; y &lt;em&gt;UV&lt;/em&gt;. El caso de uso para la prueba, será
-la instalación de las dependencias usadas en el &lt;a class="reference internal" href="../es/blog/2024/crear-un-blog-con-sphinx/#dependencias"&gt;&lt;span class="std std-ref"&gt;repositorio del blog&lt;/span&gt;&lt;/a&gt;.&lt;/p&gt;
+comparar la instalación de &lt;em&gt;pip&lt;/em&gt; y &lt;em&gt;UV&lt;/em&gt;. El caso de uso para la prueba, será la
+instalación de las dependencias usadas en el
+&lt;a class="reference internal" href="../es/blog/2024/crear-un-blog-con-sphinx/#dependencias"&gt;&lt;span class="std std-ref"&gt;repositorio del blog&lt;/span&gt;&lt;/a&gt;.&lt;/p&gt;
 &lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nb"&gt;source&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;testenv/bin/activate
 python3&lt;span class="w"&gt; &lt;/span&gt;-m&lt;span class="w"&gt; &lt;/span&gt;pip&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;-r&lt;span class="w"&gt; &lt;/span&gt;requirements.txt&lt;span class="w"&gt; &lt;/span&gt;-r&lt;span class="w"&gt; &lt;/span&gt;requirements-dev.txt
 &lt;/pre&gt;&lt;/div&gt;
@@ -3456,27 +3646,29 @@ python3&lt;span class="w"&gt; &lt;/span&gt;-m&lt;span class="w"&gt; &lt;/span&gt
 uv&lt;span class="w"&gt; &lt;/span&gt;pip&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;-r&lt;span class="w"&gt; &lt;/span&gt;requirements.txt&lt;span class="w"&gt; &lt;/span&gt;-r&lt;span class="w"&gt; &lt;/span&gt;requirements-dev.txt
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
-&lt;p&gt;Mientras que la versión &lt;em&gt;pip&lt;/em&gt; tomó 25.5 s, la versión &lt;em&gt;UV&lt;/em&gt; tomó 5.9 s. Aquí notamos ya
-diferencias importantes que en un flujo de CI (ejemplo, GitHub Actions), puede representar
-ahorros interesantes.&lt;/p&gt;
-&lt;p&gt;Este mismo ejercicio lo realicé para el repositorio principal en mi trabajo, toma 6 s
-con UV sin caché e instalando UV, mientras que usando PIP toma típicamente 32 s sin caché y 24 s con caché.
-En este caso, es importante pasar la opción de sistema para usarlo en GitHub Actions.&lt;/p&gt;
+&lt;p&gt;Mientras que la versión &lt;em&gt;pip&lt;/em&gt; tomó 25.5 s, la versión &lt;em&gt;UV&lt;/em&gt; tomó 5.9 s. Aquí
+notamos ya diferencias importantes que en un flujo de CI (ejemplo, GitHub
+Actions), puede representar ahorros interesantes.&lt;/p&gt;
+&lt;p&gt;Este mismo ejercicio lo realicé para el repositorio principal en mi trabajo,
+toma 6 s con UV sin caché e instalando UV, mientras que usando PIP toma
+típicamente 32 s sin caché y 24 s con caché. En este caso, es importante pasar
+la opción de sistema para usarlo en GitHub Actions.&lt;/p&gt;
 &lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;pip&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;uv
 uv&lt;span class="w"&gt; &lt;/span&gt;pip&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;--system&lt;span class="w"&gt; &lt;/span&gt;-r&lt;span class="w"&gt; &lt;/span&gt;requirements.txt&lt;span class="w"&gt; &lt;/span&gt;-r&lt;span class="w"&gt; &lt;/span&gt;requirements-dev.txt
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
-&lt;p&gt;Es importante tener presente el cambio de sintaxis cuando se instala un paquete desde un repositorio,
-y es el uso de &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;&amp;quot;paquete&lt;/span&gt; &lt;span class="pre"&gt;&amp;#64;&lt;/span&gt; &lt;span class="pre"&gt;url_repo&amp;quot;&lt;/span&gt;&lt;/code&gt;, y en particular si posee credenciales considerar
-el soporte acorde a las &lt;a class="reference external" href="https://github.com/astral-sh/uv?tab=readme-ov-file#git-authentication"&gt;indicaciones&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Es importante tener presente el cambio de sintaxis cuando se instala un paquete
+desde un repositorio, y es el uso de &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;&amp;quot;paquete&lt;/span&gt; &lt;span class="pre"&gt;&amp;#64;&lt;/span&gt; &lt;span class="pre"&gt;url_repo&amp;quot;&lt;/span&gt;&lt;/code&gt;, y en particular si
+posee credenciales considerar el soporte acorde a las
+&lt;a class="reference external" href="https://github.com/astral-sh/uv?tab=readme-ov-file#git-authentication"&gt;indicaciones&lt;/a&gt;.&lt;/p&gt;
 &lt;/section&gt;
 &lt;/section&gt;
 </content>
     <link href="https://www.cosmoscalibur.com/es/blog/2024/uv-alternativa-rapida-a-pip-y-venv/"/>
     <summary>UV es un gestor de paquetes y entornos virtuales alternativo para Python,
 desarrollado en Rust y que nos promete ser muy rápido en los procesos que
-pretende reemplazar de PIP y VENV. En este sentido, solo es añadir uv antes
-de las instrucciones habituales y debe funcionar (salvo algunos casos particulares
+pretende reemplazar de PIP y VENV. En este sentido, solo es añadir uv antes de
+las instrucciones habituales y debe funcionar (salvo algunos casos particulares
 de compatibilidad o de no existir implementación).</summary>
     <category term="gestordeambientesvirtuales" label="gestor de ambientes virtuales"/>
     <category term="gestordepaquetes" label="gestor de paquetes"/>
@@ -3680,6 +3872,73 @@ Te cuento como usar el modo de compatibilidad de Steam en todos los juegos.</sum
     <category term="steam" label="steam"/>
     <category term="steamplay" label="steam play"/>
     <category term="videojuegos" label="videojuegos"/>
+    <published>2024-06-04T00:00:00-05:00</published>
+  </entry>
+  <entry>
+    <id>https://www.cosmoscalibur.com/en/blog/2024/proton-modo-de-compatibilidad-de-steam/</id>
+    <title>Proton: Compatibility Mode of Steam</title>
+    <updated>2024-06-04T00:00:00-05:00</updated>
+    <author>
+      <name>Edward Villegas-Pulgarin</name>
+    </author>
+    <content type="html">&lt;section class="tex2jax_ignore mathjax_ignore" id="proton-compatibility-mode-of-steam"&gt;
+
+&lt;p&gt;Do you want to play that Steam game that is supported on Windows, but not on
+Linux? I’ll tell you how to use the compatibility mode of Steam for all games.&lt;/p&gt;
+&lt;p&gt;Yes, I have a gamer side and previously told you a bit about configuring
+Retroarch in Steam (&lt;a class="reference internal" href="../en/blog/2021/configurar-retroarch-en-steam/"&gt;&lt;span class="std std-doc"&gt;Setting Up RetroArch on Steam&lt;/span&gt;&lt;/a&gt;) because
+it’s my preferred platform (along with others, since many of the games offered
+by &lt;a class="reference external" href="https://www.humblebundle.com/"&gt;Humble Bundle&lt;/a&gt; are compatible with this). And
+it’s common for the games I’ve purchased from bundles or some free-to-play
+titles that caught my attention to not have a Linux option, which is my primary
+system operating system. But Steam has a solution or at least an alternative
+worth trying before forgetting.&lt;/p&gt;
+&lt;section id="proton"&gt;
+&lt;h2&gt;Proton&lt;/h2&gt;
+&lt;p&gt;In the Linux world, you are likely familiar with a tool that allows us to try
+running Windows programs on Linux, called &lt;a class="reference external" href="https://www.winehq.org/"&gt;Wine&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;It turns out that Wine is exactly the default solution, and if not, it’s an
+adapted solution that applies modifications on top of existing Wine
+functionality. And so, Proton emerges as the solution developed by &lt;em&gt;Valve&lt;/em&gt; (the
+developers of Steam) to enable portability of Windows games for a growing
+audience of gamers who use Linux.&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://github.com/ValveSoftware/Proton"&gt;Proton&lt;/a&gt; builds upon Wine, adding a
+series of components and patches to make compatibility with Steam games that
+were originally designed for Windows. And this has been crucial for the
+&lt;a class="reference external" href="https://store.steamedeck.com/"&gt;Steam Deck&lt;/a&gt; project, the Linux-based portable
+Steam console.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="steam-play"&gt;
+&lt;h2&gt;Steam Play&lt;/h2&gt;
+&lt;p&gt;If we want to install games on our Linux PC that are supported on Windows but
+not on Linux, then the compatibility option, which is called Steam Play, comes
+pre-enabled by default. However, this only applies to officially supported
+titles.&lt;/p&gt;
+&lt;p&gt;There are still games that can be viewed and run perfectly without being
+officially supported, just like this week when I decided to play
+&lt;a class="reference external" href="https://store.steamedeck.com/app/291550/Brawlhalla/"&gt;Brawlhalla&lt;/a&gt; with my
+colleagues, and the surprise was that it wasn’t supported on Linux.&lt;/p&gt;
+&lt;p&gt;So, when we don’t have a game enabled, we go to the top menu bar, select
+&lt;span class="menuselection"&gt;Steam ‣ Settings ‣ Compatibility&lt;/span&gt;, and see that the section
+is shown. We will see that the first option (for titles that are officially
+supported) is already enabled, but the option for all titles is not. Now, let’s
+enable it for all titles and accept the restart of Steam. Once we return to
+Brawlhalla, we’ll see that the &lt;span class="guilabel"&gt;Add to library&lt;/span&gt; button is now enabled.&lt;/p&gt;
+&lt;p&gt;After completing the installation and starting the game, we’ll see a single
+error message, which doesn’t require concern - we can simply ignore it and play
+without any issues.&lt;/p&gt;
+&lt;/section&gt;
+&lt;/section&gt;
+</content>
+    <link href="https://www.cosmoscalibur.com/en/blog/2024/proton-modo-de-compatibilidad-de-steam/"/>
+    <summary>Do you want to play that Steam game that is supported on Windows, but not on
+Linux? I’ll tell you how to use the compatibility mode of Steam for all games.</summary>
+    <category term="brawlhalla" label="brawlhalla"/>
+    <category term="linux" label="linux"/>
+    <category term="proton" label="proton"/>
+    <category term="steam" label="steam"/>
+    <category term="steamplay" label="steam play"/>
+    <category term="videogames" label="videogames"/>
     <published>2024-06-04T00:00:00-05:00</published>
   </entry>
   <entry>

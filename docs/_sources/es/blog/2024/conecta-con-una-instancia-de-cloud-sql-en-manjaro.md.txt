@@ -17,10 +17,11 @@ les contaré sobre como conectar a una instancia de Cloud SQL en Manjaro.
 Para la gestión de elementos de infraestructura, lo cual incluye la conexión a
 la base de datos, se requiere disponer de *Google Cloud SDK*. El proceso de
 instalación depende del sistema operativo, y ante inquietudes, siempre puedes
-remitirte a la [documentación oficial](https://cloud.google.com/sdk/docs/install).
+remitirte a la
+[documentación oficial](https://cloud.google.com/sdk/docs/install).
 
-::::{tab-set}
-:::{tab-item} Manjaro
+`````{tab-set}
+````{tab-item} Manjaro
 :sync: manjaro
 
 Este paquete está disponible en el AUR, por lo cual se puede usar en Arch.
@@ -33,11 +34,11 @@ pamac build google-cloud-cli --no-confirm
 Si no detecta el binario, puedes reiniciar cerrar y abrir la terminal. En mi
 caso solo me funcionó de esta forma, ni con {program}`source` de
 {file}`~/.zshrc` ni {file}`~/.bashrc` funcionó. A pesar de esto, era detectado
-por {program}`whereis` y {program}`which`.
+por {command}`whereis` y {command}`which`.
 ```
 
-:::
-:::{tab-item} Ubuntu
+````
+````{tab-item} Ubuntu
 :sync: ubuntu
 
 ```{code} bash
@@ -47,8 +48,9 @@ curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key --keyr
 sudo apt update -q
 sudo apt install -y google-cloud-sdk
 ```
-:::
-::::
+
+````
+`````
 
 ### Autenticación Google Cloud SDK
 
@@ -61,9 +63,10 @@ gestiones copiando y pegando manualmente el enlace de autenticación
 (`--no-launch-browser`). Ambas autenticaciones requieren validar en navegador.
 
 ```{code-block} bash
-:name: cloud-sdk-auth
-:emphasize-lines: 2
-
+---
+name: cloud-sdk-auth
+emphasize-lines: 2
+---
 gcloud init --no-launch-browser
 gcloud auth application-default login --no-launch-browser
 ```
@@ -77,28 +80,31 @@ requerir funciones de consulta y no de administración general, debemos tener
 *Cloud SQL Proxy*. Para mayor detalle puedes remitirte a la
 [documentación oficial](https://cloud.google.com/sql/docs/mysql/sql-proxy).
 
-::::{tab-set}
-:::{tab-item} Manjaro
+`````{tab-set}
+````{tab-item} Manjaro
 :sync: manjaro
+
 ```{code} bash
 pamac build cloud-sql-proxy
 ```
-:::
-:::{tab-item} Ubuntu
+
+````
+````{tab-item} Ubuntu
 :sync: ubuntu
+
 ```{code} bash
 curl -o cloud-sql-proxy https://storage.googleapis.com/cloud-sql-connectors/cloud-sql-proxy/v2.14.1/cloud-sql-proxy.linux.amd64
 chmod +x cloud-sql-proxy
 ```
 
 Este método válido para cualquier distribución Linux, dejará fijada la versión.
-:::
-::::
+````
+`````
 
 ### Iniciar Cloud SQL Proxy
 
-Con el fin de crear la conexión a la instancia de base de datos, debemos
-iniciar el *proxy* de la siguiente forma:
+Con el fin de crear la conexión a la instancia de base de datos, debemos iniciar
+el *proxy* de la siguiente forma:
 
 ```{code} bash
 cloud-sql-proxy <NOMBRE DE INSTANCIA> -p <PUERTO>
@@ -106,56 +112,60 @@ cloud-sql-proxy <NOMBRE DE INSTANCIA> -p <PUERTO>
 
 Esto nos habilitará el acceso por `127.0.0.1:<PUERTO>`.
 
-:::{error}
+````{error}
 
 ```{code}
 2024/12/10 16:36:44 Authorizing with Application Default Credentials
 2024/12/10 16:36:44 Error starting proxy: error initializing dialer: failed to create default credentials: google: could not find default credentials. See https://cloud.google.com/docs/authentication/external/set-up-adc for more information
 2024/12/10 16:36:44 The proxy has encountered a terminal error: unable to start: error initializing dialer: failed to create default credentials: google: could not find default credentials. See https://cloud.google.com/docs/authentication/external/set-up-adc for more information
-```
+````
 
 Este error corresponde a la necesidad de aplicar la autenticación de
 credenciales por defecto de aplicación que se describe
 [previamente](#cloud-sdk-auth).
-:::
+
+``````
 
 ## Conectar a la base de datos
 
-En mi trabajo usamos MySQL, y aunque comencé usando *MySQL Workbench*,
-este no era muy cómodo y mis compañeros usaban [{program}`dbeaver`](https://dbeaver.io/).
-Este me pareció interesante y fue el que estuve usando hasta que conocí
-[{program}`dbgate`](https://dbgate.org/). Estos dos se encuentran disponibles
-como *flatpak* para que los instales cómodamente en cualquier distro Linux,
-pero el caso particular de {program}`dbeaver` no se visualiza bien en Wayland
-cuando se instala de esta forma, por lo que es preferible la instalación del
-repo oficial.
+En mi trabajo usamos MySQL, y aunque comencé usando *MySQL Workbench*, este no
+era muy cómodo y mis compañeros usaban
+[{program}`dbeaver`](https://dbeaver.io/). Este me pareció interesante y fue el
+que estuve usando hasta que conocí [{program}`dbgate`](https://dbgate.org/).
+Estos dos se encuentran disponibles como *flatpak* para que los instales
+cómodamente en cualquier distro Linux, pero el caso particular de
+{program}`dbeaver` no se visualiza bien en Wayland cuando se instala de esta
+forma, por lo que es preferible la instalación del repo oficial.
 
-::::{tab-set}
-:::{tab-item} Manjaro
+`````{tab-set}
+````{tab-item} Manjaro
 :sync: manjaro
 
 ```{code} bash
 sudo pamac install dbeaver --no-confirm
 sudo pamac install dbeaver-plugin-office dbeaver-plugin-svg-format --as-deps --no-confirm
 pamac build dbgate-bin
-```
-:::
-:::{tab-item} Flatpak
+``````
+
+`````
+````{tab-item} Flatpak
 :sync: ubuntu
 
 ```{code} bash
 flatpak install -y flathub org.dbgate.DbGate  # Verificado
 flatpak install -y flathub io.dbeaver.DBeaverCommunity  # No verificado
 ```
-:::
-::::
+
+`````
+
+````
 
 Un punto extra para no usar {program}`MySQL Workbench` es usar no solo un
-cliente moderno, sino también con soporte para múltiples bases de datos (no
-solo *MySQL*).
+cliente moderno, sino también con soporte para múltiples bases de datos (no solo
+*MySQL*).
 
-:::{hint}
-En el pasado, he tenido conflictos con el uso de `localhost` como asignación
-del *host* en los clientes, y esto es que no siempre debe resolverse como
-`127.0.0.1`, por lo cual es mejor usar siempre en la configuración la IP.
-:::
+```{hint} En el pasado, he tenido conflictos con el uso de `localhost` como
+asignación del *host* en los clientes, y esto es que no siempre debe resolverse
+como `127.0.0.1`, por lo cual es mejor usar siempre en la configuración la IP.
+```
+````

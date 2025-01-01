@@ -422,6 +422,12 @@ crossorigin="anonymous"></script>
     </li>
     
     <li>
+      <a href="../../../../en/blog/2024/conecta-con-una-instancia-de-cloud-sql-en-manjaro/">
+        2024-12-10 - Connecting to a Cloud SQL instance on Manjaro
+      </a>
+    </li>
+    
+    <li>
       <a href="../problemas-de-conexion-wifi-en-linux/">
         2024-12-07 - Problemas de conexión wifi en Linux
       </a>
@@ -430,12 +436,6 @@ crossorigin="anonymous"></script>
     <li>
       <a href="../que-hacer-despues-de-instalar-manjaro/">
         2024-12-05 - ¿Qué hacer después de instalar Manjaro KDE 24?
-      </a>
-    </li>
-    
-    <li>
-      <a href="../../../../en/blog/2024/que-hacer-despues-de-instalar-manjaro/">
-        2024-12-05 - What to do after installing Manjaro KDE 24?
       </a>
     </li>
     
@@ -450,7 +450,7 @@ crossorigin="anonymous"></script>
   <ul>
      
     <li>
-      <a href="../../../../blog/2024/">2024 (22)</a>
+      <a href="../../../../blog/2024/">2024 (24)</a>
     </li>
       
     <li>
@@ -556,7 +556,8 @@ les contaré sobre como conectar a una instancia de Cloud SQL en Manjaro.</p>
 <p>Para la gestión de elementos de infraestructura, lo cual incluye la conexión a
 la base de datos, se requiere disponer de <em>Google Cloud SDK</em>. El proceso de
 instalación depende del sistema operativo, y ante inquietudes, siempre puedes
-remitirte a la <a class="reference external" href="https://cloud.google.com/sdk/docs/install">documentación oficial</a>.</p>
+remitirte a la
+<a class="reference external" href="https://cloud.google.com/sdk/docs/install">documentación oficial</a>.</p>
 <div class="sd-tab-set docutils">
 <input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio">
 <label class="sd-tab-label" data-sync-group="tab" data-sync-id="manjaro" for="sd-tab-item-0">
@@ -570,7 +571,7 @@ Manjaro</label><div class="sd-tab-content docutils">
 <p>Si no detecta el binario, puedes reiniciar cerrar y abrir la terminal. En mi
 caso solo me funcionó de esta forma, ni con <strong class="program">source</strong> de
 <code class="file docutils literal notranslate"><span class="pre">~/.zshrc</span></code> ni <code class="file docutils literal notranslate"><span class="pre">~/.bashrc</span></code> funcionó. A pesar de esto, era detectado
-por <strong class="program">whereis</strong> y <strong class="program">which</strong>.</p>
+por <strong class="command">whereis</strong> y <strong class="command">which</strong>.</p>
 </div>
 </div>
 <input id="sd-tab-item-1" name="sd-tab-set-0" type="radio">
@@ -630,8 +631,8 @@ chmod<span class="w"> </span>+x<span class="w"> </span>cloud-sql-proxy
 </section>
 <section id="iniciar-cloud-sql-proxy">
 <h3>Iniciar Cloud SQL Proxy<a class="headerlink" href="#iniciar-cloud-sql-proxy" title="Link to this heading">#</a></h3>
-<p>Con el fin de crear la conexión a la instancia de base de datos, debemos
-iniciar el <em>proxy</em> de la siguiente forma:</p>
+<p>Con el fin de crear la conexión a la instancia de base de datos, debemos iniciar
+el <em>proxy</em> de la siguiente forma:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cloud-sql-proxy<span class="w"> </span>&lt;NOMBRE<span class="w"> </span>DE<span class="w"> </span>INSTANCIA&gt;<span class="w"> </span>-p<span class="w"> </span>&lt;PUERTO&gt;
 </pre></div>
 </div>
@@ -643,50 +644,54 @@ iniciar el <em>proxy</em> de la siguiente forma:</p>
 <span class="mi">2024</span><span class="o">/</span><span class="mi">12</span><span class="o">/</span><span class="mi">10</span> <span class="mi">16</span><span class="p">:</span><span class="mi">36</span><span class="p">:</span><span class="mi">44</span> <span class="n">The</span> <span class="n">proxy</span> <span class="n">has</span> <span class="n">encountered</span> <span class="n">a</span> <span class="n">terminal</span> <span class="n">error</span><span class="p">:</span> <span class="n">unable</span> <span class="n">to</span> <span class="n">start</span><span class="p">:</span> <span class="n">error</span> <span class="n">initializing</span> <span class="n">dialer</span><span class="p">:</span> <span class="n">failed</span> <span class="n">to</span> <span class="n">create</span> <span class="n">default</span> <span class="n">credentials</span><span class="p">:</span> <span class="n">google</span><span class="p">:</span> <span class="n">could</span> <span class="ow">not</span> <span class="n">find</span> <span class="n">default</span> <span class="n">credentials</span><span class="o">.</span> <span class="n">See</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">cloud</span><span class="o">.</span><span class="n">google</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">docs</span><span class="o">/</span><span class="n">authentication</span><span class="o">/</span><span class="n">external</span><span class="o">/</span><span class="nb">set</span><span class="o">-</span><span class="n">up</span><span class="o">-</span><span class="n">adc</span> <span class="k">for</span> <span class="n">more</span> <span class="n">information</span>
 </pre></div>
 </div>
+</div>
 <p>Este error corresponde a la necesidad de aplicar la autenticación de
 credenciales por defecto de aplicación que se describe
 <a class="reference internal" href="#cloud-sdk-auth">previamente</a>.</p>
-</div>
-</section>
-</section>
-<section id="conectar-a-la-base-de-datos">
-<h2>Conectar a la base de datos<a class="headerlink" href="#conectar-a-la-base-de-datos" title="Link to this heading">#</a></h2>
-<p>En mi trabajo usamos MySQL, y aunque comencé usando <em>MySQL Workbench</em>,
-este no era muy cómodo y mis compañeros usaban <a class="reference external" href="https://dbeaver.io/"><strong class="program">dbeaver</strong></a>.
-Este me pareció interesante y fue el que estuve usando hasta que conocí
-<a class="reference external" href="https://dbgate.org/"><strong class="program">dbgate</strong></a>. Estos dos se encuentran disponibles
-como <em>flatpak</em> para que los instales cómodamente en cualquier distro Linux,
-pero el caso particular de <strong class="program">dbeaver</strong> no se visualiza bien en Wayland
-cuando se instala de esta forma, por lo que es preferible la instalación del
-repo oficial.</p>
-<div class="sd-tab-set docutils">
-<input checked="checked" id="sd-tab-item-4" name="sd-tab-set-2" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="manjaro" for="sd-tab-item-4">
-Manjaro</label><div class="sd-tab-content docutils">
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>pamac<span class="w"> </span>install<span class="w"> </span>dbeaver<span class="w"> </span>--no-confirm
-sudo<span class="w"> </span>pamac<span class="w"> </span>install<span class="w"> </span>dbeaver-plugin-office<span class="w"> </span>dbeaver-plugin-svg-format<span class="w"> </span>--as-deps<span class="w"> </span>--no-confirm
-pamac<span class="w"> </span>build<span class="w"> </span>dbgate-bin
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+## Conectar a la base de datos
+
+En mi trabajo usamos MySQL, y aunque comencé usando *MySQL Workbench*, este no
+era muy cómodo y mis compañeros usaban
+[{program}`dbeaver`](https://dbeaver.io/). Este me pareció interesante y fue el
+que estuve usando hasta que conocí [{program}`dbgate`](https://dbgate.org/).
+Estos dos se encuentran disponibles como *flatpak* para que los instales
+cómodamente en cualquier distro Linux, pero el caso particular de
+{program}`dbeaver` no se visualiza bien en Wayland cuando se instala de esta
+forma, por lo que es preferible la instalación del repo oficial.
+
+`````{tab-set}
+````{tab-item} Manjaro
+:sync: manjaro
+
+```{code} bash
+sudo pamac install dbeaver --no-confirm
+sudo pamac install dbeaver-plugin-office dbeaver-plugin-svg-format --as-deps --no-confirm
+pamac build dbgate-bin
 </pre></div>
 </div>
-</div>
-<input id="sd-tab-item-5" name="sd-tab-set-2" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="ubuntu" for="sd-tab-item-5">
-Flatpak</label><div class="sd-tab-content docutils">
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>flatpak<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>flathub<span class="w"> </span>org.dbgate.DbGate<span class="w">  </span><span class="c1"># Verificado</span>
-flatpak<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>flathub<span class="w"> </span>io.dbeaver.DBeaverCommunity<span class="w">  </span><span class="c1"># No verificado</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>````{tab-item} Flatpak
+:sync: ubuntu
+
+```{code} bash
+flatpak install -y flathub org.dbgate.DbGate  # Verificado
+flatpak install -y flathub io.dbeaver.DBeaverCommunity  # No verificado
+```
+
 </pre></div>
 </div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+Un punto extra para no usar {program}`MySQL Workbench` es usar no solo un
+cliente moderno, sino también con soporte para múltiples bases de datos (no solo
+*MySQL*).
+
+```{hint} En el pasado, he tenido conflictos con el uso de `localhost` como
+asignación del *host* en los clientes, y esto es que no siempre debe resolverse
+como `127.0.0.1`, por lo cual es mejor usar siempre en la configuración la IP.
+```
+</pre></div>
 </div>
-</div>
-<p>Un punto extra para no usar <strong class="program">MySQL Workbench</strong> es usar no solo un
-cliente moderno, sino también con soporte para múltiples bases de datos (no
-solo <em>MySQL</em>).</p>
-<div class="admonition hint">
-<p class="admonition-title">Consejo</p>
-<p>En el pasado, he tenido conflictos con el uso de <code class="docutils literal notranslate"><span class="pre">localhost</span></code> como asignación
-del <em>host</em> en los clientes, y esto es que no siempre debe resolverse como
-<code class="docutils literal notranslate"><span class="pre">127.0.0.1</span></code>, por lo cual es mejor usar siempre en la configuración la IP.</p>
-</div>
+</section>
 </section>
 </section>
 
@@ -705,8 +710,8 @@ del <em>host</em> en los clientes, y esto es que no siempre debe resolverse como
   <span class="ablog__spacer">&nbsp;</span>
   <span class="ablog__next">
       Siguiente: 
-    <a href="../configurar-starship-en-manjaro-y-zsh/">
-      <span>Configurar Starship en Manjaro y Zsh</span>
+    <a href="../../../../en/blog/2024/conecta-con-una-instancia-de-cloud-sql-en-manjaro/">
+      <span>Connecting to a Cloud SQL instance on Manjaro</span>
       
     </a>
     
@@ -753,7 +758,6 @@ del <em>host</em> en los clientes, y esto es que no siempre debe resolverse como
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#iniciar-cloud-sql-proxy">Iniciar Cloud SQL Proxy</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conectar-a-la-base-de-datos">Conectar a la base de datos</a></li>
 </ul>
   </nav></div>
 
