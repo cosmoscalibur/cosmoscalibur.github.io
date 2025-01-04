@@ -16,23 +16,25 @@ entrada al respecto, con lo más básico para iniciar y no fracasar en el intent
 ## ¿Por qué Sphinx?
 
 Sphinx es un generador estático de documentación, casi el estándar para los
-proyectos desarrollados en Python, y para el cual se dispone de una buena cantidad
-de extensiones que nutren a este generador, entre las cuales, encontramos incluso
-una para convertir nuestro proyecto en un blog, y es Ablog.
+proyectos desarrollados en Python, y para el cual se dispone de una buena
+cantidad de extensiones que nutren a este generador, entre las cuales,
+encontramos incluso una para convertir nuestro proyecto en un blog, y es Ablog.
 
 Dado que mi lenguaje de programación principal es Python, es claro que por ello
 quiero una opción basada en Python. Pero antes yo usaba Nikola, que también está
 desarrollado en Python, pero Sphinx da el beneficio de una comunidad mayor y más
-activa (como usuarios y desarrolladores). Adicional a esto, el desarrollo de Sphinx
-y sus extensiones va más a la par de cambios en el ecosistema, y más alineado con
-las directivas de docutils. En los cambios del ecosistema, me parece interesante como
-el soporte de Jupyter Notebooks y Myst resulta muy natural, por lo cual entradas sobre
-código pueden tener un beneficio, y Myst expande las opciones de Markdown (y no es
-soportado adecuadamente en Nikola, ni en otros generadores que revisé).
+activa (como usuarios y desarrolladores). Adicional a esto, el desarrollo de
+Sphinx y sus extensiones va más a la par de cambios en el ecosistema, y más
+alineado con las directivas de docutils. En los cambios del ecosistema, me
+parece interesante como el soporte de Jupyter Notebooks y Myst resulta muy
+natural, por lo cual entradas sobre código pueden tener un beneficio, y Myst
+expande las opciones de Markdown (y no es soportado adecuadamente en Nikola, ni
+en otros generadores que revisé).
 
-También resulta que ya era más familiar con [Sphinx](project:/es/blog/2020/crear-documentacion-de-un-proyecto-python-con-sphinx.rst),
-pero en el momento que pasé a un generador estático, no existía Ablog para ayudar
-en el proceso de usarlo para un blog.
+También resulta que ya era más familiar con
+[Sphinx](project:/es/blog/2020/crear-documentacion-de-un-proyecto-python-con-sphinx.rst),
+pero en el momento que pasé a un generador estático, no existía Ablog para
+ayudar en el proceso de usarlo para un blog.
 
 ## Creando el blog
 
@@ -41,30 +43,31 @@ Bueno, hora de poner manos a la obra. Para ello vamos a seguir el paso a paso.
 ### Dependencias
 
 Usaremos Sphinx para la generación del contenido estático y Ablog nos permitirá
-incluir etiquetas para fechas, que son la diferencia esencial para distinguir una
-página de una publicación (y con ello, opciones de filtros para índices).
+incluir etiquetas para fechas, que son la diferencia esencial para distinguir
+una página de una publicación (y con ello, opciones de filtros para índices).
 
 Respecto a la apariencia, podemos encontrar distintos temas, pero yo me he
 inclinado por PyData (que además usan varios blogs que sigo, así que he visto su
 resultado y tengo como indagar como usan algunas cosas). Adicional, conviene
-agregar Sphinx Design para añadir componentes adicionales como cuadrículas, pestañas,
-tarjetas y otros.
+agregar Sphinx Design para añadir componentes adicionales como cuadrículas,
+pestañas, tarjetas y otros.
 
 Sin duda (y ya lo usaba en Nikola), es necesario disponer de videos de Youtube,
 así que necesitamos Sphinx Contrib Youtube.
 
 Aunque para compartir en las redes no necesitamos nada especial, poder contar
-con la generación de metadatos adecuada nos ayudará a una mejor indexación y
-una mejor previsualización. Para este fin usamos Sphinx Ext OpenGraph (que no
-solo incluye el protocolo OpenGraph, sino una etiqueta extra para _Twitter Card_).
-En este caso, tenemos un detalle extra, y es que para generar las imágenes que se
+con la generación de metadatos adecuada nos ayudará a una mejor indexación y una
+mejor previsualización. Para este fin usamos Sphinx Ext OpenGraph (que no solo
+incluye el protocolo OpenGraph, sino una etiqueta extra para _Twitter Card_). En
+este caso, tenemos un detalle extra, y es que para generar las imágenes que se
 comparten (ya que por defecto no usa la primera imagen de la publicación y no
 siempre hay una), es necesario instalar Matplotlib.
 
 Y finalmente, para dar soporte de Markdown, usaremos Myst Parser. Algo
 interesante es que en extensión con Myst NB, tendremos el soporte para generar
 publicaciones en Notebook usando MystMd (así que instalamos también Jupyterlab).
-Esto me encanta, porque será natural publicar notas sobre código con sus resultados.
+Esto me encanta, porque será natural publicar notas sobre código con sus
+resultados.
 
 Sitemap genera el sitemap del sitio, aunque para usarlo con el esquema de
 internacionalización que deseo, tendré que cambiarlo en el futuro.
@@ -72,7 +75,8 @@ internacionalización que deseo, tendré que cambiarlo en el futuro.
 Copy button nos ayudará a crear la opción de copiar al portapapeles los bloques
 de código.
 
-Con estos detalles, nuestro archivo `requirements.txt` lucirá de la siguiente forma:
+Con estos detalles, nuestro archivo `requirements.txt` lucirá de la siguiente
+forma:
 
 ```
 # Generación estática blog y tema
@@ -97,7 +101,7 @@ jupyterlab_myst
 myst-nb
 ```
 
-:::{dropdown} Opcionales
+```{dropdown} Opcionales
 No todo se trata sobre la generación del contenido a nivel automático, también
 necesitamos apoyo mientras escribimos. Así que podemos instalar doc8, rstcheck
 y esbonio, para las validaciones de nuestros archivos `.rst` y Jupyterlab Myst,
@@ -106,10 +110,9 @@ para ayudar en el renderizado en el Notebook mientras redactamos.
 Siendo así, podemos tener nuestro archivo `requirements-dev.txt` así:
 
 ```
-jupyterlab_myst
-rstcheck
-doc8
-esbonio
+
+jupyterlab_myst rstcheck doc8 esbonio
+
 ```
 
 Si usamos además VSCode, vale la pena las siguientes extensiones:
@@ -122,9 +125,9 @@ Si usamos además VSCode, vale la pena las siguientes extensiones:
 - Spell Right: Para corrección de ortografía.
 - Font Awesome Gallery: Para buscar la notación de los íconos de Font Awesome
   si los piensas usar (tiene alto impacto en el tiempo de carga).
-:::
+```
 
-:::{dropdown} Otros
+```{dropdown} Otros
 Bueno, aquí hay algunas extensiones que, posiblemente puedan ser útiles, pero
 para mí no lo fueron:
 
@@ -137,7 +140,7 @@ para mí no lo fueron:
   entradas poseen traducción o podrían tener contextos que hagan que su
   traducción no sea completa. Me parece adecuado para documentación, no para un
   blog.
-:::
+```
 
 ### Configuración
 
@@ -176,8 +179,8 @@ html_theme = 'pydata_sphinx_theme'
 
 Para incluir los metadatos de OpenGraph, añadiremos la dirección base y podemos
 añadir marcas personalizadas. Así, que aprovecharé a incluir la de creador para
-Twitter {fa}`twitter-square` (ahora X), y la especificación de tipo viene por defecto
-en `summary_large_image` (esto no encontré como cambiarlo).
+Twitter {fa}`twitter-square` (ahora X), y la especificación de tipo viene por
+defecto en `summary_large_image` (esto no encontré como cambiarlo).
 
 ```python
 ogp_site_url = 'https://www.cosmoscalibur.com'
@@ -196,20 +199,22 @@ language = 'es'
 En mi caso, aunque es mi lengua nativa, espero publicar algunas veces en inglés.
 Por este motivo, pensando en la internacionalización del blog, dispondré de un
 patrón de rutas de la forma `<lang>/blog/<year>/<post>`, de tal forma que con
-cambiar directamente el segmento de `<lang>` se acceda a la versión del otro idioma.
+cambiar directamente el segmento de `<lang>` se acceda a la versión del otro
+idioma.
 
 Esto tiene impacto en la variable `blog_path_pattern` que permite definir el
 patrón de ruta para que se reconozcan automáticamente las publicaciones (no es
-necesario añadir la etiqueta).
-Adicional, es necesario definir la ruta para el archivo de publicaciones.
+necesario añadir la etiqueta). Adicional, es necesario definir la ruta para el
+archivo de publicaciones.
 
-:::{code-block} python
-:name: blog-conf
-:caption: Definición de ruta de índice del blog y patrón de ruta de publicaciones.
-
+```{code-block} python
+---
+name: blog-conf
+caption: Definición de ruta de índice del blog y patrón de ruta de publicaciones.
+---
 blog_path = 'blog'
 blog_post_pattern = '*/blog/*/*'
-:::
+```
 
 Es necesario configurar también otros directorios y archivos. Para fines de
 facilidad en GitHub Pages, vamos a remover el guion bajo de los directorios
@@ -218,31 +223,33 @@ comienzan de esta forma). Y añadiremos un directorio especial que nos permita
 agregar archivos directamente al raíz del despliegue (por ejemplo, para añadir
 el archivo CNAME).
 
-Importante para la generación con GitHub Pages, el directorio de salida debe
-ser `docs`.
+Importante para la generación con GitHub Pages, el directorio de salida debe ser
+`docs`.
 
 Finalmente, las variables de configuración en `conf.py`.
 
-:::{code-block} python
-:name: sphinx-dir-setup
-:caption: Definición de directorios de entradas y salidas para Sphinx y Ablog
-
+```{code-block} python
+---
+name: sphinx-dir-setup
+caption: Definición de directorios de entradas y salidas para Sphinx y Ablog
+---
 templates_path = ['templates']
 html_static_path = ['static']
 html_extra_path = ['files']
 ablog_website = 'docs'
-:::
+```
 
 Ahora vamos a definir los archivos que no deben ser procesados. Esto es
-importante porque al estar el directorio de Sphinx al mismo nivel del
-directorio del repositorio, se ven todos los archivos. Adicional a esto, hay
-archivos generados por Sphinx que si no los borramos, en un despliegue posterior
-se intentarán procesar.
+importante porque al estar el directorio de Sphinx al mismo nivel del directorio
+del repositorio, se ven todos los archivos. Adicional a esto, hay archivos
+generados por Sphinx que si no los borramos, en un despliegue posterior se
+intentarán procesar.
 
-:::{code-block} python
-:name: exclude-files
-:caption: Definición de archivos y directorios a excluir de la compilación.
-
+```{code-block} python
+---
+name: exclude-files
+caption: Definición de archivos y directorios a excluir de la compilación.
+---
 exclude_patterns = [
     "_build",
     "***/.ipynb_checkpoints/*",
@@ -256,12 +263,12 @@ exclude_patterns = [
     '.doctrees',
     '.gitignore',
 ]
-:::
+```
 
 Para habilitar las extensiones que vamos a usar, es necesario listarlas en
 `extensions`. Un detalle es que, aunque tenemos instalado Myst Parser, no lo
-añadimos explícitamente porque genera conflicto por ya estar definido dentro
-de Myst NB.
+añadimos explícitamente porque genera conflicto por ya estar definido dentro de
+Myst NB.
 
 Algunos errores que se producen por esto son:
 
@@ -294,19 +301,19 @@ Los dos primeros casos que habilitamos, son extensiones que vienen por defecto,
 y nos servirán para acortar la notación de URL y para enlazar cómodamente con
 otros proyectos de Sphinx (en futuras entradas lo revisaremos).
 
-Ahora que tenemos habilitado Myst NB, podemos remover la línea de `source_suffix`
-porque esta es configurada por la extensión, y el valor por defecto evita que se
-compilen los archivos Markdown.
+Ahora que tenemos habilitado Myst NB, podemos remover la línea de
+`source_suffix` porque esta es configurada por la extensión, y el valor por
+defecto evita que se compilen los archivos Markdown.
 
-Respecto a las opciones de Myst, vamos a habilitar varias extensiones,
-que nos permitan usar más fácilmente las directivas (no usar el _backtick_),
-hacer sustituciones y habilitar el símbolo de dólar para las ecuaciones. adicional,
+Respecto a las opciones de Myst, vamos a habilitar varias extensiones, que nos
+permitan usar más fácilmente las directivas (no usar el _backtick_), hacer
+sustituciones y habilitar el símbolo de dólar para las ecuaciones. adicional,
 vamos a crear referencias (_targets_) para los títulos hasta de tercer nivel
 (h1, h2 y h3). También podemos añadir etiquteas más fácilmente en bloques o
 líneas, sustituciones con Jinja2, bloques de definiciones, reemplazos o listas
 de tareas. Solo omití linkify, pues no le veo mucha utilidad.
 
-:::{code} python
+```{code} python
 myst_enable_extensions = [
     "amsmath",
     "attrs_inline",
@@ -323,19 +330,19 @@ myst_enable_extensions = [
     "tasklist",
 ]
 myst_heading_anchors = 3
-:::
+```
 
 De la misma manera, espero que en la tabla de contenidos de la derecha, se
 muestren los títulos de tercer nivel. Para esto debemos ajustar las
 configuraciones del tema.
 
-Nuestro identificador de Google Analytics también se dispone en esta misma
-parte (PyData soporta también Plausible).
+Nuestro identificador de Google Analytics también se dispone en esta misma parte
+(PyData soporta también Plausible).
 
-También podemos agregar nuestros enlaces de Twitter y GitHub en la
-configuración del tema.
+También podemos agregar nuestros enlaces de Twitter y GitHub en la configuración
+del tema.
 
-:::{code} python
+```{code} python
 html_theme_options = {
     'show_toc_level': 2,
     'twitter_url': 'https://twitter.com/cosmoscalibur',
@@ -343,37 +350,36 @@ html_theme_options = {
 }
 # Después, esto servirá para separar local de desplegado con Action
 html_theme_options['analytics'] = {'google_analytics_id': 'G-4YFQBC69LB'}
-:::
+```
 
-Hemos separado la línea de _analytics_ con el fin de deshabilitarla
-fácilmente en pruebas, para que esto no afecte métricas (más adelante, el
-ideal es hacerlo con despliegue automático en GitHub Actions y así dependiente
-de una variable de entorno).
+Hemos separado la línea de _analytics_ con el fin de deshabilitarla fácilmente
+en pruebas, para que esto no afecte métricas (más adelante, el ideal es hacerlo
+con despliegue automático en GitHub Actions y así dependiente de una variable de
+entorno).
 
 Respecto a los paneles laterales, haremos la siguiente configuración de momento
 
-:::{code} python
+```{code} python
 html_sidebars = {
     'index': [],
     "blog": ["ablog/categories.html", "ablog/archives.html"],
     "*/blog/**": ["ablog/postcard.html", "ablog/recentposts.html", "ablog/archives.html"],
 }
-:::
+```
 
 No te preocupes, en otra entrada lo explicaré. De momento tomaré un por defecto,
 ya que estos paneles en caso de requerir personalización, necesitamos hacer HTML
 y quiero pensar bien que poner cuando no sean entradas de blog (en los cuales
 los casos dispuestos me parecen perfectos).
 
-
 También podemos incluir los íconos de Font Awesome {fa}`rocket`, pero ten
 presente que puede tener un impacto importante en el tiempo de carga del sitio
 ya que esto no es optimizado. En mi caso, al hacer pruebas veo que es el mayor
 castigo en los tiempos de carga del blog a nivel de los _scripts_.
 
-:::{code} python
+```{code} python
 fontawesome_included = True
-:::
+```
 
 Debo decir que no me gusta la idea de habilitar que se muestre el código fuente
 de la publicación desde el sitio mismo, pues eso genera copia de los archivos en
@@ -382,65 +388,66 @@ para eso es el repositorio. Pero desafortunadamente, deshabilitarlo, igual hace
 el copiado, así que lo dejaré mostrando (si descubro como remover las copias, lo
 deshabilito).
 
-:::{code} python
+```{code} python
 html_show_sourcelink = True
-:::
+```
 
-Ahora, la configuración para las publicaciones.
-Necesitamos ahora definir el formato de la marca de tiempo, y podemos definir
-a nuestro gusto (pero debe ser consistente para esta opción en todas las
-publicaciones). También podemos indicar cuántos párrafos serán usados en la
-descripción y cuál imagen considerar para la previsualización. Finalmente, en
-caso de tener redireccionamiento, el tiempo en segundos para su ejecución.
+Ahora, la configuración para las publicaciones. Necesitamos ahora definir el
+formato de la marca de tiempo, y podemos definir a nuestro gusto (pero debe ser
+consistente para esta opción en todas las publicaciones). También podemos
+indicar cuántos párrafos serán usados en la descripción y cuál imagen considerar
+para la previsualización. Finalmente, en caso de tener redireccionamiento, el
+tiempo en segundos para su ejecución.
 
-:::{code} python
+```{code} python
 post_date_format = '%Y-%m-%d'
 post_date_format_short = '%Y-%m-%d'
 post_auto_excerpt = 1
 post_auto_image = 1
 post_redirect_refresh = 0
-:::
+```
 
 Ahora vamos a habilitar que los _feeds_ tengan texto completo para que puedan
 ser consumidos de forma completa por los lectores de este formato.
 
-:::{code} python
+```{code} python
 blog_feed_fulltext = True
-:::
+```
 
 Es importante configurar nuestra generación del _sitemap_ para ayudar a los
 motores de búsqueda.
 
-:::{code} python
+```{code} python
 sitemap_url_scheme = '{link}'
 html_baseurl = 'https://www.cosmoscalibur.com/'
-:::
+```
 
-Finalmente, y aunque no es lo último que pienso configurar (pero serán temas
-de otras entradas), los comentarios por Disqus (aunque estoy considerando
+Finalmente, y aunque no es lo último que pienso configurar (pero serán temas de
+otras entradas), los comentarios por Disqus (aunque estoy considerando
 cambiarlo, pero también será tema de otra entrada).
 
-:::{code} python
+```{code} python
 disqus_shortname = 'XXXXXXX'
-:::
+```
 
 ### Archivos y directorios extras
 
 Dentro de la configuración (`conf.py`), añadimos el directorio `files`. Este
-directorio nos permite añadir archivos directamente al directorio raíz del
-sitio generado. Esto es importante porque algunas validaciones requieren archivos
-en esta posición, como lo son:
+directorio nos permite añadir archivos directamente al directorio raíz del sitio
+generado. Esto es importante porque algunas validaciones requieren archivos en
+esta posición, como lo son:
 
 - `CNAME`: Para la validez de nuestro nombre de dominio.
 - `.nokekyll`: Para que GitHub ignore que es compilado por Jekyll. Si no hacemos
-   esto, los directorios y archivos que inician por guion bajo se ignoran.
+  esto, los directorios y archivos que inician por guion bajo se ignoran.
 - Archivo de Google Site verification: para demostrar propiedad de dominio ante
   Google.
 - Otros archivos de verificación de propiedad.
 - Archivo de `robots.txt`.
 
-También si usamos un directorio a nivel de raíz del repositorio, este quedará disponible
-a este nivel. Este es mi caso con el directorio de `images` para las imágenes que uso.
+También si usamos un directorio a nivel de raíz del repositorio, este quedará
+disponible a este nivel. Este es mi caso con el directorio de `images` para las
+imágenes que uso.
 
 ### Primera publicación
 
@@ -454,14 +461,15 @@ También nos crea una publicación por defecto. Esta podemos moverla a nuestro
 directorio `es/blog/2024` (dado el año de elaboración) y allí editar.
 
 Es importante tener presente que el título de primer nivel es el título de la
-publicación (en otros generadores, el título se añade como parte de una directiva).
-Como ya configuramos el patrón de ruta de las publicaciones, y la estamos cumpliendo,
-no es necesario seguir las directivas sino el _front matter_, ejemplo:
+publicación (en otros generadores, el título se añade como parte de una
+directiva). Como ya configuramos el patrón de ruta de las publicaciones, y la
+estamos cumpliendo, no es necesario seguir las directivas sino el _front
+matter_, ejemplo:
 
-:::::{tab-set}
+`````{tab-set}
 
-::::{tab-item} RST
-:::{code} rst
+````{tab-item} RST
+```{code} rst
 
 :redirect: blog/configurar-retroarch-en-steam
 :date: 2021-12-14
@@ -469,11 +477,11 @@ no es necesario seguir las directivas sino el _front matter_, ejemplo:
 :category: tecnología/videojuegos
 :author: Edward Villegas-Pulgarin
 :language: es
-:::
-::::
+```
+````
 
-::::{tab-item} MD
-:::{code} md
+````{tab-item} MD
+```{code} md
 
 ---
 date: 2024-05-14
@@ -482,17 +490,17 @@ category: tecnología
 author: Edward Villegas-Pulgarin
 language: es
 ---
-:::
-::::
+```
+````
 
-:::::
+`````
 
 La sintaxis ya propia de MD y RST la puedes consultar. No es difícil.
 
 En mi caso, soy el único autor del blog y en general, publicaré en español, así
 que vale la pena definir el autor y lenguaje por defecto en el `conf.py`.
 
-:::{code-block} python
+```{code-block} python
 
 blog_default_author = 'Edward'
 blog_authors = {
@@ -503,18 +511,18 @@ blog_languages = {
     'es': ('Español', None),
     'en': ('English', None),
 }
-:::
+```
 
 ### Generación
 
 Estamos listos, así que generemos el sitio.
 
-:::{code} bash
+```{code} bash
 ablog clean && ablog build && ablog serve
-:::
+```
 
-La parte de `ablog clean` es necesaria si queremos una compilación completa,
-ya que esto borra los temporales generados para evitar recompilar todo. Con
+La parte de `ablog clean` es necesaria si queremos una compilación completa, ya
+que esto borra los temporales generados para evitar recompilar todo. Con
 `ablog serve` se abrirá el navegador y podremos explorar.
 
 ## ¿Y ahora qué?
@@ -527,7 +535,8 @@ De mi parte, algunos detalles que quiero próximamente
 - Barra de búsqueda basada en Google.
 - Soporte de internacionalización basado en directorio manual y no en `pot`.
 - Soporte de _sitemap_ con internacionalización con el esquema anterior.
-- Vincular con otros external links, no solo github y twitter (ejemplo, mastodon).
+- Vincular con otros external links, no solo github y twitter (ejemplo,
+  mastodon).
 
 ## Referencias
 
@@ -542,17 +551,17 @@ De mi parte, algunos detalles que quiero próximamente
 - [Migrating the website to Sphinx + ABlog](https://adriaanrol.com/posts/2023/sphinx_migration/)
 - [Migration to Cloudflare Pages](https://dailystuff.nl/blog/2021/migration-to-cloudflare-pages)
 
-:::{update} 2024-05-25
+```{update} 2024-05-25
 
 - Se agrega información extra sobre open graph para incluir marca de creador.
 - Se incluye información sobre todas las extensiones de Myst Parser a la fecha.
 - Se incluye extensión VSCode de Font Awesome Gallery.
 - Explicación extra de analytics para deshabilitar en pruebas
 - Se añaden más referencias.
-:::
+```
 
-:::{update} 2024-10-20
+```{update} 2024-10-20
 
 - No hago uso recurrente de Font Awesome, por lo cual lo retiro. Dejo
   anotación de su impacto.
-:::
+```

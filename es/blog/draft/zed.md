@@ -57,14 +57,17 @@ uv tool install mdformat \
   --with mdformat-footnote \
   --with mdformat-gfm-alerts \
   --with mdformat-myst
+uv tool install rstfmt
+uv tool install docstrfmt
+uv tool install esbonio --prerelease=allow
 ```
 
-desinstalar zed https://askubuntu.com/questions/1520457/how-do-i-uninstall-zed-editor-from-my-ubuntu-24
+rstfmt presenta problemas con directivas sphinx o definiciones.
 
+desinstalar zed
+https://askubuntu.com/questions/1520457/how-do-i-uninstall-zed-editor-from-my-ubuntu-24
 
-búsqueda general control shift f
-modo multibuffer con control shift l
-alt clic para selección individual
-
+búsqueda general control shift f modo multibuffer con control shift l alt clic
+para selección individual
 
 [Problemas con Wayland y NVIDIA](/es/blog/2024/problema-de-wayland-y-graficos-hibridos-en-linux.md)

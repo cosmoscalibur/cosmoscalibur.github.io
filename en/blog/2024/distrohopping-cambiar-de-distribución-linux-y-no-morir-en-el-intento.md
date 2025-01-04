@@ -186,7 +186,7 @@ finding one that fits like love at first sight, like a perfect match, can take
 years (only to change our interests and start a new search process later).
 
 The problem is that this transition process between our old love and the new
-love, in Linux distributions, has a high cost.
+love, on Linux distributions, has a high cost.
 
 ## Facilitating the transition: healthy distrohopping
 

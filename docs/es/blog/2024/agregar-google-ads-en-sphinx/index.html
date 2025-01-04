@@ -446,7 +446,7 @@ crossorigin="anonymous"></script>
   <ul>
      
     <li>
-      <a href="../../../../blog/2024/">2024 (24)</a>
+      <a href="../../../../blog/2024/">2024 (25)</a>
     </li>
       
     <li>
@@ -454,11 +454,11 @@ crossorigin="anonymous"></script>
     </li>
       
     <li>
-      <a href="../../../../blog/2020/">2020 (18)</a>
+      <a href="../../../../blog/2020/">2020 (20)</a>
     </li>
       
     <li>
-      <a href="../../../../blog/2019/">2019 (7)</a>
+      <a href="../../../../blog/2019/">2019 (8)</a>
     </li>
       
     <li>
@@ -548,10 +548,10 @@ ingreso ahora que muchos usamos bloqueadores (sí, yo también). Les cuento como
 configurarlo a través de la modificación de las plantillas por defecto.</p>
 <section id="directorio-de-assets">
 <h2>Directorio de <em>assets</em><a class="headerlink" href="#directorio-de-assets" title="Link to this heading">#</a></h2>
-<p>Necesitamos configurar <a class="reference internal" href="../crear-un-blog-con-sphinx/#sphinx-dir-setup"><span class="std std-ref">directorios</span></a> de archivos generales que
-van a nivel de raíz del despliegue y el directorio de plantillas,
-esto con el fin de asegurarnos del directorio sin el prefijo <code class="docutils literal notranslate"><span class="pre">_</span></code> problemático en
-<em>GitHub Pages</em> y ser consciente del valor en lugar de tomar el valor por defecto.</p>
+<p>Necesitamos configurar <a class="reference internal" href="../crear-un-blog-con-sphinx/#sphinx-dir-setup"><span class="std std-ref">directorios</span></a> de archivos generales
+que van a nivel de raíz del despliegue y el directorio de plantillas, esto con
+el fin de asegurarnos del directorio sin el prefijo <code class="docutils literal notranslate"><span class="pre">_</span></code> problemático en <em>GitHub
+Pages</em> y ser consciente del valor en lugar de tomar el valor por defecto.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">html_extra_path</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;files&#39;</span><span class="p">]</span>
 <span class="n">templates_path</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;templates&#39;</span><span class="p">]</span>
 </pre></div>
@@ -560,25 +560,28 @@ esto con el fin de asegurarnos del directorio sin el prefijo <code class="docuti
 </section>
 <section id="archivo-ads">
 <h2>Archivo Ads<a class="headerlink" href="#archivo-ads" title="Link to this heading">#</a></h2>
-<p>Un primer paso para incluir <em>Google Ads</em> es incluir nuestra validación como publicador
-y esto puede hacerse incluyendo <em>scripts</em> o un archivo <code class="docutils literal notranslate"><span class="pre">ads.txt</span></code>. Es recomendable esta
-última opción para reducir la carga de <em>scripts</em>, y acorde a Google es más recomendable
-para las validaciones por proveedores de anuncions y cuando son múltiples.</p>
-<p>Este archivo debe estar en la raíz de nuestro sitio, por lo que vamos a disponer de este
-archivo en el directorio <code class="docutils literal notranslate"><span class="pre">files</span></code> que es el destinado para este tipo de archivos.</p>
+<p>Un primer paso para incluir <em>Google Ads</em> es incluir nuestra validación como
+publicador y esto puede hacerse incluyendo <em>scripts</em> o un archivo <code class="docutils literal notranslate"><span class="pre">ads.txt</span></code>. Es
+recomendable esta última opción para reducir la carga de <em>scripts</em>, y acorde a
+Google es más recomendable para las validaciones por proveedores de anuncions y
+cuando son múltiples.</p>
+<p>Este archivo debe estar en la raíz de nuestro sitio, por lo que vamos a disponer
+de este archivo en el directorio <code class="docutils literal notranslate"><span class="pre">files</span></code> que es el destinado para este tipo de
+archivos.</p>
 <p>Una vez tenemos la aprobación, seguiremos con el <em>script</em>.</p>
 </section>
 <section id="script-en-head">
 <h2><em>Script</em> en <em>head</em><a class="headerlink" href="#script-en-head" title="Link to this heading">#</a></h2>
-<p>En el interior de <code class="docutils literal notranslate"><span class="pre">templates</span></code>, necesitamos crear un nuevo archivo que usaremos para
-modificar el comportamiento por defecto de la plantilla de <code class="docutils literal notranslate"><span class="pre">layout.html</span></code>, que es la plantilla
-usada por <em>Sphinx</em> que contiene lo que se agrega entre las etiquetas de apertura y
-cierre de <code class="docutils literal notranslate"><span class="pre">head</span></code>.</p>
-<p>Creamos el archivo con el mismo nombre de la plantilla que deseamos reemplazar, y en su interior
-se indica que extiende dicha plantilla en la primera línea. Usamos ahora el bloque asociado a
-<code class="docutils literal notranslate"><span class="pre">extrahead</span></code> para añadir el <em>script</em> de <em>Google Ads</em> que requerimos esté en el <em>head</em>.</p>
-<p>Para mi caso, luciría de la siguiente forma (debes cambiar acorde al generado en tu sección de
-Google Adsense).</p>
+<p>En el interior de <code class="docutils literal notranslate"><span class="pre">templates</span></code>, necesitamos crear un nuevo archivo que usaremos
+para modificar el comportamiento por defecto de la plantilla de <code class="docutils literal notranslate"><span class="pre">layout.html</span></code>,
+que es la plantilla usada por <em>Sphinx</em> que contiene lo que se agrega entre las
+etiquetas de apertura y cierre de <code class="docutils literal notranslate"><span class="pre">head</span></code>.</p>
+<p>Creamos el archivo con el mismo nombre de la plantilla que deseamos reemplazar,
+y en su interior se indica que extiende dicha plantilla en la primera línea.
+Usamos ahora el bloque asociado a <code class="docutils literal notranslate"><span class="pre">extrahead</span></code> para añadir el <em>script</em> de <em>Google
+Ads</em> que requerimos esté en el <em>head</em>.</p>
+<p>Para mi caso, luciría de la siguiente forma (debes cambiar acorde al generado en
+tu sección de Google Adsense).</p>
 <div class="highlight-html notranslate"><div class="highlight"><pre><span></span>{% extends &quot;!layout.html&quot; %}
 
 {{ super() }}
@@ -589,8 +592,8 @@ Google Adsense).</p>
 {% endblock %}
 </pre></div>
 </div>
-<p>Unos minutos (u horas) después, tendremos la visualización de anuncios en nuestro
-sitio generado con Sphinx.</p>
+<p>Unos minutos (u horas) después, tendremos la visualización de anuncios en
+nuestro sitio generado con Sphinx.</p>
 <figure class="align-center" id="id1">
 <a class="reference internal image-reference" href="../../../../_images/ads-en-sphinx.png"><img alt="Visualización de anuncios en sitio generado con Sphinx." src="../../../../_images/ads-en-sphinx.png" style="width: 500px; height: 250px;" />
 </a>
@@ -615,9 +618,9 @@ sitio generado con Sphinx.</p>
   <span class="ablog__prev">
       Anterior:
     
-    <a href="../agregar-logo-y-favicon-en-sphinx/">
+    <a href="../../../../en/blog/2024/agregar-google-ads-en-sphinx/">
       
-      <span>Agregar logo y favicon en Sphinx</span>
+      <span>Adding Google Ads to Sphinx</span>
     </a>
     
   </span>

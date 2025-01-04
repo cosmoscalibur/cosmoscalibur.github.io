@@ -133,7 +133,7 @@ Una vez instalada, procedemos a abrir y seguir los siguientes pasos:
 En la parte superior derecha, accedemos a la configuración. La
 configuración importante para nosotros está en la sección "CÁMARA", y es
 el límite de FPS (ayuda a ahorrar batería) y la cámara que se usará (en
-"Cámara" podemos seleccionar cual de las cámaras).
+"Cámara" podemos seleccionar cuál de las cámaras).
 
 Ejecutar
 --------

@@ -386,13 +386,15 @@ crossorigin="anonymous"></script>
      
     <a href="../../../../blog/tag/python/">python</a>
         
-    <a href="../../../../blog/tag/gis/">gis</a>
-        
     <a href="../../../../blog/tag/geoide/">geoide</a>
         
     <a href="../../../../blog/tag/distancia-geodesica/">distancia geodésica</a>
         
     <a href="../../../../blog/tag/geopy/">geopy</a>
+        
+    <a href="../../../../blog/tag/metodo-de-vincenty/">método de vincenty</a>
+        
+    <a href="../../../../blog/tag/metodo-de-karney/">método de karney</a>
       
   </li>
    
@@ -448,7 +450,7 @@ crossorigin="anonymous"></script>
   <ul>
      
     <li>
-      <a href="../../../../blog/2024/">2024 (24)</a>
+      <a href="../../../../blog/2024/">2024 (25)</a>
     </li>
       
     <li>
@@ -456,11 +458,11 @@ crossorigin="anonymous"></script>
     </li>
       
     <li>
-      <a href="../../../../blog/2020/">2020 (18)</a>
+      <a href="../../../../blog/2020/">2020 (20)</a>
     </li>
       
     <li>
-      <a href="../../../../blog/2019/">2019 (7)</a>
+      <a href="../../../../blog/2019/">2019 (8)</a>
     </li>
       
     <li>
@@ -544,24 +546,55 @@ crossorigin="anonymous"></script>
                 <article class="bd-article">
                    <section class="tex2jax_ignore mathjax_ignore" id="calcular-distancia-geodesica-con-python">
 <h1>Calcular distancia geodésica con Python<a class="headerlink" href="#calcular-distancia-geodesica-con-python" title="Link to this heading">#</a></h1>
-<p>Aunque una de las cosas que más ha rondado en mi desarrollo académico y laboral es la programación, y buena parte de los años en ello con Python, nunca había realizado una entrada al respecto en el blog (lo más cercano ha sido una entrada sobre <a class="reference internal" href="../crear-documentacion-de-un-proyecto-python-con-sphinx/"><span class="std std-doc">Crear documentación de un proyecto Python con Sphinx</span></a>  y <a class="reference internal" href="../../2019/crear-contenedor-docker-aplicacion-gui-ealite/"><span class="std std-doc">Crear contenedor Docker aplicación GUI - EALite</span></a>).</p>
-<p>A partir de ahora, y usando <em>notebooks</em> compartiré algunas entradas relacionadas con programación o algunas bibliotecas específicas. En esta ocasión, me interesa compartirles como calcular la distancia geodésica entre dos lugares con GeoPy (una biblioteca Python), una de las tantas cosas que por motivos laborales he necesitado en mi exploración con proyectos con sistemas de información geográfica y ruteos.</p>
+<p>Aunque una de las cosas que más ha rondado en mi desarrollo académico y laboral
+es la programación, y buena parte de los años en ello con Python, nunca había
+realizado una entrada al respecto en el blog (lo más cercano ha sido una entrada
+sobre <a class="reference internal" href="../crear-documentacion-de-un-proyecto-python-con-sphinx/"><span class="std std-doc">Crear documentación de un proyecto Python con Sphinx</span></a> y
+<a class="reference internal" href="../../2019/crear-contenedor-docker-aplicacion-gui-ealite/"><span class="std std-doc">Crear contenedor Docker aplicación GUI - EALite</span></a>).</p>
+<p>A partir de ahora, compartiré algunas entradas relacionadas con programación o
+algunas bibliotecas específicas. En esta ocasión, me interesa compartirles como
+calcular la distancia geodésica entre dos lugares con GeoPy (una biblioteca
+Python), una de las tantas cosas que por motivos laborales he necesitado en mi
+exploración con proyectos con sistemas de información geográfica y ruteos.</p>
 <section id="geoide-y-geodesicas">
 <h2>Geoide y geodésicas<a class="headerlink" href="#geoide-y-geodesicas" title="Link to this heading">#</a></h2>
-<p>¿Habían escuchado antes “geoide” y “geodésica”? Bueno, resulta que el concepto de distancia entre puntos es dependiente de la geometría sobre la cual sea válido el desplazamiento. Así, si ubicamos dos puntos sobre la superficie de la Tierra, uno podría pensar en tomar como distancia la separación en línea recta entre los dos puntos atravesando el interior de la Tierra, y sí, eso es una distancia pero es impráctica porque nadie por ahora atravesará el interior para desplazarse. A esta distancia la conocemos como distancia euclideana (supone una geometría plana, como nos enseñan en el colegio y para muchos en universidad, donde Pitágoras funciona para esta cuenta).</p>
-<p>Pues bien, si la distancia implica una restricción para moverse sobre una geometría en particular, las líneas rectas no son los caminos más cortos (sobre el cual se define la distancia) sino un tipo de líneas que llamaremos geodésicas. Así, la distancia sobre la superficie de la Tierra se mide sobre la geodésica que une los dos puntos de interés y a esa forma superficie de referencia de la Tierra es llamada geoide.</p>
+<p>¿Habían escuchado antes “geoide” y “geodésica”? Bueno, resulta que el concepto
+de distancia entre puntos es dependiente de la geometría sobre la cual sea
+válido el desplazamiento. Así, si ubicamos dos puntos sobre la superficie de la
+Tierra, uno podría pensar en tomar como distancia la separación en línea recta
+entre los dos puntos atravesando el interior de la Tierra, y sí, eso es una
+distancia, pero es impráctica porque nadie por ahora atravesará el interior para
+desplazarse. A esta distancia la conocemos como distancia euclidiana (supone una
+geometría plana, como nos enseñan en el colegio y para muchos en universidad,
+donde Pitágoras funciona para esta cuenta).</p>
+<p>Pues bien, si la distancia implica una restricción para moverse sobre una
+geometría en particular, las líneas rectas no son los caminos más cortos (sobre
+el cual se define la distancia) sino un tipo de líneas que llamaremos
+geodésicas. Así, la distancia sobre la superficie de la Tierra se mide sobre la
+geodésica que une los dos puntos de interés y a esa forma superficie de
+referencia de la Tierra es llamada geoide.</p>
 </section>
 <section id="calculo-de-distancia">
 <h2>Cálculo de distancia<a class="headerlink" href="#calculo-de-distancia" title="Link to this heading">#</a></h2>
-<p>El cálculo de la distancia sobre la Tierra debe hacerse suponiendo alguna condición sobre la geometría de la Tierra. Esto es por ejemplo, suponer una esfera, un elipsoide o un plano (y no, la Tierra no es plana, pero para distancias cortas es una buena aproximación). Estas suposiciones ya vienen incluidas y pueden ser parametrizadas en las bibliotecas de cómputo.</p>
-<p>Para el cómputo de geodésicas en Python, en buena medida todo se resume en <a class="reference external" href="https://geographiclib.sourceforge.io/">GeographicLib</a>. Tanto <a class="reference external" href="https://gdal.org/">GDAL</a>, <a class="reference external" href="https://pyproj4.github.io/pyproj/stable/#">PyProj</a> y <a class="reference external" href="https://geopy.readthedocs.io/en/stable/#">GeoPy</a> recurren a la implementación de GeographicLib como método por defecto de cálculo.</p>
-<p>Para referencia, usaremos GeoPy (incluido también en GeoPandas) y que dispone de 3 métodos de cálculo de distancia que discutiremos.</p>
-<p>Primer paso vamos a instalar GeoPy. Para este fin usaremos el gestor de paquetes <em>conda</em> de Anaconda, pero puedes usar <em>pip</em>.</p>
+<p>El cálculo de la distancia sobre la Tierra debe hacerse suponiendo alguna
+condición sobre la geometría de la Tierra. Esto es por ejemplo, suponer una
+esfera, un elipsoide o un plano (y no, la Tierra no es plana, pero para
+distancias cortas es una buena aproximación). Estas suposiciones ya vienen
+incluidas y pueden ser parametrizadas en las bibliotecas de cómputo.</p>
+<p>Para el cómputo de geodésicas en Python, en buena medida todo se resume en
+<a class="reference external" href="https://geographiclib.sourceforge.io/">GeographicLib</a>. Tanto
+<a class="reference external" href="https://gdal.org/">GDAL</a>, <a class="reference external" href="https://pyproj4.github.io/pyproj/stable/#">PyProj</a> y
+<a class="reference external" href="https://geopy.readthedocs.io/en/stable/#">GeoPy</a> recurren a la implementación
+de GeographicLib como método por defecto de cálculo.</p>
+<p>Para referencia, usaremos GeoPy (incluido también en GeoPandas) y que dispone de
+3 métodos de cálculo de distancia que discutiremos.</p>
+<p>Primer paso vamos a instalar GeoPy. Para este fin usaremos el gestor de paquetes
+<strong class="program">conda</strong> de Anaconda, pero puedes usar <strong class="program">pip</strong>.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>%%bash
 conda<span class="w"> </span>install<span class="w"> </span>-c<span class="w"> </span>conda-forge<span class="w"> </span>geopy
 </pre></div>
 </div>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Collecting package metadata (current_repodata.json): ...working... done
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Collecting package metadata (current_repodata.json): ...working... done
 Solving environment: ...working... done
 
 ## Package Plan ##
@@ -593,37 +626,55 @@ Verifying transaction: ...working... done
 Executing transaction: ...working... done
 </pre></div>
 </div>
-<p>Ahora, importamos el módulo de <a class="reference external" href="https://geopy.readthedocs.io/en/stable/#module-geopy.distance">distancia de GeoPy</a>.</p>
+<p>Ahora, importamos el módulo de
+<a class="reference external" href="https://geopy.readthedocs.io/en/stable/#module-geopy.distance">distancia de GeoPy</a>.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">geopy.distance</span>
 </pre></div>
 </div>
-<p>Para referencia usaremos las coordenadas de Medellín (MDE) y Envigado (ENV) según son ubicadas por Google Maps.</p>
+<p>Para referencia usaremos las coordenadas de Medellín (MDE) y Envigado (ENV)
+según son ubicadas por Google Maps.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">MDE</span> <span class="o">=</span> <span class="p">(</span><span class="mf">6.2443695</span><span class="p">,</span><span class="o">-</span><span class="mf">75.6512527</span><span class="p">)</span>
 <span class="n">ENV</span> <span class="o">=</span> <span class="p">(</span><span class="mf">6.1663544</span><span class="p">,</span><span class="o">-</span><span class="mf">75.5994392</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Para efectos de comparación, no solo presentaré la forma de uso de los métodos sino las distancias y los tiempos de ejecución.</p>
+<p>Para efectos de comparación, no solo presentaré la forma de uso de los métodos,
+sino las distancias y los tiempos de ejecución.</p>
 <section id="metodo-de-circulo-mayor">
 <h3>Método de círculo mayor<a class="headerlink" href="#metodo-de-circulo-mayor" title="Link to this heading">#</a></h3>
-<p>El <a class="reference external" href="https://en.wikipedia.org/wiki/Great-circle_distance">método de círculo mayor</a> consiste en considerar la Tierra como una esfera perfecta de radio 6371.009 km (para el sistema de coordenadas geográficas <a class="reference external" href="https://en.wikipedia.org/wiki/World_Geodetic_System#WGS84">WGS-84</a>). Con esta aproximación se puede tener un error máximo del 0.5%. A pesar del error, es un método de cálculo directo (es una fórmula para reemplazar) y por ende puede obtener un resultado muy rápido y tiene asegurado entregar siempre una aproximación.</p>
-<p>Es llamado círculo mayor porque en una esfera sabemos que el camino más corto es el descrito por el círculo de mayor radio sobre la esfera que contenga a los dos puntos.</p>
+<p>El
+<a class="reference external" href="https://en.wikipedia.org/wiki/Great-circle_distance">método de círculo mayor</a>
+consiste en considerar la Tierra como una esfera perfecta de radio 6371.009 km
+(para el sistema de coordenadas geográficas
+<a class="reference external" href="https://en.wikipedia.org/wiki/World_Geodetic_System#WGS84">WGS-84</a>). Con esta
+aproximación se puede tener un error máximo del 0.5%. A pesar del error, es un
+método de cálculo directo (es una fórmula para reemplazar) y por ende puede
+obtener un resultado muy rápido y tiene asegurado entregar siempre una
+aproximación.</p>
+<p>Es llamado círculo mayor porque en una esfera sabemos que el camino más corto es
+el descrito por el círculo de mayor radio sobre la esfera que contenga a los dos
+puntos.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">timeit</span> <span class="n">geopy</span><span class="o">.</span><span class="n">distance</span><span class="o">.</span><span class="n">great_circle</span><span class="p">(</span><span class="n">MDE</span><span class="p">,</span> <span class="n">ENV</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">geopy</span><span class="o">.</span><span class="n">distance</span><span class="o">.</span><span class="n">great_circle</span><span class="p">(</span><span class="n">MDE</span><span class="p">,</span> <span class="n">ENV</span><span class="p">))</span>
 </pre></div>
 </div>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>14.9 µs ± 238 ns per loop (mean ± std. dev. of 7 runs, 100000 loops each)
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>14.9 µs ± 238 ns per loop (mean ± std. dev. of 7 runs, 100000 loops each)
 10.395180481810051 km
 </pre></div>
 </div>
 </section>
 <section id="metodo-de-vincenty">
 <h3>Método de Vincenty<a class="headerlink" href="#metodo-de-vincenty" title="Link to this heading">#</a></h3>
-<p>El <a class="reference external" href="https://en.wikipedia.org/wiki/Vincenty%27s_formulae">método de Vincenty</a> es un método iterativo para la aproximación de la distancia geodésica sobre un elipsoide, en este caso, el elipsoide de referencia del sistema coordenado WGS-84. Este método presenta problemas de convergencia entre puntos antinodales y hoy su uso no es aconsejado (GeoPy aún lo presenta en la versión 1.21 pero está marcado como obsoleto).</p>
+<p>El <a class="reference external" href="https://en.wikipedia.org/wiki/Vincenty%27s_formulae">método de Vincenty</a> es
+un método iterativo para la aproximación de la distancia geodésica sobre un
+elipsoide, en este caso, el elipsoide de referencia del sistema coordenado
+WGS-84. Este método presenta problemas de convergencia entre puntos antinodales
+y hoy su uso no es aconsejado (GeoPy aún lo presenta en la versión 1.21 pero
+está marcado como obsoleto).</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">timeit</span> <span class="n">geopy</span><span class="o">.</span><span class="n">distance</span><span class="o">.</span><span class="n">vincenty</span><span class="p">(</span><span class="n">MDE</span><span class="p">,</span> <span class="n">ENV</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">geopy</span><span class="o">.</span><span class="n">distance</span><span class="o">.</span><span class="n">vincenty</span><span class="p">(</span><span class="n">MDE</span><span class="p">,</span> <span class="n">ENV</span><span class="p">))</span>
 </pre></div>
 </div>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>/home/cosmoscalibur/anaconda/envs/geodesic/lib/python3.7/site-packages/ipykernel_launcher.py:1: DeprecationWarning: Vincenty is deprecated and is going to be removed in geopy 2.0. Use `geopy.distance.geodesic` (or the default `geopy.distance.distance`) instead, which is more accurate and always converges.
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>/home/cosmoscalibur/anaconda/envs/geodesic/lib/python3.7/site-packages/ipykernel_launcher.py:1: DeprecationWarning: Vincenty is deprecated and is going to be removed in geopy 2.0. Use `geopy.distance.geodesic` (or the default `geopy.distance.distance`) instead, which is more accurate and always converges.
   &quot;&quot;&quot;Entry point for launching an IPython kernel.
 
 
@@ -637,13 +688,16 @@ Executing transaction: ...working... done
 </section>
 <section id="metodo-de-karney">
 <h3>Método de Karney<a class="headerlink" href="#metodo-de-karney" title="Link to this heading">#</a></h3>
-<p>Este método al igual que el propuesto por Vincenty, es iterativo pero se asegura que siempre converge y con menor margen de error que Vincenty. Fue <a class="reference external" href="https://link.springer.com/article/10.1007/s00190-012-0578-z">propuesto en 2013</a>.</p>
-<p>La implementación disponible en GeoPy corresponde a la implementación C++ de GeographicLib.</p>
+<p>Este método al igual que el propuesto por Vincenty, es iterativo, pero se
+asegura que siempre converge y con menor margen de error que Vincenty. Fue
+<a class="reference external" href="https://link.springer.com/article/10.1007/s00190-012-0578-z">propuesto en 2013</a>.</p>
+<p>La implementación disponible en GeoPy corresponde a la implementación C++ de
+GeographicLib.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">timeit</span> <span class="n">geopy</span><span class="o">.</span><span class="n">distance</span><span class="o">.</span><span class="n">distance</span><span class="p">(</span><span class="n">MDE</span><span class="p">,</span> <span class="n">ENV</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">geopy</span><span class="o">.</span><span class="n">distance</span><span class="o">.</span><span class="n">distance</span><span class="p">(</span><span class="n">MDE</span><span class="p">,</span> <span class="n">ENV</span><span class="p">))</span>
 </pre></div>
 </div>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>231 µs ± 7.42 µs per loop (mean ± std. dev. of 7 runs, 1000 loops each)
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>231 µs ± 7.42 µs per loop (mean ± std. dev. of 7 runs, 1000 loops each)
 10.35931062438337 km
 </pre></div>
 </div>
@@ -651,10 +705,28 @@ Executing transaction: ...working... done
 </section>
 <section id="consideraciones">
 <h2>Consideraciones<a class="headerlink" href="#consideraciones" title="Link to this heading">#</a></h2>
-<p>La interfaz incluida en GeographicLib no me pareció amigable, por lo cual no la recomiendo pero su uso asegura incluir solo las funciones especializadas para el tratamiento de la distancia geodésica. GeoPy incluye más utilidades pero posee una interfaz más simple. GDAL y PyProj poseen muchas más funcionalidades, por lo cual representa un aumento de almacenamiento innecesario. Esto, finalmente, para recomendar GeoPy para esta tarea (respecto a GeographicLib, aún te dará la opción de la aproximación de círculo mayor).</p>
-<p>Respecto al método, la divergencia de Vincenty para casos antinodales y la convergencia lenta en otros casos reportados, al igual que su marcado de obsolescencia en las implementaciones nos lleva a omitirlo de cualquier consideración futura. La aproximación de Karney posee el menor error de las 3 aproximaciones pero su tiempo de cómputo es alto si se considera la necesidad de calcular entre una gran cantidad de pares de puntos.</p>
-<p>Para mi caso de interés (problemas de ruteo), la distancia geodésica solo se usa como un primer aproximado para reducir el número de pares sobre los cuales se cálcula la distancia sobre la red vial (de lo cual hablaré en una próxima entrada) y por ende su valor no importa que tenga gran exactitud pero que sea decente para distancias cortas (se busca eliminar el cálculo de distancias largas sobre la red vial).</p>
-<p>Así, si la necesidad es de exactitud te recomiendo la aproximación de Karney pero si es solo una primera aproximación buscando menor tiempo de cómputo, la recomendación es el círculo mayor.</p>
+<p>La interfaz incluida en GeographicLib no me pareció amigable, por lo cual no la
+recomiendo, pero su uso asegura incluir solo las funciones especializadas para
+el tratamiento de la distancia geodésica. GeoPy incluye más utilidades, pero
+posee una interfaz más simple. GDAL y PyProj poseen muchas más funcionalidades,
+por lo cual representa un aumento de almacenamiento innecesario. Esto,
+finalmente, para recomendar GeoPy para esta tarea (respecto a GeographicLib, aún
+te dará la opción de la aproximación de círculo mayor).</p>
+<p>Respecto al método, la divergencia de Vincenty para casos antinodales y la
+convergencia lenta en otros casos reportados, al igual que su marcado de
+obsolescencia en las implementaciones nos lleva a omitirlo de cualquier
+consideración futura. La aproximación de Karney posee el menor error de las 3
+aproximaciones, pero su tiempo de cómputo es alto si se considera la necesidad
+de calcular entre una gran cantidad de pares de puntos.</p>
+<p>Para mi caso de interés (problemas de ruteo), la distancia geodésica solo se usa
+como un primer aproximado para reducir el número de pares sobre los cuales se
+calcula la distancia sobre la red vial (de lo cual hablaré en una próxima
+entrada) y por ende su valor no importa que tenga gran exactitud, pero que sea
+decente para distancias cortas (se busca eliminar el cálculo de distancias
+largas sobre la red vial).</p>
+<p>Así, si la necesidad es de exactitud te recomiendo la aproximación de Karney,
+pero si es solo una primera aproximación buscando menor tiempo de cómputo, la
+recomendación es el círculo mayor.</p>
 </section>
 </section>
 
@@ -673,8 +745,8 @@ Executing transaction: ...working... done
   <span class="ablog__spacer">&nbsp;</span>
   <span class="ablog__next">
       Siguiente: 
-    <a href="../usar-la-camara-de-tu-celular-como-webcam/">
-      <span>Usar la cámara de tu celular como webcam</span>
+    <a href="../../../../en/blog/2020/calcular-distancia-geodesica-con-python/">
+      <span>Computing Geodesic Distance with Python</span>
       
     </a>
     

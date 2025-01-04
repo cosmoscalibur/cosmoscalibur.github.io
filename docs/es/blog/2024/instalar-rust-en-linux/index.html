@@ -450,7 +450,7 @@ crossorigin="anonymous"></script>
   <ul>
      
     <li>
-      <a href="../../../../blog/2024/">2024 (24)</a>
+      <a href="../../../../blog/2024/">2024 (25)</a>
     </li>
       
     <li>
@@ -458,11 +458,11 @@ crossorigin="anonymous"></script>
     </li>
       
     <li>
-      <a href="../../../../blog/2020/">2020 (18)</a>
+      <a href="../../../../blog/2020/">2020 (20)</a>
     </li>
       
     <li>
-      <a href="../../../../blog/2019/">2019 (7)</a>
+      <a href="../../../../blog/2019/">2019 (8)</a>
     </li>
       
     <li>
@@ -549,11 +549,11 @@ crossorigin="anonymous"></script>
 <p>En mi proceso por aprender Rust, iré compartiendo algunos pasos con ustedes. En
 esta ocasión, como instalar Rust en Linux, y prepararnos para usarlo en VSCode y
 en Notebook.</p>
-<p><a class="reference external" href="https://www.rust-lang.org/">Rust</a> es un lenguaje de bajo nivel, desarrollado con
-el patrocinio de Mozilla, enfocado en el rendimiento y seguridad, con muy buenas
-validaciones en tiempo de compilación que nos ayudará a prevenir algunos errores
-en tiempo de ejecución. Por diseño, intenta dar mayor ergonomía que un lenguaje
-de bajo nivel, al tiempo que permite un mayor control.</p>
+<p><a class="reference external" href="https://www.rust-lang.org/">Rust</a> es un lenguaje de bajo nivel, desarrollado
+con el patrocinio de Mozilla, enfocado en el rendimiento y seguridad, con muy
+buenas validaciones en tiempo de compilación que nos ayudará a prevenir algunos
+errores en tiempo de ejecución. Por diseño, intenta dar mayor ergonomía que un
+lenguaje de bajo nivel, al tiempo que permite un mayor control.</p>
 <section id="instalacion">
 <h2>Instalación<a class="headerlink" href="#instalacion" title="Link to this heading">#</a></h2>
 <p>La <a class="reference external" href="https://www.rust-lang.org/tools/install">instalación recomendada</a> es con la
@@ -561,16 +561,17 @@ herramienta <em>rustup</em>, para esto procedemos con</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl<span class="w"> </span>--proto<span class="w"> </span><span class="s1">&#39;=https&#39;</span><span class="w"> </span>--tlsv1.2<span class="w"> </span>-sSf<span class="w"> </span>https://sh.rustup.rs<span class="w"> </span><span class="p">|</span><span class="w"> </span>sh
 </pre></div>
 </div>
-<p>Esto descarga <em>rustup</em>, e inicia el proceso de instalación de Rust y otras utilidades.
-Allí podemos aceptar la opción por defecto con <em>enter</em>.</p>
-<p>Así tendremos instalados <a class="reference external" href="https://doc.rust-lang.org/cargo/"><code class="docutils literal notranslate"><span class="pre">cargo</span></code></a> (el gestor de paquetes de Rust),
-<a class="reference external" href="https://doc.rust-lang.org/clippy/"><code class="docutils literal notranslate"><span class="pre">clippy</span></code></a> (el linter integrado de Rust),
-<code class="docutils literal notranslate"><span class="pre">rust-docs</span></code> (documentación de Rust),
+<p>Esto descarga <em>rustup</em>, e inicia el proceso de instalación de Rust y otras
+utilidades. Allí podemos aceptar la opción por defecto con <em>enter</em>.</p>
+<p>Así tendremos instalados <a class="reference external" href="https://doc.rust-lang.org/cargo/"><code class="docutils literal notranslate"><span class="pre">cargo</span></code></a> (el gestor
+de paquetes de Rust), <a class="reference external" href="https://doc.rust-lang.org/clippy/"><code class="docutils literal notranslate"><span class="pre">clippy</span></code></a> (el linter
+integrado de Rust), <code class="docutils literal notranslate"><span class="pre">rust-docs</span></code> (documentación de Rust),
 <a class="reference external" href="https://doc.rust-lang.org/std/"><code class="docutils literal notranslate"><span class="pre">rust-std</span></code></a> (la biblioteca estándar de Rust),
-<a class="reference external" href="https://doc.rust-lang.org/rustc/what-is-rustc.html"><code class="docutils literal notranslate"><span class="pre">rustc</span></code></a> (el compilador de Rust) y
-<a class="reference external" href="https://github.com/rust-lang/rustfmt"><code class="docutils literal notranslate"><span class="pre">rustfmt</span></code></a> (el formateador de código Rust).
-Y por supuesto, el mismo <a class="reference external" href="https://rust-lang.github.io/rustup/"><code class="docutils literal notranslate"><span class="pre">rustup</span></code></a> que nos permite
-gestionar el <em>toolchain</em> de Rust.</p>
+<a class="reference external" href="https://doc.rust-lang.org/rustc/what-is-rustc.html"><code class="docutils literal notranslate"><span class="pre">rustc</span></code></a> (el compilador de
+Rust) y <a class="reference external" href="https://github.com/rust-lang/rustfmt"><code class="docutils literal notranslate"><span class="pre">rustfmt</span></code></a> (el formateador de
+código Rust). Y por supuesto, el mismo
+<a class="reference external" href="https://rust-lang.github.io/rustup/"><code class="docutils literal notranslate"><span class="pre">rustup</span></code></a> que nos permite gestionar el
+<em>toolchain</em> de Rust.</p>
 <p>Respecto a <em>cargo</em>, hay que decir algo interesante, y es que el gestor integra
 la ejecución de pruebas (<code class="docutils literal notranslate"><span class="pre">cargo</span> <span class="pre">test</span></code>) que es una opción también del compilador,
 y la generación de documentación (<code class="docutils literal notranslate"><span class="pre">cargo</span> <span class="pre">doc</span></code>) con
@@ -579,10 +580,11 @@ y la generación de documentación (<code class="docutils literal notranslate"><
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">source</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$HOME</span><span class="s2">/.cargo/env&quot;</span>
 </pre></div>
 </div>
-<p>Esto nos permite asociar las variables de ambiente necesarias en la consola actual.</p>
-<p>Si ahora ejecutamos <code class="docutils literal notranslate"><span class="pre">rustc</span> <span class="pre">--version</span></code>, debemos ver la versión del compilador.
-Si no lo ves, puede que hayas omitido el paso anterior para asociar la variable
-de entorno.</p>
+<p>Esto nos permite asociar las variables de ambiente necesarias en la consola
+actual.</p>
+<p>Si ahora ejecutamos <code class="docutils literal notranslate"><span class="pre">rustc</span> <span class="pre">--version</span></code>, debemos ver la versión del compilador. Si
+no lo ves, puede que hayas omitido el paso anterior para asociar la variable de
+entorno.</p>
 <p>Cuando deseemos actualizar la versión del compilador, usaremos <code class="docutils literal notranslate"><span class="pre">rustup</span> <span class="pre">update</span></code>.</p>
 </section>
 <section id="configurar-vscode">
@@ -591,17 +593,17 @@ de entorno.</p>
 vamos a instalar la extensión <a class="reference external" href="https://rust-analyzer.github.io">rust-analyzer</a>.
 Esta extensión nos provee de opciones de autocompletado, ir a definiciones,
 búsqueda de referencias, acceso a documentación, resaltado semántico, asistencia
-y sugerencias. Esto lo tenemos como beneficio gracias a la implementación del LSP
-(<em>Language Server Protocol</em>) para Rust.</p>
+y sugerencias. Esto lo tenemos como beneficio gracias a la implementación del
+LSP (<em>Language Server Protocol</em>) para Rust.</p>
 <p><em>Rust Analyzer</em> se encuentra disponible también para otros editores.</p>
-<p>Podemos iniciar con un pequeño proyecto por defecto para ver la extensión en acción,
-así como nuestra instalación base. Para crear un nuevo, usamos</p>
+<p>Podemos iniciar con un pequeño proyecto por defecto para ver la extensión en
+acción, así como nuestra instalación base. Para crear un nuevo, usamos</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cargo<span class="w"> </span>new<span class="w"> </span>miniproyecto
 </pre></div>
 </div>
-<p>Esto crea una plantilla básica de proyecto de aplicación Rust, con los archivos de
-dependencias de Cargo y el directorio de fuente con un hola mundo. Podemos usar un
-código básico errónea y verlo en acción.</p>
+<p>Esto crea una plantilla básica de proyecto de aplicación Rust, con los archivos
+de dependencias de Cargo y el directorio de fuente con un hola mundo. Podemos
+usar un código básico errónea y verlo en acción.</p>
 <figure class="align-center" id="id1">
 <a class="reference internal image-reference" href="../../../../_images/rust-analyzer.png"><img alt="Diagnóstico de rust analyzer sugiriendo el uso de let para asignar una variable" src="../../../../_images/rust-analyzer.png" style="width: 800px; height: 400px;" />
 </a>
@@ -612,9 +614,10 @@ código básico errónea y verlo en acción.</p>
 </section>
 <section id="rust-notebook">
 <h2>Rust Notebook<a class="headerlink" href="#rust-notebook" title="Link to this heading">#</a></h2>
-<p>Ahora, tenemos opción de agregar un <em>kernel</em> Rust a Jupyter Notebook para tener una
-experiencia interactiva de Rust, mezclada con el beneficio de documentar de forma
-natural. Esto lo podemos lograr gracias al <em>kernel</em> <a class="reference external" href="https://github.com/evcxr/evcxr">Evcxr</a>.</p>
+<p>Ahora, tenemos opción de agregar un <em>kernel</em> Rust a Jupyter Notebook para tener
+una experiencia interactiva de Rust, mezclada con el beneficio de documentar de
+forma natural. Esto lo podemos lograr gracias al <em>kernel</em>
+<a class="reference external" href="https://github.com/evcxr/evcxr">Evcxr</a>.</p>
 <p>Instalamos con <em>cargo</em> la dependencia necesaria primero.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cargo<span class="w"> </span>install<span class="w"> </span>--locked<span class="w"> </span>evcxr_jupyter
 </pre></div>

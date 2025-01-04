@@ -9,7 +9,7 @@ language: en
 
 This is my first posts about R language, my first english post and my first R
 package: [`venn.compute`](https://github.com/cosmoscalibur/venn.compute), which
-use case in bioinformatics is compare list of genes.
+use case in bioinformatics is comparing list of genes.
 
 This R package is intended to compute specific elements in intersections of Venn
 diagram instead of plot.
@@ -19,7 +19,6 @@ diagram instead of plot.
 - Compute specific elements in intersections of Venn diagram in memory or write
   to files.
 - Plot with VennDiagram.
-
 
 ## Example
 
@@ -34,36 +33,33 @@ You can install from GitHub as:
 devtools::install_github("cosmoscalibur/venn.compute")
 ```
 
-   Downloading GitHub repo cosmoscalibur/venn.compute@master
+Downloading GitHub repo cosmoscalibur/venn.compute@master
+
+```
+formatR (1.6 -> 1.7) [CRAN]
 
 
-    formatR (1.6 -> 1.7) [CRAN]
+Installing 1 packages: formatR
+Updating HTML index of packages in '.Library'
+Making 'packages.html' ... done
 
 
-    Installing 1 packages: formatR
-    Updating HTML index of packages in '.Library'
-    Making 'packages.html' ... done
+✔  checking for file ‘/tmp/RtmpT7UVx3/remotes61d65fec5ae1/cosmoscalibur-venn.compute-6f4fb43/DESCRIPTION’ ...
+─  preparing ‘venn.compute’:
+✔  checking DESCRIPTION meta-information
+─  checking for LF line-endings in source and make files and shell scripts
+─  checking for empty or unneeded directories
+─  building ‘venn.compute_1.1.0.tar.gz’
+```
 
-
-    ✔  checking for file ‘/tmp/RtmpT7UVx3/remotes61d65fec5ae1/cosmoscalibur-venn.compute-6f4fb43/DESCRIPTION’ ...
-    ─  preparing ‘venn.compute’:
-    ✔  checking DESCRIPTION meta-information
-    ─  checking for LF line-endings in source and make files and shell scripts
-    ─  checking for empty or unneeded directories
-    ─  building ‘venn.compute_1.1.0.tar.gz’
-
-
-If an error about TAR executable is showed (common in Linux with Anaconda,
-`sh: 1: /bin/gtar: not found`), you need to setup your TAR path.
+If an error about TAR executable is shown (common on Linux with Anaconda,
+`sh: 1: /bin/gtar: not found`), you need to set up your TAR path.
 
 ```R
 Sys.setenv(TAR = "/bin/tar")
 ```
 
-
-
 ## How to use
-
 
 First, load the package.
 
@@ -87,16 +83,16 @@ sets <- read.lists_from_files(c(file.path("tests", "primes.txt"),
 print(sets)
 ```
 
-    $primes
-    [1] "1"  "2"  "3"  "5"  "7"  "11" "13" "17"
+```
+$primes
+[1] "1"  "2"  "3"  "5"  "7"  "11" "13" "17"
 
-    $even
-     [1] "0"  "2"  "4"  "6"  "8"  "10" "12" "14" "16" "18"
+$even
+ [1] "0"  "2"  "4"  "6"  "8"  "10" "12" "14" "16" "18"
 
-    $fibo
-    [1] "1"  "2"  "3"  "5"  "8"  "13"
-
-
+$fibo
+[1] "1"  "2"  "3"  "5"  "8"  "13"
+```
 
 ### Compute intersections and specific elements
 
@@ -144,8 +140,8 @@ venn.compute_specific(sets)
 		<dd></dd>
 </dl>
 
-If you need to write sets in files, add an output path. Files are written
-using convention of join sets name with underscore.
+If you need to write sets in files, add an output path. Files are written using
+convention of join sets name with underscore.
 
 ```R
 venn.compute_specific(sets, output_dir = file.path("tests", "output"))
@@ -153,11 +149,9 @@ venn.compute_specific(sets, output_dir = file.path("tests", "output"))
 
 We can verify written files.
 
-
 ```R
 dir(file.path("tests", "output"))
 ```
-
 
 <ol class=list-inline>
 	<li>'even_fibo.txt'</li>
@@ -168,7 +162,6 @@ dir(file.path("tests", "output"))
 	<li>'primes_fibo.txt'</li>
 	<li>'primes.txt'</li>
 </ol>
-
 
 ### Plot Venn diagram
 
@@ -183,9 +176,10 @@ venn.compute_plot(sets, output_dir = file.path("tests", "output"))
 Now, we have a `primes_even_fibo.png` file.
 
 ```{figure} /images/determinar-intersecciones-en-el-diagrama-de-venn-con-r/primes_even_fibo.png
-:name: r_venn_1_en
-:alt: Venn diagram generate here with VennDiagram.
-:align: center
-
+---
+name: r_venn_1_en
+alt: Venn diagram generate here with VennDiagram.
+align: center
+---
 Venn diagram generate here with VennDiagram.
 ```

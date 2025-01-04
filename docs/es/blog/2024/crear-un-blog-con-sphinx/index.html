@@ -459,7 +459,7 @@ crossorigin="anonymous"></script>
   <ul>
      
     <li>
-      <a href="../../../../blog/2024/">2024 (24)</a>
+      <a href="../../../../blog/2024/">2024 (25)</a>
     </li>
       
     <li>
@@ -467,11 +467,11 @@ crossorigin="anonymous"></script>
     </li>
       
     <li>
-      <a href="../../../../blog/2020/">2020 (18)</a>
+      <a href="../../../../blog/2020/">2020 (20)</a>
     </li>
       
     <li>
-      <a href="../../../../blog/2019/">2019 (7)</a>
+      <a href="../../../../blog/2019/">2019 (8)</a>
     </li>
       
     <li>
@@ -562,21 +562,23 @@ entrada al respecto, con lo más básico para iniciar y no fracasar en el intent
 <section id="por-que-sphinx">
 <h2>¿Por qué Sphinx?<a class="headerlink" href="#por-que-sphinx" title="Link to this heading">#</a></h2>
 <p>Sphinx es un generador estático de documentación, casi el estándar para los
-proyectos desarrollados en Python, y para el cual se dispone de una buena cantidad
-de extensiones que nutren a este generador, entre las cuales, encontramos incluso
-una para convertir nuestro proyecto en un blog, y es Ablog.</p>
+proyectos desarrollados en Python, y para el cual se dispone de una buena
+cantidad de extensiones que nutren a este generador, entre las cuales,
+encontramos incluso una para convertir nuestro proyecto en un blog, y es Ablog.</p>
 <p>Dado que mi lenguaje de programación principal es Python, es claro que por ello
 quiero una opción basada en Python. Pero antes yo usaba Nikola, que también está
 desarrollado en Python, pero Sphinx da el beneficio de una comunidad mayor y más
-activa (como usuarios y desarrolladores). Adicional a esto, el desarrollo de Sphinx
-y sus extensiones va más a la par de cambios en el ecosistema, y más alineado con
-las directivas de docutils. En los cambios del ecosistema, me parece interesante como
-el soporte de Jupyter Notebooks y Myst resulta muy natural, por lo cual entradas sobre
-código pueden tener un beneficio, y Myst expande las opciones de Markdown (y no es
-soportado adecuadamente en Nikola, ni en otros generadores que revisé).</p>
-<p>También resulta que ya era más familiar con <a class="reference internal" href="../../2020/crear-documentacion-de-un-proyecto-python-con-sphinx/"><span class="std std-doc">Sphinx</span></a>,
-pero en el momento que pasé a un generador estático, no existía Ablog para ayudar
-en el proceso de usarlo para un blog.</p>
+activa (como usuarios y desarrolladores). Adicional a esto, el desarrollo de
+Sphinx y sus extensiones va más a la par de cambios en el ecosistema, y más
+alineado con las directivas de docutils. En los cambios del ecosistema, me
+parece interesante como el soporte de Jupyter Notebooks y Myst resulta muy
+natural, por lo cual entradas sobre código pueden tener un beneficio, y Myst
+expande las opciones de Markdown (y no es soportado adecuadamente en Nikola, ni
+en otros generadores que revisé).</p>
+<p>También resulta que ya era más familiar con
+<a class="reference internal" href="../../2020/crear-documentacion-de-un-proyecto-python-con-sphinx/"><span class="std std-doc">Sphinx</span></a>,
+pero en el momento que pasé a un generador estático, no existía Ablog para
+ayudar en el proceso de usarlo para un blog.</p>
 </section>
 <section id="creando-el-blog">
 <h2>Creando el blog<a class="headerlink" href="#creando-el-blog" title="Link to this heading">#</a></h2>
@@ -584,31 +586,33 @@ en el proceso de usarlo para un blog.</p>
 <section id="dependencias">
 <h3>Dependencias<a class="headerlink" href="#dependencias" title="Link to this heading">#</a></h3>
 <p>Usaremos Sphinx para la generación del contenido estático y Ablog nos permitirá
-incluir etiquetas para fechas, que son la diferencia esencial para distinguir una
-página de una publicación (y con ello, opciones de filtros para índices).</p>
+incluir etiquetas para fechas, que son la diferencia esencial para distinguir
+una página de una publicación (y con ello, opciones de filtros para índices).</p>
 <p>Respecto a la apariencia, podemos encontrar distintos temas, pero yo me he
 inclinado por PyData (que además usan varios blogs que sigo, así que he visto su
 resultado y tengo como indagar como usan algunas cosas). Adicional, conviene
-agregar Sphinx Design para añadir componentes adicionales como cuadrículas, pestañas,
-tarjetas y otros.</p>
+agregar Sphinx Design para añadir componentes adicionales como cuadrículas,
+pestañas, tarjetas y otros.</p>
 <p>Sin duda (y ya lo usaba en Nikola), es necesario disponer de videos de Youtube,
 así que necesitamos Sphinx Contrib Youtube.</p>
 <p>Aunque para compartir en las redes no necesitamos nada especial, poder contar
-con la generación de metadatos adecuada nos ayudará a una mejor indexación y
-una mejor previsualización. Para este fin usamos Sphinx Ext OpenGraph (que no
-solo incluye el protocolo OpenGraph, sino una etiqueta extra para <em>Twitter Card</em>).
-En este caso, tenemos un detalle extra, y es que para generar las imágenes que se
+con la generación de metadatos adecuada nos ayudará a una mejor indexación y una
+mejor previsualización. Para este fin usamos Sphinx Ext OpenGraph (que no solo
+incluye el protocolo OpenGraph, sino una etiqueta extra para <em>Twitter Card</em>). En
+este caso, tenemos un detalle extra, y es que para generar las imágenes que se
 comparten (ya que por defecto no usa la primera imagen de la publicación y no
 siempre hay una), es necesario instalar Matplotlib.</p>
 <p>Y finalmente, para dar soporte de Markdown, usaremos Myst Parser. Algo
 interesante es que en extensión con Myst NB, tendremos el soporte para generar
 publicaciones en Notebook usando MystMd (así que instalamos también Jupyterlab).
-Esto me encanta, porque será natural publicar notas sobre código con sus resultados.</p>
+Esto me encanta, porque será natural publicar notas sobre código con sus
+resultados.</p>
 <p>Sitemap genera el sitemap del sitio, aunque para usarlo con el esquema de
 internacionalización que deseo, tendré que cambiarlo en el futuro.</p>
 <p>Copy button nos ayudará a crear la opción de copiar al portapapeles los bloques
 de código.</p>
-<p>Con estos detalles, nuestro archivo <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code> lucirá de la siguiente forma:</p>
+<p>Con estos detalles, nuestro archivo <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code> lucirá de la siguiente
+forma:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Generación estática blog y tema</span>
 <span class="n">sphinx</span>
 <span class="n">ablog</span>
@@ -639,25 +643,22 @@ necesitamos apoyo mientras escribimos. Así que podemos instalar doc8, rstcheck
 y esbonio, para las validaciones de nuestros archivos <code class="docutils literal notranslate"><span class="pre">.rst</span></code> y Jupyterlab Myst,
 para ayudar en el renderizado en el Notebook mientras redactamos.</p>
 <p class="sd-card-text">Siendo así, podemos tener nuestro archivo <code class="docutils literal notranslate"><span class="pre">requirements-dev.txt</span></code> así:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">jupyterlab_myst</span>
-<span class="n">rstcheck</span>
-<span class="n">doc8</span>
-<span class="n">esbonio</span>
+</div>
+</details><p>jupyterlab_myst rstcheck doc8 esbonio</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+Si usamos además VSCode, vale la pena las siguientes extensiones:
+
+- MyST-Markdown: Para editar MystMD
+- Esbonio: Para editar RST
+- reStructuredText (lexstudio): Para editar RST
+- Jupyter: Para manipular notebooks
+- Emoji: Para insertar emoji con la paleta de comandos 😀
+- Spell Right: Para corrección de ortografía.
+- Font Awesome Gallery: Para buscar la notación de los íconos de Font Awesome
+  si los piensas usar (tiene alto impacto en el tiempo de carga).
 </pre></div>
 </div>
-<p class="sd-card-text">Si usamos además VSCode, vale la pena las siguientes extensiones:</p>
-<ul class="simple">
-<li><p class="sd-card-text">MyST-Markdown: Para editar MystMD</p></li>
-<li><p class="sd-card-text">Esbonio: Para editar RST</p></li>
-<li><p class="sd-card-text">reStructuredText (lexstudio): Para editar RST</p></li>
-<li><p class="sd-card-text">Jupyter: Para manipular notebooks</p></li>
-<li><p class="sd-card-text">Emoji: Para insertar emoji con la paleta de comandos 😀</p></li>
-<li><p class="sd-card-text">Spell Right: Para corrección de ortografía.</p></li>
-<li><p class="sd-card-text">Font Awesome Gallery: Para buscar la notación de los íconos de Font Awesome
-si los piensas usar (tiene alto impacto en el tiempo de carga).</p></li>
-</ul>
-</div>
-</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
 <summary class="sd-summary-title sd-card-header">
 <span class="sd-summary-text">Otros</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
 <p class="sd-card-text">Bueno, aquí hay algunas extensiones que, posiblemente puedan ser útiles, pero
@@ -705,8 +706,8 @@ usaremos el tema de PyData y podemos retirar alabaster del <em>import</em>.</p>
 </div>
 <p>Para incluir los metadatos de OpenGraph, añadiremos la dirección base y podemos
 añadir marcas personalizadas. Así, que aprovecharé a incluir la de creador para
-Twitter <span class="fa fa-twitter-square"></span> (ahora X), y la especificación de tipo viene por defecto
-en <code class="docutils literal notranslate"><span class="pre">summary_large_image</span></code> (esto no encontré como cambiarlo).</p>
+Twitter <span class="fa fa-twitter-square"></span> (ahora X), y la especificación de tipo viene por
+defecto en <code class="docutils literal notranslate"><span class="pre">summary_large_image</span></code> (esto no encontré como cambiarlo).</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ogp_site_url</span> <span class="o">=</span> <span class="s1">&#39;https://www.cosmoscalibur.com&#39;</span>
 <span class="n">ogp_custom_meta_tags</span> <span class="o">=</span> <span class="p">[</span>
     <span class="s1">&#39;&lt;meta name=&quot;twitter:creator&quot; content=&quot;@cosmoscalibur&quot; /&gt;&#39;</span><span class="p">,</span>
@@ -721,11 +722,12 @@ código ISO del lenguaje</p>
 <p>En mi caso, aunque es mi lengua nativa, espero publicar algunas veces en inglés.
 Por este motivo, pensando en la internacionalización del blog, dispondré de un
 patrón de rutas de la forma <code class="docutils literal notranslate"><span class="pre">&lt;lang&gt;/blog/&lt;year&gt;/&lt;post&gt;</span></code>, de tal forma que con
-cambiar directamente el segmento de <code class="docutils literal notranslate"><span class="pre">&lt;lang&gt;</span></code> se acceda a la versión del otro idioma.</p>
+cambiar directamente el segmento de <code class="docutils literal notranslate"><span class="pre">&lt;lang&gt;</span></code> se acceda a la versión del otro
+idioma.</p>
 <p>Esto tiene impacto en la variable <code class="docutils literal notranslate"><span class="pre">blog_path_pattern</span></code> que permite definir el
 patrón de ruta para que se reconozcan automáticamente las publicaciones (no es
-necesario añadir la etiqueta).
-Adicional, es necesario definir la ruta para el archivo de publicaciones.</p>
+necesario añadir la etiqueta). Adicional, es necesario definir la ruta para el
+archivo de publicaciones.</p>
 <div class="literal-block-wrapper docutils container" id="blog-conf">
 <div class="code-block-caption"><span class="caption-text">Definición de ruta de índice del blog y patrón de ruta de publicaciones.</span><a class="headerlink" href="#blog-conf" title="Link to this code">#</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">blog_path</span> <span class="o">=</span> <span class="s1">&#39;blog&#39;</span>
@@ -739,8 +741,8 @@ destinados para los estáticos y las plantillas (por defecto son ignorados si
 comienzan de esta forma). Y añadiremos un directorio especial que nos permita
 agregar archivos directamente al raíz del despliegue (por ejemplo, para añadir
 el archivo CNAME).</p>
-<p>Importante para la generación con GitHub Pages, el directorio de salida debe
-ser <code class="docutils literal notranslate"><span class="pre">docs</span></code>.</p>
+<p>Importante para la generación con GitHub Pages, el directorio de salida debe ser
+<code class="docutils literal notranslate"><span class="pre">docs</span></code>.</p>
 <p>Finalmente, las variables de configuración en <code class="docutils literal notranslate"><span class="pre">conf.py</span></code>.</p>
 <div class="literal-block-wrapper docutils container" id="sphinx-dir-setup">
 <div class="code-block-caption"><span class="caption-text">Definición de directorios de entradas y salidas para Sphinx y Ablog</span><a class="headerlink" href="#sphinx-dir-setup" title="Link to this code">#</a></div>
@@ -752,10 +754,10 @@ ser <code class="docutils literal notranslate"><span class="pre">docs</span></co
 </div>
 </div>
 <p>Ahora vamos a definir los archivos que no deben ser procesados. Esto es
-importante porque al estar el directorio de Sphinx al mismo nivel del
-directorio del repositorio, se ven todos los archivos. Adicional a esto, hay
-archivos generados por Sphinx que si no los borramos, en un despliegue posterior
-se intentarán procesar.</p>
+importante porque al estar el directorio de Sphinx al mismo nivel del directorio
+del repositorio, se ven todos los archivos. Adicional a esto, hay archivos
+generados por Sphinx que si no los borramos, en un despliegue posterior se
+intentarán procesar.</p>
 <div class="literal-block-wrapper docutils container" id="exclude-files">
 <div class="code-block-caption"><span class="caption-text">Definición de archivos y directorios a excluir de la compilación.</span><a class="headerlink" href="#exclude-files" title="Link to this code">#</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">exclude_patterns</span> <span class="o">=</span> <span class="p">[</span>
@@ -776,8 +778,8 @@ se intentarán procesar.</p>
 </div>
 <p>Para habilitar las extensiones que vamos a usar, es necesario listarlas en
 <code class="docutils literal notranslate"><span class="pre">extensions</span></code>. Un detalle es que, aunque tenemos instalado Myst Parser, no lo
-añadimos explícitamente porque genera conflicto por ya estar definido dentro
-de Myst NB.</p>
+añadimos explícitamente porque genera conflicto por ya estar definido dentro de
+Myst NB.</p>
 <p>Algunos errores que se producen por esto son:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">WARNING</span><span class="p">:</span> <span class="n">mientras</span> <span class="n">configura</span> <span class="n">la</span> <span class="n">extensión</span> <span class="n">myst_nb</span><span class="p">:</span> <span class="n">el</span> <span class="n">rol</span> <span class="s1">&#39;sub-ref&#39;</span> <span class="n">ya</span> <span class="n">está</span> <span class="n">registrado</span><span class="p">,</span> <span class="n">ese</span> <span class="n">se</span> <span class="n">reemplazará</span>
 <span class="n">WARNING</span><span class="p">:</span> <span class="n">mientras</span> <span class="n">configura</span> <span class="n">la</span> <span class="n">extensión</span> <span class="n">myst_nb</span><span class="p">:</span> <span class="n">la</span> <span class="n">directiva</span> <span class="s1">&#39;figure-md&#39;</span> <span class="n">ya</span> <span class="n">está</span> <span class="n">registrada</span><span class="p">,</span> <span class="n">esa</span> <span class="n">se</span> <span class="n">reemplazará</span>
@@ -804,12 +806,12 @@ de Myst NB.</p>
 <p>Los dos primeros casos que habilitamos, son extensiones que vienen por defecto,
 y nos servirán para acortar la notación de URL y para enlazar cómodamente con
 otros proyectos de Sphinx (en futuras entradas lo revisaremos).</p>
-<p>Ahora que tenemos habilitado Myst NB, podemos remover la línea de <code class="docutils literal notranslate"><span class="pre">source_suffix</span></code>
-porque esta es configurada por la extensión, y el valor por defecto evita que se
-compilen los archivos Markdown.</p>
-<p>Respecto a las opciones de Myst, vamos a habilitar varias extensiones,
-que nos permitan usar más fácilmente las directivas (no usar el <em>backtick</em>),
-hacer sustituciones y habilitar el símbolo de dólar para las ecuaciones. adicional,
+<p>Ahora que tenemos habilitado Myst NB, podemos remover la línea de
+<code class="docutils literal notranslate"><span class="pre">source_suffix</span></code> porque esta es configurada por la extensión, y el valor por
+defecto evita que se compilen los archivos Markdown.</p>
+<p>Respecto a las opciones de Myst, vamos a habilitar varias extensiones, que nos
+permitan usar más fácilmente las directivas (no usar el <em>backtick</em>), hacer
+sustituciones y habilitar el símbolo de dólar para las ecuaciones. adicional,
 vamos a crear referencias (<em>targets</em>) para los títulos hasta de tercer nivel
 (h1, h2 y h3). También podemos añadir etiquteas más fácilmente en bloques o
 líneas, sustituciones con Jinja2, bloques de definiciones, reemplazos o listas
@@ -835,10 +837,10 @@ de tareas. Solo omití linkify, pues no le veo mucha utilidad.</p>
 <p>De la misma manera, espero que en la tabla de contenidos de la derecha, se
 muestren los títulos de tercer nivel. Para esto debemos ajustar las
 configuraciones del tema.</p>
-<p>Nuestro identificador de Google Analytics también se dispone en esta misma
-parte (PyData soporta también Plausible).</p>
-<p>También podemos agregar nuestros enlaces de Twitter y GitHub en la
-configuración del tema.</p>
+<p>Nuestro identificador de Google Analytics también se dispone en esta misma parte
+(PyData soporta también Plausible).</p>
+<p>También podemos agregar nuestros enlaces de Twitter y GitHub en la configuración
+del tema.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">html_theme_options</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s1">&#39;show_toc_level&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
     <span class="s1">&#39;twitter_url&#39;</span><span class="p">:</span> <span class="s1">&#39;https://twitter.com/cosmoscalibur&#39;</span><span class="p">,</span>
@@ -848,10 +850,10 @@ configuración del tema.</p>
 <span class="n">html_theme_options</span><span class="p">[</span><span class="s1">&#39;analytics&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;google_analytics_id&#39;</span><span class="p">:</span> <span class="s1">&#39;G-4YFQBC69LB&#39;</span><span class="p">}</span>
 </pre></div>
 </div>
-<p>Hemos separado la línea de <em>analytics</em> con el fin de deshabilitarla
-fácilmente en pruebas, para que esto no afecte métricas (más adelante, el
-ideal es hacerlo con despliegue automático en GitHub Actions y así dependiente
-de una variable de entorno).</p>
+<p>Hemos separado la línea de <em>analytics</em> con el fin de deshabilitarla fácilmente
+en pruebas, para que esto no afecte métricas (más adelante, el ideal es hacerlo
+con despliegue automático en GitHub Actions y así dependiente de una variable de
+entorno).</p>
 <p>Respecto a los paneles laterales, haremos la siguiente configuración de momento</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">html_sidebars</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s1">&#39;index&#39;</span><span class="p">:</span> <span class="p">[],</span>
@@ -880,12 +882,12 @@ deshabilito).</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">html_show_sourcelink</span> <span class="o">=</span> <span class="kc">True</span>
 </pre></div>
 </div>
-<p>Ahora, la configuración para las publicaciones.
-Necesitamos ahora definir el formato de la marca de tiempo, y podemos definir
-a nuestro gusto (pero debe ser consistente para esta opción en todas las
-publicaciones). También podemos indicar cuántos párrafos serán usados en la
-descripción y cuál imagen considerar para la previsualización. Finalmente, en
-caso de tener redireccionamiento, el tiempo en segundos para su ejecución.</p>
+<p>Ahora, la configuración para las publicaciones. Necesitamos ahora definir el
+formato de la marca de tiempo, y podemos definir a nuestro gusto (pero debe ser
+consistente para esta opción en todas las publicaciones). También podemos
+indicar cuántos párrafos serán usados en la descripción y cuál imagen considerar
+para la previsualización. Finalmente, en caso de tener redireccionamiento, el
+tiempo en segundos para su ejecución.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">post_date_format</span> <span class="o">=</span> <span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">&#39;</span>
 <span class="n">post_date_format_short</span> <span class="o">=</span> <span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">&#39;</span>
 <span class="n">post_auto_excerpt</span> <span class="o">=</span> <span class="mi">1</span>
@@ -904,8 +906,8 @@ motores de búsqueda.</p>
 <span class="n">html_baseurl</span> <span class="o">=</span> <span class="s1">&#39;https://www.cosmoscalibur.com/&#39;</span>
 </pre></div>
 </div>
-<p>Finalmente, y aunque no es lo último que pienso configurar (pero serán temas
-de otras entradas), los comentarios por Disqus (aunque estoy considerando
+<p>Finalmente, y aunque no es lo último que pienso configurar (pero serán temas de
+otras entradas), los comentarios por Disqus (aunque estoy considerando
 cambiarlo, pero también será tema de otra entrada).</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">disqus_shortname</span> <span class="o">=</span> <span class="s1">&#39;XXXXXXX&#39;</span>
 </pre></div>
@@ -914,9 +916,9 @@ cambiarlo, pero también será tema de otra entrada).</p>
 <section id="archivos-y-directorios-extras">
 <h3>Archivos y directorios extras<a class="headerlink" href="#archivos-y-directorios-extras" title="Link to this heading">#</a></h3>
 <p>Dentro de la configuración (<code class="docutils literal notranslate"><span class="pre">conf.py</span></code>), añadimos el directorio <code class="docutils literal notranslate"><span class="pre">files</span></code>. Este
-directorio nos permite añadir archivos directamente al directorio raíz del
-sitio generado. Esto es importante porque algunas validaciones requieren archivos
-en esta posición, como lo son:</p>
+directorio nos permite añadir archivos directamente al directorio raíz del sitio
+generado. Esto es importante porque algunas validaciones requieren archivos en
+esta posición, como lo son:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">CNAME</span></code>: Para la validez de nuestro nombre de dominio.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">.nokekyll</span></code>: Para que GitHub ignore que es compilado por Jekyll. Si no hacemos
@@ -926,8 +928,9 @@ Google.</p></li>
 <li><p>Otros archivos de verificación de propiedad.</p></li>
 <li><p>Archivo de <code class="docutils literal notranslate"><span class="pre">robots.txt</span></code>.</p></li>
 </ul>
-<p>También si usamos un directorio a nivel de raíz del repositorio, este quedará disponible
-a este nivel. Este es mi caso con el directorio de <code class="docutils literal notranslate"><span class="pre">images</span></code> para las imágenes que uso.</p>
+<p>También si usamos un directorio a nivel de raíz del repositorio, este quedará
+disponible a este nivel. Este es mi caso con el directorio de <code class="docutils literal notranslate"><span class="pre">images</span></code> para las
+imágenes que uso.</p>
 </section>
 <section id="primera-publicacion">
 <h3>Primera publicación<a class="headerlink" href="#primera-publicacion" title="Link to this heading">#</a></h3>
@@ -938,9 +941,10 @@ compilación del proyecto.</p>
 <p>También nos crea una publicación por defecto. Esta podemos moverla a nuestro
 directorio <code class="docutils literal notranslate"><span class="pre">es/blog/2024</span></code> (dado el año de elaboración) y allí editar.</p>
 <p>Es importante tener presente que el título de primer nivel es el título de la
-publicación (en otros generadores, el título se añade como parte de una directiva).
-Como ya configuramos el patrón de ruta de las publicaciones, y la estamos cumpliendo,
-no es necesario seguir las directivas sino el <em>front matter</em>, ejemplo:</p>
+publicación (en otros generadores, el título se añade como parte de una
+directiva). Como ya configuramos el patrón de ruta de las publicaciones, y la
+estamos cumpliendo, no es necesario seguir las directivas sino el <em>front
+matter</em>, ejemplo:</p>
 <div class="sd-tab-set docutils">
 <input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio">
 <label class="sd-tab-label" for="sd-tab-item-0">
@@ -989,8 +993,8 @@ que vale la pena definir el autor y lenguaje por defecto en el <code class="docu
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ablog<span class="w"> </span>clean<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>ablog<span class="w"> </span>build<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>ablog<span class="w"> </span>serve
 </pre></div>
 </div>
-<p>La parte de <code class="docutils literal notranslate"><span class="pre">ablog</span> <span class="pre">clean</span></code> es necesaria si queremos una compilación completa,
-ya que esto borra los temporales generados para evitar recompilar todo. Con
+<p>La parte de <code class="docutils literal notranslate"><span class="pre">ablog</span> <span class="pre">clean</span></code> es necesaria si queremos una compilación completa, ya
+que esto borra los temporales generados para evitar recompilar todo. Con
 <code class="docutils literal notranslate"><span class="pre">ablog</span> <span class="pre">serve</span></code> se abrirá el navegador y podremos explorar.</p>
 </section>
 </section>
@@ -1003,7 +1007,8 @@ queda algo de exploración todavía.</p>
 <li><p>Barra de búsqueda basada en Google.</p></li>
 <li><p>Soporte de internacionalización basado en directorio manual y no en <code class="docutils literal notranslate"><span class="pre">pot</span></code>.</p></li>
 <li><p>Soporte de <em>sitemap</em> con internacionalización con el esquema anterior.</p></li>
-<li><p>Vincular con otros external links, no solo github y twitter (ejemplo, mastodon).</p></li>
+<li><p>Vincular con otros external links, no solo github y twitter (ejemplo,
+mastodon).</p></li>
 </ul>
 </section>
 <section id="referencias">

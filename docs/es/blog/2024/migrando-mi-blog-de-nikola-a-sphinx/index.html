@@ -452,7 +452,7 @@ crossorigin="anonymous"></script>
   <ul>
      
     <li>
-      <a href="../../../../blog/2024/">2024 (24)</a>
+      <a href="../../../../blog/2024/">2024 (25)</a>
     </li>
       
     <li>
@@ -460,11 +460,11 @@ crossorigin="anonymous"></script>
     </li>
       
     <li>
-      <a href="../../../../blog/2020/">2020 (18)</a>
+      <a href="../../../../blog/2020/">2020 (20)</a>
     </li>
       
     <li>
-      <a href="../../../../blog/2019/">2019 (7)</a>
+      <a href="../../../../blog/2019/">2019 (8)</a>
     </li>
       
     <li>
@@ -549,11 +549,11 @@ crossorigin="anonymous"></script>
                    <section class="tex2jax_ignore mathjax_ignore" id="migrando-mi-blog-de-nikola-a-sphinx">
 <h1>Migrando mi blog de Nikola a Sphinx<a class="headerlink" href="#migrando-mi-blog-de-nikola-a-sphinx" title="Link to this heading">#</a></h1>
 <p>Migrar de un generador estático a otro no es un proceso del todo transparente,
-así que aquí te explico algunos por menores para hacer una migración de Nikola
-a Sphinx.</p>
+así que aquí te explico algunos por menores para hacer una migración de Nikola a
+Sphinx.</p>
 <p>Pero antes, es necesario tener presente, que lo básico del proceso de migración,
-inicia por tener lo mínimo desde cero, con Sphinx. Para este fin, debes seguir las
-indicaciones dadas en <a class="reference internal" href="../crear-un-blog-con-sphinx/"><span class="std std-doc">Crear un blog con Sphinx</span></a>.</p>
+inicia por tener lo mínimo desde cero, con Sphinx. Para este fin, debes seguir
+las indicaciones dadas en <a class="reference internal" href="../crear-un-blog-con-sphinx/"><span class="std std-doc">Crear un blog con Sphinx</span></a>.</p>
 <section id="migrando">
 <h2>Migrando<a class="headerlink" href="#migrando" title="Link to this heading">#</a></h2>
 <p>Bueno, una vez tenemos la base de nuestro blog, sigue hacer los ajustes para que
@@ -562,16 +562,17 @@ nuestras entradas previas sigan funcionando.</p>
 <h3>Publicación<a class="headerlink" href="#publicacion" title="Link to this heading">#</a></h3>
 <section id="front-matter">
 <h4>Front matter<a class="headerlink" href="#front-matter" title="Link to this heading">#</a></h4>
-<p>Dado que en la configuración inicial añadimos un
-<a class="reference internal" href="../crear-un-blog-con-sphinx/#blog-conf"><span class="std std-ref">patrón de ruta</span></a> para las publicaciones,
-no es necesario agregar la directiva de <code class="docutils literal notranslate"><span class="pre">..post:</span></code> o el atributo de <code class="docutils literal notranslate"><span class="pre">:blogpost:</span> <span class="pre">true</span></code>.
-Solo ubica los archivos en la ruta que cumpla el patrón 👀.</p>
-<p>Importante, en Nikola definíamos la ruta de navegación mediante el <code class="docutils literal notranslate"><span class="pre">..slug:</span></code>, pero
-esto en Sphinx depende del nombre del archivo y su ruta en el directorio. Asegurate
-de usar la misma ruta de directorios al definido en el <em>slug</em> y el nombre del archivo
-igual a la parte final de este 👀. Otra opción, es que sin importar el nombre y ruta de
-directorios, uses el valor del <em>slug</em> como valor de <code class="docutils literal notranslate"><span class="pre">:redirect:</span></code> (en este caso, añade
-al archivo de configuración <code class="docutils literal notranslate"><span class="pre">post_redirect_refresh=0</span></code>).</p>
+<p>Dado que en la configuración inicial añadimos un <a class="reference internal" href="../crear-un-blog-con-sphinx/#blog-conf"><span class="std std-ref">patrón de ruta</span></a>
+para las publicaciones, no es necesario agregar la directiva de <code class="docutils literal notranslate"><span class="pre">..post:</span></code> o el
+atributo de <code class="docutils literal notranslate"><span class="pre">:blogpost:</span> <span class="pre">true</span></code>. Solo ubica los archivos en la ruta que cumpla el
+patrón 👀.</p>
+<p>Importante, en Nikola definíamos la ruta de navegación mediante el <code class="docutils literal notranslate"><span class="pre">..slug:</span></code>,
+pero esto en Sphinx depende del nombre del archivo y su ruta en el directorio.
+Asegurate de usar la misma ruta de directorios al definido en el <em>slug</em> y el
+nombre del archivo igual a la parte final de este 👀. Otra opción, es que sin
+importar el nombre y ruta de directorios, uses el valor del <em>slug</em> como valor de
+<code class="docutils literal notranslate"><span class="pre">:redirect:</span></code> (en este caso, añade al archivo de configuración
+<code class="docutils literal notranslate"><span class="pre">post_redirect_refresh=0</span></code>).</p>
 <p>Para indicar el título en <em>Nikola</em>, se usaba el atributo de <code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">title:</span></code>, pero
 ahora este debe ser explícito en la marcación de la publicación. Ejemplo:</p>
 <div class="sd-tab-set docutils">
@@ -592,19 +593,21 @@ MD</label><div class="sd-tab-content docutils">
 </div>
 </div>
 <p>Esto hace que los títulos ya existentes, deban aumentar de nivel 👀.</p>
-<p>En <em>ablog</em> no tenemos el equivalente del <code class="docutils literal notranslate"><span class="pre">..status:</span></code> de Nikola, pero se puede controlar
-que una fecha actual o pasada sea equivalente a <code class="docutils literal notranslate"><span class="pre">published</span></code> y si es una fecha futura o
-sin fecha es el equivalente de <code class="docutils literal notranslate"><span class="pre">draft</span></code>. El caso del <code class="docutils literal notranslate"><span class="pre">private</span></code> podríamos hacerlo
-<a class="reference internal" href="../crear-un-blog-con-sphinx/#exclude-files"><span class="std std-ref">excluyendo el archivo</span></a>. El caso
-<code class="docutils literal notranslate"><span class="pre">featured</span></code> es más personalizado, pero se podría explorar con el objeto de las <em>cards</em>
-en el índice.</p>
-<p>Si queremos indicar la imagen de previsualización, en Nikola se usaba <code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">previewimage:</span></code>,
-pero en <em>ablog</em> lo hacemos con <code class="docutils literal notranslate"><span class="pre">:image:</span></code> y el valor no es la ruta de la imagen, sino el
-número asociado en orden de aparición en la publicación. Esto se puede dejar con un valor
-por defecto acorde a la variable en el archivo de configuración de <code class="docutils literal notranslate"><span class="pre">post_auto_image</span></code>.</p>
-<p>El atributo de <code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">description:</span></code> es tomado por defecto por truncamiento del primer
-párrafo de la publicación (esto se usa en los metadatos de la publicación), pero también
-podemos dejarlo si lo queremos personalizado (esto se hace con la extensión de open-graph).</p>
+<p>En <em>ablog</em> no tenemos el equivalente del <code class="docutils literal notranslate"><span class="pre">..status:</span></code> de Nikola, pero se puede
+controlar que una fecha actual o pasada sea equivalente a <code class="docutils literal notranslate"><span class="pre">published</span></code> y si es
+una fecha futura o sin fecha es el equivalente de <code class="docutils literal notranslate"><span class="pre">draft</span></code>. El caso del <code class="docutils literal notranslate"><span class="pre">private</span></code>
+podríamos hacerlo <a class="reference internal" href="../crear-un-blog-con-sphinx/#exclude-files"><span class="std std-ref">excluyendo el archivo</span></a>. El caso <code class="docutils literal notranslate"><span class="pre">featured</span></code> es
+más personalizado, pero se podría explorar con el objeto de las <em>cards</em> en el
+índice.</p>
+<p>Si queremos indicar la imagen de previsualización, en Nikola se usaba
+<code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">previewimage:</span></code>, pero en <em>ablog</em> lo hacemos con <code class="docutils literal notranslate"><span class="pre">:image:</span></code> y el valor no es la
+ruta de la imagen, sino el número asociado en orden de aparición en la
+publicación. Esto se puede dejar con un valor por defecto acorde a la variable
+en el archivo de configuración de <code class="docutils literal notranslate"><span class="pre">post_auto_image</span></code>.</p>
+<p>El atributo de <code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">description:</span></code> es tomado por defecto por truncamiento del
+primer párrafo de la publicación (esto se usa en los metadatos de la
+publicación), pero también podemos dejarlo si lo queremos personalizado (esto se
+hace con la extensión de open-graph).</p>
 <p>El caso de <code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">link:</span></code> se debe convertir en <code class="docutils literal notranslate"><span class="pre">:external_link:</span></code>.</p>
 <p>Para la las actualizaciones, esto en lugar de ser un atributo, pasa a ser una
 anotación con marca de tiempo, pero con información de contexto.</p>
@@ -624,51 +627,58 @@ MD</label><div class="sd-tab-content docutils">
 <div class="highlight-md notranslate"><div class="highlight"><pre><span></span>```{update} 2011-12-15
 
 Se añade info extra
-```
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
 </div>
 </div>
-<p>Con los atributos de <code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">nocomments:</span></code>, <code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">tags:</span></code>, <code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">date:</span></code>, <code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">author:</span></code> y <code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">category:</span></code>,
-basta con cambiar <code class="docutils literal notranslate"><span class="pre">..</span> </code> inicial por <code class="docutils literal notranslate"><span class="pre">:</span></code>.</p>
-<p>Respecto a la fecha es importante tener claro, que a diferencia de Nikola no podemos
-mezclar tipos de formato de fecha. Estos deben añadirse según la definición que se
-tenga en el archivo de configuración, en la variable <code class="docutils literal notranslate"><span class="pre">post_date_format</span></code>.</p>
-<p>No es necesario un atributo para habilitar las ecuaciones, ya que Sphinx las habilita
-por defecto. En Nikola era necesario con <code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">has_math:</span> <span class="pre">true</span></code>.</p>
+<p>Con los atributos de <code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">nocomments:</span></code>, <code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">tags:</span></code>, <code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">date:</span></code>, <code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">author:</span></code> y
+<code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">category:</span></code>, basta con cambiar <code class="docutils literal notranslate"><span class="pre">..</span> </code> inicial por <code class="docutils literal notranslate"><span class="pre">:</span></code>.</p>
+<p>Respecto a la fecha es importante tener claro, que a diferencia de Nikola no
+podemos mezclar tipos de formato de fecha. Estos deben añadirse según la
+definición que se tenga en el archivo de configuración, en la variable
+<code class="docutils literal notranslate"><span class="pre">post_date_format</span></code>.</p>
+<p>No es necesario un atributo para habilitar las ecuaciones, ya que Sphinx las
+habilita por defecto. En Nikola era necesario con <code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">has_math:</span> <span class="pre">true</span></code>.</p>
 <p>El caso de <code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">type:</span></code> no posee equivalente.</p>
 <p>⚠️ Si estamos usando <em>markdown</em>, la diferencia es quitar el <code class="docutils literal notranslate"><span class="pre">:</span></code> inicial, tal
 como se evidencia en la sección de
-<a class="reference internal" href="../crear-un-blog-con-sphinx/#primera-publicacion"><span class="std std-ref">primera publicación</span></a>, y el separador
-<code class="docutils literal notranslate"><span class="pre">&lt;!--</span> <span class="pre">--&gt;</span> </code> pasa a <code class="docutils literal notranslate"><span class="pre">---</span></code>.</p>
+<a class="reference internal" href="../crear-un-blog-con-sphinx/#primera-publicacion"><span class="std std-ref">primera publicación</span></a>, y
+el separador <code class="docutils literal notranslate"><span class="pre">&lt;!--</span> <span class="pre">--&gt;</span> </code> pasa a <code class="docutils literal notranslate"><span class="pre">---</span></code>.</p>
 </section>
 <section id="contenido">
 <h4>Contenido<a class="headerlink" href="#contenido" title="Link to this heading">#</a></h4>
 <p>En algunos casos, podíamos recurrir a listados de publicaciones mediante algún
 filtro con <code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">post-list::</span></code> y el atributo de <code class="docutils literal notranslate"><span class="pre">:categories</span></code>. Esto ahora pasa a
-<code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">postlist::</span></code> con el atributo <code class="docutils literal notranslate"><span class="pre">:category:</span></code> (puedes usar otros filtros también).</p>
-<p>Respecto a <code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">thumbnail::</span></code> esta directiva no existe, y se reemplaza por <code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">figure::</span></code>.</p>
-<p>La definición del <em>teaser</em> en Nikola dependía de una marcación específica como directiva
-para el texto, pero en <em>ablog</em> esto es controlado por el atributo <code class="docutils literal notranslate"><span class="pre">:excerpt:</span></code>, para denotar
-el número de párrafos a incluir. Pero podemos dejarlo con un valor por defecto acorde a
-<code class="docutils literal notranslate"><span class="pre">post_auto_excerpt</span></code> en el archivo de configuración.</p>
-<p>Para las referencias a documentos, en Markdown pasamos de <code class="docutils literal notranslate"><span class="pre">{{%</span> <span class="pre">doc</span> <span class="pre">%}}</span> <span class="pre">path</span> <span class="pre">{{%</span> <span class="pre">/doc</span> <span class="pre">%}}</span></code> a
-<code class="docutils literal notranslate"><span class="pre">&lt;project:path&gt;</span></code> o <code class="docutils literal notranslate"><span class="pre">[](path)</span></code>, mientras que en RST podemos mantener <code class="docutils literal notranslate"><span class="pre">:doc:</span></code> siempre y cuando
-no apunte a una etiqueta, en cuyo caso sería <code class="docutils literal notranslate"><span class="pre">:ref:</span></code>.</p>
+<code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">postlist::</span></code> con el atributo <code class="docutils literal notranslate"><span class="pre">:category:</span></code> (puedes usar otros filtros
+también).</p>
+<p>Respecto a <code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">thumbnail::</span></code> esta directiva no existe, y se reemplaza por
+<code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">figure::</span></code>.</p>
+<p>La definición del <em>teaser</em> en Nikola dependía de una marcación específica como
+directiva para el texto, pero en <em>ablog</em> esto es controlado por el atributo
+<code class="docutils literal notranslate"><span class="pre">:excerpt:</span></code>, para denotar el número de párrafos a incluir. Pero podemos dejarlo
+con un valor por defecto acorde a <code class="docutils literal notranslate"><span class="pre">post_auto_excerpt</span></code> en el archivo de
+configuración.</p>
+<p>Para las referencias a documentos, en Markdown pasamos de
+<code class="docutils literal notranslate"><span class="pre">{{%</span> <span class="pre">doc</span> <span class="pre">%}}</span> <span class="pre">path</span> <span class="pre">{{%</span> <span class="pre">/doc</span> <span class="pre">%}}</span></code> a <code class="docutils literal notranslate"><span class="pre">&lt;project:path&gt;</span></code> o <code class="docutils literal notranslate"><span class="pre">[](path)</span></code>, mientras que en
+RST podemos mantener <code class="docutils literal notranslate"><span class="pre">:doc:</span></code> siempre y cuando no apunte a una etiqueta, en cuyo
+caso sería <code class="docutils literal notranslate"><span class="pre">:ref:</span></code>.</p>
 </section>
 </section>
 <section id="configuracion">
 <h3>Configuración<a class="headerlink" href="#configuracion" title="Link to this heading">#</a></h3>
 <section id="archivos-en-el-raiz">
 <h4>Archivos en el raíz<a class="headerlink" href="#archivos-en-el-raiz" title="Link to this heading">#</a></h4>
-<p>Los archvos en el raíz, se definen en un directorio que disponemos con la variable
-<code class="docutils literal notranslate"><span class="pre">html_extra_path</span></code>, la cual podemos definir con el mismo nombre que viene en Nikola
-(<code class="docutils literal notranslate"><span class="pre">files</span></code>).</p>
+<p>Los archvos en el raíz, se definen en un directorio que disponemos con la
+variable <code class="docutils literal notranslate"><span class="pre">html_extra_path</span></code>, la cual podemos definir con el mismo nombre que
+viene en Nikola (<code class="docutils literal notranslate"><span class="pre">files</span></code>).</p>
 </section>
 <section id="sistema-de-comentarios">
 <h4>Sistema de comentarios<a class="headerlink" href="#sistema-de-comentarios" title="Link to this heading">#</a></h4>
-<p>Si usamos Disqus (en Nikola, <code class="docutils literal notranslate"><span class="pre">COMMENT_SYSTEM='disqus'</span></code>), el <code class="docutils literal notranslate"><span class="pre">disqus_shortname</span></code> en
-el archivo de configuración toma el valor del antiguo <code class="docutils literal notranslate"><span class="pre">COMMENT_SYSTEM_ID</span></code>.</p>
+<p>Si usamos Disqus (en Nikola, <code class="docutils literal notranslate"><span class="pre">COMMENT_SYSTEM='disqus'</span></code>), el <code class="docutils literal notranslate"><span class="pre">disqus_shortname</span></code>
+en el archivo de configuración toma el valor del antiguo <code class="docutils literal notranslate"><span class="pre">COMMENT_SYSTEM_ID</span></code>.</p>
 <div class="admonition note">
 <p class="admonition-title">Nota</p>
 <p>La verdad, he decidido retirar el sistema de comentarios de Disqus. Aporta poco valor
@@ -679,7 +689,8 @@ de la publicación en Mastodon para que se desarrolle la eventual discusión.</p
 <section id="youtube">
 <h4>Youtube<a class="headerlink" href="#youtube" title="Link to this heading">#</a></h4>
 <p>Necesitamos instalar <code class="docutils literal notranslate"><span class="pre">sphinxcontrib-youtube</span></code> y habilitar <code class="docutils literal notranslate"><span class="pre">sphinxcontrib.youtube</span></code>
-en las extensiones. De esta forma, la directiva de <code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">youtube::</span></code> sigue tal cual.</p>
+en las extensiones. De esta forma, la directiva de <code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">youtube::</span></code> sigue tal
+cual.</p>
 </section>
 </section>
 </section>

@@ -1,16 +1,14 @@
 :date: 2020-07-09
 :tags: msmg toolkit, microsoft windows
 :category: tecnología
-:author: Edward Villegas-Pulgarin
-:language: es
 
 Crear versión de Windows mínima con MSMG Toolkit
 ================================================
 
 Reciente eliminé la partición de Windows de mi máquina por un problema en el
-qué probé crear la tabla de partición de nuevo, pero me dio pereza instalar en
+que probé crear la tabla de partición de nuevo, pero me dio pereza instalar en
 ese momento Windows porque mi sistema operativo principal es Linux. Además,
-Windows no funcioba fluidamente en la máquina.
+Windows no funcionaba fluidamente en la máquina.
 
 Ahora, consideré instalarlo en máquina virtual, lo que limita aún más los
 recursos para Windows y decidí explorar como obtener un Windows que fuera
@@ -30,12 +28,12 @@ Obtener imagen de Windows
 
 Este es nuestro punto base, así que lo explicaremos primero. La forma de
 obtener una imagen de Windows es a través de la página oficial [win10]_
-(descarga gratuita pero no licenciada) seleccionando la edición, lenguaje y
+(descarga gratuita, pero no licenciada) seleccionando la edición, lenguaje y
 arquitectura (si es un equipo reciente, estamos seguros que es 64 bits).
 
 Una segunda opción, es a través de Media Creation Tool [mediacreation]_, una
 utilidad de Microsoft para la descarga de la imagen de Windows. En esta
-seleccionanos la misma información anterior.
+seleccionamos la misma información anterior.
 
 Descargar MSMG Toolkit
 ~~~~~~~~~~~~~~~~~~~~~~
@@ -64,10 +62,10 @@ Ahora descomprimimos el archivo.
 Ejecutar MSMG Toolkit
 ---------------------
 
-El foco de esta publucación se encuentra en eliminar componentes, pues es justo
+El foco de esta publicación se encuentra en eliminar componentes, pues es justo
 lo que impacta espacio de almacenamiento y rendimiento. La opción de
 integración depende de los *packs* y consta de ubicar los instaladores en las
-carpetas respectivas pero hacer el seguimiento de algunas dependencias para
+carpetas respectivas, pero hacer el seguimiento de algunas dependencias para
 ubicar los requeridos no me parece cómodo y prefiero sacrificarlos.
 
 Inicializar imagen
@@ -187,7 +185,7 @@ imagen de Windows que no suele decirse más que "una vez seleccionada".
 
 Si como yo, decides remover todas las componentes posibles, vas a requerir
 Powershell para instalar por comandos al menos el navegador y de ahí instalar
-otros programas, o tener los instaladores listos en una USB. Mi sugerencia, es
+otros programas, o tener los instaladores listos en una USB. Mi sugerencia es
 aprovechar el gestor de paquetes *scoop* [scoop]_ que puede
 instalarse con Powershell siguiendo los pasos del sitio web, y agregar el
 repositorio de :code:`extras` para instalar paquetes como *Firefox*,

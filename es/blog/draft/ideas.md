@@ -1,45 +1,55 @@
+# Marte
+
+transmitir a android tv: mkchromecast - gnome network display (miracast) - vlc -
+stremio - chrome
+
 ngrok
 
-
-
-https://ollama.com/download
-https://ollama.com/library/llama3.1:8b
+https://ollama.com/download https://ollama.com/library/llama3.1:8b
 https://ollama.com/blog/continue-code-assistant
 
-curl -fsSL https://ollama.com/install.sh | sh
-ollama run llama3.2:3b #>>> The Ollama API is now
-available at 127.0.0.1:11434. #>>> Install complete. Run "ollama" from the
-command line. #>>> AMD GPU ready.
-
+curl -fsSL https://ollama.com/install.sh | sh ollama run llama3.2:3b #>>> The
+Ollama API is now available at 127.0.0.1:11434. #>>> Install complete. Run
+"ollama" from the command line. #>>> AMD GPU ready.
 
 ```
 sudo dd bs=4M if=manjaro-kde-24.1.2-241104-linux610.iso of=/dev/sda status=progress oflang=sync
 ```
+
 (sin número, solo letra) lsblk/lsusb - mount
 
 - script oficial (con opciones de actualización): rust, uv, zed, ollama
+
 - PIP/UV/Pixi (uv tool install): ruff, python-lsp-analyzer, sphinx, mdformat
+
 - Cargo (requiere descargar muchas dependencias y tiempo de compilación, acumula
   caché): rust-analyzer
+
 - snap (algunos casos privativos): vscode
+
 - manjaro repo: flameshot, dbeaver
+
 - Flatpak (viene preinstalado y con la configuración del repositorio. Instalar
   solo si el autor es verificado): dbgate, stremio, stellarium
+
 - AUR (no hay verificación, de manera responsable requiere inspección o al menos
   validar popularidad y votos de confianza, leer comentarios y trazabilidad, y
   suele requerir compilación o pasos intermedios de transformaciones. Puede que
   se omitan componentes privativas si es un tercero el empaquetador):
   wps-office-bin, google-chrome, dropbox, slack-desktop
 
-
-
 - Gmail
+
   - Slack
   - Notion
   - Sentry
+
 - GitHub
+
   - Extensión de ZenHub
+
 - 1Password (tech@tributi.com)
+
   - Loom
   - Airtable
   - Wompi
@@ -50,9 +60,9 @@ pamac install python-lsp-server rust-analyzer
 
 https://deno.com/ https://voidzero.dev/
 
-ibis polars pandas fireducks
-probar que pasa entre pandas y fireducs si hay una tabla con columna sin consistencia de datos y subtabla muy pequeña que deja muchos vacíos
-
+ibis polars pandas fireducks probar que pasa entre pandas y fireducs si hay una
+tabla con columna sin consistencia de datos y subtabla muy pequeña que deja
+muchos vacíos
 
 graphviz
 

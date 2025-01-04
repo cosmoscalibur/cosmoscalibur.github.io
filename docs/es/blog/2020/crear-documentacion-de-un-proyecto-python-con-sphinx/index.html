@@ -388,11 +388,9 @@ crossorigin="anonymous"></script>
         
     <a href="../../../../blog/tag/sphinx/">sphinx</a>
         
-    <a href="../../../../blog/tag/documentacion/">documentación</a>
-        
     <a href="../../../../blog/tag/restructuredtext/">restructuredtext</a>
         
-    <a href="../../../../blog/tag/generador-de-documentacion/">generador de documentación</a>
+    <a href="../../../../blog/tag/documentacion-de-software/">documentación de software</a>
       
   </li>
    
@@ -448,7 +446,7 @@ crossorigin="anonymous"></script>
   <ul>
      
     <li>
-      <a href="../../../../blog/2024/">2024 (24)</a>
+      <a href="../../../../blog/2024/">2024 (25)</a>
     </li>
       
     <li>
@@ -456,11 +454,11 @@ crossorigin="anonymous"></script>
     </li>
       
     <li>
-      <a href="../../../../blog/2020/">2020 (18)</a>
+      <a href="../../../../blog/2020/">2020 (20)</a>
     </li>
       
     <li>
-      <a href="../../../../blog/2019/">2019 (7)</a>
+      <a href="../../../../blog/2019/">2019 (8)</a>
     </li>
       
     <li>
@@ -544,15 +542,15 @@ crossorigin="anonymous"></script>
                 <article class="bd-article">
                    <section id="crear-documentacion-de-un-proyecto-python-con-sphinx">
 <h1>Crear documentación de un proyecto Python con Sphinx<a class="headerlink" href="#crear-documentacion-de-un-proyecto-python-con-sphinx" title="Link to this heading">#</a></h1>
-<p>Sin duda, una etapa importante en cualquier proyecto de desarrollo (y no solo
-de <em>software</em>) es la generación de la documentación. En el caso de <em>software</em>
-es posible asistirse de herramientas que ayudan a automatizar la generación de
-la documentación mediante extracción de comentarios en el código, usar palabras
-claves y lenguaje de marcado para modificación de estilo en el texto o
-inclusión de otros elementos que no sean solo texto plano (imágenes,
-ecuaciones, enlaces entre otros).</p>
-<p>Algunas herramientas para este fin son <a class="reference external" href="http://doxygen.nl/">Doxygen</a>
-(habitual para proyectos en C/C++), <a class="reference external" href="https://www.oracle.com/technetwork/java/javase/documentation/index-jsp-135444.html">Javadoc</a>
+<p>Sin duda, una etapa importante en cualquier proyecto de desarrollo (y no solo de
+<em>software</em>) es la generación de la documentación. En el caso de <em>software</em> es
+posible asistirse de herramientas que ayudan a automatizar la generación de la
+documentación mediante extracción de comentarios en el código, usar palabras
+claves y lenguaje de marcado para modificación de estilo en el texto o inclusión
+de otros elementos que no sean solo texto plano (imágenes, ecuaciones, enlaces
+entre otros).</p>
+<p>Algunas herramientas para este fin son <a class="reference external" href="http://doxygen.nl/">Doxygen</a> (habitual
+para proyectos en C/C++), <a class="reference external" href="https://www.oracle.com/technetwork/java/javase/documentation/index-jsp-135444.html">Javadoc</a>
 (para Java, pero habitual también en TypeScript), <a class="reference external" href="https://esdoc.org/">ESDoc</a>
 (para Javascript) y por supuesto, Sphinx, para Python.</p>
 <p>En esta entrada instalaremos lo necesario para generar nuestra documentación de
@@ -567,14 +565,14 @@ instalación recomendada dependerá del sistema operativo que se use.</p>
 compilador TeXLive y editores como TeXShop, y otras dependencias para el
 funcionamiento de LaTeX en Mac.</p>
 </dd>
-<dt>Windows</dt><dd><p>La opción más cómoda es el compilador <a class="reference external" href="https://miktex.org/download">MikTeX</a>,
-el cual permite de forma predeterminada la descarga automática de paquetes
-adicionales en la medida que sean requeridos (instalación <em>on the fly</em>).</p>
+<dt>Windows</dt><dd><p>La opción más cómoda es el compilador <a class="reference external" href="https://miktex.org/download">MikTeX</a>, el cual permite de forma predeterminada la
+descarga automática de paquetes adicionales en la medida que sean requeridos
+(instalación <em>on the fly</em>).</p>
 <p>Es importante que en la configuración no cambies al modo silencioso, pues
 esto puede afectar la ejecución posterior en los casos que requieran de
 instalación.</p>
-<p>Si usas Anaconda, puedes incluirlo desde el canal de <em>conda-forge</em>,
-<code class="code docutils literal notranslate"><span class="pre">conda</span> <span class="pre">install</span> <span class="pre">-c</span> <span class="pre">conda-forge</span> <span class="pre">miktex</span></code>.</p>
+<p>Si usas Anaconda, puedes incluirlo desde el canal de <em>conda-forge</em>, <code class="docutils literal notranslate"><span class="pre">conda</span>
+<span class="pre">install</span> <span class="pre">-c</span> <span class="pre">conda-forge</span> <span class="pre">miktex</span></code>.</p>
 <p>En la primera forma de instalación requieres instalar Perl, en la segunda,
 este viene como dependencia instalada por el gestor de paquetes. También
 puedes usar <a class="reference external" href="https://tug.org/texlive/acquire.html">TeXLive</a> para Windows,
@@ -596,15 +594,15 @@ entre otras) puedes instalar de la siguiente manera:</p>
 <section id="sphinx">
 <h2>Sphinx<a class="headerlink" href="#sphinx" title="Link to this heading">#</a></h2>
 <p>Si usamos Python a través de Anaconda podemos usar el gestor <em>conda</em> para la
-instalación, así <code class="code docutils literal notranslate"><span class="pre">conda</span> <span class="pre">install</span> <span class="pre">sphinx</span></code>, en caso contrario, podemos usar
-el gestor de paquetes <em>PIP</em>: <code class="code docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-U</span> <span class="pre">Sphinx</span></code>.</p>
+instalación, así <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">install</span> <span class="pre">sphinx</span></code>, en caso contrario, podemos usar el
+gestor de paquetes <em>PIP</em>: <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-U</span> <span class="pre">Sphinx</span></code>.</p>
 <div class="admonition note">
 <p class="admonition-title">Nota</p>
-<p>Si deseas una experiencia en Windows similar a Linux, usando el
-<code class="code docutils literal notranslate"><span class="pre">Makefile</span></code> tradicional y la posibilidad de usar en combinación con
-Bash, te recomiendo usar Git Bash, y si es en conjunto con Anaconda puedes
-leer mi publicación al respecto, <a class="reference internal" href="../../2019/usar-anaconda-python-en-git-bash/"><span class="doc">Usar Anaconda Python en Git Bash</span></a> e
-instalar el paquete <code class="code docutils literal notranslate"><span class="pre">make</span></code> con Anaconda (<code class="code docutils literal notranslate"><span class="pre">conda</span> <span class="pre">install</span> <span class="pre">make</span></code>) o
+<p>Si deseas una experiencia en Windows similar a Linux, usando el <code class="docutils literal notranslate"><span class="pre">Makefile</span></code>
+tradicional y la posibilidad de usar en combinación con Bash, te recomiendo
+usar Git Bash, y si es en conjunto con Anaconda puedes leer mi publicación
+al respecto, <a class="reference internal" href="../../2019/usar-anaconda-python-en-git-bash/"><span class="doc">Usar Anaconda Python en Git Bash</span></a> e
+instalar el paquete <code class="docutils literal notranslate"><span class="pre">make</span></code> con Anaconda (<code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">install</span> <span class="pre">make</span></code>) o
 instalar <a class="reference external" href="http://mingw-w64.org/doku.php">Mingw-w64</a>.</p>
 </div>
 </section>
@@ -612,13 +610,13 @@ instalar <a class="reference external" href="http://mingw-w64.org/doku.php">Ming
 <h2>Configuración de Sphinx<a class="headerlink" href="#configuracion-de-sphinx" title="Link to this heading">#</a></h2>
 <p>Abriremos una consola (si es Windows, debes tener en cuenta que para usar
 paquetes de Anaconda debes usar las consolas Anaconda Prompt, Anaconda
-PowerShell u otra si la configuraste -como el caso de Git Bash que
-mencioné en la sección anterior-) y debemos ubicarnos en el directorio que
-destinaremos para la documentación. Es habitual que en la estructura de nuestro
-proyecto destinemos un directorio <code class="code docutils literal notranslate"><span class="pre">docs</span></code> para este fin.</p>
-<p>Ahora ejecutamos <code class="code docutils literal notranslate"><span class="pre">sphinx-quickstart</span></code> y respondemos las preguntas que
-saldrán. Es necesario tener en cuenta, que si usas Windows debes agregar al
-comando la terminación <code class="code docutils literal notranslate"><span class="pre">.exe</span></code>, ejemplo <code class="code docutils literal notranslate"><span class="pre">sphinx-quickstart.exe</span></code>.</p>
+PowerShell u otra si la configuraste -como el caso de Git Bash que mencioné en
+la sección anterior-) y debemos ubicarnos en el directorio que destinaremos para
+la documentación. Es habitual que en la estructura de nuestro proyecto
+destinemos un directorio <code class="docutils literal notranslate"><span class="pre">docs</span></code> para este fin.</p>
+<p>Ahora ejecutamos <code class="docutils literal notranslate"><span class="pre">sphinx-quickstart</span></code> y respondemos las preguntas que saldrán.
+Es necesario tener en cuenta, que si usas Windows debes agregar al comando la
+terminación <code class="docutils literal notranslate"><span class="pre">.exe</span></code>, ejemplo <code class="docutils literal notranslate"><span class="pre">sphinx-quickstart.exe</span></code>.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="n">Separate</span> <span class="n">source</span> <span class="ow">and</span> <span class="n">build</span> <span class="n">directories</span> <span class="p">(</span><span class="n">y</span><span class="o">/</span><span class="n">n</span><span class="p">)</span> <span class="p">[</span><span class="n">n</span><span class="p">]:</span> <span class="n">y</span>
 <span class="o">&gt;</span> <span class="n">Project</span> <span class="n">name</span><span class="p">:</span> <span class="n">proyecto</span>
 <span class="o">&gt;</span> <span class="n">Author</span> <span class="n">name</span><span class="p">(</span><span class="n">s</span><span class="p">):</span> <span class="n">Edward</span> <span class="n">Villegas</span><span class="o">-</span><span class="n">Pulgarin</span>
@@ -630,21 +628,19 @@ comando la terminación <code class="code docutils literal notranslate"><span cl
 del directorio de compilados de la misma. Respecto al esquema de versiones me
 agrada el <a class="reference external" href="https://semver.org/">versionamiento semántico</a> que permite al
 usuario final intuir un poco más sobre la madurez del proyecto con el número,
-pero puedes usar el <a class="reference external" href="https://calver.org/">esquema basado en fecha de liberación</a>.
-En el lenguaje se especifica el lenguaje con el código a dos letras
-internacional, acorde a los
-<a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/configuration.html#confval-language">soportados por Sphinx</a>.</p>
+pero puedes usar el <a class="reference external" href="https://calver.org/">esquema basado en fecha de liberación</a>. En el lenguaje se especifica el lenguaje con el código
+a dos letras internacional, acorde a los <a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/configuration.html#confval-language">soportados por Sphinx</a>.</p>
 <p>Aunque en la terminal nos indican que podemos continuar con el archivo
-<code class="code docutils literal notranslate"><span class="pre">index.rst</span></code>, debemos hacer unos pequeños cambios en el archivo
-<code class="code docutils literal notranslate"><span class="pre">conf.py</span></code> que encontraremos en <code class="code docutils literal notranslate"><span class="pre">docs/source</span></code>.</p>
+<code class="docutils literal notranslate"><span class="pre">index.rst</span></code>, debemos hacer unos pequeños cambios en el archivo <code class="docutils literal notranslate"><span class="pre">conf.py</span></code> que
+encontraremos en <code class="docutils literal notranslate"><span class="pre">docs/source</span></code>.</p>
 <p>Puedes saber más opciones de configuración en la documentación de Sphinx sobre
 <a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/configuration.html">conf.py</a>.</p>
 <section id="extensiones">
 <h3>Extensiones<a class="headerlink" href="#extensiones" title="Link to this heading">#</a></h3>
 <p>Recomiendo incluir la extensión de Autodoc para extraer automáticamente la
-documentación de la API, MathJax para el soporte de ecuaciones matemáticas en
-la versión Web y Napoleon para el estilo de Numpy y Google en la documentación.
-Con Coverage puedes validar que funciones se han documentado y dcotest integra
+documentación de la API, MathJax para el soporte de ecuaciones matemáticas en la
+versión Web y Napoleon para el estilo de Numpy y Google en la documentación. Con
+Coverage puedes validar que funciones se han documentado y dcotest integra
 pruebas de código desde la documentación (comparar salidas con ejemplo de
 documentación).</p>
 <p>Modificar en el archivo.</p>
@@ -658,16 +654,15 @@ documentación).</p>
 </pre></div>
 </div>
 </section>
-<section id="importar-paquete">
-<h3>Importar paquete<a class="headerlink" href="#importar-paquete" title="Link to this heading">#</a></h3>
-<p>Para apoyarte de ejemplos actualizados automáticamente, uso de metadatos desde
-el código (ejemplo, el autor o la versión) puedes importar el paquete en el
-archivo de configuración. Dado que estarás en modo de desarrollo probablemente,
-el paquete no ha sido instalado y lo deberás hacer descomentando las tres
-primeras líneas de código en la sección de <em>Path setup</em>. El punto que hay por
-defecto indica la misma carpeta de <code class="code docutils literal notranslate"><span class="pre">docs/source</span></code>, por lo cual es
-necesario reemplazar por <code class="code docutils literal notranslate"><span class="pre">../..</span></code> que se devuelve los dos niveles
-necesarios.</p>
+<section id="importar-tu-proyecto">
+<h3>Importar tu proyecto<a class="headerlink" href="#importar-tu-proyecto" title="Link to this heading">#</a></h3>
+<p>Para actualizar automáticamente los metadatos desde el código (ejemplo, el autor
+o la versión) puedes importar el paquete en el archivo de configuración. Dado
+que estarás en modo de desarrollo, probablemente el paquete no ha sido instalado
+y lo deberás hacer descomentando las tres primeras líneas de código en la
+sección de <em>Path setup</em>. El punto que hay por defecto indica la misma carpeta de
+<code class="docutils literal notranslate"><span class="pre">docs/source</span></code>, por lo cual es necesario reemplazar por <code class="docutils literal notranslate"><span class="pre">../..</span></code> que se
+devuelve los dos niveles necesarios.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">sys</span>
 <span class="kn">import</span> <span class="nn">datetime</span>
@@ -677,24 +672,24 @@ necesarios.</p>
 </div>
 <p>Ahora, puedes hacer cosas como la siguiente, si está disponible en tu código.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">author</span> <span class="o">=</span> <span class="n">proyecto</span><span class="o">.</span><span class="n">__author__</span>
-<span class="n">copyright</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">datetime</span><span class="o">.</span><span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">()</span><span class="o">.</span><span class="n">year</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;, &#39;</span> <span class="o">+</span> <span class="n">author</span>
+<span class="n">copyright</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">datetime</span><span class="o">.</span><span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">()</span><span class="o">.</span><span class="n">year</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;, &quot;</span> <span class="o">+</span> <span class="n">author</span>
 <span class="n">release</span> <span class="o">=</span> <span class="n">proyecto</span><span class="o">.</span><span class="n">__version__</span>
 </pre></div>
 </div>
 <p>Esto tiene un impacto respecto a algunas dependencias, que pueden provocar
 fallos o si para la generación de la documentación no tenemos todas las
 dependencias del paquete. En mi caso, he tenido problemas cuando tengo como
-dependencia Tensorflow o cuando tengo arcpy pero no tengo la licencia
-instalada. En este caso, podemos hacer un falseo (<em>mock</em>) de los paquetes:</p>
+dependencia Tensorflow o cuando tengo ArcPy pero no tengo la licencia instalada.
+En este caso, podemos hacer un falseo (<em>mock</em>) de los paquetes:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">autodoc_mock_imports</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;tensorflow&quot;</span><span class="p">,</span> <span class="s2">&quot;arcpy&quot;</span><span class="p">]</span>
 </pre></div>
 </div>
 </section>
 <section id="referencias-cruzadas">
 <h3>Referencias cruzadas<a class="headerlink" href="#referencias-cruzadas" title="Link to this heading">#</a></h3>
-<p>Para usar referencias cruzadas, es decir, numeración de tablas, figuras,
-códigos y ecuaciones si poseen pie de objeto, y ser referenciados en el texto
-por el número, se requiere configurar lo siguiente.</p>
+<p>Para usar referencias cruzadas, es decir, numeración de tablas, figuras, códigos
+y ecuaciones si poseen pie de objeto, y ser referenciados en el texto por el
+número, se requiere configurar lo siguiente.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">numfig</span> <span class="o">=</span> <span class="kc">True</span>
 <span class="n">numfig_format</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;figure&#39;</span><span class="p">:</span> <span class="s1">&#39;Fig. </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39;table&#39;</span><span class="p">:</span> <span class="s1">&#39;Tabla </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span>
                  <span class="s1">&#39;code-block&#39;</span><span class="p">:</span> <span class="s1">&#39;Código </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39;section&#39;</span><span class="p">:</span> <span class="s1">&#39;Sección </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">}</span>
@@ -703,15 +698,15 @@ por el número, se requiere configurar lo siguiente.</p>
 <span class="n">math_eqref_format</span> <span class="o">=</span> <span class="s1">&#39;Ec. </span><span class="si">{number}</span><span class="s1">&#39;</span>
 </pre></div>
 </div>
-<p>Así, es posible usar <code class="code docutils literal notranslate"><span class="pre">:label:</span></code> para asignar una referencia a los objetos
-y <code class="code docutils literal notranslate"><span class="pre">:numref:</span></code> y <code class="code docutils literal notranslate"><span class="pre">:eq:</span></code> a la hora de mencionarlos. Con
-<code class="code docutils literal notranslate"><span class="pre">numfig_secnum_depth</span></code> configuras la numeración de los objetos, si es
-continúa (0), por sección (1) y subsección (2).</p>
+<p>Así, es posible usar <code class="docutils literal notranslate"><span class="pre">:label:</span></code> para asignar una referencia a los objetos y
+<code class="docutils literal notranslate"><span class="pre">:numref:</span></code> y <code class="docutils literal notranslate"><span class="pre">:eq:</span></code> a la hora de mencionarlos. Con <code class="docutils literal notranslate"><span class="pre">numfig_secnum_depth</span></code>
+configuras la numeración de los objetos, si es continúa (0), por sección (1) y
+subsección (2).</p>
 </section>
 <section id="id1">
 <h3>LaTeX<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
 <p>Hay una configuración básica para LaTeX que puedes agregar. El documento
-maestro, el nombre del archivo TeX, el nombre que nuestra documentación, el
+maestro, el nombre del archivo TeX, el nombre de nuestra documentación, el
 nombre del autor (que podemos usar la variable que ya definimos) y el tipo de
 documento (cuya clase <em>manual</em> está definida por Sphinx).</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">master_doc</span> <span class="o">=</span> <span class="s1">&#39;index&#39;</span>
@@ -725,34 +720,31 @@ documento (cuya clase <em>manual</em> está definida por Sphinx).</p>
 </section>
 <section id="escritura-en-restructuredtext">
 <h2>Escritura en ReStructuredText<a class="headerlink" href="#escritura-en-restructuredtext" title="Link to this heading">#</a></h2>
-<p>Sobre esto, es referencia ver la documentación de
-<a class="reference external" href="https://docutils.readthedocs.io/en/sphinx-docs/user/rst/quickstart.html">DocUtils</a>
-y de Sphinx <a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html">ReStructuredText Primer</a>.</p>
+<p>Sobre esto, es referencia ver la documentación de <a class="reference external" href="https://docutils.readthedocs.io/en/sphinx-docs/user/rst/quickstart.html">DocUtils</a> y de
+Sphinx <a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html">ReStructuredText Primer</a>.</p>
 <p>Una vez tienes las bases de ReStructuredText puedes editar lo básico. De ahí, y
-para tener todo el provecho de Sphinx hay elementos como los roles, directivas
-y dominios que debes aprender a usar,
-<a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/restructuredtext/index.html">Sphinx ReStructuredText</a>.</p>
+para tener todo el provecho de Sphinx hay elementos como los roles, directivas y
+dominios que debes aprender a usar, <a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/restructuredtext/index.html">Sphinx ReStructuredText</a>.</p>
 <p>¿Y por qué los dominios? Estos añaden sintaxis para manejar las relaciones con
 el código, como enlazar a funciones relacionadas que se generaron con <em>autodoc</em>
 y además la forma de como documentar la función (u otro elemento del código) en
-su código fuente y que pueda ser extraída. Por ejemplo, el
-<a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/restructuredtext/domains.html#the-python-domain">dominio de Python</a>.</p>
+su código fuente y que pueda ser extraída. Por ejemplo, el <a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/restructuredtext/domains.html#the-python-domain">dominio de Python</a>.</p>
 <section id="que-archivos-debo-editar">
 <h3>¿Qué archivos debo editar?<a class="headerlink" href="#que-archivos-debo-editar" title="Link to this heading">#</a></h3>
-<p>Primero, editaremos <code class="code docutils literal notranslate"><span class="pre">docs/source/index.rst</span></code>, donde deberemos agregar los
-nombres de los archivos que se incluyen en la documentación, tanto los
-generados como los automáticos. Se agrega uno por línea, sin extensión y la
-posición es relativa a la ubicación del archivo <code class="code docutils literal notranslate"><span class="pre">index.rst</span></code>.</p>
-<p>Te recomiendo siempre un archivo <code class="code docutils literal notranslate"><span class="pre">README.rst</span></code> que fija la generalidad e
-intención del proyecto, <code class="code docutils literal notranslate"><span class="pre">history.rst</span></code> para tener documentados los cambios
+<p>Primero, editaremos <code class="docutils literal notranslate"><span class="pre">docs/source/index.rst</span></code>, donde deberemos agregar los
+nombres de los archivos que se incluyen en la documentación, tanto los generados
+como los automáticos. Se agrega uno por línea, sin extensión y la posición es
+relativa a la ubicación del archivo <code class="docutils literal notranslate"><span class="pre">index.rst</span></code>.</p>
+<p>Te recomiendo siempre un archivo <code class="docutils literal notranslate"><span class="pre">README.rst</span></code> que fija la generalidad e
+intención del proyecto, <code class="docutils literal notranslate"><span class="pre">history.rst</span></code> para tener documentados los cambios
 entre versiones (como un <em>changelog</em> pero a mano, más condensado), un
-<code class="code docutils literal notranslate"><span class="pre">usage.rst</span></code> documentando el uso de nuestro proyecto,
-<code class="code docutils literal notranslate"><span class="pre">installation.rst</span></code> con instrucciones de instalación y adicional, agregar
-una ruta a la documentación de la API (la misma ruta la debemos indicar más
-adelante). Puedes agregar más archivos, por ejemplo, yo suelo usar un
-<code class="code docutils literal notranslate"><span class="pre">concepts.rst</span></code> para detallar los conceptos necesarios antes de usar el
-software o detallar teoría que ayuda a interpretar resultados o que expande la
-información para que alguien pueda analizar o continuar un desarrollo.</p>
+<code class="docutils literal notranslate"><span class="pre">usage.rst</span></code> documentando el uso de nuestro proyecto, <code class="docutils literal notranslate"><span class="pre">installation.rst</span></code> con
+instrucciones de instalación y adicional, agregar una ruta a la documentación de
+la API (la misma ruta la debemos indicar más adelante). Puedes agregar más
+archivos, por ejemplo, yo suelo usar un <code class="docutils literal notranslate"><span class="pre">concepts.rst</span></code> para detallar los
+conceptos necesarios antes de usar el software o detallar teoría que ayuda a
+interpretar resultados o que expande la información para que alguien pueda
+analizar o continuar un desarrollo.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">..</span> <span class="n">toctree</span><span class="p">::</span>
    <span class="p">:</span><span class="n">maxdepth</span><span class="p">:</span> <span class="mi">3</span>
    <span class="p">:</span><span class="n">caption</span><span class="p">:</span> <span class="n">Contenido</span><span class="p">:</span>
@@ -766,7 +758,7 @@ información para que alguien pueda analizar o continuar un desarrollo.</p>
 </pre></div>
 </div>
 <p>Y podemos borrar las líneas posteriores de <em>Indices and tables</em>.</p>
-<p>Vemos la mención a <code class="code docutils literal notranslate"><span class="pre">api/modules</span></code>, la cual es importante para incluir la
+<p>Vemos la mención a <code class="docutils literal notranslate"><span class="pre">api/modules</span></code>, la cual es importante para incluir la
 documentación automática extraída con Sphinx, que se explicará en la próxima
 sección.</p>
 </section>
@@ -778,24 +770,23 @@ extracción de la API.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sphinx</span><span class="o">-</span><span class="n">apidoc</span> <span class="o">-</span><span class="n">f</span> <span class="o">-</span><span class="n">M</span> <span class="o">-</span><span class="n">o</span> <span class="n">source</span><span class="o">/</span><span class="n">api</span><span class="o">/</span> <span class="o">../</span><span class="n">proyecto</span>
 </pre></div>
 </div>
-<p>Recordar que en Windows hay que agregar <code class="code docutils literal notranslate"><span class="pre">.exe</span></code>
-(<code class="code docutils literal notranslate"><span class="pre">sphinx-apidoc.exe</span></code>). <code class="code docutils literal notranslate"><span class="pre">-f</span></code> es para forzar la regeneración de los
-archivos (importante si actualizamos la documentación de la API), <code class="code docutils literal notranslate"><span class="pre">-M</span></code>
-para ubicar primero la documentación de los módulos (por defecto primero son
-las funciones, y esto no me parece natural). Luego, es la ruta para la
-documentación de la API (uno de los archivos será el <code class="code docutils literal notranslate"><span class="pre">api/modules.rst</span></code>)
-y finalmente la ruta donde se encuentra el paquete. Ambas rutas son relativas
-al directorio de documentación.</p>
-<p>Ahora, solo es necesario generar la documentación: <code class="code docutils literal notranslate"><span class="pre">make</span> <span class="pre">latexpdf</span></code> si es
-con el <em>Makefile</em> o <code class="code docutils literal notranslate"><span class="pre">make.bat</span> <span class="pre">latexpdf</span></code> si no instalaste <em>make</em> en
-Windows. Aquí debemos devolvernos un nivel en la carpeta para ejecutarlo.</p>
+<p>Recordar que en Windows hay que agregar <code class="docutils literal notranslate"><span class="pre">.exe</span></code> (<code class="docutils literal notranslate"><span class="pre">sphinx-apidoc.exe</span></code>). <code class="docutils literal notranslate"><span class="pre">-f</span></code>
+es para forzar la regeneración de los archivos (importante si actualizamos la
+documentación de la API), <code class="docutils literal notranslate"><span class="pre">-M</span></code> para ubicar primero la documentación de los
+módulos (por defecto primero son las funciones, y esto no me parece natural).
+Luego, es la ruta para la documentación de la API (uno de los archivos será el
+<code class="docutils literal notranslate"><span class="pre">api/modules.rst</span></code>) y finalmente la ruta donde se encuentra el paquete. Ambas
+rutas son relativas al directorio de documentación.</p>
+<p>Ahora, solo es necesario generar la documentación: <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">latexpdf</span></code> si es con
+el <em>Makefile</em> o <code class="docutils literal notranslate"><span class="pre">make.bat</span> <span class="pre">latexpdf</span></code> si no instalaste <em>make</em> en Windows. Aquí
+debemos devolvernos un nivel en la carpeta para ejecutarlo.</p>
 </section>
 <section id="publicar">
 <h2>Publicar<a class="headerlink" href="#publicar" title="Link to this heading">#</a></h2>
 <p>Ahora encontrarás en la carpeta <em>build</em> los archivos LaTeX, y uno de ellos será
-el PDF que queremos. También puedes hacer compilación HTML (<code class="code docutils literal notranslate"><span class="pre">make</span> <span class="pre">html</span></code>)
-y usar esta para publicar como un <a class="reference external" href="https://pages.github.com/">GitHub Pages</a> o
-en <a class="reference external" href="https://docs.readthedocs.io/en/stable/intro/getting-started-with-sphinx.html">ReadTheDocs</a>.</p>
+el PDF que queremos. También puedes hacer compilación HTML (<code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">html</span></code>) y
+usar esta para publicar como un <a class="reference external" href="https://pages.github.com/">GitHub Pages</a> o en
+<a class="reference external" href="https://docs.readthedocs.io/en/stable/intro/getting-started-with-sphinx.html">ReadTheDocs</a>.</p>
 </section>
 </section>
 
@@ -814,8 +805,8 @@ en <a class="reference external" href="https://docs.readthedocs.io/en/stable/int
   <span class="ablog__spacer">&nbsp;</span>
   <span class="ablog__next">
       Siguiente: 
-    <a href="../sectores-que-se-ven-afectados-por-blockchain-sector-inmobiliario/">
-      <span>Sectores que se ven afectados por blockchain: sector inmobiliario</span>
+    <a href="../../../../en/blog/2020/crear-documentacion-de-un-proyecto-python-con-sphinx/">
+      <span>Creating Documentation for a Python Project with Sphinx</span>
       
     </a>
     
@@ -856,7 +847,7 @@ en <a class="reference external" href="https://docs.readthedocs.io/en/stable/int
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sphinx">Sphinx</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#configuracion-de-sphinx">Configuración de Sphinx</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#extensiones">Extensiones</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#importar-paquete">Importar paquete</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#importar-tu-proyecto">Importar tu proyecto</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#referencias-cruzadas">Referencias cruzadas</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">LaTeX</a></li>
 </ul>

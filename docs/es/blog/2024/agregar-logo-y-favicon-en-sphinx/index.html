@@ -448,7 +448,7 @@ crossorigin="anonymous"></script>
   <ul>
      
     <li>
-      <a href="../../../../blog/2024/">2024 (24)</a>
+      <a href="../../../../blog/2024/">2024 (25)</a>
     </li>
       
     <li>
@@ -456,11 +456,11 @@ crossorigin="anonymous"></script>
     </li>
       
     <li>
-      <a href="../../../../blog/2020/">2020 (18)</a>
+      <a href="../../../../blog/2020/">2020 (20)</a>
     </li>
       
     <li>
-      <a href="../../../../blog/2019/">2019 (7)</a>
+      <a href="../../../../blog/2019/">2019 (8)</a>
     </li>
       
     <li>
@@ -555,31 +555,32 @@ estáticos de logo y <em>favicon</em>. En nuestro archivo de configuración, <co
 vamos a ajustar el valor de la variable <code class="docutils literal notranslate"><span class="pre">html_static_path</span></code> como fue explicado en
 una <a class="reference internal" href="../crear-un-blog-con-sphinx/#sphinx-dir-setup"><span class="std std-ref">publicación anterior</span></a>.</p>
 <p>Este paso es importante sobre todo si alojamos nuestro blog en GitHub, porque el
-valor por defecto al tener como prefijo <code class="docutils literal notranslate"><span class="pre">_</span></code>, no permite que se carguen los archivos
-en el despliegue.</p>
+valor por defecto al tener como prefijo <code class="docutils literal notranslate"><span class="pre">_</span></code>, no permite que se carguen los
+archivos en el despliegue.</p>
 </section>
 <section id="logo">
 <h2>Logo<a class="headerlink" href="#logo" title="Link to this heading">#</a></h2>
-<p>Bueno, la verdad este punto no tiene nada de extraño, pero dejaré una recomendación.
-Es mejor tener un archivo fuente editable para nuestro logo, de tal forma que podamos
-proceder con ajustes fácilmente. Ejemplo, tenemos la versión para temas oscuros, y luego
-decidimos tener la versión para temas claros (en Sphinx con el tema de PyData es posible),
-podamos hacer estos cambios sin rehacer el logo desde cero.</p>
-<p>En mi caso, este logo lo hice con <a class="reference external" href="https://inkscape.org/es/">Inkscape</a> en formato
-vectorial (<code class="docutils literal notranslate"><span class="pre">.svg</span></code>), y lo sincronizo en el
+<p>Bueno, la verdad este punto no tiene nada de extraño, pero dejaré una
+recomendación. Es mejor tener un archivo fuente editable para nuestro logo, de
+tal forma que podamos proceder con ajustes fácilmente. Ejemplo, tenemos la
+versión para temas oscuros, y luego decidimos tener la versión para temas claros
+(en Sphinx con el tema de PyData es posible), podamos hacer estos cambios sin
+rehacer el logo desde cero.</p>
+<p>En mi caso, este logo lo hice con <a class="reference external" href="https://inkscape.org/es/">Inkscape</a> en
+formato vectorial (<code class="docutils literal notranslate"><span class="pre">.svg</span></code>), y lo sincronizo en el
 <a class="reference external" href="https://github.com/cosmoscalibur/cosmoscalibur.github.io/blob/master/static/logo/cosmoscalibur.svg">repositorio también</a>
 y hace parte de los estáticos. Otra recomendación, es tener presente que en
-dimensiones, es preferible que sea más horizontal que vertical, pero su ancho
-no debe ser superior a los 200 pixeles.</p>
-<p>Ahora, vamos a nuestro archivo <code class="docutils literal notranslate"><span class="pre">conf.py</span></code> nuevamente, y allí encontraremos la variable
-<code class="docutils literal notranslate"><span class="pre">html_logo</span></code> la cual asignaremos la ruta relativa al archivo de configuración, apuntando
-a nuestro logo. Ejemplo:</p>
+dimensiones, es preferible que sea más horizontal que vertical, pero su ancho no
+debe ser superior a los 200 pixeles.</p>
+<p>Ahora, vamos a nuestro archivo <code class="docutils literal notranslate"><span class="pre">conf.py</span></code> nuevamente, y allí encontraremos la
+variable <code class="docutils literal notranslate"><span class="pre">html_logo</span></code> la cual asignaremos la ruta relativa al archivo de
+configuración, apuntando a nuestro logo. Ejemplo:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">html_logo</span> <span class="o">=</span> <span class="s1">&#39;static/cosmoscalibur_logo.png&#39;</span>
 </pre></div>
 </div>
 <p>A mi parecer, con la única versión de logo está <em>ok</em>, pero si requieres usar una
-versión por tema, esto es una condición que depende del tema seleccionado y en PyData
-se puede usando las opciones de
+versión por tema, esto es una condición que depende del tema seleccionado y en
+PyData se puede usando las opciones de
 <a class="reference external" href="https://pydata-sphinx-theme.readthedocs.io/en/stable/user_guide/branding.html#different-logos-for-light-and-dark-mode"><code class="docutils literal notranslate"><span class="pre">html_theme_options</span></code></a>.</p>
 <figure class="align-center" id="id1">
 <a class="reference internal image-reference" href="../../../../_images/logo-en-sphinx.png"><img alt="Visual del logo agregado en Sphinx en el blog." src="../../../../_images/logo-en-sphinx.png" style="width: 800px; height: 250px;" />
@@ -592,11 +593,11 @@ se puede usando las opciones de
 <section id="favicon">
 <h2>Favicon<a class="headerlink" href="#favicon" title="Link to this heading">#</a></h2>
 <p>Para el <em>favicon</em> también podemos usar las opciones propias de <em>Sphinx</em> con la
-variable <code class="docutils literal notranslate"><span class="pre">html_favicon</span></code>. Nuestro <em>favicon</em> debe ser de 16 por 16 pixeles, y puede
-ser de formato ICO, PNG, SVG o GIF.</p>
-<p>Debido al tamaño cuadrado del <em>favicon</em>, el cual irá en las pestañas del navegador
-o en los marcadores, es conveniente tener un segundo diseño basado en nuestro logo
-que se adapte a estas dimensiones.</p>
+variable <code class="docutils literal notranslate"><span class="pre">html_favicon</span></code>. Nuestro <em>favicon</em> debe ser de 16 por 16 pixeles, y
+puede ser de formato ICO, PNG, SVG o GIF.</p>
+<p>Debido al tamaño cuadrado del <em>favicon</em>, el cual irá en las pestañas del
+navegador o en los marcadores, es conveniente tener un segundo diseño basado en
+nuestro logo que se adapte a estas dimensiones.</p>
 <p>En nuestro <code class="docutils literal notranslate"><span class="pre">conf.py</span></code> entonces hacemos el ajuste:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">html_logo</span> <span class="o">=</span> <span class="s1">&#39;static/cosmoscalibur_favicon.png&#39;</span>
 </pre></div>
@@ -635,8 +636,8 @@ que se adapte a estas dimensiones.</p>
   <span class="ablog__spacer">&nbsp;</span>
   <span class="ablog__next">
       Siguiente: 
-    <a href="../agregar-google-ads-en-sphinx/">
-      <span>Agregar Google Ads en Sphinx</span>
+    <a href="../../../../en/blog/2024/agregar-google-ads-en-sphinx/">
+      <span>Adding Google Ads to Sphinx</span>
       
     </a>
     

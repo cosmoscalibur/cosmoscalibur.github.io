@@ -5,7 +5,7 @@ category: technology, linux
 language: en
 ---
 
-# Problemas de conexión wifi en Linux
+# Wi-Fi issues in Linux
 
 Si el WiFi de manera aleatoria comienza a desconectarse, y al revisar el listado
 de redes estas han desaparecido, algunos detalles por evaluar son:
