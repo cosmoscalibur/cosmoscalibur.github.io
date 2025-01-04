@@ -14,10 +14,10 @@ I'll tell you how to configure it through modifying the default templates.
 
 ## Assets Directory
 
-We need to configure directories of general files that will be at the root level
-of deployment and template directories, in order to ensure that the directory
-does not have a problematic `_` prefix on _GitHub Pages_ and be aware of the
-value rather than taking the default value.
+We need to [configure directories of general files](#sphinx-dir-setup-en) that
+will be at the root level of deployment and template directories, in order to
+ensure that the directory does not have a problematic `_` prefix on _GitHub
+Pages_ and be aware of the value rather than taking the default value.
 
 ```{code} python
 html_extra_path = ['files']

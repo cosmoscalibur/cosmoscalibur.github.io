@@ -32,9 +32,9 @@ expande las opciones de Markdown (y no es soportado adecuadamente en Nikola, ni
 en otros generadores que revisé).
 
 También resulta que ya era más familiar con
-[Sphinx](project:/es/blog/2020/crear-documentacion-de-un-proyecto-python-con-sphinx.rst),
-pero en el momento que pasé a un generador estático, no existía Ablog para
-ayudar en el proceso de usarlo para un blog.
+[Sphinx](/es/blog/2020/crear-documentacion-de-un-proyecto-python-con-sphinx.rst),
+pero en el momento que pasé a un generador estático, no era muy conocido, pero
+ahora ha atraído a una comunidad mayor con el soporte de MyST.
 
 ## Creando el blog
 
@@ -101,7 +101,7 @@ jupyterlab_myst
 myst-nb
 ```
 
-```{dropdown} Opcionales
+````{dropdown} Opcionales
 No todo se trata sobre la generación del contenido a nivel automático, también
 necesitamos apoyo mientras escribimos. Así que podemos instalar doc8, rstcheck
 y esbonio, para las validaciones de nuestros archivos `.rst` y Jupyterlab Myst,
@@ -110,9 +110,10 @@ para ayudar en el renderizado en el Notebook mientras redactamos.
 Siendo así, podemos tener nuestro archivo `requirements-dev.txt` así:
 
 ```
-
-jupyterlab_myst rstcheck doc8 esbonio
-
+jupyterlab_myst
+rstcheck
+doc8
+esbonio
 ```
 
 Si usamos además VSCode, vale la pena las siguientes extensiones:
@@ -125,7 +126,7 @@ Si usamos además VSCode, vale la pena las siguientes extensiones:
 - Spell Right: Para corrección de ortografía.
 - Font Awesome Gallery: Para buscar la notación de los íconos de Font Awesome
   si los piensas usar (tiene alto impacto en el tiempo de carga).
-```
+````
 
 ```{dropdown} Otros
 Bueno, aquí hay algunas extensiones que, posiblemente puedan ser útiles, pero
@@ -196,11 +197,11 @@ código ISO del lenguaje
 language = 'es'
 ```
 
-En mi caso, aunque es mi lengua nativa, espero publicar algunas veces en inglés.
-Por este motivo, pensando en la internacionalización del blog, dispondré de un
-patrón de rutas de la forma `<lang>/blog/<year>/<post>`, de tal forma que con
-cambiar directamente el segmento de `<lang>` se acceda a la versión del otro
-idioma.
+En mi caso, aunque el español es mi lengua nativa, espero publicar algunas veces
+en inglés. Por este motivo, pensando en la internacionalización del blog,
+dispondré de un patrón de rutas de la forma `<lang>/blog/<year>/<post>`, de tal
+forma que con cambiar directamente el segmento de `<lang>` se acceda a la
+versión del otro idioma.
 
 Esto tiene impacto en la variable `blog_path_pattern` que permite definir el
 patrón de ruta para que se reconozcan automáticamente las publicaciones (no es
@@ -367,15 +368,15 @@ html_sidebars = {
 }
 ```
 
-No te preocupes, en otra entrada lo explicaré. De momento tomaré un por defecto,
-ya que estos paneles en caso de requerir personalización, necesitamos hacer HTML
-y quiero pensar bien que poner cuando no sean entradas de blog (en los cuales
-los casos dispuestos me parecen perfectos).
+No te preocupes, en otra entrada lo explicaré. De momento tomaré uno por
+defecto, ya que estos paneles en caso de requerir personalización, necesitamos
+hacer HTML y quiero pensar bien que poner cuando no sean entradas de blog (en
+los cuales los casos dispuestos me parecen perfectos).
 
-También podemos incluir los íconos de Font Awesome {fa}`rocket`, pero ten
-presente que puede tener un impacto importante en el tiempo de carga del sitio
-ya que esto no es optimizado. En mi caso, al hacer pruebas veo que es el mayor
-castigo en los tiempos de carga del blog a nivel de los _scripts_.
+También podemos incluir los íconos de _Font Awesome_, pero ten presente que
+puede tener un impacto importante en el tiempo de carga del sitio ya que esto no
+es optimizado. En mi caso, al hacer pruebas veo que es el mayor castigo en los
+tiempos de carga del blog a nivel de los _scripts_.
 
 ```{code} python
 fontawesome_included = True
@@ -495,7 +496,8 @@ language: es
 
 `````
 
-La sintaxis ya propia de MD y RST la puedes consultar. No es difícil.
+La sintaxis ya propia de Markdown y ReStructuredText la puedes consultar. No es
+difícil.
 
 En mi caso, soy el único autor del blog y en general, publicaré en español, así
 que vale la pena definir el autor y lenguaje por defecto en el `conf.py`.

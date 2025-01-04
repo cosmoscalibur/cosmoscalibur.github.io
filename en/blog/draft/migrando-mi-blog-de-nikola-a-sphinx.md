@@ -5,15 +5,15 @@ category: technology
 language: en
 ---
 
-# Migrando mi blog de Nikola a Sphinx
+# Migrating my blog from Nikola to Sphinx
 
-Migrar de un generador estático a otro no es un proceso del todo transparente,
-así que aquí te explico algunos por menores para hacer una migración de Nikola a
-Sphinx.
+Migrating from a static generator to another isn't an entirely transparent
+process, so I'll explain some simpler steps to help you migrate your blog from
+Nikola to Sphinx.
 
-Pero antes, es necesario tener presente, que lo básico del proceso de migración,
-inicia por tener lo mínimo desde cero, con Sphinx. Para este fin, debes seguir
-las indicaciones dadas en <project:/es/blog/2024/crear-un-blog-con-sphinx.md>.
+But before we begin, keep in mind that the basic steps for migration start by
+having the bare minimum from scratch with Sphinx. For this purpose, follow the
+instructions given at [](/en/blog/2024/crear-un-blog-con-sphinx.md).
 
 ## Migrando
 

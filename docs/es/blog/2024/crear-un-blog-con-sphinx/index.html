@@ -19,6 +19,8 @@
 <meta name="description" content="Por fin he dado el paso de retomar el blog, y con ello un proceso de migración que deseaba, generar el blog con Sphinx. Sobre este proceso les estaré contando en varias entradas, ya que la migració..." />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:creator" content="@cosmoscalibur" />
+<meta name="fediverse:creator" content="@cosmoscalibur@col.social">
+<link rel="me" href="https://col.social/@cosmoscalibur">
 
     <title>Crear un blog con Sphinx &#8212; Cosmoscalibur</title>
   
@@ -459,7 +461,7 @@ crossorigin="anonymous"></script>
   <ul>
      
     <li>
-      <a href="../../../../blog/2024/">2024 (25)</a>
+      <a href="../../../../blog/2024/">2024 (27)</a>
     </li>
       
     <li>
@@ -577,8 +579,8 @@ expande las opciones de Markdown (y no es soportado adecuadamente en Nikola, ni
 en otros generadores que revisé).</p>
 <p>También resulta que ya era más familiar con
 <a class="reference internal" href="../../2020/crear-documentacion-de-un-proyecto-python-con-sphinx/"><span class="std std-doc">Sphinx</span></a>,
-pero en el momento que pasé a un generador estático, no existía Ablog para
-ayudar en el proceso de usarlo para un blog.</p>
+pero en el momento que pasé a un generador estático, no era muy conocido, pero
+ahora ha atraído a una comunidad mayor con el soporte de MyST.</p>
 </section>
 <section id="creando-el-blog">
 <h2>Creando el blog<a class="headerlink" href="#creando-el-blog" title="Link to this heading">#</a></h2>
@@ -643,22 +645,25 @@ necesitamos apoyo mientras escribimos. Así que podemos instalar doc8, rstcheck
 y esbonio, para las validaciones de nuestros archivos <code class="docutils literal notranslate"><span class="pre">.rst</span></code> y Jupyterlab Myst,
 para ayudar en el renderizado en el Notebook mientras redactamos.</p>
 <p class="sd-card-text">Siendo así, podemos tener nuestro archivo <code class="docutils literal notranslate"><span class="pre">requirements-dev.txt</span></code> así:</p>
-</div>
-</details><p>jupyterlab_myst rstcheck doc8 esbonio</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
-Si usamos además VSCode, vale la pena las siguientes extensiones:
-
-- MyST-Markdown: Para editar MystMD
-- Esbonio: Para editar RST
-- reStructuredText (lexstudio): Para editar RST
-- Jupyter: Para manipular notebooks
-- Emoji: Para insertar emoji con la paleta de comandos 😀
-- Spell Right: Para corrección de ortografía.
-- Font Awesome Gallery: Para buscar la notación de los íconos de Font Awesome
-  si los piensas usar (tiene alto impacto en el tiempo de carga).
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">jupyterlab_myst</span>
+<span class="n">rstcheck</span>
+<span class="n">doc8</span>
+<span class="n">esbonio</span>
 </pre></div>
 </div>
-<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<p class="sd-card-text">Si usamos además VSCode, vale la pena las siguientes extensiones:</p>
+<ul class="simple">
+<li><p class="sd-card-text">MyST-Markdown: Para editar MystMD</p></li>
+<li><p class="sd-card-text">Esbonio: Para editar RST</p></li>
+<li><p class="sd-card-text">reStructuredText (lexstudio): Para editar RST</p></li>
+<li><p class="sd-card-text">Jupyter: Para manipular notebooks</p></li>
+<li><p class="sd-card-text">Emoji: Para insertar emoji con la paleta de comandos 😀</p></li>
+<li><p class="sd-card-text">Spell Right: Para corrección de ortografía.</p></li>
+<li><p class="sd-card-text">Font Awesome Gallery: Para buscar la notación de los íconos de Font Awesome
+si los piensas usar (tiene alto impacto en el tiempo de carga).</p></li>
+</ul>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
 <summary class="sd-summary-title sd-card-header">
 <span class="sd-summary-text">Otros</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
 <p class="sd-card-text">Bueno, aquí hay algunas extensiones que, posiblemente puedan ser útiles, pero
@@ -719,11 +724,11 @@ código ISO del lenguaje</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">language</span> <span class="o">=</span> <span class="s1">&#39;es&#39;</span>
 </pre></div>
 </div>
-<p>En mi caso, aunque es mi lengua nativa, espero publicar algunas veces en inglés.
-Por este motivo, pensando en la internacionalización del blog, dispondré de un
-patrón de rutas de la forma <code class="docutils literal notranslate"><span class="pre">&lt;lang&gt;/blog/&lt;year&gt;/&lt;post&gt;</span></code>, de tal forma que con
-cambiar directamente el segmento de <code class="docutils literal notranslate"><span class="pre">&lt;lang&gt;</span></code> se acceda a la versión del otro
-idioma.</p>
+<p>En mi caso, aunque el español es mi lengua nativa, espero publicar algunas veces
+en inglés. Por este motivo, pensando en la internacionalización del blog,
+dispondré de un patrón de rutas de la forma <code class="docutils literal notranslate"><span class="pre">&lt;lang&gt;/blog/&lt;year&gt;/&lt;post&gt;</span></code>, de tal
+forma que con cambiar directamente el segmento de <code class="docutils literal notranslate"><span class="pre">&lt;lang&gt;</span></code> se acceda a la
+versión del otro idioma.</p>
 <p>Esto tiene impacto en la variable <code class="docutils literal notranslate"><span class="pre">blog_path_pattern</span></code> que permite definir el
 patrón de ruta para que se reconozcan automáticamente las publicaciones (no es
 necesario añadir la etiqueta). Adicional, es necesario definir la ruta para el
@@ -862,14 +867,14 @@ entorno).</p>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>No te preocupes, en otra entrada lo explicaré. De momento tomaré un por defecto,
-ya que estos paneles en caso de requerir personalización, necesitamos hacer HTML
-y quiero pensar bien que poner cuando no sean entradas de blog (en los cuales
-los casos dispuestos me parecen perfectos).</p>
-<p>También podemos incluir los íconos de Font Awesome <span class="fa fa-rocket"></span>, pero ten
-presente que puede tener un impacto importante en el tiempo de carga del sitio
-ya que esto no es optimizado. En mi caso, al hacer pruebas veo que es el mayor
-castigo en los tiempos de carga del blog a nivel de los <em>scripts</em>.</p>
+<p>No te preocupes, en otra entrada lo explicaré. De momento tomaré uno por
+defecto, ya que estos paneles en caso de requerir personalización, necesitamos
+hacer HTML y quiero pensar bien que poner cuando no sean entradas de blog (en
+los cuales los casos dispuestos me parecen perfectos).</p>
+<p>También podemos incluir los íconos de <em>Font Awesome</em>, pero ten presente que
+puede tener un impacto importante en el tiempo de carga del sitio ya que esto no
+es optimizado. En mi caso, al hacer pruebas veo que es el mayor castigo en los
+tiempos de carga del blog a nivel de los <em>scripts</em>.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">fontawesome_included</span> <span class="o">=</span> <span class="kc">True</span>
 </pre></div>
 </div>
@@ -972,7 +977,8 @@ author: Edward Villegas-Pulgarin
 </div>
 </div>
 </div>
-<p>La sintaxis ya propia de MD y RST la puedes consultar. No es difícil.</p>
+<p>La sintaxis ya propia de Markdown y ReStructuredText la puedes consultar. No es
+difícil.</p>
 <p>En mi caso, soy el único autor del blog y en general, publicaré en español, así
 que vale la pena definir el autor y lenguaje por defecto en el <code class="docutils literal notranslate"><span class="pre">conf.py</span></code>.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">blog_default_author</span> <span class="o">=</span> <span class="s1">&#39;Edward&#39;</span>
@@ -1060,8 +1066,8 @@ anotación de su impacto.</p></li>
   <span class="ablog__spacer">&nbsp;</span>
   <span class="ablog__next">
       Siguiente: 
-    <a href="../configurar-segundo-teclado-en-linux/">
-      <span>Configurar segundo teclado en Linux</span>
+    <a href="../../../../en/blog/2024/crear-un-blog-con-sphinx/">
+      <span>Creating a blog with Sphinx</span>
       
     </a>
     

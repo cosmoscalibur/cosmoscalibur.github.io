@@ -114,9 +114,8 @@ how to:
 :sync: manjaro
 
 ```{code-block} bash
----
-name: pamac-commands
----
+:name: pamac-commands-en
+
 sudo pamac install PACKAGE --no-confirm # Official Repository
 pamac build PACKAGE_AUR --no-confirm # AUR
 sudo pamac remove PACKAGE --no-confirm
