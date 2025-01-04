@@ -1,5 +1,4 @@
 ---
-redirect: blog/calcular-distancia-geodesica-con-python
 date: 2020-05-10
 tags: python, geoide, distancia geodésica, geopy, método de vincenty, método de karney
 category: tecnología
