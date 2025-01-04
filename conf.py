@@ -43,6 +43,9 @@ ablog_website = 'docs'
 ogp_site_url = 'https://www.cosmoscalibur.com'
 ogp_custom_meta_tags = [
     '<meta name="twitter:creator" content="@cosmoscalibur" />',
+    '<meta name="fediverse:creator" content="@cosmoscalibur@col.social">',
+    '<link rel="me" href="https://col.social/@cosmoscalibur">',
+    # <a rel="me" href="https://col.social/@cosmoscalibur">Mastodon</a>
 ]
 
 
