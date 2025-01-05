@@ -1,6 +1,6 @@
 ---
 date: 2024-06-15
-tags: rust, rustlang, vscode, notebook, evcxr, rust-analyzer
+tags: instalar rust, rustlang, vscode, notebook, evcxr, rust-analyzer
 category: tecnología
 ---
 

@@ -1,7 +1,7 @@
 ---
 date: 2024-10-21
-tags: netflix, disney plus, prime video, apple tv, stremio, torrentio, torrents, pluto tv, watch free movies, watch free series, popcorn time
-category: entertainment, linux
+tags: netflix free, alternative to netflix, alternative to disney plus, alternative to prime video, alternative to apple tv, stremio addons, torrentio stremio, play torrents, watch pluto tv, watch free movies, watch free series, popcorn time
+category: entertainment
 language: en
 ---
 

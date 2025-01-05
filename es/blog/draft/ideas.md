@@ -1,8 +1,3 @@
-# Marte
-
-transmitir a android tv: mkchromecast - gnome network display (miracast) - vlc -
-stremio - chrome
-
 ngrok
 
 https://ollama.com/download https://ollama.com/library/llama3.1:8b

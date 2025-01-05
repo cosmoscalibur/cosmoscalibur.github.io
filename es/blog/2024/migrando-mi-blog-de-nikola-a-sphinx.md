@@ -1,9 +1,7 @@
 ---
 date: 2024-05-24
-tags: blog, sphinx, python, ablog, pydata, sitio estático
-category: tecnología, blog con sphinx
-author: Edward Villegas-Pulgarin
-language: es
+tags: sphinx, python, ablog, pydata, página web estática, blog con sphinx
+category: tecnología
 ---
 
 # Migrando mi blog de Nikola a Sphinx

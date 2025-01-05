@@ -1,7 +1,7 @@
 ---
 date: 2024-09-25
-tags: blog, sphinx, google ads
-category: tecnología, blog con sphinx
+tags: sphinx, agregar google ads, blog con sphinx
+category: tecnología
 author: Edward Villegas-Pulgarin
 language: es
 ---
