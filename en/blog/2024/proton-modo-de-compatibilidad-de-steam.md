@@ -1,7 +1,7 @@
 ---
 date: 2024-06-04
-tags: videogames, steam, proton, steam play, linux, brawlhalla
-category: technology
+tags: linux videogames, steam, wine, linux applications
+category: enterteinment, videogames
 language: en
 ---
 

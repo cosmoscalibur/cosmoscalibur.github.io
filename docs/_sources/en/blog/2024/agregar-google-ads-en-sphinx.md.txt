@@ -1,7 +1,7 @@
 ---
 date: 2024-09-25
-tags: google ads, blogging with sphinx, sphinx
-category: technology
+tags: google ads, sphinx
+category: technology, blogging with sphinx
 language: en
 ---
 

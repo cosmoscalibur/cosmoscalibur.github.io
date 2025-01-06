@@ -102,7 +102,9 @@ def record_builder_type(app: Sphinx):
     builder = getattr(app, "builder", None)
     if builder is None:
         return
-    builder.env.is_directory_builder = type(builder).__name__ == "DirectoryHTMLBuilder"
+    builder.env.is_directory_builder = (
+        type(builder).__name__ == "DirectoryHTMLBuilder"
+    )
     builder.env.app.sitemap_links = Manager().Queue()
 
 
@@ -171,7 +173,8 @@ def create_sitemap(app: Sphinx, exception):
         site_url.rstrip("/") + "/"
     else:
         logger.warning(
-            "sphinx-sitemap: html_baseurl is required in conf.py." "Sitemap not built.",
+            "sphinx-sitemap: html_baseurl is required in conf.py."
+            "Sitemap not built.",
             type="sitemap",
             subtype="configuration",
         )
@@ -179,7 +182,8 @@ def create_sitemap(app: Sphinx, exception):
 
     if app.env.app.sitemap_links.empty():  # type: ignore
         logger.info(
-            "sphinx-sitemap: No pages generated for %s" % app.config.sitemap_filename,
+            "sphinx-sitemap: No pages generated for %s"
+            % app.config.sitemap_filename,
             type="sitemap",
             subtype="information",
         )
@@ -199,6 +203,7 @@ def create_sitemap(app: Sphinx, exception):
         language = ""
 
     from collections import defaultdict
+
     pages = defaultdict(dict)
 
     while True:
@@ -207,15 +212,19 @@ def create_sitemap(app: Sphinx, exception):
         except queue.Empty:
             break
 
-        lang_page = link.removesuffix('/').split('/')
+        lang_page = link.removesuffix("/").split("/")
         if (lang := lang_page[0]) in locales:
-            pages['/'.join(lang_page[1:])].update({lang: link})
+            pages["/".join(lang_page[1:])].update({lang: link})
         else:
             pages[link].update({language: link})
 
     for page, lang_page in pages.items():
         url = ElementTree.SubElement(root, "url")
-        ElementTree.SubElement(url, "loc").text = site_url + (lang_page[language] if language in lang_page else next(iter(lang_page.keys())))
+        ElementTree.SubElement(url, "loc").text = site_url + (
+            lang_page[language]
+            if language in lang_page
+            else next(iter(lang_page.keys()))
+        )
         for lang, link in lang_page.items():
             ElementTree.SubElement(
                 url,

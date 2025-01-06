@@ -1,8 +1,6 @@
 :date: 2020-05-26
-:tags: blog, nikola, amazon, disqus, facebook, comentarios, publicidad, adsense
+:tags: página web estática, blog con nikola, sistema de comentarios disqus, agregar google ads
 :category: tecnología
-:author: Edward Villegas-Pulgarin
-:language: es
 
 Reformas del blog: Parte 1
 ==========================

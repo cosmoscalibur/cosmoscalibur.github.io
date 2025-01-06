@@ -1,6 +1,6 @@
 ---
 date: 2024-12-05
-tags: manjaro, ubuntu, kubuntu, kde, pamac, flatpak, instalar manjaro, aplicaciones para linux
+tags: manjaro, ubuntu, kubuntu, kde, pamac, flatpak, aplicaciones para linux
 category: tecnología, linux
 ---
 

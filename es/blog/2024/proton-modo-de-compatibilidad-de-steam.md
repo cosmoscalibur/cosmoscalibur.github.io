@@ -1,7 +1,7 @@
 ---
 date: 2024-06-04
-tags: videojuegos para linux, steam, steam proton, steam play, aplicaciones para linux, juego brawlhalla
-category: entretenimiento
+tags: videojuegos para linux, steam, wine, aplicaciones para linux
+category: entretenimiento, videojuegos
 ---
 
 # Proton: Modo de compatibilidad de Steam

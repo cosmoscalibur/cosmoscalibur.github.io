@@ -1,7 +1,7 @@
 ---
 date: 2024-05-16
-tags: sphinx, python, ablog, pydata, página web estática, blog con sphinx
-category: tecnología
+tags: sphinx, python, ablog, pydata, página web estática
+category: tecnología, blog con sphinx
 ---
 
 # Crear un blog con Sphinx

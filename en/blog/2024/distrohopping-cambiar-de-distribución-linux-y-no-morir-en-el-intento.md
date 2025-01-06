@@ -1,6 +1,6 @@
 ---
 date: 2024-12-03
-tags: distrohopping, linux distribution, ubuntu, manjaro, kde
+tags: linux, ubuntu, manjaro, kde
 category: technology, linux
 language: en
 ---

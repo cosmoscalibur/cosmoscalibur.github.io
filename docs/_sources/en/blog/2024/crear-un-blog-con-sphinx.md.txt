@@ -1,7 +1,7 @@
 ---
 date: 2024-05-16
-tags: python, ablog, sphinx, static site generators, blogging with sphinx
-category: technology
+tags: python, ablog, sphinx, static site generators
+category: technology, blogging with sphinx
 language: en
 ---
 

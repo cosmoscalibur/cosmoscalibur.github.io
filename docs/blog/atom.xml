@@ -2,10 +2,170 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="es">
   <id>https://www.cosmoscalibur.com/</id>
   <title>Cosmoscalibur</title>
-  <updated>2025-01-04T19:56:00.733520+00:00</updated>
+  <updated>2025-01-06T03:05:11.055610+00:00</updated>
   <link href="https://www.cosmoscalibur.com/"/>
   <link href="https://www.cosmoscalibur.com/blog/atom.xml" rel="self"/>
   <generator uri="https://ablog.readthedocs.io/" version="0.11.12">ABlog</generator>
+  <entry>
+    <id>https://www.cosmoscalibur.com/en/blog/2024/problema-de-wayland-y-graficos-hibridos-en-linux/</id>
+    <title>Wayland and Hybrid Graphics Issues in Linux</title>
+    <updated>2024-12-18T00:00:00-05:00</updated>
+    <author>
+      <name>Edward Villegas-Pulgarin</name>
+    </author>
+    <content type="html">&lt;section class="tex2jax_ignore mathjax_ignore" id="wayland-and-hybrid-graphics-issues-in-linux"&gt;
+
+&lt;p&gt;&lt;a class="reference external" href="https://wiki.archlinux.org/title/Hybrid_graphics"&gt;Hybrid graphics cards&lt;/a&gt; are a
+strategy used by modern computers to incorporate two graphics cards: one
+integrated and one dedicated, with different capabilities and energy
+consumption. The idea is not to use the dedicated card unless necessary for 3D
+rendering. However, this is not a resolved issue in Linux and affects native
+applications running on Wayland, which is the new and modern protocol for
+server-side graphics communication used by window compositors in Linux
+(replacing X11), that utilize Vulkan.&lt;/p&gt;
+&lt;p&gt;One of these affected applications is the code editor Zed. At the time of
+writing this entry, the NVIDIA controller version is 550.135 in the stable
+branch of Manjaro.&lt;/p&gt;
+&lt;section id="symptoms-of-the-problem"&gt;
+&lt;h2&gt;Symptoms of the Problem&lt;/h2&gt;
+&lt;section id="case-of-zed"&gt;
+&lt;h3&gt;Case of Zed&lt;/h3&gt;
+&lt;p&gt;Considering the example of the &lt;strong class="program"&gt;zed&lt;/strong&gt; editor, we will see for a brief
+moment that an attempt is made to launch a window on Wayland, but it closes
+after a few seconds. We can delve deeper into this issue and test it in the
+terminal by running &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;zed&lt;/span&gt; &lt;span class="pre"&gt;--foreground&lt;/span&gt;&lt;/code&gt;, which reveals the error message
+&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;&amp;quot;payload&amp;quot;:&lt;/span&gt; &lt;span class="pre"&gt;&amp;quot;called&lt;/span&gt; &lt;span class="pre"&gt;`Result::unwrap()`on&lt;/span&gt; &lt;span class="pre"&gt;an`Err`&lt;/span&gt; &lt;span class="pre"&gt;value:&lt;/span&gt; &lt;span class="pre"&gt;ERROR_INITIALIZATION_FAILED&amp;quot;&lt;/span&gt;&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;If you are also experiencing this problem, you can contribute to the Zed project
+by providing useful information. Reporting the output of &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;vulkaninfo&lt;/span&gt;&lt;/code&gt; and
+&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;RUST_LOG=blade_graphics=debug&lt;/span&gt; &lt;span class="pre"&gt;zed&lt;/span&gt; &lt;span class="pre"&gt;--foreground&lt;/span&gt;&lt;/code&gt;, with additional details such
+as what we see to understand if the issue is closer to Vulkan/Wayland or Zed
+itself.&lt;/p&gt;
+&lt;p&gt;Please refer to the GitHub report
+&lt;a class="reference external" href="https://github.com/zed-industries/zed/issues/8168"&gt;zed/8168&lt;/a&gt;.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="case-of-vkcube-demo"&gt;
+&lt;h3&gt;Case of VkCube (demo)&lt;/h3&gt;
+&lt;p&gt;It turns out that Vulkan has demo applications for X11 and Wayland, &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;vkcube&lt;/span&gt;&lt;/code&gt; and
+&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;vkcube-wayland&lt;/span&gt;&lt;/code&gt;, which are available in the &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;vulkan-tools&lt;/span&gt;&lt;/code&gt; package. The
+expected outcome is that if these demos work on X11, they should at least work
+on platforms supported by Zed (and other Vulkan-based applications).&lt;/p&gt;
+&lt;p&gt;In my case, &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;vkcube&lt;/span&gt;&lt;/code&gt; works without issues, but Zed on X11 at least opens once
+during the session. However, &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;vkcube-wayland&lt;/span&gt;&lt;/code&gt; reports a
+&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;segmentation&lt;/span&gt; &lt;span class="pre"&gt;fault&lt;/span&gt; &lt;span class="pre"&gt;(core&lt;/span&gt; &lt;span class="pre"&gt;dumped)&lt;/span&gt;&lt;/code&gt;, which suggests that native Wayland
+applications with Vulkan are not working properly.&lt;/p&gt;
+&lt;p&gt;This is likely to be true for hybrid cases because in my observation of Zed and
+Vulkan reports, the issue does not occur on systems with only integrated
+graphics card or only NVIDIA graphics. In contrast, the reported cases with only
+integrated GPUs were solvable by installing the correct Vulkan driver, which
+suggests that there’s a dependency on NVIDIA for hybrid cases.&lt;/p&gt;
+&lt;p&gt;On Kubuntu 24.10 (which I tried recently), Zed works perfectly in Wayland, but
+it requires an NVIDIA controller from the 560 series (although I understand this
+might change).&lt;/p&gt;
+&lt;/section&gt;
+&lt;/section&gt;
+&lt;section id="check-if-you-have-hybrid-graphics"&gt;
+&lt;h2&gt;Check if you have Hybrid Graphics&lt;/h2&gt;
+&lt;p&gt;To determine if your case is related to hybrid graphics, you can review the
+output of the following instructions:&lt;/p&gt;
+&lt;div class="literal-block-wrapper docutils container" id="id1"&gt;
+&lt;div class="code-block-caption"&gt;&lt;span class="caption-text"&gt;VGA Compatible Device Compatibility Check (any Linux distribution)&lt;/span&gt;&lt;/div&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;❯&lt;span class="w"&gt; &lt;/span&gt;lspci&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;grep&lt;span class="w"&gt; &lt;/span&gt;VGA
+&lt;span class="m"&gt;01&lt;/span&gt;:00.0&lt;span class="w"&gt; &lt;/span&gt;VGA&lt;span class="w"&gt; &lt;/span&gt;compatible&lt;span class="w"&gt; &lt;/span&gt;controller:&lt;span class="w"&gt; &lt;/span&gt;NVIDIA&lt;span class="w"&gt; &lt;/span&gt;Corporation&lt;span class="w"&gt; &lt;/span&gt;TU106M&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;GeForce&lt;span class="w"&gt; &lt;/span&gt;RTX&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;2060&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;Mobile&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;rev&lt;span class="w"&gt; &lt;/span&gt;a1&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;span class="m"&gt;05&lt;/span&gt;:00.0&lt;span class="w"&gt; &lt;/span&gt;VGA&lt;span class="w"&gt; &lt;/span&gt;compatible&lt;span class="w"&gt; &lt;/span&gt;controller:&lt;span class="w"&gt; &lt;/span&gt;Advanced&lt;span class="w"&gt; &lt;/span&gt;Micro&lt;span class="w"&gt; &lt;/span&gt;Devices,&lt;span class="w"&gt; &lt;/span&gt;Inc.&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;AMD/ATI&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;Renoir&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;Radeon&lt;span class="w"&gt; &lt;/span&gt;Vega&lt;span class="w"&gt; &lt;/span&gt;Series&lt;span class="w"&gt; &lt;/span&gt;/&lt;span class="w"&gt; &lt;/span&gt;Radeon&lt;span class="w"&gt; &lt;/span&gt;Vega&lt;span class="w"&gt; &lt;/span&gt;Mobile&lt;span class="w"&gt; &lt;/span&gt;Series&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;rev&lt;span class="w"&gt; &lt;/span&gt;f0&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="literal-block-wrapper docutils container" id="id2"&gt;
+&lt;div class="code-block-caption"&gt;&lt;span class="caption-text"&gt;Manjaro hardware detection.&lt;/span&gt;&lt;/div&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;❯&lt;span class="w"&gt; &lt;/span&gt;mhwd&lt;span class="w"&gt; &lt;/span&gt;-li
+&amp;gt;&lt;span class="w"&gt; &lt;/span&gt;Installed&lt;span class="w"&gt; &lt;/span&gt;PCI&lt;span class="w"&gt; &lt;/span&gt;configs:
+--------------------------------------------------------------------------------
+&lt;span class="w"&gt;                  &lt;/span&gt;NAME&lt;span class="w"&gt;               &lt;/span&gt;VERSION&lt;span class="w"&gt;          &lt;/span&gt;FREEDRIVER&lt;span class="w"&gt;           &lt;/span&gt;TYPE
+--------------------------------------------------------------------------------
+&lt;span class="w"&gt;           &lt;/span&gt;video-linux&lt;span class="w"&gt;            &lt;/span&gt;&lt;span class="m"&gt;2024&lt;/span&gt;.05.06&lt;span class="w"&gt;                &lt;/span&gt;&lt;span class="nb"&gt;true&lt;/span&gt;&lt;span class="w"&gt;            &lt;/span&gt;PCI
+video-hybrid-amd-nvidia-prime&lt;span class="w"&gt;            &lt;/span&gt;&lt;span class="m"&gt;2023&lt;/span&gt;.03.23&lt;span class="w"&gt;               &lt;/span&gt;&lt;span class="nb"&gt;false&lt;/span&gt;&lt;span class="w"&gt;            &lt;/span&gt;PC
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;In both cases, you should be able to see the availability of an NVIDIA graphics
+card and/or an AMD (or possibly Intel) graphics card. This could be a
+contributing factor to your issue.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="checking-the-nvidia-driver-version"&gt;
+&lt;h2&gt;Checking the NVIDIA Driver Version&lt;/h2&gt;
+&lt;p&gt;If you’re not aware of the NVIDIA driver version, you can use your package
+manager to check it:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;Use &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;pamac&lt;/span&gt; &lt;span class="pre"&gt;info&lt;/span&gt; &lt;span class="pre"&gt;nvidia-utils&lt;/span&gt;&lt;/code&gt; (for Manjaro-based systems) or
+&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;apt&lt;/span&gt; &lt;span class="pre"&gt;show&lt;/span&gt; &lt;span class="pre"&gt;nvidia-utils&lt;/span&gt;&lt;/code&gt; (for Ubuntu-based systems) to verify the version of
+the &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;nvidia-utils&lt;/span&gt;&lt;/code&gt; package (see
+&lt;a class="reference internal" href="../en/blog/2024/que-hacer-despues-de-instalar-manjaro/#pamac-commands-en"&gt;&lt;span class="std std-ref"&gt;package manager commands&lt;/span&gt;&lt;/a&gt;).&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Alternatively, run &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;{program}&lt;/span&gt;&lt;/code&gt; &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;nvidia-smi&lt;/span&gt;&lt;/code&gt;, and you’ll see the driver version
+in the first row, labeled as “Driver version”.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;This information can help you determine if there are any compatibility issues
+with your system’s NVIDIA driver.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="workaround"&gt;
+&lt;h2&gt;Workaround&lt;/h2&gt;
+&lt;p&gt;We want to be able to use our favorite applications, such as Zed, which is a
+must for me. Regarding some Wayland issues on Manjaro related to the NVIDIA
+graphics card, I’ve seen that the recommended solution is to wait for the 560
+series, but this is still in the unstable branch.&lt;/p&gt;
+&lt;p&gt;In the meantime, we can
+&lt;a class="reference external" href="https://vulkan.lunarg.com/doc/view/1.3.250.1/windows/LoaderDriverInterface.html#overriding-the-default-driver-discovery"&gt;explicitly tell the Vulkan driver&lt;/a&gt;
+to use the integrated card’s configuration by setting it to use the default
+drivers. The configuration files are available in the &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;/usr/share/vulkan/icd.d/&lt;/span&gt;&lt;/code&gt;
+directory. If you have an AMD card, these will be the ones with &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;radeon&lt;/span&gt;&lt;/code&gt;, and
+for Intel, they’ll be marked as &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;intel&lt;/span&gt;&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;This is done by assigning the list of files to the
+&lt;a class="reference external" href="https://wiki.archlinux.org/title/Vulkan#NVIDIA_-_vulkan_is_not_working_and_can_not_initialize"&gt;&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;VK_DRIVER_FILES&lt;/span&gt;&lt;/code&gt; environment variable&lt;/a&gt;.
+In my case, it would be:&lt;/p&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nb"&gt;export&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;VK_DRIVER_FILES&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;/usr/share/vulkan/icd.d/radeon_icd.i686.json:/usr/share/vulkan/icd.d/radeon_icd.x86_64.json
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Once you’ve made this change, you can try running &lt;strong class="program"&gt;vkcube-wayland&lt;/strong&gt; or
+&lt;strong class="program"&gt;zed&lt;/strong&gt; again to see if it works. If it does, you can make this change
+permanent by adding the following line to your system’s &lt;code class="file docutils literal notranslate"&gt;&lt;span class="pre"&gt;/etc/environment&lt;/span&gt;&lt;/code&gt;
+file:&lt;/p&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;echo&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;VK_DRIVER_FILES=/usr/share/vulkan/icd.d/radeon_icd.i686.json:/usr/share/vulkan/icd.d/radeon_icd.x86_64.json&amp;#39;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&amp;gt;&amp;gt;&lt;span class="w"&gt; &lt;/span&gt;/etc/environment
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;This change also fixes the issue where subsequent windows appear to leave an
+invisible window in X11.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="definitive-fix"&gt;
+&lt;h2&gt;Definitive fix&lt;/h2&gt;
+&lt;p&gt;When the 560 series becomes available, I’ll report back on whether this resolves
+the problem in Manjaro. For now, it’s necessary to remove the previous line from
+the environment variables.&lt;/p&gt;
+&lt;p&gt;To execute something directly with the NVIDIA card, we need to use
+&lt;strong class="program"&gt;prime-run&lt;/strong&gt;, which doesn’t currently make a difference.&lt;/p&gt;
+&lt;p&gt;If you want to test without making any changes, you can simply unset the
+&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;VK_DRIVER_FILES&lt;/span&gt;&lt;/code&gt; variable using the command &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;unset&lt;/span&gt; &lt;span class="pre"&gt;VK_DRIVER_FILES&lt;/span&gt;&lt;/code&gt;.&lt;/p&gt;
+&lt;/section&gt;
+&lt;/section&gt;
+</content>
+    <link href="https://www.cosmoscalibur.com/en/blog/2024/problema-de-wayland-y-graficos-hibridos-en-linux/"/>
+    <summary>Hybrid graphics cards are a
+strategy used by modern computers to incorporate two graphics cards: one
+integrated and one dedicated, with different capabilities and energy
+consumption. The idea is not to use the dedicated card unless necessary for 3D
+rendering. However, this is not a resolved issue in Linux and affects native
+applications running on Wayland, which is the new and modern protocol for
+server-side graphics communication used by window compositors in Linux
+(replacing X11), that utilize Vulkan.</summary>
+    <category term="gpu" label="gpu"/>
+    <category term="graphicscard" label="graphics card"/>
+    <category term="hybridgraphics" label="hybrid graphics"/>
+    <category term="manjaro" label="manjaro"/>
+    <category term="nvidia" label="nvidia"/>
+    <category term="vulkan" label="vulkan"/>
+    <category term="wayland" label="wayland"/>
+    <category term="x11" label="x11"/>
+    <category term="zed" label="zed"/>
+    <published>2024-12-18T00:00:00-05:00</published>
+  </entry>
   <entry>
     <id>https://www.cosmoscalibur.com/es/blog/2024/problema-de-wayland-y-graficos-hibridos-en-linux/</id>
     <title>Problema de Wayland y gráficos híbridos en Linux</title>
@@ -18,28 +178,28 @@
 &lt;p&gt;Los &lt;a class="reference external" href="https://wiki.archlinux.org/title/Hybrid_graphics"&gt;gráficos híbridos&lt;/a&gt; son
 una estrategia de los equipos modernos a incorporar dos tarjetas gráficas, una
 integrada y una dedicada, con capacidades y consumo de energía diferentes. La
-idea es no usar la dedicada, salvo que sea requerido para el renderizado 3D.
-Sin embargo, esto no es un problema resuelto en Linux y afecta a las
-aplicaciones nativas en Wayland, el cual es el nuevo y moderno protocolo para
-comunicación de servidor gráfico usado por los compositores de ventanas en
-Linux (en reemplazo de X11), que hagan uso de Vulkan.&lt;/p&gt;
-&lt;p&gt;Una de estas aplicaciones afectadas es el editor de código
-&lt;strong class="program"&gt;zed&lt;/strong&gt;. Al momento de escribir esta entrada, la versión del
-controlador NVIDIA es 550.135 en la rama estable de Manjaro.&lt;/p&gt;
+idea es no usar la dedicada, salvo que sea requerido para el renderizado 3D. Sin
+embargo, esto no es un problema resuelto en Linux y afecta a las aplicaciones
+nativas en Wayland, el cual es el nuevo y moderno protocolo para comunicación de
+servidor gráfico usado por los compositores de ventanas en Linux (en reemplazo
+de X11), que hagan uso de Vulkan.&lt;/p&gt;
+&lt;p&gt;Una de estas aplicaciones afectadas es el editor de código &lt;strong class="program"&gt;zed&lt;/strong&gt;. Al
+momento de escribir esta entrada, la versión del controlador NVIDIA es 550.135
+en la rama estable de Manjaro.&lt;/p&gt;
 &lt;section id="sintomas-del-problema"&gt;
 &lt;h2&gt;Síntomas del problema&lt;/h2&gt;
 &lt;section id="caso-zed"&gt;
 &lt;h3&gt;Caso Zed&lt;/h3&gt;
 &lt;p&gt;Considerando el ejemplo de &lt;strong class="program"&gt;zed&lt;/strong&gt;, al ejecutar en Wayland, veremos por
-un breve momento que se intenta lanzar una ventana, pero a los pocos segundos
-se cierra. Podemos entrar a detallar mucho más, y podemos probar en la
-terminal &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;zed&lt;/span&gt; &lt;span class="pre"&gt;--foreground&lt;/span&gt;&lt;/code&gt;, y allí veremos el error
+un breve momento que se intenta lanzar una ventana, pero a los pocos segundos se
+cierra. Podemos entrar a detallar mucho más, y podemos probar en la terminal
+&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;zed&lt;/span&gt; &lt;span class="pre"&gt;--foreground&lt;/span&gt;&lt;/code&gt;, y allí veremos el error
 &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;&amp;quot;payload&amp;quot;:&lt;/span&gt; &lt;span class="pre"&gt;&amp;quot;called&lt;/span&gt; &lt;/code&gt;Result::unwrap()&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;on&lt;/span&gt; &lt;span class="pre"&gt;an&lt;/span&gt;&lt;/code&gt;Err&lt;code class="docutils literal notranslate"&gt; &lt;span class="pre"&gt;value:&lt;/span&gt; &lt;span class="pre"&gt;ERROR_INITIALIZATION_FAILED&amp;quot;&lt;/span&gt;&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;Si como yo, te ves afectado por este problema, puedes también contribuir con
 información útil al proyecto de Zed, reportando la salida de &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;vulkaninfo&lt;/span&gt;&lt;/code&gt; y
-&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;RUST_LOG=blade_graphics=debug&lt;/span&gt; &lt;span class="pre"&gt;zed&lt;/span&gt; &lt;span class="pre"&gt;--foreground&lt;/span&gt;&lt;/code&gt;, con info extra de lo
-siguiente que veremos para entender si el problema es más cercano a
-Vulkan/Wayland, o propiamente a Zed. Es el reporte
+&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;RUST_LOG=blade_graphics=debug&lt;/span&gt; &lt;span class="pre"&gt;zed&lt;/span&gt; &lt;span class="pre"&gt;--foreground&lt;/span&gt;&lt;/code&gt;, con info extra de lo siguiente
+que veremos para entender si el problema es más cercano a Vulkan/Wayland, o
+propiamente a Zed. Es el reporte
 &lt;a class="reference external" href="https://github.com/zed-industries/zed/issues/8168"&gt;zed/8168&lt;/a&gt;.&lt;/p&gt;
 &lt;/section&gt;
 &lt;section id="caso-vkcube-demo"&gt;
@@ -48,17 +208,17 @@ Vulkan/Wayland, o propiamente a Zed. Es el reporte
 &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;vkcube&lt;/span&gt;&lt;/code&gt; y &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;vkcube-wayland&lt;/span&gt;&lt;/code&gt; (disponibles en el paquete &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;vulkan-tools&lt;/span&gt;&lt;/code&gt;), y lo
 esperado es que si estas funcionan, Zed (y otras basadas en Vulkan) deberían
 funcionarte, al menos por soporte de la plataforma.&lt;/p&gt;
-&lt;p&gt;En mi caso, &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;vkcube&lt;/span&gt;&lt;/code&gt; funciona sin problema y Zed en X11 al menos abre la
-primera vez de la sesión, pero &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;vkcube-wayland&lt;/span&gt;&lt;/code&gt; reporta
-&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;segmentation&lt;/span&gt; &lt;span class="pre"&gt;fault&lt;/span&gt; &lt;span class="pre"&gt;(core&lt;/span&gt; &lt;span class="pre"&gt;dumped)&lt;/span&gt;&lt;/code&gt;. Esto último lleva a que probablemente
-las aplicaciones nativas de Wayland con Vulkan no funcionen adecuadamente.&lt;/p&gt;
+&lt;p&gt;En mi caso, &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;vkcube&lt;/span&gt;&lt;/code&gt; funciona sin problema y Zed en X11 al menos abre la primera
+vez de la sesión, pero &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;vkcube-wayland&lt;/span&gt;&lt;/code&gt; reporta
+&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;segmentation&lt;/span&gt; &lt;span class="pre"&gt;fault&lt;/span&gt; &lt;span class="pre"&gt;(core&lt;/span&gt; &lt;span class="pre"&gt;dumped)&lt;/span&gt;&lt;/code&gt;. Esto último lleva a que probablemente las
+aplicaciones nativas de Wayland con Vulkan no funcionen adecuadamente.&lt;/p&gt;
 &lt;p&gt;Ahora, posiblemente esto depende realmente de NVIDIA para los casos híbridos,
-porque en lo observado en Zed y con reportes de Vulkan, la afectación no
-ocurre en equipos con solo integrada o solo NVIDIA. Los casos reportados en Zed
-con solo integrada, era suficiente con instalar el controlador Vulkan adecuado
-para solucionar el problema. Y en Kubuntu 24.10 (que lo probé unas semanas),
-Zed me funcionó perfectamente en Wayland (pero entiendo que el controlador
-NVIDIA es de la serie 560).&lt;/p&gt;
+porque en lo observado en Zed y con reportes de Vulkan, la afectación no ocurre
+en equipos con solo integrada o solo NVIDIA. Los casos reportados en Zed con
+solo integrada, era suficiente con instalar el controlador Vulkan adecuado para
+solucionar el problema. Y en Kubuntu 24.10 (que lo probé unas semanas), Zed me
+funcionó perfectamente en Wayland (pero entiendo que el controlador NVIDIA es de
+la serie 560).&lt;/p&gt;
 &lt;/section&gt;
 &lt;/section&gt;
 &lt;section id="saber-si-tengo-graficos-hibridos"&gt;
@@ -85,16 +245,16 @@ video-hybrid-amd-nvidia-prime&lt;span class="w"&gt;            &lt;/span&gt;&lt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;p&gt;En ambos casos de puede apreciar la disponibilidad de una tarjeta gráfica
-NVIDIA y la tarjeta gráfica AMD (también podría ser Intel). Así que, esto
-puede ser la causa (considerando la versión del controlador NVIDIA).&lt;/p&gt;
+&lt;p&gt;En ambos casos de puede apreciar la disponibilidad de una tarjeta gráfica NVIDIA
+y la tarjeta gráfica AMD (también podría ser Intel). Así que, esto puede ser la
+causa (considerando la versión del controlador NVIDIA).&lt;/p&gt;
 &lt;/section&gt;
 &lt;section id="saber-la-version-del-controlador-nvidia"&gt;
 &lt;h2&gt;Saber la versión del controlador NVIDIA&lt;/h2&gt;
 &lt;p&gt;Si no eres consciente de la versión del controlador, puedes usar tu
-&lt;a class="reference internal" href="../es/blog/2024/que-hacer-despues-de-instalar-manjaro/#pamac-commands"&gt;&lt;span class="std std-ref"&gt;gestor de paquetes para consultarlo&lt;/span&gt;&lt;/a&gt;, validando la versión
-del paquete de &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;nvidia-utils&lt;/span&gt;&lt;/code&gt;. En mi caso, sería &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;pamac&lt;/span&gt; &lt;span class="pre"&gt;info&lt;/span&gt; &lt;span class="pre"&gt;nvidia-utils&lt;/span&gt;&lt;/code&gt; o
-en derivados de Ubuntu, &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;apt&lt;/span&gt; &lt;span class="pre"&gt;show&lt;/span&gt; &lt;span class="pre"&gt;nvidia-utils&lt;/span&gt;&lt;/code&gt;.&lt;/p&gt;
+&lt;a class="reference internal" href="../es/blog/2024/que-hacer-despues-de-instalar-manjaro/#pamac-commands"&gt;&lt;span class="std std-ref"&gt;gestor de paquetes para consultarlo&lt;/span&gt;&lt;/a&gt;, validando la versión del
+paquete de &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;nvidia-utils&lt;/span&gt;&lt;/code&gt;. En mi caso, sería &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;pamac&lt;/span&gt; &lt;span class="pre"&gt;info&lt;/span&gt; &lt;span class="pre"&gt;nvidia-utils&lt;/span&gt;&lt;/code&gt; o en
+derivados de Ubuntu, &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;apt&lt;/span&gt; &lt;span class="pre"&gt;show&lt;/span&gt; &lt;span class="pre"&gt;nvidia-utils&lt;/span&gt;&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;También puedes ejecutar &lt;strong class="program"&gt;nvidia-smi&lt;/strong&gt;, y lo verás en la primera fila,
 &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;Driver&lt;/span&gt; &lt;span class="pre"&gt;version&lt;/span&gt;&lt;/code&gt;.&lt;/p&gt;
 &lt;/section&gt;
@@ -102,27 +262,28 @@ en derivados de Ubuntu, &lt;code class="docutils literal notranslate"&gt;&lt;spa
 &lt;h2&gt;Solución provisional&lt;/h2&gt;
 &lt;p&gt;Es claro que queremos poder usar nuestras aplicaciones favoritas, como en mi
 caso lo es poder usar &lt;strong class="program"&gt;zed&lt;/strong&gt;. Sobre algunos problemas de Wayland en
-Manjaro, asociados con la tarjeta gráfica NVIDIA, he visto que la conclusión
-es esperar la serie 560, pero esta sigue en la rama inestable.&lt;/p&gt;
+Manjaro, asociados con la tarjeta gráfica NVIDIA, he visto que la conclusión es
+esperar la serie 560, pero esta sigue en la rama inestable.&lt;/p&gt;
 &lt;p&gt;Pero mientras esto ocurre, podemos
 &lt;a class="reference external" href="https://vulkan.lunarg.com/doc/view/1.3.250.1/windows/LoaderDriverInterface.html#overriding-the-default-driver-discovery"&gt;indicar explícitamente al controlador de Vulkan&lt;/a&gt;
 que haga uso de la configuración de la tarjeta integrada. Los archivos de
 configuración disponibles se encuentran en el directorio
 &lt;code class="file docutils literal notranslate"&gt;&lt;span class="pre"&gt;/usr/share/vulkan/icd.d/&lt;/span&gt;&lt;/code&gt;. Si es la tarjeta AMD, son los archivos que
-mencionan &lt;em&gt;radeon&lt;/em&gt;, y el caso de Intel dirá &lt;em&gt;intel&lt;/em&gt;. Esto se logra asignando
-la lista a la
-&lt;a class="reference external" href="https://wiki.archlinux.org/title/Vulkan#NVIDIA_-_vulkan_is_not_working_and_can_not_initialize"&gt;variable de entorno &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;VK_DRIVER_FILES&lt;/span&gt;&lt;/code&gt;&lt;/a&gt;. En mi caso, sería:&lt;/p&gt;
+mencionan &lt;em&gt;radeon&lt;/em&gt;, y el caso de Intel dirá &lt;em&gt;intel&lt;/em&gt;. Esto se logra asignando la
+lista a la
+&lt;a class="reference external" href="https://wiki.archlinux.org/title/Vulkan#NVIDIA_-_vulkan_is_not_working_and_can_not_initialize"&gt;variable de entorno &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;VK_DRIVER_FILES&lt;/span&gt;&lt;/code&gt;&lt;/a&gt;.
+En mi caso, sería:&lt;/p&gt;
 &lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nb"&gt;export&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;VK_DRIVER_FILES&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;/usr/share/vulkan/icd.d/radeon_icd.i686.json:/usr/share/vulkan/icd.d/radeon_icd.x86_64.json
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
-&lt;p&gt;Una vez realices este cambio, puedes probar nuevamente
-&lt;strong class="program"&gt;vkcube-wayland&lt;/strong&gt; o &lt;strong class="program"&gt;zed&lt;/strong&gt;, y si funciona, hacer este cambio
-permanente en el archivo &lt;aside class="system-message"&gt;
-&lt;p class="system-message-title"&gt;System Message: WARNING/2 (&lt;span class="docutils literal"&gt;/home/cosmoscalibur/Documentos/git/cosmoscalibur.github.io/es/blog/2024/problema-de-wayland-y-graficos-hibridos-en-linux.md&lt;/span&gt;, line 118)&lt;/p&gt;
+&lt;p&gt;Una vez realices este cambio, puedes probar nuevamente &lt;strong class="program"&gt;vkcube-wayland&lt;/strong&gt;
+o &lt;strong class="program"&gt;zed&lt;/strong&gt;, y si funciona, hacer este cambio permanente en el archivo
+&lt;aside class="system-message"&gt;
+&lt;p class="system-message-title"&gt;System Message: WARNING/2 (&lt;span class="docutils literal"&gt;/home/cosmoscalibur/Documentos/git/cosmoscalibur.github.io/es/blog/2024/problema-de-wayland-y-graficos-hibridos-en-linux.md&lt;/span&gt;, line 122)&lt;/p&gt;
 &lt;p&gt;Unknown interpreted text role «filename». [myst.role_unknown]&lt;/p&gt;
 &lt;/aside&gt;
 &lt;aside class="system-message"&gt;
-&lt;p class="system-message-title"&gt;System Message: INFO/1 (&lt;span class="docutils literal"&gt;/home/cosmoscalibur/Documentos/git/cosmoscalibur.github.io/es/blog/2024/problema-de-wayland-y-graficos-hibridos-en-linux.md&lt;/span&gt;, line 118)&lt;/p&gt;
+&lt;p class="system-message-title"&gt;System Message: INFO/1 (&lt;span class="docutils literal"&gt;/home/cosmoscalibur/Documentos/git/cosmoscalibur.github.io/es/blog/2024/problema-de-wayland-y-graficos-hibridos-en-linux.md&lt;/span&gt;, line 122)&lt;/p&gt;
 &lt;p&gt;No role entry for «filename» in module «docutils.parsers.rst.languages.es».
 Trying «filename» as canonical role name.&lt;/p&gt;
 &lt;/aside&gt;
@@ -136,10 +297,10 @@ posteriores dejan una ventana invisible.&lt;/p&gt;
 &lt;section id="solucion-definitiva"&gt;
 &lt;h2&gt;Solución definitiva&lt;/h2&gt;
 &lt;p&gt;Cuando se encuentre disponible la serie 560 espero contarles si esto en Manjaro
-resolvió el problema, y para ese momento es necesario remover la línea
-anterior de las variables de entorno. Y cuando deseemos ejecutar algo
-directamente con la tarjeta NVIDIA, deberemos usar &lt;strong class="program"&gt;prime-run&lt;/strong&gt;, que en
-este momento no hace diferencia.&lt;/p&gt;
+resolvió el problema, y para ese momento es necesario remover la línea anterior
+de las variables de entorno. Y cuando deseemos ejecutar algo directamente con la
+tarjeta NVIDIA, deberemos usar &lt;strong class="program"&gt;prime-run&lt;/strong&gt;, que en este momento no hace
+diferencia.&lt;/p&gt;
 &lt;p&gt;Sin remover la línea, y solo para probar con el fin de saber si vale la pena
 hacerlo, puedes desasignar la variable con &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;unset&lt;/span&gt; &lt;span class="pre"&gt;VK_DRIVER_FILES&lt;/span&gt;&lt;/code&gt;.&lt;/p&gt;
 &lt;/section&gt;
@@ -149,18 +310,15 @@ hacerlo, puedes desasignar la variable con &lt;code class="docutils literal notr
     <summary>Los gráficos híbridos son
 una estrategia de los equipos modernos a incorporar dos tarjetas gráficas, una
 integrada y una dedicada, con capacidades y consumo de energía diferentes. La
-idea es no usar la dedicada, salvo que sea requerido para el renderizado 3D.
-Sin embargo, esto no es un problema resuelto en Linux y afecta a las
-aplicaciones nativas en Wayland, el cual es el nuevo y moderno protocolo para
-comunicación de servidor gráfico usado por los compositores de ventanas en
-Linux (en reemplazo de X11), que hagan uso de Vulkan.</summary>
+idea es no usar la dedicada, salvo que sea requerido para el renderizado 3D. Sin
+embargo, esto no es un problema resuelto en Linux y afecta a las aplicaciones
+nativas en Wayland, el cual es el nuevo y moderno protocolo para comunicación de
+servidor gráfico usado por los compositores de ventanas en Linux (en reemplazo
+de X11), que hagan uso de Vulkan.</summary>
     <category term="gpu" label="gpu"/>
-    <category term="gráficoshíbridos" label="gráficos híbridos"/>
+    <category term="linux" label="linux"/>
     <category term="manjaro" label="manjaro"/>
     <category term="nvidia" label="nvidia"/>
-    <category term="radeon" label="radeon"/>
-    <category term="tarjetagráfica" label="tarjeta gráfica"/>
-    <category term="vulkan" label="vulkan"/>
     <category term="wayland" label="wayland"/>
     <category term="x11" label="x11"/>
     <category term="zed" label="zed"/>
@@ -175,40 +333,43 @@ Linux (en reemplazo de X11), que hagan uso de Vulkan.</summary>
     </author>
     <content type="html">&lt;section class="tex2jax_ignore mathjax_ignore" id="configurar-starship-en-manjaro-y-zsh"&gt;
 
-&lt;p&gt;Hace poco vengo cambiando múltiples herramientas en mi día a día, y en el
-manejo de la terminal Linux hay varios de esos cambios. Uno de esos es el
-&lt;em&gt;shell prompt&lt;/em&gt; (que podría traducirse tal vez como “indicador de terminal”),
-y estoy usando &lt;strong class="program"&gt;starship&lt;/strong&gt;. Sin embargo, hay detalles no documentados
-sobre como habilitarlo en Manjaro con &lt;strong class="program"&gt;zsh&lt;/strong&gt;, que aquí les cuento.&lt;/p&gt;
-&lt;figure class="align-center" id="id1"&gt;
-&lt;img alt="Apariencia visual de mensajes del indicador starship en la terminal para git, python y batería baja." src="https://www.cosmoscalibur.com/_images/indicador-starship.png" style="width: 500px; height: 250px;" /&gt;
+&lt;p&gt;Hace poco vengo cambiando múltiples herramientas en mi día a día, y en el manejo
+de la terminal Linux hay varios de esos cambios. Uno de esos es el &lt;em&gt;shell
+prompt&lt;/em&gt; (que podría traducirse tal vez como “indicador de terminal”), y estoy
+usando &lt;strong class="program"&gt;starship&lt;/strong&gt;. Sin embargo, hay detalles no documentados sobre como
+habilitarlo en Manjaro con &lt;strong class="program"&gt;zsh&lt;/strong&gt;, que aquí les cuento.&lt;/p&gt;
+&lt;aside class="system-message"&gt;
+&lt;p class="system-message-title"&gt;System Message: WARNING/2 (&lt;span class="docutils literal"&gt;/home/cosmoscalibur/Documentos/git/cosmoscalibur.github.io/es/blog/2024/configurar-starship-en-manjaro-y-zsh.md&lt;/span&gt;, line 16)&lt;/p&gt;
+&lt;p&gt;“figure”: Unknown option keys: [“:align”] (allowed: [“align”, “alt”, “class”, “figclass”, “figwidth”, “height”, “loading”, “name”, “scale”, “target”, “width”]) [myst.directive_option]&lt;/p&gt;
+&lt;/aside&gt;
+&lt;figure class="align-default" id="id1"&gt;
+&lt;img alt="Apariencia visual de mensajes del indicador starship en la terminal para git, python y batería baja." src="https://www.cosmoscalibur.com/_images/indicador-starship.png" /&gt;
 &lt;figcaption&gt;
-&lt;p&gt;&lt;span class="caption-text"&gt;Apariencia del indicador &lt;em&gt;Starship&lt;/em&gt; en un directorio &lt;em&gt;git&lt;/em&gt; con ambiente
-Python, y con indicación de batería baja.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class="caption-text"&gt;Apariencia del indicador &lt;em&gt;Starship&lt;/em&gt; en un directorio &lt;em&gt;git&lt;/em&gt; con ambiente Python,
+y con indicación de batería baja.&lt;/span&gt;&lt;/p&gt;
 &lt;/figcaption&gt;
 &lt;/figure&gt;
 &lt;p&gt;Para empezar, primero, un indicador de terminal es un programa que genera los
-textos asociados a cada ejecución de comandos en la terminal y lo que hay
-antes del cursor. Un buen indicador de terminal nos aporta información útil
-rápidamente del directorio en el cual nos ubicamos, de la ejecución de una
-línea de comandos o incluso la batería. Starship nos entrega esto, y hace parte
-del nuevo ecosistema de utilidades desarrolladas en rust.&lt;/p&gt;
+textos asociados a cada ejecución de comandos en la terminal y lo que hay antes
+del cursor. Un buen indicador de terminal nos aporta información útil
+rápidamente del directorio en el cual nos ubicamos, de la ejecución de una línea
+de comandos o incluso la batería. Starship nos entrega esto, y hace parte del
+nuevo ecosistema de utilidades desarrolladas en rust.&lt;/p&gt;
 &lt;section id="instalar-starship"&gt;
 &lt;h2&gt;Instalar &lt;em&gt;Starship&lt;/em&gt;&lt;/h2&gt;
 &lt;p&gt;En Manjaro, disponemos de &lt;a class="reference external" href="https://starship.rs/"&gt;&lt;em&gt;starship&lt;/em&gt;&lt;/a&gt; en el repositorio
-oficial, pero igual puedes instalar a partir de la rutina de instalación
-oficial que aplica a cualquier distribución Linux (útil si usas una distro
-como Ubuntu).&lt;/p&gt;
+oficial, pero igual puedes instalar a partir de la rutina de instalación oficial
+que aplica a cualquier distribución Linux (útil si usas una distro como Ubuntu).&lt;/p&gt;
 &lt;div class="sd-tab-set docutils"&gt;
 &lt;input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio"&gt;
-&lt;label class="sd-tab-label" data-sync-group="tab" data-sync-id="m" for="sd-tab-item-0"&gt;
+&lt;label class="sd-tab-label" for="sd-tab-item-0"&gt;
 Manjaro&lt;/label&gt;&lt;div class="sd-tab-content docutils"&gt;
 &lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo&lt;span class="w"&gt; &lt;/span&gt;pamac&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;starship&lt;span class="w"&gt; &lt;/span&gt;--no-confirm
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;input id="sd-tab-item-1" name="sd-tab-set-0" type="radio"&gt;
-&lt;label class="sd-tab-label" data-sync-group="tab" data-sync-id="u" for="sd-tab-item-1"&gt;
+&lt;label class="sd-tab-label" for="sd-tab-item-1"&gt;
 Ubuntu&lt;/label&gt;&lt;div class="sd-tab-content docutils"&gt;
 &lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;curl&lt;span class="w"&gt; &lt;/span&gt;-sS&lt;span class="w"&gt; &lt;/span&gt;https://starship.rs/install.sh&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;sh
 &lt;/pre&gt;&lt;/div&gt;
@@ -218,8 +379,8 @@ Ubuntu&lt;/label&gt;&lt;div class="sd-tab-content docutils"&gt;
 &lt;/section&gt;
 &lt;section id="iniciar-starship"&gt;
 &lt;h2&gt;Iniciar &lt;em&gt;Starship&lt;/em&gt;&lt;/h2&gt;
-&lt;p&gt;Al usar &lt;strong class="program"&gt;zsh&lt;/strong&gt;, la inicialización la podemos hacer añadiendo el
-&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;init&lt;/span&gt;&lt;/code&gt; al archivo &lt;code class="file docutils literal notranslate"&gt;&lt;span class="pre"&gt;~/.zshrc&lt;/span&gt;&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Al usar &lt;strong class="program"&gt;zsh&lt;/strong&gt;, la inicialización la podemos hacer añadiendo el &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;init&lt;/span&gt;&lt;/code&gt;
+al archivo &lt;code class="file docutils literal notranslate"&gt;&lt;span class="pre"&gt;~/.zshrc&lt;/span&gt;&lt;/code&gt;.&lt;/p&gt;
 &lt;div class="sd-tab-set docutils"&gt;
 &lt;input checked="checked" id="sd-tab-item-2" name="sd-tab-set-1" type="radio"&gt;
 &lt;label class="sd-tab-label" for="sd-tab-item-2"&gt;
@@ -243,12 +404,11 @@ este, la forma de inicializar es la siguiente.&lt;/p&gt;
 &lt;p&gt;Finalmente, estamos listos, o al menos, según el procedimiento oficial.&lt;/p&gt;
 &lt;p&gt;En Manjaro, &lt;strong class="program"&gt;zsh&lt;/strong&gt; posee una configuración predeterminada para el
 indicador de terminal, en el archivo &lt;code class="file docutils literal notranslate"&gt;&lt;span class="pre"&gt;~/.zshrc&lt;/span&gt;&lt;/code&gt; y en el archivo
-&lt;code class="file docutils literal notranslate"&gt;&lt;span class="pre"&gt;/usr/share/zsh/manjaro-zsh-prompt&lt;/span&gt;&lt;/code&gt;. Esta configuración es para
-habilitar &lt;em&gt;powerline&lt;/em&gt; y &lt;em&gt;powerlevel10k&lt;/em&gt; (&lt;em&gt;p10k&lt;/em&gt;) y evita el uso de un &lt;em&gt;prompt&lt;/em&gt;
-adicional.&lt;/p&gt;
+&lt;code class="file docutils literal notranslate"&gt;&lt;span class="pre"&gt;/usr/share/zsh/manjaro-zsh-prompt&lt;/span&gt;&lt;/code&gt;. Esta configuración es para habilitar
+&lt;em&gt;powerline&lt;/em&gt; y &lt;em&gt;powerlevel10k&lt;/em&gt; (&lt;em&gt;p10k&lt;/em&gt;) y evita el uso de un &lt;em&gt;prompt&lt;/em&gt; adicional.&lt;/p&gt;
 &lt;p&gt;Es necesario deshabilitar el uso de estos dos. Para ello, debemos pasar a falso
-el uso de &lt;em&gt;powerline&lt;/em&gt; y comentar (o borrar) las líneas de la configuración
-del &lt;em&gt;prompt&lt;/em&gt;.&lt;/p&gt;
+el uso de &lt;em&gt;powerline&lt;/em&gt; y comentar (o borrar) las líneas de la configuración del
+&lt;em&gt;prompt&lt;/em&gt;.&lt;/p&gt;
 &lt;div class="highlight-text notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;# Use powerline
 &lt;span class="hll"&gt;USE_POWERLINE=&amp;quot;false&amp;quot;
 &lt;/span&gt;# Has weird character width
@@ -266,8 +426,7 @@ fi
 &lt;/span&gt;eval &amp;quot;$(starship init zsh)&amp;quot;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
-&lt;p&gt;Ahora, reconstruimos la configuración y tenemos &lt;em&gt;starship&lt;/em&gt; en Manjaro con
-&lt;em&gt;Zsh&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;Ahora, reconstruimos la configuración y tenemos &lt;em&gt;starship&lt;/em&gt; en Manjaro con &lt;em&gt;Zsh&lt;/em&gt;.&lt;/p&gt;
 &lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nb"&gt;source&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;~/.zshrc
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
@@ -275,10 +434,10 @@ fi
 &lt;section id="archivo-de-configuracion"&gt;
 &lt;h2&gt;Archivo de configuración&lt;/h2&gt;
 &lt;p&gt;En general, la configuración por defecto es buena y no hay una necesidad de
-cambios fuertes. Sin embargo, el módulo de &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;gcloud&lt;/span&gt;&lt;/code&gt; se muestra en general en
-la sesión lo cual no me es agradable y poco útil en mi caso. Por este motivo
-creo el archivo de configuración &lt;code class="file docutils literal notranslate"&gt;&lt;span class="pre"&gt;~/.config/starship.toml&lt;/span&gt;&lt;/code&gt; y deshabilito
-el módulo.&lt;/p&gt;
+cambios fuertes. Sin embargo, el módulo de &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;gcloud&lt;/span&gt;&lt;/code&gt; se muestra en general en la
+sesión lo cual no me es agradable y poco útil en mi caso. Por este motivo creo
+el archivo de configuración &lt;code class="file docutils literal notranslate"&gt;&lt;span class="pre"&gt;~/.config/starship.toml&lt;/span&gt;&lt;/code&gt; y deshabilito el
+módulo.&lt;/p&gt;
 &lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;cat&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;lt;&amp;lt; &amp;#39;EOF&amp;#39; &amp;gt; ~/.config/starship.toml&lt;/span&gt;
 &lt;span class="s"&gt;[gcloud]&lt;/span&gt;
 &lt;span class="s"&gt;disabled = true&lt;/span&gt;
@@ -302,15 +461,15 @@ el módulo.&lt;/p&gt;
 &lt;/section&gt;
 </content>
     <link href="https://www.cosmoscalibur.com/es/blog/2024/configurar-starship-en-manjaro-y-zsh/"/>
-    <summary>Hace poco vengo cambiando múltiples herramientas en mi día a día, y en el
-manejo de la terminal Linux hay varios de esos cambios. Uno de esos es el
-shell prompt (que podría traducirse tal vez como “indicador de terminal”),
-y estoy usando starship. Sin embargo, hay detalles no documentados
-sobre como habilitarlo en Manjaro con zsh, que aquí les cuento.Apariencia visual de mensajes del indicador starship en la terminal para git, python y batería baja.</summary>
+    <summary>Hace poco vengo cambiando múltiples herramientas en mi día a día, y en el manejo
+de la terminal Linux hay varios de esos cambios. Uno de esos es el shell
+prompt (que podría traducirse tal vez como “indicador de terminal”), y estoy
+usando starship. Sin embargo, hay detalles no documentados sobre como
+habilitarlo en Manjaro con zsh, que aquí les cuento.Apariencia visual de mensajes del indicador starship en la terminal para git, python y batería baja.</summary>
     <category term="manjaro" label="manjaro"/>
+    <category term="rust" label="rust"/>
     <category term="shellprompt" label="shell prompt"/>
     <category term="starship" label="starship"/>
-    <category term="utilidadesenrust" label="utilidades en rust"/>
     <category term="zsh" label="zsh"/>
     <published>2024-12-15T00:00:00-05:00</published>
   </entry>
@@ -658,12 +817,12 @@ les contaré sobre como conectar a una instancia de Cloud SQL en Manjaro.</summa
     </author>
     <content type="html">&lt;section class="tex2jax_ignore mathjax_ignore" id="problemas-de-conexion-wifi-en-linux"&gt;
 
-&lt;p&gt;Si el WiFi de manera aleatoria comienza a desconectarse, y al revisar el
-listado de redes estas han desaparecido, algunos detalles por evaluar son:&lt;/p&gt;
+&lt;p&gt;Si el WiFi de manera aleatoria comienza a desconectarse, y al revisar el listado
+de redes estas han desaparecido, algunos detalles por evaluar son:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://bbs.archlinux.org/viewtopic.php?pid=2134101#p2134101"&gt;Deshabilitar “fast boot” de la BIOS&lt;/a&gt;:
-En Ubuntu pareciera no ser un problema actualmente (no me había sucedido en
-el mismo equipo con esa configuración, pero existen publicaciones de años
+En Ubuntu pareciera no ser un problema actualmente (no me había sucedido en el
+mismo equipo con esa configuración, pero existen publicaciones de años
 anteriores relacionadas a Ubuntu con esto), pero al movernos a Manjaro o
 derivadas de Arch, esto es un problema replicable. Asegúrate de deshabilitar
 “Fast boot” en la BIOS.&lt;/p&gt;&lt;/li&gt;
@@ -684,8 +843,8 @@ claro que debían ser las dos cosas. Esto fue una mezcla de probar distintas
 soluciones que reportaban y de probar efectos de las combinaciones. Ejemplo, al
 tener deshabilitado “&lt;em&gt;fast boot&lt;/em&gt;” ya me conectaba siempre desde el inicio, pero
 se perdían las redes al rato. Si tenía deshabilitado el ahorro de energía
-solamente, permanecían las redes, pero nunca conectaba. Solo al tener las dos
-en conjunto funcionó.&lt;/p&gt;
+solamente, permanecían las redes, pero nunca conectaba. Solo al tener las dos en
+conjunto funcionó.&lt;/p&gt;
 &lt;p&gt;Para dar contexto de mi caso específico, tengo Manjaro KDE 24.1 con núcleo 6.11.
 La tarjeta de red es &lt;em&gt;Realtek&lt;/em&gt; y el equipo es ASUS TUF Gaming A15 FA506IV.&lt;/p&gt;
 &lt;p&gt;También suelen reportar que
@@ -702,51 +861,46 @@ wifi.scan-rand-mac-address=no
 clave si escribes en los foros, es conocer información sobre tu hardware y
 controladores.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Obtener información general de sistema&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;Para este caos específico puede ser útil la información de la sección
-&lt;em&gt;Network&lt;/em&gt; y &lt;em&gt;System&lt;/em&gt;, pero no cortes el resultado si lo publicas en un foro.
-Estas utilidades no son solo cuando el error es de wifi, también te aporta
-información para otros problemas de hardware.&lt;/p&gt;
+&lt;p&gt;Para este caos específico puede ser útil la información de la sección &lt;em&gt;Network&lt;/em&gt;
+y &lt;em&gt;System&lt;/em&gt;, pero no cortes el resultado si lo publicas en un foro. Estas
+utilidades no son solo cuando el error es de wifi, también te aporta información
+para otros problemas de hardware.&lt;/p&gt;
 &lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;inxi&lt;span class="w"&gt; &lt;/span&gt;--full&lt;span class="w"&gt; &lt;/span&gt;--admin&lt;span class="w"&gt; &lt;/span&gt;--filter&lt;span class="w"&gt; &lt;/span&gt;--width
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
 &lt;p&gt;&lt;strong&gt;Obtener información de controladores&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;En este punto podemos detallar el controlador y versión de controlador,
-buscando la mención de &lt;em&gt;Network&lt;/em&gt;.&lt;/p&gt;
-&lt;div class="sd-tab-set docutils"&gt;
-&lt;input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio"&gt;
-&lt;label class="sd-tab-label" for="sd-tab-item-0"&gt;
-Manjaro&lt;/label&gt;&lt;div class="sd-tab-content docutils"&gt;
+&lt;p&gt;En este punto podemos detallar el controlador y versión de controlador, buscando
+la mención de &lt;em&gt;Network&lt;/em&gt;.&lt;/p&gt;
+&lt;div class="\{tab-set} docutils"&gt;
 &lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo&lt;span class="w"&gt; &lt;/span&gt;mhwd&lt;span class="w"&gt; &lt;/span&gt;-l&lt;span class="w"&gt; &lt;/span&gt;-li
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;input id="sd-tab-item-1" name="sd-tab-set-0" type="radio"&gt;
-&lt;label class="sd-tab-label" for="sd-tab-item-1"&gt;
-Ubuntu&lt;/label&gt;&lt;div class="sd-tab-content docutils"&gt;
+&lt;div class=":::\{tab-item} docutils"&gt;
 &lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo&lt;span class="w"&gt; &lt;/span&gt;lshw
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
+&lt;div class=":::: docutils"&gt;
 &lt;p&gt;&lt;strong&gt;Mensajes de diagnóstico del núcleo&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;Podemos buscar por mensajes del núcleo asociados al controlador. Ten presente
-el controlador desde la sección de &lt;em&gt;Network&lt;/em&gt; de &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;inxi&lt;/span&gt;&lt;/code&gt;. En mi caso, es &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;r8169&lt;/span&gt;&lt;/code&gt;
-y &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;rtw_8822ce&lt;/span&gt;&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Podemos buscar por mensajes del núcleo asociados al controlador. Ten presente el
+controlador desde la sección de &lt;em&gt;Network&lt;/em&gt; de &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;inxi&lt;/span&gt;&lt;/code&gt;. En mi caso, es &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;r8169&lt;/span&gt;&lt;/code&gt; y
+&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;rtw_8822ce&lt;/span&gt;&lt;/code&gt;.&lt;/p&gt;
 &lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo&lt;span class="w"&gt; &lt;/span&gt;dmesg&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;grep&lt;span class="w"&gt; &lt;/span&gt;r8169
 sudo&lt;span class="w"&gt; &lt;/span&gt;dmesg&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;grep&lt;span class="w"&gt; &lt;/span&gt;rtw_8822ce
 &lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
 &lt;/div&gt;
 &lt;/section&gt;
 &lt;/section&gt;
 </content>
     <link href="https://www.cosmoscalibur.com/es/blog/2024/problemas-de-conexion-wifi-en-linux/"/>
-    <summary>Si el WiFi de manera aleatoria comienza a desconectarse, y al revisar el
-listado de redes estas han desaparecido, algunos detalles por evaluar son:</summary>
-    <category term="arch" label="arch"/>
-    <category term="deteccióndehardware" label="detección de hardware"/>
+    <summary>Si el WiFi de manera aleatoria comienza a desconectarse, y al revisar el listado
+de redes estas han desaparecido, algunos detalles por evaluar son:</summary>
+    <category term="linux" label="linux"/>
     <category term="manjaro" label="manjaro"/>
-    <category term="problemasdewifi" label="problemas de wifi"/>
     <category term="ubuntu" label="ubuntu"/>
+    <category term="wifi" label="wifi"/>
     <published>2024-12-07T00:00:00-05:00</published>
   </entry>
   <entry>
@@ -1261,7 +1415,7 @@ Ubuntu&lt;/label&gt;&lt;div class="sd-tab-content docutils"&gt;
     <summary>Hace poco decidí pasarme a Manjaro KDE (24.1) y estoy muy contento del cambio.
 Así que con motivo a esto, les cuento sobre las cosas por hacer después de
 completar la instalación.</summary>
-    <category term="arch" label="arch"/>
+    <category term="aplicacionesparalinux" label="aplicaciones para linux"/>
     <category term="flatpak" label="flatpak"/>
     <category term="kde" label="kde"/>
     <category term="kubuntu" label="kubuntu"/>
@@ -1746,7 +1900,6 @@ visualization tool, Gaia Sky.&lt;/p&gt;
     <summary>I recently decided to switch to Manjaro KDE (24.1) and I’m very happy with the
 change. So, taking this opportunity, I’ll share some things to do after
 completing the installation.</summary>
-    <category term="arch" label="arch"/>
     <category term="flatpak" label="flatpak"/>
     <category term="kde" label="kde"/>
     <category term="kubuntu" label="kubuntu"/>
@@ -2150,9 +2303,8 @@ the associated effort and how it could be reduced. It also reminded me of the
 concept of “distrohopping” and the discussions about this practice, where many
 claim that it’s a waste of time and offers little value. However, I disagree and
 want to share the value I see in it and how to make it easier.</summary>
-    <category term="distrohopping" label="distrohopping"/>
     <category term="kde" label="kde"/>
-    <category term="linuxdistribution" label="linux distribution"/>
+    <category term="linux" label="linux"/>
     <category term="manjaro" label="manjaro"/>
     <category term="ubuntu" label="ubuntu"/>
     <published>2024-12-03T00:00:00-05:00</published>
@@ -2582,9 +2734,8 @@ Igualmente, recordé el concepto asociado de “distrohopping” y las discusion
 alrededor de esta práctica, en la cual muchos terminan afirmando que realmente
 es perder el tiempo y que aporta poco valor, pero yo no lo veo así y quiero
 compartirles el valor que le veo y el cómo facilitarlo.</summary>
-    <category term="distribuciónlinux" label="distribución linux"/>
-    <category term="distrohopping" label="distrohopping"/>
     <category term="kde" label="kde"/>
+    <category term="linux" label="linux"/>
     <category term="manjaro" label="manjaro"/>
     <category term="ubuntu" label="ubuntu"/>
     <published>2024-12-03T00:00:00-05:00</published>
@@ -2694,17 +2845,14 @@ iOS.&lt;/p&gt;
     <summary>Tired of streaming subscriptions draining your wallet? Perhaps not, but I’ll
 share a trick to comfortably, safely, and freely access a lot of content. I’ll
 be talking about Stremio and an extension that pulls content from torrents.</summary>
-    <category term="appletv" label="apple tv"/>
-    <category term="disneyplus" label="disney plus"/>
+    <category term="androidapplications" label="android applications"/>
+    <category term="linuxapplications" label="linux applications"/>
+    <category term="movies" label="movies"/>
     <category term="netflix" label="netflix"/>
-    <category term="plutotv" label="pluto tv"/>
-    <category term="popcorntime" label="popcorn time"/>
-    <category term="primevideo" label="prime video"/>
+    <category term="series" label="series"/>
     <category term="stremio" label="stremio"/>
-    <category term="torrentio" label="torrentio"/>
     <category term="torrents" label="torrents"/>
-    <category term="watchfreemovies" label="watch free movies"/>
-    <category term="watchfreeseries" label="watch free series"/>
+    <category term="windowsapplications" label="windows applications"/>
     <published>2024-10-21T00:00:00-05:00</published>
   </entry>
   <entry>
@@ -2822,17 +2970,14 @@ contenido favorito sean ese gasto hormiga que te desangra hasta más no poder?
 Espero que no, pero igual, te daré un truco para ver todo ese contenido de forma
 cómoda, segura y gratis. Así que te hablaré de Stremio y una extensión que te
 permitirá obtener el contenido a partir de torrents.</summary>
-    <category term="appletv" label="apple tv"/>
-    <category term="disneyplus" label="disney plus"/>
+    <category term="aplicacionesparaandroid" label="aplicaciones para android"/>
+    <category term="aplicacionesparalinux" label="aplicaciones para linux"/>
+    <category term="aplicacionesparawindows" label="aplicaciones para windows"/>
     <category term="netflix" label="netflix"/>
-    <category term="plutotv" label="pluto tv"/>
-    <category term="popcorntime" label="popcorn time"/>
-    <category term="primevideo" label="prime video"/>
+    <category term="películas" label="películas"/>
+    <category term="series" label="series"/>
     <category term="stremio" label="stremio"/>
-    <category term="torrentio" label="torrentio"/>
     <category term="torrents" label="torrents"/>
-    <category term="verpelículasgratis" label="ver películas gratis"/>
-    <category term="verseriesgratis" label="ver series gratis"/>
     <published>2024-10-21T00:00:00-05:00</published>
   </entry>
   <entry>
@@ -3025,9 +3170,10 @@ documentación de Linux, &lt;em&gt;TLDP&lt;/em&gt;.&lt;/p&gt;&lt;/li&gt;
 antes de que se venciera el acceso a la cuenta, y tocaba descargar los videos de
 Vimeo. Pero el truco de descarga de estos videos, hace que luego toque unir el
 audio y el video, así que les contaré como hacerlo con FFMPEG y Bash.</summary>
+    <category term="aplicacionesparalinux" label="aplicaciones para linux"/>
+    <category term="bash" label="bash"/>
+    <category term="extensionesdechrome" label="extensiones de chrome"/>
     <category term="ffmpeg" label="ffmpeg"/>
-    <category term="procesamientodeaudioyvideo" label="procesamiento de audio y video"/>
-    <category term="programaciónenbash" label="programación en bash"/>
     <category term="vimeo" label="vimeo"/>
     <published>2024-10-20T00:00:00-05:00</published>
   </entry>
@@ -3050,12 +3196,12 @@ audio y el video, así que les contaré como hacerlo con FFMPEG y Bash.</summary
 &lt;section id="perfil-de-velocidad-del-viento-solar"&gt;
 &lt;h2&gt;Perfil de velocidad del viento solar&lt;/h2&gt;
 &lt;p&gt;En el trabajo de Parker bajo condiciones de expansión isotérmica (&lt;span class="math notranslate nohighlight"&gt;\(\gamma = 1\)&lt;/span&gt;) de un fluido neutro (primera aproximación al comportamiento del viendo solar), lleva a una ecuación diferencial no lineal de primer orden que relaciona la velocidad del viento solar (&lt;span class="math notranslate nohighlight"&gt;\(u(r)\)&lt;/span&gt;) y la distancia heliocéntrica (&lt;span class="math notranslate nohighlight"&gt;\(r\)&lt;/span&gt;) ((Parker, 1958), (Kivelson, 1995)).&lt;/p&gt;
-&lt;div class="amsmath math notranslate nohighlight" id="equation-0e654458-0d4b-44cc-8161-07e9c6b97dff"&gt;
+&lt;div class="amsmath math notranslate nohighlight" id="equation-dc064088-fd19-4673-a989-8d292802bf34"&gt;
 &lt;span class="eqno"&gt;(1)&lt;/span&gt;\[\begin{equation}
 \frac{du(r)}{dr} = \left(\frac{4kT}{mr} - \frac{GM}{r^2} \right)u(r)\left(u(r)^2 - \frac{2kT}{m} \right)^{-1}
 \end{equation}\]&lt;/div&gt;
 &lt;p&gt;Con el fin de reducir la propagación de error por los ordenes de magnitud de las variables involucradas, se procede a adimensionalizar la ecuación diferencial, con base al radio y velocidad en el punto crítico (punto sónico) (Piso, 2008).&lt;/p&gt;
-&lt;div class="amsmath math notranslate nohighlight" id="equation-4058e72d-507b-443a-876f-8bbf4f0982ca"&gt;
+&lt;div class="amsmath math notranslate nohighlight" id="equation-caff2f1c-1b33-4f3d-a0f5-89ad6ce92669"&gt;
 &lt;span class="eqno"&gt;(2)&lt;/span&gt;\[\begin{eqnarray}
 c_s^2 &amp;amp; = &amp;amp; \frac{2kT}{m}\\
 r_c &amp;amp;=&amp;amp; \frac{GM}{2c_s^2}\\
@@ -3063,7 +3209,7 @@ r_c &amp;amp;=&amp;amp; \frac{GM}{2c_s^2}\\
 \end{eqnarray}\]&lt;/div&gt;
 &lt;p&gt;Donde &lt;span class="math notranslate nohighlight"&gt;\(v\)&lt;/span&gt; es la velocidad en velocidades sónicas (&lt;span class="math notranslate nohighlight"&gt;\(c_s\)&lt;/span&gt;) y &lt;span class="math notranslate nohighlight"&gt;\(R\)&lt;/span&gt; es el radio en radios sónicos (&lt;span class="math notranslate nohighlight"&gt;\(r_c\)&lt;/span&gt;). Observamos que alrededor del radio sónico y de la velocidad sónica se presenta un punto crítico que debe satisfacerse para asegurar el sentido físico de la solución. También, tenemos que esta ecuación representa un problema de valores de frontera, y en este caso la condición de frontera del problema en unidades adimensionales es &lt;span class="math notranslate nohighlight"&gt;\(v(R_{sol}) = v_0\)&lt;/span&gt;, donde &lt;span class="math notranslate nohighlight"&gt;\(R_{sol}\)&lt;/span&gt; es el radio del Sol, y es la posición desde la cuál comienza a desplazarse el flujo de partículas con una velocidad inicial &lt;span class="math notranslate nohighlight"&gt;\(v_0\)&lt;/span&gt; que dependerá de la densidad de partículas y la temperatura.&lt;/p&gt;
 &lt;p&gt;La generación de la espiral de Parker es efecto de la rotación del sol, por lo cual se aplica la transformación de coordenadas lagrangianas para sistemas rotantes, llevando a la ecuación diferencial&lt;/p&gt;
-&lt;div class="amsmath math notranslate nohighlight" id="equation-049d37ac-3c20-44d5-ba5c-44f9a4cd6c34"&gt;
+&lt;div class="amsmath math notranslate nohighlight" id="equation-4464eb6a-2455-4c5d-9446-693cde181b32"&gt;
 &lt;span class="eqno"&gt;(3)&lt;/span&gt;\[\begin{equation}
 \frac{d\varphi}{dR} = \frac{-\omega}{v(R)}
 \end{equation}\]&lt;/div&gt;
@@ -3088,14 +3234,14 @@ r_c &amp;amp;=&amp;amp; \frac{GM}{2c_s^2}\\
 &lt;p&gt;Iniciamos con el bloque de importación de los elementos que vamos a necesitar. Cada línea se encuentra comentado con el motivo por el cual lo requerimos para que sea claro su uso.&lt;/p&gt;
 &lt;div class="cell docutils container"&gt;
 &lt;div class="cell_input docutils container"&gt;
-&lt;div class="highlight-ipython3 notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;math&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;cos&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;pi&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;sin&lt;/span&gt;  &lt;span class="c1"&gt;# Requerido para la transformación polar para ilustrar la solución de la espiral&lt;/span&gt;
+&lt;div class="highlight-ipython3 notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;from&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nn"&gt;math&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;cos&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;pi&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;sin&lt;/span&gt;  &lt;span class="c1"&gt;# Requerido para la transformación polar para ilustrar la solución de la espiral&lt;/span&gt;
 
-&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;IPython.display&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;display&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nn"&gt;IPython.display&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;display&lt;/span&gt;
 &lt;span class="c1"&gt;# Para incluir gráficos en el Notebook en lugar de ventanas emergentes&lt;/span&gt;
 &lt;span class="c1"&gt;#%matplotlib inline&lt;/span&gt;
-&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;matplotlib.pyplot&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;plt&lt;/span&gt;  &lt;span class="c1"&gt;# Graficador para los arreglos numéricos&lt;/span&gt;
-&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;numpy&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;array&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;ones&lt;/span&gt;  &lt;span class="c1"&gt;# Arreglos numéricos y el arreglo de unos&lt;/span&gt;
-&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;sympy&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nn"&gt;matplotlib.pyplot&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;as&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nn"&gt;plt&lt;/span&gt;  &lt;span class="c1"&gt;# Graficador para los arreglos numéricos&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nn"&gt;numpy&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;array&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;ones&lt;/span&gt;  &lt;span class="c1"&gt;# Arreglos numéricos y el arreglo de unos&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nn"&gt;sympy&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;
     &lt;span class="n"&gt;dsolve&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;  &lt;span class="c1"&gt;# Solucionador de ecuaciones diferenciales ordinarias&lt;/span&gt;
     &lt;span class="n"&gt;Eq&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;  &lt;span class="c1"&gt;# Permite plantear igualdades/ecuaciones&lt;/span&gt;
     &lt;span class="n"&gt;Function&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;  &lt;span class="c1"&gt;# Declara variables que representan funciones&lt;/span&gt;
@@ -3213,11 +3359,11 @@ Siendo así, tenemos que, &lt;span class="math notranslate nohighlight"&gt;\(v(1
 &lt;p&gt;Planteamos la función para los valores numéricos del lado derecho de la ecuación diferencial (&lt;span class="math notranslate nohighlight"&gt;\(\frac{d}{dR}v(R)\)&lt;/span&gt;) en &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;f_ode&lt;/span&gt;&lt;/code&gt; y planteamos nuestra función para el método RK4, &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;RK4&lt;/span&gt;&lt;/code&gt;.&lt;/p&gt;
 &lt;div class="cell docutils container"&gt;
 &lt;div class="cell_input docutils container"&gt;
-&lt;div class="highlight-ipython3 notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;f_ode&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;R&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;v&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;div class="highlight-ipython3 notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;def&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;f_ode&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;R&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;v&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
     &lt;span class="c1"&gt;# Función de la derivada del perfil de velocidad respecto a la distancia&lt;/span&gt;
     &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;R&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;R&lt;/span&gt;&lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;v&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;v&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 
-&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;RK4&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;funcion&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;cond_inicial&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;x_final&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;span class="k"&gt;def&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;RK4&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;funcion&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;cond_inicial&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;x_final&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
     &lt;span class="c1"&gt;# Implementación del solucionador de Runge Kutta orden 4&lt;/span&gt;
     &lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;cond_inicial&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]]&lt;/span&gt;
     &lt;span class="n"&gt;w&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;cond_inicial&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]]&lt;/span&gt;
@@ -3247,12 +3393,12 @@ Siendo así, tenemos que, &lt;span class="math notranslate nohighlight"&gt;\(v(1
 &lt;span class="n"&gt;omega_sol&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mf"&gt;2.7e-6&lt;/span&gt; &lt;span class="c1"&gt;#rads-1, vel angular sol&lt;/span&gt;
 &lt;span class="n"&gt;T_cor&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mf"&gt;1e6&lt;/span&gt; &lt;span class="c1"&gt;#K, temp corona solar&lt;/span&gt;
 
-&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;c_s&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;T&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;T_cor&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;m&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;m_H&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;span class="k"&gt;def&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;c_s&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;T&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;T_cor&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;m&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;m_H&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
     &lt;span class="c1"&gt;# Velocidad sónica, la cual depende de la temperatura y densidad del medio&lt;/span&gt;
-    &lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;math&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;sqrt&lt;/span&gt;
+    &lt;span class="kn"&gt;from&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nn"&gt;math&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;sqrt&lt;/span&gt;
     &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;sqrt&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;k&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;T&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;m&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 
-&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;r_c&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;T&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;T_cor&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;m&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;m_H&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;span class="k"&gt;def&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;r_c&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;T&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;T_cor&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;m&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;m_H&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
     &lt;span class="c1"&gt;# Radio sónico&lt;/span&gt;
     &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;G&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;M&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;c_s&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;T&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;m&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
@@ -3453,7 +3599,6 @@ nuestro sitio generado con Sphinx.&lt;/p&gt;
 así algunos lo odien, es a Google Ads y ver esto como permite generar algún
 ingreso ahora que muchos usamos bloqueadores (sí, yo también). Les cuento como
 configurarlo a través de la modificación de las plantillas por defecto.Visualización de anuncios en sitio generado con Sphinx.</summary>
-    <category term="blog" label="blog"/>
     <category term="googleads" label="google ads"/>
     <category term="sphinx" label="sphinx"/>
     <published>2024-09-25T00:00:00-05:00</published>
@@ -3541,7 +3686,6 @@ generated with Sphinx.&lt;/p&gt;
 and some people may not like it, but I’m putting up Google Ads and seeing if
 this can generate some income now that many of us use blockers (yes, even me).
 I’ll tell you how to configure it through modifying the default templates.Ads display on site generated with Sphinx.</summary>
-    <category term="bloggingwithsphinx" label="blogging with sphinx"/>
     <category term="googleads" label="google ads"/>
     <category term="sphinx" label="sphinx"/>
     <published>2024-09-25T00:00:00-05:00</published>
@@ -3635,7 +3779,6 @@ nuestro logo que se adapte a estas dimensiones.&lt;/p&gt;
 través de un logo, algo sencillo, pero propio, distinto a una imagen descargada
 como lo era antes y que por lo mismo no lo había configurado. Les cuento como
 configurar el logo y el favicon en Sphinx.Visual del logo agregado en Sphinx en el blog.</summary>
-    <category term="blog" label="blog"/>
     <category term="favicon" label="favicon"/>
     <category term="pydata" label="pydata"/>
     <category term="sphinx" label="sphinx"/>
@@ -3731,7 +3874,6 @@ something simple but distinctive from pre-downloaded images like before, and
 which is why I hadn’t configured it yet. I’ll tell you how to configure the logo
 and favicon for Sphinx.Configured logo in blog</summary>
     <category term="blog" label="blog"/>
-    <category term="bloggingwithsphinx" label="blogging with sphinx"/>
     <category term="favicon" label="favicon"/>
     <category term="sphinx" label="sphinx"/>
     <published>2024-09-24T00:00:00-05:00</published>
@@ -3863,11 +4005,11 @@ desarrollado en Rust y que nos promete ser muy rápido en los procesos que
 pretende reemplazar de PIP y VENV. En este sentido, solo es añadir uv antes de
 las instrucciones habituales y debe funcionar (salvo algunos casos particulares
 de compatibilidad o de no existir implementación).</summary>
-    <category term="gestordeambientesvirtuales" label="gestor de ambientes virtuales"/>
+    <category term="gestordeambientes" label="gestor de ambientes"/>
     <category term="gestordepaquetes" label="gestor de paquetes"/>
     <category term="pip" label="pip"/>
     <category term="python" label="python"/>
-    <category term="utilidadesenrust" label="utilidades en rust"/>
+    <category term="rust" label="rust"/>
     <category term="uv" label="uv"/>
     <category term="venv" label="venv"/>
     <published>2024-06-30T00:00:00-05:00</published>
@@ -3997,7 +4139,6 @@ esta ocasión, como instalar Rust en Linux, y prepararnos para usarlo en VSCode 
 en Notebook.Diagnóstico de rust analyzer sugiriendo el uso de let para asignar una variable</summary>
     <category term="evcxr" label="evcxr"/>
     <category term="notebook" label="notebook"/>
-    <category term="rust" label="rust"/>
     <category term="rust-analyzer" label="rust-analyzer"/>
     <category term="rustlang" label="rustlang"/>
     <category term="vscode" label="vscode"/>
@@ -4012,62 +4153,69 @@ en Notebook.Diagnóstico de rust analyzer sugiriendo el uso de let para asignar 
     </author>
     <content type="html">&lt;section class="tex2jax_ignore mathjax_ignore" id="proton-modo-de-compatibilidad-de-steam"&gt;
 
-&lt;p&gt;¿Quieres jugar ese videojuego Steam que es soportado en Windows, pero no en Linux?
-Te cuento como usar el modo de compatibilidad de Steam en todos los juegos.&lt;/p&gt;
+&lt;p&gt;¿Quieres jugar ese videojuego Steam que es soportado en Windows, pero no en
+Linux? Te cuento como usar el modo de compatibilidad de Steam en todos los
+juegos.&lt;/p&gt;
 &lt;p&gt;Así es, tengo un lado &lt;em&gt;gamer&lt;/em&gt; y ya antes les he contado un poco sobre Steam
-(&lt;a class="reference internal" href="../es/blog/2021/configurar-retroarch-en-steam/"&gt;&lt;span class="std std-doc"&gt;Configurar RetroArch en Steam&lt;/span&gt;&lt;/a&gt; y &lt;a class="reference internal" href="../es/blog/2014/con-calma-para-steamos/"&gt;&lt;span class="std std-doc"&gt;Con calma para SteamOS&lt;/span&gt;&lt;/a&gt;),
-que es la plataforma de mi predilección (entre otras, porque muchos de los juegos ofrecidos
-en &lt;a class="reference external" href="https://www.humblebundle.com/"&gt;Humble Bundle&lt;/a&gt; son para esta). Y es común
-en los juegos que he comprado en los paquetes o algunos &lt;em&gt;free to play&lt;/em&gt; que me
-han llamado la atención, no tener la opción de Linux que es mi sistema operativo
+(&lt;a class="reference internal" href="../es/blog/2021/configurar-retroarch-en-steam/"&gt;&lt;span class="std std-doc"&gt;Configurar RetroArch en Steam&lt;/span&gt;&lt;/a&gt; y
+&lt;a class="reference internal" href="../es/blog/2014/con-calma-para-steamos/"&gt;&lt;span class="std std-doc"&gt;Con calma para SteamOS&lt;/span&gt;&lt;/a&gt;), que es la plataforma de mi
+predilección (entre otras, porque muchos de los juegos ofrecidos en
+&lt;a class="reference external" href="https://www.humblebundle.com/"&gt;Humble Bundle&lt;/a&gt; son para esta). Y es común en los
+juegos que he comprado en los paquetes o algunos &lt;em&gt;free to play&lt;/em&gt; que me han
+llamado la atención, no tener la opción de Linux que es mi sistema operativo
 principal. Pero Steam, tiene una solución, o al menos, una alternativa que vale
 la pena intentar antes de olvidar.&lt;/p&gt;
 &lt;section id="proton"&gt;
 &lt;h2&gt;Proton&lt;/h2&gt;
-&lt;p&gt;En el mundo Linux, seguramente conocerás una herramienta que nos permite intentar
-ejecutar programas Windows en Linux, que se llama &lt;a class="reference external" href="https://www.winehq.org/"&gt;Wine&lt;/a&gt;,
-de la cual también les conté en el pasado cuando necesitaba usar
+&lt;p&gt;En el mundo Linux, seguramente conocerás una herramienta que nos permite
+intentar ejecutar programas Windows en Linux, que se llama
+&lt;a class="reference external" href="https://www.winehq.org/"&gt;Wine&lt;/a&gt;, de la cual también les conté en el pasado
+cuando necesitaba usar
 &lt;a class="reference internal" href="../es/blog/2019/crear-contenedor-lxc-para-aplicacion-gui-ealite/"&gt;&lt;span class="std std-doc"&gt;&lt;em&gt;Enterprise Architect&lt;/em&gt; desde Linux&lt;/span&gt;&lt;/a&gt;.
-Resulta que Wine es justamente la solución por defecto, y cuando no, es una solución
-que aplica modificaciones sobre lo ya existente de Wine. Así es como surge, Proton,
-la solución desarrollada por &lt;em&gt;Valve&lt;/em&gt; (los desarrolladores de &lt;em&gt;Steam&lt;/em&gt;) para permitir
-dar portabilidad de los juegos Windows a un público amante de videojuegos, que cada vez
-es mayor usando Linux.&lt;/p&gt;
-&lt;p&gt;&lt;a class="reference external" href="https://github.com/ValveSoftware/Proton"&gt;Proton&lt;/a&gt; usa como base Wine, y adiciona una
-serie de componentes y parches adicionales para dar compatibilidad a los juegos desarrollados
-para Steam con soporte original para Windows, en Linux. Y esto ha sido de gran importancia para
-el proyecto de &lt;a class="reference external" href="https://store.steampowered.com/steamdeck"&gt;Steam Deck&lt;/a&gt;, la consola portátil
-de Steam basada en Linux.&lt;/p&gt;
+Resulta que Wine es justamente la solución por defecto, y cuando no, es una
+solución que aplica modificaciones sobre lo ya existente de Wine. Así es como
+surge, Proton, la solución desarrollada por &lt;em&gt;Valve&lt;/em&gt; (los desarrolladores de
+&lt;em&gt;Steam&lt;/em&gt;) para permitir dar portabilidad de los juegos Windows a un público
+amante de videojuegos, que cada vez es mayor usando Linux.&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://github.com/ValveSoftware/Proton"&gt;Proton&lt;/a&gt; usa como base Wine, y adiciona
+una serie de componentes y parches adicionales para dar compatibilidad a los
+juegos desarrollados para Steam con soporte original para Windows, en Linux. Y
+esto ha sido de gran importancia para el proyecto de
+&lt;a class="reference external" href="https://store.steampowered.com/steamdeck"&gt;Steam Deck&lt;/a&gt;, la consola portátil de
+Steam basada en Linux.&lt;/p&gt;
 &lt;/section&gt;
 &lt;section id="steam-play"&gt;
 &lt;h2&gt;Steam Play&lt;/h2&gt;
-&lt;p&gt;Si queremos entonces instalar videojuegos en nuestro PC Linux que son soportados en Windows
-y no Linux, ya la opción de compatibilidad, la cual se llama &lt;em&gt;Steam Play&lt;/em&gt;, viene activada por
-defecto. Pero, esto solo para el catálogo oficialmente soportado.&lt;/p&gt;
-&lt;p&gt;Sin embargo, existen juegos que sin ser soportados oficialmente, puedes darles un vistazo y
-funcionan perfectamente. Justamente esta semana, para una partida con mis compañeros de trabajo,
-decidimos jugar &lt;a class="reference external" href="https://store.steampowered.com/app/291550/Brawlhalla/"&gt;Brawlhalla&lt;/a&gt;, y la
+&lt;p&gt;Si queremos entonces instalar videojuegos en nuestro PC Linux que son soportados
+en Windows y no Linux, ya la opción de compatibilidad, la cual se llama &lt;em&gt;Steam
+Play&lt;/em&gt;, viene activada por defecto. Pero, esto solo para el catálogo oficialmente
+soportado.&lt;/p&gt;
+&lt;p&gt;Sin embargo, existen juegos que sin ser soportados oficialmente, puedes darles
+un vistazo y funcionan perfectamente. Justamente esta semana, para una partida
+con mis compañeros de trabajo, decidimos jugar
+&lt;a class="reference external" href="https://store.steampowered.com/app/291550/Brawlhalla/"&gt;Brawlhalla&lt;/a&gt;, y la
 sorpresa, no está soportado en Linux.&lt;/p&gt;
-&lt;p&gt;Así que, el proceso cuando no tenemos habilitado un juego es dirigirnos al menú de la barra
-superior, seleccionamos &lt;em&gt;Steam&lt;/em&gt;, &lt;em&gt;Configuración&lt;/em&gt;, &lt;em&gt;Compatibilidad&lt;/em&gt; y en el cuadro que nos muestra
-esta sección, veremos que la primera opción ya está habilitada (la de títulos soportados), pero
-la opción para todos los títulos no. Ahora, adelante, habilitamos que sea para todos los títulos
-y aceptamos el reinicio de &lt;em&gt;Steam&lt;/em&gt;. Una vez regresemos a &lt;em&gt;Brawlhalla&lt;/em&gt;, veremos que el botón de
+&lt;p&gt;Así que, el proceso cuando no tenemos habilitado un juego es dirigirnos al menú
+de la barra superior, seleccionamos &lt;em&gt;Steam&lt;/em&gt;, &lt;em&gt;Configuración&lt;/em&gt;, &lt;em&gt;Compatibilidad&lt;/em&gt; y
+en el cuadro que nos muestra esta sección, veremos que la primera opción ya está
+habilitada (la de títulos soportados), pero la opción para todos los títulos no.
+Ahora, adelante, habilitamos que sea para todos los títulos y aceptamos el
+reinicio de &lt;em&gt;Steam&lt;/em&gt;. Una vez regresemos a &lt;em&gt;Brawlhalla&lt;/em&gt;, veremos que el botón de
 instalar ya se encuentra habilitado.&lt;/p&gt;
-&lt;p&gt;Una vez termine la instalación e iniciemos el juego, veremos un solo mensaje de error, del cual
-no hay que preocuparse, lo saltamos y podemos jugar sin inconvenientes.&lt;/p&gt;
+&lt;p&gt;Una vez termine la instalación e iniciemos el juego, veremos un solo mensaje de
+error, del cual no hay que preocuparse, lo saltamos y podemos jugar sin
+inconvenientes.&lt;/p&gt;
 &lt;/section&gt;
 &lt;/section&gt;
 </content>
     <link href="https://www.cosmoscalibur.com/es/blog/2024/proton-modo-de-compatibilidad-de-steam/"/>
-    <summary>¿Quieres jugar ese videojuego Steam que es soportado en Windows, pero no en Linux?
-Te cuento como usar el modo de compatibilidad de Steam en todos los juegos.</summary>
-    <category term="brawlhalla" label="brawlhalla"/>
-    <category term="linux" label="linux"/>
-    <category term="proton" label="proton"/>
+    <summary>¿Quieres jugar ese videojuego Steam que es soportado en Windows, pero no en
+Linux? Te cuento como usar el modo de compatibilidad de Steam en todos los
+juegos.</summary>
+    <category term="aplicacionesparalinux" label="aplicaciones para linux"/>
     <category term="steam" label="steam"/>
-    <category term="steamplay" label="steam play"/>
-    <category term="videojuegos" label="videojuegos"/>
+    <category term="videojuegosparalinux" label="videojuegos para linux"/>
+    <category term="wine" label="wine"/>
     <published>2024-06-04T00:00:00-05:00</published>
   </entry>
   <entry>
@@ -4129,12 +4277,10 @@ without any issues.&lt;/p&gt;
     <link href="https://www.cosmoscalibur.com/en/blog/2024/proton-modo-de-compatibilidad-de-steam/"/>
     <summary>Do you want to play that Steam game that is supported on Windows, but not on
 Linux? I’ll tell you how to use the compatibility mode of Steam for all games.</summary>
-    <category term="brawlhalla" label="brawlhalla"/>
-    <category term="linux" label="linux"/>
-    <category term="proton" label="proton"/>
+    <category term="linuxapplications" label="linux applications"/>
+    <category term="linuxvideogames" label="linux videogames"/>
     <category term="steam" label="steam"/>
-    <category term="steamplay" label="steam play"/>
-    <category term="videogames" label="videogames"/>
+    <category term="wine" label="wine"/>
     <published>2024-06-04T00:00:00-05:00</published>
   </entry>
   <entry>
@@ -4148,36 +4294,34 @@ Linux? I’ll tell you how to use the compatibility mode of Steam for all games.
 
 &lt;p&gt;Ante la barrera de acceso de información especializada, típicamente por requerir
 de pago, existe una variedad de alternativas de acceso abierto.&lt;/p&gt;
-&lt;p&gt;En mis épocas de estudiante, investigador y docente, tuve estas limitaciones, y no
-siempre era fácil o rápido gestionar un recurso a través de la red de bibliotecas
-cuando no estaba disponible en las bases de datos contratadas en la universidad. A
-raíz de ello, debía ser estratégico el proceso de revisión de literatura para optar
-en su mayoría por recurso accesible, y era hacer la revisión en primera instancia
-solo en las fuentes de acceso abierto y solo en caso de encontrar en estas referencias
-importantes a un recurso no abierto, escalar la búsqueda en los sistemas cerrados de
-información.&lt;/p&gt;
-&lt;div class="admonition note"&gt;
-&lt;p class="admonition-title"&gt;Nota&lt;/p&gt;
+&lt;p&gt;En mis épocas de estudiante, investigador y docente, tuve estas limitaciones, y
+no siempre era fácil o rápido gestionar un recurso a través de la red de
+bibliotecas cuando no estaba disponible en las bases de datos contratadas en la
+universidad. A raíz de ello, debía ser estratégico el proceso de revisión de
+literatura para optar en su mayoría por recurso accesible, y era hacer la
+revisión en primera instancia solo en las fuentes de acceso abierto y solo en
+caso de encontrar en estas referencias importantes a un recurso no abierto,
+escalar la búsqueda en los sistemas cerrados de información.&lt;/p&gt;
+&lt;div class="\{note} docutils"&gt;
 &lt;p&gt;Mi formación es en el área de física, a nivel de gustos personales mi pasión se
-orienta por la astronomía y matemáticas, y a nivel laboral soy desarrollador y he
-trabajado en analítica de datos y aprendizaje de máquinas, por lo cual las fuentes
-pueden tener un sesgo a estas áreas.&lt;/p&gt;
-&lt;/div&gt;
-&lt;section id="repositorios-de-preprints"&gt;
-&lt;h2&gt;Repositorios de &lt;em&gt;Preprints&lt;/em&gt;&lt;/h2&gt;
+orienta por la astronomía y matemáticas, y a nivel laboral soy desarrollador y
+he trabajado en analítica de datos y aprendizaje de máquinas, por lo cual las
+fuentes pueden tener un sesgo a estas áreas. :::&lt;/p&gt;
+&lt;p class="rubric" id="repositorios-de-preprints"&gt;Repositorios de &lt;em&gt;Preprints&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;Los &lt;em&gt;preprints&lt;/em&gt;, son documentos que los autores publican antes de una
-publicación formal (es decir, en revistas indexadas) y que no posee el formato
-y marcas de la revista (son versiones planes o simples, un documento de texto
-poco estilizado). Típicamente las editoriales retienen los derechos sobre la
-versión final del documento y no sobre el contenido en sí que es el disponible
-en los &lt;em&gt;preprints&lt;/em&gt; (o por temas legales en algunos casos, los &lt;em&gt;posprints&lt;/em&gt;,
-compartidos después de la publicación indexada, ya que algunas editoriales
-exigen que no exista un &lt;em&gt;preprint&lt;/em&gt;).&lt;/p&gt;
-&lt;p&gt;Tal vez el repositorio más importante de &lt;em&gt;preprints&lt;/em&gt; es &lt;a class="reference external" href="https://arxiv.org/"&gt;arXiv&lt;/a&gt;, un
-prionero del &lt;em&gt;open access&lt;/em&gt; digital, que reune &lt;em&gt;preprints&lt;/em&gt; de física, matemáticas,
-ciencias de la computación, biología cuantitativa, finanzas cuantitativas,
-estadística, ingeniería eléctrica y economía. Este repositorio está bajo la
-administración de la Universidad de Cornell.&lt;/p&gt;
+publicación formal (es decir, en revistas indexadas) y que no posee el formato y
+marcas de la revista (son versiones planes o simples, un documento de texto poco
+estilizado). Típicamente las editoriales retienen los derechos sobre la versión
+final del documento y no sobre el contenido en sí que es el disponible en los
+&lt;em&gt;preprints&lt;/em&gt; (o por temas legales en algunos casos, los &lt;em&gt;posprints&lt;/em&gt;, compartidos
+después de la publicación indexada, ya que algunas editoriales exigen que no
+exista un &lt;em&gt;preprint&lt;/em&gt;).&lt;/p&gt;
+&lt;p&gt;Tal vez el repositorio más importante de &lt;em&gt;preprints&lt;/em&gt; es
+&lt;a class="reference external" href="https://arxiv.org/"&gt;arXiv&lt;/a&gt;, un prionero del &lt;em&gt;open access&lt;/em&gt; digital, que reune
+&lt;em&gt;preprints&lt;/em&gt; de física, matemáticas, ciencias de la computación, biología
+cuantitativa, finanzas cuantitativas, estadística, ingeniería eléctrica y
+economía. Este repositorio está bajo la administración de la Universidad de
+Cornell.&lt;/p&gt;
 &lt;p&gt;Pero esta filosofía, concepto y modelo, después se extendió y existe una familia
 (no oficial) que cubre a otras disciplinas, así como otros repositorios de
 &lt;em&gt;preprints&lt;/em&gt;.&lt;/p&gt;
@@ -4191,135 +4335,159 @@ otras disciplinas.&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://eartharxiv.org/"&gt;EarthArXiv&lt;/a&gt;, &lt;em&gt;preprints&lt;/em&gt; para ciencias de la tierra.&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://www.nlm.nih.gov/oet/ed/pmc/preprints/02-100.html"&gt;2. Where Can I Find Preprints? - National Library of Medicine&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://doapr.coar-repositories.org/repositories/"&gt;Directory of open access preprint repositories&lt;/a&gt;,
-es un directorio de acceso a distintos repositorios de &lt;em&gt;preprints&lt;/em&gt; de disciplinas
-diversas.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://asapbio.org/preprint-servers"&gt;Preprint server directory - ASAPBio&lt;/a&gt;, listado de
-servidores de &lt;em&gt;preprints&lt;/em&gt;.&lt;/p&gt;&lt;/li&gt;
+es un directorio de acceso a distintos repositorios de &lt;em&gt;preprints&lt;/em&gt; de
+disciplinas diversas.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://asapbio.org/preprint-servers"&gt;Preprint server directory - ASAPBio&lt;/a&gt;,
+listado de servidores de &lt;em&gt;preprints&lt;/em&gt;.&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;En los tres últimos casos, útiles porque son listados muy generales, hay que tener presente que
-no todos son servidores de &lt;em&gt;preprints&lt;/em&gt; estrictamente, como por ejemplo encontrar
-Authorea o Zenodo en el listado.&lt;/p&gt;
-&lt;/section&gt;
-&lt;section id="bibliotecas-o-archivos-digitales"&gt;
-&lt;h2&gt;Bibliotecas o archivos digitales&lt;/h2&gt;
+&lt;p&gt;En los tres últimos casos, útiles porque son listados muy generales, hay que
+tener presente que no todos son servidores de &lt;em&gt;preprints&lt;/em&gt; estrictamente, como
+por ejemplo encontrar Authorea o Zenodo en el listado.&lt;/p&gt;
+&lt;p class="rubric" id="bibliotecas-o-archivos-digitales"&gt;Bibliotecas o archivos digitales&lt;/p&gt;
 &lt;p&gt;En algunos casos, tenemos opción de acceder a recursos libres de artículos que
 no son &lt;em&gt;preprints&lt;/em&gt;, y es a través de bibliotecas digitales (las cuales, también
-pueden incluir &lt;em&gt;preprints&lt;/em&gt;). También encontramos los archivos digitales de instituciones
-comprometidas con los recursos abiertos o que por hacer uso de recurso público,
-tienen el compromiso de una política de datos abiertos para el desarrollo de la ciencia.&lt;/p&gt;
+pueden incluir &lt;em&gt;preprints&lt;/em&gt;). También encontramos los archivos digitales de
+instituciones comprometidas con los recursos abiertos o que por hacer uso de
+recurso público, tienen el compromiso de una política de datos abiertos para el
+desarrollo de la ciencia.&lt;/p&gt;
 &lt;ul class="simple"&gt;
-&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://ui.adsabs.harvard.edu"&gt;Astrophysics Data System - ADS&lt;/a&gt;, biblioteca digital
-para investigadores en astronomía y física. Administrada por Harvard y NASA.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://www.jstor.org/subjects"&gt;JSTOR&lt;/a&gt;, es un archivo digital de acceso abierto
-a libros y artículos de distintas disciplinas.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://www.oapen.org/"&gt;OAPEN&lt;/a&gt;, recursos de libros académicos de acceso abierto.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://www.nist.gov/"&gt;NIST&lt;/a&gt; (&lt;em&gt;National Institute of Standards and Technology&lt;/em&gt;),
-ofrece una variedad de recursos especializados de acceso abierto, entre libros, estándares,
-&lt;em&gt;handbooks&lt;/em&gt;, código y software, e incluso artículos (vinculados a la versión final publicada en modelo
-&lt;em&gt;open access&lt;/em&gt;). Para resaltar algunos accesos y materiales:&lt;/p&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://ui.adsabs.harvard.edu"&gt;Astrophysics Data System - ADS&lt;/a&gt;, biblioteca
+digital para investigadores en astronomía y física. Administrada por Harvard y
+NASA.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://www.jstor.org/subjects"&gt;JSTOR&lt;/a&gt;, es un archivo digital de acceso
+abierto a libros y artículos de distintas disciplinas.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://www.oapen.org/"&gt;OAPEN&lt;/a&gt;, recursos de libros académicos de acceso
+abierto.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://www.nist.gov/"&gt;NIST&lt;/a&gt; (&lt;em&gt;National Institute of Standards and
+Technology&lt;/em&gt;), ofrece una variedad de recursos especializados de acceso
+abierto, entre libros, estándares, &lt;em&gt;handbooks&lt;/em&gt;, código y software, e incluso
+artículos (vinculados a la versión final publicada en modelo &lt;em&gt;open access&lt;/em&gt;).
+Para resaltar algunos accesos y materiales:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://dlmf.nist.gov/"&gt;NIST Digital Library of Mathematical Functions&lt;/a&gt;: es un &lt;em&gt;handbook&lt;/em&gt;
-de funciones (matemáticas) especiales.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://dlmf.nist.gov/"&gt;NIST Digital Library of Mathematical Functions&lt;/a&gt;: es
+un &lt;em&gt;handbook&lt;/em&gt; de funciones (matemáticas) especiales.&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://www.itl.nist.gov/div898/handbook/index.htm"&gt;NIST/SEMATECH e-Handbook of Statistical Methods&lt;/a&gt;:
 es un &lt;em&gt;handbook&lt;/em&gt; de métodos estadísticos para ciencia e ingeniería.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://data.nist.gov/sdp/#/"&gt;NIST Data Discovery&lt;/a&gt;: es el buscador de recursos de datos y software
-del NIST. Encontramos desde colecciones de datos, rutinas para generar los gráficos de sus publicaciones,
-hasta software en el sentido convencional usado para simulaciones y análisis.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://www.nist.gov/publications"&gt;NIST Publications&lt;/a&gt;: buscador de publicaciones de autores del NIST.
-Se encuentran publicadas bajo modelo de acceso abierto.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://math.nist.gov/~BMiller/LaTeXML/"&gt;LateXML&lt;/a&gt;: Software para conversión de LaTeX a XML, permitiendo
-la publicación como contenido web. Es usado por el NIST en su &lt;em&gt;handbook&lt;/em&gt; de funciones especiales
-y también en &lt;em&gt;arXiv&lt;/em&gt; para la publicación como HTML5.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://math.nist.gov/"&gt;Math, Statistics, and Computational Science&lt;/a&gt;: compilación de recursos abiertos
-del NIST relacionados con matemáticas aplicadas, estadística y ciencias de la computación.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://data.nist.gov/sdp/#/"&gt;NIST Data Discovery&lt;/a&gt;: es el buscador de
+recursos de datos y software del NIST. Encontramos desde colecciones de
+datos, rutinas para generar los gráficos de sus publicaciones, hasta
+software en el sentido convencional usado para simulaciones y análisis.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://www.nist.gov/publications"&gt;NIST Publications&lt;/a&gt;: buscador de
+publicaciones de autores del NIST. Se encuentran publicadas bajo modelo de
+acceso abierto.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://math.nist.gov/~BMiller/LaTeXML/"&gt;LateXML&lt;/a&gt;: Software para conversión
+de LaTeX a XML, permitiendo la publicación como contenido web. Es usado por
+el NIST en su &lt;em&gt;handbook&lt;/em&gt; de funciones especiales y también en &lt;em&gt;arXiv&lt;/em&gt; para
+la publicación como HTML5.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://math.nist.gov/"&gt;Math, Statistics, and Computational Science&lt;/a&gt;:
+compilación de recursos abiertos del NIST relacionados con matemáticas
+aplicadas, estadística y ciencias de la computación.&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://www.mps.mpg.de/publications/"&gt;Max Planck Institute for Solar System Research&lt;/a&gt;: encontraremos acceso
-a reportes técnicos, artículos internos, trabajos de grado y una revista de acceso abierto. Salvo por la revista,
-la mayor parte del contenido descargable es en Alemán. Aunque encontraremos las
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://www.mps.mpg.de/publications/"&gt;Max Planck Institute for Solar System Research&lt;/a&gt;:
+encontraremos acceso a reportes técnicos, artículos internos, trabajos de
+grado y una revista de acceso abierto. Salvo por la revista, la mayor parte
+del contenido descargable es en Alemán. Aunque encontraremos las
 &lt;a class="reference external" href="https://www.mps.mpg.de/press-releases"&gt;notas de prensa en inglés&lt;/a&gt;.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://pdg.lbl.gov/"&gt;The Review of Particle Physics&lt;/a&gt;: &lt;em&gt;Handbook&lt;/em&gt; de física de partículas.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://zenodo.org/"&gt;Zenodo&lt;/a&gt;: herramienta de archivo digital y repositorio dispuesto
-por el CERN para la promoción del acceso abierto y la ciencia abierta. Permite la asignación
-de DOI. Se integra con GitHub.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://figshare.com/"&gt;Figshare&lt;/a&gt;: herramienta de archivo digital y repositorio con integraciones
-para GitHub, ORCID, Altmetric, y permite la asignación de DOI.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://pdg.lbl.gov/"&gt;The Review of Particle Physics&lt;/a&gt;: &lt;em&gt;Handbook&lt;/em&gt; de física
+de partículas.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://zenodo.org/"&gt;Zenodo&lt;/a&gt;: herramienta de archivo digital y repositorio
+dispuesto por el CERN para la promoción del acceso abierto y la ciencia
+abierta. Permite la asignación de DOI. Se integra con GitHub.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://figshare.com/"&gt;Figshare&lt;/a&gt;: herramienta de archivo digital y
+repositorio con integraciones para GitHub, ORCID, Altmetric, y permite la
+asignación de DOI.&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;Me parece importante resaltar algunos casos de biblioteca digital para recursos generales (también puede
-ser útil en algunos casos de investigación o estudio de distintos niveles de formación).&lt;/p&gt;
+&lt;p&gt;Me parece importante resaltar algunos casos de biblioteca digital para recursos
+generales (también puede ser útil en algunos casos de investigación o estudio de
+distintos niveles de formación).&lt;/p&gt;
 &lt;ul class="simple"&gt;
-&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://archive.org/details/books"&gt;Internet Archive - books&lt;/a&gt;, encontraremos diversidad
-de libros, no solo generales, sino también especializados. &lt;em&gt;Internet Archive&lt;/em&gt; también
-contiene colecciones de audio, videos, software e imágenes.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://www.gutenberg.org/"&gt;Project Gutenberg&lt;/a&gt;, libros electrónicos cuyos en los cuales
-sus derechos de protección han expirado en Estados Unidos. También aplican audiolibros.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://www.ellibrototal.com/ltotal/"&gt;El libro total&lt;/a&gt;: Biblioteca digital Colombiana, con una gran diversidad
-de material, que incluye no solo libros sino audiolibros, diccionarios, accesos directos a los diccionarios desde
-los libros, acceso a biografía de autores desde los libros asociados. Acceso a colecciones
-artísticas. Dispone de aplicación móvil y posee una sede física en Bucaramanga, Colombia.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://archive.org/details/books"&gt;Internet Archive - books&lt;/a&gt;, encontraremos
+diversidad de libros, no solo generales, sino también especializados.
+&lt;em&gt;Internet Archive&lt;/em&gt; también contiene colecciones de audio, videos, software e
+imágenes.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://www.gutenberg.org/"&gt;Project Gutenberg&lt;/a&gt;, libros electrónicos cuyos en
+los cuales sus derechos de protección han expirado en Estados Unidos. También
+aplican audiolibros.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://www.ellibrototal.com/ltotal/"&gt;El libro total&lt;/a&gt;: Biblioteca digital
+Colombiana, con una gran diversidad de material, que incluye no solo libros
+sino audiolibros, diccionarios, accesos directos a los diccionarios desde los
+libros, acceso a biografía de autores desde los libros asociados. Acceso a
+colecciones artísticas. Dispone de aplicación móvil y posee una sede física en
+Bucaramanga, Colombia.&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;/section&gt;
-&lt;section id="revistas-y-articulos-de-acceso-abierto"&gt;
-&lt;h2&gt;Revistas y artículos de acceso abierto&lt;/h2&gt;
-&lt;p&gt;Existen modelos de publicación que permiten a los lectores acceder al material final publicado
-de manera gratuita, sin barreras, aunque no necesariamente con un bajo costo para los autores
-e instituciones (por ejemplo, publicar en algunos casos tiene un costo mayor, de tal forma que
-la editorial gana por el lado del autor lo que deja de ganar por el lado del lector), pero
-también están los modelos que son accesibles completamente para los autores.&lt;/p&gt;
-&lt;p&gt;Esto nos permite acceder así, a recursos de artículos que tuvieron revisión por pares, y por ende
-que estamos leyendo un artículo posiblemente, confiable (existen muchas historias para mostrar
-que la revisión por pares no asegura calidad, y tal vez, las contaré en otra entrada del blog).&lt;/p&gt;
+&lt;p class="rubric" id="revistas-y-articulos-de-acceso-abierto"&gt;Revistas y artículos de acceso abierto&lt;/p&gt;
+&lt;p&gt;Existen modelos de publicación que permiten a los lectores acceder al material
+final publicado de manera gratuita, sin barreras, aunque no necesariamente con
+un bajo costo para los autores e instituciones (por ejemplo, publicar en algunos
+casos tiene un costo mayor, de tal forma que la editorial gana por el lado del
+autor lo que deja de ganar por el lado del lector), pero también están los
+modelos que son accesibles completamente para los autores.&lt;/p&gt;
+&lt;p&gt;Esto nos permite acceder así, a recursos de artículos que tuvieron revisión por
+pares, y por ende que estamos leyendo un artículo posiblemente, confiable
+(existen muchas historias para mostrar que la revisión por pares no asegura
+calidad, y tal vez, las contaré en otra entrada del blog).&lt;/p&gt;
 &lt;ul class="simple"&gt;
-&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://scholar.google.com/"&gt;Google académico&lt;/a&gt;: nos ayudará a encontrar publicaciones, donde
-nos relacionará en caso de existir, una versión descargable del material que no dependa de pago.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://openaccessbutton.org/"&gt;Open Access Button&lt;/a&gt;: opción que permite rastrear artículos legales
-y hacer solicitudes incluso directamente a los autores. Tiene extensión para Firefox.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://unpaywall.org"&gt;Unpaywall&lt;/a&gt;: dispone de extensión para Firefox y Chrome. Ayuda a encontrar
-versiones de acceso abierto de los artículos.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://doaj.org/"&gt;DOAJ - Directory of Open Access Journals&lt;/a&gt;: Es un listado de revistas que publican
-bajo modelos de acceso abierto. También permite hacer búsqueda de los artículos.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="http://www.theoj.org/"&gt;Open Journals&lt;/a&gt;: Colección de revistas de acceso abierto. Actualmente son:&lt;/p&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://scholar.google.com/"&gt;Google académico&lt;/a&gt;: nos ayudará a encontrar
+publicaciones, donde nos relacionará en caso de existir, una versión
+descargable del material que no dependa de pago.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://openaccessbutton.org/"&gt;Open Access Button&lt;/a&gt;: opción que permite
+rastrear artículos legales y hacer solicitudes incluso directamente a los
+autores. Tiene extensión para Firefox.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://unpaywall.org"&gt;Unpaywall&lt;/a&gt;: dispone de extensión para Firefox y
+Chrome. Ayuda a encontrar versiones de acceso abierto de los artículos.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://doaj.org/"&gt;DOAJ - Directory of Open Access Journals&lt;/a&gt;: Es un listado
+de revistas que publican bajo modelos de acceso abierto. También permite hacer
+búsqueda de los artículos.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="http://www.theoj.org/"&gt;Open Journals&lt;/a&gt;: Colección de revistas de acceso
+abierto. Actualmente son:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://joss.theoj.org/"&gt;JOSS&lt;/a&gt;: revista de software abierto.&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://jose.theoj.org/"&gt;JOSE&lt;/a&gt;: revista de recursos abiertos en educación.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://proceedings.juliacon.org/"&gt;The Proceedings of the JuliaCon Conferences&lt;/a&gt;: memorias de congreso
-de Julia.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://astro.theoj.org/"&gt;The Open Journal of Astrophysics&lt;/a&gt;: Este es un &lt;em&gt;overlay&lt;/em&gt; sobre arXiv.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://proceedings.juliacon.org/"&gt;The Proceedings of the JuliaCon Conferences&lt;/a&gt;:
+memorias de congreso de Julia.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://astro.theoj.org/"&gt;The Open Journal of Astrophysics&lt;/a&gt;: Este es un
+&lt;em&gt;overlay&lt;/em&gt; sobre arXiv.&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://proceedings.scipy.org/"&gt;SciPy Conference&lt;/a&gt;: memorias del congreso SciPy.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://www.mps.mpg.de/publications/lrsp"&gt;Living Reviews in Solar Physics&lt;/a&gt;: Es una revista de acceso abierto
-sobre física solar, posee alto impacto y posee una particularidad en la cual los autores pueden realizar
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://proceedings.scipy.org/"&gt;SciPy Conference&lt;/a&gt;: memorias del congreso
+SciPy.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://www.mps.mpg.de/publications/lrsp"&gt;Living Reviews in Solar Physics&lt;/a&gt;:
+Es una revista de acceso abierto sobre física solar, posee alto impacto y
+posee una particularidad en la cual los autores pueden realizar
 actualizaciones tras su publicación en línea (y de ahí su nombre también).&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://journals.sagepub.com/"&gt;Sage Journals&lt;/a&gt;: Editorial con revistas en diversas disciplinas en modelo
-de acceso abierto.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://journals.sagepub.com/"&gt;Sage Journals&lt;/a&gt;: Editorial con revistas en
+diversas disciplinas en modelo de acceso abierto.&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;En este listado, es necesario mencionar el caso de los &lt;a class="reference external" href="https://en.wikipedia.org/wiki/Overlay_journal"&gt;&lt;em&gt;overlay journal&lt;/em&gt;&lt;/a&gt;,
-que son un tipo de revistas con revisión por pares de acceso abierto y sin costos para los
-autores, que funcionan realizando selección de artículos (o aceptando sometimiento), desde
-&lt;em&gt;preprints&lt;/em&gt;. Hay varios casos basados en arXiv y familia.&lt;/p&gt;
-&lt;/section&gt;
-&lt;section id="redes-colaborativas"&gt;
-&lt;h2&gt;Redes colaborativas&lt;/h2&gt;
-&lt;p&gt;Sin duda, una red colaborativa es una alternativa. Oficial (como los procesos a través de las bibliotecas),
-o no oficial (redes sociales y grupos para intercambio, o servidores para compartir material).&lt;/p&gt;
+&lt;p&gt;En este listado, es necesario mencionar el caso de los
+&lt;a class="reference external" href="https://en.wikipedia.org/wiki/Overlay_journal"&gt;&lt;em&gt;overlay journal&lt;/em&gt;&lt;/a&gt;, que son un
+tipo de revistas con revisión por pares de acceso abierto y sin costos para los
+autores, que funcionan realizando selección de artículos (o aceptando
+sometimiento), desde &lt;em&gt;preprints&lt;/em&gt;. Hay varios casos basados en arXiv y familia.&lt;/p&gt;
+&lt;p class="rubric" id="redes-colaborativas"&gt;Redes colaborativas&lt;/p&gt;
+&lt;p&gt;Sin duda, una red colaborativa es una alternativa. Oficial (como los procesos a
+través de las bibliotecas), o no oficial (redes sociales y grupos para
+intercambio, o servidores para compartir material).&lt;/p&gt;
 &lt;ul class="simple"&gt;
-&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://sci-hub.se"&gt;Sci-Hub&lt;/a&gt;: Servidor de artículos de investigación principalmente (también libros).&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Library Genesis (libgen): Servidor de libros, artículos, comics y otros recursos. Actualmente desconozco
-un enlace funcional (los 3 dominios principales generan error 504).&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://sci-hub.se"&gt;Sci-Hub&lt;/a&gt;: Servidor de artículos de investigación
+principalmente (también libros).&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Library Genesis (libgen): Servidor de libros, artículos, comics y otros
+recursos. Actualmente desconozco un enlace funcional (los 3 dominios
+principales generan error 504).&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;Los dos recursos mencionados aquí, poseen continuas disputas legales y han sido bloqueados en distintos países.
-En LibGen, no he podido acceder, pero Sci-Hub está perfectamente funcional (desde Colombia).&lt;/p&gt;
-&lt;/section&gt;
+&lt;p&gt;Los dos recursos mencionados aquí, poseen continuas disputas legales y han sido
+bloqueados en distintos países. En LibGen, no he podido acceder, pero Sci-Hub
+está perfectamente funcional (desde Colombia).&lt;/p&gt;
+&lt;/div&gt;
 &lt;/section&gt;
 </content>
     <link href="https://www.cosmoscalibur.com/es/blog/2024/recursos-de-acceso-abierto-para-tu-investigacion/"/>
     <summary>Ante la barrera de acceso de información especializada, típicamente por requerir
 de pago, existe una variedad de alternativas de acceso abierto.</summary>
-    <category term="artículosacadémicos" label="artículos académicos"/>
+    <category term="accesoabierto" label="acceso abierto"/>
+    <category term="artículos" label="artículos"/>
     <category term="openaccess" label="open access"/>
-    <category term="recursosdeaccesoabierto" label="recursos de acceso abierto"/>
-    <category term="repositoriosdepreprints" label="repositorios de preprints"/>
+    <category term="preprints" label="preprints"/>
     <published>2024-06-02T00:00:00-05:00</published>
   </entry>
   <entry>
@@ -4331,41 +4499,43 @@ de pago, existe una variedad de alternativas de acceso abierto.</summary>
     </author>
     <content type="html">&lt;section class="tex2jax_ignore mathjax_ignore" id="factura-electronica-que-hacer-si-te-la-niegan"&gt;
 
-&lt;p&gt;La factura electrónica es un documento electrónica fiscal, de uso obligatorio
-en Colombia para la facturación oficial ante la DIAN. Pero los establecimientos
+&lt;p&gt;La factura electrónica es un documento electrónica fiscal, de uso obligatorio en
+Colombia para la facturación oficial ante la DIAN. Pero los establecimientos
 todavía tienen negaciones o bloqueos para este proceso. Y es un deber ciudadano
 reportar estas anomalías.&lt;/p&gt;
 &lt;section id="que-te-pueden-solicitar"&gt;
 &lt;h2&gt;¿Qué te pueden solicitar?&lt;/h2&gt;
-&lt;p&gt;Bueno, resulta que si en un establecimiento solicitas la factura electrónica (vale
-recalcar que es de obligatoriedad su generación), lo primero que se debe tener en
-cuenta, es que no te pueden negar la factura, pero sí puede estar un condicionamiento
-a su solicitud respecto a indicarlo desde el inicio del pedido (un tema de las
-plataformas a que en algunas es necesario indicarlo desde el inicio de registro de
-la venta).&lt;/p&gt;
-&lt;p&gt;Pero, algunos establecimientos, así generen la factura electrónica, ponen barreras o
-inconvenientes. Algunos son:&lt;/p&gt;
+&lt;p&gt;Bueno, resulta que si en un establecimiento solicitas la factura electrónica
+(vale recalcar que es de obligatoriedad su generación), lo primero que se debe
+tener en cuenta, es que no te pueden negar la factura, pero sí puede estar un
+condicionamiento a su solicitud respecto a indicarlo desde el inicio del pedido
+(un tema de las plataformas a que en algunas es necesario indicarlo desde el
+inicio de registro de la venta).&lt;/p&gt;
+&lt;p&gt;Pero, algunos establecimientos, así generen la factura electrónica, ponen
+barreras o inconvenientes. Algunos son:&lt;/p&gt;
 &lt;ol class="arabic simple"&gt;
-&lt;li&gt;&lt;p&gt;Solicitar un registro previo en una plataforma del establecimiento: No, esto no lo
-pueden pedir. La factura electrónica debe generarse en sitio si el cliente la solicita,
-sin esto depender de un registro previo en una plataforma.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Solicitar el RUT: Si bien el documento del RUT posee la información requerida, esta
-no es información del otro mundo que el cliente no sepa fácilmente, como su nombre completo
-(o razón social si es a nombre de una empresa) y NIT (que para la mayor parte de personas
-nacionales, este número coincide con la CC y ahora de forma mucho más universal tras la
-estandarización del NUIT). La norma explícitamente indica que no se podrá solicitar el
-documento.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Solicitar información adicional al nombre completo (o razón social) y NIT: No,
-acorde a la normatividad no te pueden preguntar información como dirección de
-residencia, régimen tributario o código de actividad económica. Te puedes negar
-entregar esta información adicional, y están en la obligación de generarte
-la factura electrónica.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Solicitar un registro previo en una plataforma del establecimiento: No, esto
+no lo pueden pedir. La factura electrónica debe generarse en sitio si el
+cliente la solicita, sin esto depender de un registro previo en una
+plataforma.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Solicitar el RUT: Si bien el documento del RUT posee la información
+requerida, esta no es información del otro mundo que el cliente no sepa
+fácilmente, como su nombre completo (o razón social si es a nombre de una
+empresa) y NIT (que para la mayor parte de personas nacionales, este número
+coincide con la CC y ahora de forma mucho más universal tras la
+estandarización del NUIT). La norma explícitamente indica que no se podrá
+solicitar el documento.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Solicitar información adicional al nombre completo (o razón social) y NIT:
+No, acorde a la normatividad no te pueden preguntar información como
+dirección de residencia, régimen tributario o código de actividad económica.
+Te puedes negar entregar esta información adicional, y están en la obligación
+de generarte la factura electrónica.&lt;/p&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;Así que, recapitulando, lo único requerido para generar la factura electrónica
 si la solicitas, es el nombre y apellido completo, junto con el NIT.&lt;/p&gt;
-&lt;p&gt;Además de esto, y para no escandalizarnos tan rápido en algunos establecimientos,
-es natural que para cumplir con el requisito de entrega de la factura electrónica,
-nos deban pedir el correo electrónico.&lt;/p&gt;
+&lt;p&gt;Además de esto, y para no escandalizarnos tan rápido en algunos
+establecimientos, es natural que para cumplir con el requisito de entrega de la
+factura electrónica, nos deban pedir el correo electrónico.&lt;/p&gt;
 &lt;p&gt;¿Me han ocurrido las anomalías descritas? Sí, en Tiendas D1 al solicitar el
 registro de documento (que omitieron pasando productos rápidamente cuando es
 posterior al primer producto que se habilita el ingreso de documento), me
@@ -4380,9 +4550,9 @@ adicionales, me sucedió en Restaurante Los Verdes.&lt;/p&gt;
 establecimientos para controlar la evasión fiscal (evasión de impuestos), lo que
 se traduce en un mayor recaudo de recursos para la Nación (cuidar el patrimonio
 de la Nación).&lt;/p&gt;
-&lt;p&gt;Pero además de esta acción que podría ser desinteresada o por un bien común,
-las facturas electrónicas emitidas a nuestro NIT (si somos personas naturales)
-nos permiten deducir hasta 240 UVT de las adquisiciones soportadas por factura
+&lt;p&gt;Pero además de esta acción que podría ser desinteresada o por un bien común, las
+facturas electrónicas emitidas a nuestro NIT (si somos personas naturales) nos
+permiten deducir hasta 240 UVT de las adquisiciones soportadas por factura
 electrónica deduciendo el 1% del valor de las transacciones. Esto entonces, se
 traduce en un alivio en parte del pago del saldo a pagar generado en nuestra
 declaración de renta (posiblemente no sea mucho, pero eso sirve).&lt;/p&gt;
@@ -4398,10 +4568,11 @@ no indicamos el documento, pero si lo dimos, debería tener nuestro documento.&l
 &lt;section id="se-puede-denunciar-la-negacion-a-facturar-o-la-solicitud-de-informacion-adicional"&gt;
 &lt;h2&gt;¿Se puede denunciar la negación a facturar o la solicitud de información adicional?&lt;/h2&gt;
 &lt;p&gt;Sí, se puede hacer una denuncia de fiscalización de tipo tributario, en un
-apartado de la DIAN para este fin. Este es el &lt;a class="reference external" href="https://muisca.dian.gov.co/WebDenunciasfiscalizacion/paginas/DerechosDeberesDenunciante.xhtml"&gt;Sistema de Denuncias de Fiscalización&lt;/a&gt;. Aquí
-podemos denunciar tanto los casos de solicitud de información adicional como
-los casos de negación de factura electrónica. Importante, busca antes el NIT
-o razón social del estableciento (así no te hagan factura electrónica, igual
+apartado de la DIAN para este fin. Este es el
+&lt;a class="reference external" href="https://muisca.dian.gov.co/WebDenunciasfiscalizacion/paginas/DerechosDeberesDenunciante.xhtml"&gt;Sistema de Denuncias de Fiscalización&lt;/a&gt;.
+Aquí podemos denunciar tanto los casos de solicitud de información adicional
+como los casos de negación de factura electrónica. Importante, busca antes el
+NIT o razón social del estableciento (así no te hagan factura electrónica, igual
 compra para que tengas una factura en papel con el NIT o razón social para poder
 hacer la denuncia).&lt;/p&gt;
 &lt;/section&gt;
@@ -4411,21 +4582,19 @@ hacer la denuncia).&lt;/p&gt;
 &lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://actualicese.com/beneficio-tributario-por-facturas-electronicas-para-personas-naturales/"&gt;Beneficio tributario para personas naturales por facturas electrónicas&lt;/a&gt;.
 Actualícese, consultado el 26 de mayo de 2024. Elaborado el 9 de mayo de 2024.&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://incp.org.co/publicaciones/infoincp-publicaciones/impuestos/nacionales/2023/09/le-deben-solicitar-documentos-como-el-rut-para-expedirle-una-factura-electronica/"&gt;¿Le deben solicitar documentos como el RUT para expedirle una factura electrónica?&lt;/a&gt;.
-Instituto Nacional de Contadores Públicos de Colombia, consultado el 26 de mayo de 2024.
-Elaborado el 13 de septiembre de 2023.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://incp.org.co/wp-content/uploads/2022/10/Circular-Externa-000007-de-2022.pdf"&gt;Circular Externa 000007 de 2022&lt;/a&gt;. DIAN,
-24 de octubre de 2022.&lt;/p&gt;&lt;/li&gt;
+Instituto Nacional de Contadores Públicos de Colombia, consultado el 26 de
+mayo de 2024. Elaborado el 13 de septiembre de 2023.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://incp.org.co/wp-content/uploads/2022/10/Circular-Externa-000007-de-2022.pdf"&gt;Circular Externa 000007 de 2022&lt;/a&gt;.
+DIAN, 24 de octubre de 2022.&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/section&gt;
 &lt;/section&gt;
 </content>
     <link href="https://www.cosmoscalibur.com/es/blog/2024/factura-electronica-que-hacer-si-te-la-niegan/"/>
-    <summary>La factura electrónica es un documento electrónica fiscal, de uso obligatorio
-en Colombia para la facturación oficial ante la DIAN. Pero los establecimientos
+    <summary>La factura electrónica es un documento electrónica fiscal, de uso obligatorio en
+Colombia para la facturación oficial ante la DIAN. Pero los establecimientos
 todavía tienen negaciones o bloqueos para este proceso. Y es un deber ciudadano
 reportar estas anomalías.</summary>
-    <category term="delitotributario" label="delito tributario"/>
-    <category term="denunciafiscalización" label="denuncia fiscalización"/>
     <category term="facturaelectrónica" label="factura electrónica"/>
     <published>2024-05-26T00:00:00-05:00</published>
   </entry>
@@ -4600,10 +4769,9 @@ cual.&lt;/p&gt;
 así que aquí te explico algunos por menores para hacer una migración de Nikola a
 Sphinx.</summary>
     <category term="ablog" label="ablog"/>
-    <category term="blog" label="blog"/>
     <category term="pydata" label="pydata"/>
     <category term="python" label="python"/>
-    <category term="sitioestático" label="sitio estático"/>
+    <category term="páginawebestática" label="página web estática"/>
     <category term="sphinx" label="sphinx"/>
     <published>2024-05-24T00:00:00-05:00</published>
   </entry>
@@ -4616,8 +4784,8 @@ Sphinx.</summary>
     </author>
     <content type="html">&lt;section class="tex2jax_ignore mathjax_ignore" id="configurar-segundo-teclado-en-linux"&gt;
 
-&lt;p&gt;Si tienes un segundo teclado para conectar a tu equipo Linux, pero su distribución
-de lenguaje es diferente, te explico como configurar aquí.&lt;/p&gt;
+&lt;p&gt;Si tienes un segundo teclado para conectar a tu equipo Linux, pero su
+distribución de lenguaje es diferente, te explico como configurar aquí.&lt;/p&gt;
 &lt;p&gt;Resulta que, cuando ingresé a mi empleo actual, me entregaron como dotación un
 equipo con teclado inglés. Y bueno, que problema acostumbrarme a la
 configuración de teclado internacional para poder escribir con tildes o con “ñ”.
@@ -4632,8 +4800,8 @@ distribución del teclado español no tenía el mapeo adecuado.&lt;/p&gt;
 &lt;section id="metodo-de-entrada"&gt;
 &lt;h2&gt;Método de entrada&lt;/h2&gt;
 &lt;p&gt;Necesitamos conocer el método de entrada asociado, es decir, nuestros
-dispositivos conectados para ingresar información, como el teclado,
-el ratón o controles.&lt;/p&gt;
+dispositivos conectados para ingresar información, como el teclado, el ratón o
+controles.&lt;/p&gt;
 &lt;p&gt;Para este fin usamos &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;xinput&lt;/span&gt;&lt;/code&gt;. Es una utilidad para configurar y probar los
 métodos de entrada.&lt;/p&gt;
 &lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;xinput
@@ -4666,13 +4834,13 @@ identificador es &lt;code class="docutils literal notranslate"&gt;&lt;span class
 &lt;section id="configuracion-de-lenguaje"&gt;
 &lt;h2&gt;Configuración de lenguaje&lt;/h2&gt;
 &lt;p&gt;Ya que sabemos el identificador del teclado, podemos asignarle una configuración
-específica al teclado. Para este fin, usamos &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;setxkbmap&lt;/span&gt;&lt;/code&gt;, que es la utilidad para
-configuración del teclado.&lt;/p&gt;
+específica al teclado. Para este fin, usamos &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;setxkbmap&lt;/span&gt;&lt;/code&gt;, que es la utilidad
+para configuración del teclado.&lt;/p&gt;
 &lt;p&gt;El identificador previo, corresponde al argumento de &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;-device&lt;/span&gt;&lt;/code&gt;, y el lenguaje
 del teclado corresponde al argumento &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;-layout&lt;/span&gt;&lt;/code&gt;. Es necesario que validemos muy
 bien esto, porque para un mismo lenguaje existen variantes (&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;-variant&lt;/span&gt;&lt;/code&gt;).
-Ejemplo, en español podemos encontrar con variantes como latinoamérica, dvorak
-y teclas muertas.&lt;/p&gt;
+Ejemplo, en español podemos encontrar con variantes como latinoamérica, dvorak y
+teclas muertas.&lt;/p&gt;
 &lt;p&gt;En mi caso, pues mi teclado corresponde al teclado español sin variantes, así
 que, la ejecución será:&lt;/p&gt;
 &lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;setxkbmap&lt;span class="w"&gt; &lt;/span&gt;-device&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;15&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;-layout&lt;span class="w"&gt; &lt;/span&gt;es
@@ -4684,12 +4852,12 @@ mientras que el teclado principal seguirá en inglés.&lt;/p&gt;
 &lt;/section&gt;
 </content>
     <link href="https://www.cosmoscalibur.com/es/blog/2024/configurar-segundo-teclado-en-linux/"/>
-    <summary>Si tienes un segundo teclado para conectar a tu equipo Linux, pero su distribución
-de lenguaje es diferente, te explico como configurar aquí.</summary>
-    <category term="configuraciónlenguaje" label="configuración lenguaje"/>
+    <summary>Si tienes un segundo teclado para conectar a tu equipo Linux, pero su
+distribución de lenguaje es diferente, te explico como configurar aquí.</summary>
     <category term="linux" label="linux"/>
     <category term="setxkbmap" label="setxkbmap"/>
     <category term="tecladousb" label="teclado usb"/>
+    <category term="x11" label="x11"/>
     <category term="xinput" label="xinput"/>
     <published>2024-05-19T00:00:00-05:00</published>
   </entry>
@@ -5165,7 +5333,6 @@ it in several entries, since the migration isn’t complete yet, and this is the
 first entry regarding this topic, covering the basics so you don’t fail on your
 attempt.</summary>
     <category term="ablog" label="ablog"/>
-    <category term="bloggingwithsphinx" label="blogging with sphinx"/>
     <category term="python" label="python"/>
     <category term="sphinx" label="sphinx"/>
     <category term="staticsitegenerators" label="static site generators"/>
@@ -5680,10 +5847,9 @@ que deseaba, generar el blog con Sphinx. Sobre este proceso les estaré contando
 en varias entradas, ya que la migración no la he concluido, y esta es la primera
 entrada al respecto, con lo más básico para iniciar y no fracasar en el intento.</summary>
     <category term="ablog" label="ablog"/>
-    <category term="blog" label="blog"/>
     <category term="pydata" label="pydata"/>
     <category term="python" label="python"/>
-    <category term="sitioestático" label="sitio estático"/>
+    <category term="páginawebestática" label="página web estática"/>
     <category term="sphinx" label="sphinx"/>
     <published>2024-05-16T00:00:00-05:00</published>
   </entry>
@@ -5698,58 +5864,39 @@ entrada al respecto, con lo más básico para iniciar y no fracasar en el intent
 
 &lt;section id="introduction"&gt;
 &lt;h2&gt;Introduction&lt;/h2&gt;
-&lt;p&gt;&lt;a class="reference external" href="https://www.retroarch.com/"&gt;RetroArch&lt;/a&gt; is a cross-platform
-(&lt;a class="reference external" href="https://www.retroarch.com/?page=platforms"&gt;supported platform downloads&lt;/a&gt;)
-and open-source emulator and game aggregator. Installing RetroArch
-through Steam offers advantages by integrating Steam Play features and
-Steam Cloud save states. This also benefits the community by providing
-an additional distribution method.&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://www.retroarch.com/"&gt;RetroArch&lt;/a&gt; is a cross-platform (&lt;a class="reference external" href="https://www.retroarch.com/?page=platforms"&gt;supported
+platform downloads&lt;/a&gt;) and
+open-source emulator and game aggregator. Installing RetroArch through Steam
+offers advantages by integrating Steam Play features and Steam Cloud save
+states. This also benefits the community by providing an additional distribution
+method.&lt;/p&gt;
 &lt;p&gt;If you prefer a video version, you can watch it on YouTube (spanish version):&lt;/p&gt;
 &lt;div class="video_wrapper align-center" style="text-align: center"&gt;
 &lt;iframe allowfullscreen="true" src="https://www.youtube.com/embed/DIJTylhiHyo" style="border: 0; height: 345px; width: 560px"&gt;
 &lt;/iframe&gt;&lt;/div&gt;&lt;/section&gt;
 &lt;section id="installation-via-steam"&gt;
 &lt;h2&gt;Installation via Steam&lt;/h2&gt;
-&lt;p&gt;Let’s proceed by searching for
-&lt;a class="reference external" href="https://store.steampowered.com/app/1118310/RetroArch/"&gt;RetroArch on the Steam store&lt;/a&gt;.
-Install it and accept the subsequent download of &lt;em&gt;Steam Runtime Soldier&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;Let’s proceed by searching for &lt;a class="reference external" href="https://store.steampowered.com/app/1118310/RetroArch/"&gt;RetroArch on the Steam store&lt;/a&gt;. Install it and accept
+the subsequent download of &lt;em&gt;Steam Runtime Soldier&lt;/em&gt;.&lt;/p&gt;
 &lt;/section&gt;
 &lt;section id="installing-emulators-cores"&gt;
 &lt;h2&gt;Installing Emulators (Cores)&lt;/h2&gt;
-&lt;aside class="system-message"&gt;
-&lt;p class="system-message-title"&gt;System Message: WARNING/2 (&lt;span class="docutils literal"&gt;/home/cosmoscalibur/Documentos/git/cosmoscalibur.github.io/en/blog/2021/configurar-retroarch-en-steam.rst&lt;/span&gt;, line 32)&lt;/p&gt;
-&lt;p&gt;Title underline too short.&lt;/p&gt;
-&lt;div class="highlight-default notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;Installing&lt;/span&gt; &lt;span class="n"&gt;Emulators&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Cores&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="o"&gt;---------------------------&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;/aside&gt;
-&lt;p&gt;To install emulators (referred to as «cores» within RetroArch), navigate
-to the game’s DLC option (&lt;em&gt;Manage &amp;gt; DLC&lt;/em&gt;) and activate the desired
-emulators. This list defaults to the &lt;em&gt;builtin&lt;/em&gt; emulators that have been
-gradually included.&lt;/p&gt;
+&lt;p&gt;To install emulators (referred to as «cores» within RetroArch), navigate to the
+game’s DLC option (&lt;em&gt;Manage &amp;gt; DLC&lt;/em&gt;) and activate the desired emulators. This list
+defaults to the &lt;em&gt;builtin&lt;/em&gt; emulators that have been gradually included.&lt;/p&gt;
 &lt;/section&gt;
 &lt;section id="controller-configuration"&gt;
 &lt;h2&gt;Controller Configuration&lt;/h2&gt;
-&lt;p&gt;Once you launch RetroArch as a Steam game, to configure your controller,
-go (using the keyboard or mouse) to &lt;em&gt;Settings &amp;gt; Drivers &amp;gt; Joypad Driver&lt;/em&gt;
-and change &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;udev&lt;/span&gt;&lt;/code&gt; to &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;sdl2&lt;/span&gt;&lt;/code&gt;, after which you must restart RetroArch.
-From this point on, your controller will be functional within the
-RetroArch interface.&lt;/p&gt;
+&lt;p&gt;Once you launch RetroArch as a Steam game, to configure your controller, go
+(using the keyboard or mouse) to &lt;em&gt;Settings &amp;gt; Drivers &amp;gt; Joypad Driver&lt;/em&gt; and change
+&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;udev&lt;/span&gt;&lt;/code&gt; to &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;sdl2&lt;/span&gt;&lt;/code&gt;, after which you must restart RetroArch. From this point
+on, your controller will be functional within the RetroArch interface.&lt;/p&gt;
 &lt;/section&gt;
 &lt;section id="loading-games-roms"&gt;
 &lt;h2&gt;Loading Games (ROMs)&lt;/h2&gt;
-&lt;aside class="system-message"&gt;
-&lt;p class="system-message-title"&gt;System Message: WARNING/2 (&lt;span class="docutils literal"&gt;/home/cosmoscalibur/Documentos/git/cosmoscalibur.github.io/en/blog/2021/configurar-retroarch-en-steam.rst&lt;/span&gt;, line 49)&lt;/p&gt;
-&lt;p&gt;Title underline too short.&lt;/p&gt;
-&lt;div class="highlight-default notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;Loading&lt;/span&gt; &lt;span class="n"&gt;Games&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;ROMs&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="o"&gt;-------------------&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;/aside&gt;
-&lt;p&gt;Finally, you can navigate the Main Menu through the &lt;em&gt;Load Content&lt;/em&gt;
-options and find your games (previously downloaded ROMs, which are easily
-found with a Google search).&lt;/p&gt;
+&lt;p&gt;Finally, you can navigate the Main Menu through the &lt;em&gt;Load Content&lt;/em&gt; options and
+find your games (previously downloaded ROMs, which are easily found with a
+Google search).&lt;/p&gt;
 &lt;/section&gt;
 &lt;section id="conclusion"&gt;
 &lt;h2&gt;Conclusion&lt;/h2&gt;
@@ -5758,20 +5905,19 @@ found with a Google search).&lt;/p&gt;
 &lt;/section&gt;
 </content>
     <link href="https://www.cosmoscalibur.com/en/blog/2021/configurar-retroarch-en-steam/"/>
-    <summary>RetroArch is a cross-platform
-(supported platform downloads)
-and open-source emulator and game aggregator. Installing RetroArch
-through Steam offers advantages by integrating Steam Play features and
-Steam Cloud save states. This also benefits the community by providing
-an additional distribution method.</summary>
-    <category term="controllers" label="controllers"/>
+    <summary>RetroArch is a cross-platform (supported
+platform downloads) and
+open-source emulator and game aggregator. Installing RetroArch through Steam
+offers advantages by integrating Steam Play features and Steam Cloud save
+states. This also benefits the community by providing an additional distribution
+method.</summary>
     <category term="emulators" label="emulators"/>
     <category term="gaming" label="gaming"/>
-    <category term="libretro" label="libretro"/>
     <category term="linux" label="linux"/>
+    <category term="linux&#10;applications" label="linux&#10;applications"/>
+    <category term="linuxvideogames" label="linux videogames"/>
     <category term="retroarch" label="retroarch"/>
     <category term="steam" label="steam"/>
-    <category term="videogames" label="videogames"/>
     <published>2021-12-14T00:00:00-05:00</published>
   </entry>
   <entry>
@@ -5784,51 +5930,43 @@ an additional distribution method.</summary>
     <content type="html">&lt;section id="configurar-retroarch-en-steam"&gt;
 
 &lt;p&gt;&lt;a class="reference external" href="https://www.retroarch.com/"&gt;RetroArch&lt;/a&gt; es un agregador de emuladores y
-videojuegos para estos, multiplataforma
-(&lt;a class="reference external" href="https://www.retroarch.com/?page=platforms"&gt;descargas de plataformas soportadas&lt;/a&gt;)
-y de código abierto. Es posible instalar RetroArch de forma directa en el
-sistema operativo o a través de Steam, teniendo este algunas ventajas
-adicionales de unir las caracterśticas de Steam Play y el almacenamiento de
-estado en Steam Cloud. Adicional a esto, sin duda es una ventaja para el
-desarrollo de la comunidad alrededor de este medio adicional de distribución.&lt;/p&gt;
+videojuegos para estos, multiplataforma (&lt;a class="reference external" href="https://www.retroarch.com/?page=platforms"&gt;descargas de plataformas soportadas&lt;/a&gt;) y de código abierto. Es posible
+instalar RetroArch de forma directa en el sistema operativo o a través de Steam,
+teniendo este algunas ventajas adicionales de unir las caracterśticas de Steam
+Play y el almacenamiento de estado en Steam Cloud. Adicional a esto, sin duda es
+una ventaja para el desarrollo de la comunidad alrededor de este medio adicional
+de distribución.&lt;/p&gt;
 &lt;p&gt;Si prefieres la versión en video, puedes continuar en Youtube.&lt;/p&gt;
 &lt;div class="video_wrapper align-center" style="text-align: center"&gt;
 &lt;iframe allowfullscreen="true" src="https://www.youtube.com/embed/DIJTylhiHyo" style="border: 0; height: 345px; width: 560px"&gt;
-&lt;/iframe&gt;&lt;/div&gt;&lt;p&gt;Vamos a proceder con la búsqueda en la
-&lt;a class="reference external" href="https://store.steampowered.com/app/1118310/RetroArch/"&gt;tienda de Steam de RetroArch&lt;/a&gt;.
-Procedemos a instalar y aceptamos la descarga posterior de
-&lt;em&gt;Steam Runtime Soldier&lt;/em&gt;.&lt;/p&gt;
-&lt;p&gt;Para la instalación de los emuladores, vamos a dirigirnos a la opción de DLC
-del juego (&lt;em&gt;Manager &amp;gt; DLC&lt;/em&gt;) y activamos los emuladores que deseamos. Este
-listado tiene por defecto los emuladores &lt;em&gt;builtin&lt;/em&gt; que poco a poco han sido
-incluidos.&lt;/p&gt;
+&lt;/iframe&gt;&lt;/div&gt;&lt;p&gt;Vamos a proceder con la búsqueda en la &lt;a class="reference external" href="https://store.steampowered.com/app/1118310/RetroArch/"&gt;tienda de Steam de RetroArch&lt;/a&gt;. Procedemos a instalar
+y aceptamos la descarga posterior de &lt;em&gt;Steam Runtime Soldier&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;Para la instalación de los emuladores, vamos a dirigirnos a la opción de DLC del
+juego (&lt;em&gt;Manager &amp;gt; DLC&lt;/em&gt;) y activamos los emuladores que deseamos. Este listado
+tiene por defecto los emuladores &lt;em&gt;builtin&lt;/em&gt; que poco a poco han sido incluidos.&lt;/p&gt;
 &lt;p&gt;Una vez lanzamos RetroArch como un juego de Steam, para configurar el control,
 vamos (usando el teclado o el ratón) a &lt;em&gt;Ajustes &amp;gt; Controladores &amp;gt; Mandos&lt;/em&gt; y
 cambiamos &lt;cite&gt;udev&lt;/cite&gt; por &lt;cite&gt;sdl2&lt;/cite&gt;, tras lo cual reiniciamos RetroArch. A partir de
 este momento nuestro control es funcional en la interfaz de RetroArch.&lt;/p&gt;
-&lt;p&gt;Finalmente podemos navegar en el Menú Principal por las opciones de
-&lt;em&gt;Cargar Contenido&lt;/em&gt; y buscar nuestros juegos (ROMs previamente descargadas, es
-fácil encontrarlas con Google).&lt;/p&gt;
+&lt;p&gt;Finalmente podemos navegar en el Menú Principal por las opciones de &lt;em&gt;Cargar
+Contenido&lt;/em&gt; y buscar nuestros juegos (ROMs previamente descargadas, es fácil
+encontrarlas con Google).&lt;/p&gt;
 &lt;p&gt;Feliz momento Retro Gamer.&lt;/p&gt;
 &lt;/section&gt;
 </content>
     <link href="https://www.cosmoscalibur.com/es/blog/2021/configurar-retroarch-en-steam/"/>
     <summary>RetroArch es un agregador de emuladores y
-videojuegos para estos, multiplataforma
-(descargas de plataformas soportadas)
-y de código abierto. Es posible instalar RetroArch de forma directa en el
-sistema operativo o a través de Steam, teniendo este algunas ventajas
-adicionales de unir las caracterśticas de Steam Play y el almacenamiento de
-estado en Steam Cloud. Adicional a esto, sin duda es una ventaja para el
-desarrollo de la comunidad alrededor de este medio adicional de distribución.</summary>
-    <category term="controles" label="controles"/>
-    <category term="emuladores" label="emuladores"/>
-    <category term="gaming" label="gaming"/>
-    <category term="libretro" label="libretro"/>
-    <category term="linux" label="linux"/>
+videojuegos para estos, multiplataforma (descargas de plataformas soportadas) y de código abierto. Es posible
+instalar RetroArch de forma directa en el sistema operativo o a través de Steam,
+teniendo este algunas ventajas adicionales de unir las caracterśticas de Steam
+Play y el almacenamiento de estado en Steam Cloud. Adicional a esto, sin duda es
+una ventaja para el desarrollo de la comunidad alrededor de este medio adicional
+de distribución.</summary>
+    <category term="aplicacionesparalinux" label="aplicaciones para linux"/>
+    <category term="emuladoresdeplataforma" label="emuladores de plataforma"/>
     <category term="retroarch" label="retroarch"/>
     <category term="steam" label="steam"/>
-    <category term="videojuegos" label="videojuegos"/>
+    <category term="videojuegosparalinux" label="videojuegos para linux"/>
     <published>2021-12-14T00:00:00-05:00</published>
   </entry>
   <entry>
@@ -5958,7 +6096,7 @@ siguiente error:&lt;/p&gt;
 &lt;div class="highlight-default notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;Installing&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;this&lt;/span&gt; &lt;span class="n"&gt;may&lt;/span&gt; &lt;span class="n"&gt;take&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="n"&gt;few&lt;/span&gt; &lt;span class="n"&gt;minutes&lt;/span&gt;&lt;span class="o"&gt;...&lt;/span&gt;
 &lt;span class="n"&gt;WslRegisterDistribution&lt;/span&gt; &lt;span class="n"&gt;failed&lt;/span&gt; &lt;span class="k"&gt;with&lt;/span&gt; &lt;span class="n"&gt;error&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mh"&gt;0x800700b7&lt;/span&gt;
 &lt;span class="n"&gt;The&lt;/span&gt; &lt;span class="n"&gt;distribution&lt;/span&gt; &lt;span class="n"&gt;installation&lt;/span&gt; &lt;span class="n"&gt;has&lt;/span&gt; &lt;span class="n"&gt;become&lt;/span&gt; &lt;span class="n"&gt;corrupted&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;
-&lt;span class="n"&gt;Please&lt;/span&gt; &lt;span class="n"&gt;select&lt;/span&gt; &lt;span class="n"&gt;Reset&lt;/span&gt; &lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;App&lt;/span&gt; &lt;span class="n"&gt;Settings&lt;/span&gt; &lt;span class="ow"&gt;or&lt;/span&gt; &lt;span class="n"&gt;uninstall&lt;/span&gt; &lt;span class="ow"&gt;and&lt;/span&gt; &lt;span class="n"&gt;reinstall&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;app&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;
+&lt;span class="n"&gt;Please&lt;/span&gt; &lt;span class="n"&gt;select&lt;/span&gt; &lt;span class="n"&gt;Reset&lt;/span&gt; &lt;span class="kn"&gt;from&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nn"&gt;App&lt;/span&gt; &lt;span class="n"&gt;Settings&lt;/span&gt; &lt;span class="ow"&gt;or&lt;/span&gt; &lt;span class="n"&gt;uninstall&lt;/span&gt; &lt;span class="ow"&gt;and&lt;/span&gt; &lt;span class="n"&gt;reinstall&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;app&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;
 &lt;span class="n"&gt;Error&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mh"&gt;0x800700b7&lt;/span&gt; &lt;span class="n"&gt;Cannot&lt;/span&gt; &lt;span class="n"&gt;create&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="n"&gt;file&lt;/span&gt; &lt;span class="n"&gt;when&lt;/span&gt; &lt;span class="n"&gt;that&lt;/span&gt; &lt;span class="n"&gt;file&lt;/span&gt; &lt;span class="n"&gt;already&lt;/span&gt; &lt;span class="n"&gt;exists&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
@@ -6006,9 +6144,7 @@ despliegues en nube sino también en el mismo escritorio. En esto último,
 referimos a WSL (Windows Subsystem for Linux) [wsl].</summary>
     <category term="linux" label="linux"/>
     <category term="ubuntu" label="ubuntu"/>
-    <category term="windows" label="windows"/>
     <category term="windowssubsystemforlinux" label="windows subsystem for linux"/>
-    <category term="wsl" label="wsl"/>
     <category term="wsl2" label="wsl2"/>
     <published>2020-10-05T00:00:00-05:00</published>
   </entry>
@@ -6467,29 +6603,24 @@ dependencias facilitando la reproducibilidad y evitando los conflictos.</summary
     </author>
     <content type="html">&lt;section id="ver-netflix-juntos-pero-separados"&gt;
 
-&lt;p&gt;Ante la necesidad de cuidarnos en esta cuarentena, hemos perdido los momentos
-de cine o de maratones con familia y amigos, pero hasta en esto hay forma de
-innovar y buscar opciones para mantener un equivalente de estas actividades
-sin descuidar nuestra salud, cumpliendo cada protocolo requerido gracias a la
+&lt;p&gt;Ante la necesidad de cuidarnos en esta cuarentena, hemos perdido los momentos de
+cine o de maratones con familia y amigos, pero hasta en esto hay forma de
+innovar y buscar opciones para mantener un equivalente de estas actividades sin
+descuidar nuestra salud, cumpliendo cada protocolo requerido gracias a la
 tecnología.&lt;/p&gt;
 &lt;p&gt;Así que usemos algunos trucos para ver Netflix acompañados.&lt;/p&gt;
 &lt;section id="transmisiones-en-vivo"&gt;
 &lt;h2&gt;Transmisiones en vivo&lt;/h2&gt;
 &lt;p&gt;Una opción que requiere tal vez un poco de ajustes y no es precisamente legal,
-es aprovechar la opción para crear transmisiones en vivo a través de
-plataformas como &lt;a class="reference external" href="https://studio.youtube.com"&gt;YouTube&lt;/a&gt; (requieres canal),
-&lt;a class="reference external" href="https://www.facebook.com/live/producer/"&gt;Facebook&lt;/a&gt;, Twitch y otras.&lt;/p&gt;
+es aprovechar la opción para crear transmisiones en vivo a través de plataformas
+como &lt;a class="reference external" href="https://studio.youtube.com"&gt;YouTube&lt;/a&gt; (requieres canal), &lt;a class="reference external" href="https://www.facebook.com/live/producer/"&gt;Facebook&lt;/a&gt;, Twitch y otras.&lt;/p&gt;
 &lt;p&gt;No es legal porque al pagar nuestra suscripción de Netflix solo adquirimos el
-derecho para visualización y uso personal, no para retransmisión o
-distribución.&lt;/p&gt;
-&lt;p&gt;Pero si aún si deseas hacerlo, una opción es usar
-&lt;a class="reference external" href="https://obsproject.com/"&gt;OBS&lt;/a&gt; para su transmisión, incluso podrías usar el
-complemento de VirtualCam
-(&lt;a class="reference external" href="https://obsproject.com/forum/resources/obs-virtualcam.949/"&gt;Windows&lt;/a&gt; y
-&lt;a class="reference external" href="https://github.com/CatxFish/obs-v4l2sink"&gt;Linux&lt;/a&gt;) para transmitirlo a través
-de videollamada. Ahora, el tema de ser ilegal esto, es que las plataformas
-poseen sistemas para detectar los audios con derechos de autor (aún no el video
-en si) y con esto se bloquea o retira la transmisión, lo cual representará
+derecho para visualización y uso personal, no para retransmisión o distribución.&lt;/p&gt;
+&lt;p&gt;Pero si aún así deseas hacerlo, una opción es usar &lt;a class="reference external" href="https://obsproject.com/"&gt;OBS&lt;/a&gt; para su transmisión, incluso podrías usar el
+complemento de VirtualCam (&lt;a class="reference external" href="https://obsproject.com/forum/resources/obs-virtualcam.949/"&gt;Windows&lt;/a&gt; y &lt;a class="reference external" href="https://github.com/CatxFish/obs-v4l2sink"&gt;Linux&lt;/a&gt;) para transmitirlo a través de
+videollamada. Ahora, el tema de ser ilegal esto, es que las plataformas poseen
+sistemas para detectar los audios con derechos de autor (aún no el video en si)
+y con esto se bloquea o retira la transmisión, lo cual representará
 inconvenientes si se desea agregar personas durante la transmisión o la
 transmisión simplemente deja de funcionar (en este sentido, tal vez funcione
 mejor la opción por videollamada con VirtualCam -compartir pantalla no tiene la
@@ -6498,11 +6629,10 @@ misma calidad de audio y video-).&lt;/p&gt;
 &lt;section id="netflix-party"&gt;
 &lt;h2&gt;Netflix party&lt;/h2&gt;
 &lt;aside class="system-message"&gt;
-&lt;p class="system-message-title"&gt;System Message: INFO/1 (&lt;span class="docutils literal"&gt;/home/cosmoscalibur/Documentos/git/cosmoscalibur.github.io/es/blog/2020/ver-netflix-juntos-pero-separados.rst&lt;/span&gt;, line 8); &lt;em&gt;&lt;a href="#id1"&gt;backlink&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;p class="system-message-title"&gt;System Message: INFO/1 (&lt;span class="docutils literal"&gt;/home/cosmoscalibur/Documentos/git/cosmoscalibur.github.io/es/blog/2020/ver-netflix-juntos-pero-separados.rst&lt;/span&gt;, line 9); &lt;em&gt;&lt;a href="#id1"&gt;backlink&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;Duplicate implicit target name: «netflix party».&lt;/p&gt;
 &lt;/aside&gt;
-&lt;p&gt;&lt;a class="reference external" href="https://www.netflixparty.com/"&gt;Netflix Party&lt;/a&gt; es un
-&lt;a class="reference external" href="https://chrome.google.com/webstore/detail/netflix-party/oocalimimngaihdkbihfgmpkcpnmlaoa?hl=en"&gt;complemento para Chrome&lt;/a&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://www.netflixparty.com/"&gt;Netflix Party&lt;/a&gt; es un &lt;a class="reference external" href="https://chrome.google.com/webstore/detail/netflix-party/oocalimimngaihdkbihfgmpkcpnmlaoa?hl=en"&gt;complemento para Chrome&lt;/a&gt;
 que permite sincronizar los controles de Netflix de los usuarios que compartan
 la sesión creada, por lo cual es necesario que cada uno posea acceso a Netflix.
 Por este motivo es legal, pues no es una retransmisión, todos los usuarios usan
@@ -6518,25 +6648,23 @@ posición y habilitarles un chat integrado.&lt;/p&gt;
 participantes de la sesión y mantener la columna de chat habilitada (cuando
 alguno pierde conexión el control no para).&lt;/p&gt;
 &lt;p&gt;Una vez abres la película o serie, das clic en el botón de la extensión y te
-generará el enlace para compartir la sesión. Ten presente que esto es válido
-por película o capítulo, una vez termina se pierde la sincronización.&lt;/p&gt;
+generará el enlace para compartir la sesión. Ten presente que esto es válido por
+película o capítulo, una vez termina se pierde la sincronización.&lt;/p&gt;
 &lt;/section&gt;
 &lt;section id="rave"&gt;
 &lt;h2&gt;Rave&lt;/h2&gt;
 &lt;aside class="system-message"&gt;
-&lt;p class="system-message-title"&gt;System Message: INFO/1 (&lt;span class="docutils literal"&gt;/home/cosmoscalibur/Documentos/git/cosmoscalibur.github.io/es/blog/2020/ver-netflix-juntos-pero-separados.rst&lt;/span&gt;, line 8); &lt;em&gt;&lt;a href="#id2"&gt;backlink&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;p class="system-message-title"&gt;System Message: INFO/1 (&lt;span class="docutils literal"&gt;/home/cosmoscalibur/Documentos/git/cosmoscalibur.github.io/es/blog/2020/ver-netflix-juntos-pero-separados.rst&lt;/span&gt;, line 9); &lt;em&gt;&lt;a href="#id2"&gt;backlink&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;Duplicate implicit target name: «rave».&lt;/p&gt;
 &lt;/aside&gt;
-&lt;p&gt;&lt;a class="reference external" href="https://rave.io/"&gt;Rave&lt;/a&gt; es una aplicación para
-&lt;a class="reference external" href="https://apps.apple.com/us/app/wemesh/id929775122"&gt;iOS&lt;/a&gt; y
-&lt;a class="reference external" href="https://play.google.com/store/apps/details?id=com.wemesh.android"&gt;Android&lt;/a&gt;
-que permite sincronizar Netflix, Youtube y otras plataformas, e incluso
-permitir la transmisión desde archivos en Google Drive y Dropbox. Además
-incluye chat y llamada en dicha transmisión.&lt;/p&gt;
-&lt;p&gt;Importante al iniciar la transmisión, configurar la privacidad de la sesión
-Rave si quieres solo compartirlo con tus amigos, de otra forma cualquier
-usuario Rave puede ingresar (es molesto porque participaran del chat y llamada
-también). La opción se encuentra al inicio del chat.&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://rave.io/"&gt;Rave&lt;/a&gt; es una aplicación para &lt;a class="reference external" href="https://apps.apple.com/us/app/wemesh/id929775122"&gt;iOS&lt;/a&gt; y &lt;a class="reference external" href="https://play.google.com/store/apps/details?id=com.wemesh.android"&gt;Android&lt;/a&gt; que permite
+sincronizar Netflix, Youtube y otras plataformas, e incluso permitir la
+transmisión desde archivos en Google Drive y Dropbox. Además incluye chat y
+llamada en dicha transmisión.&lt;/p&gt;
+&lt;p&gt;Importante al iniciar la transmisión, configurar la privacidad de la sesión Rave
+si quieres solo compartirlo con tus amigos, de otra forma cualquier usuario Rave
+puede ingresar (es molesto porque participaran del chat y llamada también). La
+opción se encuentra al inicio del chat.&lt;/p&gt;
 &lt;figure class="align-center" id="id4"&gt;
 &lt;img alt="Opción de privacidad y compartir enlace de sesión Rave." src="https://www.cosmoscalibur.com/_images/rave-youtube-privacidad.jpg" style="width: 250px;" /&gt;
 &lt;figcaption&gt;
@@ -6549,21 +6677,21 @@ para eliminar publicidad. Todas las personas que participan deben tener también
 cuenta en Rave y para usar Netflix cada usuario debera ingresar sus datos de
 cuenta en el navegador incorporado en Rave. Hay algo llamado créditos «K» y
 corresponden a monedas que te permiten crear o ingresar a salas Rave (en otras
-palabras, usar la aplicación con contenido), pero estas son dadas como recompensa
-por ingreso frecuente a la aplicación.&lt;/p&gt;
+palabras, usar la aplicación con contenido), pero estas son dadas como
+recompensa por ingreso frecuente a la aplicación.&lt;/p&gt;
 &lt;/section&gt;
 &lt;/section&gt;
 </content>
     <link href="https://www.cosmoscalibur.com/es/blog/2020/ver-netflix-juntos-pero-separados/"/>
-    <summary>Ante la necesidad de cuidarnos en esta cuarentena, hemos perdido los momentos
-de cine o de maratones con familia y amigos, pero hasta en esto hay forma de
-innovar y buscar opciones para mantener un equivalente de estas actividades
-sin descuidar nuestra salud, cumpliendo cada protocolo requerido gracias a la
+    <summary>Ante la necesidad de cuidarnos en esta cuarentena, hemos perdido los momentos de
+cine o de maratones con familia y amigos, pero hasta en esto hay forma de
+innovar y buscar opciones para mantener un equivalente de estas actividades sin
+descuidar nuestra salud, cumpliendo cada protocolo requerido gracias a la
 tecnología.Netflix Party y la columna de chat.</summary>
     <category term="aplicacionesandroid" label="aplicaciones android"/>
-    <category term="extensionesdechrome" label="extensiones de chrome"/>
-    <category term="netflix" label="netflix"/>
+    <category term="extensionesde&#10;chrome" label="extensiones de&#10;chrome"/>
     <category term="transmisióndevideo" label="transmisión de video"/>
+    <category term="vernetflix" label="ver netflix"/>
     <published>2020-06-21T00:00:00-05:00</published>
   </entry>
   <entry>
@@ -7082,14 +7210,10 @@ la fuente no se encontraba disponible y fue necesario buscar su reemplazo
 hoy fue el caso, pero centrado en unas actualizaciones que he hecho para
 mejorar la experiencia de los lectores que usan su celular y deben soportar
 altos tiempos de carga y una alta descarga en imágenes cuando las contiene.</summary>
-    <category term="adsense" label="adsense"/>
-    <category term="amazon" label="amazon"/>
-    <category term="blog" label="blog"/>
-    <category term="comentarios" label="comentarios"/>
-    <category term="disqus" label="disqus"/>
-    <category term="facebook" label="facebook"/>
-    <category term="nikola" label="nikola"/>
-    <category term="publicidad" label="publicidad"/>
+    <category term="agregargoogleads" label="agregar google ads"/>
+    <category term="blogconnikola" label="blog con nikola"/>
+    <category term="páginawebestática" label="página web estática"/>
+    <category term="sistemadecomentariosdisqus" label="sistema de comentarios disqus"/>
     <published>2020-05-26T00:00:00-05:00</published>
   </entry>
   <entry>
@@ -7374,7 +7498,7 @@ Executing transaction: ...working... done
 &lt;/div&gt;
 &lt;p&gt;Now, import the
 &lt;a class="reference external" href="https://geopy.readthedocs.io/en/stable/#module-geopy.distance"&gt;&lt;em&gt;distance&lt;/em&gt; module of GeoPy&lt;/a&gt;.&lt;/p&gt;
-&lt;div class="highlight-python notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;geopy.distance&lt;/span&gt;
+&lt;div class="highlight-python notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nn"&gt;geopy.distance&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
 &lt;p&gt;For reference, we will be using the coordinates of Medellín (MDE) and Envigado
@@ -7575,7 +7699,7 @@ Executing transaction: ...working... done
 &lt;/div&gt;
 &lt;p&gt;Ahora, importamos el módulo de
 &lt;a class="reference external" href="https://geopy.readthedocs.io/en/stable/#module-geopy.distance"&gt;distancia de GeoPy&lt;/a&gt;.&lt;/p&gt;
-&lt;div class="highlight-python notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;geopy.distance&lt;/span&gt;
+&lt;div class="highlight-python notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nn"&gt;geopy.distance&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
 &lt;p&gt;Para referencia usaremos las coordenadas de Medellín (MDE) y Envigado (ENV)
@@ -8736,11 +8860,11 @@ development mode, the package hasn’t been installed yet and needs to be
 uncommented by removing the three lines of code at the top of the &lt;cite&gt;Path setup&lt;/cite&gt;
 section. The default point refers to the same &lt;cite&gt;docs/source&lt;/cite&gt; directory, so you
 need to replace it with &lt;cite&gt;../..&lt;/cite&gt; to get two levels up, which is necessary.&lt;/p&gt;
-&lt;div class="highlight-default notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;os&lt;/span&gt;
-&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;sys&lt;/span&gt;
-&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;datetime&lt;/span&gt;
+&lt;div class="highlight-default notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nn"&gt;os&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nn"&gt;sys&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nn"&gt;datetime&lt;/span&gt;
 &lt;span class="n"&gt;sys&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;path&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;insert&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;path&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;abspath&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;../..&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;my_project&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nn"&gt;my_project&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
 &lt;p&gt;Now, you can do things like this, if available in your code.&lt;/p&gt;
@@ -9008,11 +9132,11 @@ y lo deberás hacer descomentando las tres primeras líneas de código en la
 sección de &lt;em&gt;Path setup&lt;/em&gt;. El punto que hay por defecto indica la misma carpeta de
 &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;docs/source&lt;/span&gt;&lt;/code&gt;, por lo cual es necesario reemplazar por &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;../..&lt;/span&gt;&lt;/code&gt; que se
 devuelve los dos niveles necesarios.&lt;/p&gt;
-&lt;div class="highlight-default notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;os&lt;/span&gt;
-&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;sys&lt;/span&gt;
-&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;datetime&lt;/span&gt;
+&lt;div class="highlight-default notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nn"&gt;os&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nn"&gt;sys&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nn"&gt;datetime&lt;/span&gt;
 &lt;span class="n"&gt;sys&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;path&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;insert&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;path&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;abspath&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;../..&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;proyecto&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nn"&gt;proyecto&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
 &lt;p&gt;Ahora, puedes hacer cosas como la siguiente, si está disponible en tu código.&lt;/p&gt;
@@ -9051,7 +9175,7 @@ subsección (2).&lt;/p&gt;
 &lt;section id="id1"&gt;
 &lt;h3&gt;LaTeX&lt;/h3&gt;
 &lt;aside class="system-message"&gt;
-&lt;p class="system-message-title"&gt;System Message: INFO/1 (&lt;span class="docutils literal"&gt;/home/cosmoscalibur/Documentos/git/cosmoscalibur.github.io/es/blog/2020/crear-documentacion-de-un-proyecto-python-con-sphinx.rst&lt;/span&gt;, line 204); &lt;em&gt;&lt;a href="#id1"&gt;backlink&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;p class="system-message-title"&gt;System Message: INFO/1 (&lt;span class="docutils literal"&gt;/home/cosmoscalibur/Documentos/git/cosmoscalibur.github.io/es/blog/2020/crear-documentacion-de-un-proyecto-python-con-sphinx.rst&lt;/span&gt;, line 205); &lt;em&gt;&lt;a href="#id1"&gt;backlink&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;Duplicate implicit target name: «latex».&lt;/p&gt;
 &lt;/aside&gt;
 &lt;p&gt;Hay una configuración básica para LaTeX que puedes agregar. El documento
@@ -9150,6 +9274,7 @@ entre otros).</summary>
     <category term="documentacióndesoftware" label="documentación de software"/>
     <category term="python" label="python"/>
     <category term="restructuredtext" label="restructuredtext"/>
+    <category term="sitio&#10;estático" label="sitio&#10;estático"/>
     <category term="sphinx" label="sphinx"/>
     <published>2020-01-06T00:00:00-05:00</published>
   </entry>

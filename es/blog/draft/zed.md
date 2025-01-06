@@ -62,6 +62,8 @@ uv tool install docstrfmt
 uv tool install esbonio --prerelease=allow
 ```
 
+mdformat - marksman; docstrfmt - esbonio - rest
+
 rstfmt presenta problemas con directivas sphinx o definiciones.
 
 desinstalar zed

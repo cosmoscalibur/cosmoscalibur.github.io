@@ -1,5 +1,5 @@
 :date: 2020-10-05
-:tags: windows, linux, wsl, wsl2, ubuntu, windows subsystem for linux
+:tags: linux, wsl2, ubuntu, windows subsystem for linux
 :category: tecnología
 :author: Edward Villegas-Pulgarin
 :language: es

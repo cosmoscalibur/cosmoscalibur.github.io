@@ -1,7 +1,7 @@
 ---
 date: 2024-10-21
-tags: ver netflix, alternativa a netflix, alternativa a disney plus, alternativa a prime video, alternativa a apple tv, stremio, torrentio stremio, opensubtitles stremio, reproducir torrents, ver pluto tv, ver películas gratis, ver series gratis, popcorn time, aplicaciones para linux, aplicaciones para android
-category: entretenimiento
+tags: netflix, stremio, torrents, películas, series, aplicaciones para linux, aplicaciones para android, aplicaciones para windows
+category: entretenimiento, películas y series
 ---
 
 # La mejor alternativa gratis a Netflix

@@ -1,7 +1,7 @@
 ---
 date: 2024-09-24
-tags: blog, sphinx, favicon, blogging with sphinx
-category: technology
+tags: blog, sphinx, favicon
+category: technology, blogging with sphinx
 language: en
 ---
 

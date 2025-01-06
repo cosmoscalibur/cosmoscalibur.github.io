@@ -1,7 +1,7 @@
 ---
 date: 2024-10-20
-tags: ffmpeg, programación en bash, vimeo, procesamiento de audio y video
-category: tecnología, linux
+tags: ffmpeg, bash, vimeo, aplicaciones para linux, extensiones de chrome
+category: tecnología, programación
 ---
 
 # Unir video y audio con ffmpeg y bash
