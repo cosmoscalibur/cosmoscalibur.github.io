@@ -1,5 +1,3 @@
-ngrok
-
 https://ollama.com/download https://ollama.com/library/llama3.1:8b
 https://ollama.com/blog/continue-code-assistant
 

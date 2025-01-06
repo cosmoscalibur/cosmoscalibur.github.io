@@ -1,0 +1,5 @@
+- Ablog. Definición del lenguaje debe cambiar etiqueta de lenguaje en html
+- Ablog. Si se usa valor por defecto de autor, no sale en el índice de autor.
+- Sitemap internacional sin pot
+- Ablog javascript cambiar idioma entrada
+- Ablog etiquetas y categorías por idioma

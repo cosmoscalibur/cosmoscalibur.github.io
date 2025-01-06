@@ -52,8 +52,6 @@ ogp_site_url = "https://www.cosmoscalibur.com"
 ogp_custom_meta_tags = [
     '<meta name="twitter:creator" content="@cosmoscalibur" />',
     '<meta name="fediverse:creator" content="@cosmoscalibur@col.social">',
-    '<link rel="me" href="https://col.social/@cosmoscalibur">',
-    # <a rel="me" href="https://col.social/@cosmoscalibur">Mastodon</a>
 ]
 
 
@@ -123,6 +121,17 @@ html_theme_options = {
     "show_toc_level": 2,
     "twitter_url": "https://twitter.com/cosmoscalibur",
     "github_url": "https://github.com/cosmoscalibur/",
+    "icon_links": [
+        {
+            "name": "Mastodon",
+            "url": "https://col.social/@cosmoscalibur",
+            "icon": "fab fa-mastodon",
+            "attributes": {
+                "target": "_blank",
+                "rel": "me",
+            },
+        },
+    ],
 }
 
 # Después, esto servirá para separar local de desplegado con Action
