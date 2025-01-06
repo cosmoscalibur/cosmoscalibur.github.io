@@ -2,10 +2,342 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="es">
   <id>https://www.cosmoscalibur.com/</id>
   <title>Cosmoscalibur</title>
-  <updated>2025-01-06T03:05:11.055610+00:00</updated>
+  <updated>2025-01-06T20:17:21.211277+00:00</updated>
   <link href="https://www.cosmoscalibur.com/"/>
   <link href="https://www.cosmoscalibur.com/blog/atom.xml" rel="self"/>
   <generator uri="https://ablog.readthedocs.io/" version="0.11.12">ABlog</generator>
+  <entry>
+    <id>https://www.cosmoscalibur.com/en/blog/2025/configuracion-de-proyectos-y-herramientas-python-con-uv/</id>
+    <title>Configuration of Python Projects and Tools with UV</title>
+    <updated>2025-01-06T00:00:00-05:00</updated>
+    <author>
+      <name>Edward Villegas-Pulgarin</name>
+    </author>
+    <content type="html">&lt;section class="tex2jax_ignore mathjax_ignore" id="configuration-of-python-projects-and-tools-with-uv"&gt;
+
+&lt;p&gt;We will create a Python project using &lt;strong class="program"&gt;uv&lt;/strong&gt;, which utilizes the
+&lt;code class="file docutils literal notranslate"&gt;&lt;span class="pre"&gt;pyproject.toml&lt;/span&gt;&lt;/code&gt; format for its configuration, making it easier to port
+across different environments. This format is also already widely used by other
+package managers of Python, and is commonly used for configuring utilities.&lt;/p&gt;
+&lt;p&gt;For illustration purposes, I’ll be migrating the blog management to UV, of which
+I had already mentioned its benefits as an
+&lt;a class="reference internal" href="../en/blog/2024/uv-alternativa-rapida-a-pip-y-venv/"&gt;&lt;span class="std std-doc"&gt;alternative to PIP and VENV&lt;/span&gt;&lt;/a&gt;.&lt;/p&gt;
+&lt;section id="creating-a-project-with-uv-init"&gt;
+&lt;h2&gt;Creating a Project with &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;uv&lt;/span&gt; &lt;span class="pre"&gt;init&lt;/span&gt;&lt;/code&gt;&lt;/h2&gt;
+&lt;p&gt;If we create one from scratch, the project name will be the directory name, but
+if we’re inside and use the existing directory, it will be assigned as the
+project name. In my case, the existing directory is my GitHub repository for
+&lt;code class="file docutils literal notranslate"&gt;&lt;span class="pre"&gt;cosmoscalibur.github.io&lt;/span&gt;&lt;/code&gt;, and this will be the project name.&lt;/p&gt;
+&lt;p&gt;We don’t always need to use the same version of Python, and on Linux, we have it
+installed by default, but not everyone has the same version. Therefore, it’s
+convenient to specify the version in the &lt;code class="file docutils literal notranslate"&gt;&lt;span class="pre"&gt;pyproject.toml&lt;/span&gt;&lt;/code&gt; configuration
+file, which generates files such as &lt;code class="file docutils literal notranslate"&gt;&lt;span class="pre"&gt;.python-version&lt;/span&gt;&lt;/code&gt;, an example
+&lt;code class="file docutils literal notranslate"&gt;&lt;span class="pre"&gt;hello.py&lt;/span&gt;&lt;/code&gt; file.&lt;/p&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;uv&lt;span class="w"&gt; &lt;/span&gt;init&lt;span class="w"&gt; &lt;/span&gt;.&lt;span class="w"&gt; &lt;/span&gt;-p&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;3&lt;/span&gt;.12
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;When we’re inside the directory, we can run &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;uv&lt;/span&gt; &lt;span class="pre"&gt;run&lt;/span&gt; &lt;span class="pre"&gt;hello.py&lt;/span&gt;&lt;/code&gt;, which will use
+the specified Python version and build the necessary environment to work. The
+environment will be created in the &lt;code class="file docutils literal notranslate"&gt;&lt;span class="pre"&gt;.venv&lt;/span&gt;&lt;/code&gt; subdirectory. Since we’ve done
+this test, you can delete the example file now.&lt;/p&gt;
+&lt;p&gt;To add dependencies to the project, we use &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;uv&lt;/span&gt; &lt;span class="pre"&gt;add&lt;/span&gt;&lt;/code&gt;. We can add them
+individually or a list of packages.&lt;/p&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;uv&lt;span class="w"&gt; &lt;/span&gt;add&lt;span class="w"&gt; &lt;/span&gt;sphinx
+uv&lt;span class="w"&gt; &lt;/span&gt;add&lt;span class="w"&gt; &lt;/span&gt;ablog
+uv&lt;span class="w"&gt; &lt;/span&gt;add&lt;span class="w"&gt; &lt;/span&gt;pydata-sphinx-theme
+uv&lt;span class="w"&gt; &lt;/span&gt;add&lt;span class="w"&gt; &lt;/span&gt;sphinx-design&lt;span class="w"&gt; &lt;/span&gt;sphinx-copybutton&lt;span class="w"&gt; &lt;/span&gt;sphinxcontrib-youtube&lt;span class="w"&gt; &lt;/span&gt;sphinxext-rediraffe
+uv&lt;span class="w"&gt; &lt;/span&gt;add&lt;span class="w"&gt; &lt;/span&gt;sphinxext-opengraph&lt;span class="w"&gt; &lt;/span&gt;matplotlib
+uv&lt;span class="w"&gt; &lt;/span&gt;add&lt;span class="w"&gt; &lt;/span&gt;myst-parser&lt;span class="w"&gt; &lt;/span&gt;jupytext&lt;span class="w"&gt; &lt;/span&gt;myst-nb
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;These additions are appended to the project’s dependencies field in the
+&lt;code class="file docutils literal notranslate"&gt;&lt;span class="pre"&gt;pyproject.toml&lt;/span&gt;&lt;/code&gt; file.&lt;/p&gt;
+&lt;p&gt;By default, if no explicit restriction is specified, it will use the maximum
+compatible version available in the environment. If you need an explicit
+restriction, you can specify it using the same syntax as with &lt;strong class="program"&gt;pip&lt;/strong&gt;,
+and it must be enclosed within quotes.&lt;/p&gt;
+&lt;p&gt;Optional dependencies also have their own addition mechanism, which I’ll take
+advantage of to add one that I’m replacing with my own management approach, but
+would like to compare. This is done by adding &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;--optional&lt;/span&gt; &lt;span class="pre"&gt;&amp;lt;group_name&amp;gt;&lt;/span&gt;&lt;/code&gt; followed
+by the name of a group for this optional dependency.&lt;/p&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;uv&lt;span class="w"&gt; &lt;/span&gt;add&lt;span class="w"&gt; &lt;/span&gt;sphinx-sitemap&lt;span class="w"&gt; &lt;/span&gt;--optional&lt;span class="w"&gt; &lt;/span&gt;sitemap
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;We can also explicitly specify which dependencies are for development by using
+&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;uv&lt;/span&gt; &lt;span class="pre"&gt;add&lt;/span&gt; &lt;span class="pre"&gt;--dev&lt;/span&gt;&lt;/code&gt;. Or, if we want to indicate a specific group of development
+dependencies, we use &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;uv&lt;/span&gt; &lt;span class="pre"&gt;add&lt;/span&gt; &lt;span class="pre"&gt;--group&lt;/span&gt; &lt;span class="pre"&gt;&amp;lt;group_name&amp;gt;&lt;/span&gt;&lt;/code&gt; followed by the name of the
+group and then the packages.&lt;/p&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;uv&lt;span class="w"&gt; &lt;/span&gt;add&lt;span class="w"&gt; &lt;/span&gt;--dev&lt;span class="w"&gt; &lt;/span&gt;jupyterlab&lt;span class="w"&gt; &lt;/span&gt;jupyterlab_myst
+uv&lt;span class="w"&gt; &lt;/span&gt;add&lt;span class="w"&gt; &lt;/span&gt;--group&lt;span class="w"&gt; &lt;/span&gt;rest&lt;span class="w"&gt; &lt;/span&gt;rstcheck&lt;span class="w"&gt; &lt;/span&gt;doc8&lt;span class="w"&gt; &lt;/span&gt;docstrfmt&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;esbonio&amp;gt;=1.0.0b8&amp;quot;&lt;/span&gt;
+uv&lt;span class="w"&gt; &lt;/span&gt;add&lt;span class="w"&gt; &lt;/span&gt;--group&lt;span class="w"&gt; &lt;/span&gt;markdown&lt;span class="w"&gt; &lt;/span&gt;mdformat&lt;span class="w"&gt; &lt;/span&gt;mdformat-gfm&lt;span class="w"&gt; &lt;/span&gt;mdformat-frontmatter&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="se"&gt;\&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;mdformat-footnote&lt;span class="w"&gt; &lt;/span&gt;mdformat-gfm-alerts&lt;span class="w"&gt; &lt;/span&gt;mdformat-myst
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;It’s worth noting that the &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;--dev&lt;/span&gt;&lt;/code&gt; option is a shortcut for specifying the “dev”
+group (&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;--group&lt;/span&gt; &lt;span class="pre"&gt;dev&lt;/span&gt;&lt;/code&gt;), which is the default group.&lt;/p&gt;
+&lt;section id="running-entry-points-and-scripts-with-uv-run"&gt;
+&lt;h3&gt;Running Entry Points and Scripts with &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;uv&lt;/span&gt; &lt;span class="pre"&gt;run&lt;/span&gt;&lt;/code&gt;&lt;/h3&gt;
+&lt;p&gt;As with any virtual environment, this one can be activated and once it’s done,
+you can run entry points (the executable utility or function) or routines by
+invoking &lt;strong class="program"&gt;python&lt;/strong&gt;.&lt;/p&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nb"&gt;source&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;.venv/bin/activate&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="c1"&gt;# With source&lt;/span&gt;
+pipenv&lt;span class="w"&gt; &lt;/span&gt;shell&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="c1"&gt;# With pipenv (also on Windows)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;If you don’t have &lt;strong class="program"&gt;pipenv&lt;/strong&gt;, you can install it as a tool using the
+command &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;uv&lt;/span&gt; &lt;span class="pre"&gt;tool&lt;/span&gt; &lt;span class="pre"&gt;install&lt;/span&gt; &lt;span class="pre"&gt;pipenv&lt;/span&gt;&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;However, &lt;strong class="program"&gt;uv&lt;/strong&gt; itself offers a convenient way to run without explicitly
+activating the environment, which is very useful in many cases, such as when
+running a &lt;code class="file docutils literal notranslate"&gt;&lt;span class="pre"&gt;justfile&lt;/span&gt;&lt;/code&gt; (which we’ll cover later). From the initial example,
+you already know how to run a routine, but if you need an executable utility
+from the environment, you have a similar approach by initializing with
+&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;uv&lt;/span&gt; &lt;span class="pre"&gt;run&lt;/span&gt; &lt;span class="pre"&gt;--&lt;/span&gt;&lt;/code&gt;.&lt;/p&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;uv&lt;span class="w"&gt; &lt;/span&gt;run&lt;span class="w"&gt; &lt;/span&gt;hello.py&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="c1"&gt;# Ejecutar rutinas Python&lt;/span&gt;
+uv&lt;span class="w"&gt; &lt;/span&gt;run&lt;span class="w"&gt; &lt;/span&gt;--&lt;span class="w"&gt; &lt;/span&gt;ablog&lt;span class="w"&gt; &lt;/span&gt;clean&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="c1"&gt;# Ejecutar utilidades en el ambiente&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;If the environment hasn’t been created, this step creates it in &lt;code class="file docutils literal notranslate"&gt;&lt;span class="pre"&gt;.venv&lt;/span&gt;&lt;/code&gt; or
+ensures that the environment is up-to-date. Additionally, it also creates
+&lt;code class="file docutils literal notranslate"&gt;&lt;span class="pre"&gt;uv.lock&lt;/span&gt;&lt;/code&gt;, a format that ensures the exact reproducibility of
+environments. This file can be created using &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;uv&lt;/span&gt; &lt;span class="pre"&gt;sync&lt;/span&gt;&lt;/code&gt; and &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;uv&lt;/span&gt; &lt;span class="pre"&gt;lock&lt;/span&gt;&lt;/code&gt;.&lt;/p&gt;
+&lt;/section&gt;
+&lt;/section&gt;
+&lt;section id="installing-tools-with-uv-tool"&gt;
+&lt;h2&gt;Installing Tools with &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;uv&lt;/span&gt; &lt;span class="pre"&gt;tool&lt;/span&gt;&lt;/code&gt;&lt;/h2&gt;
+&lt;p&gt;In the previous example, packages added with groups do not require explicit
+dependency on the project and can be installed globally. This type of usage
+corresponds to the concept of tools, and with &lt;strong class="program"&gt;uv&lt;/strong&gt; we can manage it in
+two ways:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;Temporal: They are stored in cache and always use the &lt;strong class="program"&gt;uvx&lt;/strong&gt; prefix.
+If they’re not installed, they get installed and executed; if they’re already
+installed, they run as usual.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Permanent: They are linked to visibility across the entire OS with direct
+invocation of application’s entry point. In this case, installation is
+required as a first step, and then invoked traditionally. I prefer this case
+because I often use them in other projects, but for cloud or isolated
+projects, the previous option is suitable. This is done using
+&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;uv&lt;/span&gt; &lt;span class="pre"&gt;tool&lt;/span&gt; &lt;span class="pre"&gt;install&lt;/span&gt;&lt;/code&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;For ReST-related packages in my repo, each one is a separate tool, so we proceed
+with installing each one individually.&lt;/p&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;uv&lt;span class="w"&gt; &lt;/span&gt;tool&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;rstcheck
+uv&lt;span class="w"&gt; &lt;/span&gt;tool&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;doc8
+uv&lt;span class="w"&gt; &lt;/span&gt;tool&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;docstrfmt
+uv&lt;span class="w"&gt; &lt;/span&gt;tool&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;esbonio&lt;span class="w"&gt; &lt;/span&gt;--prerelease&lt;span class="o"&gt;=&lt;/span&gt;allow
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Just like when adding dependencies, if no explicit version is specified, the
+most recent one is used. In the case of &lt;strong class="program"&gt;esbonio&lt;/strong&gt;, there’s a parameter
+&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;--prerelease=allow&lt;/span&gt;&lt;/code&gt; that allows us to use pre-release versions (alpha, beta,
+candidates), but we can also specify an explicit version.&lt;/p&gt;
+&lt;p&gt;For Markdown packages in the group, these are actually extensions of a main
+package, &lt;strong class="program"&gt;mdformat&lt;/strong&gt;. To inject additional dependencies, we do it using
+the parameter &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;--with&lt;/span&gt;&lt;/code&gt;.&lt;/p&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;uv&lt;span class="w"&gt; &lt;/span&gt;tool&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;mdformat&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="se"&gt;\&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;--with&lt;span class="w"&gt; &lt;/span&gt;mdformat-gfm&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="se"&gt;\&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;--with&lt;span class="w"&gt; &lt;/span&gt;mdformat-frontmatter&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="se"&gt;\&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;--with&lt;span class="w"&gt; &lt;/span&gt;mdformat-footnote&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="se"&gt;\&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;--with&lt;span class="w"&gt; &lt;/span&gt;mdformat-gfm-alerts&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="se"&gt;\&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;--with&lt;span class="w"&gt; &lt;/span&gt;mdformat-myst
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Finally, although the options are illustrated, as I’m testing modifications in
+extensions, I also need Ruff for code adjustments (although this may not be
+necessary depending on the IDE used)&lt;/p&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;uv&lt;span class="w"&gt; &lt;/span&gt;tool&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;ruff
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/section&gt;
+&lt;section id="references"&gt;
+&lt;h2&gt;References&lt;/h2&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://docs.astral.sh/uv/concepts/projects/"&gt;&lt;span class="menuselection"&gt;uv‣Concepts‣Projects&lt;/span&gt;&lt;/a&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://docs.astral.sh/uv/guides/projects/"&gt;&lt;span class="menuselection"&gt;uv‣Guides‣Working on projects&lt;/span&gt;&lt;/a&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://docs.astral.sh/uv/concepts/tools/#the-path"&gt;&lt;span class="menuselection"&gt;uv‣Concepts‣Tools&lt;/span&gt;&lt;/a&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/section&gt;
+&lt;/section&gt;
+</content>
+    <link href="https://www.cosmoscalibur.com/en/blog/2025/configuracion-de-proyectos-y-herramientas-python-con-uv/"/>
+    <summary>We will create a Python project using uv, which utilizes the
+pyproject.toml format for its configuration, making it easier to port
+across different environments. This format is also already widely used by other
+package managers of Python, and is commonly used for configuring utilities.</summary>
+    <category term="packagemanager" label="package manager"/>
+    <category term="pyproject" label="pyproject"/>
+    <category term="python" label="python"/>
+    <category term="uv" label="uv"/>
+    <category term="virtualenvmanager" label="virtualenv manager"/>
+    <published>2025-01-06T00:00:00-05:00</published>
+  </entry>
+  <entry>
+    <id>https://www.cosmoscalibur.com/es/blog/2025/configuracion-de-proyectos-y-herramientas-python-con-uv/</id>
+    <title>Configuración de proyectos y herramientas Python con UV</title>
+    <updated>2025-01-06T00:00:00-05:00</updated>
+    <author>
+      <name>Edward Villegas-Pulgarin</name>
+    </author>
+    <content type="html">&lt;section class="tex2jax_ignore mathjax_ignore" id="configuracion-de-proyectos-y-herramientas-python-con-uv"&gt;
+
+&lt;p&gt;Crearemos un proyecto Python con &lt;strong class="program"&gt;uv&lt;/strong&gt;, el cual usa el formato
+&lt;code class="file docutils literal notranslate"&gt;&lt;span class="pre"&gt;pyproject.toml&lt;/span&gt;&lt;/code&gt; para su configuración, facilitando la portabilidad del
+mismo. Adicional, este formato ya es un formato común con otros gestores de
+paquetes de Python, y usado para la configuración de utilidades.&lt;/p&gt;
+&lt;p&gt;Para fines de ilustración, migraré la gestión del blog a UV, del cual ya les
+había contado un poco de su beneficio como
+&lt;a class="reference internal" href="../es/blog/2024/uv-alternativa-rapida-a-pip-y-venv/"&gt;&lt;span class="std std-doc"&gt;alternativa a PIP y VENV&lt;/span&gt;&lt;/a&gt;.&lt;/p&gt;
+&lt;section id="crear-un-proyecto-con-uv-init"&gt;
+&lt;h2&gt;Crear un proyecto con &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;uv&lt;/span&gt; &lt;span class="pre"&gt;init&lt;/span&gt;&lt;/code&gt;&lt;/h2&gt;
+&lt;p&gt;Si lo creamos desde cero, el nombre del proyecto será el nombre del directorio,
+pero si estamos dentro y usamos el directorio este se asigna como nombre del
+proyecto. En mi caso, el directorio ya existente es mi repo de GitHub de
+&lt;code class="file docutils literal notranslate"&gt;&lt;span class="pre"&gt;cosmoscalibur.github.io&lt;/span&gt;&lt;/code&gt;, y este será el nombre del proyecto.&lt;/p&gt;
+&lt;p&gt;No siempre requerimos la misma versión de Python, y en Linux tenemos instalado
+por defecto típicamente, pero no todos poseen la misma versión. Por lo que es
+conveniente usar la especificación de la versión en lugar de la versión del
+sistema. Esto genera los archivos de &lt;code class="file docutils literal notranslate"&gt;&lt;span class="pre"&gt;.python-version&lt;/span&gt;&lt;/code&gt; que indica la
+versión de Python a usar, el archivo de configuración de proyecto
+&lt;code class="file docutils literal notranslate"&gt;&lt;span class="pre"&gt;pyproject.toml&lt;/span&gt;&lt;/code&gt; y un archivo de ejemplo &lt;code class="file docutils literal notranslate"&gt;&lt;span class="pre"&gt;hello.py&lt;/span&gt;&lt;/code&gt;.&lt;/p&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;uv&lt;span class="w"&gt; &lt;/span&gt;init&lt;span class="w"&gt; &lt;/span&gt;.&lt;span class="w"&gt; &lt;/span&gt;-p&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;3&lt;/span&gt;.12
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Al estar dentro del directorio, podemos ejecutar &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;uv&lt;/span&gt; &lt;span class="pre"&gt;run&lt;/span&gt; &lt;span class="pre"&gt;hello.py&lt;/span&gt;&lt;/code&gt;, y usará la
+versión Python especificada y construye el ambiente necesario para funcionar. El
+ambiente quedará en el directorio &lt;code class="file docutils literal notranslate"&gt;&lt;span class="pre"&gt;.venv&lt;/span&gt;&lt;/code&gt;. Ya que hicimos la prueba,
+puedes borrar el archivo de ejemplo.&lt;/p&gt;
+&lt;p&gt;Para agregar las dependencias en el proyecto, usamos &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;uv&lt;/span&gt; &lt;span class="pre"&gt;add&lt;/span&gt;&lt;/code&gt;. Lo podemos
+agregar de forma individual o una lista.&lt;/p&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;uv&lt;span class="w"&gt; &lt;/span&gt;add&lt;span class="w"&gt; &lt;/span&gt;sphinx
+uv&lt;span class="w"&gt; &lt;/span&gt;add&lt;span class="w"&gt; &lt;/span&gt;ablog
+uv&lt;span class="w"&gt; &lt;/span&gt;add&lt;span class="w"&gt; &lt;/span&gt;pydata-sphinx-theme
+uv&lt;span class="w"&gt; &lt;/span&gt;add&lt;span class="w"&gt; &lt;/span&gt;sphinx-design&lt;span class="w"&gt; &lt;/span&gt;sphinx-copybutton&lt;span class="w"&gt; &lt;/span&gt;sphinxcontrib-youtube&lt;span class="w"&gt; &lt;/span&gt;sphinxext-rediraffe
+uv&lt;span class="w"&gt; &lt;/span&gt;add&lt;span class="w"&gt; &lt;/span&gt;sphinxext-opengraph&lt;span class="w"&gt; &lt;/span&gt;matplotlib
+uv&lt;span class="w"&gt; &lt;/span&gt;add&lt;span class="w"&gt; &lt;/span&gt;myst-parser&lt;span class="w"&gt; &lt;/span&gt;jupytext&lt;span class="w"&gt; &lt;/span&gt;myst-nb
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Estas adiciones se van añadiendo al campo de dependencias el archivo de
+proyecto.&lt;/p&gt;
+&lt;p&gt;Al no indicar explícitamente una restricción se usará como restricción que sea
+mayor o igual que la versión más alta disponible compatible con el ambiente. Si
+requieres una restricción explícita, puedes hacerlo con la misma notación que en
+&lt;strong class="program"&gt;pip&lt;/strong&gt;, pero debe añadirse entre comillas.&lt;/p&gt;
+&lt;p&gt;Las dependencias opcionales también tienen su mecanismo de adición, y aquí
+aprovecho a agregar una que estoy reemplazando por un manejo propio, pero que me
+interesa estar comparando. Esto se logra añadiendo &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;--optional&lt;/span&gt;&lt;/code&gt; seguido del
+nombre de un grupo para este opcional.&lt;/p&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;uv&lt;span class="w"&gt; &lt;/span&gt;add&lt;span class="w"&gt; &lt;/span&gt;sphinx-sitemap&lt;span class="w"&gt; &lt;/span&gt;--optional&lt;span class="w"&gt; &lt;/span&gt;sitemap
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;También podemos añadir de forma explícita cuáles son las dependencias de
+desarrollo, mediante &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;uv&lt;/span&gt; &lt;span class="pre"&gt;add&lt;/span&gt; &lt;span class="pre"&gt;--dev&lt;/span&gt;&lt;/code&gt;, o si queremos indicar un grupo explícito de
+desarrollo, &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;uv&lt;/span&gt; &lt;span class="pre"&gt;add&lt;/span&gt; &lt;span class="pre"&gt;--group&lt;/span&gt;&lt;/code&gt; seguido del nombre del grupo y al final los
+paquetes.&lt;/p&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;uv&lt;span class="w"&gt; &lt;/span&gt;add&lt;span class="w"&gt; &lt;/span&gt;--dev&lt;span class="w"&gt; &lt;/span&gt;jupyterlab&lt;span class="w"&gt; &lt;/span&gt;jupyterlab_myst
+uv&lt;span class="w"&gt; &lt;/span&gt;add&lt;span class="w"&gt; &lt;/span&gt;--group&lt;span class="w"&gt; &lt;/span&gt;rest&lt;span class="w"&gt; &lt;/span&gt;rstcheck&lt;span class="w"&gt; &lt;/span&gt;doc8&lt;span class="w"&gt; &lt;/span&gt;docstrfmt&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;esbonio&amp;gt;=1.0.0b8&amp;quot;&lt;/span&gt;
+uv&lt;span class="w"&gt; &lt;/span&gt;add&lt;span class="w"&gt; &lt;/span&gt;--group&lt;span class="w"&gt; &lt;/span&gt;markdown&lt;span class="w"&gt; &lt;/span&gt;mdformat&lt;span class="w"&gt; &lt;/span&gt;mdformat-gfm&lt;span class="w"&gt; &lt;/span&gt;mdformat-frontmatter&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="se"&gt;\&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;mdformat-footnote&lt;span class="w"&gt; &lt;/span&gt;mdformat-gfm-alerts&lt;span class="w"&gt; &lt;/span&gt;mdformat-myst
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Es importante notar que la opción &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;--dev&lt;/span&gt;&lt;/code&gt; es una forma corta para &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;--group&lt;/span&gt; &lt;span class="pre"&gt;dev&lt;/span&gt;&lt;/code&gt;,
+siendo así este un grupo por defecto.&lt;/p&gt;
+&lt;section id="ejecutar-puntos-de-entrada-y-rutinas-del-ambiente-con-uv-run"&gt;
+&lt;h3&gt;Ejecutar puntos de entrada y rutinas del ambiente con &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;uv&lt;/span&gt; &lt;span class="pre"&gt;run&lt;/span&gt;&lt;/code&gt;&lt;/h3&gt;
+&lt;p&gt;Como cualquier ambiente virtual, este puede ser activado y una vez esto, puedes
+ejecutar de forma habitual los puntos de entrada (la utilidad ejecutable) o la
+rutina invocando &lt;strong class="program"&gt;python&lt;/strong&gt;. Podemos usar:&lt;/p&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nb"&gt;source&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;.venv/bin/activate&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="c1"&gt;# Forma 1&lt;/span&gt;
+pipenv&lt;span class="w"&gt; &lt;/span&gt;shell&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="c1"&gt;# Forma 2 con pipenv instalado&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Si no tienes &lt;strong class="program"&gt;pipenv&lt;/strong&gt;, puedes instalarlo como herramienta,
+&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;uv&lt;/span&gt; &lt;span class="pre"&gt;tool&lt;/span&gt; &lt;span class="pre"&gt;install&lt;/span&gt; &lt;span class="pre"&gt;pipenv&lt;/span&gt;&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Pero &lt;strong class="program"&gt;uv&lt;/strong&gt; ofrece una facilidad de ejecutar sin activar explícitamente
+el ambiente, lo que resulta muy conveniente en muchos casos, ejemplo, cuando se
+hace un &lt;code class="file docutils literal notranslate"&gt;&lt;span class="pre"&gt;justfile&lt;/span&gt;&lt;/code&gt; (más adelante tendremos una publicación al respecto).
+Del ejemplo inicial, ya sabemos como ejecutar una rutina, pero si necesitamos
+una utilidad ejecutable del ambiente, tenemos una forma similar iniciando por
+&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;uv&lt;/span&gt; &lt;span class="pre"&gt;run&lt;/span&gt; &lt;span class="pre"&gt;--&lt;/span&gt;&lt;/code&gt;.&lt;/p&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;uv&lt;span class="w"&gt; &lt;/span&gt;run&lt;span class="w"&gt; &lt;/span&gt;hello.py&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="c1"&gt;# Ejecutar rutinas Python&lt;/span&gt;
+uv&lt;span class="w"&gt; &lt;/span&gt;run&lt;span class="w"&gt; &lt;/span&gt;--&lt;span class="w"&gt; &lt;/span&gt;ablog&lt;span class="w"&gt; &lt;/span&gt;clean&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="c1"&gt;# Ejecutar utilidades en el ambiente&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Si el ambiente no ha sido creado, este paso lo crea en &lt;code class="file docutils literal notranslate"&gt;&lt;span class="pre"&gt;.venv&lt;/span&gt;&lt;/code&gt; o asegura
+que el ambiente esté actualizado. También en este punto se crea &lt;code class="file docutils literal notranslate"&gt;&lt;span class="pre"&gt;uv.lock&lt;/span&gt;&lt;/code&gt;
+(también se puede crear con &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;uv&lt;/span&gt; &lt;span class="pre"&gt;sync&lt;/span&gt;&lt;/code&gt; y &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;uv&lt;/span&gt; &lt;span class="pre"&gt;lock&lt;/span&gt;&lt;/code&gt;), que es un formato que
+permite asegurar la reproducibilidad exacta de los ambientes.&lt;/p&gt;
+&lt;/section&gt;
+&lt;/section&gt;
+&lt;section id="instalar-herramientas-con-uv-tool"&gt;
+&lt;h2&gt;Instalar herramientas con &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;uv&lt;/span&gt; &lt;span class="pre"&gt;tool&lt;/span&gt;&lt;/code&gt;&lt;/h2&gt;
+&lt;p&gt;En el ejemplo anterior, los paquetes añadidos con grupos no requieren
+explícitamente ser dependencias del proyecto y pueden ser instaladas de forma
+global. Este tipo de uso corresponde al concepto de herramientas, y con
+&lt;strong class="program"&gt;uv&lt;/strong&gt; lo podemos gestionar de dos maneras:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;Temporal: Se almacenan en caché y siempre usan el prefijo &lt;strong class="program"&gt;uvx&lt;/strong&gt;. Si
+no está instalada, se instala y ejecuta, en caso de estar instalada, pasa a
+ejecución.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Permanente: Se vincula para visibilidad a lo largo del sistema operativo con
+la invocación directa del punto de acceso de la aplicación. En este caso se
+requiere la instalación como primer paso, y luego se invoca de forma
+tradicional. Yo prefiero este caso, porque suelo usarlas en otros proyectos,
+pero como una solución a nivel de nube o proyectos aislados, la opción
+anterior es adecuada. Esto lo hacemos con &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;uv&lt;/span&gt; &lt;span class="pre"&gt;tool&lt;/span&gt; &lt;span class="pre"&gt;install&lt;/span&gt;&lt;/code&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Para los paquetes relacionados con ReST, cada uno es una herramienta separada,
+por lo cual procedemos con la instalación de cada uno por separado.&lt;/p&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;uv&lt;span class="w"&gt; &lt;/span&gt;tool&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;rstcheck
+uv&lt;span class="w"&gt; &lt;/span&gt;tool&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;doc8
+uv&lt;span class="w"&gt; &lt;/span&gt;tool&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;docstrfmt
+uv&lt;span class="w"&gt; &lt;/span&gt;tool&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;esbonio&lt;span class="w"&gt; &lt;/span&gt;--prerelease&lt;span class="o"&gt;=&lt;/span&gt;allow
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Igual que en la adición de dependencias, cuando no se indica explícitamente la
+versión se usa la más alta. En el caso de &lt;strong class="program"&gt;esbonio&lt;/strong&gt; se evidencia un
+parámetro &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;--prerelease=allow&lt;/span&gt;&lt;/code&gt;, el cual nos permite usar versiones previas a
+liberación (alfa, beta, candidatas), pero podemos hacer explícita la versión.&lt;/p&gt;
+&lt;p&gt;Para el caso de los paquetes del grupo Markdown, estos realmente son extensiones
+de un paquete principal, &lt;strong class="program"&gt;mdformat&lt;/strong&gt;. Para inyectar dependencias
+adicionales, lo hacemos con el parámetro &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;--with&lt;/span&gt;&lt;/code&gt;.&lt;/p&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;uv&lt;span class="w"&gt; &lt;/span&gt;tool&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;mdformat&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="se"&gt;\&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;--with&lt;span class="w"&gt; &lt;/span&gt;mdformat-gfm&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="se"&gt;\&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;--with&lt;span class="w"&gt; &lt;/span&gt;mdformat-frontmatter&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="se"&gt;\&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;--with&lt;span class="w"&gt; &lt;/span&gt;mdformat-footnote&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="se"&gt;\&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;--with&lt;span class="w"&gt; &lt;/span&gt;mdformat-gfm-alerts&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="se"&gt;\&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;--with&lt;span class="w"&gt; &lt;/span&gt;mdformat-myst
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Por último, aunque las opciones están ilustradas, como estoy probando
+modificaciones en extensiones, requiereo también de Ruff para ajustes en el
+código Python (aunque esto puede no ser necesario según la extensión del IDE
+usado).&lt;/p&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;uv&lt;span class="w"&gt; &lt;/span&gt;tool&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;ruff
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/section&gt;
+&lt;section id="referencias"&gt;
+&lt;h2&gt;Referencias&lt;/h2&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://docs.astral.sh/uv/concepts/projects/"&gt;&lt;span class="menuselection"&gt;uv‣Concepts‣Projects&lt;/span&gt;&lt;/a&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://docs.astral.sh/uv/guides/projects/"&gt;&lt;span class="menuselection"&gt;uv‣Guides‣Working on projects&lt;/span&gt;&lt;/a&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://docs.astral.sh/uv/concepts/tools/#the-path"&gt;&lt;span class="menuselection"&gt;uv‣Concepts‣Tools&lt;/span&gt;&lt;/a&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/section&gt;
+&lt;/section&gt;
+</content>
+    <link href="https://www.cosmoscalibur.com/es/blog/2025/configuracion-de-proyectos-y-herramientas-python-con-uv/"/>
+    <summary>Crearemos un proyecto Python con uv, el cual usa el formato
+pyproject.toml para su configuración, facilitando la portabilidad del
+mismo. Adicional, este formato ya es un formato común con otros gestores de
+paquetes de Python, y usado para la configuración de utilidades.</summary>
+    <category term="gestordeambientes" label="gestor de ambientes"/>
+    <category term="gestordepaquetes" label="gestor de paquetes"/>
+    <category term="pyproject" label="pyproject"/>
+    <category term="python" label="python"/>
+    <category term="uv" label="uv"/>
+    <published>2025-01-06T00:00:00-05:00</published>
+  </entry>
   <entry>
     <id>https://www.cosmoscalibur.com/en/blog/2024/problema-de-wayland-y-graficos-hibridos-en-linux/</id>
     <title>Wayland and Hybrid Graphics Issues in Linux</title>
@@ -3879,6 +4211,141 @@ and favicon for Sphinx.Configured logo in blog</summary>
     <published>2024-09-24T00:00:00-05:00</published>
   </entry>
   <entry>
+    <id>https://www.cosmoscalibur.com/en/blog/2024/uv-alternativa-rapida-a-pip-y-venv/</id>
+    <title>UV: A Fast Alternative to PIP and VENV</title>
+    <updated>2024-06-30T00:00:00-05:00</updated>
+    <author>
+      <name>Edward Villegas-Pulgarin</name>
+    </author>
+    <content type="html">&lt;section class="tex2jax_ignore mathjax_ignore" id="uv-a-fast-alternative-to-pip-and-venv"&gt;
+
+&lt;p&gt;UV is a package manager and virtual environment alternative for &lt;em&gt;Python&lt;/em&gt;,
+developed in &lt;em&gt;Rust&lt;/em&gt;, which promises to be very fast in the processes it aims to
+replace those of PIP and VENV. In this sense, all you need to do is add &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;uv&lt;/span&gt;&lt;/code&gt;
+before the usual instructions, and it should work (except for some particular
+cases of compatibility or lack of implementation).&lt;/p&gt;
+&lt;p&gt;This is one of many tools that are emerging with &lt;em&gt;Rust&lt;/em&gt; to permeate the &lt;em&gt;Python&lt;/em&gt;
+ecosystem, generating a new value, such as improved performance. And from the
+same creator, we also have &lt;em&gt;Ruff&lt;/em&gt; as an efficient replacement for &lt;em&gt;linters&lt;/em&gt;, and
+other tools like &lt;em&gt;PyO3&lt;/em&gt; for creating Python libraries in Rust, Polars as an
+alternative to Pandas, or Robyn as an alternative to Flask.&lt;/p&gt;
+&lt;p&gt;This project, &lt;a class="reference external" href="https://astral.sh/blog/uv"&gt;UV&lt;/a&gt;, aims to be the equivalent of a
+&lt;em&gt;cargo&lt;/em&gt; (the &lt;em&gt;Rust&lt;/em&gt; package manager) for Python, integrating multiple utilities
+into a single binary.&lt;/p&gt;
+&lt;section id="instalacion-de-uv"&gt;
+&lt;h2&gt;Instalación de UV&lt;/h2&gt;
+&lt;p&gt;Si tenemos en nuestro sistema más de una versión Python, la forma recomendada
+para instalar será a partir del &lt;em&gt;script&lt;/em&gt; de instalación que provee, ya que de
+esta forma queda disponible para todas nuestras instalaciones sin depender de un
+ambiente Python en particular. Esto es porque el binario evalúa la instalación
+de Python correspondiente a través de las variables de entorno y soporta las
+funciones de gestión para el ambiente detectado.&lt;/p&gt;
+&lt;p&gt;You can install &lt;strong class="program"&gt;uv&lt;/strong&gt; with following script:&lt;/p&gt;
+&lt;div class="sd-tab-set docutils"&gt;
+&lt;input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio"&gt;
+&lt;label class="sd-tab-label" for="sd-tab-item-0"&gt;
+Linux and Mac&lt;/label&gt;&lt;div class="sd-tab-content docutils"&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;curl&lt;span class="w"&gt; &lt;/span&gt;-LsSf&lt;span class="w"&gt; &lt;/span&gt;https://astral.sh/uv/install.sh&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;sh
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;input id="sd-tab-item-1" name="sd-tab-set-0" type="radio"&gt;
+&lt;label class="sd-tab-label" for="sd-tab-item-1"&gt;
+Windows&lt;/label&gt;&lt;div class="sd-tab-content docutils"&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;powershell&lt;span class="w"&gt; &lt;/span&gt;-ExecutionPolicy&lt;span class="w"&gt; &lt;/span&gt;ByPass&lt;span class="w"&gt; &lt;/span&gt;-c&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;irm https://astral.sh/uv/install.ps1 | iex&amp;quot;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;UV is also available as a Python package, so you can use &lt;em&gt;pip&lt;/em&gt; to install it. If
+you need to validate another method or operating system, you can check out the
+&lt;a class="reference external" href="https://github.com/astral-sh/uv?tab=readme-ov-file#getting-started"&gt;official repository&lt;/a&gt;.&lt;/p&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;pip&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;uv
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;As we’ll see later, there will be some good improvements in package installation
+times and environment creation. However, it’s worth noting that if you plan to
+use this tool to reduce the execution time of GitHub Actions, the installation
+time of UV or its
+&lt;a class="reference external" href="https://github.com/actions/setup-python/issues/822"&gt;cache management&lt;/a&gt; may not
+be an alternative at the moment, unless the actual execution time is
+significantly reduced. In my case, the direct method took 7.8 seconds, while the
+installation with PIP took 5.8 seconds.&lt;/p&gt;
+&lt;p&gt;To update &lt;em&gt;UV&lt;/em&gt; from the binary, we can use &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;uv&lt;/span&gt; &lt;span class="pre"&gt;self&lt;/span&gt; &lt;span class="pre"&gt;update&lt;/span&gt;&lt;/code&gt; (available since
+version 0.1.23).&lt;/p&gt;
+&lt;section id="uninstalling-uv"&gt;
+&lt;h3&gt;Uninstalling UV&lt;/h3&gt;
+&lt;p&gt;This is not well-documented, but it’s available in a
+&lt;a class="reference external" href="https://github.com/astral-sh/uv/issues/1696#issuecomment-2031776112"&gt;repository issue report&lt;/a&gt;,
+considering it’s simply a binary. So, we’re interested in clearing the UV cache
+and removing the binary.&lt;/p&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;rm&lt;span class="w"&gt; &lt;/span&gt;-rf&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;$HOME&lt;/span&gt;/.cache/uv
+rm&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;$HOME&lt;/span&gt;/.cargo/bin/uv
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/section&gt;
+&lt;/section&gt;
+&lt;section id="virtual-environment-creation"&gt;
+&lt;h2&gt;Virtual Environment Creation&lt;/h2&gt;
+&lt;p&gt;Like with the &lt;em&gt;venv&lt;/em&gt; utility, the virtual environment created depends on the
+Python installation used (detected by environment variables), and we will have
+an option to manage it using its default name or assigning a new one.&lt;/p&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;python3&lt;span class="w"&gt; &lt;/span&gt;-m&lt;span class="w"&gt; &lt;/span&gt;venv&lt;span class="w"&gt; &lt;/span&gt;testvenv&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="c1"&gt;# VENV: 2.5 s&lt;/span&gt;
+uv&lt;span class="w"&gt; &lt;/span&gt;venv&lt;span class="w"&gt; &lt;/span&gt;testuv&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="c1"&gt;# UV: 0.01 s&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/section&gt;
+&lt;section id="installing-python-packages"&gt;
+&lt;h2&gt;Installing Python Packages&lt;/h2&gt;
+&lt;p&gt;In general, it’s a good practice to use environments and UV will do so by
+default. However, in case of a global installation, we can pass &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;--system&lt;/span&gt;&lt;/code&gt; as an
+argument (suitable for CI or containers).&lt;/p&gt;
+&lt;p&gt;In my case, I need to activate the environment to compare the installation of
+&lt;em&gt;pip&lt;/em&gt; and &lt;em&gt;UV&lt;/em&gt;. The test scenario will be installing the dependencies used in
+the &lt;a class="reference internal" href="../en/blog/2024/crear-un-blog-con-sphinx/#dependencies"&gt;&lt;span class="std std-ref"&gt;blog repository&lt;/span&gt;&lt;/a&gt;.&lt;/p&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nb"&gt;source&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;testenv/bin/activate
+python3&lt;span class="w"&gt; &lt;/span&gt;-m&lt;span class="w"&gt; &lt;/span&gt;pip&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;-r&lt;span class="w"&gt; &lt;/span&gt;requirements.txt&lt;span class="w"&gt; &lt;/span&gt;-r&lt;span class="w"&gt; &lt;/span&gt;requirements-dev.txt
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nb"&gt;source&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;testuv/bin/activate
+uv&lt;span class="w"&gt; &lt;/span&gt;pip&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;-r&lt;span class="w"&gt; &lt;/span&gt;requirements.txt&lt;span class="w"&gt; &lt;/span&gt;-r&lt;span class="w"&gt; &lt;/span&gt;requirements-dev.txt
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;While &lt;em&gt;pip&lt;/em&gt; took 25.5 seconds to install, &lt;em&gt;UV&lt;/em&gt; took only 5.9 seconds. We can
+already notice significant differences that in a Continuous Integration (CI)
+workflow like GitHub Actions, could represent interesting savings.&lt;/p&gt;
+&lt;p&gt;I also repeated this exercise for the main repository at my work, and it took 6
+seconds with UV without caching and installing UV, whereas PIP takes typically
+32 seconds without caching and 24 seconds with caching. In this case, it’s
+essential to pass the &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;--system&lt;/span&gt;&lt;/code&gt; option to use it in GitHub Actions.&lt;/p&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;pip&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;uv
+uv&lt;span class="w"&gt; &lt;/span&gt;pip&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;--system&lt;span class="w"&gt; &lt;/span&gt;-r&lt;span class="w"&gt; &lt;/span&gt;requirements.txt&lt;span class="w"&gt; &lt;/span&gt;-r&lt;span class="w"&gt; &lt;/span&gt;requirements-dev.txt
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;It’s essential to keep in mind the change in syntax when installing a package
+from a repository, and it involves using &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;&amp;quot;package&lt;/span&gt; &lt;span class="pre"&gt;&amp;#64;url_repo&amp;quot;&lt;/span&gt;&lt;/code&gt; syntax. And
+especially if the package has credentials, consider the corresponding support as
+per
+&lt;a class="reference external" href="https://github.com/astral-sh/uv?tab=readme-ov-file#git-authentication"&gt;the instructions&lt;/a&gt;&lt;/p&gt;
+&lt;/section&gt;
+&lt;/section&gt;
+</content>
+    <link href="https://www.cosmoscalibur.com/en/blog/2024/uv-alternativa-rapida-a-pip-y-venv/"/>
+    <summary>UV is a package manager and virtual environment alternative for Python,
+developed in Rust, which promises to be very fast in the processes it aims to
+replace those of PIP and VENV. In this sense, all you need to do is add uv
+before the usual instructions, and it should work (except for some particular
+cases of compatibility or lack of implementation).</summary>
+    <category term="packagemanager" label="package manager"/>
+    <category term="pip" label="pip"/>
+    <category term="python" label="python"/>
+    <category term="rust" label="rust"/>
+    <category term="uv" label="uv"/>
+    <category term="venv" label="venv"/>
+    <category term="virtualenvmanager" label="virtualenv manager"/>
+    <published>2024-06-30T00:00:00-05:00</published>
+  </entry>
+  <entry>
     <id>https://www.cosmoscalibur.com/es/blog/2024/uv-alternativa-rapida-a-pip-y-venv/</id>
     <title>UV, alternativa rápida a PIP y VENV</title>
     <updated>2024-06-30T00:00:00-05:00</updated>
@@ -3909,14 +4376,23 @@ esta forma queda disponible para todas nuestras instalaciones sin depender de un
 ambiente Python en particular. Esto es porque el binario evalúa la instalación
 de Python correspondiente a través de las variables de entorno y soporta las
 funciones de gestión para el ambiente detectado.&lt;/p&gt;
-&lt;p&gt;Si estamos en Linux, podemos proceder como&lt;/p&gt;
+&lt;p&gt;Puedes instalar &lt;strong class="program"&gt;uv&lt;/strong&gt; con la siguiente rutina:&lt;/p&gt;
+&lt;div class="sd-tab-set docutils"&gt;
+&lt;input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio"&gt;
+&lt;label class="sd-tab-label" for="sd-tab-item-0"&gt;
+Linux and Mac&lt;/label&gt;&lt;div class="sd-tab-content docutils"&gt;
 &lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;curl&lt;span class="w"&gt; &lt;/span&gt;-LsSf&lt;span class="w"&gt; &lt;/span&gt;https://astral.sh/uv/install.sh&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;sh
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
-&lt;p&gt;La primera línea, descarga el &lt;em&gt;script&lt;/em&gt; de instalación y lo ejecuta. En la
-segunda línea, se configura el entorno (en mi caso uso &lt;em&gt;bash&lt;/em&gt;) y con esto queda
-disponible de forma inmediata (también si abres una nueva consola estará
-disponible).&lt;/p&gt;
+&lt;/div&gt;
+&lt;input id="sd-tab-item-1" name="sd-tab-set-0" type="radio"&gt;
+&lt;label class="sd-tab-label" for="sd-tab-item-1"&gt;
+Windows&lt;/label&gt;&lt;div class="sd-tab-content docutils"&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;powershell&lt;span class="w"&gt; &lt;/span&gt;-ExecutionPolicy&lt;span class="w"&gt; &lt;/span&gt;ByPass&lt;span class="w"&gt; &lt;/span&gt;-c&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;irm https://astral.sh/uv/install.ps1 | iex&amp;quot;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
 &lt;p&gt;También se encuentra como un paquete Python, por lo que podrás usar &lt;em&gt;pip&lt;/em&gt; para
 instalarlo. Si necesitas validar otro método o sistema operativo, puedes revisar
 el

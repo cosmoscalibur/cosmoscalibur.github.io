@@ -1,8 +1,8 @@
 ---
 date: 2025-01-06
-tags: package manager, pyproject, python, uv
-category: technology, blogging with sphinx
-langauge: en
+tags: package manager, virtualenv manager, pyproject, python, uv
+category: technology, blogging with sphinx, programming
+language: en
 ---
 
 # Configuration of Python Projects and Tools with UV
@@ -12,27 +12,9 @@ We will create a Python project using {program}`uv`, which utilizes the
 across different environments. This format is also already widely used by other
 package managers of Python, and is commonly used for configuring utilities.
 
-For demonstration purposes, I will migrate the blog management to UV.
-
-## Install UV
-
-You can install {program}`uv` with following script:
-
-`````{tab-set}
-````{tab-item} Linux and Mac
-```{code} bash
-curl -LsSf https://astral.sh/uv/install.sh | sh
-```
-````
-````{tab-item} Windows
-```{code} bash
-powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
-```
-````
-`````
-
-Use {program}`uv` as a prefix for {program}`pip` and {program}`venv`. But next,
-use more powerful options.
+For illustration purposes, I'll be migrating the blog management to UV, of which
+I had already mentioned its benefits as an
+[alternative to PIP and VENV](/en/blog/2024/uv-alternativa-rapida-a-pip-y-venv.md).
 
 ## Creating a Project with `uv init`
 
@@ -174,6 +156,14 @@ uv tool install mdformat \
   --with mdformat-footnote \
   --with mdformat-gfm-alerts \
   --with mdformat-myst
+```
+
+Finally, although the options are illustrated, as I'm testing modifications in
+extensions, I also need Ruff for code adjustments (although this may not be
+necessary depending on the IDE used)
+
+```{code} bash
+uv tool install ruff
 ```
 
 ## References

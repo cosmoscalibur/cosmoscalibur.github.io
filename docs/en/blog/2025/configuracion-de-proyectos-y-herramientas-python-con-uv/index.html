@@ -347,13 +347,31 @@ crossorigin="anonymous"></script>
 <div class="ablog-sidebar-item ablog__postcard">
    
   <h2>
-      
-    <span>2025-01-06</span>
      
+    <span>2025-01-06</span>
+    
   </h2>
   <ul>
     <div class="ablog-sidebar-item ablog__postcard2">
+   
+  <li id="ablog-sidebar-item author ablog__author">
+    <span>
+       Autor: 
+    </span>
+     
+    <a href="../../../../blog/author/edward-villegas-pulgarin/">Edward Villegas-Pulgarin</a>
       
+  </li>
+    
+  <li id="ablog-sidebar-item language ablog__language">
+    <span>
+       Idioma: 
+    </span>
+     
+    <a href="../../../../blog/language/english/">English</a>
+      
+  </li>
+   
   <li id="ablog-sidebar-item category ablog__category">
     <span>
        Categoría: 
@@ -362,6 +380,8 @@ crossorigin="anonymous"></script>
     <a href="../../../../blog/category/technology/">technology</a>
      ,    
     <a href="../../../../blog/category/blogging-with-sphinx/">blogging with sphinx</a>
+     ,    
+    <a href="../../../../blog/category/programming/">programming</a>
       
   </li>
    
@@ -369,7 +389,13 @@ crossorigin="anonymous"></script>
     <span>
         Etiquetas:  
     </span>
-      package manager      pyproject     
+     
+    <a href="../../../../blog/tag/package-manager/">package manager</a>
+        
+    <a href="../../../../blog/tag/virtualenv-manager/">virtualenv manager</a>
+        
+    <a href="../../../../blog/tag/pyproject/">pyproject</a>
+        
     <a href="../../../../blog/tag/python/">python</a>
         
     <a href="../../../../blog/tag/uv/">uv</a>
@@ -387,6 +413,12 @@ crossorigin="anonymous"></script>
   </h3>
   <ul>
      
+    <li>
+      <a href="../../../../es/blog/2025/configuracion-de-proyectos-y-herramientas-python-con-uv/">
+        2025-01-06 - Configuración de proyectos y herramientas Python con UV
+      </a>
+    </li>
+    
     <li>
       <a href="../../2024/problema-de-wayland-y-graficos-hibridos-en-linux/">
         2024-12-18 - Wayland and Hybrid Graphics Issues in Linux
@@ -411,12 +443,6 @@ crossorigin="anonymous"></script>
       </a>
     </li>
     
-    <li>
-      <a href="../../../../es/blog/2024/conecta-con-una-instancia-de-cloud-sql-en-manjaro/">
-        2024-12-10 - Conecta con una instancia de Cloud SQL en Manjaro
-      </a>
-    </li>
-    
   </ul>
 </div>
 </div>
@@ -428,7 +454,11 @@ crossorigin="anonymous"></script>
   <ul>
      
     <li>
-      <a href="../../../../blog/2024/">2024 (28)</a>
+      <a href="../../../../blog/2025/">2025 (2)</a>
+    </li>
+      
+    <li>
+      <a href="../../../../blog/2024/">2024 (29)</a>
     </li>
       
     <li>
@@ -533,29 +563,9 @@ crossorigin="anonymous"></script>
 <code class="file docutils literal notranslate"><span class="pre">pyproject.toml</span></code> format for its configuration, making it easier to port
 across different environments. This format is also already widely used by other
 package managers of Python, and is commonly used for configuring utilities.</p>
-<p>For demonstration purposes, I will migrate the blog management to UV.</p>
-<section id="install-uv">
-<h2>Install UV<a class="headerlink" href="#install-uv" title="Link to this heading">#</a></h2>
-<p>You can install <strong class="program">uv</strong> with following script:</p>
-<div class="sd-tab-set docutils">
-<input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio">
-<label class="sd-tab-label" for="sd-tab-item-0">
-Linux and Mac</label><div class="sd-tab-content docutils">
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl<span class="w"> </span>-LsSf<span class="w"> </span>https://astral.sh/uv/install.sh<span class="w"> </span><span class="p">|</span><span class="w"> </span>sh
-</pre></div>
-</div>
-</div>
-<input id="sd-tab-item-1" name="sd-tab-set-0" type="radio">
-<label class="sd-tab-label" for="sd-tab-item-1">
-Windows</label><div class="sd-tab-content docutils">
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>powershell<span class="w"> </span>-ExecutionPolicy<span class="w"> </span>ByPass<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;irm https://astral.sh/uv/install.ps1 | iex&quot;</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>Use <strong class="program">uv</strong> as a prefix for <strong class="program">pip</strong> and <strong class="program">venv</strong>. But next,
-use more powerful options.</p>
-</section>
+<p>For illustration purposes, I’ll be migrating the blog management to UV, of which
+I had already mentioned its benefits as an
+<a class="reference internal" href="../../2024/uv-alternativa-rapida-a-pip-y-venv/"><span class="std std-doc">alternative to PIP and VENV</span></a>.</p>
 <section id="creating-a-project-with-uv-init">
 <h2>Creating a Project with <code class="docutils literal notranslate"><span class="pre">uv</span> <span class="pre">init</span></code><a class="headerlink" href="#creating-a-project-with-uv-init" title="Link to this heading">#</a></h2>
 <p>If we create one from scratch, the project name will be the directory name, but
@@ -676,6 +686,12 @@ the parameter <code class="docutils literal notranslate"><span class="pre">--wit
 <span class="w">  </span>--with<span class="w"> </span>mdformat-myst
 </pre></div>
 </div>
+<p>Finally, although the options are illustrated, as I’m testing modifications in
+extensions, I also need Ruff for code adjustments (although this may not be
+necessary depending on the IDE used)</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>uv<span class="w"> </span>tool<span class="w"> </span>install<span class="w"> </span>ruff
+</pre></div>
+</div>
 </section>
 <section id="references">
 <h2>References<a class="headerlink" href="#references" title="Link to this heading">#</a></h2>
@@ -688,7 +704,23 @@ the parameter <code class="docutils literal notranslate"><span class="pre">--wit
 </section>
 
 <div class="section ablog__blog_comments">
-       
+     
+<div class="section ablog__prev-next">
+  <span class="ablog__prev">
+      Anterior:
+    
+    <a href="../../../../es/blog/2025/configuracion-de-proyectos-y-herramientas-python-con-uv/">
+      
+      <span>Configuración de proyectos y herramientas Python con UV</span>
+    </a>
+    
+  </span>
+  <span class="ablog__spacer">&nbsp;</span>
+  <span class="ablog__next">
+    
+  </span>
+</div>
+  
 </div>
 
                 </article>
@@ -719,7 +751,6 @@ the parameter <code class="docutils literal notranslate"><span class="pre">--wit
   </div>
   <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#install-uv">Install UV</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-a-project-with-uv-init">Creating a Project with <code class="docutils literal notranslate"><span class="pre">uv</span> <span class="pre">init</span></code></a><ul class="visible nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#running-entry-points-and-scripts-with-uv-run">Running Entry Points and Scripts with <code class="docutils literal notranslate"><span class="pre">uv</span> <span class="pre">run</span></code></a></li>
 </ul>

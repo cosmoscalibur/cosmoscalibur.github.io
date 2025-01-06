@@ -1,7 +1,7 @@
 ---
 date: 2024-06-04
 tags: linux videogames, steam, wine, linux applications
-category: enterteinment, videogames
+category: entertainment, videogames
 language: en
 ---
 

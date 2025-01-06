@@ -1,6 +1,6 @@
 ---
 date: 2025-01-06
-tags: gestor de paquetes, pyproject, python, uv
+tags: gestor de paquetes, gestor de ambientes, pyproject, python, uv
 category: tecnología, programación, blog con sphinx
 ---
 
@@ -156,6 +156,15 @@ uv tool install mdformat \
   --with mdformat-footnote \
   --with mdformat-gfm-alerts \
   --with mdformat-myst
+```
+
+Por último, aunque las opciones están ilustradas, como estoy probando
+modificaciones en extensiones, requiereo también de Ruff para ajustes en el
+código Python (aunque esto puede no ser necesario según la extensión del IDE
+usado).
+
+```{code} bash
+uv tool install ruff
 ```
 
 ## Referencias

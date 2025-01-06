@@ -416,6 +416,18 @@ crossorigin="anonymous"></script>
   <ul>
      
     <li>
+      <a href="../../../../en/blog/2025/configuracion-de-proyectos-y-herramientas-python-con-uv/">
+        2025-01-06 - Configuration of Python Projects and Tools with UV
+      </a>
+    </li>
+    
+    <li>
+      <a href="../../2025/configuracion-de-proyectos-y-herramientas-python-con-uv/">
+        2025-01-06 - Configuración de proyectos y herramientas Python con UV
+      </a>
+    </li>
+    
+    <li>
       <a href="../../../../en/blog/2024/problema-de-wayland-y-graficos-hibridos-en-linux/">
         2024-12-18 - Wayland and Hybrid Graphics Issues in Linux
       </a>
@@ -433,18 +445,6 @@ crossorigin="anonymous"></script>
       </a>
     </li>
     
-    <li>
-      <a href="../../../../en/blog/2024/conecta-con-una-instancia-de-cloud-sql-en-manjaro/">
-        2024-12-10 - Connecting to a Cloud SQL instance on Manjaro
-      </a>
-    </li>
-    
-    <li>
-      <a href="../conecta-con-una-instancia-de-cloud-sql-en-manjaro/">
-        2024-12-10 - Conecta con una instancia de Cloud SQL en Manjaro
-      </a>
-    </li>
-    
   </ul>
 </div>
 </div>
@@ -456,7 +456,11 @@ crossorigin="anonymous"></script>
   <ul>
      
     <li>
-      <a href="../../../../blog/2024/">2024 (28)</a>
+      <a href="../../../../blog/2025/">2025 (2)</a>
+    </li>
+      
+    <li>
+      <a href="../../../../blog/2024/">2024 (29)</a>
     </li>
       
     <li>
@@ -579,14 +583,23 @@ esta forma queda disponible para todas nuestras instalaciones sin depender de un
 ambiente Python en particular. Esto es porque el binario evalúa la instalación
 de Python correspondiente a través de las variables de entorno y soporta las
 funciones de gestión para el ambiente detectado.</p>
-<p>Si estamos en Linux, podemos proceder como</p>
+<p>Puedes instalar <strong class="program">uv</strong> con la siguiente rutina:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-0">
+Linux and Mac</label><div class="sd-tab-content docutils">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl<span class="w"> </span>-LsSf<span class="w"> </span>https://astral.sh/uv/install.sh<span class="w"> </span><span class="p">|</span><span class="w"> </span>sh
 </pre></div>
 </div>
-<p>La primera línea, descarga el <em>script</em> de instalación y lo ejecuta. En la
-segunda línea, se configura el entorno (en mi caso uso <em>bash</em>) y con esto queda
-disponible de forma inmediata (también si abres una nueva consola estará
-disponible).</p>
+</div>
+<input id="sd-tab-item-1" name="sd-tab-set-0" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-1">
+Windows</label><div class="sd-tab-content docutils">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>powershell<span class="w"> </span>-ExecutionPolicy<span class="w"> </span>ByPass<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;irm https://astral.sh/uv/install.ps1 | iex&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
 <p>También se encuentra como un paquete Python, por lo que podrás usar <em>pip</em> para
 instalarlo. Si necesitas validar otro método o sistema operativo, puedes revisar
 el
@@ -684,8 +697,8 @@ posee credenciales considerar el soporte acorde a las
   <span class="ablog__spacer">&nbsp;</span>
   <span class="ablog__next">
       Siguiente: 
-    <a href="../../../../en/blog/2024/agregar-logo-y-favicon-en-sphinx/">
-      <span>Adding Logo and Favicon to Sphinx</span>
+    <a href="../../../../en/blog/2024/uv-alternativa-rapida-a-pip-y-venv/">
+      <span>UV: A Fast Alternative to PIP and VENV</span>
       
     </a>
     

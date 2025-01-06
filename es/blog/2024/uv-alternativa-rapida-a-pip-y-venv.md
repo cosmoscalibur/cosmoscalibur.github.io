@@ -32,16 +32,20 @@ ambiente Python en particular. Esto es porque el binario evalúa la instalación
 de Python correspondiente a través de las variables de entorno y soporta las
 funciones de gestión para el ambiente detectado.
 
-Si estamos en Linux, podemos proceder como
+Puedes instalar {program}`uv` con la siguiente rutina:
 
+`````{tab-set}
+````{tab-item} Linux and Mac
 ```{code} bash
 curl -LsSf https://astral.sh/uv/install.sh | sh
 ```
-
-La primera línea, descarga el _script_ de instalación y lo ejecuta. En la
-segunda línea, se configura el entorno (en mi caso uso _bash_) y con esto queda
-disponible de forma inmediata (también si abres una nueva consola estará
-disponible).
+````
+````{tab-item} Windows
+```{code} bash
+powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
+```
+````
+`````
 
 También se encuentra como un paquete Python, por lo que podrás usar _pip_ para
 instalarlo. Si necesitas validar otro método o sistema operativo, puedes revisar
