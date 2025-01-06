@@ -1,0 +1,29 @@
+indent-width = 4
+line-length = 79
+src = [".", "_ext"]
+target-version = "py312"
+
+[format]
+docstring-code-format = true
+docstring-code-line-length = 72
+indent-style = "space"
+quote-style = "double"
+skip-magic-trailing-comma = false
+
+[lint]
+# https://docs.astral.sh/ruff/formatter/#conflicting-lint-rules
+ignore = [
+    "W191", "E111", "E114", "E117", "D206", "D300", "Q000", "Q001", "Q002",
+    "Q003", "COM812", "COM819", "ISC001", "ISC002"
+]
+
+[lint.isort]
+default-section = "third-party"
+force-sort-within-sections = true
+
+[lint.pycodestyle]
+max-doc-length = 88
+max-line-length = 88
+
+[lint.pydocstyle]
+convention = "google"
