@@ -5,7 +5,7 @@ category: entertainment, movies and series
 language: en
 ---
 
-# The Best Free Netflix Alternative
+# Watch free movies with Stremio
 
 Tired of streaming subscriptions draining your wallet? Perhaps not, but I'll
 share a trick to comfortably, safely, and freely access a lot of content. I'll

@@ -3,3 +3,4 @@
 - Sitemap internacional sin pot
 - Ablog javascript cambiar idioma entrada
 - Ablog etiquetas y categorías por idioma
+- Ablog noindex
