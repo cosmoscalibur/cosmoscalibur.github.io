@@ -2,10 +2,199 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="es">
   <id>https://www.cosmoscalibur.com/</id>
   <title>Cosmoscalibur</title>
-  <updated>2025-01-08T03:13:40.479891+00:00</updated>
+  <updated>2025-01-11T02:33:48.140207+00:00</updated>
   <link href="https://www.cosmoscalibur.com/"/>
   <link href="https://www.cosmoscalibur.com/blog/atom.xml" rel="self"/>
   <generator uri="https://ablog.readthedocs.io/" version="0.11.12">ABlog</generator>
+  <entry>
+    <id>https://www.cosmoscalibur.com/en/blog/2025/montar-disco-en-linux-y-error-de-volumen-sucio/</id>
+    <title>Mounting a disk in Linux and dirty volume error</title>
+    <updated>2025-01-10T00:00:00-05:00</updated>
+    <author>
+      <name>Edward Villegas-Pulgarin</name>
+    </author>
+    <content type="html">&lt;section class="tex2jax_ignore mathjax_ignore" id="mounting-a-disk-in-linux-and-dirty-volume-error"&gt;
+
+&lt;p&gt;I hadn’t used my external hard drive for some time, which was formatted as NTFS,
+and when I went to use it (mount it) after updating the operating system, an
+error about a dirty volume appeared. If you’ve encountered this too, here’s how
+to solve it.&lt;/p&gt;
+&lt;section id="mounting-a-disk-in-linux"&gt;
+&lt;h2&gt;Mounting a disk in Linux&lt;/h2&gt;
+&lt;p&gt;To mount our disk from the command line in Linux, we first need to find out
+where it is located. We do this by using &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;lsblk&lt;/span&gt;&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;The output will look similar to what’s shown below. External devices (hard
+drive, USB, etc.), are appended to the &lt;code class="file docutils literal notranslate"&gt;&lt;span class="pre"&gt;/dev/sdX*&lt;/span&gt;&lt;/code&gt; points, where &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;X&lt;/span&gt;&lt;/code&gt; is a
+letter and &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;*&lt;/span&gt;&lt;/code&gt; is a number. In this case, our external hard drive is recognized
+as &lt;code class="file docutils literal notranslate"&gt;&lt;span class="pre"&gt;/dev/sda1&lt;/span&gt;&lt;/code&gt;. Note that these points always start with the &lt;code class="file docutils literal notranslate"&gt;&lt;span class="pre"&gt;/dev/&lt;/span&gt;&lt;/code&gt;
+path.&lt;/p&gt;
+&lt;div class="highlight-default notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;NAME        MAJ:MIN RM   SIZE RO TYPE MOUNTPOINTS
+sda           8:0    0 931,5G  0 disk
+└─sda1        8:1    0 931,5G  0 part
+nvme0n1     259:0    0 953,9G  0 disk
+├─nvme0n1p1 259:1    0   300M  0 part /boot/efi
+└─nvme0n1p2 259:2    0 953,6G  0 part /
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;We need a directory to mount the unit, so we’ll create a new one (or use an
+existing one if you have it).&lt;/p&gt;
+&lt;div class="highlight-default notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;mkdir&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;p&lt;/span&gt; &lt;span class="o"&gt;~/&lt;/span&gt;&lt;span class="n"&gt;media&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;eddisk&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Now we’ll mount the disk.&lt;/p&gt;
+&lt;div class="highlight-default notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;mount&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;t&lt;/span&gt; &lt;span class="n"&gt;ntfs&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="n"&gt;g&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;dev&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;sda1&lt;/span&gt; &lt;span class="o"&gt;~/&lt;/span&gt;&lt;span class="n"&gt;media&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;eddisk&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;If everything is okay, we now have access to the available disk in that
+directory.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="dirty-volume-error"&gt;
+&lt;h2&gt;Dirty Volume Error&lt;/h2&gt;
+&lt;p&gt;The story in my case is that not everything was okay - the automatic mounting
+and manual mounting via command line wouldn’t work. A curious thing is that the
+mounting with the file manager (in my case, &lt;strong class="program"&gt;dolphin&lt;/strong&gt;, since I use KDE
+as my desktop environment) worked correctly. It seems that this error can occur
+when using the disk in Windows with &lt;em&gt;fast boot&lt;/em&gt; enabled.&lt;/p&gt;
+&lt;p&gt;The error message we’ll see will be:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;div&gt;&lt;p&gt;wrong fs type, bad option, bad superblock on /dev/sda1, missing codepage or
+helper program, or other error. dmesg(1) may have more information after
+failed mount system call.&lt;/p&gt;
+&lt;/div&gt;&lt;/blockquote&gt;
+&lt;p&gt;Upon inspecting with the suggestion of the error message, I ran the command
+&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;sudo&lt;/span&gt; &lt;span class="pre"&gt;dmesg&lt;/span&gt;&lt;/code&gt;.&lt;/p&gt;
+&lt;div class="highlight-default notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;[ 1662.331363]  sda: sda1
+[ 1662.331822] sd 2:0:0:0: [sda] Attached SCSI disk
+[ 1665.785708] ntfs3(sda1): It is recommened to use chkdsk.
+[ 1665.834695] ntfs3(sda1): volume is dirty and &amp;quot;force&amp;quot; flag is not set!
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;This tells us that we are presenting an error of a dirty volume, and we can
+solve it by executing:&lt;/p&gt;
+&lt;div class="highlight-default notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;ntfsfix&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;d&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;dev&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;sda1&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/section&gt;
+&lt;section id="referencias"&gt;
+&lt;h2&gt;Referencias&lt;/h2&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;ArchLinux Wiki.
+&lt;a class="reference external" href="https://wiki.archlinux.org/title/NTFS#Unable_to_mount_with_ntfs3_with_partition_marked_dirty"&gt;NTFS - Unable to mount with ntfs3 with partition marked dirty&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;AskUbuntu.
+&lt;a class="reference external" href="https://askubuntu.com/questions/1513180/ntfs-external-hard-drive-does-not-mount"&gt;ntfs external hard drive does not mount&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;AskUbuntu.
+&lt;a class="reference external" href="https://askubuntu.com/questions/112150/how-to-correctly-fix-a-dirty-ntfs-partition-without-using-chkdsk"&gt;How to correctly fix a “dirty” NTFS partition without using chkdsk&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/section&gt;
+&lt;/section&gt;
+</content>
+    <link href="https://www.cosmoscalibur.com/en/blog/2025/montar-disco-en-linux-y-error-de-volumen-sucio/"/>
+    <summary>I hadn’t used my external hard drive for some time, which was formatted as NTFS,
+and when I went to use it (mount it) after updating the operating system, an
+error about a dirty volume appeared. If you’ve encountered this too, here’s how
+to solve it.</summary>
+    <category term="externaldrive" label="external drive"/>
+    <category term="linux" label="linux"/>
+    <category term="lsblk" label="lsblk"/>
+    <category term="manjaro" label="manjaro"/>
+    <category term="mount" label="mount"/>
+    <category term="ubuntu" label="ubuntu"/>
+    <published>2025-01-10T00:00:00-05:00</published>
+  </entry>
+  <entry>
+    <id>https://www.cosmoscalibur.com/es/blog/2025/montar-disco-en-linux-y-error-de-volumen-sucio/</id>
+    <title>Montar disco en Linux y error de volumen sucio</title>
+    <updated>2025-01-10T00:00:00-05:00</updated>
+    <author>
+      <name>Edward Villegas-Pulgarin</name>
+    </author>
+    <content type="html">&lt;section class="tex2jax_ignore mathjax_ignore" id="montar-disco-en-linux-y-error-de-volumen-sucio"&gt;
+
+&lt;p&gt;Llevaba algún tiempo sin usar mi disco externo, en formato NTFS, y cuando fui a
+usarlo (montarlo) después de actualizar el sistema operativo, me ha salido el
+error de volumen sucio. Si te ha pasado, a continuación te indico como
+solucionarlo.&lt;/p&gt;
+&lt;section id="montaje-de-disco-en-linux"&gt;
+&lt;h2&gt;Montaje de disco en Linux&lt;/h2&gt;
+&lt;p&gt;Para montar nuestro disco por línea de comandos en Linux, procedemos primero a
+consultar el punto en el cual se encuentra disponible, esto lo hacemos con
+&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;lsblk&lt;/span&gt;&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;La salida es similar a lo que vemos a continuación. Las unidades externas
+(disco, USB, etc.), se anexan a los puntos &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;sd*&lt;/span&gt;&lt;/code&gt;, que en este caso es &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;sda1&lt;/span&gt;&lt;/code&gt;
+(debemos tomarlo con el numeral). Estos puntos siempre van precedidos de la ruta
+&lt;code class="file docutils literal notranslate"&gt;&lt;span class="pre"&gt;/dev/&lt;/span&gt;&lt;/code&gt;.&lt;/p&gt;
+&lt;div class="highlight-default notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;NAME        MAJ:MIN RM   SIZE RO TYPE MOUNTPOINTS
+sda           8:0    0 931,5G  0 disk
+└─sda1        8:1    0 931,5G  0 part
+nvme0n1     259:0    0 953,9G  0 disk
+├─nvme0n1p1 259:1    0   300M  0 part /boot/efi
+└─nvme0n1p2 259:2    0 953,6G  0 part /
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Debemos disponer de un directorio para el montaje de la unidad, así que
+crearemos un directorio nuevo (o si lo dispones ya):&lt;/p&gt;
+&lt;div class="highlight-default notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;mkdir&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;p&lt;/span&gt; &lt;span class="o"&gt;~/&lt;/span&gt;&lt;span class="n"&gt;media&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;eddisk&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Ahora realizamos el montaje:&lt;/p&gt;
+&lt;div class="highlight-default notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;mount&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;t&lt;/span&gt; &lt;span class="n"&gt;ntfs&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="n"&gt;g&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;dev&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;sda1&lt;/span&gt; &lt;span class="o"&gt;~/&lt;/span&gt;&lt;span class="n"&gt;media&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;eddisk&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Si todo está bien, ya disponemos del disco disponible en ese directorio.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="error-de-volumen-sucio"&gt;
+&lt;h2&gt;Error de volumen sucio&lt;/h2&gt;
+&lt;p&gt;La historia en mi caso, es que no todo estaba bien, no funcionaba el automontaje
+ni el montaje por línea de comandos. Algo curioso, es que el montaje con el
+gestor de archivos (en mi caso, &lt;strong class="program"&gt;dolphin&lt;/strong&gt;, ya que uso KDE como entorno
+de escritorio), funcionaba correctamente. Al parecer, este error se puede
+producir cuando usas el disco en Windows con &lt;em&gt;fast boot&lt;/em&gt; habilitado.&lt;/p&gt;
+&lt;p&gt;El error que veremos será:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;div&gt;&lt;p&gt;tipo de sistema de ficheros incorrecto, opción incorrecta, superbloque
+incorrecto en /dev/sda1, falta la página de códigos o el programa auxiliar, o
+algún otro error. dmesg(1) puede ser que tenga más información tras el fallo
+de la llamada al sistema de montaje&lt;/p&gt;
+&lt;/div&gt;&lt;/blockquote&gt;
+&lt;p&gt;Al inspeccionar con la sugerencia del error, &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;sudo&lt;/span&gt; &lt;span class="pre"&gt;dmesg&lt;/span&gt;&lt;/code&gt;&lt;/p&gt;
+&lt;div class="highlight-default notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;[ 1662.331363]  sda: sda1
+[ 1662.331822] sd 2:0:0:0: [sda] Attached SCSI disk
+[ 1665.785708] ntfs3(sda1): It is recommened to use chkdsk.
+[ 1665.834695] ntfs3(sda1): volume is dirty and &amp;quot;force&amp;quot; flag is not set!
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Esto nos indica que presentamos el error de volumen sucio y podemos solucionarlo
+ejecutando:&lt;/p&gt;
+&lt;div class="highlight-default notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;ntfsfix&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;d&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;dev&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;sda1&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/section&gt;
+&lt;section id="referencias"&gt;
+&lt;h2&gt;Referencias&lt;/h2&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;ArchLinux Wiki.
+&lt;a class="reference external" href="https://wiki.archlinux.org/title/NTFS#Unable_to_mount_with_ntfs3_with_partition_marked_dirty"&gt;NTFS - Unable to mount with ntfs3 with partition marked dirty&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;AskUbuntu.
+&lt;a class="reference external" href="https://askubuntu.com/questions/1513180/ntfs-external-hard-drive-does-not-mount"&gt;ntfs external hard drive does not mount&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;AskUbuntu.
+&lt;a class="reference external" href="https://askubuntu.com/questions/112150/how-to-correctly-fix-a-dirty-ntfs-partition-without-using-chkdsk"&gt;How to correctly fix a “dirty” NTFS partition without using chkdsk&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/section&gt;
+&lt;/section&gt;
+</content>
+    <link href="https://www.cosmoscalibur.com/es/blog/2025/montar-disco-en-linux-y-error-de-volumen-sucio/"/>
+    <summary>Llevaba algún tiempo sin usar mi disco externo, en formato NTFS, y cuando fui a
+usarlo (montarlo) después de actualizar el sistema operativo, me ha salido el
+error de volumen sucio. Si te ha pasado, a continuación te indico como
+solucionarlo.</summary>
+    <category term="discoexterno" label="disco externo"/>
+    <category term="linux" label="linux"/>
+    <category term="lsblk" label="lsblk"/>
+    <category term="manjaro" label="manjaro"/>
+    <category term="mount" label="mount"/>
+    <category term="ubuntu" label="ubuntu"/>
+    <published>2025-01-10T00:00:00-05:00</published>
+  </entry>
   <entry>
     <id>https://www.cosmoscalibur.com/en/blog/2025/configuracion-de-proyectos-y-herramientas-python-con-uv/</id>
     <title>Configuration of Python Projects and Tools with UV</title>
