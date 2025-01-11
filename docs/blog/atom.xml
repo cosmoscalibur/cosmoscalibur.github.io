@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="es">
   <id>https://www.cosmoscalibur.com/</id>
   <title>Cosmoscalibur</title>
-  <updated>2025-01-11T02:33:48.140207+00:00</updated>
+  <updated>2025-01-11T03:23:45.514447+00:00</updated>
   <link href="https://www.cosmoscalibur.com/"/>
   <link href="https://www.cosmoscalibur.com/blog/atom.xml" rel="self"/>
   <generator uri="https://ablog.readthedocs.io/" version="0.11.12">ABlog</generator>
@@ -1328,6 +1328,104 @@ les contaré sobre como conectar a una instancia de Cloud SQL en Manjaro.</summa
     <category term="manjaro" label="manjaro"/>
     <category term="ubuntu" label="ubuntu"/>
     <published>2024-12-10T00:00:00-05:00</published>
+  </entry>
+  <entry>
+    <id>https://www.cosmoscalibur.com/en/blog/2024/problemas-de-conexion-wifi-en-linux/</id>
+    <title>Wi-Fi issues in Linux</title>
+    <updated>2024-12-07T00:00:00-05:00</updated>
+    <author>
+      <name>Edward Villegas-Pulgarin</name>
+    </author>
+    <content type="html">&lt;section class="tex2jax_ignore mathjax_ignore" id="wi-fi-issues-in-linux"&gt;
+
+&lt;p&gt;If Wi-Fi starts to disconnect randomly and upon reviewing the list of networks,
+these have disappeared, there are some points to consider evaluating.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://bbs.archlinux.org/viewtopic.php?pid=2134101#p2134101"&gt;Disable “fast boot” de la BIOS&lt;/a&gt;:
+In Ubuntu, it doesn’t seem to be a current issue (it didn’t happen on this
+same machine with that configuration before, but there are older posts related
+to Ubuntu about this), but when moving to Manjaro or derivatives of Arch, this
+is a replicable problem. Make sure to disable ‘Fast boot’ in the BIOS.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://forum.manjaro.org/t/wifi-random-disconnects-after-update/142876/3"&gt;Deisable Wi-Fi power saving&lt;/a&gt;:
+It’s common that the power-saving mode of the Wi-Fi card causes us to stop
+seeing available connections. Therefore, it’s necessary to create a
+configuration file that disables this feature and we have to restart.&lt;/p&gt;
+&lt;p&gt;You need to create the file as an administrator.&lt;/p&gt;
+&lt;div class="highlight-text notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;## File: /etc/NetworkManager/conf.d/default-wifi-powersave-on.conf
+[connection]
+wifi.powersave = 2
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;These two adjustments were sufficient in my scenario, but it wasn’t clear that
+they should be both applied together. This was a mix of testing different
+solutions that reported success and testing the effects of combining them. For
+example, when I disabled “&lt;em&gt;fast boot&lt;/em&gt;”, I would always connect from the start,
+but the networks would disappear after a short while. If I only disabled
+power-saving alone, the networks would remain connected, but I would never get
+connected in the first place. It was only when both were enabled together that
+it worked.&lt;/p&gt;
+&lt;p&gt;To provide context to my specific case, I’m running Manjaro KDE 24.1 with kernel
+6.11. The network card is &lt;em&gt;Realtek&lt;/em&gt;, and the equipment is an ASUS TUF Gaming A15
+FA506IV.&lt;/p&gt;
+&lt;p&gt;Also, they often report that
+&lt;a class="reference external" href="https://forum.manjaro.org/t/wifi-not-connecting-at-start-up/113193/3"&gt;disabling MAC address randomization&lt;/a&gt;
+helps, but in my case, this test had no effect.&lt;/p&gt;
+&lt;div class="highlight-text notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;## File: /etc/NetworkManager/conf.d/wifi_rand_mac.conf
+[device]
+wifi.scan-rand-mac-address=no
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;section id="diagnostic-information"&gt;
+&lt;h2&gt;Diagnostic Information&lt;/h2&gt;
+&lt;p&gt;One of the key points to find when trying to solve your problems is to know
+information about your hardware and drivers.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Getting General System Information&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;For this specific issue, it can be useful to look at the &lt;em&gt;Network&lt;/em&gt; and &lt;em&gt;System&lt;/em&gt;
+sections, but don’t cut off the results if you post them on a forum. These
+utilities are not only helpful when the error is related to Wi-Fi, but also
+provide valuable information for other hardware problems.&lt;/p&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;inxi&lt;span class="w"&gt; &lt;/span&gt;--full&lt;span class="w"&gt; &lt;/span&gt;--admin&lt;span class="w"&gt; &lt;/span&gt;--filter&lt;span class="w"&gt; &lt;/span&gt;--width
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;Getting Driver Information&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;At this point, we can detail the driver and its version, looking for mentions of
+“Network”.&lt;/p&gt;
+&lt;div class="sd-tab-set docutils"&gt;
+&lt;input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio"&gt;
+&lt;label class="sd-tab-label" for="sd-tab-item-0"&gt;
+Manjaro&lt;/label&gt;&lt;div class="sd-tab-content docutils"&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo&lt;span class="w"&gt; &lt;/span&gt;mhwd&lt;span class="w"&gt; &lt;/span&gt;-l&lt;span class="w"&gt; &lt;/span&gt;-li
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;input id="sd-tab-item-1" name="sd-tab-set-0" type="radio"&gt;
+&lt;label class="sd-tab-label" for="sd-tab-item-1"&gt;
+Ubuntu&lt;/label&gt;&lt;div class="sd-tab-content docutils"&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo&lt;span class="w"&gt; &lt;/span&gt;lshw
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;We can search for kernel diagnostic messages associated with the driver. Keep in
+mind the driver from the &lt;em&gt;Network&lt;/em&gt; section of &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;inxi&lt;/span&gt;&lt;/code&gt;. In my case, it’s &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;r8169&lt;/span&gt;&lt;/code&gt;
+and &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;rtw_8822ce&lt;/span&gt;&lt;/code&gt;.&lt;/p&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo&lt;span class="w"&gt; &lt;/span&gt;dmesg&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;grep&lt;span class="w"&gt; &lt;/span&gt;r8169
+sudo&lt;span class="w"&gt; &lt;/span&gt;dmesg&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;grep&lt;span class="w"&gt; &lt;/span&gt;rtw_8822ce
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/section&gt;
+&lt;/section&gt;
+</content>
+    <link href="https://www.cosmoscalibur.com/en/blog/2024/problemas-de-conexion-wifi-en-linux/"/>
+    <summary>If Wi-Fi starts to disconnect randomly and upon reviewing the list of networks,
+these have disappeared, there are some points to consider evaluating.</summary>
+    <category term="linux" label="linux"/>
+    <category term="manjaro" label="manjaro"/>
+    <category term="ubuntu" label="ubuntu"/>
+    <category term="wifi" label="wifi"/>
+    <published>2024-12-07T00:00:00-05:00</published>
   </entry>
   <entry>
     <id>https://www.cosmoscalibur.com/es/blog/2024/problemas-de-conexion-wifi-en-linux/</id>
