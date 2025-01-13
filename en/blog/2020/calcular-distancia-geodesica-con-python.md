@@ -1,6 +1,6 @@
 ---
 date: 2020-05-10
-tags: python, geodesic distance, geopy, karney method, vincenty method
+tags: python, geodesic, geopy
 category: technology
 language: en
 ---

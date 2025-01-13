@@ -15,74 +15,73 @@ But before we begin, keep in mind that the basic steps for migration start by
 having the bare minimum from scratch with Sphinx. For this purpose, follow the
 instructions given at [](/en/blog/2024/crear-un-blog-con-sphinx.md).
 
-## Migrando
+## Migrating
 
-Bueno, una vez tenemos la base de nuestro blog, sigue hacer los ajustes para que
-nuestras entradas previas sigan funcionando.
+Alright, once we have the foundation of our blog set up, continue making
+adjustments to ensure that our previous posts still function properly.
 
-### Publicación
+### Post
 
-#### Front matter
+#### Front Matter
 
-Dado que en la configuración inicial añadimos un [patrón de ruta](#blog-conf)
-para las publicaciones, no es necesario agregar la directiva de `..post:` o el
-atributo de `:blogpost: true`. Solo ubica los archivos en la ruta que cumpla el
-patrón 👀.
+Since we added a [path pattern](#blog-conf) for publications during the initial
+configuration, there is no need to add the `..post:` directive or the
+`:blogpost: true` attribute. Simply place your files in the path that matches
+the pattern 👀.
 
-Importante, en Nikola definíamos la ruta de navegación mediante el `..slug:`,
-pero esto en Sphinx depende del nombre del archivo y su ruta en el directorio.
-Asegurate de usar la misma ruta de directorios al definido en el _slug_ y el
-nombre del archivo igual a la parte final de este 👀. Otra opción, es que sin
-importar el nombre y ruta de directorios, uses el valor del _slug_ como valor de
-`:redirect:` (en este caso, añade al archivo de configuración
-`post_redirect_refresh=0`).
+It's important to note that in Nikola, we defined navigation paths using the
+`..slug:`, but in Sphinx, this depends on the file name and its location within
+the directory. Make sure to use the same directory path as defined in the
+_slug_, and ensure the file name is equal to the last part of the slug 👀.
+Alternatively, you can set up a redirect by using the value of _slug_ as the
+value for `:redirect:` (in this case, add `post_redirect_refresh=0` to your
+configuration).
 
-Para indicar el título en _Nikola_, se usaba el atributo de `.. title:`, pero
-ahora este debe ser explícito en la marcación de la publicación. Ejemplo:
+To indicate the title in _Nikola_, we used the attribute `..title:`, but now it
+must be explicitly defined in the publication markup. Example:
 
 `````{tab-set}
 
 ````{tab-item} RST
 ```{code} rst
 
-Migrando mi blog de Nikola a Sphinx
-===================================
+Migrating my blog from Nikola to Sphinx
+=======================================
 ```
 ````
 
 ````{tab-item} MD
 ```{code} md
 
-# Migrando mi blog de Nikola a Sphinx
+# Migrating my blog from Nikola to Sphinx
 ```
 ````
 
 `````
 
-Esto hace que los títulos ya existentes, deban aumentar de nivel 👀.
+This requires that existing titles be increased in heading level 👀.
 
-En _ablog_ no tenemos el equivalente del `..status:` de Nikola, pero se puede
-controlar que una fecha actual o pasada sea equivalente a `published` y si es
-una fecha futura o sin fecha es el equivalente de `draft`. El caso del `private`
-podríamos hacerlo [excluyendo el archivo](#exclude-files). El caso `featured` es
-más personalizado, pero se podría explorar con el objeto de las _cards_ en el
-índice.
+In _ablog_, we don't have an equivalent for Nikola's `..status:`, but we can
+control whether a current or past date is equivalent to `published` and if it's
+a future or no-date date, it's the equivalent of `draft`. The case of `private`
+could be handled by [excluding the file](#exclude-files-en). For `featured`,
+it's more customizable, but it could be explored with the card objects on the
+index.
 
-Si queremos indicar la imagen de previsualización, en Nikola se usaba
-`.. previewimage:`, pero en _ablog_ lo hacemos con `:image:` y el valor no es la
-ruta de la imagen, sino el número asociado en orden de aparición en la
-publicación. Esto se puede dejar con un valor por defecto acorde a la variable
-en el archivo de configuración de `post_auto_image`.
+If we want to indicate the preview image, in Nikola it was done using
+`..previewimage:`, but in _ablog_, we use `:image:` and the value is not the
+path of the image, but the number associated with its appearance order in the
+publication. This can be set to a default value based on the variable in the
+configuration file's `post_auto_image`.
 
-El atributo de `.. description:` es tomado por defecto por truncamiento del
-primer párrafo de la publicación (esto se usa en los metadatos de la
-publicación), pero también podemos dejarlo si lo queremos personalizado (esto se
-hace con la extensión de open-graph).
+The attribute `..description:` is taken by default as a truncation of the first
+paragraph of the post (this is used for the publication metadata), but we can
+also leave it customized if needed (this is done with the Open Graph extension).
 
-El caso de `.. link:` se debe convertir en `:external_link:`.
+For the case of `..link:`, this should be converted to `:external_link:`.
 
-Para la las actualizaciones, esto en lugar de ser un atributo, pasa a ser una
-anotación con marca de tiempo, pero con información de contexto.
+For updates, instead of being an attribute, it becomes a timestamp annotation
+with context information.
 
 `````{tab-set}
 
@@ -91,7 +90,7 @@ anotación con marca de tiempo, pero con información de contexto.
 
 .. update:: 2011-12-15
 
-   Se añade info extra
+   Extra info added
 ```
 ````
 
@@ -100,79 +99,68 @@ anotación con marca de tiempo, pero con información de contexto.
 
 ```{update} 2011-12-15
 
-Se añade info extra
+Extra info added
 ```
 ```
 ````
 
 `````
 
-Con los atributos de `.. nocomments:`, `.. tags:`, `.. date:`, `.. author:` y
-`.. category:`, basta con cambiar `.. ` inicial por `:`.
+With the attributes of `.. nocomments:`, `.. tags:`, `.. date:`, `.. author:`,
+and `.. category:`, simply change the initial `..` to `:`.
 
-Respecto a la fecha es importante tener claro, que a diferencia de Nikola no
-podemos mezclar tipos de formato de fecha. Estos deben añadirse según la
-definición que se tenga en el archivo de configuración, en la variable
-`post_date_format`.
+Regarding the date, it's important to note that unlike in Nikola, we cannot mix
+types of date formats. These should be added according to the definition in the
+configuration file, specifically in the variable `post_date_format`.
 
-No es necesario un atributo para habilitar las ecuaciones, ya que Sphinx las
-habilita por defecto. En Nikola era necesario con `.. has_math: true`.
+There is no attribute needed to enable equations as Sphinx enables them by
+default. In Nikola, it was necessary with `.. has_math: true`.
 
-El caso de `.. type:` no posee equivalente.
+The case of `.. type:` does not have an equivalent.
 
-⚠️ Si estamos usando _markdown_, la diferencia es quitar el `:` inicial, tal
-como se evidencia en la sección de
-[primera publicación](./crear-un-blog-con-sphinx.md#primera-publicaci%C3%B3n), y
-el separador `<!-- --> ` pasa a `---`.
+⚠️ If we are using _markdown_, the difference is to remove the initial `:`, as
+evidenced in the section on
+[the first publication](./crear-un-blog-con-sphinx.md#first-post), and the
+separator `<!-- -->` changes to `---`.
 
-#### Contenido
+#### Content
 
-En algunos casos, podíamos recurrir a listados de publicaciones mediante algún
-filtro con `.. post-list::` y el atributo de `:categories`. Esto ahora pasa a
-`.. postlist::` con el atributo `:category:` (puedes usar otros filtros
-también).
+In some cases, we could use post lists with specific filters using
+`.. post-list::` and the attribute `:categories`. This now changes to
+`.. postlist::` with the attribute `:category:` (you can also use other filters
+as well).
 
-Respecto a `.. thumbnail::` esta directiva no existe, y se reemplaza por
+Regarding `.. thumbnail::`, this directive no longer exists and is replaced by
 `.. figure::`.
 
-La definición del _teaser_ en Nikola dependía de una marcación específica como
-directiva para el texto, pero en _ablog_ esto es controlado por el atributo
-`:excerpt:`, para denotar el número de párrafos a incluir. Pero podemos dejarlo
-con un valor por defecto acorde a `post_auto_excerpt` en el archivo de
-configuración.
+The definition of the _teaser_ in Nikola relied on a specific markup directive
+for the text, but in _ablog_, this is controlled by the attribute `:excerpt:` to
+denote the number of paragraphs to include. However, we can leave it with a
+default value based on `post_auto_excerpt` in the configuration file.
 
-Para las referencias a documentos, en Markdown pasamos de
-`{{% doc %}} path {{% /doc %}}` a `<project:path>` o `[](path)`, mientras que en
-RST podemos mantener `:doc:` siempre y cuando no apunte a una etiqueta, en cuyo
-caso sería `:ref:`.
+For document references, in Markdown we transition from
+`{{% doc %}} path {{% /doc %}}` to `<project:path>` or `[](path)`, while in RST
+we can continue using `:doc:` as long as it does not point to a label. In that
+case, it would be `:ref:`.
 
-### Configuración
+### Configuration
 
-#### Archivos en el raíz
+#### Root Files
 
-Los archvos en el raíz, se definen en un directorio que disponemos con la
-variable `html_extra_path`, la cual podemos definir con el mismo nombre que
-viene en Nikola (`files`).
+Files in the root are defined in a directory that we set with the variable
+`html_extra_path`, which can be named the same as it comes in Nikola (`files`).
 
-#### Sistema de comentarios
+#### Comment System
 
-Si usamos Disqus (en Nikola, `COMMENT_SYSTEM='disqus'`), el `disqus_shortname`
-en el archivo de configuración toma el valor del antiguo `COMMENT_SYSTEM_ID`.
+If we use Disqus (in Nikola, `COMMENT_SYSTEM='disqus'`), the `disqus_shortname`
+in the configuration file takes the value of the old `COMMENT_SYSTEM_ID`.
 
-```{note}
+#### YouTube
 
-La verdad, he decidido retirar el sistema de comentarios de Disqus. Aporta poco valor
-respecto a lo que introduce en tiempo de carga. Posiblemente explore disponer el enlace
-de la publicación en Mastodon para que se desarrolle la eventual discusión.
-```
+We need to install `sphinxcontrib-youtube` and enable `sphinxcontrib.youtube` in
+the extensions. In this way, the directive `.. youtube::` remains unchanged.
 
-#### Youtube
-
-Necesitamos instalar `sphinxcontrib-youtube` y habilitar `sphinxcontrib.youtube`
-en las extensiones. De esta forma, la directiva de `.. youtube::` sigue tal
-cual.
-
-## Referencias
+## References
 
 - [Migrating the website to Sphinx + ABlog](https://adriaanrol.com/posts/2023/sphinx_migration/)
 - [Migration to Cloudflare Pages](https://dailystuff.nl/blog/2021/migration-to-cloudflare-pages)

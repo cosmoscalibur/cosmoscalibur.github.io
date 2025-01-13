@@ -1,9 +1,8 @@
-https://ollama.com/download https://ollama.com/library/llama3.1:8b
-https://ollama.com/blog/continue-code-assistant
-
-curl -fsSL https://ollama.com/install.sh | sh ollama run llama3.2:3b #>>> The
-Ollama API is now available at 127.0.0.1:11434. #>>> Install complete. Run
-"ollama" from the command line. #>>> AMD GPU ready.
+```{code} bash
+curl -fsSL https://ollama.com/install.sh | sh
+ollama run llama3.2:3b
+# qwen2.5:7b
+```
 
 ```
 sudo dd bs=4M if=manjaro-kde-24.1.2-241104-linux610.iso of=/dev/sda status=progress oflang=sync

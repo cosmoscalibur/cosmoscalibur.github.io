@@ -433,7 +433,7 @@ Additionally, if you use a directory at the root level of your repository, it
 will become available here. This is my case with the {file}`images` directory
 for the images I use.
 
-### First Publication
+### First Post
 
 Ablog helped us generate some demonstration files during initialization. You can
 edit and customize them as you see fit.

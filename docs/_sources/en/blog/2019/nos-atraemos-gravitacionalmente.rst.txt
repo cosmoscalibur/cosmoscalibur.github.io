@@ -1,6 +1,6 @@
 :date: 2019-11-08
-:tags: physics, gravity force, isaac newton
-:category: science
+:tags: gravity, newton
+:category: science, physics
 :language: en
 
 Do we attract each other gravitationally?

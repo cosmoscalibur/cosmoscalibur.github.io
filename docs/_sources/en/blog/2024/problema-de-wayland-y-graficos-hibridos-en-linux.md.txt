@@ -1,6 +1,6 @@
 ---
 date: 2024-12-18
-tags: manjaro, wayland, x11, zed, hybrid graphics, nvidia, vulkan, gpu, graphics card
+tags: manjaro, wayland, x11, zed, nvidia, linux
 category: technology, linux
 language: en
 ---

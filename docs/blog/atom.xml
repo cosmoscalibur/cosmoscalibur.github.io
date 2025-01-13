@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="es">
   <id>https://www.cosmoscalibur.com/</id>
   <title>Cosmoscalibur</title>
-  <updated>2025-01-11T03:23:45.514447+00:00</updated>
+  <updated>2025-01-13T15:29:24.764704+00:00</updated>
   <link href="https://www.cosmoscalibur.com/"/>
   <link href="https://www.cosmoscalibur.com/blog/atom.xml" rel="self"/>
   <generator uri="https://ablog.readthedocs.io/" version="0.11.12">ABlog</generator>
@@ -676,12 +676,9 @@ rendering. However, this is not a resolved issue in Linux and affects native
 applications running on Wayland, which is the new and modern protocol for
 server-side graphics communication used by window compositors in Linux
 (replacing X11), that utilize Vulkan.</summary>
-    <category term="gpu" label="gpu"/>
-    <category term="graphicscard" label="graphics card"/>
-    <category term="hybridgraphics" label="hybrid graphics"/>
+    <category term="linux" label="linux"/>
     <category term="manjaro" label="manjaro"/>
     <category term="nvidia" label="nvidia"/>
-    <category term="vulkan" label="vulkan"/>
     <category term="wayland" label="wayland"/>
     <category term="x11" label="x11"/>
     <category term="zed" label="zed"/>
@@ -3688,8 +3685,8 @@ con la línea de comandos, por lo que si tienes dudas de donde empezar, te
 recomiendo visitar los recetarios de
 &lt;a class="reference external" href="https://amiaopensource.github.io/ffmprovisr/"&gt;ffmprovisr&lt;/a&gt;.&lt;/p&gt;
 &lt;/div&gt;
-&lt;p&gt;Podemos abrir el video, y veremos que el video con el audio incluido. Y ahora,
-¿qué sucede si son 56 videos con sus 56 audios?&lt;/p&gt;
+&lt;p&gt;Podemos abrir el video, y veremos el video con el audio incluido. Y ahora, ¿qué
+sucede si son 56 videos con sus 56 audios?&lt;/p&gt;
 &lt;/section&gt;
 &lt;section id="procesamiento-en-lote-con-bash"&gt;
 &lt;h2&gt;Procesamiento en lote con Bash&lt;/h2&gt;
@@ -3794,6 +3791,187 @@ audio y el video, así que les contaré como hacerlo con FFMPEG y Bash.</summary
     <category term="extensionesdechrome" label="extensiones de chrome"/>
     <category term="ffmpeg" label="ffmpeg"/>
     <category term="vimeo" label="vimeo"/>
+    <published>2024-10-20T00:00:00-05:00</published>
+  </entry>
+  <entry>
+    <id>https://www.cosmoscalibur.com/en/blog/2024/unir-video-y-audio-con-ffmpeg-y-bash/</id>
+    <title>Merging Video and Audio with FFmpeg and Bash</title>
+    <updated>2024-10-20T00:00:00-05:00</updated>
+    <author>
+      <name>Edward Villegas-Pulgarin</name>
+    </author>
+    <content type="html">&lt;section class="tex2jax_ignore mathjax_ignore" id="merging-video-and-audio-with-ffmpeg-and-bash"&gt;
+
+&lt;p&gt;Recently, my girlfriend asked me to help her download the videos of a course
+before access to the account expired, and it involved downloading videos from
+Vimeo. However, the download trick for these videos requires combining the audio
+and video later, so I’ll explain how to do this using FFMPEG and Bash.&lt;/p&gt;
+&lt;section id="downloading-a-video-from-vimeo"&gt;
+&lt;h2&gt;Downloading a Video from Vimeo&lt;/h2&gt;
+&lt;p&gt;Well, this is the initial point of our adventure, and it’s how to download a
+video from Vimeo through a site with authentication. Since going directly to
+Vimeo would be enough with the extraction using
+&lt;a class="reference external" href="https://github.com/yt-dlp/yt-dlp"&gt;yt-dlp&lt;/a&gt;, we run into trouble because the
+Vimeo video is embedded in another site, making it impossible to proceed (or at
+least I couldn’t find a way to do so, as an error message about unrecognized
+portal was displayed).&lt;/p&gt;
+&lt;p&gt;After continuing our search, we found that the only option available was a
+Chrome extension called
+&lt;a class="reference external" href="https://chromewebstore.google.com/detail/free-vimeo-downloader/migiikaijhclkmlpnnficpopgmcpgia?hl=es-419"&gt;Free Vimeo Downloader&lt;/a&gt;,
+which enables us to download videos from Vimeo embedded in any portal. It offers
+the option to download videos in different qualities, but be aware that audio is
+downloaded separately, and you’ll need to start playback first to download it.&lt;/p&gt;
+&lt;div class="admonition attention"&gt;
+&lt;p class="admonition-title"&gt;Atención&lt;/p&gt;
+&lt;p&gt;To proceed with the download, it’s essential to &lt;strong&gt;reproduce&lt;/strong&gt; the video first,
+as this will allow you to access the audio and initiate its separate download.&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;The downloaded files have a pattern where the video file name is followed by the
+video quality, and in the case of the audio file, it is followed by &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;-audio&lt;/span&gt;&lt;/code&gt;,
+both in MP4 format.&lt;/p&gt;
+&lt;p&gt;Now, how do we merge the video and audio?&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="processing-with-ffmpeg"&gt;
+&lt;h2&gt;Processing with FFmpeg&lt;/h2&gt;
+&lt;p&gt;Now, the task associated with processing to merge the audio files with the video
+files will be delegated to &lt;a class="reference external" href="https://ffmpeg.org/download.html"&gt;FFmpeg&lt;/a&gt;, a
+powerful command-line utility for audio and video processing that is free and
+open-source.&lt;/p&gt;
+&lt;p&gt;If you use Debian/Ubuntu or any derivative, like I do, you can install it as
+follows. If not, you can refer to the official website or also install it with
+the package manager &lt;strong class="program"&gt;conda&lt;/strong&gt; (applies to all operating systems).&lt;/p&gt;
+&lt;div class="sd-tab-set docutils"&gt;
+&lt;input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio"&gt;
+&lt;label class="sd-tab-label" for="sd-tab-item-0"&gt;
+Ubuntu&lt;/label&gt;&lt;div class="sd-tab-content docutils"&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo&lt;span class="w"&gt; &lt;/span&gt;apt&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;-y&lt;span class="w"&gt; &lt;/span&gt;ffmpeg
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;input id="sd-tab-item-1" name="sd-tab-set-0" type="radio"&gt;
+&lt;label class="sd-tab-label" for="sd-tab-item-1"&gt;
+Manjaro&lt;/label&gt;&lt;div class="sd-tab-content docutils"&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo&lt;span class="w"&gt; &lt;/span&gt;pamac&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;--no-confirm&lt;span class="w"&gt; &lt;/span&gt;ffmpeg
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;To test the concept, we will use one of the video and audio file pairs.&lt;/p&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;ffmpeg&lt;span class="w"&gt; &lt;/span&gt;-i&lt;span class="w"&gt; &lt;/span&gt;Modulo&lt;span class="se"&gt;\ &lt;/span&gt;&lt;span class="m"&gt;2&lt;/span&gt;&lt;span class="se"&gt;\ &lt;/span&gt;Clase&lt;span class="se"&gt;\ &lt;/span&gt;&lt;span class="m"&gt;2&lt;/span&gt;&lt;span class="se"&gt;\ &lt;/span&gt;Parte&lt;span class="se"&gt;\ &lt;/span&gt;&lt;span class="m"&gt;5&lt;/span&gt;&lt;span class="se"&gt;\ \(&lt;/span&gt;720p&lt;span class="se"&gt;\ &lt;/span&gt;with&lt;span class="se"&gt;\ &lt;/span&gt;30fps&lt;span class="se"&gt;\)&lt;/span&gt;.mp4&lt;span class="w"&gt; &lt;/span&gt;-i&lt;span class="w"&gt; &lt;/span&gt;Modulo&lt;span class="se"&gt;\ &lt;/span&gt;&lt;span class="m"&gt;2&lt;/span&gt;&lt;span class="se"&gt;\ &lt;/span&gt;Clase&lt;span class="se"&gt;\ &lt;/span&gt;&lt;span class="m"&gt;2&lt;/span&gt;&lt;span class="se"&gt;\ &lt;/span&gt;Parte&lt;span class="se"&gt;\ &lt;/span&gt;&lt;span class="m"&gt;5&lt;/span&gt;-audio.mp4&lt;span class="w"&gt; &lt;/span&gt;-c&lt;span class="w"&gt; &lt;/span&gt;copy&lt;span class="w"&gt; &lt;/span&gt;output/Modulo&lt;span class="se"&gt;\ &lt;/span&gt;&lt;span class="m"&gt;2&lt;/span&gt;&lt;span class="se"&gt;\ &lt;/span&gt;Clase&lt;span class="se"&gt;\ &lt;/span&gt;&lt;span class="m"&gt;2&lt;/span&gt;&lt;span class="se"&gt;\ &lt;/span&gt;Parte&lt;span class="se"&gt;\ &lt;/span&gt;&lt;span class="m"&gt;5&lt;/span&gt;.mp4
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;As the audio and video are already in the same format and codec, there is no
+need to apply transformations using FFmpeg. We only need to use FFmpeg to
+maintain the video channel from the first file and copy the audio channel from
+the second file, generating a new multimedia file.&lt;/p&gt;
+&lt;p&gt;We observe the &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;-i&lt;/span&gt;&lt;/code&gt; parameter that we use to indicate a source file, whether it
+be audio, video, or even images and text files. In this case, we are using it to
+indicate the video file and the audio file we want to match (each file should be
+preceded by &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;-i&lt;/span&gt;&lt;/code&gt;).&lt;/p&gt;
+&lt;p&gt;If it were necessary to apply a codec to these files, we would specify the
+respective option after the path of each file. In this case, it does not
+interest us, which helps FFmpeg to execute more quickly. Therefore, we simply
+indicate after the second file &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;-c&lt;/span&gt; &lt;span class="pre"&gt;copy&lt;/span&gt;&lt;/code&gt; to indicate that it is copied directly,
+preserving the original quality and format.&lt;/p&gt;
+&lt;div class="admonition hint"&gt;
+&lt;p class="admonition-title"&gt;Consejo&lt;/p&gt;
+&lt;p&gt;FFmpeg and its documentation can be a bit challenging for someone not familiar
+with the command line. If you have doubts about where to start, I recommend
+visiting the following resource:
+&lt;a class="reference external" href="https://amiaopensource.github.io/ffmprovisr/"&gt;ffmprovisr&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;We can open the video file, and we will see the video with the audio included.
+And now, what happens if there are 56 videos along with their 56 corresponding
+audio files?&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="batch-processing-with-bash"&gt;
+&lt;h2&gt;Batch Processing with Bash&lt;/h2&gt;
+&lt;p&gt;Since the files have a pattern in their names and can be listed in order, and
+the process executed on each pair is the same, we can create a routine for this
+batch processing. This will help avoid potential errors such as omitting a file
+pair, mixing a video with another video’s audio, or typing errors.&lt;/p&gt;
+&lt;p&gt;We need to store separate lists of the video and audio files. We will iterate
+over the total number of videos in general terms and move forward in both lists,
+which are ordered and have a name pattern starting with the video’s general
+name, allowing us to match them.&lt;/p&gt;
+&lt;p&gt;Then, cyclically, we obtain these pairs, with which we form names for &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;-i&lt;/span&gt;&lt;/code&gt;
+parameter in &lt;strong class="program"&gt;ffmpeg&lt;/strong&gt;, and the assignment of the output path.&lt;/p&gt;
+&lt;p&gt;We will do this in &lt;em&gt;Bash&lt;/em&gt; (this is for Linux users, but if you use Windows, I
+invite you to replicate it in PowerShell or your favorite language).&lt;/p&gt;
+&lt;div class="literal-block-wrapper docutils container" id="bash-ffmpeg-unir"&gt;
+&lt;div class="code-block-caption"&gt;&lt;span class="caption-text"&gt;&lt;em&gt;Bash&lt;/em&gt; code to merge a set of video and audio files with FFMPEG.&lt;/span&gt;&lt;/div&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="linenos"&gt; 1&lt;/span&gt;&lt;span class="ch"&gt;#! /usr/bin/bash&lt;/span&gt;
+&lt;span class="linenos"&gt; 2&lt;/span&gt;
+&lt;span class="linenos"&gt; 3&lt;/span&gt;&lt;span class="nv"&gt;OUTPUT&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;output
+&lt;span class="linenos"&gt; 4&lt;/span&gt;mkdir&lt;span class="w"&gt; &lt;/span&gt;-p&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;$OUTPUT&lt;/span&gt;
+&lt;span class="linenos"&gt; 5&lt;/span&gt;&lt;span class="nv"&gt;AUDIO_LIST&lt;/span&gt;&lt;span class="o"&gt;=(&lt;/span&gt;*audio.mp4&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;span class="linenos"&gt; 6&lt;/span&gt;&lt;span class="nv"&gt;VIDEO_LIST&lt;/span&gt;&lt;span class="o"&gt;=(&lt;/span&gt;*fps*.mp4&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;span class="linenos"&gt; 7&lt;/span&gt;&lt;span class="nv"&gt;LEN&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="si"&gt;${#&lt;/span&gt;&lt;span class="nv"&gt;AUDIO_LIST&lt;/span&gt;&lt;span class="p"&gt;[*]&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;
+&lt;span class="linenos"&gt; 8&lt;/span&gt;&lt;span class="nb"&gt;echo&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="nv"&gt;$LEN&lt;/span&gt;&lt;span class="s2"&gt; videos&amp;quot;&lt;/span&gt;
+&lt;span class="linenos"&gt; 9&lt;/span&gt;&lt;span class="k"&gt;for&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;((&lt;/span&gt;&lt;span class="nv"&gt;i&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;i&lt;span class="w"&gt; &lt;/span&gt;&amp;lt;&lt;span class="w"&gt; &lt;/span&gt;LEN&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;i++&lt;span class="o"&gt;))&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;do&lt;/span&gt;
+&lt;span class="linenos"&gt;10&lt;/span&gt;&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nb"&gt;echo&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Procesando video: &lt;/span&gt;&lt;span class="k"&gt;$((&lt;/span&gt;&lt;span class="nv"&gt;i&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;&lt;span class="k"&gt;))&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;
+&lt;span class="linenos"&gt;11&lt;/span&gt;&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nv"&gt;VIDEO_NAME&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;VIDEO_LIST&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nv"&gt;$i&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;
+&lt;span class="linenos"&gt;12&lt;/span&gt;&lt;span class="w"&gt;    &lt;/span&gt;ffmpeg&lt;span class="w"&gt; &lt;/span&gt;-i&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="nv"&gt;$VIDEO_NAME&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;-i&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;AUDIO_LIST&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nv"&gt;$i&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;-c&lt;span class="w"&gt; &lt;/span&gt;copy&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="nv"&gt;$OUTPUT&lt;/span&gt;&lt;span class="s2"&gt;/&lt;/span&gt;&lt;span class="nv"&gt;$VIDEO_NAME&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;
+&lt;span class="linenos"&gt;13&lt;/span&gt;&lt;span class="k"&gt;done&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;I will explain each part of the code…&lt;/p&gt;
+&lt;p&gt;In line 1, we use a shebang (&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;#!/bin/bash&lt;/span&gt;&lt;/code&gt;) to indicate the path of the shell
+interpreter. In this case, it’s &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;bash&lt;/span&gt;&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;On line 3, we assign the name of the output directory. This will be used to
+create the directory in line 4 and to form the complete output path in line 12.&lt;/p&gt;
+&lt;p&gt;On line 4, we use &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;$&lt;/span&gt;&lt;/code&gt; to expand the result of a command or variable. Here, we
+are using &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;mkdir&lt;/span&gt; &lt;span class="pre"&gt;-p&lt;/span&gt;&lt;/code&gt;, which creates a directory and its parents if they do not
+already exist.&lt;/p&gt;
+&lt;p&gt;To get the list of files, we could use &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;ls&lt;/span&gt;&lt;/code&gt;, but for converting to an array, we
+need to adjust the &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;IFS&lt;/span&gt;&lt;/code&gt; (Internal Field Separator). However, using direct file
+name expansion is simpler and more straightforward as shown in lines 4 and 5.&lt;/p&gt;
+&lt;p&gt;In Bash, we refer to an array using &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;${&lt;/span&gt; &lt;span class="pre"&gt;}&lt;/span&gt;&lt;/code&gt;. For example, to access a specific
+element (&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;${ARR[0]}&lt;/span&gt;&lt;/code&gt;), as used in lines 11 and 12. To access all elements of the
+array (&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;${ARR[*]}&lt;/span&gt;&lt;/code&gt; or &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;${ARR[&amp;#64;]}&lt;/span&gt;&lt;/code&gt;), or for counting purposes with &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;#&lt;/span&gt;&lt;/code&gt; before the
+array name (as used in line 7).&lt;/p&gt;
+&lt;p&gt;We use the &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;echo&lt;/span&gt;&lt;/code&gt; command to print messages to the terminal. The message is
+enclosed in double quotes (&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;&amp;quot;&lt;/span&gt;&lt;/code&gt;) to prevent expansion of the result beyond that
+point.&lt;/p&gt;
+&lt;p&gt;In lines 9 and 10, we see the use of double parentheses &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;(())&lt;/span&gt;&lt;/code&gt;, which allows
+arithmetic expansion. For any arithmetic operations, we always use double
+parentheses.&lt;/p&gt;
+&lt;p&gt;Line 9 is the start of a Bash &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;for&lt;/span&gt;&lt;/code&gt; loop that uses arithmetic expansion to
+assign the initial value to the variable for iterating over the lists. The loop
+condition checks whether it is less than the length of the list, and then
+increments by one to move to the next element. After the &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;do&lt;/span&gt;&lt;/code&gt; keyword, we have
+the block of code that will be repeated, depending on our loop variable (&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;i&lt;/span&gt;&lt;/code&gt;).
+Finally, closes the loop with &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;done&lt;/span&gt;&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Save the file with &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;.sh&lt;/span&gt;&lt;/code&gt; extension, and run with &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;bash&lt;/span&gt;&lt;/code&gt;, &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;source&lt;/span&gt;&lt;/code&gt; or &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;.&lt;/span&gt; &lt;/code&gt;.&lt;/p&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;bash&lt;span class="w"&gt; &lt;/span&gt;merge_video.sh
+.&lt;span class="w"&gt; &lt;/span&gt;merge_video.sh
+&lt;span class="nb"&gt;source&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;merge_video.sh
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;The last two options are the reason for using the shebang in line 1 to
+distinguish the shell to be used.&lt;/p&gt;
+&lt;div class="admonition hint"&gt;
+&lt;p class="admonition-title"&gt;Consejo&lt;/p&gt;
+&lt;p&gt;Here are three resources that I recommend for Bash:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://explainshell.com/"&gt;Explain Shell&lt;/a&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://mywiki.wooledge.org/BashPitfalls"&gt;Bash Pitfalls&lt;/a&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://tldp.org/LDP/Bash-Beginners-Guide/html/index.html"&gt;Bash Guide for Beginners&lt;/a&gt;
+and &lt;a class="reference external" href="https://tldp.org/HOWTO/Bash-Prog-Intro-HOWTO.html"&gt;BASH Programming - Introduction HOW-TO&lt;/a&gt;:
+from The Linux Documentation Project, &lt;em&gt;TLDP&lt;/em&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/section&gt;
+&lt;/section&gt;
+</content>
+    <link href="https://www.cosmoscalibur.com/en/blog/2024/unir-video-y-audio-con-ffmpeg-y-bash/"/>
+    <summary>Recently, my girlfriend asked me to help her download the videos of a course
+before access to the account expired, and it involved downloading videos from
+Vimeo. However, the download trick for these videos requires combining the audio
+and video later, so I’ll explain how to do this using FFMPEG and Bash.</summary>
+    <category term="bash" label="bash"/>
+    <category term="ffmpeg" label="ffmpeg"/>
     <published>2024-10-20T00:00:00-05:00</published>
   </entry>
   <entry>
@@ -5991,8 +6169,8 @@ we don’t do this, directories and files starting with a hyphen are ignored.&lt
 will become available here. This is my case with the &lt;code class="file docutils literal notranslate"&gt;&lt;span class="pre"&gt;images&lt;/span&gt;&lt;/code&gt; directory
 for the images I use.&lt;/p&gt;
 &lt;/section&gt;
-&lt;section id="first-publication"&gt;
-&lt;h3&gt;First Publication&lt;/h3&gt;
+&lt;section id="first-post"&gt;
+&lt;h3&gt;First Post&lt;/h3&gt;
 &lt;p&gt;Ablog helped us generate some demonstration files during initialization. You can
 edit and customize them as you see fit.&lt;/p&gt;
 &lt;p&gt;The case of &lt;code class="file docutils literal notranslate"&gt;&lt;span class="pre"&gt;index.rst&lt;/span&gt;&lt;/code&gt; requires that it be placed in the generated
@@ -7124,6 +7302,114 @@ Windows no funcionaba fluidamente en la máquina.Indicación del archivo a desca
     <published>2020-07-09T00:00:00-05:00</published>
   </entry>
   <entry>
+    <id>https://www.cosmoscalibur.com/en/blog/2020/instalar-paquetes-snap-en-linux-mint-20/</id>
+    <title>Install snap packages in Linux Mint 20</title>
+    <updated>2020-06-29T00:00:00-05:00</updated>
+    <author>
+      <name>Edward Villegas-Pulgarin</name>
+    </author>
+    <content type="html">&lt;section id="install-snap-packages-in-linux-mint-20"&gt;
+
+&lt;p&gt;Do you already have Linux Mint 20 and do you want to
+&lt;a class="reference internal" href="../en/blog/2019/instalando-paquetes-en-linux-mint/#en-instalando-paquetes-en-linux-mint-snap"&gt;&lt;span class="std std-ref"&gt;install Snap packages&lt;/span&gt;&lt;/a&gt;? Mint has
+decided to disable the default installation of Snap, and it is necessary to change
+the apt configuration in order to do so.&lt;/p&gt;
+&lt;section id="the-problem"&gt;
+&lt;h2&gt;The problem&lt;/h2&gt;
+&lt;p&gt;If you already have Linux Mint 20, you will notice that when you try to install the
+package &lt;code class="code docutils literal notranslate"&gt;&lt;span class="pre"&gt;snapd&lt;/span&gt;&lt;/code&gt; (the snap manager), you will be surprised to find that it cannot
+be installed. You will encounter a message similar to the following:&lt;/p&gt;
+&lt;aside class="system-message"&gt;
+&lt;p class="system-message-title"&gt;System Message: INFO/1 (&lt;span class="docutils literal"&gt;/home/cosmoscalibur/Documentos/git/cosmoscalibur.github.io/en/blog/2020/instalar-paquetes-snap-en-linux-mint-20.rst&lt;/span&gt;, line 17)&lt;/p&gt;
+&lt;p&gt;No role entry for «code» in module «docutils.parsers.rst.languages.es».
+Using English fallback for role «code».&lt;/p&gt;
+&lt;/aside&gt;
+&lt;aside class="system-message"&gt;
+&lt;p class="system-message-title"&gt;System Message: INFO/1 (&lt;span class="docutils literal"&gt;/home/cosmoscalibur/Documentos/git/cosmoscalibur.github.io/en/blog/2020/instalar-paquetes-snap-en-linux-mint-20.rst&lt;/span&gt;, line 21)&lt;/p&gt;
+&lt;p&gt;No directive entry for «raw» in module «docutils.parsers.rst.languages.es».
+Using English fallback for directive «raw».&lt;/p&gt;
+&lt;/aside&gt;
+&lt;pre&gt;&lt;font color="#8AE234"&gt;&lt;b&gt;cosmoscalibur@edliviano&lt;/b&gt;&lt;/font&gt;:&lt;font color="#739FCF"&gt;&lt;b&gt;~&lt;/b&gt;&lt;/font&gt;$ apt install snapd
+Reading package lists... Done
+Building dependency tree
+Reading state information... Done
+Package snapd is not available, but is referred to by another package.
+This may mean that the package is missing, has been obsoleted, or
+is only available from another source
+
+&lt;font color="#EF2929"&gt;&lt;b&gt;E: &lt;/b&gt;&lt;/font&gt;Package &amp;apos;snapd&amp;apos; has no installation candidate&lt;/pre&gt;
+
+&lt;pre&gt;&lt;font color="#8AE234"&gt;&lt;b&gt;cosmoscalibur@edliviano&lt;/b&gt;&lt;/font&gt;:&lt;font color="#739FCF"&gt;&lt;b&gt;~&lt;/b&gt;&lt;/font&gt;$ apt show snapd
+Package: snapd
+State: not a real package (virtual)
+&lt;font color="#C4A000"&gt;N: &lt;/font&gt;Can&amp;apos;t select candidate version from package snapd as it has no candidate
+&lt;font color="#C4A000"&gt;N: &lt;/font&gt;There is 1 additional record. Please use the &amp;apos;-a&amp;apos; switch to see it
+&lt;font color="#C4A000"&gt;N: &lt;/font&gt;No packages found&lt;/pre&gt;&lt;/section&gt;
+&lt;section id="the-reason"&gt;
+&lt;h2&gt;The reason&lt;/h2&gt;
+&lt;p&gt;This problem is caused by a modification in the preferences of &lt;code class="code docutils literal notranslate"&gt;&lt;span class="pre"&gt;apt&lt;/span&gt;&lt;/code&gt; that
+tricks it into believing there is no available package to fulfill the request.
+This behavior is due to the &lt;em&gt;Chromium&lt;/em&gt; installer, which, for easier maintenance
+by the Ubuntu team, uses a DEB package whose sole function is to invoke the
+installation from snap (installing snap if it is not already installed).&lt;/p&gt;
+&lt;p&gt;Personally, I do not see this as problematic; in an ideal case, having package
+managers that automatically install components from another manager would be
+preferable over me having to handle such tasks. However, the Mint team finds a
+lack of transparency with their users who are not warned about this and even
+consider it a security flaw &lt;a class="reference internal" href="../en/blog/2020/instalar-paquetes-snap-en-linux-mint-20/#snap-mint" id="id1"&gt;&lt;span&gt;[snap-mint]&lt;/span&gt;&lt;/a&gt;.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="the-solution"&gt;
+&lt;h2&gt;The solution&lt;/h2&gt;
+&lt;aside class="system-message"&gt;
+&lt;p class="system-message-title"&gt;System Message: WARNING/2 (&lt;span class="docutils literal"&gt;/home/cosmoscalibur/Documentos/git/cosmoscalibur.github.io/en/blog/2020/instalar-paquetes-snap-en-linux-mint-20.rst&lt;/span&gt;, line 57)&lt;/p&gt;
+&lt;p&gt;Title underline too short.&lt;/p&gt;
+&lt;div class="highlight-default notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;The&lt;/span&gt; &lt;span class="n"&gt;solution&lt;/span&gt;
+&lt;span class="o"&gt;-----------&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/aside&gt;
+&lt;p&gt;To solve this problem, simply remove or comment out the lines in a file
+&lt;code class="code docutils literal notranslate"&gt;&lt;span class="pre"&gt;/etc/apt/preferences.d/nosnap.pref&lt;/span&gt;&lt;/code&gt;. In my case, I do not see any reason
+to keep it, so I proceed by removing it and then installing the snap manager.
+If you feel more comfortable, you can comment out the lines and then uncomment
+them after installing the snap manager &lt;a class="reference internal" href="../en/blog/2020/instalar-paquetes-snap-en-linux-mint-20/#snap-install" id="id2"&gt;&lt;span&gt;[snap-install]&lt;/span&gt;&lt;/a&gt;.&lt;/p&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo&lt;span class="w"&gt; &lt;/span&gt;rm&lt;span class="w"&gt; &lt;/span&gt;/etc/apt/preferences.d/nosnap.pref
+sudo&lt;span class="w"&gt; &lt;/span&gt;apt&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;-y&lt;span class="w"&gt; &lt;/span&gt;snapd
+snap&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;help&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Now you can install your snap packages in the way I explained in a
+&lt;a class="reference internal" href="../en/blog/2019/instalando-paquetes-en-linux-mint/#en-instalando-paquetes-en-linux-mint-snap"&gt;&lt;span class="std std-ref"&gt;previous article&lt;/span&gt;&lt;/a&gt;.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="references"&gt;
+&lt;h2&gt;References&lt;/h2&gt;
+&lt;div role="list" class="citation-list"&gt;
+&lt;div class="citation" id="snap-mint" role="doc-biblioentry"&gt;
+&lt;span class="label"&gt;&lt;span class="fn-bracket"&gt;[&lt;/span&gt;&lt;a role="doc-backlink" href="#id1"&gt;snap-mint&lt;/a&gt;&lt;span class="fn-bracket"&gt;]&lt;/span&gt;&lt;/span&gt;
+&lt;p&gt;Snapping at Canonical’s Snap: Linux Mint team says no to Ubuntu
+store “backdoor”.
+&lt;a class="reference external" href="https://www.theregister.com/2020/06/02/linux_mint_team_snap/"&gt;The register, 2 Jun 2020&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="citation" id="snap-install" role="doc-biblioentry"&gt;
+&lt;span class="label"&gt;&lt;span class="fn-bracket"&gt;[&lt;/span&gt;&lt;a role="doc-backlink" href="#id2"&gt;snap-install&lt;/a&gt;&lt;span class="fn-bracket"&gt;]&lt;/span&gt;&lt;/span&gt;
+&lt;p&gt;How To Enable Snap And Install Snap Packages On Linux Mint 20?
+&lt;a class="reference external" href="https://fossbytes.com/how-to-enable-snap-and-install-snap-packages-on-linux-mint-20/"&gt;fossbytes, June 12, 2020&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/section&gt;
+&lt;/section&gt;
+</content>
+    <link href="https://www.cosmoscalibur.com/en/blog/2020/instalar-paquetes-snap-en-linux-mint-20/"/>
+    <summary>Do you already have Linux Mint 20 and do you want to
+install Snap packages? Mint has
+decided to disable the default installation of Snap, and it is necessary to change
+the apt configuration in order to do so.</summary>
+    <category term="apt" label="apt"/>
+    <category term="linuxmint" label="linux mint"/>
+    <category term="snap" label="snap"/>
+    <published>2020-06-29T00:00:00-05:00</published>
+  </entry>
+  <entry>
     <id>https://www.cosmoscalibur.com/es/blog/2020/instalar-paquetes-snap-en-linux-mint-20/</id>
     <title>Instalar paquetes snap en Linux Mint 20</title>
     <updated>2020-06-29T00:00:00-05:00</updated>
@@ -7145,7 +7431,12 @@ la configuración de apt para poderlo hacer.&lt;/p&gt;
 &lt;code class="code docutils literal notranslate"&gt;&lt;span class="pre"&gt;snapd&lt;/span&gt;&lt;/code&gt; (el gestor snap), nos llevaremos la sorpresa de no poderlo
 instalar. Encontraremos un mensaje como el siguiente:&lt;/p&gt;
 &lt;aside class="system-message"&gt;
-&lt;p class="system-message-title"&gt;System Message: INFO/1 (&lt;span class="docutils literal"&gt;/home/cosmoscalibur/Documentos/git/cosmoscalibur.github.io/es/blog/2020/instalar-paquetes-snap-en-linux-mint-20.rst&lt;/span&gt;, line 27)&lt;/p&gt;
+&lt;p class="system-message-title"&gt;System Message: INFO/1 (&lt;span class="docutils literal"&gt;/home/cosmoscalibur/Documentos/git/cosmoscalibur.github.io/es/blog/2020/instalar-paquetes-snap-en-linux-mint-20.rst&lt;/span&gt;, line 21)&lt;/p&gt;
+&lt;p&gt;No role entry for «code» in module «docutils.parsers.rst.languages.es».
+Using English fallback for role «code».&lt;/p&gt;
+&lt;/aside&gt;
+&lt;aside class="system-message"&gt;
+&lt;p class="system-message-title"&gt;System Message: INFO/1 (&lt;span class="docutils literal"&gt;/home/cosmoscalibur/Documentos/git/cosmoscalibur.github.io/es/blog/2020/instalar-paquetes-snap-en-linux-mint-20.rst&lt;/span&gt;, line 25)&lt;/p&gt;
 &lt;p&gt;No directive entry for «raw» in module «docutils.parsers.rst.languages.es».
 Using English fallback for directive «raw».&lt;/p&gt;
 &lt;/aside&gt;
@@ -7177,7 +7468,7 @@ invocar la instalación desde snap (instalando snap si este no lo está).&lt;/p&
 gestores de paquetes que terminen de instalar componentes desde otro gestor de
 forma automática en lugar de yo encargarme del trabajo sucio. Pero el equipo de
 Mint encuentra una falta de transparencia con sus usuarios que no son
-advertidos de esto e incluso considerar como una falla de seguridad &lt;a class="reference internal" href="../es/blog/2020/instalar-paquetes-snap-en-linux-mint-20/#snap-mint" id="id1"&gt;&lt;span&gt;[snap-mint]&lt;/span&gt;&lt;/a&gt;.&lt;/p&gt;
+advertidos de esto e incluso considerar como una falla de seguridad &lt;a class="reference internal" href="../en/blog/2020/instalar-paquetes-snap-en-linux-mint-20/#snap-mint" id="id1"&gt;&lt;span&gt;[snap-mint]&lt;/span&gt;&lt;/a&gt;.&lt;/p&gt;
 &lt;/section&gt;
 &lt;section id="la-solucion"&gt;
 &lt;h2&gt;La solución&lt;/h2&gt;
@@ -7185,7 +7476,7 @@ advertidos de esto e incluso considerar como una falla de seguridad &lt;a class=
 archivo: &lt;code class="code docutils literal notranslate"&gt;&lt;span class="pre"&gt;/etc/apt/preferences.d/nosnap.pref&lt;/span&gt;&lt;/code&gt;. En mi caso, no veo razón
 de mantenerlo, así que procedo a eliminarlo y posteriormente a instalar el
 gestor de snaps. Si te sientes más cómodo, puedes comentar las líneas y una vez
-instalado el gestor volver a descomentarlas &lt;a class="reference internal" href="../es/blog/2020/instalar-paquetes-snap-en-linux-mint-20/#snap-install" id="id2"&gt;&lt;span&gt;[snap-install]&lt;/span&gt;&lt;/a&gt;.&lt;/p&gt;
+instalado el gestor volver a descomentarlas &lt;a class="reference internal" href="../en/blog/2020/instalar-paquetes-snap-en-linux-mint-20/#snap-install" id="id2"&gt;&lt;span&gt;[snap-install]&lt;/span&gt;&lt;/a&gt;.&lt;/p&gt;
 &lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo&lt;span class="w"&gt; &lt;/span&gt;rm&lt;span class="w"&gt; &lt;/span&gt;/etc/apt/preferences.d/nosnap.pref
 sudo&lt;span class="w"&gt; &lt;/span&gt;apt&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;-y&lt;span class="w"&gt; &lt;/span&gt;snapd
 snap&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;help&lt;/span&gt;
@@ -7217,11 +7508,9 @@ store “backdoor”.
 instalar paquetes Snap? Mint ha
 decidido deshabilitar la instalación de Snap por defecto y es necesario cambiar
 la configuración de apt para poderlo hacer.</summary>
-    <category term="gestordepaquetes" label="gestor de paquetes"/>
-    <category term="instalacióndesoftware" label="instalación de software"/>
-    <category term="linux" label="linux"/>
+    <category term="apt" label="apt"/>
     <category term="linuxmint" label="linux mint"/>
-    <category term="paquetessnap" label="paquetes snap"/>
+    <category term="snap" label="snap"/>
     <published>2020-06-29T00:00:00-05:00</published>
   </entry>
   <entry>
@@ -8364,11 +8653,9 @@ Circle method is recommended.&lt;/p&gt;
     <summary>I’d like to share how to compute the geodesic distance between two places using
 GeoPy (a Python library), one of the many things I’ve needed for my exploration
 in projects related to geographic information systems and routing.</summary>
-    <category term="geodesicdistance" label="geodesic distance"/>
+    <category term="geodesic" label="geodesic"/>
     <category term="geopy" label="geopy"/>
-    <category term="karneymethod" label="karney method"/>
     <category term="python" label="python"/>
-    <category term="vincentymethod" label="vincenty method"/>
     <published>2020-05-10T00:00:00-05:00</published>
   </entry>
   <entry>
@@ -9759,9 +10046,9 @@ possible to rely on tools that help automate documentation generation by
 extracting comments from the code, using keywords and markup language to modify
 style in the text, or including other elements such as images, equations, and
 links.</summary>
+    <category term="documentation" label="documentation"/>
     <category term="python" label="python"/>
     <category term="restructuredtext" label="restructuredtext"/>
-    <category term="softwaredocumentation" label="software documentation"/>
     <category term="sphinx" label="sphinx"/>
     <published>2020-01-06T00:00:00-05:00</published>
   </entry>
@@ -10813,10 +11100,214 @@ a dominant interaction that ultimately controls the movement of large celestial
 bodies and keeps us attached to Earth. However, this interaction isn’t exclusive
 to stars; it exists between all objects with mass, and if so, why aren’t we
 attracted gravitationally by other people?</summary>
-    <category term="gravityforce" label="gravity force"/>
-    <category term="isaacnewton" label="isaac newton"/>
-    <category term="physics" label="physics"/>
+    <category term="gravity" label="gravity"/>
+    <category term="newton" label="newton"/>
     <published>2019-11-08T00:00:00-05:00</published>
+  </entry>
+  <entry>
+    <id>https://www.cosmoscalibur.com/en/blog/2019/instalando-paquetes-en-linux-mint/</id>
+    <title>Installing Packages in Linux (Mint)</title>
+    <updated>2020-07-02T12:00:00-05:00</updated>
+    <author>
+      <name>Edward Villegas-Pulgarin</name>
+    </author>
+    <content type="html">&lt;section id="installing-packages-in-linux-mint"&gt;
+
+&lt;p&gt;In Linux, we now have many more options for installing our favorite and
+daily-use programs according to personal interests in reducing disk space,
+increasing stability, improving security, always having the latest version,
+having very good integration with the operating system, or not requiring
+administrator permissions. Some of these strategies even make it possible to use
+the same mechanism across multiple Linux distributions, thus enabling a smoother
+transition.&lt;/p&gt;
+&lt;p&gt;This article provides a superficial overview of each package manager, but later
+I will publish dedicated articles on each one to give you more options and tips.&lt;/p&gt;
+&lt;section id="programas-generales"&gt;
+&lt;h2&gt;Programas generales&lt;/h2&gt;
+&lt;p&gt;Aunque no es una clasificación estricta, es la forma que veo para hablar de
+estos paquetes de &lt;em&gt;software&lt;/em&gt;. Son paquetes de uso general, lo suficiente para
+ser de interés para disponer a través de medios de distribución para público
+general. En ocasiones, esto puede incluir paquetes de uso científico o propio de
+desarrollo, o de alguna disciplina particular.&lt;/p&gt;
+&lt;section id="distribution-package-manager"&gt;
+&lt;h3&gt;Distribution Package Manager&lt;/h3&gt;
+&lt;p&gt;The majority of Linux distributions come with &lt;em&gt;software package managers&lt;/em&gt;, which
+are tools for searching, downloading, installing, and configuring these
+packages. These managers connect to official repositories maintained by the
+distribution developers, ensuring that they meet minimum standards of
+compatibility and stability.&lt;/p&gt;
+&lt;p&gt;Additionally, some package managers can also connect to community-maintained
+repositories, providing users with a simple way to extend their software
+options. However, this comes with the risk of instability or conflicts due to
+interactions with official repository packages (this is not common, but it does
+occur). I recommend using these community repositories as a last option.&lt;/p&gt;
+&lt;p&gt;In Ubuntu and Linux Mint, you have the option to use the Software Center
+(pre-installed) or Synaptic (pre-installed in Linux Mint) for graphical package
+management. However, you can also use &lt;cite&gt;apt-get&lt;/cite&gt; or &lt;cite&gt;apt&lt;/cite&gt; (recommended) for
+console-based management.&lt;/p&gt;
+&lt;div class="highlight-default notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;apt&lt;/span&gt; &lt;span class="n"&gt;update&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;q&lt;/span&gt;
+&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;apt&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt; &lt;span class="n"&gt;okular&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Now you have the PDF file reader installed on your system. You can access it
+through the menu or by using the command (&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;okular&lt;/span&gt;&lt;/code&gt;). The first line is
+recommended to update the addresses from which software and metadata are
+downloaded. The second line performs the installation without requesting
+confirmation.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="appimage"&gt;
+&lt;h3&gt;AppImage&lt;/h3&gt;
+&lt;p&gt;This seems to be the best option among the new strategies. It allows for
+immediate program execution (no installation required), manages updates, and
+does not require administrator permissions since it does not need to install
+anything. In theory, it can run on any modern Linux distribution.&lt;/p&gt;
+&lt;p&gt;Since the file runs directly, multiple versions of the same program can coexist.
+This isolation, similar to snap and flatpak options, prevents conflicts in the
+system (programs that may require the same dependency but different versions, or
+where the dependency cannot manage multiple instances or expose a security
+vulnerability).&lt;/p&gt;
+&lt;p&gt;We will use Stellarium as an example, and you can search for &lt;a class="reference external" href="https://appimage.github.io"&gt;AppImageHub&lt;/a&gt; to see a collection of available AppImages.&lt;/p&gt;
+&lt;p id="appimagecode"&gt;We can download the &lt;a class="reference external" href="https://stellarium.org/"&gt;Stellarium AppImage&lt;/a&gt; from the
+official software website (the second penguin).&lt;/p&gt;
+&lt;div class="highlight-default notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;chmod&lt;/span&gt; &lt;span class="mi"&gt;755&lt;/span&gt; &lt;span class="n"&gt;Stellarium&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mf"&gt;0.19.2&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;x86_64&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;AppImage&lt;/span&gt;
+&lt;span class="o"&gt;./&lt;/span&gt;&lt;span class="n"&gt;Stellarium&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mf"&gt;0.19.2&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;x86_64&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;AppImage&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Make sure the file is executable. You can do this by running the following
+command in a terminal (first line, only the first time). And run the AppImage
+file.&lt;/p&gt;
+&lt;p&gt;If you want to execute it in a more convenient way, you can move the AppImage
+file to your user’s binary execution directory or a system-wide binary execution
+directory to make it available for all users (&lt;cite&gt;/usr/local/bin/&lt;/cite&gt;).&lt;/p&gt;
+&lt;div class="highlight-default notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;mv&lt;/span&gt; &lt;span class="n"&gt;Stellarium&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mf"&gt;0.19.2&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;x86_64&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;AppImage&lt;/span&gt; &lt;span class="o"&gt;~/.&lt;/span&gt;&lt;span class="n"&gt;local&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nb"&gt;bin&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;stellarium&lt;/span&gt;
+&lt;span class="n"&gt;stellarium&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/section&gt;
+&lt;section id="snap"&gt;
+&lt;span id="en-instalando-paquetes-en-linux-mint-snap"&gt;&lt;/span&gt;&lt;h3&gt;Snap&lt;/h3&gt;
+&lt;p&gt;Snap packages are the installation mechanism promoted by Canonical (the
+developers of Ubuntu). While it remains a centralized mechanism, it requires
+approval from Canonical to be included in the repositories and necessitates
+administrative permissions for installation.&lt;/p&gt;
+&lt;p&gt;In Ubuntu, snap is pre-installed, but in Linux Mint you need to install that.&lt;/p&gt;
+&lt;div class="highlight-default notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;apt&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt; &lt;span class="n"&gt;snapd&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Once installed, we can proceed to install a Snap package.&lt;/p&gt;
+&lt;div class="highlight-default notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;snap&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;code&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;classic&lt;/span&gt;
+&lt;span class="n"&gt;snap&lt;/span&gt; &lt;span class="n"&gt;run&lt;/span&gt; &lt;span class="n"&gt;code&lt;/span&gt; &lt;span class="c1"&gt;# Ejecuta&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;The execution with &lt;cite&gt;snap run&lt;/cite&gt; is necessary if the package is not recognized
+after installation. After the first execution or after opening a new terminal or
+rebooting the system, the package will be recognized and can be run directly by
+name (&lt;cite&gt;code&lt;/cite&gt;) or from the menu.&lt;/p&gt;
+&lt;div class="note update admonition"&gt;
+&lt;p class="admonition-title"&gt;Updated on 2020-07-02&lt;/p&gt;
+&lt;p&gt;Starting with Linux Mint 20, you need to first configure APT to be able to install Snap. You can review my publication for more details.
+&lt;a class="reference internal" href="../en/blog/2020/instalar-paquetes-snap-en-linux-mint-20/"&gt;&lt;span class="doc"&gt;Install snap packages in Linux Mint 20&lt;/span&gt;&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/section&gt;
+&lt;section id="flatpak"&gt;
+&lt;h3&gt;Flatpak&lt;/h3&gt;
+&lt;p&gt;The flatpak case is not very convenient, as it has some centralization like
+Snap, but for indexing purposes. A developer can create their own flatpak
+repository. And just like AppImage, it does not require administrator
+permissions.&lt;/p&gt;
+&lt;p&gt;In Linux Mint, it comes preconfigured starting from version 18.3, but if you use
+Ubuntu, you need to install it. Since version 18.10, it is found in the official
+repositories.&lt;/p&gt;
+&lt;div class="highlight-default notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;apt&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;flatpak&lt;/span&gt;
+&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;apt&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;gnome&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;software&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;plugin&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;flatpak&lt;/span&gt;
+&lt;span class="n"&gt;flatpak&lt;/span&gt; &lt;span class="n"&gt;remote&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;add&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="ow"&gt;not&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;exists&lt;/span&gt; &lt;span class="n"&gt;flathub&lt;/span&gt; &lt;span class="n"&gt;https&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="n"&gt;flathub&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;org&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;repo&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;flathub&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;flatpakrepo&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;The first line installs the Flatpak manager. The second line allows you to use
+Flatpak with the Gnome Software Center. And the third line adds the most popular
+Flatpak repository, &lt;a class="reference external" href="https://flathub.org/home"&gt;Flathub&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;To exemplify, we will install the package peek.&lt;/p&gt;
+&lt;div class="highlight-default notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;flatpak&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt; &lt;span class="n"&gt;flathub&lt;/span&gt; &lt;span class="n"&gt;com&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;uploadedlobster&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;peek&lt;/span&gt;
+&lt;span class="n"&gt;flatpak&lt;/span&gt; &lt;span class="n"&gt;run&lt;/span&gt; &lt;span class="n"&gt;com&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;uploadedlobster&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;peek&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Unfortunately, the execution is always done this way, but you can create a
+script to facilitate the process.&lt;/p&gt;
+&lt;div class="highlight-default notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;flatpak run com.uploadedlobster.peek&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="o"&gt;~/.&lt;/span&gt;&lt;span class="n"&gt;local&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nb"&gt;bin&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;peek&lt;/span&gt;
+&lt;span class="n"&gt;chmod&lt;/span&gt; &lt;span class="mi"&gt;755&lt;/span&gt; &lt;span class="o"&gt;~/.&lt;/span&gt;&lt;span class="n"&gt;local&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nb"&gt;bin&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;peek&lt;/span&gt;
+&lt;span class="n"&gt;peek&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Graphically, by default, it will be added to the menu.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="compilation-and-binaries"&gt;
+&lt;h3&gt;Compilation and Binaries&lt;/h3&gt;
+&lt;p&gt;These options are not part of the narrative. Compilation remains fundamental for
+optimizing critical or high-performance code as required in scientific
+computing. Compilation takes advantage of the used processor architecture.&lt;/p&gt;
+&lt;p&gt;In this case, it will typically involve using &lt;cite&gt;configure&lt;/cite&gt; and &lt;cite&gt;make&lt;/cite&gt;. For more
+information, you should read the &lt;cite&gt;README&lt;/cite&gt; file, which should detail the
+installation process.&lt;/p&gt;
+&lt;p&gt;With binary packages, you get a pre-compiled version that is generic regarding
+the processor or optimized but not necessarily for the specific processor used
+in your machine.&lt;/p&gt;
+&lt;p&gt;Once we have the binary (precompiled or compiled on our own machine), we need to
+give execution permissions to the binary (&lt;cite&gt;chmod 755&lt;/cite&gt;) and add it to a directory
+that is part of the &lt;cite&gt;path&lt;/cite&gt; (for example, &lt;cite&gt;~/.local/bin/&lt;/cite&gt;).&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="installation-scripts"&gt;
+&lt;h3&gt;Installation Scripts&lt;/h3&gt;
+&lt;p&gt;Sometimes we will find files with extensions &lt;cite&gt;.run&lt;/cite&gt; or &lt;cite&gt;.sh&lt;/cite&gt; that assist in the
+installation by downloading components or encoding different files into a single
+file.&lt;/p&gt;
+&lt;p&gt;For this case, it is necessary to confer execution permissions to the file and
+proceed to execute it. This procedure is similar to the first two lines of an
+AppImage as described &lt;a class="reference external" href="#appimagecode"&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;/section&gt;
+&lt;/section&gt;
+&lt;section id="referencias"&gt;
+&lt;h2&gt;Referencias&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;aside class="system-message"&gt;
+&lt;p class="system-message-title"&gt;System Message: INFO/1 (&lt;span class="docutils literal"&gt;/home/cosmoscalibur/Documentos/git/cosmoscalibur.github.io/en/blog/2019/instalando-paquetes-en-linux-mint.rst&lt;/span&gt;, line 7); &lt;em&gt;&lt;a href="#id1"&gt;backlink&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Duplicate implicit target name: «appimage».&lt;/p&gt;
+&lt;/aside&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://appimage.org/"&gt;AppImage&lt;/a&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;aside class="system-message"&gt;
+&lt;p class="system-message-title"&gt;System Message: INFO/1 (&lt;span class="docutils literal"&gt;/home/cosmoscalibur/Documentos/git/cosmoscalibur.github.io/en/blog/2019/instalando-paquetes-en-linux-mint.rst&lt;/span&gt;, line 7); &lt;em&gt;&lt;a href="#id2"&gt;backlink&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Duplicate implicit target name: «flatpak».&lt;/p&gt;
+&lt;/aside&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://www.flatpak.org/"&gt;Flatpak&lt;/a&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;aside class="system-message"&gt;
+&lt;p class="system-message-title"&gt;System Message: INFO/1 (&lt;span class="docutils literal"&gt;/home/cosmoscalibur/Documentos/git/cosmoscalibur.github.io/en/blog/2019/instalando-paquetes-en-linux-mint.rst&lt;/span&gt;, line 7); &lt;em&gt;&lt;a href="#id3"&gt;backlink&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Duplicate implicit target name: «snap».&lt;/p&gt;
+&lt;/aside&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://snapcraft.io/"&gt;Snap&lt;/a&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://wiki.gnome.org/Apps/Software"&gt;Gnome Software Center&lt;/a&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://help.ubuntu.com/lts/serverguide/apt.html"&gt;Ubuntu APT&lt;/a&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/section&gt;
+&lt;/section&gt;
+</content>
+    <link href="https://www.cosmoscalibur.com/en/blog/2019/instalando-paquetes-en-linux-mint/"/>
+    <summary>In Linux, we now have many more options for installing our favorite and
+daily-use programs according to personal interests in reducing disk space,
+increasing stability, improving security, always having the latest version,
+having very good integration with the operating system, or not requiring
+administrator permissions. Some of these strategies even make it possible to use
+the same mechanism across multiple Linux distributions, thus enabling a smoother
+transition.</summary>
+    <category term="appimage" label="appimage"/>
+    <category term="apt" label="apt"/>
+    <category term="flatpak" label="flatpak"/>
+    <category term="linuxmint" label="linux mint"/>
+    <category term="packagemanager" label="package manager"/>
+    <category term="snap" label="snap"/>
+    <category term="ubuntu" label="ubuntu"/>
+    <published>2019-10-22T00:00:00-05:00</published>
   </entry>
   <entry>
     <id>https://www.cosmoscalibur.com/es/blog/2019/instalando-paquetes-en-linux-mint/</id>
@@ -10987,19 +11478,19 @@ líneas de AppImage&lt;/a&gt;.&lt;/p&gt;
 &lt;h2&gt;Referencias&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;aside class="system-message"&gt;
-&lt;p class="system-message-title"&gt;System Message: INFO/1 (&lt;span class="docutils literal"&gt;/home/cosmoscalibur/Documentos/git/cosmoscalibur.github.io/es/blog/2019/instalando-paquetes-en-linux-mint.rst&lt;/span&gt;, line 9); &lt;em&gt;&lt;a href="#id1"&gt;backlink&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;p class="system-message-title"&gt;System Message: INFO/1 (&lt;span class="docutils literal"&gt;/home/cosmoscalibur/Documentos/git/cosmoscalibur.github.io/es/blog/2019/instalando-paquetes-en-linux-mint.rst&lt;/span&gt;, line 6); &lt;em&gt;&lt;a href="#id1"&gt;backlink&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;Duplicate implicit target name: «appimage».&lt;/p&gt;
 &lt;/aside&gt;
 &lt;p&gt;&lt;a class="reference external" href="https://appimage.org/"&gt;AppImage&lt;/a&gt;.&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;&lt;aside class="system-message"&gt;
-&lt;p class="system-message-title"&gt;System Message: INFO/1 (&lt;span class="docutils literal"&gt;/home/cosmoscalibur/Documentos/git/cosmoscalibur.github.io/es/blog/2019/instalando-paquetes-en-linux-mint.rst&lt;/span&gt;, line 9); &lt;em&gt;&lt;a href="#id2"&gt;backlink&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;p class="system-message-title"&gt;System Message: INFO/1 (&lt;span class="docutils literal"&gt;/home/cosmoscalibur/Documentos/git/cosmoscalibur.github.io/es/blog/2019/instalando-paquetes-en-linux-mint.rst&lt;/span&gt;, line 6); &lt;em&gt;&lt;a href="#id2"&gt;backlink&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;Duplicate implicit target name: «flatpak».&lt;/p&gt;
 &lt;/aside&gt;
 &lt;p&gt;&lt;a class="reference external" href="https://www.flatpak.org/"&gt;Flatpak&lt;/a&gt;.&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;&lt;aside class="system-message"&gt;
-&lt;p class="system-message-title"&gt;System Message: INFO/1 (&lt;span class="docutils literal"&gt;/home/cosmoscalibur/Documentos/git/cosmoscalibur.github.io/es/blog/2019/instalando-paquetes-en-linux-mint.rst&lt;/span&gt;, line 9); &lt;em&gt;&lt;a href="#id3"&gt;backlink&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;p class="system-message-title"&gt;System Message: INFO/1 (&lt;span class="docutils literal"&gt;/home/cosmoscalibur/Documentos/git/cosmoscalibur.github.io/es/blog/2019/instalando-paquetes-en-linux-mint.rst&lt;/span&gt;, line 6); &lt;em&gt;&lt;a href="#id3"&gt;backlink&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;Duplicate implicit target name: «snap».&lt;/p&gt;
 &lt;/aside&gt;
 &lt;p&gt;&lt;a class="reference external" href="https://snapcraft.io/"&gt;Snap&lt;/a&gt;.&lt;/p&gt;
@@ -11021,11 +11512,10 @@ de una transición más simple.</summary>
     <category term="appimage" label="appimage"/>
     <category term="apt" label="apt"/>
     <category term="flatpak" label="flatpak"/>
-    <category term="gestorde&#10;paquetes" label="gestor de&#10;paquetes"/>
-    <category term="instalacióndesoftware" label="instalación de software"/>
+    <category term="gestordepaquetes" label="gestor de paquetes"/>
     <category term="linux" label="linux"/>
     <category term="linuxmint" label="linux mint"/>
-    <category term="paquetessnap" label="paquetes snap"/>
+    <category term="snap" label="snap"/>
     <published>2019-10-22T00:00:00-05:00</published>
   </entry>
   <entry>
@@ -12838,65 +13328,74 @@ velocidad colisionen).</summary>
     <content type="html">&lt;section id="order-and-origin-of-the-greek-cosmos"&gt;
 
 &lt;p&gt;Second article based on my talk on «Greek Cosmogony and Cosmology» of astronomy
-in the Parque de los Deseos on May 14, 2013 (the first was &lt;a class="reference internal" href="../en/blog/2013/cosmogonia-griega/"&gt;&lt;span class="doc"&gt;Greek Cosmogony&lt;/span&gt;&lt;/a&gt;).&lt;/p&gt;
+in the Parque de los Deseos on May 14, 2013 (the first was
+&lt;a class="reference internal" href="../en/blog/2013/cosmogonia-griega/"&gt;&lt;span class="doc"&gt;Greek Cosmogony&lt;/span&gt;&lt;/a&gt;).&lt;/p&gt;
 &lt;p&gt;Thales of Miletus, the first Greek philosopher, incorporated the first
 non-mythological notions into the description and explanation of the world and
 tried to clarify the mystery of the first substance, considering it water. For
 Thales, the world was a circular disk floating in the ocean. Anaximander (the
-second Ionian philosopher) would abandon the views of Thales and the arche,
-and assign the infinite or the indefinite as the principle. By symmetry,
-the Earth should be flat or convex and in equilibrium with the center of the
-universe. The nature of the heavens is fire and it is spherical. The celestial
-bodies are located at different distances, with the sun being more distant than
-the sphere of fixed stars. The celestial bodies are holes that allow the fire of
-the sky to be seen.&lt;/p&gt;
+second Ionian philosopher) would abandon the views of Thales and the arche, and
+assign the infinite or the indefinite as the principle. By symmetry, the Earth
+should be flat or convex and in equilibrium with the center of the universe. The
+nature of the heavens is fire and it is spherical. The celestial bodies are
+located at different distances, with the sun being more distant than the sphere
+of fixed stars. The celestial bodies are holes that allow the fire of the sky to
+be seen.&lt;/p&gt;
 &lt;p&gt;Anaximenes (the third Ionian philosopher) found the principle in the air, which,
-by compression or rarefaction, would lead to the creation of everything. The Earth
-has its origin in dense air. The Earth, like the moon, the sun and the planets, is
-flat, and the fixed stars are like nails in a solid.&lt;/p&gt;
-&lt;p&gt;Xenophanes, the founder of the Eleatics, considered the principle in the Earth. The
-Earth is flat and embedded in infinity, while the sun, comets and stars are incandescent
-clouds. The sun and the stars are formed daily from clouds of burning particles,
-while the moon is a compressed cloud whose brightness comes from an inherent
-light that is extinguished monthly.&lt;/p&gt;
+by compression or rarefaction, would lead to the creation of everything. The
+Earth has its origin in dense air. The Earth, like the moon, the sun and the
+planets, is flat, and the fixed stars are like nails in a solid.&lt;/p&gt;
+&lt;p&gt;Xenophanes, the founder of the Eleatics, considered the principle in the Earth.
+The Earth is flat and embedded in infinity, while the sun, comets and stars are
+incandescent clouds. The sun and the stars are formed daily from clouds of
+burning particles, while the moon is a compressed cloud whose brightness comes
+from an inherent light that is extinguished monthly.&lt;/p&gt;
 &lt;p&gt;Parmenides, virtual founder of the Eleatics, is responsible for the first
 distinction of a spherical Earth. He considers the entire universe in concentric
-spherical layers around the stationary Earth. It is the first conception of concentric
-spheres. He considered the moon’s brightness to be a reflection of the sun’s light,
-and the origin of these was the residual material of the Milky Way. Like Anaximander,
-he makes the same mistake of placing the fixed stars closer than the sun. Heraclitus
-would consider fire a principle based on the fact that everything came to flow. The sun
-would be formed from exhalations from the Earth.&lt;/p&gt;
-&lt;p&gt;Anaxagoras affirms that the universe contains only two things: an infinite number of small
-particles (atoms) and the void that extends to infinity. Atoms are made of the same thing
-but differ in shape and size. It incorporates Leucippus” principle of causality. Democritus
-affirms that the shadows of the moon reflect the existence of mountains, losing the perfect
-nature of the moon. These constitute Greek atomism, and the three together support a flat Earth.&lt;/p&gt;
-&lt;p&gt;For the Stoics, the cosmos is finite and surrounded by an infinite void. It is in a state of flux,
-pulsating in size periodically. Aristotle proposed a spherical Earth surrounded by concentric
-celestial spheres between which the first ones around the Earth are the elements in the order earth,
-water, air and fire. The universe exists unchanged throughout eternity. It contains a fifth element
-called ether, above which the celestial bodies are found.&lt;/p&gt;
-&lt;p&gt;Aristarchus introduces the first mention of the sun in the center, in which, following the line of
-thought of Philolaus (the Pythagorean who proposes the first non-geocentric model with a central fire),
-he identified the central fire with the sun and assigned the correct positions to the planets.
-he Earth rotates and orbits the sun. The sphere of fixed stars is so distant that it is impossible
-to detect parallax.&lt;/p&gt;
+spherical layers around the stationary Earth. It is the first conception of
+concentric spheres. He considered the moon’s brightness to be a reflection of
+the sun’s light, and the origin of these was the residual material of the Milky
+Way. Like Anaximander, he makes the same mistake of placing the fixed stars
+closer than the sun. Heraclitus would consider fire a principle based on the
+fact that everything came to flow. The sun would be formed from exhalations from
+the Earth.&lt;/p&gt;
+&lt;p&gt;Anaxagoras affirms that the universe contains only two things: an infinite
+number of small particles (atoms) and the void that extends to infinity. Atoms
+are made of the same thing but differ in shape and size. It incorporates
+Leucippus” principle of causality. Democritus affirms that the shadows of the
+moon reflect the existence of mountains, losing the perfect nature of the moon.
+These constitute Greek atomism, and the three together support a flat Earth.&lt;/p&gt;
+&lt;p&gt;For the Stoics, the cosmos is finite and surrounded by an infinite void. It is
+in a state of flux, pulsating in size periodically. Aristotle proposed a
+spherical Earth surrounded by concentric celestial spheres between which the
+first ones around the Earth are the elements in the order earth, water, air and
+fire. The universe exists unchanged throughout eternity. It contains a fifth
+element called ether, above which the celestial bodies are found.&lt;/p&gt;
+&lt;p&gt;Aristarchus introduces the first mention of the sun in the center, in which,
+following the line of thought of Philolaus (the Pythagorean who proposes the
+first non-geocentric model with a central fire), he identified the central fire
+with the sun and assigned the correct positions to the planets. he Earth rotates
+and orbits the sun. The sphere of fixed stars is so distant that it is
+impossible to detect parallax.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;To know more&lt;/strong&gt;&lt;/p&gt;
 &lt;ol class="arabic simple"&gt;
-&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="http://articles.adsabs.harvard.edu//full/1916PA.....24..358M/0000358.000.html"&gt;The cosmological ideas among the Greeks&lt;/a&gt;. Hector MacPherson, Popular Astronomy, Vol. 24, p.358 (1916).&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;a class="reference internal" href="../en/blog/2012/la-evolucion-en-los-griegos/"&gt;&lt;span class="doc"&gt;Evolution in the Greeks&lt;/span&gt;&lt;/a&gt;. Cosmoscalibur, May 13, 2012.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="http://en.wikipedia.org/wiki/Arche"&gt;Arche&lt;/a&gt;. Wikipedia (english version). June 18, 2013.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="http://articles.adsabs.harvard.edu//full/1916PA.....24..358M/0000358.000.html"&gt;The cosmological ideas among the Greeks&lt;/a&gt;.
+Hector MacPherson, Popular Astronomy, Vol. 24, p.358 (1916).&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference internal" href="../en/blog/2012/la-evolucion-en-los-griegos/"&gt;&lt;span class="doc"&gt;Evolution in the Greeks&lt;/span&gt;&lt;/a&gt;. Cosmoscalibur, May 13,
+2012.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="http://en.wikipedia.org/wiki/Arche"&gt;Arche&lt;/a&gt;. Wikipedia (english version).
+June 18, 2013.&lt;/p&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/section&gt;
 </content>
     <link href="https://www.cosmoscalibur.com/en/blog/2013/orden-y-origen-del-cosmos-griego/"/>
     <summary>Second article based on my talk on «Greek Cosmogony and Cosmology» of astronomy
-in the Parque de los Deseos on May 14, 2013 (the first was /en/blog/2013/cosmogonia-griega).</summary>
-    <category term="archaeoastronomy" label="archaeoastronomy"/>
-    <category term="astronomyhistory" label="astronomy history"/>
-    <category term="greekcosmogony" label="greek cosmogony"/>
-    <category term="greekmythology" label="greek mythology"/>
+in the Parque de los Deseos on May 14, 2013 (the first was
+/en/blog/2013/cosmogonia-griega).</summary>
+    <category term="cosmogony" label="cosmogony"/>
+    <category term="greek" label="greek"/>
+    <category term="history" label="history"/>
+    <category term="mythology" label="mythology"/>
     <published>2013-06-18T00:00:00-05:00</published>
   </entry>
   <entry>
@@ -13068,34 +13567,28 @@ exoplanetas.Concepto artístico del planeta Kepler-76b.</summary>
     </author>
     <content type="html">&lt;section id="greek-cosmogony"&gt;
 
-&lt;p&gt;The cosmogony and cosmology of the ancient Greeks were deeply intertwined.
-While its cosmological elements have been detached from mythology since
-the reasoning of the first Greek philosopher,
-&lt;a class="reference external" href="https://en.wikipedia.org/wiki/Thales_of_Miletus"&gt;Thales of Miletus&lt;/a&gt;, the
-origin of some of these elements can be traced back to it.&lt;/p&gt;
-&lt;p&gt;The accounts of Greek cosmogony can be found in the texts of
-&lt;a class="reference external" href="https://en.wikipedia.org/wiki/Homer"&gt;Homer&lt;/a&gt; and the
-&lt;a class="reference external" href="https://en.wikipedia.org/wiki/Theogony"&gt;Theogony&lt;/a&gt; of
-&lt;a class="reference external" href="https://en.wikipedia.org/wiki/Hesiod"&gt;Hesiod&lt;/a&gt;, which illustrate the structure
-of their universe and its gods.&lt;/p&gt;
+&lt;p&gt;The cosmogony and cosmology of the ancient Greeks were deeply intertwined. While
+its cosmological elements have been detached from mythology since the reasoning
+of the first Greek philosopher, &lt;a class="reference external" href="https://en.wikipedia.org/wiki/Thales_of_Miletus"&gt;Thales of Miletus&lt;/a&gt;, the origin of some of these
+elements can be traced back to it.&lt;/p&gt;
+&lt;p&gt;The accounts of Greek cosmogony can be found in the texts of &lt;a class="reference external" href="https://en.wikipedia.org/wiki/Homer"&gt;Homer&lt;/a&gt; and the &lt;a class="reference external" href="https://en.wikipedia.org/wiki/Theogony"&gt;Theogony&lt;/a&gt; of &lt;a class="reference external" href="https://en.wikipedia.org/wiki/Hesiod"&gt;Hesiod&lt;/a&gt;, which illustrate the structure of
+their universe and its gods.&lt;/p&gt;
 &lt;figure class="align-center" id="id1"&gt;
 &lt;img alt="https://www.cosmoscalibur.com/_images/ofion-y-eurinome.png" src="https://www.cosmoscalibur.com/_images/ofion-y-eurinome.png" style="width: 105px; height: 200px;" /&gt;
 &lt;figcaption&gt;
 &lt;p&gt;&lt;span class="caption-text"&gt;Ophion warming the egg laid by Eurynome.&lt;/span&gt;&lt;/p&gt;
 &lt;/figcaption&gt;
 &lt;/figure&gt;
-&lt;p&gt;For the Greeks, the universe emerged from
-&lt;a class="reference external" href="https://en.wikipedia.org/wiki/Chaos_%28cosmogony%29"&gt;chaos&lt;/a&gt;, from which a
-creative force began to take shape and manifest as
-&lt;a class="reference external" href="https://en.wikipedia.org/wiki/Eurynome"&gt;Eurynome&lt;/a&gt;. Eurynome, taking the
-form of a dove, lays an egg that is warmed by &lt;a class="reference external" href="https://en.wikipedia.org/wiki/Ophion"&gt;Ophion&lt;/a&gt;,
+&lt;p&gt;For the Greeks, the universe emerged from &lt;a class="reference external" href="https://en.wikipedia.org/wiki/Chaos_%28cosmogony%29"&gt;chaos&lt;/a&gt;, from which a creative
+force began to take shape and manifest as &lt;a class="reference external" href="https://en.wikipedia.org/wiki/Eurynome"&gt;Eurynome&lt;/a&gt;. Eurynome, taking the form of a dove,
+lays an egg that is warmed by &lt;a class="reference external" href="https://en.wikipedia.org/wiki/Ophion"&gt;Ophion&lt;/a&gt;,
 the primordial serpent. Once the egg hatches, the universe emerges, and from it
 &lt;a class="reference external" href="https://en.wikipedia.org/wiki/Uranus_%28mythology%29"&gt;Uranus&lt;/a&gt; (the sky) and
-&lt;a class="reference external" href="https://en.wikipedia.org/wiki/Gaia"&gt;Gaia&lt;/a&gt; (the Earth) are born. These constitute
-the first generation of gods in the theogony. Once the universe is created,
-Eurynome and Ophion settle on &lt;a class="reference external" href="https://en.wikipedia.org/wiki/Mount_Olympus"&gt;Mount Olympus&lt;/a&gt;,
-but when Ophion attributes the creation of the universe to himself, Eurynome
-punishes him by sending him to &lt;cite&gt;Tartarus &amp;lt;https://en.wikipedia.org/wiki/Tartarus&amp;gt;&lt;/cite&gt; (the underworld).&lt;/p&gt;
+&lt;a class="reference external" href="https://en.wikipedia.org/wiki/Gaia"&gt;Gaia&lt;/a&gt; (the Earth) are born. These
+constitute the first generation of gods in the theogony. Once the universe is
+created, Eurynome and Ophion settle on &lt;a class="reference external" href="https://en.wikipedia.org/wiki/Mount_Olympus"&gt;Mount Olympus&lt;/a&gt;, but when Ophion attributes the
+creation of the universe to himself, Eurynome punishes him by sending him to
+&lt;cite&gt;Tartarus &amp;lt;https://en.wikipedia.org/wiki/Tartarus&amp;gt;&lt;/cite&gt; (the underworld).&lt;/p&gt;
 &lt;figure class="align-center" id="id2"&gt;
 &lt;img alt="https://www.cosmoscalibur.com/_images/urano-y-gea.jpg" src="https://www.cosmoscalibur.com/_images/urano-y-gea.jpg" style="width: 200px; height: 146px;" /&gt;
 &lt;figcaption&gt;
@@ -13103,17 +13596,19 @@ punishes him by sending him to &lt;cite&gt;Tartarus &amp;lt;https://en.wikipedia
 &lt;/figcaption&gt;
 &lt;/figure&gt;
 &lt;p&gt;The marriage of the first generation of gods, their copulative act generates all
-the forms of the Earth and the firmament, as well as the first races of the earth,
-the &lt;a class="reference external" href="https://en.wikipedia.org/wiki/Titans"&gt;titans&lt;/a&gt; and titanides. The created Earth
-is circular in shape, and completely surrounded by the great river
-&lt;a class="reference external" href="https://en.wikipedia.org/wiki/Oceanus"&gt;Oceanus&lt;/a&gt;. The surface separated two worlds,
-the underworld below, and above the firmament as conceived in the form of a solid shell.
-This latter concept, traceable in Christian and Jewish cultures, is reflected in the
-separation of good and evil, of perfection and imperfection. The Earth and the underworld
-are characterized by evil and imperfection, which is why human life exists, and its surface
-is uneven. The firmament, a representation of the designs of its gods (the constellations
-and stars were governed by them, and their nature of life was reflected in their forms and
-movements), was perfect, with circular and spherical shapes, and of a fiery nature.&lt;/p&gt;
+the forms of the Earth and the firmament, as well as the first races of the
+earth, the &lt;a class="reference external" href="https://en.wikipedia.org/wiki/Titans"&gt;titans&lt;/a&gt; and titanides. The
+created Earth is circular in shape, and completely surrounded by the great river
+&lt;a class="reference external" href="https://en.wikipedia.org/wiki/Oceanus"&gt;Oceanus&lt;/a&gt;. The surface separated two
+worlds, the underworld below, and above the firmament as conceived in the form
+of a solid shell. This latter concept, traceable in Christian and Jewish
+cultures, is reflected in the separation of good and evil, of perfection and
+imperfection. The Earth and the underworld are characterized by evil and
+imperfection, which is why human life exists, and its surface is uneven. The
+firmament, a representation of the designs of its gods (the constellations and
+stars were governed by them, and their nature of life was reflected in their
+forms and movements), was perfect, with circular and spherical shapes, and of a
+fiery nature.&lt;/p&gt;
 &lt;figure class="align-center" id="id3"&gt;
 &lt;img alt="https://www.cosmoscalibur.com/_images/cosmologia-mesopotamica-tierra-plana.jpg" src="https://www.cosmoscalibur.com/_images/cosmologia-mesopotamica-tierra-plana.jpg" style="width: 320px; height: 212px;" /&gt;
 &lt;figcaption&gt;
@@ -13122,28 +13617,29 @@ Adaptation of &lt;em&gt;New American Bible&lt;/em&gt;.&lt;/span&gt;&lt;/p&gt;
 &lt;/figcaption&gt;
 &lt;/figure&gt;
 &lt;aside class="system-message"&gt;
-&lt;p class="system-message-title"&gt;System Message: INFO/1 (&lt;span class="docutils literal"&gt;/home/cosmoscalibur/Documentos/git/cosmoscalibur.github.io/en/blog/2013/cosmogonia-griega.rst&lt;/span&gt;, line 69)&lt;/p&gt;
+&lt;p class="system-message-title"&gt;System Message: INFO/1 (&lt;span class="docutils literal"&gt;/home/cosmoscalibur/Documentos/git/cosmoscalibur.github.io/en/blog/2013/cosmogonia-griega.rst&lt;/span&gt;, line 72)&lt;/p&gt;
 &lt;p&gt;No directive entry for «note» in module «docutils.parsers.rst.languages.es».
 Using English fallback for directive «note».&lt;/p&gt;
 &lt;/aside&gt;
 &lt;div class="admonition note"&gt;
 &lt;p class="admonition-title"&gt;Nota&lt;/p&gt;
-&lt;p&gt;The continuation of this publication (as a second part, generated from a talk), is &lt;a class="reference internal" href="../en/blog/2013/orden-y-origen-del-cosmos-griego/"&gt;&lt;span class="doc"&gt;Order and Origin of the Greek Cosmos&lt;/span&gt;&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The continuation of this publication (as a second part, generated from a
+talk), is &lt;a class="reference internal" href="../en/blog/2013/orden-y-origen-del-cosmos-griego/"&gt;&lt;span class="doc"&gt;Order and Origin of the Greek Cosmos&lt;/span&gt;&lt;/a&gt;.&lt;/p&gt;
 &lt;/div&gt;
 &lt;p&gt;&lt;strong&gt;To know more&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a class="reference external" href="https://amzn.to/3d5Se1N"&gt;Myths &amp;amp; Legends&lt;/a&gt;. Philip Wilkinson. Dorling Kindersley, London 2009.&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://amzn.to/3d5Se1N"&gt;Myths &amp;amp; Legends&lt;/a&gt;. Philip Wilkinson. Dorling
+Kindersley, London 2009.&lt;/p&gt;
 &lt;/section&gt;
 </content>
     <link href="https://www.cosmoscalibur.com/en/blog/2013/cosmogonia-griega/"/>
-    <summary>The cosmogony and cosmology of the ancient Greeks were deeply intertwined.
-While its cosmological elements have been detached from mythology since
-the reasoning of the first Greek philosopher,
-Thales of Miletus, the
-origin of some of these elements can be traced back to it.</summary>
-    <category term="archaeoastronomy" label="archaeoastronomy"/>
-    <category term="astronomyhistory" label="astronomy history"/>
-    <category term="greekcosmogony" label="greek cosmogony"/>
-    <category term="greekmythology" label="greek mythology"/>
+    <summary>The cosmogony and cosmology of the ancient Greeks were deeply intertwined. While
+its cosmological elements have been detached from mythology since the reasoning
+of the first Greek philosopher, Thales of Miletus, the origin of some of these
+elements can be traced back to it.</summary>
+    <category term="cosmogony" label="cosmogony"/>
+    <category term="greek" label="greek"/>
+    <category term="history" label="history"/>
+    <category term="mythology" label="mythology"/>
     <published>2013-05-26T00:00:00-05:00</published>
   </entry>
   <entry>
@@ -13316,13 +13812,13 @@ Bikini.&lt;/p&gt;
 &lt;/section&gt;
 &lt;section id="scientific-publications"&gt;
 &lt;h2&gt;Scientific Publications&lt;/h2&gt;
-&lt;p&gt;Beyond his research work, Asimov also published formal and scientific texts,
-not intended for popularization. Notable examples include “&lt;em&gt;Modern Biology&lt;/em&gt;”
-(1961), “&lt;em&gt;Biochemistry and Human Metabolism&lt;/em&gt;” (1952), his first non-fiction
-book co-authored with two colleagues from the Boston University School of
-Medicine, and “&lt;em&gt;The Human Body&lt;/em&gt;” (1963). He also contributed to the “&lt;em&gt;Letters&lt;/em&gt;”
-section of the journal &lt;em&gt;Science&lt;/em&gt;, participating in impactful debates in biology
-during the 1960s and 1970s.&lt;/p&gt;
+&lt;p&gt;Beyond his research work, Asimov also published formal and scientific texts, not
+intended for popularization. Notable examples include “&lt;em&gt;Modern Biology&lt;/em&gt;” (1961),
+“&lt;em&gt;Biochemistry and Human Metabolism&lt;/em&gt;” (1952), his first non-fiction book
+co-authored with two colleagues from the Boston University School of Medicine,
+and “&lt;em&gt;The Human Body&lt;/em&gt;” (1963). He also contributed to the “&lt;em&gt;Letters&lt;/em&gt;” section of
+the journal &lt;em&gt;Science&lt;/em&gt;, participating in impactful debates in biology during the
+1960s and 1970s.&lt;/p&gt;
 &lt;/section&gt;
 &lt;section id="conclusion"&gt;
 &lt;h2&gt;Conclusion&lt;/h2&gt;
@@ -13334,10 +13830,13 @@ literature.&lt;/p&gt;
 &lt;section id="sources"&gt;
 &lt;h2&gt;Sources:&lt;/h2&gt;
 &lt;ol class="arabic simple"&gt;
-&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="http://en.wikipedia.org/wiki/Isaac_Asimov"&gt;Isaac Asimov&lt;/a&gt;. Wikipedia in English.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="http://en.wikipedia.org/wiki/Isaac_Asimov"&gt;Isaac Asimov&lt;/a&gt;. Wikipedia in
+English.&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="http://www.imdb.com/name/nm0001920/bio"&gt;Biography for Isaac Asimov&lt;/a&gt;. IMDb.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="http://www.biography.com/people/isaac-asimov-9190737"&gt;Isaac Asimov&lt;/a&gt;. Biography True Story.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="http://www.notablebiographies.com/An-Ba/Asimov-Isaac.html#ixzz2Hp8BaOVW"&gt;Isaac Asimov Biography&lt;/a&gt;. Notable Biographies.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="http://www.biography.com/people/isaac-asimov-9190737"&gt;Isaac Asimov&lt;/a&gt;.
+Biography True Story.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="http://www.notablebiographies.com/An-Ba/Asimov-Isaac.html#ixzz2Hp8BaOVW"&gt;Isaac Asimov Biography&lt;/a&gt;.
+Notable Biographies.&lt;/p&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/section&gt;
 &lt;/section&gt;
@@ -13348,8 +13847,8 @@ literature.&lt;/p&gt;
 also a scientist. This article aims to highlight Asimov’s scientific
 contributions and academic background, often overshadowed by his literary
 achievements.</summary>
+    <category term="asimov" label="asimov"/>
     <category term="chemistry" label="chemistry"/>
-    <category term="isaacasimov" label="isaac asimov"/>
     <category term="literature" label="literature"/>
     <category term="sciencefiction" label="science fiction"/>
     <published>2013-01-18T00:00:00-05:00</published>
@@ -13424,9 +13923,9 @@ fue un científico.</summary>
 &lt;p&gt;The commemoration of Sir Isaac Newton’s birth presents a curiosity: it is
 celebrated on both December 25, 1642, and January 4, 1643. This dual observance
 stems from the shift between the Julian and Gregorian calendars. This article
-explores the reasons behind this double celebration, delving into the
-historical context of the calendar reform and its impact on the dating of
-historical events.&lt;/p&gt;
+explores the reasons behind this double celebration, delving into the historical
+context of the calendar reform and its impact on the dating of historical
+events.&lt;/p&gt;
 &lt;section id="the-calendar-reform"&gt;
 &lt;h2&gt;The Calendar Reform&lt;/h2&gt;
 &lt;p&gt;The change from the Julian to the Gregorian calendar resulted from the papal
@@ -13435,20 +13934,20 @@ calendar, which had been in use since its implementation by Julius Caesar, and
 established the Gregorian calendar. The primary motivation for this change was
 to correct the Julian calendar’s drift relative to the date of Easter. The
 Council of Nicaea (325 AD) had fixed Easter as the Sunday following the first
-full moon after the spring equinox. By the 16th century, the Julian calendar
-had drifted, causing the spring equinox to occur approximately ten days earlier
-than its intended date of March 21.&lt;/p&gt;
+full moon after the spring equinox. By the 16th century, the Julian calendar had
+drifted, causing the spring equinox to occur approximately ten days earlier than
+its intended date of March 21.&lt;/p&gt;
 &lt;/section&gt;
 &lt;section id="implementation-and-discrepancies"&gt;
 &lt;h2&gt;Implementation and Discrepancies&lt;/h2&gt;
-&lt;p&gt;The Gregorian calendar reform, overseen by ecclesiastical jurist Ugo
-Buocompagni (Gregory XIII) and implemented with the help of astronomer
-Christoph Clavius and physician Luigi Lilio, resulted in ten days being skipped:
-October 4, 1582, was followed by October 15, 1582. However, the adoption of the
-Gregorian calendar was not immediate or universal. Due to geographical
-distances and varying levels of papal influence, different regions adopted the
-new calendar at different times. For instance, Spanish territories in South
-America transitioned a year later.&lt;/p&gt;
+&lt;p&gt;The Gregorian calendar reform, overseen by ecclesiastical jurist Ugo Buocompagni
+(Gregory XIII) and implemented with the help of astronomer Christoph Clavius and
+physician Luigi Lilio, resulted in ten days being skipped: October 4, 1582, was
+followed by October 15, 1582. However, the adoption of the Gregorian calendar
+was not immediate or universal. Due to geographical distances and varying levels
+of papal influence, different regions adopted the new calendar at different
+times. For instance, Spanish territories in South America transitioned a year
+later.&lt;/p&gt;
 &lt;/section&gt;
 &lt;section id="newtons-birth-and-the-calendar-discrepancy"&gt;
 &lt;h2&gt;Newton’s Birth and the Calendar Discrepancy&lt;/h2&gt;
@@ -13472,12 +13971,18 @@ consideration when interpreting dates from this era.&lt;/p&gt;
 &lt;h2&gt;Sources&lt;/h2&gt;
 &lt;ol class="arabic simple"&gt;
 &lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="http://es.wikipedia.org/wiki/Isaac_Newton"&gt;Isaac Newton&lt;/a&gt;. Spanish Wikipedia.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="http://en.wikipedia.org/wiki/Julian_calendar"&gt;Julian Calendar&lt;/a&gt;. English Wikipedia.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="http://en.wikipedia.org/wiki/Gregorian_calendar"&gt;Gregorian Calendar&lt;/a&gt;. English Wikipedia.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="http://www.timeanddate.com/calendar/julian-calendar.html"&gt;The Julian Calendar&lt;/a&gt;. Time and Date.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="http://www.timeanddate.com/calendar/gregorian-calendar.html"&gt;The Gregorian Calendar&lt;/a&gt;. Time and Date.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="http://en.wikisource.org/wiki/Inter_gravissimas"&gt;Inter gravissimas&lt;/a&gt;. Wikisources.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="http://www.luxinarcana.org/en/documenti/curiosita/la-riforma-del-calendario/"&gt;The calendar reform&lt;/a&gt;. Lux in arcana - The Vatican Secret Archives reveals itself.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="http://en.wikipedia.org/wiki/Julian_calendar"&gt;Julian Calendar&lt;/a&gt;. English
+Wikipedia.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="http://en.wikipedia.org/wiki/Gregorian_calendar"&gt;Gregorian Calendar&lt;/a&gt;.
+English Wikipedia.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="http://www.timeanddate.com/calendar/julian-calendar.html"&gt;The Julian Calendar&lt;/a&gt;.
+Time and Date.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="http://www.timeanddate.com/calendar/gregorian-calendar.html"&gt;The Gregorian Calendar&lt;/a&gt;.
+Time and Date.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="http://en.wikisource.org/wiki/Inter_gravissimas"&gt;Inter gravissimas&lt;/a&gt;.
+Wikisources.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="http://www.luxinarcana.org/en/documenti/curiosita/la-riforma-del-calendario/"&gt;The calendar reform&lt;/a&gt;.
+Lux in arcana - The Vatican Secret Archives reveals itself.&lt;/p&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/section&gt;
 &lt;/section&gt;
@@ -13486,13 +13991,13 @@ consideration when interpreting dates from this era.&lt;/p&gt;
     <summary>The commemoration of Sir Isaac Newton’s birth presents a curiosity: it is
 celebrated on both December 25, 1642, and January 4, 1643. This dual observance
 stems from the shift between the Julian and Gregorian calendars. This article
-explores the reasons behind this double celebration, delving into the
-historical context of the calendar reform and its impact on the dating of
-historical events.</summary>
+explores the reasons behind this double celebration, delving into the historical
+context of the calendar reform and its impact on the dating of historical
+events.</summary>
     <category term="calendar" label="calendar"/>
     <category term="christmas" label="christmas"/>
     <category term="history" label="history"/>
-    <category term="isaacnewton" label="isaac newton"/>
+    <category term="newton" label="newton"/>
     <published>2013-01-04T00:00:00-05:00</published>
   </entry>
   <entry>
@@ -14415,40 +14920,45 @@ of evolution arose, which is why I took the task of looking for a little and
 making this brief review.&lt;/p&gt;
 &lt;p&gt;The first concepts of evolution (not necessarily equivalent to the current ones)
 of species arise in Greek times associated with the discussion on the primary
-substance (which those who have already studied philosophy in school will remember
-that it is the arche), from which everything would be generated.&lt;/p&gt;
-&lt;p&gt;The arche, was debated between the four elements, substances or basic forms of matter
-that the Greeks identified to classify it. From these elements or from the combination
-of them, it was possible to obtain all of nature, including the other elements and life.
-The four elements are:&lt;/p&gt;
+substance (which those who have already studied philosophy in school will
+remember that it is the arche), from which everything would be generated.&lt;/p&gt;
+&lt;p&gt;The arche, was debated between the four elements, substances or basic forms of
+matter that the Greeks identified to classify it. From these elements or from
+the combination of them, it was possible to obtain all of nature, including the
+other elements and life. The four elements are:&lt;/p&gt;
 &lt;ul class="simple"&gt;
 &lt;li&gt;&lt;p&gt;Fire. Heraclitus was the first to postulate fire as arche.&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;Water. Thales of Miletus was its initial representative.&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;Air. Anaximenes was the father of air as arche.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Earth. Xenophanes argued that the origin of nature came from the earth and a changing world.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Earth. Xenophanes argued that the origin of nature came from the earth and a
+changing world.&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;Empedocles considered that the solution to the question of the arjé was an origin
-from the 4 elements. The combination of the 4 elements provided the basic
-characteristics of matter: being cold, hot, dry and wet. Aristotle would also adopt
-this unifying thought but would differentiate a creative moment from the elements,
-from which the formed nature is immutable, Aristotelian thesis (thought that would
-later influence the initial concept of origin in many religions, the creationist thesis).&lt;/p&gt;
-&lt;p&gt;Probably, the first «modern» concept of biological evolution, far ahead of its time,
-arose from the thought of Anaximander of Miletus, for whom life must have arisen from
-the water of beings wrapped in spiny bark, and the sun, evaporating the humidity of the
-Earth, would promote the migration of these species to move on land (description found
-in his poem «On Nature»).&lt;/p&gt;
-&lt;p&gt;Xenophanes, would be one of the first people to observe fossils in rocks and explained their
-existence by considering that the world went through cycles of mixing water and earth, in which
-the earth completely dissolved and turned to mud, a moment in which all life died, and later
-this same cycle of the earth, in its solidification stage, was responsible for leaving exposed
-the remains of life from the previous cycle. Identifying, in this last one, the first ideas of
+&lt;p&gt;Empedocles considered that the solution to the question of the arjé was an
+origin from the 4 elements. The combination of the 4 elements provided the basic
+characteristics of matter: being cold, hot, dry and wet. Aristotle would also
+adopt this unifying thought but would differentiate a creative moment from the
+elements, from which the formed nature is immutable, Aristotelian thesis
+(thought that would later influence the initial concept of origin in many
+religions, the creationist thesis).&lt;/p&gt;
+&lt;p&gt;Probably, the first «modern» concept of biological evolution, far ahead of its
+time, arose from the thought of Anaximander of Miletus, for whom life must have
+arisen from the water of beings wrapped in spiny bark, and the sun, evaporating
+the humidity of the Earth, would promote the migration of these species to move
+on land (description found in his poem «On Nature»).&lt;/p&gt;
+&lt;p&gt;Xenophanes, would be one of the first people to observe fossils in rocks and
+explained their existence by considering that the world went through cycles of
+mixing water and earth, in which the earth completely dissolved and turned to
+mud, a moment in which all life died, and later this same cycle of the earth, in
+its solidification stage, was responsible for leaving exposed the remains of
+life from the previous cycle. Identifying, in this last one, the first ideas of
 geological evolution from the observation of fossils.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;To know more&lt;/strong&gt;&lt;/p&gt;
 &lt;ol class="arabic simple"&gt;
-&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="http://biology.clc.uc.edu/courses/bio106/earlymod.htm"&gt;Early models of evolution&lt;/a&gt;. Biology 106 Course at Clerment College.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="http://biology.clc.uc.edu/courses/bio106/earlymod.htm"&gt;Early models of evolution&lt;/a&gt;. Biology 106 Course
+at Clerment College.&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="http://en.wikipedia.org/wiki/Arche"&gt;Arche&lt;/a&gt;. Wikipedia (english version).&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="http://www.iep.utm.edu/evolutio/"&gt;History of evolution&lt;/a&gt;. Internet Encyclopedia of Phylosophy.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="http://www.iep.utm.edu/evolutio/"&gt;History of evolution&lt;/a&gt;. Internet
+Encyclopedia of Phylosophy.&lt;/p&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/section&gt;
 </content>
@@ -14457,10 +14967,9 @@ geological evolution from the observation of fossils.&lt;/p&gt;
 of the astrobiology cycle at the Orión Club, the concern about the Greek origin
 of evolution arose, which is why I took the task of looking for a little and
 making this brief review.</summary>
-    <category term="archaeoastronomy" label="archaeoastronomy"/>
-    <category term="astronomyhistory" label="astronomy history"/>
-    <category term="greekcosmogony" label="greek cosmogony"/>
-    <category term="greekmythology" label="greek mythology"/>
+    <category term="cosmogony" label="cosmogony"/>
+    <category term="history" label="history"/>
+    <category term="mythology" label="mythology"/>
     <published>2012-05-13T00:00:00-05:00</published>
   </entry>
   <entry>

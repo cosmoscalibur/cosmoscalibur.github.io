@@ -94,8 +94,8 @@ recomiendo visitar los recetarios de
 [ffmprovisr](https://amiaopensource.github.io/ffmprovisr/).
 ```
 
-Podemos abrir el video, y veremos que el video con el audio incluido. Y ahora,
-¿qué sucede si son 56 videos con sus 56 audios?
+Podemos abrir el video, y veremos el video con el audio incluido. Y ahora, ¿qué
+sucede si son 56 videos con sus 56 audios?
 
 ## Procesamiento en lote con Bash
 

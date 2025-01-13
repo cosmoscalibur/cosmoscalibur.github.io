@@ -1,9 +1,6 @@
 :date: 2019-10-22
-:tags: linux, linux mint, paquetes snap, flatpak, appimage, apt, gestor de
-    paquetes, instalación de software
+:tags: linux, linux mint, snap, flatpak, appimage, apt, gestor de paquetes
 :category: tecnología
-:author: Edward Villegas-Pulgarin
-:language: es
 
 Instalando paquetes en Linux (Mint)
 ===================================

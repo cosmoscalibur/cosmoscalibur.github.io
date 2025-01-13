@@ -1,5 +1,5 @@
 :date: 2020-01-06
-:tags: python, sphinx, restructuredtext, software documentation
+:tags: python, sphinx, restructuredtext, documentation
 :category: technology
 :language: en
 

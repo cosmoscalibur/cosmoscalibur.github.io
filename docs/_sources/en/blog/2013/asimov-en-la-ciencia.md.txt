@@ -1,6 +1,6 @@
 ---
 date: 2013-01-18
-tags: science fiction, isaac asimov, literature, chemistry
+tags: science fiction, asimov, literature, chemistry
 category: science
 language: en
 ---
@@ -34,13 +34,13 @@ Bikini.
 
 ## Scientific Publications
 
-Beyond his research work, Asimov also published formal and scientific texts,
-not intended for popularization. Notable examples include "*Modern Biology*"
-(1961), "*Biochemistry and Human Metabolism*" (1952), his first non-fiction
-book co-authored with two colleagues from the Boston University School of
-Medicine, and "*The Human Body*" (1963). He also contributed to the "*Letters*"
-section of the journal *Science*, participating in impactful debates in biology
-during the 1960s and 1970s.
+Beyond his research work, Asimov also published formal and scientific texts, not
+intended for popularization. Notable examples include "*Modern Biology*" (1961),
+"*Biochemistry and Human Metabolism*" (1952), his first non-fiction book
+co-authored with two colleagues from the Boston University School of Medicine,
+and "*The Human Body*" (1963). He also contributed to the "*Letters*" section of
+the journal *Science*, participating in impactful debates in biology during the
+1960s and 1970s.
 
 ## Conclusion
 
@@ -51,7 +51,10 @@ literature.
 
 ## Sources:
 
-1. [Isaac Asimov](http://en.wikipedia.org/wiki/Isaac_Asimov). Wikipedia in English.
+1. [Isaac Asimov](http://en.wikipedia.org/wiki/Isaac_Asimov). Wikipedia in
+   English.
 2. [Biography for Isaac Asimov](http://www.imdb.com/name/nm0001920/bio). IMDb.
-3. [Isaac Asimov](http://www.biography.com/people/isaac-asimov-9190737). Biography True Story.
-4. [Isaac Asimov Biography](http://www.notablebiographies.com/An-Ba/Asimov-Isaac.html#ixzz2Hp8BaOVW). Notable Biographies.
+3. [Isaac Asimov](http://www.biography.com/people/isaac-asimov-9190737).
+   Biography True Story.
+4. [Isaac Asimov Biography](http://www.notablebiographies.com/An-Ba/Asimov-Isaac.html#ixzz2Hp8BaOVW).
+   Notable Biographies.
