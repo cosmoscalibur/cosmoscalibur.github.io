@@ -281,7 +281,8 @@ Some conclusions based on my needs:
   compensating also helps to facilitate distrohopping, as it makes the
   installation of many packages independent of the specific package manager of
   the distribution.
-- Avoid immutable release models or Ubuntu derivatives (except Linux Mint):
+- Avoid immutable release models or Ubuntu derivatives (except
+  [Linux Mint](/en/blog/2020/instalar-paquetes-snap-en-linux-mint-20.rst)):
   Immutable cases continuously resort to using isolation options like flatpak,
   snap or AppImage for user applications. This not only reduces the freedom of
   choice, but also the set of available applications. Ubuntu is discarded due to
@@ -317,30 +318,30 @@ Some conclusions based on my needs:
 There are four major issues on Linux that you should be prepared for and
 validate before making the switch:
 
-- Wi-Fi: Easily the thing you'll break most often with distribution changes or
-  after a kernel or driver version update. I've had computers where the Wi-Fi
-  works perfectly in the live versions, but when installing the distribution,
-  the driver is not directly supported, or when updating the kernel the driver
-  version is not compiled for that kernel, and it is necessary to manually
-  adjust the header of the source code and compile it. In other cases, as
-  happened to me in the recent change to Manjaro, the Wi-Fi started losing
-  available networks randomly after updating the kernel and adjustments in the
-  BIOS and driver configuration file were necessary. Have a wired network
-  connection available.
-- NVIDIA graphics card: Definitely a big pain if you require maximum
-  utilization. In Wayland, this is a limitation in multiple distributions, but
-  if it's really important to you, an Ubuntu derivative is probably the best.
-  Some software that uses GPU video acceleration can also be affected, and it
-  may be convenient to omit acceleration, use a sandboxed version, or wait a few
-  months for support to be achieved (in my case, I hope the NVIDIA 560 branch
-  arrives soon in Manjaro Stable). This partially affects my experience in
-  Wayland and applications that use Vulkan for rendering (like Zed), but I'm
-  still using the KDE X11 version on this computer and the computer with an
-  integrated graphics card works without any Wayland problems. In some cases,
-  the problem may be having a completely black screen or continuous display
-  errors if the driver is not supported properly (nothing functional). Validate
-  the support of your NVIDIA card with the available driver versions and Wayland
-  integration.
+- [Wi-Fi](/en/blog/2024/problemas-de-conexion-wifi-en-linux.md): Easily the
+  thing you'll break most often with distribution changes or after a kernel or
+  driver version update. I've had computers where the Wi-Fi works perfectly in
+  the live versions, but when installing the distribution, the driver is not
+  directly supported, or when updating the kernel the driver version is not
+  compiled for that kernel, and it is necessary to manually adjust the header of
+  the source code and compile it. In other cases, as happened to me in the
+  recent change to Manjaro, the Wi-Fi started losing available networks randomly
+  after updating the kernel and adjustments in the BIOS and driver configuration
+  file were necessary. Have a wired network connection available.
+- [NVIDIA graphics card](/en/blog/2024/problema-de-wayland-y-graficos-hibridos-en-linux.md):
+  Definitely a big pain if you require maximum utilization. In Wayland, this is
+  a limitation in multiple distributions, but if it's really important to you,
+  an Ubuntu derivative is probably the best. Some software that uses GPU video
+  acceleration can also be affected, and it may be convenient to omit
+  acceleration, use a sandboxed version, or wait a few months for support to be
+  achieved (in my case, I hope the NVIDIA 560 branch arrives soon in Manjaro
+  Stable). This partially affects my experience in Wayland and applications that
+  use Vulkan for rendering (like Zed), but I'm still using the KDE X11 version
+  on this computer and the computer with an integrated graphics card works
+  without any Wayland problems. In some cases, the problem may be having a
+  completely black screen or continuous display errors if the driver is not
+  supported properly (nothing functional). Validate the support of your NVIDIA
+  card with the available driver versions and Wayland integration.
 - New processors (or hardware in general): If the distribution is not
   continuously released, the kernel version will not be the necessary one to
   support the latest generation computer, contrary to what happens with your

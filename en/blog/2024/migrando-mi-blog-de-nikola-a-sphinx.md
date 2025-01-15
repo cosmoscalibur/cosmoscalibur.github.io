@@ -24,8 +24,8 @@ adjustments to ensure that our previous posts still function properly.
 
 #### Front Matter
 
-Since we added a [path pattern](#blog-conf) for publications during the initial
-configuration, there is no need to add the `..post:` directive or the
+Since we added a [path pattern](#blog-conf-en) for publications during the
+initial configuration, there is no need to add the `..post:` directive or the
 `:blogpost: true` attribute. Simply place your files in the path that matches
 the pattern 👀.
 

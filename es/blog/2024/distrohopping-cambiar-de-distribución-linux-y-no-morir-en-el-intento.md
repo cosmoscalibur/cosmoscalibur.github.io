@@ -340,25 +340,27 @@ Algunas conclusiones en el caso de mis necesidades:
 Hay cuatro grandes padecimientos en Linux para los cuales debes prepararte y
 validar antes del cambio.
 
-- WiFi: Fácilmente, es lo que más vas a romper con los cambios de distribución o
-  posterior a una actualización de núcleo o de versión de controladores. He
-  tenido equipos en los cuales el WiFi funciona perfectamente en las versiones
-  *live*, pero al instalar ya la distribución, el controlador no es soportado
-  directamente, o al actualizar el núcleo la versión del controlador no está
-  compilada para dicho núcleo y es necesario ajustar manualmente el *header* del
-  código fuente y compilarlo. En otros casos como me ocurrió en el reciente
-  cambio a Manjaro, el WiFi empezó a perder las redes disponibles aleatoriamente
-  después de actualizar el núcleo y fue necesario ajustes en BIOS y en archivo
-  de configuración del controlador. Ten disponible una conexión cableada de red.
-- Tarjeta gráfica NVIDIA: Definitivamente, un gran dolor si requieres el máximo
-  aprovechamiento. En Wayland esto es una limitante en múltiples distribuciones,
-  pero si es realmente importante para ti, probablemente un derivado de Ubuntu
-  sea lo mejor. Algunos software que usan aceleración de video por GPU también
-  se pueden ver afectados y sea conveniente omitir la aceleración, usar una
-  versión *sandbox* o esperar unos meses que el soporte se logre (en mi caso,
-  espero que la rama de NVIDIA 560 llegue pronto a *Manjaro Stable*). Esto me
-  afecta parcialmente la experiencia en Wayland y de aplicaciones que usan para
-  el renderizado Vulkan (como Zed), pero mientras uso la versión KDE X11 en este
+- [WiFi](/es/blog/2024/problemas-de-conexion-wifi-en-linux.md): Fácilmente, es
+  lo que más vas a romper con los cambios de distribución o posterior a una
+  actualización de núcleo o de versión de controladores. He tenido equipos en
+  los cuales el WiFi funciona perfectamente en las versiones *live*, pero al
+  instalar ya la distribución, el controlador no es soportado directamente, o al
+  actualizar el núcleo la versión del controlador no está compilada para dicho
+  núcleo y es necesario ajustar manualmente el *header* del código fuente y
+  compilarlo. En otros casos como me ocurrió en el reciente cambio a Manjaro, el
+  WiFi empezó a perder las redes disponibles aleatoriamente después de
+  actualizar el núcleo y fue necesario ajustes en BIOS y en archivo de
+  configuración del controlador. Ten disponible una conexión cableada de red.
+- [Tarjeta gráfica NVIDIA](/es/blog/2024/problema-de-wayland-y-graficos-hibridos-en-linux.md):
+  Definitivamente, un gran dolor si requieres el máximo aprovechamiento. En
+  Wayland esto es una limitante en múltiples distribuciones, pero si es
+  realmente importante para ti, probablemente un derivado de Ubuntu sea lo
+  mejor. Algunos software que usan aceleración de video por GPU también se
+  pueden ver afectados y sea conveniente omitir la aceleración, usar una versión
+  *sandbox* o esperar unos meses que el soporte se logre (en mi caso, espero que
+  la rama de NVIDIA 560 llegue pronto a *Manjaro Stable*). Esto me afecta
+  parcialmente la experiencia en Wayland y de aplicaciones que usan para el
+  renderizado Vulkan (como Zed), pero mientras uso la versión KDE X11 en este
   equipo y el equipo con tarjeta integrada funciona sin problema Wayland. En
   algunos casos, el problema puede ser tener una pantalla completamente negra o
   errores de visualización continuamente si el controlador no se soporta
@@ -410,9 +412,10 @@ con pequeños pasos seguros como:
 
 Una opción rápida para enfocarte en los verdaderos problemas que pueden existir
 en la distribución que has escogido, es depender menos del gestor de paquetes de
-la distribución. Esto te permite documentar o tener *scripts* que serán
-replicables en un eventual nuevo cambio y a reducir el impacto de buscar como
-adecuar tu sistema.
+la distribución. Esto te permite
+[documentar](/es/blog/2024/que-hacer-despues-de-instalar-manjaro.md) o tener
+*scripts* que serán replicables en un eventual nuevo cambio y a reducir el
+impacto de buscar como adecuar tu sistema.
 
 **Entorno de escritorio**
 

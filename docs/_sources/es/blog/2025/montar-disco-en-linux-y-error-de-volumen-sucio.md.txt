@@ -1,6 +1,6 @@
 ---
 date: 2025-01-10
-tags: manjaro, ubuntu, linux, disco externo, mount, lsblk
+tags: manjaro, ubuntu, linux, disco, mount, lsblk, dmesg
 category: tecnología, linux
 ---
 

@@ -1,6 +1,6 @@
 ---
 date: 2024-12-07
-tags: manjaro, ubuntu, wifi, linux
+tags: manjaro, ubuntu, wifi, linux, dmesg
 category: technology, linux
 language: en
 ---

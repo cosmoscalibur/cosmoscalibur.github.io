@@ -1,6 +1,6 @@
 ---
 date: 2025-01-10
-tags: manjaro, ubuntu, linux, external drive, mount, lsblk
+tags: manjaro, ubuntu, linux, disk, mount, lsblk, dmesg
 category: technology, linux
 language: en
 ---

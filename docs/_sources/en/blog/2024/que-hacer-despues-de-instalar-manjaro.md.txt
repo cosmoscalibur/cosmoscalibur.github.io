@@ -319,7 +319,7 @@ When applications start asking to create a wallet (*kdewallet*), we will accept
 it with *blowfish*. Additionally, if the password is the same as our login, this
 will be automatically activated.
 
-## Instala Google Chrome
+## Install Google Chrome
 
 Both in Manjaro and Ubuntu, we will have Firefox as our default browser, but
 it's essential to note that Google Chrome becomes necessary many times.
@@ -444,7 +444,8 @@ need to do drawings, diagrams, videos, format conversions or basic edits.
 That's why here is our creative combo.
 
 - *ImageMagick*: Useful for converting image file formats.
-- *FFmpeg*: A command-line utility for audio and video processing.
+- *FFmpeg*: A command-line utility for
+  [audio and video processing](/en/blog/2024/unir-video-y-audio-con-ffmpeg-y-bash.md).
 - *OBS Studio*: An advanced tool for recording and editing video.
 - *Draw.io*: Allows creating diagrams and offers a wide range of symbols.
 - *Inkscape*: A vector drawing tool, an alternative to Corel Draw.

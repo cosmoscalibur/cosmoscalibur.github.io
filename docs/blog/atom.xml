@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="es">
   <id>https://www.cosmoscalibur.com/</id>
   <title>Cosmoscalibur</title>
-  <updated>2025-01-13T15:29:24.764704+00:00</updated>
+  <updated>2025-01-15T05:31:02.766094+00:00</updated>
   <link href="https://www.cosmoscalibur.com/"/>
   <link href="https://www.cosmoscalibur.com/blog/atom.xml" rel="self"/>
   <generator uri="https://ablog.readthedocs.io/" version="0.11.12">ABlog</generator>
@@ -93,7 +93,8 @@ solve it by executing:&lt;/p&gt;
 and when I went to use it (mount it) after updating the operating system, an
 error about a dirty volume appeared. If you’ve encountered this too, here’s how
 to solve it.</summary>
-    <category term="externaldrive" label="external drive"/>
+    <category term="disk" label="disk"/>
+    <category term="dmesg" label="dmesg"/>
     <category term="linux" label="linux"/>
     <category term="lsblk" label="lsblk"/>
     <category term="manjaro" label="manjaro"/>
@@ -187,7 +188,8 @@ ejecutando:&lt;/p&gt;
 usarlo (montarlo) después de actualizar el sistema operativo, me ha salido el
 error de volumen sucio. Si te ha pasado, a continuación te indico como
 solucionarlo.</summary>
-    <category term="discoexterno" label="disco externo"/>
+    <category term="disco" label="disco"/>
+    <category term="dmesg" label="dmesg"/>
     <category term="linux" label="linux"/>
     <category term="lsblk" label="lsblk"/>
     <category term="manjaro" label="manjaro"/>
@@ -843,6 +845,151 @@ de X11), que hagan uso de Vulkan.</summary>
     <published>2024-12-18T00:00:00-05:00</published>
   </entry>
   <entry>
+    <id>https://www.cosmoscalibur.com/en/blog/2024/configurar-starship-en-manjaro-y-zsh/</id>
+    <title>Configuring Starship on Manjaro and Zsh</title>
+    <updated>2024-12-15T00:00:00-05:00</updated>
+    <author>
+      <name>Edward Villegas-Pulgarin</name>
+    </author>
+    <content type="html">&lt;section class="tex2jax_ignore mathjax_ignore" id="configuring-starship-on-manjaro-and-zsh"&gt;
+
+&lt;p&gt;Recently, I’ve been switching multiple tools in my daily work, including changes
+in handling the Linux terminal. One of these changes is the &lt;em&gt;shell prompt&lt;/em&gt; (the
+terminal indicator), and I’m using &lt;strong class="program"&gt;starship&lt;/strong&gt;. However, there are some
+undocumented details on how to enable it on Manjaro with &lt;strong class="program"&gt;zsh&lt;/strong&gt;, which
+I’ll explain here.&lt;/p&gt;
+&lt;figure class="align-center" id="id1"&gt;
+&lt;img alt="A visual appearance of *Starship* messages for Git, Python, and low battery." src="https://www.cosmoscalibur.com/_images/indicador-starship.png" style="width: 500px; height: 250px;" /&gt;
+&lt;figcaption&gt;
+&lt;p&gt;&lt;span class="caption-text"&gt;Appearance of the &lt;em&gt;Starship&lt;/em&gt; indicator in a Git directory with a Python environment, and with a low battery indication.&lt;/span&gt;&lt;/p&gt;
+&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;To start, first, a terminal indicator is a program that generates text
+associated with each command execution in the terminal, along with what comes
+before the cursor. A good terminal indicator provides us with useful information
+quickly about the directory we are in, the execution of a command line, or even
+the battery level. &lt;em&gt;Starship&lt;/em&gt; delivers this and forms part of the new ecosystem
+of utilities developed in Rust.&lt;/p&gt;
+&lt;section id="installing-starship"&gt;
+&lt;h2&gt;Installing &lt;em&gt;Starship&lt;/em&gt;&lt;/h2&gt;
+&lt;p&gt;In Manjaro, you have &lt;a class="reference external" href="https://starship.rs/"&gt;&lt;em&gt;starship&lt;/em&gt;&lt;/a&gt; available in the
+official repository, but you can also install it from the official installation
+routine that applies to any Linux distribution (useful if you use a distro like
+Ubuntu).&lt;/p&gt;
+&lt;div class="sd-tab-set docutils"&gt;
+&lt;input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio"&gt;
+&lt;label class="sd-tab-label" data-sync-group="tab" data-sync-id="m" for="sd-tab-item-0"&gt;
+Manjaro&lt;/label&gt;&lt;div class="sd-tab-content docutils"&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo&lt;span class="w"&gt; &lt;/span&gt;pamac&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;starship&lt;span class="w"&gt; &lt;/span&gt;--no-confirm
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;input id="sd-tab-item-1" name="sd-tab-set-0" type="radio"&gt;
+&lt;label class="sd-tab-label" data-sync-group="tab" data-sync-id="u" for="sd-tab-item-1"&gt;
+Ubuntu&lt;/label&gt;&lt;div class="sd-tab-content docutils"&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;curl&lt;span class="w"&gt; &lt;/span&gt;-sS&lt;span class="w"&gt; &lt;/span&gt;https://starship.rs/install.sh&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;sh
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/section&gt;
+&lt;section id="starting-starship"&gt;
+&lt;h2&gt;Starting &lt;em&gt;Starship&lt;/em&gt;&lt;/h2&gt;
+&lt;p&gt;When using &lt;strong class="program"&gt;zsh&lt;/strong&gt;, you can initialize it by adding the &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;init&lt;/span&gt;&lt;/code&gt; command to
+the &lt;code class="file docutils literal notranslate"&gt;&lt;span class="pre"&gt;~/.zshrc&lt;/span&gt;&lt;/code&gt; file.&lt;/p&gt;
+&lt;div class="sd-tab-set docutils"&gt;
+&lt;input checked="checked" id="sd-tab-item-2" name="sd-tab-set-1" type="radio"&gt;
+&lt;label class="sd-tab-label" for="sd-tab-item-2"&gt;
+zsh&lt;/label&gt;&lt;div class="sd-tab-content docutils"&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nb"&gt;echo&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;eval &amp;quot;$(starship init zsh)&amp;quot;&amp;#39;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&amp;gt;&amp;gt;&lt;span class="w"&gt; &lt;/span&gt;~/.zshrc
+&lt;span class="nb"&gt;source&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;~/.zshrc
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;input id="sd-tab-item-3" name="sd-tab-set-1" type="radio"&gt;
+&lt;label class="sd-tab-label" for="sd-tab-item-3"&gt;
+bash&lt;/label&gt;&lt;div class="sd-tab-content docutils"&gt;
+&lt;p&gt;The default terminal language is &lt;strong class="program"&gt;bash&lt;/strong&gt;, and if you are comfortable with this, initializing it looks like this.&lt;/p&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nb"&gt;echo&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;eval &amp;quot;$(starship init bash)&amp;quot;&amp;#39;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&amp;gt;&amp;gt;&lt;span class="w"&gt; &lt;/span&gt;~/.bashrc
+&lt;span class="nb"&gt;source&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;~/.bashrc
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Finally, we are ready, or at least according to the official procedure.&lt;/p&gt;
+&lt;p&gt;In Manjaro, &lt;strong class="program"&gt;zsh&lt;/strong&gt; has a default terminal indicator configuration in the
+file &lt;code class="file docutils literal notranslate"&gt;&lt;span class="pre"&gt;~/.zshrc&lt;/span&gt;&lt;/code&gt; and in the file &lt;code class="file docutils literal notranslate"&gt;&lt;span class="pre"&gt;/usr/share/zsh/manjaro-zsh-prompt&lt;/span&gt;&lt;/code&gt;.
+This configuration enables &lt;em&gt;powerline&lt;/em&gt; and &lt;em&gt;powerlevel10k&lt;/em&gt; (&lt;em&gt;p10k&lt;/em&gt;) and avoids
+using an additional prompt.&lt;/p&gt;
+&lt;p&gt;It’s necessary to disable the use of these two. To do this, we must set
+&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;USE_POWERLINE&lt;/span&gt;&lt;/code&gt; to &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;false&lt;/span&gt;&lt;/code&gt; and comment out (or delete) the lines of the &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;prompt&lt;/span&gt;&lt;/code&gt;
+configuration.&lt;/p&gt;
+&lt;div class="highlight-text notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;# Use powerline
+&lt;span class="hll"&gt;USE_POWERLINE=&amp;quot;false&amp;quot;
+&lt;/span&gt;# Has weird character width
+# Example:
+#    is not a diamond
+HAS_WIDECHARS=&amp;quot;false&amp;quot;
+# Source manjaro-zsh-configuration
+if [[ -e /usr/share/zsh/manjaro-zsh-config ]]; then
+  source /usr/share/zsh/manjaro-zsh-config
+fi
+# Use manjaro zsh prompt
+&lt;span class="hll"&gt;#if [[ -e /usr/share/zsh/manjaro-zsh-prompt ]]; then
+&lt;/span&gt;&lt;span class="hll"&gt;#  source /usr/share/zsh/manjaro-zsh-prompt
+&lt;/span&gt;&lt;span class="hll"&gt;#fi
+&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;After sourcing the &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;.zshrc&lt;/span&gt;&lt;/code&gt; file, you should have &lt;em&gt;starship&lt;/em&gt; enabled on Manjaro
+with &lt;em&gt;Zsh&lt;/em&gt;.&lt;/p&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nb"&gt;source&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;~/.zshrc
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/section&gt;
+&lt;section id="configuration-file"&gt;
+&lt;h2&gt;Configuration File&lt;/h2&gt;
+&lt;p&gt;In general, the default configuration is good and significant changes are not
+necessary. However, the &lt;strong class="program"&gt;gcloud&lt;/strong&gt; module shows up generally in the
+session which is not appealing or useful for me. For this reason, I create the
+configuration file &lt;code class="file docutils literal notranslate"&gt;&lt;span class="pre"&gt;~/.config/starship.toml&lt;/span&gt;&lt;/code&gt; and disable the module.&lt;/p&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;cat&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;lt;&amp;lt; &amp;#39;EOF&amp;#39; &amp;gt; ~/.config/starship.toml&lt;/span&gt;
+&lt;span class="s"&gt;[gcloud]&lt;/span&gt;
+&lt;span class="s"&gt;disabled = true&lt;/span&gt;
+&lt;span class="s"&gt;EOF&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;You can consult other configuration options in
+&lt;a class="reference external" href="https://starship.rs/config/"&gt;Starship: Configuration&lt;/a&gt;.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="references"&gt;
+&lt;h2&gt;References&lt;/h2&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://github.com/starship/starship"&gt;GitHub: Starship&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://forum.manjaro.org/t/starship-prompt-wont-work-on-manjaro-kde-plasma/83608"&gt;Starship prompt won’t work on manjaro KDE plasma&lt;/a&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://forum.manjaro.org/t/starship-prompt-for-zsh-need-help-installing/93481"&gt;Starship prompt for zsh - need help installing&lt;/a&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://forum.manjaro.org/t/powerline-in-manjaro-zsh-config/42941"&gt;Powerline in manjaro-zsh-config&lt;/a&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://github.com/powerline/powerline"&gt;Powerline&lt;/a&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://github.com/romkatv/powerlevel10k"&gt;Powerlevel10k&lt;/a&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/section&gt;
+&lt;/section&gt;
+</content>
+    <link href="https://www.cosmoscalibur.com/en/blog/2024/configurar-starship-en-manjaro-y-zsh/"/>
+    <summary>Recently, I’ve been switching multiple tools in my daily work, including changes
+in handling the Linux terminal. One of these changes is the shell prompt (the
+terminal indicator), and I’m using starship. However, there are some
+undocumented details on how to enable it on Manjaro with zsh, which
+I’ll explain here.A visual appearance of *Starship* messages for Git, Python, and low battery.</summary>
+    <category term="bash" label="bash"/>
+    <category term="manjaro" label="manjaro"/>
+    <category term="rust" label="rust"/>
+    <category term="shell" label="shell"/>
+    <category term="starship" label="starship"/>
+    <category term="ubuntu" label="ubuntu"/>
+    <category term="zsh" label="zsh"/>
+    <published>2024-12-15T00:00:00-05:00</published>
+  </entry>
+  <entry>
     <id>https://www.cosmoscalibur.com/es/blog/2024/configurar-starship-en-manjaro-y-zsh/</id>
     <title>Configurar Starship en Manjaro y Zsh</title>
     <updated>2024-12-15T00:00:00-05:00</updated>
@@ -1418,6 +1565,7 @@ sudo&lt;span class="w"&gt; &lt;/span&gt;dmesg&lt;span class="w"&gt; &lt;/span&gt
     <link href="https://www.cosmoscalibur.com/en/blog/2024/problemas-de-conexion-wifi-en-linux/"/>
     <summary>If Wi-Fi starts to disconnect randomly and upon reviewing the list of networks,
 these have disappeared, there are some points to consider evaluating.</summary>
+    <category term="dmesg" label="dmesg"/>
     <category term="linux" label="linux"/>
     <category term="manjaro" label="manjaro"/>
     <category term="ubuntu" label="ubuntu"/>
@@ -1513,6 +1661,7 @@ sudo&lt;span class="w"&gt; &lt;/span&gt;dmesg&lt;span class="w"&gt; &lt;/span&gt
     <link href="https://www.cosmoscalibur.com/es/blog/2024/problemas-de-conexion-wifi-en-linux/"/>
     <summary>Si el WiFi de manera aleatoria comienza a desconectarse, y al revisar el listado
 de redes estas han desaparecido, algunos detalles por evaluar son:</summary>
+    <category term="dmesg" label="dmesg"/>
     <category term="linux" label="linux"/>
     <category term="manjaro" label="manjaro"/>
     <category term="ubuntu" label="ubuntu"/>
@@ -2320,8 +2469,8 @@ option suits you best. In my case, I chose “Breeze (SVG + Dark)”&lt;/p&gt;
 it with &lt;em&gt;blowfish&lt;/em&gt;. Additionally, if the password is the same as our login, this
 will be automatically activated.&lt;/p&gt;
 &lt;/section&gt;
-&lt;section id="instala-google-chrome"&gt;
-&lt;h2&gt;Instala Google Chrome&lt;/h2&gt;
+&lt;section id="install-google-chrome"&gt;
+&lt;h2&gt;Install Google Chrome&lt;/h2&gt;
 &lt;p&gt;Both in Manjaro and Ubuntu, we will have Firefox as our default browser, but
 it’s essential to note that Google Chrome becomes necessary many times.&lt;/p&gt;
 &lt;div class="sd-tab-set docutils"&gt;
@@ -2429,7 +2578,8 @@ need to do drawings, diagrams, videos, format conversions or basic edits.&lt;/p&
 &lt;p&gt;That’s why here is our creative combo.&lt;/p&gt;
 &lt;ul class="simple"&gt;
 &lt;li&gt;&lt;p&gt;&lt;em&gt;ImageMagick&lt;/em&gt;: Useful for converting image file formats.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;em&gt;FFmpeg&lt;/em&gt;: A command-line utility for audio and video processing.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;em&gt;FFmpeg&lt;/em&gt;: A command-line utility for
+&lt;a class="reference internal" href="../en/blog/2024/unir-video-y-audio-con-ffmpeg-y-bash/"&gt;&lt;span class="std std-doc"&gt;audio and video processing&lt;/span&gt;&lt;/a&gt;.&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;&lt;em&gt;OBS Studio&lt;/em&gt;: An advanced tool for recording and editing video.&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;&lt;em&gt;Draw.io&lt;/em&gt;: Allows creating diagrams and offers a wide range of symbols.&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;&lt;em&gt;Inkscape&lt;/em&gt;: A vector drawing tool, an alternative to Corel Draw.&lt;/p&gt;&lt;/li&gt;
@@ -2782,7 +2932,8 @@ packages whose main use is in development rather than general use. This way of
 compensating also helps to facilitate distrohopping, as it makes the
 installation of many packages independent of the specific package manager of
 the distribution.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Avoid immutable release models or Ubuntu derivatives (except Linux Mint):
+&lt;li&gt;&lt;p&gt;Avoid immutable release models or Ubuntu derivatives (except
+&lt;a class="reference internal" href="../en/blog/2020/instalar-paquetes-snap-en-linux-mint-20/"&gt;&lt;span class="std std-doc"&gt;Linux Mint&lt;/span&gt;&lt;/a&gt;):
 Immutable cases continuously resort to using isolation options like flatpak,
 snap or AppImage for user applications. This not only reduces the freedom of
 choice, but also the set of available applications. Ubuntu is discarded due to
@@ -2819,30 +2970,30 @@ even serves me to synchronize my installation scripts.&lt;/p&gt;&lt;/li&gt;
 &lt;p&gt;There are four major issues on Linux that you should be prepared for and
 validate before making the switch:&lt;/p&gt;
 &lt;ul class="simple"&gt;
-&lt;li&gt;&lt;p&gt;Wi-Fi: Easily the thing you’ll break most often with distribution changes or
-after a kernel or driver version update. I’ve had computers where the Wi-Fi
-works perfectly in the live versions, but when installing the distribution,
-the driver is not directly supported, or when updating the kernel the driver
-version is not compiled for that kernel, and it is necessary to manually
-adjust the header of the source code and compile it. In other cases, as
-happened to me in the recent change to Manjaro, the Wi-Fi started losing
-available networks randomly after updating the kernel and adjustments in the
-BIOS and driver configuration file were necessary. Have a wired network
-connection available.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;NVIDIA graphics card: Definitely a big pain if you require maximum
-utilization. In Wayland, this is a limitation in multiple distributions, but
-if it’s really important to you, an Ubuntu derivative is probably the best.
-Some software that uses GPU video acceleration can also be affected, and it
-may be convenient to omit acceleration, use a sandboxed version, or wait a few
-months for support to be achieved (in my case, I hope the NVIDIA 560 branch
-arrives soon in Manjaro Stable). This partially affects my experience in
-Wayland and applications that use Vulkan for rendering (like Zed), but I’m
-still using the KDE X11 version on this computer and the computer with an
-integrated graphics card works without any Wayland problems. In some cases,
-the problem may be having a completely black screen or continuous display
-errors if the driver is not supported properly (nothing functional). Validate
-the support of your NVIDIA card with the available driver versions and Wayland
-integration.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference internal" href="../en/blog/2024/problemas-de-conexion-wifi-en-linux/"&gt;&lt;span class="std std-doc"&gt;Wi-Fi&lt;/span&gt;&lt;/a&gt;: Easily the
+thing you’ll break most often with distribution changes or after a kernel or
+driver version update. I’ve had computers where the Wi-Fi works perfectly in
+the live versions, but when installing the distribution, the driver is not
+directly supported, or when updating the kernel the driver version is not
+compiled for that kernel, and it is necessary to manually adjust the header of
+the source code and compile it. In other cases, as happened to me in the
+recent change to Manjaro, the Wi-Fi started losing available networks randomly
+after updating the kernel and adjustments in the BIOS and driver configuration
+file were necessary. Have a wired network connection available.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference internal" href="../en/blog/2024/problema-de-wayland-y-graficos-hibridos-en-linux/"&gt;&lt;span class="std std-doc"&gt;NVIDIA graphics card&lt;/span&gt;&lt;/a&gt;:
+Definitely a big pain if you require maximum utilization. In Wayland, this is
+a limitation in multiple distributions, but if it’s really important to you,
+an Ubuntu derivative is probably the best. Some software that uses GPU video
+acceleration can also be affected, and it may be convenient to omit
+acceleration, use a sandboxed version, or wait a few months for support to be
+achieved (in my case, I hope the NVIDIA 560 branch arrives soon in Manjaro
+Stable). This partially affects my experience in Wayland and applications that
+use Vulkan for rendering (like Zed), but I’m still using the KDE X11 version
+on this computer and the computer with an integrated graphics card works
+without any Wayland problems. In some cases, the problem may be having a
+completely black screen or continuous display errors if the driver is not
+supported properly (nothing functional). Validate the support of your NVIDIA
+card with the available driver versions and Wayland integration.&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;New processors (or hardware in general): If the distribution is not
 continuously released, the kernel version will not be the necessary one to
 support the latest generation computer, contrary to what happens with your
@@ -3244,25 +3395,27 @@ instalación.&lt;/p&gt;&lt;/li&gt;
 &lt;p&gt;Hay cuatro grandes padecimientos en Linux para los cuales debes prepararte y
 validar antes del cambio.&lt;/p&gt;
 &lt;ul class="simple"&gt;
-&lt;li&gt;&lt;p&gt;WiFi: Fácilmente, es lo que más vas a romper con los cambios de distribución o
-posterior a una actualización de núcleo o de versión de controladores. He
-tenido equipos en los cuales el WiFi funciona perfectamente en las versiones
-&lt;em&gt;live&lt;/em&gt;, pero al instalar ya la distribución, el controlador no es soportado
-directamente, o al actualizar el núcleo la versión del controlador no está
-compilada para dicho núcleo y es necesario ajustar manualmente el &lt;em&gt;header&lt;/em&gt; del
-código fuente y compilarlo. En otros casos como me ocurrió en el reciente
-cambio a Manjaro, el WiFi empezó a perder las redes disponibles aleatoriamente
-después de actualizar el núcleo y fue necesario ajustes en BIOS y en archivo
-de configuración del controlador. Ten disponible una conexión cableada de red.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Tarjeta gráfica NVIDIA: Definitivamente, un gran dolor si requieres el máximo
-aprovechamiento. En Wayland esto es una limitante en múltiples distribuciones,
-pero si es realmente importante para ti, probablemente un derivado de Ubuntu
-sea lo mejor. Algunos software que usan aceleración de video por GPU también
-se pueden ver afectados y sea conveniente omitir la aceleración, usar una
-versión &lt;em&gt;sandbox&lt;/em&gt; o esperar unos meses que el soporte se logre (en mi caso,
-espero que la rama de NVIDIA 560 llegue pronto a &lt;em&gt;Manjaro Stable&lt;/em&gt;). Esto me
-afecta parcialmente la experiencia en Wayland y de aplicaciones que usan para
-el renderizado Vulkan (como Zed), pero mientras uso la versión KDE X11 en este
+&lt;li&gt;&lt;p&gt;&lt;a class="reference internal" href="../es/blog/2024/problemas-de-conexion-wifi-en-linux/"&gt;&lt;span class="std std-doc"&gt;WiFi&lt;/span&gt;&lt;/a&gt;: Fácilmente, es
+lo que más vas a romper con los cambios de distribución o posterior a una
+actualización de núcleo o de versión de controladores. He tenido equipos en
+los cuales el WiFi funciona perfectamente en las versiones &lt;em&gt;live&lt;/em&gt;, pero al
+instalar ya la distribución, el controlador no es soportado directamente, o al
+actualizar el núcleo la versión del controlador no está compilada para dicho
+núcleo y es necesario ajustar manualmente el &lt;em&gt;header&lt;/em&gt; del código fuente y
+compilarlo. En otros casos como me ocurrió en el reciente cambio a Manjaro, el
+WiFi empezó a perder las redes disponibles aleatoriamente después de
+actualizar el núcleo y fue necesario ajustes en BIOS y en archivo de
+configuración del controlador. Ten disponible una conexión cableada de red.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference internal" href="../es/blog/2024/problema-de-wayland-y-graficos-hibridos-en-linux/"&gt;&lt;span class="std std-doc"&gt;Tarjeta gráfica NVIDIA&lt;/span&gt;&lt;/a&gt;:
+Definitivamente, un gran dolor si requieres el máximo aprovechamiento. En
+Wayland esto es una limitante en múltiples distribuciones, pero si es
+realmente importante para ti, probablemente un derivado de Ubuntu sea lo
+mejor. Algunos software que usan aceleración de video por GPU también se
+pueden ver afectados y sea conveniente omitir la aceleración, usar una versión
+&lt;em&gt;sandbox&lt;/em&gt; o esperar unos meses que el soporte se logre (en mi caso, espero que
+la rama de NVIDIA 560 llegue pronto a &lt;em&gt;Manjaro Stable&lt;/em&gt;). Esto me afecta
+parcialmente la experiencia en Wayland y de aplicaciones que usan para el
+renderizado Vulkan (como Zed), pero mientras uso la versión KDE X11 en este
 equipo y el equipo con tarjeta integrada funciona sin problema Wayland. En
 algunos casos, el problema puede ser tener una pantalla completamente negra o
 errores de visualización continuamente si el controlador no se soporta
@@ -3315,9 +3468,10 @@ fallo.&lt;/p&gt;&lt;/li&gt;
 &lt;p&gt;&lt;strong&gt;Instalación de paquetes&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;Una opción rápida para enfocarte en los verdaderos problemas que pueden existir
 en la distribución que has escogido, es depender menos del gestor de paquetes de
-la distribución. Esto te permite documentar o tener &lt;em&gt;scripts&lt;/em&gt; que serán
-replicables en un eventual nuevo cambio y a reducir el impacto de buscar como
-adecuar tu sistema.&lt;/p&gt;
+la distribución. Esto te permite
+&lt;a class="reference internal" href="../es/blog/2024/que-hacer-despues-de-instalar-manjaro/"&gt;&lt;span class="std std-doc"&gt;documentar&lt;/span&gt;&lt;/a&gt; o tener
+&lt;em&gt;scripts&lt;/em&gt; que serán replicables en un eventual nuevo cambio y a reducir el
+impacto de buscar como adecuar tu sistema.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Entorno de escritorio&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;Explora los entornos de escritorio en la distribución Linux que ya usas. Esto te
 facilitará explorar el comportamiento visual y de las herramientas de gestión
@@ -4956,6 +5110,138 @@ de compatibilidad o de no existir implementación).</summary>
     <published>2024-06-30T00:00:00-05:00</published>
   </entry>
   <entry>
+    <id>https://www.cosmoscalibur.com/en/blog/2024/instalar-rust-en-linux/</id>
+    <title>Install Rust on Linux</title>
+    <updated>2024-06-15T00:00:00-05:00</updated>
+    <author>
+      <name>Edward Villegas-Pulgarin</name>
+    </author>
+    <content type="html">&lt;section class="tex2jax_ignore mathjax_ignore" id="install-rust-on-linux"&gt;
+
+&lt;p&gt;During my journey to learn Rust, I will be sharing some steps with you. This
+time, let’s cover how to install Rust on Linux and prepare ourselves to use it
+in VSCode and Notebook.&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://www.rust-lang.org/"&gt;Rust&lt;/a&gt; is a low-level language developed with
+Mozilla’s support, focused on performance and security, with excellent
+compile-time checks that help prevent some runtime errors. By design, it aims
+for better ergonomics than a low-level language while still allowing for greater
+control.&lt;/p&gt;
+&lt;section id="install-with-rustup"&gt;
+&lt;h2&gt;Install with Rustup&lt;/h2&gt;
+&lt;p&gt;The &lt;a class="reference external" href="https://www.rust-lang.org/tools/install"&gt;recommended installation&lt;/a&gt; is via
+the tool &lt;strong class="program"&gt;rustup&lt;/strong&gt;, for this we proceed with&lt;/p&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;curl&lt;span class="w"&gt; &lt;/span&gt;--proto&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;=https&amp;#39;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;--tlsv1.2&lt;span class="w"&gt; &lt;/span&gt;-sSf&lt;span class="w"&gt; &lt;/span&gt;https://sh.rustup.rs&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;sh
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;This downloads &lt;em&gt;rustup&lt;/em&gt;, and initiates the installation process for Rust and
+other utilities. There, we can accept the default option by pressing &lt;em&gt;enter&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;Thus, we will have installed &lt;a class="reference external" href="https://doc.rust-lang.org/cargo/"&gt;&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;cargo&lt;/span&gt;&lt;/code&gt;&lt;/a&gt; (the
+package manager of Rust), &lt;a class="reference external" href="https://doc.rust-lang.org/clippy/"&gt;&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;clippy&lt;/span&gt;&lt;/code&gt;&lt;/a&gt; (the
+integrated linter for Rust), &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;rust-docs&lt;/span&gt;&lt;/code&gt; (Rust documentation),
+&lt;a class="reference external" href="https://doc.rust-lang.org/std/"&gt;&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;rust-std&lt;/span&gt;&lt;/code&gt;&lt;/a&gt; (the standard library of Rust),
+&lt;a class="reference external" href="https://doc.rust-lang.org/rustc/what-is-rustc.html"&gt;&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;rustc&lt;/span&gt;&lt;/code&gt;&lt;/a&gt; (the Rust
+compiler), and &lt;a class="reference external" href="https://github.com/rust-lang/rustfmt"&gt;&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;rustfmt&lt;/span&gt;&lt;/code&gt;&lt;/a&gt; (the code
+formatter for Rust). And of course, the same
+&lt;a class="reference external" href="https://rust-lang.github.io/rustup/"&gt;&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;rustup&lt;/span&gt;&lt;/code&gt;&lt;/a&gt; that allows us to manage the
+&lt;em&gt;toolchain&lt;/em&gt; of Rust.&lt;/p&gt;
+&lt;p&gt;Regarding &lt;strong class="program"&gt;cargo&lt;/strong&gt;, there is something interesting to mention: it
+integrates the execution of tests (&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;cargo&lt;/span&gt; &lt;span class="pre"&gt;test&lt;/span&gt;&lt;/code&gt;), which is also an option of the
+compiler, and the generation of documentation (&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;cargo&lt;/span&gt; &lt;span class="pre"&gt;doc&lt;/span&gt;&lt;/code&gt;) with
+&lt;a class="reference external" href="https://doc.rust-lang.org/rustdoc/index.html"&gt;&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;rustdoc&lt;/span&gt;&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Now we conclude with&lt;/p&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nb"&gt;source&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="nv"&gt;$HOME&lt;/span&gt;&lt;span class="s2"&gt;/.cargo/env&amp;quot;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;This allows us to associate the necessary environment variables in the current
+console.&lt;/p&gt;
+&lt;p&gt;If now we execute &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;rustc&lt;/span&gt; &lt;span class="pre"&gt;--version&lt;/span&gt;&lt;/code&gt;, we should see the compiler version. If you
+don’t see it, you may have skipped the previous step for associating the
+environment variable.&lt;/p&gt;
+&lt;p&gt;When we want to update the compiler version, we will use &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;rustup&lt;/span&gt; &lt;span class="pre"&gt;update&lt;/span&gt;&lt;/code&gt;.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="configure-vscode"&gt;
+&lt;h2&gt;Configure VSCode&lt;/h2&gt;
+&lt;p&gt;To have the necessary help in our IDE, VSCode, while programming in Rust, we are
+going to install the extension &lt;a class="reference external" href="https://rust-analyzer.github.io"&gt;rust-analyzer&lt;/a&gt;.
+This extension provides options for autocompletion, go to definition, find
+references, access documentation, semantic highlighting, assistance, and
+suggestions. All of this is a benefit thanks to the implementation of the LSP
+(&lt;em&gt;Language Server Protocol&lt;/em&gt;) for Rust.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Rust Analyzer&lt;/em&gt; is also available for other editors.&lt;/p&gt;
+&lt;p&gt;We can start with a small default project to see the extension in action, as
+well as our base installation. To create a new one, we use&lt;/p&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;cargo&lt;span class="w"&gt; &lt;/span&gt;new&lt;span class="w"&gt; &lt;/span&gt;miniproject
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;This creates a basic Rust application project template, including Cargo
+dependency files and a source directory with a “hello world” example. We can use
+some basic erroneous code to see it in action.&lt;/p&gt;
+&lt;figure class="align-center" id="id1"&gt;
+&lt;img alt="Diagnostic of rust-analyzer suggesting the use of `let` to assign a variable" src="https://www.cosmoscalibur.com/_images/rust-analyzer.png" style="width: 800px; height: 400px;" /&gt;
+&lt;figcaption&gt;
+&lt;p&gt;&lt;span class="caption-text"&gt;Diagnostic of rust-analyzer suggesting the use of &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;let&lt;/span&gt;&lt;/code&gt; to assign a variable.&lt;/span&gt;&lt;/p&gt;
+&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;/section&gt;
+&lt;section id="rust-notebook"&gt;
+&lt;h2&gt;Rust Notebook&lt;/h2&gt;
+&lt;p&gt;Now, we have the option to add a Rust &lt;em&gt;kernel&lt;/em&gt; to Jupyter Notebook for an
+interactive Rust experience combined with the benefit of naturally documenting
+code. This can be achieved thanks to the &lt;em&gt;kernel&lt;/em&gt;
+&lt;a class="reference external" href="https://github.com/evcxr/evcxr"&gt;Evcxr&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;First, we install the necessary dependency with &lt;em&gt;cargo&lt;/em&gt;.&lt;/p&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;cargo&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;--locked&lt;span class="w"&gt; &lt;/span&gt;evcxr_jupyter
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Once installed, we should ensure that our Jupyter Notebook environment is active
+(in case it’s in a specific environment). If Jupyter Notebook is not already
+installed, on Ubuntu we can proceed as follows:&lt;/p&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo&lt;span class="w"&gt; &lt;/span&gt;apt&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;-y&lt;span class="w"&gt; &lt;/span&gt;jupyter-notebook
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Or with the Python package manager (installing &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;notebook&lt;/span&gt;&lt;/code&gt; and &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;jupyterlab&lt;/span&gt;&lt;/code&gt;),
+like so:&lt;/p&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;pip&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;notebook&lt;span class="w"&gt; &lt;/span&gt;jupyterlab&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="c1"&gt;# With PIP&lt;/span&gt;
+uv&lt;span class="w"&gt; &lt;/span&gt;pip&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;notebook&lt;span class="w"&gt; &lt;/span&gt;jupyterlab&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="c1"&gt;# With UV&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Now, let’s add the &lt;em&gt;Kernel&lt;/em&gt; to Notebook.&lt;/p&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;evcxr_jupyter&lt;span class="w"&gt; &lt;/span&gt;--install
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Once added, we can open Notebook or JupyterLab, and we will see the option to
+use Rust.&lt;/p&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;jupyter&lt;span class="w"&gt; &lt;/span&gt;notebook&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="c1"&gt;# Open notebook&lt;/span&gt;
+jupyter&lt;span class="w"&gt; &lt;/span&gt;lab&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="c1"&gt;# Open Jupyterlab (recommended)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;figure class="align-center" id="id2"&gt;
+&lt;img alt="Availability of Rust as a Kernel in Jupyter Notebook" src="https://www.cosmoscalibur.com/_images/jupyter-evcxr.png" style="width: 800px; height: 400px;" /&gt;
+&lt;figcaption&gt;
+&lt;p&gt;&lt;span class="caption-text"&gt;Availability of Rust as a Kernel in Jupyter Notebook&lt;/span&gt;&lt;/p&gt;
+&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;figure class="align-center" id="id3"&gt;
+&lt;img alt="Basic example of a variable assignment in Rust in Notebook" src="https://www.cosmoscalibur.com/_images/jupyter-cells-rust.png" style="width: 800px; height: 400px;" /&gt;
+&lt;figcaption&gt;
+&lt;p&gt;&lt;span class="caption-text"&gt;Basic example of a variable assignment in Rust in Notebook&lt;/span&gt;&lt;/p&gt;
+&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;/section&gt;
+&lt;/section&gt;
+</content>
+    <link href="https://www.cosmoscalibur.com/en/blog/2024/instalar-rust-en-linux/"/>
+    <summary>During my journey to learn Rust, I will be sharing some steps with you. This
+time, let’s cover how to install Rust on Linux and prepare ourselves to use it
+in VSCode and Notebook.Diagnostic of rust-analyzer suggesting the use of `let` to assign a variable</summary>
+    <category term="evcxr" label="evcxr"/>
+    <category term="notebook" label="notebook"/>
+    <category term="rust-analyzer" label="rust-analyzer"/>
+    <category term="rustlang" label="rustlang"/>
+    <category term="vscode" label="vscode"/>
+    <published>2024-06-15T00:00:00-05:00</published>
+  </entry>
+  <entry>
     <id>https://www.cosmoscalibur.com/es/blog/2024/instalar-rust-en-linux/</id>
     <title>Instalar Rust en Linux</title>
     <updated>2024-06-15T00:00:00-05:00</updated>
@@ -5538,6 +5824,172 @@ todavía tienen negaciones o bloqueos para este proceso. Y es un deber ciudadano
 reportar estas anomalías.</summary>
     <category term="facturaelectrónica" label="factura electrónica"/>
     <published>2024-05-26T00:00:00-05:00</published>
+  </entry>
+  <entry>
+    <id>https://www.cosmoscalibur.com/en/blog/2024/migrando-mi-blog-de-nikola-a-sphinx/</id>
+    <title>Migrating my blog from Nikola to Sphinx</title>
+    <updated>2024-05-24T00:00:00-05:00</updated>
+    <author>
+      <name>Edward Villegas-Pulgarin</name>
+    </author>
+    <content type="html">&lt;section class="tex2jax_ignore mathjax_ignore" id="migrating-my-blog-from-nikola-to-sphinx"&gt;
+
+&lt;p&gt;Migrating from a static generator to another isn’t an entirely transparent
+process, so I’ll explain some simpler steps to help you migrate your blog from
+Nikola to Sphinx.&lt;/p&gt;
+&lt;p&gt;But before we begin, keep in mind that the basic steps for migration start by
+having the bare minimum from scratch with Sphinx. For this purpose, follow the
+instructions given at &lt;a class="reference internal" href="../en/blog/2024/crear-un-blog-con-sphinx/"&gt;&lt;span class="std std-doc"&gt;Creating a blog with Sphinx&lt;/span&gt;&lt;/a&gt;.&lt;/p&gt;
+&lt;section id="migrating"&gt;
+&lt;h2&gt;Migrating&lt;/h2&gt;
+&lt;p&gt;Alright, once we have the foundation of our blog set up, continue making
+adjustments to ensure that our previous posts still function properly.&lt;/p&gt;
+&lt;section id="post"&gt;
+&lt;h3&gt;Post&lt;/h3&gt;
+&lt;section id="front-matter"&gt;
+&lt;h4&gt;Front Matter&lt;/h4&gt;
+&lt;p&gt;Since we added a &lt;a class="reference internal" href="../en/blog/2024/crear-un-blog-con-sphinx/#blog-conf-en"&gt;&lt;span class="std std-ref"&gt;path pattern&lt;/span&gt;&lt;/a&gt; for publications during the
+initial configuration, there is no need to add the &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;..post:&lt;/span&gt;&lt;/code&gt; directive or the
+&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;:blogpost:&lt;/span&gt; &lt;span class="pre"&gt;true&lt;/span&gt;&lt;/code&gt; attribute. Simply place your files in the path that matches
+the pattern 👀.&lt;/p&gt;
+&lt;p&gt;It’s important to note that in Nikola, we defined navigation paths using the
+&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;..slug:&lt;/span&gt;&lt;/code&gt;, but in Sphinx, this depends on the file name and its location within
+the directory. Make sure to use the same directory path as defined in the
+&lt;em&gt;slug&lt;/em&gt;, and ensure the file name is equal to the last part of the slug 👀.
+Alternatively, you can set up a redirect by using the value of &lt;em&gt;slug&lt;/em&gt; as the
+value for &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;:redirect:&lt;/span&gt;&lt;/code&gt; (in this case, add &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;post_redirect_refresh=0&lt;/span&gt;&lt;/code&gt; to your
+configuration).&lt;/p&gt;
+&lt;p&gt;To indicate the title in &lt;em&gt;Nikola&lt;/em&gt;, we used the attribute &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;..title:&lt;/span&gt;&lt;/code&gt;, but now it
+must be explicitly defined in the publication markup. Example:&lt;/p&gt;
+&lt;div class="sd-tab-set docutils"&gt;
+&lt;input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio"&gt;
+&lt;label class="sd-tab-label" for="sd-tab-item-0"&gt;
+RST&lt;/label&gt;&lt;div class="sd-tab-content docutils"&gt;
+&lt;div class="highlight-rst notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gh"&gt;Migrating my blog from Nikola to Sphinx&lt;/span&gt;
+&lt;span class="gh"&gt;=======================================&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;input id="sd-tab-item-1" name="sd-tab-set-0" type="radio"&gt;
+&lt;label class="sd-tab-label" for="sd-tab-item-1"&gt;
+MD&lt;/label&gt;&lt;div class="sd-tab-content docutils"&gt;
+&lt;div class="highlight-md notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gh"&gt;# Migrating my blog from Nikola to Sphinx&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;This requires that existing titles be increased in heading level 👀.&lt;/p&gt;
+&lt;p&gt;In &lt;em&gt;ablog&lt;/em&gt;, we don’t have an equivalent for Nikola’s &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;..status:&lt;/span&gt;&lt;/code&gt;, but we can
+control whether a current or past date is equivalent to &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;published&lt;/span&gt;&lt;/code&gt; and if it’s
+a future or no-date date, it’s the equivalent of &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;draft&lt;/span&gt;&lt;/code&gt;. The case of &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;private&lt;/span&gt;&lt;/code&gt;
+could be handled by &lt;a class="reference internal" href="../en/blog/2024/crear-un-blog-con-sphinx/#exclude-files-en"&gt;&lt;span class="std std-ref"&gt;excluding the file&lt;/span&gt;&lt;/a&gt;. For &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;featured&lt;/span&gt;&lt;/code&gt;,
+it’s more customizable, but it could be explored with the card objects on the
+index.&lt;/p&gt;
+&lt;p&gt;If we want to indicate the preview image, in Nikola it was done using
+&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;..previewimage:&lt;/span&gt;&lt;/code&gt;, but in &lt;em&gt;ablog&lt;/em&gt;, we use &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;:image:&lt;/span&gt;&lt;/code&gt; and the value is not the
+path of the image, but the number associated with its appearance order in the
+publication. This can be set to a default value based on the variable in the
+configuration file’s &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;post_auto_image&lt;/span&gt;&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;The attribute &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;..description:&lt;/span&gt;&lt;/code&gt; is taken by default as a truncation of the first
+paragraph of the post (this is used for the publication metadata), but we can
+also leave it customized if needed (this is done with the Open Graph extension).&lt;/p&gt;
+&lt;p&gt;For the case of &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;..link:&lt;/span&gt;&lt;/code&gt;, this should be converted to &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;:external_link:&lt;/span&gt;&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;For updates, instead of being an attribute, it becomes a timestamp annotation
+with context information.&lt;/p&gt;
+&lt;div class="sd-tab-set docutils"&gt;
+&lt;input checked="checked" id="sd-tab-item-2" name="sd-tab-set-1" type="radio"&gt;
+&lt;label class="sd-tab-label" for="sd-tab-item-2"&gt;
+RST&lt;/label&gt;&lt;div class="sd-tab-content docutils"&gt;
+&lt;div class="highlight-rst notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="p"&gt;..&lt;/span&gt; &lt;span class="ow"&gt;update&lt;/span&gt;&lt;span class="p"&gt;::&lt;/span&gt; 2011-12-15
+
+   Extra info added
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;input id="sd-tab-item-3" name="sd-tab-set-1" type="radio"&gt;
+&lt;label class="sd-tab-label" for="sd-tab-item-3"&gt;
+MD&lt;/label&gt;&lt;div class="sd-tab-content docutils"&gt;
+&lt;div class="highlight-md notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;```{update} 2011-12-15
+
+Extra info added
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="highlight-default notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;With the attributes of &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;..&lt;/span&gt; &lt;span class="pre"&gt;nocomments:&lt;/span&gt;&lt;/code&gt;, &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;..&lt;/span&gt; &lt;span class="pre"&gt;tags:&lt;/span&gt;&lt;/code&gt;, &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;..&lt;/span&gt; &lt;span class="pre"&gt;date:&lt;/span&gt;&lt;/code&gt;, &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;..&lt;/span&gt; &lt;span class="pre"&gt;author:&lt;/span&gt;&lt;/code&gt;,
+and &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;..&lt;/span&gt; &lt;span class="pre"&gt;category:&lt;/span&gt;&lt;/code&gt;, simply change the initial &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;..&lt;/span&gt;&lt;/code&gt; to &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;:&lt;/span&gt;&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Regarding the date, it’s important to note that unlike in Nikola, we cannot mix
+types of date formats. These should be added according to the definition in the
+configuration file, specifically in the variable &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;post_date_format&lt;/span&gt;&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;There is no attribute needed to enable equations as Sphinx enables them by
+default. In Nikola, it was necessary with &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;..&lt;/span&gt; &lt;span class="pre"&gt;has_math:&lt;/span&gt; &lt;span class="pre"&gt;true&lt;/span&gt;&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;The case of &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;..&lt;/span&gt; &lt;span class="pre"&gt;type:&lt;/span&gt;&lt;/code&gt; does not have an equivalent.&lt;/p&gt;
+&lt;p&gt;⚠️ If we are using &lt;em&gt;markdown&lt;/em&gt;, the difference is to remove the initial &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;:&lt;/span&gt;&lt;/code&gt;, as
+evidenced in the section on
+&lt;a class="reference internal" href="../en/blog/2024/crear-un-blog-con-sphinx/#first-post"&gt;&lt;span class="std std-ref"&gt;the first publication&lt;/span&gt;&lt;/a&gt;, and the
+separator &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;&amp;lt;!--&lt;/span&gt; &lt;span class="pre"&gt;--&amp;gt;&lt;/span&gt;&lt;/code&gt; changes to &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;---&lt;/span&gt;&lt;/code&gt;.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="content"&gt;
+&lt;h4&gt;Content&lt;/h4&gt;
+&lt;p&gt;In some cases, we could use post lists with specific filters using
+&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;..&lt;/span&gt; &lt;span class="pre"&gt;post-list::&lt;/span&gt;&lt;/code&gt; and the attribute &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;:categories&lt;/span&gt;&lt;/code&gt;. This now changes to
+&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;..&lt;/span&gt; &lt;span class="pre"&gt;postlist::&lt;/span&gt;&lt;/code&gt; with the attribute &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;:category:&lt;/span&gt;&lt;/code&gt; (you can also use other filters
+as well).&lt;/p&gt;
+&lt;p&gt;Regarding &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;..&lt;/span&gt; &lt;span class="pre"&gt;thumbnail::&lt;/span&gt;&lt;/code&gt;, this directive no longer exists and is replaced by
+&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;..&lt;/span&gt; &lt;span class="pre"&gt;figure::&lt;/span&gt;&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;The definition of the &lt;em&gt;teaser&lt;/em&gt; in Nikola relied on a specific markup directive
+for the text, but in &lt;em&gt;ablog&lt;/em&gt;, this is controlled by the attribute &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;:excerpt:&lt;/span&gt;&lt;/code&gt; to
+denote the number of paragraphs to include. However, we can leave it with a
+default value based on &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;post_auto_excerpt&lt;/span&gt;&lt;/code&gt; in the configuration file.&lt;/p&gt;
+&lt;p&gt;For document references, in Markdown we transition from
+&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;{{%&lt;/span&gt; &lt;span class="pre"&gt;doc&lt;/span&gt; &lt;span class="pre"&gt;%}}&lt;/span&gt; &lt;span class="pre"&gt;path&lt;/span&gt; &lt;span class="pre"&gt;{{%&lt;/span&gt; &lt;span class="pre"&gt;/doc&lt;/span&gt; &lt;span class="pre"&gt;%}}&lt;/span&gt;&lt;/code&gt; to &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;&amp;lt;project:path&amp;gt;&lt;/span&gt;&lt;/code&gt; or &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;[](path)&lt;/span&gt;&lt;/code&gt;, while in RST
+we can continue using &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;:doc:&lt;/span&gt;&lt;/code&gt; as long as it does not point to a label. In that
+case, it would be &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;:ref:&lt;/span&gt;&lt;/code&gt;.&lt;/p&gt;
+&lt;/section&gt;
+&lt;/section&gt;
+&lt;section id="configuration"&gt;
+&lt;h3&gt;Configuration&lt;/h3&gt;
+&lt;section id="root-files"&gt;
+&lt;h4&gt;Root Files&lt;/h4&gt;
+&lt;p&gt;Files in the root are defined in a directory that we set with the variable
+&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;html_extra_path&lt;/span&gt;&lt;/code&gt;, which can be named the same as it comes in Nikola (&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;files&lt;/span&gt;&lt;/code&gt;).&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="comment-system"&gt;
+&lt;h4&gt;Comment System&lt;/h4&gt;
+&lt;p&gt;If we use Disqus (in Nikola, &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;COMMENT_SYSTEM='disqus'&lt;/span&gt;&lt;/code&gt;), the &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;disqus_shortname&lt;/span&gt;&lt;/code&gt;
+in the configuration file takes the value of the old &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;COMMENT_SYSTEM_ID&lt;/span&gt;&lt;/code&gt;.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="youtube"&gt;
+&lt;h4&gt;YouTube&lt;/h4&gt;
+&lt;p&gt;We need to install &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;sphinxcontrib-youtube&lt;/span&gt;&lt;/code&gt; and enable &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;sphinxcontrib.youtube&lt;/span&gt;&lt;/code&gt; in
+the extensions. In this way, the directive &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;..&lt;/span&gt; &lt;span class="pre"&gt;youtube::&lt;/span&gt;&lt;/code&gt; remains unchanged.&lt;/p&gt;
+&lt;/section&gt;
+&lt;/section&gt;
+&lt;/section&gt;
+&lt;section id="references"&gt;
+&lt;h2&gt;References&lt;/h2&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://adriaanrol.com/posts/2023/sphinx_migration/"&gt;Migrating the website to Sphinx + ABlog&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://dailystuff.nl/blog/2021/migration-to-cloudflare-pages"&gt;Migration to Cloudflare Pages&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://ablog.readthedocs.io/en/stable/manual/ablog-quick-start.html"&gt;Ablog&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://myst-parser.readthedocs.io/en/latest/"&gt;Myst Parser&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/section&gt;
+&lt;/section&gt;
+</content>
+    <link href="https://www.cosmoscalibur.com/en/blog/2024/migrando-mi-blog-de-nikola-a-sphinx/"/>
+    <summary>Migrating from a static generator to another isn’t an entirely transparent
+process, so I’ll explain some simpler steps to help you migrate your blog from
+Nikola to Sphinx.</summary>
+    <category term="ablog" label="ablog"/>
+    <category term="bloggingwithsphinx" label="blogging with sphinx"/>
+    <category term="python" label="python"/>
+    <category term="sphinx" label="sphinx"/>
+    <category term="staticsitegenerator" label="static site generator"/>
+    <published>2024-05-24T00:00:00-05:00</published>
   </entry>
   <entry>
     <id>https://www.cosmoscalibur.com/es/blog/2024/migrando-mi-blog-de-nikola-a-sphinx/</id>
