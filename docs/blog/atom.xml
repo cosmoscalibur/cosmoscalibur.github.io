@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="es">
   <id>https://www.cosmoscalibur.com/</id>
   <title>Cosmoscalibur</title>
-  <updated>2025-01-15T05:31:02.766094+00:00</updated>
+  <updated>2025-01-16T03:18:18.241522+00:00</updated>
   <link href="https://www.cosmoscalibur.com/"/>
   <link href="https://www.cosmoscalibur.com/blog/atom.xml" rel="self"/>
   <generator uri="https://ablog.readthedocs.io/" version="0.11.12">ABlog</generator>
@@ -4127,6 +4127,351 @@ and video later, so I’ll explain how to do this using FFMPEG and Bash.</summar
     <category term="bash" label="bash"/>
     <category term="ffmpeg" label="ffmpeg"/>
     <published>2024-10-20T00:00:00-05:00</published>
+  </entry>
+  <entry>
+    <id>https://www.cosmoscalibur.com/en/blog/2024/espiral-de-parker-con-python/</id>
+    <title>The Parker Spiral with Python</title>
+    <updated>2024-10-06T00:00:00-05:00</updated>
+    <author>
+      <name>Edward Villegas-Pulgarin</name>
+    </author>
+    <content type="html">&lt;section class="tex2jax_ignore mathjax_ignore" id="the-parker-spiral-with-python"&gt;
+
+&lt;p&gt;In this post, we will explore the numerical solution to the first-order nonlinear differential equation that models the solar wind speed as a function of the heliocentric distance. Once this velocity profile is obtained, which is temperature-dependent, we proceed to transform it into Lagrangian coordinates centered at an emission point on the corona. This will make it more natural to construct an arm of the Parker spiral, along which the found velocity profile evolves.&lt;/p&gt;
+&lt;p&gt;When we talk about the “Parker spiral”, we refer to the shape of the Sun’s magnetic field in our solar system as a result of its rotation and the magnetohydrodynamic interaction with the expanding solar wind. This generates a swirling shape in the description of the magnetic field, which we will see how to obtain using Python.&lt;/p&gt;
+&lt;section id="solar-wind"&gt;
+&lt;h2&gt;Solar wind&lt;/h2&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://en.wikipedia.org/wiki/Solar_wind"&gt;Solar wind&lt;/a&gt; is a flow of charged particles (mainly electrons &lt;span class="math notranslate nohighlight"&gt;\(e^-\)&lt;/span&gt;, protons &lt;span class="math notranslate nohighlight"&gt;\(p^+\)&lt;/span&gt; and alpha particles &lt;span class="math notranslate nohighlight"&gt;\(\alpha\)&lt;/span&gt;), emitted from the solar atmosphere. These charged particles (ionized gas or plasma), escape the gravitational attraction of the Sun due to their high kinetic energy resulting from the temperature of the corona solar and interaction with the magnetic field.&lt;/p&gt;
+&lt;p&gt;The first mentions of its existence date back to Biermann in the 1950s, who through the observation of comet tails (in the opposite direction of the sun), suggested that there should be a flow of gas towards the outside of the Sun in a radial direction. Parker takes this observation and assumes the Sun as a gravitating mass with spherical symmetry in expansion stationary (with the aim to ensure zero pressure condition at infinite distance) and initially disregarding the effects of the magnetic field. With these considerations, it is possible to manifest the dynamics of the flow of charged particles towards the outside of the Sun (Parker, 1958).&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="solar-wind-velocity-profile"&gt;
+&lt;h2&gt;Solar Wind Velocity Profile&lt;/h2&gt;
+&lt;p&gt;In Parker’s work under conditions of isothermal expansion (&lt;span class="math notranslate nohighlight"&gt;\(\gamma = 1\)&lt;/span&gt;) of a neutral fluid (first approximation to the behavior of the solar wind), it leads to a non-linear first-order differential equation that relates the solar wind speed (&lt;span class="math notranslate nohighlight"&gt;\(u(r)\)&lt;/span&gt;) and the heliocentric distance (&lt;span class="math notranslate nohighlight"&gt;\(r\)&lt;/span&gt;). (Parker, 1958), (Kivelson, 1995)&lt;/p&gt;
+&lt;div class="amsmath math notranslate nohighlight" id="equation-7217834d-3d12-42e8-a38d-2323fe45414a"&gt;
+&lt;span class="eqno"&gt;(1)&lt;/span&gt;\[\begin{equation}
+\frac{du(r)}{dr} = \left(\frac{4kT}{mr} - \frac{GM}{r^2} \right)u(r)\left(u(r)^2 - \frac{2kT}{m} \right)^{-1}
+\end{equation}\]&lt;/div&gt;
+&lt;p&gt;In order to reduce the propagation of errors due to orders of magnitude of the variables involved, the differential equation is adimensionalized based on the radius and velocity at the critical point (sonic point) (Piso, 2008).&lt;/p&gt;
+&lt;div class="amsmath math notranslate nohighlight" id="equation-48847142-3b2f-4746-adaf-8b440acf4461"&gt;
+&lt;span class="eqno"&gt;(2)&lt;/span&gt;\[\begin{eqnarray}
+c_s^2 &amp;amp; = &amp;amp; \frac{2kT}{m}\\
+r_c &amp;amp;=&amp;amp; \frac{GM}{2c_s^2}\\
+\frac{dv}{dR} &amp;amp;=&amp;amp; \frac{2\left(\frac{1}{R} - \frac{1}{R^2}\right)}{v - \frac{1}{v}}
+\end{eqnarray}\]&lt;/div&gt;
+&lt;p&gt;Where &lt;span class="math notranslate nohighlight"&gt;\(v\)&lt;/span&gt; is the speed at sonic velocities (&lt;span class="math notranslate nohighlight"&gt;\(c_s\)&lt;/span&gt;) and &lt;span class="math notranslate nohighlight"&gt;\(R\)&lt;/span&gt; is the radius at sonic radii (&lt;span class="math notranslate nohighlight"&gt;\(r_c\)&lt;/span&gt;). We observe that around the sonic radius and speed, there is a critical point that must be satisfied to ensure the physical meaning of the solution. Also, we have to note that this equation represents a boundary value problem, and in this case, the boundary condition of the problem in adimensional units is &lt;span class="math notranslate nohighlight"&gt;\(v(R_{\text{sun}}) = v_0\)&lt;/span&gt;, where &lt;span class="math notranslate nohighlight"&gt;\(R_{\text{sun}}\)&lt;/span&gt; is the radius of the Sun, and it is the position from which the flow of particles begins to move with an initial speed &lt;span class="math notranslate nohighlight"&gt;\(v_0\)&lt;/span&gt; that depends on the density of particles and temperature.&lt;/p&gt;
+&lt;p&gt;The generation of the Parker spiral is due to the rotation of the Sun, so we apply the transformation of coordinates Lagrangian for rotating systems, leading to the differential equation:&lt;/p&gt;
+&lt;div class="amsmath math notranslate nohighlight" id="equation-f3823872-83a3-49ab-bd3f-daff2f209bfc"&gt;
+&lt;span class="eqno"&gt;(3)&lt;/span&gt;\[\begin{equation}
+\frac{d\varphi}{dR} = \frac{-\omega}{v(R)}
+\end{equation}\]&lt;/div&gt;
+&lt;/section&gt;
+&lt;section id="analytical-and-numerical-solution-to-parker-equation-with-python"&gt;
+&lt;h2&gt;Analytical and numerical solution to Parker equation with Python&lt;/h2&gt;
+&lt;p&gt;This equation can be solved analytically because the equation allows for separation of variables and by integration to find the implicit solution. We can use &lt;a class="reference external" href="https://www.sympy.org/"&gt;SymPy&lt;/a&gt;, a free and open-source computational algebra package available in Python (an alternative to commercial packages such as Maple and Mathematica).&lt;/p&gt;
+&lt;p&gt;Regarding numerical solutions, we will implement the method of &lt;a class="reference external" href="https://en.wikipedia.org/wiki/Runge%E2%80%93Kutta_method#Fourth_order_Runge%E2%80%93Kutta_methods"&gt;Runge-Kutta 4 (RK4)&lt;/a&gt;, and for the angular component solution, we will do it simply with the &lt;a class="reference external" href="https://en.wikipedia.org/wiki/Euler_method"&gt;Euler’s method&lt;/a&gt; since this avoids having to interpolate the radial velocity solution to find intermediate points required by RK4. To implement this, we will need to manage arrays, and that’s what we’ll use with &lt;a class="reference external" href="https://numpy.org/"&gt;NumPy&lt;/a&gt;. Of course, we want to visualize the solution so we can understand it, so we’ll use &lt;a class="reference external" href="https://matplotlib.org/"&gt;Matplotlib&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;So, let’s install, in this case, with UV’s help, &lt;a class="reference internal" href="../en/blog/2024/uv-alternativa-rapida-a-pip-y-venv/"&gt;&lt;span class="std std-doc"&gt;which is a faster alternative to pip and venv&lt;/span&gt;&lt;/a&gt;. The &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;!&lt;/span&gt;&lt;/code&gt; symbol is because it’s a Notebook cell, but if you’re in the terminal, you can omit it.&lt;/p&gt;
+&lt;div class="cell docutils container"&gt;
+&lt;div class="cell_input docutils container"&gt;
+&lt;div class="highlight-ipython3 notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;!&lt;/span&gt;uv&lt;span class="w"&gt; &lt;/span&gt;pip&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;matplotlib&lt;span class="w"&gt; &lt;/span&gt;numpy&lt;span class="w"&gt; &lt;/span&gt;sympy
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell_output docutils container"&gt;
+&lt;div class="output stream highlight-myst-ansi notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=" -Color -Color-Faint"&gt;Using Python 3.12.7 environment at: /home/cosmoscalibur/Documentos/git/cosmoscalibur.github.io/.venv&lt;/span&gt;
+&lt;span class=" -Color -Color-Faint"&gt;Resolved &lt;/span&gt;&lt;span class=" -Color -Color-Bold -Color-Bold-Faint"&gt;13 packages&lt;/span&gt; &lt;span class=" -Color -Color-Faint"&gt;in 515ms&lt;/span&gt;                                        
+&lt;span class=" -Color -Color-Faint"&gt;Installed &lt;/span&gt;&lt;span class=" -Color -Color-Bold -Color-Bold-Faint"&gt;2 packages&lt;/span&gt; &lt;span class=" -Color -Color-Faint"&gt;in 77ms&lt;/span&gt;                                
+ &lt;span class=" -Color -Color-Green"&gt;+&lt;/span&gt; &lt;span class=" -Color -Color-Bold"&gt;mpmath&lt;/span&gt;&lt;span class=" -Color -Color-Faint"&gt;==1.3.0&lt;/span&gt;
+ &lt;span class=" -Color -Color-Green"&gt;+&lt;/span&gt; &lt;span class=" -Color -Color-Bold"&gt;sympy&lt;/span&gt;&lt;span class=" -Color -Color-Faint"&gt;==1.13.3&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;We start by importing the necessary elements we will need. Each line is commented to explain why we require it, making its use clear.&lt;/p&gt;
+&lt;div class="cell docutils container"&gt;
+&lt;div class="cell_input docutils container"&gt;
+&lt;div class="highlight-ipython3 notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;from&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nn"&gt;math&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;cos&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;pi&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;sin&lt;/span&gt;  &lt;span class="c1"&gt;# Required for polar transformation to illustrate solution of spiral&lt;/span&gt;
+
+&lt;span class="kn"&gt;from&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nn"&gt;IPython.display&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;display&lt;/span&gt;
+&lt;span class="c1"&gt;# To include graphics in the Notebook instead of pop-up windows&lt;/span&gt;
+&lt;span class="c1"&gt;#%matplotlib inline&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nn"&gt;matplotlib.pyplot&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;as&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nn"&gt;plt&lt;/span&gt;  &lt;span class="c1"&gt;# Plotting library for numerical arrays&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nn"&gt;numpy&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;array&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;ones&lt;/span&gt;  &lt;span class="c1"&gt;# Numerical arrays and a fixed value array&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nn"&gt;sympy&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;
+    &lt;span class="n"&gt;dsolve&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;  &lt;span class="c1"&gt;# Solver for ordinary differential equations&lt;/span&gt;
+    &lt;span class="n"&gt;Eq&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;  &lt;span class="c1"&gt;# Allows setting up equations&lt;/span&gt;
+    &lt;span class="n"&gt;Function&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;  &lt;span class="c1"&gt;# Declares variables that represent functions&lt;/span&gt;
+    &lt;span class="n"&gt;init_printing&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;  &lt;span class="c1"&gt;# Initializes display options for notebooks&lt;/span&gt;
+    &lt;span class="n"&gt;plot_implicit&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;  &lt;span class="c1"&gt;# Enables plotting of implicit functions&lt;/span&gt;
+    &lt;span class="n"&gt;solve&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;  &lt;span class="c1"&gt;# Solution to algebraic equations&lt;/span&gt;
+    &lt;span class="n"&gt;symbols&lt;/span&gt;  &lt;span class="c1"&gt;# Declares general symbols&lt;/span&gt;
+&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;init_printing&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;  &lt;span class="c1"&gt;# Initializes printing session in the Notebook&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;section id="analytical-solution-using-sympy"&gt;
+&lt;h3&gt;Analytical solution using SymPy&lt;/h3&gt;
+&lt;p&gt;The first step is to declare the required symbols. This is the function for speed profile and the symbol for distance from the center of the Sun. The functions are declared with &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;Function&lt;/span&gt;&lt;/code&gt; and variables with &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;symbols&lt;/span&gt;&lt;/code&gt;. In both cases, the argument is a string representing the letter that corresponds to the symbol, and we assign it to a Python variable with the same letter.&lt;/p&gt;
+&lt;p&gt;Additionally, we will set up the equation that we previously obtained in adimensional form. We need to take into account that speed is a function, so we write it as usual, indicating its form with parentheses and the variable it depends on, &lt;span class="math notranslate nohighlight"&gt;\(v(R)\)&lt;/span&gt;. To express the derivative, SymPy supports the method &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;.diff&lt;/span&gt;&lt;/code&gt; whose argument is the variable with respect to which we differentiate. In this case, we would set up as &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;v(R).diff(R)&lt;/span&gt;&lt;/code&gt;.&lt;/p&gt;
+&lt;div class="cell docutils container"&gt;
+&lt;div class="cell_input docutils container"&gt;
+&lt;div class="highlight-ipython3 notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;v&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Function&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;v&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;  &lt;span class="c1"&gt;# Define speed function&lt;/span&gt;
+&lt;span class="n"&gt;R&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;symbols&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;R&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;  &lt;span class="c1"&gt;# Define distance variable&lt;/span&gt;
+&lt;span class="c1"&gt;# Specify differential equation&lt;/span&gt;
+&lt;span class="n"&gt;eq_ord&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Eq&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;v&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;R&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;diff&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;R&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;R&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;R&lt;/span&gt;&lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;v&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;R&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;v&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;R&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+&lt;span class="n"&gt;eq_ord&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell_output docutils container"&gt;
+&lt;img alt="https://www.cosmoscalibur.com/_images/7b9413985128149f41ddd216b02bef10ecf8316c8bb4662b055fa665bb4b8e9f.png" src="https://www.cosmoscalibur.com/_images/7b9413985128149f41ddd216b02bef10ecf8316c8bb4662b055fa665bb4b8e9f.png" /&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;SymPy supports the method of separation of variables. If we need a specific form or want to hint to the algorithm, we can add an option that recommends the method. In this case, it would be &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;hint='separable'&lt;/span&gt;&lt;/code&gt;. However, since our case is not separable, we don’t use this option.&lt;/p&gt;
+&lt;p&gt;For our specific problem, it’s essential to indicate the method so that later the option of no simplification will show us the typical equation described in Parker’s article. The function for solving ordinary differential equations is &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;dsolve&lt;/span&gt;&lt;/code&gt;.&lt;/p&gt;
+&lt;div class="cell docutils container"&gt;
+&lt;div class="cell_input docutils container"&gt;
+&lt;div class="highlight-ipython3 notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# Apply separable variable method&lt;/span&gt;
+&lt;span class="c1"&gt;# Not simplify to show implicit form&lt;/span&gt;
+&lt;span class="n"&gt;sol_impl&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;dsolve&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;eq_ord&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;hint&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;separable&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;simplify&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;False&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;sol_impl&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell_output docutils container"&gt;
+&lt;img alt="https://www.cosmoscalibur.com/_images/990ab122df74c8ee751bf08b954b2553c037fe9156fd0dd2fa8158ce48db6971.png" src="https://www.cosmoscalibur.com/_images/990ab122df74c8ee751bf08b954b2553c037fe9156fd0dd2fa8158ce48db6971.png" /&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;For curious readers, we can also allow the solution to be simplified and obtain an explicit form that depends on the &lt;a class="reference external" href="https://en.wikipedia.org/wiki/Lambert_W_function"&gt;Lambert W function&lt;/a&gt;. This is not the usual form in which the solution will be referenced, but thanks to computer algebra systems, we can dispense with this since the 1990s. To do so, we can remove the option of no simplification, and also if we remove the method recommendation, we will also obtain the Lambert W function.&lt;/p&gt;
+&lt;div class="cell docutils container"&gt;
+&lt;div class="cell_input docutils container"&gt;
+&lt;div class="highlight-ipython3 notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;dsolve&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;eq_ord&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell_output docutils container"&gt;
+&lt;img alt="https://www.cosmoscalibur.com/_images/7510acf64e16b1b7abc02ebccccc2d998045521a0a0ee09ad3136f2bcb6c1c38.png" src="https://www.cosmoscalibur.com/_images/7510acf64e16b1b7abc02ebccccc2d998045521a0a0ee09ad3136f2bcb6c1c38.png" /&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;To determine which values of the constant of integration to use, we need to consider that the solution must satisfy passing through the critical point. Therefore, by assigning a value to the critical point, we can solve for the constant. To make this substitution, we use the method &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;.subs&lt;/span&gt;&lt;/code&gt;, which takes a dictionary where keys are original symbols and values are new values or symbols.&lt;/p&gt;
+&lt;div class="cell docutils container"&gt;
+&lt;div class="cell_input docutils container"&gt;
+&lt;div class="highlight-ipython3 notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;solve&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sol_impl&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;subs&lt;/span&gt;&lt;span class="p"&gt;({&lt;/span&gt;&lt;span class="n"&gt;v&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;R&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;R&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;}))&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell_output docutils container"&gt;
+&lt;img alt="https://www.cosmoscalibur.com/_images/d6e230b31fa9bc585c6ff8f041ad2f7bb5fb7239af1f747bef7a012de18a4352.png" src="https://www.cosmoscalibur.com/_images/d6e230b31fa9bc585c6ff8f041ad2f7bb5fb7239af1f747bef7a012de18a4352.png" /&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;To plot the solution, we need to replace the velocity function with a symbol and proceed with changes of the constant of integration to generate the family of solutions. Since we already know that for passing through the critical point, the constant must be &lt;span class="math notranslate nohighlight"&gt;\(-3/2\)&lt;/span&gt;, we will use this value, but also need an upper bound (e.g., &lt;span class="math notranslate nohighlight"&gt;\(1\)&lt;/span&gt;) and a lower bound (e.g., &lt;span class="math notranslate nohighlight"&gt;\(2\)&lt;/span&gt;). To graph the implicit function, we will use SymPy’s &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;plot_implicit&lt;/span&gt;&lt;/code&gt; method, which creates a grid of points in the plane of interest to evaluate if the equality holds. We will use &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;show=False&lt;/span&gt;&lt;/code&gt; so that each curve is not shown separately, allowing us to add all three scenarios in one plot.&lt;/p&gt;
+&lt;div class="cell docutils container"&gt;
+&lt;div class="cell_input docutils container"&gt;
+&lt;div class="highlight-ipython3 notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;V&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;symbols&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;V&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;  &lt;span class="c1"&gt;# Define velocity variable&lt;/span&gt;
+&lt;span class="c1"&gt;# Implicit plot to 3 values of constant integration&lt;/span&gt;
+&lt;span class="c1"&gt;# show=False to manipulate plot as unique canvas&lt;/span&gt;
+&lt;span class="n"&gt;p1&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;plot_implicit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+    &lt;span class="n"&gt;sol_impl&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;subs&lt;/span&gt;&lt;span class="p"&gt;({&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;C1&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;v&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;R&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt; &lt;span class="n"&gt;V&lt;/span&gt;&lt;span class="p"&gt;}),&lt;/span&gt;
+    &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;R&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+    &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;V&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+    &lt;span class="n"&gt;line_color&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;green&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="n"&gt;show&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;False&lt;/span&gt;
+&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;p2&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;plot_implicit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+    &lt;span class="n"&gt;sol_impl&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;subs&lt;/span&gt;&lt;span class="p"&gt;({&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;C1&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;v&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;R&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt; &lt;span class="n"&gt;V&lt;/span&gt;&lt;span class="p"&gt;}),&lt;/span&gt;
+    &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;R&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+    &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;V&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+    &lt;span class="n"&gt;line_color&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;blue&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="n"&gt;show&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;False&lt;/span&gt;
+&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;p3&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;plot_implicit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+    &lt;span class="n"&gt;sol_impl&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;subs&lt;/span&gt;&lt;span class="p"&gt;({&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;C1&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mf"&gt;1.5&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;v&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;R&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt; &lt;span class="n"&gt;V&lt;/span&gt;&lt;span class="p"&gt;}),&lt;/span&gt;
+    &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;R&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+    &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;V&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+    &lt;span class="n"&gt;line_color&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;red&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="n"&gt;show&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;False&lt;/span&gt;
+&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;p1&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;extend&lt;/span&gt;&lt;span class="p"&gt;([&lt;/span&gt;&lt;span class="n"&gt;p2&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="n"&gt;p3&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]])&lt;/span&gt;  &lt;span class="c1"&gt;# append curve plots to same axes&lt;/span&gt;
+&lt;span class="n"&gt;p1&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;show&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;  &lt;span class="c1"&gt;# Show plot&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell_output docutils container"&gt;
+&lt;img alt="https://www.cosmoscalibur.com/_images/3aaa4cfb78cc09f2bbff785c4687ef2375ba5eac08a6b2afe3dce30c2fee8d0d.png" src="https://www.cosmoscalibur.com/_images/3aaa4cfb78cc09f2bbff785c4687ef2375ba5eac08a6b2afe3dce30c2fee8d0d.png" /&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;The blue curves are referred to as Solutions I and II. They are solutions of double evaluation and therefore are not physically acceptable solutions. The rightmost blue curve (II) also does not start on the surface of the Sun, while the leftmost blue curve (I) makes no physical sense since it would escape from the Sun with a subsonic velocity and return with a supersonic velocity.&lt;/p&gt;
+&lt;p&gt;The green curves (III - upper, IV - lower) are solutions that do not pass through the critical point and therefore are not physically acceptable. Additionally, Curve III starts with a supersonic velocity near the Sun, which has not been observed, while Curve IV leads to constant pressure in the interstellar medium, which makes no physical sense.&lt;/p&gt;
+&lt;p&gt;In contrast, the red ascending curve (V) leads to an increase in velocity after the critical point, which is observed, but also leads to zero pressure in the interstellar medium. This is known as the solar wind solution.&lt;/p&gt;
+&lt;div class="admonition attention"&gt;
+&lt;p class="admonition-title"&gt;Atención&lt;/p&gt;
+&lt;p&gt;At the level of the graph, a dense zone is observed around the critical point, but this is an effect of the implicit plotting method used with adaptive rendering.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/section&gt;
+&lt;section id="numerical-solution"&gt;
+&lt;h3&gt;Numerical solution&lt;/h3&gt;
+&lt;p&gt;It is observed that at the critical point &lt;span class="math notranslate nohighlight"&gt;\((r_c, c_s)\)&lt;/span&gt;, there is an indeterminacy. For this reason, it is necessary to solve the differential equation before and after this point as two independent intervals. The first interval, to ensure its passage through the critical point, is recommended to be solved with a backward form, so that we can use this information as an initial condition in the differential equation instead of making an estimate of the initial conditions on the solar radius (which would be the same for both intervals).&lt;/p&gt;
+&lt;p&gt;Therefore, we have to set &lt;span class="math notranslate nohighlight"&gt;\(v(1) = 1\)&lt;/span&gt;, for the first tramm that goes from the radius of the coronal solar up to the critical point, and the second interval that goes from the critical point to Earth (having a reference point for the solution going forward).&lt;/p&gt;
+&lt;p&gt;We define the function for numerical values on the right-hand side of the differential equation (&lt;span class="math notranslate nohighlight"&gt;\(\frac{d}{dR}v(R)\)&lt;/span&gt;) in &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;f_ode&lt;/span&gt;&lt;/code&gt; and define our function for the RK4 method, &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;RK4&lt;/span&gt;&lt;/code&gt;.&lt;/p&gt;
+&lt;div class="cell docutils container"&gt;
+&lt;div class="cell_input docutils container"&gt;
+&lt;div class="highlight-ipython3 notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;def&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;f_ode&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;R&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;v&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="c1"&gt;# Derivative of velocity profile function&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;R&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;R&lt;/span&gt;&lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;v&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;v&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="k"&gt;def&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;RK4&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;funcion&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;cond_inicial&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;x_final&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="c1"&gt;# RK4 solver&lt;/span&gt;
+    &lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;cond_inicial&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]]&lt;/span&gt;
+    &lt;span class="n"&gt;w&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;cond_inicial&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]]&lt;/span&gt;
+    &lt;span class="n"&gt;dx&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x_final&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt; &lt;span class="c1"&gt;# step&lt;/span&gt;
+    &lt;span class="n"&gt;dx_2&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;dx&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt; &lt;span class="c1"&gt;# half step&lt;/span&gt;
+    &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;range&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="n"&gt;k1&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;dx&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;funcion&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="n"&gt;w&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+        &lt;span class="n"&gt;k2&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;dx&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;funcion&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;dx_2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;w&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;k1&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="n"&gt;k3&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;dx&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;funcion&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;dx_2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;w&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;k2&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;append&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;dx&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="c1"&gt;# x[i+1] = x[-1]&lt;/span&gt;
+        &lt;span class="n"&gt;k4&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;dx&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;funcion&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="n"&gt;w&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;k3&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="n"&gt;w&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;append&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;w&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;k1&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;k2&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;k3&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;k4&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;w&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Define required constants and helper functions to compute sonic velocity and sonic radii.&lt;/p&gt;
+&lt;div class="cell docutils container"&gt;
+&lt;div class="cell_input docutils container"&gt;
+&lt;div class="highlight-ipython3 notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;G&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mf"&gt;6.67e-11&lt;/span&gt; &lt;span class="c1"&gt;#Nm2kg-2&lt;/span&gt;
+&lt;span class="n"&gt;k&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mf"&gt;1.38065e-23&lt;/span&gt; &lt;span class="c1"&gt;#JK-1&lt;/span&gt;
+&lt;span class="n"&gt;M&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mf"&gt;1.988435e30&lt;/span&gt; &lt;span class="c1"&gt;#kg, Sun mass&lt;/span&gt;
+&lt;span class="n"&gt;m_H&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mf"&gt;1.67372e-27&lt;/span&gt; &lt;span class="c1"&gt;#kg, hydrogen mass&lt;/span&gt;
+&lt;span class="n"&gt;r_max&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mf"&gt;150e9&lt;/span&gt; &lt;span class="c1"&gt;#m, Earth-Sun distance&lt;/span&gt;
+&lt;span class="n"&gt;r_min&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mf"&gt;695.5e6&lt;/span&gt; &lt;span class="c1"&gt;#m, Sun radii&lt;/span&gt;
+&lt;span class="n"&gt;omega_sol&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mf"&gt;2.7e-6&lt;/span&gt; &lt;span class="c1"&gt;#rads-1, Sun angular velocity&lt;/span&gt;
+&lt;span class="n"&gt;T_cor&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mf"&gt;1e6&lt;/span&gt; &lt;span class="c1"&gt;#K, Corona temperature&lt;/span&gt;
+
+&lt;span class="k"&gt;def&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;c_s&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;T&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;T_cor&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;m&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;m_H&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="c1"&gt;# Sonic velocity&lt;/span&gt;
+    &lt;span class="kn"&gt;from&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nn"&gt;math&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;sqrt&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;sqrt&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;k&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;T&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;m&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="k"&gt;def&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;r_c&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;T&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;T_cor&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;m&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;m_H&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="c1"&gt;# Sonic radii&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;G&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;M&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;c_s&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;T&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;m&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Define adiminensional parameters&lt;/p&gt;
+&lt;div class="cell docutils container"&gt;
+&lt;div class="cell_input docutils container"&gt;
+&lt;div class="highlight-ipython3 notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;vel_s&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;c_s&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;T_cor&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;m_H&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;rad_s&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;r_c&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;T_cor&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;m_H&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;t_s&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;rad_s&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="n"&gt;vel_s&lt;/span&gt;
+&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Sonic velocity: &lt;/span&gt;&lt;span class="si"&gt;{:f}&lt;/span&gt;&lt;span class="s2"&gt;km/s&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;vel_s&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mi"&gt;1000&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Sonic radii: &lt;/span&gt;&lt;span class="si"&gt;{:f}&lt;/span&gt;&lt;span class="s2"&gt;km&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;rad_s&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mi"&gt;1000&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Unit time: &lt;/span&gt;&lt;span class="si"&gt;{:f}&lt;/span&gt;&lt;span class="s2"&gt;s&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;t_s&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;span class="n"&gt;omega_s&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;omega_sol&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;t_s&lt;/span&gt;
+&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;omega (adim): &lt;/span&gt;&lt;span class="si"&gt;{:f}&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;omega_s&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;span class="n"&gt;R_max&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;r_max&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="n"&gt;rad_s&lt;/span&gt;
+&lt;span class="n"&gt;R_min&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;r_min&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="n"&gt;rad_s&lt;/span&gt;
+&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Max radii (adim): &lt;/span&gt;&lt;span class="si"&gt;{:f}&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;R_max&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Min radii (adim): &lt;/span&gt;&lt;span class="si"&gt;{:f}&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;R_min&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell_output docutils container"&gt;
+&lt;div class="output stream highlight-myst-ansi notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;Sonic velocity: 128.444465km/s
+Sonic radii: 4019540.880399km
+Unit time: 31293.998427s
+omega (adim): 0.084494
+Max radii (adim): 37.317695
+Min radii (adim): 0.173030
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Now we apply the RK4 method for the segments and graph the results. It is important to note that since the first segment is reversed, in order to properly arrange the solution, we need to apply the reverse of the list (&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;.reverse&lt;/span&gt;&lt;/code&gt;) and thus keep the solution ordered.&lt;/p&gt;
+&lt;div class="cell docutils container"&gt;
+&lt;div class="cell_input docutils container"&gt;
+&lt;div class="highlight-ipython3 notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# Numerical solution to solar wind equation&lt;/span&gt;
+&lt;span class="n"&gt;R&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;v&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;RK4&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;f_ode&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mf"&gt;1e-6&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="n"&gt;R_min&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;30000&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;R&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;reverse&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="n"&gt;v&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;reverse&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="n"&gt;R_sup&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;v_sup&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;RK4&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;f_ode&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="mf"&gt;1e-6&lt;/span&gt; &lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="n"&gt;R_max&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1000000&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;v&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;extend&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;v_sup&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;R&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;extend&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;R_sup&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="c1"&gt;# Graficamos&lt;/span&gt;
+&lt;span class="n"&gt;plt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;plot&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;or&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;plt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;text&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mf"&gt;1.2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;Sonic point&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;plt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;plot&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;R&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="n"&gt;v&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;og&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;plt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;text&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;R&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="mf"&gt;.2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;v&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mf"&gt;.2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Earth&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;plt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;plot&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;R&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;v&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;plt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;grid&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="n"&gt;plt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;show&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell_output docutils container"&gt;
+&lt;img alt="https://www.cosmoscalibur.com/_images/14454f012faa7e78f19ac9e9bb94d5bc5f66e32277d8f8d852702c75577edb37.png" src="https://www.cosmoscalibur.com/_images/14454f012faa7e78f19ac9e9bb94d5bc5f66e32277d8f8d852702c75577edb37.png" /&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Starting from this velocity profile, we construct the angular velocity component to ultimately generate the well-known Parker spiral, and we can do this using the Euler method.&lt;/p&gt;
+&lt;div class="cell docutils container"&gt;
+&lt;div class="cell_input docutils container"&gt;
+&lt;div class="highlight-ipython3 notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;N&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;R&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;cont&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;
+&lt;span class="n"&gt;psi&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;R&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;cos&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;psi&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;])]&lt;/span&gt;
+&lt;span class="n"&gt;y&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;R&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;sin&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;psi&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;])]&lt;/span&gt;
+&lt;span class="k"&gt;while&lt;/span&gt; &lt;span class="n"&gt;cont&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;N&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="c1"&gt;# Euler method&lt;/span&gt;
+    &lt;span class="n"&gt;dR&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;R&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;cont&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;R&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;cont&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+    &lt;span class="n"&gt;dpsi&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;omega_s&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;dR&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="n"&gt;v&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;cont&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+    &lt;span class="n"&gt;psi&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;append&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;psi&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;dpsi&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;cont&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;cont&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
+
+&lt;span class="n"&gt;dpsi_v&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;ones&lt;/span&gt;&lt;span class="p"&gt;([&lt;/span&gt;&lt;span class="n"&gt;N&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;pi&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;
+&lt;span class="n"&gt;psi1&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;array&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;psi&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;psi2&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;psi1&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;dpsi_v&lt;/span&gt;
+&lt;span class="n"&gt;psi3&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;psi2&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;dpsi_v&lt;/span&gt;
+&lt;span class="n"&gt;psi4&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;psi3&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;dpsi_v&lt;/span&gt;
+&lt;span class="n"&gt;espiral&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;plt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;subplot&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;111&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;projection&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;polar&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;espiral&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;plot&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;psi1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;R&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;color&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;r&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;espiral&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;plot&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;psi2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;R&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;color&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;r&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;espiral&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;plot&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;psi3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;R&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;color&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;r&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;espiral&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;plot&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;psi4&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;R&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;color&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;r&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell_output docutils container"&gt;
+&lt;div class="output text_plain highlight-myst-ansi notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;[&amp;lt;matplotlib.lines.Line2D at 0x72ead913d3a0&amp;gt;]
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;img alt="https://www.cosmoscalibur.com/_images/8bc3b442242eea04e7ed1768c27647f8af20c6cb2ceef1c8f8bebcf3178b4e68.png" src="https://www.cosmoscalibur.com/_images/8bc3b442242eea04e7ed1768c27647f8af20c6cb2ceef1c8f8bebcf3178b4e68.png" /&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/section&gt;
+&lt;/section&gt;
+&lt;/section&gt;
+&lt;section class="tex2jax_ignore mathjax_ignore" id="referencias"&gt;
+&lt;h1&gt;Referencias&lt;/h1&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;E. N. Parker, &lt;a class="reference external" href="https://articles.adsabs.harvard.edu/pdf/1958ApJ...128..664P"&gt;“Dynamics of the Interplanetary Gas and Magnetic Fields”&lt;/a&gt;, Astrophysical Journal, 128, 1958 p. 664.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Margaret G. Kivelson y Christopher T. Russel, “Introduction to Space Physics”, Cambridge University Press, 1995, 588 p.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Ana Maria Piso, &lt;a class="reference external" href="http://demonstrations.wolfram.com/TheSolarWind/"&gt;“The Solar Wind” from Wolfram Demonstrations Project&lt;/a&gt;, Agosto 6 de 2008.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Richard L. Burden y J. Douglas Faires, “Análisis Numérico”, 7Ed., Ediciones Paraninfo, 2002 p. 839.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/section&gt;
+</content>
+    <link href="https://www.cosmoscalibur.com/en/blog/2024/espiral-de-parker-con-python/"/>
+    <summary>In this post, we will explore the numerical solution to the first-order nonlinear differential equation that models the solar wind speed as a function of the heliocentric distance. Once this velocity profile is obtained, which is temperature-dependent, we proceed to transform it into Lagrangian coordinates centered at an emission point on the corona. This will make it more natural to construct an arm of the Parker spiral, along which the found velocity profile evolves.</summary>
+    <category term="numericalmethods" label="numerical methods"/>
+    <category term="python" label="python"/>
+    <category term="rk4" label="rk4"/>
+    <category term="solarwind" label="solar wind"/>
+    <category term="sympy" label="sympy"/>
+    <published>2024-10-06T00:00:00-05:00</published>
   </entry>
   <entry>
     <id>https://www.cosmoscalibur.com/es/blog/2024/espiral-de-parker-con-python/</id>
