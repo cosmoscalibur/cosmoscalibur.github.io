@@ -118,13 +118,13 @@ Esto nos habilitará el acceso por `127.0.0.1:<PUERTO>`.
 2024/12/10 16:36:44 Authorizing with Application Default Credentials
 2024/12/10 16:36:44 Error starting proxy: error initializing dialer: failed to create default credentials: google: could not find default credentials. See https://cloud.google.com/docs/authentication/external/set-up-adc for more information
 2024/12/10 16:36:44 The proxy has encountered a terminal error: unable to start: error initializing dialer: failed to create default credentials: google: could not find default credentials. See https://cloud.google.com/docs/authentication/external/set-up-adc for more information
-````
+```
 
 Este error corresponde a la necesidad de aplicar la autenticación de
 credenciales por defecto de aplicación que se describe
 [previamente](#cloud-sdk-auth).
 
-``````
+````
 
 ## Conectar a la base de datos
 
@@ -145,9 +145,9 @@ forma, por lo que es preferible la instalación del repo oficial.
 sudo pamac install dbeaver --no-confirm
 sudo pamac install dbeaver-plugin-office dbeaver-plugin-svg-format --as-deps --no-confirm
 pamac build dbgate-bin
-``````
+```
 
-`````
+````
 ````{tab-item} Flatpak
 :sync: ubuntu
 
@@ -156,16 +156,16 @@ flatpak install -y flathub org.dbgate.DbGate  # Verificado
 flatpak install -y flathub io.dbeaver.DBeaverCommunity  # No verificado
 ```
 
-`````
-
 ````
+
+`````
 
 Un punto extra para no usar {program}`MySQL Workbench` es usar no solo un
 cliente moderno, sino también con soporte para múltiples bases de datos (no solo
 *MySQL*).
 
-```{hint} En el pasado, he tenido conflictos con el uso de `localhost` como
+```{hint}
+En el pasado, he tenido conflictos con el uso de `localhost` como
 asignación del *host* en los clientes, y esto es que no siempre debe resolverse
 como `127.0.0.1`, por lo cual es mejor usar siempre en la configuración la IP.
 ```
-````
