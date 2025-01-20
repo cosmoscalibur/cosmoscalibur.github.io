@@ -5,7 +5,7 @@ category: entertainment, movies and series
 language: en
 ---
 
-# Watch free movies with Stremio
+# Watch free movies with Stremio and Torrentio
 
 Tired of streaming subscriptions draining your wallet? Perhaps not, but I'll
 share a trick to comfortably, safely, and freely access a lot of content. I'll

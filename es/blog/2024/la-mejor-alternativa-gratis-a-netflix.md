@@ -4,7 +4,7 @@ tags: netflix, stremio, torrents, películas, series, aplicaciones para linux, a
 category: entretenimiento, películas y series
 ---
 
-# Ver películas gratis con Stremio
+# Ver películas gratis con Stremio y Torrentio
 
 ¿Cansado de que las cuentas de _streaming_ que requieres para ver todo tu
 contenido favorito sean ese gasto hormiga que te desangra hasta más no poder?
