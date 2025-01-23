@@ -63,7 +63,8 @@ height: 400px
 
 You can explore the planetary configuration using
 [Eyes on the solar system](https://eyes.nasa.gov/apps/solar-system/#/mercury?time=2025-02-28T12:30:00.031+00:00&rate=0)
-to understand how they appear in their orbits at these moments.
+or [Atlas of Space](https://atlasof.space/) to understand how they appear in
+their orbits at these moments.
 
 ## How to Observe the Planets During the Planetary Alignment?
 
