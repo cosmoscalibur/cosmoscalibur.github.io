@@ -1,0 +1,753 @@
+
+<!DOCTYPE html>
+
+
+<html lang="es" data-content_root="../../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="og:title" content="Módulo pkg_resources no encontrado en ambientes UV" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://www.cosmoscalibur.com/es/blog/2025/modulo-pkg-resources-no-encontrado-en-ambientes-uv/" />
+<meta property="og:site_name" content="Cosmoscalibur" />
+<meta property="og:description" content="Si como muchos, ya has iniciado la migración al gestor de paquetes uv, puede que te hayas encontrado con el problema de ModuleNotFoundError: No module named 'pkg_resources'. No te preocupes, esto n..." />
+<meta property="og:image:width" content="1146" />
+<meta property="og:image:height" content="600" />
+<meta property="og:image" content="https://www.cosmoscalibur.com/_images/social_previews/summary_es_blog_2025_modulo-pkg-resources-no-encontrado-en-ambientes-uv_6cbc99b5.png" />
+<meta property="og:image:alt" content="Si como muchos, ya has iniciado la migración al gestor de paquetes uv, puede que te hayas encontrado con el problema de ModuleNotFoundError: No module named..." />
+<meta name="description" content="Si como muchos, ya has iniciado la migración al gestor de paquetes uv, puede que te hayas encontrado con el problema de ModuleNotFoundError: No module named 'pkg_resources'. No te preocupes, esto n..." />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:creator" content="@cosmoscalibur" />
+<meta name="fediverse:creator" content="@cosmoscalibur@col.social">
+
+    <title>Módulo pkg_resources no encontrado en ambientes UV &#8212; Cosmoscalibur</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../../../../_static/documentation_options.js?v=a20647df"></script>
+    <script src="../../../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../../_static/translations.js?v=f85f4cfb"></script>
+    <script src="../../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'es/blog/2025/modulo-pkg-resources-no-encontrado-en-ambientes-uv';</script>
+    <link rel="canonical" href="https://www.cosmoscalibur.com/es/blog/2025/modulo-pkg-resources-no-encontrado-en-ambientes-uv/" />
+    <link rel="icon" href="../../../../_static/cosmoscalibur_favicon.png"/>
+    <link rel="index" title="Índice" href="../../../../genindex/" />
+    <link rel="search" title="Búsqueda" href="../../../../search/" /> 
+
+<!-- TODO: Revisar como hacer que dependa del despliegue en GitHub Pages para no usar en local -->
+<!-- TODO: Usar GitHub Actions para esto -->
+
+<!-- Usado para mostrar publicidad -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-0356238418278924"
+crossorigin="anonymous"></script>
+
+ 
+<link
+  rel="alternate"
+  type="application/atom+xml"
+  href="../../../../blog/atom.xml"
+  title="Cosmoscalibur"
+/>
+  
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Saltar al contenido principal</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Volver arriba</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../../search/"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Advertencia de versión"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Navegación del sitio">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../../">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../../_static/cosmoscalibur_logo.png" class="logo__image only-light" alt="Cosmoscalibur - Home"/>
+    <img src="../../../../_static/cosmoscalibur_logo.png" class="logo__image only-dark pst-js-only" alt="Cosmoscalibur - Home"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../me/">
+    Edward Villegas
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Tema" data-bs-title="Tema"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Claro"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Oscuro"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="Sistema"></i>
+</button></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/cosmoscalibur/" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/cosmoscalibur" title="Twitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-twitter fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Twitter</span></a>
+        </li>
+        <li class="nav-item">
+            
+          
+            
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://col.social/@cosmoscalibur" title="Mastodon" class="nav-link pst-navbar-icon" rel="me" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-mastodon fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Mastodon</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="En esta página">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../me/">
+    Edward Villegas
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Tema" data-bs-title="Tema"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Claro"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Oscuro"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="Sistema"></i>
+</button></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/cosmoscalibur/" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/cosmoscalibur" title="Twitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-twitter fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Twitter</span></a>
+        </li>
+        <li class="nav-item">
+            
+          
+            
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://col.social/@cosmoscalibur" title="Mastodon" class="nav-link pst-navbar-icon" rel="me" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-mastodon fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Mastodon</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<div class="ablog-sidebar-item ablog__postcard">
+   
+  <h2>
+     
+    <span>2025-01-26</span>
+    
+  </h2>
+  <ul>
+    <div class="ablog-sidebar-item ablog__postcard2">
+   
+  <li id="ablog-sidebar-item author ablog__author">
+    <span>
+       Autor: 
+    </span>
+     
+    <a href="../../../../blog/author/edward-villegas-pulgarin/">Edward Villegas-Pulgarin</a>
+      
+  </li>
+    
+  <li id="ablog-sidebar-item language ablog__language">
+    <span>
+       Idioma: 
+    </span>
+     
+    <a href="../../../../blog/language/espanol/">Español</a>
+      
+  </li>
+   
+  <li id="ablog-sidebar-item category ablog__category">
+    <span>
+       Categoría: 
+    </span>
+     
+    <a href="../../../../blog/category/tecnologia/">tecnología</a>
+     ,    
+    <a href="../../../../blog/category/programacion/">programación</a>
+      
+  </li>
+   
+  <li id="ablog-sidebar-item tags ablog__tags">
+    <span>
+        Etiquetas:  
+    </span>
+     
+    <a href="../../../../blog/tag/python/">python</a>
+        
+    <a href="../../../../blog/tag/uv/">uv</a>
+        
+    <a href="../../../../blog/tag/setuptools/">setuptools</a>
+      
+  </li>
+   
+</div>
+  </ul>
+</div>
+</div>
+        <div class="sidebar-primary-item">
+<div class="ablog-sidebar-item ablog__recentposts">
+  <h3>
+    <a href="../../../../blog/">Entradas recientes</a>
+  </h3>
+  <ul>
+     
+    <li>
+      <a href="../../../../en/blog/2025/modulo-pkg-resources-no-encontrado-en-ambientes-uv/">
+        2025-01-26 - No module named pkg_resources found in UV environment
+      </a>
+    </li>
+    
+    <li>
+      <a href="../../../../en/blog/2025/alineacion-planetaria-2025/">
+        2025-01-19 - Planetary alignment 2025
+      </a>
+    </li>
+    
+    <li>
+      <a href="../alineacion-planetaria-2025/">
+        2025-01-19 - Alineación planetaria 2025
+      </a>
+    </li>
+    
+    <li>
+      <a href="../../../../en/blog/2025/montar-disco-en-linux-y-error-de-volumen-sucio/">
+        2025-01-10 - Mounting a disk in Linux and dirty volume error
+      </a>
+    </li>
+    
+    <li>
+      <a href="../montar-disco-en-linux-y-error-de-volumen-sucio/">
+        2025-01-10 - Montar disco en Linux y error de volumen sucio
+      </a>
+    </li>
+    
+  </ul>
+</div>
+</div>
+        <div class="sidebar-primary-item">
+<div class="ablog-sidebar-item ablog__archives">
+  <h3>
+    <a href="../../../../blog/archive/">Archivos</a>
+  </h3>
+  <ul>
+     
+    <li>
+      <a href="../../../../blog/2025/">2025 (8)</a>
+    </li>
+      
+    <li>
+      <a href="../../../../blog/2024/">2024 (35)</a>
+    </li>
+      
+    <li>
+      <a href="../../../../blog/2021/">2021 (2)</a>
+    </li>
+      
+    <li>
+      <a href="../../../../blog/2020/">2020 (21)</a>
+    </li>
+      
+    <li>
+      <a href="../../../../blog/2019/">2019 (9)</a>
+    </li>
+      
+    <li>
+      <a href="../../../../blog/2018/">2018 (5)</a>
+    </li>
+      
+    <li>
+      <a href="../../../../blog/2017/">2017 (2)</a>
+    </li>
+      
+    <li>
+      <a href="../../../../blog/2014/">2014 (1)</a>
+    </li>
+      
+    <li>
+      <a href="../../../../blog/2013/">2013 (12)</a>
+    </li>
+      
+    <li>
+      <a href="../../../../blog/2012/">2012 (20)</a>
+    </li>
+      
+    <li>
+      <a href="../../../../blog/2011/">2011 (30)</a>
+    </li>
+      
+    <li>
+      <a href="../../../../blog/2010/">2010 (7)</a>
+    </li>
+     
+  </ul>
+</div>
+</div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Miga de pan" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../../../" class="nav-link" aria-label="Inicio">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Módulo <code class="docutils literal notranslate"><span class="pre">pkg_resources</span></code> no encontrado en ambientes UV</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                   <section class="tex2jax_ignore mathjax_ignore" id="modulo-pkg-resources-no-encontrado-en-ambientes-uv">
+<h1>Módulo <code class="docutils literal notranslate"><span class="pre">pkg_resources</span></code> no encontrado en ambientes UV<a class="headerlink" href="#modulo-pkg-resources-no-encontrado-en-ambientes-uv" title="Link to this heading">#</a></h1>
+<p>Si como muchos, ya has iniciado la migración al gestor de paquetes
+<strong class="program">uv</strong>, puede que te hayas encontrado con el problema de
+<code class="docutils literal notranslate"><span class="pre">ModuleNotFoundError:</span> <span class="pre">No</span> <span class="pre">module</span> <span class="pre">named</span> <span class="pre">'pkg_resources'</span></code>. No te preocupes, esto no
+será un obstáculo para continuar la migración.</p>
+<section id="que-es-pkg-resources">
+<h2>¿Qué es <code class="docutils literal notranslate"><span class="pre">pkg_resources</span></code>?<a class="headerlink" href="#que-es-pkg-resources" title="Link to this heading">#</a></h2>
+<p>El módulo de <code class="docutils literal notranslate"><span class="pre">pkg_resources</span></code> pertenece al paquete de <em>setuptools</em> y permite el
+acceso a los archivos de recursos y el descubrimiento de extensiones. Sin
+embargo, este módulo no es recomendable y ha sido marcado como obsoleto, y en su
+lugar se debería usar <code class="docutils literal notranslate"><span class="pre">importlib.resources</span></code> e <code class="docutils literal notranslate"><span class="pre">importlib.metadata</span></code>. Sin embargo,
+así esté obsoleto, muchos paquetes lo usan. ¿Qué produce el error?</p>
+</section>
+<section id="que-es-setuptools">
+<h2>¿Qué es Setuptools?<a class="headerlink" href="#que-es-setuptools" title="Link to this heading">#</a></h2>
+<p><em>Setuptools</em> es una biblioteca diseñada para ayudar a generar paquetes de
+bibliotecas Python, con rutinas complementarias a <code class="docutils literal notranslate"><span class="pre">distutils</span></code>. Sin embargo, esta
+biblioteca no es parte del <em>core</em> de Python y es realmente un paquete
+independiente. La instalación base en los sistemas operativos o la instalación
+estándar de Python o de algunos gestores de ambientes como <strong class="program">conda</strong>, la
+suelen incluir. Pero la instalación creada con el ambiente de <strong class="program">uv</strong> no
+la posee. Aquí se origina el problema, es que muchos paquetes dependen de la
+suposición de tener <code class="docutils literal notranslate"><span class="pre">setuptools</span></code> ya instalado por defecto, y <strong class="program">uv</strong> no lo
+dispone de esta forma. Python por defecto no dispone de una herramienta de
+empaquetado y publicación como parte de su <em>core</em> (<code class="docutils literal notranslate"><span class="pre">setuptools</span></code> está bajo el
+gobierno de <em>PyPA</em>, pero esto no implica que sea <em>core</em>).</p>
+</section>
+<section id="agregar-setuptools-a-las-dependencias">
+<h2>Agregar <code class="docutils literal notranslate"><span class="pre">setuptools</span></code> a las dependencias<a class="headerlink" href="#agregar-setuptools-a-las-dependencias" title="Link to this heading">#</a></h2>
+<p>Con el contexto anterior, nos queda una solución clara. El problema no es de
+<strong class="program">uv</strong>, es que los paquetes afectados han olvidado añadir en sus
+dependencias el paquete de <code class="docutils literal notranslate"><span class="pre">setuptools</span></code>. Siendo así, nuestra solución al
+problema es simple: añadir <code class="docutils literal notranslate"><span class="pre">setuptools</span></code> a las dependencias.</p>
+<p>Si tu proyecto usa el archivo <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code> este es el lugar adecuado para
+añadirlo (ver
+<a class="reference internal" href="../../2024/uv-alternativa-rapida-a-pip-y-venv/#instalacion-de-paquetes-python"><span class="std std-ref">Instalación de paquetes Python</span></a>),
+pero si usas la
+<a class="reference internal" href="../configuracion-de-proyectos-y-herramientas-python-con-uv/"><span class="std std-doc">gestión de proyectos</span></a>
+de <strong class="program">uv</strong> puedes usar <code class="docutils literal notranslate"><span class="pre">uv</span> <span class="pre">add</span> <span class="pre">setuptools</span></code>, y si es una herramienta será
+necesario inyectar la dependencia <code class="docutils literal notranslate"><span class="pre">--with</span> <span class="pre">setuptools</span></code>.</p>
+</section>
+<section id="referencias">
+<h2>Referencias<a class="headerlink" href="#referencias" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://setuptools.pypa.io/en/latest/pkg_resources.html">Package Discovery and Resource Access using pkg_resources</a>.
+Setuptools.</p></li>
+<li><p><a class="reference external" href="https://setuptools.pypa.io/en/latest/deprecated/index.html">Guides on backward compatibility &amp; deprecated practice</a>.
+Setuptools.</p></li>
+<li><p><a class="reference external" href="https://github.com/astral-sh/uv/issues/6384">Some tools are installed without pkg_resources</a>.
+GitHub UV.</p></li>
+</ul>
+</section>
+</section>
+
+<div class="section ablog__blog_comments">
+     
+<div class="section ablog__prev-next">
+  <span class="ablog__prev">
+      Anterior:
+    
+    <a href="../../../../en/blog/2025/alineacion-planetaria-2025/">
+      
+      <span>Planetary alignment 2025</span>
+    </a>
+    
+  </span>
+  <span class="ablog__spacer">&nbsp;</span>
+  <span class="ablog__next">
+      Siguiente: 
+    <a href="../../../../en/blog/2025/modulo-pkg-resources-no-encontrado-en-ambientes-uv/">
+      <span>No module named pkg_resources found in UV environment</span>
+      
+    </a>
+    
+  </span>
+</div>
+  
+</div>
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> En esta página
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#que-es-pkg-resources">¿Qué es <code class="docutils literal notranslate"><span class="pre">pkg_resources</span></code>?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#que-es-setuptools">¿Qué es Setuptools?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#agregar-setuptools-a-las-dependencias">Agregar <code class="docutils literal notranslate"><span class="pre">setuptools</span></code> a las dependencias</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#referencias">Referencias</a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+  <div role="note" aria-label="source link">
+    <h3>Esta página</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../../_sources/es/blog/2025/modulo-pkg-resources-no-encontrado-en-ambientes-uv.md.txt"
+            rel="nofollow">Mostrar el código</a></li>
+    </ul>
+   </div></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2024, Edward Villegas-Pulgarin.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Creado usando <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.1.3.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Construido con el <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html"> Tema PyData Sphinx </a> 0.16.1.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

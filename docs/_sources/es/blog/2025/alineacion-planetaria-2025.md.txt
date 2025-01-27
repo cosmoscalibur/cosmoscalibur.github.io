@@ -63,8 +63,8 @@ height: 400px
 
 Puedes explorar con
 [Eyes on the solar system](https://eyes.nasa.gov/apps/solar-system/#/mercury?time=2025-02-28T12:30:00.031+00:00&rate=0)
-la configuración de los planetas para entender como se ven en estos momentos en
-sus órbitas.
+o [Atlas of Space](https://atlasof.space/) la configuración de los planetas para
+entender como se ven en estos momentos en sus órbitas.
 
 ## ¿Cómo observas los planetas durante la alineación planetaria?
 

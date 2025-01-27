@@ -2,10 +2,154 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="es">
   <id>https://www.cosmoscalibur.com/</id>
   <title>Cosmoscalibur</title>
-  <updated>2025-01-20T03:02:35.410920+00:00</updated>
+  <updated>2025-01-27T03:45:46.321530+00:00</updated>
   <link href="https://www.cosmoscalibur.com/"/>
   <link href="https://www.cosmoscalibur.com/blog/atom.xml" rel="self"/>
   <generator uri="https://ablog.readthedocs.io/" version="0.11.12">ABlog</generator>
+  <entry>
+    <id>https://www.cosmoscalibur.com/en/blog/2025/modulo-pkg-resources-no-encontrado-en-ambientes-uv/</id>
+    <title>No module named pkg_resources found in UV environment</title>
+    <updated>2025-01-26T00:00:00-05:00</updated>
+    <author>
+      <name>Edward Villegas-Pulgarin</name>
+    </author>
+    <content type="html">&lt;section class="tex2jax_ignore mathjax_ignore" id="no-module-named-pkg-resources-found-in-uv-environment"&gt;
+
+&lt;p&gt;If, like many others, you have already started migrating to the package manager
+&lt;strong class="program"&gt;uv&lt;/strong&gt;, you might have encountered the
+&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;ModuleNotFoundError:&lt;/span&gt; &lt;span class="pre"&gt;No&lt;/span&gt; &lt;span class="pre"&gt;module&lt;/span&gt; &lt;span class="pre"&gt;named&lt;/span&gt; &lt;span class="pre"&gt;'pkg_resources'&lt;/span&gt;&lt;/code&gt; issue. Don’t worry, this
+won’t be an obstacle to continuing the migration.&lt;/p&gt;
+&lt;section id="what-is-pkg-resources"&gt;
+&lt;h2&gt;What is &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;pkg_resources&lt;/span&gt;&lt;/code&gt;?&lt;/h2&gt;
+&lt;p&gt;The &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;pkg_resources&lt;/span&gt;&lt;/code&gt; module belongs to the &lt;em&gt;setuptools&lt;/em&gt; package and allows access
+to resource files and discovery of extensions. However, this module is not
+recommended and has been marked as deprecated; instead, &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;importlib.resources&lt;/span&gt;&lt;/code&gt;
+and &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;importlib.metadata&lt;/span&gt;&lt;/code&gt; should be used. Nevertheless, despite being obsolete,
+many packages still use it. What produces the error?&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="what-is-setuptools"&gt;
+&lt;h2&gt;What is Setuptools?&lt;/h2&gt;
+&lt;p&gt;&lt;em&gt;Setuptools&lt;/em&gt; is a library designed to help generate Python library packages,
+with complementary routines to &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;distutils&lt;/span&gt;&lt;/code&gt;. However, this library is not part of
+the &lt;em&gt;core&lt;/em&gt; of Python and is actually an independent package. The base
+installation on operating systems or standard Python installations, or in some
+environment managers like &lt;strong class="program"&gt;conda&lt;/strong&gt;, usually includes it. But the
+installation created with the &lt;strong class="program"&gt;uv&lt;/strong&gt; environment does not have it. This
+is where the problem arises: many packages depend on the assumption that
+&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;setuptools&lt;/span&gt;&lt;/code&gt; is installed by default, and &lt;strong class="program"&gt;uv&lt;/strong&gt; does not provide it in
+this way. By default, Python does not come with a packaging and publishing tool
+as part of its &lt;em&gt;core&lt;/em&gt; (&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;setuptools&lt;/span&gt;&lt;/code&gt; is under the governance of &lt;em&gt;PyPA&lt;/em&gt;, but this
+does not imply that it is core).&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="adding-setuptools-to-dependencies"&gt;
+&lt;h2&gt;Adding &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;setuptools&lt;/span&gt;&lt;/code&gt; to Dependencies&lt;/h2&gt;
+&lt;p&gt;With the context provided, the solution is clear. The issue does not lie with
+&lt;strong class="program"&gt;uv&lt;/strong&gt;; rather, the affected packages have forgotten to add &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;setuptools&lt;/span&gt;&lt;/code&gt;
+as a dependency. Therefore, our solution to the problem is straightforward: add
+&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;setuptools&lt;/span&gt;&lt;/code&gt; to the dependencies.&lt;/p&gt;
+&lt;p&gt;If your project uses a &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;requirements.txt&lt;/span&gt;&lt;/code&gt; file, this is the appropriate place to
+add it (see
+&lt;a class="reference internal" href="../en/blog/2024/uv-alternativa-rapida-a-pip-y-venv/#installing-python-packages"&gt;&lt;span class="std std-ref"&gt;here&lt;/span&gt;&lt;/a&gt;).
+However, if you are using &lt;strong class="program"&gt;uv&lt;/strong&gt;’s project management tools
+(&lt;a class="reference internal" href="../en/blog/2025/configuracion-de-proyectos-y-herramientas-python-con-uv/"&gt;&lt;span class="std std-doc"&gt;see here&lt;/span&gt;&lt;/a&gt;),
+you can use &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;uv&lt;/span&gt; &lt;span class="pre"&gt;add&lt;/span&gt; &lt;span class="pre"&gt;setuptools&lt;/span&gt;&lt;/code&gt;. If it is a tool, you will need to inject the
+dependency with &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;--with&lt;/span&gt; &lt;span class="pre"&gt;setuptools&lt;/span&gt;&lt;/code&gt;.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="references"&gt;
+&lt;h2&gt;References&lt;/h2&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://setuptools.pypa.io/en/latest/pkg_resources.html"&gt;Package Discovery and Resource Access using pkg_resources&lt;/a&gt;.
+Setuptools.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://setuptools.pypa.io/en/latest/deprecated/index.html"&gt;Guides on backward compatibility &amp;amp; deprecated practice&lt;/a&gt;.
+Setuptools.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://github.com/astral-sh/uv/issues/6384"&gt;Some tools are installed without pkg_resources&lt;/a&gt;.
+GitHub UV.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/section&gt;
+&lt;/section&gt;
+</content>
+    <link href="https://www.cosmoscalibur.com/en/blog/2025/modulo-pkg-resources-no-encontrado-en-ambientes-uv/"/>
+    <summary>If, like many others, you have already started migrating to the package manager
+uv, you might have encountered the
+ModuleNotFoundError: No module named 'pkg_resources' issue. Don’t worry, this
+won’t be an obstacle to continuing the migration.</summary>
+    <category term="python" label="python"/>
+    <category term="setuptools" label="setuptools"/>
+    <category term="uv" label="uv"/>
+    <published>2025-01-26T00:00:00-05:00</published>
+  </entry>
+  <entry>
+    <id>https://www.cosmoscalibur.com/es/blog/2025/modulo-pkg-resources-no-encontrado-en-ambientes-uv/</id>
+    <title>Módulo pkg_resources no encontrado en ambientes UV</title>
+    <updated>2025-01-26T00:00:00-05:00</updated>
+    <author>
+      <name>Edward Villegas-Pulgarin</name>
+    </author>
+    <content type="html">&lt;section class="tex2jax_ignore mathjax_ignore" id="modulo-pkg-resources-no-encontrado-en-ambientes-uv"&gt;
+
+&lt;p&gt;Si como muchos, ya has iniciado la migración al gestor de paquetes
+&lt;strong class="program"&gt;uv&lt;/strong&gt;, puede que te hayas encontrado con el problema de
+&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;ModuleNotFoundError:&lt;/span&gt; &lt;span class="pre"&gt;No&lt;/span&gt; &lt;span class="pre"&gt;module&lt;/span&gt; &lt;span class="pre"&gt;named&lt;/span&gt; &lt;span class="pre"&gt;'pkg_resources'&lt;/span&gt;&lt;/code&gt;. No te preocupes, esto no
+será un obstáculo para continuar la migración.&lt;/p&gt;
+&lt;section id="que-es-pkg-resources"&gt;
+&lt;h2&gt;¿Qué es &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;pkg_resources&lt;/span&gt;&lt;/code&gt;?&lt;/h2&gt;
+&lt;p&gt;El módulo de &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;pkg_resources&lt;/span&gt;&lt;/code&gt; pertenece al paquete de &lt;em&gt;setuptools&lt;/em&gt; y permite el
+acceso a los archivos de recursos y el descubrimiento de extensiones. Sin
+embargo, este módulo no es recomendable y ha sido marcado como obsoleto, y en su
+lugar se debería usar &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;importlib.resources&lt;/span&gt;&lt;/code&gt; e &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;importlib.metadata&lt;/span&gt;&lt;/code&gt;. Sin embargo,
+así esté obsoleto, muchos paquetes lo usan. ¿Qué produce el error?&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="que-es-setuptools"&gt;
+&lt;h2&gt;¿Qué es Setuptools?&lt;/h2&gt;
+&lt;p&gt;&lt;em&gt;Setuptools&lt;/em&gt; es una biblioteca diseñada para ayudar a generar paquetes de
+bibliotecas Python, con rutinas complementarias a &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;distutils&lt;/span&gt;&lt;/code&gt;. Sin embargo, esta
+biblioteca no es parte del &lt;em&gt;core&lt;/em&gt; de Python y es realmente un paquete
+independiente. La instalación base en los sistemas operativos o la instalación
+estándar de Python o de algunos gestores de ambientes como &lt;strong class="program"&gt;conda&lt;/strong&gt;, la
+suelen incluir. Pero la instalación creada con el ambiente de &lt;strong class="program"&gt;uv&lt;/strong&gt; no
+la posee. Aquí se origina el problema, es que muchos paquetes dependen de la
+suposición de tener &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;setuptools&lt;/span&gt;&lt;/code&gt; ya instalado por defecto, y &lt;strong class="program"&gt;uv&lt;/strong&gt; no lo
+dispone de esta forma. Python por defecto no dispone de una herramienta de
+empaquetado y publicación como parte de su &lt;em&gt;core&lt;/em&gt; (&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;setuptools&lt;/span&gt;&lt;/code&gt; está bajo el
+gobierno de &lt;em&gt;PyPA&lt;/em&gt;, pero esto no implica que sea &lt;em&gt;core&lt;/em&gt;).&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="agregar-setuptools-a-las-dependencias"&gt;
+&lt;h2&gt;Agregar &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;setuptools&lt;/span&gt;&lt;/code&gt; a las dependencias&lt;/h2&gt;
+&lt;p&gt;Con el contexto anterior, nos queda una solución clara. El problema no es de
+&lt;strong class="program"&gt;uv&lt;/strong&gt;, es que los paquetes afectados han olvidado añadir en sus
+dependencias el paquete de &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;setuptools&lt;/span&gt;&lt;/code&gt;. Siendo así, nuestra solución al
+problema es simple: añadir &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;setuptools&lt;/span&gt;&lt;/code&gt; a las dependencias.&lt;/p&gt;
+&lt;p&gt;Si tu proyecto usa el archivo &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;requirements.txt&lt;/span&gt;&lt;/code&gt; este es el lugar adecuado para
+añadirlo (ver
+&lt;a class="reference internal" href="../es/blog/2024/uv-alternativa-rapida-a-pip-y-venv/#instalacion-de-paquetes-python"&gt;&lt;span class="std std-ref"&gt;Instalación de paquetes Python&lt;/span&gt;&lt;/a&gt;),
+pero si usas la
+&lt;a class="reference internal" href="../es/blog/2025/configuracion-de-proyectos-y-herramientas-python-con-uv/"&gt;&lt;span class="std std-doc"&gt;gestión de proyectos&lt;/span&gt;&lt;/a&gt;
+de &lt;strong class="program"&gt;uv&lt;/strong&gt; puedes usar &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;uv&lt;/span&gt; &lt;span class="pre"&gt;add&lt;/span&gt; &lt;span class="pre"&gt;setuptools&lt;/span&gt;&lt;/code&gt;, y si es una herramienta será
+necesario inyectar la dependencia &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;--with&lt;/span&gt; &lt;span class="pre"&gt;setuptools&lt;/span&gt;&lt;/code&gt;.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="referencias"&gt;
+&lt;h2&gt;Referencias&lt;/h2&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://setuptools.pypa.io/en/latest/pkg_resources.html"&gt;Package Discovery and Resource Access using pkg_resources&lt;/a&gt;.
+Setuptools.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://setuptools.pypa.io/en/latest/deprecated/index.html"&gt;Guides on backward compatibility &amp;amp; deprecated practice&lt;/a&gt;.
+Setuptools.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://github.com/astral-sh/uv/issues/6384"&gt;Some tools are installed without pkg_resources&lt;/a&gt;.
+GitHub UV.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/section&gt;
+&lt;/section&gt;
+</content>
+    <link href="https://www.cosmoscalibur.com/es/blog/2025/modulo-pkg-resources-no-encontrado-en-ambientes-uv/"/>
+    <summary>Si como muchos, ya has iniciado la migración al gestor de paquetes
+uv, puede que te hayas encontrado con el problema de
+ModuleNotFoundError: No module named 'pkg_resources'. No te preocupes, esto no
+será un obstáculo para continuar la migración.</summary>
+    <category term="python" label="python"/>
+    <category term="setuptools" label="setuptools"/>
+    <category term="uv" label="uv"/>
+    <published>2025-01-26T00:00:00-05:00</published>
+  </entry>
   <entry>
     <id>https://www.cosmoscalibur.com/en/blog/2025/alineacion-planetaria-2025/</id>
     <title>Planetary alignment 2025</title>
@@ -58,7 +202,8 @@ illustrating the alignment of the 7 planets.&lt;/span&gt;&lt;/p&gt;
 &lt;/figure&gt;
 &lt;p&gt;You can explore the planetary configuration using
 &lt;a class="reference external" href="https://eyes.nasa.gov/apps/solar-system/#/mercury?time=2025-02-28T12:30:00.031+00:00&amp;amp;amp;rate=0"&gt;Eyes on the solar system&lt;/a&gt;
-to understand how they appear in their orbits at these moments.&lt;/p&gt;
+or &lt;a class="reference external" href="https://atlasof.space/"&gt;Atlas of Space&lt;/a&gt; to understand how they appear in
+their orbits at these moments.&lt;/p&gt;
 &lt;/section&gt;
 &lt;section id="how-to-observe-the-planets-during-the-planetary-alignment"&gt;
 &lt;h2&gt;How to Observe the Planets During the Planetary Alignment?&lt;/h2&gt;
@@ -183,8 +328,8 @@ ilustrando la alineación de los 7 planetas.&lt;/span&gt;&lt;/p&gt;
 &lt;/figure&gt;
 &lt;p&gt;Puedes explorar con
 &lt;a class="reference external" href="https://eyes.nasa.gov/apps/solar-system/#/mercury?time=2025-02-28T12:30:00.031+00:00&amp;amp;amp;rate=0"&gt;Eyes on the solar system&lt;/a&gt;
-la configuración de los planetas para entender como se ven en estos momentos en
-sus órbitas.&lt;/p&gt;
+o &lt;a class="reference external" href="https://atlasof.space/"&gt;Atlas of Space&lt;/a&gt; la configuración de los planetas para
+entender como se ven en estos momentos en sus órbitas.&lt;/p&gt;
 &lt;/section&gt;
 &lt;section id="como-observas-los-planetas-durante-la-alineacion-planetaria"&gt;
 &lt;h2&gt;¿Cómo observas los planetas durante la alineación planetaria?&lt;/h2&gt;
