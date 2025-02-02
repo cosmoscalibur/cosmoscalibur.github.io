@@ -1,3 +1,7 @@
+# Rust
+
+## Uso de `cargo`
+
 `cargo new proyecto` para crear proyecto nuevo con su directorio. Si el
 directorio existe, usamos `cargo init` en el directorio para su inicialización.
 La inicialización incluye un directorio `src` con un archivo `main.rs` con
@@ -12,3 +16,29 @@ en la creación con `new` como en la inicialización con `init`.
 
 El archivo de proyecto es necesario para la compilación (`cargo build`) o
 ejecución (`cargo run`).
+
+Se puede compilar directamente el código fuente sin `cargo` usando `rustc`.
+
+## Hola mundo en Rust
+
+Los códigos ejecutables de Rust siempre requieren una función `main`. Las
+funciones se especifican con `fn` seguido del nombre, los paréntesis para
+argumentos, llave para el cuerpo de la función. Las líneas sentencias requieren
+la terminación de `;`
+
+```{code} rust
+fn main(){
+    println!("Hola, Edward! 🧠");
+}
+```
+
+`println` es una macro (por eso termina en `!`) para imprimir, y esto nos ayuda
+con el manejo de la existencia de múltiples argumentos.
+
+## Asignación de variables
+
+Para asignar variables usamos `let` seguido del nombre de la variable, `:` el
+tipo de variable, `=` y el valor de la variable.
+
+Los tipos de variables primitivos se pueden consultar en la documentación del
+[*crate* `std`](https://doc.rust-lang.org/std/index.html#primitives).

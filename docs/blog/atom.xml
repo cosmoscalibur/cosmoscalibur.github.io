@@ -2,10 +2,340 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="es">
   <id>https://www.cosmoscalibur.com/</id>
   <title>Cosmoscalibur</title>
-  <updated>2025-01-27T04:01:46.334629+00:00</updated>
+  <updated>2025-02-02T18:46:08.147905+00:00</updated>
   <link href="https://www.cosmoscalibur.com/"/>
   <link href="https://www.cosmoscalibur.com/blog/atom.xml" rel="self"/>
   <generator uri="https://ablog.readthedocs.io/" version="0.11.12">ABlog</generator>
+  <entry>
+    <id>https://www.cosmoscalibur.com/en/blog/2025/instala-tu-asistente-local-de-ia/</id>
+    <title>Install Your Local AI Assistant</title>
+    <updated>2025-02-02T00:00:00-05:00</updated>
+    <author>
+      <name>Edward Villegas-Pulgarin</name>
+    </author>
+    <content type="html">&lt;section class="tex2jax_ignore mathjax_ignore" id="install-your-local-ai-assistant"&gt;
+
+&lt;p&gt;If you wish to install your own artificial intelligence assistant on your
+device, free of charge, without creating accounts, exposing your data, and all
+under your control, this is possible thanks to Ollama. Available for Windows,
+Linux, and Mac. I will explain how you can obtain the assistants for Qwen,
+Llama, and Deepseek.&lt;/p&gt;
+&lt;section id="hardware-requirements-for-your-ai-assistant"&gt;
+&lt;h2&gt;Hardware Requirements for Your AI Assistant&lt;/h2&gt;
+&lt;p&gt;The first thing we need to consider is that Ollama does not have specific
+hardware requirements; these depend on the language (or artificial intelligence)
+models you plan to use. The most important factor in determining these
+requirements is the number of parameters in the model, which you will typically
+see mentioned as billions or trillions. Large Language Models (LLMs) available
+in commercial services have trillions of parameters and require servers with not
+just a great CPU power but also GPU. If the model is of billions of parameters,
+it’s possible to consider using local machines (our computers), but if they are
+close to 100 billions, you will need cutting-edge hardware with RAM over 64 GB
+and several RTX graphics cards. Between 4 billions and 20 billions of
+parameters, you can consider their use on gaming machines, from a single RTX
+graphics card (series 2000 and later) and 16 GB of RAM, as is my case (but more
+than 10 billions run forcefully and even generate the closure of open
+applications). If your machine does not have a GPU but has at least 16 GB of
+RAM, you could use models with fewer than 4 billions of parameters smoothly. The
+lesser the number of parameters, the less hardware resource required, but also
+these are lower-precision models.&lt;/p&gt;
+&lt;div class="admonition attention"&gt;
+&lt;p class="admonition-title"&gt;Atención&lt;/p&gt;
+&lt;p&gt;With the release of &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;deepseek-r1&lt;/span&gt;&lt;/code&gt;, there has been much discussion about its
+economic benefits and ease of local execution, however, this is important
+regarding model training and not concerning model inference. The lightweight
+models of &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;deepseek-r1&lt;/span&gt;&lt;/code&gt; are distilled versions of Qwen and Llama, so if
+Deepseek works for you, the originals will work as well, and in my opinion,
+they are better.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/section&gt;
+&lt;section id="installing-ollama"&gt;
+&lt;h2&gt;Installing Ollama&lt;/h2&gt;
+&lt;p&gt;To install Ollama, if you use Mac or Windows, you can use the downloadable
+installers available on their &lt;a class="reference external" href="https://ollama.com/download/windows"&gt;website&lt;/a&gt;,
+but if you use Linux, you can run directly in your console:&lt;/p&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;curl&lt;span class="w"&gt; &lt;/span&gt;-fsSL&lt;span class="w"&gt; &lt;/span&gt;https://ollama.com/install.sh&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;sh
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;This will take a few minutes and detect the appropriate graphics card
+configuration if we have one.&lt;/p&gt;
+&lt;p&gt;Once finished, we will have the language model manager ready to install and run
+our first model.&lt;/p&gt;
+&lt;section id="installing-a-language-model-with-ollama"&gt;
+&lt;h3&gt;Installing a Language Model with Ollama&lt;/h3&gt;
+&lt;p&gt;But which language models can we install? We have access to the models published
+on the official Ollama website in the
+&lt;a class="reference external" href="https://ollama.com/search"&gt;model search section&lt;/a&gt;. The main families we can
+identify are:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;Qwen: Family of models produced by Alibaba (China). I highlight the
+capabilities of the 2.5 series, which include general and code models.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Mistral: Family of models produced by Mistral AI, very close to the academic
+community with a strong open source commitment from the start. I highlight the
+math-specialized model.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Phi: Family of models produced by Microsoft. An interesting bet from Microsoft
+with “lightweight” models that have maximum capabilities.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Llama: Family of models produced by Meta (Facebook). The path with the 3.2
+series is highlighted for lightweight models and its code assistant
+“Codellama”.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Deepseek: Family of models produced by Deepseek, a company under the
+High-Flyer umbrella (China). I must say that my experience with &lt;em&gt;deepseek&lt;/em&gt; has
+not been good; it confuses language, takes complex paths to simple problems,
+and is less precise. However, I find its default behavior of showing the
+“reasoning” before the final answer interesting, and in response to very clear
+instructions, it can be easily guided.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;To install and run a language model, we proceed with the &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;run&lt;/span&gt;&lt;/code&gt; option of
+&lt;strong class="program"&gt;ollama&lt;/strong&gt;, indicating the name of the model and the number of parameters
+separated by &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;:&lt;/span&gt;&lt;/code&gt;, and if no number of parameters is indicated, it will take the
+default version. For example, to install Qwen2.5 with 7 billion parameters, you
+would do:&lt;/p&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;ollama&lt;span class="w"&gt; &lt;/span&gt;run&lt;span class="w"&gt; &lt;/span&gt;qwen2.5:7b
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;This instruction can be seen on the model page when selecting the number of
+parameters from the list on the right.&lt;/p&gt;
+&lt;figure class="align-center" id="id1"&gt;
+&lt;img alt="Information about Qwen2.5 Model on Ollama's Website" src="https://www.cosmoscalibur.com/_images/ollama-web-qwen25.png" style="width: 800px; height: 400px;" /&gt;
+&lt;figcaption&gt;
+&lt;p&gt;&lt;span class="caption-text"&gt;Information about the Qwen2.5 model on Ollama’s website.&lt;/span&gt;&lt;/p&gt;
+&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;Other examples could be:&lt;/p&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;ollama&lt;span class="w"&gt; &lt;/span&gt;run&lt;span class="w"&gt; &lt;/span&gt;llama3.2:3b
+ollama&lt;span class="w"&gt; &lt;/span&gt;run&lt;span class="w"&gt; &lt;/span&gt;phi3.5
+ollama&lt;span class="w"&gt; &lt;/span&gt;run&lt;span class="w"&gt; &lt;/span&gt;deepseek-r1:7b
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/section&gt;
+&lt;section id="query-your-artificial-intelligence-assistant"&gt;
+&lt;h3&gt;Query Your Artificial Intelligence Assistant&lt;/h3&gt;
+&lt;p&gt;Once installed, it enables the console for query entry. But if we want to go
+back, we can simply run it again with the &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;run&lt;/span&gt;&lt;/code&gt; option. Example:&lt;/p&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;ollama&lt;span class="w"&gt; &lt;/span&gt;run&lt;span class="w"&gt; &lt;/span&gt;qwen2.5:7b
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;We write our query and press Enter &lt;kbd class="kbd docutils literal notranslate"&gt;↵&lt;/kbd&gt;.&lt;/p&gt;
+&lt;figure class="align-center" id="id2"&gt;
+&lt;img alt="Query with the Qwen2.5 language model in Spanish and English" src="https://www.cosmoscalibur.com/_images/ollama-run-qwen25.png" style="width: 800px; height: 400px;" /&gt;
+&lt;figcaption&gt;
+&lt;p&gt;&lt;span class="caption-text"&gt;Query with the Qwen2.5 language model in Spanish and English.&lt;/span&gt;&lt;/p&gt;
+&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;If you want to exit any assistant with Ollama, you should type &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;/bye&lt;/span&gt;&lt;/code&gt; and press
+Enter &lt;kbd class="kbd docutils literal notranslate"&gt;↵&lt;/kbd&gt;.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="other-useful-ollama-options"&gt;
+&lt;h3&gt;Other Useful Ollama Options&lt;/h3&gt;
+&lt;p&gt;If you want to list the installed models, you can run &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;ollama&lt;/span&gt; &lt;span class="pre"&gt;list&lt;/span&gt;&lt;/code&gt;, and to
+delete a model that you no longer need (and free up disk space), you can use
+&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;ollama&lt;/span&gt; &lt;span class="pre"&gt;rm&lt;/span&gt;&lt;/code&gt; followed by the name of the model as listed with &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;ollama&lt;/span&gt; &lt;span class="pre"&gt;list&lt;/span&gt;&lt;/code&gt;. For
+example, &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;ollama&lt;/span&gt; &lt;span class="pre"&gt;rm&lt;/span&gt; &lt;span class="pre"&gt;deepseek-r1:14b&lt;/span&gt;&lt;/code&gt;.&lt;/p&gt;
+&lt;/section&gt;
+&lt;/section&gt;
+&lt;section id="chatgpt-like-web-interface"&gt;
+&lt;h2&gt;ChatGPT-like Web Interface&lt;/h2&gt;
+&lt;p&gt;The terminal is not user-friendly for all users, so you can install
+&lt;a class="reference external" href="https://openwebui.com/"&gt;Open WebUI&lt;/a&gt; and have a chat interface similar to
+ChatGPT that allows you to organize conversations, add collections of knowledge
+files used for analyzing or answering questions about them, and select the model
+you want to use for a specific conversation. It also offers a testing option
+that lets you evaluate the different models you have installed.&lt;/p&gt;
+&lt;p&gt;If you have
+&lt;a class="reference internal" href="../en/blog/2024/uv-alternativa-rapida-a-pip-y-venv/"&gt;&lt;span class="std std-doc"&gt;&lt;strong class="program"&gt;uv&lt;/strong&gt; installed&lt;/span&gt;&lt;/a&gt;,
+you can install it with the following command:&lt;/p&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;uv&lt;span class="w"&gt; &lt;/span&gt;tool&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;--python&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;3&lt;/span&gt;.11&lt;span class="w"&gt; &lt;/span&gt;open-webui
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;After that, start the local server with &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;open-webui&lt;/span&gt; &lt;span class="pre"&gt;serve&lt;/span&gt;&lt;/code&gt;. Use the URL
+indicated upon execution to paste into your browser’s address bar (by default,
+it is &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;http://0.0.0.0:8080&lt;/span&gt;&lt;/code&gt;).&lt;/p&gt;
+&lt;figure class="align-center" id="id3"&gt;
+&lt;img alt="Preview of Open Web UI in organizing conversations with language models" src="https://www.cosmoscalibur.com/_images/open-webui.png" style="width: 800px; height: 400px;" /&gt;
+&lt;figcaption&gt;
+&lt;p&gt;&lt;span class="caption-text"&gt;Preview of Open Web UI in organizing conversations with language models.&lt;/span&gt;&lt;/p&gt;
+&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;/section&gt;
+&lt;/section&gt;
+</content>
+    <link href="https://www.cosmoscalibur.com/en/blog/2025/instala-tu-asistente-local-de-ia/"/>
+    <summary>If you wish to install your own artificial intelligence assistant on your
+device, free of charge, without creating accounts, exposing your data, and all
+under your control, this is possible thanks to Ollama. Available for Windows,
+Linux, and Mac. I will explain how you can obtain the assistants for Qwen,
+Llama, and Deepseek.Information about Qwen2.5 Model on Ollama's Website</summary>
+    <category term="artificialintelligence" label="artificial intelligence"/>
+    <category term="languagemodel" label="language model"/>
+    <category term="ollama" label="ollama"/>
+    <published>2025-02-02T00:00:00-05:00</published>
+  </entry>
+  <entry>
+    <id>https://www.cosmoscalibur.com/es/blog/2025/instala-tu-asistente-local-de-ia/</id>
+    <title>Instala tu asistente local de IA</title>
+    <updated>2025-02-02T00:00:00-05:00</updated>
+    <author>
+      <name>Edward Villegas-Pulgarin</name>
+    </author>
+    <content type="html">&lt;section class="tex2jax_ignore mathjax_ignore" id="instala-tu-asistente-local-de-ia"&gt;
+
+&lt;p&gt;Si deseas instalar tu propio asistente de inteligencia artificial en tu equipo,
+de forma gratuita, sin crear cuentas, exponer tus datos y todo bajo tu control,
+esto es posible gracias a Ollama. Disponible en Windows, Linux y Mac. Te explico
+cómo disponer de los asistentes de Qwen, Llama y Deepseek.&lt;/p&gt;
+&lt;section id="requisitos-de-hardware-para-tu-asistente-de-inteligencia-artificial"&gt;
+&lt;h2&gt;Requisitos de &lt;em&gt;hardware&lt;/em&gt; para tu asistente de inteligencia artificial&lt;/h2&gt;
+&lt;p&gt;Lo primero que debemos tener en cuenta es que Ollama no posee requerimientos de
+&lt;em&gt;hardware&lt;/em&gt; específicos, y estos dependen de los modelos de lenguaje (o
+inteligencia artificial) que vayas a usar. Lo más importante para saber estos
+requerimientos, es el número de parámetros del modelo, que típicamente verás las
+menciones de billones o trillones de parámetros (en el contexto del sistema
+internacional, sería miles de millones y billones, recuerda que en inglés no
+existe “miles de millones”). Los grandes modelos de lenguaje (LLM) disponibles
+en los servicios comerciales disponen de “trillones” de parámetros y requieren
+de servidores no solo con una gran potencia de CPU, sino también de GPU. Si el
+modelo es de “billones” de parámetros es posible considerar usar equipos locales
+(nuestros computadores), pero si están cerca de los 100 “billones” de parámetros
+vas a necesitar equipos de última generación con RAM superior a 64 GB y varias
+tarjetas gráficas RTX. Entre los 4 “billones” y 20 “billones” de parámetros
+puedes considerar su uso en equipos &lt;em&gt;gamer&lt;/em&gt;, desde una sola tarjeta gráfica RTX
+(serie 2000 en adelante) y 16 GB de RAM, cómo es mi caso (pero más de 10
+“billones” de parámetros se ejecutan de manera forzada e incluso genera el
+cierre de aplicaciones abiertas). Si tu equipo no posee GPU, pero tienes al
+menos 16 GB de RAM, podrías usar con cierta fluidez los modelos de menos de 4
+“billones” de parámetros. En la medida que reduce el número de parámetros se
+requiere menor recurso de &lt;em&gt;hardware&lt;/em&gt;, pero también son modelos de menor
+precisión.&lt;/p&gt;
+&lt;div class="admonition attention"&gt;
+&lt;p class="admonition-title"&gt;Atención&lt;/p&gt;
+&lt;p&gt;Con la salida de &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;deepseek-r1&lt;/span&gt;&lt;/code&gt; se ha mencionado mucho sobre lo económico que
+es y la facilidad de ejecución en local, sin embargo esto es importante
+respecto al entrenamiento del modelo, y no respecto a la consulta del modelo.
+Los modelos livianos de &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;deepseek-r1&lt;/span&gt;&lt;/code&gt; son modelos destilados de Qwen y Llama,
+por lo cuál, si te funciona Deepseek, te funcionan los originales y en mi
+opinión, son mejores.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/section&gt;
+&lt;section id="instalacion-de-ollama"&gt;
+&lt;h2&gt;Instalación de Ollama&lt;/h2&gt;
+&lt;p&gt;Para instalar Ollama, si usas Mac o Windows, puedes usar los instaladores
+descargables disponibles en su &lt;a class="reference external" href="https://ollama.com/download/windows"&gt;sitio web&lt;/a&gt;,
+pero, si usas Linux, puedes ejecutar en tu consola directamente:&lt;/p&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;curl&lt;span class="w"&gt; &lt;/span&gt;-fsSL&lt;span class="w"&gt; &lt;/span&gt;https://ollama.com/install.sh&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;sh
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Esto tomará unos minutos, y detectará la configuración adecuada para el uso de
+tarjeta gráfica si poseemos una.&lt;/p&gt;
+&lt;p&gt;Al terminar, tendremos el gestor de modelos de lenguaje listo para instalar y
+ejecutar nuestro primer modelo.&lt;/p&gt;
+&lt;section id="instala-un-modelo-de-lenguaje-con-ollama"&gt;
+&lt;h3&gt;Instala un modelo de lenguaje con Ollama&lt;/h3&gt;
+&lt;p&gt;¿Pero cuáles modelos de lenguaje podemos instalar? Tenemos a nuestra disposición
+los modelos publicados en la web oficial de Ollama en la sección de
+&lt;a class="reference external" href="https://ollama.com/search"&gt;búsqueda de modelos&lt;/a&gt;. Las grandes familias que
+podemos identificar son:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;Qwen: Familia de modelos producidos por Alibaba (China). Destaco las
+capacidades de la serie 2.5, general y de código.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Mistral: Familia de modelos producidos por Mistral AI, muy cercanos a la
+comunidad académica, con una fuerte apuesta desde el inicio en el &lt;em&gt;open
+source&lt;/em&gt;. Destaco el modelo especializado en matemáticas.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Phi: Familia de modelos producidos por Microsoft. La apuesta interesante de
+Microsoft con modelos “livianos” con capacidades máximas.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Llama: Familia de modelos producidos por Meta (Facebook). Se destaca el camino
+con la serie 3.2 para modelos livianos y su asistente de código “Codellama”.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Deepseek: Familia de modelos producidos por Deepseek, empresa bajo la
+cobertura de High-Flyer (China). Debo decir que no tengo una buena experiencia
+con &lt;em&gt;deepseek&lt;/em&gt;, confunde el lenguaje, toma caminos complicados a problemas
+simples, es menos preciso. Pero me parece interesante su comportamiento por
+defecto de mostrar el “razonamiento” previo a la respuesta final, y que ante
+instrucciones muy claras puede ser guiado fácilmente.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Para instalar y ejecutar un modelo de lenguaje, procedemos con la opción &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;run&lt;/span&gt;&lt;/code&gt;
+de &lt;strong class="program"&gt;ollama&lt;/strong&gt;, indicando el nombre del modelo y el número de parámetros
+separado por &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;:&lt;/span&gt;&lt;/code&gt;, y si no se indica el número de parámetros tomará la versión
+por defecto. Ejemplo, si queremos instalar Qwen2.5 de 7 “billones” de
+parámetros, será:&lt;/p&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;ollama&lt;span class="w"&gt; &lt;/span&gt;run&lt;span class="w"&gt; &lt;/span&gt;qwen2.5:7b
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Esta instrucción la veremos en la página de modelos cuando seleccionamos del
+listado el número de parámetros del modelo, hacia la derecha.&lt;/p&gt;
+&lt;figure class="align-center" id="id1"&gt;
+&lt;img alt="Información del modelo Qwen2.5 en la web de Ollama" src="https://www.cosmoscalibur.com/_images/ollama-web-qwen25.png" style="width: 800px; height: 400px;" /&gt;
+&lt;figcaption&gt;
+&lt;p&gt;&lt;span class="caption-text"&gt;Información del modelo Qwen2.5 en la web de Ollama.&lt;/span&gt;&lt;/p&gt;
+&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;Otros ejemplos pueden ser:&lt;/p&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;ollama&lt;span class="w"&gt; &lt;/span&gt;run&lt;span class="w"&gt; &lt;/span&gt;llama3.2:3b
+ollama&lt;span class="w"&gt; &lt;/span&gt;run&lt;span class="w"&gt; &lt;/span&gt;phi3.5
+ollama&lt;span class="w"&gt; &lt;/span&gt;run&lt;span class="w"&gt; &lt;/span&gt;deepseek-r1:7b
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/section&gt;
+&lt;section id="consulta-tu-asistente-de-inteligencia-artificial"&gt;
+&lt;h3&gt;Consulta tu asistente de inteligencia artificial&lt;/h3&gt;
+&lt;p&gt;Una vez instalado, nos habilita la consola para el ingreso de consultas. Pero si
+queremos volver, basta con ejecutar nuevamente con la opción de &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;run&lt;/span&gt;&lt;/code&gt;. Ejemplo:&lt;/p&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;ollama&lt;span class="w"&gt; &lt;/span&gt;run&lt;span class="w"&gt; &lt;/span&gt;qwen2.5:7b
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Escribimos nuestra consulta y presionamos Enter &lt;kbd class="kbd docutils literal notranslate"&gt;↵&lt;/kbd&gt;.&lt;/p&gt;
+&lt;figure class="align-center" id="id2"&gt;
+&lt;img alt="Consulta con el modelo de lenguaje Qwen2.5 en español y en inglés" src="https://www.cosmoscalibur.com/_images/ollama-run-qwen25.png" style="width: 800px; height: 400px;" /&gt;
+&lt;figcaption&gt;
+&lt;p&gt;&lt;span class="caption-text"&gt;Consulta con el modelo de lenguaje Qwen2.5 en español y en inglés.&lt;/span&gt;&lt;/p&gt;
+&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;Si deseas salir de cualquier asistente con Ollama, debes digitar &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;/bye&lt;/span&gt;&lt;/code&gt; y Enter
+&lt;kbd class="kbd docutils literal notranslate"&gt;↵&lt;/kbd&gt;.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="otras-opciones-utiles-de-ollama"&gt;
+&lt;h3&gt;Otras opciones útiles de Ollama&lt;/h3&gt;
+&lt;p&gt;Si deseas listar los modelos instalados, puedes ejecutar &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;ollama&lt;/span&gt; &lt;span class="pre"&gt;list&lt;/span&gt;&lt;/code&gt;, y para
+borrar un modelo que ya no necesitas (y liberar espacio de disco), puedes usar
+&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;ollama&lt;/span&gt; &lt;span class="pre"&gt;rm&lt;/span&gt;&lt;/code&gt; seguido del nombre del modelo tal cómo es listado con &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;ollama&lt;/span&gt; &lt;span class="pre"&gt;list&lt;/span&gt;&lt;/code&gt;.
+Ejemplo, &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;ollama&lt;/span&gt; &lt;span class="pre"&gt;rm&lt;/span&gt; &lt;span class="pre"&gt;deepseek-r1:14b&lt;/span&gt;&lt;/code&gt;.&lt;/p&gt;
+&lt;/section&gt;
+&lt;/section&gt;
+&lt;section id="interfaz-web-tipo-chatgpt"&gt;
+&lt;h2&gt;Interfaz web tipo ChatGPT&lt;/h2&gt;
+&lt;p&gt;La terminal no es algo amigable con todos los usuarios, así que puedes instalar
+&lt;a class="reference external" href="https://openwebui.com/"&gt;Open WebUI&lt;/a&gt; y disponer de una interfaz similar a
+ChatGPT que te permite organizar conversaciones, agregar colecciones de archivos
+de conocimiento que sean usados para analizar o responder preguntas sobre estos,
+y que te permita seleccionar el modelo que deseas usar para una conversación
+específica. También ofrece una opción de pruebas que te permite evaluar los
+distintos modelos que tienes instalados.&lt;/p&gt;
+&lt;p&gt;Si dispones de
+&lt;a class="reference internal" href="../es/blog/2024/uv-alternativa-rapida-a-pip-y-venv/"&gt;&lt;span class="std std-doc"&gt;&lt;strong class="program"&gt;uv&lt;/strong&gt; instalado&lt;/span&gt;&lt;/a&gt;,
+puedes instalarlo de la siguiente forma:&lt;/p&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;uv&lt;span class="w"&gt; &lt;/span&gt;tool&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;--python&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;3&lt;/span&gt;.11&lt;span class="w"&gt; &lt;/span&gt;open-webui
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Y después de esto ejecutar el servidor local con &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;open-webui&lt;/span&gt; &lt;span class="pre"&gt;serve&lt;/span&gt;&lt;/code&gt;. Usa la URL
+indicada al ejecutar para pegar en la barra de dirección del navegador (por
+defecto es &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;http://0.0.0.0:8080&lt;/span&gt;&lt;/code&gt;).&lt;/p&gt;
+&lt;figure class="align-center" id="id3"&gt;
+&lt;img alt="Vista previa de Open Web UI en la organización de conversaciones con modelos de lenguaje" src="https://www.cosmoscalibur.com/_images/open-webui.png" style="width: 800px; height: 400px;" /&gt;
+&lt;figcaption&gt;
+&lt;p&gt;&lt;span class="caption-text"&gt;Vista previa de Open Web UI en la organización de conversaciones con modelos de lenguaje.&lt;/span&gt;&lt;/p&gt;
+&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;/section&gt;
+&lt;/section&gt;
+</content>
+    <link href="https://www.cosmoscalibur.com/es/blog/2025/instala-tu-asistente-local-de-ia/"/>
+    <summary>Si deseas instalar tu propio asistente de inteligencia artificial en tu equipo,
+de forma gratuita, sin crear cuentas, exponer tus datos y todo bajo tu control,
+esto es posible gracias a Ollama. Disponible en Windows, Linux y Mac. Te explico
+cómo disponer de los asistentes de Qwen, Llama y Deepseek.Información del modelo Qwen2.5 en la web de Ollama</summary>
+    <category term="inteligenciaartificial" label="inteligencia artificial"/>
+    <category term="modelodelenguaje" label="modelo de lenguaje"/>
+    <category term="ollama" label="ollama"/>
+    <published>2025-02-02T00:00:00-05:00</published>
+  </entry>
   <entry>
     <id>https://www.cosmoscalibur.com/en/blog/2025/modulo-pkg-resources-no-encontrado-en-ambientes-uv/</id>
     <title>No module named pkg_resources found in UV environment</title>

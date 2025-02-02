@@ -1,9 +1,3 @@
-```{code} bash
-curl -fsSL https://ollama.com/install.sh | sh
-ollama run llama3.2:3b
-# qwen2.5:7b
-```
-
 ```
 sudo dd bs=4M if=manjaro-kde-24.1.2-241104-linux610.iso of=/dev/sda status=progress oflang=sync
 ```

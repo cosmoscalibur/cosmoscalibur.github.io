@@ -56,7 +56,8 @@ uv tool install mdformat \
   --with mdformat-frontmatter \
   --with mdformat-footnote \
   --with mdformat-gfm-alerts \
-  --with mdformat-myst
+  --with mdformat-myst \
+  --with mdformat-admon
 uv tool install rstfmt
 uv tool install docstrfmt
 uv tool install esbonio --prerelease=allow
