@@ -2,10 +2,212 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="es">
   <id>https://www.cosmoscalibur.com/</id>
   <title>Cosmoscalibur</title>
-  <updated>2025-02-02T18:46:08.147905+00:00</updated>
+  <updated>2025-02-14T04:38:14.759639+00:00</updated>
   <link href="https://www.cosmoscalibur.com/"/>
   <link href="https://www.cosmoscalibur.com/blog/atom.xml" rel="self"/>
   <generator uri="https://ablog.readthedocs.io/" version="0.11.12">ABlog</generator>
+  <entry>
+    <id>https://www.cosmoscalibur.com/es/blog/2025/alucinacion-de-la-inteligencia-artificial/</id>
+    <title>Alucinación de la inteligencia artificial</title>
+    <updated>2025-02-13T00:00:00-05:00</updated>
+    <author>
+      <name>Edward Villegas-Pulgarin</name>
+    </author>
+    <content type="html">&lt;section class="tex2jax_ignore mathjax_ignore" id="alucinacion-de-la-inteligencia-artificial"&gt;
+
+&lt;p&gt;Los robots también sueñan. Sí, y sueñan despiertos. La alucinación en los
+modelos de lenguaje (o inteligencias artificiales) es inevitable. No todo lo que
+genera una IA es confiable y debes tener criterios adecuados para juzgar la
+información generada. En general, la IA es un buen asistente, pero solo eso, te
+debe asistir y la última palabra siempre debe ser tuya, y aquí te ilustraré la
+razón.&lt;/p&gt;
+&lt;section id="que-es-la-alucinacion-en-una-inteligencia-artificial"&gt;
+&lt;h2&gt;¿Qué es la alucinación en una inteligencia artificial?&lt;/h2&gt;
+&lt;p&gt;Alucinación es el nombre del evento o fenómeno asociado a la generación de
+respuestas coherentes y correctas gramaticalmente, pero que no son correctas en
+términos de los hechos o que no poseen sentido. Dicho de otra manera, es la
+generación de información falsa.&lt;/p&gt;
+&lt;p&gt;Ejemplo, al preguntar al modelo de &lt;em&gt;deepseek-r1:7b&lt;/em&gt;, sobre qué colombianos han
+recibido el premio Nobel, obtenemos una respuesta completamente errada:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;div&gt;&lt;p&gt;Sí, Colombia ha tenido algunos personajes及相关人士 who have ganado el Premio
+Nobel. Aquí tienes algunos ejemplos:&lt;/p&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;&lt;p&gt;Johnatan Salamanca (Nobel de Paz, 2019): Jefe del gobierno indigene de los
+Países Bajos de Chocó y premiado por su trabajo en la lucha por los
+derechos de autodeterminación.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Andrés Crestó (Premio Nobel de Ciencias, 2015, pero noPremio Nobel formal):
+Fue Premiado por su trabajo en la documentación sobre las protestas de
+2005.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Carlos Ghosn (Premio Nobel de Letras, 2018): Premiado por su autobiografía
+“El Viento del Horizonte”, que narra sus experiencias como empresario y
+Activity en torno a los conflictos entre Colombia y Ecuador.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Alvaro Uribe (Premio Nobel de derechos humanos, 1997, aunque noPremio Nobel
+formal): Considerado uno de los más importantes ex presidentes Colombianos
+y premiado por su trabajo en la derechos humanos.&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Es importante Notar que algunos de estos personajes, como Andrés Crestó, no
+han ganado el Premio Nobel de manera formal, sino que han sido Premiados
+porOther organizations o comités.&lt;/p&gt;
+&lt;/div&gt;&lt;/blockquote&gt;
+&lt;/section&gt;
+&lt;section id="tipos-de-alucinaciones-de-los-modelos-de-lenguaje"&gt;
+&lt;h2&gt;Tipos de alucinaciones de los modelos de lenguaje&lt;/h2&gt;
+&lt;p&gt;Las alucinaciones en los modelos de lenguaje (LLM) han sido caracterizadas (los
+ejemplos han sido realizados con modelos que he instalado):&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;Errores o contradicciones factuales: es un tipo de &lt;strong&gt;alucinación factual&lt;/strong&gt; que
+corresponde cuando las respuestas pueden ser contrastadas con información real
+y la respuesta presenta contradicción o falsedad. El ejemplo previo
+corresponde a un error factual.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Fabricación de hechos: Es un tipo de alucinación factual que corresponde a
+respuestas que no pueden ser verificables, son datos inexistentes o las
+respuestas son debatibles. Ejemplo, al preguntar al modelo &lt;em&gt;Qwen:0.5b&lt;/em&gt; sobre
+la guerra más importante del siglo XX, refiere a la guerra &lt;em&gt;Osa-Salvador&lt;/em&gt;, la
+cual no existe.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Inconsistencia de instrucción: Es un tipo de alucinación de fidelidad en la
+cual la instrucción o pregunta es desviada o alterada. Ejemplo, al preguntar
+al modelo &lt;em&gt;Llama3.2:3b&lt;/em&gt; por “&lt;em&gt;Traduce al inglés: “Capital de Francia”&lt;/em&gt;”,
+responde “&lt;em&gt;La traducción al inglés de “Capitol de Francia” es “Paris”.&lt;/em&gt;”. Esto
+implica desviar la instrucción de la traducción por la instrucción de
+responder a la capital, perdiendo la intención transmitida en el contexto.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Inconsistencia de contexto: Es un tipo de alucinación de fidelidad en la cual
+la instrucción ignora información del contexto. Ejemplo, al preguntarle a
+&lt;em&gt;Llama3.1:8b&lt;/em&gt; por “&lt;em&gt;El plural de mamá es mamás. Cuál es el plural de mamá?&lt;/em&gt;”,
+la respuesta es “&lt;em&gt;Lo siento, pero creo que hay un error en tu afirmación. En
+castellano, el plural correcto de “mamá” es “mamas”. No “mamás”.&lt;/em&gt;”.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Inconsistencia lógica: Es un tipo de alucinación de fidelidad en la cual se
+presentan contradicciones lógicas, por ejemplo, en razonamientos matemáticos.
+Ejemplo, al preguntarle a &lt;em&gt;mistral-nemo:12b&lt;/em&gt; por &lt;em&gt;Factorizar 6x^2-13x-8&lt;/em&gt;, su
+respuesta es “&lt;em&gt;(6x + 4)(x - 2)&lt;/em&gt;”.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/section&gt;
+&lt;section id="por-que-alucinan-los-modelos-de-lenguaje"&gt;
+&lt;h2&gt;¿Por qué alucinan los modelos de lenguaje?&lt;/h2&gt;
+&lt;p&gt;Hay múltiples motivos por los cuales los modelos de lenguaje (LLM) presentan
+alucinaciones. Estos pueden venir de:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;Datos de entrenamiento desactualizados: Los modelos poseen un conjunto de
+datos base sobre los cuales se entrenan y que está limitado en el tiempo. Por
+ese motivo si el modelo tuvo un corte de datos en 2022, no puedes esperar
+respuestas basadas en información posterior. Es importante estar al tanto del
+corte de datos del modelo que escojas.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Sesgos de datos: La recopilación de información puede presentar sesgos, y el
+más común que podemos encontrar obedece al generado por el lenguaje de la
+mayor parte de fuentes. Ejemplo, los modelos de &lt;em&gt;Qwen&lt;/em&gt; y &lt;em&gt;Deepseek&lt;/em&gt;, poseen
+fuerte sesgo al inglés y al chino (algo notorio en &lt;em&gt;deepseek&lt;/em&gt; y en los modelos
+de &lt;em&gt;qwen&lt;/em&gt; livianos).&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Fuentes con datos errados: En general, las fuentes no son depuradas, y hay
+alta presencia de datos por extracción web de fuentes generales, que pueden
+contener información errónea/falsa (incluso de manera deliberada cómo ataque a
+los modelos de lenguaje).&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Ausencia de datos o de fuente de la verdad: No todo lo que podríamos consultar
+se encuentra en el conjunto de datos o simplemente no hay información. Esto
+puede ser por ejemplo, por limitaciones de derechos de autor en el contenido
+existente o asociado a la limitación del conocimiento mismo.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Preguntas ambiguas: A mayor ambigüedad de la pregunta, mayor la probabilidad
+de alucinación porque está sujeto a la “interpretación” del modelo. Puedes
+considerar cómo si el modelo contrastará con preguntas similares. En general,
+vamos a mejorar el resultado aumentando el nivel de especificación en la
+consulta.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Fallas de razonamiento: La mayor parte de modelos disponen de bajas
+capacidades de razonamiento. Los LLM entienden la estructura del lenguaje (o
+imitan la estructura), pero no hay cadenas causales dentro del contexto que
+representan sus palabras (&lt;em&gt;tokens&lt;/em&gt;).&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Alta complejidad computacional: En la medida que la complejidad computacional
+de un problema aumenta, este también genera mayor sensibilidad a las
+alucinaciones, por ejemplo, los problemas combinatorios.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/section&gt;
+&lt;section id="se-pueden-evitar-las-alucinaciones"&gt;
+&lt;h2&gt;¿Se pueden evitar las alucinaciones?&lt;/h2&gt;
+&lt;p&gt;Con todo lo mencionado anteriormente, una pregunta importante es si este
+problema de las alucinaciones es posible solucionarse, pero la respuesta sincera
+y aunque no nos guste, es que siempre existirá la alucinación en los modelos de
+lenguaje (y de los modelos de razonamiento).&lt;/p&gt;
+&lt;p&gt;El conjunto de datos de un entrenamiento de un modelo siempre es un subconjunto
+o aproximación del mundo real, pero también la construcción misma del modelo es
+resultado de un proceso iterativo que busca patrones en su conjunto de datos y
+le permite converger, y bajo dicha convergencia detenerse en el proceso de
+aproximarse cada vez más a los datos que son fuente de la verdad. Pero en la
+medida que nos acercamos más a replicar el conjunto de datos, esto genera un
+sobreajuste del modelo y lleva a la perdida de generalidad. Es decir, el modelo
+es una aproximación al conjunto de datos, y el conjunto de datos es un
+subconjunto del mundo real. Siempre existirá alucinación.&lt;/p&gt;
+&lt;p&gt;Matemáticamente, se demuestra que los modelos de lenguaje siempre van a
+alucinar, y esto más que un error es una “característica” de los modelos, que
+debemos entender su presencia, como mitigarlas y, su impacto ético y social.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="que-modelo-de-lenguaje-usar-para-reducir-las-alucinaciones"&gt;
+&lt;h2&gt;¿Qué modelo de lenguaje usar para reducir las alucinaciones?&lt;/h2&gt;
+&lt;p&gt;Esta pregunta no es simple, y ni siquiera podemos usar como referencia las
+pruebas de comparación de los modelos, ya que estas pruebas son estandarizadas.
+Esto es una crítica importante, porque las pruebas estandarizadas poco a poco se
+vuelven parte del entrenamiento de los modelos. Por este motivo, lo mejor que
+puedes hacer es probar por tu
+&lt;a class="reference internal" href="../es/blog/2025/instala-tu-asistente-local-de-ia/"&gt;&lt;span class="std std-doc"&gt;cuenta los modelos&lt;/span&gt;&lt;/a&gt;.
+Construye un conjunto de preguntas relacionadas con tu día a día, con tu
+trabajo, con tus temas de interés, de las cuales tengas conocimiento y puedas
+validar la certeza y calidad de las respuestas. Y con ello, escoge.&lt;/p&gt;
+&lt;p&gt;Dado que una fuente de alucinación es el sesgo de los datos, esto es importante
+porque las pruebas estandarizadas son en inglés, por lo cual, un buen modelo
+podría no ser el mejor para ti si no dominas el inglés, o si tus funciones son
+de una disciplina con pocos datos públicos, tal vez el mejor modelo no sea el
+que tenga más información de tu interés.&lt;/p&gt;
+&lt;p&gt;En general, los modelos “ultralivianos” son mala idea (menos de &lt;em&gt;3b&lt;/em&gt; son fuente
+de alucinaciones constantes), ya que un menor número de parámetros implica una
+perdida de datos, conexiones entre estos y perdida de la estructura semántica
+del lenguaje.&lt;/p&gt;
+&lt;p&gt;Un buen punto de partida es &lt;em&gt;qwen2.5:3b&lt;/em&gt; o &lt;em&gt;llama3.2:3b&lt;/em&gt; si no dispones de GPU,
+estos modelos son decentes, aunque presentan sesgos importantes respecto al
+contexto regional (en mi caso, Colombia) y del español, pero tienen un muy buen
+contexto para tareas de código o consultas en inglés. En mi caso, los probé en
+una máquina sin GPU, con 16 GB de RAM. Sin embargo, si posees GPU mi
+recomendación es usar &lt;em&gt;qwen2.5:7b&lt;/em&gt; o &lt;em&gt;qwen2.5:14b&lt;/em&gt;. Definitivamente, no
+recomiendo &lt;em&gt;Phi&lt;/em&gt; (tiene sesgos importantes con el lenguaje) ni &lt;em&gt;Deepseek&lt;/em&gt; en
+ninguna de sus variantes (tampoco &lt;em&gt;deepseek-r1&lt;/em&gt;, que en las versiones para
+máquinas locales son destilados de &lt;em&gt;Qwen2&lt;/em&gt;, &lt;em&gt;Qwen2.5&lt;/em&gt; y &lt;em&gt;Llama3.1&lt;/em&gt;, con menor
+precisión, perdida continua de contexto y mezcla de lenguaje).&lt;/p&gt;
+&lt;p&gt;Los modelos especializados en matemáticas me decepcionaron, pero puede ser un
+problema de sesgo al preguntar en español, y recomiendo mejor para fines de
+matemáticas en español las versiones generales de &lt;em&gt;qwen2.5:7b&lt;/em&gt; y &lt;em&gt;qwen2.5:14b&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;En las versiones especializadas de código, mi recomendación se mantiene también
+en la familia de &lt;em&gt;qwen2.5&lt;/em&gt;, con su variante de &lt;em&gt;qwen2.5-coder&lt;/em&gt;, desde la versión
+de &lt;em&gt;qwen2.5-coder:3b&lt;/em&gt; (útil si no posees GPU, pero &lt;em&gt;qwen2.5-coder:7b&lt;/em&gt; en GPU es
+un buen balance sin un consumo excesivo de recursos). Es importante usar las
+versiones especializadas de código porque estas proveen la integración adecuada
+para autocompletado con los editores de código y respuestas más concretas cuando
+se pregunta por temas de programación. Una curiosidad sobre &lt;em&gt;qwen2.5-coder:7b&lt;/em&gt;,
+es que es usado como base para el modelo
+&lt;a class="reference external" href="https://zed.dev/blog/edit-prediction"&gt;&lt;em&gt;zeta&lt;/em&gt; de &lt;strong class="program"&gt;zed&lt;/strong&gt;&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Si posees una mejor máquina, puedes intentar probar modelos de mayor tamaño, en
+mi caso con una GPU RTX 2060 y 16 GB de RAM, mi límite llega con los modelos de
+&lt;em&gt;14b&lt;/em&gt;. Pero ten presente que para tu caso de uso, puede no ser necesario
+aumentar el modelo, ejemplo, aunque puedo ejecutar &lt;em&gt;qwen2.5:14&lt;/em&gt;, no veo
+beneficios adicionales en mi caso de uso respecto a &lt;em&gt;qwen2.5:7b&lt;/em&gt;.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="referencias"&gt;
+&lt;h2&gt;Referencias&lt;/h2&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://www.iguazio.com/glossary/llm-hallucination/"&gt;What are LLM Hallucinations?&lt;/a&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://arxiv.org/abs/2311.05232v2"&gt;A Survey on Hallucination in Large Language Models: Principles, Taxonomy, Challenges, and Open Questions&lt;/a&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://arxiv.org/abs/2409.05746v1"&gt;LLMs Will Always Hallucinate, and We Need to Live With This&lt;/a&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://arxiv.org/abs/2401.11817"&gt;Hallucination is Inevitable: An Innate Limitation of Large Language Models&lt;/a&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/section&gt;
+&lt;/section&gt;
+</content>
+    <link href="https://www.cosmoscalibur.com/es/blog/2025/alucinacion-de-la-inteligencia-artificial/"/>
+    <summary>Los robots también sueñan. Sí, y sueñan despiertos. La alucinación en los
+modelos de lenguaje (o inteligencias artificiales) es inevitable. No todo lo que
+genera una IA es confiable y debes tener criterios adecuados para juzgar la
+información generada. En general, la IA es un buen asistente, pero solo eso, te
+debe asistir y la última palabra siempre debe ser tuya, y aquí te ilustraré la
+razón.</summary>
+    <category term="inteligenciaartificial" label="inteligencia artificial"/>
+    <category term="modelodelenguaje" label="modelo de lenguaje"/>
+    <published>2025-02-13T00:00:00-05:00</published>
+  </entry>
   <entry>
     <id>https://www.cosmoscalibur.com/en/blog/2025/instala-tu-asistente-local-de-ia/</id>
     <title>Install Your Local AI Assistant</title>

@@ -131,9 +131,4 @@ yaak https://yaak.app/ postman
 
 tauri https://tauri.app/ slint https://slint.dev/
 
-https://docs.astral.sh/uv/concepts/tools/
 https://github.com/executablebooks/mdformat
-
-uv tool install --with mdformat-gfm --with mdformat-myst mdformat
-
-mdformat --number --wrap=80
