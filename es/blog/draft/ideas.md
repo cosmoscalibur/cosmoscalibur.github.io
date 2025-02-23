@@ -1,5 +1,5 @@
 ```
-sudo dd bs=4M if=manjaro-kde-24.1.2-241104-linux610.iso of=/dev/sda status=progress oflang=sync
+sudo dd bs=4M if=manjaro-kde-24.1.2-241104-linux610.iso of=/dev/sda status=progress oflag=sync
 ```
 
 (sin número, solo letra) lsblk/lsusb - mount
