@@ -21,3 +21,5 @@ permisos del grupo de `libvirt`.
 [Setting Up Virtual Machines with QEMU, KVM, and Virt-Manager on Debian/Ubuntu](https://linuxconfig.org/setting-up-virtual-machines-with-qemu-kvm-and-virt-manager-on-debian-ubuntu)
 
 [Issue with Virt-manager](https://askubuntu.com/questions/318702/issue-with-virt-manager)
+
+linux612-virtualbox-host-modules virtualbox-guest-iso virtualbox

@@ -10,13 +10,12 @@ Zed
 
 curl -f https://zed.dev/install.sh | sh
 
-
-zip
+zip 7zip
 
 Development
 
-cargo install --locked difftastic just hyperfine
-sudo pamac install difftastic just hyperfine --no-confirm
+cargo install --locked difftastic just hyperfine sudo pamac install difftastic
+just hyperfine --no-confirm
 
 ```
 cargo install --locked evcxr_jupyter  # Rust jupyter kernel
