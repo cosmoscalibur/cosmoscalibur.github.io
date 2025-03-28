@@ -1,10 +1,10 @@
 ---
 date: 2025-03-27
-tags: zed, linux
+tags: zed, linux, ide
 category: tecnologia, programación
 ---
 
-# Zed: mi nuevo editor de código y texto favorito
+# Zed: un editor rápido y moderno de código abierto
 
 {program}`zed` es un editor de código y texto de código abierto, diseñado para
 ser rápido y fácil de usar. Está construido en Rust y utiliza una interfaz de
@@ -61,6 +61,10 @@ LLM, incluyendo invocaciones a través de
 `qwen2.5:7b`, `qwen2.5-coder:7b` o `gemma3:4b`) o el soporte nativo de Claude,
 Copilot y Gemini. También se puede usar la predicción en línea nativa con el
 modelo Zeta que es un ajuste fino de `qwen2.5-coder:7b` por Zed.
+
+Por último, quiero destacar su soporte nativo de
+[Notebook](https://zed.dev/docs/repl#repl) (soporte limitado a algunos
+lenguajes, pero incluye Python) a través de los *kernels* de Jupyter.
 
 ## Extensiones recomendadas en Zed
 
@@ -173,7 +177,7 @@ cargo install xml-pretty
 
 También vamos a
 [instalar Ollama](/es/blog/2025/instala-tu-asistente-local-de-ia.md#instalaci%C3%B3n-de-ollama)
-y podemos disponer de un modelo local como `gemma3:4b` (para efecto del ejemplo
+y podemos disponer de un modelo local como `qwen2.5:7b` (para efecto del ejemplo
 del archivo de configuración).
 
 Es importante que para la activación de la predicción de Zed, es necesario hacer
@@ -184,7 +188,7 @@ Es importante que para la activación de la predicción de Zed, es necesario hac
   "assistant": {
     "default_model": {
       "provider": "ollama",
-      "model": "gemma3:4b"
+      "model": "qwen2.5:7b"
     },
     "version": "2"
   },
