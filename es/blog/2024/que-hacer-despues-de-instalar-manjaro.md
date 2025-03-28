@@ -557,5 +557,5 @@ La instalaci√≥n del software planetario Stellarium y un software de visualizaci√
 
 ```{code}
 flatpak install flathub org.stellarium.Stellarium
-flatpak install flathub de.uni_heidelberg.zah.GaiaSky
+flatpak install flathub space.gaiasky.GaiaSky
 ```

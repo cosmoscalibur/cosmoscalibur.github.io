@@ -32,7 +32,7 @@ Creamos los directorios `files` y `templates` si no los hemos creado.
 Un primer paso para incluir _Google Ads_ es incluir nuestra validación como
 publicador y esto puede hacerse incluyendo _scripts_ o un archivo `ads.txt`. Es
 recomendable esta última opción para reducir la carga de _scripts_, y acorde a
-Google es más recomendable para las validaciones por proveedores de anuncions y
+Google es más recomendable para las validaciones por proveedores de anuncios y
 cuando son múltiples.
 
 Este archivo debe estar en la raíz de nuestro sitio, por lo que vamos a disponer

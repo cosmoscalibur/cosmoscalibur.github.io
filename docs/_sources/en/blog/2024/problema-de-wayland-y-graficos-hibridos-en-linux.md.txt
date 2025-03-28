@@ -135,7 +135,7 @@ permanent by adding the following line to your system's {file}`/etc/environment`
 file:
 
 ```{code} bash
-sudo echo 'VK_DRIVER_FILES=/usr/share/vulkan/icd.d/radeon_icd.i686.json:/usr/share/vulkan/icd.d/radeon_icd.x86_64.json' >> /etc/environment
+sudo bash -c "echo 'VK_DRIVER_FILES=/usr/share/vulkan/icd.d/radeon_icd.i686.json:/usr/share/vulkan/icd.d/radeon_icd.x86_64.json' >> /etc/environment"
 ```
 
 This change also fixes the issue where subsequent windows appear to leave an

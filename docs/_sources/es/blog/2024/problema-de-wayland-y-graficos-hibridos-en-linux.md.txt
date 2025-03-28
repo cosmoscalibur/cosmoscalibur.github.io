@@ -124,7 +124,7 @@ o {program}`zed`, y si funciona, hacer este cambio permanente en el archivo
 {filename}`/etc/environment`.
 
 ```{code} bash
-sudo echo 'VK_DRIVER_FILES=/usr/share/vulkan/icd.d/radeon_icd.i686.json:/usr/share/vulkan/icd.d/radeon_icd.x86_64.json' >> /etc/environment
+sudo bash -c "echo 'VK_DRIVER_FILES=/usr/share/vulkan/icd.d/radeon_icd.i686.json:/usr/share/vulkan/icd.d/radeon_icd.x86_64.json' >> /etc/environment"
 ```
 
 Este cambio también soluciona el error en X11 en la cual las aperturas

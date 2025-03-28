@@ -1,0 +1,967 @@
+
+<!DOCTYPE html>
+
+
+<html lang="es" data-content_root="../../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="og:title" content="Zed: mi nuevo editor de código y texto favorito" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://www.cosmoscalibur.com/es/blog/2025/zed-mi-nuevo-editor-de-codigo-y-texto-favorito/" />
+<meta property="og:site_name" content="Cosmoscalibur" />
+<meta property="og:description" content="zed es un editor de código y texto de código abierto, diseñado para ser rápido y fácil de usar. Está construido en Rust y utiliza una interfaz de usuario moderna e intuitiva. De momento es soportad..." />
+<meta property="og:image:width" content="1146" />
+<meta property="og:image:height" content="600" />
+<meta property="og:image" content="https://www.cosmoscalibur.com/_images/social_previews/summary_es_blog_2025_zed-mi-nuevo-editor-de-codigo-y-texto-favorito_9b89aafc.png" />
+<meta property="og:image:alt" content="zed es un editor de código y texto de código abierto, diseñado para ser rápido y fácil de usar. Está construido en Rust y utiliza una interfaz de usuario mod..." />
+<meta name="description" content="zed es un editor de código y texto de código abierto, diseñado para ser rápido y fácil de usar. Está construido en Rust y utiliza una interfaz de usuario moderna e intuitiva. De momento es soportad..." />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:creator" content="@cosmoscalibur" />
+<meta name="fediverse:creator" content="@cosmoscalibur@col.social">
+
+    <title>Zed: mi nuevo editor de código y texto favorito &#8212; Cosmoscalibur</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../../../../_static/documentation_options.js?v=a20647df"></script>
+    <script src="../../../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../../_static/translations.js?v=f85f4cfb"></script>
+    <script src="../../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-4YFQBC69LB"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-4YFQBC69LB');
+            </script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-4YFQBC69LB');
+            </script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'es/blog/2025/zed-mi-nuevo-editor-de-codigo-y-texto-favorito';</script>
+    <link rel="canonical" href="https://www.cosmoscalibur.com/es/blog/2025/zed-mi-nuevo-editor-de-codigo-y-texto-favorito/" />
+    <link rel="icon" href="../../../../_static/cosmoscalibur_favicon.png"/>
+    <link rel="index" title="Índice" href="../../../../genindex/" />
+    <link rel="search" title="Búsqueda" href="../../../../search/" /> 
+
+<!-- TODO: Revisar como hacer que dependa del despliegue en GitHub Pages para no usar en local -->
+<!-- TODO: Usar GitHub Actions para esto -->
+
+<!-- Usado para mostrar publicidad -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-0356238418278924"
+crossorigin="anonymous"></script>
+
+ 
+<link
+  rel="alternate"
+  type="application/atom+xml"
+  href="../../../../blog/atom.xml"
+  title="Cosmoscalibur"
+/>
+  
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Saltar al contenido principal</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Volver arriba</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../../search/"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Advertencia de versión"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Navegación del sitio">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../../">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../../_static/cosmoscalibur_logo.png" class="logo__image only-light" alt="Cosmoscalibur - Home"/>
+    <img src="../../../../_static/cosmoscalibur_logo.png" class="logo__image only-dark pst-js-only" alt="Cosmoscalibur - Home"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../me/">
+    Edward Villegas
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Tema" data-bs-title="Tema"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Claro"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Oscuro"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="Sistema"></i>
+</button></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/cosmoscalibur/" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/cosmoscalibur" title="Twitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-twitter fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Twitter</span></a>
+        </li>
+        <li class="nav-item">
+            
+          
+            
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://col.social/@cosmoscalibur" title="Mastodon" class="nav-link pst-navbar-icon" rel="me" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-mastodon fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Mastodon</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="En esta página">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../me/">
+    Edward Villegas
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Tema" data-bs-title="Tema"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Claro"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Oscuro"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="Sistema"></i>
+</button></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/cosmoscalibur/" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/cosmoscalibur" title="Twitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-twitter fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Twitter</span></a>
+        </li>
+        <li class="nav-item">
+            
+          
+            
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://col.social/@cosmoscalibur" title="Mastodon" class="nav-link pst-navbar-icon" rel="me" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-mastodon fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Mastodon</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<div class="ablog-sidebar-item ablog__postcard">
+   
+  <h2>
+     
+    <span>2025-03-27</span>
+    
+  </h2>
+  <ul>
+    <div class="ablog-sidebar-item ablog__postcard2">
+   
+  <li id="ablog-sidebar-item author ablog__author">
+    <span>
+       Autor: 
+    </span>
+     
+    <a href="../../../../blog/author/edward-villegas-pulgarin/">Edward Villegas-Pulgarin</a>
+      
+  </li>
+    
+  <li id="ablog-sidebar-item language ablog__language">
+    <span>
+       Idioma: 
+    </span>
+     
+    <a href="../../../../blog/language/espanol/">Español</a>
+      
+  </li>
+   
+  <li id="ablog-sidebar-item category ablog__category">
+    <span>
+       Categoría: 
+    </span>
+     
+    <a href="../../../../blog/category/tecnologia/">tecnologia</a>
+     ,    
+    <a href="../../../../blog/category/programacion/">programación</a>
+      
+  </li>
+   
+  <li id="ablog-sidebar-item tags ablog__tags">
+    <span>
+        Etiquetas:  
+    </span>
+     
+    <a href="../../../../blog/tag/zed/">zed</a>
+        
+    <a href="../../../../blog/tag/linux/">linux</a>
+      
+  </li>
+   
+</div>
+  </ul>
+</div>
+</div>
+        <div class="sidebar-primary-item">
+<div class="ablog-sidebar-item ablog__recentposts">
+  <h3>
+    <a href="../../../../blog/">Entradas recientes</a>
+  </h3>
+  <ul>
+     
+    <li>
+      <a href="../../../../en/blog/2025/alucinacion-de-la-inteligencia-artificial/">
+        2025-02-13 - Hallucination in Artificial Intelligence
+      </a>
+    </li>
+    
+    <li>
+      <a href="../alucinacion-de-la-inteligencia-artificial/">
+        2025-02-13 - Alucinación de la inteligencia artificial
+      </a>
+    </li>
+    
+    <li>
+      <a href="../../../../en/blog/2025/instala-tu-asistente-local-de-ia/">
+        2025-02-02 - Install Your Local AI Assistant
+      </a>
+    </li>
+    
+    <li>
+      <a href="../instala-tu-asistente-local-de-ia/">
+        2025-02-02 - Instala tu asistente local de IA
+      </a>
+    </li>
+    
+    <li>
+      <a href="../../../../en/blog/2025/modulo-pkg-resources-no-encontrado-en-ambientes-uv/">
+        2025-01-26 - No module named pkg_resources found in UV environment
+      </a>
+    </li>
+    
+  </ul>
+</div>
+</div>
+        <div class="sidebar-primary-item">
+<div class="ablog-sidebar-item ablog__archives">
+  <h3>
+    <a href="../../../../blog/archive/">Archivos</a>
+  </h3>
+  <ul>
+     
+    <li>
+      <a href="../../../../blog/2025/">2025 (13)</a>
+    </li>
+      
+    <li>
+      <a href="../../../../blog/2024/">2024 (35)</a>
+    </li>
+      
+    <li>
+      <a href="../../../../blog/2021/">2021 (2)</a>
+    </li>
+      
+    <li>
+      <a href="../../../../blog/2020/">2020 (21)</a>
+    </li>
+      
+    <li>
+      <a href="../../../../blog/2019/">2019 (9)</a>
+    </li>
+      
+    <li>
+      <a href="../../../../blog/2018/">2018 (5)</a>
+    </li>
+      
+    <li>
+      <a href="../../../../blog/2017/">2017 (2)</a>
+    </li>
+      
+    <li>
+      <a href="../../../../blog/2014/">2014 (1)</a>
+    </li>
+      
+    <li>
+      <a href="../../../../blog/2013/">2013 (12)</a>
+    </li>
+      
+    <li>
+      <a href="../../../../blog/2012/">2012 (20)</a>
+    </li>
+      
+    <li>
+      <a href="../../../../blog/2011/">2011 (30)</a>
+    </li>
+      
+    <li>
+      <a href="../../../../blog/2010/">2010 (7)</a>
+    </li>
+     
+  </ul>
+</div>
+</div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Miga de pan" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../../../" class="nav-link" aria-label="Inicio">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Zed: mi nuevo editor de código y texto favorito</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                   <section class="tex2jax_ignore mathjax_ignore" id="zed-mi-nuevo-editor-de-codigo-y-texto-favorito">
+<h1>Zed: mi nuevo editor de código y texto favorito<a class="headerlink" href="#zed-mi-nuevo-editor-de-codigo-y-texto-favorito" title="Link to this heading">#</a></h1>
+<p><strong class="program">zed</strong> es un editor de código y texto de código abierto, diseñado para
+ser rápido y fácil de usar. Está construido en Rust y utiliza una interfaz de
+usuario moderna e intuitiva. De momento es soportado de forma oficial en Linux y
+macOS, pero se está trabajando en su implementación para Windows (aunque existen
+versiones experimentales). Te contaré cómo instalarlo y algunas de sus
+características.</p>
+<section id="instalacion-en-linux-de-zed">
+<h2>Instalación en Linux de Zed<a class="headerlink" href="#instalacion-en-linux-de-zed" title="Link to this heading">#</a></h2>
+<p>Si bien lo puedes instalar desde los repositorios de algunos gestores de
+paquetes, como sucede en mi caso que uso Manjaro, que puedo obtenerlo a través
+del AUR, mi método recomendado es usar el script de instalación oficial.</p>
+<p>Respecto a las actualizaciones, si usas la versión instalada desde el script
+oficial, este se actualiza automáticamente.</p>
+<p>Si como yo dispones de un GPU híbrida, te recomiendo seguir la entrada
+<a class="reference internal" href="../../2024/problema-de-wayland-y-graficos-hibridos-en-linux/"><span class="std std-doc">Problemas con Wayland y NVIDIA</span></a>
+para solucionar los problemas que puedas tener. El uso de la GPU es lo que
+permite un rápido renderizado de Zed.</p>
+</section>
+<section id="caracteristicas-nativas-de-zed">
+<h2>Características nativas de Zed<a class="headerlink" href="#caracteristicas-nativas-de-zed" title="Link to this heading">#</a></h2>
+<p>Recientemente, Zed agregó el soporte nativo de Git, lo que permite equiparar
+contra VSCode en una de las características que podía ser un bloqueo para muchos
+desarrolladores. No es solo un soporte en la visualización de los cambios,
+historias o dirección a la versión web del cambio, sino también el soporte para
+la ejecución de acciones git con la interfaz de Zed.</p>
+<p>También debo destacar como una parte vital de Zed, el algoritmo <em>tree sitter</em>,
+que es el analizador sintáctico usado en Zed de forma nativa con soporte
+incremental, lo que permite un mejor rendimiento posterior a la carga inicial.</p>
+<p>El <em>multibuffer</em> es una característica que permite la edición de múltiples
+archivos al mismo tiempo, lo que permite una mayor eficiencia en la edición de
+código y se encuentra soportada de forma nativa. Para esto puedes hacer búsqueda
+general con <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Ctrl</kbd>+<kbd class="kbd docutils literal notranslate">Shift</kbd>+<kbd class="kbd docutils literal notranslate">F</kbd></kbd> y hacer uso de la edición múltiple con
+<kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Ctrl</kbd>+<kbd class="kbd docutils literal notranslate">Shift</kbd>+<kbd class="kbd docutils literal notranslate">L</kbd></kbd> (desconozco si es un error, pero solo me funciona si tengo
+seleccionada la coincidencia de mayúsculas) o si deseamos en puntos específicos
+con <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Alt</kbd>+<kbd class="kbd docutils literal notranslate">Click</kbd></kbd> (no es requerido que el punto seleccionado corresponda a la
+coincidencia de búsqueda).</p>
+<p>También nos encontramos en Zed el soporte nativo de modelos LLM para la
+asistencia por chat, permitiendo el paso de archivos de contextos, y en edición
+directa en archivo. Mediante esta forma es posible usar distintos modelos de
+LLM, incluyendo invocaciones a través de
+<a class="reference internal" href="../instala-tu-asistente-local-de-ia/"><span class="std std-doc">Ollama</span></a> y
+<a class="reference external" href="https://lmstudio.ai">LM Studio</a> (lo que permite usar modelos locales como
+<code class="docutils literal notranslate"><span class="pre">qwen2.5:7b</span></code>, <code class="docutils literal notranslate"><span class="pre">qwen2.5-coder:7b</span></code> o <code class="docutils literal notranslate"><span class="pre">gemma3:4b</span></code>) o el soporte nativo de Claude,
+Copilot y Gemini. También se puede usar la predicción en línea nativa con el
+modelo Zeta que es un ajuste fino de <code class="docutils literal notranslate"><span class="pre">qwen2.5-coder:7b</span></code> por Zed.</p>
+</section>
+<section id="extensiones-recomendadas-en-zed">
+<h2>Extensiones recomendadas en Zed<a class="headerlink" href="#extensiones-recomendadas-en-zed" title="Link to this heading">#</a></h2>
+<p>El sistema de extensiones de Zed se basa en elementos <em>core</em> en Rust y la
+componente de interfaz con Zed en WASM (compilado con Rust). El directorio de
+extensiones instaladas localmente se encuentra en
+<code class="file docutils literal notranslate"><span class="pre">~/.local/share/zed/extensions</span></code>, y en caso de querer hacer pruebas de
+versiones locales dispones para esto del directorio <code class="file docutils literal notranslate"><span class="pre">work</span></code> (si poseen
+componente <em>core</em> en Rust) o solo <code class="file docutils literal notranslate"><span class="pre">installed</span></code> si es a nivel de interfaz y
+WASM (esto lo revisé porque estaba probando cambios en el archivo de diccionario
+de Codebook).</p>
+<p>Si deseas instalar una extensión de Zed puedes usar el menú general con
+<kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Ctrl</kbd>+<kbd class="kbd docutils literal notranslate">Shift</kbd>+<kbd class="kbd docutils literal notranslate">P</kbd></kbd> y buscar <em>zed: extensions</em>, o directamente el atajo
+<kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Ctrl</kbd>+<kbd class="kbd docutils literal notranslate">Shift</kbd>+<kbd class="kbd docutils literal notranslate">X</kbd></kbd>.</p>
+<p>Típicamente las extensiones se pueden configurar de forma global y por proyecto,
+con la gestión de configuración de Zed, pero algunas soportan archivos de
+configuración propios.</p>
+<section id="extensiones-de-ortografia-y-gramatica">
+<h3>Extensiones de ortografía y gramática<a class="headerlink" href="#extensiones-de-ortografia-y-gramatica" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/blopker/codebook">Codebook</a> Spell checker: Ofrece LSP de
+corrección de ortografía basada en diccionarios <em>hunspell</em> a través de la
+implementación Rust de <a class="reference external" href="https://github.com/helix-editor/spellbook">spellbook</a>.
+Actualmente soporta inglés y español (tras un reporte que realicé), pero
+pronto soportará otros idiomas basados en los diccionarios de LibreOffice.
+Similar a
+<a class="reference external" href="https://marketplace.visualstudio.com/items?itemName=ban.spellright">Spell Right</a>,
+la corrección puede ser en archivos de texto o de código. Está planeado el
+soporte de diccionarios locales. Posee configuración global y por proyecto
+(<code class="file docutils literal notranslate"><span class="pre">codebook.toml</span></code>), pero es independiente de la configuración de Zed.</p></li>
+<li><p><a class="reference external" href="https://github.com/vitallium/zed-ltex">LTex</a>: Ofrece LSP de corrección
+gramatical basada en LanguageTool. La corrección se ofrece solo para archivos
+de texto. El modelo es instalado localmente.</p></li>
+<li><p><a class="reference external" href="https://github.com/stef16robbe/harper_zed">Harper</a>: Ofrece LSP de corrección
+gramatical en inglés tanto en archivos de texto como de código. Es una
+alternativa a LTex.</p></li>
+</ul>
+</section>
+<section id="extensiones-para-lenguajes-de-marcado">
+<h3>Extensiones para lenguajes de marcado<a class="headerlink" href="#extensiones-para-lenguajes-de-marcado" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/vitallium/zed-marksman">Marksman</a>: LSP para Markdown.
+Ofrece autocompletado de enlaces de Markdown, detección de enlaces rotos y
+direccionado a definiciones. Recomiendo complementarlo con
+<a class="reference external" href="https://github.com/executablebooks/mdformat">mdformat</a> como formateador. El
+formateado debe instalarse de forma independiente y configurarse en las
+opciones de Markdown.</p></li>
+<li><p><a class="reference external" href="https://github.com/weethet/typst.zed">Typst</a>: LSP y gestión de compilado para
+Typst.</p></li>
+<li><p><a class="reference external" href="https://github.com/rzukic/zed-latex">LaTeX</a>: LSP y gestión de compilado para
+LaTeX.</p></li>
+<li><p><a class="reference external" href="https://github.com/elmarco/zed-rst">reST</a>: Soporte de resaltado de sintaxis.
+Se recomienda complementarlo con
+<a class="reference external" href="https://github.com/LilSpazJoekp/docstrfmt">docstrfmt</a> como formateador.
+Existe un LSP para reST, <a class="reference external" href="https://github.com/swyddfa/esbonio">Esbonio</a>, pero
+no es soportado por Zed.</p></li>
+<li><p><a class="reference external" href="https://github.com/ArcherHume/jinja2-support">Jinja2 Template Support</a>:
+Resaltado de sintaxis y el LSP está en planeación.</p></li>
+<li><p><a class="reference external" href="https://github.com/sweetppro/zed-xml">XML</a>: Soporte de resaltado de sintaxis.
+Se recomienda complementar con
+<a class="reference external" href="https://github.com/xmlem/xml-pretty">XML Pretty</a> como formateador.</p></li>
+<li><p><a class="reference external" href="https://zed.dev/docs/languages/toml">TOML</a>: Soporte de resaltado y LSP.</p></li>
+</ul>
+</section>
+<section id="extensiones-para-lenguajes-de-programacion">
+<h3>Extensiones para lenguajes de programación<a class="headerlink" href="#extensiones-para-lenguajes-de-programacion" title="Link to this heading">#</a></h3>
+<p>Por defecto se incluye el soporte de LSP de algunos lenguajes de programación,
+mientras que otros pueden ser instalados por el usuario. También es posible
+mezclar LSP en un mismo lenguaje.</p>
+<p>En mis casos de interés, Rust es soportado de forma nativa e incluye
+<a class="reference external" href="https://rust-analyzer.github.io/">Rust Analyzer</a>, y en el caso de Python por
+defecto se incluye el soporte de LSP con
+<a class="reference external" href="https://github.com/microsoft/pyright">Pyright</a>.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://docs.astral.sh/ruff/">Ruff</a>: LSP de Ruff, es un linter y formateador
+para Python en Rust.</p></li>
+<li><p>SQL: Ofrece resaltado de sintaxis de SQL.</p></li>
+<li><p><a class="reference external" href="https://github.com/gvozdvmozgu/sqruff-zed/">Sqruff</a>: Ofrece LSP y formateador
+para múltiples dialectos de SQL (de mi interés, incluye MySQL, PostgreSQL,
+SQLite y BigQuery).</p></li>
+</ul>
+</section>
+<section id="extensiones-de-infraestructura">
+<h3>Extensiones de infraestructura<a class="headerlink" href="#extensiones-de-infraestructura" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/jackTabsCode/zed-just">Justfile</a>: Ofrece resaltado de
+sintaxis y opción de ejecución de pasos.</p></li>
+<li><p><a class="reference external" href="https://github.com/zarifpour/zed-env">env</a>: Resaltado de sintaxis para
+archivos de entorno.</p></li>
+<li><p><a class="reference external" href="https://github.com/d1y/dockerfile.zed">Dockerfile</a>: Ofrece resaltado de
+sintaxis y LSP para archivos Dockerfile.</p></li>
+<li><p>Docker Compose: resaltado de sintaxis.</p></li>
+<li><p><a class="reference external" href="https://github.com/caius/zed-make">Make</a>: resaltado de sintaxis de Makefile.</p></li>
+</ul>
+</section>
+</section>
+<section id="configuracion-de-zed">
+<h2>Configuración de Zed<a class="headerlink" href="#configuracion-de-zed" title="Link to this heading">#</a></h2>
+<p>Para ilustrar la configuración de Zed y su integración con herramientas de
+formateo y extensiones, vamos a instalar las herramientas necesarias para el
+formateo de MarkDown, reST y XML.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>uv<span class="w"> </span>tool<span class="w"> </span>install<span class="w"> </span>mdformat<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--with<span class="w"> </span>mdformat-gfm<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--with<span class="w"> </span>mdformat-frontmatter<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--with<span class="w"> </span>mdformat-footnote<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--with<span class="w"> </span>mdformat-gfm-alerts<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--with<span class="w"> </span>mdformat-myst<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--with<span class="w"> </span>mdformat-admon
+uv<span class="w"> </span>tool<span class="w"> </span>install<span class="w"> </span>docstrfmt<span class="w"> </span>--with<span class="w"> </span>sphinx
+cargo<span class="w"> </span>install<span class="w"> </span>xml-pretty
+</pre></div>
+</div>
+<p>También vamos a
+<a class="reference internal" href="../instala-tu-asistente-local-de-ia/#instalacion-de-ollama"><span class="std std-ref">instalar Ollama</span></a>
+y podemos disponer de un modelo local como <code class="docutils literal notranslate"><span class="pre">gemma3:4b</span></code> (para efecto del ejemplo
+del archivo de configuración).</p>
+<p>Es importante que para la activación de la predicción de Zed, es necesario hacer
+<em>login</em> en Zed con nuestra cuenta de GitHub.</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;assistant&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;default_model&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;provider&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ollama&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;model&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;gemma3:4b&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2&quot;</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;features&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;edit_prediction_provider&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;zed&quot;</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;ui_font_size&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">16</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;buffer_font_size&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">16</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;theme&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;mode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;system&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;light&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;One Light&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;dark&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;One Dark&quot;</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;languages&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;Markdown&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;format_on_save&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;on&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;formatter&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;external&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;command&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;mdformat&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;arguments&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;--number&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;--wrap&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;80&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;--extensions&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;myst&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;-&quot;</span><span class="p">]</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;XML&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;format_on_save&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;on&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;formatter&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;external&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;command&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;xml-pretty&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;arguments&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;-i&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;2&quot;</span><span class="p">]</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;reST&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;format_on_save&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;on&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;formatter&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;external&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;command&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;docstrfmt&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;arguments&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;-&quot;</span><span class="p">]</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;Python&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;language_servers&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;pyright&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;ruff&quot;</span><span class="p">],</span>
+<span class="w">      </span><span class="nt">&quot;format_on_save&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;on&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;formatter&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;code_actions&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;source.organizeImports.ruff&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;source.fixAll.ruff&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+<span class="w">          </span><span class="p">}</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;language_server&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ruff&quot;</span>
+<span class="w">          </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">]</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;lsp&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;ltex&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;settings&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;ltex&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;language&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;es&quot;</span><span class="p">,</span><span class="w"> </span><span class="c1">// en-us</span>
+<span class="w">          </span><span class="nt">&quot;enabled&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;completionEnabled&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Para la configuración del corrector hunspell de Codebook se dispone de un
+archivo <code class="docutils literal notranslate"><span class="pre">codebook.toml</span></code> en el directorio raíz del proyecto.</p>
+<div class="highlight-toml notranslate"><div class="highlight"><pre><span></span><span class="n">dictionaries</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;es&quot;</span><span class="p">]</span>
+<span class="n">use_global</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span>
+</pre></div>
+</div>
+<p>Para las herramientas de los lenguajes o externas que son estructuradas con sus
+archivos de configuración ya conocidos, nos encontramos con el archivo de
+<code class="docutils literal notranslate"><span class="pre">ruff.toml</span></code>, <code class="docutils literal notranslate"><span class="pre">pyproject.toml</span></code> o <code class="docutils literal notranslate"><span class="pre">Cargo.toml</span></code> por poner un ejemplo. De estos no
+voy a ilustrar por ser bien conocidos si requieres de estos lenguajes o
+<em>linters</em>.</p>
+</section>
+</section>
+
+<div class="section ablog__blog_comments">
+     
+<div class="section ablog__prev-next">
+  <span class="ablog__prev">
+      Anterior:
+    
+    <a href="../../../../en/blog/2025/alucinacion-de-la-inteligencia-artificial/">
+      
+      <span>Hallucination in Artificial Intelligence</span>
+    </a>
+    
+  </span>
+  <span class="ablog__spacer">&nbsp;</span>
+  <span class="ablog__next">
+    
+  </span>
+</div>
+  
+</div>
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> En esta página
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#instalacion-en-linux-de-zed">Instalación en Linux de Zed</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#caracteristicas-nativas-de-zed">Características nativas de Zed</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#extensiones-recomendadas-en-zed">Extensiones recomendadas en Zed</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#extensiones-de-ortografia-y-gramatica">Extensiones de ortografía y gramática</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#extensiones-para-lenguajes-de-marcado">Extensiones para lenguajes de marcado</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#extensiones-para-lenguajes-de-programacion">Extensiones para lenguajes de programación</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#extensiones-de-infraestructura">Extensiones de infraestructura</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#configuracion-de-zed">Configuración de Zed</a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+  <div role="note" aria-label="source link">
+    <h3>Esta página</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../../_sources/es/blog/2025/zed-mi-nuevo-editor-de-codigo-y-texto-favorito.md.txt"
+            rel="nofollow">Mostrar el código</a></li>
+    </ul>
+   </div></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2024, Edward Villegas-Pulgarin.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Creado usando <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.1.3.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Construido con el <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html"> Tema PyData Sphinx </a> 0.16.1.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

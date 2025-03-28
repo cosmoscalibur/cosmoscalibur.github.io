@@ -2,10 +2,294 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="es">
   <id>https://www.cosmoscalibur.com/</id>
   <title>Cosmoscalibur</title>
-  <updated>2025-02-14T05:13:02.245246+00:00</updated>
+  <updated>2025-03-28T04:30:42.430551+00:00</updated>
   <link href="https://www.cosmoscalibur.com/"/>
   <link href="https://www.cosmoscalibur.com/blog/atom.xml" rel="self"/>
   <generator uri="https://ablog.readthedocs.io/" version="0.11.12">ABlog</generator>
+  <entry>
+    <id>https://www.cosmoscalibur.com/es/blog/2025/zed-mi-nuevo-editor-de-codigo-y-texto-favorito/</id>
+    <title>Zed: mi nuevo editor de código y texto favorito</title>
+    <updated>2025-03-27T00:00:00-05:00</updated>
+    <author>
+      <name>Edward Villegas-Pulgarin</name>
+    </author>
+    <content type="html">&lt;section class="tex2jax_ignore mathjax_ignore" id="zed-mi-nuevo-editor-de-codigo-y-texto-favorito"&gt;
+
+&lt;p&gt;&lt;strong class="program"&gt;zed&lt;/strong&gt; es un editor de código y texto de código abierto, diseñado para
+ser rápido y fácil de usar. Está construido en Rust y utiliza una interfaz de
+usuario moderna e intuitiva. De momento es soportado de forma oficial en Linux y
+macOS, pero se está trabajando en su implementación para Windows (aunque existen
+versiones experimentales). Te contaré cómo instalarlo y algunas de sus
+características.&lt;/p&gt;
+&lt;section id="instalacion-en-linux-de-zed"&gt;
+&lt;h2&gt;Instalación en Linux de Zed&lt;/h2&gt;
+&lt;p&gt;Si bien lo puedes instalar desde los repositorios de algunos gestores de
+paquetes, como sucede en mi caso que uso Manjaro, que puedo obtenerlo a través
+del AUR, mi método recomendado es usar el script de instalación oficial.&lt;/p&gt;
+&lt;aside class="system-message"&gt;
+&lt;p class="system-message-title"&gt;System Message: WARNING/2 (&lt;span class="docutils literal"&gt;/home/cosmoscalibur/Documentos/git/cosmoscalibur.github.io/es/blog/2025/zed-mi-nuevo-editor-de-codigo-y-texto-favorito.md&lt;/span&gt;, line 22)&lt;/p&gt;
+&lt;p&gt;Unknown directive type: “bash” [myst.directive_unknown]&lt;/p&gt;
+&lt;/aside&gt;
+&lt;aside class="system-message"&gt;
+&lt;p class="system-message-title"&gt;System Message: INFO/1 (&lt;span class="docutils literal"&gt;/home/cosmoscalibur/Documentos/git/cosmoscalibur.github.io/es/blog/2025/zed-mi-nuevo-editor-de-codigo-y-texto-favorito.md&lt;/span&gt;, line 22)&lt;/p&gt;
+&lt;p&gt;No directive entry for «bash» in module «docutils.parsers.rst.languages.es».
+Trying «bash» as canonical directive name.&lt;/p&gt;
+&lt;/aside&gt;
+&lt;p&gt;Respecto a las actualizaciones, si usas la versión instalada desde el script
+oficial, este se actualiza automáticamente.&lt;/p&gt;
+&lt;p&gt;Si como yo dispones de un GPU híbrida, te recomiendo seguir la entrada
+&lt;a class="reference internal" href="../es/blog/2024/problema-de-wayland-y-graficos-hibridos-en-linux/"&gt;&lt;span class="std std-doc"&gt;Problemas con Wayland y NVIDIA&lt;/span&gt;&lt;/a&gt;
+para solucionar los problemas que puedas tener. El uso de la GPU es lo que
+permite un rápido renderizado de Zed.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="caracteristicas-nativas-de-zed"&gt;
+&lt;h2&gt;Características nativas de Zed&lt;/h2&gt;
+&lt;p&gt;Recientemente, Zed agregó el soporte nativo de Git, lo que permite equiparar
+contra VSCode en una de las características que podía ser un bloqueo para muchos
+desarrolladores. No es solo un soporte en la visualización de los cambios,
+historias o dirección a la versión web del cambio, sino también el soporte para
+la ejecución de acciones git con la interfaz de Zed.&lt;/p&gt;
+&lt;p&gt;También debo destacar como una parte vital de Zed, el algoritmo &lt;em&gt;tree sitter&lt;/em&gt;,
+que es el analizador sintáctico usado en Zed de forma nativa con soporte
+incremental, lo que permite un mejor rendimiento posterior a la carga inicial.&lt;/p&gt;
+&lt;p&gt;El &lt;em&gt;multibuffer&lt;/em&gt; es una característica que permite la edición de múltiples
+archivos al mismo tiempo, lo que permite una mayor eficiencia en la edición de
+código y se encuentra soportada de forma nativa. Para esto puedes hacer búsqueda
+general con &lt;kbd class="kbd compound docutils literal notranslate"&gt;&lt;kbd class="kbd docutils literal notranslate"&gt;Ctrl&lt;/kbd&gt;+&lt;kbd class="kbd docutils literal notranslate"&gt;Shift&lt;/kbd&gt;+&lt;kbd class="kbd docutils literal notranslate"&gt;F&lt;/kbd&gt;&lt;/kbd&gt; y hacer uso de la edición múltiple con
+&lt;kbd class="kbd compound docutils literal notranslate"&gt;&lt;kbd class="kbd docutils literal notranslate"&gt;Ctrl&lt;/kbd&gt;+&lt;kbd class="kbd docutils literal notranslate"&gt;Shift&lt;/kbd&gt;+&lt;kbd class="kbd docutils literal notranslate"&gt;L&lt;/kbd&gt;&lt;/kbd&gt; (desconozco si es un error, pero solo me funciona si tengo
+seleccionada la coincidencia de mayúsculas) o si deseamos en puntos específicos
+con &lt;kbd class="kbd compound docutils literal notranslate"&gt;&lt;kbd class="kbd docutils literal notranslate"&gt;Alt&lt;/kbd&gt;+&lt;kbd class="kbd docutils literal notranslate"&gt;Click&lt;/kbd&gt;&lt;/kbd&gt; (no es requerido que el punto seleccionado corresponda a la
+coincidencia de búsqueda).&lt;/p&gt;
+&lt;p&gt;También nos encontramos en Zed el soporte nativo de modelos LLM para la
+asistencia por chat, permitiendo el paso de archivos de contextos, y en edición
+directa en archivo. Mediante esta forma es posible usar distintos modelos de
+LLM, incluyendo invocaciones a través de
+&lt;a class="reference internal" href="../es/blog/2025/instala-tu-asistente-local-de-ia/"&gt;&lt;span class="std std-doc"&gt;Ollama&lt;/span&gt;&lt;/a&gt; y
+&lt;a class="reference external" href="https://lmstudio.ai"&gt;LM Studio&lt;/a&gt; (lo que permite usar modelos locales como
+&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;qwen2.5:7b&lt;/span&gt;&lt;/code&gt;, &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;qwen2.5-coder:7b&lt;/span&gt;&lt;/code&gt; o &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;gemma3:4b&lt;/span&gt;&lt;/code&gt;) o el soporte nativo de Claude,
+Copilot y Gemini. También se puede usar la predicción en línea nativa con el
+modelo Zeta que es un ajuste fino de &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;qwen2.5-coder:7b&lt;/span&gt;&lt;/code&gt; por Zed.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="extensiones-recomendadas-en-zed"&gt;
+&lt;h2&gt;Extensiones recomendadas en Zed&lt;/h2&gt;
+&lt;p&gt;El sistema de extensiones de Zed se basa en elementos &lt;em&gt;core&lt;/em&gt; en Rust y la
+componente de interfaz con Zed en WASM (compilado con Rust). El directorio de
+extensiones instaladas localmente se encuentra en
+&lt;code class="file docutils literal notranslate"&gt;&lt;span class="pre"&gt;~/.local/share/zed/extensions&lt;/span&gt;&lt;/code&gt;, y en caso de querer hacer pruebas de
+versiones locales dispones para esto del directorio &lt;code class="file docutils literal notranslate"&gt;&lt;span class="pre"&gt;work&lt;/span&gt;&lt;/code&gt; (si poseen
+componente &lt;em&gt;core&lt;/em&gt; en Rust) o solo &lt;code class="file docutils literal notranslate"&gt;&lt;span class="pre"&gt;installed&lt;/span&gt;&lt;/code&gt; si es a nivel de interfaz y
+WASM (esto lo revisé porque estaba probando cambios en el archivo de diccionario
+de Codebook).&lt;/p&gt;
+&lt;p&gt;Si deseas instalar una extensión de Zed puedes usar el menú general con
+&lt;kbd class="kbd compound docutils literal notranslate"&gt;&lt;kbd class="kbd docutils literal notranslate"&gt;Ctrl&lt;/kbd&gt;+&lt;kbd class="kbd docutils literal notranslate"&gt;Shift&lt;/kbd&gt;+&lt;kbd class="kbd docutils literal notranslate"&gt;P&lt;/kbd&gt;&lt;/kbd&gt; y buscar &lt;em&gt;zed: extensions&lt;/em&gt;, o directamente el atajo
+&lt;kbd class="kbd compound docutils literal notranslate"&gt;&lt;kbd class="kbd docutils literal notranslate"&gt;Ctrl&lt;/kbd&gt;+&lt;kbd class="kbd docutils literal notranslate"&gt;Shift&lt;/kbd&gt;+&lt;kbd class="kbd docutils literal notranslate"&gt;X&lt;/kbd&gt;&lt;/kbd&gt;.&lt;/p&gt;
+&lt;p&gt;Típicamente las extensiones se pueden configurar de forma global y por proyecto,
+con la gestión de configuración de Zed, pero algunas soportan archivos de
+configuración propios.&lt;/p&gt;
+&lt;section id="extensiones-de-ortografia-y-gramatica"&gt;
+&lt;h3&gt;Extensiones de ortografía y gramática&lt;/h3&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://github.com/blopker/codebook"&gt;Codebook&lt;/a&gt; Spell checker: Ofrece LSP de
+corrección de ortografía basada en diccionarios &lt;em&gt;hunspell&lt;/em&gt; a través de la
+implementación Rust de &lt;a class="reference external" href="https://github.com/helix-editor/spellbook"&gt;spellbook&lt;/a&gt;.
+Actualmente soporta inglés y español (tras un reporte que realicé), pero
+pronto soportará otros idiomas basados en los diccionarios de LibreOffice.
+Similar a
+&lt;a class="reference external" href="https://marketplace.visualstudio.com/items?itemName=ban.spellright"&gt;Spell Right&lt;/a&gt;,
+la corrección puede ser en archivos de texto o de código. Está planeado el
+soporte de diccionarios locales. Posee configuración global y por proyecto
+(&lt;code class="file docutils literal notranslate"&gt;&lt;span class="pre"&gt;codebook.toml&lt;/span&gt;&lt;/code&gt;), pero es independiente de la configuración de Zed.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://github.com/vitallium/zed-ltex"&gt;LTex&lt;/a&gt;: Ofrece LSP de corrección
+gramatical basada en LanguageTool. La corrección se ofrece solo para archivos
+de texto. El modelo es instalado localmente.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://github.com/stef16robbe/harper_zed"&gt;Harper&lt;/a&gt;: Ofrece LSP de corrección
+gramatical en inglés tanto en archivos de texto como de código. Es una
+alternativa a LTex.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/section&gt;
+&lt;section id="extensiones-para-lenguajes-de-marcado"&gt;
+&lt;h3&gt;Extensiones para lenguajes de marcado&lt;/h3&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://github.com/vitallium/zed-marksman"&gt;Marksman&lt;/a&gt;: LSP para Markdown.
+Ofrece autocompletado de enlaces de Markdown, detección de enlaces rotos y
+direccionado a definiciones. Recomiendo complementarlo con
+&lt;a class="reference external" href="https://github.com/executablebooks/mdformat"&gt;mdformat&lt;/a&gt; como formateador. El
+formateado debe instalarse de forma independiente y configurarse en las
+opciones de Markdown.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://github.com/weethet/typst.zed"&gt;Typst&lt;/a&gt;: LSP y gestión de compilado para
+Typst.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://github.com/rzukic/zed-latex"&gt;LaTeX&lt;/a&gt;: LSP y gestión de compilado para
+LaTeX.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://github.com/elmarco/zed-rst"&gt;reST&lt;/a&gt;: Soporte de resaltado de sintaxis.
+Se recomienda complementarlo con
+&lt;a class="reference external" href="https://github.com/LilSpazJoekp/docstrfmt"&gt;docstrfmt&lt;/a&gt; como formateador.
+Existe un LSP para reST, &lt;a class="reference external" href="https://github.com/swyddfa/esbonio"&gt;Esbonio&lt;/a&gt;, pero
+no es soportado por Zed.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://github.com/ArcherHume/jinja2-support"&gt;Jinja2 Template Support&lt;/a&gt;:
+Resaltado de sintaxis y el LSP está en planeación.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://github.com/sweetppro/zed-xml"&gt;XML&lt;/a&gt;: Soporte de resaltado de sintaxis.
+Se recomienda complementar con
+&lt;a class="reference external" href="https://github.com/xmlem/xml-pretty"&gt;XML Pretty&lt;/a&gt; como formateador.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://zed.dev/docs/languages/toml"&gt;TOML&lt;/a&gt;: Soporte de resaltado y LSP.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/section&gt;
+&lt;section id="extensiones-para-lenguajes-de-programacion"&gt;
+&lt;h3&gt;Extensiones para lenguajes de programación&lt;/h3&gt;
+&lt;p&gt;Por defecto se incluye el soporte de LSP de algunos lenguajes de programación,
+mientras que otros pueden ser instalados por el usuario. También es posible
+mezclar LSP en un mismo lenguaje.&lt;/p&gt;
+&lt;p&gt;En mis casos de interés, Rust es soportado de forma nativa e incluye
+&lt;a class="reference external" href="https://rust-analyzer.github.io/"&gt;Rust Analyzer&lt;/a&gt;, y en el caso de Python por
+defecto se incluye el soporte de LSP con
+&lt;a class="reference external" href="https://github.com/microsoft/pyright"&gt;Pyright&lt;/a&gt;.&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://docs.astral.sh/ruff/"&gt;Ruff&lt;/a&gt;: LSP de Ruff, es un linter y formateador
+para Python en Rust.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;SQL: Ofrece resaltado de sintaxis de SQL.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://github.com/gvozdvmozgu/sqruff-zed/"&gt;Sqruff&lt;/a&gt;: Ofrece LSP y formateador
+para múltiples dialectos de SQL (de mi interés, incluye MySQL, PostgreSQL,
+SQLite y BigQuery).&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/section&gt;
+&lt;section id="extensiones-de-infraestructura"&gt;
+&lt;h3&gt;Extensiones de infraestructura&lt;/h3&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://github.com/jackTabsCode/zed-just"&gt;Justfile&lt;/a&gt;: Ofrece resaltado de
+sintaxis y opción de ejecución de pasos.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://github.com/zarifpour/zed-env"&gt;env&lt;/a&gt;: Resaltado de sintaxis para
+archivos de entorno.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://github.com/d1y/dockerfile.zed"&gt;Dockerfile&lt;/a&gt;: Ofrece resaltado de
+sintaxis y LSP para archivos Dockerfile.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Docker Compose: resaltado de sintaxis.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://github.com/caius/zed-make"&gt;Make&lt;/a&gt;: resaltado de sintaxis de Makefile.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/section&gt;
+&lt;/section&gt;
+&lt;section id="configuracion-de-zed"&gt;
+&lt;h2&gt;Configuración de Zed&lt;/h2&gt;
+&lt;p&gt;Para ilustrar la configuración de Zed y su integración con herramientas de
+formateo y extensiones, vamos a instalar las herramientas necesarias para el
+formateo de MarkDown, reST y XML.&lt;/p&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;uv&lt;span class="w"&gt; &lt;/span&gt;tool&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;mdformat&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="se"&gt;\&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;--with&lt;span class="w"&gt; &lt;/span&gt;mdformat-gfm&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="se"&gt;\&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;--with&lt;span class="w"&gt; &lt;/span&gt;mdformat-frontmatter&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="se"&gt;\&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;--with&lt;span class="w"&gt; &lt;/span&gt;mdformat-footnote&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="se"&gt;\&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;--with&lt;span class="w"&gt; &lt;/span&gt;mdformat-gfm-alerts&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="se"&gt;\&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;--with&lt;span class="w"&gt; &lt;/span&gt;mdformat-myst&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="se"&gt;\&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;--with&lt;span class="w"&gt; &lt;/span&gt;mdformat-admon
+uv&lt;span class="w"&gt; &lt;/span&gt;tool&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;docstrfmt&lt;span class="w"&gt; &lt;/span&gt;--with&lt;span class="w"&gt; &lt;/span&gt;sphinx
+cargo&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;xml-pretty
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;También vamos a
+&lt;a class="reference internal" href="../es/blog/2025/instala-tu-asistente-local-de-ia/#instalacion-de-ollama"&gt;&lt;span class="std std-ref"&gt;instalar Ollama&lt;/span&gt;&lt;/a&gt;
+y podemos disponer de un modelo local como &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;gemma3:4b&lt;/span&gt;&lt;/code&gt; (para efecto del ejemplo
+del archivo de configuración).&lt;/p&gt;
+&lt;p&gt;Es importante que para la activación de la predicción de Zed, es necesario hacer
+&lt;em&gt;login&lt;/em&gt; en Zed con nuestra cuenta de GitHub.&lt;/p&gt;
+&lt;div class="highlight-json notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;assistant&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;default_model&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;provider&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;ollama&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;model&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;gemma3:4b&amp;quot;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;},&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;version&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;2&amp;quot;&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;},&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;features&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;edit_prediction_provider&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;zed&amp;quot;&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;},&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;ui_font_size&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;16&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;buffer_font_size&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;16&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;theme&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;mode&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;system&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;light&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;One Light&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;dark&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;One Dark&amp;quot;&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;},&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;languages&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;Markdown&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;format_on_save&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;on&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;formatter&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;external&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;          &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;command&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;mdformat&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;          &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;arguments&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;--number&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;--wrap&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;80&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;--extensions&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;myst&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;-&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;},&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;XML&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;format_on_save&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;on&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;formatter&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;external&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;          &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;command&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;xml-pretty&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;          &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;arguments&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;-i&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;2&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;},&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;reST&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;format_on_save&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;on&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;formatter&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;external&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;          &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;command&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;docstrfmt&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;          &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;arguments&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;-&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;},&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;Python&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;language_servers&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;pyright&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;ruff&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;format_on_save&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;on&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;formatter&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;          &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;code_actions&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;            &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;source.organizeImports.ruff&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kc"&gt;true&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;            &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;source.fixAll.ruff&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kc"&gt;true&lt;/span&gt;
+&lt;span class="w"&gt;          &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="p"&gt;},&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;          &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;language_server&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;            &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;name&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;ruff&amp;quot;&lt;/span&gt;
+&lt;span class="w"&gt;          &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;},&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;lsp&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;ltex&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;settings&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;ltex&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;          &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;language&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;es&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="c1"&gt;// en-us&lt;/span&gt;
+&lt;span class="w"&gt;          &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;enabled&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kc"&gt;true&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;          &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;completionEnabled&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kc"&gt;false&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Para la configuración del corrector hunspell de Codebook se dispone de un
+archivo &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;codebook.toml&lt;/span&gt;&lt;/code&gt; en el directorio raíz del proyecto.&lt;/p&gt;
+&lt;div class="highlight-toml notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;dictionaries&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;es&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="n"&gt;use_global&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kc"&gt;false&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Para las herramientas de los lenguajes o externas que son estructuradas con sus
+archivos de configuración ya conocidos, nos encontramos con el archivo de
+&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;ruff.toml&lt;/span&gt;&lt;/code&gt;, &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;pyproject.toml&lt;/span&gt;&lt;/code&gt; o &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;Cargo.toml&lt;/span&gt;&lt;/code&gt; por poner un ejemplo. De estos no
+voy a ilustrar por ser bien conocidos si requieres de estos lenguajes o
+&lt;em&gt;linters&lt;/em&gt;.&lt;/p&gt;
+&lt;/section&gt;
+&lt;/section&gt;
+</content>
+    <link href="https://www.cosmoscalibur.com/es/blog/2025/zed-mi-nuevo-editor-de-codigo-y-texto-favorito/"/>
+    <summary>zed es un editor de código y texto de código abierto, diseñado para
+ser rápido y fácil de usar. Está construido en Rust y utiliza una interfaz de
+usuario moderna e intuitiva. De momento es soportado de forma oficial en Linux y
+macOS, pero se está trabajando en su implementación para Windows (aunque existen
+versiones experimentales). Te contaré cómo instalarlo y algunas de sus
+características.</summary>
+    <category term="linux" label="linux"/>
+    <category term="zed" label="zed"/>
+    <published>2025-03-27T00:00:00-05:00</published>
+  </entry>
   <entry>
     <id>https://www.cosmoscalibur.com/en/blog/2025/alucinacion-de-la-inteligencia-artificial/</id>
     <title>Hallucination in Artificial Intelligence</title>
@@ -1745,7 +2029,7 @@ In my case, it would be:&lt;/p&gt;
 &lt;strong class="program"&gt;zed&lt;/strong&gt; again to see if it works. If it does, you can make this change
 permanent by adding the following line to your system’s &lt;code class="file docutils literal notranslate"&gt;&lt;span class="pre"&gt;/etc/environment&lt;/span&gt;&lt;/code&gt;
 file:&lt;/p&gt;
-&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;echo&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;VK_DRIVER_FILES=/usr/share/vulkan/icd.d/radeon_icd.i686.json:/usr/share/vulkan/icd.d/radeon_icd.x86_64.json&amp;#39;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&amp;gt;&amp;gt;&lt;span class="w"&gt; &lt;/span&gt;/etc/environment
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo&lt;span class="w"&gt; &lt;/span&gt;bash&lt;span class="w"&gt; &lt;/span&gt;-c&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;echo &amp;#39;VK_DRIVER_FILES=/usr/share/vulkan/icd.d/radeon_icd.i686.json:/usr/share/vulkan/icd.d/radeon_icd.x86_64.json&amp;#39; &amp;gt;&amp;gt; /etc/environment&amp;quot;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
 &lt;p&gt;This change also fixes the issue where subsequent windows appear to leave an
@@ -1902,7 +2186,7 @@ o &lt;strong class="program"&gt;zed&lt;/strong&gt;, y si funciona, hacer este ca
 Trying «filename» as canonical role name.&lt;/p&gt;
 &lt;/aside&gt;
 .&lt;/p&gt;
-&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;echo&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;VK_DRIVER_FILES=/usr/share/vulkan/icd.d/radeon_icd.i686.json:/usr/share/vulkan/icd.d/radeon_icd.x86_64.json&amp;#39;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&amp;gt;&amp;gt;&lt;span class="w"&gt; &lt;/span&gt;/etc/environment
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo&lt;span class="w"&gt; &lt;/span&gt;bash&lt;span class="w"&gt; &lt;/span&gt;-c&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;echo &amp;#39;VK_DRIVER_FILES=/usr/share/vulkan/icd.d/radeon_icd.i686.json:/usr/share/vulkan/icd.d/radeon_icd.x86_64.json&amp;#39; &amp;gt;&amp;gt; /etc/environment&amp;quot;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
 &lt;p&gt;Este cambio también soluciona el error en X11 en la cual las aperturas
@@ -3260,7 +3544,7 @@ Ubuntu&lt;/label&gt;&lt;div class="sd-tab-content docutils"&gt;
 &lt;p&gt;La instalación del software planetario Stellarium y un software de visualización
 3D del universo, Gaia Sky.&lt;/p&gt;
 &lt;div class="highlight-default notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;flatpak&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;flathub&lt;/span&gt; &lt;span class="n"&gt;org&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;stellarium&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Stellarium&lt;/span&gt;
-&lt;span class="n"&gt;flatpak&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;flathub&lt;/span&gt; &lt;span class="n"&gt;de&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;uni_heidelberg&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;zah&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;GaiaSky&lt;/span&gt;
+&lt;span class="n"&gt;flatpak&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;flathub&lt;/span&gt; &lt;span class="n"&gt;space&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;gaiasky&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;GaiaSky&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
 &lt;/section&gt;
@@ -3746,7 +4030,7 @@ Ubuntu&lt;/label&gt;&lt;div class="sd-tab-content docutils"&gt;
 &lt;p&gt;The installation of the planetarium software Stellarium and a 3D universe
 visualization tool, Gaia Sky.&lt;/p&gt;
 &lt;div class="highlight-default notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;flatpak&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;flathub&lt;/span&gt; &lt;span class="n"&gt;org&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;stellarium&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Stellarium&lt;/span&gt;
-&lt;span class="n"&gt;flatpak&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;flathub&lt;/span&gt; &lt;span class="n"&gt;de&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;uni_heidelberg&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;zah&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;GaiaSky&lt;/span&gt;
+&lt;span class="n"&gt;flatpak&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;flathub&lt;/span&gt; &lt;span class="n"&gt;space&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;gaiasky&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;GaiaSky&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
 &lt;/section&gt;
@@ -5237,12 +5521,12 @@ and video later, so I’ll explain how to do this using FFMPEG and Bash.</summar
 &lt;section id="solar-wind-velocity-profile"&gt;
 &lt;h2&gt;Solar Wind Velocity Profile&lt;/h2&gt;
 &lt;p&gt;In Parker’s work under conditions of isothermal expansion (&lt;span class="math notranslate nohighlight"&gt;\(\gamma = 1\)&lt;/span&gt;) of a neutral fluid (first approximation to the behavior of the solar wind), it leads to a non-linear first-order differential equation that relates the solar wind speed (&lt;span class="math notranslate nohighlight"&gt;\(u(r)\)&lt;/span&gt;) and the heliocentric distance (&lt;span class="math notranslate nohighlight"&gt;\(r\)&lt;/span&gt;). (Parker, 1958), (Kivelson, 1995)&lt;/p&gt;
-&lt;div class="amsmath math notranslate nohighlight" id="equation-7217834d-3d12-42e8-a38d-2323fe45414a"&gt;
+&lt;div class="amsmath math notranslate nohighlight" id="equation-c75cf494-65fb-4902-b7a0-52999b558aea"&gt;
 &lt;span class="eqno"&gt;(1)&lt;/span&gt;\[\begin{equation}
 \frac{du(r)}{dr} = \left(\frac{4kT}{mr} - \frac{GM}{r^2} \right)u(r)\left(u(r)^2 - \frac{2kT}{m} \right)^{-1}
 \end{equation}\]&lt;/div&gt;
 &lt;p&gt;In order to reduce the propagation of errors due to orders of magnitude of the variables involved, the differential equation is adimensionalized based on the radius and velocity at the critical point (sonic point) (Piso, 2008).&lt;/p&gt;
-&lt;div class="amsmath math notranslate nohighlight" id="equation-48847142-3b2f-4746-adaf-8b440acf4461"&gt;
+&lt;div class="amsmath math notranslate nohighlight" id="equation-2fb59322-d146-4efe-9a9a-e4ef05b74673"&gt;
 &lt;span class="eqno"&gt;(2)&lt;/span&gt;\[\begin{eqnarray}
 c_s^2 &amp;amp; = &amp;amp; \frac{2kT}{m}\\
 r_c &amp;amp;=&amp;amp; \frac{GM}{2c_s^2}\\
@@ -5250,7 +5534,7 @@ r_c &amp;amp;=&amp;amp; \frac{GM}{2c_s^2}\\
 \end{eqnarray}\]&lt;/div&gt;
 &lt;p&gt;Where &lt;span class="math notranslate nohighlight"&gt;\(v\)&lt;/span&gt; is the speed at sonic velocities (&lt;span class="math notranslate nohighlight"&gt;\(c_s\)&lt;/span&gt;) and &lt;span class="math notranslate nohighlight"&gt;\(R\)&lt;/span&gt; is the radius at sonic radii (&lt;span class="math notranslate nohighlight"&gt;\(r_c\)&lt;/span&gt;). We observe that around the sonic radius and speed, there is a critical point that must be satisfied to ensure the physical meaning of the solution. Also, we have to note that this equation represents a boundary value problem, and in this case, the boundary condition of the problem in adimensional units is &lt;span class="math notranslate nohighlight"&gt;\(v(R_{\text{sun}}) = v_0\)&lt;/span&gt;, where &lt;span class="math notranslate nohighlight"&gt;\(R_{\text{sun}}\)&lt;/span&gt; is the radius of the Sun, and it is the position from which the flow of particles begins to move with an initial speed &lt;span class="math notranslate nohighlight"&gt;\(v_0\)&lt;/span&gt; that depends on the density of particles and temperature.&lt;/p&gt;
 &lt;p&gt;The generation of the Parker spiral is due to the rotation of the Sun, so we apply the transformation of coordinates Lagrangian for rotating systems, leading to the differential equation:&lt;/p&gt;
-&lt;div class="amsmath math notranslate nohighlight" id="equation-f3823872-83a3-49ab-bd3f-daff2f209bfc"&gt;
+&lt;div class="amsmath math notranslate nohighlight" id="equation-1163161a-50e2-413b-8fd8-d8a55d63a481"&gt;
 &lt;span class="eqno"&gt;(3)&lt;/span&gt;\[\begin{equation}
 \frac{d\varphi}{dR} = \frac{-\omega}{v(R)}
 \end{equation}\]&lt;/div&gt;
@@ -5582,12 +5866,12 @@ Min radii (adim): 0.173030
 &lt;section id="perfil-de-velocidad-del-viento-solar"&gt;
 &lt;h2&gt;Perfil de velocidad del viento solar&lt;/h2&gt;
 &lt;p&gt;En el trabajo de Parker bajo condiciones de expansión isotérmica (&lt;span class="math notranslate nohighlight"&gt;\(\gamma = 1\)&lt;/span&gt;) de un fluido neutro (primera aproximación al comportamiento del viendo solar), lleva a una ecuación diferencial no lineal de primer orden que relaciona la velocidad del viento solar (&lt;span class="math notranslate nohighlight"&gt;\(u(r)\)&lt;/span&gt;) y la distancia heliocéntrica (&lt;span class="math notranslate nohighlight"&gt;\(r\)&lt;/span&gt;) ((Parker, 1958), (Kivelson, 1995)).&lt;/p&gt;
-&lt;div class="amsmath math notranslate nohighlight" id="equation-dc064088-fd19-4673-a989-8d292802bf34"&gt;
+&lt;div class="amsmath math notranslate nohighlight" id="equation-609b9016-c28c-479f-9f61-0192adb91dae"&gt;
 &lt;span class="eqno"&gt;(1)&lt;/span&gt;\[\begin{equation}
 \frac{du(r)}{dr} = \left(\frac{4kT}{mr} - \frac{GM}{r^2} \right)u(r)\left(u(r)^2 - \frac{2kT}{m} \right)^{-1}
 \end{equation}\]&lt;/div&gt;
 &lt;p&gt;Con el fin de reducir la propagación de error por los ordenes de magnitud de las variables involucradas, se procede a adimensionalizar la ecuación diferencial, con base al radio y velocidad en el punto crítico (punto sónico) (Piso, 2008).&lt;/p&gt;
-&lt;div class="amsmath math notranslate nohighlight" id="equation-caff2f1c-1b33-4f3d-a0f5-89ad6ce92669"&gt;
+&lt;div class="amsmath math notranslate nohighlight" id="equation-7dabeaa2-3295-445f-9250-63419b92129e"&gt;
 &lt;span class="eqno"&gt;(2)&lt;/span&gt;\[\begin{eqnarray}
 c_s^2 &amp;amp; = &amp;amp; \frac{2kT}{m}\\
 r_c &amp;amp;=&amp;amp; \frac{GM}{2c_s^2}\\
@@ -5595,7 +5879,7 @@ r_c &amp;amp;=&amp;amp; \frac{GM}{2c_s^2}\\
 \end{eqnarray}\]&lt;/div&gt;
 &lt;p&gt;Donde &lt;span class="math notranslate nohighlight"&gt;\(v\)&lt;/span&gt; es la velocidad en velocidades sónicas (&lt;span class="math notranslate nohighlight"&gt;\(c_s\)&lt;/span&gt;) y &lt;span class="math notranslate nohighlight"&gt;\(R\)&lt;/span&gt; es el radio en radios sónicos (&lt;span class="math notranslate nohighlight"&gt;\(r_c\)&lt;/span&gt;). Observamos que alrededor del radio sónico y de la velocidad sónica se presenta un punto crítico que debe satisfacerse para asegurar el sentido físico de la solución. También, tenemos que esta ecuación representa un problema de valores de frontera, y en este caso la condición de frontera del problema en unidades adimensionales es &lt;span class="math notranslate nohighlight"&gt;\(v(R_{sol}) = v_0\)&lt;/span&gt;, donde &lt;span class="math notranslate nohighlight"&gt;\(R_{sol}\)&lt;/span&gt; es el radio del Sol, y es la posición desde la cuál comienza a desplazarse el flujo de partículas con una velocidad inicial &lt;span class="math notranslate nohighlight"&gt;\(v_0\)&lt;/span&gt; que dependerá de la densidad de partículas y la temperatura.&lt;/p&gt;
 &lt;p&gt;La generación de la espiral de Parker es efecto de la rotación del sol, por lo cual se aplica la transformación de coordenadas lagrangianas para sistemas rotantes, llevando a la ecuación diferencial&lt;/p&gt;
-&lt;div class="amsmath math notranslate nohighlight" id="equation-4464eb6a-2455-4c5d-9446-693cde181b32"&gt;
+&lt;div class="amsmath math notranslate nohighlight" id="equation-8a808468-53f7-4153-93e0-b747b9803be3"&gt;
 &lt;span class="eqno"&gt;(3)&lt;/span&gt;\[\begin{equation}
 \frac{d\varphi}{dR} = \frac{-\omega}{v(R)}
 \end{equation}\]&lt;/div&gt;
@@ -5932,7 +6216,7 @@ Pages&lt;/em&gt; y ser consciente del valor en lugar de tomar el valor por defec
 &lt;p&gt;Un primer paso para incluir &lt;em&gt;Google Ads&lt;/em&gt; es incluir nuestra validación como
 publicador y esto puede hacerse incluyendo &lt;em&gt;scripts&lt;/em&gt; o un archivo &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;ads.txt&lt;/span&gt;&lt;/code&gt;. Es
 recomendable esta última opción para reducir la carga de &lt;em&gt;scripts&lt;/em&gt;, y acorde a
-Google es más recomendable para las validaciones por proveedores de anuncions y
+Google es más recomendable para las validaciones por proveedores de anuncios y
 cuando son múltiples.&lt;/p&gt;
 &lt;p&gt;Este archivo debe estar en la raíz de nuestro sitio, por lo que vamos a disponer
 de este archivo en el directorio &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;files&lt;/span&gt;&lt;/code&gt; que es el destinado para este tipo de
@@ -9243,7 +9527,7 @@ installation from snap (installing snap if it is not already installed).&lt;/p&g
 managers that automatically install components from another manager would be
 preferable over me having to handle such tasks. However, the Mint team finds a
 lack of transparency with their users who are not warned about this and even
-consider it a security flaw &lt;a class="reference internal" href="../en/blog/2020/instalar-paquetes-snap-en-linux-mint-20/#snap-mint" id="id1"&gt;&lt;span&gt;[snap-mint]&lt;/span&gt;&lt;/a&gt;.&lt;/p&gt;
+consider it a security flaw &lt;a class="reference internal" href="../es/blog/2020/instalar-paquetes-snap-en-linux-mint-20/#snap-mint" id="id1"&gt;&lt;span&gt;[snap-mint]&lt;/span&gt;&lt;/a&gt;.&lt;/p&gt;
 &lt;/section&gt;
 &lt;section id="the-solution"&gt;
 &lt;h2&gt;The solution&lt;/h2&gt;
@@ -9259,7 +9543,7 @@ consider it a security flaw &lt;a class="reference internal" href="../en/blog/20
 &lt;code class="code docutils literal notranslate"&gt;&lt;span class="pre"&gt;/etc/apt/preferences.d/nosnap.pref&lt;/span&gt;&lt;/code&gt;. In my case, I do not see any reason
 to keep it, so I proceed by removing it and then installing the snap manager.
 If you feel more comfortable, you can comment out the lines and then uncomment
-them after installing the snap manager &lt;a class="reference internal" href="../en/blog/2020/instalar-paquetes-snap-en-linux-mint-20/#snap-install" id="id2"&gt;&lt;span&gt;[snap-install]&lt;/span&gt;&lt;/a&gt;.&lt;/p&gt;
+them after installing the snap manager &lt;a class="reference internal" href="../es/blog/2020/instalar-paquetes-snap-en-linux-mint-20/#snap-install" id="id2"&gt;&lt;span&gt;[snap-install]&lt;/span&gt;&lt;/a&gt;.&lt;/p&gt;
 &lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo&lt;span class="w"&gt; &lt;/span&gt;rm&lt;span class="w"&gt; &lt;/span&gt;/etc/apt/preferences.d/nosnap.pref
 sudo&lt;span class="w"&gt; &lt;/span&gt;apt&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;-y&lt;span class="w"&gt; &lt;/span&gt;snapd
 snap&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;help&lt;/span&gt;
@@ -9317,16 +9601,6 @@ la configuración de apt para poderlo hacer.&lt;/p&gt;
 &lt;p&gt;Si ya cuentas con Linux Mint 20 observarás que al intentar instalar el paquete
 &lt;code class="code docutils literal notranslate"&gt;&lt;span class="pre"&gt;snapd&lt;/span&gt;&lt;/code&gt; (el gestor snap), nos llevaremos la sorpresa de no poderlo
 instalar. Encontraremos un mensaje como el siguiente:&lt;/p&gt;
-&lt;aside class="system-message"&gt;
-&lt;p class="system-message-title"&gt;System Message: INFO/1 (&lt;span class="docutils literal"&gt;/home/cosmoscalibur/Documentos/git/cosmoscalibur.github.io/es/blog/2020/instalar-paquetes-snap-en-linux-mint-20.rst&lt;/span&gt;, line 21)&lt;/p&gt;
-&lt;p&gt;No role entry for «code» in module «docutils.parsers.rst.languages.es».
-Using English fallback for role «code».&lt;/p&gt;
-&lt;/aside&gt;
-&lt;aside class="system-message"&gt;
-&lt;p class="system-message-title"&gt;System Message: INFO/1 (&lt;span class="docutils literal"&gt;/home/cosmoscalibur/Documentos/git/cosmoscalibur.github.io/es/blog/2020/instalar-paquetes-snap-en-linux-mint-20.rst&lt;/span&gt;, line 25)&lt;/p&gt;
-&lt;p&gt;No directive entry for «raw» in module «docutils.parsers.rst.languages.es».
-Using English fallback for directive «raw».&lt;/p&gt;
-&lt;/aside&gt;
 &lt;pre&gt;&lt;font color="#8AE234"&gt;&lt;b&gt;cosmoscalibur@edliviano&lt;/b&gt;&lt;/font&gt;:&lt;font color="#739FCF"&gt;&lt;b&gt;~&lt;/b&gt;&lt;/font&gt;$ apt install snapd
 Reading package lists... Done
 Building dependency tree
@@ -9355,7 +9629,7 @@ invocar la instalación desde snap (instalando snap si este no lo está).&lt;/p&
 gestores de paquetes que terminen de instalar componentes desde otro gestor de
 forma automática en lugar de yo encargarme del trabajo sucio. Pero el equipo de
 Mint encuentra una falta de transparencia con sus usuarios que no son
-advertidos de esto e incluso considerar como una falla de seguridad &lt;a class="reference internal" href="../en/blog/2020/instalar-paquetes-snap-en-linux-mint-20/#snap-mint" id="id1"&gt;&lt;span&gt;[snap-mint]&lt;/span&gt;&lt;/a&gt;.&lt;/p&gt;
+advertidos de esto e incluso considerar como una falla de seguridad &lt;a class="reference internal" href="../es/blog/2020/instalar-paquetes-snap-en-linux-mint-20/#snap-mint" id="id1"&gt;&lt;span&gt;[snap-mint]&lt;/span&gt;&lt;/a&gt;.&lt;/p&gt;
 &lt;/section&gt;
 &lt;section id="la-solucion"&gt;
 &lt;h2&gt;La solución&lt;/h2&gt;
@@ -9363,7 +9637,7 @@ advertidos de esto e incluso considerar como una falla de seguridad &lt;a class=
 archivo: &lt;code class="code docutils literal notranslate"&gt;&lt;span class="pre"&gt;/etc/apt/preferences.d/nosnap.pref&lt;/span&gt;&lt;/code&gt;. En mi caso, no veo razón
 de mantenerlo, así que procedo a eliminarlo y posteriormente a instalar el
 gestor de snaps. Si te sientes más cómodo, puedes comentar las líneas y una vez
-instalado el gestor volver a descomentarlas &lt;a class="reference internal" href="../en/blog/2020/instalar-paquetes-snap-en-linux-mint-20/#snap-install" id="id2"&gt;&lt;span&gt;[snap-install]&lt;/span&gt;&lt;/a&gt;.&lt;/p&gt;
+instalado el gestor volver a descomentarlas &lt;a class="reference internal" href="../es/blog/2020/instalar-paquetes-snap-en-linux-mint-20/#snap-install" id="id2"&gt;&lt;span&gt;[snap-install]&lt;/span&gt;&lt;/a&gt;.&lt;/p&gt;
 &lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo&lt;span class="w"&gt; &lt;/span&gt;rm&lt;span class="w"&gt; &lt;/span&gt;/etc/apt/preferences.d/nosnap.pref
 sudo&lt;span class="w"&gt; &lt;/span&gt;apt&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;-y&lt;span class="w"&gt; &lt;/span&gt;snapd
 snap&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;help&lt;/span&gt;
@@ -14752,11 +15026,6 @@ de dinero o enriquecimiento de alguna entidad.Factura de compra evidenciando que
 &lt;h2&gt;El proyecto&lt;/h2&gt;
 &lt;p&gt;Resulta que finalizando mayo buscaba sobre proyectos que implicarán procesamiento de texto y lenguaje natural, por diversos motivos (aprender, prácticar y hacer una propuesta a una estudiante). En esa búsqueda me tope por casualidad con el proyecto &lt;a class="reference external" href="https://github.com/sbosio/rla-es"&gt;Recursos Lingüisticos Abiertos del Español&lt;/a&gt; que es liderado por Santiago Bosio (&lt;a class="reference external" href="https://github.com/sbosio"&gt;&amp;#64;sbosio&lt;/a&gt; en github).&lt;/p&gt;
 &lt;p&gt;Este proyecto ha aportado diversas localizaciones del español en proyectos como LibreOffice, OpenOffice y Mozilla (proyectos que usan Hunspell para la corrección de ortografía). Y de paso, indirectamente había sido la fuente del diccionario para mis editores de texto plano (TeXMaker, Atom y ReText), pues no uso los que vienen por defecto en la distribución de Ubuntu sino que descomprimo la extensión de LibreOffice y tomo los archivos &lt;code class="code docutils literal notranslate"&gt;&lt;span class="pre"&gt;dic&lt;/span&gt;&lt;/code&gt; y &lt;code class="code docutils literal notranslate"&gt;&lt;span class="pre"&gt;aff&lt;/span&gt;&lt;/code&gt; (con el fin de tener versiones más recientes).&lt;/p&gt;
-&lt;aside class="system-message"&gt;
-&lt;p class="system-message-title"&gt;System Message: INFO/1 (&lt;span class="docutils literal"&gt;/home/cosmoscalibur/Documentos/git/cosmoscalibur.github.io/es/blog/2017/toponimos-colombianos-en-rla-es.rst&lt;/span&gt;, line 19)&lt;/p&gt;
-&lt;p&gt;No role entry for «code» in module «docutils.parsers.rst.languages.es».
-Using English fallback for role «code».&lt;/p&gt;
-&lt;/aside&gt;
 &lt;p&gt;Aunque por si mismo el proyecto no era lo que buscaba, vi la oportunidad no solo de usar una versión actualizada del diccionario sin esperar las liberaciones de versión (y sus respectivas subidas a los proyectos), sino una oportunidad de contribuir en la localización de Colombia.&lt;/p&gt;
 &lt;/section&gt;
 &lt;section id="la-contribucion"&gt;
@@ -14771,7 +15040,7 @@ Using English fallback for role «code».&lt;/p&gt;
 &lt;section id="uso"&gt;
 &lt;h2&gt;Uso&lt;/h2&gt;
 &lt;p&gt;Una vez sea liberada la versión 2.3, estará disponible a traves de las extensiones de los proyectos y de la página de &lt;a class="reference external" href="https://github.com/sbosio/rla-es/releases"&gt;releases de RLA-ES&lt;/a&gt;. Por ahora, es necesario generar el archivo descargando (o clonando) el proyecto y siguiendo las instrucciones dadas en la &lt;a class="reference external" href="https://github.com/sbosio/rla-es/wiki/Generar-diccionario-corrector"&gt;wiki del proyecto&lt;/a&gt; (para la localización de Colombia, debemos usar &lt;code class="code docutils literal notranslate"&gt;&lt;span class="pre"&gt;es_CO).&lt;/span&gt;&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;Finalmente, para poderlo usar en nuestros editores de texto plano (si, diccionario para nuestros documentos de LaTeX y MarkDown), debes seguir las indicaciones finales de la sección de la wiki (que se resúmen en descomprimir el archivo generado).&lt;/p&gt;
+&lt;p&gt;Finalmente, para poderlo usar en nuestros editores de texto plano (si, diccionario para nuestros documentos de LaTeX y MarkDown), debes seguir las indicaciones finales de la sección de la wiki (que se resumen en descomprimir el archivo generado).&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Fuentes&lt;/strong&gt;:&lt;/p&gt;
 &lt;ul class="simple"&gt;
 &lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://github.com/sbosio/rla-es"&gt;sbosio/rla-es&lt;/a&gt;: Proyecto original.&lt;/p&gt;&lt;/li&gt;

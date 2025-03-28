@@ -40,7 +40,7 @@ Uso
 
 Una vez sea liberada la versión 2.3, estará disponible a traves de las extensiones de los proyectos y de la página de `releases de RLA-ES <https://github.com/sbosio/rla-es/releases>`_. Por ahora, es necesario generar el archivo descargando (o clonando) el proyecto y siguiendo las instrucciones dadas en la `wiki del proyecto <https://github.com/sbosio/rla-es/wiki/Generar-diccionario-corrector>`_ (para la localización de Colombia, debemos usar :code:`es_CO).`
 
-Finalmente, para poderlo usar en nuestros editores de texto plano (si, diccionario para nuestros documentos de LaTeX y MarkDown), debes seguir las indicaciones finales de la sección de la wiki (que se resúmen en descomprimir el archivo generado).
+Finalmente, para poderlo usar en nuestros editores de texto plano (si, diccionario para nuestros documentos de LaTeX y MarkDown), debes seguir las indicaciones finales de la sección de la wiki (que se resumen en descomprimir el archivo generado).
 
 **Fuentes**:
 

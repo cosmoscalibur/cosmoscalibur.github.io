@@ -531,5 +531,5 @@ visualization tool, Gaia Sky.
 
 ```{code}
 flatpak install flathub org.stellarium.Stellarium
-flatpak install flathub de.uni_heidelberg.zah.GaiaSky
+flatpak install flathub space.gaiasky.GaiaSky
 ```
