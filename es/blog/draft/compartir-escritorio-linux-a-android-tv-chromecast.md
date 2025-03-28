@@ -1,2 +1,7 @@
-transmitir a android tv: mkchromecast - gnome network display (miracast) - vlc -
-stremio - chrome - deskreen. Idea, mezclar deskreen con mkchromecast
+transmitir a android tv
+
+- bananas screen sharing
+- deskreen
+- mkchromecast
+- vlc
+- chrome

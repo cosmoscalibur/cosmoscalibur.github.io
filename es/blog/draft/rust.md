@@ -94,9 +94,17 @@ seguido de `8`, `16`, `32`, `64` y `128` acorde al tamaño en bits), los
 flotantes (`f32` y `f64`), los booleanos (`bool`, usan 1 *byte*) y los
 caracteres (`char`, usan 4 *bytes*).
 
-Si quieres conocer la sintaxis de los operadores en Rust, puedes consultar el
-apéndice de la documentación oficial de Rust,
-[Appendix B: Operators and Symbols](https://doc.rust-lang.org/book/appendix-02-operators.html).
+También es posible disponer de variables de tipo opcional, es decir, que admiten
+el valor `None`. Esto se logra usando `Option<type>`, donde `type` es el tipo de
+variable deseada. Si se desea asignar el valor `None` se hace directamente, pero
+para un valor diferente es necesario hacerlo con `Some`.
+
+```{code} rust
+fn main(){
+  let x : Option<i8> = None;
+  ley y : Option<i8> = Some(5);
+}
+```
 
 Existen también tipos de datos compuestos:
 
@@ -142,12 +150,13 @@ Existen también tipos de datos compuestos:
 
   ```{code} rust
   #[macro_use] extern crate maplit;
-
-  let map = hashmap!{
-      "daffy" => 80,
-      "bugs" => 79,
-      "taz" => 63,
-  };
+  fn main(){
+    let map = hashmap!{
+        "daffy" => 80,
+        "bugs" => 79,
+        "taz" => 63,
+    };
+  }
   ```
 
 - *Hash set*: Es una colección de elementos únicos sin orden específico
@@ -160,12 +169,13 @@ Existen también tipos de datos compuestos:
 
   ```{code} rust
   #[macro_use] extern crate maplit;
-
-  let set = hashset!{
-      "daffy",
-      "bugs",
-      "taz",
-  };
+  fn main(){
+    let set = hashset!{
+        "daffy",
+        "bugs",
+        "taz",
+    };
+  }
   ```
 
 ## Funciones en Rust
@@ -184,6 +194,10 @@ Es importante que en Rust, las funciones deben tener un tipo de retorno definido
 explícitamente. Sin embargo, el `return` es opcional, y puede ser útil para el
 retorno temprano, y se asume que el último valor de la función es el valor de
 retorno.
+
+Aquí vemos cómo hacer la suma, y podemos disponer de otros operadores que puedes
+consultar en el apéndice de la documentación oficial de Rust,
+[Appendix B: Operators and Symbols](https://doc.rust-lang.org/book/appendix-02-operators.html).
 
 ## Flujos de control
 
@@ -227,7 +241,8 @@ fn main() {
 
 También disponemos de la estructura de control `match`, que permite comparar un
 valor con una serie de patrones y ejecutar diferentes bloques de código según el
-patrón coincidente.
+patrón coincidente. Es importante considerar que `match` debe ser exhaustivo en
+la generación de casos.
 
 ```{code} rust
 fn main() {
@@ -240,6 +255,13 @@ fn main() {
     }
 }
 ```
+
+Existen casos en los cuales la lógica con `match` puede ser muy verbosa, y se
+puede condensar en `if let` o `let else`. El primer caso permite asignar un
+patrón coincidente ignorando los demás casos, y el segundo permite asignar una
+variable si cumple el patrón y ejecutar un bloque si no cumple el patrón. Puedes
+detallar más en
+[*Concise Control Flow with if let and let else*](https://doc.rust-lang.org/book/ch06-03-if-let.html).
 
 ### Ciclos en Rust
 
@@ -291,3 +313,15 @@ salir de un ciclo anidado. Ejemplo:
 - [Comprehensive Rust 🦀](https://google.github.io/comprehensive-rust/index.html).
 - [py2rs](https://rochacbruno.github.io/py2rs/index.html).
 - [Rust by Example](https://doc.rust-lang.org/rust-by-example/index.html).
+
+## Otros recursos
+
+- [Rustlings](https://github.com/rust-lang/rustlings).
+- [Rust Cookbook](https://rust-lang-nursery.github.io/rust-cookbook/about.html).
+- [Are we web yet?](https://arewewebyet.com/).
+- [A survey of every iterator variant](https://blog.yoshuawuyts.com/a-survey-of-every-iterator-variant/).
+- [Scientific Computing in Rust Monthly](https://scientificcomputing.rs/monthly/).
+- [Environment Variables & Rust](https://mattrighetti.com/2024/03/07/environment-variables-and-rust).
+- [State of the Crates 2025](https://ohadravid.github.io/posts/2024-12-state-of-the-crates/).
+- [24daysofrust](https://zsiciarz.github.io/24daysofrust/)
+- [Making Python 100x faster with less than 100 lines of Rust](https://ohadravid.github.io/posts/2023-03-rusty-python/).
