@@ -132,3 +132,5 @@ yaak https://yaak.app/ postman
 tauri https://tauri.app/ slint https://slint.dev/
 
 https://github.com/executablebooks/mdformat
+
+zen browser
