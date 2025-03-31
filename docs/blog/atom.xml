@@ -2,10 +2,421 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="es">
   <id>https://www.cosmoscalibur.com/</id>
   <title>Cosmoscalibur</title>
-  <updated>2025-03-31T00:46:15.072855+00:00</updated>
+  <updated>2025-03-31T23:40:44.507741+00:00</updated>
   <link href="https://www.cosmoscalibur.com/"/>
   <link href="https://www.cosmoscalibur.com/blog/atom.xml" rel="self"/>
   <generator uri="https://ablog.readthedocs.io/" version="0.11.12">ABlog</generator>
+  <entry>
+    <id>https://www.cosmoscalibur.com/es/blog/2025/aprendiendo-rust-parte-1/</id>
+    <title>Aprendiendo Rust: Parte 1 - Uso básico de cargo, variables y flujos de control</title>
+    <updated>2025-03-31T00:00:00-05:00</updated>
+    <author>
+      <name>Edward Villegas-Pulgarin</name>
+    </author>
+    <content type="html">&lt;section class="tex2jax_ignore mathjax_ignore" id="aprendiendo-rust-parte-1-uso-basico-de-cargo-variables-y-flujos-de-control"&gt;
+
+&lt;p&gt;Hace casi dos años me propuse aprender Rust, pero no tuve tiempo o realmente
+tenía poca disciplina para seguir adelante. Ahora, estoy en firme con el
+propósito para este 2025 y aquí estoy tomando notas, haciendo algunos ejercicios
+e iniciando un proyecto. Respecto a estas notas, deben considerarse como notas
+personales, y bueno cubro detalles de lo básico para iniciar con un proyecto con
+&lt;em&gt;cargo&lt;/em&gt;, imprimir en consola, asignar variables, tener claros los tipos de
+variables y hacer flujos de control (todavía sin manejo de errores).&lt;/p&gt;
+&lt;p&gt;El punto de partida para esta publicación es que ya se ha
+&lt;a class="reference internal" href="../es/blog/2024/instalar-rust-en-linux/"&gt;&lt;span class="std std-doc"&gt;instalado Rust en Linux&lt;/span&gt;&lt;/a&gt;.&lt;/p&gt;
+&lt;section id="uso-de-cargo"&gt;
+&lt;h2&gt;Uso de &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;cargo&lt;/span&gt;&lt;/code&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;cargo&lt;/span&gt; &lt;span class="pre"&gt;new&lt;/span&gt; &lt;span class="pre"&gt;proyecto&lt;/span&gt;&lt;/code&gt; para crear proyecto nuevo con su directorio. Si el
+directorio existe, usamos &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;cargo&lt;/span&gt; &lt;span class="pre"&gt;init&lt;/span&gt;&lt;/code&gt; en el directorio para su inicialización.
+La inicialización incluye un directorio &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;src&lt;/span&gt;&lt;/code&gt; con un archivo &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;main.rs&lt;/span&gt;&lt;/code&gt; con
+ejemplo, un archivo de exclusión de git &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;.gitignore&lt;/span&gt;&lt;/code&gt; (el sistema de
+versionamiento se puede configurar con la opción &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;--vcs&lt;/span&gt;&lt;/code&gt;) y el archivo de
+proyecto &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;Cargo.toml&lt;/span&gt;&lt;/code&gt;. El nombre del proyecto puede ser diferente al directorio,
+y se puede pasar en la opción &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;--name&lt;/span&gt;&lt;/code&gt;. Por defecto se usa la opción &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;--bin&lt;/span&gt;&lt;/code&gt;
+para la creación de un binario, pero puede ser &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;--lib&lt;/span&gt;&lt;/code&gt; para generar una
+biblioteca. Por defecto, es la edición 2021, pero se puede configurar con
+&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;--edition&lt;/span&gt;&lt;/code&gt; (ejemplo, usar la nueva edición, &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;2024&lt;/span&gt;&lt;/code&gt;). Estas opciones son tanto
+en la creación con &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;new&lt;/span&gt;&lt;/code&gt; como en la inicialización con &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;init&lt;/span&gt;&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;El archivo de proyecto es necesario para la compilación (&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;cargo&lt;/span&gt; &lt;span class="pre"&gt;build&lt;/span&gt;&lt;/code&gt;) o
+ejecución (&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;cargo&lt;/span&gt; &lt;span class="pre"&gt;run&lt;/span&gt;&lt;/code&gt;). Puedes usar proyectos con múltiples binarios si en el
+directorio &lt;code class="file docutils literal notranslate"&gt;&lt;span class="pre"&gt;src&lt;/span&gt;&lt;/code&gt; añadimos otros archivos fuentes. Estos, &lt;strong class="program"&gt;cargo&lt;/strong&gt;
+los puede inferir y crear los binarios, y si deseamos ejecutarlos bastará con
+usar &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;cargo&lt;/span&gt; &lt;span class="pre"&gt;run&lt;/span&gt;&lt;/code&gt; seguido de &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;--bin&lt;/span&gt;&lt;/code&gt; y el nombre (por defecto es el nombre del
+archivo sin extensión).&lt;/p&gt;
+&lt;p&gt;Sobre la organización general de archivos, puedes consultar en
+&lt;a class="reference external" href="https://doc.rust-lang.org/cargo/guide/project-layout.html"&gt;Package Layout&lt;/a&gt; de
+&lt;em&gt;The Cargo Book&lt;/em&gt;, y la configuración si no deseamos los nombres por defecto de
+los binarios en
+&lt;a class="reference external" href="https://doc.rust-lang.org/cargo/reference/cargo-targets.html#configuring-a-target"&gt;Cargo Targets&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Se puede compilar directamente el código fuente sin &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;cargo&lt;/span&gt;&lt;/code&gt; usando &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;rustc&lt;/span&gt;&lt;/code&gt;
+seguido de la ruta del código fuente.&lt;/p&gt;
+&lt;div class="admonition hint"&gt;
+&lt;p class="admonition-title"&gt;Consejo&lt;/p&gt;
+&lt;p&gt;Una instrucción interesante es &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;cargo&lt;/span&gt; &lt;span class="pre"&gt;check&lt;/span&gt;&lt;/code&gt;, la cual te permitirá verificar si
+el código es compilable sin necesidad de generar el ejecutable. Esto es mucho
+más rápido y en ocasiones no necesitamos hacer la prueba de ejecución, sino solo
+saber si puede generar errores de compilación.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/section&gt;
+&lt;section id="hola-mundo-en-rust"&gt;
+&lt;h2&gt;Hola mundo en Rust&lt;/h2&gt;
+&lt;p&gt;Los códigos ejecutables de Rust siempre requieren una función &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;main&lt;/span&gt;&lt;/code&gt;. Las
+funciones se especifican con &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;fn&lt;/span&gt;&lt;/code&gt; seguido del nombre, los paréntesis para
+argumentos, llave para el cuerpo de la función. Las líneas sentencias requieren
+la terminación de &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/p&gt;
+&lt;div class="highlight-rust notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;fn&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;(){&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="c1"&gt;// Esto es un comentario de una línea&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="fm"&gt;println!&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Hola, Edward! 🧠&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;println&lt;/span&gt;&lt;/code&gt; es una macro (por eso termina en &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;!&lt;/span&gt;&lt;/code&gt;) para imprimir, y esto nos ayuda
+con el manejo de la existencia de múltiples argumentos. Hay varias formas de
+imprimir y formatear:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;format!&lt;/span&gt;&lt;/code&gt;: Formatea una cadena de texto (su salida es &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;String&lt;/span&gt;&lt;/code&gt;).&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;print!&lt;/span&gt;&lt;/code&gt;: Imprime en la consola (salida estándar) sin salto de línea
+(&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;io::stdout&lt;/span&gt;&lt;/code&gt;).&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;println!&lt;/span&gt;&lt;/code&gt;: Imprime en la consola con salto de línea.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Las versiones &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;eprint!&lt;/span&gt;&lt;/code&gt; y &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;eprintln!&lt;/span&gt;&lt;/code&gt; equivalentes a su versión sin &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;e&lt;/span&gt;&lt;/code&gt;
+inicial solo que imprimen en la salida estándar de errores (&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;io::stderr&lt;/span&gt;&lt;/code&gt;).&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Si deseamos agregar comentarios, esto se hace con &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;//&lt;/span&gt;&lt;/code&gt; por cada línea.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="asignacion-de-variables-y-constantes"&gt;
+&lt;h2&gt;Asignación de variables y constantes&lt;/h2&gt;
+&lt;p&gt;Para asignar variables usamos &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;let&lt;/span&gt;&lt;/code&gt; seguido del nombre de la variable, &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;:&lt;/span&gt;&lt;/code&gt; el
+tipo de dato (aunque este puede ser inferido y no anotarse siempre), &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;=&lt;/span&gt;&lt;/code&gt; y el
+valor de la variable (y por supuesto, el terminador de línea). En Rust, las
+variables por defecto son inmutable, lo cual implica que una vez se asigna el
+valor, este no puede ser modificado. Si queremos que el valor sea modificable,
+debemos agregar &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;mut&lt;/span&gt;&lt;/code&gt; antes del nombre de la variable.&lt;/p&gt;
+&lt;p&gt;También podemos asignar constantes con la palabra clave &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;const&lt;/span&gt;&lt;/code&gt;, y estas siempre
+son inmutables y siempre deben anotar el tipo. Su estructura es &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;const&lt;/span&gt;&lt;/code&gt; seguido
+del nombre de la constante en mayúscula sostenida (puede contener guion bajo),
+&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;:&lt;/span&gt;&lt;/code&gt;, el tipo de dato, el valor y el terminador de línea. Las constantes pueden
+ser asignadas con expresiones que se calculan en tiempo de compilación (esto nos
+ayuda a la legibilidad y verificación de un valor, en lugar de poner su valor
+directo), y a diferencia de las variables pueden ser de contexto global, útil
+para valores que son requeridos en múltiples partes de nuestro código.&lt;/p&gt;
+&lt;div class="highlight-rust notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;const&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;ANSWER&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kt"&gt;i32&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;42&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+&lt;span class="k"&gt;fn&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="kd"&gt;let&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kt"&gt;i32&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;26&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="kd"&gt;let&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;mut&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kt"&gt;f32&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mf"&gt;5.6&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mf"&gt;8.&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="kd"&gt;let&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;suma&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;ANSWER&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="kd"&gt;let&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;bandera&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kc"&gt;true&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="fm"&gt;println!&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Mi primera variable &amp;#39;x&amp;#39;: {x}&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="fm"&gt;println!&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Mi primera variable mutable &amp;#39;y&amp;#39;: {y}&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="fm"&gt;println!&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Sumando {suma}&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Los tipos de datos que existen son los enteros sin signo y con signo (&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;u&lt;/span&gt;&lt;/code&gt; y &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;i&lt;/span&gt;&lt;/code&gt;,
+seguido de &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;8&lt;/span&gt;&lt;/code&gt;, &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;16&lt;/span&gt;&lt;/code&gt;, &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;32&lt;/span&gt;&lt;/code&gt;, &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;64&lt;/span&gt;&lt;/code&gt; y &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;128&lt;/span&gt;&lt;/code&gt; acorde al tamaño en bits), los
+flotantes (&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;f32&lt;/span&gt;&lt;/code&gt; y &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;f64&lt;/span&gt;&lt;/code&gt;), los booleanos (&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;bool&lt;/span&gt;&lt;/code&gt;, usan 1 &lt;em&gt;byte&lt;/em&gt;) y los
+caracteres (&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;char&lt;/span&gt;&lt;/code&gt;, usan 4 &lt;em&gt;bytes&lt;/em&gt;).&lt;/p&gt;
+&lt;p&gt;También es posible disponer de variables de tipo opcional, es decir, que admiten
+el valor &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;None&lt;/span&gt;&lt;/code&gt;. Esto se logra usando &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;Option&amp;lt;type&amp;gt;&lt;/span&gt;&lt;/code&gt;, donde &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;type&lt;/span&gt;&lt;/code&gt; es el tipo de
+variable deseada. Si se desea asignar el valor &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;None&lt;/span&gt;&lt;/code&gt; se hace directamente, pero
+para un valor diferente es necesario hacerlo con &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;Some&lt;/span&gt;&lt;/code&gt;.&lt;/p&gt;
+&lt;div class="highlight-rust notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;fn&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;(){&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="kd"&gt;let&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;Option&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="kt"&gt;i8&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;None&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="n"&gt;ley&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;Option&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="kt"&gt;i8&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;Some&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Rust no soporta la conversión implícita entre tipos de datos, y la conversión
+explícita se hace usando funciones como &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;as&lt;/span&gt;&lt;/code&gt;. Para los datos personalizados o
+compuestos, se puede usar la función &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;into()&lt;/span&gt;&lt;/code&gt; o &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;from()&lt;/span&gt;&lt;/code&gt;, que tendrá que
+definirse en &lt;em&gt;traits&lt;/em&gt; (&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;Into&lt;/span&gt;&lt;/code&gt; y &lt;code class="docutils literal notranslate"&gt;&amp;#160; &lt;span class="pre"&gt;From&lt;/span&gt;&lt;/code&gt;). Otros &lt;em&gt;traits&lt;/em&gt; para este fin son
+&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;TryFrom&lt;/span&gt;&lt;/code&gt; y &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;TryInto&lt;/span&gt;&lt;/code&gt;, pero pueden existir casos muy específicos por tipos, como
+lo son &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;FromStr&lt;/span&gt;&lt;/code&gt; y &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;ToString&lt;/span&gt;&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Existen también tipos de datos compuestos:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Tuplas: Es una agrupación de valores de diferentes tipos en un tipo compuesto
+que se concibe como uno. Para obtener sus valores, se puede usar la notación
+&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;x.N&lt;/span&gt;&lt;/code&gt; donde &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;N&lt;/span&gt;&lt;/code&gt; es el índice del elemento en la tupla, comenzando desde 0.
+También se puede desestructurar una tupla usando la sintaxis
+&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;let&lt;/span&gt; &lt;span class="pre"&gt;(a,&lt;/span&gt; &lt;span class="pre"&gt;b,&lt;/span&gt; &lt;span class="pre"&gt;c)&lt;/span&gt; &lt;span class="pre"&gt;=&lt;/span&gt; &lt;span class="pre"&gt;tupla;&lt;/span&gt;&lt;/code&gt;. Una vez asignada, las tuplas no pueden cambiar su
+tamaño ni tipo de datos. Se asignan valores a las tuplas usando la sintaxis
+&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;let&lt;/span&gt; &lt;span class="pre"&gt;tupla&lt;/span&gt; &lt;span class="pre"&gt;=&lt;/span&gt; &lt;span class="pre"&gt;(1,&lt;/span&gt; &lt;span class="pre"&gt;2.0,&lt;/span&gt; &lt;span class="pre"&gt;'a');&lt;/span&gt;&lt;/code&gt; o indicando de forma explícita el tipo de cada
+elemento &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;let&lt;/span&gt; &lt;span class="pre"&gt;tupla:&lt;/span&gt; &lt;span class="pre"&gt;(i32,&lt;/span&gt; &lt;span class="pre"&gt;f64,&lt;/span&gt; &lt;span class="pre"&gt;char)&lt;/span&gt; &lt;span class="pre"&gt;=&lt;/span&gt; &lt;span class="pre"&gt;(1,&lt;/span&gt; &lt;span class="pre"&gt;2.0,&lt;/span&gt; &lt;span class="pre"&gt;'a');&lt;/span&gt;&lt;/code&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Arreglos: Es una colección de elementos del mismo tipo y de tamaño fijo. Se
+asignan valores a los arreglos usando la sintaxis &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;let&lt;/span&gt; &lt;span class="pre"&gt;arreglo&lt;/span&gt; &lt;span class="pre"&gt;=&lt;/span&gt; &lt;span class="pre"&gt;[1,&lt;/span&gt; &lt;span class="pre"&gt;2,&lt;/span&gt; &lt;span class="pre"&gt;3];&lt;/span&gt;&lt;/code&gt; o
+indicando de forma explícita el tipo de cada elemento
+&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;let&lt;/span&gt; &lt;span class="pre"&gt;arreglo:&lt;/span&gt; &lt;span class="pre"&gt;[i32;&lt;/span&gt; &lt;span class="pre"&gt;3]&lt;/span&gt; &lt;span class="pre"&gt;=&lt;/span&gt; &lt;span class="pre"&gt;[1,&lt;/span&gt; &lt;span class="pre"&gt;2,&lt;/span&gt; &lt;span class="pre"&gt;3];&lt;/span&gt;&lt;/code&gt;. También se puede crear un arreglo con
+valores repetidos usando la sintaxis &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;let&lt;/span&gt; &lt;span class="pre"&gt;arreglo&lt;/span&gt; &lt;span class="pre"&gt;=&lt;/span&gt; &lt;span class="pre"&gt;[0;&lt;/span&gt; &lt;span class="pre"&gt;5];&lt;/span&gt;&lt;/code&gt; que crea un
+arreglo de 5 elementos todos iguales a 0. Los elementos de un arreglo se
+pueden acceder usando la notación &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;arreglo[i]&lt;/span&gt;&lt;/code&gt; donde &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;i&lt;/span&gt;&lt;/code&gt; es el índice del
+elemento en el arreglo, comenzando desde 0. Se soporta la iteración sobre el
+arreglo mediante la notación valor inicial seguido de &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;..&lt;/span&gt;&lt;/code&gt; (con &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;..=&lt;/span&gt;&lt;/code&gt; indica
+que el valor final está incluido) y el valor final. Y con &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;step_by&lt;/span&gt;&lt;/code&gt; para
+iterar con un paso específico (similar a &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;range&lt;/span&gt;&lt;/code&gt; en Python).&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Vectores: Son colecciones de elementos del mismo tipo y de tamaño variable (un
+comparativo con las listas de Python). Se asignan valores a los vectores
+usando la sintaxis &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;let&lt;/span&gt; &lt;span class="pre"&gt;vector&lt;/span&gt; &lt;span class="pre"&gt;=&lt;/span&gt; &lt;span class="pre"&gt;vec![1,&lt;/span&gt; &lt;span class="pre"&gt;2,&lt;/span&gt; &lt;span class="pre"&gt;3];&lt;/span&gt;&lt;/code&gt; que es una macro, o
+&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;let&lt;/span&gt; &lt;span class="pre"&gt;vector&lt;/span&gt; &lt;span class="pre"&gt;=&lt;/span&gt; &lt;span class="pre"&gt;Vec::new();&lt;/span&gt;&lt;/code&gt; (o indicando explícitamente el tipo de cada
+elemento &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;let&lt;/span&gt; &lt;span class="pre"&gt;vector:&lt;/span&gt; &lt;span class="pre"&gt;Vec&amp;lt;i32&amp;gt;&lt;/span&gt; &lt;span class="pre"&gt;=&lt;/span&gt; &lt;span class="pre"&gt;Vec::new();&lt;/span&gt;&lt;/code&gt;) que es una función y asignando
+los valores usando la sintaxis &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;vector.push(4);&lt;/span&gt;&lt;/code&gt;. Se puede acceder a los
+elementos de un vector usando la notación &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;vector[i]&lt;/span&gt;&lt;/code&gt; donde &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;i&lt;/span&gt;&lt;/code&gt; es el índice
+del elemento en el vector, comenzando desde 0.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;em&gt;Hash map&lt;/em&gt;: Es una colección de pares clave-valor donde las claves son únicas
+y los valores pueden ser de cualquier tipo (equivalente de diccionarios de
+Python). Se asignan valores a los &lt;em&gt;hash maps&lt;/em&gt; usando la sintaxis
+&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;let&lt;/span&gt; &lt;span class="pre"&gt;hash_map&lt;/span&gt; &lt;span class="pre"&gt;=&lt;/span&gt; &lt;span class="pre"&gt;HashMap::new();&lt;/span&gt;&lt;/code&gt; que es una función y asignando los valores
+usando la sintaxis &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;hash_map.insert(&amp;quot;clave&amp;quot;,&lt;/span&gt; &lt;span class="pre"&gt;valor);&lt;/span&gt;&lt;/code&gt;. Se puede acceder a los
+valores de un hash map usando la notación &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;hash_map[&amp;quot;clave&amp;quot;]&lt;/span&gt;&lt;/code&gt; donde &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;clave&lt;/span&gt;&lt;/code&gt; es
+la clave del valor que se quiere obtener. Es necesario importar el módulo
+&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;std::collections::HashMap&lt;/span&gt;&lt;/code&gt; para usar &lt;em&gt;hash maps&lt;/em&gt;. Se dispone de una
+alternativa &lt;em&gt;pythonica&lt;/em&gt; usando el &lt;em&gt;crate&lt;/em&gt; de &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;maplit&lt;/span&gt;&lt;/code&gt; con la macro &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;hashmap!&lt;/span&gt;&lt;/code&gt;.&lt;/p&gt;
+&lt;div class="highlight-rust notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;#[macro_use]&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;extern&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;crate&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;maplit&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="k"&gt;fn&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;(){&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="kd"&gt;let&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;map&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;hashmap&lt;/span&gt;&lt;span class="o"&gt;!&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;daffy&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&amp;gt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;80&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;bugs&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&amp;gt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;79&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;taz&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&amp;gt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;63&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;};&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;em&gt;Hash set&lt;/em&gt;: Es una colección de elementos únicos sin orden específico
+(equivalente de conjuntos de Python). Se asignan valores a los &lt;em&gt;hash sets&lt;/em&gt;
+usando la sintaxis &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;let&lt;/span&gt; &lt;span class="pre"&gt;hash_set&lt;/span&gt; &lt;span class="pre"&gt;=&lt;/span&gt; &lt;span class="pre"&gt;HashSet::new();&lt;/span&gt;&lt;/code&gt; que es una función y
+asignando los valores usando la sintaxis &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;hash_set.insert(elemento);&lt;/span&gt;&lt;/code&gt;. Es
+necesario importar el módulo &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;std::collections::HashSet&lt;/span&gt;&lt;/code&gt; para usar &lt;em&gt;hash
+sets&lt;/em&gt;. Se dispone de una alternativa &lt;em&gt;pythonica&lt;/em&gt; usando el &lt;em&gt;crate&lt;/em&gt; de &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;maplit&lt;/span&gt;&lt;/code&gt;
+con la macro &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;hashset!&lt;/span&gt;&lt;/code&gt;.&lt;/p&gt;
+&lt;div class="highlight-rust notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;#[macro_use]&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;extern&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;crate&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;maplit&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="k"&gt;fn&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;(){&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="kd"&gt;let&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;set&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;hashset&lt;/span&gt;&lt;span class="o"&gt;!&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;daffy&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;bugs&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;taz&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;};&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Estructuras: Son colecciones de campos que pueden ser de diferentes tipos. Se
+definen usando la sintaxis
+&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;struct&lt;/span&gt; &lt;span class="pre"&gt;Nombre&lt;/span&gt; &lt;span class="pre"&gt;{&lt;/span&gt; &lt;span class="pre"&gt;campo1:&lt;/span&gt; &lt;span class="pre"&gt;Tipo,&lt;/span&gt; &lt;span class="pre"&gt;campo2:&lt;/span&gt; &lt;span class="pre"&gt;Tipo,&lt;/span&gt; &lt;span class="pre"&gt;...&lt;/span&gt; &lt;span class="pre"&gt;}&lt;/span&gt;&lt;/code&gt;. El acceso a los campos se
+realiza usando la sintaxis &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;estructura.campo&lt;/span&gt;&lt;/code&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Estructuras de tupla: Cuando el nombre de los campos no es relevante, se
+pueden usar estructuras de tupla. Se definen usando la sintaxis
+&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;struct&lt;/span&gt; &lt;span class="pre"&gt;Nombre(Tipo1,&lt;/span&gt; &lt;span class="pre"&gt;Tipo2,&lt;/span&gt; &lt;span class="pre"&gt;...)&lt;/span&gt;&lt;/code&gt;. El acceso a los campos se realiza usando
+la sintaxis &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;estructura.0&lt;/span&gt;&lt;/code&gt;, &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;estructura.1&lt;/span&gt;&lt;/code&gt;, etc. Si es un solo campo, suele
+conocerse como &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;newtype&lt;/span&gt;&lt;/code&gt; y se puede usar para reducir la exposición del dato
+original y eliminar la confusión del intercambio de tipos que puede ocurrir
+con el alias de &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;type&lt;/span&gt;&lt;/code&gt;. Sin embargo, esto implica hacer definiciones
+adicionales para el manejo de los datos (ejemplo, definir el &lt;em&gt;trait&lt;/em&gt; de
+&lt;em&gt;Display&lt;/em&gt;, ya que el acceso del tipo no es reutilizable). También se pueden
+usar casos sin argumentos (y omitir el paréntesis) de este tipo de estructuras
+para casos que no requieren datos en sí, y tener retornos nulos, y a esto se
+le conoce como &lt;em&gt;ZST&lt;/em&gt; (&lt;em&gt;Zero Sized Type&lt;/em&gt;).&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Enumeraciones: Rust también tiene soporte para enumeraciones, que son tipos de
+datos compuestos que pueden tener varios valores posibles. Se definen usando
+la sintaxis &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;enum&lt;/span&gt; &lt;span class="pre"&gt;Nombre&lt;/span&gt; &lt;span class="pre"&gt;{&lt;/span&gt; &lt;span class="pre"&gt;Tipo1,&lt;/span&gt; &lt;span class="pre"&gt;Tipo2,&lt;/span&gt; &lt;span class="pre"&gt;...&lt;/span&gt; &lt;span class="pre"&gt;}&lt;/span&gt;&lt;/code&gt;. El acceso a los tipos tiene
+la forma &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;Nombre::Tipo1&lt;/span&gt;&lt;/code&gt;. Los tipos pueden ser no solo simples nombres, sino
+formas válidas de estructuras y estructuras de tupla.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/section&gt;
+&lt;section id="funciones-en-rust"&gt;
+&lt;h2&gt;Funciones en Rust&lt;/h2&gt;
+&lt;p&gt;Cómo se mencionó anteriormente, en el ejemplo del “Hola mundo”, las funciones se
+definen iniciando por &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;fn&lt;/span&gt;&lt;/code&gt;. En este caso, a diferencia del &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;main&lt;/span&gt;&lt;/code&gt;, si una
+función posee parámetros y retornos, se definen como sigue.&lt;/p&gt;
+&lt;div class="highlight-rust notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;fn&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;suma&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kt"&gt;i32&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kt"&gt;i32&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kt"&gt;i32&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;return&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Es importante que en Rust, las funciones deben tener un tipo de retorno definido
+explícitamente. Sin embargo, el &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;return&lt;/span&gt;&lt;/code&gt; es opcional, y puede ser útil para el
+retorno temprano, y se asume que el último valor de la función es el valor de
+retorno.&lt;/p&gt;
+&lt;p&gt;Aquí vemos cómo hacer la suma, y podemos disponer de otros operadores que puedes
+consultar en el apéndice de la documentación oficial de Rust,
+&lt;a class="reference external" href="https://doc.rust-lang.org/book/appendix-02-operators.html"&gt;Appendix B: Operators and Symbols&lt;/a&gt;.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="flujos-de-control"&gt;
+&lt;h2&gt;Flujos de control&lt;/h2&gt;
+&lt;section id="condicionales"&gt;
+&lt;h3&gt;Condicionales&lt;/h3&gt;
+&lt;p&gt;&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;if&lt;/span&gt; &lt;span class="pre"&gt;else&lt;/span&gt;&lt;/code&gt; es una estructura de control que permite ejecutar diferentes bloques
+de código dependiendo de si una condición es verdadera o falsa. En Rust, se
+utiliza la palabra clave &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;if&lt;/span&gt;&lt;/code&gt; seguida de una expresión booleana y luego un
+bloque de código que se ejecutará si la condición es verdadera. Si se desea
+ejecutar un bloque de código alternativo si la condición es falsa, se utiliza la
+palabra clave &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;else&lt;/span&gt;&lt;/code&gt; seguida de otro bloque de código.&lt;/p&gt;
+&lt;div class="highlight-rust notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;fn&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="kd"&gt;let&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="fm"&gt;println!&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;x es menor que 10&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;else&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="fm"&gt;println!&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;x es mayor o igual que 10&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Si es un condicional encadenado, se pueden utilizar múltiples &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;if&lt;/span&gt;&lt;/code&gt; seguidos de
+&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;else&lt;/span&gt; &lt;span class="pre"&gt;if&lt;/span&gt;&lt;/code&gt; para evaluar múltiples condiciones.&lt;/p&gt;
+&lt;div class="highlight-rust notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;fn&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="kd"&gt;let&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="fm"&gt;println!&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;x es menor que 10&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;else&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;==&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="fm"&gt;println!&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;x es igual a 10&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;else&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="fm"&gt;println!&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;x es mayor que 10&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;También disponemos de la estructura de control &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;match&lt;/span&gt;&lt;/code&gt;, que permite comparar un
+valor con una serie de patrones y ejecutar diferentes bloques de código según el
+patrón coincidente. Es importante considerar que &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;match&lt;/span&gt;&lt;/code&gt; debe ser exhaustivo en
+la generación de casos.&lt;/p&gt;
+&lt;div class="highlight-rust notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;fn&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="kd"&gt;let&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;match&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&amp;gt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="fm"&gt;println!&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;x es igual a 1&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&amp;gt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="fm"&gt;println!&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;x es igual a 2&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="n"&gt;_&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&amp;gt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="fm"&gt;println!&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;x es diferente de 1 y 2&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Existen casos en los cuales la lógica con &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;match&lt;/span&gt;&lt;/code&gt; puede ser muy verbosa, y se
+puede condensar en &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;if&lt;/span&gt; &lt;span class="pre"&gt;let&lt;/span&gt;&lt;/code&gt; o &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;let&lt;/span&gt; &lt;span class="pre"&gt;else&lt;/span&gt;&lt;/code&gt;. El primer caso permite asignar un
+patrón coincidente ignorando los demás casos, y el segundo permite asignar una
+variable si cumple el patrón y ejecutar un bloque si no cumple el patrón. Puedes
+detallar más en
+&lt;a class="reference external" href="https://doc.rust-lang.org/book/ch06-03-if-let.html"&gt;&lt;em&gt;Concise Control Flow with if let and let else&lt;/em&gt;&lt;/a&gt;.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="ciclos-en-rust"&gt;
+&lt;h3&gt;Ciclos en Rust&lt;/h3&gt;
+&lt;p&gt;Rust dispone de 3 tipos de estructuras cíclicas: &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;loop&lt;/span&gt;&lt;/code&gt;, &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;while&lt;/span&gt;&lt;/code&gt; y &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;for&lt;/span&gt;&lt;/code&gt;. &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;loop&lt;/span&gt;&lt;/code&gt;
+es una estructura de control que permite ejecutar un bloque de código
+indefinidamente hasta que se cumpla una condición (una salida manual por
+interrupción de teclado o un &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;break&lt;/span&gt;&lt;/code&gt;). &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;while&lt;/span&gt;&lt;/code&gt; es una estructura de control que
+permite ejecutar un bloque de código mientras una condición sea verdadera. &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;for&lt;/span&gt;&lt;/code&gt;
+es una estructura de control que permite iterar sobre una colección de
+elementos.&lt;/p&gt;
+&lt;p&gt;La estructura general de estos 3 tipos de ciclos es la siguiente:&lt;/p&gt;
+&lt;div class="highlight-rust notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;loop&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="c1"&gt;// Código a ejecutar indefinidamente&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="k"&gt;while&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;condicion&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="c1"&gt;// Código a ejecutar mientras la condición sea verdadera&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="k"&gt;for&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;elemento&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;in&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;coleccion&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="c1"&gt;// Código a ejecutar para cada elemento de la colección&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Asociado a los ciclos, disponemos de las palabras clave &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;continue&lt;/span&gt;&lt;/code&gt; y &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;break&lt;/span&gt;&lt;/code&gt;,
+que permiten controlar el flujo de ejecución dentro de los ciclos. &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;continue&lt;/span&gt;&lt;/code&gt;
+permite saltar a la siguiente iteración del ciclo, mientras que &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;break&lt;/span&gt;&lt;/code&gt; permite
+salir del ciclo. Ambos soportan la sintaxis de marcado de &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;loop&lt;/span&gt;&lt;/code&gt; &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;'NAME&lt;/span&gt;&lt;/code&gt; para
+salir de un ciclo anidado. Ejemplo:&lt;/p&gt;
+&lt;div class="highlight-rust notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;&amp;#39;&lt;/span&gt;&lt;span class="na"&gt;outer&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nc"&gt;for&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;in&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;..=&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="o"&gt;&amp;#39;&lt;/span&gt;&lt;span class="na"&gt;inner&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nc"&gt;for&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;j&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;in&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;..=&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;==&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;j&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;==&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;            &lt;/span&gt;&lt;span class="k"&gt;break&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nl"&gt;&amp;#39;outer&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="fm"&gt;println!&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;i: {}, j: {}&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;j&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Respecto a las colecciones para el ciclo &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;for&lt;/span&gt;&lt;/code&gt;, podemos formarlas a partir de
+los rangos previamente explicados, pero también podemos usar contenedores. En el
+caso de los contenedores, podemos usar los métodos &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;iter()&lt;/span&gt;&lt;/code&gt;, &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;into_iter()&lt;/span&gt;&lt;/code&gt; e
+&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;iter_mut()&lt;/span&gt;&lt;/code&gt; para obtener iteradores sobre sus elementos. Por ejemplo:&lt;/p&gt;
+&lt;div class="highlight-rust notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kd"&gt;let&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;vec&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="fm"&gt;vec!&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;];&lt;/span&gt;
+&lt;span class="k"&gt;for&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;in&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;vec&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;iter&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="fm"&gt;println!&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;{}&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;La opción de &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;iter()&lt;/span&gt;&lt;/code&gt; permite iterar sobre los elementos sin consumirlo, es
+decir, sus elementos se mantienen en el contenedor original. Esto es útil cuando
+necesitamos acceder a los elementos múltiples veces o cuando queremos conservar
+el estado del contenedor. La opción de &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;into_iter()&lt;/span&gt;&lt;/code&gt; permite iterar sobre los
+elementos y consumir el contenedor, es decir, sus elementos se eliminan del
+contenedor original. Esto es útil cuando necesitamos acceder a los elementos una
+sola vez o cuando queremos liberar el espacio ocupado por el contenedor. La
+opción de &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;iter_mut()&lt;/span&gt;&lt;/code&gt; permite iterar sobre los elementos y mutarlos, es decir,
+sus elementos se mantienen en el contenedor original y se pueden modificar. Esto
+es útil cuando necesitamos acceder a los elementos y modificarlos.&lt;/p&gt;
+&lt;/section&gt;
+&lt;/section&gt;
+&lt;section id="referencias"&gt;
+&lt;h2&gt;Referencias&lt;/h2&gt;
+&lt;p&gt;En la medida que estudio Rust, he encontrado los siguientes recursos útiles y
+han servido para mi proceso, de una forma no estrictamente lineal (muchos
+recomiendan que lo primero es el abordaje de &lt;em&gt;The Rust Programming Language&lt;/em&gt;
+antes de otras lecturas o incluso no hacer proyectos y estas otras lecturas
+hasta superado el capítulo 10 u otras referencias similares). Para fines de mi
+propio seguimiento, indico el contenido aproximado cubierto del material y las
+notas tomadas en este blog son los puntos clave que he considerado, pero podría
+tener omisión de elementos que otros consideran importantes. No aspiro que esto
+sea una guía adecuada para los demás, pero espero que sea útil para aquellos que
+estén comenzando su viaje con Rust.&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://doc.rust-lang.org/book/"&gt;The Rust Programming Language&lt;/a&gt;. Contenido
+aproximado cubierto, hasta el capítulo 6, pero omitiendo el capítulo 4.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://doc.rust-lang.org/cargo/index.html"&gt;The Cargo Book&lt;/a&gt;. Contenido
+aproximado cubierto, hasta sección 2.3.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://google.github.io/comprehensive-rust/index.html"&gt;Comprehensive Rust 🦀&lt;/a&gt;.
+Contenido aproximado cubierto, día 1, pero hace falta explorar capítulo 9.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://doc.rust-lang.org/rust-by-example/index.html"&gt;Rust by Example&lt;/a&gt;.
+Contenido aproximado cubierto, hasta inicio del capítulo 9, y partes del 11 y
+12.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;section id="otros-recursos"&gt;
+&lt;h3&gt;Otros recursos&lt;/h3&gt;
+&lt;p&gt;Sobre la marcha y dado que en paralelo estoy iniciando un proyecto en Rust que
+pronto compartiré, he estado explorando algunos recursos adicionales que podrían
+ser útiles para mi proyecto, o información útil para guardar para el futuro y
+deseo compartirles. Este listado potencialmente será acumulativo en futuras
+entradas del blog.&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://rochacbruno.github.io/py2rs/index.html"&gt;py2rs&lt;/a&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://github.com/rust-lang/rustlings"&gt;Rustlings&lt;/a&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://rust-lang-nursery.github.io/rust-cookbook/about.html"&gt;Rust Cookbook&lt;/a&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://rust-unofficial.github.io/patterns/intro.html"&gt;Rust Design Patterns&lt;/a&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://arewewebyet.com/"&gt;Are we web yet?&lt;/a&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://blog.yoshuawuyts.com/a-survey-of-every-iterator-variant/"&gt;A survey of every iterator variant&lt;/a&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://scientificcomputing.rs/monthly/"&gt;Scientific Computing in Rust Monthly&lt;/a&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://mattrighetti.com/2024/03/07/environment-variables-and-rust"&gt;Environment Variables &amp;amp; Rust&lt;/a&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://ohadravid.github.io/posts/2024-12-state-of-the-crates/"&gt;State of the Crates 2025&lt;/a&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://zsiciarz.github.io/24daysofrust/"&gt;24daysofrust&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://ohadravid.github.io/posts/2023-03-rusty-python/"&gt;Making Python 100x faster with less than 100 lines of Rust&lt;/a&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/section&gt;
+&lt;/section&gt;
+&lt;/section&gt;
+</content>
+    <link href="https://www.cosmoscalibur.com/es/blog/2025/aprendiendo-rust-parte-1/"/>
+    <summary>Hace casi dos años me propuse aprender Rust, pero no tuve tiempo o realmente
+tenía poca disciplina para seguir adelante. Ahora, estoy en firme con el
+propósito para este 2025 y aquí estoy tomando notas, haciendo algunos ejercicios
+e iniciando un proyecto. Respecto a estas notas, deben considerarse como notas
+personales, y bueno cubro detalles de lo básico para iniciar con un proyecto con
+cargo, imprimir en consola, asignar variables, tener claros los tipos de
+variables y hacer flujos de control (todavía sin manejo de errores).</summary>
+    <category term="rustlang" label="rustlang"/>
+    <published>2025-03-31T00:00:00-05:00</published>
+  </entry>
   <entry>
     <id>https://www.cosmoscalibur.com/es/blog/2025/zed-un-editor-rapido-y-moderno-de-codigo-abierto/</id>
     <title>Zed: un editor rápido y moderno de código abierto</title>

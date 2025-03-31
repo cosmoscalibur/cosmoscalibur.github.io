@@ -2,3 +2,5 @@
 - polars
 - ferrum
 - xee
+- zip
+- regex
