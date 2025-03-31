@@ -106,6 +106,9 @@ configuración propios.
 
 ### Extensiones para lenguajes de marcado
 
+En el caso de JSON, este es soportado de forma nativa en Zed. Para otros casos
+se recomiendan las siguientes extensiones:
+
 - [Marksman](https://github.com/vitallium/zed-marksman): LSP para Markdown.
   Ofrece autocompletado de enlaces de Markdown, detección de enlaces rotos y
   direccionado a definiciones. Recomiendo complementarlo con
@@ -127,6 +130,9 @@ configuración propios.
   Se recomienda complementar con
   [XML Pretty](https://github.com/xmlem/xml-pretty) como formateador.
 - [TOML](https://zed.dev/docs/languages/toml): Soporte de resaltado y LSP.
+- [Pest](https://github.com/pest-parser/zed-pest): Soporte de resaltado y LSP
+  para el lenguaje de especificación de gramática de lenguaje Pest (*PEG
+  grammar* en Rust).
 
 ### Extensiones para lenguajes de programación
 
