@@ -15,7 +15,7 @@
 <meta property="og:image:width" content="1146" />
 <meta property="og:image:height" content="600" />
 <meta property="og:image" content="https://www.cosmoscalibur.com/_images/social_previews/summary_en_blog_2024_espiral-de-parker-con-python_7964b70e.png" />
-<meta property="og:image:alt" content="In this post, we will explore the numerical solution to the first-order nonlinear differential equation that models the solar wind speed as a function of the..." />
+<meta property="og:image:alt" content="In this post, we will explore the numerical solution to the first-order nonlinear differential equation that models the solar wind speed as a function of the heliocentric distance. Once this veloci..." />
 <meta name="description" content="In this post, we will explore the numerical solution to the first-order nonlinear differential equation that models the solar wind speed as a function of the heliocentric distance. Once this veloci..." />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:creator" content="@cosmoscalibur" />
@@ -62,12 +62,6 @@
     <script src="../../../../_static/translations.js?v=f85f4cfb"></script>
     <script src="../../../../_static/design-tabs.js?v=f930bc37"></script>
     <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-4YFQBC69LB"></script>
-    <script>
-                window.dataLayer = window.dataLayer || [];
-                function gtag(){ dataLayer.push(arguments); }
-                gtag('js', new Date());
-                gtag('config', 'G-4YFQBC69LB');
-            </script>
     <script>
                 window.dataLayer = window.dataLayer || [];
                 function gtag(){ dataLayer.push(arguments); }
@@ -445,6 +439,18 @@ crossorigin="anonymous"></script>
   <ul>
      
     <li>
+      <a href="../../2025/instalar-docker-en-manjaro/">
+        2025-04-23 - Install Docker on Manjaro
+      </a>
+    </li>
+    
+    <li>
+      <a href="../../../../es/blog/2025/instalar-docker-en-manjaro/">
+        2025-04-23 - Instalar Docker en Manjaro
+      </a>
+    </li>
+    
+    <li>
       <a href="../../../../es/blog/2025/aprendiendo-rust-parte-1/">
         2025-03-31 - Aprendiendo Rust: Parte 1 - Uso básico de cargo, variables y flujos de control
       </a>
@@ -462,18 +468,6 @@ crossorigin="anonymous"></script>
       </a>
     </li>
     
-    <li>
-      <a href="../../../../es/blog/2025/alucinacion-de-la-inteligencia-artificial/">
-        2025-02-13 - Alucinación de la inteligencia artificial
-      </a>
-    </li>
-    
-    <li>
-      <a href="../../2025/instala-tu-asistente-local-de-ia/">
-        2025-02-02 - Install Your Local AI Assistant
-      </a>
-    </li>
-    
   </ul>
 </div>
 </div>
@@ -485,7 +479,7 @@ crossorigin="anonymous"></script>
   <ul>
      
     <li>
-      <a href="../../../../blog/2025/">2025 (14)</a>
+      <a href="../../../../blog/2025/">2025 (16)</a>
     </li>
       
     <li>
@@ -600,21 +594,21 @@ crossorigin="anonymous"></script>
 <section id="solar-wind-velocity-profile">
 <h2>Solar Wind Velocity Profile<a class="headerlink" href="#solar-wind-velocity-profile" title="Link to this heading">#</a></h2>
 <p>In Parker’s work under conditions of isothermal expansion (<span class="math notranslate nohighlight">\(\gamma = 1\)</span>) of a neutral fluid (first approximation to the behavior of the solar wind), it leads to a non-linear first-order differential equation that relates the solar wind speed (<span class="math notranslate nohighlight">\(u(r)\)</span>) and the heliocentric distance (<span class="math notranslate nohighlight">\(r\)</span>). (Parker, 1958), (Kivelson, 1995)</p>
-<div class="amsmath math notranslate nohighlight" id="equation-c75cf494-65fb-4902-b7a0-52999b558aea">
-<span class="eqno">(1)<a class="headerlink" href="#equation-c75cf494-65fb-4902-b7a0-52999b558aea" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-ca99eed8-6bcb-4cc9-ad6f-4219298836fa">
+<span class="eqno">(1)<a class="headerlink" href="#equation-ca99eed8-6bcb-4cc9-ad6f-4219298836fa" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \frac{du(r)}{dr} = \left(\frac{4kT}{mr} - \frac{GM}{r^2} \right)u(r)\left(u(r)^2 - \frac{2kT}{m} \right)^{-1}
 \end{equation}\]</div>
 <p>In order to reduce the propagation of errors due to orders of magnitude of the variables involved, the differential equation is adimensionalized based on the radius and velocity at the critical point (sonic point) (Piso, 2008).</p>
-<div class="amsmath math notranslate nohighlight" id="equation-2fb59322-d146-4efe-9a9a-e4ef05b74673">
-<span class="eqno">(2)<a class="headerlink" href="#equation-2fb59322-d146-4efe-9a9a-e4ef05b74673" title="Permalink to this equation">#</a></span>\[\begin{eqnarray}
+<div class="amsmath math notranslate nohighlight" id="equation-8d89e757-299c-4202-8851-9cbeec80c290">
+<span class="eqno">(2)<a class="headerlink" href="#equation-8d89e757-299c-4202-8851-9cbeec80c290" title="Permalink to this equation">#</a></span>\[\begin{eqnarray}
 c_s^2 &amp; = &amp; \frac{2kT}{m}\\
 r_c &amp;=&amp; \frac{GM}{2c_s^2}\\
 \frac{dv}{dR} &amp;=&amp; \frac{2\left(\frac{1}{R} - \frac{1}{R^2}\right)}{v - \frac{1}{v}}
 \end{eqnarray}\]</div>
 <p>Where <span class="math notranslate nohighlight">\(v\)</span> is the speed at sonic velocities (<span class="math notranslate nohighlight">\(c_s\)</span>) and <span class="math notranslate nohighlight">\(R\)</span> is the radius at sonic radii (<span class="math notranslate nohighlight">\(r_c\)</span>). We observe that around the sonic radius and speed, there is a critical point that must be satisfied to ensure the physical meaning of the solution. Also, we have to note that this equation represents a boundary value problem, and in this case, the boundary condition of the problem in adimensional units is <span class="math notranslate nohighlight">\(v(R_{\text{sun}}) = v_0\)</span>, where <span class="math notranslate nohighlight">\(R_{\text{sun}}\)</span> is the radius of the Sun, and it is the position from which the flow of particles begins to move with an initial speed <span class="math notranslate nohighlight">\(v_0\)</span> that depends on the density of particles and temperature.</p>
 <p>The generation of the Parker spiral is due to the rotation of the Sun, so we apply the transformation of coordinates Lagrangian for rotating systems, leading to the differential equation:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-1163161a-50e2-413b-8fd8-d8a55d63a481">
-<span class="eqno">(3)<a class="headerlink" href="#equation-1163161a-50e2-413b-8fd8-d8a55d63a481" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-0ac2fc2d-84ef-44e3-9a30-79c954a5e9a4">
+<span class="eqno">(3)<a class="headerlink" href="#equation-0ac2fc2d-84ef-44e3-9a30-79c954a5e9a4" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \frac{d\varphi}{dR} = \frac{-\omega}{v(R)}
 \end{equation}\]</div>
 </section>
@@ -1028,7 +1022,7 @@ Min radii (adim): 0.173030
         <div class="footer-item">
 
   <p class="sphinx-version">
-    Creado usando <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.1.3.
+    Creado usando <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
     <br/>
   </p>
 </div>

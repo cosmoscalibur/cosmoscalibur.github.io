@@ -15,7 +15,7 @@
 <meta property="og:image:width" content="1146" />
 <meta property="og:image:height" content="600" />
 <meta property="og:image" content="https://www.cosmoscalibur.com/_images/social_previews/summary_es_blog_2024_espiral-de-parker-con-python_ecbc4fb0.png" />
-<meta property="og:image:alt" content="En esta entrada veremos la solución numérica a la ecuación diferencial no lineal de primer orden que modela la velocidad del viento solar en función de la di..." />
+<meta property="og:image:alt" content="En esta entrada veremos la solución numérica a la ecuación diferencial no lineal de primer orden que modela la velocidad del viento solar en función de la distancia heliocéntrica. Una vez se obtien..." />
 <meta name="description" content="En esta entrada veremos la solución numérica a la ecuación diferencial no lineal de primer orden que modela la velocidad del viento solar en función de la distancia heliocéntrica. Una vez se obtien..." />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:creator" content="@cosmoscalibur" />
@@ -62,12 +62,6 @@
     <script src="../../../../_static/translations.js?v=f85f4cfb"></script>
     <script src="../../../../_static/design-tabs.js?v=f930bc37"></script>
     <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-4YFQBC69LB"></script>
-    <script>
-                window.dataLayer = window.dataLayer || [];
-                function gtag(){ dataLayer.push(arguments); }
-                gtag('js', new Date());
-                gtag('config', 'G-4YFQBC69LB');
-            </script>
     <script>
                 window.dataLayer = window.dataLayer || [];
                 function gtag(){ dataLayer.push(arguments); }
@@ -445,6 +439,18 @@ crossorigin="anonymous"></script>
   <ul>
      
     <li>
+      <a href="../../../../en/blog/2025/instalar-docker-en-manjaro/">
+        2025-04-23 - Install Docker on Manjaro
+      </a>
+    </li>
+    
+    <li>
+      <a href="../../2025/instalar-docker-en-manjaro/">
+        2025-04-23 - Instalar Docker en Manjaro
+      </a>
+    </li>
+    
+    <li>
       <a href="../../2025/aprendiendo-rust-parte-1/">
         2025-03-31 - Aprendiendo Rust: Parte 1 - Uso básico de cargo, variables y flujos de control
       </a>
@@ -462,18 +468,6 @@ crossorigin="anonymous"></script>
       </a>
     </li>
     
-    <li>
-      <a href="../../2025/alucinacion-de-la-inteligencia-artificial/">
-        2025-02-13 - Alucinación de la inteligencia artificial
-      </a>
-    </li>
-    
-    <li>
-      <a href="../../../../en/blog/2025/instala-tu-asistente-local-de-ia/">
-        2025-02-02 - Install Your Local AI Assistant
-      </a>
-    </li>
-    
   </ul>
 </div>
 </div>
@@ -485,7 +479,7 @@ crossorigin="anonymous"></script>
   <ul>
      
     <li>
-      <a href="../../../../blog/2025/">2025 (14)</a>
+      <a href="../../../../blog/2025/">2025 (16)</a>
     </li>
       
     <li>
@@ -600,21 +594,21 @@ crossorigin="anonymous"></script>
 <section id="perfil-de-velocidad-del-viento-solar">
 <h2>Perfil de velocidad del viento solar<a class="headerlink" href="#perfil-de-velocidad-del-viento-solar" title="Link to this heading">#</a></h2>
 <p>En el trabajo de Parker bajo condiciones de expansión isotérmica (<span class="math notranslate nohighlight">\(\gamma = 1\)</span>) de un fluido neutro (primera aproximación al comportamiento del viendo solar), lleva a una ecuación diferencial no lineal de primer orden que relaciona la velocidad del viento solar (<span class="math notranslate nohighlight">\(u(r)\)</span>) y la distancia heliocéntrica (<span class="math notranslate nohighlight">\(r\)</span>) ((Parker, 1958), (Kivelson, 1995)).</p>
-<div class="amsmath math notranslate nohighlight" id="equation-609b9016-c28c-479f-9f61-0192adb91dae">
-<span class="eqno">(1)<a class="headerlink" href="#equation-609b9016-c28c-479f-9f61-0192adb91dae" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-cf49c629-c377-4428-a0d8-8b8cf22970d2">
+<span class="eqno">(1)<a class="headerlink" href="#equation-cf49c629-c377-4428-a0d8-8b8cf22970d2" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \frac{du(r)}{dr} = \left(\frac{4kT}{mr} - \frac{GM}{r^2} \right)u(r)\left(u(r)^2 - \frac{2kT}{m} \right)^{-1}
 \end{equation}\]</div>
 <p>Con el fin de reducir la propagación de error por los ordenes de magnitud de las variables involucradas, se procede a adimensionalizar la ecuación diferencial, con base al radio y velocidad en el punto crítico (punto sónico) (Piso, 2008).</p>
-<div class="amsmath math notranslate nohighlight" id="equation-7dabeaa2-3295-445f-9250-63419b92129e">
-<span class="eqno">(2)<a class="headerlink" href="#equation-7dabeaa2-3295-445f-9250-63419b92129e" title="Permalink to this equation">#</a></span>\[\begin{eqnarray}
+<div class="amsmath math notranslate nohighlight" id="equation-4b6d3cb1-b98d-42f0-a044-201c89becadd">
+<span class="eqno">(2)<a class="headerlink" href="#equation-4b6d3cb1-b98d-42f0-a044-201c89becadd" title="Permalink to this equation">#</a></span>\[\begin{eqnarray}
 c_s^2 &amp; = &amp; \frac{2kT}{m}\\
 r_c &amp;=&amp; \frac{GM}{2c_s^2}\\
 \frac{dv}{dR} &amp;=&amp; \frac{2\left(\frac{1}{R} - \frac{1}{R^2}\right)}{v - \frac{1}{v}}
 \end{eqnarray}\]</div>
 <p>Donde <span class="math notranslate nohighlight">\(v\)</span> es la velocidad en velocidades sónicas (<span class="math notranslate nohighlight">\(c_s\)</span>) y <span class="math notranslate nohighlight">\(R\)</span> es el radio en radios sónicos (<span class="math notranslate nohighlight">\(r_c\)</span>). Observamos que alrededor del radio sónico y de la velocidad sónica se presenta un punto crítico que debe satisfacerse para asegurar el sentido físico de la solución. También, tenemos que esta ecuación representa un problema de valores de frontera, y en este caso la condición de frontera del problema en unidades adimensionales es <span class="math notranslate nohighlight">\(v(R_{sol}) = v_0\)</span>, donde <span class="math notranslate nohighlight">\(R_{sol}\)</span> es el radio del Sol, y es la posición desde la cuál comienza a desplazarse el flujo de partículas con una velocidad inicial <span class="math notranslate nohighlight">\(v_0\)</span> que dependerá de la densidad de partículas y la temperatura.</p>
 <p>La generación de la espiral de Parker es efecto de la rotación del sol, por lo cual se aplica la transformación de coordenadas lagrangianas para sistemas rotantes, llevando a la ecuación diferencial</p>
-<div class="amsmath math notranslate nohighlight" id="equation-8a808468-53f7-4153-93e0-b747b9803be3">
-<span class="eqno">(3)<a class="headerlink" href="#equation-8a808468-53f7-4153-93e0-b747b9803be3" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-2bf8cd80-f659-4eaa-8a66-aaeb47d7dfea">
+<span class="eqno">(3)<a class="headerlink" href="#equation-2bf8cd80-f659-4eaa-8a66-aaeb47d7dfea" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \frac{d\varphi}{dR} = \frac{-\omega}{v(R)}
 \end{equation}\]</div>
 </section>
@@ -1022,7 +1016,7 @@ Radio mínimo (adim): 0.173030
         <div class="footer-item">
 
   <p class="sphinx-version">
-    Creado usando <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.1.3.
+    Creado usando <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
     <br/>
   </p>
 </div>

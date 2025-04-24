@@ -2,5 +2,8 @@
 - polars
 - ferrum
 - xee
+- quick-xml
 - zip
 - regex
+- prql
+- crabtime

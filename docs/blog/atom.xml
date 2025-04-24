@@ -2,10 +2,154 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="es">
   <id>https://www.cosmoscalibur.com/</id>
   <title>Cosmoscalibur</title>
-  <updated>2025-03-31T23:40:44.507741+00:00</updated>
+  <updated>2025-04-24T04:40:12.821419+00:00</updated>
   <link href="https://www.cosmoscalibur.com/"/>
   <link href="https://www.cosmoscalibur.com/blog/atom.xml" rel="self"/>
   <generator uri="https://ablog.readthedocs.io/" version="0.11.12">ABlog</generator>
+  <entry>
+    <id>https://www.cosmoscalibur.com/en/blog/2025/instalar-docker-en-manjaro/</id>
+    <title>Install Docker on Manjaro</title>
+    <updated>2025-04-23T00:00:00-05:00</updated>
+    <author>
+      <name>Edward Villegas-Pulgarin</name>
+    </author>
+    <content type="html">&lt;section class="tex2jax_ignore mathjax_ignore" id="install-docker-on-manjaro"&gt;
+
+&lt;p&gt;Now that I use Manjaro, it’s worth reviewing the steps to install Docker on
+Manjaro.&lt;/p&gt;
+&lt;p&gt;Due to work-related reasons, more than ever it is important for me to use
+Docker, because at Tributi, our official operating system in the Tech team is
+Ubuntu (now version 24.04). Since my development environment is Manjaro, my
+local setup no longer serves for testing, and I need a way to ensure the same
+environment. For this purpose, Docker becomes the appropriate alternative for
+reproducibility.&lt;/p&gt;
+&lt;section id="docker-in-repository"&gt;
+&lt;h2&gt;Docker in Repository&lt;/h2&gt;
+&lt;p&gt;In Manjaro (and Arch), Docker can be installed from the official package
+repository. We should note that the container composition component is found in
+the &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;docker-compose&lt;/span&gt;&lt;/code&gt; package.&lt;/p&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;pamac&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;docker&lt;span class="w"&gt; &lt;/span&gt;docker-compose&lt;span class="w"&gt; &lt;/span&gt;--no-confirm
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/section&gt;
+&lt;section id="docker-configuration"&gt;
+&lt;h2&gt;Docker Configuration&lt;/h2&gt;
+&lt;p&gt;To make Docker available for invocation, we can enable the service daemon or the
+&lt;em&gt;socket&lt;/em&gt;. The first option is suitable for server environments, while the second
+is better for local environments to reduce resource consumption (this remains
+active with the first call, unlike the first option which stays active since
+system boot).&lt;/p&gt;
+&lt;section id="enabling-the-daemon-service"&gt;
+&lt;h3&gt;Enabling the Daemon Service&lt;/h3&gt;
+&lt;p&gt;To enable the daemon service, run:&lt;/p&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo&lt;span class="w"&gt; &lt;/span&gt;systemctl&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;enable&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;docker.service
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/section&gt;
+&lt;section id="enabling-the-socket-service"&gt;
+&lt;h3&gt;Enabling the &lt;em&gt;Socket&lt;/em&gt; Service&lt;/h3&gt;
+&lt;p&gt;To enable the &lt;em&gt;socket&lt;/em&gt; service, run:&lt;/p&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo&lt;span class="w"&gt; &lt;/span&gt;systemctl&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;enable&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;docker.socket
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;For now, this allows us to initialize Docker, but we must always run it with
+administrative permissions. If we wish to run it without administrative
+permissions, we can add our user to the &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;docker&lt;/span&gt;&lt;/code&gt; group:&lt;/p&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo&lt;span class="w"&gt; &lt;/span&gt;usermod&lt;span class="w"&gt; &lt;/span&gt;-aG&lt;span class="w"&gt; &lt;/span&gt;docker&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;$USER&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/section&gt;
+&lt;/section&gt;
+&lt;section id="references"&gt;
+&lt;h2&gt;References&lt;/h2&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://wiki.archlinux.org/title/Docker"&gt;Docker&lt;/a&gt;. Wiki ArchLinux.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://github.com/moby/moby/issues/38373#issuecomment-447393517"&gt;docker.service tops the systemd-analyze critical path&lt;/a&gt;.
+Repositorio Moby.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/section&gt;
+&lt;/section&gt;
+</content>
+    <link href="https://www.cosmoscalibur.com/en/blog/2025/instalar-docker-en-manjaro/"/>
+    <summary>Now that I use Manjaro, it’s worth reviewing the steps to install Docker on
+Manjaro.</summary>
+    <category term="container" label="container"/>
+    <category term="docker" label="docker"/>
+    <category term="linux" label="linux"/>
+    <category term="manjaro" label="manjaro"/>
+    <published>2025-04-23T00:00:00-05:00</published>
+  </entry>
+  <entry>
+    <id>https://www.cosmoscalibur.com/es/blog/2025/instalar-docker-en-manjaro/</id>
+    <title>Instalar Docker en Manjaro</title>
+    <updated>2025-04-23T00:00:00-05:00</updated>
+    <author>
+      <name>Edward Villegas-Pulgarin</name>
+    </author>
+    <content type="html">&lt;section class="tex2jax_ignore mathjax_ignore" id="instalar-docker-en-manjaro"&gt;
+
+&lt;p&gt;En el pasado publiqué un artículo de como
+&lt;a class="reference internal" href="#es/blog/2019/crear-contenedor-docker-aplicacion-gui-ealite.rst"&gt;&lt;span class="xref myst"&gt;instalar y usar Docker en Ubuntu con Snap&lt;/span&gt;&lt;/a&gt;
+y ahora que uso Manjaro vale la pena revisar los pasos para instalar Docker en
+Manjaro.&lt;/p&gt;
+&lt;p&gt;Por motivos laborales ahora más que nunca es importante para mí el uso de
+Docker, porque en Tributi nuestro sistema operativo oficial en el área de
+tecnología es Ubuntu (ahora en versión 24.04). Como en mi equipo tengo Manjaro,
+mi ambiente local ya no me sirve para las pruebas y necesito una forma de
+asegurar el mismo ambiente. Para ello, Docker se vuelve en la alternativa
+adecuada de reproducibilidad.&lt;/p&gt;
+&lt;section id="docker-en-repositorio"&gt;
+&lt;h2&gt;Docker en repositorio&lt;/h2&gt;
+&lt;p&gt;En Manjaro (y Arch) se puede instalar Docker desde el repositorio de paquetes
+oficiales. Debemos tener presente que la componente de composición de
+contenedores se encuentra en el paquete &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;docker-compose&lt;/span&gt;&lt;/code&gt;.&lt;/p&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;pamac&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;docker&lt;span class="w"&gt; &lt;/span&gt;docker-compose&lt;span class="w"&gt; &lt;/span&gt;--no-confirm
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/section&gt;
+&lt;section id="configuracion-de-docker"&gt;
+&lt;h2&gt;Configuración de Docker&lt;/h2&gt;
+&lt;p&gt;Con el fin de disponer Docker para ser invocado, podemos habilitar el servicio
+del demonio o del &lt;em&gt;socket&lt;/em&gt;. La primera opción es adecuada para entornos de
+servidores y la segunda para entornos locales para reducir el consumo de
+recursos (este queda activo con el primer llamado, a diferencia de la primera
+opción que queda activo desde el arranque del sistema).&lt;/p&gt;
+&lt;p&gt;Para habilitar el servicio del demonio, ejecutamos:&lt;/p&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo&lt;span class="w"&gt; &lt;/span&gt;systemctl&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;enable&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;docker.service
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Para habilitar el servicio del &lt;em&gt;socket&lt;/em&gt;, ejecutamos:&lt;/p&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo&lt;span class="w"&gt; &lt;/span&gt;systemctl&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;enable&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;docker.socket
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;De momento esto nos permite inicializar Docker, pero debemos ejecutarlo siempre
+con permisos de administrador. Si deseamos ejecutarlo sin permisos de
+administrador, podemos agregar nuestro usuario al grupo &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;docker&lt;/span&gt;&lt;/code&gt;:&lt;/p&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo&lt;span class="w"&gt; &lt;/span&gt;usermod&lt;span class="w"&gt; &lt;/span&gt;-aG&lt;span class="w"&gt; &lt;/span&gt;docker&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;$USER&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/section&gt;
+&lt;section id="referencias"&gt;
+&lt;h2&gt;Referencias&lt;/h2&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://wiki.archlinux.org/title/Docker"&gt;Docker&lt;/a&gt;. Wiki ArchLinux.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://github.com/moby/moby/issues/38373#issuecomment-447393517"&gt;docker.service tops the systemd-analyze critical path&lt;/a&gt;.
+Repositorio Moby.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/section&gt;
+&lt;/section&gt;
+</content>
+    <link href="https://www.cosmoscalibur.com/es/blog/2025/instalar-docker-en-manjaro/"/>
+    <summary>En el pasado publiqué un artículo de como
+instalar y usar Docker en Ubuntu con Snap
+y ahora que uso Manjaro vale la pena revisar los pasos para instalar Docker en
+Manjaro.</summary>
+    <category term="contenedor" label="contenedor"/>
+    <category term="docker" label="docker"/>
+    <category term="linux" label="linux"/>
+    <category term="manjaro" label="manjaro"/>
+    <published>2025-04-23T00:00:00-05:00</published>
+  </entry>
   <entry>
     <id>https://www.cosmoscalibur.com/es/blog/2025/aprendiendo-rust-parte-1/</id>
     <title>Aprendiendo Rust: Parte 1 - Uso básico de cargo, variables y flujos de control</title>
@@ -466,10 +610,10 @@ incremental, lo que permite un mejor rendimiento posterior a la carga inicial.&l
 &lt;p&gt;El &lt;em&gt;multibuffer&lt;/em&gt; es una característica que permite la edición de múltiples
 archivos al mismo tiempo, lo que permite una mayor eficiencia en la edición de
 código y se encuentra soportada de forma nativa. Para esto puedes hacer búsqueda
-general con &lt;kbd class="kbd compound docutils literal notranslate"&gt;&lt;kbd class="kbd docutils literal notranslate"&gt;Ctrl&lt;/kbd&gt;+&lt;kbd class="kbd docutils literal notranslate"&gt;Shift&lt;/kbd&gt;+&lt;kbd class="kbd docutils literal notranslate"&gt;F&lt;/kbd&gt;&lt;/kbd&gt; y hacer uso de la edición múltiple con
-&lt;kbd class="kbd compound docutils literal notranslate"&gt;&lt;kbd class="kbd docutils literal notranslate"&gt;Ctrl&lt;/kbd&gt;+&lt;kbd class="kbd docutils literal notranslate"&gt;Shift&lt;/kbd&gt;+&lt;kbd class="kbd docutils literal notranslate"&gt;L&lt;/kbd&gt;&lt;/kbd&gt; (desconozco si es un error, pero solo me funciona si tengo
+general con &lt;kbd class="kbd docutils literal notranslate"&gt;Ctrl&lt;/kbd&gt;+&lt;kbd class="kbd docutils literal notranslate"&gt;Shift&lt;/kbd&gt;+&lt;kbd class="kbd docutils literal notranslate"&gt;F&lt;/kbd&gt; y hacer uso de la edición múltiple con
+&lt;kbd class="kbd docutils literal notranslate"&gt;Ctrl&lt;/kbd&gt;+&lt;kbd class="kbd docutils literal notranslate"&gt;Shift&lt;/kbd&gt;+&lt;kbd class="kbd docutils literal notranslate"&gt;L&lt;/kbd&gt; (desconozco si es un error, pero solo me funciona si tengo
 seleccionada la coincidencia de mayúsculas) o si deseamos en puntos específicos
-con &lt;kbd class="kbd compound docutils literal notranslate"&gt;&lt;kbd class="kbd docutils literal notranslate"&gt;Alt&lt;/kbd&gt;+&lt;kbd class="kbd docutils literal notranslate"&gt;Click&lt;/kbd&gt;&lt;/kbd&gt; (no es requerido que el punto seleccionado corresponda a la
+con &lt;kbd class="kbd docutils literal notranslate"&gt;Alt&lt;/kbd&gt;+&lt;kbd class="kbd docutils literal notranslate"&gt;Click&lt;/kbd&gt; (no es requerido que el punto seleccionado corresponda a la
 coincidencia de búsqueda).&lt;/p&gt;
 &lt;p&gt;También nos encontramos en Zed el soporte nativo de modelos LLM para la
 asistencia por chat, permitiendo el paso de archivos de contextos, y en edición
@@ -495,8 +639,8 @@ componente &lt;em&gt;core&lt;/em&gt; en Rust) o solo &lt;code class="file docuti
 WASM (esto lo revisé porque estaba probando cambios en el archivo de diccionario
 de Codebook).&lt;/p&gt;
 &lt;p&gt;Si deseas instalar una extensión de Zed puedes usar el menú general con
-&lt;kbd class="kbd compound docutils literal notranslate"&gt;&lt;kbd class="kbd docutils literal notranslate"&gt;Ctrl&lt;/kbd&gt;+&lt;kbd class="kbd docutils literal notranslate"&gt;Shift&lt;/kbd&gt;+&lt;kbd class="kbd docutils literal notranslate"&gt;P&lt;/kbd&gt;&lt;/kbd&gt; y buscar &lt;em&gt;zed: extensions&lt;/em&gt;, o directamente el atajo
-&lt;kbd class="kbd compound docutils literal notranslate"&gt;&lt;kbd class="kbd docutils literal notranslate"&gt;Ctrl&lt;/kbd&gt;+&lt;kbd class="kbd docutils literal notranslate"&gt;Shift&lt;/kbd&gt;+&lt;kbd class="kbd docutils literal notranslate"&gt;X&lt;/kbd&gt;&lt;/kbd&gt;.&lt;/p&gt;
+&lt;kbd class="kbd docutils literal notranslate"&gt;Ctrl&lt;/kbd&gt;+&lt;kbd class="kbd docutils literal notranslate"&gt;Shift&lt;/kbd&gt;+&lt;kbd class="kbd docutils literal notranslate"&gt;P&lt;/kbd&gt; y buscar &lt;em&gt;zed: extensions&lt;/em&gt;, o directamente el atajo
+&lt;kbd class="kbd docutils literal notranslate"&gt;Ctrl&lt;/kbd&gt;+&lt;kbd class="kbd docutils literal notranslate"&gt;Shift&lt;/kbd&gt;+&lt;kbd class="kbd docutils literal notranslate"&gt;X&lt;/kbd&gt;.&lt;/p&gt;
 &lt;p&gt;Típicamente las extensiones se pueden configurar de forma global y por proyecto,
 con la gestión de configuración de Zed, pero algunas soportan archivos de
 configuración propios.&lt;/p&gt;
@@ -3464,12 +3608,12 @@ de redes estas han desaparecido, algunos detalles por evaluar son:</summary>
   </entry>
   <entry>
     <id>https://www.cosmoscalibur.com/es/blog/2024/que-hacer-despues-de-instalar-manjaro/</id>
-    <title>¿Qué hacer después de instalar Manjaro KDE 24?</title>
+    <title>¿Qué hacer después de instalar Manjaro KDE?</title>
     <updated>2024-12-05T00:00:00-05:00</updated>
     <author>
       <name>Edward Villegas-Pulgarin</name>
     </author>
-    <content type="html">&lt;section class="tex2jax_ignore mathjax_ignore" id="que-hacer-despues-de-instalar-manjaro-kde-24"&gt;
+    <content type="html">&lt;section class="tex2jax_ignore mathjax_ignore" id="que-hacer-despues-de-instalar-manjaro-kde"&gt;
 
 &lt;p&gt;Hace poco decidí pasarme a Manjaro KDE (24.1) y estoy muy contento del cambio.
 Así que con motivo a esto, les cuento sobre las cosas por hacer después de
@@ -3813,6 +3957,7 @@ alternativa gratuita alojada y con soporte para Linux del cliente de escritorio.
 &lt;label class="sd-tab-label" data-sync-group="tab" data-sync-id="manjaro" for="sd-tab-item-14"&gt;
 Manjaro&lt;/label&gt;&lt;div class="sd-tab-content docutils"&gt;
 &lt;div class="highlight-default notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;pamac&lt;/span&gt; &lt;span class="n"&gt;build&lt;/span&gt; &lt;span class="n"&gt;dropbox&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;no&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;confirm&lt;/span&gt;
+&lt;span class="n"&gt;pamac&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;asdeps&lt;/span&gt; &lt;span class="n"&gt;libappindicator&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;gtk3&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -4300,6 +4445,7 @@ with Linux desktop client support.&lt;/p&gt;
 &lt;label class="sd-tab-label" data-sync-group="tab" data-sync-id="manjaro" for="sd-tab-item-12"&gt;
 Manjaro&lt;/label&gt;&lt;div class="sd-tab-content docutils"&gt;
 &lt;div class="highlight-default notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;pamac&lt;/span&gt; &lt;span class="n"&gt;build&lt;/span&gt; &lt;span class="n"&gt;dropbox&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;no&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;confirm&lt;/span&gt;
+&lt;span class="n"&gt;pamac&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;asdeps&lt;/span&gt; &lt;span class="n"&gt;libappindicator&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;gtk3&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -5941,12 +6087,12 @@ and video later, so I’ll explain how to do this using FFMPEG and Bash.</summar
 &lt;section id="solar-wind-velocity-profile"&gt;
 &lt;h2&gt;Solar Wind Velocity Profile&lt;/h2&gt;
 &lt;p&gt;In Parker’s work under conditions of isothermal expansion (&lt;span class="math notranslate nohighlight"&gt;\(\gamma = 1\)&lt;/span&gt;) of a neutral fluid (first approximation to the behavior of the solar wind), it leads to a non-linear first-order differential equation that relates the solar wind speed (&lt;span class="math notranslate nohighlight"&gt;\(u(r)\)&lt;/span&gt;) and the heliocentric distance (&lt;span class="math notranslate nohighlight"&gt;\(r\)&lt;/span&gt;). (Parker, 1958), (Kivelson, 1995)&lt;/p&gt;
-&lt;div class="amsmath math notranslate nohighlight" id="equation-c75cf494-65fb-4902-b7a0-52999b558aea"&gt;
+&lt;div class="amsmath math notranslate nohighlight" id="equation-ca99eed8-6bcb-4cc9-ad6f-4219298836fa"&gt;
 &lt;span class="eqno"&gt;(1)&lt;/span&gt;\[\begin{equation}
 \frac{du(r)}{dr} = \left(\frac{4kT}{mr} - \frac{GM}{r^2} \right)u(r)\left(u(r)^2 - \frac{2kT}{m} \right)^{-1}
 \end{equation}\]&lt;/div&gt;
 &lt;p&gt;In order to reduce the propagation of errors due to orders of magnitude of the variables involved, the differential equation is adimensionalized based on the radius and velocity at the critical point (sonic point) (Piso, 2008).&lt;/p&gt;
-&lt;div class="amsmath math notranslate nohighlight" id="equation-2fb59322-d146-4efe-9a9a-e4ef05b74673"&gt;
+&lt;div class="amsmath math notranslate nohighlight" id="equation-8d89e757-299c-4202-8851-9cbeec80c290"&gt;
 &lt;span class="eqno"&gt;(2)&lt;/span&gt;\[\begin{eqnarray}
 c_s^2 &amp;amp; = &amp;amp; \frac{2kT}{m}\\
 r_c &amp;amp;=&amp;amp; \frac{GM}{2c_s^2}\\
@@ -5954,7 +6100,7 @@ r_c &amp;amp;=&amp;amp; \frac{GM}{2c_s^2}\\
 \end{eqnarray}\]&lt;/div&gt;
 &lt;p&gt;Where &lt;span class="math notranslate nohighlight"&gt;\(v\)&lt;/span&gt; is the speed at sonic velocities (&lt;span class="math notranslate nohighlight"&gt;\(c_s\)&lt;/span&gt;) and &lt;span class="math notranslate nohighlight"&gt;\(R\)&lt;/span&gt; is the radius at sonic radii (&lt;span class="math notranslate nohighlight"&gt;\(r_c\)&lt;/span&gt;). We observe that around the sonic radius and speed, there is a critical point that must be satisfied to ensure the physical meaning of the solution. Also, we have to note that this equation represents a boundary value problem, and in this case, the boundary condition of the problem in adimensional units is &lt;span class="math notranslate nohighlight"&gt;\(v(R_{\text{sun}}) = v_0\)&lt;/span&gt;, where &lt;span class="math notranslate nohighlight"&gt;\(R_{\text{sun}}\)&lt;/span&gt; is the radius of the Sun, and it is the position from which the flow of particles begins to move with an initial speed &lt;span class="math notranslate nohighlight"&gt;\(v_0\)&lt;/span&gt; that depends on the density of particles and temperature.&lt;/p&gt;
 &lt;p&gt;The generation of the Parker spiral is due to the rotation of the Sun, so we apply the transformation of coordinates Lagrangian for rotating systems, leading to the differential equation:&lt;/p&gt;
-&lt;div class="amsmath math notranslate nohighlight" id="equation-1163161a-50e2-413b-8fd8-d8a55d63a481"&gt;
+&lt;div class="amsmath math notranslate nohighlight" id="equation-0ac2fc2d-84ef-44e3-9a30-79c954a5e9a4"&gt;
 &lt;span class="eqno"&gt;(3)&lt;/span&gt;\[\begin{equation}
 \frac{d\varphi}{dR} = \frac{-\omega}{v(R)}
 \end{equation}\]&lt;/div&gt;
@@ -6286,12 +6432,12 @@ Min radii (adim): 0.173030
 &lt;section id="perfil-de-velocidad-del-viento-solar"&gt;
 &lt;h2&gt;Perfil de velocidad del viento solar&lt;/h2&gt;
 &lt;p&gt;En el trabajo de Parker bajo condiciones de expansión isotérmica (&lt;span class="math notranslate nohighlight"&gt;\(\gamma = 1\)&lt;/span&gt;) de un fluido neutro (primera aproximación al comportamiento del viendo solar), lleva a una ecuación diferencial no lineal de primer orden que relaciona la velocidad del viento solar (&lt;span class="math notranslate nohighlight"&gt;\(u(r)\)&lt;/span&gt;) y la distancia heliocéntrica (&lt;span class="math notranslate nohighlight"&gt;\(r\)&lt;/span&gt;) ((Parker, 1958), (Kivelson, 1995)).&lt;/p&gt;
-&lt;div class="amsmath math notranslate nohighlight" id="equation-609b9016-c28c-479f-9f61-0192adb91dae"&gt;
+&lt;div class="amsmath math notranslate nohighlight" id="equation-cf49c629-c377-4428-a0d8-8b8cf22970d2"&gt;
 &lt;span class="eqno"&gt;(1)&lt;/span&gt;\[\begin{equation}
 \frac{du(r)}{dr} = \left(\frac{4kT}{mr} - \frac{GM}{r^2} \right)u(r)\left(u(r)^2 - \frac{2kT}{m} \right)^{-1}
 \end{equation}\]&lt;/div&gt;
 &lt;p&gt;Con el fin de reducir la propagación de error por los ordenes de magnitud de las variables involucradas, se procede a adimensionalizar la ecuación diferencial, con base al radio y velocidad en el punto crítico (punto sónico) (Piso, 2008).&lt;/p&gt;
-&lt;div class="amsmath math notranslate nohighlight" id="equation-7dabeaa2-3295-445f-9250-63419b92129e"&gt;
+&lt;div class="amsmath math notranslate nohighlight" id="equation-4b6d3cb1-b98d-42f0-a044-201c89becadd"&gt;
 &lt;span class="eqno"&gt;(2)&lt;/span&gt;\[\begin{eqnarray}
 c_s^2 &amp;amp; = &amp;amp; \frac{2kT}{m}\\
 r_c &amp;amp;=&amp;amp; \frac{GM}{2c_s^2}\\
@@ -6299,7 +6445,7 @@ r_c &amp;amp;=&amp;amp; \frac{GM}{2c_s^2}\\
 \end{eqnarray}\]&lt;/div&gt;
 &lt;p&gt;Donde &lt;span class="math notranslate nohighlight"&gt;\(v\)&lt;/span&gt; es la velocidad en velocidades sónicas (&lt;span class="math notranslate nohighlight"&gt;\(c_s\)&lt;/span&gt;) y &lt;span class="math notranslate nohighlight"&gt;\(R\)&lt;/span&gt; es el radio en radios sónicos (&lt;span class="math notranslate nohighlight"&gt;\(r_c\)&lt;/span&gt;). Observamos que alrededor del radio sónico y de la velocidad sónica se presenta un punto crítico que debe satisfacerse para asegurar el sentido físico de la solución. También, tenemos que esta ecuación representa un problema de valores de frontera, y en este caso la condición de frontera del problema en unidades adimensionales es &lt;span class="math notranslate nohighlight"&gt;\(v(R_{sol}) = v_0\)&lt;/span&gt;, donde &lt;span class="math notranslate nohighlight"&gt;\(R_{sol}\)&lt;/span&gt; es el radio del Sol, y es la posición desde la cuál comienza a desplazarse el flujo de partículas con una velocidad inicial &lt;span class="math notranslate nohighlight"&gt;\(v_0\)&lt;/span&gt; que dependerá de la densidad de partículas y la temperatura.&lt;/p&gt;
 &lt;p&gt;La generación de la espiral de Parker es efecto de la rotación del sol, por lo cual se aplica la transformación de coordenadas lagrangianas para sistemas rotantes, llevando a la ecuación diferencial&lt;/p&gt;
-&lt;div class="amsmath math notranslate nohighlight" id="equation-8a808468-53f7-4153-93e0-b747b9803be3"&gt;
+&lt;div class="amsmath math notranslate nohighlight" id="equation-2bf8cd80-f659-4eaa-8a66-aaeb47d7dfea"&gt;
 &lt;span class="eqno"&gt;(3)&lt;/span&gt;\[\begin{equation}
 \frac{d\varphi}{dR} = \frac{-\omega}{v(R)}
 \end{equation}\]&lt;/div&gt;
@@ -16192,11 +16338,6 @@ fiery nature.&lt;/p&gt;
 Adaptation of &lt;em&gt;New American Bible&lt;/em&gt;.&lt;/span&gt;&lt;/p&gt;
 &lt;/figcaption&gt;
 &lt;/figure&gt;
-&lt;aside class="system-message"&gt;
-&lt;p class="system-message-title"&gt;System Message: INFO/1 (&lt;span class="docutils literal"&gt;/home/cosmoscalibur/Documentos/git/cosmoscalibur.github.io/en/blog/2013/cosmogonia-griega.rst&lt;/span&gt;, line 72)&lt;/p&gt;
-&lt;p&gt;No directive entry for «note» in module «docutils.parsers.rst.languages.es».
-Using English fallback for directive «note».&lt;/p&gt;
-&lt;/aside&gt;
 &lt;div class="admonition note"&gt;
 &lt;p class="admonition-title"&gt;Nota&lt;/p&gt;
 &lt;p&gt;The continuation of this publication (as a second part, generated from a

@@ -362,6 +362,7 @@ with Linux desktop client support.
 
 ```{code}
 pamac build dropbox --no-confirm
+pamac install --asdeps libappindicator-gtk3
 ```
 
 ````

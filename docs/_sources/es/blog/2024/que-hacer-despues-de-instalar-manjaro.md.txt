@@ -4,7 +4,7 @@ tags: manjaro, ubuntu, kubuntu, kde, pamac, flatpak, aplicaciones para linux
 category: tecnología, linux
 ---
 
-# ¿Qué hacer después de instalar Manjaro KDE 24?
+# ¿Qué hacer después de instalar Manjaro KDE?
 
 Hace poco decidí pasarme a Manjaro KDE (24.1) y estoy muy contento del cambio.
 Así que con motivo a esto, les cuento sobre las cosas por hacer después de
@@ -399,6 +399,7 @@ alternativa gratuita alojada y con soporte para Linux del cliente de escritorio.
 
 ```{code}
 pamac build dropbox --no-confirm
+pamac install --asdeps libappindicator-gtk3
 ```
 ````
 ````{tab-item} Ubuntu

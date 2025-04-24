@@ -17,5 +17,5 @@ nuestros proyectos Python.
 - Maturin: Alternativa a setuptools.
 - Fastexcel: Alternativa a OpenPyXL o xlread.
 - orjson: Alternativa a json.
-- Ruff: Alternativa a flake8, pylint (linters).
+- Ruff: Alternativa a flake8, pylint, isort, black (linters).
 - Pixi: Alternativa a conda.
