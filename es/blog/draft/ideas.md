@@ -4,26 +4,6 @@ sudo dd bs=4M if=manjaro-kde-24.1.2-241104-linux610.iso of=/dev/sda status=progr
 
 (sin número, solo letra) lsblk/lsusb - mount
 
-- script oficial (con opciones de actualización): rust, uv, zed, ollama
-
-- PIP/UV/Pixi (uv tool install): ruff, python-lsp-analyzer, sphinx, mdformat
-
-- Cargo (requiere descargar muchas dependencias y tiempo de compilación, acumula
-  caché): rust-analyzer
-
-- snap (algunos casos privativos): vscode
-
-- manjaro repo: flameshot, dbeaver
-
-- Flatpak (viene preinstalado y con la configuración del repositorio. Instalar
-  solo si el autor es verificado): dbgate, stremio, stellarium
-
-- AUR (no hay verificación, de manera responsable requiere inspección o al menos
-  validar popularidad y votos de confianza, leer comentarios y trazabilidad, y
-  suele requerir compilación o pasos intermedios de transformaciones. Puede que
-  se omitan componentes privativas si es un tercero el empaquetador):
-  wps-office-bin, google-chrome, dropbox, slack-desktop
-
 - Gmail
 
   - Slack
@@ -130,7 +110,3 @@ octave https://octave.org/ matlab
 yaak https://yaak.app/ postman
 
 tauri https://tauri.app/ slint https://slint.dev/
-
-https://github.com/executablebooks/mdformat
-
-zen browser

@@ -204,6 +204,7 @@ Flatpak está listo para usar.
 ````
 ````{tab-item} Ubuntu
 :sync: ubuntu
+(ubuntu-instalar-flatpak)=
 
 ```{code} bash
 sudo apt install -y flatpak

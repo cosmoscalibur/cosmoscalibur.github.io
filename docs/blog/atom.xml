@@ -2,10 +2,216 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="es">
   <id>https://www.cosmoscalibur.com/</id>
   <title>Cosmoscalibur</title>
-  <updated>2025-04-24T04:40:12.821419+00:00</updated>
+  <updated>2025-04-29T17:19:39.253190+00:00</updated>
   <link href="https://www.cosmoscalibur.com/"/>
   <link href="https://www.cosmoscalibur.com/blog/atom.xml" rel="self"/>
   <generator uri="https://ablog.readthedocs.io/" version="0.11.12">ABlog</generator>
+  <entry>
+    <id>https://www.cosmoscalibur.com/es/blog/2024/ecosistema-rust-para-la-terminal-linux/</id>
+    <title>Ecosistema Rust para la terminal Linux</title>
+    <updated>2025-04-29T00:00:00-05:00</updated>
+    <author>
+      <name>Edward Villegas-Pulgarin</name>
+    </author>
+    <content type="html">&lt;section class="tex2jax_ignore mathjax_ignore" id="ecosistema-rust-para-la-terminal-linux"&gt;
+
+&lt;p&gt;Además de mi interés personal por este lenguaje, también me interesa el
+ecosistema de herramientas que se han desarrollado en Rust para la terminal
+Linux y para el soporte de otros lenguajes de programación (como su impacto en
+Python, que es mi lenguaje principal de desarrollo).&lt;/p&gt;
+&lt;p&gt;Antes les comenté sobre
+&lt;a class="reference internal" href="../es/blog/2024/configurar-starship-en-manjaro-y-zsh/"&gt;&lt;span class="std std-doc"&gt;Starship&lt;/span&gt;&lt;/a&gt;, y a
+continuación vamos a expandir este universo de posibilidades de Rust para la
+terminal Linux.&lt;/p&gt;
+&lt;section id="acelera-tu-trabajo-en-la-terminal"&gt;
+&lt;h2&gt;Acelera tu trabajo en la terminal&lt;/h2&gt;
+&lt;p&gt;Si bien &lt;em&gt;Zsh&lt;/em&gt; no está implementado en Rust, este lenguaje de terminal (&lt;em&gt;shell&lt;/em&gt;)
+es muy potente y flexible, con una gran cantidad de plugins y complementos
+disponibles para personalizar y mejorar su experiencia. Por lo que aprovecho
+como parte de mi nueva terminal Linux recargada a incluirlo y contarles sobre
+como cambiar a que sea usado por defecto. Adicional, esto es necesario
+mencionarlo ya que la configuración va a requerir de conocer nuestra &lt;em&gt;shell&lt;/em&gt;, y
+esto define porque las instrucciones que vamos a conocer. Todavía lo sigo usando
+como un &lt;em&gt;bash&lt;/em&gt; en general, pero ya he visto cosas muy interesantes que pronto
+les compartiré.&lt;/p&gt;
+&lt;p&gt;Así como vimos la experiencia extra de información que nos ofrece Starship,
+vamos a explorar utilidades que nos ayudan a mejorar nuestra experiencia en la
+terminal con mayor agilidad en nuestros flujos de trabajo.&lt;/p&gt;
+&lt;p&gt;Empezaremos con &lt;em&gt;zoxide&lt;/em&gt;, un reemplazo para &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;cd&lt;/span&gt;&lt;/code&gt; que nos permite navegar por
+nuestra historia de directorios de forma más rápida y eficiente. Posee
+autocompletado y asignación de prioridad para los atajos a los directorios.
+Podemos usarlo indicando una forma corta del directorio o similar, y mediante
+búsqueda difusa en los directorios que ya hemos navegado (usando &lt;em&gt;zoxide&lt;/em&gt; como
+un &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;cd&lt;/span&gt;&lt;/code&gt; habitual) puede adivinar el directorio que buscamos, o si sabemos que
+pueden existir varios directorios con el mismo nombre, puede mostrar una lista
+de opciones para elegir al digitar espacio y tabulador.&lt;/p&gt;
+&lt;p&gt;Podemos también acelerar nuestra experiencia con un emulador de terminal en Rust
+como &lt;em&gt;Alacritty&lt;/em&gt;, que ofrece una interfaz más rápida y eficiente que la terminal
+predeterminada de Linux, y su renderizado es con OpenGL. Este emulador está
+disponible también en MacOS y Windows, y dispone de modo &lt;em&gt;Vi&lt;/em&gt; para la
+navegación, así como opciones de selección extendida y apertura de enlaces con
+el &lt;em&gt;mouse&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Alacritty&lt;/em&gt; no posee un multiplexador, pero podemos darle esta capacidad a
+través de &lt;em&gt;Zellij&lt;/em&gt;, un multiplexador de terminales (esto nos permite tener
+múltiples ventanas y paneles dentro de una sola terminal). Podemos tener paneles
+flotantes, capas personalizadas y una serie de atajos para hacer adecuada
+navegación. Se dispone de un modo de bloqueo para evitar la confusión con atajos
+de sistema, y este se usa con &lt;kbd class="kbd docutils literal notranslate"&gt;Ctrl&lt;/kbd&gt;+&lt;kbd class="kbd docutils literal notranslate"&gt;g&lt;/kbd&gt;, y allí los atajos &lt;kbd class="kbd docutils literal notranslate"&gt;p&lt;/kbd&gt; para
+gestión de paneles o &lt;kbd class="kbd docutils literal notranslate"&gt;t&lt;/kbd&gt; para la gestión de pestañas, y con opciones para
+crear (&lt;kbd class="kbd docutils literal notranslate"&gt;n&lt;/kbd&gt;), cerrar (&lt;kbd class="kbd docutils literal notranslate"&gt;x&lt;/kbd&gt;), navegar (direccionales), entre otros.
+Podemos generar los paneles flotantes con &lt;kbd class="kbd docutils literal notranslate"&gt;Alt&lt;/kbd&gt;+&lt;kbd class="kbd docutils literal notranslate"&gt;f&lt;/kbd&gt; (los cuales se pueden
+desplazar luego con el &lt;em&gt;mouse&lt;/em&gt;) o los paneles normales con &lt;kbd class="kbd docutils literal notranslate"&gt;Alt&lt;/kbd&gt;+&lt;kbd class="kbd docutils literal notranslate"&gt;n&lt;/kbd&gt;. Para
+navegar en este modo, podemos usar &lt;kbd class="kbd docutils literal notranslate"&gt;Alt&lt;/kbd&gt; con direccionales.&lt;/p&gt;
+&lt;p&gt;Y finalmente, un editor para la terminal con soporte de modo &lt;em&gt;Vi&lt;/em&gt;, bastante
+cómodo de usar y con soporte nativo de &lt;em&gt;tree sitter&lt;/em&gt; y &lt;em&gt;LSP&lt;/em&gt;. Este editor es
+&lt;em&gt;Helix&lt;/em&gt;. Y se ha convertido en mi editor de terminal favorito y lo he vinculado
+como el editor para edición de git.&lt;/p&gt;
+&lt;p&gt;Ahora, manos a la obra para instalar y configurar.&lt;/p&gt;
+&lt;div class="sd-tab-set docutils"&gt;
+&lt;input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio"&gt;
+&lt;label class="sd-tab-label" data-sync-group="tab" data-sync-id="manjaro" for="sd-tab-item-0"&gt;
+Manjaro&lt;/label&gt;&lt;div class="sd-tab-content docutils"&gt;
+&lt;p&gt;En Manjaro (y derivadas de Arch) disponemos de los paquetes necesarios en el
+repositorio oficial.&lt;/p&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo&lt;span class="w"&gt; &lt;/span&gt;pamac&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;zsh&lt;span class="w"&gt; &lt;/span&gt;alacritty&lt;span class="w"&gt; &lt;/span&gt;zellij&lt;span class="w"&gt; &lt;/span&gt;zoxide&lt;span class="w"&gt; &lt;/span&gt;helix&lt;span class="w"&gt; &lt;/span&gt;--no-confirm
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;input id="sd-tab-item-1" name="sd-tab-set-0" type="radio"&gt;
+&lt;label class="sd-tab-label" data-sync-group="tab" data-sync-id="ubuntu" for="sd-tab-item-1"&gt;
+Ubuntu&lt;/label&gt;&lt;div class="sd-tab-content docutils"&gt;
+&lt;p&gt;En el caso de Ubuntu, vamos a necesitar usar no solo paquetes del repositorio
+oficial, sino también paquetes instalados con &lt;a class="reference internal" href="../es/blog/2024/instalar-rust-en-linux/"&gt;&lt;span class="std std-doc"&gt;&lt;strong class="program"&gt;cargo&lt;/strong&gt;&lt;/span&gt;&lt;/a&gt; o &lt;a class="reference internal" href="../es/blog/2024/que-hacer-despues-de-instalar-manjaro/#ubuntu-instalar-flatpak"&gt;&lt;span class="std std-ref"&gt;&lt;strong class="program"&gt;flatpak&lt;/strong&gt;&lt;/span&gt;&lt;/a&gt;.&lt;/p&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo&lt;span class="w"&gt; &lt;/span&gt;apt&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;-y&lt;span class="w"&gt; &lt;/span&gt;zsh&lt;span class="w"&gt; &lt;/span&gt;alacritty&lt;span class="w"&gt; &lt;/span&gt;zoxide
+cargo&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;--locked&lt;span class="w"&gt; &lt;/span&gt;zellij
+flatpak&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;flathub&lt;span class="w"&gt; &lt;/span&gt;com.helix_editor.Helix
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Para configurar &lt;strong class="program"&gt;zsh&lt;/strong&gt; como tu &lt;em&gt;shell&lt;/em&gt; por defecto procedemos de la
+siguiente manera:&lt;/p&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;chsh&lt;span class="w"&gt; &lt;/span&gt;-s&lt;span class="w"&gt; &lt;/span&gt;/bin/zsh&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="c1"&gt;# Configurar shell por defecto: ingresamos contraseña&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Puede que sea necesario reiniciar tu sesión para que el cambio surta efecto. A
+continuación, ya podremos configurar las demás utilidades que dependen del
+&lt;em&gt;shell&lt;/em&gt; para saber las opciones de configuración.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Zoxide&lt;/em&gt; requiere ejecutar su &lt;em&gt;script&lt;/em&gt; de inicialización indicando el &lt;em&gt;shell&lt;/em&gt;
+que se está usando. Según el método de instalación, podrías necesitar revisar el
+ejecutable asociado, en mi caso queda con &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;z&lt;/span&gt;&lt;/code&gt; y me siento cómodo con él.&lt;/p&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nb"&gt;echo&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;eval &amp;quot;$(zoxide init zsh)&amp;quot;&amp;#39;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&amp;gt;&amp;gt;&lt;span class="w"&gt; &lt;/span&gt;~/.zshrc
+&lt;span class="nb"&gt;source&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;~/.zshrc
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;En el caso de &lt;em&gt;Alacritty&lt;/em&gt;, debemos indicar el &lt;em&gt;shell&lt;/em&gt; que se está usando en el
+archivo de configuración (formato TOML) y de paso vincularemos el uso de
+&lt;em&gt;Zellij&lt;/em&gt; en su arranque.&lt;/p&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;cat&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;lt;&amp;lt; &amp;#39;EOF&amp;#39; &amp;gt; ~/.config/alacritty.toml&lt;/span&gt;
+&lt;span class="s"&gt;[terminal.shell]&lt;/span&gt;
+&lt;span class="s"&gt;args = [&amp;quot;-l&amp;quot;, &amp;quot;-c&amp;quot;, &amp;quot;zellij attach --index 0 || zellij&amp;quot;]&lt;/span&gt;
+&lt;span class="s"&gt;program = &amp;quot;/bin/zsh&amp;quot;&lt;/span&gt;
+&lt;span class="s"&gt;EOF&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Respecto al uso de &lt;em&gt;Zellij&lt;/em&gt; te recomiendo el modo &lt;em&gt;unlock first&lt;/em&gt; para evitar
+colisión de atajos que tengamos en el sistema (es una mala experiencia).&lt;/p&gt;
+&lt;p&gt;Recuerda también configurar
+&lt;a class="reference internal" href="../es/blog/2024/configurar-starship-en-manjaro-y-zsh/"&gt;&lt;span class="std std-doc"&gt;starship&lt;/span&gt;&lt;/a&gt; para que
+tengas el combo completo.&lt;/p&gt;
+&lt;section id="asociar-alacritty-como-terminal-por-defecto-en-kde"&gt;
+&lt;h3&gt;Asociar Alacritty como terminal por defecto en KDE.&lt;/h3&gt;
+&lt;p&gt;En este punto ya tenemos lo básico listo, y si lanzas de forma directa
+&lt;strong class="program"&gt;alacritty&lt;/strong&gt; no hace falta nada más. Sin embargo, si usas atajos de
+terminal o hay aplicaciones que lancen la terminar que esté asociada por
+defecto, seguirán lanzando la terminal (emulador) que tenías antes. Para que
+esto no suceda, deberás hacer unos pasos adicionales que dependen de tu entorno
+de escritorio. En mi caso, que uso KDE los pasos son los siguientes.&lt;/p&gt;
+&lt;p&gt;Para vincular &lt;em&gt;alacritty&lt;/em&gt; como emulador de terminal por defecto:
+&lt;span class="menuselection"&gt;Aplicaciones predeterminadas ‣ Emulador de terminal ‣ Alacritty&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Para configurar el atajo de teclado teclado:
+&lt;span class="menuselection"&gt;Atajos de teclado ‣ Añadir nuevo ‣ Aplicación ‣ Alacritty&lt;/span&gt;
+Configuramos atajo de “Lanzar” dando clic a &lt;span class="guilabel"&gt;Añadir&lt;/span&gt;, y tras ello el
+atajo deseado. En mi caso prefiero el habitual de la terminal de
+&lt;kbd class="kbd docutils literal notranslate"&gt;Control&lt;/kbd&gt;-&lt;kbd class="kbd docutils literal notranslate"&gt;Alt&lt;/kbd&gt;-&lt;kbd class="kbd docutils literal notranslate"&gt;T&lt;/kbd&gt;. Aplicamos el cambio (&lt;span class="guilabel"&gt;Aplicar&lt;/span&gt;).&lt;/p&gt;
+&lt;/section&gt;
+&lt;/section&gt;
+&lt;section id="nuevo-ecosistema-de-utilidades"&gt;
+&lt;h2&gt;Nuevo ecosistema de utilidades&lt;/h2&gt;
+&lt;p&gt;Tenemos aquí un reemplazo para nuestros comandos favoritos de la consola, que
+aprovechamos a modernizar con Rust y en algunos casos a tener una mejora
+importante de rendimiento (en su reimplementación) o de agilidad con las nuevas
+opciones que nos ofrecen.## Nuevo ecosistema de utilidades&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;bat&lt;/span&gt;&lt;/code&gt;: Sustituto de &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;cat&lt;/span&gt;&lt;/code&gt;. Destaco su coloreado de sintaxis, marcas de cambios
+de git y la opción para mostrar caracteres invisibles.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;bottom&lt;/span&gt;&lt;/code&gt; (&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;btm&lt;/span&gt;&lt;/code&gt;): Sustituto de &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;top&lt;/span&gt;&lt;/code&gt;. Posee soporte multiplataforma y la
+gestión de procesos te permite matarlos allí (seleccionas el proceso y luego
+&lt;kbd class="kbd docutils literal notranslate"&gt;d&lt;/kbd&gt; &lt;kbd class="kbd docutils literal notranslate"&gt;d&lt;/kbd&gt;)&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;eza&lt;/span&gt;&lt;/code&gt;: Sustituto de &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;ls&lt;/span&gt;&lt;/code&gt;. No he explorado mucho su potencial, pero su
+coloreado por defecto me es mucho más útil que el usado en el original.
+Permite conocer información adicional de los archivos y directorios durante la
+consulta, como su estado de git o información de puntos de montaje.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;procs&lt;/span&gt;&lt;/code&gt;: Sustituto de &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;ps&lt;/span&gt;&lt;/code&gt;. Multiplataforma, y con mayor legibilidad que el
+original.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;du-dust&lt;/span&gt;&lt;/code&gt; (&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;dust&lt;/span&gt;&lt;/code&gt;): Sustituto de &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;du&lt;/span&gt;&lt;/code&gt;. Su visualización por defecto me parece
+mucho más informativa que el comando original.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Ahora, procedamos a instalar.&lt;/p&gt;
+&lt;div class="sd-tab-set docutils"&gt;
+&lt;input checked="checked" id="sd-tab-item-2" name="sd-tab-set-1" type="radio"&gt;
+&lt;label class="sd-tab-label" data-sync-group="tab" data-sync-id="manjaro" for="sd-tab-item-2"&gt;
+Manjaro&lt;/label&gt;&lt;div class="sd-tab-content docutils"&gt;
+&lt;p&gt;En Manjaro (y derivados de Arch), disponemos nuevamente todo disponible en el repositorio oficial.&lt;/p&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo&lt;span class="w"&gt; &lt;/span&gt;pamac&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;bat&lt;span class="w"&gt; &lt;/span&gt;bottom&lt;span class="w"&gt; &lt;/span&gt;dust&lt;span class="w"&gt; &lt;/span&gt;eza&lt;span class="w"&gt; &lt;/span&gt;procs&lt;span class="w"&gt; &lt;/span&gt;--no-confirm
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;input id="sd-tab-item-3" name="sd-tab-set-1" type="radio"&gt;
+&lt;label class="sd-tab-label" data-sync-group="tab" data-sync-id="ubuntu" for="sd-tab-item-3"&gt;
+Ubuntu&lt;/label&gt;&lt;div class="sd-tab-content docutils"&gt;
+&lt;p&gt;En Ubuntu, necesitaremos mezclar el repositorio oficial con el repositorio de Rust.&lt;/p&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo&lt;span class="w"&gt; &lt;/span&gt;apt&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;-y&lt;span class="w"&gt; &lt;/span&gt;bat&lt;span class="w"&gt; &lt;/span&gt;du-dust&lt;span class="w"&gt; &lt;/span&gt;eza
+cargo&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;--locked&lt;span class="w"&gt; &lt;/span&gt;bottom&lt;span class="w"&gt; &lt;/span&gt;procs
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/section&gt;
+&lt;section id="referencias"&gt;
+&lt;h2&gt;Referencias&lt;/h2&gt;
+&lt;p&gt;Ahora que hemos &lt;em&gt;oxidado&lt;/em&gt; nuestra terminal Linux, te invito a visitar la
+información oficial de estos proyectos.&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://alacritty.org/"&gt;Alacritty&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://zellij.dev/"&gt;Zellij&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://github.com/ajeetdsouza/zoxide"&gt;Zoxide&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://www.zsh.org/"&gt;zsh&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://ohmyz.sh/"&gt;Oh my zsh&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://helix-editor.com/"&gt;Helix&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://github.com/bootandy/dust"&gt;Dust&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://eza.rocks/"&gt;Eza&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://github.com/dalance/procs"&gt;procs&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://github.com/sharkdp/bat"&gt;Bat&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://github.com/ClementTsang/bottom"&gt;Bottom&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Puedes conocer más utilidades en Rust para tu consola
+&lt;a class="reference external" href="https://github.com/sts10/rust-command-line-utilities"&gt;aquí&lt;/a&gt;.&lt;/p&gt;
+&lt;/section&gt;
+&lt;/section&gt;
+</content>
+    <link href="https://www.cosmoscalibur.com/es/blog/2024/ecosistema-rust-para-la-terminal-linux/"/>
+    <summary>Además de mi interés personal por este lenguaje, también me interesa el
+ecosistema de herramientas que se han desarrollado en Rust para la terminal
+Linux y para el soporte de otros lenguajes de programación (como su impacto en
+Python, que es mi lenguaje principal de desarrollo).</summary>
+    <category term="aplicacionesparalinux" label="aplicaciones para linux"/>
+    <category term="kde" label="kde"/>
+    <category term="manjaro" label="manjaro"/>
+    <category term="rustlang" label="rustlang"/>
+    <category term="terminal" label="terminal"/>
+    <published>2025-04-29T00:00:00-05:00</published>
+  </entry>
   <entry>
     <id>https://www.cosmoscalibur.com/en/blog/2025/instalar-docker-en-manjaro/</id>
     <title>Install Docker on Manjaro</title>
@@ -3784,7 +3990,7 @@ Manjaro&lt;/label&gt;&lt;div class="sd-tab-content docutils"&gt;
 &lt;input id="sd-tab-item-7" name="sd-tab-set-3" type="radio"&gt;
 &lt;label class="sd-tab-label" data-sync-group="tab" data-sync-id="ubuntu" for="sd-tab-item-7"&gt;
 Ubuntu&lt;/label&gt;&lt;div class="sd-tab-content docutils"&gt;
-&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo&lt;span class="w"&gt; &lt;/span&gt;apt&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;-y&lt;span class="w"&gt; &lt;/span&gt;flatpak
+&lt;div class="highlight-bash notranslate" id="ubuntu-instalar-flatpak"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo&lt;span class="w"&gt; &lt;/span&gt;apt&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;-y&lt;span class="w"&gt; &lt;/span&gt;flatpak
 flatpak&lt;span class="w"&gt; &lt;/span&gt;remote-add&lt;span class="w"&gt; &lt;/span&gt;--if-not-exists&lt;span class="w"&gt; &lt;/span&gt;flathub&lt;span class="w"&gt; &lt;/span&gt;https://flathub.org/repo/flathub.flatpakrepo
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
