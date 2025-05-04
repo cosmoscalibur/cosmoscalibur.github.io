@@ -139,3 +139,10 @@ Es importante tener presente el cambio de sintaxis cuando se instala un paquete
 desde un repositorio, y es el uso de `"paquete @ url_repo"`, y en particular si
 posee credenciales considerar el soporte acorde a las
 [indicaciones](https://github.com/astral-sh/uv?tab=readme-ov-file#git-authentication).
+
+En general, el uso de {program}`pip` se puede sustituir por {program}`uv pip`, y
+así la instalación directa de un paquete puede ser:
+
+```{code} bash
+uv pip install <paquete>
+```

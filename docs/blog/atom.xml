@@ -2,10 +2,132 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="es">
   <id>https://www.cosmoscalibur.com/</id>
   <title>Cosmoscalibur</title>
-  <updated>2025-05-01T16:39:35.516793+00:00</updated>
+  <updated>2025-05-04T15:37:30.005334+00:00</updated>
   <link href="https://www.cosmoscalibur.com/"/>
   <link href="https://www.cosmoscalibur.com/blog/atom.xml" rel="self"/>
   <generator uri="https://ablog.readthedocs.io/" version="0.11.12">ABlog</generator>
+  <entry>
+    <id>https://www.cosmoscalibur.com/es/blog/2025/conector-mysql-para-python-en-manjaro/</id>
+    <title>Conector MySQL para Python en Manjaro</title>
+    <updated>2025-05-04T00:00:00-05:00</updated>
+    <author>
+      <name>Edward Villegas-Pulgarin</name>
+    </author>
+    <content type="html">&lt;section class="tex2jax_ignore mathjax_ignore" id="conector-mysql-para-python-en-manjaro"&gt;
+
+&lt;p&gt;Ahora que uso
+&lt;a class="reference internal" href="../es/blog/2024/que-hacer-despues-de-instalar-manjaro/"&gt;&lt;span class="std std-doc"&gt;Manjaro en lugar de Ubuntu&lt;/span&gt;&lt;/a&gt;,
+uno de los problemas que encontré para adecuar el entorno de desarrollo que uso
+en mi trabajo, es que el conector de MySQL para Python &lt;em&gt;MySQLDb&lt;/em&gt; depende de
+&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;libmysqlclient-dev&lt;/span&gt;&lt;/code&gt;, que no está disponible en Manjaro. Te cuento cómo
+solucioné el problema.&lt;/p&gt;
+&lt;section id="conector-mysql"&gt;
+&lt;h2&gt;Conector MySQL&lt;/h2&gt;
+&lt;p&gt;El conector de bases de datos ofrece una interfaz para interactuar con bases de
+datos desde una aplicación. Los fabricantes de bases de datos ofrecen sus
+propios conectores para distintos lenguajes de programación, controladores
+nativos que permiten a la comunidad interactuar con las bases de datos creando
+nuevas extensiones o incluso la definición del estándar de tal modo que existan
+implementaciones en diferentes lenguajes y que no posean dependencias con el
+sistema operativo.&lt;/p&gt;
+&lt;p&gt;En el caso del conector MySQL para Python, el conector oficial depende de
+&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;libmysqlclient-dev&lt;/span&gt;&lt;/code&gt; (con el paquete python de &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;mysqlclient&lt;/span&gt;&lt;/code&gt;), que no está
+disponible en Manjaro.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="alternativas-de-conexion-python-con-mysql-en-manjaro"&gt;
+&lt;h2&gt;Alternativas de conexión Python con MySQL en Manjaro&lt;/h2&gt;
+&lt;p&gt;Podemos tener dos alternativas para conectarnos a MySQL desde Python en Manjaro,
+considerando una conexión nativa, pero también una conexión sin dependencias con
+el sistema operativo.&lt;/p&gt;
+&lt;section id="conector-de-mariadb"&gt;
+&lt;h3&gt;Conector de MariaDB&lt;/h3&gt;
+&lt;p&gt;MariaDB es una base de datos relacional de código abierto que se basa en el
+código fuente de MySQL. Es compatible con la mayoría de las características de
+MySQL y ofrece mejoras en seguridad, rendimiento y escalabilidad. Esta
+compatibilidad ofrece una alternativa a la conexión nativa de MySQL con la que
+podremos instalar &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;mysqlclient&lt;/span&gt;&lt;/code&gt; con nuestro gestor de paquetes Python de forma
+habitual. Para instalar las dependencias nativas, en Manjaro y derivados de
+Arch, procedemos de la siguiente manera:&lt;/p&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;pamac&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;mariadb-libs
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Ahora podremos instalar el paquete Python &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;mysqlclient&lt;/span&gt;&lt;/code&gt; con nuestro gestor de
+paquetes Python de forma habitual
+(&lt;a class="reference internal" href="../es/blog/2024/uv-alternativa-rapida-a-pip-y-venv/#instalacion-de-paquetes-python"&gt;&lt;span class="std std-ref"&gt;paquete en el ambiente&lt;/span&gt;&lt;/a&gt;
+o
+&lt;a class="reference internal" href="../es/blog/2025/configuracion-de-proyectos-y-herramientas-python-con-uv/#crear-un-proyecto-con-uv-init"&gt;&lt;span class="std std-ref"&gt;en el proyecto&lt;/span&gt;&lt;/a&gt;):&lt;/p&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;uv&lt;span class="w"&gt; &lt;/span&gt;pip&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;mysqlclient&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="c1"&gt;# Instalación en el ambiente&lt;/span&gt;
+uv&lt;span class="w"&gt; &lt;/span&gt;add&lt;span class="w"&gt; &lt;/span&gt;mysqlclient&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="c1"&gt;# Instalación en el proyecto&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/section&gt;
+&lt;section id="conector-mysql-en-python-puro"&gt;
+&lt;h3&gt;Conector MySQL en Python Puro&lt;/h3&gt;
+&lt;p&gt;Existe también un conector MySQL en Python puro que cumple también el estándar
+de conexiones a base de datos definidas por el PEP 249, tal como el conector
+nativo. Esta opción es &lt;em&gt;PyMySQL&lt;/em&gt;, y es una excelente alternativa si no puedes
+instalar las dependencias nativas de MySQL o MariaDB, o simplemente prefieres no
+instalarlas.&lt;/p&gt;
+&lt;p&gt;Para hacer la instalación de PyMySQL, simplemente ejecutamos el siguiente
+comando:&lt;/p&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;uv&lt;span class="w"&gt; &lt;/span&gt;pip&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;PyMySQL&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="c1"&gt;# Instalación en el ambiente&lt;/span&gt;
+uv&lt;span class="w"&gt; &lt;/span&gt;add&lt;span class="w"&gt; &lt;/span&gt;PyMySQL&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="c1"&gt;# Instalación en el proyecto&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Ahora puedes usar en tus proyectos &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;pymysql&lt;/span&gt;&lt;/code&gt; de forma directa, o usarlo como un
+sustituto de &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;MySQLdb&lt;/span&gt;&lt;/code&gt; cuando la dependencia nativa no está disponible, lo cual
+se hace de la siguiente manera:&lt;/p&gt;
+&lt;div class="highlight-python notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;try&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="kn"&gt;import&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nn"&gt;MySQLdb&lt;/span&gt;
+&lt;span class="k"&gt;except&lt;/span&gt; &lt;span class="ne"&gt;ImportError&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="kn"&gt;import&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nn"&gt;pymysql&lt;/span&gt;
+    &lt;span class="c1"&gt;# Reemplaza `MySQLdb` por `pymysql`&lt;/span&gt;
+    &lt;span class="n"&gt;pymysql&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;install_as_MySQLdb&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/section&gt;
+&lt;section id="otras-alternativas"&gt;
+&lt;h3&gt;Otras alternativas&lt;/h3&gt;
+&lt;p&gt;Para configurar el entorno de desarrollo podrías tener otras opciones, y
+comentaré ligeramente dos más. A través de &lt;a class="reference internal" href="../es/blog/2024/que-hacer-despues-de-instalar-manjaro/#pamac-commands"&gt;&lt;span class="std std-ref"&gt;AUR&lt;/span&gt;&lt;/a&gt;, puedes
+instalar las dependencias nativas de MySQL, pero considero que al tener opciones
+que no contaminan el sistema, podemos omitir. La otra alternativa es que un
+entorno de desarrollo adecuado sería adecuar un contenedor local basado en
+Ubuntu, de tal forma de replicar adecuadamente el entorno de producción. Esto
+sin duda les comentaré un poco más sobre
+&lt;a class="reference internal" href="../es/blog/2025/instalar-docker-en-manjaro/"&gt;&lt;span class="std std-doc"&gt;Docker&lt;/span&gt;&lt;/a&gt; más adelante, pero de
+momento prefiero la comodidad de tener el entorno directamente en Manjaro sin el
+contenedor (la integración de la IDE que uso,
+&lt;a class="reference internal" href="../es/blog/2025/zed-un-editor-rapido-y-moderno-de-codigo-abierto/"&gt;&lt;span class="std std-doc"&gt;Zed&lt;/span&gt;&lt;/a&gt;, no me
+parece todavía tan buena).&lt;/p&gt;
+&lt;/section&gt;
+&lt;/section&gt;
+&lt;section id="referencias"&gt;
+&lt;h2&gt;Referencias&lt;/h2&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://forum.manjaro.org/t/python-mariadb-connector/164119"&gt;Python mariadb connector&lt;/a&gt;.
+Manjaro Linux Forum.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://pymysql.readthedocs.io/en/latest/"&gt;PyMySQL&lt;/a&gt;. Documentation.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://github.com/PyMySQL/PyMySQL/blob/e88b729f8f1ddcf0851e0153188b016d0e9ec00c/pymysql/__init__.py#L66"&gt;install_as_mysqldb&lt;/a&gt;.
+GitHub PyMySQL.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/section&gt;
+&lt;/section&gt;
+</content>
+    <link href="https://www.cosmoscalibur.com/es/blog/2025/conector-mysql-para-python-en-manjaro/"/>
+    <summary>Ahora que uso
+Manjaro en lugar de Ubuntu,
+uno de los problemas que encontré para adecuar el entorno de desarrollo que uso
+en mi trabajo, es que el conector de MySQL para Python MySQLDb depende de
+libmysqlclient-dev, que no está disponible en Manjaro. Te cuento cómo
+solucioné el problema.</summary>
+    <category term="basededatos" label="base de datos"/>
+    <category term="manjaro" label="manjaro"/>
+    <category term="mariadb" label="mariadb"/>
+    <category term="mysql" label="mysql"/>
+    <category term="python" label="python"/>
+    <published>2025-05-04T00:00:00-05:00</published>
+  </entry>
   <entry>
     <id>https://www.cosmoscalibur.com/es/blog/2025/es-manjaro-para-novatos/</id>
     <title>¿Es Manjaro para novatos?</title>
@@ -7685,6 +7807,11 @@ uv&lt;span class="w"&gt; &lt;/span&gt;pip&lt;span class="w"&gt; &lt;/span&gt;ins
 desde un repositorio, y es el uso de &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;&amp;quot;paquete&lt;/span&gt; &lt;span class="pre"&gt;&amp;#64;&lt;/span&gt; &lt;span class="pre"&gt;url_repo&amp;quot;&lt;/span&gt;&lt;/code&gt;, y en particular si
 posee credenciales considerar el soporte acorde a las
 &lt;a class="reference external" href="https://github.com/astral-sh/uv?tab=readme-ov-file#git-authentication"&gt;indicaciones&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;En general, el uso de &lt;strong class="program"&gt;pip&lt;/strong&gt; se puede sustituir por &lt;strong class="program"&gt;uv pip&lt;/strong&gt;, y
+así la instalación directa de un paquete puede ser:&lt;/p&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;uv&lt;span class="w"&gt; &lt;/span&gt;pip&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;&amp;lt;paquete&amp;gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
 &lt;/section&gt;
 &lt;/section&gt;
 </content>

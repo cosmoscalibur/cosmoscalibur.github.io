@@ -1,9 +1,27 @@
-- spellbook
-- polars
+- spellbook: hunspell
 - ferrum
-- xee
-- quick-xml
-- zip
+- compression
+  - zstd
+  - zip
+  - zlib-rs
 - regex
 - prql
 - crabtime
+- calamine: Lectura de archivos Excel
+- Lectura de archivos XML
+  - xee
+  - quick-xml
+- polars: dataframes
+- pest: parser
+- petgraph: graph data structures
+- utoipa: OpenAPI documentation generator
+- project fluent: internationalization and localization
+- Web framework
+  - leptos
+  - rocket
+- GUI
+  - tauri
+  - egui
+  - slint
+  - dioxus
+  - ratatui
