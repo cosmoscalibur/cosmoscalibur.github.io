@@ -18,4 +18,5 @@ nuestros proyectos Python.
 - Fastexcel: Alternativa a OpenPyXL o xlread.
 - orjson: Alternativa a json.
 - Ruff: Alternativa a flake8, pylint, isort, black (linters).
+- ty: Alternativa a Mypy.
 - Pixi: Alternativa a conda.

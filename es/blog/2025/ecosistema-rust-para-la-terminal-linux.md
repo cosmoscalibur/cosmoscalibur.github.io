@@ -19,14 +19,13 @@ terminal Linux.
 ## Acelera tu trabajo en la terminal
 
 Si bien *Zsh* no está implementado en Rust, este lenguaje de terminal (*shell*)
-es muy potente y flexible, con una gran cantidad de plugins y complementos
-disponibles para personalizar y mejorar su experiencia. Por lo que aprovecho
-como parte de mi nueva terminal Linux recargada a incluirlo y contarles sobre
-como cambiar a que sea usado por defecto. Adicional, esto es necesario
-mencionarlo ya que la configuración va a requerir de conocer nuestra *shell*, y
-esto define porque las instrucciones que vamos a conocer. Todavía lo sigo usando
-como un *bash* en general, pero ya he visto cosas muy interesantes que pronto
-les compartiré.
+es muy potente y flexible, con una gran cantidad de complementos disponibles
+para personalizar y mejorar su experiencia. Por lo que aprovecho como parte de
+mi nueva terminal Linux recargada a incluirlo y contarles sobre como cambiar a
+que sea usado por defecto. Adicional, esto es necesario mencionarlo ya que, la
+configuración va a requerir de conocer nuestra *shell*, y esto define porque las
+instrucciones que vamos a conocer. Todavía lo sigo usando como un *bash* en
+general, pero ya he visto cosas muy interesantes que pronto les compartiré.
 
 Así como vimos la experiencia extra de información que nos ofrece Starship,
 vamos a explorar utilidades que nos ayudan a mejorar nuestra experiencia en la

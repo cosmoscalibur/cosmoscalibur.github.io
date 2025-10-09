@@ -1,7 +1,7 @@
 ---
 date: 2025-05-04
 tags: manjaro, base de datos, mysql, mariadb, python
-category: tecnología, linux
+category: tecnología, linux, programación
 ---
 
 # Conector MySQL para Python en Manjaro
