@@ -26,8 +26,9 @@ lo que facilita la instalación de paquetes sin interacción adicional.
 
 Recomendaciones sobre la elección del gestor de paquetes pueden ser:
 
-- Si requieres software propio de Microsoft, se puede tener una mejor
-  integración con WinGet.
+- Si requieres software propio de Microsoft o con la mejor integración con el
+  sistema operativo (registros, menú, alternativas para abrir archivos), se
+  puede tener una mejor integración con WinGet.
 - Si requieres software de terceros, se puede tener mejor compatibilidad y
   oferta con Chocolatey.
 - Si requieres software de código abierto o herramientas de desarrollo, o eres
@@ -37,6 +38,15 @@ Recomendaciones sobre la elección del gestor de paquetes pueden ser:
 Con las herramientas que suelo usar y lo que veo disponible de forma oficial en
 muchas de ellas, prefiero Scoop (son de código abierto y para desarrollo, en su
 mayoría).
+
+Sin embargo, es importante que la autoactualización de algunas herramientas
+puede no ser compatible con los distintos manejadores de paquetes. Ejemplo, Zed
+durante la autoactualización instala en la ruta habitual ignorando la
+configuración de Scoop, pero este es eliminado. Tras esto, es imposible arrancar
+Zed. Esto en general es un punto desfavorable para herramientas GUI, pero se
+alinea con herramientas de línea de comandos en las cuales la actualización es a
+demanda y en ese caso se puede usar directamente el gestor en lugar del comando
+propio (ejemplo, UV).
 
 ## Instalar Scoop en Windows
 
@@ -57,3 +67,22 @@ scoop install 7zip git
 
 - list
 - search
+- scoop status
+- scoop update \*
+
+winget
+
+- Libreoffice
+- Zed
+
+winget update --all
+
+how to pin versions (include teams, onedrive, visual studio community, microsoft
+visual c++)
+
+modo desarrollador de windows
+https://stackoverflow.com/questions/58038683/allow-mklink-for-a-non-admin-user
+
+Ruta de perfil de windows powershell vs powershell
+
+link simbolico
