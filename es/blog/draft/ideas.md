@@ -4,31 +4,8 @@ sudo dd bs=4M if=manjaro-kde-24.1.2-241104-linux610.iso of=/dev/sda status=progr
 
 (sin número, solo letra) lsblk/lsusb - mount
 
-- Gmail
-
-  - Slack
-  - Notion
-  - Sentry
-
-- GitHub
-
-  - Extensión de ZenHub
-
-- 1Password (tech@tributi.com)
-
-  - Loom
-  - Airtable
-  - Wompi
-
-```{code}
-pamac install python-lsp-server rust-analyzer
-```
-
-https://deno.com/ https://voidzero.dev/
-
-ibis polars pandas fireducks probar que pasa entre pandas y fireducs si hay una
-tabla con columna sin consistencia de datos y subtabla muy pequeña que deja
-muchos vacíos
+- polars pandas
+- voidzero oxlint
 
 graphviz
 
@@ -109,4 +86,4 @@ octave https://octave.org/ matlab
 
 yaak https://yaak.app/ postman
 
-tauri https://tauri.app/ slint https://slint.dev/
+winboat lanzar windows en linux en contenedor

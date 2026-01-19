@@ -2,10 +2,359 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="es">
   <id>https://www.cosmoscalibur.com/</id>
   <title>Cosmoscalibur</title>
-  <updated>2025-10-09T03:52:16.286428+00:00</updated>
+  <updated>2026-01-19T04:29:04.672926+00:00</updated>
   <link href="https://www.cosmoscalibur.com/"/>
   <link href="https://www.cosmoscalibur.com/blog/atom.xml" rel="self"/>
   <generator uri="https://ablog.readthedocs.io/" version="0.11.12">ABlog</generator>
+  <entry>
+    <id>https://www.cosmoscalibur.com/es/blog/2026/herramientas-de-ia-gratuita-para-desarrolladores-en-2026/</id>
+    <title>Herramientas de IA gratuita para desarrolladores en 2026</title>
+    <updated>2026-01-18T00:00:00-05:00</updated>
+    <author>
+      <name>Edward Villegas-Pulgarin</name>
+    </author>
+    <content type="html">&lt;section class="tex2jax_ignore mathjax_ignore" id="herramientas-de-ia-gratuita-para-desarrolladores-en-2026"&gt;
+
+&lt;p&gt;Estamos en 2026 y la inteligencia artificial ya no es una novedad, es el
+estándar. Sin embargo, el cuello de botella sigue siendo el mismo para muchos
+desarrolladores independientes y estudiantes: el costo de las suscripciones.
+Mantener acceso a los modelos de frontera puede representar fácilmente cientos
+de dólares al mes.&lt;/p&gt;
+&lt;p&gt;Por suerte, la competencia feroz entre las grandes tecnológicas y la comunidad
+de código abierto nos ha regalado un ecosistema donde es posible acceder a
+herramientas de vanguardia de forma gratuita. Este es mi análisis del &lt;em&gt;stack&lt;/em&gt; de
+IA gratuito definitivo para este año.&lt;/p&gt;
+&lt;section id="antigravity-la-apuesta-de-google-deepmind"&gt;
+&lt;h2&gt;Antigravity: La apuesta de Google Deepmind&lt;/h2&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://antigravity.google/download"&gt;Antigravity&lt;/a&gt; se ha convertido rápidamente
+en el entorno de desarrollo indispensable para quienes trabajamos cerca del
+ecosistema de Google. Lo que lo hace irresistible no es solo su integración
+profunda, sino su generosa cuota gratuita en modelos de frontera.&lt;/p&gt;
+&lt;p&gt;Su integración es profunda. Por un lado, la extensión del navegador permite
+controlar el navegador, inspeccionar la consola, tomar capturas y analizar el
+sitio, facilitando no solo la implementación sino también la gestión.&lt;/p&gt;
+&lt;p&gt;Por otro lado, y más relevante para el flujo de trabajo, es su manejo de
+artefactos. Antigravity genera documentos con el plan de implementación donde se
+puede comentar directamente, mejorando la retroalimentación con el agente antes
+de empezar a codificar. Al finalizar, produce un resumen del trabajo. &lt;strong&gt;Es
+crucial leer este resumen con atención, ya que a menudo contiene advertencias
+sobre tareas pendientes.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Antigravity ofrece acceso gratuito diario a &lt;strong&gt;Gemini 3 Pro&lt;/strong&gt; y &lt;strong&gt;Gemini 3
+Flash&lt;/strong&gt;. Pero lo que realmente sorprende es la inclusión de modelos de terceros:
+tienes acceso limitado pero funcional a Claude &lt;strong&gt;Sonnet&lt;/strong&gt; y &lt;strong&gt;Opus&lt;/strong&gt; (de
+Anthropic) sin costo adicional. Es perfecto para quienes necesitamos contrastar
+soluciones entre modelos con distintos estilos de razonamiento, pero también
+para quienes identificamos fortalezas en los modelos y queremos usarlos acorde a
+las tareas. En mi caso, he identificado lo siguiente:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;Claude Sonnet 4.5: Implementación de código directa con definiciones y
+arquitectura claras por mi parte. En la medida en que la especificación sea
+más clara, el nivel de implementación de Sonnet lo considero mejor que el
+código generado por Gemini.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Gemini 3 Flash: Implementación de código en la cual requiero mayor apoyo de
+definición e investigación por parte del modelo, buscando en fuentes externas.
+Tiene un buen balance de calidad y velocidad, y potencialmente menor consumo
+de &lt;em&gt;tokens&lt;/em&gt; que Sonnet.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Gemini 3 Pro: Elaboración de los planes de implementación, investigación de
+fuentes externas, entendimiento de código y elaboración de documentación.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;No suelo usar Claude Opus 4.5 (&lt;em&gt;thinking&lt;/em&gt;) por su alto consumo de &lt;em&gt;tokens&lt;/em&gt; en
+comparación al beneficio que obtengo con Sonnet (con quien comparte la cuota).
+Identificar las fortalezas es una forma de aprovechar las cuotas de &lt;em&gt;tokens&lt;/em&gt;
+independientes en lugar de usar un modelo hasta agotar su cuota para recién
+entonces cambiar a otro.&lt;/p&gt;
+&lt;p&gt;Es importante usar adecuadamente el modo &lt;em&gt;planning&lt;/em&gt; para la elaboración de
+tareas complejas o que requieren investigación o mejor planeación, en contraste
+del modo &lt;em&gt;fast&lt;/em&gt; para tareas simples y en las que podemos dar especificación más
+clara y solo requerimos ayuda de implementación (de alguna forma, aquello que
+seríamos capaces de montar sin dificultad, pero necesitamos velocidad). Esto
+ayuda a optimizar el uso de los &lt;em&gt;tokens&lt;/em&gt; y aprovechar mejor las cuotas.
+Actualmente la cuota gratuita se renueva semanalmente.&lt;/p&gt;
+&lt;p&gt;Importante, para ayudar a direccionar mejor las tareas, es recomendable el uso
+de reglas y habilidades, que ayudan a definir el comportamiento general del
+agente (&lt;em&gt;agent rules&lt;/em&gt;) y la manera de ejecutar tareas específicas (&lt;em&gt;agent
+skills&lt;/em&gt;, el cual es un estándar, aunque su definición de ruta no lo es).&lt;/p&gt;
+&lt;section id="ampcode-opus-gratis-con-un-giro"&gt;
+&lt;h3&gt;Ampcode: Opus gratis (con un giro)&lt;/h3&gt;
+&lt;p&gt;Si la cuota de Opus en Antigravity se te queda corta, AmpCode es la solución.
+Mediante un financiamiento basado en anuncios (sí, anuncios en tu IDE, pero
+sorprendentemente no invasivos), Ampcode te permite usar &lt;strong&gt;Opus&lt;/strong&gt; 4.5 para la
+elaboración de código y &lt;strong&gt;GPT&lt;/strong&gt; 5.2 para la labor de planeación y búsqueda
+externa (el Oráculo) de manera predefinida en el modo &lt;em&gt;smart&lt;/em&gt; (la definición de
+para qué es mejor cada modelo), y modelos rápidos con menor consumo de &lt;em&gt;tokens&lt;/em&gt;
+(y menos capaces) para labores más simples con el modo &lt;em&gt;rush&lt;/em&gt;. A diferencia de
+Antigravity, en Ampcode es mejor tener un proceso previo de planificación
+(incluso con ayuda del agente, pero indicando que no implemente código, que solo
+haga planeación) y luego manualmente particionar tareas. De esta forma podemos
+tener mayor control sobre la ejecución, ya que he observado que tiende a ser
+altamente autónomo, pero a costa de algunas desviaciones del objetivo inicial si
+quedan puntos abiertos que debe inferir, lo cual en el flujo de Antigravity es
+menos común por la integración de la planeación explícita.&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://ampcode.com/install"&gt;AmpCode&lt;/a&gt; se encuentra disponible como CLI y
+extensión (por ejemplo, disponible para VSCode/Antigravity)&lt;/p&gt;
+&lt;/section&gt;
+&lt;/section&gt;
+&lt;section id="zed-el-editor-ultrarrapido-sigue-reinando"&gt;
+&lt;h2&gt;Zed: El editor ultrarrápido sigue reinando&lt;/h2&gt;
+&lt;p&gt;&lt;a class="reference internal" href="../es/blog/2025/zed-un-editor-rapido-y-moderno-de-codigo-abierto/"&gt;&lt;span class="std std-doc"&gt;Zed&lt;/span&gt;&lt;/a&gt; sigue
+siendo mi editor de cabecera por su velocidad absurda, desarrollo continuo,
+integración nativa de IA, protocolo de depuración, integración de git y su
+creciente ecosistema de extensiones.&lt;/p&gt;
+&lt;p&gt;De base, Zed integra de forma nativa &lt;strong&gt;Gemini&lt;/strong&gt; a través de su protocolo ACP
+(primer agente integrado), y con la cuenta de Google se tiene acceso a la
+familia de modelos Gemini (determinado por el CLI al cual accede). Es importante
+que esta cuota puede verse afectada en el uso general de IA de Google (es decir,
+tu uso en Zed, Antigravity, Gemini).&lt;/p&gt;
+&lt;section id="opencode-agentes-open-source"&gt;
+&lt;h3&gt;Opencode: Agentes open source&lt;/h3&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://opencode.ai/download"&gt;Opencode&lt;/a&gt; es una solución de agentes &lt;em&gt;open
+source&lt;/em&gt; disponible como CLI, aplicación de escritorio y extensión para múltiples
+IDE (disponible no solo en Zed, también para VSCode/Antigravity). Dispone de una
+interfaz unificada para múltiples modelos con cuota gratuita (de forma temporal,
+mientras estos modelos recolectan información y realizan mejoras), así como
+compatibilidad para conexión con muchos más proveedores. Distingue los modos de
+planeación (&lt;em&gt;plan&lt;/em&gt;) e implementación (&lt;em&gt;build&lt;/em&gt;) de manera explícita. Sobre los
+modelos con cuota gratuita actualmente:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Grok Code Fast 1&lt;/strong&gt;: Modelo rápido y económico de xAI, enfocado en código. Se
+encuentra disponible de forma gratuita en algunos editores y anunciado como
+tiempo limitado.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;GPT-5 Nano&lt;/strong&gt;: Modelo rápido y económico de OpenAI. Bueno para tareas
+simples, principalmente de texto, pero en código simple puede ser una buena
+opción.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;MiniMax M2.1&lt;/strong&gt; y &lt;strong&gt;GLM-4.7&lt;/strong&gt;: Excelentes opciones &lt;em&gt;open source&lt;/em&gt; disponibles
+con cuota gratuita. Hasta el momento no he avanzado mucho en esta exploración,
+pero me ha generado mayor confianza GLM, aunque su razonamiento es bueno, en
+varios casos se ha quedado bloqueado en la generación. Y con MiniMax me han
+ocurrido mezclas de lenguaje (textos en español y chino al tiempo).&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/section&gt;
+&lt;section id="modo-texto-en-zed"&gt;
+&lt;h3&gt;Modo Texto en Zed&lt;/h3&gt;
+&lt;p&gt;Mi flujo de trabajo favorito actualmente es usar el &lt;strong&gt;Modo Texto&lt;/strong&gt; en Zed.
+Combino la agilidad de &lt;em&gt;Github Copilot&lt;/em&gt; (en su capa gratuita para mantenedores
+de &lt;em&gt;Open Source&lt;/em&gt;) para sugerencias línea a línea, con &lt;strong&gt;Gemini&lt;/strong&gt; en el panel
+lateral para consultas de arquitectura. La latencia es baja y la experiencia de
+escritura es fluida, sin la sobrecarga visual de otros IDEs.&lt;/p&gt;
+&lt;/section&gt;
+&lt;/section&gt;
+&lt;section id="modelos-locales-privacidad-y-potencia-en-tu-equipo"&gt;
+&lt;h2&gt;Modelos Locales: Privacidad y potencia en tu equipo&lt;/h2&gt;
+&lt;p&gt;No podemos hablar de un &lt;em&gt;stack&lt;/em&gt; gratuito sin mencionar la ejecución local. Con
+el &lt;em&gt;hardware&lt;/em&gt; actual, ejecutar modelos cuantizados es viable incluso en
+portátiles de gama media.&lt;/p&gt;
+&lt;p&gt;Usando &lt;a class="reference internal" href="../es/blog/2025/instala-tu-asistente-local-de-ia/"&gt;&lt;span class="std std-doc"&gt;&lt;strong class="program"&gt;ollama&lt;/strong&gt;&lt;/span&gt;&lt;/a&gt;,
+mi configuración local incluye:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;gemma3n:e4b&lt;/span&gt;&lt;/code&gt;: La versión nano de Gemma 3. Increíblemente eficiente para
+tareas simples y corrección gramatical, solo en modo texto.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;qwen3:8b&lt;/span&gt;&lt;/code&gt;: El rey del razonamiento en local. Su capacidad lógica rivaliza con
+modelos cerrados de 2025. Disponible en &lt;em&gt;zed agent&lt;/em&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;qwen2.5-code:7b&lt;/span&gt;&lt;/code&gt;: Un clásico que sigue vigente, específico para código.
+Disponible en &lt;em&gt;zed agent&lt;/em&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Es importante resaltar que el agente de Zed (&lt;em&gt;zed agent&lt;/em&gt;) descubren los modelos
+disponibles, a través de suscripción o locales como ollama que debes instalar
+previamente. Asegura el modo de permiso &lt;em&gt;Ask&lt;/em&gt; si quieres mayor control, o
+&lt;em&gt;Write&lt;/em&gt; para permitir por defecto modificaciones.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="conclusion"&gt;
+&lt;h2&gt;Conclusión&lt;/h2&gt;
+&lt;p&gt;En 2026, no necesitas pagar una fortuna para programar con superpoderes.
+Combinando la potencia bruta de &lt;strong&gt;Antigravity&lt;/strong&gt; y sus extensiones como
+&lt;strong&gt;Ampcode&lt;/strong&gt;, con la velocidad de &lt;strong&gt;Zed&lt;/strong&gt; vitaminado por &lt;strong&gt;Gemini&lt;/strong&gt;,
+&lt;strong&gt;Opencode&lt;/strong&gt;, y respaldado por modelos locales en &lt;strong&gt;Ollama&lt;/strong&gt;, tienes un entorno
+de desarrollo de clase mundial a costo cero.&lt;/p&gt;
+&lt;p&gt;Analiza qué herramientas se adaptan a tu estilo, y como siempre, ¡feliz código!&lt;/p&gt;
+&lt;/section&gt;
+&lt;/section&gt;
+</content>
+    <link href="https://www.cosmoscalibur.com/es/blog/2026/herramientas-de-ia-gratuita-para-desarrolladores-en-2026/"/>
+    <summary>Estamos en 2026 y la inteligencia artificial ya no es una novedad, es el
+estándar. Sin embargo, el cuello de botella sigue siendo el mismo para muchos
+desarrolladores independientes y estudiantes: el costo de las suscripciones.
+Mantener acceso a los modelos de frontera puede representar fácilmente cientos
+de dólares al mes.</summary>
+    <category term="ampcode" label="ampcode"/>
+    <category term="antigravity" label="antigravity"/>
+    <category term="claude" label="claude"/>
+    <category term="gemini" label="gemini"/>
+    <category term="ia" label="ia"/>
+    <category term="ollama" label="ollama"/>
+    <category term="opencode" label="opencode"/>
+    <category term="zed" label="zed"/>
+    <published>2026-01-18T00:00:00-05:00</published>
+  </entry>
+  <entry>
+    <id>https://www.cosmoscalibur.com/en/blog/2026/herramientas-de-ia-gratuita-para-desarrolladores-en-2026/</id>
+    <title>Free AI Tools for Developers in 2026</title>
+    <updated>2026-01-18T00:00:00-05:00</updated>
+    <author>
+      <name>Edward Villegas-Pulgarin</name>
+    </author>
+    <content type="html">&lt;section class="tex2jax_ignore mathjax_ignore" id="free-ai-tools-for-developers-in-2026"&gt;
+
+&lt;p&gt;We are in 2026 and artificial intelligence is no longer a novelty, it is the
+standard. However, the bottleneck remains the same for many independent
+developers and students: the cost of subscriptions. Maintaining access to
+frontier models can easily amount to hundreds of dollars a month.&lt;/p&gt;
+&lt;p&gt;Luckily, the fierce competition between big tech and the open source community
+has gifted us an ecosystem where it is possible to access cutting-edge tools for
+free. This is my analysis of the definitive free AI &lt;em&gt;stack&lt;/em&gt; for this year.&lt;/p&gt;
+&lt;section id="antigravity-google-deepminds-bet"&gt;
+&lt;h2&gt;Antigravity: Google Deepmind’s Bet&lt;/h2&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://antigravity.google/download"&gt;Antigravity&lt;/a&gt; has quickly become the
+must-have development environment for those of us working close to the Google
+ecosystem. What makes it irresistible is not just its deep integration, but its
+generous free quota on frontier models.&lt;/p&gt;
+&lt;p&gt;Its integration is deep. On one hand, the browser extension allows controlling
+the browser, inspecting the console, taking screenshots and analyzing the site,
+facilitating not just implementation but also management.&lt;/p&gt;
+&lt;p&gt;On the other hand, and more relevant to the workflow, is its handling of
+artifacts. Antigravity generates documents with the implementation plan where
+comments can be made directly, improving feedback with the agent before starting
+to code. upon completion, it produces a summary of the work. &lt;strong&gt;It is crucial to
+read this summary carefully, as it often contains warnings about pending
+tasks.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Antigravity offers daily free access to &lt;strong&gt;Gemini 3 Pro&lt;/strong&gt; and &lt;strong&gt;Gemini 3 Flash&lt;/strong&gt;.
+But what really surprises is the inclusion of third-party models: you have
+limited but functional access to Claude &lt;strong&gt;Sonnet&lt;/strong&gt; and &lt;strong&gt;Opus&lt;/strong&gt; (from Anthropic)
+at no additional cost. It is perfect for those of us who need to contrast
+solutions between models with different reasoning styles, but also for those who
+identify strengths in models and want to use them according to the tasks. In my
+case, I have identified the following:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;Claude Sonnet 4.5: Direct code implementation with clear definitions and
+architecture on my part. To the extent that the specification is clearer, I
+consider Sonnet’s implementation level better than the code generated by
+Gemini.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Gemini 3 Flash: Code implementation in which I require greater support for
+definition and research from the model, searching external sources. It has a
+good balance of quality and speed, and potentially lower token consumption
+than Sonnet.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Gemini 3 Pro: Elaboration of implementation plans, research of external
+sources, code understanding and documentation elaboration.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I do not usually use Claude Opus 4.5 (&lt;em&gt;thinking&lt;/em&gt;) for its high token consumption
+compared to the benefit I get with Sonnet (with whom it shares the quota).
+Identifying strengths is a way to take advantage of independent token quotas
+instead of using a model until its quota is exhausted to only then switch to
+another.&lt;/p&gt;
+&lt;p&gt;It is important to properly use the &lt;em&gt;planning&lt;/em&gt; mode for the elaboration of
+complex tasks or those requiring research or better planning, in contrast to the
+&lt;em&gt;fast&lt;/em&gt; mode for simple tasks and where we can give clearer specification and
+only require implementation help (somehow, what we would be able to set up
+without difficulty, but need speed). This helps optimize token usage and make
+better use of quotas. Currently the free quota renews weekly.&lt;/p&gt;
+&lt;p&gt;Important, to help better direct tasks, the use of rules and skills is
+recommended, which help define the general behavior of the agent (&lt;em&gt;agent rules&lt;/em&gt;)
+and the way to execute specific tasks (&lt;em&gt;agent skills&lt;/em&gt;, which is a standard,
+although its route definition is not).&lt;/p&gt;
+&lt;section id="ampcode-free-opus-with-a-twist"&gt;
+&lt;h3&gt;Ampcode: Free Opus (with a twist)&lt;/h3&gt;
+&lt;p&gt;If the Opus quota in Antigravity falls short for you, AmpCode is the solution.
+Through ad-based funding (yes, ads in your IDE, but surprisingly non-invasive),
+Ampcode allows you to use &lt;strong&gt;Opus&lt;/strong&gt; 4.5 for code elaboration and &lt;strong&gt;GPT&lt;/strong&gt; 5.2 for
+planning and external search work (the Oracle) in a predefined way in the
+&lt;em&gt;smart&lt;/em&gt; mode (the definition of what each model is better for), and fast models
+with lower token consumption (and less capable) for simpler tasks with the
+&lt;em&gt;rush&lt;/em&gt; mode. Unlike Antigravity, in Ampcode it is better to have a prior
+planning process (even with agent help, but indicating not to implement code,
+just do planning) and then manually partition tasks. This way we can have
+greater control over execution, as I have observed it tends to be highly
+autonomous, but at the cost of some deviations from the initial objective if
+open points remain that it must infer, which in the Antigravity flow is less
+common due to the integration of explicit planning.&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://ampcode.com/install"&gt;AmpCode&lt;/a&gt; is available as CLI and extension (for
+example, available for VSCode/Antigravity)&lt;/p&gt;
+&lt;/section&gt;
+&lt;/section&gt;
+&lt;section id="zed-the-ultra-fast-editor-continues-to-reign"&gt;
+&lt;h2&gt;Zed: The ultra-fast editor continues to reign&lt;/h2&gt;
+&lt;p&gt;&lt;a class="reference internal" href="../en/blog/2025/zed-un-editor-rapido-y-moderno-de-codigo-abierto/"&gt;&lt;span class="std std-doc"&gt;Zed&lt;/span&gt;&lt;/a&gt; continues to
+be my go-to editor for its absurd speed, continuous development, native AI
+integration, debugging protocol, git integration and its growing ecosystem of
+extensions.&lt;/p&gt;
+&lt;p&gt;Basically, Zed natively integrates &lt;strong&gt;Gemini&lt;/strong&gt; through its ACP protocol (first
+integrated agent), and with the Google account you have access to the Gemini
+family of models (determined by the CLI accessed). It is important that this
+quota can be affected by general Google AI usage (i.e., your usage in Zed,
+Antigravity, Gemini).&lt;/p&gt;
+&lt;section id="opencode-open-source-agents"&gt;
+&lt;h3&gt;Opencode: Open source agents&lt;/h3&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://opencode.ai/download"&gt;Opencode&lt;/a&gt; is an &lt;em&gt;open source&lt;/em&gt; agent solution
+available as CLI, desktop application and extension for multiple IDEs (available
+not just in Zed, also for VSCode/Antigravity). It has a unified interface for
+multiple models with free quota (temporarily, while these models collect
+information and make improvements), as well as compatibility for connection with
+many more providers. It distinguishes the planning (&lt;em&gt;plan&lt;/em&gt;) and implementation
+(&lt;em&gt;build&lt;/em&gt;) modes explicitly. Regarding the models with free quota currently:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Grok Code Fast 1&lt;/strong&gt;: Fast and economical model from xAI, focused on code. It
+is found available for free in some editors and announced as limited time.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;GPT-5 Nano&lt;/strong&gt;: Fast and economical model from OpenAI. Good for simple tasks,
+mainly text, but in simple code it can be a good option.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;MiniMax M2.1&lt;/strong&gt; and &lt;strong&gt;GLM-4.7&lt;/strong&gt;: Excellent &lt;em&gt;open source&lt;/em&gt; options available
+with free quota. So far I haven’t advanced much in this exploration, but GLM
+has generated more confidence in me, although its reasoning is good, in
+several cases it has gotten stuck in generation. And with MiniMax language
+mixes have occurred (texts in Spanish and Chinese at the same time).&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/section&gt;
+&lt;section id="text-mode-in-zed"&gt;
+&lt;h3&gt;Text Mode in Zed&lt;/h3&gt;
+&lt;p&gt;My favorite workflow currently is using &lt;strong&gt;Text Mode&lt;/strong&gt; in Zed. I combine the
+agility of &lt;em&gt;Github Copilot&lt;/em&gt; (in its free tier for &lt;em&gt;Open Source&lt;/em&gt; maintainers) for
+line-by-line suggestions, with &lt;strong&gt;Gemini&lt;/strong&gt; in the side panel for architecture
+queries. Latency is low and the writing experience is fluid, without the visual
+overload of other IDEs.&lt;/p&gt;
+&lt;/section&gt;
+&lt;/section&gt;
+&lt;section id="local-models-privacy-and-power-in-your-team"&gt;
+&lt;h2&gt;Local Models: Privacy and power in your team&lt;/h2&gt;
+&lt;p&gt;We cannot talk about a free &lt;em&gt;stack&lt;/em&gt; without mentioning local execution. With
+current &lt;em&gt;hardware&lt;/em&gt;, running quantized models is viable even on mid-range
+laptops.&lt;/p&gt;
+&lt;p&gt;Using &lt;a class="reference internal" href="../en/blog/2025/instala-tu-asistente-local-de-ia/"&gt;&lt;span class="std std-doc"&gt;&lt;strong class="program"&gt;ollama&lt;/strong&gt;&lt;/span&gt;&lt;/a&gt;, my local
+configuration includes:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;gemma3n:e4b&lt;/span&gt;&lt;/code&gt;: The nano version of Gemma 3. Incredibly efficient for simple
+tasks and grammar correction, only in text mode.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;qwen3:8b&lt;/span&gt;&lt;/code&gt;: The king of local reasoning. Its logical capacity rivals closed
+models of 2025. Available in &lt;em&gt;zed agent&lt;/em&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;qwen2.5-code:7b&lt;/span&gt;&lt;/code&gt;: A classic that remains valid, specific for code. Available
+in &lt;em&gt;zed agent&lt;/em&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;It is important to highlight that Zed agent (&lt;em&gt;zed agent&lt;/em&gt;) discovers available
+models, through subscription or locals like ollama that you must install
+previously. Ensure the &lt;em&gt;Ask&lt;/em&gt; permission mode if you want greater control, or
+&lt;em&gt;Write&lt;/em&gt; to allow default modifications.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="conclusion"&gt;
+&lt;h2&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;In 2026, you don’t need to pay a fortune to code with superpowers. Combining the
+raw power of &lt;strong&gt;Antigravity&lt;/strong&gt; and its extensions like &lt;strong&gt;Ampcode&lt;/strong&gt;, with the speed
+of &lt;strong&gt;Zed&lt;/strong&gt; vitaminized by &lt;strong&gt;Gemini&lt;/strong&gt;, &lt;strong&gt;Opencode&lt;/strong&gt;, and backed by local models
+in &lt;strong&gt;Ollama&lt;/strong&gt;, you have a world-class development environment at zero cost.&lt;/p&gt;
+&lt;p&gt;Analyze which tools adapt to your style, and as always, happy coding!&lt;/p&gt;
+&lt;/section&gt;
+&lt;/section&gt;
+</content>
+    <link href="https://www.cosmoscalibur.com/en/blog/2026/herramientas-de-ia-gratuita-para-desarrolladores-en-2026/"/>
+    <summary>We are in 2026 and artificial intelligence is no longer a novelty, it is the
+standard. However, the bottleneck remains the same for many independent
+developers and students: the cost of subscriptions. Maintaining access to
+frontier models can easily amount to hundreds of dollars a month.</summary>
+    <category term="ai" label="ai"/>
+    <category term="ampcode" label="ampcode"/>
+    <category term="antigravity" label="antigravity"/>
+    <category term="claude" label="claude"/>
+    <category term="gemini" label="gemini"/>
+    <category term="ollama" label="ollama"/>
+    <category term="opencode" label="opencode"/>
+    <category term="zed" label="zed"/>
+    <published>2026-01-18T00:00:00-05:00</published>
+  </entry>
   <entry>
     <id>https://www.cosmoscalibur.com/en/blog/2025/buscando-el-mejor-cliente-de-mastodon-para-android/</id>
     <title>Finding the Best Mastodon Client for Android</title>
@@ -463,6 +812,7 @@ Manjaro&lt;/label&gt;&lt;div class="sd-tab-content docutils"&gt;
 &lt;p&gt;En Manjaro (y derivadas de Arch) disponemos de los paquetes necesarios en el
 repositorio oficial.&lt;/p&gt;
 &lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo&lt;span class="w"&gt; &lt;/span&gt;pamac&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;zsh&lt;span class="w"&gt; &lt;/span&gt;alacritty&lt;span class="w"&gt; &lt;/span&gt;zellij&lt;span class="w"&gt; &lt;/span&gt;zoxide&lt;span class="w"&gt; &lt;/span&gt;helix&lt;span class="w"&gt; &lt;/span&gt;--no-confirm
+sudo&lt;span class="w"&gt; &lt;/span&gt;pamac&lt;span class="w"&gt; &lt;/span&gt;--as-deps&lt;span class="w"&gt; &lt;/span&gt;fzf&lt;span class="w"&gt; &lt;/span&gt;--no-confirm&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="c1"&gt;# Búsqueda interactiva de zoxide&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -471,7 +821,7 @@ repositorio oficial.&lt;/p&gt;
 Ubuntu&lt;/label&gt;&lt;div class="sd-tab-content docutils"&gt;
 &lt;p&gt;En el caso de Ubuntu, vamos a necesitar usar no solo paquetes del repositorio
 oficial, sino también paquetes instalados con &lt;a class="reference internal" href="../es/blog/2024/instalar-rust-en-linux/"&gt;&lt;span class="std std-doc"&gt;&lt;strong class="program"&gt;cargo&lt;/strong&gt;&lt;/span&gt;&lt;/a&gt; o &lt;a class="reference internal" href="../es/blog/2024/que-hacer-despues-de-instalar-manjaro/#ubuntu-instalar-flatpak"&gt;&lt;span class="std std-ref"&gt;&lt;strong class="program"&gt;flatpak&lt;/strong&gt;&lt;/span&gt;&lt;/a&gt;.&lt;/p&gt;
-&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo&lt;span class="w"&gt; &lt;/span&gt;apt&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;-y&lt;span class="w"&gt; &lt;/span&gt;zsh&lt;span class="w"&gt; &lt;/span&gt;alacritty&lt;span class="w"&gt; &lt;/span&gt;zoxide
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo&lt;span class="w"&gt; &lt;/span&gt;apt&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;-y&lt;span class="w"&gt; &lt;/span&gt;zsh&lt;span class="w"&gt; &lt;/span&gt;alacritty&lt;span class="w"&gt; &lt;/span&gt;zoxide&lt;span class="w"&gt; &lt;/span&gt;fzf
 cargo&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;--locked&lt;span class="w"&gt; &lt;/span&gt;zellij
 flatpak&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;flathub&lt;span class="w"&gt; &lt;/span&gt;com.helix_editor.Helix
 &lt;/pre&gt;&lt;/div&gt;
@@ -1444,6 +1794,291 @@ usuario moderna e intuitiva. De momento es soportado de forma oficial en Linux y
 macOS, pero se está trabajando en su implementación para Windows (aunque existen
 versiones experimentales). Te contaré cómo instalarlo y algunas de sus
 características.</summary>
+    <category term="ide" label="ide"/>
+    <category term="linux" label="linux"/>
+    <category term="zed" label="zed"/>
+    <published>2025-03-27T00:00:00-05:00</published>
+  </entry>
+  <entry>
+    <id>https://www.cosmoscalibur.com/en/blog/2025/zed-un-editor-rapido-y-moderno-de-codigo-abierto/</id>
+    <title>Zed: A fast and modern open source editor</title>
+    <updated>2025-03-27T00:00:00-05:00</updated>
+    <author>
+      <name>Edward Villegas-Pulgarin</name>
+    </author>
+    <content type="html">&lt;section class="tex2jax_ignore mathjax_ignore" id="zed-a-fast-and-modern-open-source-editor"&gt;
+
+&lt;p&gt;&lt;strong class="program"&gt;zed&lt;/strong&gt; is an open-source code and text editor, designed to be fast and
+easy to use. It is built in Rust and uses a modern and intuitive user interface.
+It is currently officially supported on Linux and macOS, but work is underway
+for Windows implementation (although experimental versions exist). I will tell
+you how to install it and some of its features.&lt;/p&gt;
+&lt;section id="installing-zed-on-linux"&gt;
+&lt;h2&gt;Installing Zed on Linux&lt;/h2&gt;
+&lt;p&gt;Although you can install it from the repositories of some package managers, as
+is my case using Manjaro where I can get it through AUR, my recommended method
+is to use the official installation script.&lt;/p&gt;
+&lt;aside class="system-message"&gt;
+&lt;p class="system-message-title"&gt;System Message: WARNING/2 (&lt;span class="docutils literal"&gt;/home/cosmoscalibur/Documentos/git/cosmoscalibur.github.io/en/blog/2025/zed-un-editor-rapido-y-moderno-de-codigo-abierto.md&lt;/span&gt;, line 21)&lt;/p&gt;
+&lt;p&gt;Unknown directive type: “bash” [myst.directive_unknown]&lt;/p&gt;
+&lt;/aside&gt;
+&lt;aside class="system-message"&gt;
+&lt;p class="system-message-title"&gt;System Message: INFO/1 (&lt;span class="docutils literal"&gt;/home/cosmoscalibur/Documentos/git/cosmoscalibur.github.io/en/blog/2025/zed-un-editor-rapido-y-moderno-de-codigo-abierto.md&lt;/span&gt;, line 21)&lt;/p&gt;
+&lt;p&gt;No directive entry for «bash» in module «docutils.parsers.rst.languages.es».
+Trying «bash» as canonical directive name.&lt;/p&gt;
+&lt;/aside&gt;
+&lt;p&gt;Regarding updates, if you use the version installed from the official script, it
+updates automatically.&lt;/p&gt;
+&lt;p&gt;Si como yo dispones de un GPU híbrida, te recomiendo seguir la entrada
+&lt;a class="reference internal" href="../en/blog/2024/problema-de-wayland-y-graficos-hibridos-en-linux/"&gt;&lt;span class="std std-doc"&gt;Problemas con Wayland y NVIDIA&lt;/span&gt;&lt;/a&gt;
+para solucionar los problemas que puedas tener. El uso de la GPU es lo que
+permite un rápido renderizado de Zed.&lt;/p&gt;
+&lt;p&gt;If, like me, you have a hybrid GPU, I recommend following the post
+&lt;a class="reference internal" href="../en/blog/2024/problema-de-wayland-y-graficos-hibridos-en-linux/"&gt;&lt;span class="std std-doc"&gt;Issues with Wayland and NVIDIA&lt;/span&gt;&lt;/a&gt;
+to solve any problems you may have. GPU usage is what allows Zed’s fast
+rendering.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="native-features-of-zed"&gt;
+&lt;h2&gt;Native features of Zed&lt;/h2&gt;
+&lt;p&gt;Recently, Zed added native Git support, allowing it to match VSCode in one of
+the features that could be a blocker for many developers. It is not just support
+for visualizing changes, history, or directing to the web version of the change,
+but also support for executing git actions with the Zed interface.&lt;/p&gt;
+&lt;p&gt;I must also highlight as a vital part of Zed, the &lt;em&gt;tree sitter&lt;/em&gt; algorithm, which
+is the parser used in Zed natively with incremental support, allowing better
+performance after initial load.&lt;/p&gt;
+&lt;p&gt;The &lt;em&gt;multibuffer&lt;/em&gt; is a feature that allows editing multiple files at the same
+time, allowing greater efficiency in code editing and is supported natively. For
+this you can do general search with &lt;kbd class="kbd docutils literal notranslate"&gt;Ctrl&lt;/kbd&gt;+&lt;kbd class="kbd docutils literal notranslate"&gt;Shift&lt;/kbd&gt;+&lt;kbd class="kbd docutils literal notranslate"&gt;F&lt;/kbd&gt; and make use of multiple
+editing with &lt;kbd class="kbd docutils literal notranslate"&gt;Ctrl&lt;/kbd&gt;+&lt;kbd class="kbd docutils literal notranslate"&gt;Shift&lt;/kbd&gt;+&lt;kbd class="kbd docutils literal notranslate"&gt;L&lt;/kbd&gt; (I don’t know if it’s a bug, but it only works
+for me if I have match case selected) or if we want specific points with
+&lt;kbd class="kbd docutils literal notranslate"&gt;Alt&lt;/kbd&gt;+&lt;kbd class="kbd docutils literal notranslate"&gt;Click&lt;/kbd&gt; (it is not required that the selected point corresponds to the
+search match).&lt;/p&gt;
+&lt;p&gt;We also find in Zed native support for LLM models for chat assistance, allowing
+context files to be passed, and direct editing in file. Through this way it is
+possible to use different LLM models, including invocations through
+&lt;a class="reference internal" href="../en/blog/2025/instala-tu-asistente-local-de-ia/"&gt;&lt;span class="std std-doc"&gt;Ollama&lt;/span&gt;&lt;/a&gt; and
+&lt;a class="reference external" href="https://lmstudio.ai"&gt;LM Studio&lt;/a&gt; (which allows using local models like
+&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;qwen2.5:7b&lt;/span&gt;&lt;/code&gt;, &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;qwen2.5-coder:7b&lt;/span&gt;&lt;/code&gt; or &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;gemma3:4b&lt;/span&gt;&lt;/code&gt;) or native support for Claude,
+Copilot and Gemini. You can also use native inline prediction with the Zeta
+model which is a fine-tune of &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;qwen2.5-coder:7b&lt;/span&gt;&lt;/code&gt; by Zed.&lt;/p&gt;
+&lt;p&gt;Finally, I want to highlight its native
+&lt;a class="reference external" href="https://zed.dev/docs/repl#repl"&gt;Notebook&lt;/a&gt; support (support limited to some
+languages, but includes Python) through Jupyter &lt;em&gt;kernels&lt;/em&gt;.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="recommended-extensions-in-zed"&gt;
+&lt;h2&gt;Recommended extensions in Zed&lt;/h2&gt;
+&lt;p&gt;The Zed extension system is based on &lt;em&gt;core&lt;/em&gt; elements in Rust and the interface
+component with Zed in WASM (compiled with Rust). The directory of locally
+installed extensions is found in &lt;code class="file docutils literal notranslate"&gt;&lt;span class="pre"&gt;~/.local/share/zed/extensions&lt;/span&gt;&lt;/code&gt;, and in
+case you want to test local versions you have the &lt;code class="file docutils literal notranslate"&gt;&lt;span class="pre"&gt;work&lt;/span&gt;&lt;/code&gt; directory (if
+they possess &lt;em&gt;core&lt;/em&gt; component in Rust) or just &lt;code class="file docutils literal notranslate"&gt;&lt;span class="pre"&gt;installed&lt;/span&gt;&lt;/code&gt; if it is at the
+interface and WASM level (I checked this because I was testing changes in the
+Codebook dictionary file).&lt;/p&gt;
+&lt;p&gt;If you want to install a Zed extension you can use the general menu with
+&lt;kbd class="kbd docutils literal notranslate"&gt;Ctrl&lt;/kbd&gt;+&lt;kbd class="kbd docutils literal notranslate"&gt;Shift&lt;/kbd&gt;+&lt;kbd class="kbd docutils literal notranslate"&gt;P&lt;/kbd&gt; and search &lt;em&gt;zed: extensions&lt;/em&gt;, or directly the shortcut
+&lt;kbd class="kbd docutils literal notranslate"&gt;Ctrl&lt;/kbd&gt;+&lt;kbd class="kbd docutils literal notranslate"&gt;Shift&lt;/kbd&gt;+&lt;kbd class="kbd docutils literal notranslate"&gt;X&lt;/kbd&gt;.&lt;/p&gt;
+&lt;p&gt;Typically extensions can be configured globally and per project, with Zed
+configuration management, but some support their own configuration files.&lt;/p&gt;
+&lt;section id="spelling-and-grammar-extensions"&gt;
+&lt;h3&gt;Spelling and grammar extensions&lt;/h3&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://github.com/blopker/codebook"&gt;Codebook&lt;/a&gt; Spell checker: Offers spelling
+correction LSP based on &lt;em&gt;hunspell&lt;/em&gt; dictionaries through the Rust
+implementation of &lt;a class="reference external" href="https://github.com/helix-editor/spellbook"&gt;spellbook&lt;/a&gt;.
+Currently supports English and Spanish (after a report I made), but will soon
+support other languages based on LibreOffice dictionaries. Similar to
+&lt;a class="reference external" href="https://marketplace.visualstudio.com/items?itemName=ban.spellright"&gt;Spell Right&lt;/a&gt;,
+correction can be in text or code files. Local dictionary support is planned.
+Possesses global and per-project configuration (&lt;code class="file docutils literal notranslate"&gt;&lt;span class="pre"&gt;codebook.toml&lt;/span&gt;&lt;/code&gt;), but is
+independent of Zed configuration.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://github.com/vitallium/zed-ltex"&gt;LTex&lt;/a&gt;: Offers grammar correction LSP
+based on LanguageTool. Correction is offered only for text files. The model is
+installed locally.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://github.com/stef16robbe/harper_zed"&gt;Harper&lt;/a&gt;: Offers grammar correction
+LSP in English in both text and code files. It is an alternative to LTex.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/section&gt;
+&lt;section id="extensions-for-markup-languages"&gt;
+&lt;h3&gt;Extensions for markup languages&lt;/h3&gt;
+&lt;p&gt;In the case of JSON, this is supported natively in Zed. For other cases the
+following extensions are recommended:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://github.com/vitallium/zed-marksman"&gt;Marksman&lt;/a&gt;: LSP for Markdown.
+Offers autocomplete of Markdown links, detection of broken links and
+addressing to definitions. I recommend complementing it with
+&lt;a class="reference external" href="https://github.com/executablebooks/mdformat"&gt;mdformat&lt;/a&gt; as a formatter. The
+formatter must be installed independently and configured in Markdown options.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://github.com/weethet/typst.zed"&gt;Typst&lt;/a&gt;: LSP and compilation management
+for Typst.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://github.com/rzukic/zed-latex"&gt;LaTeX&lt;/a&gt;: LSP and compilation management
+for LaTeX.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://github.com/elmarco/zed-rst"&gt;reST&lt;/a&gt;: Syntax highlighting support. It is
+recommended to complement it with
+&lt;a class="reference external" href="https://github.com/LilSpazJoekp/docstrfmt"&gt;docstrfmt&lt;/a&gt; as a formatter. There
+is an LSP for reST, &lt;a class="reference external" href="https://github.com/swyddfa/esbonio"&gt;Esbonio&lt;/a&gt;, but it is
+not supported by Zed.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://github.com/ArcherHume/jinja2-support"&gt;Jinja2 Template Support&lt;/a&gt;:
+Syntax highlighting and LSP is in planning.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://github.com/sweetppro/zed-xml"&gt;XML&lt;/a&gt;: Syntax highlighting support. It
+is recommended to complement with
+&lt;a class="reference external" href="https://github.com/xmlem/xml-pretty"&gt;XML Pretty&lt;/a&gt; as a formatter.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://zed.dev/docs/languages/toml"&gt;TOML&lt;/a&gt;: Highlighting and LSP support.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://github.com/pest-parser/zed-pest"&gt;Pest&lt;/a&gt;: Highlighting and LSP support
+for the Pest grammar specification language (&lt;em&gt;PEG grammar&lt;/em&gt; in Rust).&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/section&gt;
+&lt;section id="extensions-for-programming-languages"&gt;
+&lt;h3&gt;Extensions for programming languages&lt;/h3&gt;
+&lt;p&gt;By default, LSP support for some programming languages is included, while others
+can be installed by the user. It is also possible to mix LSP in the same
+language.&lt;/p&gt;
+&lt;p&gt;In my cases of interest, Rust is supported natively and includes
+&lt;a class="reference external" href="https://rust-analyzer.github.io/"&gt;Rust Analyzer&lt;/a&gt;, and in the case of Python by
+default LSP support is included with
+&lt;a class="reference external" href="https://github.com/microsoft/pyright"&gt;Pyright&lt;/a&gt;.&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://docs.astral.sh/ruff/"&gt;Ruff&lt;/a&gt;: Ruff LSP, is a linter and formatter for
+Python in Rust.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;SQL: Offers SQL syntax highlighting.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://github.com/gvozdvmozgu/sqruff-zed/"&gt;Sqruff&lt;/a&gt;: Offers LSP and formatter
+for multiple SQL dialects (of my interest, includes MySQL, PostgreSQL, SQLite
+and BigQuery).&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/section&gt;
+&lt;section id="infrastructure-extensions"&gt;
+&lt;h3&gt;Infrastructure extensions&lt;/h3&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://github.com/jackTabsCode/zed-just"&gt;Justfile&lt;/a&gt;: Offers syntax
+highlighting and step execution option.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://github.com/zarifpour/zed-env"&gt;env&lt;/a&gt;: Syntax highlighting for
+environment files.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://github.com/d1y/dockerfile.zed"&gt;Dockerfile&lt;/a&gt;: Offers syntax
+highlighting and LSP for Dockerfile files.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Docker Compose: syntax highlighting.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://github.com/caius/zed-make"&gt;Make&lt;/a&gt;: Makefile syntax highlighting.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/section&gt;
+&lt;/section&gt;
+&lt;section id="zed-configuration"&gt;
+&lt;h2&gt;Zed Configuration&lt;/h2&gt;
+&lt;p&gt;To illustrate Zed configuration and its integration with formatting tools and
+extensions, we are going to install the necessary tools for formatting MarkDown,
+reST and XML.&lt;/p&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;uv&lt;span class="w"&gt; &lt;/span&gt;tool&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;mdformat&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="se"&gt;\&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;--with&lt;span class="w"&gt; &lt;/span&gt;mdformat-gfm&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="se"&gt;\&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;--with&lt;span class="w"&gt; &lt;/span&gt;mdformat-frontmatter&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="se"&gt;\&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;--with&lt;span class="w"&gt; &lt;/span&gt;mdformat-footnote&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="se"&gt;\&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;--with&lt;span class="w"&gt; &lt;/span&gt;mdformat-gfm-alerts&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="se"&gt;\&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;--with&lt;span class="w"&gt; &lt;/span&gt;mdformat-myst&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="se"&gt;\&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;--with&lt;span class="w"&gt; &lt;/span&gt;mdformat-admon
+uv&lt;span class="w"&gt; &lt;/span&gt;tool&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;docstrfmt&lt;span class="w"&gt; &lt;/span&gt;--with&lt;span class="w"&gt; &lt;/span&gt;sphinx
+cargo&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;xml-pretty
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;We are also going to
+&lt;a class="reference internal" href="../en/blog/2025/instala-tu-asistente-local-de-ia/#installing-ollama"&gt;&lt;span class="std std-ref"&gt;install Ollama&lt;/span&gt;&lt;/a&gt;
+and we can have a local model like &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;qwen2.5:7b&lt;/span&gt;&lt;/code&gt; (for the purpose of the
+configuration file example).&lt;/p&gt;
+&lt;p&gt;It is important that for the activation of Zed prediction, it is necessary to
+&lt;em&gt;login&lt;/em&gt; to Zed with our GitHub account.&lt;/p&gt;
+&lt;div class="highlight-json notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;assistant&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;default_model&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;provider&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;ollama&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;model&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;qwen2.5:7b&amp;quot;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;},&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;version&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;2&amp;quot;&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;},&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;features&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;edit_prediction_provider&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;zed&amp;quot;&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;},&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;ui_font_size&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;16&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;buffer_font_size&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;16&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;theme&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;mode&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;system&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;light&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;One Light&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;dark&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;One Dark&amp;quot;&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;},&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;languages&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;Markdown&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;format_on_save&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;on&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;formatter&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;external&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;          &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;command&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;mdformat&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;          &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;arguments&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;--number&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;--wrap&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;80&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;--extensions&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;myst&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;-&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;},&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;XML&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;format_on_save&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;on&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;formatter&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;external&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;          &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;command&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;xml-pretty&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;          &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;arguments&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;-i&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;2&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;},&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;reST&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;format_on_save&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;on&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;formatter&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;external&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;          &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;command&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;docstrfmt&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;          &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;arguments&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;-&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;},&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;Python&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;language_servers&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;pyright&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;ruff&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;format_on_save&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;on&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;formatter&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;          &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;code_actions&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;            &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;source.organizeImports.ruff&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kc"&gt;true&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;            &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;source.fixAll.ruff&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kc"&gt;true&lt;/span&gt;
+&lt;span class="w"&gt;          &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="p"&gt;},&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;          &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;language_server&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;            &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;name&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;ruff&amp;quot;&lt;/span&gt;
+&lt;span class="w"&gt;          &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;},&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;lsp&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;ltex&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;settings&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;ltex&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;          &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;language&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;es&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="c1"&gt;// en-us&lt;/span&gt;
+&lt;span class="w"&gt;          &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;enabled&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kc"&gt;true&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;          &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;completionEnabled&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kc"&gt;false&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;For the configuration of the Codebook hunspell corrector, a &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;codebook.toml&lt;/span&gt;&lt;/code&gt; file
+is available in the project root directory.&lt;/p&gt;
+&lt;div class="highlight-toml notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;dictionaries&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;es&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="n"&gt;use_global&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kc"&gt;false&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;For language or external tools that are structured with their already known
+configuration files, we find the &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;ruff.toml&lt;/span&gt;&lt;/code&gt;, &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;pyproject.toml&lt;/span&gt;&lt;/code&gt; or &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;Cargo.toml&lt;/span&gt;&lt;/code&gt;
+file to give an example. I am not going to illustrate these because they are
+well known if you require these languages or &lt;em&gt;linters&lt;/em&gt;.&lt;/p&gt;
+&lt;/section&gt;
+&lt;/section&gt;
+</content>
+    <link href="https://www.cosmoscalibur.com/en/blog/2025/zed-un-editor-rapido-y-moderno-de-codigo-abierto/"/>
+    <summary>zed is an open-source code and text editor, designed to be fast and
+easy to use. It is built in Rust and uses a modern and intuitive user interface.
+It is currently officially supported on Linux and macOS, but work is underway
+for Windows implementation (although experimental versions exist). I will tell
+you how to install it and some of its features.</summary>
     <category term="ide" label="ide"/>
     <category term="linux" label="linux"/>
     <category term="zed" label="zed"/>

@@ -75,6 +75,7 @@ repositorio oficial.
 
 ```{code} bash
 sudo pamac install zsh alacritty zellij zoxide helix --no-confirm
+sudo pamac --as-deps fzf --no-confirm  # Búsqueda interactiva de zoxide
 ```
 ````
 ````{tab-item} Ubuntu
@@ -84,7 +85,7 @@ En el caso de Ubuntu, vamos a necesitar usar no solo paquetes del repositorio
 oficial, sino también paquetes instalados con [{program}`cargo`](/es/blog/2024/instalar-rust-en-linux.md) o [{program}`flatpak`](#ubuntu-instalar-flatpak).
 
 ```{code} bash
-sudo apt install -y zsh alacritty zoxide
+sudo apt install -y zsh alacritty zoxide fzf
 cargo install --locked zellij
 flatpak install flathub com.helix_editor.Helix
 ```

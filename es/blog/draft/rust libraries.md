@@ -5,7 +5,6 @@
   - zip
   - zlib-rs
 - regex
-- prql
 - crabtime
 - calamine: Lectura de archivos Excel
 - Lectura de archivos XML
@@ -13,15 +12,22 @@
   - quick-xml
 - polars: dataframes
 - pest: parser
-- petgraph: graph data structures
+- graph data structures
+  - petgraph
+  - ultragraph
 - utoipa: OpenAPI documentation generator
 - project fluent: internationalization and localization
+- tokio: async
+- ORM
+  - Seaql
+  - Diesel
+  - PRQL (pipeline SQL)
 - Web framework
   - leptos
   - rocket
+  - axum
 - GUI
-  - tauri
-  - egui
+  - gpui
   - slint
   - dioxus
   - ratatui
