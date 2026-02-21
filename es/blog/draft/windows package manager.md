@@ -72,8 +72,9 @@ scoop install 7zip git
 
 winget
 
-- Libreoffice
-- Zed
+- Libreoffice (permite vincular como alternativa para abrir)
+- Zed (funciona con la autoactualización)
+- zoxide (gestor recomendado por el desarrollador)
 
 winget update --all
 
