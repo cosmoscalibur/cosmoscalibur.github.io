@@ -1,0 +1,904 @@
+
+<!DOCTYPE html>
+
+
+<html lang="es" data-content_root="../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="og:title" content="Unir video y audio con ffmpeg y bash" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://www.cosmoscalibur.com/es/blog/2024/unir-video-y-audio-con-ffmpeg-y-bash.html" />
+<meta property="og:site_name" content="Cosmoscalibur" />
+<meta property="og:description" content="Recién mi novia me pidió el favor de ayudarle a descargar los videos de un curso antes de que se venciera el acceso a la cuenta, y tocaba descargar los videos de Vimeo. Pero el truco de descarga de..." />
+<meta property="og:image:width" content="1146" />
+<meta property="og:image:height" content="600" />
+<meta property="og:image" content="https://www.cosmoscalibur.com/_images/social_previews/summary_es_blog_2024_unir-video-y-audio-con-ffmpeg-y-bash_9ae205eb.png" />
+<meta property="og:image:alt" content="Recién mi novia me pidió el favor de ayudarle a descargar los videos de un curso antes de que se venciera el acceso a la cuenta, y tocaba descargar los videos de Vimeo. Pero el truco de descarga de..." />
+<meta name="description" content="Recién mi novia me pidió el favor de ayudarle a descargar los videos de un curso antes de que se venciera el acceso a la cuenta, y tocaba descargar los videos de Vimeo. Pero el truco de descarga de..." />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:creator" content="@cosmoscalibur" />
+<meta name="fediverse:creator" content="@cosmoscalibur@col.social">
+
+    <title>Unir video y audio con ffmpeg y bash &#8212; Cosmoscalibur</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../../../_static/documentation_options.js?v=e2bb6099"></script>
+    <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../_static/translations.js?v=f85f4cfb"></script>
+    <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'es/blog/2024/unir-video-y-audio-con-ffmpeg-y-bash';</script>
+    <link rel="canonical" href="https://www.cosmoscalibur.com/es/blog/2024/unir-video-y-audio-con-ffmpeg-y-bash.html" />
+    <link rel="icon" href="../../../_static/cosmoscalibur_favicon.png"/>
+    <link rel="index" title="Índice" href="../../../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../../../search.html" /> 
+
+<!-- TODO: Revisar como hacer que dependa del despliegue en GitHub Pages para no usar en local -->
+<!-- TODO: Usar GitHub Actions para esto -->
+
+<!-- Usado para mostrar publicidad -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-0356238418278924"
+crossorigin="anonymous"></script>
+
+
+<link rel="alternate" hreflang="en" href="https://www.cosmoscalibur.com/en/blog/2024/unir-video-y-audio-con-ffmpeg-y-bash.html" />
+<link rel="alternate" hreflang="es" href="https://www.cosmoscalibur.com/es/blog/2024/unir-video-y-audio-con-ffmpeg-y-bash.html" />
+
+
+ 
+<link
+  rel="alternate"
+  type="application/atom+xml"
+  href="../../../blog/atom.xml"
+  title="Cosmoscalibur"
+/>
+  
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Saltar al contenido principal</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Volver arriba</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Advertencia de versión"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Navegación del sitio">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../_static/cosmoscalibur_logo.png" class="logo__image only-light" alt="Cosmoscalibur - Home"/>
+    <img src="../../../_static/cosmoscalibur_logo.png" class="logo__image only-dark pst-js-only" alt="Cosmoscalibur - Home"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../me/index.html">
+    Edward Villegas
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+<div class="navbar-nav">
+  <a class="nav-link" href="../../../en/blog/2024/unir-video-y-audio-con-ffmpeg-y-bash.html" title="English">
+    🌐 English
+  </a>
+</div>
+</div>
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Tema" data-bs-title="Tema"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Claro"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Oscuro"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="Sistema"></i>
+</button></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/cosmoscalibur/" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/cosmoscalibur" title="Twitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-twitter fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Twitter</span></a>
+        </li>
+        <li class="nav-item">
+            
+          
+            
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://col.social/@cosmoscalibur" title="Mastodon" class="nav-link pst-navbar-icon" rel="me" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-mastodon fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Mastodon</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="En esta página">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../me/index.html">
+    Edward Villegas
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+<div class="navbar-nav">
+  <a class="nav-link" href="../../../en/blog/2024/unir-video-y-audio-con-ffmpeg-y-bash.html" title="English">
+    🌐 English
+  </a>
+</div>
+</div>
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Tema" data-bs-title="Tema"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Claro"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Oscuro"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="Sistema"></i>
+</button></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/cosmoscalibur/" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/cosmoscalibur" title="Twitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-twitter fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Twitter</span></a>
+        </li>
+        <li class="nav-item">
+            
+          
+            
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://col.social/@cosmoscalibur" title="Mastodon" class="nav-link pst-navbar-icon" rel="me" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-mastodon fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Mastodon</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<div class="ablog-sidebar-item ablog__postcard">
+   
+  <h2>
+     
+    <span>2024-10-20</span>
+    
+  </h2>
+  <ul>
+    <div class="ablog-sidebar-item ablog__postcard2">
+   
+  <li id="ablog-sidebar-item author ablog__author">
+    <span>
+       Autor: 
+    </span>
+     
+    <a href="../../../blog/author/edward-villegas-pulgarin.html">Edward Villegas-Pulgarin</a>
+      
+  </li>
+    
+  <li id="ablog-sidebar-item language ablog__language">
+    <span>
+       Idioma: 
+    </span>
+     
+    <a href="../../../blog/language/espanol.html">Español</a>
+      
+  </li>
+   
+  <li id="ablog-sidebar-item category ablog__category">
+    <span>
+       Categoría: 
+    </span>
+     
+    <a href="../../../blog/category/tecnologia.html">tecnología</a>
+     ,    
+    <a href="../../../blog/category/programacion.html">programación</a>
+      
+  </li>
+   
+  <li id="ablog-sidebar-item tags ablog__tags">
+    <span>
+        Etiquetas:  
+    </span>
+     
+    <a href="../../../blog/tag/ffmpeg.html">ffmpeg</a>
+        
+    <a href="../../../blog/tag/bash.html">bash</a>
+        
+    <a href="../../../blog/tag/vimeo.html">vimeo</a>
+        
+    <a href="../../../blog/tag/aplicaciones-para-linux.html">aplicaciones para linux</a>
+        
+    <a href="../../../blog/tag/extensiones-de-chrome.html">extensiones de chrome</a>
+      
+  </li>
+   
+</div>
+  </ul>
+</div>
+</div>
+        <div class="sidebar-primary-item">
+<div class="ablog-sidebar-item ablog__recentposts">
+  <h3>
+    <a href="../../../blog.html">Entradas recientes</a>
+  </h3>
+  <ul>
+     
+    <li>
+      <a href="../2026/error-de-autenticacion-en-antigravity-y-ampcode-en-windows.html">
+        2026-02-21 - Error de autenticación en Antigravity y AmpCode en Windows
+      </a>
+    </li>
+    
+    <li>
+      <a href="../../../en/blog/2026/error-de-autenticacion-en-antigravity-y-ampcode-en-windows.html">
+        2026-02-21 - Authentication Error in Antigravity and AmpCode on Windows
+      </a>
+    </li>
+    
+    <li>
+      <a href="../2026/herramientas-de-ia-gratuita-para-desarrolladores-en-2026.html">
+        2026-01-18 - Herramientas de IA gratuita para desarrolladores en 2026
+      </a>
+    </li>
+    
+    <li>
+      <a href="../../../en/blog/2026/herramientas-de-ia-gratuita-para-desarrolladores-en-2026.html">
+        2026-01-18 - Free AI Tools for Developers in 2026
+      </a>
+    </li>
+    
+    <li>
+      <a href="../../../en/blog/2025/buscando-el-mejor-cliente-de-mastodon-para-android.html">
+        2025-10-08 - Finding the Best Mastodon Client for Android
+      </a>
+    </li>
+    
+  </ul>
+</div>
+</div>
+        <div class="sidebar-primary-item">
+<div class="ablog-sidebar-item ablog__archives">
+  <h3>
+    <a href="../../../blog/archive.html">Archivos</a>
+  </h3>
+  <ul>
+     
+    <li>
+      <a href="../../../blog/2026.html">2026 (4)</a>
+    </li>
+      
+    <li>
+      <a href="../../../blog/2025.html">2025 (22)</a>
+    </li>
+      
+    <li>
+      <a href="../../../blog/2024.html">2024 (35)</a>
+    </li>
+      
+    <li>
+      <a href="../../../blog/2021.html">2021 (2)</a>
+    </li>
+      
+    <li>
+      <a href="../../../blog/2020.html">2020 (21)</a>
+    </li>
+      
+    <li>
+      <a href="../../../blog/2019.html">2019 (9)</a>
+    </li>
+      
+    <li>
+      <a href="../../../blog/2018.html">2018 (5)</a>
+    </li>
+      
+    <li>
+      <a href="../../../blog/2017.html">2017 (2)</a>
+    </li>
+      
+    <li>
+      <a href="../../../blog/2014.html">2014 (1)</a>
+    </li>
+      
+    <li>
+      <a href="../../../blog/2013.html">2013 (12)</a>
+    </li>
+      
+    <li>
+      <a href="../../../blog/2012.html">2012 (20)</a>
+    </li>
+      
+    <li>
+      <a href="../../../blog/2011.html">2011 (30)</a>
+    </li>
+      
+    <li>
+      <a href="../../../blog/2010.html">2010 (7)</a>
+    </li>
+     
+  </ul>
+</div>
+</div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Miga de pan" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../../index.html" class="nav-link" aria-label="Inicio">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Unir video y audio con ffmpeg y bash</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                   <section class="tex2jax_ignore mathjax_ignore" id="unir-video-y-audio-con-ffmpeg-y-bash">
+<h1>Unir video y audio con ffmpeg y bash<a class="headerlink" href="#unir-video-y-audio-con-ffmpeg-y-bash" title="Link to this heading">#</a></h1>
+<p>Recién mi novia me pidió el favor de ayudarle a descargar los videos de un curso
+antes de que se venciera el acceso a la cuenta, y tocaba descargar los videos de
+Vimeo. Pero el truco de descarga de estos videos, hace que luego toque unir el
+audio y el video, así que les contaré como hacerlo con FFMPEG y Bash.</p>
+<section id="descargar-video-de-vimeo">
+<h2>Descargar video de Vimeo<a class="headerlink" href="#descargar-video-de-vimeo" title="Link to this heading">#</a></h2>
+<p>Bueno, este es el punto inicial de la aventura, y es cómo descargar un video de
+Vimeo a través de un sitio que posee autenticación. Resulta que si fuera
+directamente de Vimeo, bastaría con la extracción con uso de <em>cookies</em> que
+ofrece <a class="reference external" href="https://github.com/yt-dlp/yt-dlp">yt-dlp</a>, pero como el video de Vimeo
+está embebido en otro sitio, esto no funciona (o no encontré cómo, pues salía un
+error de portal no reconocido para hacer el ingreso).</p>
+<p>Al continuar la búsqueda, la única opción que encontré fue una extensión de
+Chrome que se llama
+<a class="reference external" href="https://chromewebstore.google.com/detail/free-vimeo-downloader/migiikaijhclkmlpnnfficpopgmcpgia?hl=es-419">Free Vimeo Downloader</a>,
+que te habilita la opción de descarga desde el navegador de los videos de Vimeo
+embebidos en cualquier portal. Te ofrece la opción de descargar los videos en
+distintas calidades, aunque debes tener presente que el audio se descarga por
+separado, y para poderlo descargar debes primero iniciar la reproducción.</p>
+<div class="admonition attention">
+<p class="admonition-title">Atención</p>
+<p>Recuerda reproducir el video para habilitar la descarga del audio.</p>
+</div>
+<p>Los archivos descargados tienen como patrón, el nombre del video seguido de la
+calidad de video, y en el caso del audio, seguido de <code class="docutils literal notranslate"><span class="pre">-audio</span></code>, ambos en formato
+MP4. Ahora, ¿cómo unimos el video y el audio?</p>
+</section>
+<section id="procesamiento-con-ffmpeg">
+<h2>Procesamiento con FFMPEG<a class="headerlink" href="#procesamiento-con-ffmpeg" title="Link to this heading">#</a></h2>
+<p>Ahora, la tarea asociada al procesamiento para unir los archivos de audio con
+los archivos de video, la vamos a delegar en
+<a class="reference external" href="https://ffmpeg.org/download.html">FFMPEG</a>, una potente utilidad de línea de
+comandos para el procesamiento de audio y video que es gratuita y de código
+abierto.</p>
+<p>Si usas Debian/Ubuntu o algún derivado, como yo, puedes instalar de la forma que
+indico a continuación. Si no, puedes remitirte a la página oficial o también
+instalarla con el gestor de paquetes <strong class="program">conda</strong> (aplica a todos los
+sistemas operativos).</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-0">
+Ubuntu</label><div class="sd-tab-content docutils">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>ffmpeg
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-1" name="sd-tab-set-0" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-1">
+Manjaro</label><div class="sd-tab-content docutils">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>pamac<span class="w"> </span>install<span class="w"> </span>--no-confirm<span class="w"> </span>ffmpeg
+</pre></div>
+</div>
+</div>
+</div>
+<p>Para probar el concepto, usaremos uno de los pares de archivos.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ffmpeg<span class="w"> </span>-i<span class="w"> </span>Modulo<span class="se">\ </span><span class="m">2</span><span class="se">\ </span>Clase<span class="se">\ </span><span class="m">2</span><span class="se">\ </span>Parte<span class="se">\ </span><span class="m">5</span><span class="se">\ \(</span>720p<span class="se">\ </span>with<span class="se">\ </span>30fps<span class="se">\)</span>.mp4<span class="w"> </span>-i<span class="w"> </span>Modulo<span class="se">\ </span><span class="m">2</span><span class="se">\ </span>Clase<span class="se">\ </span><span class="m">2</span><span class="se">\ </span>Parte<span class="se">\ </span><span class="m">5</span>-audio.mp4<span class="w"> </span>-c<span class="w"> </span>copy<span class="w"> </span>output/Modulo<span class="se">\ </span><span class="m">2</span><span class="se">\ </span>Clase<span class="se">\ </span><span class="m">2</span><span class="se">\ </span>Parte<span class="se">\ </span><span class="m">5</span>.mp4
+</pre></div>
+</div>
+<p>Como el audio y el video ya están en el mismo formato y codec, no es necesario
+FFMPEG para aplicar transformaciones, sino solo para mantener el canal de video
+del primer archivo y copiarle el canal de audio del segundo, para generar un
+nuevo archivo de multimedia.</p>
+<p>Observamos el parámetro <code class="docutils literal notranslate"><span class="pre">-i</span></code> que usamos para indicar un archivo fuente, ya sea
+de audio, video o incluso imágenes y de texto. En este caso, lo usamos para
+indicar el archivo de video y el archivo de audio que queremos emparejar (cada
+archivo debe estar precedido de <code class="docutils literal notranslate"><span class="pre">-i</span></code>).</p>
+<p>Si fuera necesario aplicar un <em>codec</em> a estos, se debería indicar la opción
+respectiva después de la ruta de cada archivo. En este caso, no nos interesa y
+esto nos ayuda a que ejecute más rápido. De tal forma que simplemente indicamos
+después del segundo archivo <code class="docutils literal notranslate"><span class="pre">-c</span> <span class="pre">copy</span></code> para indicar que se copia directamente,
+preservando calidad y formato original.</p>
+<p>Por último, se indica la ruta del archivo de salida, es decir, el archivo
+resultado de nuestra unión de video y audio.</p>
+<div class="admonition hint">
+<p class="admonition-title">Consejo</p>
+<p>FFMPEG y su documentación, no es muy cómoda para alguien que no sea familiar
+con la línea de comandos, por lo que si tienes dudas de donde empezar, te
+recomiendo visitar los recetarios de
+<a class="reference external" href="https://amiaopensource.github.io/ffmprovisr/">ffmprovisr</a>.</p>
+</div>
+<p>Podemos abrir el video, y veremos el video con el audio incluido. Y ahora, ¿qué
+sucede si son 56 videos con sus 56 audios?</p>
+</section>
+<section id="procesamiento-en-lote-con-bash">
+<h2>Procesamiento en lote con Bash<a class="headerlink" href="#procesamiento-en-lote-con-bash" title="Link to this heading">#</a></h2>
+<p>Como los archivos tienen un patrón en sus nombres, y pueden ser listados en
+orden, y el proceso que se ejecuta sobre cada par es el mismo, podemos crear una
+rutina para este procesamiento en lote, y evitar así posibles errores como
+omitir un par de archivos, mezclar un video con el audio de otro o errores de
+digitación.</p>
+<p>Necesitaremos almacenar los listados por separado de los archivos de video y
+audio, de tal forma que iteremos de manera general sobre el total de videos y
+avancemos en los dos listados, que al estar ordenados y con el patrón de nombre
+iniciando por el nombre general del video, permitirá emparejarlos.</p>
+<p>Luego, de manera cíclica obtenemos estas parejas, con las cuales formaremos los
+archivos para los parámetros <code class="docutils literal notranslate"><span class="pre">-i</span></code> de <strong class="program">ffmpeg</strong>, y la asignación de la
+ruta de salida.</p>
+<p>Esto lo haremos en <em>bash</em> (bueno, esto es para usuarios Linux, pero si usas
+Windows, te invito a replicarlo en PowerShell o tu lenguaje favorito).</p>
+<div class="literal-block-wrapper docutils container" id="bash-ffmpeg-unir">
+<div class="code-block-caption"><span class="caption-text">Código <em>bash</em> para unir un conjunto de videos y audios con FFMPEG.</span><a class="headerlink" href="#bash-ffmpeg-unir" title="Link to this code">#</a></div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="ch">#! /usr/bin/bash</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="nv">OUTPUT</span><span class="o">=</span>output
+<span class="linenos"> 4</span>mkdir<span class="w"> </span>-p<span class="w"> </span><span class="nv">$OUTPUT</span>
+<span class="linenos"> 5</span><span class="nv">AUDIO_LIST</span><span class="o">=(</span>*audio.mp4<span class="o">)</span>
+<span class="linenos"> 6</span><span class="nv">VIDEO_LIST</span><span class="o">=(</span>*fps*.mp4<span class="o">)</span>
+<span class="linenos"> 7</span><span class="nv">LEN</span><span class="o">=</span><span class="si">${#</span><span class="nv">AUDIO_LIST</span><span class="p">[*]</span><span class="si">}</span>
+<span class="linenos"> 8</span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$LEN</span><span class="s2"> videos&quot;</span>
+<span class="linenos"> 9</span><span class="k">for</span><span class="w"> </span><span class="o">((</span><span class="nv">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">;</span><span class="w"> </span>i<span class="w"> </span>&lt;<span class="w"> </span>LEN<span class="p">;</span><span class="w"> </span>i++<span class="o">))</span><span class="p">;</span><span class="w"> </span><span class="k">do</span>
+<span class="linenos">10</span><span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Procesando video: </span><span class="k">$((</span><span class="nv">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m">1</span><span class="k">))</span><span class="s2">&quot;</span>
+<span class="linenos">11</span><span class="w">    </span><span class="nv">VIDEO_NAME</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">VIDEO_LIST</span><span class="p">[</span><span class="nv">$i</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="linenos">12</span><span class="w">    </span>ffmpeg<span class="w"> </span>-i<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$VIDEO_NAME</span><span class="s2">&quot;</span><span class="w"> </span>-i<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">AUDIO_LIST</span><span class="p">[</span><span class="nv">$i</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span>-c<span class="w"> </span>copy<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$OUTPUT</span><span class="s2">/</span><span class="nv">$VIDEO_NAME</span><span class="s2">&quot;</span>
+<span class="linenos">13</span><span class="k">done</span>
+</pre></div>
+</div>
+</div>
+<p>Te explico el código.</p>
+<p>Línea 1, es una línea <em>shebang</em> para indicar la ruta absoluta del interprete de
+<em>shell</em>, en este caso, <strong class="program">bash</strong>.</p>
+<p>En la línea 3, asignamos el nombre para el directorio de salida, que usaremos
+para crear dicho directorio en la línea 4 y para formar la ruta completa de
+salida en la línea 12.</p>
+<p>En la línea 4 vemos la primera aparición de <code class="docutils literal notranslate"><span class="pre">$</span></code> que usamos para expandir un
+resultado que puede ser de una variable como en este caso, o incluso de una
+ejecución. Aquí, sobre <strong class="command">mkdir -p</strong> tenemos para decir que esto crea la
+carpeta, y su opción <code class="docutils literal notranslate"><span class="pre">-p</span></code> es para que no falle en caso de ya existir.</p>
+<p>Para obtener el listado de archivos podríamos usar <code class="docutils literal notranslate"><span class="pre">ls</span></code>, pero para convertir a
+un arreglo tenemos que hacer ajustes en el <code class="docutils literal notranslate"><span class="pre">IFS</span></code>, y resulta más simple usar
+directamente la expansión global de nombre de archivo, como lo hacemos en las
+líneas 4 y 5.</p>
+<p>La manera como nos referimos a un arreglo en Bash, es con <code class="docutils literal notranslate"><span class="pre">${</span> <span class="pre">}</span></code> rodeando lo
+requerido del arreglo, como la indicación a un elemento específico (<code class="docutils literal notranslate"><span class="pre">${ARR[0]}</span></code>)
+usado en la línea 11 y 12, la totalidad de elementos (<code class="docutils literal notranslate"><span class="pre">${ARR[*]}</span></code> o <code class="docutils literal notranslate"><span class="pre">${ARR[&#64;]}</span></code>)
+o una variante con el símbolo <code class="docutils literal notranslate"><span class="pre">#</span></code> antes del nombre del arreglo para hacer el
+conteo como se usa en la línea 7.</p>
+<p>La sentencia <code class="docutils literal notranslate"><span class="pre">echo</span></code> la usamos para imprimir en la terminal, y vemos que el
+mensaje está en comillas dobles, lo que evita que el resultado se intente
+expandir (ejecutar), pues solo nos interesa hasta ese punto.</p>
+<p>En las líneas 9 y 10 notamos la existencia de doble paréntesis, esto permite la
+expansión aritmética. Siempre que necesitemos operaciones aritméticas, usamos
+doble paréntesis. En particular, la línea 9 es el inicio del ciclo <code class="docutils literal notranslate"><span class="pre">for</span></code> en
+Bash, que usa expansión aritmética con la asignación del valor inicial de la
+variable para recorrer las listas, la condición del recorrido la cual es
+mientras sea menor que la longitud de las listas y finalmente el avance en uno
+para poder pasar al siguiente elemento. Luego sigue la indicación del <code class="docutils literal notranslate"><span class="pre">do</span></code> con
+el bloque que repetiremos, y que depende de nuestra variable del ciclo (<code class="docutils literal notranslate"><span class="pre">i</span></code>). Y
+para cerrar el ciclo, terminamos en <code class="docutils literal notranslate"><span class="pre">done</span></code>.</p>
+<p>Bueno, con esto, estamos listos para ejecutar nuestro código que podemos
+disponer en un archivo <code class="docutils literal notranslate"><span class="pre">unir_video.sh</span></code> y ejecutar como:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>bash<span class="w"> </span>unir_video.sh<span class="w">  </span><span class="c1"># opción 1</span>
+.<span class="w"> </span>unir_video.sh<span class="w">  </span><span class="c1"># opción 2</span>
+<span class="nb">source</span><span class="w"> </span>unir_video.sh<span class="w">  </span><span class="c1"># opción 3</span>
+</pre></div>
+</div>
+<p>Las últimas dos opciones son el motivo de usar el <em>shebang</em> de la línea 1, para
+distinguir la <em>shell</em> a usar.</p>
+<p>Es hora de ejecutar, y deja que esto trabaje por ti con tu colección de videos.</p>
+<div class="admonition hint">
+<p class="admonition-title">Consejo</p>
+<p>Los 3 recursos que te recomiendo para Bash:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://explainshell.com/">Explain Shell</a>: Escribes una instrucción y te
+la explica.</p></li>
+<li><p><a class="reference external" href="https://mywiki.wooledge.org/BashPitfalls">Bash Pitfalls</a>: Una compilación
+de errores comunes de los usuarios en Bash. Una forma de ver los
+antipatrones y ver las buenas prácticas.</p></li>
+<li><p><a class="reference external" href="https://tldp.org/LDP/Bash-Beginners-Guide/html/index.html">Bash Guide for Beginners</a>
+y <a class="reference external" href="https://tldp.org/HOWTO/Bash-Prog-Intro-HOWTO.html">BASH Programming - Introduction HOW-TO</a>:
+Los puntos iniciales de referencia que recomiendo para Bash, del proyecto de
+documentación de Linux, <em>TLDP</em>.</p></li>
+</ul>
+</div>
+</section>
+</section>
+
+<div class="section ablog__blog_comments">
+     
+<div class="section ablog__prev-next">
+  <span class="ablog__prev">
+      Anterior:
+    
+    <a href="../../../en/blog/2024/unir-video-y-audio-con-ffmpeg-y-bash.html">
+      
+      <span>Merging Video and Audio with FFmpeg and Bash</span>
+    </a>
+    
+  </span>
+  <span class="ablog__spacer">&nbsp;</span>
+  <span class="ablog__next">
+      Siguiente: 
+    <a href="la-mejor-alternativa-gratis-a-netflix.html">
+      <span>Ver películas gratis con Stremio y Torrentio</span>
+      
+    </a>
+    
+  </span>
+</div>
+  
+</div>
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> En esta página
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#descargar-video-de-vimeo">Descargar video de Vimeo</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#procesamiento-con-ffmpeg">Procesamiento con FFMPEG</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#procesamiento-en-lote-con-bash">Procesamiento en lote con Bash</a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+  <div role="note" aria-label="source link">
+    <h3>Esta página</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../_sources/es/blog/2024/unir-video-y-audio-con-ffmpeg-y-bash.md.txt"
+            rel="nofollow">Mostrar el código</a></li>
+    </ul>
+   </div></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2024, Edward Villegas-Pulgarin.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Creado usando <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Construido con el <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html"> Tema PyData Sphinx </a> 0.16.1.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

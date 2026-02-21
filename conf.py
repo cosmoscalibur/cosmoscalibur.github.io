@@ -65,6 +65,7 @@ extensions = [
     "sphinxcontrib.youtube",
     "ablog",
     "ed_sitemap",
+    "lang_switcher",
     "sphinx_copybutton",
     "sphinxext.rediraffe",
 ]
@@ -132,6 +133,7 @@ html_theme_options = {
             },
         },
     ],
+    "navbar_end": ["lang-switcher", "theme-switcher", "navbar-icon-links"],
 }
 
 # Después, esto servirá para separar local de desplegado con Action

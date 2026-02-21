@@ -1,0 +1,846 @@
+
+<!DOCTYPE html>
+
+
+<html lang="es" data-content_root="../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="og:title" content="UV: A Fast Alternative to PIP and VENV" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://www.cosmoscalibur.com/en/blog/2024/uv-alternativa-rapida-a-pip-y-venv.html" />
+<meta property="og:site_name" content="Cosmoscalibur" />
+<meta property="og:description" content="UV is a package manager and virtual environment alternative for Python, developed in Rust, which promises to be very fast in the processes it aims to replace those of PIP and VENV. In this sense, a..." />
+<meta property="og:image:width" content="1146" />
+<meta property="og:image:height" content="600" />
+<meta property="og:image" content="https://www.cosmoscalibur.com/_images/social_previews/summary_en_blog_2024_uv-alternativa-rapida-a-pip-y-venv_1fa9e71a.png" />
+<meta property="og:image:alt" content="UV is a package manager and virtual environment alternative for Python, developed in Rust, which promises to be very fast in the processes it aims to replace those of PIP and VENV. In this sense, a..." />
+<meta name="description" content="UV is a package manager and virtual environment alternative for Python, developed in Rust, which promises to be very fast in the processes it aims to replace those of PIP and VENV. In this sense, a..." />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:creator" content="@cosmoscalibur" />
+<meta name="fediverse:creator" content="@cosmoscalibur@col.social">
+
+    <title>UV: A Fast Alternative to PIP and VENV &#8212; Cosmoscalibur</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../../../_static/documentation_options.js?v=e2bb6099"></script>
+    <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../_static/translations.js?v=f85f4cfb"></script>
+    <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'en/blog/2024/uv-alternativa-rapida-a-pip-y-venv';</script>
+    <link rel="canonical" href="https://www.cosmoscalibur.com/en/blog/2024/uv-alternativa-rapida-a-pip-y-venv.html" />
+    <link rel="icon" href="../../../_static/cosmoscalibur_favicon.png"/>
+    <link rel="index" title="Índice" href="../../../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../../../search.html" /> 
+
+<!-- TODO: Revisar como hacer que dependa del despliegue en GitHub Pages para no usar en local -->
+<!-- TODO: Usar GitHub Actions para esto -->
+
+<!-- Usado para mostrar publicidad -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-0356238418278924"
+crossorigin="anonymous"></script>
+
+
+<link rel="alternate" hreflang="es" href="https://www.cosmoscalibur.com/es/blog/2024/uv-alternativa-rapida-a-pip-y-venv.html" />
+<link rel="alternate" hreflang="en" href="https://www.cosmoscalibur.com/en/blog/2024/uv-alternativa-rapida-a-pip-y-venv.html" />
+
+
+ 
+<link
+  rel="alternate"
+  type="application/atom+xml"
+  href="../../../blog/atom.xml"
+  title="Cosmoscalibur"
+/>
+  
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Saltar al contenido principal</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Volver arriba</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Advertencia de versión"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Navegación del sitio">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../_static/cosmoscalibur_logo.png" class="logo__image only-light" alt="Cosmoscalibur - Home"/>
+    <img src="../../../_static/cosmoscalibur_logo.png" class="logo__image only-dark pst-js-only" alt="Cosmoscalibur - Home"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../es/me/index.html">
+    Edward Villegas
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+<div class="navbar-nav">
+  <a class="nav-link" href="../../../es/blog/2024/uv-alternativa-rapida-a-pip-y-venv.html" title="Español">
+    🌐 Español
+  </a>
+</div>
+</div>
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Tema" data-bs-title="Tema"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Claro"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Oscuro"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="Sistema"></i>
+</button></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/cosmoscalibur/" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/cosmoscalibur" title="Twitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-twitter fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Twitter</span></a>
+        </li>
+        <li class="nav-item">
+            
+          
+            
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://col.social/@cosmoscalibur" title="Mastodon" class="nav-link pst-navbar-icon" rel="me" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-mastodon fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Mastodon</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="En esta página">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../es/me/index.html">
+    Edward Villegas
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+<div class="navbar-nav">
+  <a class="nav-link" href="../../../es/blog/2024/uv-alternativa-rapida-a-pip-y-venv.html" title="Español">
+    🌐 Español
+  </a>
+</div>
+</div>
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Tema" data-bs-title="Tema"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Claro"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Oscuro"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="Sistema"></i>
+</button></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/cosmoscalibur/" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/cosmoscalibur" title="Twitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-twitter fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Twitter</span></a>
+        </li>
+        <li class="nav-item">
+            
+          
+            
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://col.social/@cosmoscalibur" title="Mastodon" class="nav-link pst-navbar-icon" rel="me" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-mastodon fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Mastodon</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<div class="ablog-sidebar-item ablog__postcard">
+   
+  <h2>
+     
+    <span>2024-06-30</span>
+    
+  </h2>
+  <ul>
+    <div class="ablog-sidebar-item ablog__postcard2">
+   
+  <li id="ablog-sidebar-item author ablog__author">
+    <span>
+       Autor: 
+    </span>
+     
+    <a href="../../../blog/author/edward-villegas-pulgarin.html">Edward Villegas-Pulgarin</a>
+      
+  </li>
+    
+  <li id="ablog-sidebar-item language ablog__language">
+    <span>
+       Idioma: 
+    </span>
+     
+    <a href="../../../blog/language/english.html">English</a>
+      
+  </li>
+   
+  <li id="ablog-sidebar-item category ablog__category">
+    <span>
+       Categoría: 
+    </span>
+     
+    <a href="../../../blog/category/technology.html">technology</a>
+     ,    
+    <a href="../../../blog/category/programming.html">programming</a>
+      
+  </li>
+   
+  <li id="ablog-sidebar-item tags ablog__tags">
+    <span>
+        Etiquetas:  
+    </span>
+     
+    <a href="../../../blog/tag/package-manager.html">package manager</a>
+        
+    <a href="../../../blog/tag/virtualenv-manager.html">virtualenv manager</a>
+        
+    <a href="../../../blog/tag/rust.html">rust</a>
+        
+    <a href="../../../blog/tag/python.html">python</a>
+        
+    <a href="../../../blog/tag/uv.html">uv</a>
+        
+    <a href="../../../blog/tag/pip.html">pip</a>
+        
+    <a href="../../../blog/tag/venv.html">venv</a>
+      
+  </li>
+   
+</div>
+  </ul>
+</div>
+</div>
+        <div class="sidebar-primary-item">
+<div class="ablog-sidebar-item ablog__recentposts">
+  <h3>
+    <a href="../../../blog.html">Entradas recientes</a>
+  </h3>
+  <ul>
+     
+    <li>
+      <a href="../../../es/blog/2026/error-de-autenticacion-en-antigravity-y-ampcode-en-windows.html">
+        2026-02-21 - Error de autenticación en Antigravity y AmpCode en Windows
+      </a>
+    </li>
+    
+    <li>
+      <a href="../2026/error-de-autenticacion-en-antigravity-y-ampcode-en-windows.html">
+        2026-02-21 - Authentication Error in Antigravity and AmpCode on Windows
+      </a>
+    </li>
+    
+    <li>
+      <a href="../../../es/blog/2026/herramientas-de-ia-gratuita-para-desarrolladores-en-2026.html">
+        2026-01-18 - Herramientas de IA gratuita para desarrolladores en 2026
+      </a>
+    </li>
+    
+    <li>
+      <a href="../2026/herramientas-de-ia-gratuita-para-desarrolladores-en-2026.html">
+        2026-01-18 - Free AI Tools for Developers in 2026
+      </a>
+    </li>
+    
+    <li>
+      <a href="../2025/buscando-el-mejor-cliente-de-mastodon-para-android.html">
+        2025-10-08 - Finding the Best Mastodon Client for Android
+      </a>
+    </li>
+    
+  </ul>
+</div>
+</div>
+        <div class="sidebar-primary-item">
+<div class="ablog-sidebar-item ablog__archives">
+  <h3>
+    <a href="../../../blog/archive.html">Archivos</a>
+  </h3>
+  <ul>
+     
+    <li>
+      <a href="../../../blog/2026.html">2026 (4)</a>
+    </li>
+      
+    <li>
+      <a href="../../../blog/2025.html">2025 (22)</a>
+    </li>
+      
+    <li>
+      <a href="../../../blog/2024.html">2024 (35)</a>
+    </li>
+      
+    <li>
+      <a href="../../../blog/2021.html">2021 (2)</a>
+    </li>
+      
+    <li>
+      <a href="../../../blog/2020.html">2020 (21)</a>
+    </li>
+      
+    <li>
+      <a href="../../../blog/2019.html">2019 (9)</a>
+    </li>
+      
+    <li>
+      <a href="../../../blog/2018.html">2018 (5)</a>
+    </li>
+      
+    <li>
+      <a href="../../../blog/2017.html">2017 (2)</a>
+    </li>
+      
+    <li>
+      <a href="../../../blog/2014.html">2014 (1)</a>
+    </li>
+      
+    <li>
+      <a href="../../../blog/2013.html">2013 (12)</a>
+    </li>
+      
+    <li>
+      <a href="../../../blog/2012.html">2012 (20)</a>
+    </li>
+      
+    <li>
+      <a href="../../../blog/2011.html">2011 (30)</a>
+    </li>
+      
+    <li>
+      <a href="../../../blog/2010.html">2010 (7)</a>
+    </li>
+     
+  </ul>
+</div>
+</div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Miga de pan" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../../index.html" class="nav-link" aria-label="Inicio">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">UV: A Fast Alternative to PIP and VENV</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                   <section class="tex2jax_ignore mathjax_ignore" id="uv-a-fast-alternative-to-pip-and-venv">
+<h1>UV: A Fast Alternative to PIP and VENV<a class="headerlink" href="#uv-a-fast-alternative-to-pip-and-venv" title="Link to this heading">#</a></h1>
+<p>UV is a package manager and virtual environment alternative for <em>Python</em>,
+developed in <em>Rust</em>, which promises to be very fast in the processes it aims to
+replace those of PIP and VENV. In this sense, all you need to do is add <code class="docutils literal notranslate"><span class="pre">uv</span></code>
+before the usual instructions, and it should work (except for some particular
+cases of compatibility or lack of implementation).</p>
+<p>This is one of many tools that are emerging with <em>Rust</em> to permeate the <em>Python</em>
+ecosystem, generating a new value, such as improved performance. And from the
+same creator, we also have <em>Ruff</em> as an efficient replacement for <em>linters</em>, and
+other tools like <em>PyO3</em> for creating Python libraries in Rust, Polars as an
+alternative to Pandas, or Robyn as an alternative to Flask.</p>
+<p>This project, <a class="reference external" href="https://astral.sh/blog/uv">UV</a>, aims to be the equivalent of a
+<em>cargo</em> (the <em>Rust</em> package manager) for Python, integrating multiple utilities
+into a single binary.</p>
+<section id="instalacion-de-uv">
+<h2>Instalación de UV<a class="headerlink" href="#instalacion-de-uv" title="Link to this heading">#</a></h2>
+<p>Si tenemos en nuestro sistema más de una versión Python, la forma recomendada
+para instalar será a partir del <em>script</em> de instalación que provee, ya que de
+esta forma queda disponible para todas nuestras instalaciones sin depender de un
+ambiente Python en particular. Esto es porque el binario evalúa la instalación
+de Python correspondiente a través de las variables de entorno y soporta las
+funciones de gestión para el ambiente detectado.</p>
+<p>You can install <strong class="program">uv</strong> with following script:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-0">
+Linux and Mac</label><div class="sd-tab-content docutils">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl<span class="w"> </span>-LsSf<span class="w"> </span>https://astral.sh/uv/install.sh<span class="w"> </span><span class="p">|</span><span class="w"> </span>sh
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-1" name="sd-tab-set-0" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-1">
+Windows</label><div class="sd-tab-content docutils">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>powershell<span class="w"> </span>-ExecutionPolicy<span class="w"> </span>ByPass<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;irm https://astral.sh/uv/install.ps1 | iex&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>UV is also available as a Python package, so you can use <em>pip</em> to install it. If
+you need to validate another method or operating system, you can check out the
+<a class="reference external" href="https://github.com/astral-sh/uv?tab=readme-ov-file#getting-started">official repository</a>.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>uv
+</pre></div>
+</div>
+<p>As we’ll see later, there will be some good improvements in package installation
+times and environment creation. However, it’s worth noting that if you plan to
+use this tool to reduce the execution time of GitHub Actions, the installation
+time of UV or its
+<a class="reference external" href="https://github.com/actions/setup-python/issues/822">cache management</a> may not
+be an alternative at the moment, unless the actual execution time is
+significantly reduced. In my case, the direct method took 7.8 seconds, while the
+installation with PIP took 5.8 seconds.</p>
+<p>To update <em>UV</em> from the binary, we can use <code class="docutils literal notranslate"><span class="pre">uv</span> <span class="pre">self</span> <span class="pre">update</span></code> (available since
+version 0.1.23).</p>
+<section id="uninstalling-uv">
+<h3>Uninstalling UV<a class="headerlink" href="#uninstalling-uv" title="Link to this heading">#</a></h3>
+<p>This is not well-documented, but it’s available in a
+<a class="reference external" href="https://github.com/astral-sh/uv/issues/1696#issuecomment-2031776112">repository issue report</a>,
+considering it’s simply a binary. So, we’re interested in clearing the UV cache
+and removing the binary.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rm<span class="w"> </span>-rf<span class="w"> </span><span class="nv">$HOME</span>/.cache/uv
+rm<span class="w"> </span><span class="nv">$HOME</span>/.cargo/bin/uv
+</pre></div>
+</div>
+</section>
+</section>
+<section id="virtual-environment-creation">
+<h2>Virtual Environment Creation<a class="headerlink" href="#virtual-environment-creation" title="Link to this heading">#</a></h2>
+<p>Like with the <em>venv</em> utility, the virtual environment created depends on the
+Python installation used (detected by environment variables), and we will have
+an option to manage it using its default name or assigning a new one.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>testvenv<span class="w">  </span><span class="c1"># VENV: 2.5 s</span>
+uv<span class="w"> </span>venv<span class="w"> </span>testuv<span class="w">  </span><span class="c1"># UV: 0.01 s</span>
+</pre></div>
+</div>
+</section>
+<section id="installing-python-packages">
+<h2>Installing Python Packages<a class="headerlink" href="#installing-python-packages" title="Link to this heading">#</a></h2>
+<p>In general, it’s a good practice to use environments and UV will do so by
+default. However, in case of a global installation, we can pass <code class="docutils literal notranslate"><span class="pre">--system</span></code> as an
+argument (suitable for CI or containers).</p>
+<p>In my case, I need to activate the environment to compare the installation of
+<em>pip</em> and <em>UV</em>. The test scenario will be installing the dependencies used in
+the <a class="reference internal" href="crear-un-blog-con-sphinx.html#dependencies"><span class="std std-ref">blog repository</span></a>.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">source</span><span class="w"> </span>testenv/bin/activate
+python3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt<span class="w"> </span>-r<span class="w"> </span>requirements-dev.txt
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">source</span><span class="w"> </span>testuv/bin/activate
+uv<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt<span class="w"> </span>-r<span class="w"> </span>requirements-dev.txt
+</pre></div>
+</div>
+<p>While <em>pip</em> took 25.5 seconds to install, <em>UV</em> took only 5.9 seconds. We can
+already notice significant differences that in a Continuous Integration (CI)
+workflow like GitHub Actions, could represent interesting savings.</p>
+<p>I also repeated this exercise for the main repository at my work, and it took 6
+seconds with UV without caching and installing UV, whereas PIP takes typically
+32 seconds without caching and 24 seconds with caching. In this case, it’s
+essential to pass the <code class="docutils literal notranslate"><span class="pre">--system</span></code> option to use it in GitHub Actions.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>uv
+uv<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>--system<span class="w"> </span>-r<span class="w"> </span>requirements.txt<span class="w"> </span>-r<span class="w"> </span>requirements-dev.txt
+</pre></div>
+</div>
+<p>It’s essential to keep in mind the change in syntax when installing a package
+from a repository, and it involves using <code class="docutils literal notranslate"><span class="pre">&quot;package</span> <span class="pre">&#64;url_repo&quot;</span></code> syntax. And
+especially if the package has credentials, consider the corresponding support as
+per
+<a class="reference external" href="https://github.com/astral-sh/uv?tab=readme-ov-file#git-authentication">the instructions</a></p>
+</section>
+</section>
+
+<div class="section ablog__blog_comments">
+     
+<div class="section ablog__prev-next">
+  <span class="ablog__prev">
+      Anterior:
+    
+    <a href="../../../es/blog/2024/uv-alternativa-rapida-a-pip-y-venv.html">
+      
+      <span>UV, alternativa rápida a PIP y VENV</span>
+    </a>
+    
+  </span>
+  <span class="ablog__spacer">&nbsp;</span>
+  <span class="ablog__next">
+      Siguiente: 
+    <a href="agregar-logo-y-favicon-en-sphinx.html">
+      <span>Adding Logo and Favicon to Sphinx</span>
+      
+    </a>
+    
+  </span>
+</div>
+  
+</div>
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> En esta página
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#instalacion-de-uv">Instalación de UV</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#uninstalling-uv">Uninstalling UV</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#virtual-environment-creation">Virtual Environment Creation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installing-python-packages">Installing Python Packages</a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+  <div role="note" aria-label="source link">
+    <h3>Esta página</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../_sources/en/blog/2024/uv-alternativa-rapida-a-pip-y-venv.md.txt"
+            rel="nofollow">Mostrar el código</a></li>
+    </ul>
+   </div></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2024, Edward Villegas-Pulgarin.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Creado usando <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Construido con el <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html"> Tema PyData Sphinx </a> 0.16.1.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

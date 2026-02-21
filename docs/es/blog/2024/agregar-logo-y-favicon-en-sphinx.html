@@ -1,0 +1,802 @@
+
+<!DOCTYPE html>
+
+
+<html lang="es" data-content_root="../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="og:title" content="Agregar logo y favicon en Sphinx" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://www.cosmoscalibur.com/es/blog/2024/agregar-logo-y-favicon-en-sphinx.html" />
+<meta property="og:site_name" content="Cosmoscalibur" />
+<meta property="og:description" content="Un nuevo paso en mi blog, es que decidí dejar una huella de personalización a través de un logo, algo sencillo, pero propio, distinto a una imagen descargada como lo era antes y que por lo mismo no..." />
+<meta property="og:image:width" content="1146" />
+<meta property="og:image:height" content="600" />
+<meta property="og:image" content="https://www.cosmoscalibur.com/_images/social_previews/summary_es_blog_2024_agregar-logo-y-favicon-en-sphinx_b4452d5b.png" />
+<meta property="og:image:alt" content="Un nuevo paso en mi blog, es que decidí dejar una huella de personalización a través de un logo, algo sencillo, pero propio, distinto a una imagen descargada como lo era antes y que por lo mismo no..." />
+<meta name="description" content="Un nuevo paso en mi blog, es que decidí dejar una huella de personalización a través de un logo, algo sencillo, pero propio, distinto a una imagen descargada como lo era antes y que por lo mismo no..." />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:creator" content="@cosmoscalibur" />
+<meta name="fediverse:creator" content="@cosmoscalibur@col.social">
+
+    <title>Agregar logo y favicon en Sphinx &#8212; Cosmoscalibur</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../../../_static/documentation_options.js?v=e2bb6099"></script>
+    <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../_static/translations.js?v=f85f4cfb"></script>
+    <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'es/blog/2024/agregar-logo-y-favicon-en-sphinx';</script>
+    <link rel="canonical" href="https://www.cosmoscalibur.com/es/blog/2024/agregar-logo-y-favicon-en-sphinx.html" />
+    <link rel="icon" href="../../../_static/cosmoscalibur_favicon.png"/>
+    <link rel="index" title="Índice" href="../../../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../../../search.html" /> 
+
+<!-- TODO: Revisar como hacer que dependa del despliegue en GitHub Pages para no usar en local -->
+<!-- TODO: Usar GitHub Actions para esto -->
+
+<!-- Usado para mostrar publicidad -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-0356238418278924"
+crossorigin="anonymous"></script>
+
+
+<link rel="alternate" hreflang="en" href="https://www.cosmoscalibur.com/en/blog/2024/agregar-logo-y-favicon-en-sphinx.html" />
+<link rel="alternate" hreflang="es" href="https://www.cosmoscalibur.com/es/blog/2024/agregar-logo-y-favicon-en-sphinx.html" />
+
+
+ 
+<link
+  rel="alternate"
+  type="application/atom+xml"
+  href="../../../blog/atom.xml"
+  title="Cosmoscalibur"
+/>
+  
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Saltar al contenido principal</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Volver arriba</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Advertencia de versión"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Navegación del sitio">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../_static/cosmoscalibur_logo.png" class="logo__image only-light" alt="Cosmoscalibur - Home"/>
+    <img src="../../../_static/cosmoscalibur_logo.png" class="logo__image only-dark pst-js-only" alt="Cosmoscalibur - Home"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../me/index.html">
+    Edward Villegas
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+<div class="navbar-nav">
+  <a class="nav-link" href="../../../en/blog/2024/agregar-logo-y-favicon-en-sphinx.html" title="English">
+    🌐 English
+  </a>
+</div>
+</div>
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Tema" data-bs-title="Tema"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Claro"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Oscuro"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="Sistema"></i>
+</button></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/cosmoscalibur/" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/cosmoscalibur" title="Twitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-twitter fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Twitter</span></a>
+        </li>
+        <li class="nav-item">
+            
+          
+            
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://col.social/@cosmoscalibur" title="Mastodon" class="nav-link pst-navbar-icon" rel="me" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-mastodon fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Mastodon</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="En esta página">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../me/index.html">
+    Edward Villegas
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+<div class="navbar-nav">
+  <a class="nav-link" href="../../../en/blog/2024/agregar-logo-y-favicon-en-sphinx.html" title="English">
+    🌐 English
+  </a>
+</div>
+</div>
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Tema" data-bs-title="Tema"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Claro"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Oscuro"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="Sistema"></i>
+</button></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/cosmoscalibur/" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/cosmoscalibur" title="Twitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-twitter fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Twitter</span></a>
+        </li>
+        <li class="nav-item">
+            
+          
+            
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://col.social/@cosmoscalibur" title="Mastodon" class="nav-link pst-navbar-icon" rel="me" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-mastodon fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Mastodon</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<div class="ablog-sidebar-item ablog__postcard">
+   
+  <h2>
+     
+    <span>2024-09-24</span>
+    
+  </h2>
+  <ul>
+    <div class="ablog-sidebar-item ablog__postcard2">
+   
+  <li id="ablog-sidebar-item author ablog__author">
+    <span>
+       Autor: 
+    </span>
+     
+    <a href="../../../blog/author/edward-villegas-pulgarin.html">Edward Villegas-Pulgarin</a>
+      
+  </li>
+    
+  <li id="ablog-sidebar-item language ablog__language">
+    <span>
+       Idioma: 
+    </span>
+     
+    <a href="../../../blog/language/espanol.html">Español</a>
+      
+  </li>
+   
+  <li id="ablog-sidebar-item category ablog__category">
+    <span>
+       Categoría: 
+    </span>
+     
+    <a href="../../../blog/category/tecnologia.html">tecnología</a>
+     ,    
+    <a href="../../../blog/category/blog-con-sphinx.html">blog con sphinx</a>
+      
+  </li>
+   
+  <li id="ablog-sidebar-item tags ablog__tags">
+    <span>
+        Etiquetas:  
+    </span>
+     
+    <a href="../../../blog/tag/sphinx.html">sphinx</a>
+        
+    <a href="../../../blog/tag/pydata.html">pydata</a>
+        
+    <a href="../../../blog/tag/favicon.html">favicon</a>
+      
+  </li>
+   
+</div>
+  </ul>
+</div>
+</div>
+        <div class="sidebar-primary-item">
+<div class="ablog-sidebar-item ablog__recentposts">
+  <h3>
+    <a href="../../../blog.html">Entradas recientes</a>
+  </h3>
+  <ul>
+     
+    <li>
+      <a href="../2026/error-de-autenticacion-en-antigravity-y-ampcode-en-windows.html">
+        2026-02-21 - Error de autenticación en Antigravity y AmpCode en Windows
+      </a>
+    </li>
+    
+    <li>
+      <a href="../../../en/blog/2026/error-de-autenticacion-en-antigravity-y-ampcode-en-windows.html">
+        2026-02-21 - Authentication Error in Antigravity and AmpCode on Windows
+      </a>
+    </li>
+    
+    <li>
+      <a href="../2026/herramientas-de-ia-gratuita-para-desarrolladores-en-2026.html">
+        2026-01-18 - Herramientas de IA gratuita para desarrolladores en 2026
+      </a>
+    </li>
+    
+    <li>
+      <a href="../../../en/blog/2026/herramientas-de-ia-gratuita-para-desarrolladores-en-2026.html">
+        2026-01-18 - Free AI Tools for Developers in 2026
+      </a>
+    </li>
+    
+    <li>
+      <a href="../../../en/blog/2025/buscando-el-mejor-cliente-de-mastodon-para-android.html">
+        2025-10-08 - Finding the Best Mastodon Client for Android
+      </a>
+    </li>
+    
+  </ul>
+</div>
+</div>
+        <div class="sidebar-primary-item">
+<div class="ablog-sidebar-item ablog__archives">
+  <h3>
+    <a href="../../../blog/archive.html">Archivos</a>
+  </h3>
+  <ul>
+     
+    <li>
+      <a href="../../../blog/2026.html">2026 (4)</a>
+    </li>
+      
+    <li>
+      <a href="../../../blog/2025.html">2025 (22)</a>
+    </li>
+      
+    <li>
+      <a href="../../../blog/2024.html">2024 (35)</a>
+    </li>
+      
+    <li>
+      <a href="../../../blog/2021.html">2021 (2)</a>
+    </li>
+      
+    <li>
+      <a href="../../../blog/2020.html">2020 (21)</a>
+    </li>
+      
+    <li>
+      <a href="../../../blog/2019.html">2019 (9)</a>
+    </li>
+      
+    <li>
+      <a href="../../../blog/2018.html">2018 (5)</a>
+    </li>
+      
+    <li>
+      <a href="../../../blog/2017.html">2017 (2)</a>
+    </li>
+      
+    <li>
+      <a href="../../../blog/2014.html">2014 (1)</a>
+    </li>
+      
+    <li>
+      <a href="../../../blog/2013.html">2013 (12)</a>
+    </li>
+      
+    <li>
+      <a href="../../../blog/2012.html">2012 (20)</a>
+    </li>
+      
+    <li>
+      <a href="../../../blog/2011.html">2011 (30)</a>
+    </li>
+      
+    <li>
+      <a href="../../../blog/2010.html">2010 (7)</a>
+    </li>
+     
+  </ul>
+</div>
+</div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Miga de pan" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../../index.html" class="nav-link" aria-label="Inicio">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Agregar logo y favicon en Sphinx</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                   <section class="tex2jax_ignore mathjax_ignore" id="agregar-logo-y-favicon-en-sphinx">
+<h1>Agregar logo y favicon en Sphinx<a class="headerlink" href="#agregar-logo-y-favicon-en-sphinx" title="Link to this heading">#</a></h1>
+<p>Un nuevo paso en mi blog, es que decidí dejar una huella de personalización a
+través de un logo, algo sencillo, pero propio, distinto a una imagen descargada
+como lo era antes y que por lo mismo no lo había configurado. Les cuento como
+configurar el logo y el <em>favicon</em> en Sphinx.</p>
+<section id="directorio-de-assets">
+<h2>Directorio de <em>assets</em><a class="headerlink" href="#directorio-de-assets" title="Link to this heading">#</a></h2>
+<p>Para iniciar, requerimos configurar el directorio que usaremos para los archivos
+estáticos de logo y <em>favicon</em>. En nuestro archivo de configuración, <code class="docutils literal notranslate"><span class="pre">conf.py</span></code>,
+vamos a ajustar el valor de la variable <code class="docutils literal notranslate"><span class="pre">html_static_path</span></code> como fue explicado en
+una <a class="reference internal" href="crear-un-blog-con-sphinx.html#sphinx-dir-setup"><span class="std std-ref">publicación anterior</span></a>.</p>
+<p>Este paso es importante sobre todo si alojamos nuestro blog en GitHub, porque el
+valor por defecto al tener como prefijo <code class="docutils literal notranslate"><span class="pre">_</span></code>, no permite que se carguen los
+archivos en el despliegue.</p>
+</section>
+<section id="logo">
+<h2>Logo<a class="headerlink" href="#logo" title="Link to this heading">#</a></h2>
+<p>Bueno, la verdad este punto no tiene nada de extraño, pero dejaré una
+recomendación. Es mejor tener un archivo fuente editable para nuestro logo, de
+tal forma que podamos proceder con ajustes fácilmente. Ejemplo, tenemos la
+versión para temas oscuros, y luego decidimos tener la versión para temas claros
+(en Sphinx con el tema de PyData es posible), podamos hacer estos cambios sin
+rehacer el logo desde cero.</p>
+<p>En mi caso, este logo lo hice con <a class="reference external" href="https://inkscape.org/es/">Inkscape</a> en
+formato vectorial (<code class="docutils literal notranslate"><span class="pre">.svg</span></code>), y lo sincronizo en el
+<a class="reference external" href="https://github.com/cosmoscalibur/cosmoscalibur.github.io/blob/master/static/logo/cosmoscalibur.svg">repositorio también</a>
+y hace parte de los estáticos. Otra recomendación, es tener presente que en
+dimensiones, es preferible que sea más horizontal que vertical, pero su ancho no
+debe ser superior a los 200 pixeles.</p>
+<p>Ahora, vamos a nuestro archivo <code class="docutils literal notranslate"><span class="pre">conf.py</span></code> nuevamente, y allí encontraremos la
+variable <code class="docutils literal notranslate"><span class="pre">html_logo</span></code> la cual asignaremos la ruta relativa al archivo de
+configuración, apuntando a nuestro logo. Ejemplo:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">html_logo</span> <span class="o">=</span> <span class="s1">&#39;static/cosmoscalibur_logo.png&#39;</span>
+</pre></div>
+</div>
+<p>A mi parecer, con la única versión de logo está <em>ok</em>, pero si requieres usar una
+versión por tema, esto es una condición que depende del tema seleccionado y en
+PyData se puede usando las opciones de
+<a class="reference external" href="https://pydata-sphinx-theme.readthedocs.io/en/stable/user_guide/branding.html#different-logos-for-light-and-dark-mode"><code class="docutils literal notranslate"><span class="pre">html_theme_options</span></code></a>.</p>
+<figure class="align-center" id="id1">
+<a class="reference internal image-reference" href="../../../_images/logo-en-sphinx.png"><img alt="Visual del logo agregado en Sphinx en el blog." src="../../../_images/logo-en-sphinx.png" style="width: 800px; height: 250px;" />
+</a>
+<figcaption>
+<p><span class="caption-text">Así vemos ubicado el logo configurado en el blog.</span><a class="headerlink" href="#id1" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="favicon">
+<h2>Favicon<a class="headerlink" href="#favicon" title="Link to this heading">#</a></h2>
+<p>Para el <em>favicon</em> también podemos usar las opciones propias de <em>Sphinx</em> con la
+variable <code class="docutils literal notranslate"><span class="pre">html_favicon</span></code>. Nuestro <em>favicon</em> debe ser de 16 por 16 pixeles, y
+puede ser de formato ICO, PNG, SVG o GIF.</p>
+<p>Debido al tamaño cuadrado del <em>favicon</em>, el cual irá en las pestañas del
+navegador o en los marcadores, es conveniente tener un segundo diseño basado en
+nuestro logo que se adapte a estas dimensiones.</p>
+<p>En nuestro <code class="docutils literal notranslate"><span class="pre">conf.py</span></code> entonces hacemos el ajuste:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">html_logo</span> <span class="o">=</span> <span class="s1">&#39;static/cosmoscalibur_favicon.png&#39;</span>
+</pre></div>
+</div>
+<p>Finalmente, así se ve nuestro <em>favicon</em>.</p>
+<figure class="align-center" id="id2">
+<a class="reference internal image-reference" href="../../../_images/favicon-en-sphinx.png"><img alt="Ícono cuadrado favicon en la pestaña del navegador." src="../../../_images/favicon-en-sphinx.png" style="width: 289px; height: 125px;" />
+</a>
+<figcaption>
+<p><span class="caption-text">Así vemos el <em>favicon</em> en la pestaña del navegador.</span><a class="headerlink" href="#id2" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="referencias">
+<h2>Referencias<a class="headerlink" href="#referencias" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/configuration.html#confval-html_logo">Sphinx - Configuration - HTML logo</a>.</p></li>
+<li><p><a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/configuration.html#confval-html_favicon">Sphinx - Configuration - HTML favicon</a>.</p></li>
+<li><p><a class="reference external" href="https://pydata-sphinx-theme.readthedocs.io/en/stable/user_guide/branding.html">PyData Theme - Branding and logo</a>.</p></li>
+</ul>
+</section>
+</section>
+
+<div class="section ablog__blog_comments">
+     
+<div class="section ablog__prev-next">
+  <span class="ablog__prev">
+      Anterior:
+    
+    <a href="../../../en/blog/2024/agregar-logo-y-favicon-en-sphinx.html">
+      
+      <span>Adding Logo and Favicon to Sphinx</span>
+    </a>
+    
+  </span>
+  <span class="ablog__spacer">&nbsp;</span>
+  <span class="ablog__next">
+      Siguiente: 
+    <a href="../../../en/blog/2024/agregar-google-ads-en-sphinx.html">
+      <span>Adding Google Ads to Sphinx</span>
+      
+    </a>
+    
+  </span>
+</div>
+  
+</div>
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> En esta página
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#directorio-de-assets">Directorio de <em>assets</em></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#logo">Logo</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#favicon">Favicon</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#referencias">Referencias</a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+  <div role="note" aria-label="source link">
+    <h3>Esta página</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../_sources/es/blog/2024/agregar-logo-y-favicon-en-sphinx.md.txt"
+            rel="nofollow">Mostrar el código</a></li>
+    </ul>
+   </div></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2024, Edward Villegas-Pulgarin.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Creado usando <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Construido con el <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html"> Tema PyData Sphinx </a> 0.16.1.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

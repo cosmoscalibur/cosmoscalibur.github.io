@@ -1,0 +1,1190 @@
+
+<!DOCTYPE html>
+
+
+<html lang="es" data-content_root="../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="og:title" content="Creating a blog with Sphinx" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://www.cosmoscalibur.com/en/blog/2024/crear-un-blog-con-sphinx.html" />
+<meta property="og:site_name" content="Cosmoscalibur" />
+<meta property="og:description" content="Finally, I’ve taken the step of restarting my blog, and with it, the migration process that I wanted to undertake. On this process, I’ll be telling you about it in several entries, since the migrat..." />
+<meta property="og:image:width" content="1146" />
+<meta property="og:image:height" content="600" />
+<meta property="og:image" content="https://www.cosmoscalibur.com/_images/social_previews/summary_en_blog_2024_crear-un-blog-con-sphinx_0fe6f7eb.png" />
+<meta property="og:image:alt" content="Finally, I’ve taken the step of restarting my blog, and with it, the migration process that I wanted to undertake. On this process, I’ll be telling you about it in several entries, since the migrat..." />
+<meta name="description" content="Finally, I’ve taken the step of restarting my blog, and with it, the migration process that I wanted to undertake. On this process, I’ll be telling you about it in several entries, since the migrat..." />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:creator" content="@cosmoscalibur" />
+<meta name="fediverse:creator" content="@cosmoscalibur@col.social">
+
+    <title>Creating a blog with Sphinx &#8212; Cosmoscalibur</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../../../_static/documentation_options.js?v=e2bb6099"></script>
+    <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../_static/translations.js?v=f85f4cfb"></script>
+    <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'en/blog/2024/crear-un-blog-con-sphinx';</script>
+    <link rel="canonical" href="https://www.cosmoscalibur.com/en/blog/2024/crear-un-blog-con-sphinx.html" />
+    <link rel="icon" href="../../../_static/cosmoscalibur_favicon.png"/>
+    <link rel="index" title="Índice" href="../../../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../../../search.html" /> 
+
+<!-- TODO: Revisar como hacer que dependa del despliegue en GitHub Pages para no usar en local -->
+<!-- TODO: Usar GitHub Actions para esto -->
+
+<!-- Usado para mostrar publicidad -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-0356238418278924"
+crossorigin="anonymous"></script>
+
+
+<link rel="alternate" hreflang="es" href="https://www.cosmoscalibur.com/es/blog/2024/crear-un-blog-con-sphinx.html" />
+<link rel="alternate" hreflang="en" href="https://www.cosmoscalibur.com/en/blog/2024/crear-un-blog-con-sphinx.html" />
+
+
+ 
+<link
+  rel="alternate"
+  type="application/atom+xml"
+  href="../../../blog/atom.xml"
+  title="Cosmoscalibur"
+/>
+  
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Saltar al contenido principal</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Volver arriba</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Advertencia de versión"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Navegación del sitio">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../_static/cosmoscalibur_logo.png" class="logo__image only-light" alt="Cosmoscalibur - Home"/>
+    <img src="../../../_static/cosmoscalibur_logo.png" class="logo__image only-dark pst-js-only" alt="Cosmoscalibur - Home"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../es/me/index.html">
+    Edward Villegas
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+<div class="navbar-nav">
+  <a class="nav-link" href="../../../es/blog/2024/crear-un-blog-con-sphinx.html" title="Español">
+    🌐 Español
+  </a>
+</div>
+</div>
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Tema" data-bs-title="Tema"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Claro"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Oscuro"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="Sistema"></i>
+</button></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/cosmoscalibur/" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/cosmoscalibur" title="Twitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-twitter fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Twitter</span></a>
+        </li>
+        <li class="nav-item">
+            
+          
+            
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://col.social/@cosmoscalibur" title="Mastodon" class="nav-link pst-navbar-icon" rel="me" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-mastodon fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Mastodon</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="En esta página">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../es/me/index.html">
+    Edward Villegas
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+<div class="navbar-nav">
+  <a class="nav-link" href="../../../es/blog/2024/crear-un-blog-con-sphinx.html" title="Español">
+    🌐 Español
+  </a>
+</div>
+</div>
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Tema" data-bs-title="Tema"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Claro"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Oscuro"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="Sistema"></i>
+</button></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/cosmoscalibur/" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/cosmoscalibur" title="Twitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-twitter fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Twitter</span></a>
+        </li>
+        <li class="nav-item">
+            
+          
+            
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://col.social/@cosmoscalibur" title="Mastodon" class="nav-link pst-navbar-icon" rel="me" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-mastodon fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Mastodon</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<div class="ablog-sidebar-item ablog__postcard">
+   
+  <h2>
+     
+    <span>2024-05-16</span>
+    
+  </h2>
+  <ul>
+    <div class="ablog-sidebar-item ablog__postcard2">
+   
+  <li id="ablog-sidebar-item author ablog__author">
+    <span>
+       Autor: 
+    </span>
+     
+    <a href="../../../blog/author/edward-villegas-pulgarin.html">Edward Villegas-Pulgarin</a>
+      
+  </li>
+    
+  <li id="ablog-sidebar-item language ablog__language">
+    <span>
+       Idioma: 
+    </span>
+     
+    <a href="../../../blog/language/english.html">English</a>
+      
+  </li>
+   
+  <li id="ablog-sidebar-item category ablog__category">
+    <span>
+       Categoría: 
+    </span>
+     
+    <a href="../../../blog/category/technology.html">technology</a>
+     ,    
+    <a href="../../../blog/category/blogging-with-sphinx.html">blogging with sphinx</a>
+      
+  </li>
+   
+  <li id="ablog-sidebar-item tags ablog__tags">
+    <span>
+        Etiquetas:  
+    </span>
+     
+    <a href="../../../blog/tag/python.html">python</a>
+        
+    <a href="../../../blog/tag/ablog.html">ablog</a>
+        
+    <a href="../../../blog/tag/sphinx.html">sphinx</a>
+        
+    <a href="../../../blog/tag/static-site-generators.html">static site generators</a>
+      
+  </li>
+   
+</div>
+  </ul>
+</div>
+</div>
+        <div class="sidebar-primary-item">
+<div class="ablog-sidebar-item ablog__recentposts">
+  <h3>
+    <a href="../../../blog.html">Entradas recientes</a>
+  </h3>
+  <ul>
+     
+    <li>
+      <a href="../../../es/blog/2026/error-de-autenticacion-en-antigravity-y-ampcode-en-windows.html">
+        2026-02-21 - Error de autenticación en Antigravity y AmpCode en Windows
+      </a>
+    </li>
+    
+    <li>
+      <a href="../2026/error-de-autenticacion-en-antigravity-y-ampcode-en-windows.html">
+        2026-02-21 - Authentication Error in Antigravity and AmpCode on Windows
+      </a>
+    </li>
+    
+    <li>
+      <a href="../../../es/blog/2026/herramientas-de-ia-gratuita-para-desarrolladores-en-2026.html">
+        2026-01-18 - Herramientas de IA gratuita para desarrolladores en 2026
+      </a>
+    </li>
+    
+    <li>
+      <a href="../2026/herramientas-de-ia-gratuita-para-desarrolladores-en-2026.html">
+        2026-01-18 - Free AI Tools for Developers in 2026
+      </a>
+    </li>
+    
+    <li>
+      <a href="../2025/buscando-el-mejor-cliente-de-mastodon-para-android.html">
+        2025-10-08 - Finding the Best Mastodon Client for Android
+      </a>
+    </li>
+    
+  </ul>
+</div>
+</div>
+        <div class="sidebar-primary-item">
+<div class="ablog-sidebar-item ablog__archives">
+  <h3>
+    <a href="../../../blog/archive.html">Archivos</a>
+  </h3>
+  <ul>
+     
+    <li>
+      <a href="../../../blog/2026.html">2026 (4)</a>
+    </li>
+      
+    <li>
+      <a href="../../../blog/2025.html">2025 (22)</a>
+    </li>
+      
+    <li>
+      <a href="../../../blog/2024.html">2024 (35)</a>
+    </li>
+      
+    <li>
+      <a href="../../../blog/2021.html">2021 (2)</a>
+    </li>
+      
+    <li>
+      <a href="../../../blog/2020.html">2020 (21)</a>
+    </li>
+      
+    <li>
+      <a href="../../../blog/2019.html">2019 (9)</a>
+    </li>
+      
+    <li>
+      <a href="../../../blog/2018.html">2018 (5)</a>
+    </li>
+      
+    <li>
+      <a href="../../../blog/2017.html">2017 (2)</a>
+    </li>
+      
+    <li>
+      <a href="../../../blog/2014.html">2014 (1)</a>
+    </li>
+      
+    <li>
+      <a href="../../../blog/2013.html">2013 (12)</a>
+    </li>
+      
+    <li>
+      <a href="../../../blog/2012.html">2012 (20)</a>
+    </li>
+      
+    <li>
+      <a href="../../../blog/2011.html">2011 (30)</a>
+    </li>
+      
+    <li>
+      <a href="../../../blog/2010.html">2010 (7)</a>
+    </li>
+     
+  </ul>
+</div>
+</div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Miga de pan" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../../index.html" class="nav-link" aria-label="Inicio">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Creating a blog with Sphinx</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                   <section class="tex2jax_ignore mathjax_ignore" id="creating-a-blog-with-sphinx">
+<h1>Creating a blog with Sphinx<a class="headerlink" href="#creating-a-blog-with-sphinx" title="Link to this heading">#</a></h1>
+<p>Finally, I’ve taken the step of restarting my blog, and with it, the migration
+process that I wanted to undertake. On this process, I’ll be telling you about
+it in several entries, since the migration isn’t complete yet, and this is the
+first entry regarding this topic, covering the basics so you don’t fail on your
+attempt.</p>
+<section id="why-sphinx">
+<h2>Why Sphinx?<a class="headerlink" href="#why-sphinx" title="Link to this heading">#</a></h2>
+<p>Sphinx is a static documentation generator that is almost the standard for
+projects developed in Python, and has a good number of extensions that support
+this generator, including even one that converts your project into a blog,
+called Ablog.</p>
+<p>Since my primary programming language is Python, it’s clear why I want an option
+based on Python. However, before I used Nikola, which is also developed in
+Python but has Sphinx with a larger and more active community (including users
+and developers). Additionally, the development of Sphinx and its extensions is
+aligned with changes in the ecosystem and aligns with docutils directives. Given
+the recent changes in the ecosystem, I find it interesting how Sphinx supports
+Jupyter Notebooks and Myst, which results in code entries having a benefit, and
+Myst expands on Markdown options (and is not supported well enough by Nikola or
+other generators I reviewed).</p>
+<p>Also, I’ve been more familiar with
+<a class="reference internal" href="../2020/crear-documentacion-de-un-proyecto-python-con-sphinx.html"><span class="std std-doc">Sphinx</span></a>,
+but at the moment when I switched to a static generator, it wasn’t very
+well-known, but now it has attracted a larger community with MyST support.</p>
+</section>
+<section id="creating-the-blog">
+<h2>Creating the blog<a class="headerlink" href="#creating-the-blog" title="Link to this heading">#</a></h2>
+<p>Alright, let’s get started. We’ll follow the step-by-step process.</p>
+<section id="dependencies">
+<h3>Dependencies<a class="headerlink" href="#dependencies" title="Link to this heading">#</a></h3>
+<p>We will use Sphinx for static content generation and Ablog will allow us to
+include tags for dates, which is the essential difference between pages and
+publications (and with that, options for filtering indices).</p>
+<p>Regarding appearance, we can find different themes, but I have inclined towards
+PyData (since several blogs that I follow use it, so I’ve seen its result and
+want to dig deeper into how it’s used). Additionally, it’s a good idea to add
+Sphinx Design to add additional components such as grids, tabs, cards, and
+others.</p>
+<p>Without a doubt (and although I used it in Nikola), having YouTube videos is
+necessary, so we need to have Sphinx Contrib Youtube installed.</p>
+<p>Although for sharing on social media we don’t need anything special, having the
+right metadata generation will help with better indexing and previewing. To this
+end, we’ll use Sphinx Ext OpenGraph (which not only includes the OpenGraph
+protocol but also an extra tag for <em>Twitter Card</em>). In this case, we have a
+detail to mention, and it’s that generating images shared (since by default it
+doesn’t use the first image of the post and there isn’t always one) requires
+installing Matplotlib.</p>
+<p>Finally, to support Markdown, we’ll use Myst Parser. It’s interesting that in
+the extension with Myst NB, we’ll get support for generating publications in
+Notebook using MystMd (so we’ll also install Jupyterlab). This is something I
+love because it will be natural to publish notes on code with their results.</p>
+<p>Sitemap generates the site map, although to use it with the desired
+internationalization scheme, I’ll have to modify it in the future.</p>
+<p>Copy button will help us create the option to copy the code blocks to the
+clipboard.</p>
+<p>With these details, our file <code class="file docutils literal notranslate"><span class="pre">requirements.txt</span></code> will look like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Static site generation and theme</span>
+<span class="n">sphinx</span>
+<span class="n">ablog</span>
+<span class="n">pydata</span><span class="o">-</span><span class="n">sphinx</span><span class="o">-</span><span class="n">theme</span>
+
+<span class="c1"># Components</span>
+<span class="n">sphinx</span><span class="o">-</span><span class="n">design</span>
+<span class="n">sphinx</span><span class="o">-</span><span class="n">copybutton</span>
+<span class="n">sphinxcontrib</span><span class="o">-</span><span class="n">youtube</span>
+
+<span class="c1"># Metadata</span>
+<span class="n">sphinxext</span><span class="o">-</span><span class="n">opengraph</span>
+<span class="n">matplotlib</span>
+<span class="n">sphinx</span><span class="o">-</span><span class="n">sitemap</span>
+
+<span class="c1"># Markdown, MyST and Notebook support</span>
+<span class="n">myst</span><span class="o">-</span><span class="n">parser</span>
+<span class="n">jupyterlab</span>
+<span class="n">jupyterlab_myst</span>
+<span class="n">myst</span><span class="o">-</span><span class="n">nb</span>
+</pre></div>
+</div>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text">Optionals</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">Not everything is about automatic content generation, we also need support
+while writing. So, we can install doc8, rstcheck, and esbonio, for validating
+our <code class="file docutils literal notranslate"><span class="pre">.rst</span></code> files and Jupyterlab Myst, to help with rendering in the
+Notebook as we draft.</p>
+<p class="sd-card-text">With that, we can have our <code class="docutils literal notranslate"><span class="pre">requirements-dev.txt</span></code> file like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">jupyterlab_myst</span>
+<span class="n">rstcheck</span>
+<span class="n">doc8</span>
+<span class="n">esbonio</span>
+</pre></div>
+</div>
+<p class="sd-card-text">If we also use VSCode, it’s worth installing the following extensions:</p>
+<ul class="simple">
+<li><p class="sd-card-text">MyST-Markdown: For editing MystMD</p></li>
+<li><p class="sd-card-text">Esbonio: For editing RST</p></li>
+<li><p class="sd-card-text">reStructuredText (lexstudio): For editing RST</p></li>
+<li><p class="sd-card-text">Jupyter: To manipulate notebooks</p></li>
+<li><p class="sd-card-text">Emoji: To insert emojis with the command palette 😀</p></li>
+<li><p class="sd-card-text">Spell Right: For spelling correction</p></li>
+<li><p class="sd-card-text">Font Awesome Gallery: To find the notation for Font Awesome icons if you plan
+to use them (it has a significant impact on page load time).</p></li>
+</ul>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text">Extras</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">Well, here are some extensions that might be useful, but weren’t for me:</p>
+<ul class="simple">
+<li><p class="sd-card-text">sphinxext-rediraffe: It’s definitely worth having around. This extension is
+highly recommended for making redirects. In my case, I don’t need advanced
+options yet, so I’m good with the redirect option from <code class="docutils literal notranslate"><span class="pre">:redirect:</span></code> in
+publication posts.</p></li>
+<li><p class="sd-card-text">sphinx-intl: Helps with internationalization. However, I don’t think it’s
+suitable for projects like a blog, where not all entries necessarily have
+translations or may require context that makes translation incomplete. I find
+it more suitable for documentation rather than a blog.</p></li>
+</ul>
+</div>
+</details></section>
+<section id="ablog-configuration">
+<h3>ABlog configuration<a class="headerlink" href="#ablog-configuration" title="Link to this heading">#</a></h3>
+<p>You can use <code class="docutils literal notranslate"><span class="pre">ablog</span> <span class="pre">start</span></code> and respond to the basic initialization questions.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="n">Root</span> <span class="n">path</span> <span class="k">for</span> <span class="n">your</span> <span class="n">project</span> <span class="p">(</span><span class="n">path</span> <span class="n">has</span> <span class="n">to</span> <span class="n">exist</span><span class="p">)</span> <span class="p">[</span><span class="o">.</span><span class="p">]:</span>
+<span class="o">&gt;</span> <span class="n">Project</span> <span class="n">name</span><span class="p">:</span> <span class="n">Cosmoscalibur</span>
+<span class="o">&gt;</span> <span class="n">Author</span> <span class="n">name</span><span class="p">(</span><span class="n">s</span><span class="p">):</span> <span class="n">Edward</span> <span class="n">Villegas</span><span class="o">-</span><span class="n">Pulgarin</span>
+<span class="o">&gt;</span> <span class="n">Base</span> <span class="n">URL</span> <span class="k">for</span> <span class="n">your</span> <span class="n">project</span><span class="p">:</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">www</span><span class="o">.</span><span class="n">cosmoscalibur</span><span class="o">.</span><span class="n">com</span><span class="o">/</span>
+</pre></div>
+</div>
+<p>Since GitHub Pages can only use the <code class="docutils literal notranslate"><span class="pre">docs/</span></code> directory for static sites, it’s
+convenient to set the root directory of the project to be the root directory of
+the repository (if you’re using a Git repository) so that the output directory
+is at this level.</p>
+<p>Regarding the project name, by default it will include the word “<em>blog</em>” at the
+end of the name we provide (in English, it would be perfect). However, we also
+find that the HTML file contains a mention of “<em>documentation</em>”, which is not
+suitable for our blog. We’ll adjust this in the following variables:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">project</span> <span class="o">=</span> <span class="s1">&#39;Cosmoscalibur&#39;</span>
+<span class="n">blog_title</span> <span class="o">=</span> <span class="s1">&#39;Cosmoscalibur&#39;</span>
+<span class="n">html_title</span> <span class="o">=</span> <span class="s1">&#39;Cosmoscalibur&#39;</span>
+<span class="n">html_short_title</span> <span class="o">=</span> <span class="s1">&#39;Cosmoscalibur&#39;</span>
+</pre></div>
+</div>
+<p>Regarding the theme, by default Ablog sets up Alabaster, but as I mentioned
+earlier, we will use the PyData theme and can remove Alabaster from the <code class="docutils literal notranslate"><span class="pre">import</span></code>
+block.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">html_theme</span> <span class="o">=</span> <span class="s1">&#39;pydata_sphinx_theme&#39;</span>
+</pre></div>
+</div>
+<p>To include OpenGraph metadata, we’ll add the base URL and can also add custom
+brands. As a result, I’ll be able to include my Twitter creator card (now known
+as X), and the type specification will default to <code class="docutils literal notranslate"><span class="pre">summary_large_image</span></code> (this
+setting doesn’t seem to be customizable).</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ogp_site_url</span> <span class="o">=</span> <span class="s1">&#39;https://www.cosmoscalibur.com&#39;</span>
+<span class="n">ogp_custom_meta_tags</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;&lt;meta name=&quot;twitter:creator&quot; content=&quot;@cosmoscalibur&quot; /&gt;&#39;</span><span class="p">,</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<p>To configure the default language, we use the corresponding variable with the
+ISO code of the language (in my case, <code class="docutils literal notranslate"><span class="pre">es</span></code> from spanish).</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">language</span> <span class="o">=</span> <span class="s1">&#39;es&#39;</span>
+</pre></div>
+</div>
+<p>In my case, spanish is my native language, but I plan to post some content in
+English occasionally. That’s why I’ll be setting up an internationalization
+pattern for the blog using the format <code class="docutils literal notranslate"><span class="pre">&lt;lang&gt;/blog/&lt;year&gt;/&lt;post&gt;</span></code>, so that by
+changing just the <code class="docutils literal notranslate"><span class="pre">&lt;lang&gt;</span></code> segment, you can access the version in another
+language.</p>
+<p>This affects the <code class="docutils literal notranslate"><span class="pre">blog_path_pattern</span></code> variable, which allows defining the URL
+pattern to automatically recognize and display publications (no need to add a
+tag). Additionally, I’ll need to define a route for the publication archive.</p>
+<div class="highlight-python notranslate" id="blog-conf-en"><div class="highlight"><pre><span></span><span class="n">blog_path</span> <span class="o">=</span> <span class="s1">&#39;blog&#39;</span>
+<span class="n">blog_post_pattern</span> <span class="o">=</span> <span class="s1">&#39;*/blog/*/*&#39;</span>
+</pre></div>
+</div>
+<p>We also need to set up other directories and files. For ease of use with GitHub
+Pages, we’ll remove the underscore from the directories destined for static
+assets and templates (by default they’re ignored if they start with this
+notation). We’ll also add a special directory that will allow us to add files
+directly to the root deployment (for example, to add the CNAME file).</p>
+<p>It’s important to note that for GitHub Pages generation, the output directory
+must be <code class="file docutils literal notranslate"><span class="pre">docs</span></code>.</p>
+<p>Finally, we need to define the configuration variables in <code class="file docutils literal notranslate"><span class="pre">conf.py</span></code>.</p>
+<div class="highlight-python notranslate" id="sphinx-dir-setup-en"><div class="highlight"><pre><span></span><span class="n">templates_path</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;templates&#39;</span><span class="p">]</span>
+<span class="n">html_static_path</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;static&#39;</span><span class="p">]</span>
+<span class="n">html_extra_path</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;files&#39;</span><span class="p">]</span>
+<span class="n">ablog_website</span> <span class="o">=</span> <span class="s1">&#39;docs&#39;</span>
+</pre></div>
+</div>
+<p>Now we’ll define the files that shouldn’t be processed. This is important
+because when the Sphinx directory is at the same level as the repository
+directory, all files are seen. Additionally, there are generated Sphinx files
+that if not removed, will attempt to be processed in a subsequent deployment.</p>
+<div class="highlight-python notranslate" id="exclude-files-en"><div class="highlight"><pre><span></span><span class="n">exclude_patterns</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;_build&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;***/.ipynb_checkpoints/*&quot;</span><span class="p">,</span>
+    <span class="s1">&#39;Pipfile&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;LICENSE&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;README.md&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;requirements*.txt&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;.vscode&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;.venv&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;docs&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;.doctrees&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;.gitignore&#39;</span><span class="p">,</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<p>To enable the extensions we’re going to use, we need to list them in
+<code class="docutils literal notranslate"><span class="pre">extensions</span></code>. A detail is that although we have installed Myst Parser, we aren’t
+adding it explicitly because it’s already defined within Myst NB.</p>
+<p>Some errors are caused by this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">WARNING</span><span class="p">:</span> <span class="k">while</span> <span class="n">setting</span> <span class="n">up</span> <span class="n">extension</span> <span class="n">myst_nb</span><span class="p">:</span> <span class="n">role</span> <span class="s1">&#39;sub-ref&#39;</span> <span class="ow">is</span> <span class="n">already</span> <span class="n">registered</span><span class="p">,</span> <span class="n">it</span> <span class="n">will</span> <span class="n">be</span> <span class="n">overridden</span>
+<span class="n">WARNING</span><span class="p">:</span> <span class="k">while</span> <span class="n">setting</span> <span class="n">up</span> <span class="n">extension</span> <span class="n">myst_nb</span><span class="p">:</span> <span class="n">directive</span> <span class="s1">&#39;figure-md&#39;</span> <span class="ow">is</span> <span class="n">already</span> <span class="n">registered</span><span class="p">,</span> <span class="n">it</span> <span class="n">will</span> <span class="n">be</span> <span class="n">overridden</span>
+<span class="n">Extension</span> <span class="n">error</span><span class="p">:</span>
+<span class="n">Config</span> <span class="n">value</span> <span class="s1">&#39;myst_commonmark_only&#39;</span> <span class="n">already</span> <span class="n">present</span>
+<span class="o">---</span>
+<span class="n">source_suffix</span> <span class="s1">&#39;.md&#39;</span> <span class="ow">is</span> <span class="n">already</span> <span class="n">registered</span>
+</pre></div>
+</div>
+<p>Thus, we can define:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">extensions</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;sphinx.ext.extlinks&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;sphinx.ext.intersphinx&#39;</span><span class="p">,</span>
+    <span class="s2">&quot;myst_nb&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;sphinx_design&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;sphinxext.opengraph&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;sphinxcontrib.youtube&quot;</span><span class="p">,</span>
+    <span class="s1">&#39;ablog&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;sphinx_sitemap&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;sphinx_copybutton&#39;</span><span class="p">,</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<p>The first two cases we’ve enabled are default extensions that will help us
+shorten URL notation and make convenient links to other Sphinx projects (we’ll
+review this in future entries).</p>
+<p>Now that we have Myst NB enabled, we can remove the line from <code class="docutils literal notranslate"><span class="pre">source_suffix</span></code>
+because it’s configured by the extension, and the default value prevents
+Markdown files from being compiled.</p>
+<p>Regarding Myst options, we’re going to enable several extensions that will allow
+us to use directives more easily (not using backticks), make substitutions, and
+enable dollar signs for equations. Additionally, we’ll create references
+(<code class="docutils literal notranslate"><span class="pre">targets</span></code>) for titles up to three levels deep (h1, h2, and h3). We can also add
+tags more easily in blocks or lines, substitute with Jinja2, definition blocks,
+replacements, or task lists. I’m omitting <code class="docutils literal notranslate"><span class="pre">linkify</span></code> as it doesn’t seem
+particularly useful.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">myst_enable_extensions</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;amsmath&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;attrs_inline&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;colon_fence&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;deflist&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;dollarmath&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;fieldlist&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;html_admonition&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;html_image&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;replacements&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;smartquotes&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;strikethrough&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;substitution&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;tasklist&quot;</span><span class="p">,</span>
+<span class="p">]</span>
+<span class="n">myst_heading_anchors</span> <span class="o">=</span> <span class="mi">3</span>
+</pre></div>
+</div>
+<p>Similarly, I hope that in the table of contents on the right, third-level titles
+will be displayed. To do this, we need to adjust the theme configurations.</p>
+<p>Our Google Analytics identifier is also available in this same section (PyData
+also supports Plausible).</p>
+<p>We can also add our Twitter and GitHub links to the theme configuration.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">html_theme_options</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;show_toc_level&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="s1">&#39;twitter_url&#39;</span><span class="p">:</span> <span class="s1">&#39;https://twitter.com/cosmoscalibur&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;github_url&#39;</span><span class="p">:</span> <span class="s1">&#39;https://github.com/cosmoscalibur/&#39;</span><span class="p">,</span>
+<span class="p">}</span>
+<span class="n">html_theme_options</span><span class="p">[</span><span class="s1">&#39;analytics&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;google_analytics_id&#39;</span><span class="p">:</span> <span class="s1">&#39;G-4YFQBC69LB&#39;</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>We have separated the <code class="docutils literal notranslate"><span class="pre">analytics</span></code> line to easily disable it in testing, so that
+it doesn’t affect metrics. Later, we want to make this happen with automatic
+deployment on GitHub Actions and dependent on an environment variable.</p>
+<p>Regarding sidebar panels, we are doing the following configuration at the
+moment:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">html_sidebars</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;index&#39;</span><span class="p">:</span> <span class="p">[],</span>
+    <span class="s2">&quot;blog&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;ablog/categories.html&quot;</span><span class="p">,</span> <span class="s2">&quot;ablog/archives.html&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;*/blog/**&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;ablog/postcard.html&quot;</span><span class="p">,</span> <span class="s2">&quot;ablog/recentposts.html&quot;</span><span class="p">,</span> <span class="s2">&quot;ablog/archives.html&quot;</span><span class="p">],</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Don’t worry, I’ll explain it in another entry. For now, I’ll take one by
+default, since these panels need to be customized and we need to do HTML, so
+that I can think carefully about what to put when they’re not blog posts (where
+the provided cases seem perfect to me).</p>
+<p>We can also include icons from <em>Font Awesome</em>, but keep in mind that it may have
+a significant impact on the site’s load time, as this is not optimized. In my
+case, when testing, I see that it is the biggest penalty to page loads at the
+level of scripts.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">fontawesome_included</span> <span class="o">=</span> <span class="kc">True</span>
+</pre></div>
+</div>
+<p>I must say that I don’t like the idea of enabling the display of source code
+from the publication on the site itself, because it generates duplication of
+files in the output directory, copying them. If someone wants to see the code, I
+consider the repository for that purpose, unfortunately, disabling it would
+still cause duplication, so I’ll leave it enabled (if I find a way to remove the
+duplicates, I’ll disable it).</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">html_show_sourcelink</span> <span class="o">=</span> <span class="kc">True</span>
+</pre></div>
+</div>
+<p>Now, the configuration for publications. We need to define the format of the
+date stamp now, and we can set it at will (but it must be consistent with this
+option across all publications). We can also specify how many paragraphs will be
+used in the description and which image to consider for previewing. Finally, if
+there’s any redirection involved, the time in seconds for its execution.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">post_date_format</span> <span class="o">=</span> <span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">&#39;</span>
+<span class="n">post_date_format_short</span> <span class="o">=</span> <span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">&#39;</span>
+<span class="n">post_auto_excerpt</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">post_auto_image</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">post_redirect_refresh</span> <span class="o">=</span> <span class="mi">0</span>
+</pre></div>
+</div>
+<p>Now we’re going to enable full-text content for the <em>feeds</em> so they can be
+consumed in their entirety by readers of this format.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">blog_feed_fulltext</span> <span class="o">=</span> <span class="kc">True</span>
+</pre></div>
+</div>
+<p>It’s essential to configure our sitemap generation to assist search engines.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">sitemap_url_scheme</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{link}</span><span class="s1">&#39;</span>
+<span class="n">html_baseurl</span> <span class="o">=</span> <span class="s1">&#39;https://www.cosmoscalibur.com/&#39;</span>
+</pre></div>
+</div>
+<p>Finally, and although it’s not the last thing I plan to configure (but will be
+covered in another entry), let’s talk about comments via Disqus (although I’m
+considering changing it, but that will also be a topic for another entry).</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">disqus_shortname</span> <span class="o">=</span> <span class="s1">&#39;XXXXXXX&#39;</span>
+</pre></div>
+</div>
+</section>
+<section id="additional-files-and-directories">
+<h3>Additional Files and Directories<a class="headerlink" href="#additional-files-and-directories" title="Link to this heading">#</a></h3>
+<p>Within the configuration (<code class="file docutils literal notranslate"><span class="pre">conf.py</span></code>), we added the <code class="file docutils literal notranslate"><span class="pre">files</span></code>
+directory. This allows us to directly add files to the root directory of our
+generated site. This is important because some validations require files in this
+position, such as:</p>
+<ul class="simple">
+<li><p><code class="file docutils literal notranslate"><span class="pre">CNAME</span></code>: For the validation of our domain name.</p></li>
+<li><p><code class="file docutils literal notranslate"><span class="pre">.nokekyll</span></code>: To tell GitHub that we’re using Jekyll for compilation. If
+we don’t do this, directories and files starting with a hyphen are ignored.</p></li>
+<li><p>Google Site verification file: to demonstrate domain ownership to Google.</p></li>
+<li><p>Other ownership verification files.</p></li>
+<li><p>The <code class="file docutils literal notranslate"><span class="pre">robots.txt</span></code> file.</p></li>
+</ul>
+<p>Additionally, if you use a directory at the root level of your repository, it
+will become available here. This is my case with the <code class="file docutils literal notranslate"><span class="pre">images</span></code> directory
+for the images I use.</p>
+</section>
+<section id="first-post">
+<h3>First Post<a class="headerlink" href="#first-post" title="Link to this heading">#</a></h3>
+<p>Ablog helped us generate some demonstration files during initialization. You can
+edit and customize them as you see fit.</p>
+<p>The case of <code class="file docutils literal notranslate"><span class="pre">index.rst</span></code> requires that it be placed in the generated
+location for project compilation.</p>
+<p>It also created a default publication, which we can move to our
+<code class="file docutils literal notranslate"><span class="pre">es/blog/2024</span></code> directory (based on the year of creation) and edit there.</p>
+<p>Keep in mind that the first-level heading is the title of the publication. In
+other generators, titles are added as part of a directive. Since we’ve already
+configured the route pattern for publications and are following it, we don’t
+need to add directives but rather the front matter, such as:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-0">
+RST</label><div class="sd-tab-content docutils">
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="nc">:redirect:</span> blog/configurar-retroarch-en-steam
+<span class="nc">:date:</span> 2021-12-14
+<span class="nc">:tags:</span> steam, retroarch, libretro, gaming, linux, controles, videojuegos, emuladores
+<span class="nc">:category:</span> tecnología/videojuegos
+<span class="nc">:author:</span> Edward Villegas-Pulgarin
+<span class="nc">:language:</span> es
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-1" name="sd-tab-set-0" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-1">
+MD</label><div class="sd-tab-content docutils">
+<div class="highlight-md notranslate"><div class="highlight"><pre><span></span>---
+date: 2024-05-14
+tags: blog, sphinx, python, ablog, pydata
+category: tecnología
+author: Edward Villegas-Pulgarin
+<span class="gu">language: es</span>
+<span class="gu">---</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The syntax of Markdown and ReStructuredText is available for you to consult.
+It’s not difficult.</p>
+<p>In my case, I am the only author of the blog and in general, I will publish in
+Spanish, so it’s worth defining the author and default language in the
+<code class="file docutils literal notranslate"><span class="pre">conf.py</span></code> file.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">blog_default_author</span> <span class="o">=</span> <span class="s1">&#39;Edward&#39;</span>
+<span class="n">blog_authors</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;Edward&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s1">&#39;Edward Villegas-Pulgarin&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+<span class="p">}</span>
+<span class="n">blog_default_language</span> <span class="o">=</span> <span class="s1">&#39;es&#39;</span>
+<span class="n">blog_languages</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;es&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s1">&#39;Español&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+    <span class="s1">&#39;en&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s1">&#39;English&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="blog-generation">
+<h3>Blog Generation<a class="headerlink" href="#blog-generation" title="Link to this heading">#</a></h3>
+<p>We’re ready, so let’s generate the site.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ablog<span class="w"> </span>clean<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>ablog<span class="w"> </span>build<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>ablog<span class="w"> </span>serve
+</pre></div>
+</div>
+<p>The part of <code class="docutils literal notranslate"><span class="pre">ablog</span> <span class="pre">clean</span></code> is necessary if we want a full rebuild, as it clears
+the temporary files generated to avoid recompiling everything. With
+<code class="docutils literal notranslate"><span class="pre">ablog</span> <span class="pre">serve</span></code>, the browser will open and we can explore.</p>
+<p>Now, add, commit and push to your GitHub repo (or any host).</p>
+</section>
+</section>
+<section id="whats-the-next">
+<h2>What’s the next?<a class="headerlink" href="#whats-the-next" title="Link to this heading">#</a></h2>
+<p>Well, I’ll tell you that now the blog posting process will continue. However,
+there’s still some exploration left to do.</p>
+<p>As for me, here are some details I want to work on soon:</p>
+<ul class="simple">
+<li><p>A Google-based search bar.</p></li>
+<li><p>Manual internationalization support based on directory, rather than using
+<code class="file docutils literal notranslate"><span class="pre">.pot</span></code>.</p></li>
+<li><p>Support for sitemaps with internationalization, following the previous scheme.</p></li>
+<li><p>Linking to external resources beyond just GitHub and Twitter (e.g. Mastodon).</p></li>
+</ul>
+</section>
+<section id="references">
+<h2>References<a class="headerlink" href="#references" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://chrisholdgraf.com/blog/2020/sphinx-blogging/">Sphinx blogging</a></p></li>
+<li><p><a class="reference external" href="https://chrisholdgraf.com/blog/2022/sphinx-redirects-folder/">Sphinx Redirects Folder</a></p></li>
+<li><p><a class="reference external" href="https://www.errbufferoverfl.me/posts/2020/sphinx-blog/">Sphinx blog</a></p></li>
+<li><p><a class="reference external" href="https://www.errbufferoverfl.me/posts/2020/sphinx-blog-part-one/">Sphinx blog part one</a></p></li>
+<li><p><a class="reference external" href="https://pydata-sphinx-theme.readthedocs.io/">PyData Sphinx Theme</a></p></li>
+<li><p><a class="reference external" href="https://ablog.readthedocs.io/en/stable/manual/ablog-quick-start.html">Ablog</a></p></li>
+<li><p><a class="reference external" href="https://jdsalaro.com/cheatsheet/sphinx-myst-markdown/">Sphinx Myst Markdown</a></p></li>
+<li><p><a class="reference external" href="https://myst-parser.readthedocs.io/en/latest/">Myst Parser</a></p></li>
+<li><p><a class="reference external" href="https://adriaanrol.com/posts/2023/sphinx_migration/">Migrating the website to Sphinx + ABlog</a></p></li>
+<li><p><a class="reference external" href="https://dailystuff.nl/blog/2021/migration-to-cloudflare-pages">Migration to Cloudflare Pages</a></p></li>
+</ul>
+</section>
+</section>
+
+<div class="section ablog__blog_comments">
+     
+<div class="section ablog__prev-next">
+  <span class="ablog__prev">
+      Anterior:
+    
+    <a href="../../../es/blog/2024/crear-un-blog-con-sphinx.html">
+      
+      <span>Crear un blog con Sphinx</span>
+    </a>
+    
+  </span>
+  <span class="ablog__spacer">&nbsp;</span>
+  <span class="ablog__next">
+      Siguiente: 
+    <a href="../../../es/blog/2024/configurar-segundo-teclado-en-linux.html">
+      <span>Configurar segundo teclado en Linux</span>
+      
+    </a>
+    
+  </span>
+</div>
+  
+</div>
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> En esta página
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-sphinx">Why Sphinx?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-the-blog">Creating the blog</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dependencies">Dependencies</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ablog-configuration">ABlog configuration</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-files-and-directories">Additional Files and Directories</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#first-post">First Post</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#blog-generation">Blog Generation</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#whats-the-next">What’s the next?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+  <div role="note" aria-label="source link">
+    <h3>Esta página</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../_sources/en/blog/2024/crear-un-blog-con-sphinx.md.txt"
+            rel="nofollow">Mostrar el código</a></li>
+    </ul>
+   </div></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2024, Edward Villegas-Pulgarin.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Creado usando <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Construido con el <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html"> Tema PyData Sphinx </a> 0.16.1.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

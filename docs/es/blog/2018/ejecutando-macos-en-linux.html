@@ -1,0 +1,881 @@
+
+<!DOCTYPE html>
+
+
+<html lang="es" data-content_root="../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="og:title" content="Ejecutando macOS en Linux" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://www.cosmoscalibur.com/es/blog/2018/ejecutando-macos-en-linux.html" />
+<meta property="og:site_name" content="Cosmoscalibur" />
+<meta property="og:description" content="Debo admitirlo, no me gusta Mac y sigue sin gustarme, pero en múltiples ocasiones se hace necesario poder disponer de un Mac al igual que de un Windows para efectos de pruebas o de correr software ..." />
+<meta property="og:image:width" content="1146" />
+<meta property="og:image:height" content="600" />
+<meta property="og:image" content="https://www.cosmoscalibur.com/_images/social_previews/summary_es_blog_2018_ejecutando-macos-en-linux_3ef27dbf.png" />
+<meta property="og:image:alt" content="Debo admitirlo, no me gusta Mac y sigue sin gustarme, pero en múltiples ocasiones se hace necesario poder disponer de un Mac al igual que de un Windows para efectos de pruebas o de correr software ..." />
+<meta name="description" content="Debo admitirlo, no me gusta Mac y sigue sin gustarme, pero en múltiples ocasiones se hace necesario poder disponer de un Mac al igual que de un Windows para efectos de pruebas o de correr software ..." />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:creator" content="@cosmoscalibur" />
+<meta name="fediverse:creator" content="@cosmoscalibur@col.social">
+
+    <title>Ejecutando macOS en Linux &#8212; Cosmoscalibur</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../../../_static/documentation_options.js?v=e2bb6099"></script>
+    <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../_static/translations.js?v=f85f4cfb"></script>
+    <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'es/blog/2018/ejecutando-macos-en-linux';</script>
+    <link rel="canonical" href="https://www.cosmoscalibur.com/es/blog/2018/ejecutando-macos-en-linux.html" />
+    <link rel="icon" href="../../../_static/cosmoscalibur_favicon.png"/>
+    <link rel="index" title="Índice" href="../../../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../../../search.html" /> 
+
+<!-- TODO: Revisar como hacer que dependa del despliegue en GitHub Pages para no usar en local -->
+<!-- TODO: Usar GitHub Actions para esto -->
+
+<!-- Usado para mostrar publicidad -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-0356238418278924"
+crossorigin="anonymous"></script>
+
+
+
+ 
+<link
+  rel="alternate"
+  type="application/atom+xml"
+  href="../../../blog/atom.xml"
+  title="Cosmoscalibur"
+/>
+  
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Saltar al contenido principal</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Volver arriba</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Advertencia de versión"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Navegación del sitio">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../_static/cosmoscalibur_logo.png" class="logo__image only-light" alt="Cosmoscalibur - Home"/>
+    <img src="../../../_static/cosmoscalibur_logo.png" class="logo__image only-dark pst-js-only" alt="Cosmoscalibur - Home"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../me/index.html">
+    Edward Villegas
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Tema" data-bs-title="Tema"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Claro"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Oscuro"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="Sistema"></i>
+</button></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/cosmoscalibur/" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/cosmoscalibur" title="Twitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-twitter fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Twitter</span></a>
+        </li>
+        <li class="nav-item">
+            
+          
+            
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://col.social/@cosmoscalibur" title="Mastodon" class="nav-link pst-navbar-icon" rel="me" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-mastodon fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Mastodon</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="En esta página">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../me/index.html">
+    Edward Villegas
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Tema" data-bs-title="Tema"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Claro"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Oscuro"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="Sistema"></i>
+</button></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/cosmoscalibur/" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/cosmoscalibur" title="Twitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-twitter fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Twitter</span></a>
+        </li>
+        <li class="nav-item">
+            
+          
+            
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://col.social/@cosmoscalibur" title="Mastodon" class="nav-link pst-navbar-icon" rel="me" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-mastodon fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Mastodon</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<div class="ablog-sidebar-item ablog__postcard">
+   
+  <h2>
+     
+    <span>2018-01-18</span>
+    
+  </h2>
+  <ul>
+    <div class="ablog-sidebar-item ablog__postcard2">
+   
+  <li id="ablog-sidebar-item author ablog__author">
+    <span>
+       Autor: 
+    </span>
+     
+    <a href="../../../blog/author/edward-villegas-pulgarin.html">Edward Villegas-Pulgarin</a>
+      
+  </li>
+    
+  <li id="ablog-sidebar-item language ablog__language">
+    <span>
+       Idioma: 
+    </span>
+     
+    <a href="../../../blog/language/espanol.html">Español</a>
+      
+  </li>
+   
+  <li id="ablog-sidebar-item category ablog__category">
+    <span>
+       Categoría: 
+    </span>
+     
+    <a href="../../../blog/category/tecnologia.html">tecnología</a>
+      
+  </li>
+   
+  <li id="ablog-sidebar-item tags ablog__tags">
+    <span>
+        Etiquetas:  
+    </span>
+     
+    <a href="../../../blog/tag/linux.html">linux</a>
+        
+    <a href="../../../blog/tag/macos.html">macos</a>
+        
+    <a href="../../../blog/tag/maquina-virtual.html">máquina virtual</a>
+        
+    <a href="../../../blog/tag/hackintosh.html">hackintosh</a>
+        
+    <a href="../../../blog/tag/emulacion.html">emulación</a>
+      
+  </li>
+   
+</div>
+  </ul>
+</div>
+</div>
+        <div class="sidebar-primary-item">
+<div class="ablog-sidebar-item ablog__recentposts">
+  <h3>
+    <a href="../../../blog.html">Entradas recientes</a>
+  </h3>
+  <ul>
+     
+    <li>
+      <a href="../2026/error-de-autenticacion-en-antigravity-y-ampcode-en-windows.html">
+        2026-02-21 - Error de autenticación en Antigravity y AmpCode en Windows
+      </a>
+    </li>
+    
+    <li>
+      <a href="../../../en/blog/2026/error-de-autenticacion-en-antigravity-y-ampcode-en-windows.html">
+        2026-02-21 - Authentication Error in Antigravity and AmpCode on Windows
+      </a>
+    </li>
+    
+    <li>
+      <a href="../2026/herramientas-de-ia-gratuita-para-desarrolladores-en-2026.html">
+        2026-01-18 - Herramientas de IA gratuita para desarrolladores en 2026
+      </a>
+    </li>
+    
+    <li>
+      <a href="../../../en/blog/2026/herramientas-de-ia-gratuita-para-desarrolladores-en-2026.html">
+        2026-01-18 - Free AI Tools for Developers in 2026
+      </a>
+    </li>
+    
+    <li>
+      <a href="../../../en/blog/2025/buscando-el-mejor-cliente-de-mastodon-para-android.html">
+        2025-10-08 - Finding the Best Mastodon Client for Android
+      </a>
+    </li>
+    
+  </ul>
+</div>
+</div>
+        <div class="sidebar-primary-item">
+<div class="ablog-sidebar-item ablog__archives">
+  <h3>
+    <a href="../../../blog/archive.html">Archivos</a>
+  </h3>
+  <ul>
+     
+    <li>
+      <a href="../../../blog/2026.html">2026 (4)</a>
+    </li>
+      
+    <li>
+      <a href="../../../blog/2025.html">2025 (22)</a>
+    </li>
+      
+    <li>
+      <a href="../../../blog/2024.html">2024 (35)</a>
+    </li>
+      
+    <li>
+      <a href="../../../blog/2021.html">2021 (2)</a>
+    </li>
+      
+    <li>
+      <a href="../../../blog/2020.html">2020 (21)</a>
+    </li>
+      
+    <li>
+      <a href="../../../blog/2019.html">2019 (9)</a>
+    </li>
+      
+    <li>
+      <a href="../../../blog/2018.html">2018 (5)</a>
+    </li>
+      
+    <li>
+      <a href="../../../blog/2017.html">2017 (2)</a>
+    </li>
+      
+    <li>
+      <a href="../../../blog/2014.html">2014 (1)</a>
+    </li>
+      
+    <li>
+      <a href="../../../blog/2013.html">2013 (12)</a>
+    </li>
+      
+    <li>
+      <a href="../../../blog/2012.html">2012 (20)</a>
+    </li>
+      
+    <li>
+      <a href="../../../blog/2011.html">2011 (30)</a>
+    </li>
+      
+    <li>
+      <a href="../../../blog/2010.html">2010 (7)</a>
+    </li>
+     
+  </ul>
+</div>
+</div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Miga de pan" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../../index.html" class="nav-link" aria-label="Inicio">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Ejecutando macOS en Linux</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                   <section id="ejecutando-macos-en-linux">
+<h1>Ejecutando macOS en Linux<a class="headerlink" href="#ejecutando-macos-en-linux" title="Link to this heading">#</a></h1>
+<p>Debo admitirlo, no me gusta Mac y sigue sin gustarme, pero en múltiples
+ocasiones se hace necesario poder disponer de un Mac al igual que de un
+Windows para efectos de pruebas o de correr software específico cuando no hay
+de otra. Por este caso me di a la tarea de buscar como lograr ejecutar macOS
+en mi equipo Asus que posee Linux instalado de la forma más fácil posible. A
+continuación, como ejecutar macOS (específicamente hackintosh) en tu equipo
+Linux (el procedimiento aplica también para Windows).</p>
+<p><strong>Requisitos</strong>: Conexión a internet estable, disco duro con más de 100 GB
+disponibles, RAM superior a 6 GB, procesador de más de dos núcleos (preferible
+Intel) y mucho tiempo.</p>
+<section id="contexto">
+<h2>Contexto<a class="headerlink" href="#contexto" title="Link to this heading">#</a></h2>
+<p>Creo que no hay necesidad pero no hay que dar por obvias las cosas. El primer
+punto al respecto de esto es que macOS en si mismo es «imposible» de piratear
+porque el sistema operativo esta ligado al hardware. Así, la única manera de
+obtener e instalar macOS es tener un equipo Mac. El tema se resuelve entonces
+a través de una modificación del sistema operativo que da origen a iPC, OSX86
+o Hackintosh, una variación del sistema que permite llevar macOS a equipos
+tradicionales (PC).</p>
+<p>El cómo se logra esto es elaborado y la verdad no veo interés en comentarlo
+pues es el camino difícil, pero solo para resumir diré que el punto inicial
+es que hay que tener un equipo Mac en el cual se ejecutan una serie de rutinas
+para extraer los directorios del sistema y recrear los llamados del sistema
+operativo a una forma entendible por los procesadores x86-64. La forma
+sencilla es encontrar de donde obtener ya la imagen del sistema operativo
+lista. Pero como podrán ver al googlear no solo un poco sino mucho, todo esta
+dicho para quienes tienen Mac pero no para los mortales que no lo tenemos.</p>
+</section>
+<section id="descarga">
+<h2>Descarga<a class="headerlink" href="#descarga" title="Link to this heading">#</a></h2>
+<p>La verdad, creo que este es el punto más difícil y misterioso del proceso de
+lograr la instalación de macOS (modificado). La razón de esta dificultad no
+solo se asocia a la dificultad sino al tema legal (con Windows no sucede así
+pues la imagen misma del sistema operativo es gratuita y el problema es
+conseguir la licencia -salvo que no te importe el mensaje de copia no original
+y la ausencia de actualizaciones-).</p>
+<p>Después de muchos fracasos en descargas (largas descargas) que me llevaban a
+depender de Mac, encontré dos opciones listas para usar que correspondían a
+imágenes para máquina virtual (específicamente para VMWare/VirtualBox).
+Difíciles de encontrar, recurren a descarga por enlace magnético y hay pocos
+pares de descarga lo cual llega a un tiempo largo de descarga.</p>
+<p>Necesitas para esto un cliente torrent (si usas Linux probablemente tendrás
+por defecto transmission o si usas windows puedes instalar BitTorrent,
+µTorrent o FrostWire), una buena conexión a internet y mucha paciencia. El
+enlace magnético lo obtendrás de
+<a class="reference external" href="https://thepiratebay.org/torrent/17986715/MacOS_Sierra_10.12_VirtualBox_VMWare_Virtual_Image_Preinstalled">The Pirate Bay</a>
+dando clic en donde dice <em>GET THIS TORRENT</em> (hay un símbolo de un imán al lado
+izquierdo). Una vez lo hagas y si tienes correctamente instalado el cliente
+torrent, este se abrirá (o el navegador solicitará permiso de abrirlo).</p>
+<p>Ahora te esperan unas 12 horas de descarga (en mi caso el pico máximo de
+velocidad que recuerdo fue de 120 kB y el mínimo fueron ratos donde no habían
+pares de descarga).</p>
+</section>
+<section id="maquina-virtual">
+<h2>Máquina Virtual<a class="headerlink" href="#maquina-virtual" title="Link to this heading">#</a></h2>
+<p>Mi recomendación es no intentar la instalación directa en el equipo (para
+empezar, no pude encontrar una imagen para ello). El proceso de instalación
+directo tiene sus pasos malucos y al parecer el soporte es básicamente es para
+equipos con procesadores Intel (lo demás se hace con más trucos de lo normal y
+para posiblemente perder el tiempo). Así, la mejor opción es una máquina
+virtual, si fallas solo perdiste tiempo pero sigues con un sistema operativo
+funcional montado para trabajar o dispersar.</p>
+<p>En Linux me parece mucho más natural usar QEMU (usando la interfaz de
+Virt-Manager) pero desafortunadamente este no tiene el soporte necesario y
+nuevamente, nos llenamos de trucos bajo la manga si queremos hacerlo funcionar
+de esa manera. Por ahora, QEMU es la mejor opción en Linux si deseas
+virtualizar Windows u otra distribución linux, pero no macOS (tiene que ver
+con el arranque, QEMU mantiene el sistema anterior -<em>LEGACY</em>- de arranque de
+OSX). Así las cosas, una conversión de formato de la imagen no sirve (lo
+intenté).</p>
+<p>Necesariamente necesitas de VMWare o de VirtualBox. En mi caso, y es la opción
+más simple desde Linux, podemos usar VirtualBox (esta en los repositorios de
+varias distribuciones) y en Windows, igual por ser gratuito te lo recomiendo
+(<a class="reference external" href="https://www.virtualbox.org/wiki/Downloads">descargar</a>).</p>
+</section>
+<section id="instalacion">
+<h2>Instalación<a class="headerlink" href="#instalacion" title="Link to this heading">#</a></h2>
+<p>Nuestro primer paso es descomprimir el archivo que descargamos (un archivo
+<code class="code docutils literal notranslate"><span class="pre">rar</span></code>). De los archivos que encontrarás solo es necesario el archivo con
+extensión <code class="code docutils literal notranslate"><span class="pre">vmdk</span></code> (puedes renombrar el archivo si deseas). Ahora abrimos
+VirtualBox y seleccionamos el botón de nuevo.</p>
+<p>Ahora vamos a seleccionar el sistema operativo, indicando como se ve en la
+imagen y luego asignamos la RAM deseada (2 GB son el mínimo del sistema pero
+hay que considerar que además es una máquina virtual, lo cual conviene asignar
+más para un comportamiento más fluido) considerando que debes dejar al menos
+2 GB disponibles para el sistema operativo del equipo.</p>
+<figure class="align-center" id="id1">
+<a class="reference internal image-reference" href="../../../_images/maquina-virtual-seleccionar-macos.png"><img alt="Selección del sistema operativo" src="../../../_images/maquina-virtual-seleccionar-macos.png" style="width: 288.5px; height: 212.5px;" />
+</a>
+<figcaption>
+<p><span class="caption-text">Selección del sistema operativo y versión a instalar.</span><a class="headerlink" href="#id1" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Finalmente debemos indicar que se creara a partir de una imagen de disco
+existente y seleccionamos el símbolo de carpeta para buscar el archivo
+<code class="code docutils literal notranslate"><span class="pre">vmdk</span></code>.</p>
+<figure class="align-center" id="id2">
+<a class="reference internal image-reference" href="../../../_images/maquina-virtual-disco-existente.png"><img alt="Selección de disco existente" src="../../../_images/maquina-virtual-disco-existente.png" style="width: 286.0px; height: 212.5px;" />
+</a>
+<figcaption>
+<p><span class="caption-text">Selección de crear máquina virtual a partir de disco existente.</span><a class="headerlink" href="#id2" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Aquí hemos creado ya la máquina en si misma pero debemos configurar antes un
+par de cosas. En configuración de la máquina debemos ir a la sección de
+sistema (<em>system</em>) y luego placa madre (<em>Motherboard</em>) y habilitar las
+características extendidas (<em>Extended features</em>) y elegir <em>USB Tablet</em> en el
+puntero (<em>Pointing device</em>). En la misma sección vamos a la pestaña de
+procesador (<em>Processor</em>) e indicamos al menos 2 CPU. Por último, en la sección
+de monitor (<em>Display</em>) vamos a la pestaña <em>Screen</em> y asignamos 128 MB a la
+memoria de video (<em>Video Memory</em>).</p>
+<p>Ahora, pasamos a la consola (powershell o CMD en Windows) y ejecutamos lo
+siguiente (si es Windows hay que poner <code class="code docutils literal notranslate"><span class="pre">VBoxManage.exe</span></code> estando en el
+directorio de VirtualBox -<code class="code docutils literal notranslate"><span class="pre">cd</span> <span class="pre">&quot;C:Program</span> <span class="pre">FilesOracleVirtualBox&quot;</span></code>-):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>VBoxManage<span class="w"> </span>modifyvm<span class="w"> </span><span class="s2">&quot;macos&quot;</span><span class="w"> </span>--cpuidset<span class="w"> </span><span class="m">00000001</span><span class="w"> </span>000106e5<span class="w"> </span><span class="m">00100800</span><span class="w"> </span>0098e3fd<span class="w"> </span>bfebfbff
+VBoxManage<span class="w"> </span>setextradata<span class="w"> </span><span class="s2">&quot;macos&quot;</span><span class="w"> </span><span class="s2">&quot;VBoxInternal/Devices/efi/0/Config/DmiSystemProduct&quot;</span><span class="w"> </span><span class="s2">&quot;iMac11,3&quot;</span>
+VBoxManage<span class="w"> </span>setextradata<span class="w"> </span><span class="s2">&quot;macos&quot;</span><span class="w"> </span><span class="s2">&quot;VBoxInternal/Devices/efi/0/Config/DmiSystemVersion&quot;</span><span class="w"> </span><span class="s2">&quot;1.0&quot;</span>
+VBoxManage<span class="w"> </span>setextradata<span class="w"> </span><span class="s2">&quot;macos&quot;</span><span class="w"> </span><span class="s2">&quot;VBoxInternal/Devices/efi/0/Config/DmiBoardProduct&quot;</span><span class="w"> </span><span class="s2">&quot;Iloveapple&quot;</span>
+VBoxManage<span class="w"> </span>setextradata<span class="w"> </span><span class="s2">&quot;macos&quot;</span><span class="w"> </span><span class="s2">&quot;VBoxInternal/Devices/smc/0/Config/DeviceKey&quot;</span><span class="w"> </span><span class="s2">&quot;ourhardworkbythesewordsguardedpleasedontsteal(c)AppleComputerInc&quot;</span>
+VBoxManage<span class="w"> </span>setextradata<span class="w"> </span><span class="s2">&quot;macos&quot;</span><span class="w"> </span><span class="s2">&quot;VBoxInternal/Devices/smc/0/Config/GetKeyFromRealSMC&quot;</span><span class="w"> </span><span class="m">1</span>
+</pre></div>
+</div>
+<p>Tras esto estamos listos para encender la máquina virtual e instalar el
+sistema operativo en ella (nombre, usuario, contraseña, idioma, teclado). Lo
+único problemático aquí es que tendrás problema con el teclado pues esta
+pensado para los teclados Mac. Como cualquier instalación de sistema operativo
+es algo lento y más considerando que es una máquina virtual.</p>
+<figure class="align-center" id="id3">
+<a class="reference internal image-reference" href="../../../_images/maquina-virtual-idioma-macos.png"><img alt="Selección de idioma en macOS." src="../../../_images/maquina-virtual-idioma-macos.png" style="width: 1274.4px; height: 716.8000000000001px;" />
+</a>
+<figcaption>
+<p><span class="caption-text">Selección de idioma en macOS.</span><a class="headerlink" href="#id3" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="despues">
+<h2>Después<a class="headerlink" href="#despues" title="Link to this heading">#</a></h2>
+<p>No soy usuario Mac y mi propósito de hacer esto era muy específico, validar
+compatibilidad de códigos que uso, desarrollo o contribuyo. Pero en este
+mismo sentido, algo que recomiendo hacer, es instalar
+<a class="reference external" href="https://brew.sh/index_es.html">Homebrew</a> con el fin de tener listo nuestro
+macOS para pruebas y poder instalar distintos paquetes comunes a la hora de
+programar.</p>
+<p>Para ello debes abrir la consola que encontrarás en aplicaciones y ejecutar lo
+siguiente:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ruby<span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;</span><span class="k">$(</span>curl<span class="w"> </span>-fsSL<span class="w"> </span>https://raw.githubusercontent.com/Homebrew/install/master/install<span class="k">)</span><span class="s2">&quot;</span>
+</pre></div>
+</div>
+<p>Tendrás que tener paciencia pues el proceso me tomó 45 minutos (en foros
+reportan la instalación de <em>homebrew</em> de casi 2 horas) y necesitas estar
+pendiente pues hay dos solicitudes de tu contraseña.</p>
+<figure class="align-center" id="id4">
+<a class="reference internal image-reference" href="../../../_images/maquina-virtual-homebrew-macos.png"><img alt="Instalación de homebrew en macOS" src="../../../_images/maquina-virtual-homebrew-macos.png" style="width: 955.8px; height: 537.6px;" />
+</a>
+<figcaption>
+<p><span class="caption-text">Instalación por consola de homebrew en macOS.</span><a class="headerlink" href="#id4" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Una vez instalado, puedes aprovechar a dejar listo python (actualiza la
+versión por defecto e instala el gestor pip). Igualmente es conveniente
+instalar otros paquetes de uso común por otras aplicaciones .</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>brew<span class="w"> </span>install<span class="w"> </span>pkg-config<span class="w"> </span><span class="c1"># Ayuda a determinar la lista de paquetes existentes</span>
+brew<span class="w"> </span>install<span class="w"> </span>python3<span class="w"> </span><span class="c1"># Python3 no viene por defecto</span>
+brew<span class="w"> </span>install<span class="w"> </span>python2<span class="w"> </span><span class="c1"># Actualiza la versión existente. En ambos casos se instala pip (pip2 y pip3)</span>
+brew<span class="w"> </span>install<span class="w"> </span>freetype<span class="w"> </span><span class="c1"># Requerido para la manipulación de fuentes -por ejemplo en matplotlib-</span>
+brew<span class="w"> </span>install<span class="w"> </span>libpng<span class="w"> </span><span class="c1"># Requerido para la manipulación de imágenes png -por ejemplo en matplotlib-</span>
+brew<span class="w"> </span>install<span class="w"> </span>pygtk<span class="w"> </span><span class="c1"># Binding de GTK para python. Interfaces en pygtk son comunes.</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+<div class="section ablog__blog_comments">
+     
+<div class="section ablog__prev-next">
+  <span class="ablog__prev">
+      Anterior:
+    
+    <a href="problemas-de-audio-en-moto-g5.html">
+      
+      <span>Problemas de audio en Moto G5</span>
+    </a>
+    
+  </span>
+  <span class="ablog__spacer">&nbsp;</span>
+  <span class="ablog__next">
+      Siguiente: 
+    <a href="la-experiencia-de-pycon-colombia-2018.html">
+      <span>La experiencia de PyCon Colombia 2018</span>
+      
+    </a>
+    
+  </span>
+</div>
+  
+</div>
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> En esta página
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contexto">Contexto</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#descarga">Descarga</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#maquina-virtual">Máquina Virtual</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#instalacion">Instalación</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#despues">Después</a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+  <div role="note" aria-label="source link">
+    <h3>Esta página</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../_sources/es/blog/2018/ejecutando-macos-en-linux.rst.txt"
+            rel="nofollow">Mostrar el código</a></li>
+    </ul>
+   </div></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2024, Edward Villegas-Pulgarin.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Creado usando <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Construido con el <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html"> Tema PyData Sphinx </a> 0.16.1.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

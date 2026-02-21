@@ -1,0 +1,1102 @@
+
+<!DOCTYPE html>
+
+
+<html lang="es" data-content_root="../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="og:title" content="Aprendiendo Rust: Parte 1 - Uso básico de cargo, variables y flujos de control" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://www.cosmoscalibur.com/es/blog/2025/aprendiendo-rust-parte-1.html" />
+<meta property="og:site_name" content="Cosmoscalibur" />
+<meta property="og:description" content="Hace casi dos años me propuse aprender Rust, pero no tuve tiempo o realmente tenía poca disciplina para seguir adelante. Ahora, estoy en firme con el propósito para este 2025 y aquí estoy tomando n..." />
+<meta property="og:image:width" content="1146" />
+<meta property="og:image:height" content="600" />
+<meta property="og:image" content="https://www.cosmoscalibur.com/_images/social_previews/summary_es_blog_2025_aprendiendo-rust-parte-1_ab1e1a7c.png" />
+<meta property="og:image:alt" content="Hace casi dos años me propuse aprender Rust, pero no tuve tiempo o realmente tenía poca disciplina para seguir adelante. Ahora, estoy en firme con el propósito para este 2025 y aquí estoy tomando n..." />
+<meta name="description" content="Hace casi dos años me propuse aprender Rust, pero no tuve tiempo o realmente tenía poca disciplina para seguir adelante. Ahora, estoy en firme con el propósito para este 2025 y aquí estoy tomando n..." />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:creator" content="@cosmoscalibur" />
+<meta name="fediverse:creator" content="@cosmoscalibur@col.social">
+
+    <title>Aprendiendo Rust: Parte 1 - Uso básico de cargo, variables y flujos de control &#8212; Cosmoscalibur</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../../../_static/documentation_options.js?v=e2bb6099"></script>
+    <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../_static/translations.js?v=f85f4cfb"></script>
+    <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'es/blog/2025/aprendiendo-rust-parte-1';</script>
+    <link rel="canonical" href="https://www.cosmoscalibur.com/es/blog/2025/aprendiendo-rust-parte-1.html" />
+    <link rel="icon" href="../../../_static/cosmoscalibur_favicon.png"/>
+    <link rel="index" title="Índice" href="../../../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../../../search.html" /> 
+
+<!-- TODO: Revisar como hacer que dependa del despliegue en GitHub Pages para no usar en local -->
+<!-- TODO: Usar GitHub Actions para esto -->
+
+<!-- Usado para mostrar publicidad -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-0356238418278924"
+crossorigin="anonymous"></script>
+
+
+
+ 
+<link
+  rel="alternate"
+  type="application/atom+xml"
+  href="../../../blog/atom.xml"
+  title="Cosmoscalibur"
+/>
+  
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Saltar al contenido principal</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Volver arriba</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Advertencia de versión"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Navegación del sitio">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../_static/cosmoscalibur_logo.png" class="logo__image only-light" alt="Cosmoscalibur - Home"/>
+    <img src="../../../_static/cosmoscalibur_logo.png" class="logo__image only-dark pst-js-only" alt="Cosmoscalibur - Home"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../me/index.html">
+    Edward Villegas
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Tema" data-bs-title="Tema"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Claro"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Oscuro"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="Sistema"></i>
+</button></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/cosmoscalibur/" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/cosmoscalibur" title="Twitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-twitter fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Twitter</span></a>
+        </li>
+        <li class="nav-item">
+            
+          
+            
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://col.social/@cosmoscalibur" title="Mastodon" class="nav-link pst-navbar-icon" rel="me" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-mastodon fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Mastodon</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="En esta página">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../me/index.html">
+    Edward Villegas
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Tema" data-bs-title="Tema"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Claro"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Oscuro"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="Sistema"></i>
+</button></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/cosmoscalibur/" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/cosmoscalibur" title="Twitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-twitter fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Twitter</span></a>
+        </li>
+        <li class="nav-item">
+            
+          
+            
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://col.social/@cosmoscalibur" title="Mastodon" class="nav-link pst-navbar-icon" rel="me" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-mastodon fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Mastodon</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<div class="ablog-sidebar-item ablog__postcard">
+   
+  <h2>
+     
+    <span>2025-03-31</span>
+    
+  </h2>
+  <ul>
+    <div class="ablog-sidebar-item ablog__postcard2">
+   
+  <li id="ablog-sidebar-item author ablog__author">
+    <span>
+       Autor: 
+    </span>
+     
+    <a href="../../../blog/author/edward-villegas-pulgarin.html">Edward Villegas-Pulgarin</a>
+      
+  </li>
+    
+  <li id="ablog-sidebar-item language ablog__language">
+    <span>
+       Idioma: 
+    </span>
+     
+    <a href="../../../blog/language/espanol.html">Español</a>
+      
+  </li>
+   
+  <li id="ablog-sidebar-item category ablog__category">
+    <span>
+       Categoría: 
+    </span>
+     
+    <a href="../../../blog/category/tecnologia.html">tecnologia</a>
+     ,    
+    <a href="../../../blog/category/programacion.html">programación</a>
+      
+  </li>
+   
+  <li id="ablog-sidebar-item tags ablog__tags">
+    <span>
+        Etiqueta: 
+    </span>
+     
+    <a href="../../../blog/tag/rustlang.html">rustlang</a>
+      
+  </li>
+   
+</div>
+  </ul>
+</div>
+</div>
+        <div class="sidebar-primary-item">
+<div class="ablog-sidebar-item ablog__recentposts">
+  <h3>
+    <a href="../../../blog.html">Entradas recientes</a>
+  </h3>
+  <ul>
+     
+    <li>
+      <a href="../2026/error-de-autenticacion-en-antigravity-y-ampcode-en-windows.html">
+        2026-02-21 - Error de autenticación en Antigravity y AmpCode en Windows
+      </a>
+    </li>
+    
+    <li>
+      <a href="../../../en/blog/2026/error-de-autenticacion-en-antigravity-y-ampcode-en-windows.html">
+        2026-02-21 - Authentication Error in Antigravity and AmpCode on Windows
+      </a>
+    </li>
+    
+    <li>
+      <a href="../2026/herramientas-de-ia-gratuita-para-desarrolladores-en-2026.html">
+        2026-01-18 - Herramientas de IA gratuita para desarrolladores en 2026
+      </a>
+    </li>
+    
+    <li>
+      <a href="../../../en/blog/2026/herramientas-de-ia-gratuita-para-desarrolladores-en-2026.html">
+        2026-01-18 - Free AI Tools for Developers in 2026
+      </a>
+    </li>
+    
+    <li>
+      <a href="../../../en/blog/2025/buscando-el-mejor-cliente-de-mastodon-para-android.html">
+        2025-10-08 - Finding the Best Mastodon Client for Android
+      </a>
+    </li>
+    
+  </ul>
+</div>
+</div>
+        <div class="sidebar-primary-item">
+<div class="ablog-sidebar-item ablog__archives">
+  <h3>
+    <a href="../../../blog/archive.html">Archivos</a>
+  </h3>
+  <ul>
+     
+    <li>
+      <a href="../../../blog/2026.html">2026 (4)</a>
+    </li>
+      
+    <li>
+      <a href="../../../blog/2025.html">2025 (22)</a>
+    </li>
+      
+    <li>
+      <a href="../../../blog/2024.html">2024 (35)</a>
+    </li>
+      
+    <li>
+      <a href="../../../blog/2021.html">2021 (2)</a>
+    </li>
+      
+    <li>
+      <a href="../../../blog/2020.html">2020 (21)</a>
+    </li>
+      
+    <li>
+      <a href="../../../blog/2019.html">2019 (9)</a>
+    </li>
+      
+    <li>
+      <a href="../../../blog/2018.html">2018 (5)</a>
+    </li>
+      
+    <li>
+      <a href="../../../blog/2017.html">2017 (2)</a>
+    </li>
+      
+    <li>
+      <a href="../../../blog/2014.html">2014 (1)</a>
+    </li>
+      
+    <li>
+      <a href="../../../blog/2013.html">2013 (12)</a>
+    </li>
+      
+    <li>
+      <a href="../../../blog/2012.html">2012 (20)</a>
+    </li>
+      
+    <li>
+      <a href="../../../blog/2011.html">2011 (30)</a>
+    </li>
+      
+    <li>
+      <a href="../../../blog/2010.html">2010 (7)</a>
+    </li>
+     
+  </ul>
+</div>
+</div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Miga de pan" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../../index.html" class="nav-link" aria-label="Inicio">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Aprendiendo Rust: Parte 1 - Uso básico de cargo, variables y flujos de control</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                   <section class="tex2jax_ignore mathjax_ignore" id="aprendiendo-rust-parte-1-uso-basico-de-cargo-variables-y-flujos-de-control">
+<h1>Aprendiendo Rust: Parte 1 - Uso básico de cargo, variables y flujos de control<a class="headerlink" href="#aprendiendo-rust-parte-1-uso-basico-de-cargo-variables-y-flujos-de-control" title="Link to this heading">#</a></h1>
+<p>Hace casi dos años me propuse aprender Rust, pero no tuve tiempo o realmente
+tenía poca disciplina para seguir adelante. Ahora, estoy en firme con el
+propósito para este 2025 y aquí estoy tomando notas, haciendo algunos ejercicios
+e iniciando un proyecto. Respecto a estas notas, deben considerarse como notas
+personales, y bueno cubro detalles de lo básico para iniciar con un proyecto con
+<em>cargo</em>, imprimir en consola, asignar variables, tener claros los tipos de
+variables y hacer flujos de control (todavía sin manejo de errores).</p>
+<p>El punto de partida para esta publicación es que ya se ha
+<a class="reference internal" href="../2024/instalar-rust-en-linux.html"><span class="std std-doc">instalado Rust en Linux</span></a>.</p>
+<section id="uso-de-cargo">
+<h2>Uso de <code class="docutils literal notranslate"><span class="pre">cargo</span></code><a class="headerlink" href="#uso-de-cargo" title="Link to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">cargo</span> <span class="pre">new</span> <span class="pre">proyecto</span></code> para crear proyecto nuevo con su directorio. Si el
+directorio existe, usamos <code class="docutils literal notranslate"><span class="pre">cargo</span> <span class="pre">init</span></code> en el directorio para su inicialización.
+La inicialización incluye un directorio <code class="docutils literal notranslate"><span class="pre">src</span></code> con un archivo <code class="docutils literal notranslate"><span class="pre">main.rs</span></code> con
+ejemplo, un archivo de exclusión de git <code class="docutils literal notranslate"><span class="pre">.gitignore</span></code> (el sistema de
+versionamiento se puede configurar con la opción <code class="docutils literal notranslate"><span class="pre">--vcs</span></code>) y el archivo de
+proyecto <code class="docutils literal notranslate"><span class="pre">Cargo.toml</span></code>. El nombre del proyecto puede ser diferente al directorio,
+y se puede pasar en la opción <code class="docutils literal notranslate"><span class="pre">--name</span></code>. Por defecto se usa la opción <code class="docutils literal notranslate"><span class="pre">--bin</span></code>
+para la creación de un binario, pero puede ser <code class="docutils literal notranslate"><span class="pre">--lib</span></code> para generar una
+biblioteca. Por defecto, es la edición 2021, pero se puede configurar con
+<code class="docutils literal notranslate"><span class="pre">--edition</span></code> (ejemplo, usar la nueva edición, <code class="docutils literal notranslate"><span class="pre">2024</span></code>). Estas opciones son tanto
+en la creación con <code class="docutils literal notranslate"><span class="pre">new</span></code> como en la inicialización con <code class="docutils literal notranslate"><span class="pre">init</span></code>.</p>
+<p>El archivo de proyecto es necesario para la compilación (<code class="docutils literal notranslate"><span class="pre">cargo</span> <span class="pre">build</span></code>) o
+ejecución (<code class="docutils literal notranslate"><span class="pre">cargo</span> <span class="pre">run</span></code>). Puedes usar proyectos con múltiples binarios si en el
+directorio <code class="file docutils literal notranslate"><span class="pre">src</span></code> añadimos otros archivos fuentes. Estos, <strong class="program">cargo</strong>
+los puede inferir y crear los binarios, y si deseamos ejecutarlos bastará con
+usar <code class="docutils literal notranslate"><span class="pre">cargo</span> <span class="pre">run</span></code> seguido de <code class="docutils literal notranslate"><span class="pre">--bin</span></code> y el nombre (por defecto es el nombre del
+archivo sin extensión).</p>
+<p>Sobre la organización general de archivos, puedes consultar en
+<a class="reference external" href="https://doc.rust-lang.org/cargo/guide/project-layout.html">Package Layout</a> de
+<em>The Cargo Book</em>, y la configuración si no deseamos los nombres por defecto de
+los binarios en
+<a class="reference external" href="https://doc.rust-lang.org/cargo/reference/cargo-targets.html#configuring-a-target">Cargo Targets</a>.</p>
+<p>Se puede compilar directamente el código fuente sin <code class="docutils literal notranslate"><span class="pre">cargo</span></code> usando <code class="docutils literal notranslate"><span class="pre">rustc</span></code>
+seguido de la ruta del código fuente.</p>
+<div class="admonition hint">
+<p class="admonition-title">Consejo</p>
+<p>Una instrucción interesante es <code class="docutils literal notranslate"><span class="pre">cargo</span> <span class="pre">check</span></code>, la cual te permitirá verificar si
+el código es compilable sin necesidad de generar el ejecutable. Esto es mucho
+más rápido y en ocasiones no necesitamos hacer la prueba de ejecución, sino solo
+saber si puede generar errores de compilación.</p>
+</div>
+</section>
+<section id="hola-mundo-en-rust">
+<h2>Hola mundo en Rust<a class="headerlink" href="#hola-mundo-en-rust" title="Link to this heading">#</a></h2>
+<p>Los códigos ejecutables de Rust siempre requieren una función <code class="docutils literal notranslate"><span class="pre">main</span></code>. Las
+funciones se especifican con <code class="docutils literal notranslate"><span class="pre">fn</span></code> seguido del nombre, los paréntesis para
+argumentos, llave para el cuerpo de la función. Las líneas sentencias requieren
+la terminación de <code class="docutils literal notranslate"><span class="pre">;</span></code></p>
+<div class="highlight-rust notranslate"><div class="highlight"><pre><span></span><span class="k">fn</span><span class="w"> </span><span class="nf">main</span><span class="p">(){</span>
+<span class="w">    </span><span class="c1">// Esto es un comentario de una línea</span>
+<span class="w">    </span><span class="fm">println!</span><span class="p">(</span><span class="s">&quot;Hola, Edward! 🧠&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">println</span></code> es una macro (por eso termina en <code class="docutils literal notranslate"><span class="pre">!</span></code>) para imprimir, y esto nos ayuda
+con el manejo de la existencia de múltiples argumentos. Hay varias formas de
+imprimir y formatear:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">format!</span></code>: Formatea una cadena de texto (su salida es <code class="docutils literal notranslate"><span class="pre">String</span></code>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">print!</span></code>: Imprime en la consola (salida estándar) sin salto de línea
+(<code class="docutils literal notranslate"><span class="pre">io::stdout</span></code>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">println!</span></code>: Imprime en la consola con salto de línea.</p></li>
+<li><p>Las versiones <code class="docutils literal notranslate"><span class="pre">eprint!</span></code> y <code class="docutils literal notranslate"><span class="pre">eprintln!</span></code> equivalentes a su versión sin <code class="docutils literal notranslate"><span class="pre">e</span></code>
+inicial solo que imprimen en la salida estándar de errores (<code class="docutils literal notranslate"><span class="pre">io::stderr</span></code>).</p></li>
+</ul>
+<p>Si deseamos agregar comentarios, esto se hace con <code class="docutils literal notranslate"><span class="pre">//</span></code> por cada línea.</p>
+</section>
+<section id="asignacion-de-variables-y-constantes">
+<h2>Asignación de variables y constantes<a class="headerlink" href="#asignacion-de-variables-y-constantes" title="Link to this heading">#</a></h2>
+<p>Para asignar variables usamos <code class="docutils literal notranslate"><span class="pre">let</span></code> seguido del nombre de la variable, <code class="docutils literal notranslate"><span class="pre">:</span></code> el
+tipo de dato (aunque este puede ser inferido y no anotarse siempre), <code class="docutils literal notranslate"><span class="pre">=</span></code> y el
+valor de la variable (y por supuesto, el terminador de línea). En Rust, las
+variables por defecto son inmutable, lo cual implica que una vez se asigna el
+valor, este no puede ser modificado. Si queremos que el valor sea modificable,
+debemos agregar <code class="docutils literal notranslate"><span class="pre">mut</span></code> antes del nombre de la variable.</p>
+<p>También podemos asignar constantes con la palabra clave <code class="docutils literal notranslate"><span class="pre">const</span></code>, y estas siempre
+son inmutables y siempre deben anotar el tipo. Su estructura es <code class="docutils literal notranslate"><span class="pre">const</span></code> seguido
+del nombre de la constante en mayúscula sostenida (puede contener guion bajo),
+<code class="docutils literal notranslate"><span class="pre">:</span></code>, el tipo de dato, el valor y el terminador de línea. Las constantes pueden
+ser asignadas con expresiones que se calculan en tiempo de compilación (esto nos
+ayuda a la legibilidad y verificación de un valor, en lugar de poner su valor
+directo), y a diferencia de las variables pueden ser de contexto global, útil
+para valores que son requeridos en múltiples partes de nuestro código.</p>
+<div class="highlight-rust notranslate"><div class="highlight"><pre><span></span><span class="k">const</span><span class="w"> </span><span class="n">ANSWER</span><span class="p">:</span><span class="w"> </span><span class="kt">i32</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">42</span><span class="p">;</span>
+
+<span class="k">fn</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">x</span><span class="p">:</span><span class="w"> </span><span class="kt">i32</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">26</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="n">y</span><span class="p">:</span><span class="w"> </span><span class="kt">f32</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">5.6</span><span class="p">;</span>
+<span class="w">    </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">8.</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">suma</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">ANSWER</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">bandera</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span>
+<span class="w">    </span><span class="fm">println!</span><span class="p">(</span><span class="s">&quot;Mi primera variable &#39;x&#39;: {x}&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="fm">println!</span><span class="p">(</span><span class="s">&quot;Mi primera variable mutable &#39;y&#39;: {y}&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="fm">println!</span><span class="p">(</span><span class="s">&quot;Sumando {suma}&quot;</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Los tipos de datos que existen son los enteros sin signo y con signo (<code class="docutils literal notranslate"><span class="pre">u</span></code> y <code class="docutils literal notranslate"><span class="pre">i</span></code>,
+seguido de <code class="docutils literal notranslate"><span class="pre">8</span></code>, <code class="docutils literal notranslate"><span class="pre">16</span></code>, <code class="docutils literal notranslate"><span class="pre">32</span></code>, <code class="docutils literal notranslate"><span class="pre">64</span></code> y <code class="docutils literal notranslate"><span class="pre">128</span></code> acorde al tamaño en bits), los
+flotantes (<code class="docutils literal notranslate"><span class="pre">f32</span></code> y <code class="docutils literal notranslate"><span class="pre">f64</span></code>), los booleanos (<code class="docutils literal notranslate"><span class="pre">bool</span></code>, usan 1 <em>byte</em>) y los
+caracteres (<code class="docutils literal notranslate"><span class="pre">char</span></code>, usan 4 <em>bytes</em>).</p>
+<p>También es posible disponer de variables de tipo opcional, es decir, que admiten
+el valor <code class="docutils literal notranslate"><span class="pre">None</span></code>. Esto se logra usando <code class="docutils literal notranslate"><span class="pre">Option&lt;type&gt;</span></code>, donde <code class="docutils literal notranslate"><span class="pre">type</span></code> es el tipo de
+variable deseada. Si se desea asignar el valor <code class="docutils literal notranslate"><span class="pre">None</span></code> se hace directamente, pero
+para un valor diferente es necesario hacerlo con <code class="docutils literal notranslate"><span class="pre">Some</span></code>.</p>
+<div class="highlight-rust notranslate"><div class="highlight"><pre><span></span><span class="k">fn</span><span class="w"> </span><span class="nf">main</span><span class="p">(){</span>
+<span class="w">  </span><span class="kd">let</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="nb">Option</span><span class="o">&lt;</span><span class="kt">i8</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">None</span><span class="p">;</span>
+<span class="w">  </span><span class="n">ley</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="nb">Option</span><span class="o">&lt;</span><span class="kt">i8</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">Some</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Rust no soporta la conversión implícita entre tipos de datos, y la conversión
+explícita se hace usando funciones como <code class="docutils literal notranslate"><span class="pre">as</span></code>. Para los datos personalizados o
+compuestos, se puede usar la función <code class="docutils literal notranslate"><span class="pre">into()</span></code> o <code class="docutils literal notranslate"><span class="pre">from()</span></code>, que tendrá que
+definirse en <em>traits</em> (<code class="docutils literal notranslate"><span class="pre">Into</span></code> y <code class="docutils literal notranslate">&#160; <span class="pre">From</span></code>). Otros <em>traits</em> para este fin son
+<code class="docutils literal notranslate"><span class="pre">TryFrom</span></code> y <code class="docutils literal notranslate"><span class="pre">TryInto</span></code>, pero pueden existir casos muy específicos por tipos, como
+lo son <code class="docutils literal notranslate"><span class="pre">FromStr</span></code> y <code class="docutils literal notranslate"><span class="pre">ToString</span></code>.</p>
+<p>Existen también tipos de datos compuestos:</p>
+<ul>
+<li><p>Tuplas: Es una agrupación de valores de diferentes tipos en un tipo compuesto
+que se concibe como uno. Para obtener sus valores, se puede usar la notación
+<code class="docutils literal notranslate"><span class="pre">x.N</span></code> donde <code class="docutils literal notranslate"><span class="pre">N</span></code> es el índice del elemento en la tupla, comenzando desde 0.
+También se puede desestructurar una tupla usando la sintaxis
+<code class="docutils literal notranslate"><span class="pre">let</span> <span class="pre">(a,</span> <span class="pre">b,</span> <span class="pre">c)</span> <span class="pre">=</span> <span class="pre">tupla;</span></code>. Una vez asignada, las tuplas no pueden cambiar su
+tamaño ni tipo de datos. Se asignan valores a las tuplas usando la sintaxis
+<code class="docutils literal notranslate"><span class="pre">let</span> <span class="pre">tupla</span> <span class="pre">=</span> <span class="pre">(1,</span> <span class="pre">2.0,</span> <span class="pre">'a');</span></code> o indicando de forma explícita el tipo de cada
+elemento <code class="docutils literal notranslate"><span class="pre">let</span> <span class="pre">tupla:</span> <span class="pre">(i32,</span> <span class="pre">f64,</span> <span class="pre">char)</span> <span class="pre">=</span> <span class="pre">(1,</span> <span class="pre">2.0,</span> <span class="pre">'a');</span></code>.</p></li>
+<li><p>Arreglos: Es una colección de elementos del mismo tipo y de tamaño fijo. Se
+asignan valores a los arreglos usando la sintaxis <code class="docutils literal notranslate"><span class="pre">let</span> <span class="pre">arreglo</span> <span class="pre">=</span> <span class="pre">[1,</span> <span class="pre">2,</span> <span class="pre">3];</span></code> o
+indicando de forma explícita el tipo de cada elemento
+<code class="docutils literal notranslate"><span class="pre">let</span> <span class="pre">arreglo:</span> <span class="pre">[i32;</span> <span class="pre">3]</span> <span class="pre">=</span> <span class="pre">[1,</span> <span class="pre">2,</span> <span class="pre">3];</span></code>. También se puede crear un arreglo con
+valores repetidos usando la sintaxis <code class="docutils literal notranslate"><span class="pre">let</span> <span class="pre">arreglo</span> <span class="pre">=</span> <span class="pre">[0;</span> <span class="pre">5];</span></code> que crea un
+arreglo de 5 elementos todos iguales a 0. Los elementos de un arreglo se
+pueden acceder usando la notación <code class="docutils literal notranslate"><span class="pre">arreglo[i]</span></code> donde <code class="docutils literal notranslate"><span class="pre">i</span></code> es el índice del
+elemento en el arreglo, comenzando desde 0. Se soporta la iteración sobre el
+arreglo mediante la notación valor inicial seguido de <code class="docutils literal notranslate"><span class="pre">..</span></code> (con <code class="docutils literal notranslate"><span class="pre">..=</span></code> indica
+que el valor final está incluido) y el valor final. Y con <code class="docutils literal notranslate"><span class="pre">step_by</span></code> para
+iterar con un paso específico (similar a <code class="docutils literal notranslate"><span class="pre">range</span></code> en Python).</p></li>
+<li><p>Vectores: Son colecciones de elementos del mismo tipo y de tamaño variable (un
+comparativo con las listas de Python). Se asignan valores a los vectores
+usando la sintaxis <code class="docutils literal notranslate"><span class="pre">let</span> <span class="pre">vector</span> <span class="pre">=</span> <span class="pre">vec![1,</span> <span class="pre">2,</span> <span class="pre">3];</span></code> que es una macro, o
+<code class="docutils literal notranslate"><span class="pre">let</span> <span class="pre">vector</span> <span class="pre">=</span> <span class="pre">Vec::new();</span></code> (o indicando explícitamente el tipo de cada
+elemento <code class="docutils literal notranslate"><span class="pre">let</span> <span class="pre">vector:</span> <span class="pre">Vec&lt;i32&gt;</span> <span class="pre">=</span> <span class="pre">Vec::new();</span></code>) que es una función y asignando
+los valores usando la sintaxis <code class="docutils literal notranslate"><span class="pre">vector.push(4);</span></code>. Se puede acceder a los
+elementos de un vector usando la notación <code class="docutils literal notranslate"><span class="pre">vector[i]</span></code> donde <code class="docutils literal notranslate"><span class="pre">i</span></code> es el índice
+del elemento en el vector, comenzando desde 0.</p></li>
+<li><p><em>Hash map</em>: Es una colección de pares clave-valor donde las claves son únicas
+y los valores pueden ser de cualquier tipo (equivalente de diccionarios de
+Python). Se asignan valores a los <em>hash maps</em> usando la sintaxis
+<code class="docutils literal notranslate"><span class="pre">let</span> <span class="pre">hash_map</span> <span class="pre">=</span> <span class="pre">HashMap::new();</span></code> que es una función y asignando los valores
+usando la sintaxis <code class="docutils literal notranslate"><span class="pre">hash_map.insert(&quot;clave&quot;,</span> <span class="pre">valor);</span></code>. Se puede acceder a los
+valores de un hash map usando la notación <code class="docutils literal notranslate"><span class="pre">hash_map[&quot;clave&quot;]</span></code> donde <code class="docutils literal notranslate"><span class="pre">clave</span></code> es
+la clave del valor que se quiere obtener. Es necesario importar el módulo
+<code class="docutils literal notranslate"><span class="pre">std::collections::HashMap</span></code> para usar <em>hash maps</em>. Se dispone de una
+alternativa <em>pythonica</em> usando el <em>crate</em> de <code class="docutils literal notranslate"><span class="pre">maplit</span></code> con la macro <code class="docutils literal notranslate"><span class="pre">hashmap!</span></code>.</p>
+<div class="highlight-rust notranslate"><div class="highlight"><pre><span></span><span class="cp">#[macro_use]</span><span class="w"> </span><span class="k">extern</span><span class="w"> </span><span class="k">crate</span><span class="w"> </span><span class="n">maplit</span><span class="p">;</span>
+<span class="k">fn</span><span class="w"> </span><span class="nf">main</span><span class="p">(){</span>
+<span class="w">  </span><span class="kd">let</span><span class="w"> </span><span class="n">map</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">hashmap</span><span class="o">!</span><span class="p">{</span>
+<span class="w">      </span><span class="s">&quot;daffy&quot;</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="mi">80</span><span class="p">,</span>
+<span class="w">      </span><span class="s">&quot;bugs&quot;</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="mi">79</span><span class="p">,</span>
+<span class="w">      </span><span class="s">&quot;taz&quot;</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="mi">63</span><span class="p">,</span>
+<span class="w">  </span><span class="p">};</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</li>
+<li><p><em>Hash set</em>: Es una colección de elementos únicos sin orden específico
+(equivalente de conjuntos de Python). Se asignan valores a los <em>hash sets</em>
+usando la sintaxis <code class="docutils literal notranslate"><span class="pre">let</span> <span class="pre">hash_set</span> <span class="pre">=</span> <span class="pre">HashSet::new();</span></code> que es una función y
+asignando los valores usando la sintaxis <code class="docutils literal notranslate"><span class="pre">hash_set.insert(elemento);</span></code>. Es
+necesario importar el módulo <code class="docutils literal notranslate"><span class="pre">std::collections::HashSet</span></code> para usar <em>hash
+sets</em>. Se dispone de una alternativa <em>pythonica</em> usando el <em>crate</em> de <code class="docutils literal notranslate"><span class="pre">maplit</span></code>
+con la macro <code class="docutils literal notranslate"><span class="pre">hashset!</span></code>.</p>
+<div class="highlight-rust notranslate"><div class="highlight"><pre><span></span><span class="cp">#[macro_use]</span><span class="w"> </span><span class="k">extern</span><span class="w"> </span><span class="k">crate</span><span class="w"> </span><span class="n">maplit</span><span class="p">;</span>
+<span class="k">fn</span><span class="w"> </span><span class="nf">main</span><span class="p">(){</span>
+<span class="w">  </span><span class="kd">let</span><span class="w"> </span><span class="n">set</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">hashset</span><span class="o">!</span><span class="p">{</span>
+<span class="w">      </span><span class="s">&quot;daffy&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="s">&quot;bugs&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="s">&quot;taz&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="p">};</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</li>
+<li><p>Estructuras: Son colecciones de campos que pueden ser de diferentes tipos. Se
+definen usando la sintaxis
+<code class="docutils literal notranslate"><span class="pre">struct</span> <span class="pre">Nombre</span> <span class="pre">{</span> <span class="pre">campo1:</span> <span class="pre">Tipo,</span> <span class="pre">campo2:</span> <span class="pre">Tipo,</span> <span class="pre">...</span> <span class="pre">}</span></code>. El acceso a los campos se
+realiza usando la sintaxis <code class="docutils literal notranslate"><span class="pre">estructura.campo</span></code>.</p></li>
+<li><p>Estructuras de tupla: Cuando el nombre de los campos no es relevante, se
+pueden usar estructuras de tupla. Se definen usando la sintaxis
+<code class="docutils literal notranslate"><span class="pre">struct</span> <span class="pre">Nombre(Tipo1,</span> <span class="pre">Tipo2,</span> <span class="pre">...)</span></code>. El acceso a los campos se realiza usando
+la sintaxis <code class="docutils literal notranslate"><span class="pre">estructura.0</span></code>, <code class="docutils literal notranslate"><span class="pre">estructura.1</span></code>, etc. Si es un solo campo, suele
+conocerse como <code class="docutils literal notranslate"><span class="pre">newtype</span></code> y se puede usar para reducir la exposición del dato
+original y eliminar la confusión del intercambio de tipos que puede ocurrir
+con el alias de <code class="docutils literal notranslate"><span class="pre">type</span></code>. Sin embargo, esto implica hacer definiciones
+adicionales para el manejo de los datos (ejemplo, definir el <em>trait</em> de
+<em>Display</em>, ya que el acceso del tipo no es reutilizable). También se pueden
+usar casos sin argumentos (y omitir el paréntesis) de este tipo de estructuras
+para casos que no requieren datos en sí, y tener retornos nulos, y a esto se
+le conoce como <em>ZST</em> (<em>Zero Sized Type</em>).</p></li>
+<li><p>Enumeraciones: Rust también tiene soporte para enumeraciones, que son tipos de
+datos compuestos que pueden tener varios valores posibles. Se definen usando
+la sintaxis <code class="docutils literal notranslate"><span class="pre">enum</span> <span class="pre">Nombre</span> <span class="pre">{</span> <span class="pre">Tipo1,</span> <span class="pre">Tipo2,</span> <span class="pre">...</span> <span class="pre">}</span></code>. El acceso a los tipos tiene
+la forma <code class="docutils literal notranslate"><span class="pre">Nombre::Tipo1</span></code>. Los tipos pueden ser no solo simples nombres, sino
+formas válidas de estructuras y estructuras de tupla.</p></li>
+</ul>
+</section>
+<section id="funciones-en-rust">
+<h2>Funciones en Rust<a class="headerlink" href="#funciones-en-rust" title="Link to this heading">#</a></h2>
+<p>Cómo se mencionó anteriormente, en el ejemplo del “Hola mundo”, las funciones se
+definen iniciando por <code class="docutils literal notranslate"><span class="pre">fn</span></code>. En este caso, a diferencia del <code class="docutils literal notranslate"><span class="pre">main</span></code>, si una
+función posee parámetros y retornos, se definen como sigue.</p>
+<div class="highlight-rust notranslate"><div class="highlight"><pre><span></span><span class="k">fn</span><span class="w"> </span><span class="nf">suma</span><span class="p">(</span><span class="n">a</span><span class="p">:</span><span class="w"> </span><span class="kt">i32</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">:</span><span class="w"> </span><span class="kt">i32</span><span class="p">)</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="kt">i32</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">b</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Es importante que en Rust, las funciones deben tener un tipo de retorno definido
+explícitamente. Sin embargo, el <code class="docutils literal notranslate"><span class="pre">return</span></code> es opcional, y puede ser útil para el
+retorno temprano, y se asume que el último valor de la función es el valor de
+retorno.</p>
+<p>Aquí vemos cómo hacer la suma, y podemos disponer de otros operadores que puedes
+consultar en el apéndice de la documentación oficial de Rust,
+<a class="reference external" href="https://doc.rust-lang.org/book/appendix-02-operators.html">Appendix B: Operators and Symbols</a>.</p>
+</section>
+<section id="flujos-de-control">
+<h2>Flujos de control<a class="headerlink" href="#flujos-de-control" title="Link to this heading">#</a></h2>
+<section id="condicionales">
+<h3>Condicionales<a class="headerlink" href="#condicionales" title="Link to this heading">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">else</span></code> es una estructura de control que permite ejecutar diferentes bloques
+de código dependiendo de si una condición es verdadera o falsa. En Rust, se
+utiliza la palabra clave <code class="docutils literal notranslate"><span class="pre">if</span></code> seguida de una expresión booleana y luego un
+bloque de código que se ejecutará si la condición es verdadera. Si se desea
+ejecutar un bloque de código alternativo si la condición es falsa, se utiliza la
+palabra clave <code class="docutils literal notranslate"><span class="pre">else</span></code> seguida de otro bloque de código.</p>
+<div class="highlight-rust notranslate"><div class="highlight"><pre><span></span><span class="k">fn</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">10</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="fm">println!</span><span class="p">(</span><span class="s">&quot;x es menor que 10&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="fm">println!</span><span class="p">(</span><span class="s">&quot;x es mayor o igual que 10&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Si es un condicional encadenado, se pueden utilizar múltiples <code class="docutils literal notranslate"><span class="pre">if</span></code> seguidos de
+<code class="docutils literal notranslate"><span class="pre">else</span> <span class="pre">if</span></code> para evaluar múltiples condiciones.</p>
+<div class="highlight-rust notranslate"><div class="highlight"><pre><span></span><span class="k">fn</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">10</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="fm">println!</span><span class="p">(</span><span class="s">&quot;x es menor que 10&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">10</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="fm">println!</span><span class="p">(</span><span class="s">&quot;x es igual a 10&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="fm">println!</span><span class="p">(</span><span class="s">&quot;x es mayor que 10&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>También disponemos de la estructura de control <code class="docutils literal notranslate"><span class="pre">match</span></code>, que permite comparar un
+valor con una serie de patrones y ejecutar diferentes bloques de código según el
+patrón coincidente. Es importante considerar que <code class="docutils literal notranslate"><span class="pre">match</span></code> debe ser exhaustivo en
+la generación de casos.</p>
+<div class="highlight-rust notranslate"><div class="highlight"><pre><span></span><span class="k">fn</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span>
+
+<span class="w">    </span><span class="k">match</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="mi">1</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="fm">println!</span><span class="p">(</span><span class="s">&quot;x es igual a 1&quot;</span><span class="p">),</span>
+<span class="w">        </span><span class="mi">2</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="fm">println!</span><span class="p">(</span><span class="s">&quot;x es igual a 2&quot;</span><span class="p">),</span>
+<span class="w">        </span><span class="n">_</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="fm">println!</span><span class="p">(</span><span class="s">&quot;x es diferente de 1 y 2&quot;</span><span class="p">),</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Existen casos en los cuales la lógica con <code class="docutils literal notranslate"><span class="pre">match</span></code> puede ser muy verbosa, y se
+puede condensar en <code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">let</span></code> o <code class="docutils literal notranslate"><span class="pre">let</span> <span class="pre">else</span></code>. El primer caso permite asignar un
+patrón coincidente ignorando los demás casos, y el segundo permite asignar una
+variable si cumple el patrón y ejecutar un bloque si no cumple el patrón. Puedes
+detallar más en
+<a class="reference external" href="https://doc.rust-lang.org/book/ch06-03-if-let.html"><em>Concise Control Flow with if let and let else</em></a>.</p>
+</section>
+<section id="ciclos-en-rust">
+<h3>Ciclos en Rust<a class="headerlink" href="#ciclos-en-rust" title="Link to this heading">#</a></h3>
+<p>Rust dispone de 3 tipos de estructuras cíclicas: <code class="docutils literal notranslate"><span class="pre">loop</span></code>, <code class="docutils literal notranslate"><span class="pre">while</span></code> y <code class="docutils literal notranslate"><span class="pre">for</span></code>. <code class="docutils literal notranslate"><span class="pre">loop</span></code>
+es una estructura de control que permite ejecutar un bloque de código
+indefinidamente hasta que se cumpla una condición (una salida manual por
+interrupción de teclado o un <code class="docutils literal notranslate"><span class="pre">break</span></code>). <code class="docutils literal notranslate"><span class="pre">while</span></code> es una estructura de control que
+permite ejecutar un bloque de código mientras una condición sea verdadera. <code class="docutils literal notranslate"><span class="pre">for</span></code>
+es una estructura de control que permite iterar sobre una colección de
+elementos.</p>
+<p>La estructura general de estos 3 tipos de ciclos es la siguiente:</p>
+<div class="highlight-rust notranslate"><div class="highlight"><pre><span></span><span class="k">loop</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Código a ejecutar indefinidamente</span>
+<span class="p">}</span>
+
+<span class="k">while</span><span class="w"> </span><span class="n">condicion</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Código a ejecutar mientras la condición sea verdadera</span>
+<span class="p">}</span>
+
+<span class="k">for</span><span class="w"> </span><span class="n">elemento</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">coleccion</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Código a ejecutar para cada elemento de la colección</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Asociado a los ciclos, disponemos de las palabras clave <code class="docutils literal notranslate"><span class="pre">continue</span></code> y <code class="docutils literal notranslate"><span class="pre">break</span></code>,
+que permiten controlar el flujo de ejecución dentro de los ciclos. <code class="docutils literal notranslate"><span class="pre">continue</span></code>
+permite saltar a la siguiente iteración del ciclo, mientras que <code class="docutils literal notranslate"><span class="pre">break</span></code> permite
+salir del ciclo. Ambos soportan la sintaxis de marcado de <code class="docutils literal notranslate"><span class="pre">loop</span></code> <code class="docutils literal notranslate"><span class="pre">'NAME</span></code> para
+salir de un ciclo anidado. Ejemplo:</p>
+<div class="highlight-rust notranslate"><div class="highlight"><pre><span></span><span class="o">&#39;</span><span class="na">outer</span><span class="p">:</span><span class="w"> </span><span class="nc">for</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="mi">1</span><span class="o">..=</span><span class="mi">3</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="o">&#39;</span><span class="na">inner</span><span class="p">:</span><span class="w"> </span><span class="nc">for</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="mi">1</span><span class="o">..=</span><span class="mi">3</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">break</span><span class="w"> </span><span class="nl">&#39;outer</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="fm">println!</span><span class="p">(</span><span class="s">&quot;i: {}, j: {}&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Respecto a las colecciones para el ciclo <code class="docutils literal notranslate"><span class="pre">for</span></code>, podemos formarlas a partir de
+los rangos previamente explicados, pero también podemos usar contenedores. En el
+caso de los contenedores, podemos usar los métodos <code class="docutils literal notranslate"><span class="pre">iter()</span></code>, <code class="docutils literal notranslate"><span class="pre">into_iter()</span></code> e
+<code class="docutils literal notranslate"><span class="pre">iter_mut()</span></code> para obtener iteradores sobre sus elementos. Por ejemplo:</p>
+<div class="highlight-rust notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="n">vec</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="fm">vec!</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">];</span>
+<span class="k">for</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">vec</span><span class="p">.</span><span class="n">iter</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="fm">println!</span><span class="p">(</span><span class="s">&quot;{}&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>La opción de <code class="docutils literal notranslate"><span class="pre">iter()</span></code> permite iterar sobre los elementos sin consumirlo, es
+decir, sus elementos se mantienen en el contenedor original. Esto es útil cuando
+necesitamos acceder a los elementos múltiples veces o cuando queremos conservar
+el estado del contenedor. La opción de <code class="docutils literal notranslate"><span class="pre">into_iter()</span></code> permite iterar sobre los
+elementos y consumir el contenedor, es decir, sus elementos se eliminan del
+contenedor original. Esto es útil cuando necesitamos acceder a los elementos una
+sola vez o cuando queremos liberar el espacio ocupado por el contenedor. La
+opción de <code class="docutils literal notranslate"><span class="pre">iter_mut()</span></code> permite iterar sobre los elementos y mutarlos, es decir,
+sus elementos se mantienen en el contenedor original y se pueden modificar. Esto
+es útil cuando necesitamos acceder a los elementos y modificarlos.</p>
+</section>
+</section>
+<section id="referencias">
+<h2>Referencias<a class="headerlink" href="#referencias" title="Link to this heading">#</a></h2>
+<p>En la medida que estudio Rust, he encontrado los siguientes recursos útiles y
+han servido para mi proceso, de una forma no estrictamente lineal (muchos
+recomiendan que lo primero es el abordaje de <em>The Rust Programming Language</em>
+antes de otras lecturas o incluso no hacer proyectos y estas otras lecturas
+hasta superado el capítulo 10 u otras referencias similares). Para fines de mi
+propio seguimiento, indico el contenido aproximado cubierto del material y las
+notas tomadas en este blog son los puntos clave que he considerado, pero podría
+tener omisión de elementos que otros consideran importantes. No aspiro que esto
+sea una guía adecuada para los demás, pero espero que sea útil para aquellos que
+estén comenzando su viaje con Rust.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://doc.rust-lang.org/book/">The Rust Programming Language</a>. Contenido
+aproximado cubierto, hasta el capítulo 6, pero omitiendo el capítulo 4.</p></li>
+<li><p><a class="reference external" href="https://doc.rust-lang.org/cargo/index.html">The Cargo Book</a>. Contenido
+aproximado cubierto, hasta sección 2.3.</p></li>
+<li><p><a class="reference external" href="https://google.github.io/comprehensive-rust/index.html">Comprehensive Rust 🦀</a>.
+Contenido aproximado cubierto, día 1, pero hace falta explorar capítulo 9.</p></li>
+<li><p><a class="reference external" href="https://doc.rust-lang.org/rust-by-example/index.html">Rust by Example</a>.
+Contenido aproximado cubierto, hasta inicio del capítulo 9, y partes del 11 y
+12.</p></li>
+</ul>
+<section id="otros-recursos">
+<h3>Otros recursos<a class="headerlink" href="#otros-recursos" title="Link to this heading">#</a></h3>
+<p>Sobre la marcha y dado que en paralelo estoy iniciando un proyecto en Rust que
+pronto compartiré, he estado explorando algunos recursos adicionales que podrían
+ser útiles para mi proyecto, o información útil para guardar para el futuro y
+deseo compartirles. Este listado potencialmente será acumulativo en futuras
+entradas del blog.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://rochacbruno.github.io/py2rs/index.html">py2rs</a>.</p></li>
+<li><p><a class="reference external" href="https://github.com/rust-lang/rustlings">Rustlings</a>.</p></li>
+<li><p><a class="reference external" href="https://rust-lang-nursery.github.io/rust-cookbook/about.html">Rust Cookbook</a>.</p></li>
+<li><p><a class="reference external" href="https://rust-unofficial.github.io/patterns/intro.html">Rust Design Patterns</a>.</p></li>
+<li><p><a class="reference external" href="https://arewewebyet.com/">Are we web yet?</a>.</p></li>
+<li><p><a class="reference external" href="https://blog.yoshuawuyts.com/a-survey-of-every-iterator-variant/">A survey of every iterator variant</a>.</p></li>
+<li><p><a class="reference external" href="https://scientificcomputing.rs/monthly/">Scientific Computing in Rust Monthly</a>.</p></li>
+<li><p><a class="reference external" href="https://mattrighetti.com/2024/03/07/environment-variables-and-rust">Environment Variables &amp; Rust</a>.</p></li>
+<li><p><a class="reference external" href="https://ohadravid.github.io/posts/2024-12-state-of-the-crates/">State of the Crates 2025</a>.</p></li>
+<li><p><a class="reference external" href="https://zsiciarz.github.io/24daysofrust/">24daysofrust</a></p></li>
+<li><p><a class="reference external" href="https://ohadravid.github.io/posts/2023-03-rusty-python/">Making Python 100x faster with less than 100 lines of Rust</a>.</p></li>
+</ul>
+</section>
+</section>
+</section>
+
+<div class="section ablog__blog_comments">
+     
+<div class="section ablog__prev-next">
+  <span class="ablog__prev">
+      Anterior:
+    
+    <a href="zed-un-editor-rapido-y-moderno-de-codigo-abierto.html">
+      
+      <span>Zed: un editor rápido y moderno de código abierto</span>
+    </a>
+    
+  </span>
+  <span class="ablog__spacer">&nbsp;</span>
+  <span class="ablog__next">
+      Siguiente: 
+    <a href="instalar-docker-en-manjaro.html">
+      <span>Instalar Docker en Manjaro</span>
+      
+    </a>
+    
+  </span>
+</div>
+  
+</div>
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> En esta página
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#uso-de-cargo">Uso de <code class="docutils literal notranslate"><span class="pre">cargo</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hola-mundo-en-rust">Hola mundo en Rust</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#asignacion-de-variables-y-constantes">Asignación de variables y constantes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#funciones-en-rust">Funciones en Rust</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#flujos-de-control">Flujos de control</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#condicionales">Condicionales</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ciclos-en-rust">Ciclos en Rust</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#referencias">Referencias</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#otros-recursos">Otros recursos</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+  <div role="note" aria-label="source link">
+    <h3>Esta página</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../_sources/es/blog/2025/aprendiendo-rust-parte-1.md.txt"
+            rel="nofollow">Mostrar el código</a></li>
+    </ul>
+   </div></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2024, Edward Villegas-Pulgarin.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Creado usando <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Construido con el <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html"> Tema PyData Sphinx </a> 0.16.1.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

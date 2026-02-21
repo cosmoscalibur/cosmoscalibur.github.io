@@ -1,0 +1,1066 @@
+
+<!DOCTYPE html>
+
+
+<html lang="es" data-content_root="../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="og:title" content="The Parker Spiral with Python" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://www.cosmoscalibur.com/en/blog/2024/espiral-de-parker-con-python.html" />
+<meta property="og:site_name" content="Cosmoscalibur" />
+<meta property="og:description" content="In this post, we will explore the numerical solution to the first-order nonlinear differential equation that models the solar wind speed as a function of the heliocentric distance. Once this veloci..." />
+<meta property="og:image:width" content="1146" />
+<meta property="og:image:height" content="600" />
+<meta property="og:image" content="https://www.cosmoscalibur.com/_images/social_previews/summary_en_blog_2024_espiral-de-parker-con-python_7964b70e.png" />
+<meta property="og:image:alt" content="In this post, we will explore the numerical solution to the first-order nonlinear differential equation that models the solar wind speed as a function of the heliocentric distance. Once this veloci..." />
+<meta name="description" content="In this post, we will explore the numerical solution to the first-order nonlinear differential equation that models the solar wind speed as a function of the heliocentric distance. Once this veloci..." />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:creator" content="@cosmoscalibur" />
+<meta name="fediverse:creator" content="@cosmoscalibur@col.social">
+
+    <title>The Parker Spiral with Python &#8212; Cosmoscalibur</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../../../_static/documentation_options.js?v=e2bb6099"></script>
+    <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../_static/translations.js?v=f85f4cfb"></script>
+    <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'en/blog/2024/espiral-de-parker-con-python';</script>
+    <link rel="canonical" href="https://www.cosmoscalibur.com/en/blog/2024/espiral-de-parker-con-python.html" />
+    <link rel="icon" href="../../../_static/cosmoscalibur_favicon.png"/>
+    <link rel="index" title="Índice" href="../../../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../../../search.html" /> 
+
+<!-- TODO: Revisar como hacer que dependa del despliegue en GitHub Pages para no usar en local -->
+<!-- TODO: Usar GitHub Actions para esto -->
+
+<!-- Usado para mostrar publicidad -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-0356238418278924"
+crossorigin="anonymous"></script>
+
+
+<link rel="alternate" hreflang="es" href="https://www.cosmoscalibur.com/es/blog/2024/espiral-de-parker-con-python.html" />
+<link rel="alternate" hreflang="en" href="https://www.cosmoscalibur.com/en/blog/2024/espiral-de-parker-con-python.html" />
+
+
+ 
+<link
+  rel="alternate"
+  type="application/atom+xml"
+  href="../../../blog/atom.xml"
+  title="Cosmoscalibur"
+/>
+  
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Saltar al contenido principal</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Volver arriba</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Advertencia de versión"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Navegación del sitio">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../_static/cosmoscalibur_logo.png" class="logo__image only-light" alt="Cosmoscalibur - Home"/>
+    <img src="../../../_static/cosmoscalibur_logo.png" class="logo__image only-dark pst-js-only" alt="Cosmoscalibur - Home"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../es/me/index.html">
+    Edward Villegas
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+<div class="navbar-nav">
+  <a class="nav-link" href="../../../es/blog/2024/espiral-de-parker-con-python.html" title="Español">
+    🌐 Español
+  </a>
+</div>
+</div>
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Tema" data-bs-title="Tema"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Claro"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Oscuro"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="Sistema"></i>
+</button></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/cosmoscalibur/" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/cosmoscalibur" title="Twitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-twitter fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Twitter</span></a>
+        </li>
+        <li class="nav-item">
+            
+          
+            
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://col.social/@cosmoscalibur" title="Mastodon" class="nav-link pst-navbar-icon" rel="me" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-mastodon fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Mastodon</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="En esta página">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../es/me/index.html">
+    Edward Villegas
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+<div class="navbar-nav">
+  <a class="nav-link" href="../../../es/blog/2024/espiral-de-parker-con-python.html" title="Español">
+    🌐 Español
+  </a>
+</div>
+</div>
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Tema" data-bs-title="Tema"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Claro"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Oscuro"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="Sistema"></i>
+</button></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/cosmoscalibur/" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/cosmoscalibur" title="Twitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-twitter fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Twitter</span></a>
+        </li>
+        <li class="nav-item">
+            
+          
+            
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://col.social/@cosmoscalibur" title="Mastodon" class="nav-link pst-navbar-icon" rel="me" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-mastodon fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Mastodon</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<div class="ablog-sidebar-item ablog__postcard">
+   
+  <h2>
+     
+    <span>2024-10-06</span>
+    
+  </h2>
+  <ul>
+    <div class="ablog-sidebar-item ablog__postcard2">
+   
+  <li id="ablog-sidebar-item author ablog__author">
+    <span>
+       Autor: 
+    </span>
+     
+    <a href="../../../blog/author/edward-villegas-pulgarin.html">Edward Villegas-Pulgarin</a>
+      
+  </li>
+    
+  <li id="ablog-sidebar-item language ablog__language">
+    <span>
+       Idioma: 
+    </span>
+     
+    <a href="../../../blog/language/espanol.html">Español</a>
+      
+  </li>
+   
+  <li id="ablog-sidebar-item category ablog__category">
+    <span>
+       Categoría: 
+    </span>
+     
+    <a href="../../../blog/category/science.html">science</a>
+     ,    
+    <a href="../../../blog/category/computational-physics.html">computational physics</a>
+      
+  </li>
+   
+  <li id="ablog-sidebar-item tags ablog__tags">
+    <span>
+        Etiquetas:  
+    </span>
+     
+    <a href="../../../blog/tag/solar-wind.html">solar wind</a>
+        
+    <a href="../../../blog/tag/numerical-methods.html">numerical methods</a>
+        
+    <a href="../../../blog/tag/rk4.html">rk4</a>
+        
+    <a href="../../../blog/tag/python.html">python</a>
+        
+    <a href="../../../blog/tag/sympy.html">sympy</a>
+      
+  </li>
+   
+</div>
+  </ul>
+</div>
+</div>
+        <div class="sidebar-primary-item">
+<div class="ablog-sidebar-item ablog__recentposts">
+  <h3>
+    <a href="../../../blog.html">Entradas recientes</a>
+  </h3>
+  <ul>
+     
+    <li>
+      <a href="../../../es/blog/2026/error-de-autenticacion-en-antigravity-y-ampcode-en-windows.html">
+        2026-02-21 - Error de autenticación en Antigravity y AmpCode en Windows
+      </a>
+    </li>
+    
+    <li>
+      <a href="../2026/error-de-autenticacion-en-antigravity-y-ampcode-en-windows.html">
+        2026-02-21 - Authentication Error in Antigravity and AmpCode on Windows
+      </a>
+    </li>
+    
+    <li>
+      <a href="../../../es/blog/2026/herramientas-de-ia-gratuita-para-desarrolladores-en-2026.html">
+        2026-01-18 - Herramientas de IA gratuita para desarrolladores en 2026
+      </a>
+    </li>
+    
+    <li>
+      <a href="../2026/herramientas-de-ia-gratuita-para-desarrolladores-en-2026.html">
+        2026-01-18 - Free AI Tools for Developers in 2026
+      </a>
+    </li>
+    
+    <li>
+      <a href="../2025/buscando-el-mejor-cliente-de-mastodon-para-android.html">
+        2025-10-08 - Finding the Best Mastodon Client for Android
+      </a>
+    </li>
+    
+  </ul>
+</div>
+</div>
+        <div class="sidebar-primary-item">
+<div class="ablog-sidebar-item ablog__archives">
+  <h3>
+    <a href="../../../blog/archive.html">Archivos</a>
+  </h3>
+  <ul>
+     
+    <li>
+      <a href="../../../blog/2026.html">2026 (4)</a>
+    </li>
+      
+    <li>
+      <a href="../../../blog/2025.html">2025 (22)</a>
+    </li>
+      
+    <li>
+      <a href="../../../blog/2024.html">2024 (35)</a>
+    </li>
+      
+    <li>
+      <a href="../../../blog/2021.html">2021 (2)</a>
+    </li>
+      
+    <li>
+      <a href="../../../blog/2020.html">2020 (21)</a>
+    </li>
+      
+    <li>
+      <a href="../../../blog/2019.html">2019 (9)</a>
+    </li>
+      
+    <li>
+      <a href="../../../blog/2018.html">2018 (5)</a>
+    </li>
+      
+    <li>
+      <a href="../../../blog/2017.html">2017 (2)</a>
+    </li>
+      
+    <li>
+      <a href="../../../blog/2014.html">2014 (1)</a>
+    </li>
+      
+    <li>
+      <a href="../../../blog/2013.html">2013 (12)</a>
+    </li>
+      
+    <li>
+      <a href="../../../blog/2012.html">2012 (20)</a>
+    </li>
+      
+    <li>
+      <a href="../../../blog/2011.html">2011 (30)</a>
+    </li>
+      
+    <li>
+      <a href="../../../blog/2010.html">2010 (7)</a>
+    </li>
+     
+  </ul>
+</div>
+</div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Miga de pan" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../../index.html" class="nav-link" aria-label="Inicio">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">The Parker Spiral with Python</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                   <section class="tex2jax_ignore mathjax_ignore" id="the-parker-spiral-with-python">
+<h1>The Parker Spiral with Python<a class="headerlink" href="#the-parker-spiral-with-python" title="Link to this heading">#</a></h1>
+<p>In this post, we will explore the numerical solution to the first-order nonlinear differential equation that models the solar wind speed as a function of the heliocentric distance. Once this velocity profile is obtained, which is temperature-dependent, we proceed to transform it into Lagrangian coordinates centered at an emission point on the corona. This will make it more natural to construct an arm of the Parker spiral, along which the found velocity profile evolves.</p>
+<p>When we talk about the “Parker spiral”, we refer to the shape of the Sun’s magnetic field in our solar system as a result of its rotation and the magnetohydrodynamic interaction with the expanding solar wind. This generates a swirling shape in the description of the magnetic field, which we will see how to obtain using Python.</p>
+<section id="solar-wind">
+<h2>Solar wind<a class="headerlink" href="#solar-wind" title="Link to this heading">#</a></h2>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Solar_wind">Solar wind</a> is a flow of charged particles (mainly electrons <span class="math notranslate nohighlight">\(e^-\)</span>, protons <span class="math notranslate nohighlight">\(p^+\)</span> and alpha particles <span class="math notranslate nohighlight">\(\alpha\)</span>), emitted from the solar atmosphere. These charged particles (ionized gas or plasma), escape the gravitational attraction of the Sun due to their high kinetic energy resulting from the temperature of the corona solar and interaction with the magnetic field.</p>
+<p>The first mentions of its existence date back to Biermann in the 1950s, who through the observation of comet tails (in the opposite direction of the sun), suggested that there should be a flow of gas towards the outside of the Sun in a radial direction. Parker takes this observation and assumes the Sun as a gravitating mass with spherical symmetry in expansion stationary (with the aim to ensure zero pressure condition at infinite distance) and initially disregarding the effects of the magnetic field. With these considerations, it is possible to manifest the dynamics of the flow of charged particles towards the outside of the Sun (Parker, 1958).</p>
+</section>
+<section id="solar-wind-velocity-profile">
+<h2>Solar Wind Velocity Profile<a class="headerlink" href="#solar-wind-velocity-profile" title="Link to this heading">#</a></h2>
+<p>In Parker’s work under conditions of isothermal expansion (<span class="math notranslate nohighlight">\(\gamma = 1\)</span>) of a neutral fluid (first approximation to the behavior of the solar wind), it leads to a non-linear first-order differential equation that relates the solar wind speed (<span class="math notranslate nohighlight">\(u(r)\)</span>) and the heliocentric distance (<span class="math notranslate nohighlight">\(r\)</span>). (Parker, 1958), (Kivelson, 1995)</p>
+<div class="amsmath math notranslate nohighlight" id="equation-39fad696-e1b1-4c8b-ba01-630ea3bae740">
+<span class="eqno">(1)<a class="headerlink" href="#equation-39fad696-e1b1-4c8b-ba01-630ea3bae740" title="Permalink to this equation">#</a></span>\[\begin{equation}
+\frac{du(r)}{dr} = \left(\frac{4kT}{mr} - \frac{GM}{r^2} \right)u(r)\left(u(r)^2 - \frac{2kT}{m} \right)^{-1}
+\end{equation}\]</div>
+<p>In order to reduce the propagation of errors due to orders of magnitude of the variables involved, the differential equation is adimensionalized based on the radius and velocity at the critical point (sonic point) (Piso, 2008).</p>
+<div class="amsmath math notranslate nohighlight" id="equation-63132b2a-3c4d-4572-ae53-d4346c3389e7">
+<span class="eqno">(2)<a class="headerlink" href="#equation-63132b2a-3c4d-4572-ae53-d4346c3389e7" title="Permalink to this equation">#</a></span>\[\begin{eqnarray}
+c_s^2 &amp; = &amp; \frac{2kT}{m}\\
+r_c &amp;=&amp; \frac{GM}{2c_s^2}\\
+\frac{dv}{dR} &amp;=&amp; \frac{2\left(\frac{1}{R} - \frac{1}{R^2}\right)}{v - \frac{1}{v}}
+\end{eqnarray}\]</div>
+<p>Where <span class="math notranslate nohighlight">\(v\)</span> is the speed at sonic velocities (<span class="math notranslate nohighlight">\(c_s\)</span>) and <span class="math notranslate nohighlight">\(R\)</span> is the radius at sonic radii (<span class="math notranslate nohighlight">\(r_c\)</span>). We observe that around the sonic radius and speed, there is a critical point that must be satisfied to ensure the physical meaning of the solution. Also, we have to note that this equation represents a boundary value problem, and in this case, the boundary condition of the problem in adimensional units is <span class="math notranslate nohighlight">\(v(R_{\text{sun}}) = v_0\)</span>, where <span class="math notranslate nohighlight">\(R_{\text{sun}}\)</span> is the radius of the Sun, and it is the position from which the flow of particles begins to move with an initial speed <span class="math notranslate nohighlight">\(v_0\)</span> that depends on the density of particles and temperature.</p>
+<p>The generation of the Parker spiral is due to the rotation of the Sun, so we apply the transformation of coordinates Lagrangian for rotating systems, leading to the differential equation:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-84cb3c4c-762e-4974-b3c9-95dbb4408944">
+<span class="eqno">(3)<a class="headerlink" href="#equation-84cb3c4c-762e-4974-b3c9-95dbb4408944" title="Permalink to this equation">#</a></span>\[\begin{equation}
+\frac{d\varphi}{dR} = \frac{-\omega}{v(R)}
+\end{equation}\]</div>
+</section>
+<section id="analytical-and-numerical-solution-to-parker-equation-with-python">
+<h2>Analytical and numerical solution to Parker equation with Python<a class="headerlink" href="#analytical-and-numerical-solution-to-parker-equation-with-python" title="Link to this heading">#</a></h2>
+<p>This equation can be solved analytically because the equation allows for separation of variables and by integration to find the implicit solution. We can use <a class="reference external" href="https://www.sympy.org/">SymPy</a>, a free and open-source computational algebra package available in Python (an alternative to commercial packages such as Maple and Mathematica).</p>
+<p>Regarding numerical solutions, we will implement the method of <a class="reference external" href="https://en.wikipedia.org/wiki/Runge%E2%80%93Kutta_method#Fourth_order_Runge%E2%80%93Kutta_methods">Runge-Kutta 4 (RK4)</a>, and for the angular component solution, we will do it simply with the <a class="reference external" href="https://en.wikipedia.org/wiki/Euler_method">Euler’s method</a> since this avoids having to interpolate the radial velocity solution to find intermediate points required by RK4. To implement this, we will need to manage arrays, and that’s what we’ll use with <a class="reference external" href="https://numpy.org/">NumPy</a>. Of course, we want to visualize the solution so we can understand it, so we’ll use <a class="reference external" href="https://matplotlib.org/">Matplotlib</a>.</p>
+<p>So, let’s install, in this case, with UV’s help, <a class="reference internal" href="uv-alternativa-rapida-a-pip-y-venv.html"><span class="std std-doc">which is a faster alternative to pip and venv</span></a>. The <code class="docutils literal notranslate"><span class="pre">!</span></code> symbol is because it’s a Notebook cell, but if you’re in the terminal, you can omit it.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>uv<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>matplotlib<span class="w"> </span>numpy<span class="w"> </span>sympy
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Faint">Using Python 3.12.7 environment at: /home/cosmoscalibur/Documentos/git/cosmoscalibur.github.io/.venv</span>
+<span class=" -Color -Color-Faint">Resolved </span><span class=" -Color -Color-Bold -Color-Bold-Faint">13 packages</span> <span class=" -Color -Color-Faint">in 515ms</span>                                        
+<span class=" -Color -Color-Faint">Installed </span><span class=" -Color -Color-Bold -Color-Bold-Faint">2 packages</span> <span class=" -Color -Color-Faint">in 77ms</span>                                
+ <span class=" -Color -Color-Green">+</span> <span class=" -Color -Color-Bold">mpmath</span><span class=" -Color -Color-Faint">==1.3.0</span>
+ <span class=" -Color -Color-Green">+</span> <span class=" -Color -Color-Bold">sympy</span><span class=" -Color -Color-Faint">==1.13.3</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We start by importing the necessary elements we will need. Each line is commented to explain why we require it, making its use clear.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">math</span><span class="w"> </span><span class="kn">import</span> <span class="n">cos</span><span class="p">,</span> <span class="n">pi</span><span class="p">,</span> <span class="n">sin</span>  <span class="c1"># Required for polar transformation to illustrate solution of spiral</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">IPython.display</span><span class="w"> </span><span class="kn">import</span> <span class="n">display</span>
+<span class="c1"># To include graphics in the Notebook instead of pop-up windows</span>
+<span class="c1">#%matplotlib inline</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>  <span class="c1"># Plotting library for numerical arrays</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="kn">import</span> <span class="n">array</span><span class="p">,</span> <span class="n">ones</span>  <span class="c1"># Numerical arrays and a fixed value array</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sympy</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">dsolve</span><span class="p">,</span>  <span class="c1"># Solver for ordinary differential equations</span>
+    <span class="n">Eq</span><span class="p">,</span>  <span class="c1"># Allows setting up equations</span>
+    <span class="n">Function</span><span class="p">,</span>  <span class="c1"># Declares variables that represent functions</span>
+    <span class="n">init_printing</span><span class="p">,</span>  <span class="c1"># Initializes display options for notebooks</span>
+    <span class="n">plot_implicit</span><span class="p">,</span>  <span class="c1"># Enables plotting of implicit functions</span>
+    <span class="n">solve</span><span class="p">,</span>  <span class="c1"># Solution to algebraic equations</span>
+    <span class="n">symbols</span>  <span class="c1"># Declares general symbols</span>
+<span class="p">)</span>
+<span class="n">init_printing</span><span class="p">()</span>  <span class="c1"># Initializes printing session in the Notebook</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="analytical-solution-using-sympy">
+<h3>Analytical solution using SymPy<a class="headerlink" href="#analytical-solution-using-sympy" title="Link to this heading">#</a></h3>
+<p>The first step is to declare the required symbols. This is the function for speed profile and the symbol for distance from the center of the Sun. The functions are declared with <code class="docutils literal notranslate"><span class="pre">Function</span></code> and variables with <code class="docutils literal notranslate"><span class="pre">symbols</span></code>. In both cases, the argument is a string representing the letter that corresponds to the symbol, and we assign it to a Python variable with the same letter.</p>
+<p>Additionally, we will set up the equation that we previously obtained in adimensional form. We need to take into account that speed is a function, so we write it as usual, indicating its form with parentheses and the variable it depends on, <span class="math notranslate nohighlight">\(v(R)\)</span>. To express the derivative, SymPy supports the method <code class="docutils literal notranslate"><span class="pre">.diff</span></code> whose argument is the variable with respect to which we differentiate. In this case, we would set up as <code class="docutils literal notranslate"><span class="pre">v(R).diff(R)</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">v</span> <span class="o">=</span> <span class="n">Function</span><span class="p">(</span><span class="s1">&#39;v&#39;</span><span class="p">)</span>  <span class="c1"># Define speed function</span>
+<span class="n">R</span> <span class="o">=</span> <span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;R&#39;</span><span class="p">)</span>  <span class="c1"># Define distance variable</span>
+<span class="c1"># Specify differential equation</span>
+<span class="n">eq_ord</span> <span class="o">=</span> <span class="n">Eq</span><span class="p">(</span><span class="n">v</span><span class="p">(</span><span class="n">R</span><span class="p">)</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">R</span><span class="p">),</span> <span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">R</span> <span class="o">-</span> <span class="mi">1</span><span class="o">/</span><span class="n">R</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">v</span><span class="p">(</span><span class="n">R</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="o">/</span><span class="n">v</span><span class="p">(</span><span class="n">R</span><span class="p">)))</span>
+<span class="n">eq_ord</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../_images/7b9413985128149f41ddd216b02bef10ecf8316c8bb4662b055fa665bb4b8e9f.png" src="../../../_images/7b9413985128149f41ddd216b02bef10ecf8316c8bb4662b055fa665bb4b8e9f.png" />
+</div>
+</div>
+<p>SymPy supports the method of separation of variables. If we need a specific form or want to hint to the algorithm, we can add an option that recommends the method. In this case, it would be <code class="docutils literal notranslate"><span class="pre">hint='separable'</span></code>. However, since our case is not separable, we don’t use this option.</p>
+<p>For our specific problem, it’s essential to indicate the method so that later the option of no simplification will show us the typical equation described in Parker’s article. The function for solving ordinary differential equations is <code class="docutils literal notranslate"><span class="pre">dsolve</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Apply separable variable method</span>
+<span class="c1"># Not simplify to show implicit form</span>
+<span class="n">sol_impl</span> <span class="o">=</span> <span class="n">dsolve</span><span class="p">(</span><span class="n">eq_ord</span><span class="p">,</span> <span class="n">hint</span><span class="o">=</span><span class="s1">&#39;separable&#39;</span><span class="p">,</span> <span class="n">simplify</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">sol_impl</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../_images/990ab122df74c8ee751bf08b954b2553c037fe9156fd0dd2fa8158ce48db6971.png" src="../../../_images/990ab122df74c8ee751bf08b954b2553c037fe9156fd0dd2fa8158ce48db6971.png" />
+</div>
+</div>
+<p>For curious readers, we can also allow the solution to be simplified and obtain an explicit form that depends on the <a class="reference external" href="https://en.wikipedia.org/wiki/Lambert_W_function">Lambert W function</a>. This is not the usual form in which the solution will be referenced, but thanks to computer algebra systems, we can dispense with this since the 1990s. To do so, we can remove the option of no simplification, and also if we remove the method recommendation, we will also obtain the Lambert W function.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dsolve</span><span class="p">(</span><span class="n">eq_ord</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../_images/7510acf64e16b1b7abc02ebccccc2d998045521a0a0ee09ad3136f2bcb6c1c38.png" src="../../../_images/7510acf64e16b1b7abc02ebccccc2d998045521a0a0ee09ad3136f2bcb6c1c38.png" />
+</div>
+</div>
+<p>To determine which values of the constant of integration to use, we need to consider that the solution must satisfy passing through the critical point. Therefore, by assigning a value to the critical point, we can solve for the constant. To make this substitution, we use the method <code class="docutils literal notranslate"><span class="pre">.subs</span></code>, which takes a dictionary where keys are original symbols and values are new values or symbols.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">solve</span><span class="p">(</span><span class="n">sol_impl</span><span class="o">.</span><span class="n">subs</span><span class="p">({</span><span class="n">v</span><span class="p">(</span><span class="n">R</span><span class="p">):</span> <span class="mi">1</span><span class="p">,</span> <span class="n">R</span><span class="p">:</span> <span class="mi">1</span><span class="p">}))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../_images/d6e230b31fa9bc585c6ff8f041ad2f7bb5fb7239af1f747bef7a012de18a4352.png" src="../../../_images/d6e230b31fa9bc585c6ff8f041ad2f7bb5fb7239af1f747bef7a012de18a4352.png" />
+</div>
+</div>
+<p>To plot the solution, we need to replace the velocity function with a symbol and proceed with changes of the constant of integration to generate the family of solutions. Since we already know that for passing through the critical point, the constant must be <span class="math notranslate nohighlight">\(-3/2\)</span>, we will use this value, but also need an upper bound (e.g., <span class="math notranslate nohighlight">\(1\)</span>) and a lower bound (e.g., <span class="math notranslate nohighlight">\(2\)</span>). To graph the implicit function, we will use SymPy’s <code class="docutils literal notranslate"><span class="pre">plot_implicit</span></code> method, which creates a grid of points in the plane of interest to evaluate if the equality holds. We will use <code class="docutils literal notranslate"><span class="pre">show=False</span></code> so that each curve is not shown separately, allowing us to add all three scenarios in one plot.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">V</span> <span class="o">=</span> <span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;V&#39;</span><span class="p">)</span>  <span class="c1"># Define velocity variable</span>
+<span class="c1"># Implicit plot to 3 values of constant integration</span>
+<span class="c1"># show=False to manipulate plot as unique canvas</span>
+<span class="n">p1</span> <span class="o">=</span> <span class="n">plot_implicit</span><span class="p">(</span>
+    <span class="n">sol_impl</span><span class="o">.</span><span class="n">subs</span><span class="p">({</span><span class="s1">&#39;C1&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">v</span><span class="p">(</span><span class="n">R</span><span class="p">):</span> <span class="n">V</span><span class="p">}),</span>
+    <span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span>
+    <span class="p">(</span><span class="n">V</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span>
+    <span class="n">line_color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">,</span>
+    <span class="n">show</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">)</span>
+<span class="n">p2</span> <span class="o">=</span> <span class="n">plot_implicit</span><span class="p">(</span>
+    <span class="n">sol_impl</span><span class="o">.</span><span class="n">subs</span><span class="p">({</span><span class="s1">&#39;C1&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="n">v</span><span class="p">(</span><span class="n">R</span><span class="p">):</span> <span class="n">V</span><span class="p">}),</span>
+    <span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span>
+    <span class="p">(</span><span class="n">V</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span>
+    <span class="n">line_color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span>
+    <span class="n">show</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">)</span>
+<span class="n">p3</span> <span class="o">=</span> <span class="n">plot_implicit</span><span class="p">(</span>
+    <span class="n">sol_impl</span><span class="o">.</span><span class="n">subs</span><span class="p">({</span><span class="s1">&#39;C1&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">v</span><span class="p">(</span><span class="n">R</span><span class="p">):</span> <span class="n">V</span><span class="p">}),</span>
+    <span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span>
+    <span class="p">(</span><span class="n">V</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span>
+    <span class="n">line_color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span>
+    <span class="n">show</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">)</span>
+<span class="n">p1</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="n">p2</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">p3</span><span class="p">[</span><span class="mi">0</span><span class="p">]])</span>  <span class="c1"># append curve plots to same axes</span>
+<span class="n">p1</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>  <span class="c1"># Show plot</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../_images/3aaa4cfb78cc09f2bbff785c4687ef2375ba5eac08a6b2afe3dce30c2fee8d0d.png" src="../../../_images/3aaa4cfb78cc09f2bbff785c4687ef2375ba5eac08a6b2afe3dce30c2fee8d0d.png" />
+</div>
+</div>
+<p>The blue curves are referred to as Solutions I and II. They are solutions of double evaluation and therefore are not physically acceptable solutions. The rightmost blue curve (II) also does not start on the surface of the Sun, while the leftmost blue curve (I) makes no physical sense since it would escape from the Sun with a subsonic velocity and return with a supersonic velocity.</p>
+<p>The green curves (III - upper, IV - lower) are solutions that do not pass through the critical point and therefore are not physically acceptable. Additionally, Curve III starts with a supersonic velocity near the Sun, which has not been observed, while Curve IV leads to constant pressure in the interstellar medium, which makes no physical sense.</p>
+<p>In contrast, the red ascending curve (V) leads to an increase in velocity after the critical point, which is observed, but also leads to zero pressure in the interstellar medium. This is known as the solar wind solution.</p>
+<div class="admonition attention">
+<p class="admonition-title">Atención</p>
+<p>At the level of the graph, a dense zone is observed around the critical point, but this is an effect of the implicit plotting method used with adaptive rendering.</p>
+</div>
+</section>
+<section id="numerical-solution">
+<h3>Numerical solution<a class="headerlink" href="#numerical-solution" title="Link to this heading">#</a></h3>
+<p>It is observed that at the critical point <span class="math notranslate nohighlight">\((r_c, c_s)\)</span>, there is an indeterminacy. For this reason, it is necessary to solve the differential equation before and after this point as two independent intervals. The first interval, to ensure its passage through the critical point, is recommended to be solved with a backward form, so that we can use this information as an initial condition in the differential equation instead of making an estimate of the initial conditions on the solar radius (which would be the same for both intervals).</p>
+<p>Therefore, we have to set <span class="math notranslate nohighlight">\(v(1) = 1\)</span>, for the first tramm that goes from the radius of the coronal solar up to the critical point, and the second interval that goes from the critical point to Earth (having a reference point for the solution going forward).</p>
+<p>We define the function for numerical values on the right-hand side of the differential equation (<span class="math notranslate nohighlight">\(\frac{d}{dR}v(R)\)</span>) in <code class="docutils literal notranslate"><span class="pre">f_ode</span></code> and define our function for the RK4 method, <code class="docutils literal notranslate"><span class="pre">RK4</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">f_ode</span><span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
+    <span class="c1"># Derivative of velocity profile function</span>
+    <span class="k">return</span> <span class="mi">2</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">R</span><span class="o">-</span> <span class="mi">1</span><span class="o">/</span><span class="n">R</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">v</span><span class="o">-</span><span class="mi">1</span><span class="o">/</span><span class="n">v</span><span class="p">)</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">RK4</span><span class="p">(</span><span class="n">funcion</span><span class="p">,</span> <span class="n">cond_inicial</span><span class="p">,</span> <span class="n">x_final</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+    <span class="c1"># RK4 solver</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="n">cond_inicial</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span>
+    <span class="n">w</span> <span class="o">=</span> <span class="p">[</span><span class="n">cond_inicial</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span>
+    <span class="n">dx</span> <span class="o">=</span> <span class="p">(</span><span class="n">x_final</span> <span class="o">-</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">/</span> <span class="n">n</span> <span class="c1"># step</span>
+    <span class="n">dx_2</span> <span class="o">=</span> <span class="n">dx</span> <span class="o">/</span> <span class="mi">2</span> <span class="c1"># half step</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">k1</span> <span class="o">=</span> <span class="n">dx</span> <span class="o">*</span> <span class="n">funcion</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">w</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+        <span class="n">k2</span> <span class="o">=</span> <span class="n">dx</span> <span class="o">*</span> <span class="n">funcion</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">dx_2</span><span class="p">,</span> <span class="n">w</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">k1</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+        <span class="n">k3</span> <span class="o">=</span> <span class="n">dx</span> <span class="o">*</span> <span class="n">funcion</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">dx_2</span><span class="p">,</span> <span class="n">w</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">k2</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+        <span class="n">x</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">dx</span><span class="p">)</span> <span class="c1"># x[i+1] = x[-1]</span>
+        <span class="n">k4</span> <span class="o">=</span> <span class="n">dx</span> <span class="o">*</span> <span class="n">funcion</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">w</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">k3</span><span class="p">)</span>
+        <span class="n">w</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">w</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="p">(</span><span class="n">k1</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">k2</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">k3</span> <span class="o">+</span> <span class="n">k4</span><span class="p">)</span><span class="o">/</span><span class="mi">6</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">x</span><span class="p">,</span> <span class="n">w</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Define required constants and helper functions to compute sonic velocity and sonic radii.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">G</span> <span class="o">=</span> <span class="mf">6.67e-11</span> <span class="c1">#Nm2kg-2</span>
+<span class="n">k</span> <span class="o">=</span> <span class="mf">1.38065e-23</span> <span class="c1">#JK-1</span>
+<span class="n">M</span> <span class="o">=</span> <span class="mf">1.988435e30</span> <span class="c1">#kg, Sun mass</span>
+<span class="n">m_H</span> <span class="o">=</span> <span class="mf">1.67372e-27</span> <span class="c1">#kg, hydrogen mass</span>
+<span class="n">r_max</span> <span class="o">=</span> <span class="mf">150e9</span> <span class="c1">#m, Earth-Sun distance</span>
+<span class="n">r_min</span> <span class="o">=</span> <span class="mf">695.5e6</span> <span class="c1">#m, Sun radii</span>
+<span class="n">omega_sol</span> <span class="o">=</span> <span class="mf">2.7e-6</span> <span class="c1">#rads-1, Sun angular velocity</span>
+<span class="n">T_cor</span> <span class="o">=</span> <span class="mf">1e6</span> <span class="c1">#K, Corona temperature</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">c_s</span><span class="p">(</span><span class="n">T</span> <span class="o">=</span> <span class="n">T_cor</span><span class="p">,</span> <span class="n">m</span> <span class="o">=</span> <span class="n">m_H</span><span class="p">):</span>
+    <span class="c1"># Sonic velocity</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">math</span><span class="w"> </span><span class="kn">import</span> <span class="n">sqrt</span>
+    <span class="k">return</span> <span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">k</span><span class="o">*</span><span class="n">T</span><span class="o">/</span><span class="n">m</span><span class="p">)</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">r_c</span><span class="p">(</span><span class="n">T</span> <span class="o">=</span> <span class="n">T_cor</span><span class="p">,</span> <span class="n">m</span> <span class="o">=</span> <span class="n">m_H</span><span class="p">):</span>
+    <span class="c1"># Sonic radii</span>
+    <span class="k">return</span> <span class="n">G</span><span class="o">*</span><span class="n">M</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">c_s</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">m</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Define adiminensional parameters</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">vel_s</span> <span class="o">=</span> <span class="n">c_s</span><span class="p">(</span><span class="n">T_cor</span><span class="p">,</span> <span class="n">m_H</span><span class="p">)</span>
+<span class="n">rad_s</span> <span class="o">=</span> <span class="n">r_c</span><span class="p">(</span><span class="n">T_cor</span><span class="p">,</span> <span class="n">m_H</span><span class="p">)</span>
+<span class="n">t_s</span> <span class="o">=</span> <span class="n">rad_s</span> <span class="o">/</span> <span class="n">vel_s</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Sonic velocity: </span><span class="si">{:f}</span><span class="s2">km/s&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">vel_s</span><span class="o">/</span><span class="mi">1000</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Sonic radii: </span><span class="si">{:f}</span><span class="s2">km&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">rad_s</span><span class="o">/</span><span class="mi">1000</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Unit time: </span><span class="si">{:f}</span><span class="s2">s&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">t_s</span><span class="p">))</span>
+<span class="n">omega_s</span> <span class="o">=</span> <span class="n">omega_sol</span> <span class="o">*</span> <span class="n">t_s</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;omega (adim): </span><span class="si">{:f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">omega_s</span><span class="p">))</span>
+<span class="n">R_max</span> <span class="o">=</span> <span class="n">r_max</span> <span class="o">/</span> <span class="n">rad_s</span>
+<span class="n">R_min</span> <span class="o">=</span> <span class="n">r_min</span> <span class="o">/</span> <span class="n">rad_s</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Max radii (adim): </span><span class="si">{:f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">R_max</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Min radii (adim): </span><span class="si">{:f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">R_min</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Sonic velocity: 128.444465km/s
+Sonic radii: 4019540.880399km
+Unit time: 31293.998427s
+omega (adim): 0.084494
+Max radii (adim): 37.317695
+Min radii (adim): 0.173030
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now we apply the RK4 method for the segments and graph the results. It is important to note that since the first segment is reversed, in order to properly arrange the solution, we need to apply the reverse of the list (<code class="docutils literal notranslate"><span class="pre">.reverse</span></code>) and thus keep the solution ordered.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Numerical solution to solar wind equation</span>
+<span class="n">R</span><span class="p">,</span> <span class="n">v</span> <span class="o">=</span> <span class="n">RK4</span><span class="p">(</span><span class="n">f_ode</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="o">-</span><span class="mf">1e-6</span><span class="p">],</span> <span class="n">R_min</span><span class="p">,</span> <span class="mi">30000</span><span class="p">)</span>
+<span class="n">R</span><span class="o">.</span><span class="n">reverse</span><span class="p">()</span>
+<span class="n">v</span><span class="o">.</span><span class="n">reverse</span><span class="p">()</span>
+<span class="n">R_sup</span><span class="p">,</span> <span class="n">v_sup</span> <span class="o">=</span> <span class="n">RK4</span><span class="p">(</span><span class="n">f_ode</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="o">+</span> <span class="mf">1e-6</span> <span class="p">],</span> <span class="n">R_max</span><span class="p">,</span> <span class="mi">1000000</span><span class="p">)</span>
+<span class="n">v</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">v_sup</span><span class="p">)</span>
+<span class="n">R</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">R_sup</span><span class="p">)</span>
+<span class="c1"># Graficamos</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;or&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">1.2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;Sonic point&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">R</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">v</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;og&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">R</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mf">.2</span><span class="p">,</span> <span class="n">v</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="mf">.2</span><span class="p">,</span><span class="s1">&#39;Earth&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../_images/14454f012faa7e78f19ac9e9bb94d5bc5f66e32277d8f8d852702c75577edb37.png" src="../../../_images/14454f012faa7e78f19ac9e9bb94d5bc5f66e32277d8f8d852702c75577edb37.png" />
+</div>
+</div>
+<p>Starting from this velocity profile, we construct the angular velocity component to ultimately generate the well-known Parker spiral, and we can do this using the Euler method.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">N</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">R</span><span class="p">)</span>
+<span class="n">cont</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">psi</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="n">R</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">cos</span><span class="p">(</span><span class="n">psi</span><span class="p">[</span><span class="mi">0</span><span class="p">])]</span>
+<span class="n">y</span> <span class="o">=</span> <span class="p">[</span><span class="n">R</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">sin</span><span class="p">(</span><span class="n">psi</span><span class="p">[</span><span class="mi">0</span><span class="p">])]</span>
+<span class="k">while</span> <span class="n">cont</span> <span class="o">&lt;</span> <span class="n">N</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+    <span class="c1"># Euler method</span>
+    <span class="n">dR</span> <span class="o">=</span> <span class="n">R</span><span class="p">[</span><span class="n">cont</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">R</span><span class="p">[</span><span class="n">cont</span><span class="p">]</span>
+    <span class="n">dpsi</span> <span class="o">=</span> <span class="o">-</span><span class="n">omega_s</span> <span class="o">*</span> <span class="n">dR</span> <span class="o">/</span> <span class="n">v</span><span class="p">[</span><span class="n">cont</span><span class="p">]</span>
+    <span class="n">psi</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">psi</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">dpsi</span><span class="p">)</span>
+    <span class="n">cont</span> <span class="o">=</span> <span class="n">cont</span> <span class="o">+</span> <span class="mi">1</span>
+
+<span class="n">dpsi_v</span> <span class="o">=</span> <span class="n">ones</span><span class="p">([</span><span class="n">N</span><span class="p">])</span> <span class="o">*</span> <span class="n">pi</span> <span class="o">/</span> <span class="mi">2</span>
+<span class="n">psi1</span> <span class="o">=</span> <span class="n">array</span><span class="p">(</span><span class="n">psi</span><span class="p">)</span>
+<span class="n">psi2</span> <span class="o">=</span> <span class="n">psi1</span> <span class="o">+</span> <span class="n">dpsi_v</span>
+<span class="n">psi3</span> <span class="o">=</span> <span class="n">psi2</span> <span class="o">+</span> <span class="n">dpsi_v</span>
+<span class="n">psi4</span> <span class="o">=</span> <span class="n">psi3</span> <span class="o">+</span> <span class="n">dpsi_v</span>
+<span class="n">espiral</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="s1">&#39;polar&#39;</span><span class="p">)</span>
+<span class="n">espiral</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">psi1</span><span class="p">,</span> <span class="n">R</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+<span class="n">espiral</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">psi2</span><span class="p">,</span> <span class="n">R</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+<span class="n">espiral</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">psi3</span><span class="p">,</span> <span class="n">R</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+<span class="n">espiral</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">psi4</span><span class="p">,</span> <span class="n">R</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x72ead913d3a0&gt;]
+</pre></div>
+</div>
+<img alt="../../../_images/8bc3b442242eea04e7ed1768c27647f8af20c6cb2ceef1c8f8bebcf3178b4e68.png" src="../../../_images/8bc3b442242eea04e7ed1768c27647f8af20c6cb2ceef1c8f8bebcf3178b4e68.png" />
+</div>
+</div>
+</section>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="referencias">
+<h1>Referencias<a class="headerlink" href="#referencias" title="Link to this heading">#</a></h1>
+<ul class="simple">
+<li><p>E. N. Parker, <a class="reference external" href="https://articles.adsabs.harvard.edu/pdf/1958ApJ...128..664P">“Dynamics of the Interplanetary Gas and Magnetic Fields”</a>, Astrophysical Journal, 128, 1958 p. 664.</p></li>
+<li><p>Margaret G. Kivelson y Christopher T. Russel, “Introduction to Space Physics”, Cambridge University Press, 1995, 588 p.</p></li>
+<li><p>Ana Maria Piso, <a class="reference external" href="http://demonstrations.wolfram.com/TheSolarWind/">“The Solar Wind” from Wolfram Demonstrations Project</a>, Agosto 6 de 2008.</p></li>
+<li><p>Richard L. Burden y J. Douglas Faires, “Análisis Numérico”, 7Ed., Ediciones Paraninfo, 2002 p. 839.</p></li>
+</ul>
+</section>
+
+<div class="section ablog__blog_comments">
+     
+<div class="section ablog__prev-next">
+  <span class="ablog__prev">
+      Anterior:
+    
+    <a href="../../../es/blog/2024/espiral-de-parker-con-python.html">
+      
+      <span>Espiral de Parker con Python</span>
+    </a>
+    
+  </span>
+  <span class="ablog__spacer">&nbsp;</span>
+  <span class="ablog__next">
+      Siguiente: 
+    <a href="unir-video-y-audio-con-ffmpeg-y-bash.html">
+      <span>Merging Video and Audio with FFmpeg and Bash</span>
+      
+    </a>
+    
+  </span>
+</div>
+  
+</div>
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> En esta página
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">The Parker Spiral with Python</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solar-wind">Solar wind</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solar-wind-velocity-profile">Solar Wind Velocity Profile</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analytical-and-numerical-solution-to-parker-equation-with-python">Analytical and numerical solution to Parker equation with Python</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analytical-solution-using-sympy">Analytical solution using SymPy</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#numerical-solution">Numerical solution</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#referencias">Referencias</a></li>
+</ul>
+
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+  <div role="note" aria-label="source link">
+    <h3>Esta página</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../_sources/en/blog/2024/espiral-de-parker-con-python.ipynb.txt"
+            rel="nofollow">Mostrar el código</a></li>
+    </ul>
+   </div></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2024, Edward Villegas-Pulgarin.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Creado usando <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Construido con el <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html"> Tema PyData Sphinx </a> 0.16.1.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>
