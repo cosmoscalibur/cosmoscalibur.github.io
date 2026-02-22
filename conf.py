@@ -165,6 +165,8 @@ exclude_patterns = [
     ".doctrees",
     ".gitignore",
     "**/draft/*",
+    "**/skills/*",
+    "social-posts.md"
 ]
 
 html_show_sourcelink = True

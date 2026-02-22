@@ -173,11 +173,18 @@ Use `{file}` role: `{file}\`/dev/sda1\``
 
 ### Cross-references to other posts
 
-Use relative or absolute paths:
+Use standard Markdown link syntax with absolute or relative paths. **Do NOT use `{ref}` for cross-references to other posts.**
 
 ```markdown
 [Link text](/es/blog/2025/post-slug.md)
 [Link text](../2025/post-slug.md)
+[](/es/blog/2025/post-slug.md)           # Empty brackets: MyST auto-resolves the title
+```
+
+For section anchors within another post:
+
+```markdown
+[Link text](/es/blog/2025/post-slug.md#section-anchor)
 ```
 
 ### References Section
