@@ -2,10 +2,308 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="es">
   <id>https://www.cosmoscalibur.com/</id>
   <title>Cosmoscalibur</title>
-  <updated>2026-02-22T22:44:02.051419+00:00</updated>
+  <updated>2026-02-23T12:24:27.433988+00:00</updated>
   <link href="https://www.cosmoscalibur.com/"/>
   <link href="https://www.cosmoscalibur.com/blog/atom.xml" rel="self"/>
   <generator uri="https://ablog.readthedocs.io/" version="0.11.12">ABlog</generator>
+  <entry>
+    <id>https://www.cosmoscalibur.com/en/blog/2026/ingenieria-de-prompt-habilidad-o-estafa/</id>
+    <title>Prompt Engineering: Technical Skill or Scam?</title>
+    <updated>2026-02-23T00:00:00-05:00</updated>
+    <author>
+      <name>Edward Villegas-Pulgarin</name>
+    </author>
+    <content type="html">&lt;section class="tex2jax_ignore mathjax_ignore" id="prompt-engineering-technical-skill-or-scam"&gt;
+
+&lt;p&gt;Prompt engineering was sold as the skill of the future. Courses, certifications,
+job titles, books, and even graduate programs sprang up around the idea that
+knowing &lt;em&gt;how&lt;/em&gt; to talk to an AI was a differentiating technical competency. But
+was it really, or was it just a temporary patch for the limitations of language
+models?&lt;/p&gt;
+&lt;section id="the-origin-a-patch-for-deficient-models"&gt;
+&lt;h2&gt;The Origin: A Patch for Deficient Models&lt;/h2&gt;
+&lt;p&gt;To understand why prompt engineering existed, you need to remember what language
+models were like just a couple of years ago. GPT-3 and the first open models had
+limited natural language comprehension. They didn’t understand ambiguous
+instructions, lost context easily, and needed users to structure requests in
+very specific ways to produce useful results.&lt;/p&gt;
+&lt;p&gt;That’s where prompt engineering was born: a set of techniques —&lt;em&gt;few-shot
+prompting&lt;/em&gt;, &lt;em&gt;chain-of-thought&lt;/em&gt;, &lt;em&gt;role prompting&lt;/em&gt;, delimiters, explicit output
+formats— designed to compensate for the models’ comprehension deficiencies. It
+wasn’t a skill about &lt;em&gt;what&lt;/em&gt; you needed, but about &lt;em&gt;how&lt;/em&gt; to ask a model that
+didn’t understand you well.&lt;/p&gt;
+&lt;p&gt;In other words, prompt engineering was the user interface that models lacked. It
+was the equivalent of memorizing terminal commands before graphical interfaces
+existed: necessary at the time, but destined to be absorbed by technological
+evolution.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="how-you-ask-is-no-longer-the-problem"&gt;
+&lt;h2&gt;How You Ask Is No Longer the Problem&lt;/h2&gt;
+&lt;p&gt;Today’s language models —Gemini 3, Claude Sonnet 4.5, GPT-5, Llama 4— are
+radically different. They understand natural language instructions without rigid
+formats. They can handle extended contexts, maintain coherence across long
+conversations, and most importantly, interpret the intent behind an imprecise
+request.&lt;/p&gt;
+&lt;p&gt;Do you need to tell Claude Sonnet to “act as an expert in X” to get a good
+answer? No. Do you need to structure your question with &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;###&lt;/span&gt;&lt;/code&gt; delimiters and
+&lt;em&gt;few-shot&lt;/em&gt; examples for Gemini 3 Pro to understand what you want? No either.
+Models are now capable enough to understand you if you tell them what you need
+clearly, the way you would tell a competent colleague.&lt;/p&gt;
+&lt;p&gt;This doesn’t mean that how you communicate with AI is irrelevant. But the
+barrier is no longer technical. If you can express what you need clearly, the
+model will understand you. The problem is no longer the &lt;em&gt;how&lt;/em&gt;, but the &lt;em&gt;what&lt;/em&gt;.&lt;/p&gt;
+&lt;section id="the-exception-ai-development"&gt;
+&lt;h3&gt;The Exception: AI Development&lt;/h3&gt;
+&lt;p&gt;There’s an important nuance. For AI developers —those building processing
+pipelines, autonomous agents, or RAG systems— prompt engineering remains
+relevant as an optimization technique. In that context, structuring system
+prompts, controlling temperature, using &lt;em&gt;few-shot&lt;/em&gt; for classification tasks, or
+defining JSON output formats are valid technical decisions that directly impact
+system performance.&lt;/p&gt;
+&lt;p&gt;But this is software engineering, not a “skill of the future” for everyday
+users. It’s like saying that knowing how to configure a web server is a
+universal skill because everyone uses the internet.&lt;/p&gt;
+&lt;/section&gt;
+&lt;/section&gt;
+&lt;section id="from-prompt-engineering-to-context-engineering"&gt;
+&lt;h2&gt;From Prompt Engineering to Context Engineering&lt;/h2&gt;
+&lt;p&gt;If prompt engineering was about &lt;em&gt;how&lt;/em&gt; to ask the AI something, context
+engineering is about &lt;em&gt;what&lt;/em&gt; you need and &lt;em&gt;what information&lt;/em&gt; the AI should work
+with. This shift is fundamental.&lt;/p&gt;
+&lt;p&gt;Context engineering rests on two pillars:&lt;/p&gt;
+&lt;section id="injected-context"&gt;
+&lt;h3&gt;1. Injected Context&lt;/h3&gt;
+&lt;p&gt;Modern AI agents don’t work solely with your message. They work with layers of
+context that you configure beforehand:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Context files&lt;/strong&gt;: Define the general behavior, response style, constraints,
+and conventions the agent should always follow. They are configured globally
+or per project through files like &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;AGENTS.md&lt;/span&gt;&lt;/code&gt;, &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;CLAUDE.md&lt;/span&gt;&lt;/code&gt;, &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;.cursorrules&lt;/span&gt;&lt;/code&gt; or
+&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;.agent/rules&lt;/span&gt;&lt;/code&gt; (Antigravity), which the agent reads automatically to
+understand your code’s conventions, architecture, and technical decisions.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Agent skills&lt;/strong&gt;: Specialized instructions for specific tasks that the agent
+loads when needed. For example, a skill for writing documentation, another for
+code review, another for generating tests. It’s not a magic prompt: it’s a
+workflow specification.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;None of this requires knowing prompting techniques. It requires knowing how to
+define clear rules, document conventions, and structure your project’s
+knowledge.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="clear-specifications-in-the-prompt"&gt;
+&lt;h3&gt;2. Clear Specifications in the Prompt&lt;/h3&gt;
+&lt;p&gt;The second pillar is what you actually write in each interaction. And here’s the
+key: it’s not about &lt;em&gt;how&lt;/em&gt; to write it (that’s prompt engineering), but &lt;em&gt;what&lt;/em&gt; to
+write. The skills you need are:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Spec design&lt;/strong&gt;: Knowing how to precisely describe what you want built.
+Functional requirements, constraints, edge cases, acceptance criteria. It’s
+the same thing you’d do when writing a well-crafted ticket or user story.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Solution design&lt;/strong&gt;: Having a clear vision of how the solution should work.
+You don’t need to implement it, but you do need to know which components are
+involved, what data flows, and what outcome you expect.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Solution architecture&lt;/strong&gt;: For complex tasks, knowing how to decompose the
+problem into manageable parts, define interfaces between components, and
+establish an execution order. This is engineering thinking, not prompting
+tricks.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;In short: the skills that get you good results from AI are the same ones that
+make you a good professional. Clarity, precision, structured thinking, and the
+ability to decompose problems.&lt;/p&gt;
+&lt;/section&gt;
+&lt;/section&gt;
+&lt;section id="so-was-it-a-scam"&gt;
+&lt;h2&gt;So, Was It a Scam?&lt;/h2&gt;
+&lt;p&gt;I wouldn’t say it was a deliberate scam, but it was a skill with an expiration
+date around which an entire industry was built. “Prompt engineering” courses
+that promise to transform your career in 2026 are selling obsolete knowledge.
+Prompting certifications are the current equivalent of a “web search”
+certification in 2005.&lt;/p&gt;
+&lt;p&gt;What you actually need to learn has nothing to do with formatting tricks. You
+need to learn to think clearly, to design solutions, to write specifications
+that leave no ambiguity. And if you work with AI agents, you need to learn to
+configure their context: rules, skills, and project documentation.&lt;/p&gt;
+&lt;p&gt;Prompt engineering is dead. Context engineering has replaced it. And the good
+news is that the skills you need to master it are the ones that have always
+defined a good professional.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="references"&gt;
+&lt;h2&gt;References&lt;/h2&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://simonwillison.net/2025/Jun/27/context-engineering/"&gt;Context engineering&lt;/a&gt;.
+Simon Willison.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://www.philschmid.de/context-engineering"&gt;The New Skill in AI is Not Prompting, It’s Context Engineering&lt;/a&gt;.
+Philipp Schmid.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents"&gt;Effective context engineering for AI agents&lt;/a&gt;.
+Anthropic.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/section&gt;
+&lt;/section&gt;
+</content>
+    <link href="https://www.cosmoscalibur.com/en/blog/2026/ingenieria-de-prompt-habilidad-o-estafa/"/>
+    <summary>Prompt engineering was sold as the skill of the future. Courses, certifications,
+job titles, books, and even graduate programs sprang up around the idea that
+knowing how to talk to an AI was a differentiating technical competency. But
+was it really, or was it just a temporary patch for the limitations of language
+models?</summary>
+    <category term="artificialintelligence" label="artificial intelligence"/>
+    <category term="contextengineering" label="context engineering"/>
+    <category term="languagemodel" label="language model"/>
+    <category term="promptengineering" label="prompt engineering"/>
+    <published>2026-02-23T00:00:00-05:00</published>
+  </entry>
+  <entry>
+    <id>https://www.cosmoscalibur.com/es/blog/2026/ingenieria-de-prompt-habilidad-o-estafa/</id>
+    <title>Ingeniería de prompt: ¿Habilidad técnica o estafa?</title>
+    <updated>2026-02-23T00:00:00-05:00</updated>
+    <author>
+      <name>Edward Villegas-Pulgarin</name>
+    </author>
+    <content type="html">&lt;section class="tex2jax_ignore mathjax_ignore" id="ingenieria-de-prompt-habilidad-tecnica-o-estafa"&gt;
+
+&lt;p&gt;La ingeniería de &lt;em&gt;prompt&lt;/em&gt; se vendió como la habilidad del futuro. Cursos,
+certificaciones, títulos de cargo, libros y hasta programas de posgrado
+surgieron alrededor de la idea de que saber &lt;em&gt;cómo&lt;/em&gt; hablarle a una inteligencia
+artificial era una competencia técnica diferenciadora. Pero, ¿lo era realmente,
+o era solo un parche temporal a las limitaciones de los modelos de lenguaje?&lt;/p&gt;
+&lt;section id="el-origen-un-parche-a-modelos-deficientes"&gt;
+&lt;h2&gt;El origen: un parche a modelos deficientes&lt;/h2&gt;
+&lt;p&gt;Para entender por qué la ingeniería de &lt;em&gt;prompt&lt;/em&gt; existió, hay que recordar cómo
+eran los modelos de lenguaje hace apenas un par de años. GPT-3 y los primeros
+modelos abiertos tenían una comprensión limitada del lenguaje natural. No
+entendían instrucciones ambiguas, perdían el contexto fácilmente y necesitaban
+que el usuario estructurara las solicitudes de maneras muy específicas para
+obtener resultados útiles.&lt;/p&gt;
+&lt;p&gt;Ahí nació la ingeniería de &lt;em&gt;prompt&lt;/em&gt;: un conjunto de técnicas —&lt;em&gt;few-shot
+prompting&lt;/em&gt;, &lt;em&gt;chain-of-thought&lt;/em&gt;, &lt;em&gt;role prompting&lt;/em&gt;, delimitadores, formatos de
+salida explícitos— diseñadas para compensar las deficiencias de comprensión de
+los modelos. No era una habilidad sobre &lt;em&gt;qué&lt;/em&gt; necesitabas, sino sobre &lt;em&gt;cómo&lt;/em&gt;
+pedírselo a un modelo que no te entendía bien.&lt;/p&gt;
+&lt;p&gt;En otras palabras, la ingeniería de &lt;em&gt;prompt&lt;/em&gt; era la interfaz de usuario que los
+modelos no tenían. Era el equivalente a memorizar comandos de terminal antes de
+que existieran las interfaces gráficas: necesario en su momento, pero destinado
+a ser absorbido por la evolución de la tecnología.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="la-forma-de-preguntar-dejo-de-ser-el-problema"&gt;
+&lt;h2&gt;La forma de preguntar dejó de ser el problema&lt;/h2&gt;
+&lt;p&gt;Los modelos de lenguaje actuales —Gemini 3, Claude Sonnet 4.5, GPT-5, Llama 4—
+son radicalmente diferentes. Entienden instrucciones en lenguaje natural sin
+necesidad de formatos rígidos. Pueden manejar contextos extensos, mantener
+coherencia en conversaciones largas y, lo más importante, interpretar la
+intención detrás de una solicitud imprecisa.&lt;/p&gt;
+&lt;p&gt;¿Necesitas decirle a Claude Sonnet que “actúe como un experto en X” para que te
+dé una buena respuesta? No. ¿Necesitas estructurar tu pregunta con delimitadores
+&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;###&lt;/span&gt;&lt;/code&gt; y ejemplos &lt;em&gt;few-shot&lt;/em&gt; para que Gemini 3 Pro entienda lo que quieres?
+Tampoco. Los modelos ya son lo suficientemente capaces de entenderte si les
+dices lo que necesitas de manera clara, como se lo dirías a un colega
+competente.&lt;/p&gt;
+&lt;p&gt;Esto no significa que la forma de comunicarse con la IA sea irrelevante. Pero la
+barrera dejó de ser técnica. Si sabes expresar lo que necesitas con claridad, el
+modelo te va a entender. El problema ya no es el &lt;em&gt;cómo&lt;/em&gt;, sino el &lt;em&gt;qué&lt;/em&gt;.&lt;/p&gt;
+&lt;section id="la-excepcion-desarrollo-de-ia"&gt;
+&lt;h3&gt;La excepción: desarrollo de IA&lt;/h3&gt;
+&lt;p&gt;Hay un matiz importante. Para los desarrolladores de IA —quienes construyen
+&lt;em&gt;pipelines&lt;/em&gt; de procesamiento, agentes autónomos o sistemas RAG— la ingeniería de
+&lt;em&gt;prompt&lt;/em&gt; sigue siendo relevante como técnica de optimización. En ese contexto,
+estructurar &lt;em&gt;prompts&lt;/em&gt; del sistema, controlar la temperatura, usar &lt;em&gt;few-shot&lt;/em&gt;
+para tareas de clasificación o definir formatos de salida JSON son decisiones
+técnicas válidas que impactan directamente en el rendimiento del sistema.&lt;/p&gt;
+&lt;p&gt;Pero esto es desarrollo de software, no una “habilidad del futuro” para el
+usuario común. Es como decir que saber configurar un servidor web es una
+habilidad universal porque todos usamos internet.&lt;/p&gt;
+&lt;/section&gt;
+&lt;/section&gt;
+&lt;section id="de-la-ingenieria-de-prompt-a-la-ingenieria-de-contexto"&gt;
+&lt;h2&gt;De la ingeniería de &lt;em&gt;prompt&lt;/em&gt; a la ingeniería de contexto&lt;/h2&gt;
+&lt;p&gt;Si la ingeniería de &lt;em&gt;prompt&lt;/em&gt; era sobre &lt;em&gt;cómo&lt;/em&gt; pedirle algo a la IA, la
+ingeniería de contexto es sobre &lt;em&gt;qué&lt;/em&gt; necesitas y &lt;em&gt;con qué información&lt;/em&gt; la IA
+debe trabajar. Este cambio es fundamental.&lt;/p&gt;
+&lt;p&gt;La ingeniería de contexto se basa en dos pilares:&lt;/p&gt;
+&lt;section id="contexto-inyectado"&gt;
+&lt;h3&gt;1. Contexto inyectado&lt;/h3&gt;
+&lt;p&gt;Los agentes de IA modernos no trabajan solo con tu mensaje. Trabajan con capas
+de contexto que tú configuras previamente:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Archivos de contexto&lt;/strong&gt;: Definen el comportamiento general, el estilo de
+respuesta, las restricciones y las convenciones que el agente debe seguir. Se
+configuran a nivel global o de proyecto mediante archivos como &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;AGENTS.md&lt;/span&gt;&lt;/code&gt;,
+&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;CLAUDE.md&lt;/span&gt;&lt;/code&gt;, &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;.cursorrules&lt;/span&gt;&lt;/code&gt; o &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;.agent/rules&lt;/span&gt;&lt;/code&gt; (Antigravity), que el agente lee
+automáticamente para entender las convenciones, la arquitectura y las
+decisiones técnicas de tu código.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Habilidades del agente&lt;/strong&gt; (&lt;em&gt;agent skills&lt;/em&gt;): Instrucciones especializadas para
+tareas específicas que el agente carga cuando las necesita. Por ejemplo, una
+habilidad para escribir documentación, otra para hacer revisión de código,
+otra para generar pruebas. No es un &lt;em&gt;prompt&lt;/em&gt; mágico: es una especificación de
+flujo de trabajo.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Nada de esto requiere conocer técnicas de &lt;em&gt;prompting&lt;/em&gt;. Requiere saber definir
+reglas claras, documentar convenciones y estructurar el conocimiento de tu
+proyecto.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="especificaciones-claras-en-el-prompt"&gt;
+&lt;h3&gt;2. Especificaciones claras en el &lt;em&gt;prompt&lt;/em&gt;&lt;/h3&gt;
+&lt;p&gt;El segundo pilar es lo que realmente escribes en cada interacción. Y aquí está
+la clave: no se trata de &lt;em&gt;cómo&lt;/em&gt; escribirlo (eso es ingeniería de &lt;em&gt;prompt&lt;/em&gt;), sino
+de &lt;em&gt;qué&lt;/em&gt; escribir. Las habilidades que necesitas son:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Diseño de especificaciones&lt;/strong&gt;: Saber describir con precisión qué quieres que
+se construya. Requisitos funcionales, restricciones, casos borde, criterios de
+aceptación. Es lo mismo que harías al escribir un &lt;em&gt;ticket&lt;/em&gt; o una historia de
+usuario bien hecha.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Diseño de solución&lt;/strong&gt;: Tener una visión clara de cómo debería funcionar la
+solución. No necesitas implementarla, pero sí saber qué componentes
+intervienen, qué datos fluyen y qué resultado esperas.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Arquitectura de solución&lt;/strong&gt;: Para tareas complejas, saber descomponer el
+problema en partes manejables, definir interfaces entre componentes y
+establecer un orden de ejecución. Esto es pensamiento de ingeniería, no trucos
+de &lt;em&gt;prompting&lt;/em&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;En resumen: las habilidades que hacen que obtengas buenos resultados de la IA
+son las mismas que te hacen un buen profesional. Claridad, precisión,
+pensamiento estructurado y capacidad de descomponer problemas.&lt;/p&gt;
+&lt;/section&gt;
+&lt;/section&gt;
+&lt;section id="entonces-fue-una-estafa"&gt;
+&lt;h2&gt;Entonces, ¿fue una estafa?&lt;/h2&gt;
+&lt;p&gt;No diría que fue una estafa deliberada, pero sí una habilidad con fecha de
+caducidad sobre la que se construyó toda una industria. Los cursos de
+“ingeniería de &lt;em&gt;prompt&lt;/em&gt;” que prometen transformar tu carrera en 2026 están
+vendiendo conocimiento obsoleto. Las certificaciones en &lt;em&gt;prompting&lt;/em&gt; son el
+equivalente actual a una certificación en uso de buscadores web en 2005.&lt;/p&gt;
+&lt;p&gt;Lo que realmente necesitas aprender no tiene nada que ver con trucos de formato.
+Necesitas aprender a pensar con claridad, a diseñar soluciones, a escribir
+especificaciones que no dejen ambigüedades. Y si trabajas con agentes de IA,
+necesitas aprender a configurar su contexto: reglas, habilidades y documentación
+de proyecto.&lt;/p&gt;
+&lt;p&gt;La ingeniería de &lt;em&gt;prompt&lt;/em&gt; murió. La ingeniería de contexto la reemplazó. Y la
+buena noticia es que las habilidades que necesitas para dominarla son las que
+siempre han definido a un buen profesional.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="referencias"&gt;
+&lt;h2&gt;Referencias&lt;/h2&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://simonwillison.net/2025/Jun/27/context-engineering/"&gt;Context engineering&lt;/a&gt;.
+Simon Willison.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://www.philschmid.de/context-engineering"&gt;The New Skill in AI is Not Prompting, It’s Context Engineering&lt;/a&gt;.
+Philipp Schmid.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents"&gt;Effective context engineering for AI agents&lt;/a&gt;.
+Anthropic.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/section&gt;
+&lt;/section&gt;
+</content>
+    <link href="https://www.cosmoscalibur.com/es/blog/2026/ingenieria-de-prompt-habilidad-o-estafa/"/>
+    <summary>La ingeniería de prompt se vendió como la habilidad del futuro. Cursos,
+certificaciones, títulos de cargo, libros y hasta programas de posgrado
+surgieron alrededor de la idea de que saber cómo hablarle a una inteligencia
+artificial era una competencia técnica diferenciadora. Pero, ¿lo era realmente,
+o era solo un parche temporal a las limitaciones de los modelos de lenguaje?</summary>
+    <category term="ingenieríadecontexto" label="ingeniería de contexto"/>
+    <category term="ingenieríadeprompt" label="ingeniería de prompt"/>
+    <category term="inteligenciaartificial" label="inteligencia artificial"/>
+    <category term="modelodelenguaje" label="modelo de lenguaje"/>
+    <published>2026-02-23T00:00:00-05:00</published>
+  </entry>
   <entry>
     <id>https://www.cosmoscalibur.com/en/blog/2026/seekee-alternativa-gratis-para-ver-peliculas-y-series/</id>
     <title>Seekee: free alternative to watch movies and series</title>
