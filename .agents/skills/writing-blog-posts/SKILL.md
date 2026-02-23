@@ -1,11 +1,12 @@
 ---
 name: writing-blog-posts
-description: "Creates bilingual blog posts (Spanish/English) for Cosmoscalibur. Use when asked to write, create, or draft a blog post, article, or entry."
+description: Creates bilingual blog posts (Spanish/English) for Cosmoscalibur. Use when asked to write, create, or draft a blog post, article, or entry.
 ---
 
 # Writing Blog Posts
 
-Creates blog posts for the Cosmoscalibur blog, a bilingual (Spanish/English) personal blog built with Sphinx and ABlog using MyST Markdown.
+Creates blog posts for the Cosmoscalibur blog, a bilingual (Spanish/English)
+personal blog built with Sphinx and ABlog using MyST Markdown.
 
 ## File Structure
 
@@ -17,9 +18,11 @@ en/blog/{year}/{slug}.md      # English version
 images/{slug}/                 # Images directory (if needed)
 ```
 
-- The **slug** is always in Spanish, lowercase, with hyphens. Used for both `es/` and `en/` paths.
+- The **slug** is always in Spanish, lowercase, with hyphens. Used for both
+  `es/` and `en/` paths.
 - The **year** is the publication year (use today's date).
-- For code-heavy posts with executable examples, use Jupyter Notebooks (`.ipynb`) instead of `.md`.
+- For code-heavy posts with executable examples, use Jupyter Notebooks
+  (`.ipynb`) instead of `.md`.
 
 ## Frontmatter
 
@@ -46,7 +49,8 @@ language: en
 ---
 ```
 
-Note: English posts include `language: en`. Spanish posts do not include a `language` field.
+Note: English posts include `language: en`. Spanish posts do not include a
+`language` field.
 
 ### Jupyter Notebook posts (`.ipynb`)
 
@@ -64,26 +68,27 @@ Metadata goes in the notebook's top-level `metadata` object (not in a cell):
 }
 ```
 
-English notebooks include `"language": "en"` in metadata. Tags and categories are translated.
+English notebooks include `"language": "en"` in metadata. Tags and categories
+are translated.
 
 ### Categories Reference
 
 Spanish categories and their English equivalents:
 
-| Spanish | English |
-|---|---|
-| tecnología | technology |
-| programación | programming |
-| ciencia | science |
-| astronomía | astronomy |
+| Spanish              | English               |
+| -------------------- | --------------------- |
+| tecnología           | technology            |
+| programación         | programming           |
+| ciencia              | science               |
+| astronomía           | astronomy             |
 | física computacional | computational physics |
-| linux | linux |
-| opinión | opinion |
-| entretenimiento | entertainment |
-| videojuegos | videogames |
-| películas y series | movies and series |
-| software | software |
-| blog con sphinx | blog with sphinx |
+| linux                | linux                 |
+| opinión              | opinion               |
+| entretenimiento      | entertainment         |
+| videojuegos          | videogames            |
+| películas y series   | movies and series     |
+| software             | software              |
+| blog con sphinx      | blog with sphinx      |
 
 Tags are also translated between languages.
 
@@ -91,14 +96,19 @@ Tags are also translated between languages.
 
 ### General
 
-- First person, personal narrative tone. The author shares experiences and opinions.
+- First person, personal narrative tone. The author shares experiences and
+  opinions.
 - Accessible but technically accurate.
 - Short paragraphs, with line wraps at ~80 characters in the source.
+- Foreign words relative to the post's language must be italicized (e.g.,
+  *prompt*, *software*, *hype* in Spanish posts; loanwords from Spanish in
+  English posts).
 - No trailing comments like `<!-- ... -->` or unnecessary whitespace.
 
 ### By Post Type
 
 **Technology/Troubleshooting:**
+
 - Opens with personal context of encountering the problem.
 - Explains the technical background or what the tool/concept is.
 - Shows what was tried and what worked (with commands and code).
@@ -106,6 +116,7 @@ Tags are also translated between languages.
 - Example: `es/blog/2025/montar-disco-en-linux-y-error-de-volumen-sucio.md`
 
 **Science:**
+
 - Opens with a hook about the topic or an event.
 - Explains concepts in an educational but engaging way.
 - Uses analogies and accessible language for complex topics.
@@ -113,12 +124,14 @@ Tags are also translated between languages.
 - Example: `es/blog/2025/alineacion-planetaria-2025.md`
 
 **Opinion:**
+
 - Opens with a direct statement or question.
 - Personal perspective backed by facts or experience.
 - Conversational tone, may address the reader directly ("tú" form in Spanish).
 - Example: `es/blog/2024/factura-electronica-que-hacer-si-te-la-niegan.md`
 
 **Culture/Entertainment:**
+
 - Accessible, informal tone.
 - Comparisons and personal recommendations.
 - Example: `es/blog/2024/la-mejor-alternativa-gratis-a-netflix.md`
@@ -127,15 +140,15 @@ Tags are also translated between languages.
 
 ### Code blocks
 
-```markdown
+````markdown
 ```{code} bash
 command here
 `` `
-```
+````
 
 ### Figures
 
-```markdown
+````markdown
 ```{figure} /images/{slug}/{image-name}.png
 ---
 alt: Description of the image
@@ -145,35 +158,37 @@ height: 400px
 ---
    Caption text.
 `` `
-```
+````
 
-Images are stored in `/images/{slug}/` directory. Create the directory when the post uses images.
+Images are stored in `/images/{slug}/` directory. Create the directory when the
+post uses images.
 
 ### Admonitions
 
-```markdown
+````markdown
 ```{attention}
 Warning text here.
 `` `
-```
+````
 
 Available: `attention`, `note`, `tip`, `warning`, `important`.
 
 ### Keyboard shortcuts
 
-Use `{kbd}` role: `{kbd}\`Win+I\``
+Use `{kbd}` role: `{kbd}\`Win+I\`\`
 
 ### Program references
 
-Use `{program}` role: `{program}\`ollama\``
+Use `{program}` role: `{program}\`ollama\`\`
 
 ### File path references
 
-Use `{file}` role: `{file}\`/dev/sda1\``
+Use `{file}` role: `{file}\`/dev/sda1\`\`
 
 ### Cross-references to other posts
 
-Use standard Markdown link syntax with absolute or relative paths. **Do NOT use `{ref}` for cross-references to other posts.**
+Use standard Markdown link syntax with absolute or relative paths. **Do NOT use
+`{ref}` for cross-references to other posts.**
 
 ```markdown
 [Link text](/es/blog/2025/post-slug.md)
@@ -189,7 +204,8 @@ For section anchors within another post:
 
 ### References Section
 
-End posts with a `## Referencias` (Spanish) or `## References` (English) section listing sources:
+End posts with a `## Referencias` (Spanish) or `## References` (English) section
+listing sources:
 
 ```markdown
 ## Referencias
@@ -201,7 +217,8 @@ End posts with a `## Referencias` (Spanish) or `## References` (English) section
 ## Bilingual Workflow
 
 1. Write the **Spanish version first** (primary language of the blog).
-2. Create the **English version** as a translation, not a literal word-for-word copy. Adapt idioms and cultural references naturally.
+2. Create the **English version** as a translation, not a literal word-for-word
+   copy. Adapt idioms and cultural references naturally.
 3. Both versions use the **same slug** (Spanish slug).
 4. Both versions share the **same images directory**.
 5. Translate tags and categories to their English equivalents.
@@ -209,14 +226,18 @@ End posts with a `## Referencias` (Spanish) or `## References` (English) section
 
 ### When to create both versions
 
-- **Technology/Programming posts**: Always bilingual (relevant to international audience).
+- **Technology/Programming posts**: Always bilingual (relevant to international
+  audience).
 - **Science posts**: Always bilingual.
-- **Opinion posts**: Bilingual only if the topic is relevant beyond Spanish-speaking audiences.
-- **Culture posts**: Bilingual only if universally relevant. Local topics (Colombian law, local events) may stay Spanish-only.
+- **Opinion posts**: Bilingual only if the topic is relevant beyond
+  Spanish-speaking audiences.
+- **Culture posts**: Bilingual only if universally relevant. Local topics
+  (Colombian law, local events) may stay Spanish-only.
 
 ## Social Media Posts
 
-After creating blog posts, append X (Twitter) proposed posts to `social-posts.md` at the project root.
+After creating blog posts, create X (Twitter) proposed posts to
+`social-posts.md` at the project root.
 
 ### Format
 
