@@ -7,6 +7,13 @@ language: en
 
 # No module named `pkg_resources` found in UV environment
 
+```{update} 2026-02-23
+Starting February 8, 2026, *setuptools* v82 removed the `pkg_resources` module.
+If you experience this error after that date, the likely cause is the
+*setuptools* upgrade. The solution is to pin the version to the previous one,
+e.g., `setuptools<82`.
+```
+
 If, like many others, you have already started migrating to the package manager
 {program}`uv`, you might have encountered the
 `ModuleNotFoundError: No module named 'pkg_resources'` issue. Don't worry, this

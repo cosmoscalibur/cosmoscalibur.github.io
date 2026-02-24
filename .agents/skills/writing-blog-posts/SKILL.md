@@ -165,6 +165,8 @@ post uses images.
 
 ### Admonitions
 
+**English posts** can use built-in directive names directly:
+
 ````markdown
 ```{attention}
 Warning text here.
@@ -172,6 +174,34 @@ Warning text here.
 ````
 
 Available: `attention`, `note`, `tip`, `warning`, `important`.
+
+**Spanish posts** must use the generic `{admonition}` directive with a `class`
+option, because ABlog/Sphinx built-in directive titles render in English (the
+Spanish locale translations are incomplete). Provide the translated title
+manually:
+
+````markdown
+```{admonition} Título en español
+---
+class: tip
+---
+Contenido de la amonestación.
+`` `
+````
+
+**Update admonitions** follow the same rule:
+
+- **English:** use `{update}` directly (renders "Updated on YYYY-MM-DD").
+- **Spanish:** use `{admonition}` with `class: hint`:
+
+````markdown
+```{admonition} Actualizado el YYYY-MM-DD
+---
+class: hint
+---
+Descripción de la actualización.
+`` `
+````
 
 ### Keyboard shortcuts
 

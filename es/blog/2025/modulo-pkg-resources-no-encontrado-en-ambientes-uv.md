@@ -6,6 +6,16 @@ category: tecnología, programación
 
 # Módulo `pkg_resources` no encontrado en ambientes UV
 
+```{admonition} Actualizado el 2026-02-23
+---
+class: hint
+---
+A partir del 8 de febrero de 2026, *setuptools* v82 eliminó el módulo
+`pkg_resources`. Si experimentas este error después de esa fecha, la causa
+probable es la actualización de *setuptools*. La solución es fijar la versión
+a la anterior, por ejemplo, `setuptools<82`.
+```
+
 Si como muchos, ya has iniciado la migración al gestor de paquetes
 {program}`uv`, puede que te hayas encontrado con el problema de
 `ModuleNotFoundError: No module named 'pkg_resources'`. No te preocupes, esto no
