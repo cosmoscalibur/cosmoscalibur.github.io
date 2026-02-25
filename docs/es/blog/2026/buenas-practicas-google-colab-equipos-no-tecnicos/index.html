@@ -1,0 +1,1139 @@
+
+<!DOCTYPE html>
+
+
+<html lang="es" data-content_root="../../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="og:title" content="Buenas prácticas en Google Colab para compartir con equipos no técnicos" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://www.cosmoscalibur.com/es/blog/2026/buenas-practicas-google-colab-equipos-no-tecnicos/" />
+<meta property="og:site_name" content="Cosmoscalibur" />
+<meta property="og:description" content="En equipos de trabajo donde conviven perfiles técnicos y no técnicos, es frecuente que el equipo técnico desarrolle notebooks en Google Colab para procesos periódicos: reportes mensuales, análisis ..." />
+<meta property="og:image:width" content="1146" />
+<meta property="og:image:height" content="600" />
+<meta property="og:image" content="https://www.cosmoscalibur.com/_images/social_previews/summary_es_blog_2026_buenas-practicas-google-colab-equipos-no-tecnicos_3f48c427.png" />
+<meta property="og:image:alt" content="En equipos de trabajo donde conviven perfiles técnicos y no técnicos, es frecuente que el equipo técnico desarrolle notebooks en Google Colab para procesos periódicos: reportes mensuales, análisis ..." />
+<meta name="description" content="En equipos de trabajo donde conviven perfiles técnicos y no técnicos, es frecuente que el equipo técnico desarrolle notebooks en Google Colab para procesos periódicos: reportes mensuales, análisis ..." />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:creator" content="@cosmoscalibur" />
+<meta name="fediverse:creator" content="@cosmoscalibur@col.social">
+
+    <title>Buenas prácticas en Google Colab para compartir con equipos no técnicos &#8212; Cosmoscalibur</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../../../../_static/documentation_options.js?v=a20647df"></script>
+    <script src="../../../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../../_static/translations.js?v=f85f4cfb"></script>
+    <script src="../../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-4YFQBC69LB"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-4YFQBC69LB');
+            </script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'es/blog/2026/buenas-practicas-google-colab-equipos-no-tecnicos';</script>
+    <link rel="canonical" href="https://www.cosmoscalibur.com/es/blog/2026/buenas-practicas-google-colab-equipos-no-tecnicos/" />
+    <link rel="icon" href="../../../../_static/cosmoscalibur_favicon.png"/>
+    <link rel="index" title="Índice" href="../../../../genindex/" />
+    <link rel="search" title="Búsqueda" href="../../../../search/" /> 
+
+<!-- TODO: Revisar como hacer que dependa del despliegue en GitHub Pages para no usar en local -->
+<!-- TODO: Usar GitHub Actions para esto -->
+
+<!-- Usado para mostrar publicidad -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-0356238418278924"
+crossorigin="anonymous"></script>
+
+
+<link rel="alternate" hreflang="en" href="https://www.cosmoscalibur.com/en/blog/2026/buenas-practicas-google-colab-equipos-no-tecnicos/" />
+<link rel="alternate" hreflang="es" href="https://www.cosmoscalibur.com/es/blog/2026/buenas-practicas-google-colab-equipos-no-tecnicos/" />
+
+
+ 
+<link
+  rel="alternate"
+  type="application/atom+xml"
+  href="../../../../blog/atom.xml"
+  title="Cosmoscalibur"
+/>
+  
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Saltar al contenido principal</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Volver arriba</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../../search/"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Advertencia de versión"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Navegación del sitio">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../../">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../../_static/cosmoscalibur_logo.png" class="logo__image only-light" alt="Cosmoscalibur - Home"/>
+    <img src="../../../../_static/cosmoscalibur_logo.png" class="logo__image only-dark pst-js-only" alt="Cosmoscalibur - Home"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../me/">
+    Edward Villegas
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+<div class="navbar-nav">
+  <a class="nav-link" href="../../../../en/blog/2026/buenas-practicas-google-colab-equipos-no-tecnicos/" title="English" style="color: var(--pst-color-text-base);">
+    🌐 English
+  </a>
+</div>
+</div>
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Tema" data-bs-title="Tema"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Claro"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Oscuro"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="Sistema"></i>
+</button></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/cosmoscalibur/" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/cosmoscalibur" title="Twitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-twitter fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Twitter</span></a>
+        </li>
+        <li class="nav-item">
+            
+          
+            
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://col.social/@cosmoscalibur" title="Mastodon" class="nav-link pst-navbar-icon" rel="me" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-mastodon fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Mastodon</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="En esta página">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../me/">
+    Edward Villegas
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+<div class="navbar-nav">
+  <a class="nav-link" href="../../../../en/blog/2026/buenas-practicas-google-colab-equipos-no-tecnicos/" title="English" style="color: var(--pst-color-text-base);">
+    🌐 English
+  </a>
+</div>
+</div>
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Tema" data-bs-title="Tema"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Claro"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Oscuro"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="Sistema"></i>
+</button></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/cosmoscalibur/" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/cosmoscalibur" title="Twitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-twitter fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Twitter</span></a>
+        </li>
+        <li class="nav-item">
+            
+          
+            
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://col.social/@cosmoscalibur" title="Mastodon" class="nav-link pst-navbar-icon" rel="me" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-mastodon fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Mastodon</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<div class="ablog-sidebar-item ablog__postcard">
+   
+  <h2>
+     
+    <span>2026-02-24</span>
+    
+  </h2>
+  <ul>
+    <div class="ablog-sidebar-item ablog__postcard2">
+   
+  <li id="ablog-sidebar-item author ablog__author">
+    <span>
+       Autor: 
+    </span>
+     
+    <a href="../../../../blog/author/edward-villegas-pulgarin/">Edward Villegas-Pulgarin</a>
+      
+  </li>
+    
+  <li id="ablog-sidebar-item language ablog__language">
+    <span>
+       Idioma: 
+    </span>
+     
+    <a href="../../../../blog/language/espanol/">Español</a>
+      
+  </li>
+   
+  <li id="ablog-sidebar-item category ablog__category">
+    <span>
+       Categoría: 
+    </span>
+     
+    <a href="../../../../blog/category/tecnologia/">tecnología</a>
+     ,    
+    <a href="../../../../blog/category/programacion/">programación</a>
+      
+  </li>
+   
+  <li id="ablog-sidebar-item tags ablog__tags">
+    <span>
+        Etiquetas:  
+    </span>
+     
+    <a href="../../../../blog/tag/google-colab/">google colab</a>
+        
+    <a href="../../../../blog/tag/python/">python</a>
+        
+    <a href="../../../../blog/tag/notebook/">notebook</a>
+        
+    <a href="../../../../blog/tag/automatizacion/">automatización</a>
+      
+  </li>
+   
+</div>
+  </ul>
+</div>
+</div>
+        <div class="sidebar-primary-item">
+<div class="ablog-sidebar-item ablog__recentposts">
+  <h3>
+    <a href="../../../../blog/">Entradas recientes</a>
+  </h3>
+  <ul>
+     
+    <li>
+      <a href="../../../../en/blog/2026/buenas-practicas-google-colab-equipos-no-tecnicos/">
+        2026-02-24 - Best practices in Google Colab for sharing with non-technical teams
+      </a>
+    </li>
+    
+    <li>
+      <a href="../../../../en/blog/2026/ingenieria-de-prompt-habilidad-o-estafa/">
+        2026-02-23 - Prompt Engineering: Technical Skill or Scam?
+      </a>
+    </li>
+    
+    <li>
+      <a href="../ingenieria-de-prompt-habilidad-o-estafa/">
+        2026-02-23 - Ingeniería de prompt: ¿Habilidad técnica o estafa?
+      </a>
+    </li>
+    
+    <li>
+      <a href="../../../../en/blog/2026/seekee-alternativa-gratis-para-ver-peliculas-y-series/">
+        2026-02-22 - Seekee: free alternative to watch movies and series
+      </a>
+    </li>
+    
+    <li>
+      <a href="../seekee-alternativa-gratis-para-ver-peliculas-y-series/">
+        2026-02-22 - Seekee: alternativa gratis para ver películas y series
+      </a>
+    </li>
+    
+  </ul>
+</div>
+</div>
+        <div class="sidebar-primary-item">
+<div class="ablog-sidebar-item ablog__archives">
+  <h3>
+    <a href="../../../../blog/archive/">Archivos</a>
+  </h3>
+  <ul>
+     
+    <li>
+      <a href="../../../../blog/2026/">2026 (10)</a>
+    </li>
+      
+    <li>
+      <a href="../../../../blog/2025/">2025 (22)</a>
+    </li>
+      
+    <li>
+      <a href="../../../../blog/2024/">2024 (35)</a>
+    </li>
+      
+    <li>
+      <a href="../../../../blog/2021/">2021 (2)</a>
+    </li>
+      
+    <li>
+      <a href="../../../../blog/2020/">2020 (21)</a>
+    </li>
+      
+    <li>
+      <a href="../../../../blog/2019/">2019 (9)</a>
+    </li>
+      
+    <li>
+      <a href="../../../../blog/2018/">2018 (5)</a>
+    </li>
+      
+    <li>
+      <a href="../../../../blog/2017/">2017 (2)</a>
+    </li>
+      
+    <li>
+      <a href="../../../../blog/2014/">2014 (1)</a>
+    </li>
+      
+    <li>
+      <a href="../../../../blog/2013/">2013 (12)</a>
+    </li>
+      
+    <li>
+      <a href="../../../../blog/2012/">2012 (20)</a>
+    </li>
+      
+    <li>
+      <a href="../../../../blog/2011/">2011 (30)</a>
+    </li>
+      
+    <li>
+      <a href="../../../../blog/2010/">2010 (7)</a>
+    </li>
+     
+  </ul>
+</div>
+</div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Miga de pan" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../../../" class="nav-link" aria-label="Inicio">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Buenas prácticas en Google Colab para compartir con equipos no técnicos</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                   <section class="tex2jax_ignore mathjax_ignore" id="buenas-practicas-en-google-colab-para-compartir-con-equipos-no-tecnicos">
+<h1>Buenas prácticas en Google Colab para compartir con equipos no técnicos<a class="headerlink" href="#buenas-practicas-en-google-colab-para-compartir-con-equipos-no-tecnicos" title="Link to this heading">#</a></h1>
+<p>En equipos de trabajo donde conviven perfiles técnicos y no técnicos,
+es frecuente que el equipo técnico desarrolle <em>notebooks</em> en Google
+Colab para procesos periódicos: reportes mensuales, análisis de datos,
+tareas recurrentes. El problema surge cuando estos procesos requieren
+ejecución periódica con pequeñas variaciones —un mes diferente, otro
+departamento, un nuevo archivo de entrada— y la responsabilidad de
+ejecutarlos recae siempre sobre el equipo técnico.</p>
+<p>Esta dinámica genera una sobrecarga innecesaria: el equipo técnico
+se convierte en un cuello de botella para tareas que, con la
+estructura adecuada, cualquier persona podría ejecutar de forma
+autónoma.</p>
+<p>La solución consiste en estructurar los <em>notebooks</em> de manera que
+los equipos no técnicos puedan ejecutarlos por su cuenta, sin riesgo
+de alterar la lógica y sin necesidad de entender el código. Este
+<em>notebook</em> presenta las buenas prácticas que he aplicado en mi
+experiencia y, además, sirve como plantilla descargable que puedes
+adaptar a tus propios procesos.</p>
+<section id="estructura-recomendada">
+<h2>Estructura recomendada<a class="headerlink" href="#estructura-recomendada" title="Link to this heading">#</a></h2>
+<p>La estructura que mejor me ha funcionado organiza el <em>notebook</em> en
+cinco bloques bien definidos:</p>
+<ol class="arabic simple">
+<li><p><strong>Documentación</strong>: celdas <em>Markdown</em> que explican qué hace el
+proceso, qué datos necesita, qué resultados genera y cómo
+utilizarlo.</p></li>
+<li><p><strong>Importaciones e inicialización de Drive</strong>: primera celda de
+código, siempre visible. Solicita los permisos de Google Drive
+lo antes posible para que el usuario los conceda de inmediato y
+el resto se ejecute sin interrupciones.</p></li>
+<li><p><strong>Parámetros editables</strong>: celda de código visible con campos de
+formulario de Colab. Son los únicos valores que el equipo no
+técnico debe modificar.</p></li>
+<li><p><strong>Variables técnicas y lógica de procesamiento</strong>: celdas de
+código ocultas para evitar confusión. Contienen configuraciones
+internas y funciones.</p></li>
+<li><p><strong>Ejecución principal</strong>: celda de código visible que ejecuta
+todo el proceso y muestra mensajes de progreso y resultados.</p></li>
+</ol>
+</section>
+<section id="documentacion-del-proceso">
+<h2>Documentación del proceso<a class="headerlink" href="#documentacion-del-proceso" title="Link to this heading">#</a></h2>
+<p>Todo <em>notebook</em> que se comparta debe comenzar con documentación
+clara. Es la primera impresión que tendrá el usuario y determina
+si podrá usarlo sin ayuda. La documentación debe incluir: qué
+hace el proceso, qué datos de entrada necesita (archivos y
+ubicación), qué datos de salida genera (archivos y ubicación) y
+las instrucciones paso a paso para ejecutarlo.</p>
+<p>A continuación se presenta un ejemplo de documentación para un
+proceso de generación de reportes.</p>
+<blockquote>
+<div><p><strong>Proceso</strong>: Reporte mensual por departamento.</p>
+<p><strong>Objetivo</strong>: Generar un resumen mensual a partir de los datos
+de operaciones diarias de un departamento.</p>
+<p><strong>Datos de entrada</strong>: Archivo CSV en
+<code class="docutils literal notranslate"><span class="pre">Mi</span> <span class="pre">unidad/reportes/datos/</span></code> con formato de nombre
+<code class="docutils literal notranslate"><span class="pre">datos_AAAA_MM.csv</span></code> (ejemplo: <code class="docutils literal notranslate"><span class="pre">datos_2026_02.csv</span></code>).</p>
+<p><strong>Datos de salida</strong>: Reporte CSV en
+<code class="docutils literal notranslate"><span class="pre">Mi</span> <span class="pre">unidad/reportes/resultados/</span></code> con formato
+<code class="docutils literal notranslate"><span class="pre">reporte_DEPARTAMENTO_AAAA_MM.csv</span></code> (ejemplo:
+<code class="docutils literal notranslate"><span class="pre">reporte_ventas_2026_02.csv</span></code>).</p>
+<p><strong>Instrucciones</strong>:</p>
+<ol class="arabic simple">
+<li><p>Ejecutar la primera celda de código y autorizar el acceso
+a Google Drive.</p></li>
+<li><p>Modificar los parámetros (año, mes y departamento) en la
+celda de <strong>Parámetros</strong>.</p></li>
+<li><p>En el menú, seleccionar <em>Entorno de ejecución</em> &gt;
+<em>Ejecutar todas</em> (o <code class="docutils literal notranslate"><span class="pre">Ctrl+F9</span></code>).</p></li>
+<li><p>Esperar a que finalice. El progreso se mostrará en la
+última celda.</p></li>
+</ol>
+</div></blockquote>
+</section>
+<section id="importaciones-e-inicializacion-de-drive">
+<h2>Importaciones e inicialización de Drive<a class="headerlink" href="#importaciones-e-inicializacion-de-drive" title="Link to this heading">#</a></h2>
+<p>Este bloque se ubica como primera celda de código por dos razones:</p>
+<ol class="arabic simple">
+<li><p>Google Drive requiere autorización del usuario. Si esta celda
+es la primera, el usuario concede el permiso de inmediato y el
+resto del <em>notebook</em> se ejecuta sin interrupciones.</p></li>
+<li><p>Detección temprana de errores: si hay un problema con la
+conexión a Drive o con alguna dependencia, se detecta antes de
+ejecutar cualquier lógica.</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @title Texto de título predeterminado</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">datetime</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">google.colab</span><span class="w"> </span><span class="kn">import</span> <span class="n">drive</span>
+
+<span class="n">drive</span><span class="o">.</span><span class="n">mount</span><span class="p">(</span><span class="s2">&quot;/content/drive&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Drive conectado exitosamente.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Mounted at /content/drive
+Drive conectado exitosamente.
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="parametros-equipo-no-tecnico">
+<h2>Parámetros (equipo no técnico)<a class="headerlink" href="#parametros-equipo-no-tecnico" title="Link to this heading">#</a></h2>
+<p>Esta es la única celda que el equipo no técnico debe modificar.
+Los parámetros se presentan como campos de formulario de Colab
+usando la sintaxis <code class="docutils literal notranslate"><span class="pre">#&#64;param</span></code>, que genera controles visuales
+(campos de texto, <em>dropdowns</em>, etc.) que facilitan la edición
+sin tocar código.</p>
+<p>Un consejo importante: usa listas cerradas
+(<code class="docutils literal notranslate"><span class="pre">#&#64;param</span> <span class="pre">[&quot;opción1&quot;,</span> <span class="pre">...]</span></code>) en lugar de texto libre siempre que
+sea posible. Esto previene errores de escritura y garantiza
+valores válidos.</p>
+<p><img alt="image.png" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABsIAAAE+CAYAAAA3cwWkAAAgAElEQVR4XuzdB5xU1d038L+IgBURREnEEkUxYokoWKKJLcZuLLHE3js2NBYUQazYwBIFE7tJLLHGhj1qwGCiYtRgi2hABREVgojknXN9Zt9ZWNhZd2Zn2P3ez/u8LjP3nvI99/l8nvP5zTlnge4/7PG/cBEgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBBoZgILCMKa2YjqDgECBAgQIECAAAECBAgQIECAAAECBAgQIECAQCYgCPMiECBAgAABAgQIECBAgAABAgQIECBAgAABAgQINEsBQVizHFadIkCAAAECBAgQIECAAAECBAgQIECAAAECBAgQEIR5BwgQIECAAAECBAgQIECAAAECBAgQIECAAAECBJqlgCCsWQ6rThEgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECAjCvAMECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQLNUkAQ1iyHVacIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQEYd4BAgQIECBAgAABAgQIECBAgAABAgQIECBAgACBZikgCGuWw6pTBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECgjDvAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAQLMUEIQ1y2HVKQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAUGYd4AAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQKBZCjQ4CGvTZqFot3C7aNu2bbRu3ToWXLBVs4TRKQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAgfILfPPNrJg5c2Z89dVXMf2/02PGjK9LVmnRQVi7hdvG4osvHv/73//iiy++jK9zjUh/5/5f7sr+PxcBAgQIECBAgAABAgQIECBAgAABAgQIECBAgACBBggs8G3OlPvPgq1aR/v2i8eCrRfMZVFf5EKxrxpQTt23FhWEdeiwZFbp5MmfxTczv2l0pQogQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgUJfAArlQrEOHDtmCrJRNNeaaZxDWqlWr6NhpqZg2dWpMnTo9V4+VX43B9iwBAgQIECBAgAABAgQIECBAgAABAgQIECBAgEAxAgvkjulaMJZov2RMmvhpzJo1q5iH5rhnnkHY0p07xeeffxFfTW/80rPv1DoPESBAgAABAgQIECBAgAABAgQIECBAgAABAgQItFiBBRdsHUt1XDI++XjidzKYaxCWtkOcMeOr3Eqw/36ngj1EgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAoLECbdu2jkUWWew7bZNYZxDWbuG2sdhii8XETz7Ntc12iI0dIM8TIECAAAECBAgQIECAAAECBAgQIECAAAECBAh8V4EFYqmlloxp/50W0//bsF0M6wzC0paIn346Ob6Z+c13bZHnCBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECJREYIEFIjot3anBWyTOEYS1abNQ7uCxJXKrwSaVpGEKIUCAAAECBAgQIECAAAECBAgQIECAAAECBAgQINBYgaWW6hBffvll7mivr4suao4gbIn2i8dXX82Ir6Y3bGlZ0TW6kQABAgQIECBAgAABAgQIECBAgAABAgQIECBAgEADBRZcsHUsutjC8fmUL4p+co4gLG2LOGnipzFr1qyiC3EjAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAgbIK5LZHXLqB2yPOEYR1+d6yMWH8R/G///2vrG1VOAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAIGGCKQca/x/JhT9yBxB2HJdvxcfjBufK0AQVrSiGwkQIECAAAECBAgQIECAAAECBAgQIECAAAECBMossEAs17VLLsf6T9H1zCUIK76AomtyIwECBAgQIECAAAECBAgQIECAAAECBAgQIECAAIFGCHy7oKv4HEsQ1ghsjxIgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECDSdgCCs6azVRIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAg0IQCgrAmxFYVAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIBA0wnMN0HYQgstFOusvXasscYPo2PHjrFUhw6Z0qeTJ8ekSZPitdf+Gf94+eX4+uuvm05PTQQIECBAgAABAgQIECBAgAABAgQIECBAgAABAlUrUPVB2LLLLhP777tv/PjHG0e7du3mCTl9+vT4y1+eixtvvjkmTPioatFL1bBu3bpF27ZtYsyY10pVpHIIECBAgAABAgQIECBAgAABAgQIECBAgAABAs1GoGqDsCWXbB9777VXbL/dtpFWgzXk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jTdqdBCWyjn6qCNj++22zSaQhfW88eabce6g8x0i3WQjriICBAgQIECAAAECzUugVEFYUklbIB6Tm7uk8Kvwmjx5clx59TXxTG5rxPyV5lBn9TsjVlxhhVr3zpgxI+666+747Q03Ni9ovSFAgAABAgQIECBA4DsJVEUQllr+2+HDcmHQcvPsxOxB2PrrrRdHHHFYpCCtmOvtd96JI448uphbm/yeHj3WiN69euV+xTglRua2+xhXhrAuhW5r9ugR3buvFu/nVp+9/MqrZamnyfFUSIAAAQIECBAgQIBAsxLIz49Sp/7xj5dj9EvfbpNY15W2U1x7rTWjc+fO2XaKI0eNalYWOkOAAAECBAgQIECAQOMEqiYIS2dVpTOr5nXlg7AUfKUALAVhDbmuyv2C8J5772vII+4lQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBCYTwWqJghr27ZN3Pi730bHjt/u8V7X9ad77o0FFlig3nPA6nr2008/jX33PzDSNhkuAgQIECBAgAABAgQIECBAgAABAgQIECBAgACB5i9QNUFYot55px2zs6zKcVkNVg5VZRIgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIEqlegqoKwVq1axaBzB8R6PXuWVOzZv/wlzh10fsyaNauk5SqMAAECBAgQIECAAAECBAgQIECAAAECBAgQIECgegWqKghLTIsuumhccvGFsfLKK5dE7Y0334yT+54SX31lS8SSgCqEAAECBAgQIECAAAECBAgQIECAAAECBAgQIDCfCFRdEJbc2rRpEycc3ye23GLzRjHed/8Dce11w5wL1ihFDxMgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIE5k+BqgzC8pQbbbhhHHrIwbHcct9vkO4HH3yYBWB/HTmyQc+5mQABAgQIECBAgAABAgQIECBAgAABAgQIECBAoPkIVHUQlpgXXHDB2GqrLWOLzTeLNXv0yP5d1/XNN9/EmNdeixGPPxGPPTYi0r9dBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECLVeg6oOwwqFJ54et8cPVY5VVVomVVlop++rdd9+Nt956K1775+sxderUljuSek6AAAECBAgQIECAAAECBAgQIECAAAECBAgQIFBLYL4KwowdAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAgWIF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uB3X54R481//qvXdkMsvyya0Dzz45zpXplWQXdUECBAgQIAAAQIEWoRAY+cbxSA1po5f7b1XHLD/fvH22+/EEUcdXau6W26+MZbJbf0+9Kqr47777i+mKe4hQIAAAQIECBAgQKAZCTRmrjE7gyCsgi9GYwfysUcemuuvJNN3n+a2O9xjz72zHu644w5x7NFHxb/ffz8OOfTwOns97NprYsUVV6w12bz6yiHRrVu3OOPMfjHqxb/Vei7/3cW5LUsKV5HlP7/jzrviumHDKyisagIECBAgQIAAAQItV6Cx841i5BpTR/+z+sXGG280x04Wqd78d+YUxYyCewgQIECAAAECBAg0P4HGzDVm1xCEVfD9KOVAzt6N2YOwYiaS+ZVko3Nbkvz69DPqlakrCMuvLCu2jHorcQMBAgQIECBAgAABAt9JoJzzjXyDylVHMfOX74TiIQIECBAgQIAAAQIE5guBUs41BGEVHPJSDmRhN9K5XlcOvaLW6q/fXH1VrLzyD+pc2ZV/tq7n5sWT32rxmGP71GyNePedf4yFFlooDjrksOxMsHT+2Jgxr1VQWdUECBAgQIAAAQIEWqZAueYbhZrlquOC8wZFz57rZlu6p63dXQQIECBAgAABAgQItCyBUs41BGEVfHdKOZCF3ehz3LGx/XbbxmMjHo+LLh6cffWH398WS3XoEFttvc08ezz7SrK53bzmmj1i8EUXxkcffVxzgPUuv9g5jjzi8Hj6mWeiffv20WONNbIzxNI1adKkGDb8+nj8iScrKK5qAgQIECBAgAABAi1HoFzzjULBctSRziO+9pqrom3btrHdDju1nAHTUwIECBAgQIAAAQIEagRKOdcQhFXwxSrlQOa7kSaNvx1+XbRq1SpOPKlvzUqtYoOwdF+68meLzY3n0sEXRwrDCvfs73fG6bHpppvEF198EQsvvHCMHftWjJ8wPrp37x7f69IlZs2aFZcPGRoPPfRwBdVVTYAAAQIECBAgQKBlCJRjvjG7XDnqOKXvybHVllvEc889H/0HDGwZg6WXBAgQIECAAAECBAjUEijlXEMQVsGXq5QDme9G/tyuBx78c1yRC53yV7FBWDErwvLngP37/ffjkEMPr6kjX/enkyfHyX1PjXHjxtV8l3/mo48/jn323b+C6qomQIAAAQIECBAg0DIEyjHfKHcQts02P4/jcztc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BAgQIECAAAECBAgQIECAAAECBAgQIECAQIkEBGElglQMAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIBAdQkIwqprPLSGAAECBAgQIECAAAECBAgQIECAAAECBAgQIECgRAKCsBJBKoYAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQKC6BARh1TUeWkOAAAECBAgQIECAAAECBAgQIECAAAECBAgQIFAiAUFYiSAVQ4AAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgUF0CgrDqGg+tIUCAAAECBAgQIECAAAECBAgQIECAAAECBAgQKJGAIKxEkIohQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBCoLgFBWHWNh9YQIECAAAECBAgQIECAAAECBAgQIECAAAECBAiUSEAQViJIxRAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECFSXgCCsusZDawgQIECAAAECBAgQIECAAAECBAgQIECAAAECBEokIAgrEaRiCBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIEqktAEFZd46E1BAgQIECAAAECBAgQIECAAAECBAgQIECAAAECJRIQhJUIUjEECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQLVJSAIq67x0BoCBAgQIECAAAECBAgQIECAAAECBAgQIECAAIESCQjCSgSpGAIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAgeoSEIRV13hoDQECBAgQIECAAAECBAgQIECAAAECBAgQIECAQIkEBGElglQMAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIBAdQkIwqprPLSGAAECBAgQIECAAAECBAgQIECAAAECBAgQIECgRAKCsBJBKoYAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQKC6BARh1TUeWkOAAAECBAgQIECAAAECBAgQIECAAAECBAgQIFAiAUFYiSDLVUzPddeN1q1bx6eTJ8fYsWPLVY1yCRAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQLNTkAQVuVD+off3xZLdegQzz33fPQfMLDKW6t5BAgQIECAAAECBAgQIECAAAECBAgQIECAAIHqERCEVc9Y1NkSQViVD5DmESBAgAABAgQIECBAgAABAgQIECBAgAABAlUrIAir2qH5tmHNKQg77NBDYvfdds36tdXW21S5fOma97Ottoy+J5+UFXjx4Evi0cdGlK5wJREgQIAAAQIECBAgQIAAAQIECBAgQIAAAQJzFRCEVfnLIQir8gEqonmCsCKQ3EKAAAECBAgQIECAAAECBAgQIECAAAECBMogIAgrA+p3LXKTH/841lyzR3z++efx9DPPxrhx4+pdEdajxxrRu1evaNu2bbzxxpvx6pgx8cknn8yzCV27do2fbLpJLLHEEjFy5KgY/dJL87x/8802i+7dV8vuKeb+dF9q16abbBJvvvlmPP7Ek9mzxa4IK+zT+++/HyNHvVhvn5ZeeunY+mdbZX165tlnY8yY12r6tP1228byyy8fH3/8ceY6N5/k0rvX+tG5c+fs3pdfeTXGjh1b73DWV36xQVi3bt2y+lMfiu13vY1zAwECBAgQIECAAAECBAgQIECAAAECBAgQaMECgrAqGPyePdeNU/ueHB06dKhpzaxZs7IA6UfrrBOdOnWM5557PvoPGFjzfQrMTuhzXKTwpvCaOXNm3HHHnfHbG26s+bj/Wf1i4403ykKd9/79fmyx+WbRqlWrmu8nT54cF148OEaPrh2I/XL33eJXe+8ViyyySK06vvzyy7hu+PXx0EMP11nH9OlfZYFeulKdRx1zXDz2yEN1Shf2a159evKpp+OiXBvzV2G4NCzXlgMP2D9at25d8/0zucDr6VwgdtIJx9dq/7Rp0+LMs86OV18dU6s9yWjDDTeo5ZJu+MfLL+fqvaRWeJbvy29/d0Psuccva5Wf/IdceVWNTX5F3+ydz7ukz9MYnnN2vzrH8r77H4hrfnNtFbylmkCAAAECBAgQIECAAAECBAgQIECAAAECBOY/AUFYhccshT/nnTsw2rVrl7Xkyy+nZv9t165tFuxMnz49+64wMEqrn4ZcflkWkKXg5b33/h1ff/11LLvsMjVh2g033hS33nZ7VlY+CMuXlZ5JYVWrVgvUhDjpu5P7nhpv/utf2TMpaDrpxBOyYCgFZRMmfJR93q3bKjXtKrx/9jpmzJgRM2Z8HR988EEc2+f4ooKw22+9paZPY8e+ldVX2Kfbf/+HSOFTvn35c7dS29P1wQcfxoorrlATiKV+JsP/jB8fbdu0iY4dO2b3vfbaP+P4E789s6vQJ/2d7p3y2ZRYZNFFYoXcKrJ0pdDsxJP71tyfD8JSvW1y5U6b9t/su8UWWzT7b/r8oEMOy8Kz+oKwwrFMz6agbtas/+XKXSgrO10p1Bs46Lya+v1BgAABAgQIECBAgAABAgQIECBAgAABAgQIFCcgCCvOqWx3DRo4IHrltsNLK8CuvOrquP+BB7O60iqhs848PRfsrJj9uzAIKwydTj+zX63VTVdfOSQXVnWLj3Jb++2z7/7Zs/n7099pJdLZ5wysWeG0w/bbxTFHH5UFXqNyWxCe0e+s7JkLzh8UPdddN95++5044qija/pfGNw9NuLxmlVahXX8/e//iFN+fdocZvPaGnG3XXeJww87NBeezYhfn35GnX0aP35C7HfAgVm5hSvCUhv7nd0/61Nq3wXnDaoJkYYMvbLGdED/s7NVX6mO7XbYaY5y7rjzrrhu2PCadhe2t/85A+K551/IvisMwi6+5NIsqEpX4f2FQeS8tkbMu80+/ikgO+3UU7L+pO9OPuXUOVaxle2lVDABAgQIECBAgAABAgQIECBAgAABAgQIEGgmAoKwCg/kPXffGYsuumg88eSTcf4FF9VqTQpBBl90YRZSFQZh+Wfuu+/+GJoLzwqvwtDlmGP7ZCu88mFLCoBOPKlvzaqv/HP5MG7q1Kmx8y671RSXArW0uimdVVZ4XTr44iygKVwpVVjHAQcdUuc5XPWdEZbCn2WW6VzrfK9Ub9qe8YD995trgJW2Drz7T/fUNPE3V18VK6/8g/h37nyxQw49vObzbbb5eZx4fJ/s31ttvU323xSapa0p33vvvTj08CPneBvyK7oeePDPccWQodn3+SCsrjHLj03h/fMKwuY1/slj2LXXZO9HYehY4VdW9QQIECBAgAABAgQIECBAgAABAgQIECBAYL4REIRVcKh6rb9eDMpti5iuSy+/otaZW/lm3XTD76JLl2VrgrDVVl01rhx6RfZ1fhu92buQ36Lv4sGXxKOPjagJwmZf3ZV/bpdf7BxHHvFtYJQPiPLfpZVaG2zQO9os1Ca+yJ0N9s4778QqK68c663Xs+b8r3RvPgj7NLeN4h577l2nan1BWHoordjaequtYqmllsrKeOPNN7N+pjCssH3zCpfyq+IKz+FKzxY+k+/n8GHXZlsg5rdynL3h+S0qC4PIfBA2+wqy9Gw+OCu8f25tLWb8h15xeXTvvlot6wq+sqomQIAAAQIECBAgQIAAAQIECBAgQIAAAQLzlYAgrILDNa8wJ9+sfKiTD1YKn6mv6bMHYbMHQ/nn62pHWvF1dr9+0b79EnOtprC8UgRh+ZVm8+pXPsAqVRA2tzO8Zm9DOYKwYsY/7zq3savvHfA9AQIECBAgQIAAAQIECBAgQIAAAQIECBBoyQKCsAqOfjErgm6/9Zbo1KljnSvCzrvgwnjyyafq7UE+TJl9q8D8g3WtCEtb8qXzyaZM+TxuuPHG3FaHE7Pbu3ZdLnbeeadYpnPnkq4IOzZ3TtmOO+6QnYd13/0PxN/+NjqrL20L+POtfxY/+tE62b9LHYTlV4Slc74GDjqvXst0Q6lWhBWu7pvbisD8irA33ngzju1zfFHtcxMBAgQIECBAgAABAgQIECBAgAABAgQIECDwrYAgrMJvQn1nhKVVUumq64ywhx5+JC697PJaPUgrudZea614Ohfs5M/2ygdhKWQ6rs8Jcz0jrHBbwwfvvzfatGmTnb2VzuAqvPLhUSlXhOVXg9W1fWOf446N7bfbNmtCqYOw/BlhH3zwYRx48CFzvA0HH3RgjBw1qta5ZaUKwlJld9/5x1h88cVrjW++EemMsBt+OzwbB2eEVfh/UVVPgAABAgQIECBAgAABAgQIECBAgAABAvOlgCCswsM2aOCA6NVr/Wwl1A033hS3//4PWYu6du0aF11wfrYaLF2FQVg+2Jo+fXpcfsWQePyJJ7N7UnByztn9olu3bvHee+/FoYcfmX2evz/9nT4fcO55NSHZXnvuEQfsv1+0atWqzrDtiSefjPMvuKhGqfCcr4YGYYUrz4YNvz7+eMedkYK7V18dE/lA6qOPP4599t2/pr70/Xm5c9TatWuXfVbqIKxwe8LZg8V0blpq8+wBYkODsMKVX/k68v0+7denxOabbTbH+BeO5dwCzAq/uqonQIAAAQIECBAgQIAAAQIECBAgQIAAAQJVLyAIq/AQpZBk8MUX1gQ906ZNy4Ui/4tFFlk4C6dS2JVCoMIgLIUkQy6/rCYk++yzz2Laf/8bnTp2zFYPpeDk8iFD46GHHs56VxicpbJmzpyZK/eraN16wZp6p0yZEkcefWxuC8RPsmcKz+tKWypOmzot2i/ZPr7XpUv2fOvWrRu8NWLhCqc8e75fv9p7ryyQS9fkyZNjwoSPYqGFFsptz7hC9lmqL12lDsIKfdLfyTuFcUt36pQbg0WyOgvt078bGoSlZ265+cZsO8n8lQ8RZx/LVP/Mmd/kxqVtTZ/vuPOuuG7Y8Aq/qaonQIAAAQIECBAgQIAAAQIECBAgQIAAAQLzn4AgrArGrGfPdePUvidHhw4dalqTwqY7cium1luvZ7bCa/YwJq0oOqHPcdnKscIrBWm33nZ7ttoqf+WDsBS+vPfv92OLzTfLQrb8NWHChLho8CXZyqz8lQKaC88fVKv8FLC98MJfs1s23nijBgdh6blf7r5b7L/fvllgl67Cfp2SM5i9bWl7x4cfeTQOPeTg7P5yBGGp3GS04YYb1HLJ97f/gIG1jL9LELbppptk47XYYotlZRWupktjePJJJ8QPV1+9Vj0zZsyIBx788xxbU1bBK6sJBAgQIECAAAECBAgQIECAAAECBAgQIEBgvhAQhFXRMPVcd91YZ521I63OGjnqxZrtC+fVxBSS9c5trbjEEkvE6NEvZedZzX7lg7D8GWApeEnPtG/ffo7zr2Z/tkePNXL39mpQm4ohTX1N1+iXXqp1e0PaVkw9DbknhX/JZfnll4/3c6vgXn7l1aLGoCF1JM9FF1m0znFKY7n2WmtG59zKsbmNZUPqci8BAgQIECBAgAABAgQIECBAgAABAgQIEGjpAoKwFvAGzB6EtYAu6yIBAgQIECBAgAABAgQIECBAgAABAgQIECBAIARhLeAlEIS1gEHWRQIECBAgQIAAAQIECBAgQIAAAQIECBAgQGAOAUFYC3gpBGEtYJB1kQABAgQIECBAgAABAgQIECBAgAABAgQIEBCEtcR34OCDDsydPbVWfP7F53Fmv7NbIoE+EyBAgAABAgQIECBAgAABAgQIECBAgAABAi1QwIqwFjjoukyAAAECBAgQIECAAAECBAgQIECAAAECBAgQaAkCgrCWMMr6SIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBBogQKCsBY46LpMgAABAgQIECBAgAABAgQIECBAgAABAgQIEGgJAoKwljDK+kiAAAECBAgQIECAAAECBAgQIECAAAECBAgQaIECgrAWOOi6TIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBBoCQKCsJYwyvpIgAABAgQIECBAgAABAgQIECBAgAABAgQIEGiBAoKwFjjoukyAAAECBAgQIECAAAECBAgQIECAAAECBAgQaAkCgrCWMMr6SIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBBogQKCsBY46LpMgAABAgQIECBAgAABAgQIECBAgAABAgQIEGgJAoKwKhnltddeK1ZZZaXo2KlTlbRIMwgQIECAAAECBAgQmJ8EJk2cGG+99W68/PIr81OztZUAAQIECBAgQIAAAQJlFRCElZW3/sLbt28fW27505j82ZR4/bU3YvyECfU/5A4CBAgQIECAAAECBAjMJtBl2WVj9TW6R4cl28eIEU/FlClTGBEgQIAAAQIECBAgQKDFCwjCKvwK7LrrTjF27NvxyitjKtwS1RMgQIAAAQIECBAg0BwE1lqrR3TrtnLcdde9zaE7+kCAAAECBAgQIECAAIFGCQjCGsXXuIfTdogdOy0VTzz+VOMK8jQBAgQIECBAgAABAgQKBDbf4qcxaeKntkn0VhAgQIAAAQIECBAg0OIFBGEVfAXSarDnnxtpO8QKjoGqCRAgQIAAAQIECDRHgbRN4kYb97YqrDkOrj4RIECAAAECBAgQINAgAUFYg7hKe/Nhhx8c1117fWkLVRoBAgQIECBAgAABAgRyAuYbXgMCBAgQIECAAAECBAhECMIq+BaYmFYQX9UECBAgQIAAAQIEmrmA+UYzH2DdI0CAAAECBAgQIECgKAFBWFFM5bnJxLQ8rkolQIAAAQIECBAgQMCKMO8AAQIECBAgQIAAAQIEkoAgrILvgSCsgviqJkCAAAECBAgQINDMBcw3mvkA6x4BAgQIECBAgAABAkUJCMKKYirPTSam5XFVKgECBAgQIECAAAECVoR5BwgQIECAAAECBAgQIJAEBGEVfA8EYRXEVzUBAgQIECBAgACBZi5gvtHMB1j3CBAgQIAAAQIECBAoSkAQVhRTeW4yMS2Pq1IJECBAgAABAgQIELAizDtAgAABAgQIECBAgACBJCAIq+B7IAirIL6qCRAgQIAAAQIECDRzAfONZj7AukeAAAECBAgQIECAQFECgrCimMpzk4lpeVyVSoAAAQIECBAgQICAFWHeAQIECBAgQIAAAQIECCQBQVgF3wNBWAXxVU2AAAECBAgQIECgmQuYbzTzAdY9AgQIECBAgAABAgSKEhCEFcVUnptMTMvjqlQCBAgQIECAAAECBKwI8w4QIECAAAECBAgQIEAgCQjCKvgeCMIqiK9qAgQIECBAgAABAs1cwHyjmQ+w7hEgQIAAAQIECBAgUJSAIKwopvLcZGJaHlelEiBAgAABAgQIECBgRZh3gAABAgQIECBAgAABAklAEFbB90AQVkF8VRMgQIAAAQIECBBo5gLmG818gHWPAAECBAgQIECAAIGiBARhRTGV5yYT0/K4KpUAAQIECBAgQIAAASvCvAMECBAgQIAAAQIECBBIAoKwCr4HzSUIO+zQQ2L33XaN5557PvoPGFhBUVUTIECAAAECBAgQIJAXaC7zDSNKgAABAgQIECBAgACBxggIwhqj18hnm8vEVBDWyBfB4wQIECBAgAABAgTKINBc5htloFEkAQIESIbICQAAIABJREFUCBAgQIAAAQItSEAQVsHBrsTEtOe660bv3r2yXo8cOSpGv/TSPAWWXnrp+Mmmm0Tnzp3j/fffjwce/PMc9xcThPXosUb07tUr2rZtG2+88WY88eSTc6238N5i2ljBIVQ1AQIECBAgQIAAgaoVqMR8o2oxNIwAAQIECBAgQIAAgRYrIAir4NA3ZmJ6+aWXxBpr/DCu+c21cfef7pmjF/fcfWfMmjUrdtntl9l3a67ZI045+aRYdtlla907efLkuPLqa+KZZ56t+fzqK4dEt27d4tLLr4gjDjs0FllkkZrvpk2bFgPOHRSjR38boD32yEN1Cm619TbZ5127do1zzu6X/bfwmjFjRtx4083xxzvurPk4tfGEPsfNcW9q44UXD66ps4JDpmoCBAgQIECAAAECDRLYcacdYscdt2/QM+nm++57IO679/4GP1f4QGPmG42q2MMECBAgQIAAAQIECBCoIgFBWAUHozET011+sXMcecTh8eqrY+LEk/vW6kX+u1GjXowz+p0VaVXX8Ot+kwVa6bPHn/h2NdYWm28WvXqtH9OnT4+T+54ab/7rX9nn+SAsff7ee/+ORx59NPs8lZsCrfHjJ8R+BxyYfTbk8suiffsl4nvf+15MnDgpPvnkk+zz444/Ifvv8GHXxgrLL5+tAkvlfPLJxNhxh+1jvfV6Zt8PGHhuPPf8C9nfw669JlZcccX45+uvx725Sf/UqVOze1MbP82FYXvsuXcFR0vVBAgQIECAAAECBL6bQEPDsFKEYKmljZlvfLeeeooAAQIECBAgQIAAAQLVJyAIq+CYNHZievedf8y2Gtxuh51q9eLSwRdnK8D6nzMgC5kGDRyQhUlpW8Mrhgytde8pfU+OrbbcIgvIUmiWrnwQNnbs2DjqmONq3X/LzTfGMrltEs+74MJ48smnsu/mtjXijzfeOM44/dfx7rvvzlFOCvFSsJZWlv369DOyctLqsroCrwvOHxQr/+AHMei8C+IfL79cwRFTNQECBAgQIECAAIHvJlBsGFaqECz7v9MPPziuu/b679ZgTxEgQIAAAQIECBAgQKCZCAjCKjiQjZ2Y5gOuG268KW697faanjx4/70x+bPPYp99988+S9skpmvnXXabo7errbpqXDn0imw1116/2if7Ph+E1bXtYv+z+sXGG28UhXXWd0ZYWkU2bty4WnWnVWq33XJTFIZtqd3pOqv/ObZBrOB7qWoCBAgQIECAAIHyCNQXhpUyBEs9aOx8ozwKSiVAgAABAgQIECBAgEDTCgjCmta7Vm2NnZhuvNGG0f/ss2ptj/irvfeKA/bfLx4b8XhclDtXKx90ffHFF/HBBx/W2dvVV+9eayVWPgi7ePAl8ehjI2o9kw/C7rjzrrhu2PDsu2KCsJ9sukksscQS2f2ff/55jMytQEv1FAZh/c44PTbN3ZfONpvw0Ue57RTfyPqW7s1vuVjB4VI1AQIECBAgQIAAgUYLzC0MK3UIlv3f6VaENXq8FECAAAECBAgQIECAwPwvIAir4BiWYmKatirssOSSccBBh2Rh0eWXXhIp2DquzwnZmV8/22rL6HvySTFz5szcWWBfzbW3kz+bHAcdfGj2fSmDsIMO2D923323aN26dZ11z7794l577hE7bL9ddOzYMVq1apU9k9p+3/0PRFqh5iJAgAABAgQIECAwvwvMHoaVIwRLRqWYb8zv1tpPgAABAgQIECBAgAABQVgF34FSTEzzZ3zdfMut8dDDj8QNvx0e//nPf+LQw4/MepZfEfb22+/EEUcdXVRvSxWE5UO4tBrtt7+7ITujLF3dunWLtEJsj1/uXmtF2OyN67nuuvGTn2yanWGWgrShV10d9913f1F9cBMBAgQIECBAgACBahbIh2HlCsFS30sx36hmQ20jQIAAAQIECBAgQIBAMQKCsGKUynRPKSam+aDrtdf+GS/9/e+x7z6/isJtC1PT0xlhCy20UM2qsdm706PHGjFmzGs1H5cqCMtvdXj3n+6ZYzVXPiQrXBGW2vHVVzOycKzwqm/rxTINj2IJECBAgAABAgQIzNcCpZhvzNcAGk+AAAECBAgQIECAAIGcgCCsgq9BqSamw669Jr73ve/FuHEfRNeuy80ReOXP9Xruueej/4CBtXrc57hjY/vtto2HH3k0Lrn0suy7hgZhBx14QKQtDUePfil+ffoZNeXnV6s98eSTcf4FF9WqN19HPgjLB2Pjx0+I/Q44sNa9+SDsmWeejYGDzqvgiKmaAAECBAgQIECAwPwjUKr5xvzTYy0lQIAAAQIECBAgQIDAnAKCsAq+FaWamOaDotSVV18dEyee3LdWr5ZeeukYcvll0alTxxj71lvx/PMv5M4Lmx69e/eKddZeO/v7oEMOy84YS1dDg7C0Km3IFd+GaH/LhWGLLbZo9Dn+xNh4ow3jrH5nZp8/9fTT8cQTT2VB3bbb/DxSm9q1a1dra8Thw66NFZZfPj788MNsG8UU7G2++U9j0002yc4LGzDw3Hgu13YXAQIECBAgQIAAAQL1C5RqvlF/Te4gQIAAAQIECBAgQIBA9QoIwio4NqWamKZQKZ0N1qZNm2wLwrQV4ezXmmv2iBP6HJcLorrW+mry5Mlx4cWDs9Vc+auhQVh6LoVxu+7yiyywStdWW2+T/Xe/fffJVoulM77yV77OC84bVCsIS/0484zT4oerr16rjdOmTYtbb7s9/njHnRUcLVUTIECAAAECBAgQmL8ESjXfmL96rbUECBAgQIAAAQIECBCoLSAIq+AbUYmJaTqHq3evXlmv//GPl2P0S/8/AGssRQqyfrDSSvGf8eNzq7nG1RSXPu/da/1YPrfaa+TIUfXW2a1bt1h7rTWjc+fOWUA3ctSoxjbN8wQIECBAgAABAgRanEAl5hstDlmHCRAgQIAAAQIECBCoegFBWAWHyMS0gviqJkCAAAECBAgQINDMBcw3mvkA6x4BAgQIECBAgAABAkUJCMKKYirPTSam5XFVKgECBAgQIECAAAECue3LDz84rrv2ehQECBAgQIAAAQIECBBo0QKCsAoOv4lpBfFVTYAAAQIECBAgQKCZC5hvNPMB1j0CBAgQIECAAAECBIoSEIQVxVSem0xMy+OqVAIECBAgQIAAAQIErAjzDhAgQIAAAQIECBAgQCAJCMIq+B4IwiqIr2oCBAgQIECAAAECzVzAfKOZD7DuESBAgAABAgQIECBQlIAgrCim8txkYloeV6USIECAAAECBAgQIGBFmHeAAAECBAgQIECAAAECSUAQVsH3QBBWQXxVEyBAgAABAgQIEGjmAuYbzXyAdY8AAQIECBAgQIAAgaIEBGFFMZXnJhPT8rgqlQABAgQIECBAgAABK8K8AwQIECBAgAABAgQIEEgCgrAKvgeCsAriq5oAAQIECBAgQIBAMxcw32jmA6x7BAgQIECAAAECBAgUJSAIK4qpPDeZmJbHVakECBAgQIAAAQIECFgR5h0gQIAAAQIECBAgQIBAEhCEVfA9EIRVEF/VBAgQIECAAAECBJq5gPlGMx9g3SNAgAABAgQIECBAoCgBQVhRTOW5ycS0PK5KJUCAAAECBAgQIEDAijDvAAECBAgQIECAAAECBJKAIKyC74EgrIL4qiZAgAABAgQIECDQzAXMN5r5AOseAQIECBAgQIAAAQJFCQjCimIqz00mpuVxVSoBAgQIECBAgAABAlaEeQcIECBAgAABAgQIECCQBARhFXwPdt11p3j+uZExfsKECrZC1QQIECBAgAABAgQINDeBLssuGxtt3Dvuuuve5tY1/SFAgAABAgQIECBAgECDBARhDeIq7c1rr71WdOy0VDzx+FOlLVhpBAgQIECAAAECBAi0aIHNt/hpTJr4abz88ist2kHnCRAgQIAAAQIECBAgIAir8DuQVoWNHft2vPLKmAq3RPUECBAgQIAAAQIECDQHgbXW6hHduq1sNVhzGEx9IECAAAECBAgQIECg0QKCsEYTNq6A9u3bx5Zb/jQmfzYlXn/tDdskNo7T0wQIECBAgAABAgRarEDaDnH1NbpHhyXbx4gRT8WUKVNarIWOEyBAgAABAgQIECBAIC8gCKuSdyFtk7jKKivltkrsVCUt0gwCBAgQIECAAAECBOYngUkTJ8Zbb71rO8T5adC0lQABAgQIECBAgACBsgsIwspOrAICBAgQIECAAAECBAgQIECAAAECBAgQIECAAIFKCAjCKqGuTgIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAgbILCMLKTqwCAgQIECBAgAABAgQIECBAgAABAgQIECBAgACBSggIwiqhrk4CBAgQIECAAAECBAgQIECAAAECBAgQIECAAIGyCwjCyk6sAgIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAgUoICMIqoa5OAgQIECBAgAABAgQIECBAgAABAgQIECBAgACBsgsIwspOrAICBAgQIECAAAECBAgQIECAAAECBAgQIECAAIFKCAjCKqGuTgIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAgbILCMLKTqwCAgQIECBAgAABAgQIECBAgAABAgQIECBAgACBSggIwiqhrk4CBAgQIECAAAECBAgQIECAAAECBAgQIECAAIGyCwjCyk6sAgIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAgUoICMIqoa5OAgQIECBAgAABAgQIECBAgAABAgQIECBAgACBsgsIwspOrAICBAgQIECAAAECBAgQIECAAAECBAgQIECAAIFKCAjCKqGuTgIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAgbILCMLKTqwCAgQIECBAgAABAgQIECBAgAABAgQIECBAgACBSggIwiqhrk4CBAgQIECAAAECBAgQIECAAAECBAgQIECAAIGyCwjCyk6sAgIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAgUoICMIqoa5OAgQIECBAgAABAgQIECBAgAABAgQIECBAgACBsgsIwspOrAICBAgQIECAAAECBAgQIECAAAECBAgQIECAAIFKCAjCKqGuTgIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAgbILCMLKTqwCAgQIECBAgAABAgQIECBAgAABAgQIECBAgACBSggIwiqhrk4CBAgQIECAAAECBAgQIECAAAECBAgQIECAAIGyCwjCyk6sAgIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAgUoICMIqoa5OAgQIECBAgAABAgQIECBAgAABAgQIECBAgACBsgsIwspOrAICBAgQIECAAAECBAgQIECAAAECBAgQIECAAIFKCAjCKqGuTgIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAgbILCMLKTqwCAgQIECBAgAABAgQIECBAgAABAgQIECBAgACBSggIwiqhrk4CBAgQIECAAAECBAgQIECAAAECBAgQIECAAIGyCwjCyk6sAgIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAgUoICMIqoa7OqhRYdPEO0WHp72dtm/zJhzH1i8kNaudyP+gxx7NdVugeq6+7eYwccXuDy2tQ5W4mQIAAAQIECBAgQIAAAQIECBAgQIAAAQIE5hAQhHkpCPyfwC+Pujh+2HOLmPblZ3HF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7s449aytMfDLd/H4ff9cf1l5Kt8flrry7rnhvEPqvb0MAQIECBAgQIAAAQIECBAgQIAAAQIECBD4rwUEYf+1uPX+9wKVsCtB/PDNZ/HG8/eXTTafe2mcc9E15esw0zWJzz186//eCgABAgQIECBAgAABAgQIECBAgAABAgQIEDgYAUHYweiZS2CJAtfd9ngce/KW/c4eHvglHr3rmtyuW1ziFk0jQIAAAQIECBAgQIAAAQIECBAgQIAAAQLLXkAQtuyP0AssV4GzL7wqzt16bRze3Vt+hfGxkdj+0Wvx/itPCsGW66HaNwECBAgQIECAAAECBAgQIECAAAECBAg0lYAgrKmOw2YIECBAgAABAgQIECBAgAABAgQIECBAgAABAgTyEhCE5SWpDgECBAgQIECAAAECBAgQIECAAAECBAgQIECAQFMJCMKa6jhshgABAgQIECCYUbDiAAAFd0lEQVRAgAABAgQIECBAgAABAgQIECBAIC8BQVhekuoQIECAAAECBAgQIECAAAECBAgQIECAAAECBAg0lYAgrKmOw2YIECBAgAABAgQIECBAgAABAgQIECBAgAABAgTyEhCE5SWpDgECBAgQIECAAAECBAgQIECAAAECBAgQIECAQFMJCMKa6jhshgABAgQIECBAgAABAgQIECBAgAABAgQIECBAIC8BQVhekuoQIECAAAECBAgQIECAAAECBAgQIECAAAECBAg0lYAgrKmOw2YIECBAgAABAgQIECBAgAABAgQIECBAgAABAgTyEsgpCOvP9jOT157UIUCAAAECBAgQIECAAAECBAgQIECAAAECBAgQIHCQAi2x4Zj18fNPv1Zdp2XTaZvnJF7rjz4qfuv/PWZmBGFVKxpIgAABAgQIECBAgAABAgQIECBAgAABAgQIECBQd4GUY/X/+lvV68wLwtYdsTZ2Dg7F9PR01UUMJECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIFBXgZaIdevWxsAfg1UvMy8I6+7pilJpIkrjpaqLGEiAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECgngKFQlsc3rkydv1VrHqZeUHYihWHRXdPdwwO7Ky6iIEECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIE6inQ19cbIyMjMTGxp+pl5gVhaWa6HnFoaDimJqeqLmQgAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAgXoItGTXIq6t8VrEtI/9BmEdK9ujs7Mz6wobyobM1GO/ahIgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBCoQqAl+vpWx+6x3TE+VttXe+03CEsr9vauzlrLSjE6OlbFBgwhQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgkL9Ae3tbrFrVGcPDf9ZcfMEgLFVKVyTu2lWM0nht6VrNuzCBAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAwD4ChUJb9K1ZHQN/DC7J5oBBWGtra6xZ2xe7R0ezzrDxbAHXJC5J2SQCBAgQIECAAAECBAgQIECAAAECBAgQIECAAIEaBFqivb0Q3T2rY+fgUExPT9cw99+hBwzCKsPSNYmFtkK55WxqcmpJC5lEgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAYDGBlpb0FV69MTMzs6TrEGfXryoISxM6VrZHV1dXedFicST2TOwp/5z9yx6dYosdms8JECBAgAABAgQIECBAgAABAgQIECBAgAABAgT2FchSr5QzZf8VWtuip6er3JxVLBZjfOzgv7qr6iCssq0VKw7LQrGOrB2tPdra2qJQaHVmBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBJYkMDU1HZOTk1EqlbLwazwmsmasvJ6ag7C8FlaHAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAQD0FBGH11FWbAAECBAgQIECAAAECBAgQIECAAAECBAgQIECgYQKCsIbRW5gAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQKCeAoKweuqqTYAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAg0DABQVjD6C1MgAABAgQIECBAgAABAgQIECBAgAABAgQIECBQTwFBWD111SZAgAABAgQIECBAgAABAgQIECBAgAABAgQIEGiYgCCsYfQWJkCAAAECBAgQIECAAAECBAgQIECAAAECBAgQqKeAIKyeumoTIECAAAECBAgQIECAAAECBAgQIECAAAECBAg0TEAQ1jB6CxMgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECNRT4G/85h2/M8VP1wAAAABJRU5ErkJggg==" /></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#@title Parámetros del reporte</span>
+<span class="n">año</span> <span class="o">=</span> <span class="mi">2026</span> <span class="c1">#@param {type:&quot;integer&quot;}</span>
+<span class="n">mes</span> <span class="o">=</span> <span class="mi">2</span> <span class="c1">#@param {type:&quot;integer&quot;}</span>
+<span class="n">departamento</span> <span class="o">=</span> <span class="s2">&quot;ventas&quot;</span> <span class="c1">#@param [&quot;ventas&quot;, &quot;marketing&quot;, &quot;operaciones&quot;]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="variables-tecnicas-equipo-tecnico">
+<h2>Variables técnicas (equipo técnico)<a class="headerlink" href="#variables-tecnicas-equipo-tecnico" title="Link to this heading">#</a></h2>
+<p>Las siguientes celdas contienen configuraciones internas que el
+equipo no técnico no necesita ver ni modificar. En Google Colab,
+las celdas se ocultan usando <code class="docutils literal notranslate"><span class="pre">#&#64;title</span></code> como primera línea y
+configurando la vista de formulario (<em>cellView: form</em>). Esto las
+colapsa visualmente, mostrando solo el título.</p>
+<p>Para configurarlo:</p>
+<ul class="simple">
+<li><p>Agrega <code class="docutils literal notranslate"><span class="pre">#&#64;title</span> <span class="pre">Título</span> <span class="pre">descriptivo</span></code> como primera línea de la
+celda de código.</p></li>
+<li><p>Haz clic en los tres puntos de la celda &gt; <em>Ver formulario</em>.</p></li>
+<li><p>O establece <code class="docutils literal notranslate"><span class="pre">&quot;cellView&quot;:</span> <span class="pre">&quot;form&quot;</span></code> en los metadatos de la celda.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#@title Variables técnicas (no modificar)</span>
+<span class="n">BASE_DIR</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;/content/drive/MyDrive/reportes&quot;</span><span class="p">)</span>
+<span class="n">INPUT_DIR</span> <span class="o">=</span> <span class="n">BASE_DIR</span> <span class="o">/</span> <span class="s2">&quot;datos&quot;</span>
+<span class="n">OUTPUT_DIR</span> <span class="o">=</span> <span class="n">BASE_DIR</span> <span class="o">/</span> <span class="s2">&quot;resultados&quot;</span>
+
+<span class="n">INPUT_FILE</span> <span class="o">=</span> <span class="n">INPUT_DIR</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;datos_</span><span class="si">{</span><span class="n">año</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">mes</span><span class="si">:</span><span class="s2">02d</span><span class="si">}</span><span class="s2">.csv&quot;</span>
+<span class="n">OUTPUT_FILE</span> <span class="o">=</span> <span class="n">OUTPUT_DIR</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;reporte_</span><span class="si">{</span><span class="n">departamento</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">año</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">mes</span><span class="si">:</span><span class="s2">02d</span><span class="si">}</span><span class="s2">.csv&quot;</span>
+
+<span class="n">COLUMNAS_REQUERIDAS</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;fecha&quot;</span><span class="p">,</span> <span class="s2">&quot;departamento&quot;</span><span class="p">,</span> <span class="s2">&quot;categoria&quot;</span><span class="p">,</span> <span class="s2">&quot;monto&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="logica-de-procesamiento-equipo-tecnico">
+<h2>Lógica de procesamiento (equipo técnico)<a class="headerlink" href="#logica-de-procesamiento-equipo-tecnico" title="Link to this heading">#</a></h2>
+<p>La lógica de procesamiento también se oculta. Toda la
+funcionalidad se encapsula en funciones con nombres descriptivos.
+Esto facilita el mantenimiento por parte del equipo técnico y
+evita que el equipo no técnico modifique accidentalmente la
+lógica.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#@title Funciones de procesamiento (no modificar)</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">validar_parametros</span><span class="p">(</span><span class="n">anio</span><span class="p">,</span> <span class="n">mes</span><span class="p">,</span> <span class="n">departamento</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Valida que los parámetros sean correctos.&quot;&quot;&quot;</span>
+    <span class="n">errores</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="mi">2020</span> <span class="o">&lt;=</span> <span class="n">anio</span> <span class="o">&lt;=</span> <span class="mi">2030</span><span class="p">):</span>
+        <span class="n">errores</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Año fuera de rango: </span><span class="si">{</span><span class="n">anio</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&lt;=</span> <span class="n">mes</span> <span class="o">&lt;=</span> <span class="mi">12</span><span class="p">):</span>
+        <span class="n">errores</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Mes inválido: </span><span class="si">{</span><span class="n">mes</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">departamento</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;ventas&quot;</span><span class="p">,</span> <span class="s2">&quot;marketing&quot;</span><span class="p">,</span> <span class="s2">&quot;operaciones&quot;</span><span class="p">]:</span>
+        <span class="n">errores</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Departamento no reconocido: </span><span class="si">{</span><span class="n">departamento</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">errores</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">cargar_datos</span><span class="p">(</span><span class="n">ruta</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Carga el archivo CSV y valida las columnas.&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">ruta</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+        <span class="k">raise</span> <span class="ne">FileNotFoundError</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;No se encontró el archivo: </span><span class="si">{</span><span class="n">ruta</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span>
+            <span class="sa">f</span><span class="s2">&quot;Verifique que el archivo exista en Google Drive.&quot;</span>
+        <span class="p">)</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">ruta</span><span class="p">)</span>
+    <span class="n">faltantes</span> <span class="o">=</span> <span class="p">[</span><span class="n">c</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">COLUMNAS_REQUERIDAS</span> <span class="k">if</span> <span class="n">c</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">faltantes</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Columnas faltantes en el archivo: </span><span class="si">{</span><span class="n">faltantes</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">df</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">procesar_datos</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">departamento</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Filtra y agrega los datos por departamento.&quot;&quot;&quot;</span>
+    <span class="n">df_filtrado</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;departamento&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">departamento</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">df_filtrado</span><span class="o">.</span><span class="n">empty</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;No hay datos para el departamento: </span><span class="si">{</span><span class="n">departamento</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="p">)</span>
+    <span class="n">resumen</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">df_filtrado</span>
+        <span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;categoria&quot;</span><span class="p">)</span>
+        <span class="o">.</span><span class="n">agg</span><span class="p">(</span>
+            <span class="n">total</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;monto&quot;</span><span class="p">,</span> <span class="s2">&quot;sum&quot;</span><span class="p">),</span>
+            <span class="n">cantidad</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;monto&quot;</span><span class="p">,</span> <span class="s2">&quot;count&quot;</span><span class="p">),</span>
+            <span class="n">promedio</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;monto&quot;</span><span class="p">,</span> <span class="s2">&quot;mean&quot;</span><span class="p">),</span>
+        <span class="p">)</span>
+        <span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+        <span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">&quot;total&quot;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="p">)</span>
+    <span class="k">return</span> <span class="n">resumen</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">guardar_reporte</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">ruta</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Guarda el reporte en la ruta especificada.&quot;&quot;&quot;</span>
+    <span class="n">ruta</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">ruta</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="ejecucion">
+<h2>Ejecución<a class="headerlink" href="#ejecucion" title="Link to this heading">#</a></h2>
+<p>Esta celda ejecuta el proceso completo. Se mantiene visible
+para que el equipo no técnico pueda verificar el progreso y los
+resultados. Los mensajes de <em>log</em> indican cada paso.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="s1">&#39;=&#39;</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">50</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Reporte: </span><span class="si">{</span><span class="n">departamento</span><span class="si">}</span><span class="s2"> - </span><span class="si">{</span><span class="n">año</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">mes</span><span class="si">:</span><span class="s2">02d</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="s1">&#39;=&#39;</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">50</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">()</span>
+
+<span class="c1"># Paso 1: Validar parámetros</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;▶ Validando parámetros...&quot;</span><span class="p">)</span>
+<span class="n">errores</span> <span class="o">=</span> <span class="n">validar_parametros</span><span class="p">(</span><span class="n">año</span><span class="p">,</span> <span class="n">mes</span><span class="p">,</span> <span class="n">departamento</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">errores</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">error</span> <span class="ow">in</span> <span class="n">errores</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  ✗ </span><span class="si">{</span><span class="n">error</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">raise</span> <span class="ne">SystemExit</span><span class="p">(</span><span class="s2">&quot;Proceso detenido por errores en parámetros.&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;  ✓ Parámetros válidos.&quot;</span><span class="p">)</span>
+
+<span class="c1"># Paso 2: Cargar datos</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;▶ Cargando datos desde: </span><span class="si">{</span><span class="n">INPUT_FILE</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">cargar_datos</span><span class="p">(</span><span class="n">INPUT_FILE</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  ✓ </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span><span class="si">}</span><span class="s2"> registros cargados.&quot;</span><span class="p">)</span>
+
+<span class="c1"># Paso 3: Procesar datos</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;▶ Procesando datos para &#39;</span><span class="si">{</span><span class="n">departamento</span><span class="si">}</span><span class="s2">&#39;...&quot;</span><span class="p">)</span>
+<span class="n">resumen</span> <span class="o">=</span> <span class="n">procesar_datos</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">departamento</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  ✓ </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">resumen</span><span class="p">)</span><span class="si">}</span><span class="s2"> categorías en el resumen.&quot;</span><span class="p">)</span>
+
+<span class="c1"># Paso 4: Guardar reporte</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;▶ Guardando reporte en: </span><span class="si">{</span><span class="n">OUTPUT_FILE</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">guardar_reporte</span><span class="p">(</span><span class="n">resumen</span><span class="p">,</span> <span class="n">OUTPUT_FILE</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  ✓ Reporte guardado exitosamente.&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="s1">&#39;=&#39;</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">50</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Proceso finalizado.&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="s1">&#39;=&#39;</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">50</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>==================================================
+Reporte: ventas - 2026/02
+==================================================
+
+▶ Validando parámetros...
+  ✓ Parámetros válidos.
+▶ Cargando datos desde: datos_2026_02.csv
+  ✓ 300 registros cargados.
+▶ Procesando datos para &#39;ventas&#39;...
+  ✓ 4 categorías en el resumen.
+▶ Guardando reporte en: reporte_ventas_2026_02.csv
+  ✓ Reporte guardado exitosamente.
+
+==================================================
+Proceso finalizado.
+==================================================
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="convenciones-de-nombres">
+<h2>Convenciones de nombres<a class="headerlink" href="#convenciones-de-nombres" title="Link to this heading">#</a></h2>
+<p>Una de las buenas prácticas más importantes es usar nombres
+fijos o con formato programático para archivos y carpetas. Esto
+previene errores humanos y facilita la automatización.</p>
+<section id="nombres-a-evitar">
+<h3>Nombres a evitar<a class="headerlink" href="#nombres-a-evitar" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Ejemplo</p></th>
+<th class="head"><p>Problema</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">reporte</span> <span class="pre">enero.csv</span></code></p></td>
+<td><p>Espacio en el nombre, sin año, texto libre</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Datos_Ventas_2026.CSV</span></code></p></td>
+<td><p>Mayúsculas inconsistentes, extensión en mayúscula</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">mi</span> <span class="pre">reporte</span> <span class="pre">(final)</span> <span class="pre">v2.csv</span></code></p></td>
+<td><p>Caracteres especiales, versionado manual</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="formato-recomendado">
+<h3>Formato recomendado<a class="headerlink" href="#formato-recomendado" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Tipo</p></th>
+<th class="head"><p>Formato</p></th>
+<th class="head"><p>Ejemplo</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Datos de entrada</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">datos_AAAA_MM.csv</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">datos_2026_02.csv</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>Reporte de salida</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">reporte_DEPTO_AAAA_MM.csv</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">reporte_ventas_2026_02.csv</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>Registros</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">log_DEPTO_AAAA_MM.txt</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">log_ventas_2026_02.txt</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Las variables del nombre (año, mes, departamento) se construyen
+programáticamente a partir de los parámetros. El equipo no
+técnico <strong>nunca</strong> escribe nombres de archivos manualmente.</p>
+</section>
+</section>
+<section id="consideraciones-de-tiempo-de-ejecucion">
+<h2>Consideraciones de tiempo de ejecución<a class="headerlink" href="#consideraciones-de-tiempo-de-ejecucion" title="Link to this heading">#</a></h2>
+<p>Google Colab tiene limitaciones de tiempo que conviene conocer:</p>
+<ul class="simple">
+<li><p>Las sesiones gratuitas se desconectan tras ~90 minutos de
+inactividad o 12 horas de ejecución continua.</p></li>
+<li><p>Colab Pro ofrece sesiones más largas, pero sigue siendo
+limitado.</p></li>
+</ul>
+<p>Recomendaciones:</p>
+<ol class="arabic simple">
+<li><p><strong>Guardar resultados intermedios</strong>: si el proceso es largo,
+guarda resultados parciales en Drive después de cada etapa.
+Si la sesión se desconecta, no se pierde el progreso.</p></li>
+<li><p><strong>Indicadores de progreso</strong>: usa <code class="docutils literal notranslate"><span class="pre">print()</span></code> o <code class="docutils literal notranslate"><span class="pre">tqdm</span></code> para
+que el usuario sepa que el proceso sigue en ejecución.</p></li>
+<li><p><strong>Procesamiento por lotes</strong>: si los datos son muy grandes,
+procesa en <em>chunks</em> en lugar de cargar todo en memoria.</p></li>
+<li><p><strong>Manejo de errores</strong>: envuelve la ejecución en bloques
+<code class="docutils literal notranslate"><span class="pre">try/except</span></code> para guardar resultados parciales en caso de
+fallo.</p></li>
+</ol>
+</section>
+<section id="resumen-de-buenas-practicas">
+<h2>Resumen de buenas prácticas<a class="headerlink" href="#resumen-de-buenas-practicas" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>Documentar el proceso al inicio del <em>notebook</em>.</p></li>
+<li><p>Colocar importaciones y conexión a Drive como primera celda
+de código.</p></li>
+<li><p>Separar los parámetros editables en una celda visible con
+formularios de Colab (<code class="docutils literal notranslate"><span class="pre">#&#64;param</span></code>).</p></li>
+<li><p>Ocultar las variables técnicas y la lógica de procesamiento
+usando <code class="docutils literal notranslate"><span class="pre">#&#64;title</span></code> y la vista de formulario.</p></li>
+<li><p>Usar una celda de ejecución visible con mensajes de progreso.</p></li>
+<li><p>Usar nombres de archivos fijos o con formatos programáticos,
+nunca texto libre.</p></li>
+<li><p>Considerar las limitaciones de tiempo de ejecución de Colab.</p></li>
+<li><p>Preferir listas cerradas sobre campos de texto libre en los
+parámetros.</p></li>
+</ol>
+</section>
+<section id="referencias">
+<h2>Referencias<a class="headerlink" href="#referencias" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://research.google.com/colaboratory/faq.html">Google Colab FAQ</a>. Google.</p></li>
+<li><p><a class="reference external" href="https://colab.research.google.com/notebooks/forms.ipynb">Adding form fields to Colab notebooks</a>. Google Colab.</p></li>
+<li><p><a class="reference external" href="https://colab.research.google.com/notebooks/io.ipynb">Mounting Google Drive in Colab</a>. Google Colab.</p></li>
+</ul>
+</section>
+</section>
+
+<div class="section ablog__blog_comments">
+     
+<div class="section ablog__prev-next">
+  <span class="ablog__prev">
+      Anterior:
+    
+    <a href="../../../../en/blog/2026/buenas-practicas-google-colab-equipos-no-tecnicos/">
+      
+      <span>Best practices in Google Colab for sharing with non-technical teams</span>
+    </a>
+    
+  </span>
+  <span class="ablog__spacer">&nbsp;</span>
+  <span class="ablog__next">
+    
+  </span>
+</div>
+  
+</div>
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> En esta página
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estructura-recomendada">Estructura recomendada</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#documentacion-del-proceso">Documentación del proceso</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#importaciones-e-inicializacion-de-drive">Importaciones e inicialización de Drive</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parametros-equipo-no-tecnico">Parámetros (equipo no técnico)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variables-tecnicas-equipo-tecnico">Variables técnicas (equipo técnico)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#logica-de-procesamiento-equipo-tecnico">Lógica de procesamiento (equipo técnico)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejecucion">Ejecución</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#convenciones-de-nombres">Convenciones de nombres</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nombres-a-evitar">Nombres a evitar</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#formato-recomendado">Formato recomendado</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#consideraciones-de-tiempo-de-ejecucion">Consideraciones de tiempo de ejecución</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resumen-de-buenas-practicas">Resumen de buenas prácticas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#referencias">Referencias</a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+  <div role="note" aria-label="source link">
+    <h3>Esta página</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../../_sources/es/blog/2026/buenas-practicas-google-colab-equipos-no-tecnicos.ipynb.txt"
+            rel="nofollow">Mostrar el código</a></li>
+    </ul>
+   </div></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2024, Edward Villegas-Pulgarin.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Creado usando <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Construido con el <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html"> Tema PyData Sphinx </a> 0.16.1.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>
