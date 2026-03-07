@@ -1,0 +1,987 @@
+
+<!DOCTYPE html>
+
+
+<html lang="es" data-content_root="../../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="og:title" content="Marco de preparación para agentes de código" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://www.cosmoscalibur.com/es/blog/2026/marco-de-preparacion-para-agentes-de-codigo/" />
+<meta property="og:site_name" content="Cosmoscalibur" />
+<meta property="og:description" content="Los agentes de código están aquí, y no van a irse. Pero después de meses usándolos —Antigravity, AmpCode, Opencode, el agente de Zed— he llegado a una conclusión incómoda: el problema no suele ser ..." />
+<meta property="og:image:width" content="1146" />
+<meta property="og:image:height" content="600" />
+<meta property="og:image" content="https://www.cosmoscalibur.com/_images/social_previews/summary_es_blog_2026_marco-de-preparacion-para-agentes-de-codigo_f9f2cb2c.png" />
+<meta property="og:image:alt" content="Los agentes de código están aquí, y no van a irse. Pero después de meses usándolos —Antigravity, AmpCode, Opencode, el agente de Zed— he llegado a una conclusión incómoda: el problema no suele ser ..." />
+<meta name="description" content="Los agentes de código están aquí, y no van a irse. Pero después de meses usándolos —Antigravity, AmpCode, Opencode, el agente de Zed— he llegado a una conclusión incómoda: el problema no suele ser ..." />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:creator" content="@cosmoscalibur" />
+<meta name="fediverse:creator" content="@cosmoscalibur@col.social">
+
+    <title>Marco de preparación para agentes de código &#8212; Cosmoscalibur</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../../../../_static/documentation_options.js?v=a20647df"></script>
+    <script src="../../../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../../_static/translations.js?v=f85f4cfb"></script>
+    <script src="../../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'es/blog/2026/marco-de-preparacion-para-agentes-de-codigo';</script>
+    <link rel="canonical" href="https://www.cosmoscalibur.com/es/blog/2026/marco-de-preparacion-para-agentes-de-codigo/" />
+    <link rel="icon" href="../../../../_static/cosmoscalibur_favicon.png"/>
+    <link rel="index" title="Índice" href="../../../../genindex/" />
+    <link rel="search" title="Búsqueda" href="../../../../search/" /> 
+
+<!-- TODO: Revisar como hacer que dependa del despliegue en GitHub Pages para no usar en local -->
+<!-- TODO: Usar GitHub Actions para esto -->
+
+<!-- Usado para mostrar publicidad -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-0356238418278924"
+crossorigin="anonymous"></script>
+
+
+<link rel="alternate" hreflang="en" href="https://www.cosmoscalibur.com/en/blog/2026/marco-de-preparacion-para-agentes-de-codigo/" />
+<link rel="alternate" hreflang="es" href="https://www.cosmoscalibur.com/es/blog/2026/marco-de-preparacion-para-agentes-de-codigo/" />
+
+
+ 
+<link
+  rel="alternate"
+  type="application/atom+xml"
+  href="../../../../blog/atom.xml"
+  title="Cosmoscalibur"
+/>
+  
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Saltar al contenido principal</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Volver arriba</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../../search/"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Advertencia de versión"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Navegación del sitio">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../../">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../../_static/cosmoscalibur_logo.png" class="logo__image only-light" alt="Cosmoscalibur - Home"/>
+    <img src="../../../../_static/cosmoscalibur_logo.png" class="logo__image only-dark pst-js-only" alt="Cosmoscalibur - Home"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../me/">
+    Edward Villegas
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+<div class="navbar-nav">
+  <a class="nav-link" href="../../../../en/blog/2026/marco-de-preparacion-para-agentes-de-codigo/" title="English" style="color: var(--pst-color-text-base);">
+    🌐 English
+  </a>
+</div>
+</div>
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Tema" data-bs-title="Tema"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Claro"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Oscuro"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="Sistema"></i>
+</button></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/cosmoscalibur/" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/cosmoscalibur" title="Twitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-twitter fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Twitter</span></a>
+        </li>
+        <li class="nav-item">
+            
+          
+            
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://col.social/@cosmoscalibur" title="Mastodon" class="nav-link pst-navbar-icon" rel="me" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-mastodon fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Mastodon</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="En esta página">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../me/">
+    Edward Villegas
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+<div class="navbar-nav">
+  <a class="nav-link" href="../../../../en/blog/2026/marco-de-preparacion-para-agentes-de-codigo/" title="English" style="color: var(--pst-color-text-base);">
+    🌐 English
+  </a>
+</div>
+</div>
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Tema" data-bs-title="Tema"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Claro"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Oscuro"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="Sistema"></i>
+</button></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/cosmoscalibur/" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/cosmoscalibur" title="Twitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-twitter fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Twitter</span></a>
+        </li>
+        <li class="nav-item">
+            
+          
+            
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://col.social/@cosmoscalibur" title="Mastodon" class="nav-link pst-navbar-icon" rel="me" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-mastodon fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Mastodon</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<div class="ablog-sidebar-item ablog__postcard">
+   
+  <h2>
+     
+    <span>2026-03-07</span>
+    
+  </h2>
+  <ul>
+    <div class="ablog-sidebar-item ablog__postcard2">
+   
+  <li id="ablog-sidebar-item author ablog__author">
+    <span>
+       Autor: 
+    </span>
+     
+    <a href="../../../../blog/author/edward-villegas-pulgarin/">Edward Villegas-Pulgarin</a>
+      
+  </li>
+    
+  <li id="ablog-sidebar-item language ablog__language">
+    <span>
+       Idioma: 
+    </span>
+     
+    <a href="../../../../blog/language/espanol/">Español</a>
+      
+  </li>
+   
+  <li id="ablog-sidebar-item category ablog__category">
+    <span>
+       Categoría: 
+    </span>
+     
+    <a href="../../../../blog/category/tecnologia/">tecnología</a>
+     ,    
+    <a href="../../../../blog/category/programacion/">programación</a>
+      
+  </li>
+   
+  <li id="ablog-sidebar-item tags ablog__tags">
+    <span>
+        Etiquetas:  
+    </span>
+     
+    <a href="../../../../blog/tag/inteligencia-artificial/">inteligencia artificial</a>
+        
+    <a href="../../../../blog/tag/agentes-de-codigo/">agentes de código</a>
+        
+    <a href="../../../../blog/tag/agentsmd/">AGENTS.md</a>
+        
+    <a href="../../../../blog/tag/ingenieria-de-contexto/">ingeniería de contexto</a>
+        
+    <a href="../../../../blog/tag/antigravity/">antigravity</a>
+        
+    <a href="../../../../blog/tag/factory-ai/">factory ai</a>
+      
+  </li>
+   
+</div>
+  </ul>
+</div>
+</div>
+        <div class="sidebar-primary-item">
+<div class="ablog-sidebar-item ablog__recentposts">
+  <h3>
+    <a href="../../../../blog/">Entradas recientes</a>
+  </h3>
+  <ul>
+     
+    <li>
+      <a href="../../../../en/blog/2026/marco-de-preparacion-para-agentes-de-codigo/">
+        2026-03-07 - Agent Readiness Framework for Coding Projects
+      </a>
+    </li>
+    
+    <li>
+      <a href="../buenas-practicas-google-colab-equipos-no-tecnicos/">
+        2026-02-24 - Buenas prácticas en Google Colab para compartir con equipos no técnicos
+      </a>
+    </li>
+    
+    <li>
+      <a href="../../../../en/blog/2026/buenas-practicas-google-colab-equipos-no-tecnicos/">
+        2026-02-24 - Best practices in Google Colab for sharing with non-technical teams
+      </a>
+    </li>
+    
+    <li>
+      <a href="../../../../en/blog/2026/ingenieria-de-prompt-habilidad-o-estafa/">
+        2026-02-23 - Prompt Engineering: Technical Skill or Scam?
+      </a>
+    </li>
+    
+    <li>
+      <a href="../ingenieria-de-prompt-habilidad-o-estafa/">
+        2026-02-23 - Ingeniería de prompt: ¿Habilidad técnica o estafa?
+      </a>
+    </li>
+    
+  </ul>
+</div>
+</div>
+        <div class="sidebar-primary-item">
+<div class="ablog-sidebar-item ablog__archives">
+  <h3>
+    <a href="../../../../blog/archive/">Archivos</a>
+  </h3>
+  <ul>
+     
+    <li>
+      <a href="../../../../blog/2026/">2026 (12)</a>
+    </li>
+      
+    <li>
+      <a href="../../../../blog/2025/">2025 (22)</a>
+    </li>
+      
+    <li>
+      <a href="../../../../blog/2024/">2024 (35)</a>
+    </li>
+      
+    <li>
+      <a href="../../../../blog/2021/">2021 (2)</a>
+    </li>
+      
+    <li>
+      <a href="../../../../blog/2020/">2020 (21)</a>
+    </li>
+      
+    <li>
+      <a href="../../../../blog/2019/">2019 (9)</a>
+    </li>
+      
+    <li>
+      <a href="../../../../blog/2018/">2018 (5)</a>
+    </li>
+      
+    <li>
+      <a href="../../../../blog/2017/">2017 (2)</a>
+    </li>
+      
+    <li>
+      <a href="../../../../blog/2014/">2014 (1)</a>
+    </li>
+      
+    <li>
+      <a href="../../../../blog/2013/">2013 (12)</a>
+    </li>
+      
+    <li>
+      <a href="../../../../blog/2012/">2012 (20)</a>
+    </li>
+      
+    <li>
+      <a href="../../../../blog/2011/">2011 (30)</a>
+    </li>
+      
+    <li>
+      <a href="../../../../blog/2010/">2010 (7)</a>
+    </li>
+     
+  </ul>
+</div>
+</div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Miga de pan" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../../../" class="nav-link" aria-label="Inicio">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Marco de preparación para agentes de código</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                   <section class="tex2jax_ignore mathjax_ignore" id="marco-de-preparacion-para-agentes-de-codigo">
+<h1>Marco de preparación para agentes de código<a class="headerlink" href="#marco-de-preparacion-para-agentes-de-codigo" title="Link to this heading">#</a></h1>
+<p>Los agentes de código están aquí, y no van a irse. Pero después de meses
+usándolos —Antigravity, AmpCode, Opencode, el agente de Zed— he llegado a
+una conclusión incómoda: <strong>el problema no suele ser el agente, sino el
+proyecto</strong>. Un repositorio mal preparado derrota a cualquier agente, sin
+importar qué tan avanzado sea el modelo que tenga detrás.</p>
+<p>En mi publicación sobre
+<a class="reference internal" href="../ingenieria-de-prompt-habilidad-o-estafa/"><span class="std std-doc">ingeniería de contexto</span></a>,
+hablé de cómo el paradigma cambió del <em>cómo</em> preguntarle a la IA al <em>qué</em>
+darle como contexto. Este artículo es la continuación natural: un marco
+metódico para preparar tu repositorio y convertirlo en un entorno donde los
+agentes (y los humanos) puedan trabajar de forma efectiva.</p>
+<p>El marco que presento se basa en el <em>Agent Readiness Model</em> de
+<a class="reference external" href="https://factory.ai/news/agent-readiness">Factory AI</a>, que propone cinco
+niveles de madurez y nueve pilares técnicos para evaluar qué tan preparado
+está un repositorio para el desarrollo autónomo. Lo adapto aquí con mi
+experiencia práctica y con una consideración especial para quienes usan
+Antigravity, cuyo sistema de contexto difiere del estándar <code class="docutils literal notranslate"><span class="pre">AGENTS.md</span></code>.</p>
+<section id="que-es-el-marco-de-preparacion-para-agentes">
+<h2>¿Qué es el marco de preparación para agentes?<a class="headerlink" href="#que-es-el-marco-de-preparacion-para-agentes" title="Link to this heading">#</a></h2>
+<p>Es un modelo de madurez que mide qué tan listo está tu repositorio para que
+agentes de IA trabajen en él de forma autónoma. No evalúa al agente, evalúa
+al proyecto: su documentación, <em>tooling</em>, pruebas, seguridad y
+convenciones.</p>
+<p>La premisa fundamental es que <strong>el agente no es mágico</strong>. Es tan bueno
+como el entorno que le proporcionas. Un repositorio con <em>hooks</em> de
+<em>pre-commit</em>, pruebas rápidas y documentación clara permite que el agente
+itere en segundos. Uno sin esas bases obliga al agente a adivinar, esperar
+minutos por retroalimentación de CI, y repetir errores que una verificación
+local habría atrapado al instante.</p>
+<p>Lo mejor: cada mejora que hagas para los agentes beneficia igualmente a
+los desarrolladores humanos del proyecto.</p>
+</section>
+<section id="los-cinco-niveles-de-preparacion">
+<h2>Los cinco niveles de preparación<a class="headerlink" href="#los-cinco-niveles-de-preparacion" title="Link to this heading">#</a></h2>
+<p>El modelo define cinco niveles progresivos. Para desbloquear el siguiente,
+necesitas cumplir al menos el 80% de los criterios del nivel actual.</p>
+<section id="nivel-1-funcional">
+<h3>Nivel 1: Funcional<a class="headerlink" href="#nivel-1-funcional" title="Link to this heading">#</a></h3>
+<p>El código compila y se ejecuta, pero requiere configuración manual y carece
+de validación automatizada. Es el mínimo que cualquier repositorio debería
+tener.</p>
+<p><strong>Criterios clave:</strong></p>
+<ul class="simple">
+<li><p><code class="file docutils literal notranslate"><span class="pre">README.md</span></code> con instrucciones de configuración y ejecución.</p></li>
+<li><p><em>Linter</em> configurado (ejemplo: <strong class="program">ruff</strong> para Python,
+<strong class="program">eslint</strong> para JavaScript).</p></li>
+<li><p>Verificador de tipos (ejemplo: <strong class="program">pyright</strong>, TypeScript <em>strict</em>).</p></li>
+<li><p>Pruebas unitarias existentes y ejecutables localmente.</p></li>
+<li><p>Formateador de código configurado.</p></li>
+</ul>
+<p><strong>Sin esto:</strong> El agente no puede verificar su propio trabajo. Genera
+código, espera al CI (si existe), falla, e itera a ciegas.</p>
+</section>
+<section id="nivel-2-documentado">
+<h3>Nivel 2: Documentado<a class="headerlink" href="#nivel-2-documentado" title="Link to this heading">#</a></h3>
+<p>La documentación básica y los procesos existen. Los flujos de trabajo están
+escritos y hay algo de automatización.</p>
+<p><strong>Criterios clave:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">AGENTS.md</span></code> o archivo equivalente de instrucciones para agentes con
+comandos, convenciones y límites.</p></li>
+<li><p><em>Devcontainer</em> o entorno de desarrollo reproducible.</p></li>
+<li><p><em>Hooks</em> de <em>pre-commit</em> configurados.</p></li>
+<li><p>Protección de ramas (<em>branch protection</em>) habilitada.</p></li>
+<li><p>Variables de entorno documentadas (ejemplo: <code class="file docutils literal notranslate"><span class="pre">.env.example</span></code>).</p></li>
+</ul>
+<p><strong>Sin esto:</strong> El agente tiene que descubrir cómo funciona tu proyecto por
+su cuenta. Adivina convenciones, no sabe qué comandos ejecutar, y no tiene
+guardarraíles de seguridad.</p>
+</section>
+<section id="nivel-3-estandarizado">
+<h3>Nivel 3: Estandarizado<a class="headerlink" href="#nivel-3-estandarizado" title="Link to this heading">#</a></h3>
+<p>Procesos claros definidos, documentados y aplicados mediante automatización.
+<strong>Este es el objetivo mínimo para trabajo productivo con agentes.</strong></p>
+<p><strong>Criterios clave:</strong></p>
+<ul class="simple">
+<li><p>Pruebas de integración y/o <em>end-to-end</em>.</p></li>
+<li><p>Escaneo de secretos (<em>secret scanning</em>).</p></li>
+<li><p>Trazabilidad distribuida y métricas (<em>observability</em>).</p></li>
+<li><p>Documentación mantenida y actualizada.</p></li>
+<li><p><code class="file docutils literal notranslate"><span class="pre">CODEOWNERS</span></code> configurado.</p></li>
+</ul>
+<p><strong>Sin esto:</strong> El agente puede manejar tareas simples pero introduce
+errores sutiles en flujos complejos que solo pruebas de integración
+atraparían.</p>
+</section>
+<section id="nivel-4-optimizado">
+<h3>Nivel 4: Optimizado<a class="headerlink" href="#nivel-4-optimizado" title="Link to this heading">#</a></h3>
+<p>Ciclos de retroalimentación rápidos y mejora basada en datos. Los sistemas
+están diseñados para productividad y se miden continuamente.</p>
+<p><strong>Criterios clave:</strong></p>
+<ul class="simple">
+<li><p>CI con retroalimentación rápida (minutos, no horas).</p></li>
+<li><p>Frecuencia de despliegue regular.</p></li>
+<li><p>Detección de pruebas inestables (<em>flaky tests</em>).</p></li>
+<li><p>Métricas de rendimiento del equipo.</p></li>
+</ul>
+<p><strong>Sin esto:</strong> El agente funciona, pero lento. Espera demasiado por
+retroalimentación y no puede iterar a la velocidad que su capacidad
+permite.</p>
+</section>
+<section id="nivel-5-autonomo">
+<h3>Nivel 5: Autónomo<a class="headerlink" href="#nivel-5-autonomo" title="Link to this heading">#</a></h3>
+<p>Sistemas auto-mejorables con orquestación sofisticada. Requerimientos
+complejos se descomponen automáticamente en ejecución paralela.</p>
+<p>Este nivel representa el objetivo a largo plazo: el agente no solo
+implementa, sino que descubre trabajo, prioriza, ejecuta y verifica de
+forma autónoma.</p>
+</section>
+</section>
+<section id="los-nueve-pilares-tecnicos">
+<h2>Los nueve pilares técnicos<a class="headerlink" href="#los-nueve-pilares-tecnicos" title="Link to this heading">#</a></h2>
+<p>Cada nivel se evalúa a través de nueve pilares que cubren las dimensiones
+fundamentales de un repositorio:</p>
+<ol class="arabic simple">
+<li><p><strong>Estilo y validación</strong>: <em>Linters</em>, formateadores, verificadores de
+tipos, <em>pre-commit hooks</em>.</p></li>
+<li><p><strong>Sistema de compilación</strong>: Comandos deterministas, dependencias fijadas,
+compilación documentada.</p></li>
+<li><p><strong>Pruebas</strong>: Unitarias, integración, ejecutables localmente, cobertura.</p></li>
+<li><p><strong>Documentación</strong>: <em>README</em>, <code class="docutils literal notranslate"><span class="pre">AGENTS.md</span></code>, guías de arquitectura,
+convenciones de código.</p></li>
+<li><p><strong>Entorno de desarrollo</strong>: <em>Devcontainer</em>, plantillas de entorno,
+configuración de servicios locales.</p></li>
+<li><p><strong>Depuración y observabilidad</strong>: <em>Logging</em> estructurado, trazabilidad
+distribuida, métricas.</p></li>
+<li><p><strong>Seguridad</strong>: Protección de ramas, escaneo de secretos, <em>CODEOWNERS</em>.</p></li>
+<li><p><strong>Descubrimiento de tareas</strong>: Plantillas de <em>issues</em>, sistema de
+etiquetas, plantillas de PR.</p></li>
+<li><p><strong>Producto y experimentación</strong>: Analítica, <em>feature flags</em>,
+infraestructura de experimentos.</p></li>
+</ol>
+<div class="tip admonition">
+<p class="admonition-title">Nota</p>
+<p>No necesitas cumplir todos los pilares para empezar. Concéntrate en los
+pilares de los niveles 1 y 2 primero: estilo, compilación, pruebas y
+documentación. Son los que mayor impacto tienen en la calidad del trabajo
+del agente.</p>
+</div>
+</section>
+<section id="la-documentacion-de-agentes-agents-md-y-sus-alternativas">
+<h2>La documentación de agentes: <code class="docutils literal notranslate"><span class="pre">AGENTS.md</span></code> y sus alternativas<a class="headerlink" href="#la-documentacion-de-agentes-agents-md-y-sus-alternativas" title="Link to this heading">#</a></h2>
+<p>Un componente central del nivel 2 es el archivo de instrucciones para
+agentes. <code class="docutils literal notranslate"><span class="pre">AGENTS.md</span></code> se ha convertido en el estándar emergente, adoptado
+por más de 60.000 repositorios en GitHub y respaldado por la Agentic AI
+Foundation bajo la Linux Foundation.</p>
+<p>Un buen <code class="docutils literal notranslate"><span class="pre">AGENTS.md</span></code> incluye:</p>
+<ul class="simple">
+<li><p>Comandos de compilación, pruebas y verificación de estilo copiables.</p></li>
+<li><p>Convenciones de código y patrones preferidos.</p></li>
+<li><p>Estructura del proyecto y ubicación de archivos clave.</p></li>
+<li><p>Límites: qué no debe tocar el agente, qué decisiones de arquitectura
+son inamovibles.</p></li>
+<li><p>Instrucciones de pruebas y <em>workflow</em> de git.</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">CLAUDE.md</span></code> fue el precursor creado por Anthropic para Claude Code, y
+<code class="docutils literal notranslate"><span class="pre">AGENTS.md</span></code> es su evolución estandarizada que funciona con la mayoría de
+agentes: GitHub Copilot, AmpCode, Cursor, Opencode, Zed, y otros.</p>
+<section id="particularidad-de-antigravity">
+<h3>Particularidad de Antigravity<a class="headerlink" href="#particularidad-de-antigravity" title="Link to this heading">#</a></h3>
+<p>Si usas Antigravity como IDE principal (como es mi caso), hay un detalle
+importante: <strong>Antigravity no lee <code class="docutils literal notranslate"><span class="pre">AGENTS.md</span></code> ni <code class="docutils literal notranslate"><span class="pre">CLAUDE.md</span></code>
+automáticamente</strong>. Su sistema de contexto utiliza
+<code class="file docutils literal notranslate"><span class="pre">.agent/rules/</span></code> para reglas del espacio de trabajo y
+<code class="file docutils literal notranslate"><span class="pre">~/.gemini/GEMINI.md</span></code> para la configuración global.</p>
+<p>Esto no invalida el marco —los cinco niveles y nueve pilares aplican
+igual—, pero requiere una adaptación en cómo proporcionas el contexto al
+agente:</p>
+<ol class="arabic simple">
+<li><p><strong>Mantener la documentación en <code class="file docutils literal notranslate"><span class="pre">README.md</span></code> y <code class="file docutils literal notranslate"><span class="pre">docs/</span></code></strong>, como
+fuente de verdad compartida entre humanos y agentes.</p></li>
+<li><p><strong>Crear una regla de agente</strong> en <code class="file docutils literal notranslate"><span class="pre">.agent/rules/</span></code> que instruya
+explícitamente al agente a leer esa documentación antes de actuar.</p></li>
+<li><p><strong>Opcionalmente, mantener <code class="docutils literal notranslate"><span class="pre">AGENTS.md</span></code></strong> para las herramientas que lo
+soporten. La fuente de verdad sigue siendo tu documentación.</p></li>
+</ol>
+<p>Un ejemplo de regla en <code class="file docutils literal notranslate"><span class="pre">.agent/rules/documentation-first.md</span></code>:</p>
+<div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span>Before starting any task in this project, read the following files:
+<span class="k">-</span><span class="w"> </span>README.md for project overview and setup
+<span class="k">-</span><span class="w"> </span>docs/architecture.md for system architecture
+<span class="k">-</span><span class="w"> </span>docs/conventions.md for coding conventions
+Follow the guidelines in these documents for all code generation.
+</pre></div>
+</div>
+<p>De esta forma, un solo conjunto de documentación sirve para todos los
+agentes y para cualquier desarrollador humano.</p>
+</section>
+</section>
+<section id="evalua-tu-repositorio">
+<h2>Evalúa tu repositorio<a class="headerlink" href="#evalua-tu-repositorio" title="Link to this heading">#</a></h2>
+<p>He creado una
+<a class="reference external" href="https://github.com/cosmoscalibur/template/tree/main/.agents/skills/agent-readiness">habilidad de agente</a>
+que automatiza la evaluación de preparación para agentes. La habilidad
+audita los nueve pilares, asigna una puntuación por criterio (✅ pasa /
+⚠️ parcial / ❌ falla), determina el nivel actual del repositorio y
+genera un plan de mejora por fases.</p>
+<p>La habilidad está diseñada como un <em>agent skill</em> estándar, compatible con
+Antigravity y otros agentes que soporten el formato de habilidades. Puedes
+copiarla a tu proyecto y ejecutarla desde tu agente.</p>
+<p>Incluye:</p>
+<ul class="simple">
+<li><p>Detección automática del ecosistema (Python, Rust, Node, Go, etc.).</p></li>
+<li><p>Evaluación detallada de los nueve pilares con evidencia por criterio.</p></li>
+<li><p>Evaluación de calidad del contenido de contexto del agente (no solo si
+existe el archivo, sino si el contenido es útil).</p></li>
+<li><p>Recomendaciones de modernización (ejemplo: migrar de <strong class="program">pylint</strong>
+a <strong class="program">ruff</strong>, de <strong class="program">pip</strong> a <strong class="program">uv</strong>).</p></li>
+<li><p>Plan de implementación por fases con marcadores de cambios
+<code class="docutils literal notranslate"><span class="pre">[NEW]</span></code> / <code class="docutils literal notranslate"><span class="pre">[MODIFY]</span></code> / <code class="docutils literal notranslate"><span class="pre">[DELETE]</span></code>.</p></li>
+</ul>
+</section>
+<section id="conclusion">
+<h2>Conclusión<a class="headerlink" href="#conclusion" title="Link to this heading">#</a></h2>
+<p>La preparación para agentes no es un concepto abstracto. Es un conjunto
+concreto de prácticas que puedes medir, mejorar iterativamente y que
+benefician a todos los que trabajan en el proyecto —humanos y agentes por
+igual.</p>
+<p>El <em>Agent Readiness Model</em> proporciona una hoja de ruta clara: empieza
+por el nivel 1, llega al nivel 3 como mínimo viable para trabajo
+productivo con agentes, y sigue avanzando. La inversión no se pierde cuando
+cambies de agente o de herramienta, porque estás mejorando el proyecto, no
+optimizando para un <em>prompt</em>.</p>
+<p>Como dije en mi artículo sobre
+<a class="reference internal" href="../ingenieria-de-prompt-habilidad-o-estafa/"><span class="std std-doc">ingeniería de contexto</span></a>:
+las habilidades que hacen que obtengas buenos resultados de la IA son las
+mismas que te hacen un buen profesional. Este marco es la expresión
+práctica de esa idea.</p>
+</section>
+<section id="referencias">
+<h2>Referencias<a class="headerlink" href="#referencias" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://factory.ai/news/agent-readiness">Introducing Agent Readiness</a>.
+Factory AI.</p></li>
+<li><p><a class="reference external" href="https://docs.factory.ai/web/agent-readiness/overview">Agent Readiness Overview</a>.
+Factory AI Documentation.</p></li>
+<li><p><a class="reference external" href="https://agents.md/">AGENTS.md</a>. AGENTS.md.</p></li>
+<li><p><a class="reference external" href="https://github.blog/ai-and-ml/github-copilot/how-to-write-a-great-agents-md-lessons-from-over-2500-repositories/">How to write a great agents.md: Lessons from over 2,500 repositories</a>.
+GitHub Blog.</p></li>
+<li><p><a class="reference external" href="https://domizajac.medium.com/is-your-repo-ready-for-the-ai-agents-revolution-926e548da528">Is your repo ready for the AI Agents revolution? Checklist</a>.
+Dominika Zając.</p></li>
+<li><p><a class="reference external" href="https://antigravity.google/docs/rules-workflows">Rules / Workflows</a>.
+Google Antigravity Documentation.</p></li>
+<li><p><a class="reference external" href="https://github.com/cosmoscalibur/template/tree/main/.agents/skills/agent-readiness">Agent Readiness Skill</a>.
+Cosmoscalibur.</p></li>
+</ul>
+</section>
+</section>
+
+<div class="section ablog__blog_comments">
+     
+<div class="section ablog__prev-next">
+  <span class="ablog__prev">
+      Anterior:
+    
+    <a href="../../../../en/blog/2026/marco-de-preparacion-para-agentes-de-codigo/">
+      
+      <span>Agent Readiness Framework for Coding Projects</span>
+    </a>
+    
+  </span>
+  <span class="ablog__spacer">&nbsp;</span>
+  <span class="ablog__next">
+    
+  </span>
+</div>
+  
+</div>
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> En esta página
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#que-es-el-marco-de-preparacion-para-agentes">¿Qué es el marco de preparación para agentes?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#los-cinco-niveles-de-preparacion">Los cinco niveles de preparación</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nivel-1-funcional">Nivel 1: Funcional</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nivel-2-documentado">Nivel 2: Documentado</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nivel-3-estandarizado">Nivel 3: Estandarizado</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nivel-4-optimizado">Nivel 4: Optimizado</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nivel-5-autonomo">Nivel 5: Autónomo</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#los-nueve-pilares-tecnicos">Los nueve pilares técnicos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#la-documentacion-de-agentes-agents-md-y-sus-alternativas">La documentación de agentes: <code class="docutils literal notranslate"><span class="pre">AGENTS.md</span></code> y sus alternativas</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#particularidad-de-antigravity">Particularidad de Antigravity</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evalua-tu-repositorio">Evalúa tu repositorio</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusión</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#referencias">Referencias</a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+  <div role="note" aria-label="source link">
+    <h3>Esta página</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../../_sources/es/blog/2026/marco-de-preparacion-para-agentes-de-codigo.md.txt"
+            rel="nofollow">Mostrar el código</a></li>
+    </ul>
+   </div></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2024, Edward Villegas-Pulgarin.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Creado usando <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Construido con el <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html"> Tema PyData Sphinx </a> 0.16.1.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

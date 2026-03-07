@@ -2,10 +2,543 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="es">
   <id>https://www.cosmoscalibur.com/</id>
   <title>Cosmoscalibur</title>
-  <updated>2026-02-25T03:49:56.506690+00:00</updated>
+  <updated>2026-03-07T18:33:15.558503+00:00</updated>
   <link href="https://www.cosmoscalibur.com/"/>
   <link href="https://www.cosmoscalibur.com/blog/atom.xml" rel="self"/>
   <generator uri="https://ablog.readthedocs.io/" version="0.11.12">ABlog</generator>
+  <entry>
+    <id>https://www.cosmoscalibur.com/es/blog/2026/marco-de-preparacion-para-agentes-de-codigo/</id>
+    <title>Marco de preparación para agentes de código</title>
+    <updated>2026-03-07T00:00:00-05:00</updated>
+    <author>
+      <name>Edward Villegas-Pulgarin</name>
+    </author>
+    <content type="html">&lt;section class="tex2jax_ignore mathjax_ignore" id="marco-de-preparacion-para-agentes-de-codigo"&gt;
+
+&lt;p&gt;Los agentes de código están aquí, y no van a irse. Pero después de meses
+usándolos —Antigravity, AmpCode, Opencode, el agente de Zed— he llegado a
+una conclusión incómoda: &lt;strong&gt;el problema no suele ser el agente, sino el
+proyecto&lt;/strong&gt;. Un repositorio mal preparado derrota a cualquier agente, sin
+importar qué tan avanzado sea el modelo que tenga detrás.&lt;/p&gt;
+&lt;p&gt;En mi publicación sobre
+&lt;a class="reference internal" href="../es/blog/2026/ingenieria-de-prompt-habilidad-o-estafa/"&gt;&lt;span class="std std-doc"&gt;ingeniería de contexto&lt;/span&gt;&lt;/a&gt;,
+hablé de cómo el paradigma cambió del &lt;em&gt;cómo&lt;/em&gt; preguntarle a la IA al &lt;em&gt;qué&lt;/em&gt;
+darle como contexto. Este artículo es la continuación natural: un marco
+metódico para preparar tu repositorio y convertirlo en un entorno donde los
+agentes (y los humanos) puedan trabajar de forma efectiva.&lt;/p&gt;
+&lt;p&gt;El marco que presento se basa en el &lt;em&gt;Agent Readiness Model&lt;/em&gt; de
+&lt;a class="reference external" href="https://factory.ai/news/agent-readiness"&gt;Factory AI&lt;/a&gt;, que propone cinco
+niveles de madurez y nueve pilares técnicos para evaluar qué tan preparado
+está un repositorio para el desarrollo autónomo. Lo adapto aquí con mi
+experiencia práctica y con una consideración especial para quienes usan
+Antigravity, cuyo sistema de contexto difiere del estándar &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;AGENTS.md&lt;/span&gt;&lt;/code&gt;.&lt;/p&gt;
+&lt;section id="que-es-el-marco-de-preparacion-para-agentes"&gt;
+&lt;h2&gt;¿Qué es el marco de preparación para agentes?&lt;/h2&gt;
+&lt;p&gt;Es un modelo de madurez que mide qué tan listo está tu repositorio para que
+agentes de IA trabajen en él de forma autónoma. No evalúa al agente, evalúa
+al proyecto: su documentación, &lt;em&gt;tooling&lt;/em&gt;, pruebas, seguridad y
+convenciones.&lt;/p&gt;
+&lt;p&gt;La premisa fundamental es que &lt;strong&gt;el agente no es mágico&lt;/strong&gt;. Es tan bueno
+como el entorno que le proporcionas. Un repositorio con &lt;em&gt;hooks&lt;/em&gt; de
+&lt;em&gt;pre-commit&lt;/em&gt;, pruebas rápidas y documentación clara permite que el agente
+itere en segundos. Uno sin esas bases obliga al agente a adivinar, esperar
+minutos por retroalimentación de CI, y repetir errores que una verificación
+local habría atrapado al instante.&lt;/p&gt;
+&lt;p&gt;Lo mejor: cada mejora que hagas para los agentes beneficia igualmente a
+los desarrolladores humanos del proyecto.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="los-cinco-niveles-de-preparacion"&gt;
+&lt;h2&gt;Los cinco niveles de preparación&lt;/h2&gt;
+&lt;p&gt;El modelo define cinco niveles progresivos. Para desbloquear el siguiente,
+necesitas cumplir al menos el 80% de los criterios del nivel actual.&lt;/p&gt;
+&lt;section id="nivel-1-funcional"&gt;
+&lt;h3&gt;Nivel 1: Funcional&lt;/h3&gt;
+&lt;p&gt;El código compila y se ejecuta, pero requiere configuración manual y carece
+de validación automatizada. Es el mínimo que cualquier repositorio debería
+tener.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Criterios clave:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;&lt;code class="file docutils literal notranslate"&gt;&lt;span class="pre"&gt;README.md&lt;/span&gt;&lt;/code&gt; con instrucciones de configuración y ejecución.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;em&gt;Linter&lt;/em&gt; configurado (ejemplo: &lt;strong class="program"&gt;ruff&lt;/strong&gt; para Python,
+&lt;strong class="program"&gt;eslint&lt;/strong&gt; para JavaScript).&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Verificador de tipos (ejemplo: &lt;strong class="program"&gt;pyright&lt;/strong&gt;, TypeScript &lt;em&gt;strict&lt;/em&gt;).&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Pruebas unitarias existentes y ejecutables localmente.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Formateador de código configurado.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Sin esto:&lt;/strong&gt; El agente no puede verificar su propio trabajo. Genera
+código, espera al CI (si existe), falla, e itera a ciegas.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="nivel-2-documentado"&gt;
+&lt;h3&gt;Nivel 2: Documentado&lt;/h3&gt;
+&lt;p&gt;La documentación básica y los procesos existen. Los flujos de trabajo están
+escritos y hay algo de automatización.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Criterios clave:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;AGENTS.md&lt;/span&gt;&lt;/code&gt; o archivo equivalente de instrucciones para agentes con
+comandos, convenciones y límites.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;em&gt;Devcontainer&lt;/em&gt; o entorno de desarrollo reproducible.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;em&gt;Hooks&lt;/em&gt; de &lt;em&gt;pre-commit&lt;/em&gt; configurados.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Protección de ramas (&lt;em&gt;branch protection&lt;/em&gt;) habilitada.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Variables de entorno documentadas (ejemplo: &lt;code class="file docutils literal notranslate"&gt;&lt;span class="pre"&gt;.env.example&lt;/span&gt;&lt;/code&gt;).&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Sin esto:&lt;/strong&gt; El agente tiene que descubrir cómo funciona tu proyecto por
+su cuenta. Adivina convenciones, no sabe qué comandos ejecutar, y no tiene
+guardarraíles de seguridad.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="nivel-3-estandarizado"&gt;
+&lt;h3&gt;Nivel 3: Estandarizado&lt;/h3&gt;
+&lt;p&gt;Procesos claros definidos, documentados y aplicados mediante automatización.
+&lt;strong&gt;Este es el objetivo mínimo para trabajo productivo con agentes.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Criterios clave:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;Pruebas de integración y/o &lt;em&gt;end-to-end&lt;/em&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Escaneo de secretos (&lt;em&gt;secret scanning&lt;/em&gt;).&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Trazabilidad distribuida y métricas (&lt;em&gt;observability&lt;/em&gt;).&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Documentación mantenida y actualizada.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code class="file docutils literal notranslate"&gt;&lt;span class="pre"&gt;CODEOWNERS&lt;/span&gt;&lt;/code&gt; configurado.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Sin esto:&lt;/strong&gt; El agente puede manejar tareas simples pero introduce
+errores sutiles en flujos complejos que solo pruebas de integración
+atraparían.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="nivel-4-optimizado"&gt;
+&lt;h3&gt;Nivel 4: Optimizado&lt;/h3&gt;
+&lt;p&gt;Ciclos de retroalimentación rápidos y mejora basada en datos. Los sistemas
+están diseñados para productividad y se miden continuamente.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Criterios clave:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;CI con retroalimentación rápida (minutos, no horas).&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Frecuencia de despliegue regular.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Detección de pruebas inestables (&lt;em&gt;flaky tests&lt;/em&gt;).&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Métricas de rendimiento del equipo.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Sin esto:&lt;/strong&gt; El agente funciona, pero lento. Espera demasiado por
+retroalimentación y no puede iterar a la velocidad que su capacidad
+permite.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="nivel-5-autonomo"&gt;
+&lt;h3&gt;Nivel 5: Autónomo&lt;/h3&gt;
+&lt;p&gt;Sistemas auto-mejorables con orquestación sofisticada. Requerimientos
+complejos se descomponen automáticamente en ejecución paralela.&lt;/p&gt;
+&lt;p&gt;Este nivel representa el objetivo a largo plazo: el agente no solo
+implementa, sino que descubre trabajo, prioriza, ejecuta y verifica de
+forma autónoma.&lt;/p&gt;
+&lt;/section&gt;
+&lt;/section&gt;
+&lt;section id="los-nueve-pilares-tecnicos"&gt;
+&lt;h2&gt;Los nueve pilares técnicos&lt;/h2&gt;
+&lt;p&gt;Cada nivel se evalúa a través de nueve pilares que cubren las dimensiones
+fundamentales de un repositorio:&lt;/p&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Estilo y validación&lt;/strong&gt;: &lt;em&gt;Linters&lt;/em&gt;, formateadores, verificadores de
+tipos, &lt;em&gt;pre-commit hooks&lt;/em&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Sistema de compilación&lt;/strong&gt;: Comandos deterministas, dependencias fijadas,
+compilación documentada.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Pruebas&lt;/strong&gt;: Unitarias, integración, ejecutables localmente, cobertura.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Documentación&lt;/strong&gt;: &lt;em&gt;README&lt;/em&gt;, &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;AGENTS.md&lt;/span&gt;&lt;/code&gt;, guías de arquitectura,
+convenciones de código.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Entorno de desarrollo&lt;/strong&gt;: &lt;em&gt;Devcontainer&lt;/em&gt;, plantillas de entorno,
+configuración de servicios locales.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Depuración y observabilidad&lt;/strong&gt;: &lt;em&gt;Logging&lt;/em&gt; estructurado, trazabilidad
+distribuida, métricas.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Seguridad&lt;/strong&gt;: Protección de ramas, escaneo de secretos, &lt;em&gt;CODEOWNERS&lt;/em&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Descubrimiento de tareas&lt;/strong&gt;: Plantillas de &lt;em&gt;issues&lt;/em&gt;, sistema de
+etiquetas, plantillas de PR.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Producto y experimentación&lt;/strong&gt;: Analítica, &lt;em&gt;feature flags&lt;/em&gt;,
+infraestructura de experimentos.&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="tip admonition"&gt;
+&lt;p class="admonition-title"&gt;Nota&lt;/p&gt;
+&lt;p&gt;No necesitas cumplir todos los pilares para empezar. Concéntrate en los
+pilares de los niveles 1 y 2 primero: estilo, compilación, pruebas y
+documentación. Son los que mayor impacto tienen en la calidad del trabajo
+del agente.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/section&gt;
+&lt;section id="la-documentacion-de-agentes-agents-md-y-sus-alternativas"&gt;
+&lt;h2&gt;La documentación de agentes: &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;AGENTS.md&lt;/span&gt;&lt;/code&gt; y sus alternativas&lt;/h2&gt;
+&lt;p&gt;Un componente central del nivel 2 es el archivo de instrucciones para
+agentes. &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;AGENTS.md&lt;/span&gt;&lt;/code&gt; se ha convertido en el estándar emergente, adoptado
+por más de 60.000 repositorios en GitHub y respaldado por la Agentic AI
+Foundation bajo la Linux Foundation.&lt;/p&gt;
+&lt;p&gt;Un buen &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;AGENTS.md&lt;/span&gt;&lt;/code&gt; incluye:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;Comandos de compilación, pruebas y verificación de estilo copiables.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Convenciones de código y patrones preferidos.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Estructura del proyecto y ubicación de archivos clave.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Límites: qué no debe tocar el agente, qué decisiones de arquitectura
+son inamovibles.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Instrucciones de pruebas y &lt;em&gt;workflow&lt;/em&gt; de git.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;CLAUDE.md&lt;/span&gt;&lt;/code&gt; fue el precursor creado por Anthropic para Claude Code, y
+&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;AGENTS.md&lt;/span&gt;&lt;/code&gt; es su evolución estandarizada que funciona con la mayoría de
+agentes: GitHub Copilot, AmpCode, Cursor, Opencode, Zed, y otros.&lt;/p&gt;
+&lt;section id="particularidad-de-antigravity"&gt;
+&lt;h3&gt;Particularidad de Antigravity&lt;/h3&gt;
+&lt;p&gt;Si usas Antigravity como IDE principal (como es mi caso), hay un detalle
+importante: &lt;strong&gt;Antigravity no lee &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;AGENTS.md&lt;/span&gt;&lt;/code&gt; ni &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;CLAUDE.md&lt;/span&gt;&lt;/code&gt;
+automáticamente&lt;/strong&gt;. Su sistema de contexto utiliza
+&lt;code class="file docutils literal notranslate"&gt;&lt;span class="pre"&gt;.agent/rules/&lt;/span&gt;&lt;/code&gt; para reglas del espacio de trabajo y
+&lt;code class="file docutils literal notranslate"&gt;&lt;span class="pre"&gt;~/.gemini/GEMINI.md&lt;/span&gt;&lt;/code&gt; para la configuración global.&lt;/p&gt;
+&lt;p&gt;Esto no invalida el marco —los cinco niveles y nueve pilares aplican
+igual—, pero requiere una adaptación en cómo proporcionas el contexto al
+agente:&lt;/p&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Mantener la documentación en &lt;code class="file docutils literal notranslate"&gt;&lt;span class="pre"&gt;README.md&lt;/span&gt;&lt;/code&gt; y &lt;code class="file docutils literal notranslate"&gt;&lt;span class="pre"&gt;docs/&lt;/span&gt;&lt;/code&gt;&lt;/strong&gt;, como
+fuente de verdad compartida entre humanos y agentes.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Crear una regla de agente&lt;/strong&gt; en &lt;code class="file docutils literal notranslate"&gt;&lt;span class="pre"&gt;.agent/rules/&lt;/span&gt;&lt;/code&gt; que instruya
+explícitamente al agente a leer esa documentación antes de actuar.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Opcionalmente, mantener &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;AGENTS.md&lt;/span&gt;&lt;/code&gt;&lt;/strong&gt; para las herramientas que lo
+soporten. La fuente de verdad sigue siendo tu documentación.&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Un ejemplo de regla en &lt;code class="file docutils literal notranslate"&gt;&lt;span class="pre"&gt;.agent/rules/documentation-first.md&lt;/span&gt;&lt;/code&gt;:&lt;/p&gt;
+&lt;div class="highlight-markdown notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;Before starting any task in this project, read the following files:
+&lt;span class="k"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;README.md for project overview and setup
+&lt;span class="k"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;docs/architecture.md for system architecture
+&lt;span class="k"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;docs/conventions.md for coding conventions
+Follow the guidelines in these documents for all code generation.
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;De esta forma, un solo conjunto de documentación sirve para todos los
+agentes y para cualquier desarrollador humano.&lt;/p&gt;
+&lt;/section&gt;
+&lt;/section&gt;
+&lt;section id="evalua-tu-repositorio"&gt;
+&lt;h2&gt;Evalúa tu repositorio&lt;/h2&gt;
+&lt;p&gt;He creado una
+&lt;a class="reference external" href="https://github.com/cosmoscalibur/template/tree/main/.agents/skills/agent-readiness"&gt;habilidad de agente&lt;/a&gt;
+que automatiza la evaluación de preparación para agentes. La habilidad
+audita los nueve pilares, asigna una puntuación por criterio (✅ pasa /
+⚠️ parcial / ❌ falla), determina el nivel actual del repositorio y
+genera un plan de mejora por fases.&lt;/p&gt;
+&lt;p&gt;La habilidad está diseñada como un &lt;em&gt;agent skill&lt;/em&gt; estándar, compatible con
+Antigravity y otros agentes que soporten el formato de habilidades. Puedes
+copiarla a tu proyecto y ejecutarla desde tu agente.&lt;/p&gt;
+&lt;p&gt;Incluye:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;Detección automática del ecosistema (Python, Rust, Node, Go, etc.).&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Evaluación detallada de los nueve pilares con evidencia por criterio.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Evaluación de calidad del contenido de contexto del agente (no solo si
+existe el archivo, sino si el contenido es útil).&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Recomendaciones de modernización (ejemplo: migrar de &lt;strong class="program"&gt;pylint&lt;/strong&gt;
+a &lt;strong class="program"&gt;ruff&lt;/strong&gt;, de &lt;strong class="program"&gt;pip&lt;/strong&gt; a &lt;strong class="program"&gt;uv&lt;/strong&gt;).&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Plan de implementación por fases con marcadores de cambios
+&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;[NEW]&lt;/span&gt;&lt;/code&gt; / &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;[MODIFY]&lt;/span&gt;&lt;/code&gt; / &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;[DELETE]&lt;/span&gt;&lt;/code&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/section&gt;
+&lt;section id="conclusion"&gt;
+&lt;h2&gt;Conclusión&lt;/h2&gt;
+&lt;p&gt;La preparación para agentes no es un concepto abstracto. Es un conjunto
+concreto de prácticas que puedes medir, mejorar iterativamente y que
+benefician a todos los que trabajan en el proyecto —humanos y agentes por
+igual.&lt;/p&gt;
+&lt;p&gt;El &lt;em&gt;Agent Readiness Model&lt;/em&gt; proporciona una hoja de ruta clara: empieza
+por el nivel 1, llega al nivel 3 como mínimo viable para trabajo
+productivo con agentes, y sigue avanzando. La inversión no se pierde cuando
+cambies de agente o de herramienta, porque estás mejorando el proyecto, no
+optimizando para un &lt;em&gt;prompt&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;Como dije en mi artículo sobre
+&lt;a class="reference internal" href="../es/blog/2026/ingenieria-de-prompt-habilidad-o-estafa/"&gt;&lt;span class="std std-doc"&gt;ingeniería de contexto&lt;/span&gt;&lt;/a&gt;:
+las habilidades que hacen que obtengas buenos resultados de la IA son las
+mismas que te hacen un buen profesional. Este marco es la expresión
+práctica de esa idea.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="referencias"&gt;
+&lt;h2&gt;Referencias&lt;/h2&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://factory.ai/news/agent-readiness"&gt;Introducing Agent Readiness&lt;/a&gt;.
+Factory AI.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://docs.factory.ai/web/agent-readiness/overview"&gt;Agent Readiness Overview&lt;/a&gt;.
+Factory AI Documentation.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://agents.md/"&gt;AGENTS.md&lt;/a&gt;. AGENTS.md.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://github.blog/ai-and-ml/github-copilot/how-to-write-a-great-agents-md-lessons-from-over-2500-repositories/"&gt;How to write a great agents.md: Lessons from over 2,500 repositories&lt;/a&gt;.
+GitHub Blog.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://domizajac.medium.com/is-your-repo-ready-for-the-ai-agents-revolution-926e548da528"&gt;Is your repo ready for the AI Agents revolution? Checklist&lt;/a&gt;.
+Dominika Zając.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://antigravity.google/docs/rules-workflows"&gt;Rules / Workflows&lt;/a&gt;.
+Google Antigravity Documentation.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://github.com/cosmoscalibur/template/tree/main/.agents/skills/agent-readiness"&gt;Agent Readiness Skill&lt;/a&gt;.
+Cosmoscalibur.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/section&gt;
+&lt;/section&gt;
+</content>
+    <link href="https://www.cosmoscalibur.com/es/blog/2026/marco-de-preparacion-para-agentes-de-codigo/"/>
+    <summary>Los agentes de código están aquí, y no van a irse. Pero después de meses
+usándolos —Antigravity, AmpCode, Opencode, el agente de Zed— he llegado a
+una conclusión incómoda: el problema no suele ser el agente, sino el
+proyecto. Un repositorio mal preparado derrota a cualquier agente, sin
+importar qué tan avanzado sea el modelo que tenga detrás.</summary>
+    <category term="AGENTS.md" label="AGENTS.md"/>
+    <category term="agentesdecódigo" label="agentes de código"/>
+    <category term="antigravity" label="antigravity"/>
+    <category term="factoryai" label="factory ai"/>
+    <category term="ingenieríadecontexto" label="ingeniería de contexto"/>
+    <category term="inteligenciaartificial" label="inteligencia artificial"/>
+    <published>2026-03-07T00:00:00-05:00</published>
+  </entry>
+  <entry>
+    <id>https://www.cosmoscalibur.com/en/blog/2026/marco-de-preparacion-para-agentes-de-codigo/</id>
+    <title>Agent Readiness Framework for Coding Projects</title>
+    <updated>2026-03-07T00:00:00-05:00</updated>
+    <author>
+      <name>Edward Villegas-Pulgarin</name>
+    </author>
+    <content type="html">&lt;section class="tex2jax_ignore mathjax_ignore" id="agent-readiness-framework-for-coding-projects"&gt;
+
+&lt;p&gt;Coding agents are here, and they are not going away. But after months of
+using them —Antigravity, AmpCode, Opencode, Zed’s built-in agent— I have
+reached an uncomfortable conclusion: &lt;strong&gt;the problem is usually not the
+agent, it is the project&lt;/strong&gt;. A poorly prepared repository will defeat any
+agent, regardless of how advanced its underlying model is.&lt;/p&gt;
+&lt;p&gt;I wrote about
+&lt;a class="reference internal" href="../en/blog/2026/ingenieria-de-prompt-habilidad-o-estafa/"&gt;&lt;span class="std std-doc"&gt;context engineering&lt;/span&gt;&lt;/a&gt;
+before, and about which
+&lt;a class="reference internal" href="../en/blog/2026/herramientas-de-ia-gratuita-para-desarrolladores-en-2026/"&gt;&lt;span class="std std-doc"&gt;free AI tools&lt;/span&gt;&lt;/a&gt;
+are available for developers. This post connects both ideas: if context
+is king, your repository needs to be a kingdom worth exploring.&lt;/p&gt;
+&lt;p&gt;The framework I present here is based on the &lt;em&gt;Agent Readiness Model&lt;/em&gt; by
+&lt;a class="reference external" href="https://factory.ai/news/agent-readiness"&gt;Factory AI&lt;/a&gt;, which defines five
+maturity levels and nine technical pillars for evaluating how ready a
+repository is for autonomous development. I adapt it with my practical
+experience and a note for Antigravity users, whose context system differs
+from the &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;AGENTS.md&lt;/span&gt;&lt;/code&gt; standard.&lt;/p&gt;
+&lt;section id="what-is-the-agent-readiness-framework"&gt;
+&lt;h2&gt;What is the agent readiness framework?&lt;/h2&gt;
+&lt;p&gt;It is a maturity model that measures how prepared your repository is for
+AI agents to work autonomously. It does not evaluate the agent —it
+evaluates the project: its documentation, tooling, tests, security, and
+conventions.&lt;/p&gt;
+&lt;p&gt;The fundamental premise is that &lt;strong&gt;the agent is not magic&lt;/strong&gt;. It is only as
+good as the environment you provide. A repository with pre-commit hooks,
+fast tests, and clear documentation lets the agent iterate in seconds. One
+without those foundations forces the agent to guess, wait minutes for CI
+feedback, and repeat mistakes that a local check would have caught
+instantly.&lt;/p&gt;
+&lt;p&gt;The best part: every improvement you make for agents equally benefits
+the human developers working on the project.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="the-five-readiness-levels"&gt;
+&lt;h2&gt;The five readiness levels&lt;/h2&gt;
+&lt;p&gt;The model defines five progressive levels. To unlock the next one, you
+need to pass at least 80% of the criteria at the current level.&lt;/p&gt;
+&lt;section id="level-1-functional"&gt;
+&lt;h3&gt;Level 1: Functional&lt;/h3&gt;
+&lt;p&gt;The code compiles and runs, but requires manual setup and lacks automated
+validation. This is the baseline every repository should meet.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Key criteria:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;&lt;code class="file docutils literal notranslate"&gt;&lt;span class="pre"&gt;README.md&lt;/span&gt;&lt;/code&gt; with setup and run instructions.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Linter configured (e.g., &lt;strong class="program"&gt;ruff&lt;/strong&gt; for Python, &lt;strong class="program"&gt;eslint&lt;/strong&gt;
+for JavaScript).&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Type checker (e.g., &lt;strong class="program"&gt;pyright&lt;/strong&gt;, TypeScript strict mode).&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Unit tests that exist and run locally.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Code formatter configured.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Without this:&lt;/strong&gt; The agent cannot verify its own work. It generates code,
+waits for CI (if it exists), fails, and iterates blindly.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="level-2-documented"&gt;
+&lt;h3&gt;Level 2: Documented&lt;/h3&gt;
+&lt;p&gt;Basic documentation and processes exist. Workflows are written down and
+some automation is in place.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Key criteria:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;AGENTS.md&lt;/span&gt;&lt;/code&gt; or equivalent agent instruction file with commands,
+conventions, and boundaries.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Devcontainer or reproducible development environment.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Pre-commit hooks configured.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Branch protection enabled.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Environment variables documented (e.g., &lt;code class="file docutils literal notranslate"&gt;&lt;span class="pre"&gt;.env.example&lt;/span&gt;&lt;/code&gt;).&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Without this:&lt;/strong&gt; The agent has to figure out how your project works on
+its own. It guesses conventions, does not know which commands to run, and
+has no security guardrails.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="level-3-standardized"&gt;
+&lt;h3&gt;Level 3: Standardized&lt;/h3&gt;
+&lt;p&gt;Clear processes defined, documented, and enforced through automation.
+&lt;strong&gt;This is the minimum target for productive agent work.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Key criteria:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;Integration and/or end-to-end tests.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Secret scanning enabled.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Distributed tracing and metrics (observability).&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Documentation maintained and up to date.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code class="file docutils literal notranslate"&gt;&lt;span class="pre"&gt;CODEOWNERS&lt;/span&gt;&lt;/code&gt; configured.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Without this:&lt;/strong&gt; The agent can handle simple tasks but introduces subtle
+bugs in complex flows that only integration tests would catch.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="level-4-optimized"&gt;
+&lt;h3&gt;Level 4: Optimized&lt;/h3&gt;
+&lt;p&gt;Fast feedback loops and data-driven improvement. Systems are designed for
+productivity and measured continuously.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Key criteria:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;CI with fast feedback (minutes, not hours).&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Regular deployment frequency.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Flaky test detection.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Team performance metrics.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Without this:&lt;/strong&gt; The agent works, but slowly. It waits too long for
+feedback and cannot iterate at the speed its capability allows.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="level-5-autonomous"&gt;
+&lt;h3&gt;Level 5: Autonomous&lt;/h3&gt;
+&lt;p&gt;Self-improving systems with sophisticated orchestration. Complex
+requirements decompose automatically into parallelized execution.&lt;/p&gt;
+&lt;p&gt;This level represents the long-term goal: the agent not only implements
+but discovers work, prioritizes, executes, and verifies autonomously.&lt;/p&gt;
+&lt;/section&gt;
+&lt;/section&gt;
+&lt;section id="the-nine-technical-pillars"&gt;
+&lt;h2&gt;The nine technical pillars&lt;/h2&gt;
+&lt;p&gt;Each level is evaluated across nine pillars covering the fundamental
+dimensions of a repository:&lt;/p&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Style &amp;amp; validation&lt;/strong&gt;: Linters, formatters, type checkers, pre-commit
+hooks.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Build system&lt;/strong&gt;: Deterministic commands, pinned dependencies,
+documented builds.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Testing&lt;/strong&gt;: Unit, integration, locally runnable, coverage tracking.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Documentation&lt;/strong&gt;: README, &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;AGENTS.md&lt;/span&gt;&lt;/code&gt;, architecture guides, coding
+conventions.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Development environment&lt;/strong&gt;: Devcontainer, environment templates,
+local services setup.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Debugging &amp;amp; observability&lt;/strong&gt;: Structured logging, distributed tracing,
+metrics.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Security&lt;/strong&gt;: Branch protection, secret scanning, CODEOWNERS.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Task discovery&lt;/strong&gt;: Issue templates, labeling system, PR templates.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Product &amp;amp; experimentation&lt;/strong&gt;: Analytics, feature flags, experiment
+infrastructure.&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="admonition tip"&gt;
+&lt;p class="admonition-title"&gt;Truco&lt;/p&gt;
+&lt;p&gt;You do not need to cover all pillars to start. Focus on the Level 1 and
+Level 2 pillars first: style, build, testing, and documentation. These
+have the highest impact on agent output quality.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/section&gt;
+&lt;section id="agent-documentation-agents-md-and-alternatives"&gt;
+&lt;h2&gt;Agent documentation: AGENTS.md and alternatives&lt;/h2&gt;
+&lt;p&gt;A core component of Level 2 is the agent instruction file. &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;AGENTS.md&lt;/span&gt;&lt;/code&gt;
+has become the emerging standard, adopted by over 60,000 GitHub
+repositories and stewarded by the Agentic AI Foundation under the Linux
+Foundation.&lt;/p&gt;
+&lt;p&gt;A good &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;AGENTS.md&lt;/span&gt;&lt;/code&gt; includes:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;Copy-pasteable build, test, and lint commands.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Coding conventions and preferred patterns.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Project structure and key file locations.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Boundaries: what the agent should never touch, which architecture
+decisions are non-negotiable.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Testing instructions and git workflow.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;CLAUDE.md&lt;/span&gt;&lt;/code&gt; was the predecessor created by Anthropic for Claude Code, and
+&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;AGENTS.md&lt;/span&gt;&lt;/code&gt; is its standardized evolution that works with most agents:
+GitHub Copilot, AmpCode, Cursor, Opencode, Zed, and others.&lt;/p&gt;
+&lt;section id="a-note-for-antigravity-users"&gt;
+&lt;h3&gt;A note for Antigravity users&lt;/h3&gt;
+&lt;p&gt;If you use Antigravity as your primary IDE (as I do), there is an
+important detail: &lt;strong&gt;Antigravity does not read &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;AGENTS.md&lt;/span&gt;&lt;/code&gt; or &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;CLAUDE.md&lt;/span&gt;&lt;/code&gt;
+automatically&lt;/strong&gt;. Its context system uses &lt;code class="file docutils literal notranslate"&gt;&lt;span class="pre"&gt;.agent/rules/&lt;/span&gt;&lt;/code&gt; for
+workspace rules and &lt;code class="file docutils literal notranslate"&gt;&lt;span class="pre"&gt;~/.gemini/GEMINI.md&lt;/span&gt;&lt;/code&gt; for global configuration.&lt;/p&gt;
+&lt;p&gt;This does not invalidate the framework —the five levels and nine pillars
+apply regardless— but it requires an adaptation in how you provide
+context to the agent:&lt;/p&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Maintain documentation in &lt;code class="file docutils literal notranslate"&gt;&lt;span class="pre"&gt;README.md&lt;/span&gt;&lt;/code&gt; and &lt;code class="file docutils literal notranslate"&gt;&lt;span class="pre"&gt;docs/&lt;/span&gt;&lt;/code&gt;&lt;/strong&gt; as
+the shared source of truth for humans and agents alike.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Create an agent rule&lt;/strong&gt; in &lt;code class="file docutils literal notranslate"&gt;&lt;span class="pre"&gt;.agent/rules/&lt;/span&gt;&lt;/code&gt; that explicitly
+instructs the agent to read that documentation before acting.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Optionally, keep &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;AGENTS.md&lt;/span&gt;&lt;/code&gt;&lt;/strong&gt; for tools that support it. The source
+of truth remains your documentation.&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;An example rule at &lt;code class="file docutils literal notranslate"&gt;&lt;span class="pre"&gt;.agent/rules/documentation-first.md&lt;/span&gt;&lt;/code&gt;:&lt;/p&gt;
+&lt;div class="highlight-markdown notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;Before starting any task in this project, read the following files:
+&lt;span class="k"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;README.md for project overview and setup
+&lt;span class="k"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;docs/architecture.md for system architecture
+&lt;span class="k"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;docs/conventions.md for coding conventions
+Follow the guidelines in these documents for all code generation.
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;This way, a single set of documentation serves all agents and every
+human developer.&lt;/p&gt;
+&lt;/section&gt;
+&lt;/section&gt;
+&lt;section id="evaluate-your-repository"&gt;
+&lt;h2&gt;Evaluate your repository&lt;/h2&gt;
+&lt;p&gt;I have created an
+&lt;a class="reference external" href="https://github.com/cosmoscalibur/template/tree/main/.agents/skills/agent-readiness"&gt;agent skill&lt;/a&gt;
+that automates the readiness evaluation. The skill audits all nine
+pillars, scores each criterion (✅ pass / ⚠️ partial / ❌ fail),
+determines the current level, and generates a phased improvement plan.&lt;/p&gt;
+&lt;p&gt;The skill is designed as a standard agent skill, compatible with
+Antigravity and other agents that support the skills format. You can
+copy it into your project and run it from your agent.&lt;/p&gt;
+&lt;p&gt;It includes:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;Automatic ecosystem detection (Python, Rust, Node, Go, etc.).&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Detailed evaluation of all nine pillars with evidence per criterion.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Content quality evaluation of agent context (not just whether the file
+exists, but whether the content is useful).&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Modernization recommendations (e.g., migrate from &lt;strong class="program"&gt;pylint&lt;/strong&gt; to
+&lt;strong class="program"&gt;ruff&lt;/strong&gt;, from &lt;strong class="program"&gt;pip&lt;/strong&gt; to &lt;strong class="program"&gt;uv&lt;/strong&gt;).&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Phased implementation plan with &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;[NEW]&lt;/span&gt;&lt;/code&gt; / &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;[MODIFY]&lt;/span&gt;&lt;/code&gt; / &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;[DELETE]&lt;/span&gt;&lt;/code&gt;
+change markers.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/section&gt;
+&lt;section id="conclusion"&gt;
+&lt;h2&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;Agent readiness is not an abstract concept. It is a concrete set of
+practices you can measure, improve iteratively, and that benefit everyone
+working on the project —humans and agents alike.&lt;/p&gt;
+&lt;p&gt;The Agent Readiness Model provides a clear roadmap: start at Level 1,
+reach Level 3 as the minimum viable bar for productive agent work, and
+keep advancing. The investment is never wasted when you switch agents or
+tools, because you are improving the project, not optimizing for a
+prompt.&lt;/p&gt;
+&lt;p&gt;As I wrote in my article on
+&lt;a class="reference internal" href="../en/blog/2026/ingenieria-de-prompt-habilidad-o-estafa/"&gt;&lt;span class="std std-doc"&gt;context engineering&lt;/span&gt;&lt;/a&gt;:
+the skills that get you good results from AI are the same skills that
+make you a good professional. This framework is the practical expression
+of that idea.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="references"&gt;
+&lt;h2&gt;References&lt;/h2&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://factory.ai/news/agent-readiness"&gt;Introducing Agent Readiness&lt;/a&gt;.
+Factory AI.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://docs.factory.ai/web/agent-readiness/overview"&gt;Agent Readiness Overview&lt;/a&gt;.
+Factory AI Documentation.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://agents.md/"&gt;AGENTS.md&lt;/a&gt;. AGENTS.md.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://github.blog/ai-and-ml/github-copilot/how-to-write-a-great-agents-md-lessons-from-over-2500-repositories/"&gt;How to write a great agents.md: Lessons from over 2,500 repositories&lt;/a&gt;.
+GitHub Blog.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://domizajac.medium.com/is-your-repo-ready-for-the-ai-agents-revolution-926e548da528"&gt;Is your repo ready for the AI Agents revolution? Checklist&lt;/a&gt;.
+Dominika Zając.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://antigravity.google/docs/rules-workflows"&gt;Rules / Workflows&lt;/a&gt;.
+Google Antigravity Documentation.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://github.com/cosmoscalibur/template/tree/main/.agents/skills/agent-readiness"&gt;Agent Readiness Skill&lt;/a&gt;.
+Cosmoscalibur.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/section&gt;
+&lt;/section&gt;
+</content>
+    <link href="https://www.cosmoscalibur.com/en/blog/2026/marco-de-preparacion-para-agentes-de-codigo/"/>
+    <summary>Coding agents are here, and they are not going away. But after months of
+using them —Antigravity, AmpCode, Opencode, Zed’s built-in agent— I have
+reached an uncomfortable conclusion: the problem is usually not the
+agent, it is the project. A poorly prepared repository will defeat any
+agent, regardless of how advanced its underlying model is.</summary>
+    <category term="AGENTS.md" label="AGENTS.md"/>
+    <category term="antigravity" label="antigravity"/>
+    <category term="artificialintelligence" label="artificial intelligence"/>
+    <category term="codingagents" label="coding agents"/>
+    <category term="contextengineering" label="context engineering"/>
+    <category term="factoryai" label="factory ai"/>
+    <published>2026-03-07T00:00:00-05:00</published>
+  </entry>
   <entry>
     <id>https://www.cosmoscalibur.com/es/blog/2026/buenas-practicas-google-colab-equipos-no-tecnicos/</id>
     <title>Buenas prácticas en Google Colab para compartir con equipos no técnicos</title>
