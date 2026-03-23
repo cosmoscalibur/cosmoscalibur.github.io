@@ -82,6 +82,9 @@
 crossorigin="anonymous"></script>
 
 
+<link rel="alternate" hreflang="en" href="https://www.cosmoscalibur.com/en/blog/2025/ecosistema-rust-para-la-terminal-linux/" />
+<link rel="alternate" hreflang="es" href="https://www.cosmoscalibur.com/es/blog/2025/ecosistema-rust-para-la-terminal-linux/" />
+
 
  
 <link
@@ -198,6 +201,14 @@ crossorigin="anonymous"></script>
       
       
         <div class="navbar-item">
+<div class="navbar-nav">
+  <a class="nav-link" href="../../../../en/blog/2025/ecosistema-rust-para-la-terminal-linux/" title="English" style="color: var(--pst-color-text-base);">
+    🌐 English
+  </a>
+</div>
+</div>
+      
+        <div class="navbar-item">
 
 <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Tema" data-bs-title="Tema"  data-bs-placement="bottom" data-bs-toggle="tooltip">
   <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Claro"></i>
@@ -312,6 +323,14 @@ crossorigin="anonymous"></script>
     
     
       <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+<div class="navbar-nav">
+  <a class="nav-link" href="../../../../en/blog/2025/ecosistema-rust-para-la-terminal-linux/" title="English" style="color: var(--pst-color-text-base);">
+    🌐 English
+  </a>
+</div>
+</div>
         
           <div class="navbar-item">
 
@@ -439,6 +458,12 @@ crossorigin="anonymous"></script>
   <ul>
      
     <li>
+      <a href="../../../../en/blog/2025/ecosistema-rust-para-la-terminal-linux/">
+        2026-03-23 - Rust Ecosystem for the Linux terminal
+      </a>
+    </li>
+    
+    <li>
       <a href="../../2026/marco-de-preparacion-para-agentes-de-codigo/">
         2026-03-07 - Marco de preparación para agentes de código
       </a>
@@ -462,12 +487,6 @@ crossorigin="anonymous"></script>
       </a>
     </li>
     
-    <li>
-      <a href="../../../../en/blog/2026/ingenieria-de-prompt-habilidad-o-estafa/">
-        2026-02-23 - Prompt Engineering: Technical Skill or Scam?
-      </a>
-    </li>
-    
   </ul>
 </div>
 </div>
@@ -479,7 +498,7 @@ crossorigin="anonymous"></script>
   <ul>
      
     <li>
-      <a href="../../../../blog/2026/">2026 (12)</a>
+      <a href="../../../../blog/2026/">2026 (13)</a>
     </li>
       
     <li>
@@ -588,6 +607,10 @@ crossorigin="anonymous"></script>
                 <article class="bd-article">
                    <section class="tex2jax_ignore mathjax_ignore" id="ecosistema-rust-para-la-terminal-linux">
 <h1>Ecosistema Rust para la terminal Linux<a class="headerlink" href="#ecosistema-rust-para-la-terminal-linux" title="Link to this heading">#</a></h1>
+<div class="hint admonition">
+<p class="admonition-title">Actualizado el 2026-03-23</p>
+<p>Se corrigió la instalación de utilidades con pamac, se añadieron detalles para la configuración de Alacritty y Zellij (modo “unlock first”), y se indicó cómo configurar Helix como editor predeterminado en la consola.</p>
+</div>
 <p>Además de mi interés personal por este lenguaje, también me interesa el
 ecosistema de herramientas que se han desarrollado en Rust para la terminal
 Linux y para el soporte de otros lenguajes de programación (como su impacto en
@@ -645,8 +668,8 @@ como el editor para edición de git.</p>
 Manjaro</label><div class="sd-tab-content docutils">
 <p>En Manjaro (y derivadas de Arch) disponemos de los paquetes necesarios en el
 repositorio oficial.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>pamac<span class="w"> </span>install<span class="w"> </span>zsh<span class="w"> </span>alacritty<span class="w"> </span>zellij<span class="w"> </span>zoxide<span class="w"> </span>helix<span class="w"> </span>--no-confirm
-sudo<span class="w"> </span>pamac<span class="w"> </span>--as-deps<span class="w"> </span>fzf<span class="w"> </span>--no-confirm<span class="w">  </span><span class="c1"># Búsqueda interactiva de zoxide</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pamac<span class="w"> </span>install<span class="w"> </span>zsh<span class="w"> </span>alacritty<span class="w"> </span>zellij<span class="w"> </span>zoxide<span class="w"> </span>helix<span class="w"> </span>--no-confirm
+pamac<span class="w"> </span>install<span class="w"> </span>--as-deps<span class="w"> </span>fzf<span class="w"> </span>--no-confirm<span class="w">  </span><span class="c1"># Búsqueda interactiva de zoxide</span>
 </pre></div>
 </div>
 </div>
@@ -680,7 +703,8 @@ ejecutable asociado, en mi caso queda con <code class="docutils literal notransl
 <p>En el caso de <em>Alacritty</em>, debemos indicar el <em>shell</em> que se está usando en el
 archivo de configuración (formato TOML) y de paso vincularemos el uso de
 <em>Zellij</em> en su arranque.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cat<span class="w"> </span><span class="s">&lt;&lt; &#39;EOF&#39; &gt; ~/.config/alacritty.toml</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>-p<span class="w"> </span><span class="nv">$HOME</span>/.config/alacritty
+cat<span class="w"> </span><span class="s">&lt;&lt; &#39;EOF&#39; &gt; $HOME/.config/alacritty/alacritty.toml</span>
 <span class="s">[terminal.shell]</span>
 <span class="s">args = [&quot;-l&quot;, &quot;-c&quot;, &quot;zellij attach --index 0 || zellij&quot;]</span>
 <span class="s">program = &quot;/bin/zsh&quot;</span>
@@ -688,10 +712,15 @@ archivo de configuración (formato TOML) y de paso vincularemos el uso de
 </pre></div>
 </div>
 <p>Respecto al uso de <em>Zellij</em> te recomiendo el modo <em>unlock first</em> para evitar
-colisión de atajos que tengamos en el sistema (es una mala experiencia).</p>
+colisión de atajos que tengamos en el sistema (es una mala experiencia). Para configurarlo, dentro de una sesión de Zellij, presiona <kbd class="kbd docutils literal notranslate">Ctrl</kbd>+<kbd class="kbd docutils literal notranslate">o</kbd> seguido de <kbd class="kbd docutils literal notranslate">C</kbd> para abrir la configuración, luego usa <kbd class="kbd docutils literal notranslate">Tab</kbd>, flecha hacia abajo hasta la opción 2, y finalmente <kbd class="kbd docutils literal notranslate">Alt</kbd>+<kbd class="kbd docutils literal notranslate">a</kbd> para guardar los cambios.</p>
 <p>Recuerda también configurar
 <a class="reference internal" href="../../2024/configurar-starship-en-manjaro-y-zsh/"><span class="std std-doc">starship</span></a> para que
 tengas el combo completo.</p>
+<p>Finalmente, para que <em>Helix</em> sea tu editor por defecto en la consola, debes configurar la variable de entorno <code class="docutils literal notranslate"><span class="pre">EDITOR</span></code>. Puedes anexarlo a la configuración de tu <em>shell</em>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;export EDITOR=helix&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>~/.zshrc
+<span class="nb">source</span><span class="w"> </span>~/.zshrc
+</pre></div>
+</div>
 <section id="asociar-alacritty-como-terminal-por-defecto-en-kde">
 <h3>Asociar Alacritty como terminal por defecto en KDE.<a class="headerlink" href="#asociar-alacritty-como-terminal-por-defecto-en-kde" title="Link to this heading">#</a></h3>
 <p>En este punto ya tenemos lo básico listo, y si lanzas de forma directa
@@ -736,7 +765,7 @@ mucho más informativa que el comando original.</p></li>
 <label class="sd-tab-label" data-sync-group="tab" data-sync-id="manjaro" for="sd-tab-item-2">
 Manjaro</label><div class="sd-tab-content docutils">
 <p>En Manjaro (y derivados de Arch), disponemos nuevamente todo disponible en el repositorio oficial.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>pamac<span class="w"> </span>install<span class="w"> </span>bat<span class="w"> </span>bottom<span class="w"> </span>dust<span class="w"> </span>eza<span class="w"> </span>procs<span class="w"> </span>--no-confirm
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pamac<span class="w"> </span>install<span class="w"> </span>bat<span class="w"> </span>bottom<span class="w"> </span>dust<span class="w"> </span>eza<span class="w"> </span>procs<span class="w"> </span>--no-confirm
 </pre></div>
 </div>
 </div>

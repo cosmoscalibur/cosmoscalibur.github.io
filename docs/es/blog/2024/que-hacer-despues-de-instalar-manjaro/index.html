@@ -462,6 +462,12 @@ crossorigin="anonymous"></script>
   <ul>
      
     <li>
+      <a href="../../../../en/blog/2025/ecosistema-rust-para-la-terminal-linux/">
+        2026-03-23 - Rust Ecosystem for the Linux terminal
+      </a>
+    </li>
+    
+    <li>
       <a href="../../2026/marco-de-preparacion-para-agentes-de-codigo/">
         2026-03-07 - Marco de preparación para agentes de código
       </a>
@@ -485,12 +491,6 @@ crossorigin="anonymous"></script>
       </a>
     </li>
     
-    <li>
-      <a href="../../../../en/blog/2026/ingenieria-de-prompt-habilidad-o-estafa/">
-        2026-02-23 - Prompt Engineering: Technical Skill or Scam?
-      </a>
-    </li>
-    
   </ul>
 </div>
 </div>
@@ -502,7 +502,7 @@ crossorigin="anonymous"></script>
   <ul>
      
     <li>
-      <a href="../../../../blog/2026/">2026 (12)</a>
+      <a href="../../../../blog/2026/">2026 (13)</a>
     </li>
       
     <li>
@@ -611,6 +611,10 @@ crossorigin="anonymous"></script>
                 <article class="bd-article">
                    <section class="tex2jax_ignore mathjax_ignore" id="que-hacer-despues-de-instalar-manjaro-kde">
 <h1>¿Qué hacer después de instalar Manjaro KDE?<a class="headerlink" href="#que-hacer-despues-de-instalar-manjaro-kde" title="Link to this heading">#</a></h1>
+<div class="hint admonition">
+<p class="admonition-title">Actualizado el 2026-03-23</p>
+<p>Se han actualizado las recomendaciones de kernel, se ha desaconsejado el uso directo de <code class="docutils literal notranslate"><span class="pre">sudo</span></code> en instalaciones (esperando el <em>prompt</em> interactivo) y se hicieron ajustes en algunos comandos.</p>
+</div>
 <p>Hace poco decidí pasarme a Manjaro KDE (24.1) y estoy muy contento del cambio.
 Así que con motivo a esto, les cuento sobre las cosas por hacer después de
 completar la instalación.</p>
@@ -701,9 +705,9 @@ instalar desde el repositorio oficial, desde el AUR y remover paquetes.</p>
 <input checked="checked" id="sd-tab-item-2" name="sd-tab-set-1" type="radio">
 <label class="sd-tab-label" data-sync-group="tab" data-sync-id="manjaro" for="sd-tab-item-2">
 Manjaro</label><div class="sd-tab-content docutils">
-<div class="highlight-bash notranslate" id="pamac-commands"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>pamac<span class="w"> </span>install<span class="w"> </span>PACKAGE<span class="w"> </span>--no-confirm<span class="w"> </span><span class="c1"># Repositorio oficial</span>
+<div class="highlight-bash notranslate" id="pamac-commands"><div class="highlight"><pre><span></span>pamac<span class="w"> </span>install<span class="w"> </span>PACKAGE<span class="w"> </span>--no-confirm<span class="w"> </span><span class="c1"># Repositorio oficial</span>
 pamac<span class="w"> </span>build<span class="w"> </span>PACKAGE_AUR<span class="w"> </span>--no-confirm<span class="w"> </span><span class="c1"># AUR</span>
-sudo<span class="w"> </span>pamac<span class="w"> </span>remove<span class="w"> </span>PACKAGE<span class="w"> </span>--no-confirm
+pamac<span class="w"> </span>remove<span class="w"> </span>PACKAGE<span class="w"> </span>--no-confirm
 pamac<span class="w"> </span>search<span class="w"> </span>-a<span class="w"> </span>KEY
 pamac<span class="w"> </span>info<span class="w"> </span>PACKAGE
 </pre></div>
@@ -721,11 +725,7 @@ vas a actualizar o agregar paquetes posteriores a tu tanda inicial, puede ser
 recomendable hacerlo en modo interactivo como chequeo y ya luego dejarlos para
 tus rutinas sin la confirmación. Igual, te recomiendo no usarlo y que tomes
 tus propias definiciones.</p>
-<p>En caso de usar la instalación desde el AUR, mi recomendación es siempre
-proceder sin <code class="docutils literal notranslate"><span class="pre">sudo</span></code> salvo que tengamos contexto que no se requiere clave GPG.
-De otra forma, esta se intenta almacenar a nivel del administrador provocando
-el error de “<em>tubería rota</em>”, y es porque la clave debe almacenarse en un
-usuario común. Ejemplo, esto sucede con Dropbox y Spotify.</p>
+<p>Como regla general, se desaconseja el uso directo de <code class="docutils literal notranslate"><span class="pre">sudo</span></code> al invocar <code class="docutils literal notranslate"><span class="pre">pamac</span></code> (tanto para los repositorios oficiales como para el AUR). Es mejor invocar el comando sin escalamiento de privilegios y esperar a que el propio gestor solicite la contraseña cuando sea necesario. En el caso del AUR, usar <code class="docutils literal notranslate"><span class="pre">sudo</span></code> directamente incluso puede provocar el error de “<em>tubería rota</em>” al intentar almacenar la clave GPG a nivel de administrador en lugar del usuario común (ejemplo: sucede con Dropbox y Spotify).</p>
 </div>
 <input id="sd-tab-item-3" name="sd-tab-set-1" type="radio">
 <label class="sd-tab-label" data-sync-group="tab" data-sync-id="ubuntu" for="sd-tab-item-3">
@@ -790,15 +790,14 @@ flatpak<span class="w"> </span>remote-add<span class="w"> </span>--if-not-exists
 <section id="instala-un-nucleo-estable">
 <h2>Instala un núcleo estable<a class="headerlink" href="#instala-un-nucleo-estable" title="Link to this heading">#</a></h2>
 <p>Aprovecha el último núcleo (<em>kernel</em>) disponible en Manjaro, pero es bueno que
-instales un <em>kernel</em> estable (a la fecha, sería de la rama 6.6, pero
-posiblemente 6.12 se perfile como estable también). Esto será necesario en caso
+instales un <em>kernel</em> estable (a la fecha, sería de la rama 6.18 LTS recomendada). Esto será necesario en caso
 de tener una actualización de <em>kernel</em> que rompa el sistema, y sea necesario
 usar uno anterior. Ten presente que parte de como sucede esto en Manjaro, es que
 las versiones no estables son retiradas de los repositorios, entonces no hay
 forma de volverlas a instalar y de ahí otro riesgo.</p>
 <p>Puedes instalar el núcleo estable usando el “Gestor de configuración de Manjaro”
 con la opción de “Núcleo”.</p>
-<p>Recuerda editar el archivo <code class="docutils literal notranslate"><span class="pre">/etc/default/grub</span></code> para cambiar el valor de las
+<p>Recuerda editar el archivo <code class="docutils literal notranslate"><span class="pre">/etc/default/grub</span></code> (puedes usar el editor <code class="docutils literal notranslate"><span class="pre">nano</span></code> que viene preinstalado, recordando guardar el archivo editado con <kbd class="kbd docutils literal notranslate">Ctrl</kbd>+<kbd class="kbd docutils literal notranslate">O</kbd> y salir con <kbd class="kbd docutils literal notranslate">Ctrl</kbd>+<kbd class="kbd docutils literal notranslate">X</kbd>) para cambiar el valor de las
 líneas de estilo y tiempo de espera. Lo más importante es la opción de <em>menu</em> en
 la variable de estilo.</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>GRUB_TIMEOUT=5
@@ -852,8 +851,8 @@ par de problemas que me afectaron y fue útil la documentación Arch sobre
 <input checked="checked" id="sd-tab-item-8" name="sd-tab-set-4" type="radio">
 <label class="sd-tab-label" data-sync-group="tab" data-sync-id="manjaro" for="sd-tab-item-8">
 Manjaro</label><div class="sd-tab-content docutils">
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>pamac<span class="w"> </span>install<span class="w"> </span>libreoffice-fresh<span class="w"> </span>--no-confirm
-sudo<span class="w"> </span>pamac<span class="w"> </span>install<span class="w"> </span>--as-deps<span class="w"> </span>libreoffice-extension-texmaths<span class="w"> </span>libreoffice-fresh-es<span class="w"> </span>--no-confirm
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pamac<span class="w"> </span>install<span class="w"> </span>libreoffice-fresh<span class="w"> </span>--no-confirm
+pamac<span class="w"> </span>install<span class="w"> </span>--as-deps<span class="w"> </span>libreoffice-fresh-es<span class="w"> </span>--no-confirm
 pamac<span class="w"> </span>build<span class="w"> </span>wps-office-bin<span class="w"> </span>ttf-wps-fonts<span class="w"> </span>libtiff5<span class="w"> </span>--no-confirm
 </pre></div>
 </div>
@@ -872,7 +871,7 @@ LibreOffice para usar Hunspell con este diccionario.</p>
 <input checked="checked" id="sd-tab-item-10" name="sd-tab-set-5" type="radio">
 <label class="sd-tab-label" data-sync-group="tab" data-sync-id="manjaro" for="sd-tab-item-10">
 Manjaro</label><div class="sd-tab-content docutils">
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>pamac<span class="w"> </span>install<span class="w"> </span>hunspell<span class="w"> </span>hunspell-es_co<span class="w"> </span>--no-confirm
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pamac<span class="w"> </span>install<span class="w"> </span>hunspell<span class="w"> </span>hunspell-es_co<span class="w"> </span>--no-confirm
 </pre></div>
 </div>
 </div>
@@ -953,7 +952,7 @@ alternativa gratuita alojada y con soporte para Linux del cliente de escritorio.
 <label class="sd-tab-label" data-sync-group="tab" data-sync-id="manjaro" for="sd-tab-item-14">
 Manjaro</label><div class="sd-tab-content docutils">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pamac</span> <span class="n">build</span> <span class="n">dropbox</span> <span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">confirm</span>
-<span class="n">pamac</span> <span class="n">install</span> <span class="o">--</span><span class="n">asdeps</span> <span class="n">libappindicator</span><span class="o">-</span><span class="n">gtk3</span>
+<span class="n">pamac</span> <span class="n">install</span> <span class="o">--</span><span class="k">as</span><span class="o">-</span><span class="n">deps</span> <span class="n">libappindicator</span><span class="o">-</span><span class="n">gtk3</span>
 </pre></div>
 </div>
 </div>
@@ -979,7 +978,7 @@ personales, y Discord y Slack por motivos laborales.</p>
 <input checked="checked" id="sd-tab-item-16" name="sd-tab-set-8" type="radio">
 <label class="sd-tab-label" data-sync-group="tab" data-sync-id="manjaro" for="sd-tab-item-16">
 Manjaro</label><div class="sd-tab-content docutils">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">pamac</span> <span class="n">install</span> <span class="n">telegram</span><span class="o">-</span><span class="n">desktop</span> <span class="n">discord</span> <span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">confirm</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pamac</span> <span class="n">install</span> <span class="n">telegram</span><span class="o">-</span><span class="n">desktop</span> <span class="n">discord</span> <span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">confirm</span>
 <span class="n">pamac</span> <span class="n">build</span> <span class="n">slack</span><span class="o">-</span><span class="n">desktop</span> <span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">confirm</span>
 </pre></div>
 </div>
@@ -1004,7 +1003,7 @@ rápido. Para esta labor prefiero típicamente <em>Flameshot</em>.</p>
 <input checked="checked" id="sd-tab-item-18" name="sd-tab-set-9" type="radio">
 <label class="sd-tab-label" data-sync-group="tab" data-sync-id="manjaro" for="sd-tab-item-18">
 Manjaro</label><div class="sd-tab-content docutils">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">pamac</span> <span class="n">install</span> <span class="n">flameshot</span> <span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">confirm</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pamac</span> <span class="n">install</span> <span class="n">flameshot</span> <span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">confirm</span>
 </pre></div>
 </div>
 </div>
@@ -1040,7 +1039,8 @@ Photoshop. También puedes explorar <em>Krita</em> (ten presente que los archivo
 <input checked="checked" id="sd-tab-item-20" name="sd-tab-set-10" type="radio">
 <label class="sd-tab-label" data-sync-group="tab" data-sync-id="manjaro" for="sd-tab-item-20">
 Manjaro</label><div class="sd-tab-content docutils">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pamac</span> <span class="n">install</span> <span class="n">imagemagick</span> <span class="n">ffmpeg</span> <span class="n">drawio</span><span class="o">-</span><span class="n">desktop</span> <span class="n">inkscape</span> <span class="n">gimp</span> <span class="n">krita</span> <span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">confirm</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pamac</span> <span class="n">install</span> <span class="n">imagemagick</span> <span class="n">ffmpeg</span> <span class="n">drawio</span><span class="o">-</span><span class="n">desktop</span> <span class="n">inkscape</span> <span class="n">gimp</span> <span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">confirm</span>
+<span class="n">pamac</span> <span class="n">install</span> <span class="n">krita</span> <span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">confirm</span>
 <span class="n">flatpak</span> <span class="n">install</span> <span class="o">-</span><span class="n">y</span> <span class="n">flathub</span> <span class="n">com</span><span class="o">.</span><span class="n">obsproject</span><span class="o">.</span><span class="n">Studio</span>
 </pre></div>
 </div>
@@ -1051,8 +1051,8 @@ Ubuntu</label><div class="sd-tab-content docutils">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span> <span class="n">install</span> <span class="o">-</span><span class="n">y</span> <span class="n">imagemagick</span> <span class="n">ffmpeg</span>
 <span class="n">sudo</span> <span class="n">snap</span> <span class="n">install</span> <span class="n">drawio</span>
 <span class="n">flatpak</span> <span class="n">install</span> <span class="o">-</span><span class="n">y</span> <span class="n">flathub</span> <span class="n">org</span><span class="o">.</span><span class="n">inkscape</span><span class="o">.</span><span class="n">Inkscape</span>
-<span class="n">flatpak</span> <span class="n">install</span> <span class="o">-</span><span class="n">y</span> <span class="n">sflathub</span> <span class="n">org</span><span class="o">.</span><span class="n">gimp</span><span class="o">.</span><span class="n">GIMP</span>
 <span class="n">flatpak</span> <span class="n">install</span> <span class="o">-</span><span class="n">y</span> <span class="n">flathub</span> <span class="n">org</span><span class="o">.</span><span class="n">kde</span><span class="o">.</span><span class="n">krita</span>
+<span class="n">flatpak</span> <span class="n">install</span> <span class="o">-</span><span class="n">y</span> <span class="n">sflathub</span> <span class="n">org</span><span class="o">.</span><span class="n">gimp</span><span class="o">.</span><span class="n">GIMP</span>
 <span class="n">flatpak</span> <span class="n">install</span> <span class="o">-</span><span class="n">y</span> <span class="n">flathub</span> <span class="n">com</span><span class="o">.</span><span class="n">obsproject</span><span class="o">.</span><span class="n">Studio</span>
 </pre></div>
 </div>
@@ -1082,7 +1082,7 @@ en el blog (<a class="reference internal" href="../../2021/configurar-retroarch-
 <input checked="checked" id="sd-tab-item-22" name="sd-tab-set-11" type="radio">
 <label class="sd-tab-label" data-sync-group="tab" data-sync-id="manjaro" for="sd-tab-item-22">
 Manjaro</label><div class="sd-tab-content docutils">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">pamac</span> <span class="n">install</span> <span class="n">steam</span> <span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">confirm</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pamac</span> <span class="n">install</span> <span class="n">steam</span> <span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">confirm</span>
 <span class="n">pamac</span> <span class="n">build</span> <span class="n">spotify</span> <span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">confirm</span>
 <span class="n">flatpak</span> <span class="n">install</span> <span class="o">-</span><span class="n">y</span> <span class="n">flathub</span> <span class="n">com</span><span class="o">.</span><span class="n">stremio</span><span class="o">.</span><span class="n">Stremio</span>
 </pre></div>

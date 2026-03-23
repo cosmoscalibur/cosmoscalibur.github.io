@@ -2,10 +2,221 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="es">
   <id>https://www.cosmoscalibur.com/</id>
   <title>Cosmoscalibur</title>
-  <updated>2026-03-14T02:31:53.069205+00:00</updated>
+  <updated>2026-03-23T19:56:34.735433+00:00</updated>
   <link href="https://www.cosmoscalibur.com/"/>
   <link href="https://www.cosmoscalibur.com/blog/atom.xml" rel="self"/>
   <generator uri="https://ablog.readthedocs.io/" version="0.11.12">ABlog</generator>
+  <entry>
+    <id>https://www.cosmoscalibur.com/en/blog/2025/ecosistema-rust-para-la-terminal-linux/</id>
+    <title>Rust Ecosystem for the Linux terminal</title>
+    <updated>2026-03-23T00:00:00-05:00</updated>
+    <author>
+      <name>Edward Villegas-Pulgarin</name>
+    </author>
+    <content type="html">&lt;section class="tex2jax_ignore mathjax_ignore" id="rust-ecosystem-for-the-linux-terminal"&gt;
+
+&lt;p&gt;Besides my personal interest in this language, I am also interested in the
+ecosystem of tools that have been developed in Rust for the Linux terminal
+and for supporting other programming languages (like its impact on Python,
+which is my main development language).&lt;/p&gt;
+&lt;p&gt;I previously told you about
+&lt;a class="reference internal" href="../en/blog/2024/configurar-starship-en-manjaro-y-zsh/"&gt;&lt;span class="std std-doc"&gt;Starship&lt;/span&gt;&lt;/a&gt;, and next
+we are going to expand this universe of Rust possibilities for the Linux terminal.&lt;/p&gt;
+&lt;section id="accelerate-your-work-in-the-terminal"&gt;
+&lt;h2&gt;Accelerate your work in the terminal&lt;/h2&gt;
+&lt;p&gt;While &lt;em&gt;Zsh&lt;/em&gt; is not implemented in Rust, this terminal language (&lt;em&gt;shell&lt;/em&gt;)
+is very powerful and flexible, with a large number of plugins available
+to customize and improve its experience. So I take advantage as part of
+my newly reloaded Linux terminal to include it and tell you about how to switch
+to using it by default. Additionally, this is necessary to mention since, the
+configuration will require knowing our &lt;em&gt;shell&lt;/em&gt;, and this defines why the
+instructions we are going to learn. I still use it like a general &lt;em&gt;bash&lt;/em&gt;,
+but I have already seen very interesting things that I will soon share.&lt;/p&gt;
+&lt;p&gt;Just as we saw the extra information experience that Starship offers us,
+we are going to explore utilities that help us improve our fast experience in the
+terminal with greater agility in our workflows.&lt;/p&gt;
+&lt;p&gt;We will start with &lt;em&gt;zoxide&lt;/em&gt;, a replacement for &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;cd&lt;/span&gt;&lt;/code&gt; that allows us to navigate through
+our directory history faster and more efficiently. It has
+autocomplete and priority assignment for directory shortcuts.
+We can use it by indicating a short form of the directory or similar, and through
+fuzzy search in the directories we have already navigated (using &lt;em&gt;zoxide&lt;/em&gt; as
+a usual &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;cd&lt;/span&gt;&lt;/code&gt;) it can guess the directory we are looking for, or if we know that
+there can be several directories with the same name, it can show a list
+of options to choose from when typing space and tab.&lt;/p&gt;
+&lt;p&gt;We can also speed up our experience with a terminal emulator in Rust
+like &lt;em&gt;Alacritty&lt;/em&gt;, which offers a faster and more efficient interface than the default
+Linux terminal, and its rendering is with OpenGL. This emulator is
+also available on MacOS and Windows, and has a &lt;em&gt;Vi&lt;/em&gt; mode for
+navigation, as well as extended selection options and opening links with
+the &lt;em&gt;mouse&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Alacritty&lt;/em&gt; does not have a multiplexer, but we can give it this capability
+through &lt;em&gt;Zellij&lt;/em&gt;, a terminal multiplexer (this allows us to have
+multiple windows and panes within a single terminal). We can have floating panes,
+custom layers and a series of shortcuts to do proper
+navigation. A lock mode is available to avoid confusion with system shortcuts,
+and this is used with &lt;kbd class="kbd docutils literal notranslate"&gt;Ctrl&lt;/kbd&gt;+&lt;kbd class="kbd docutils literal notranslate"&gt;g&lt;/kbd&gt;, and there the shortcuts &lt;kbd class="kbd docutils literal notranslate"&gt;p&lt;/kbd&gt; for
+pane management or &lt;kbd class="kbd docutils literal notranslate"&gt;t&lt;/kbd&gt; for tab management, and with options to
+create (&lt;kbd class="kbd docutils literal notranslate"&gt;n&lt;/kbd&gt;), close (&lt;kbd class="kbd docutils literal notranslate"&gt;x&lt;/kbd&gt;), navigate (arrows), among others.
+We can generate floating panes with &lt;kbd class="kbd docutils literal notranslate"&gt;Alt&lt;/kbd&gt;+&lt;kbd class="kbd docutils literal notranslate"&gt;f&lt;/kbd&gt; (which can then be
+moved with the &lt;em&gt;mouse&lt;/em&gt;) or normal panes with &lt;kbd class="kbd docutils literal notranslate"&gt;Alt&lt;/kbd&gt;+&lt;kbd class="kbd docutils literal notranslate"&gt;n&lt;/kbd&gt;. To
+navigate in this mode, we can use &lt;kbd class="kbd docutils literal notranslate"&gt;Alt&lt;/kbd&gt; with arrows.&lt;/p&gt;
+&lt;p&gt;And finally, a terminal editor with &lt;em&gt;Vi&lt;/em&gt; mode support, quite
+comfortable to use and with native &lt;em&gt;tree sitter&lt;/em&gt; and &lt;em&gt;LSP&lt;/em&gt; support. This editor is
+&lt;em&gt;Helix&lt;/em&gt;. And it has become my favorite terminal editor and I have linked it
+as the editor for git editing.&lt;/p&gt;
+&lt;p&gt;Now, let’s get down to business to install and configure.&lt;/p&gt;
+&lt;div class="sd-tab-set docutils"&gt;
+&lt;input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio"&gt;
+&lt;label class="sd-tab-label" data-sync-group="tab" data-sync-id="manjaro" for="sd-tab-item-0"&gt;
+Manjaro&lt;/label&gt;&lt;div class="sd-tab-content docutils"&gt;
+&lt;p&gt;In Manjaro (and Arch derivatives) we have the necessary packages in the
+official repository.&lt;/p&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;pamac&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;zsh&lt;span class="w"&gt; &lt;/span&gt;alacritty&lt;span class="w"&gt; &lt;/span&gt;zellij&lt;span class="w"&gt; &lt;/span&gt;zoxide&lt;span class="w"&gt; &lt;/span&gt;helix&lt;span class="w"&gt; &lt;/span&gt;--no-confirm
+pamac&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;--as-deps&lt;span class="w"&gt; &lt;/span&gt;fzf&lt;span class="w"&gt; &lt;/span&gt;--no-confirm&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="c1"&gt;# Interactive search for zoxide&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;input id="sd-tab-item-1" name="sd-tab-set-0" type="radio"&gt;
+&lt;label class="sd-tab-label" data-sync-group="tab" data-sync-id="ubuntu" for="sd-tab-item-1"&gt;
+Ubuntu&lt;/label&gt;&lt;div class="sd-tab-content docutils"&gt;
+&lt;p&gt;In the case of Ubuntu, we will need to use not only packages from the official
+repository, but also packages installed with &lt;a class="reference internal" href="../en/blog/2024/instalar-rust-en-linux/"&gt;&lt;span class="std std-doc"&gt;&lt;strong class="program"&gt;cargo&lt;/strong&gt;&lt;/span&gt;&lt;/a&gt; or &lt;a class="reference internal" href="../en/blog/2024/que-hacer-despues-de-instalar-manjaro/#ubuntu-instalar-flatpak"&gt;&lt;span class="std std-ref"&gt;&lt;strong class="program"&gt;flatpak&lt;/strong&gt;&lt;/span&gt;&lt;/a&gt;.&lt;/p&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo&lt;span class="w"&gt; &lt;/span&gt;apt&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;-y&lt;span class="w"&gt; &lt;/span&gt;zsh&lt;span class="w"&gt; &lt;/span&gt;alacritty&lt;span class="w"&gt; &lt;/span&gt;zoxide&lt;span class="w"&gt; &lt;/span&gt;fzf
+cargo&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;--locked&lt;span class="w"&gt; &lt;/span&gt;zellij
+flatpak&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;flathub&lt;span class="w"&gt; &lt;/span&gt;com.helix_editor.Helix
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;To configure &lt;strong class="program"&gt;zsh&lt;/strong&gt; as your default &lt;em&gt;shell&lt;/em&gt; we proceed as
+follows:&lt;/p&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;chsh&lt;span class="w"&gt; &lt;/span&gt;-s&lt;span class="w"&gt; &lt;/span&gt;/bin/zsh&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="c1"&gt;# Configure default shell: enter password&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;You may need to restart your session for the change to take effect. Then,
+we can configure the other utilities that depend on the
+&lt;em&gt;shell&lt;/em&gt; to know the configuration options.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Zoxide&lt;/em&gt; requires executing its initialization &lt;em&gt;script&lt;/em&gt; indicating the &lt;em&gt;shell&lt;/em&gt;
+that is being used. Depending on the installation method, you might need to check the
+associated executable, in my case it stays as &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;z&lt;/span&gt;&lt;/code&gt; and I feel comfortable with it.&lt;/p&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nb"&gt;echo&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;eval &amp;quot;$(zoxide init zsh)&amp;quot;&amp;#39;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&amp;gt;&amp;gt;&lt;span class="w"&gt; &lt;/span&gt;~/.zshrc
+&lt;span class="nb"&gt;source&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;~/.zshrc
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;In the case of &lt;em&gt;Alacritty&lt;/em&gt;, we must indicate the &lt;em&gt;shell&lt;/em&gt; that is being used in the
+configuration file (TOML format) and incidentally we will link the use of
+&lt;em&gt;Zellij&lt;/em&gt; at its startup.&lt;/p&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;mkdir&lt;span class="w"&gt; &lt;/span&gt;-p&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;$HOME&lt;/span&gt;/.config/alacritty
+cat&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;lt;&amp;lt; &amp;#39;EOF&amp;#39; &amp;gt; $HOME/.config/alacritty.toml&lt;/span&gt;
+&lt;span class="s"&gt;[terminal.shell]&lt;/span&gt;
+&lt;span class="s"&gt;args = [&amp;quot;-l&amp;quot;, &amp;quot;-c&amp;quot;, &amp;quot;zellij attach --index 0 || zellij&amp;quot;]&lt;/span&gt;
+&lt;span class="s"&gt;program = &amp;quot;/bin/zsh&amp;quot;&lt;/span&gt;
+&lt;span class="s"&gt;EOF&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Regarding the use of &lt;em&gt;Zellij&lt;/em&gt;, I recommend the &lt;em&gt;unlock first&lt;/em&gt; mode to avoid
+collision of shortcuts that we have in the system (it is a bad experience). To configure it, inside a Zellij session, press &lt;kbd class="kbd docutils literal notranslate"&gt;Ctrl&lt;/kbd&gt;+&lt;kbd class="kbd docutils literal notranslate"&gt;o&lt;/kbd&gt; followed by &lt;kbd class="kbd docutils literal notranslate"&gt;C&lt;/kbd&gt; to open the configuration, then use &lt;kbd class="kbd docutils literal notranslate"&gt;Tab&lt;/kbd&gt;, down arrow to option 2 (“Unlock First”), and finally &lt;kbd class="kbd docutils literal notranslate"&gt;Alt&lt;/kbd&gt;+&lt;kbd class="kbd docutils literal notranslate"&gt;a&lt;/kbd&gt; to save the changes.&lt;/p&gt;
+&lt;p&gt;Remember also to configure
+&lt;a class="reference internal" href="../en/blog/2024/configurar-starship-en-manjaro-y-zsh/"&gt;&lt;span class="std std-doc"&gt;starship&lt;/span&gt;&lt;/a&gt; so you
+have the complete combo.&lt;/p&gt;
+&lt;p&gt;Finally, for &lt;em&gt;Helix&lt;/em&gt; to be your default editor in the console, you must configure the &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;EDITOR&lt;/span&gt;&lt;/code&gt; environment variable. You can append it to your &lt;em&gt;shell&lt;/em&gt; configuration:&lt;/p&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nb"&gt;echo&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;export EDITOR=helix&amp;#39;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&amp;gt;&amp;gt;&lt;span class="w"&gt; &lt;/span&gt;~/.zshrc
+&lt;span class="nb"&gt;source&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;~/.zshrc
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;section id="associate-alacritty-as-default-terminal-in-kde"&gt;
+&lt;h3&gt;Associate Alacritty as default terminal in KDE.&lt;/h3&gt;
+&lt;p&gt;At this point we have the basics ready, and if you launch directly
+&lt;strong class="program"&gt;alacritty&lt;/strong&gt; nothing else is needed. However, if you use terminal
+shortcuts or there are applications that launch the terminal that is associated by
+default, they will continue to launch the terminal (emulator) that you had before. So that
+this does not happen, you will have to do some additional steps that depend on your desktop
+environment. In my case, since I use KDE, the steps are the following.&lt;/p&gt;
+&lt;p&gt;To link &lt;em&gt;alacritty&lt;/em&gt; as the default terminal emulator:
+&lt;span class="menuselection"&gt;Default Applications ‣ Terminal emulator ‣ Alacritty&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;To configure the keyboard shortcut:
+&lt;span class="menuselection"&gt;Custom Shortcuts ‣ Add new ‣ Application ‣ Alacritty&lt;/span&gt;
+We configure the “Launch” shortcut by clicking &lt;span class="guilabel"&gt;Add&lt;/span&gt;, and after that the
+desired shortcut. In my case I prefer the usual terminal one
+&lt;kbd class="kbd docutils literal notranslate"&gt;Control&lt;/kbd&gt;-&lt;kbd class="kbd docutils literal notranslate"&gt;Alt&lt;/kbd&gt;-&lt;kbd class="kbd docutils literal notranslate"&gt;T&lt;/kbd&gt;. We apply the change (&lt;span class="guilabel"&gt;Apply&lt;/span&gt;).&lt;/p&gt;
+&lt;/section&gt;
+&lt;/section&gt;
+&lt;section id="new-ecosystem-of-utilities"&gt;
+&lt;h2&gt;New ecosystem of utilities&lt;/h2&gt;
+&lt;p&gt;We have here a replacement for our favorite console commands, which
+we take advantage to modernize with Rust and in some cases to have an important
+performance improvement (in their reimplementation) or of agility with the new
+options they offer us.&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;bat&lt;/span&gt;&lt;/code&gt;: Replacement for &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;cat&lt;/span&gt;&lt;/code&gt;. I highlight its syntax coloring, git change
+marks and the option to show invisible characters.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;bottom&lt;/span&gt;&lt;/code&gt; (&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;btm&lt;/span&gt;&lt;/code&gt;): Replacement for &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;top&lt;/span&gt;&lt;/code&gt;. It has cross-platform support and
+process management allows you to kill them there (you select the process and then
+&lt;kbd class="kbd docutils literal notranslate"&gt;d&lt;/kbd&gt; &lt;kbd class="kbd docutils literal notranslate"&gt;d&lt;/kbd&gt;)&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;eza&lt;/span&gt;&lt;/code&gt;: Replacement for &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;ls&lt;/span&gt;&lt;/code&gt;. I haven’t explored much of its potential yet, but its
+default coloring is much more useful to me than the original one.
+It allows knowing additional information of the files and directories during the
+query, such as their git status or mount point information.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;procs&lt;/span&gt;&lt;/code&gt;: Replacement for &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;ps&lt;/span&gt;&lt;/code&gt;. Cross-platform, and with better readability than the
+original.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;du-dust&lt;/span&gt;&lt;/code&gt; (&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;dust&lt;/span&gt;&lt;/code&gt;): Replacement for &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;du&lt;/span&gt;&lt;/code&gt;. Its default visualization seems
+much more informative than the original command.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Now, let’s proceed to install.&lt;/p&gt;
+&lt;div class="sd-tab-set docutils"&gt;
+&lt;input checked="checked" id="sd-tab-item-2" name="sd-tab-set-1" type="radio"&gt;
+&lt;label class="sd-tab-label" data-sync-group="tab" data-sync-id="manjaro" for="sd-tab-item-2"&gt;
+Manjaro&lt;/label&gt;&lt;div class="sd-tab-content docutils"&gt;
+&lt;p&gt;In Manjaro (and Arch derivatives), we again have everything available in the official repository.&lt;/p&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;pamac&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;bat&lt;span class="w"&gt; &lt;/span&gt;bottom&lt;span class="w"&gt; &lt;/span&gt;dust&lt;span class="w"&gt; &lt;/span&gt;eza&lt;span class="w"&gt; &lt;/span&gt;procs&lt;span class="w"&gt; &lt;/span&gt;--no-confirm
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;input id="sd-tab-item-3" name="sd-tab-set-1" type="radio"&gt;
+&lt;label class="sd-tab-label" data-sync-group="tab" data-sync-id="ubuntu" for="sd-tab-item-3"&gt;
+Ubuntu&lt;/label&gt;&lt;div class="sd-tab-content docutils"&gt;
+&lt;p&gt;In Ubuntu, we will need to mix the official repository with the Rust repository.&lt;/p&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo&lt;span class="w"&gt; &lt;/span&gt;apt&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;-y&lt;span class="w"&gt; &lt;/span&gt;bat&lt;span class="w"&gt; &lt;/span&gt;du-dust&lt;span class="w"&gt; &lt;/span&gt;eza
+cargo&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;--locked&lt;span class="w"&gt; &lt;/span&gt;bottom&lt;span class="w"&gt; &lt;/span&gt;procs
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/section&gt;
+&lt;section id="references"&gt;
+&lt;h2&gt;References&lt;/h2&gt;
+&lt;p&gt;Now that we have &lt;em&gt;rusted&lt;/em&gt; our Linux terminal, I invite you to visit the
+official information of these projects.&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://alacritty.org/"&gt;Alacritty&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://zellij.dev/"&gt;Zellij&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://github.com/ajeetdsouza/zoxide"&gt;Zoxide&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://www.zsh.org/"&gt;zsh&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://ohmyz.sh/"&gt;Oh my zsh&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://helix-editor.com/"&gt;Helix&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://github.com/bootandy/dust"&gt;Dust&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://eza.rocks/"&gt;Eza&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://github.com/dalance/procs"&gt;procs&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://github.com/sharkdp/bat"&gt;Bat&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://github.com/ClementTsang/bottom"&gt;Bottom&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;You can learn more Rust utilities for your console
+&lt;a class="reference external" href="https://github.com/sts10/rust-command-line-utilities"&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;/section&gt;
+&lt;/section&gt;
+</content>
+    <link href="https://www.cosmoscalibur.com/en/blog/2025/ecosistema-rust-para-la-terminal-linux/"/>
+    <summary>Besides my personal interest in this language, I am also interested in the
+ecosystem of tools that have been developed in Rust for the Linux terminal
+and for supporting other programming languages (like its impact on Python,
+which is my main development language).</summary>
+    <category term="kde" label="kde"/>
+    <category term="linuxapplications" label="linux applications"/>
+    <category term="manjaro" label="manjaro"/>
+    <category term="rustlang" label="rustlang"/>
+    <category term="terminal" label="terminal"/>
+    <published>2026-03-23T00:00:00-05:00</published>
+  </entry>
   <entry>
     <id>https://www.cosmoscalibur.com/es/blog/2026/marco-de-preparacion-para-agentes-de-codigo/</id>
     <title>Marco de preparación para agentes de código</title>
@@ -2887,6 +3098,10 @@ me atreveré a decir, que esta facilidad es extendida para novatos.</summary>
     </author>
     <content type="html">&lt;section class="tex2jax_ignore mathjax_ignore" id="ecosistema-rust-para-la-terminal-linux"&gt;
 
+&lt;div class="hint admonition"&gt;
+&lt;p class="admonition-title"&gt;Actualizado el 2026-03-23&lt;/p&gt;
+&lt;p&gt;Se corrigió la instalación de utilidades con pamac, se añadieron detalles para la configuración de Alacritty y Zellij (modo “unlock first”), y se indicó cómo configurar Helix como editor predeterminado en la consola.&lt;/p&gt;
+&lt;/div&gt;
 &lt;p&gt;Además de mi interés personal por este lenguaje, también me interesa el
 ecosistema de herramientas que se han desarrollado en Rust para la terminal
 Linux y para el soporte de otros lenguajes de programación (como su impacto en
@@ -2944,8 +3159,8 @@ como el editor para edición de git.&lt;/p&gt;
 Manjaro&lt;/label&gt;&lt;div class="sd-tab-content docutils"&gt;
 &lt;p&gt;En Manjaro (y derivadas de Arch) disponemos de los paquetes necesarios en el
 repositorio oficial.&lt;/p&gt;
-&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo&lt;span class="w"&gt; &lt;/span&gt;pamac&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;zsh&lt;span class="w"&gt; &lt;/span&gt;alacritty&lt;span class="w"&gt; &lt;/span&gt;zellij&lt;span class="w"&gt; &lt;/span&gt;zoxide&lt;span class="w"&gt; &lt;/span&gt;helix&lt;span class="w"&gt; &lt;/span&gt;--no-confirm
-sudo&lt;span class="w"&gt; &lt;/span&gt;pamac&lt;span class="w"&gt; &lt;/span&gt;--as-deps&lt;span class="w"&gt; &lt;/span&gt;fzf&lt;span class="w"&gt; &lt;/span&gt;--no-confirm&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="c1"&gt;# Búsqueda interactiva de zoxide&lt;/span&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;pamac&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;zsh&lt;span class="w"&gt; &lt;/span&gt;alacritty&lt;span class="w"&gt; &lt;/span&gt;zellij&lt;span class="w"&gt; &lt;/span&gt;zoxide&lt;span class="w"&gt; &lt;/span&gt;helix&lt;span class="w"&gt; &lt;/span&gt;--no-confirm
+pamac&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;--as-deps&lt;span class="w"&gt; &lt;/span&gt;fzf&lt;span class="w"&gt; &lt;/span&gt;--no-confirm&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="c1"&gt;# Búsqueda interactiva de zoxide&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -2979,7 +3194,8 @@ ejecutable asociado, en mi caso queda con &lt;code class="docutils literal notra
 &lt;p&gt;En el caso de &lt;em&gt;Alacritty&lt;/em&gt;, debemos indicar el &lt;em&gt;shell&lt;/em&gt; que se está usando en el
 archivo de configuración (formato TOML) y de paso vincularemos el uso de
 &lt;em&gt;Zellij&lt;/em&gt; en su arranque.&lt;/p&gt;
-&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;cat&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;lt;&amp;lt; &amp;#39;EOF&amp;#39; &amp;gt; ~/.config/alacritty.toml&lt;/span&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;mkdir&lt;span class="w"&gt; &lt;/span&gt;-p&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;$HOME&lt;/span&gt;/.config/alacritty
+cat&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;lt;&amp;lt; &amp;#39;EOF&amp;#39; &amp;gt; $HOME/.config/alacritty/alacritty.toml&lt;/span&gt;
 &lt;span class="s"&gt;[terminal.shell]&lt;/span&gt;
 &lt;span class="s"&gt;args = [&amp;quot;-l&amp;quot;, &amp;quot;-c&amp;quot;, &amp;quot;zellij attach --index 0 || zellij&amp;quot;]&lt;/span&gt;
 &lt;span class="s"&gt;program = &amp;quot;/bin/zsh&amp;quot;&lt;/span&gt;
@@ -2987,10 +3203,15 @@ archivo de configuración (formato TOML) y de paso vincularemos el uso de
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
 &lt;p&gt;Respecto al uso de &lt;em&gt;Zellij&lt;/em&gt; te recomiendo el modo &lt;em&gt;unlock first&lt;/em&gt; para evitar
-colisión de atajos que tengamos en el sistema (es una mala experiencia).&lt;/p&gt;
+colisión de atajos que tengamos en el sistema (es una mala experiencia). Para configurarlo, dentro de una sesión de Zellij, presiona &lt;kbd class="kbd docutils literal notranslate"&gt;Ctrl&lt;/kbd&gt;+&lt;kbd class="kbd docutils literal notranslate"&gt;o&lt;/kbd&gt; seguido de &lt;kbd class="kbd docutils literal notranslate"&gt;C&lt;/kbd&gt; para abrir la configuración, luego usa &lt;kbd class="kbd docutils literal notranslate"&gt;Tab&lt;/kbd&gt;, flecha hacia abajo hasta la opción 2, y finalmente &lt;kbd class="kbd docutils literal notranslate"&gt;Alt&lt;/kbd&gt;+&lt;kbd class="kbd docutils literal notranslate"&gt;a&lt;/kbd&gt; para guardar los cambios.&lt;/p&gt;
 &lt;p&gt;Recuerda también configurar
 &lt;a class="reference internal" href="../es/blog/2024/configurar-starship-en-manjaro-y-zsh/"&gt;&lt;span class="std std-doc"&gt;starship&lt;/span&gt;&lt;/a&gt; para que
 tengas el combo completo.&lt;/p&gt;
+&lt;p&gt;Finalmente, para que &lt;em&gt;Helix&lt;/em&gt; sea tu editor por defecto en la consola, debes configurar la variable de entorno &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;EDITOR&lt;/span&gt;&lt;/code&gt;. Puedes anexarlo a la configuración de tu &lt;em&gt;shell&lt;/em&gt;:&lt;/p&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nb"&gt;echo&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;export EDITOR=helix&amp;#39;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&amp;gt;&amp;gt;&lt;span class="w"&gt; &lt;/span&gt;~/.zshrc
+&lt;span class="nb"&gt;source&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;~/.zshrc
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
 &lt;section id="asociar-alacritty-como-terminal-por-defecto-en-kde"&gt;
 &lt;h3&gt;Asociar Alacritty como terminal por defecto en KDE.&lt;/h3&gt;
 &lt;p&gt;En este punto ya tenemos lo básico listo, y si lanzas de forma directa
@@ -3035,7 +3256,7 @@ mucho más informativa que el comando original.&lt;/p&gt;&lt;/li&gt;
 &lt;label class="sd-tab-label" data-sync-group="tab" data-sync-id="manjaro" for="sd-tab-item-2"&gt;
 Manjaro&lt;/label&gt;&lt;div class="sd-tab-content docutils"&gt;
 &lt;p&gt;En Manjaro (y derivados de Arch), disponemos nuevamente todo disponible en el repositorio oficial.&lt;/p&gt;
-&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo&lt;span class="w"&gt; &lt;/span&gt;pamac&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;bat&lt;span class="w"&gt; &lt;/span&gt;bottom&lt;span class="w"&gt; &lt;/span&gt;dust&lt;span class="w"&gt; &lt;/span&gt;eza&lt;span class="w"&gt; &lt;/span&gt;procs&lt;span class="w"&gt; &lt;/span&gt;--no-confirm
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;pamac&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;bat&lt;span class="w"&gt; &lt;/span&gt;bottom&lt;span class="w"&gt; &lt;/span&gt;dust&lt;span class="w"&gt; &lt;/span&gt;eza&lt;span class="w"&gt; &lt;/span&gt;procs&lt;span class="w"&gt; &lt;/span&gt;--no-confirm
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -3073,10 +3294,7 @@ información oficial de estos proyectos.&lt;/p&gt;
 &lt;/section&gt;
 </content>
     <link href="https://www.cosmoscalibur.com/es/blog/2025/ecosistema-rust-para-la-terminal-linux/"/>
-    <summary>Además de mi interés personal por este lenguaje, también me interesa el
-ecosistema de herramientas que se han desarrollado en Rust para la terminal
-Linux y para el soporte de otros lenguajes de programación (como su impacto en
-Python, que es mi lenguaje principal de desarrollo).</summary>
+    <summary>Se corrigió la instalación de utilidades con pamac, se añadieron detalles para la configuración de Alacritty y Zellij (modo “unlock first”), y se indicó cómo configurar Helix como editor predeterminado en la consola.</summary>
     <category term="aplicacionesparalinux" label="aplicaciones para linux"/>
     <category term="kde" label="kde"/>
     <category term="manjaro" label="manjaro"/>
@@ -3648,6 +3866,10 @@ variables y hacer flujos de control (todavía sin manejo de errores).</summary>
     </author>
     <content type="html">&lt;section class="tex2jax_ignore mathjax_ignore" id="zed-un-editor-rapido-y-moderno-de-codigo-abierto"&gt;
 
+&lt;div class="hint admonition"&gt;
+&lt;p class="admonition-title"&gt;Actualizado el 2026-03-23&lt;/p&gt;
+&lt;p&gt;Se agrega ejecución de script oficial de instalación.&lt;/p&gt;
+&lt;/div&gt;
 &lt;p&gt;&lt;strong class="program"&gt;zed&lt;/strong&gt; es un editor de código y texto de código abierto, diseñado para
 ser rápido y fácil de usar. Está construido en Rust y utiliza una interfaz de
 usuario moderna e intuitiva. De momento es soportado de forma oficial en Linux y
@@ -3659,15 +3881,9 @@ características.&lt;/p&gt;
 &lt;p&gt;Si bien lo puedes instalar desde los repositorios de algunos gestores de
 paquetes, como sucede en mi caso que uso Manjaro, que puedo obtenerlo a través
 del AUR, mi método recomendado es usar el script de instalación oficial.&lt;/p&gt;
-&lt;aside class="system-message"&gt;
-&lt;p class="system-message-title"&gt;System Message: WARNING/2 (&lt;span class="docutils literal"&gt;/home/cosmoscalibur/Documentos/git/cosmoscalibur.github.io/es/blog/2025/zed-un-editor-rapido-y-moderno-de-codigo-abierto.md&lt;/span&gt;, line 22)&lt;/p&gt;
-&lt;p&gt;Unknown directive type: “bash” [myst.directive_unknown]&lt;/p&gt;
-&lt;/aside&gt;
-&lt;aside class="system-message"&gt;
-&lt;p class="system-message-title"&gt;System Message: INFO/1 (&lt;span class="docutils literal"&gt;/home/cosmoscalibur/Documentos/git/cosmoscalibur.github.io/es/blog/2025/zed-un-editor-rapido-y-moderno-de-codigo-abierto.md&lt;/span&gt;, line 22)&lt;/p&gt;
-&lt;p&gt;No directive entry for «bash» in module «docutils.parsers.rst.languages.es».
-Trying «bash» as canonical directive name.&lt;/p&gt;
-&lt;/aside&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;curl&lt;span class="w"&gt; &lt;/span&gt;-f&lt;span class="w"&gt; &lt;/span&gt;https://zed.dev/install.sh&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;sh
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
 &lt;p&gt;Respecto a las actualizaciones, si usas la versión instalada desde el script
 oficial, este se actualiza automáticamente.&lt;/p&gt;
 &lt;p&gt;Si como yo dispones de un GPU híbrida, te recomiendo seguir la entrada
@@ -3921,12 +4137,7 @@ voy a ilustrar por ser bien conocidos si requieres de estos lenguajes o
 &lt;/section&gt;
 </content>
     <link href="https://www.cosmoscalibur.com/es/blog/2025/zed-un-editor-rapido-y-moderno-de-codigo-abierto/"/>
-    <summary>zed es un editor de código y texto de código abierto, diseñado para
-ser rápido y fácil de usar. Está construido en Rust y utiliza una interfaz de
-usuario moderna e intuitiva. De momento es soportado de forma oficial en Linux y
-macOS, pero se está trabajando en su implementación para Windows (aunque existen
-versiones experimentales). Te contaré cómo instalarlo y algunas de sus
-características.</summary>
+    <summary>Se agrega ejecución de script oficial de instalación.</summary>
     <category term="ide" label="ide"/>
     <category term="linux" label="linux"/>
     <category term="zed" label="zed"/>
@@ -3935,12 +4146,16 @@ características.</summary>
   <entry>
     <id>https://www.cosmoscalibur.com/en/blog/2025/zed-un-editor-rapido-y-moderno-de-codigo-abierto/</id>
     <title>Zed: A fast and modern open source editor</title>
-    <updated>2025-03-27T00:00:00-05:00</updated>
+    <updated>2026-03-23T00:00:00-05:00</updated>
     <author>
       <name>Edward Villegas-Pulgarin</name>
     </author>
     <content type="html">&lt;section class="tex2jax_ignore mathjax_ignore" id="zed-a-fast-and-modern-open-source-editor"&gt;
 
+&lt;div class="note update admonition"&gt;
+&lt;p class="admonition-title"&gt;Updated on 2026-03-23&lt;/p&gt;
+&lt;p&gt;The official installation script instructions were verified and documented.&lt;/p&gt;
+&lt;/div&gt;
 &lt;p&gt;&lt;strong class="program"&gt;zed&lt;/strong&gt; is an open-source code and text editor, designed to be fast and
 easy to use. It is built in Rust and uses a modern and intuitive user interface.
 It is currently officially supported on Linux and macOS, but work is underway
@@ -3951,15 +4166,9 @@ you how to install it and some of its features.&lt;/p&gt;
 &lt;p&gt;Although you can install it from the repositories of some package managers, as
 is my case using Manjaro where I can get it through AUR, my recommended method
 is to use the official installation script.&lt;/p&gt;
-&lt;aside class="system-message"&gt;
-&lt;p class="system-message-title"&gt;System Message: WARNING/2 (&lt;span class="docutils literal"&gt;/home/cosmoscalibur/Documentos/git/cosmoscalibur.github.io/en/blog/2025/zed-un-editor-rapido-y-moderno-de-codigo-abierto.md&lt;/span&gt;, line 21)&lt;/p&gt;
-&lt;p&gt;Unknown directive type: “bash” [myst.directive_unknown]&lt;/p&gt;
-&lt;/aside&gt;
-&lt;aside class="system-message"&gt;
-&lt;p class="system-message-title"&gt;System Message: INFO/1 (&lt;span class="docutils literal"&gt;/home/cosmoscalibur/Documentos/git/cosmoscalibur.github.io/en/blog/2025/zed-un-editor-rapido-y-moderno-de-codigo-abierto.md&lt;/span&gt;, line 21)&lt;/p&gt;
-&lt;p&gt;No directive entry for «bash» in module «docutils.parsers.rst.languages.es».
-Trying «bash» as canonical directive name.&lt;/p&gt;
-&lt;/aside&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;curl&lt;span class="w"&gt; &lt;/span&gt;-f&lt;span class="w"&gt; &lt;/span&gt;https://zed.dev/install.sh&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;sh
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
 &lt;p&gt;Regarding updates, if you use the version installed from the official script, it
 updates automatically.&lt;/p&gt;
 &lt;p&gt;Si como yo dispones de un GPU híbrida, te recomiendo seguir la entrada
@@ -4207,11 +4416,7 @@ well known if you require these languages or &lt;em&gt;linters&lt;/em&gt;.&lt;/p
 &lt;/section&gt;
 </content>
     <link href="https://www.cosmoscalibur.com/en/blog/2025/zed-un-editor-rapido-y-moderno-de-codigo-abierto/"/>
-    <summary>zed is an open-source code and text editor, designed to be fast and
-easy to use. It is built in Rust and uses a modern and intuitive user interface.
-It is currently officially supported on Linux and macOS, but work is underway
-for Windows implementation (although experimental versions exist). I will tell
-you how to install it and some of its features.</summary>
+    <summary>The official installation script instructions were verified and documented.</summary>
     <category term="ide" label="ide"/>
     <category term="linux" label="linux"/>
     <category term="zed" label="zed"/>
@@ -6166,12 +6371,16 @@ de X11), que hagan uso de Vulkan.</summary>
   <entry>
     <id>https://www.cosmoscalibur.com/en/blog/2024/configurar-starship-en-manjaro-y-zsh/</id>
     <title>Configuring Starship on Manjaro and Zsh</title>
-    <updated>2024-12-15T00:00:00-05:00</updated>
+    <updated>2026-03-23T00:00:00-05:00</updated>
     <author>
       <name>Edward Villegas-Pulgarin</name>
     </author>
     <content type="html">&lt;section class="tex2jax_ignore mathjax_ignore" id="configuring-starship-on-manjaro-and-zsh"&gt;
 
+&lt;div class="note update admonition"&gt;
+&lt;p class="admonition-title"&gt;Updated on 2026-03-23&lt;/p&gt;
+&lt;p&gt;The use of &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;sudo&lt;/span&gt;&lt;/code&gt; has been removed from pamac installation commands following best practices.&lt;/p&gt;
+&lt;/div&gt;
 &lt;p&gt;Recently, I’ve been switching multiple tools in my daily work, including changes
 in handling the Linux terminal. One of these changes is the &lt;em&gt;shell prompt&lt;/em&gt; (the
 terminal indicator), and I’m using &lt;strong class="program"&gt;starship&lt;/strong&gt;. However, there are some
@@ -6199,7 +6408,7 @@ Ubuntu).&lt;/p&gt;
 &lt;input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio"&gt;
 &lt;label class="sd-tab-label" data-sync-group="tab" data-sync-id="m" for="sd-tab-item-0"&gt;
 Manjaro&lt;/label&gt;&lt;div class="sd-tab-content docutils"&gt;
-&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo&lt;span class="w"&gt; &lt;/span&gt;pamac&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;starship&lt;span class="w"&gt; &lt;/span&gt;--no-confirm
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;pamac&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;starship&lt;span class="w"&gt; &lt;/span&gt;--no-confirm
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -6294,11 +6503,7 @@ configuration file &lt;code class="file docutils literal notranslate"&gt;&lt;spa
 &lt;/section&gt;
 </content>
     <link href="https://www.cosmoscalibur.com/en/blog/2024/configurar-starship-en-manjaro-y-zsh/"/>
-    <summary>Recently, I’ve been switching multiple tools in my daily work, including changes
-in handling the Linux terminal. One of these changes is the shell prompt (the
-terminal indicator), and I’m using starship. However, there are some
-undocumented details on how to enable it on Manjaro with zsh, which
-I’ll explain here.A visual appearance of *Starship* messages for Git, Python, and low battery.</summary>
+    <summary>The use of sudo has been removed from pamac installation commands following best practices.A visual appearance of *Starship* messages for Git, Python, and low battery.</summary>
     <category term="bash" label="bash"/>
     <category term="manjaro" label="manjaro"/>
     <category term="rust" label="rust"/>
@@ -6317,13 +6522,17 @@ I’ll explain here.A visual appearance of *Starship* messages for Git, Python, 
     </author>
     <content type="html">&lt;section class="tex2jax_ignore mathjax_ignore" id="configurar-starship-en-manjaro-y-zsh"&gt;
 
+&lt;div class="hint admonition"&gt;
+&lt;p class="admonition-title"&gt;Actualizado el 2026-03-23&lt;/p&gt;
+&lt;p&gt;Se removió el uso de &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;sudo&lt;/span&gt;&lt;/code&gt; en los comandos de instalación de pamac por recomendación de buenas prácticas.&lt;/p&gt;
+&lt;/div&gt;
 &lt;p&gt;Hace poco vengo cambiando múltiples herramientas en mi día a día, y en el manejo
 de la terminal Linux hay varios de esos cambios. Uno de esos es el &lt;em&gt;shell
 prompt&lt;/em&gt; (que podría traducirse tal vez como “indicador de terminal”), y estoy
 usando &lt;strong class="program"&gt;starship&lt;/strong&gt;. Sin embargo, hay detalles no documentados sobre como
 habilitarlo en Manjaro con &lt;strong class="program"&gt;zsh&lt;/strong&gt;, que aquí les cuento.&lt;/p&gt;
 &lt;aside class="system-message"&gt;
-&lt;p class="system-message-title"&gt;System Message: WARNING/2 (&lt;span class="docutils literal"&gt;/home/cosmoscalibur/Documentos/git/cosmoscalibur.github.io/es/blog/2024/configurar-starship-en-manjaro-y-zsh.md&lt;/span&gt;, line 16)&lt;/p&gt;
+&lt;p class="system-message-title"&gt;System Message: WARNING/2 (&lt;span class="docutils literal"&gt;/home/cosmoscalibur/Documentos/git/cosmoscalibur.github.io/es/blog/2024/configurar-starship-en-manjaro-y-zsh.md&lt;/span&gt;, line 23)&lt;/p&gt;
 &lt;p&gt;“figure”: Unknown option keys: [“:align”] (allowed: [“align”, “alt”, “class”, “figclass”, “figwidth”, “height”, “loading”, “name”, “scale”, “target”, “width”]) [myst.directive_option]&lt;/p&gt;
 &lt;/aside&gt;
 &lt;figure class="align-default" id="id1"&gt;
@@ -6348,7 +6557,7 @@ que aplica a cualquier distribución Linux (útil si usas una distro como Ubuntu
 &lt;input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio"&gt;
 &lt;label class="sd-tab-label" for="sd-tab-item-0"&gt;
 Manjaro&lt;/label&gt;&lt;div class="sd-tab-content docutils"&gt;
-&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo&lt;span class="w"&gt; &lt;/span&gt;pamac&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;starship&lt;span class="w"&gt; &lt;/span&gt;--no-confirm
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;pamac&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;starship&lt;span class="w"&gt; &lt;/span&gt;--no-confirm
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -6445,11 +6654,7 @@ módulo.&lt;/p&gt;
 &lt;/section&gt;
 </content>
     <link href="https://www.cosmoscalibur.com/es/blog/2024/configurar-starship-en-manjaro-y-zsh/"/>
-    <summary>Hace poco vengo cambiando múltiples herramientas en mi día a día, y en el manejo
-de la terminal Linux hay varios de esos cambios. Uno de esos es el shell
-prompt (que podría traducirse tal vez como “indicador de terminal”), y estoy
-usando starship. Sin embargo, hay detalles no documentados sobre como
-habilitarlo en Manjaro con zsh, que aquí les cuento.Apariencia visual de mensajes del indicador starship en la terminal para git, python y batería baja.</summary>
+    <summary>Se removió el uso de sudo en los comandos de instalación de pamac por recomendación de buenas prácticas.Apariencia visual de mensajes del indicador starship en la terminal para git, python y batería baja.</summary>
     <category term="manjaro" label="manjaro"/>
     <category term="rust" label="rust"/>
     <category term="shellprompt" label="shell prompt"/>
@@ -6460,12 +6665,16 @@ habilitarlo en Manjaro con zsh, que aquí les cuento.Apariencia visual de mensaj
   <entry>
     <id>https://www.cosmoscalibur.com/en/blog/2024/conecta-con-una-instancia-de-cloud-sql-en-manjaro/</id>
     <title>Connecting to a Cloud SQL instance on Manjaro</title>
-    <updated>2024-12-10T00:00:00-05:00</updated>
+    <updated>2026-03-23T00:00:00-05:00</updated>
     <author>
       <name>Edward Villegas-Pulgarin</name>
     </author>
     <content type="html">&lt;section class="tex2jax_ignore mathjax_ignore" id="connecting-to-a-cloud-sql-instance-on-manjaro"&gt;
 
+&lt;div class="note update admonition"&gt;
+&lt;p class="admonition-title"&gt;Updated on 2026-03-23&lt;/p&gt;
+&lt;p&gt;Dependencies for Google Cloud SDK have been updated (now divided into three packages), commands adjusted to not require interactive confirmation or &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;sudo&lt;/span&gt;&lt;/code&gt;, and SQL client recommendations updated.&lt;/p&gt;
+&lt;/div&gt;
 &lt;p&gt;Since I’m currently in a full system installation process following
 &lt;a class="reference internal" href="../en/blog/2024/que-hacer-despues-de-instalar-manjaro/"&gt;&lt;span class="std std-doc"&gt;the transition from (X/K)Ubuntu to Manjaro&lt;/span&gt;&lt;/a&gt;,
 I’ll explain how to connect to a Cloud SQL instance on Manjaro.&lt;/p&gt;
@@ -6483,8 +6692,12 @@ operating system, and if you have any doubts, you can refer to the
 Manjaro&lt;/label&gt;&lt;div class="sd-tab-content docutils"&gt;
 &lt;p&gt;This package is available in the AUR (Arch User Repository), so it can be used
 on Arch.&lt;/p&gt;
-&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;pamac&lt;span class="w"&gt; &lt;/span&gt;build&lt;span class="w"&gt; &lt;/span&gt;google-cloud-cli&lt;span class="w"&gt; &lt;/span&gt;--no-confirm
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;pamac&lt;span class="w"&gt; &lt;/span&gt;build&lt;span class="w"&gt; &lt;/span&gt;google-cloud-cli&lt;span class="w"&gt; &lt;/span&gt;google-cloud-cli-bq&lt;span class="w"&gt; &lt;/span&gt;google-cloud-cli-gsutil&lt;span class="w"&gt; &lt;/span&gt;--no-confirm
 &lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="admonition note"&gt;
+&lt;p class="admonition-title"&gt;Nota&lt;/p&gt;
+&lt;p&gt;Since 2025/06/30, the base package was split, so it is now necessary to install the &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;bq&lt;/span&gt;&lt;/code&gt; and &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;gsutil&lt;/span&gt;&lt;/code&gt; components separately.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="admonition hint"&gt;
 &lt;p class="admonition-title"&gt;Consejo&lt;/p&gt;
@@ -6534,7 +6747,7 @@ SQL Proxy&lt;/em&gt;. For more detail, you can refer to the
 &lt;input checked="checked" id="sd-tab-item-2" name="sd-tab-set-1" type="radio"&gt;
 &lt;label class="sd-tab-label" data-sync-group="tab" data-sync-id="manjaro" for="sd-tab-item-2"&gt;
 Manjaro&lt;/label&gt;&lt;div class="sd-tab-content docutils"&gt;
-&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;pamac&lt;span class="w"&gt; &lt;/span&gt;build&lt;span class="w"&gt; &lt;/span&gt;cloud-sql-proxy
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;pamac&lt;span class="w"&gt; &lt;/span&gt;build&lt;span class="w"&gt; &lt;/span&gt;cloud-sql-proxy&lt;span class="w"&gt; &lt;/span&gt;--no-confirm
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -6575,27 +6788,23 @@ application credentials, which is described previously in
 &lt;h2&gt;Connecting to database&lt;/h2&gt;
 &lt;p&gt;In my work, we use MySQL, and although I initially used &lt;em&gt;MySQL Workbench&lt;/em&gt;, it
 wasn’t very comfortable and my colleagues were using
-&lt;a class="reference external" href="https://dbeaver.io/"&gt;&lt;strong class="program"&gt;dbeaver&lt;/strong&gt;&lt;/a&gt;. This caught my attention and was the
-one I was using until I discovered &lt;a class="reference external" href="https://dbgate.org/"&gt;&lt;strong class="program"&gt;dbgate&lt;/strong&gt;&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;These two are available as &lt;em&gt;flatpak&lt;/em&gt; so that they can be installed comfortably
-on any Linux distribution, but the particular case of &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;{program}&lt;/span&gt;&lt;/code&gt;dbeaver` does
+&lt;a class="reference external" href="https://dbeaver.io/"&gt;&lt;strong class="program"&gt;dbeaver&lt;/strong&gt;&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;This is available as a &lt;em&gt;flatpak&lt;/em&gt; so that it can be installed comfortably
+on any Linux distribution, but its interface does
 not look well on Wayland when installed in this way, making it more preferred to
 install from the official repository.&lt;/p&gt;
 &lt;div class="sd-tab-set docutils"&gt;
 &lt;input checked="checked" id="sd-tab-item-4" name="sd-tab-set-2" type="radio"&gt;
 &lt;label class="sd-tab-label" data-sync-group="tab" data-sync-id="manjaro" for="sd-tab-item-4"&gt;
 Manjaro&lt;/label&gt;&lt;div class="sd-tab-content docutils"&gt;
-&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo&lt;span class="w"&gt; &lt;/span&gt;pamac&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;dbeaver&lt;span class="w"&gt; &lt;/span&gt;--no-confirm
-sudo&lt;span class="w"&gt; &lt;/span&gt;pamac&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;dbeaver-plugin-office&lt;span class="w"&gt; &lt;/span&gt;dbeaver-plugin-svg-format&lt;span class="w"&gt; &lt;/span&gt;--as-deps&lt;span class="w"&gt; &lt;/span&gt;--no-confirm
-pamac&lt;span class="w"&gt; &lt;/span&gt;build&lt;span class="w"&gt; &lt;/span&gt;dbgate-bin
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;pamac&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;dbeaver&lt;span class="w"&gt; &lt;/span&gt;--no-confirm
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;input id="sd-tab-item-5" name="sd-tab-set-2" type="radio"&gt;
 &lt;label class="sd-tab-label" data-sync-group="tab" data-sync-id="ubuntu" for="sd-tab-item-5"&gt;
 Flatpak&lt;/label&gt;&lt;div class="sd-tab-content docutils"&gt;
-&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;flatpak&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;-y&lt;span class="w"&gt; &lt;/span&gt;flathub&lt;span class="w"&gt; &lt;/span&gt;org.dbgate.DbGate&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="c1"&gt;# Verificado&lt;/span&gt;
-flatpak&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;-y&lt;span class="w"&gt; &lt;/span&gt;flathub&lt;span class="w"&gt; &lt;/span&gt;io.dbeaver.DBeaverCommunity&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="c1"&gt;# No verificado&lt;/span&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;flatpak&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;-y&lt;span class="w"&gt; &lt;/span&gt;flathub&lt;span class="w"&gt; &lt;/span&gt;io.dbeaver.DBeaverCommunity&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="c1"&gt;# Not verified&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -6613,9 +6822,7 @@ That’s why it’s better to use the IP address consistently in the configurati
 &lt;/section&gt;
 </content>
     <link href="https://www.cosmoscalibur.com/en/blog/2024/conecta-con-una-instancia-de-cloud-sql-en-manjaro/"/>
-    <summary>Since I’m currently in a full system installation process following
-the transition from (X/K)Ubuntu to Manjaro,
-I’ll explain how to connect to a Cloud SQL instance on Manjaro.</summary>
+    <summary>Dependencies for Google Cloud SDK have been updated (now divided into three packages), commands adjusted to not require interactive confirmation or sudo, and SQL client recommendations updated.</summary>
     <category term="cloudsqlproxy" label="cloud sql proxy"/>
     <category term="database" label="database"/>
     <category term="googlecloudsdk" label="google cloud sdk"/>
@@ -6632,6 +6839,10 @@ I’ll explain how to connect to a Cloud SQL instance on Manjaro.</summary>
     </author>
     <content type="html">&lt;section class="tex2jax_ignore mathjax_ignore" id="conecta-con-una-instancia-de-cloud-sql-en-manjaro"&gt;
 
+&lt;div class="hint admonition"&gt;
+&lt;p class="admonition-title"&gt;Actualizado el 2026-03-23&lt;/p&gt;
+&lt;p&gt;Se han actualizado las dependencias del Google Cloud SDK (ahora dividido en tres paquetes), se ajustaron comandos para no requerir confirmación interactiva ni uso de &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;sudo&lt;/span&gt;&lt;/code&gt;, y se actualizaron las recomendaciones de clientes SQL.&lt;/p&gt;
+&lt;/div&gt;
 &lt;p&gt;Aprovechando que estoy en reinstalación por la
 &lt;a class="reference internal" href="../es/blog/2024/que-hacer-despues-de-instalar-manjaro/"&gt;&lt;span class="std std-doc"&gt;transición de (X/K)ubuntu a Manjaro&lt;/span&gt;&lt;/a&gt;,
 les contaré sobre como conectar a una instancia de Cloud SQL en Manjaro.&lt;/p&gt;
@@ -6649,8 +6860,12 @@ remitirte a la
 &lt;label class="sd-tab-label" data-sync-group="tab" data-sync-id="manjaro" for="sd-tab-item-0"&gt;
 Manjaro&lt;/label&gt;&lt;div class="sd-tab-content docutils"&gt;
 &lt;p&gt;Este paquete está disponible en el AUR, por lo cual se puede usar en Arch.&lt;/p&gt;
-&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;pamac&lt;span class="w"&gt; &lt;/span&gt;build&lt;span class="w"&gt; &lt;/span&gt;google-cloud-cli&lt;span class="w"&gt; &lt;/span&gt;--no-confirm
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;pamac&lt;span class="w"&gt; &lt;/span&gt;build&lt;span class="w"&gt; &lt;/span&gt;google-cloud-cli&lt;span class="w"&gt; &lt;/span&gt;google-cloud-cli-bq&lt;span class="w"&gt; &lt;/span&gt;google-cloud-cli-gsutil&lt;span class="w"&gt; &lt;/span&gt;--no-confirm
 &lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="admonition note"&gt;
+&lt;p class="admonition-title"&gt;Nota&lt;/p&gt;
+&lt;p&gt;Desde el 2025/06/30, el paquete base se dividió, por lo que ahora es necesario instalar también los componentes &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;bq&lt;/span&gt;&lt;/code&gt; y &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;gsutil&lt;/span&gt;&lt;/code&gt; por separado.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="admonition hint"&gt;
 &lt;p class="admonition-title"&gt;Consejo&lt;/p&gt;
@@ -6700,7 +6915,7 @@ requerir funciones de consulta y no de administración general, debemos tener
 &lt;input checked="checked" id="sd-tab-item-2" name="sd-tab-set-1" type="radio"&gt;
 &lt;label class="sd-tab-label" data-sync-group="tab" data-sync-id="manjaro" for="sd-tab-item-2"&gt;
 Manjaro&lt;/label&gt;&lt;div class="sd-tab-content docutils"&gt;
-&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;pamac&lt;span class="w"&gt; &lt;/span&gt;build&lt;span class="w"&gt; &lt;/span&gt;cloud-sql-proxy
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;pamac&lt;span class="w"&gt; &lt;/span&gt;build&lt;span class="w"&gt; &lt;/span&gt;cloud-sql-proxy&lt;span class="w"&gt; &lt;/span&gt;--no-confirm
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -6740,27 +6955,21 @@ credenciales por defecto de aplicación que se describe
 &lt;h2&gt;Conectar a la base de datos&lt;/h2&gt;
 &lt;p&gt;En mi trabajo usamos MySQL, y aunque comencé usando &lt;em&gt;MySQL Workbench&lt;/em&gt;, este no
 era muy cómodo y mis compañeros usaban
-&lt;a class="reference external" href="https://dbeaver.io/"&gt;&lt;strong class="program"&gt;dbeaver&lt;/strong&gt;&lt;/a&gt;. Este me pareció interesante y fue el
-que estuve usando hasta que conocí &lt;a class="reference external" href="https://dbgate.org/"&gt;&lt;strong class="program"&gt;dbgate&lt;/strong&gt;&lt;/a&gt;.
-Estos dos se encuentran disponibles como &lt;em&gt;flatpak&lt;/em&gt; para que los instales
-cómodamente en cualquier distro Linux, pero el caso particular de
-&lt;strong class="program"&gt;dbeaver&lt;/strong&gt; no se visualiza bien en Wayland cuando se instala de esta
+&lt;a class="reference external" href="https://dbeaver.io/"&gt;&lt;strong class="program"&gt;dbeaver&lt;/strong&gt;&lt;/a&gt;. Este se encuentra disponible como &lt;em&gt;flatpak&lt;/em&gt; para que lo instales
+cómodamente en cualquier distro Linux, pero su interfaz no se visualiza bien en Wayland cuando se instala de esta
 forma, por lo que es preferible la instalación del repo oficial.&lt;/p&gt;
 &lt;div class="sd-tab-set docutils"&gt;
 &lt;input checked="checked" id="sd-tab-item-4" name="sd-tab-set-2" type="radio"&gt;
 &lt;label class="sd-tab-label" data-sync-group="tab" data-sync-id="manjaro" for="sd-tab-item-4"&gt;
 Manjaro&lt;/label&gt;&lt;div class="sd-tab-content docutils"&gt;
-&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo&lt;span class="w"&gt; &lt;/span&gt;pamac&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;dbeaver&lt;span class="w"&gt; &lt;/span&gt;--no-confirm
-sudo&lt;span class="w"&gt; &lt;/span&gt;pamac&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;dbeaver-plugin-office&lt;span class="w"&gt; &lt;/span&gt;dbeaver-plugin-svg-format&lt;span class="w"&gt; &lt;/span&gt;--as-deps&lt;span class="w"&gt; &lt;/span&gt;--no-confirm
-pamac&lt;span class="w"&gt; &lt;/span&gt;build&lt;span class="w"&gt; &lt;/span&gt;dbgate-bin
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;pamac&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;dbeaver&lt;span class="w"&gt; &lt;/span&gt;--no-confirm
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;input id="sd-tab-item-5" name="sd-tab-set-2" type="radio"&gt;
 &lt;label class="sd-tab-label" data-sync-group="tab" data-sync-id="ubuntu" for="sd-tab-item-5"&gt;
 Flatpak&lt;/label&gt;&lt;div class="sd-tab-content docutils"&gt;
-&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;flatpak&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;-y&lt;span class="w"&gt; &lt;/span&gt;flathub&lt;span class="w"&gt; &lt;/span&gt;org.dbgate.DbGate&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="c1"&gt;# Verificado&lt;/span&gt;
-flatpak&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;-y&lt;span class="w"&gt; &lt;/span&gt;flathub&lt;span class="w"&gt; &lt;/span&gt;io.dbeaver.DBeaverCommunity&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="c1"&gt;# No verificado&lt;/span&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;flatpak&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;-y&lt;span class="w"&gt; &lt;/span&gt;flathub&lt;span class="w"&gt; &lt;/span&gt;io.dbeaver.DBeaverCommunity
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -6778,9 +6987,7 @@ como &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;12
 &lt;/section&gt;
 </content>
     <link href="https://www.cosmoscalibur.com/es/blog/2024/conecta-con-una-instancia-de-cloud-sql-en-manjaro/"/>
-    <summary>Aprovechando que estoy en reinstalación por la
-transición de (X/K)ubuntu a Manjaro,
-les contaré sobre como conectar a una instancia de Cloud SQL en Manjaro.</summary>
+    <summary>Se han actualizado las dependencias del Google Cloud SDK (ahora dividido en tres paquetes), se ajustaron comandos para no requerir confirmación interactiva ni uso de sudo, y se actualizaron las recomendaciones de clientes SQL.</summary>
     <category term="basededatos" label="base de datos"/>
     <category term="cloudsqlproxy" label="cloud sql proxy"/>
     <category term="googlecloudsdk" label="google cloud sdk"/>
@@ -6992,6 +7199,10 @@ de redes estas han desaparecido, algunos detalles por evaluar son:</summary>
     </author>
     <content type="html">&lt;section class="tex2jax_ignore mathjax_ignore" id="que-hacer-despues-de-instalar-manjaro-kde"&gt;
 
+&lt;div class="hint admonition"&gt;
+&lt;p class="admonition-title"&gt;Actualizado el 2026-03-23&lt;/p&gt;
+&lt;p&gt;Se han actualizado las recomendaciones de kernel, se ha desaconsejado el uso directo de &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;sudo&lt;/span&gt;&lt;/code&gt; en instalaciones (esperando el &lt;em&gt;prompt&lt;/em&gt; interactivo) y se hicieron ajustes en algunos comandos.&lt;/p&gt;
+&lt;/div&gt;
 &lt;p&gt;Hace poco decidí pasarme a Manjaro KDE (24.1) y estoy muy contento del cambio.
 Así que con motivo a esto, les cuento sobre las cosas por hacer después de
 completar la instalación.&lt;/p&gt;
@@ -7082,9 +7293,9 @@ instalar desde el repositorio oficial, desde el AUR y remover paquetes.&lt;/p&gt
 &lt;input checked="checked" id="sd-tab-item-2" name="sd-tab-set-1" type="radio"&gt;
 &lt;label class="sd-tab-label" data-sync-group="tab" data-sync-id="manjaro" for="sd-tab-item-2"&gt;
 Manjaro&lt;/label&gt;&lt;div class="sd-tab-content docutils"&gt;
-&lt;div class="highlight-bash notranslate" id="pamac-commands"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo&lt;span class="w"&gt; &lt;/span&gt;pamac&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;PACKAGE&lt;span class="w"&gt; &lt;/span&gt;--no-confirm&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="c1"&gt;# Repositorio oficial&lt;/span&gt;
+&lt;div class="highlight-bash notranslate" id="pamac-commands"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;pamac&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;PACKAGE&lt;span class="w"&gt; &lt;/span&gt;--no-confirm&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="c1"&gt;# Repositorio oficial&lt;/span&gt;
 pamac&lt;span class="w"&gt; &lt;/span&gt;build&lt;span class="w"&gt; &lt;/span&gt;PACKAGE_AUR&lt;span class="w"&gt; &lt;/span&gt;--no-confirm&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="c1"&gt;# AUR&lt;/span&gt;
-sudo&lt;span class="w"&gt; &lt;/span&gt;pamac&lt;span class="w"&gt; &lt;/span&gt;remove&lt;span class="w"&gt; &lt;/span&gt;PACKAGE&lt;span class="w"&gt; &lt;/span&gt;--no-confirm
+pamac&lt;span class="w"&gt; &lt;/span&gt;remove&lt;span class="w"&gt; &lt;/span&gt;PACKAGE&lt;span class="w"&gt; &lt;/span&gt;--no-confirm
 pamac&lt;span class="w"&gt; &lt;/span&gt;search&lt;span class="w"&gt; &lt;/span&gt;-a&lt;span class="w"&gt; &lt;/span&gt;KEY
 pamac&lt;span class="w"&gt; &lt;/span&gt;info&lt;span class="w"&gt; &lt;/span&gt;PACKAGE
 &lt;/pre&gt;&lt;/div&gt;
@@ -7102,11 +7313,7 @@ vas a actualizar o agregar paquetes posteriores a tu tanda inicial, puede ser
 recomendable hacerlo en modo interactivo como chequeo y ya luego dejarlos para
 tus rutinas sin la confirmación. Igual, te recomiendo no usarlo y que tomes
 tus propias definiciones.&lt;/p&gt;
-&lt;p&gt;En caso de usar la instalación desde el AUR, mi recomendación es siempre
-proceder sin &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;sudo&lt;/span&gt;&lt;/code&gt; salvo que tengamos contexto que no se requiere clave GPG.
-De otra forma, esta se intenta almacenar a nivel del administrador provocando
-el error de “&lt;em&gt;tubería rota&lt;/em&gt;”, y es porque la clave debe almacenarse en un
-usuario común. Ejemplo, esto sucede con Dropbox y Spotify.&lt;/p&gt;
+&lt;p&gt;Como regla general, se desaconseja el uso directo de &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;sudo&lt;/span&gt;&lt;/code&gt; al invocar &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;pamac&lt;/span&gt;&lt;/code&gt; (tanto para los repositorios oficiales como para el AUR). Es mejor invocar el comando sin escalamiento de privilegios y esperar a que el propio gestor solicite la contraseña cuando sea necesario. En el caso del AUR, usar &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;sudo&lt;/span&gt;&lt;/code&gt; directamente incluso puede provocar el error de “&lt;em&gt;tubería rota&lt;/em&gt;” al intentar almacenar la clave GPG a nivel de administrador en lugar del usuario común (ejemplo: sucede con Dropbox y Spotify).&lt;/p&gt;
 &lt;/div&gt;
 &lt;input id="sd-tab-item-3" name="sd-tab-set-1" type="radio"&gt;
 &lt;label class="sd-tab-label" data-sync-group="tab" data-sync-id="ubuntu" for="sd-tab-item-3"&gt;
@@ -7171,15 +7378,14 @@ flatpak&lt;span class="w"&gt; &lt;/span&gt;remote-add&lt;span class="w"&gt; &lt;
 &lt;section id="instala-un-nucleo-estable"&gt;
 &lt;h2&gt;Instala un núcleo estable&lt;/h2&gt;
 &lt;p&gt;Aprovecha el último núcleo (&lt;em&gt;kernel&lt;/em&gt;) disponible en Manjaro, pero es bueno que
-instales un &lt;em&gt;kernel&lt;/em&gt; estable (a la fecha, sería de la rama 6.6, pero
-posiblemente 6.12 se perfile como estable también). Esto será necesario en caso
+instales un &lt;em&gt;kernel&lt;/em&gt; estable (a la fecha, sería de la rama 6.18 LTS recomendada). Esto será necesario en caso
 de tener una actualización de &lt;em&gt;kernel&lt;/em&gt; que rompa el sistema, y sea necesario
 usar uno anterior. Ten presente que parte de como sucede esto en Manjaro, es que
 las versiones no estables son retiradas de los repositorios, entonces no hay
 forma de volverlas a instalar y de ahí otro riesgo.&lt;/p&gt;
 &lt;p&gt;Puedes instalar el núcleo estable usando el “Gestor de configuración de Manjaro”
 con la opción de “Núcleo”.&lt;/p&gt;
-&lt;p&gt;Recuerda editar el archivo &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;/etc/default/grub&lt;/span&gt;&lt;/code&gt; para cambiar el valor de las
+&lt;p&gt;Recuerda editar el archivo &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;/etc/default/grub&lt;/span&gt;&lt;/code&gt; (puedes usar el editor &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;nano&lt;/span&gt;&lt;/code&gt; que viene preinstalado, recordando guardar el archivo editado con &lt;kbd class="kbd docutils literal notranslate"&gt;Ctrl&lt;/kbd&gt;+&lt;kbd class="kbd docutils literal notranslate"&gt;O&lt;/kbd&gt; y salir con &lt;kbd class="kbd docutils literal notranslate"&gt;Ctrl&lt;/kbd&gt;+&lt;kbd class="kbd docutils literal notranslate"&gt;X&lt;/kbd&gt;) para cambiar el valor de las
 líneas de estilo y tiempo de espera. Lo más importante es la opción de &lt;em&gt;menu&lt;/em&gt; en
 la variable de estilo.&lt;/p&gt;
 &lt;div class="highlight-text notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;GRUB_TIMEOUT=5
@@ -7233,8 +7439,8 @@ par de problemas que me afectaron y fue útil la documentación Arch sobre
 &lt;input checked="checked" id="sd-tab-item-8" name="sd-tab-set-4" type="radio"&gt;
 &lt;label class="sd-tab-label" data-sync-group="tab" data-sync-id="manjaro" for="sd-tab-item-8"&gt;
 Manjaro&lt;/label&gt;&lt;div class="sd-tab-content docutils"&gt;
-&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo&lt;span class="w"&gt; &lt;/span&gt;pamac&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;libreoffice-fresh&lt;span class="w"&gt; &lt;/span&gt;--no-confirm
-sudo&lt;span class="w"&gt; &lt;/span&gt;pamac&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;--as-deps&lt;span class="w"&gt; &lt;/span&gt;libreoffice-extension-texmaths&lt;span class="w"&gt; &lt;/span&gt;libreoffice-fresh-es&lt;span class="w"&gt; &lt;/span&gt;--no-confirm
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;pamac&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;libreoffice-fresh&lt;span class="w"&gt; &lt;/span&gt;--no-confirm
+pamac&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;--as-deps&lt;span class="w"&gt; &lt;/span&gt;libreoffice-fresh-es&lt;span class="w"&gt; &lt;/span&gt;--no-confirm
 pamac&lt;span class="w"&gt; &lt;/span&gt;build&lt;span class="w"&gt; &lt;/span&gt;wps-office-bin&lt;span class="w"&gt; &lt;/span&gt;ttf-wps-fonts&lt;span class="w"&gt; &lt;/span&gt;libtiff5&lt;span class="w"&gt; &lt;/span&gt;--no-confirm
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
@@ -7253,7 +7459,7 @@ LibreOffice para usar Hunspell con este diccionario.&lt;/p&gt;
 &lt;input checked="checked" id="sd-tab-item-10" name="sd-tab-set-5" type="radio"&gt;
 &lt;label class="sd-tab-label" data-sync-group="tab" data-sync-id="manjaro" for="sd-tab-item-10"&gt;
 Manjaro&lt;/label&gt;&lt;div class="sd-tab-content docutils"&gt;
-&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo&lt;span class="w"&gt; &lt;/span&gt;pamac&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;hunspell&lt;span class="w"&gt; &lt;/span&gt;hunspell-es_co&lt;span class="w"&gt; &lt;/span&gt;--no-confirm
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;pamac&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;hunspell&lt;span class="w"&gt; &lt;/span&gt;hunspell-es_co&lt;span class="w"&gt; &lt;/span&gt;--no-confirm
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -7334,7 +7540,7 @@ alternativa gratuita alojada y con soporte para Linux del cliente de escritorio.
 &lt;label class="sd-tab-label" data-sync-group="tab" data-sync-id="manjaro" for="sd-tab-item-14"&gt;
 Manjaro&lt;/label&gt;&lt;div class="sd-tab-content docutils"&gt;
 &lt;div class="highlight-default notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;pamac&lt;/span&gt; &lt;span class="n"&gt;build&lt;/span&gt; &lt;span class="n"&gt;dropbox&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;no&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;confirm&lt;/span&gt;
-&lt;span class="n"&gt;pamac&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;asdeps&lt;/span&gt; &lt;span class="n"&gt;libappindicator&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;gtk3&lt;/span&gt;
+&lt;span class="n"&gt;pamac&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="k"&gt;as&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;deps&lt;/span&gt; &lt;span class="n"&gt;libappindicator&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;gtk3&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -7360,7 +7566,7 @@ personales, y Discord y Slack por motivos laborales.&lt;/p&gt;
 &lt;input checked="checked" id="sd-tab-item-16" name="sd-tab-set-8" type="radio"&gt;
 &lt;label class="sd-tab-label" data-sync-group="tab" data-sync-id="manjaro" for="sd-tab-item-16"&gt;
 Manjaro&lt;/label&gt;&lt;div class="sd-tab-content docutils"&gt;
-&lt;div class="highlight-default notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;pamac&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;telegram&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;desktop&lt;/span&gt; &lt;span class="n"&gt;discord&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;no&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;confirm&lt;/span&gt;
+&lt;div class="highlight-default notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;pamac&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;telegram&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;desktop&lt;/span&gt; &lt;span class="n"&gt;discord&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;no&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;confirm&lt;/span&gt;
 &lt;span class="n"&gt;pamac&lt;/span&gt; &lt;span class="n"&gt;build&lt;/span&gt; &lt;span class="n"&gt;slack&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;desktop&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;no&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;confirm&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
@@ -7385,7 +7591,7 @@ rápido. Para esta labor prefiero típicamente &lt;em&gt;Flameshot&lt;/em&gt;.&l
 &lt;input checked="checked" id="sd-tab-item-18" name="sd-tab-set-9" type="radio"&gt;
 &lt;label class="sd-tab-label" data-sync-group="tab" data-sync-id="manjaro" for="sd-tab-item-18"&gt;
 Manjaro&lt;/label&gt;&lt;div class="sd-tab-content docutils"&gt;
-&lt;div class="highlight-default notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;pamac&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;flameshot&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;no&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;confirm&lt;/span&gt;
+&lt;div class="highlight-default notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;pamac&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;flameshot&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;no&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;confirm&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -7421,7 +7627,8 @@ Photoshop. También puedes explorar &lt;em&gt;Krita&lt;/em&gt; (ten presente que
 &lt;input checked="checked" id="sd-tab-item-20" name="sd-tab-set-10" type="radio"&gt;
 &lt;label class="sd-tab-label" data-sync-group="tab" data-sync-id="manjaro" for="sd-tab-item-20"&gt;
 Manjaro&lt;/label&gt;&lt;div class="sd-tab-content docutils"&gt;
-&lt;div class="highlight-default notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;pamac&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;imagemagick&lt;/span&gt; &lt;span class="n"&gt;ffmpeg&lt;/span&gt; &lt;span class="n"&gt;drawio&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;desktop&lt;/span&gt; &lt;span class="n"&gt;inkscape&lt;/span&gt; &lt;span class="n"&gt;gimp&lt;/span&gt; &lt;span class="n"&gt;krita&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;no&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;confirm&lt;/span&gt;
+&lt;div class="highlight-default notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;pamac&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;imagemagick&lt;/span&gt; &lt;span class="n"&gt;ffmpeg&lt;/span&gt; &lt;span class="n"&gt;drawio&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;desktop&lt;/span&gt; &lt;span class="n"&gt;inkscape&lt;/span&gt; &lt;span class="n"&gt;gimp&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;no&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;confirm&lt;/span&gt;
+&lt;span class="n"&gt;pamac&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;krita&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;no&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;confirm&lt;/span&gt;
 &lt;span class="n"&gt;flatpak&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt; &lt;span class="n"&gt;flathub&lt;/span&gt; &lt;span class="n"&gt;com&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;obsproject&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Studio&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
@@ -7432,8 +7639,8 @@ Ubuntu&lt;/label&gt;&lt;div class="sd-tab-content docutils"&gt;
 &lt;div class="highlight-default notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;apt&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt; &lt;span class="n"&gt;imagemagick&lt;/span&gt; &lt;span class="n"&gt;ffmpeg&lt;/span&gt;
 &lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;snap&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;drawio&lt;/span&gt;
 &lt;span class="n"&gt;flatpak&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt; &lt;span class="n"&gt;flathub&lt;/span&gt; &lt;span class="n"&gt;org&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;inkscape&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Inkscape&lt;/span&gt;
-&lt;span class="n"&gt;flatpak&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt; &lt;span class="n"&gt;sflathub&lt;/span&gt; &lt;span class="n"&gt;org&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;gimp&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;GIMP&lt;/span&gt;
 &lt;span class="n"&gt;flatpak&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt; &lt;span class="n"&gt;flathub&lt;/span&gt; &lt;span class="n"&gt;org&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;kde&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;krita&lt;/span&gt;
+&lt;span class="n"&gt;flatpak&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt; &lt;span class="n"&gt;sflathub&lt;/span&gt; &lt;span class="n"&gt;org&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;gimp&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;GIMP&lt;/span&gt;
 &lt;span class="n"&gt;flatpak&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt; &lt;span class="n"&gt;flathub&lt;/span&gt; &lt;span class="n"&gt;com&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;obsproject&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Studio&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
@@ -7463,7 +7670,7 @@ en el blog (&lt;a class="reference internal" href="../es/blog/2021/configurar-re
 &lt;input checked="checked" id="sd-tab-item-22" name="sd-tab-set-11" type="radio"&gt;
 &lt;label class="sd-tab-label" data-sync-group="tab" data-sync-id="manjaro" for="sd-tab-item-22"&gt;
 Manjaro&lt;/label&gt;&lt;div class="sd-tab-content docutils"&gt;
-&lt;div class="highlight-default notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;pamac&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;steam&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;no&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;confirm&lt;/span&gt;
+&lt;div class="highlight-default notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;pamac&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;steam&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;no&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;confirm&lt;/span&gt;
 &lt;span class="n"&gt;pamac&lt;/span&gt; &lt;span class="n"&gt;build&lt;/span&gt; &lt;span class="n"&gt;spotify&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;no&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;confirm&lt;/span&gt;
 &lt;span class="n"&gt;flatpak&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt; &lt;span class="n"&gt;flathub&lt;/span&gt; &lt;span class="n"&gt;com&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;stremio&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Stremio&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
@@ -7493,9 +7700,7 @@ Ubuntu&lt;/label&gt;&lt;div class="sd-tab-content docutils"&gt;
 &lt;/section&gt;
 </content>
     <link href="https://www.cosmoscalibur.com/es/blog/2024/que-hacer-despues-de-instalar-manjaro/"/>
-    <summary>Hace poco decidí pasarme a Manjaro KDE (24.1) y estoy muy contento del cambio.
-Así que con motivo a esto, les cuento sobre las cosas por hacer después de
-completar la instalación.</summary>
+    <summary>Se han actualizado las recomendaciones de kernel, se ha desaconsejado el uso directo de sudo en instalaciones (esperando el prompt interactivo) y se hicieron ajustes en algunos comandos.</summary>
     <category term="aplicacionesparalinux" label="aplicaciones para linux"/>
     <category term="flatpak" label="flatpak"/>
     <category term="kde" label="kde"/>
@@ -7508,12 +7713,16 @@ completar la instalación.</summary>
   <entry>
     <id>https://www.cosmoscalibur.com/en/blog/2024/que-hacer-despues-de-instalar-manjaro/</id>
     <title>What to do after installing Manjaro KDE 24?</title>
-    <updated>2024-12-05T00:00:00-05:00</updated>
+    <updated>2026-03-23T00:00:00-05:00</updated>
     <author>
       <name>Edward Villegas-Pulgarin</name>
     </author>
     <content type="html">&lt;section class="tex2jax_ignore mathjax_ignore" id="what-to-do-after-installing-manjaro-kde-24"&gt;
 
+&lt;div class="note update admonition"&gt;
+&lt;p class="admonition-title"&gt;Updated on 2026-03-23&lt;/p&gt;
+&lt;p&gt;Kernel recommendations have been updated, the explicit use of &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;sudo&lt;/span&gt;&lt;/code&gt; in package managers has been discouraged and removed, Krita was removed, and installation commands were adjusted.&lt;/p&gt;
+&lt;/div&gt;
 &lt;p&gt;I recently decided to switch to Manjaro KDE (24.1) and I’m very happy with the
 change. So, taking this opportunity, I’ll share some things to do after
 completing the installation.&lt;/p&gt;
@@ -7608,9 +7817,9 @@ how to:&lt;/p&gt;
 &lt;input checked="checked" id="sd-tab-item-2" name="sd-tab-set-1" type="radio"&gt;
 &lt;label class="sd-tab-label" data-sync-group="tab" data-sync-id="manjaro" for="sd-tab-item-2"&gt;
 Manjaro&lt;/label&gt;&lt;div class="sd-tab-content docutils"&gt;
-&lt;div class="highlight-bash notranslate" id="pamac-commands-en"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo&lt;span class="w"&gt; &lt;/span&gt;pamac&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;PACKAGE&lt;span class="w"&gt; &lt;/span&gt;--no-confirm&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="c1"&gt;# Official Repository&lt;/span&gt;
+&lt;div class="highlight-bash notranslate" id="pamac-commands-en"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;pamac&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;PACKAGE&lt;span class="w"&gt; &lt;/span&gt;--no-confirm&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="c1"&gt;# Official Repository&lt;/span&gt;
 pamac&lt;span class="w"&gt; &lt;/span&gt;build&lt;span class="w"&gt; &lt;/span&gt;PACKAGE_AUR&lt;span class="w"&gt; &lt;/span&gt;--no-confirm&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="c1"&gt;# AUR&lt;/span&gt;
-sudo&lt;span class="w"&gt; &lt;/span&gt;pamac&lt;span class="w"&gt; &lt;/span&gt;remove&lt;span class="w"&gt; &lt;/span&gt;PACKAGE&lt;span class="w"&gt; &lt;/span&gt;--no-confirm
+pamac&lt;span class="w"&gt; &lt;/span&gt;remove&lt;span class="w"&gt; &lt;/span&gt;PACKAGE&lt;span class="w"&gt; &lt;/span&gt;--no-confirm
 pamac&lt;span class="w"&gt; &lt;/span&gt;search&lt;span class="w"&gt; &lt;/span&gt;-a&lt;span class="w"&gt; &lt;/span&gt;KEY
 pamac&lt;span class="w"&gt; &lt;/span&gt;info&lt;span class="w"&gt; &lt;/span&gt;PACKAGE
 &lt;/pre&gt;&lt;/div&gt;
@@ -7627,11 +7836,7 @@ some cases, it may require validation and even cancellation of the transaction.&
 good idea to do so interactively as a check and then leave them for your
 routines without confirmation. I recommend not using this option at all and make
 your own decisions.&lt;/p&gt;
-&lt;p&gt;When installing from the AUR, my recommendation is always to proceed without
-&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;sudo&lt;/span&gt;&lt;/code&gt; unless we have context that doesn’t require a GPG key. Otherwise, this
-will be stored at an administrative level, causing errors of “&lt;em&gt;broken pipe&lt;/em&gt;”,
-which happens because the key needs to be stored in a common user. For example,
-this happens with services like Dropbox and Spotify.&lt;/p&gt;
+&lt;p&gt;As a general rule, it is not recommended to use &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;sudo&lt;/span&gt;&lt;/code&gt; directly when invoking &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;pamac&lt;/span&gt;&lt;/code&gt; (for both official repositories and the AUR). It is better to run the command without privilege escalation and wait for the manager itself to prompt for the password when necessary. When installing from the AUR, using &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;sudo&lt;/span&gt;&lt;/code&gt; directly can cause a “&lt;em&gt;broken pipe&lt;/em&gt;” error, which happens because the GPG key is attempted to be stored at an administrative level instead of the common user. For example, this happens with services like Dropbox and Spotify.&lt;/p&gt;
 &lt;/div&gt;
 &lt;input id="sd-tab-item-3" name="sd-tab-set-1" type="radio"&gt;
 &lt;label class="sd-tab-label" data-sync-group="tab" data-sync-id="ubuntu" for="sd-tab-item-3"&gt;
@@ -7696,14 +7901,14 @@ flatpak&lt;span class="w"&gt; &lt;/span&gt;remote-add&lt;span class="w"&gt; &lt;
 &lt;section id="installs-a-stable-kernel"&gt;
 &lt;h2&gt;Installs a stable kernel&lt;/h2&gt;
 &lt;p&gt;Use the latest available kernel in Manjaro, but it’s recommended to install a
-stable kernel (currently 6.6, but possibly 6.12 as well) at this time. This will
+stable kernel (currently the recommended 6.18 LTS branch) at this time. This will
 be necessary if you need to upgrade your kernel and one of them breaks the
 system, requiring you to use an older one. Keep in mind that, as it happens with
 Manjaro, unstable kernel versions are removed from the repositories, so they
 can’t be reinstalled, leaving another risk.&lt;/p&gt;
 &lt;p&gt;You can install a stable kernel using the Manjaro configuration manager with the
 “Kernel” option.&lt;/p&gt;
-&lt;p&gt;Remember to edit the &lt;code class="file docutils literal notranslate"&gt;&lt;span class="pre"&gt;/etc/default/grub&lt;/span&gt;&lt;/code&gt; file to change the style and time
+&lt;p&gt;Remember to edit the &lt;code class="file docutils literal notranslate"&gt;&lt;span class="pre"&gt;/etc/default/grub&lt;/span&gt;&lt;/code&gt; file (you can use the built-in &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;nano&lt;/span&gt;&lt;/code&gt; editor, saving with &lt;kbd class="kbd docutils literal notranslate"&gt;Ctrl&lt;/kbd&gt;+&lt;kbd class="kbd docutils literal notranslate"&gt;O&lt;/kbd&gt; and exiting with &lt;kbd class="kbd docutils literal notranslate"&gt;Ctrl&lt;/kbd&gt;+&lt;kbd class="kbd docutils literal notranslate"&gt;X&lt;/kbd&gt;) to change the style and time
 out lines. The most important thing is the &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;menu&lt;/span&gt;&lt;/code&gt; option in the style variable.&lt;/p&gt;
 &lt;div class="highlight-text notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;GRUB_TIMEOUT=5
 
@@ -7757,8 +7962,7 @@ documentation on
 &lt;input checked="checked" id="sd-tab-item-8" name="sd-tab-set-4" type="radio"&gt;
 &lt;label class="sd-tab-label" data-sync-group="tab" data-sync-id="manjaro" for="sd-tab-item-8"&gt;
 Manjaro&lt;/label&gt;&lt;div class="sd-tab-content docutils"&gt;
-&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo&lt;span class="w"&gt; &lt;/span&gt;pamac&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;libreoffice-fresh&lt;span class="w"&gt; &lt;/span&gt;--no-confirm
-sudo&lt;span class="w"&gt; &lt;/span&gt;pamac&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;--as-deps&lt;span class="w"&gt; &lt;/span&gt;libreoffice-extension-texmaths&lt;span class="w"&gt; &lt;/span&gt;--no-confirm
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;pamac&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;libreoffice-fresh&lt;span class="w"&gt; &lt;/span&gt;--no-confirm
 pamac&lt;span class="w"&gt; &lt;/span&gt;build&lt;span class="w"&gt; &lt;/span&gt;wps-office-bin&lt;span class="w"&gt; &lt;/span&gt;ttf-wps-fonts&lt;span class="w"&gt; &lt;/span&gt;libtiff5&lt;span class="w"&gt; &lt;/span&gt;--no-confirm
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
@@ -7822,7 +8026,7 @@ with Linux desktop client support.&lt;/p&gt;
 &lt;label class="sd-tab-label" data-sync-group="tab" data-sync-id="manjaro" for="sd-tab-item-12"&gt;
 Manjaro&lt;/label&gt;&lt;div class="sd-tab-content docutils"&gt;
 &lt;div class="highlight-default notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;pamac&lt;/span&gt; &lt;span class="n"&gt;build&lt;/span&gt; &lt;span class="n"&gt;dropbox&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;no&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;confirm&lt;/span&gt;
-&lt;span class="n"&gt;pamac&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;asdeps&lt;/span&gt; &lt;span class="n"&gt;libappindicator&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;gtk3&lt;/span&gt;
+&lt;span class="n"&gt;pamac&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="k"&gt;as&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;deps&lt;/span&gt; &lt;span class="n"&gt;libappindicator&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;gtk3&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -7849,7 +8053,7 @@ work-related purposes.&lt;/p&gt;
 &lt;input checked="checked" id="sd-tab-item-14" name="sd-tab-set-7" type="radio"&gt;
 &lt;label class="sd-tab-label" data-sync-group="tab" data-sync-id="manjaro" for="sd-tab-item-14"&gt;
 Manjaro&lt;/label&gt;&lt;div class="sd-tab-content docutils"&gt;
-&lt;div class="highlight-default notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;pamac&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;telegram&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;desktop&lt;/span&gt; &lt;span class="n"&gt;discord&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;no&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;confirm&lt;/span&gt;
+&lt;div class="highlight-default notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;pamac&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;telegram&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;desktop&lt;/span&gt; &lt;span class="n"&gt;discord&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;no&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;confirm&lt;/span&gt;
 &lt;span class="n"&gt;pamac&lt;/span&gt; &lt;span class="n"&gt;build&lt;/span&gt; &lt;span class="n"&gt;slack&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;desktop&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;no&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;confirm&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
@@ -7874,7 +8078,7 @@ typically.&lt;/p&gt;
 &lt;input checked="checked" id="sd-tab-item-16" name="sd-tab-set-8" type="radio"&gt;
 &lt;label class="sd-tab-label" data-sync-group="tab" data-sync-id="manjaro" for="sd-tab-item-16"&gt;
 Manjaro&lt;/label&gt;&lt;div class="sd-tab-content docutils"&gt;
-&lt;div class="highlight-default notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;pamac&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;flameshot&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;no&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;confirm&lt;/span&gt;
+&lt;div class="highlight-default notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;pamac&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;flameshot&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;no&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;confirm&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -7909,7 +8113,8 @@ are associated with this). If you need to edit, it’s recommended to use
 &lt;input checked="checked" id="sd-tab-item-18" name="sd-tab-set-9" type="radio"&gt;
 &lt;label class="sd-tab-label" data-sync-group="tab" data-sync-id="manjaro" for="sd-tab-item-18"&gt;
 Manjaro&lt;/label&gt;&lt;div class="sd-tab-content docutils"&gt;
-&lt;div class="highlight-default notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;pamac&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;imagemagick&lt;/span&gt; &lt;span class="n"&gt;ffmpeg&lt;/span&gt; &lt;span class="n"&gt;drawio&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;desktop&lt;/span&gt; &lt;span class="n"&gt;inkscape&lt;/span&gt; &lt;span class="n"&gt;gimp&lt;/span&gt; &lt;span class="n"&gt;krita&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;no&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;confirm&lt;/span&gt;
+&lt;div class="highlight-default notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;pamac&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;imagemagick&lt;/span&gt; &lt;span class="n"&gt;ffmpeg&lt;/span&gt; &lt;span class="n"&gt;drawio&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;desktop&lt;/span&gt; &lt;span class="n"&gt;inkscape&lt;/span&gt; &lt;span class="n"&gt;gimp&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;no&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;confirm&lt;/span&gt;
+&lt;span class="n"&gt;pamac&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;krita&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;no&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;confirm&lt;/span&gt;
 &lt;span class="n"&gt;flatpak&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt; &lt;span class="n"&gt;flathub&lt;/span&gt; &lt;span class="n"&gt;com&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;obsproject&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Studio&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
@@ -7920,8 +8125,8 @@ Ubuntu&lt;/label&gt;&lt;div class="sd-tab-content docutils"&gt;
 &lt;div class="highlight-default notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;apt&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt; &lt;span class="n"&gt;imagemagick&lt;/span&gt; &lt;span class="n"&gt;ffmpeg&lt;/span&gt;
 &lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;snap&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;drawio&lt;/span&gt;
 &lt;span class="n"&gt;flatpak&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt; &lt;span class="n"&gt;flathub&lt;/span&gt; &lt;span class="n"&gt;org&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;inkscape&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Inkscape&lt;/span&gt;
-&lt;span class="n"&gt;flatpak&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt; &lt;span class="n"&gt;sflathub&lt;/span&gt; &lt;span class="n"&gt;org&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;gimp&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;GIMP&lt;/span&gt;
 &lt;span class="n"&gt;flatpak&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt; &lt;span class="n"&gt;flathub&lt;/span&gt; &lt;span class="n"&gt;org&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;kde&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;krita&lt;/span&gt;
+&lt;span class="n"&gt;flatpak&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt; &lt;span class="n"&gt;sflathub&lt;/span&gt; &lt;span class="n"&gt;org&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;gimp&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;GIMP&lt;/span&gt;
 &lt;span class="n"&gt;flatpak&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt; &lt;span class="n"&gt;flathub&lt;/span&gt; &lt;span class="n"&gt;com&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;obsproject&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Studio&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
@@ -7950,7 +8155,7 @@ have good times with my collection of
 &lt;input checked="checked" id="sd-tab-item-20" name="sd-tab-set-10" type="radio"&gt;
 &lt;label class="sd-tab-label" data-sync-group="tab" data-sync-id="manjaro" for="sd-tab-item-20"&gt;
 Manjaro&lt;/label&gt;&lt;div class="sd-tab-content docutils"&gt;
-&lt;div class="highlight-default notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;pamac&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;steam&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;no&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;confirm&lt;/span&gt;
+&lt;div class="highlight-default notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;pamac&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;steam&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;no&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;confirm&lt;/span&gt;
 &lt;span class="n"&gt;pamac&lt;/span&gt; &lt;span class="n"&gt;build&lt;/span&gt; &lt;span class="n"&gt;spotify&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;no&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;confirm&lt;/span&gt;
 &lt;span class="n"&gt;flatpak&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt; &lt;span class="n"&gt;flathub&lt;/span&gt; &lt;span class="n"&gt;com&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;stremio&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Stremio&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
@@ -7980,9 +8185,7 @@ visualization tool, Gaia Sky.&lt;/p&gt;
 &lt;/section&gt;
 </content>
     <link href="https://www.cosmoscalibur.com/en/blog/2024/que-hacer-despues-de-instalar-manjaro/"/>
-    <summary>I recently decided to switch to Manjaro KDE (24.1) and I’m very happy with the
-change. So, taking this opportunity, I’ll share some things to do after
-completing the installation.</summary>
+    <summary>Kernel recommendations have been updated, the explicit use of sudo in package managers has been discouraged and removed, Krita was removed, and installation commands were adjusted.</summary>
     <category term="flatpak" label="flatpak"/>
     <category term="kde" label="kde"/>
     <category term="kubuntu" label="kubuntu"/>
@@ -9464,12 +9667,12 @@ and video later, so I’ll explain how to do this using FFMPEG and Bash.</summar
 &lt;section id="solar-wind-velocity-profile"&gt;
 &lt;h2&gt;Solar Wind Velocity Profile&lt;/h2&gt;
 &lt;p&gt;In Parker’s work under conditions of isothermal expansion (&lt;span class="math notranslate nohighlight"&gt;\(\gamma = 1\)&lt;/span&gt;) of a neutral fluid (first approximation to the behavior of the solar wind), it leads to a non-linear first-order differential equation that relates the solar wind speed (&lt;span class="math notranslate nohighlight"&gt;\(u(r)\)&lt;/span&gt;) and the heliocentric distance (&lt;span class="math notranslate nohighlight"&gt;\(r\)&lt;/span&gt;). (Parker, 1958), (Kivelson, 1995)&lt;/p&gt;
-&lt;div class="amsmath math notranslate nohighlight" id="equation-86ad242d-45ef-40ff-bc7e-69d84a4821da"&gt;
+&lt;div class="amsmath math notranslate nohighlight" id="equation-3587a62e-3fdf-409a-b71d-b722a2ba21e5"&gt;
 &lt;span class="eqno"&gt;(1)&lt;/span&gt;\[\begin{equation}
 \frac{du(r)}{dr} = \left(\frac{4kT}{mr} - \frac{GM}{r^2} \right)u(r)\left(u(r)^2 - \frac{2kT}{m} \right)^{-1}
 \end{equation}\]&lt;/div&gt;
 &lt;p&gt;In order to reduce the propagation of errors due to orders of magnitude of the variables involved, the differential equation is adimensionalized based on the radius and velocity at the critical point (sonic point) (Piso, 2008).&lt;/p&gt;
-&lt;div class="amsmath math notranslate nohighlight" id="equation-19141f59-3aba-4371-8682-05cbb372fd37"&gt;
+&lt;div class="amsmath math notranslate nohighlight" id="equation-8d7750d7-e253-4aff-abf8-d4365c2c624c"&gt;
 &lt;span class="eqno"&gt;(2)&lt;/span&gt;\[\begin{eqnarray}
 c_s^2 &amp;amp; = &amp;amp; \frac{2kT}{m}\\
 r_c &amp;amp;=&amp;amp; \frac{GM}{2c_s^2}\\
@@ -9477,7 +9680,7 @@ r_c &amp;amp;=&amp;amp; \frac{GM}{2c_s^2}\\
 \end{eqnarray}\]&lt;/div&gt;
 &lt;p&gt;Where &lt;span class="math notranslate nohighlight"&gt;\(v\)&lt;/span&gt; is the speed at sonic velocities (&lt;span class="math notranslate nohighlight"&gt;\(c_s\)&lt;/span&gt;) and &lt;span class="math notranslate nohighlight"&gt;\(R\)&lt;/span&gt; is the radius at sonic radii (&lt;span class="math notranslate nohighlight"&gt;\(r_c\)&lt;/span&gt;). We observe that around the sonic radius and speed, there is a critical point that must be satisfied to ensure the physical meaning of the solution. Also, we have to note that this equation represents a boundary value problem, and in this case, the boundary condition of the problem in adimensional units is &lt;span class="math notranslate nohighlight"&gt;\(v(R_{\text{sun}}) = v_0\)&lt;/span&gt;, where &lt;span class="math notranslate nohighlight"&gt;\(R_{\text{sun}}\)&lt;/span&gt; is the radius of the Sun, and it is the position from which the flow of particles begins to move with an initial speed &lt;span class="math notranslate nohighlight"&gt;\(v_0\)&lt;/span&gt; that depends on the density of particles and temperature.&lt;/p&gt;
 &lt;p&gt;The generation of the Parker spiral is due to the rotation of the Sun, so we apply the transformation of coordinates Lagrangian for rotating systems, leading to the differential equation:&lt;/p&gt;
-&lt;div class="amsmath math notranslate nohighlight" id="equation-084fb4ad-4ba5-4b2a-b100-4d386fe95ee1"&gt;
+&lt;div class="amsmath math notranslate nohighlight" id="equation-9c828040-a1d4-44d8-bec6-4e3b9c277444"&gt;
 &lt;span class="eqno"&gt;(3)&lt;/span&gt;\[\begin{equation}
 \frac{d\varphi}{dR} = \frac{-\omega}{v(R)}
 \end{equation}\]&lt;/div&gt;
@@ -9809,12 +10012,12 @@ Min radii (adim): 0.173030
 &lt;section id="perfil-de-velocidad-del-viento-solar"&gt;
 &lt;h2&gt;Perfil de velocidad del viento solar&lt;/h2&gt;
 &lt;p&gt;En el trabajo de Parker bajo condiciones de expansión isotérmica (&lt;span class="math notranslate nohighlight"&gt;\(\gamma = 1\)&lt;/span&gt;) de un fluido neutro (primera aproximación al comportamiento del viendo solar), lleva a una ecuación diferencial no lineal de primer orden que relaciona la velocidad del viento solar (&lt;span class="math notranslate nohighlight"&gt;\(u(r)\)&lt;/span&gt;) y la distancia heliocéntrica (&lt;span class="math notranslate nohighlight"&gt;\(r\)&lt;/span&gt;) ((Parker, 1958), (Kivelson, 1995)).&lt;/p&gt;
-&lt;div class="amsmath math notranslate nohighlight" id="equation-03147c23-517b-4a55-b804-7ef4dc59b876"&gt;
+&lt;div class="amsmath math notranslate nohighlight" id="equation-e3415c3a-2b9f-428f-bfea-eb4c54e4018f"&gt;
 &lt;span class="eqno"&gt;(1)&lt;/span&gt;\[\begin{equation}
 \frac{du(r)}{dr} = \left(\frac{4kT}{mr} - \frac{GM}{r^2} \right)u(r)\left(u(r)^2 - \frac{2kT}{m} \right)^{-1}
 \end{equation}\]&lt;/div&gt;
 &lt;p&gt;Con el fin de reducir la propagación de error por los ordenes de magnitud de las variables involucradas, se procede a adimensionalizar la ecuación diferencial, con base al radio y velocidad en el punto crítico (punto sónico) (Piso, 2008).&lt;/p&gt;
-&lt;div class="amsmath math notranslate nohighlight" id="equation-bd8afd1f-2281-472b-b58e-a119254320e1"&gt;
+&lt;div class="amsmath math notranslate nohighlight" id="equation-3abc95c1-3305-4977-9bd4-df2db2532308"&gt;
 &lt;span class="eqno"&gt;(2)&lt;/span&gt;\[\begin{eqnarray}
 c_s^2 &amp;amp; = &amp;amp; \frac{2kT}{m}\\
 r_c &amp;amp;=&amp;amp; \frac{GM}{2c_s^2}\\
@@ -9822,7 +10025,7 @@ r_c &amp;amp;=&amp;amp; \frac{GM}{2c_s^2}\\
 \end{eqnarray}\]&lt;/div&gt;
 &lt;p&gt;Donde &lt;span class="math notranslate nohighlight"&gt;\(v\)&lt;/span&gt; es la velocidad en velocidades sónicas (&lt;span class="math notranslate nohighlight"&gt;\(c_s\)&lt;/span&gt;) y &lt;span class="math notranslate nohighlight"&gt;\(R\)&lt;/span&gt; es el radio en radios sónicos (&lt;span class="math notranslate nohighlight"&gt;\(r_c\)&lt;/span&gt;). Observamos que alrededor del radio sónico y de la velocidad sónica se presenta un punto crítico que debe satisfacerse para asegurar el sentido físico de la solución. También, tenemos que esta ecuación representa un problema de valores de frontera, y en este caso la condición de frontera del problema en unidades adimensionales es &lt;span class="math notranslate nohighlight"&gt;\(v(R_{sol}) = v_0\)&lt;/span&gt;, donde &lt;span class="math notranslate nohighlight"&gt;\(R_{sol}\)&lt;/span&gt; es el radio del Sol, y es la posición desde la cuál comienza a desplazarse el flujo de partículas con una velocidad inicial &lt;span class="math notranslate nohighlight"&gt;\(v_0\)&lt;/span&gt; que dependerá de la densidad de partículas y la temperatura.&lt;/p&gt;
 &lt;p&gt;La generación de la espiral de Parker es efecto de la rotación del sol, por lo cual se aplica la transformación de coordenadas lagrangianas para sistemas rotantes, llevando a la ecuación diferencial&lt;/p&gt;
-&lt;div class="amsmath math notranslate nohighlight" id="equation-06bb9506-baa9-42b7-8dc5-b2ce3074d4e5"&gt;
+&lt;div class="amsmath math notranslate nohighlight" id="equation-0e3dbce1-a039-48f3-b985-6772773e6043"&gt;
 &lt;span class="eqno"&gt;(3)&lt;/span&gt;\[\begin{equation}
 \frac{d\varphi}{dR} = \frac{-\omega}{v(R)}
 \end{equation}\]&lt;/div&gt;

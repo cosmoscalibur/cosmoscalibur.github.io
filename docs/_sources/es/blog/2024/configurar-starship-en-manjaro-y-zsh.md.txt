@@ -6,6 +6,13 @@ category: tecnología, linux
 
 # Configurar *Starship* en Manjaro y Zsh
 
+```{admonition} Actualizado el 2026-03-23
+---
+class: hint
+---
+Se removió el uso de `sudo` en los comandos de instalación de pamac por recomendación de buenas prácticas.
+```
+
 Hace poco vengo cambiando múltiples herramientas en mi día a día, y en el manejo
 de la terminal Linux hay varios de esos cambios. Uno de esos es el *shell
 prompt* (que podría traducirse tal vez como "indicador de terminal"), y estoy
@@ -39,7 +46,7 @@ que aplica a cualquier distribución Linux (útil si usas una distro como Ubuntu
 ````{tab-item} Manjaro
 
 ```{code} bash
-sudo pamac install starship --no-confirm
+pamac install starship --no-confirm
 ```
 
 ````

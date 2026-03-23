@@ -7,6 +7,10 @@ language: en
 
 # What to do after installing Manjaro KDE 24?
 
+```{update} 2026-03-23
+Kernel recommendations have been updated, the explicit use of `sudo` in package managers has been discouraged and removed, Krita was removed, and installation commands were adjusted.
+```
+
 I recently decided to switch to Manjaro KDE (24.1) and I'm very happy with the
 change. So, taking this opportunity, I'll share some things to do after
 completing the installation.
@@ -116,9 +120,9 @@ how to:
 ```{code-block} bash
 :name: pamac-commands-en
 
-sudo pamac install PACKAGE --no-confirm # Official Repository
+pamac install PACKAGE --no-confirm # Official Repository
 pamac build PACKAGE_AUR --no-confirm # AUR
-sudo pamac remove PACKAGE --no-confirm
+pamac remove PACKAGE --no-confirm
 pamac search -a KEY
 pamac info PACKAGE
 ```
@@ -138,11 +142,7 @@ good idea to do so interactively as a check and then leave them for your
 routines without confirmation. I recommend not using this option at all and make
 your own decisions.
 
-When installing from the AUR, my recommendation is always to proceed without
-`sudo` unless we have context that doesn't require a GPG key. Otherwise, this
-will be stored at an administrative level, causing errors of "_broken pipe_",
-which happens because the key needs to be stored in a common user. For example,
-this happens with services like Dropbox and Spotify.
+As a general rule, it is not recommended to use `sudo` directly when invoking `pamac` (for both official repositories and the AUR). It is better to run the command without privilege escalation and wait for the manager itself to prompt for the password when necessary. When installing from the AUR, using `sudo` directly can cause a "_broken pipe_" error, which happens because the GPG key is attempted to be stored at an administrative level instead of the common user. For example, this happens with services like Dropbox and Spotify.
 
 ````
 ````{tab-item} Ubuntu
@@ -219,7 +219,7 @@ flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flat
 ## Installs a stable kernel
 
 Use the latest available kernel in Manjaro, but it's recommended to install a
-stable kernel (currently 6.6, but possibly 6.12 as well) at this time. This will
+stable kernel (currently the recommended 6.18 LTS branch) at this time. This will
 be necessary if you need to upgrade your kernel and one of them breaks the
 system, requiring you to use an older one. Keep in mind that, as it happens with
 Manjaro, unstable kernel versions are removed from the repositories, so they
@@ -228,7 +228,7 @@ can't be reinstalled, leaving another risk.
 You can install a stable kernel using the Manjaro configuration manager with the
 "Kernel" option.
 
-Remember to edit the {file}`/etc/default/grub` file to change the style and time
+Remember to edit the {file}`/etc/default/grub` file (you can use the built-in `nano` editor, saving with {kbd}`Ctrl+O` and exiting with {kbd}`Ctrl+X`) to change the style and time
 out lines. The most important thing is the `menu` option in the style variable.
 
 ```{code} text
@@ -291,8 +291,7 @@ documentation on
 :sync: manjaro
 
 ```{code} bash
-sudo pamac install libreoffice-fresh --no-confirm
-sudo pamac install --as-deps libreoffice-extension-texmaths --no-confirm
+pamac install libreoffice-fresh --no-confirm
 pamac build wps-office-bin ttf-wps-fonts libtiff5 --no-confirm
 ```
 
@@ -362,7 +361,7 @@ with Linux desktop client support.
 
 ```{code}
 pamac build dropbox --no-confirm
-pamac install --asdeps libappindicator-gtk3
+pamac install --as-deps libappindicator-gtk3
 ```
 
 ````
@@ -394,7 +393,7 @@ work-related purposes.
 :sync: manjaro
 
 ```{code}
-sudo pamac install telegram-desktop discord --no-confirm
+pamac install telegram-desktop discord --no-confirm
 pamac build slack-desktop --no-confirm
 ```
 
@@ -422,7 +421,7 @@ typically.
 :sync: manjaro
 
 ```{code}
-sudo pamac install flameshot --no-confirm
+pamac install flameshot --no-confirm
 ```
 
 ````
@@ -460,7 +459,8 @@ That's why here is our creative combo.
 :sync: manjaro
 
 ```{code}
-pamac install imagemagick ffmpeg drawio-desktop inkscape gimp krita --no-confirm
+pamac install imagemagick ffmpeg drawio-desktop inkscape gimp --no-confirm
+pamac install krita --no-confirm
 flatpak install -y flathub com.obsproject.Studio
 ```
 
@@ -472,8 +472,8 @@ flatpak install -y flathub com.obsproject.Studio
 sudo apt install -y imagemagick ffmpeg
 sudo snap install drawio
 flatpak install -y flathub org.inkscape.Inkscape
-flatpak install -y sflathub org.gimp.GIMP
 flatpak install -y flathub org.kde.krita
+flatpak install -y sflathub org.gimp.GIMP
 flatpak install -y flathub com.obsproject.Studio
 ```
 
@@ -505,7 +505,7 @@ have good times with my collection of
 :sync: manjaro
 
 ```{code}
-sudo pamac install steam --no-confirm
+pamac install steam --no-confirm
 pamac build spotify --no-confirm
 flatpak install -y flathub com.stremio.Stremio
 ```

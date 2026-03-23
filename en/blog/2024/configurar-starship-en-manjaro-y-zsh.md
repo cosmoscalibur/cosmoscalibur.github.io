@@ -7,6 +7,10 @@ language: en
 
 # Configuring *Starship* on Manjaro and Zsh
 
+```{update} 2026-03-23
+The use of `sudo` has been removed from pamac installation commands following best practices.
+```
+
 Recently, I've been switching multiple tools in my daily work, including changes
 in handling the Linux terminal. One of these changes is the *shell prompt* (the
 terminal indicator), and I'm using {program}`starship`. However, there are some
@@ -42,7 +46,7 @@ Ubuntu).
 :sync: m
 
 ```{code} bash
-sudo pamac install starship --no-confirm
+pamac install starship --no-confirm
 ```
 
 ````

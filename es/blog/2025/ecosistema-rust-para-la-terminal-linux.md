@@ -6,6 +6,13 @@ category: tecnología, linux
 
 # Ecosistema Rust para la terminal Linux
 
+```{admonition} Actualizado el 2026-03-23
+---
+class: hint
+---
+Se corrigió la instalación de utilidades con pamac, se añadieron detalles para la configuración de Alacritty y Zellij (modo "unlock first"), y se indicó cómo configurar Helix como editor predeterminado en la consola.
+```
+
 Además de mi interés personal por este lenguaje, también me interesa el
 ecosistema de herramientas que se han desarrollado en Rust para la terminal
 Linux y para el soporte de otros lenguajes de programación (como su impacto en
@@ -74,8 +81,8 @@ En Manjaro (y derivadas de Arch) disponemos de los paquetes necesarios en el
 repositorio oficial.
 
 ```{code} bash
-sudo pamac install zsh alacritty zellij zoxide helix --no-confirm
-sudo pamac --as-deps fzf --no-confirm  # Búsqueda interactiva de zoxide
+pamac install zsh alacritty zellij zoxide helix --no-confirm
+pamac install --as-deps fzf --no-confirm  # Búsqueda interactiva de zoxide
 ```
 ````
 ````{tab-item} Ubuntu
@@ -117,7 +124,8 @@ archivo de configuración (formato TOML) y de paso vincularemos el uso de
 *Zellij* en su arranque.
 
 ```{code} bash
-cat << 'EOF' > ~/.config/alacritty.toml
+mkdir -p $HOME/.config/alacritty
+cat << 'EOF' > $HOME/.config/alacritty/alacritty.toml
 [terminal.shell]
 args = ["-l", "-c", "zellij attach --index 0 || zellij"]
 program = "/bin/zsh"
@@ -125,11 +133,18 @@ EOF
 ```
 
 Respecto al uso de *Zellij* te recomiendo el modo *unlock first* para evitar
-colisión de atajos que tengamos en el sistema (es una mala experiencia).
+colisión de atajos que tengamos en el sistema (es una mala experiencia). Para configurarlo, dentro de una sesión de Zellij, presiona {kbd}`Ctrl+o` seguido de {kbd}`C` para abrir la configuración, luego usa {kbd}`Tab`, flecha hacia abajo hasta la opción 2, y finalmente {kbd}`Alt+a` para guardar los cambios.
 
 Recuerda también configurar
 [starship](/es/blog/2024/configurar-starship-en-manjaro-y-zsh.md) para que
 tengas el combo completo.
+
+Finalmente, para que *Helix* sea tu editor por defecto en la consola, debes configurar la variable de entorno `EDITOR`. Puedes anexarlo a la configuración de tu *shell*:
+
+```{code} bash
+echo 'export EDITOR=helix' >> ~/.zshrc
+source ~/.zshrc
+```
 
 ### Asociar Alacritty como terminal por defecto en KDE.
 
@@ -179,7 +194,7 @@ Ahora, procedamos a instalar.
 En Manjaro (y derivados de Arch), disponemos nuevamente todo disponible en el repositorio oficial.
 
 ```{code} bash
-sudo pamac install bat bottom dust eza procs --no-confirm
+pamac install bat bottom dust eza procs --no-confirm
 ```
 
 ````

@@ -399,6 +399,13 @@ crossorigin="anonymous"></script>
   </h2>
   <ul>
     <div class="ablog-sidebar-item ablog__postcard2">
+  
+  <li id="published">
+    <span>
+       Actualizado: 
+    </span>
+    2026-03-23
+  </li>
    
   <li id="ablog-sidebar-item author ablog__author">
     <span>
@@ -458,6 +465,12 @@ crossorigin="anonymous"></script>
   <ul>
      
     <li>
+      <a href="../../2025/ecosistema-rust-para-la-terminal-linux/">
+        2026-03-23 - Rust Ecosystem for the Linux terminal
+      </a>
+    </li>
+    
+    <li>
       <a href="../../../../es/blog/2026/marco-de-preparacion-para-agentes-de-codigo/">
         2026-03-07 - Marco de preparación para agentes de código
       </a>
@@ -481,12 +494,6 @@ crossorigin="anonymous"></script>
       </a>
     </li>
     
-    <li>
-      <a href="../../2026/ingenieria-de-prompt-habilidad-o-estafa/">
-        2026-02-23 - Prompt Engineering: Technical Skill or Scam?
-      </a>
-    </li>
-    
   </ul>
 </div>
 </div>
@@ -498,7 +505,7 @@ crossorigin="anonymous"></script>
   <ul>
      
     <li>
-      <a href="../../../../blog/2026/">2026 (12)</a>
+      <a href="../../../../blog/2026/">2026 (13)</a>
     </li>
       
     <li>
@@ -607,6 +614,10 @@ crossorigin="anonymous"></script>
                 <article class="bd-article">
                    <section class="tex2jax_ignore mathjax_ignore" id="connecting-to-a-cloud-sql-instance-on-manjaro">
 <h1>Connecting to a Cloud SQL instance on Manjaro<a class="headerlink" href="#connecting-to-a-cloud-sql-instance-on-manjaro" title="Link to this heading">#</a></h1>
+<div class="note update admonition">
+<p class="admonition-title">Updated on 2026-03-23</p>
+<p>Dependencies for Google Cloud SDK have been updated (now divided into three packages), commands adjusted to not require interactive confirmation or <code class="docutils literal notranslate"><span class="pre">sudo</span></code>, and SQL client recommendations updated.</p>
+</div>
 <p>Since I’m currently in a full system installation process following
 <a class="reference internal" href="../que-hacer-despues-de-instalar-manjaro/"><span class="std std-doc">the transition from (X/K)Ubuntu to Manjaro</span></a>,
 I’ll explain how to connect to a Cloud SQL instance on Manjaro.</p>
@@ -624,8 +635,12 @@ operating system, and if you have any doubts, you can refer to the
 Manjaro</label><div class="sd-tab-content docutils">
 <p>This package is available in the AUR (Arch User Repository), so it can be used
 on Arch.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pamac<span class="w"> </span>build<span class="w"> </span>google-cloud-cli<span class="w"> </span>--no-confirm
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pamac<span class="w"> </span>build<span class="w"> </span>google-cloud-cli<span class="w"> </span>google-cloud-cli-bq<span class="w"> </span>google-cloud-cli-gsutil<span class="w"> </span>--no-confirm
 </pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Since 2025/06/30, the base package was split, so it is now necessary to install the <code class="docutils literal notranslate"><span class="pre">bq</span></code> and <code class="docutils literal notranslate"><span class="pre">gsutil</span></code> components separately.</p>
 </div>
 <div class="admonition hint">
 <p class="admonition-title">Consejo</p>
@@ -675,7 +690,7 @@ SQL Proxy</em>. For more detail, you can refer to the
 <input checked="checked" id="sd-tab-item-2" name="sd-tab-set-1" type="radio">
 <label class="sd-tab-label" data-sync-group="tab" data-sync-id="manjaro" for="sd-tab-item-2">
 Manjaro</label><div class="sd-tab-content docutils">
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pamac<span class="w"> </span>build<span class="w"> </span>cloud-sql-proxy
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pamac<span class="w"> </span>build<span class="w"> </span>cloud-sql-proxy<span class="w"> </span>--no-confirm
 </pre></div>
 </div>
 </div>
@@ -716,27 +731,23 @@ application credentials, which is described previously in
 <h2>Connecting to database<a class="headerlink" href="#connecting-to-database" title="Link to this heading">#</a></h2>
 <p>In my work, we use MySQL, and although I initially used <em>MySQL Workbench</em>, it
 wasn’t very comfortable and my colleagues were using
-<a class="reference external" href="https://dbeaver.io/"><strong class="program">dbeaver</strong></a>. This caught my attention and was the
-one I was using until I discovered <a class="reference external" href="https://dbgate.org/"><strong class="program">dbgate</strong></a>.</p>
-<p>These two are available as <em>flatpak</em> so that they can be installed comfortably
-on any Linux distribution, but the particular case of <code class="docutils literal notranslate"><span class="pre">{program}</span></code>dbeaver` does
+<a class="reference external" href="https://dbeaver.io/"><strong class="program">dbeaver</strong></a>.</p>
+<p>This is available as a <em>flatpak</em> so that it can be installed comfortably
+on any Linux distribution, but its interface does
 not look well on Wayland when installed in this way, making it more preferred to
 install from the official repository.</p>
 <div class="sd-tab-set docutils">
 <input checked="checked" id="sd-tab-item-4" name="sd-tab-set-2" type="radio">
 <label class="sd-tab-label" data-sync-group="tab" data-sync-id="manjaro" for="sd-tab-item-4">
 Manjaro</label><div class="sd-tab-content docutils">
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>pamac<span class="w"> </span>install<span class="w"> </span>dbeaver<span class="w"> </span>--no-confirm
-sudo<span class="w"> </span>pamac<span class="w"> </span>install<span class="w"> </span>dbeaver-plugin-office<span class="w"> </span>dbeaver-plugin-svg-format<span class="w"> </span>--as-deps<span class="w"> </span>--no-confirm
-pamac<span class="w"> </span>build<span class="w"> </span>dbgate-bin
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pamac<span class="w"> </span>install<span class="w"> </span>dbeaver<span class="w"> </span>--no-confirm
 </pre></div>
 </div>
 </div>
 <input id="sd-tab-item-5" name="sd-tab-set-2" type="radio">
 <label class="sd-tab-label" data-sync-group="tab" data-sync-id="ubuntu" for="sd-tab-item-5">
 Flatpak</label><div class="sd-tab-content docutils">
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>flatpak<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>flathub<span class="w"> </span>org.dbgate.DbGate<span class="w">  </span><span class="c1"># Verificado</span>
-flatpak<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>flathub<span class="w"> </span>io.dbeaver.DBeaverCommunity<span class="w">  </span><span class="c1"># No verificado</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>flatpak<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>flathub<span class="w"> </span>io.dbeaver.DBeaverCommunity<span class="w">  </span><span class="c1"># Not verified</span>
 </pre></div>
 </div>
 </div>

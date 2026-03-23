@@ -6,6 +6,13 @@ category: tecnología, linux
 
 # ¿Qué hacer después de instalar Manjaro KDE?
 
+```{admonition} Actualizado el 2026-03-23
+---
+class: hint
+---
+Se han actualizado las recomendaciones de kernel, se ha desaconsejado el uso directo de `sudo` en instalaciones (esperando el _prompt_ interactivo) y se hicieron ajustes en algunos comandos.
+```
+
 Hace poco decidí pasarme a Manjaro KDE (24.1) y estoy muy contento del cambio.
 Así que con motivo a esto, les cuento sobre las cosas por hacer después de
 completar la instalación.
@@ -113,9 +120,9 @@ instalar desde el repositorio oficial, desde el AUR y remover paquetes.
 ```{code-block} bash
 :name: pamac-commands
 
-sudo pamac install PACKAGE --no-confirm # Repositorio oficial
+pamac install PACKAGE --no-confirm # Repositorio oficial
 pamac build PACKAGE_AUR --no-confirm # AUR
-sudo pamac remove PACKAGE --no-confirm
+pamac remove PACKAGE --no-confirm
 pamac search -a KEY
 pamac info PACKAGE
 ```
@@ -135,11 +142,7 @@ recomendable hacerlo en modo interactivo como chequeo y ya luego dejarlos para
 tus rutinas sin la confirmación. Igual, te recomiendo no usarlo y que tomes
 tus propias definiciones.
 
-En caso de usar la instalación desde el AUR, mi recomendación es siempre
-proceder sin `sudo` salvo que tengamos contexto que no se requiere clave GPG.
-De otra forma, esta se intenta almacenar a nivel del administrador provocando
-el error de "_tubería rota_", y es porque la clave debe almacenarse en un
-usuario común. Ejemplo, esto sucede con Dropbox y Spotify.
+Como regla general, se desaconseja el uso directo de `sudo` al invocar `pamac` (tanto para los repositorios oficiales como para el AUR). Es mejor invocar el comando sin escalamiento de privilegios y esperar a que el propio gestor solicite la contraseña cuando sea necesario. En el caso del AUR, usar `sudo` directamente incluso puede provocar el error de "_tubería rota_" al intentar almacenar la clave GPG a nivel de administrador en lugar del usuario común (ejemplo: sucede con Dropbox y Spotify).
 
 ````
 ````{tab-item} Ubuntu
@@ -216,8 +219,7 @@ flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flat
 ## Instala un núcleo estable
 
 Aprovecha el último núcleo (*kernel*) disponible en Manjaro, pero es bueno que
-instales un *kernel* estable (a la fecha, sería de la rama 6.6, pero
-posiblemente 6.12 se perfile como estable también). Esto será necesario en caso
+instales un *kernel* estable (a la fecha, sería de la rama 6.18 LTS recomendada). Esto será necesario en caso
 de tener una actualización de *kernel* que rompa el sistema, y sea necesario
 usar uno anterior. Ten presente que parte de como sucede esto en Manjaro, es que
 las versiones no estables son retiradas de los repositorios, entonces no hay
@@ -226,7 +228,7 @@ forma de volverlas a instalar y de ahí otro riesgo.
 Puedes instalar el núcleo estable usando el "Gestor de configuración de Manjaro"
 con la opción de "Núcleo".
 
-Recuerda editar el archivo `/etc/default/grub` para cambiar el valor de las
+Recuerda editar el archivo `/etc/default/grub` (puedes usar el editor `nano` que viene preinstalado, recordando guardar el archivo editado con {kbd}`Ctrl+O` y salir con {kbd}`Ctrl+X`) para cambiar el valor de las
 líneas de estilo y tiempo de espera. Lo más importante es la opción de *menu* en
 la variable de estilo.
 
@@ -289,8 +291,8 @@ par de problemas que me afectaron y fue útil la documentación Arch sobre
 :sync: manjaro
 
 ```{code} bash
-sudo pamac install libreoffice-fresh --no-confirm
-sudo pamac install --as-deps libreoffice-extension-texmaths libreoffice-fresh-es --no-confirm
+pamac install libreoffice-fresh --no-confirm
+pamac install --as-deps libreoffice-fresh-es --no-confirm
 pamac build wps-office-bin ttf-wps-fonts libtiff5 --no-confirm
 ```
 
@@ -312,7 +314,7 @@ LibreOffice para usar Hunspell con este diccionario.
 :sync: manjaro
 
 ```{code} bash
-sudo pamac install hunspell hunspell-es_co --no-confirm
+pamac install hunspell hunspell-es_co --no-confirm
 ```
 ````
 ````{tab-item} Ubuntu
@@ -400,7 +402,7 @@ alternativa gratuita alojada y con soporte para Linux del cliente de escritorio.
 
 ```{code}
 pamac build dropbox --no-confirm
-pamac install --asdeps libappindicator-gtk3
+pamac install --as-deps libappindicator-gtk3
 ```
 ````
 ````{tab-item} Ubuntu
@@ -429,7 +431,7 @@ personales, y Discord y Slack por motivos laborales.
 :sync: manjaro
 
 ```{code}
-sudo pamac install telegram-desktop discord --no-confirm
+pamac install telegram-desktop discord --no-confirm
 pamac build slack-desktop --no-confirm
 ```
 ````
@@ -455,7 +457,7 @@ rápido. Para esta labor prefiero típicamente _Flameshot_.
 :sync: manjaro
 
 ```{code}
-sudo pamac install flameshot --no-confirm
+pamac install flameshot --no-confirm
 ```
 ````
 ````{tab-item} Ubuntu
@@ -492,7 +494,8 @@ Así que por eso aquí queda nuestro combo creativo.
 :sync: manjaro
 
 ```{code}
-pamac install imagemagick ffmpeg drawio-desktop inkscape gimp krita --no-confirm
+pamac install imagemagick ffmpeg drawio-desktop inkscape gimp --no-confirm
+pamac install krita --no-confirm
 flatpak install -y flathub com.obsproject.Studio
 ```
 ````
@@ -503,8 +506,8 @@ flatpak install -y flathub com.obsproject.Studio
 sudo apt install -y imagemagick ffmpeg
 sudo snap install drawio
 flatpak install -y flathub org.inkscape.Inkscape
-flatpak install -y sflathub org.gimp.GIMP
 flatpak install -y flathub org.kde.krita
+flatpak install -y sflathub org.gimp.GIMP
 flatpak install -y flathub com.obsproject.Studio
 ```
 ````
@@ -535,7 +538,7 @@ en el blog ([](/es/blog/2021/configurar-retroarch-en-steam.rst) y
 ````{tab-item} Manjaro
 :sync: manjaro
 ```{code}
-sudo pamac install steam --no-confirm
+pamac install steam --no-confirm
 pamac build spotify --no-confirm
 flatpak install -y flathub com.stremio.Stremio
 ```

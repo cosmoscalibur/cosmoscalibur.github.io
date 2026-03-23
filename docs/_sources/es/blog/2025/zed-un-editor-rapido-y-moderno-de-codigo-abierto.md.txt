@@ -6,6 +6,13 @@ category: tecnologia, programación
 
 # Zed: un editor rápido y moderno de código abierto
 
+```{admonition} Actualizado el 2026-03-23
+---
+class: hint
+---
+Se agrega ejecución de script oficial de instalación.
+```
+
 {program}`zed` es un editor de código y texto de código abierto, diseñado para
 ser rápido y fácil de usar. Está construido en Rust y utiliza una interfaz de
 usuario moderna e intuitiva. De momento es soportado de forma oficial en Linux y
@@ -19,7 +26,7 @@ Si bien lo puedes instalar desde los repositorios de algunos gestores de
 paquetes, como sucede en mi caso que uso Manjaro, que puedo obtenerlo a través
 del AUR, mi método recomendado es usar el script de instalación oficial.
 
-```{bash}
+```{code} bash
 curl -f https://zed.dev/install.sh | sh
 ```
 

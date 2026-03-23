@@ -6,6 +6,13 @@ category: tecnología, linux
 
 # Conecta con una instancia de Cloud SQL en Manjaro
 
+```{admonition} Actualizado el 2026-03-23
+---
+class: hint
+---
+Se han actualizado las dependencias del Google Cloud SDK (ahora dividido en tres paquetes), se ajustaron comandos para no requerir confirmación interactiva ni uso de `sudo`, y se actualizaron las recomendaciones de clientes SQL.
+```
+
 Aprovechando que estoy en reinstalación por la
 [transición de (X/K)ubuntu a Manjaro](/es/blog/2024/que-hacer-despues-de-instalar-manjaro.md),
 les contaré sobre como conectar a una instancia de Cloud SQL en Manjaro.
@@ -27,7 +34,11 @@ remitirte a la
 Este paquete está disponible en el AUR, por lo cual se puede usar en Arch.
 
 ```{code} bash
-pamac build google-cloud-cli --no-confirm
+pamac build google-cloud-cli google-cloud-cli-bq google-cloud-cli-gsutil --no-confirm
+```
+
+```{note}
+Desde el 2025/06/30, el paquete base se dividió, por lo que ahora es necesario instalar también los componentes `bq` y `gsutil` por separado.
 ```
 
 ```{hint}
@@ -85,7 +96,7 @@ requerir funciones de consulta y no de administración general, debemos tener
 :sync: manjaro
 
 ```{code} bash
-pamac build cloud-sql-proxy
+pamac build cloud-sql-proxy --no-confirm
 ```
 
 ````
@@ -130,11 +141,8 @@ credenciales por defecto de aplicación que se describe
 
 En mi trabajo usamos MySQL, y aunque comencé usando *MySQL Workbench*, este no
 era muy cómodo y mis compañeros usaban
-[{program}`dbeaver`](https://dbeaver.io/). Este me pareció interesante y fue el
-que estuve usando hasta que conocí [{program}`dbgate`](https://dbgate.org/).
-Estos dos se encuentran disponibles como *flatpak* para que los instales
-cómodamente en cualquier distro Linux, pero el caso particular de
-{program}`dbeaver` no se visualiza bien en Wayland cuando se instala de esta
+[{program}`dbeaver`](https://dbeaver.io/). Este se encuentra disponible como *flatpak* para que lo instales
+cómodamente en cualquier distro Linux, pero su interfaz no se visualiza bien en Wayland cuando se instala de esta
 forma, por lo que es preferible la instalación del repo oficial.
 
 `````{tab-set}
@@ -142,9 +150,7 @@ forma, por lo que es preferible la instalación del repo oficial.
 :sync: manjaro
 
 ```{code} bash
-sudo pamac install dbeaver --no-confirm
-sudo pamac install dbeaver-plugin-office dbeaver-plugin-svg-format --as-deps --no-confirm
-pamac build dbgate-bin
+pamac install dbeaver --no-confirm
 ```
 
 ````
@@ -152,8 +158,7 @@ pamac build dbgate-bin
 :sync: ubuntu
 
 ```{code} bash
-flatpak install -y flathub org.dbgate.DbGate  # Verificado
-flatpak install -y flathub io.dbeaver.DBeaverCommunity  # No verificado
+flatpak install -y flathub io.dbeaver.DBeaverCommunity
 ```
 
 ````
