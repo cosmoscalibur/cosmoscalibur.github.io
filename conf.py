@@ -68,6 +68,7 @@ extensions = [
     "lang_switcher",
     "sphinx_copybutton",
     "sphinxext.rediraffe",
+    "perf_optimizer",
 ]
 
 sitemap_url_scheme = "{link}"

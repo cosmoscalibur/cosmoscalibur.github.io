@@ -48,18 +48,18 @@
     <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx-design.min.css?v=95c83b7e" />
   
-  <!-- So that users can add custom icons -->
-  <script src="../../../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- FontAwesome deferred: 1,456 KB no longer render-blocking -->
+  <script defer src="../../../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="../../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
 <link rel="preload" as="script" href="../../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script src="../../../../_static/documentation_options.js?v=a20647df"></script>
-    <script src="../../../../_static/doctools.js?v=9bcbadda"></script>
-    <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
-    <script src="../../../../_static/clipboard.min.js?v=a7894cd8"></script>
-    <script src="../../../../_static/copybutton.js?v=f281be69"></script>
-    <script src="../../../../_static/translations.js?v=f85f4cfb"></script>
+    <script defer src="../../../../_static/documentation_options.js?v=a20647df"></script>
+    <script defer src="../../../../_static/doctools.js?v=9bcbadda"></script>
+    <script defer src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script defer src="../../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script defer src="../../../../_static/copybutton.js?v=f281be69"></script>
+    <script defer src="../../../../_static/translations.js?v=f85f4cfb"></script>
     <script src="../../../../_static/design-tabs.js?v=f930bc37"></script>
     <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-4YFQBC69LB"></script>
     <script>
@@ -76,8 +76,11 @@
     <link rel="index" title="Índice" href="../../../../genindex/" />
     <link rel="search" title="Búsqueda" href="../../../../search/" /> 
 
-<!-- TODO: Revisar como hacer que dependa del despliegue en GitHub Pages para no usar en local -->
-<!-- TODO: Usar GitHub Actions para esto -->
+<!-- Preconnect: reduce latency for external resources (production only) -->
+<link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
+<link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
+<link rel="dns-prefetch" href="https://googleads.g.doubleclick.net">
+<link rel="dns-prefetch" href="https://fundingchoicesmessages.google.com">
 
 <!-- Usado para mostrar publicidad -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-0356238418278924"
@@ -161,8 +164,8 @@ crossorigin="anonymous"></script>
       
     
     
-    <img src="../../../../_static/cosmoscalibur_logo.png" class="logo__image only-light" alt="Cosmoscalibur - Home"/>
-    <img src="../../../../_static/cosmoscalibur_logo.png" class="logo__image only-dark pst-js-only" alt="Cosmoscalibur - Home"/>
+    <img src="../../../../_static/cosmoscalibur_logo.png" class="logo__image only-light" alt="Cosmoscalibur - Home" width="321" height="133"/>
+    <img src="../../../../_static/cosmoscalibur_logo.png" class="logo__image only-dark pst-js-only" alt="Cosmoscalibur - Home" width="321" height="133"/>
   
   
 </a></div>
@@ -619,21 +622,21 @@ crossorigin="anonymous"></script>
 <section id="solar-wind-velocity-profile">
 <h2>Solar Wind Velocity Profile<a class="headerlink" href="#solar-wind-velocity-profile" title="Link to this heading">#</a></h2>
 <p>In Parker’s work under conditions of isothermal expansion (<span class="math notranslate nohighlight">\(\gamma = 1\)</span>) of a neutral fluid (first approximation to the behavior of the solar wind), it leads to a non-linear first-order differential equation that relates the solar wind speed (<span class="math notranslate nohighlight">\(u(r)\)</span>) and the heliocentric distance (<span class="math notranslate nohighlight">\(r\)</span>). (Parker, 1958), (Kivelson, 1995)</p>
-<div class="amsmath math notranslate nohighlight" id="equation-3587a62e-3fdf-409a-b71d-b722a2ba21e5">
-<span class="eqno">(1)<a class="headerlink" href="#equation-3587a62e-3fdf-409a-b71d-b722a2ba21e5" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-a0b3c09b-f48e-4c30-9aa1-527055a80202">
+<span class="eqno">(1)<a class="headerlink" href="#equation-a0b3c09b-f48e-4c30-9aa1-527055a80202" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \frac{du(r)}{dr} = \left(\frac{4kT}{mr} - \frac{GM}{r^2} \right)u(r)\left(u(r)^2 - \frac{2kT}{m} \right)^{-1}
 \end{equation}\]</div>
 <p>In order to reduce the propagation of errors due to orders of magnitude of the variables involved, the differential equation is adimensionalized based on the radius and velocity at the critical point (sonic point) (Piso, 2008).</p>
-<div class="amsmath math notranslate nohighlight" id="equation-8d7750d7-e253-4aff-abf8-d4365c2c624c">
-<span class="eqno">(2)<a class="headerlink" href="#equation-8d7750d7-e253-4aff-abf8-d4365c2c624c" title="Permalink to this equation">#</a></span>\[\begin{eqnarray}
+<div class="amsmath math notranslate nohighlight" id="equation-324b9ac0-f887-45f4-be29-13e9ac8cf3c0">
+<span class="eqno">(2)<a class="headerlink" href="#equation-324b9ac0-f887-45f4-be29-13e9ac8cf3c0" title="Permalink to this equation">#</a></span>\[\begin{eqnarray}
 c_s^2 &amp; = &amp; \frac{2kT}{m}\\
 r_c &amp;=&amp; \frac{GM}{2c_s^2}\\
 \frac{dv}{dR} &amp;=&amp; \frac{2\left(\frac{1}{R} - \frac{1}{R^2}\right)}{v - \frac{1}{v}}
 \end{eqnarray}\]</div>
 <p>Where <span class="math notranslate nohighlight">\(v\)</span> is the speed at sonic velocities (<span class="math notranslate nohighlight">\(c_s\)</span>) and <span class="math notranslate nohighlight">\(R\)</span> is the radius at sonic radii (<span class="math notranslate nohighlight">\(r_c\)</span>). We observe that around the sonic radius and speed, there is a critical point that must be satisfied to ensure the physical meaning of the solution. Also, we have to note that this equation represents a boundary value problem, and in this case, the boundary condition of the problem in adimensional units is <span class="math notranslate nohighlight">\(v(R_{\text{sun}}) = v_0\)</span>, where <span class="math notranslate nohighlight">\(R_{\text{sun}}\)</span> is the radius of the Sun, and it is the position from which the flow of particles begins to move with an initial speed <span class="math notranslate nohighlight">\(v_0\)</span> that depends on the density of particles and temperature.</p>
 <p>The generation of the Parker spiral is due to the rotation of the Sun, so we apply the transformation of coordinates Lagrangian for rotating systems, leading to the differential equation:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-9c828040-a1d4-44d8-bec6-4e3b9c277444">
-<span class="eqno">(3)<a class="headerlink" href="#equation-9c828040-a1d4-44d8-bec6-4e3b9c277444" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-69b34844-db6b-49bf-bad2-dc65323393ae">
+<span class="eqno">(3)<a class="headerlink" href="#equation-69b34844-db6b-49bf-bad2-dc65323393ae" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \frac{d\varphi}{dR} = \frac{-\omega}{v(R)}
 \end{equation}\]</div>
 </section>
@@ -697,7 +700,7 @@ r_c &amp;=&amp; \frac{GM}{2c_s^2}\\
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../../_images/7b9413985128149f41ddd216b02bef10ecf8316c8bb4662b055fa665bb4b8e9f.png" src="../../../../_images/7b9413985128149f41ddd216b02bef10ecf8316c8bb4662b055fa665bb4b8e9f.png" />
+<img alt="../../../../_images/7b9413985128149f41ddd216b02bef10ecf8316c8bb4662b055fa665bb4b8e9f.png" src="../../../../_images/7b9413985128149f41ddd216b02bef10ecf8316c8bb4662b055fa665bb4b8e9f.png"  width="178" height="40"/>
 </div>
 </div>
 <p>SymPy supports the method of separation of variables. If we need a specific form or want to hint to the algorithm, we can add an option that recommends the method. In this case, it would be <code class="docutils literal notranslate"><span class="pre">hint='separable'</span></code>. However, since our case is not separable, we don’t use this option.</p>
@@ -712,7 +715,7 @@ r_c &amp;=&amp; \frac{GM}{2c_s^2}\\
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../../_images/990ab122df74c8ee751bf08b954b2553c037fe9156fd0dd2fa8158ce48db6971.png" src="../../../../_images/990ab122df74c8ee751bf08b954b2553c037fe9156fd0dd2fa8158ce48db6971.png" />
+<img loading="lazy" decoding="async" alt="../../../../_images/990ab122df74c8ee751bf08b954b2553c037fe9156fd0dd2fa8158ce48db6971.png" src="../../../../_images/990ab122df74c8ee751bf08b954b2553c037fe9156fd0dd2fa8158ce48db6971.png"  width="393" height="23"/>
 </div>
 </div>
 <p>For curious readers, we can also allow the solution to be simplified and obtain an explicit form that depends on the <a class="reference external" href="https://en.wikipedia.org/wiki/Lambert_W_function">Lambert W function</a>. This is not the usual form in which the solution will be referenced, but thanks to computer algebra systems, we can dispense with this since the 1990s. To do so, we can remove the option of no simplification, and also if we remove the method recommendation, we will also obtain the Lambert W function.</p>
@@ -723,7 +726,7 @@ r_c &amp;=&amp; \frac{GM}{2c_s^2}\\
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../../_images/7510acf64e16b1b7abc02ebccccc2d998045521a0a0ee09ad3136f2bcb6c1c38.png" src="../../../../_images/7510acf64e16b1b7abc02ebccccc2d998045521a0a0ee09ad3136f2bcb6c1c38.png" />
+<img loading="lazy" decoding="async" alt="../../../../_images/7510acf64e16b1b7abc02ebccccc2d998045521a0a0ee09ad3136f2bcb6c1c38.png" src="../../../../_images/7510acf64e16b1b7abc02ebccccc2d998045521a0a0ee09ad3136f2bcb6c1c38.png"  width="208" height="36"/>
 </div>
 </div>
 <p>To determine which values of the constant of integration to use, we need to consider that the solution must satisfy passing through the critical point. Therefore, by assigning a value to the critical point, we can solve for the constant. To make this substitution, we use the method <code class="docutils literal notranslate"><span class="pre">.subs</span></code>, which takes a dictionary where keys are original symbols and values are new values or symbols.</p>
@@ -734,7 +737,7 @@ r_c &amp;=&amp; \frac{GM}{2c_s^2}\\
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../../_images/d6e230b31fa9bc585c6ff8f041ad2f7bb5fb7239af1f747bef7a012de18a4352.png" src="../../../../_images/d6e230b31fa9bc585c6ff8f041ad2f7bb5fb7239af1f747bef7a012de18a4352.png" />
+<img loading="lazy" decoding="async" alt="../../../../_images/d6e230b31fa9bc585c6ff8f041ad2f7bb5fb7239af1f747bef7a012de18a4352.png" src="../../../../_images/d6e230b31fa9bc585c6ff8f041ad2f7bb5fb7239af1f747bef7a012de18a4352.png"  width="65" height="20"/>
 </div>
 </div>
 <p>To plot the solution, we need to replace the velocity function with a symbol and proceed with changes of the constant of integration to generate the family of solutions. Since we already know that for passing through the critical point, the constant must be <span class="math notranslate nohighlight">\(-3/2\)</span>, we will use this value, but also need an upper bound (e.g., <span class="math notranslate nohighlight">\(1\)</span>) and a lower bound (e.g., <span class="math notranslate nohighlight">\(2\)</span>). To graph the implicit function, we will use SymPy’s <code class="docutils literal notranslate"><span class="pre">plot_implicit</span></code> method, which creates a grid of points in the plane of interest to evaluate if the equality holds. We will use <code class="docutils literal notranslate"><span class="pre">show=False</span></code> so that each curve is not shown separately, allowing us to add all three scenarios in one plot.</p>
@@ -770,7 +773,7 @@ r_c &amp;=&amp; \frac{GM}{2c_s^2}\\
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../../_images/3aaa4cfb78cc09f2bbff785c4687ef2375ba5eac08a6b2afe3dce30c2fee8d0d.png" src="../../../../_images/3aaa4cfb78cc09f2bbff785c4687ef2375ba5eac08a6b2afe3dce30c2fee8d0d.png" />
+<img loading="lazy" decoding="async" alt="../../../../_images/3aaa4cfb78cc09f2bbff785c4687ef2375ba5eac08a6b2afe3dce30c2fee8d0d.png" src="../../../../_images/3aaa4cfb78cc09f2bbff785c4687ef2375ba5eac08a6b2afe3dce30c2fee8d0d.png"  width="630" height="470"/>
 </div>
 </div>
 <p>The blue curves are referred to as Solutions I and II. They are solutions of double evaluation and therefore are not physically acceptable solutions. The rightmost blue curve (II) also does not start on the surface of the Sun, while the leftmost blue curve (I) makes no physical sense since it would escape from the Sun with a subsonic velocity and return with a supersonic velocity.</p>
@@ -885,7 +888,7 @@ Min radii (adim): 0.173030
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../../_images/14454f012faa7e78f19ac9e9bb94d5bc5f66e32277d8f8d852702c75577edb37.png" src="../../../../_images/14454f012faa7e78f19ac9e9bb94d5bc5f66e32277d8f8d852702c75577edb37.png" />
+<img loading="lazy" decoding="async" alt="../../../../_images/14454f012faa7e78f19ac9e9bb94d5bc5f66e32277d8f8d852702c75577edb37.png" src="../../../../_images/14454f012faa7e78f19ac9e9bb94d5bc5f66e32277d8f8d852702c75577edb37.png"  width="564" height="413"/>
 </div>
 </div>
 <p>Starting from this velocity profile, we construct the angular velocity component to ultimately generate the well-known Parker spiral, and we can do this using the Euler method.</p>
@@ -920,7 +923,7 @@ Min radii (adim): 0.173030
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x72ead913d3a0&gt;]
 </pre></div>
 </div>
-<img alt="../../../../_images/8bc3b442242eea04e7ed1768c27647f8af20c6cb2ceef1c8f8bebcf3178b4e68.png" src="../../../../_images/8bc3b442242eea04e7ed1768c27647f8af20c6cb2ceef1c8f8bebcf3178b4e68.png" />
+<img loading="lazy" decoding="async" alt="../../../../_images/8bc3b442242eea04e7ed1768c27647f8af20c6cb2ceef1c8f8bebcf3178b4e68.png" src="../../../../_images/8bc3b442242eea04e7ed1768c27647f8af20c6cb2ceef1c8f8bebcf3178b4e68.png"  width="453" height="442"/>
 </div>
 </div>
 </section>

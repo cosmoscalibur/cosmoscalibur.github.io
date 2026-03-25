@@ -48,18 +48,18 @@
     <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx-design.min.css?v=95c83b7e" />
   
-  <!-- So that users can add custom icons -->
-  <script src="../../../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- FontAwesome deferred: 1,456 KB no longer render-blocking -->
+  <script defer src="../../../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="../../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
 <link rel="preload" as="script" href="../../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script src="../../../../_static/documentation_options.js?v=a20647df"></script>
-    <script src="../../../../_static/doctools.js?v=9bcbadda"></script>
-    <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
-    <script src="../../../../_static/clipboard.min.js?v=a7894cd8"></script>
-    <script src="../../../../_static/copybutton.js?v=f281be69"></script>
-    <script src="../../../../_static/translations.js?v=f85f4cfb"></script>
+    <script defer src="../../../../_static/documentation_options.js?v=a20647df"></script>
+    <script defer src="../../../../_static/doctools.js?v=9bcbadda"></script>
+    <script defer src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script defer src="../../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script defer src="../../../../_static/copybutton.js?v=f281be69"></script>
+    <script defer src="../../../../_static/translations.js?v=f85f4cfb"></script>
     <script src="../../../../_static/design-tabs.js?v=f930bc37"></script>
     <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-4YFQBC69LB"></script>
     <script>
@@ -76,8 +76,11 @@
     <link rel="index" title="Índice" href="../../../../genindex/" />
     <link rel="search" title="Búsqueda" href="../../../../search/" /> 
 
-<!-- TODO: Revisar como hacer que dependa del despliegue en GitHub Pages para no usar en local -->
-<!-- TODO: Usar GitHub Actions para esto -->
+<!-- Preconnect: reduce latency for external resources (production only) -->
+<link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
+<link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
+<link rel="dns-prefetch" href="https://googleads.g.doubleclick.net">
+<link rel="dns-prefetch" href="https://fundingchoicesmessages.google.com">
 
 <!-- Usado para mostrar publicidad -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-0356238418278924"
@@ -161,8 +164,8 @@ crossorigin="anonymous"></script>
       
     
     
-    <img src="../../../../_static/cosmoscalibur_logo.png" class="logo__image only-light" alt="Cosmoscalibur - Home"/>
-    <img src="../../../../_static/cosmoscalibur_logo.png" class="logo__image only-dark pst-js-only" alt="Cosmoscalibur - Home"/>
+    <img src="../../../../_static/cosmoscalibur_logo.png" class="logo__image only-light" alt="Cosmoscalibur - Home" width="321" height="133"/>
+    <img src="../../../../_static/cosmoscalibur_logo.png" class="logo__image only-dark pst-js-only" alt="Cosmoscalibur - Home" width="321" height="133"/>
   
   
 </a></div>
@@ -619,21 +622,21 @@ crossorigin="anonymous"></script>
 <section id="perfil-de-velocidad-del-viento-solar">
 <h2>Perfil de velocidad del viento solar<a class="headerlink" href="#perfil-de-velocidad-del-viento-solar" title="Link to this heading">#</a></h2>
 <p>En el trabajo de Parker bajo condiciones de expansión isotérmica (<span class="math notranslate nohighlight">\(\gamma = 1\)</span>) de un fluido neutro (primera aproximación al comportamiento del viendo solar), lleva a una ecuación diferencial no lineal de primer orden que relaciona la velocidad del viento solar (<span class="math notranslate nohighlight">\(u(r)\)</span>) y la distancia heliocéntrica (<span class="math notranslate nohighlight">\(r\)</span>) ((Parker, 1958), (Kivelson, 1995)).</p>
-<div class="amsmath math notranslate nohighlight" id="equation-e3415c3a-2b9f-428f-bfea-eb4c54e4018f">
-<span class="eqno">(1)<a class="headerlink" href="#equation-e3415c3a-2b9f-428f-bfea-eb4c54e4018f" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-baa3a6f8-8cde-4527-99f3-6d9039519073">
+<span class="eqno">(1)<a class="headerlink" href="#equation-baa3a6f8-8cde-4527-99f3-6d9039519073" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \frac{du(r)}{dr} = \left(\frac{4kT}{mr} - \frac{GM}{r^2} \right)u(r)\left(u(r)^2 - \frac{2kT}{m} \right)^{-1}
 \end{equation}\]</div>
 <p>Con el fin de reducir la propagación de error por los ordenes de magnitud de las variables involucradas, se procede a adimensionalizar la ecuación diferencial, con base al radio y velocidad en el punto crítico (punto sónico) (Piso, 2008).</p>
-<div class="amsmath math notranslate nohighlight" id="equation-3abc95c1-3305-4977-9bd4-df2db2532308">
-<span class="eqno">(2)<a class="headerlink" href="#equation-3abc95c1-3305-4977-9bd4-df2db2532308" title="Permalink to this equation">#</a></span>\[\begin{eqnarray}
+<div class="amsmath math notranslate nohighlight" id="equation-110bc81f-939a-44d8-b996-925304f3310c">
+<span class="eqno">(2)<a class="headerlink" href="#equation-110bc81f-939a-44d8-b996-925304f3310c" title="Permalink to this equation">#</a></span>\[\begin{eqnarray}
 c_s^2 &amp; = &amp; \frac{2kT}{m}\\
 r_c &amp;=&amp; \frac{GM}{2c_s^2}\\
 \frac{dv}{dR} &amp;=&amp; \frac{2\left(\frac{1}{R} - \frac{1}{R^2}\right)}{v - \frac{1}{v}}
 \end{eqnarray}\]</div>
 <p>Donde <span class="math notranslate nohighlight">\(v\)</span> es la velocidad en velocidades sónicas (<span class="math notranslate nohighlight">\(c_s\)</span>) y <span class="math notranslate nohighlight">\(R\)</span> es el radio en radios sónicos (<span class="math notranslate nohighlight">\(r_c\)</span>). Observamos que alrededor del radio sónico y de la velocidad sónica se presenta un punto crítico que debe satisfacerse para asegurar el sentido físico de la solución. También, tenemos que esta ecuación representa un problema de valores de frontera, y en este caso la condición de frontera del problema en unidades adimensionales es <span class="math notranslate nohighlight">\(v(R_{sol}) = v_0\)</span>, donde <span class="math notranslate nohighlight">\(R_{sol}\)</span> es el radio del Sol, y es la posición desde la cuál comienza a desplazarse el flujo de partículas con una velocidad inicial <span class="math notranslate nohighlight">\(v_0\)</span> que dependerá de la densidad de partículas y la temperatura.</p>
 <p>La generación de la espiral de Parker es efecto de la rotación del sol, por lo cual se aplica la transformación de coordenadas lagrangianas para sistemas rotantes, llevando a la ecuación diferencial</p>
-<div class="amsmath math notranslate nohighlight" id="equation-0e3dbce1-a039-48f3-b985-6772773e6043">
-<span class="eqno">(3)<a class="headerlink" href="#equation-0e3dbce1-a039-48f3-b985-6772773e6043" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-1b37890b-d127-49e8-b180-2b76406682db">
+<span class="eqno">(3)<a class="headerlink" href="#equation-1b37890b-d127-49e8-b180-2b76406682db" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \frac{d\varphi}{dR} = \frac{-\omega}{v(R)}
 \end{equation}\]</div>
 </section>
@@ -693,7 +696,7 @@ r_c &amp;=&amp; \frac{GM}{2c_s^2}\\
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../../_images/35d8800234d647e92c4572be54dc483d7669779b70486e941397734ae850ad68.png" src="../../../../_images/35d8800234d647e92c4572be54dc483d7669779b70486e941397734ae850ad68.png" />
+<img alt="../../../../_images/35d8800234d647e92c4572be54dc483d7669779b70486e941397734ae850ad68.png" src="../../../../_images/35d8800234d647e92c4572be54dc483d7669779b70486e941397734ae850ad68.png"  width="178" height="40"/>
 </div>
 </div>
 <p>SymPy en los métodos soportados, dispone de la opción de separación de variables. Si necesitamos una forma particular o porque queremos dar un indicio al algoritmo, podemos añadir la opción que recomienda el método, en este caso sería <code class="docutils literal notranslate"><span class="pre">hint='separable'</span></code>. Para nuestro caso, es importante indicar el método para que luego la opción de no simplificación nos muestre la ecuación típica que se describe en el artículo de Parker. La función para la solución de ecuaciones diferenciales ordinarias, es <code class="docutils literal notranslate"><span class="pre">dsolve</span></code>.</p>
@@ -707,7 +710,7 @@ r_c &amp;=&amp; \frac{GM}{2c_s^2}\\
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../../_images/ae79e707f4b24ca96ac4d682230b5e7c6d1b85169c581dd69beb9d4ecddf7550.png" src="../../../../_images/ae79e707f4b24ca96ac4d682230b5e7c6d1b85169c581dd69beb9d4ecddf7550.png" />
+<img loading="lazy" decoding="async" alt="../../../../_images/ae79e707f4b24ca96ac4d682230b5e7c6d1b85169c581dd69beb9d4ecddf7550.png" src="../../../../_images/ae79e707f4b24ca96ac4d682230b5e7c6d1b85169c581dd69beb9d4ecddf7550.png"  width="393" height="23"/>
 </div>
 </div>
 <p>Solo para los curiosos, también podemos permitir que la solución sea simplificada y obtener la forma explícita, la cual depende de la <a class="reference external" href="https://es.wikipedia.org/wiki/Funci%C3%B3n_W_de_Lambert">función Lambert W</a>. Esta no es la forma usual en la cual encontraremos referenciada la solución, pero gracias a los sistemas de álgebra computacional podemos disponer de esta desde la década de los 90. Para ello podemos quitar la opción de no simplificar, pero también si removemos la recomendación de método, también la vamos a obtener.</p>
@@ -718,7 +721,7 @@ r_c &amp;=&amp; \frac{GM}{2c_s^2}\\
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../../_images/4bc3534ad638445c31caec6a96914d27e258f9c18d7dd4553dc75f3722ea00e2.png" src="../../../../_images/4bc3534ad638445c31caec6a96914d27e258f9c18d7dd4553dc75f3722ea00e2.png" />
+<img loading="lazy" decoding="async" alt="../../../../_images/4bc3534ad638445c31caec6a96914d27e258f9c18d7dd4553dc75f3722ea00e2.png" src="../../../../_images/4bc3534ad638445c31caec6a96914d27e258f9c18d7dd4553dc75f3722ea00e2.png"  width="208" height="36"/>
 </div>
 </div>
 <p>Ahora, para saber que valores de la constante de integración usar, debemos tener presente que la solución debe satisfacer pasar por el punto crítico, y por ende si asignamos el punto crítico, podemos despejar la constante. Para hacer la substitución usamos el método <code class="docutils literal notranslate"><span class="pre">.subs</span></code> que recibe un diccionario donde las llaves son los símbolos originales y los valores son los nuevos valores o símbolos.</p>
@@ -729,7 +732,7 @@ r_c &amp;=&amp; \frac{GM}{2c_s^2}\\
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../../_images/0a5bc57b878717f1f050ead9c6dea1a4dd3fe9fde84e6d242668d9500c50b6f8.png" src="../../../../_images/0a5bc57b878717f1f050ead9c6dea1a4dd3fe9fde84e6d242668d9500c50b6f8.png" />
+<img loading="lazy" decoding="async" alt="../../../../_images/0a5bc57b878717f1f050ead9c6dea1a4dd3fe9fde84e6d242668d9500c50b6f8.png" src="../../../../_images/0a5bc57b878717f1f050ead9c6dea1a4dd3fe9fde84e6d242668d9500c50b6f8.png"  width="65" height="20"/>
 </div>
 </div>
 <p>Para poder graficar, debemos reemplazar la función de velocidad de la función implícita por un símbolo, y proceder con los cambios de la constante de integración para generar la familia de soluciones. Como ya sabemos que para pasar por el punto crítico la constante debe ser <span class="math notranslate nohighlight">\(-3/2\)</span>, vamos a usar este valor, pero también necesitamos un valor superior (ejemplo, <span class="math notranslate nohighlight">\(1\)</span>), y un valor inferior (ejemplo, <span class="math notranslate nohighlight">\(2\)</span>). Para graficar al ser una función implícita, usaremos <code class="docutils literal notranslate"><span class="pre">plot_implicit</span></code> de SymPy que hace un mallado de puntos en el plano de interes para evaluar por celda el cumplimiento de la igualdad. Usaremos <code class="docutils literal notranslate"><span class="pre">show=False</span></code> para que no se muestre cada curva por separado y poder añadir los 3 escenarios en un mismo gráfico.</p>
@@ -766,7 +769,7 @@ r_c &amp;=&amp; \frac{GM}{2c_s^2}\\
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../../_images/569252611a8cadeaedcf4f0920a9f1d85ad476a7f5fd27b637d133eb5fda94f1.png" src="../../../../_images/569252611a8cadeaedcf4f0920a9f1d85ad476a7f5fd27b637d133eb5fda94f1.png" />
+<img loading="lazy" decoding="async" alt="../../../../_images/569252611a8cadeaedcf4f0920a9f1d85ad476a7f5fd27b637d133eb5fda94f1.png" src="../../../../_images/569252611a8cadeaedcf4f0920a9f1d85ad476a7f5fd27b637d133eb5fda94f1.png"  width="630" height="470"/>
 </div>
 </div>
 <p>Las curvas azules son referenciadas como las soluciones I y II. Son soluciones de doble evaluación y por ende no son soluciones aceptables físicamente. La curva azul de la derecha (II) además no comienza en la superficie del sol. La curva azul izquierda (I) no hace sentido además porque escaparía del Sol con velocidad subsónica y se devolvería con velocidad supersónica. Las curvas verdes (III - superior, IV - inferior) son soluciones que no pasan por el punto crítico y por ende no son aceptables físicamente. Adicional la curva III inicia con velocidad supersónica en las proximidades del Sol y eso no se ha observado, y la curva IV lleva a una presión constante en el ambiente interestelar, por lo cual no tiene sentido físico. Por el contrario, la curva roja ascendente (V), lleva a un aumento a velocidad supersónica después del punto crítico, lo cual es observado, pero además, lleva a una presión cero en el ambiente interestelar. Esta es conocida como la solución del viento solar.</p>
@@ -879,7 +882,7 @@ Radio mínimo (adim): 0.173030
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../../_images/6d6802b42127a79f3d66fa328ecb8675c9d01b9382efd98c07a8dbc2499050cc.png" src="../../../../_images/6d6802b42127a79f3d66fa328ecb8675c9d01b9382efd98c07a8dbc2499050cc.png" />
+<img loading="lazy" decoding="async" alt="../../../../_images/6d6802b42127a79f3d66fa328ecb8675c9d01b9382efd98c07a8dbc2499050cc.png" src="../../../../_images/6d6802b42127a79f3d66fa328ecb8675c9d01b9382efd98c07a8dbc2499050cc.png"  width="567" height="413"/>
 </div>
 </div>
 <p>Partiendo de este perfil de velocidad se contruye la componente angular de la velocidad para generar finalmente la conocida espiral de Parker, y lo podemos hacer con el método de Euler.</p>
@@ -914,7 +917,7 @@ Radio mínimo (adim): 0.173030
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fcc671db7f0&gt;]
 </pre></div>
 </div>
-<img alt="../../../../_images/91059092474e430aa770152cbdb9b3ed44d9a7e9d77897505edf9d73219b23e1.png" src="../../../../_images/91059092474e430aa770152cbdb9b3ed44d9a7e9d77897505edf9d73219b23e1.png" />
+<img loading="lazy" decoding="async" alt="../../../../_images/91059092474e430aa770152cbdb9b3ed44d9a7e9d77897505edf9d73219b23e1.png" src="../../../../_images/91059092474e430aa770152cbdb9b3ed44d9a7e9d77897505edf9d73219b23e1.png"  width="453" height="442"/>
 </div>
 </div>
 </section>
