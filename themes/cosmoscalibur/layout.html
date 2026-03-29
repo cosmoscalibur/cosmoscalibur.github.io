@@ -1,0 +1,81 @@
+{# Cosmoscalibur theme — layout extending Sphinx basic/layout.html #}
+{% extends "basic/layout.html" %}
+
+{# ──── CSS ──── #}
+{% block css %}
+  {{ super() }}
+  <link rel="stylesheet" href="{{ pathto('_static/css/main.css', 1) }}" />
+  <link rel="stylesheet" href="{{ pathto('_static/css/content.css', 1) }}" />
+  <link rel="stylesheet" href="{{ pathto('_static/css/components.css', 1) }}" />
+  <link rel="stylesheet" media="print" href="{{ pathto('_static/css/print.css', 1) }}" />
+{% endblock %}
+
+{# ──── JS ──── #}
+{% block scripts %}
+  {{ super() }}
+  <script defer src="{{ pathto('_static/js/main.js', 1) }}"></script>
+{% endblock %}
+
+{# ──── Extrahead: analytics + ads + hreflang ──── #}
+{% block extrahead %}
+  {% include "components/analytics.html" %}
+
+  {% set adsense_id = theme_google_adsense_id | default("") %}
+  {% if adsense_id %}
+  {# Preconnect: reduce latency for external resources (production only) #}
+  <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
+  <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
+  <link rel="dns-prefetch" href="https://googleads.g.doubleclick.net">
+  <link rel="dns-prefetch" href="https://fundingchoicesmessages.google.com">
+
+  {# Google AdSense #}
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client={{ adsense_id }}"
+  crossorigin="anonymous"></script>
+  {% endif %}
+
+  {# Hreflang alternate links for multilingual SEO #}
+  {% if lang_alt_abs_url is defined and lang_alt_abs_url %}
+  <link rel="alternate" hreflang="{{ lang_alt_code }}" href="{{ lang_alt_abs_url }}" />
+  <link rel="alternate" hreflang="{{ lang_current_code }}" href="{{ lang_current_abs_url }}" />
+  {% endif %}
+{% endblock %}
+
+{# ──── Suppress basic theme relbar/sidebar ──── #}
+{% block relbar1 %}{% endblock %}
+{% block relbar2 %}{% endblock %}
+{% block sidebar2 %}{% endblock %}
+
+{# ──── Body ──── #}
+{% block header %}
+  <a class="skip-link" href="#main-content">{{ _('Skip to content') }}</a>
+  {% include "components/navbar.html" %}
+{% endblock %}
+
+{% block content %}
+<div class="site-container">
+  <aside class="sidebar" id="sidebar" role="complementary" aria-label="{{ _('Blog sidebar') }}">
+    {% block sidebar1 %}
+      {% if sidebars %}
+        {% for sidebar in sidebars %}
+          {% include sidebar %}
+        {% endfor %}
+      {% endif %}
+    {% endblock %}
+  </aside>
+
+  <main class="content" id="main-content" role="main" aria-label="{{ _('Main content') }}">
+    {% block document %}
+      {{ super() }}
+    {% endblock %}
+  </main>
+
+  {% include "components/toc-sidebar.html" %}
+</div>
+{% endblock %}
+
+{% block footer %}
+  {% include "components/footer.html" %}
+  {% include "components/back-to-top.html" %}
+  {# SVG sprite — hidden, loaded once, referenced by all icons #}
+  {% include "components/svg-sprite.html" %}
+{% endblock %}

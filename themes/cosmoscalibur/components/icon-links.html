@@ -1,0 +1,46 @@
+{# Social icon links — auto-generated from *_url theme options.
+   Falls back to icon_links list for backward compatibility. #}
+
+{# Build links from simple URL options #}
+{% set social = namespace(links=[]) %}
+{% if theme_github_url %}
+  {% set social.links = social.links + [{"name": "GitHub", "url": theme_github_url, "icon": "github"}] %}
+{% endif %}
+{% if theme_mastodon_url %}
+  {% set social.links = social.links + [{"name": "Mastodon", "url": theme_mastodon_url, "icon": "mastodon", "rel": "me"}] %}
+{% endif %}
+{% if theme_x_url %}
+  {% set social.links = social.links + [{"name": "X", "url": theme_x_url, "icon": "twitter"}] %}
+{% endif %}
+{% if theme_facebook_url %}
+  {% set social.links = social.links + [{"name": "Facebook", "url": theme_facebook_url, "icon": "facebook"}] %}
+{% endif %}
+{% if theme_youtube_url %}
+  {% set social.links = social.links + [{"name": "YouTube", "url": theme_youtube_url, "icon": "youtube"}] %}
+{% endif %}
+{% if theme_linkedin_url %}
+  {% set social.links = social.links + [{"name": "LinkedIn", "url": theme_linkedin_url, "icon": "linkedin"}] %}
+{% endif %}
+
+{# Use auto-generated links if any URL options are set, otherwise fall back to icon_links #}
+{% set links = social.links if social.links else (icon_links | default([])) %}
+{% if links %}
+<ul class="icon-links" role="list" aria-label="{{ _('Social links') }}">
+  {% for link in links %}
+    <li>
+      <a
+        class="icon-link"
+        href="{{ link.url }}"
+        title="{{ link.name }}"
+        target="_blank"
+        rel="{% if link.rel is defined and link.rel %}{{ link.rel }}{% else %}noopener{% endif %}"
+      >
+        <svg class="icon" width="20" height="20" aria-hidden="true">
+          <use href="#icon-{{ link.icon }}"></use>
+        </svg>
+        <span class="visually-hidden">{{ link.name }}</span>
+      </a>
+    </li>
+  {% endfor %}
+</ul>
+{% endif %}
