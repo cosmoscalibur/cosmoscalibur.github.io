@@ -36,27 +36,6 @@
       );
     }
 
-    /* ── Sidebar: highlight current page link ── */
-    var sidebar = document.getElementById("sidebar");
-    if (sidebar) {
-      var currentPath = window.location.pathname.replace(/\/+$/, "");
-      var segments = currentPath.split("/").filter(Boolean);
-      var currentSlug = segments[segments.length - 1] || "";
-      var links = sidebar.querySelectorAll("a[href]");
-      for (var i = 0; i < links.length; i++) {
-        var linkPath = links[i].pathname.replace(/\/+$/, "");
-        var linkSegments = linkPath.split("/").filter(Boolean);
-        var linkSlug = linkSegments[linkSegments.length - 1] || "";
-        if (
-          linkPath === currentPath ||
-          (currentSlug && linkSlug === currentSlug && linkPath.indexOf("/blog/") !== -1)
-        ) {
-          links[i].classList.add("is-current");
-          var li = links[i].closest("li");
-          if (li) li.classList.add("is-current");
-        }
-      }
-    }
     /* ── TOC scroll-spy: highlight current section ──
        Uses scroll listener with requestAnimationFrame.
        Anchor clicks lock the active state via hashchange. */

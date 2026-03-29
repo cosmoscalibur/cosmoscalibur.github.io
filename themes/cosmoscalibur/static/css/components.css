@@ -295,6 +295,8 @@
 .content {
   max-width: var(--content-max-width);
   width: 100%;
+  min-width: 0;
+  overflow-wrap: break-word;
 }
 
 /* ── Footer ── */
@@ -376,8 +378,8 @@
   }
 }
 
-/* Mobile: single column */
-@media (max-width: 768px) {
+/* Mobile/tablet (≤992px): single column, hide sidebar */
+@media (max-width: 992px) {
   .site-container {
     grid-template-columns: 1fr;
     padding: 1rem 0.75rem;
