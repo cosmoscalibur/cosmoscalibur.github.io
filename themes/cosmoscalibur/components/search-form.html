@@ -1,0 +1,18 @@
+{# Search form — WCAG compliant with label #}
+<form class="search-form" action="{{ pathto('search') }}" method="get" role="search" aria-label="{{ _('Search') }}">
+  <label for="search-input" class="visually-hidden">{{ _('Search') }}</label>
+  <input
+    id="search-input"
+    class="search-form__input"
+    type="search"
+    name="q"
+    placeholder="{{ _('Search…') }}"
+    autocomplete="off"
+    aria-label="{{ _('Search the docs') }}"
+  />
+  <button class="search-form__btn" type="submit" aria-label="{{ _('Submit search') }}">
+    <svg class="icon" width="16" height="16" aria-hidden="true">
+      <use href="#icon-search"></use>
+    </svg>
+  </button>
+</form>

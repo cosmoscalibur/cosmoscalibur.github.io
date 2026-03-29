@@ -1,0 +1,28 @@
+/**
+* Cosmoscalibur Theme — main.js
+* Vanilla JS (~3 KB). Mobile nav, back-to-top, TOC scroll-spy, search init.
+* Dark-only theme. No dependencies.
+*/
+(function(){document.addEventListener(`DOMContentLoaded`,function(){
+/* ── Mobile nav toggle ── */
+var navToggle=document.querySelector(`.navbar__toggle`),navMenu=document.getElementById(`navbar-nav`);navToggle&&navMenu&&navToggle.addEventListener(`click`,function(){var expanded=navToggle.getAttribute(`aria-expanded`)===`true`;navToggle.setAttribute(`aria-expanded`,String(!expanded)),navMenu.classList.toggle(`is-open`)});
+/* ── Back to top ── */
+var backBtn=document.querySelector(`[data-back-to-top]`);if(backBtn){var SCROLL_THRESHOLD=300;window.addEventListener(`scroll`,function(){window.scrollY>SCROLL_THRESHOLD?backBtn.removeAttribute(`hidden`):backBtn.setAttribute(`hidden`,``)},{passive:!0})}
+/* ── Sidebar: highlight current page link ── */
+var sidebar=document.getElementById(`sidebar`);if(sidebar)for(var currentPath=window.location.pathname.replace(/\/+$/,``),segments=currentPath.split(`/`).filter(Boolean),currentSlug=segments[segments.length-1]||``,links=sidebar.querySelectorAll(`a[href]`),i=0;i<links.length;i++){var linkPath=links[i].pathname.replace(/\/+$/,``),linkSegments=linkPath.split(`/`).filter(Boolean),linkSlug=linkSegments[linkSegments.length-1]||``;if(linkPath===currentPath||currentSlug&&linkSlug===currentSlug&&linkPath.indexOf(`/blog/`)!==-1){links[i].classList.add(`is-current`);var li=links[i].closest(`li`);li&&li.classList.add(`is-current`)}}
+/* ── TOC scroll-spy: highlight current section ──
+Uses scroll listener with requestAnimationFrame.
+Anchor clicks lock the active state via hashchange. */
+var tocSidebar=document.getElementById(`toc-sidebar`);if(tocSidebar){var tocLinks=tocSidebar.querySelectorAll(`a[href^="#"]`);if(tocLinks.length>0){for(var headingEntries=[],tocMap={},j=0;j<tocLinks.length;j++){var hash=tocLinks[j].getAttribute(`href`),id=hash===`#`?``:hash.slice(1),target=id?document.getElementById(id):null;(hash===`#`||target)&&(headingEntries.push({id:id||`__top__`,el:target}),tocMap[id||`__top__`]=tocLinks[j])}var activeId=``,anchorLock=!1,rootFontSize=parseFloat(getComputedStyle(document.documentElement).fontSize),offset=(parseFloat(getComputedStyle(document.documentElement).getPropertyValue(`--navbar-height`))||3.5)*rootFontSize+24;function setActive(id){if(id!==activeId){var prev=tocSidebar.querySelector(`a.is-active`);if(prev){prev.classList.remove(`is-active`);var prevLi=prev.closest(`li`);prevLi&&prevLi.classList.remove(`is-active`)}if(activeId=id,tocMap[id]){tocMap[id].classList.add(`is-active`);var newLi=tocMap[id].closest(`li`);newLi&&newLi.classList.add(`is-active`)}}}var ticking=!1;function updateActiveSection(){if(anchorLock){ticking=!1;return}for(var current=`__top__`,k=0;k<headingEntries.length;k++){var entry=headingEntries[k];if(entry.el)if(entry.el.getBoundingClientRect().top<=offset)current=entry.id;else break}setActive(current),ticking=!1}window.addEventListener(`scroll`,function(){ticking||=(requestAnimationFrame(updateActiveSection),!0)},{passive:!0});
+/* Detect actual user scroll (wheel / touch / keyboard) to
+release anchor lock. Programmatic scroll from anchor
+navigation does NOT trigger these events. */
+function releaseAnchorLock(){anchorLock&&(anchorLock=!1,updateActiveSection())}window.addEventListener(`wheel`,releaseAnchorLock,{passive:!0,once:!1}),window.addEventListener(`touchmove`,releaseAnchorLock,{passive:!0,once:!1}),window.addEventListener(`keydown`,function(e){[32,33,34,35,36,38,40].indexOf(e.keyCode)!==-1&&releaseAnchorLock()});
+/* Anchor click → lock highlight to clicked section */
+function onHashChange(){var h=window.location.hash,targetId=h&&h!==`#`?h.slice(1):`__top__`;tocMap[targetId]&&(anchorLock=!0,setActive(targetId))}window.addEventListener(`hashchange`,onHashChange);
+/* Also handle clicks directly (for links with href="#") */
+for(var m=0;m<tocLinks.length;m++)tocLinks[m].addEventListener(`click`,(function(link){return function(){var clickHash=link.getAttribute(`href`),clickId=clickHash===`#`?`__top__`:clickHash.slice(1);anchorLock=!0,setActive(clickId)}})(tocLinks[m]));
+/* On page load: respect existing hash, else scroll-spy */
+window.location.hash&&window.location.hash!==`#`?onHashChange():updateActiveSection()}}
+/* ── Sphinx search initialization (no jQuery) ── */
+typeof Search<`u`&&document.getElementById(`search-results`)&&Search.init()})})();

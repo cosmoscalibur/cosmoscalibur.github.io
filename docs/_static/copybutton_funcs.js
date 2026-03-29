@@ -1,73 +1,17 @@
-function escapeRegExp(string) {
-    return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); // $& means the whole matched string
-}
-
+function escapeRegExp(string){return string.replace(/[.*+?^${}()|[\]\\]/g,`\\$&`)}
 /**
- * Removes excluded text from a Node.
- *
- * @param {Node} target Node to filter.
- * @param {string} exclude CSS selector of nodes to exclude.
- * @returns {DOMString} Text from `target` with text removed.
- */
-export function filterText(target, exclude) {
-    const clone = target.cloneNode(true);  // clone as to not modify the live DOM
-    if (exclude) {
-        // remove excluded nodes
-        clone.querySelectorAll(exclude).forEach(node => node.remove());
-    }
-    return clone.innerText;
-}
-
+* Removes excluded text from a Node.
+*
+* @param {Node} target Node to filter.
+* @param {string} exclude CSS selector of nodes to exclude.
+* @returns {DOMString} Text from `target` with text removed.
+*/
+export function filterText(target,exclude){let clone=target.cloneNode(!0);return exclude&&clone.querySelectorAll(exclude).forEach(node=>node.remove()),clone.innerText}
 // Callback when a copy button is clicked. Will be passed the node that was clicked
 // should then grab the text and replace pieces of text that shouldn't be used in output
-export function formatCopyText(textContent, copybuttonPromptText, isRegexp = false, onlyCopyPromptLines = true, removePrompts = true, copyEmptyLines = true, lineContinuationChar = "", hereDocDelim = "") {
-    var regexp;
-    var match;
-
-    // Do we check for line continuation characters and "HERE-documents"?
-    var useLineCont = !!lineContinuationChar
-    var useHereDoc = !!hereDocDelim
-
-    // create regexp to capture prompt and remaining line
-    if (isRegexp) {
-        regexp = new RegExp('^(' + copybuttonPromptText + ')(.*)')
-    } else {
-        regexp = new RegExp('^(' + escapeRegExp(copybuttonPromptText) + ')(.*)')
-    }
-
-    const outputLines = [];
-    var promptFound = false;
-    var gotLineCont = false;
-    var gotHereDoc = false;
-    const lineGotPrompt = [];
-    for (const line of textContent.split('\n')) {
-        match = line.match(regexp)
-        if (match || gotLineCont || gotHereDoc) {
-            promptFound = regexp.test(line)
-            lineGotPrompt.push(promptFound)
-            if (removePrompts && promptFound) {
-                outputLines.push(match[2])
-            } else {
-                outputLines.push(line)
-            }
-            gotLineCont = line.endsWith(lineContinuationChar) & useLineCont
-            if (line.includes(hereDocDelim) & useHereDoc)
-                gotHereDoc = !gotHereDoc
-        } else if (!onlyCopyPromptLines) {
-            outputLines.push(line)
-        } else if (copyEmptyLines && line.trim() === '') {
-            outputLines.push(line)
-        }
-    }
-
-    // If no lines with the prompt were found then just use original lines
-    if (lineGotPrompt.some(v => v === true)) {
-        textContent = outputLines.join('\n');
-    }
-
-    // Remove a trailing newline to avoid auto-running when pasting
-    if (textContent.endsWith("\n")) {
-        textContent = textContent.slice(0, -1)
-    }
-    return textContent
-}
+export function formatCopyText(textContent,copybuttonPromptText,isRegexp=!1,onlyCopyPromptLines=!0,removePrompts=!0,copyEmptyLines=!0,lineContinuationChar=``,hereDocDelim=``){var regexp,match,useLineCont=!!lineContinuationChar,useHereDoc=!!hereDocDelim;
+// create regexp to capture prompt and remaining line
+regexp=isRegexp?/* @__PURE__ */ RegExp(`^(`+copybuttonPromptText+`)(.*)`):/* @__PURE__ */ RegExp(`^(`+escapeRegExp(copybuttonPromptText)+`)(.*)`);let outputLines=[];var promptFound=!1,gotLineCont=!1,gotHereDoc=!1;let lineGotPrompt=[];for(let line of textContent.split(`
+`))match=line.match(regexp),match||gotLineCont||gotHereDoc?(promptFound=regexp.test(line),lineGotPrompt.push(promptFound),removePrompts&&promptFound?outputLines.push(match[2]):outputLines.push(line),gotLineCont=line.endsWith(lineContinuationChar)&useLineCont,line.includes(hereDocDelim)&useHereDoc&&(gotHereDoc=!gotHereDoc)):onlyCopyPromptLines?copyEmptyLines&&line.trim()===``&&outputLines.push(line):outputLines.push(line);return lineGotPrompt.some(v=>v===!0)&&(textContent=outputLines.join(`
+`)),textContent.endsWith(`
+`)&&(textContent=textContent.slice(0,-1)),textContent}

@@ -1,0 +1,13 @@
+{# Table of contents sidebar (right side) #}
+{% if toc %}
+<aside class="toc-sidebar" id="toc-sidebar" role="complementary" aria-label="{{ _('Table of contents') }}">
+  <nav aria-label="{{ _('Page contents') }}">
+    {% if page_lang == 'es' %}
+      <p class="toc-sidebar__title">En esta página</p>
+    {% else %}
+      <p class="toc-sidebar__title">On this page</p>
+    {% endif %}
+    {{ toc }}
+  </nav>
+</aside>
+{% endif %}

@@ -1,8 +1,9 @@
 import os
-from pathlib import Path
 import sys
+from datetime import UTC, datetime
+from pathlib import Path
 
-sys.path.append(str(Path("_ext").resolve()))
+sys.path.insert(0, str(Path("themes").resolve()))
 
 ## --- Ablog ---
 
@@ -31,18 +32,17 @@ post_redirect_refresh = 0
 # Feed
 blog_feed_fulltext = True
 
-# Font Awesome
-fontawesome_included = False
 
 ## categories, tagcloud, archives, postcard, recentposts, authors, languages, locations
 html_sidebars = {
-    "index": [],
-    "blog": ["ablog/categories.html", "ablog/archives.html"],
+    "index": ["ablog/recentposts.html"],
+    "blog": ["ablog/categories.html"],
+    "blog/**": ["ablog/categories.html"],
     "*/blog/**": [
         "ablog/postcard.html",
         "ablog/recentposts.html",
-        "ablog/archives.html",
     ],
+    "*/me/**": ["ablog/recentposts.html"],
 }
 ablog_website = "docs"
 
@@ -51,7 +51,7 @@ ablog_website = "docs"
 ogp_site_url = "https://www.cosmoscalibur.com"
 ogp_custom_meta_tags = [
     '<meta name="twitter:creator" content="@cosmoscalibur" />',
-    '<meta name="fediverse:creator" content="@cosmoscalibur@col.social">',
+    '<meta name="fediverse:creator" content="@cosmoscalibur@col.social" />',
 ]
 
 
@@ -64,11 +64,9 @@ extensions = [
     "sphinxext.opengraph",
     "sphinxcontrib.youtube",
     "ablog",
-    "ed_sitemap",
-    "lang_switcher",
     "sphinx_copybutton",
     "sphinxext.rediraffe",
-    "perf_optimizer",
+    "cosmoscalibur",
 ]
 
 sitemap_url_scheme = "{link}"
@@ -113,33 +111,26 @@ for year in years_redirect:
 
 # General information about the project.
 project = "Cosmoscalibur"
-copyright = "2024, Edward Villegas-Pulgarin"
+copyright = f"2010-{datetime.now(tz=UTC).year}, Edward Villegas-Pulgarin"
 author = "Edward Villegas-Pulgarin"
 language = "es"
 
 # -- Options for HTML output ----------------------------------------------
-html_theme = "pydata_sphinx_theme"
+html_theme = "cosmoscalibur"
+html_theme_path = ["themes"]
 html_theme_options = {
     "show_toc_level": 2,
-    "twitter_url": "https://twitter.com/cosmoscalibur",
     "github_url": "https://github.com/cosmoscalibur/",
-    "icon_links": [
-        {
-            "name": "Mastodon",
-            "url": "https://col.social/@cosmoscalibur",
-            "icon": "fab fa-mastodon",
-            "attributes": {
-                "target": "_blank",
-                "rel": "me",
-            },
-        },
-    ],
-    "navbar_end": ["lang-switcher", "theme-switcher", "navbar-icon-links"],
+    "mastodon_url": "https://col.social/@cosmoscalibur",
+    "x_url": "https://x.com/cosmoscalibur",
+    "facebook_url": "https://www.facebook.com/cosmoscalibur",
+    "youtube_url": "https://www.youtube.com/c/CosmoscaliburCo",
+    "linkedin_url": "https://www.linkedin.com/in/cosmoscalibur/",
 }
 
-# Después, esto servirá para separar local de desplegado con Action
 if not os.getenv("DEPLOY_LOCAL"):
-    html_theme_options["analytics"] = {"google_analytics_id": "G-4YFQBC69LB"}
+    html_theme_options["analytics_id"] = "G-4YFQBC69LB"
+    html_theme_options["google_adsense_id"] = "ca-pub-0356238418278924"
 
 html_title = "Cosmoscalibur"
 html_short_title = "Cosmoscalibur"
@@ -151,7 +142,8 @@ html_favicon = "static/cosmoscalibur_favicon.png"
 
 html_static_path = ["static"]
 html_extra_path = ["files"]
-templates_path = ["templates"]
+templates_path = ["themes/cosmoscalibur"]
+
 exclude_patterns = [
     "_build",
     "***/.ipynb_checkpoints/*",
@@ -167,7 +159,5 @@ exclude_patterns = [
     ".gitignore",
     "**/draft/*",
     "**/skills/*",
-    "social-posts.md"
+    "social-posts.md",
 ]
-
-html_show_sourcelink = True

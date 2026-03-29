@@ -12,4 +12,5 @@ deploy: clean
 
 # Iniciar servidor con entorno local
 serve: build
+    -kill $(lsof -ti:8000) 2>/dev/null
     uv run -- ablog serve

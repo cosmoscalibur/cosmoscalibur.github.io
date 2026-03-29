@@ -1,0 +1,37 @@
+{# Recent posts — filtered by current page language, with archive link.
+   Uses page_lang from theme_context.py for reliable language detection. #}
+{% if ablog %}
+{% set lang = page_lang | default("es") %}
+<div class="ablog-sidebar-item ablog__recentposts">
+  <h3>
+    {% if lang == "en" %}
+      <a href="{{ pathto('blog') }}">Recent Posts</a>
+    {% else %}
+      <a href="{{ pathto('blog') }}">Entradas recientes</a>
+    {% endif %}
+  </h3>
+  <ul>
+    {% set ns = namespace(count=0) %}
+    {% for recent in ablog.recent(none, pagename) %}
+      {% if ns.count < 5 %}
+        {% set post_lang = recent.docname.split("/")[0] %}
+        {% if post_lang == lang %}
+    <li>
+      <a href="{{ pathto(recent.docname) }}{{ anchor(recent) }}">
+        {{ recent.date.strftime(ablog.post_date_format_short) + " - " + recent.title }}
+      </a>
+    </li>
+          {% set ns.count = ns.count + 1 %}
+        {% endif %}
+      {% endif %}
+    {% endfor %}
+  </ul>
+  <p class="ablog-sidebar-archive-link">
+    {% if lang == "en" %}
+      <a href="{{ pathto('blog') }}">See all posts →</a>
+    {% else %}
+      <a href="{{ pathto('blog') }}">Ver todas las entradas →</a>
+    {% endif %}
+  </p>
+</div>
+{% endif %}

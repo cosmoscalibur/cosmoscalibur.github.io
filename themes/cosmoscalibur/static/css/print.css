@@ -1,0 +1,47 @@
+/* ============================================================
+   Cosmoscalibur Theme — print.css
+   Clean print layout: no navbar, no sidebar, no footer chrome
+   ============================================================ */
+
+@media print {
+  .navbar,
+  .sidebar,
+  .toc-sidebar,
+  .back-to-top,
+  .theme-toggle,
+  .search-form,
+  .icon-links,
+  .headerlink,
+  .copybtn,
+  .site-footer__powered {
+    display: none !important;
+  }
+
+  .site-container {
+    display: block;
+  }
+
+  .content {
+    max-width: 100%;
+  }
+
+  body {
+    font-size: 12pt;
+    color: #000;
+    background: #fff;
+  }
+
+  a {
+    color: #000;
+    text-decoration: underline;
+  }
+
+  pre {
+    border: 1px solid #ccc;
+    page-break-inside: avoid;
+  }
+
+  .admonition {
+    page-break-inside: avoid;
+  }
+}

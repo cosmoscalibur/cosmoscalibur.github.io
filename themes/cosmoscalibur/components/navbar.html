@@ -1,0 +1,44 @@
+{# Navbar — responsive, WCAG 2.1 AA compliant #}
+<header class="navbar" role="banner">
+  <nav class="navbar__inner" aria-label="{{ _('Main navigation') }}">
+    {# Logo #}
+    <a class="navbar__logo" href="{{ pathto(master_doc) }}" aria-label="{{ _('Home') }}">
+      {% if logo_url %}
+        <img src="{{ logo_url }}" alt="" class="navbar__logo-img" aria-hidden="true" />
+      {% endif %}
+      <span class="navbar__title">{{ project }}</span>
+    </a>
+
+    {# Mobile toggle — WCAG: button with aria-expanded #}
+    <button
+      class="navbar__toggle"
+      type="button"
+      aria-controls="navbar-nav"
+      aria-expanded="false"
+      aria-label="{{ _('Toggle navigation') }}"
+    >
+      <svg class="icon" width="24" height="24" aria-hidden="true">
+        <use href="#icon-bars"></use>
+      </svg>
+    </button>
+
+    {# Navigation links #}
+    <div class="navbar__nav" id="navbar-nav" role="navigation">
+      {# Page navigation from toctree #}
+      {% if theme_navbar_links %}
+        <ul class="navbar__links" role="list">
+          {% for item in theme_navbar_links %}
+            <li><a class="nav-link" href="{{ item.url }}">{{ item.title }}</a></li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+
+      {# Right section: lang switcher, icon links, search #}
+      <div class="navbar__actions">
+        {% include "components/lang-switcher.html" %}
+        {% include "components/icon-links.html" %}
+        {% include "components/search-form.html" %}
+      </div>
+    </div>
+  </nav>
+</header>
