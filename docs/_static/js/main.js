@@ -8,8 +8,6 @@
 var navToggle=document.querySelector(`.navbar__toggle`),navMenu=document.getElementById(`navbar-nav`);navToggle&&navMenu&&navToggle.addEventListener(`click`,function(){var expanded=navToggle.getAttribute(`aria-expanded`)===`true`;navToggle.setAttribute(`aria-expanded`,String(!expanded)),navMenu.classList.toggle(`is-open`)});
 /* ── Back to top ── */
 var backBtn=document.querySelector(`[data-back-to-top]`);if(backBtn){var SCROLL_THRESHOLD=300;window.addEventListener(`scroll`,function(){window.scrollY>SCROLL_THRESHOLD?backBtn.removeAttribute(`hidden`):backBtn.setAttribute(`hidden`,``)},{passive:!0})}
-/* ── Sidebar: highlight current page link ── */
-var sidebar=document.getElementById(`sidebar`);if(sidebar)for(var currentPath=window.location.pathname.replace(/\/+$/,``),segments=currentPath.split(`/`).filter(Boolean),currentSlug=segments[segments.length-1]||``,links=sidebar.querySelectorAll(`a[href]`),i=0;i<links.length;i++){var linkPath=links[i].pathname.replace(/\/+$/,``),linkSegments=linkPath.split(`/`).filter(Boolean),linkSlug=linkSegments[linkSegments.length-1]||``;if(linkPath===currentPath||currentSlug&&linkSlug===currentSlug&&linkPath.indexOf(`/blog/`)!==-1){links[i].classList.add(`is-current`);var li=links[i].closest(`li`);li&&li.classList.add(`is-current`)}}
 /* ── TOC scroll-spy: highlight current section ──
 Uses scroll listener with requestAnimationFrame.
 Anchor clicks lock the active state via hashchange. */
