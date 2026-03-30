@@ -198,6 +198,8 @@ vienen instalados por defecto en Manjaro al ser usados de forma directa por
 Como alternativa de instalación de paquetes, Manjaro viene con Flatpak
 preconfigurado, así como Ubuntu viene con Snap preconfigurado.
 
+(ubuntu-instalar-flatpak)=
+
 `````{tab-set}
 ````{tab-item} Manjaro
 :sync: manjaro
@@ -207,7 +209,6 @@ Flatpak está listo para usar.
 ````
 ````{tab-item} Ubuntu
 :sync: ubuntu
-(ubuntu-instalar-flatpak)=
 
 ```{code} bash
 sudo apt install -y flatpak

@@ -82,7 +82,7 @@ pamac install --as-deps fzf --no-confirm  # Interactive search for zoxide
 :sync: ubuntu
 
 In the case of Ubuntu, we will need to use not only packages from the official
-repository, but also packages installed with [{program}`cargo`](/en/blog/2024/instalar-rust-en-linux.md) or [{program}`flatpak`](/en/blog/2024/que-hacer-despues-de-instalar-manjaro.md#ubuntu-instalar-flatpak).
+repository, but also packages installed with [{program}`cargo`](/en/blog/2024/instalar-rust-en-linux.md) or [{program}`flatpak`](#ubuntu-install-flatpak).
 
 ```{code} bash
 sudo apt install -y zsh alacritty zoxide fzf

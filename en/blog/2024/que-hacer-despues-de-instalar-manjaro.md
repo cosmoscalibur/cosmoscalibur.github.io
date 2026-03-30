@@ -198,6 +198,8 @@ installed by default in Manjaro when used directly with `pamac`.
 As an alternative to package installation, Manjaro comes with Flatpak
 preconfigured, while Ubuntu also comes with Snap preconfigured.
 
+(ubuntu-install-flatpak)=
+
 `````{tab-set}
 ````{tab-item} Manjaro
 :sync: manjaro

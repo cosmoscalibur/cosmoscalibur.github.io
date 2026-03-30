@@ -7,7 +7,7 @@ category: tecnologia, programación
 # Instalar Docker en Manjaro
 
 En el pasado publiqué un artículo de como
-[instalar y usar Docker en Ubuntu con Snap](es/blog/2019/crear-contenedor-docker-aplicacion-gui-ealite.rst)
+[instalar y usar Docker en Ubuntu con Snap](/es/blog/2019/crear-contenedor-docker-aplicacion-gui-ealite.rst)
 y ahora que uso Manjaro vale la pena revisar los pasos para instalar Docker en
 Manjaro.
 
