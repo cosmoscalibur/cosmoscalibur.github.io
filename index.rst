@@ -36,4 +36,6 @@ completo en :ref:`blog-posts`.
    :hidden:
 
    es/me/index.md
+   en/index.rst
+   es/politica-de-privacidad.rst
 

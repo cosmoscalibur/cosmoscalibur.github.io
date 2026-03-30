@@ -2,6 +2,7 @@
 date: 2025-03-27
 tags: zed, linux, ide
 category: technology, programming
+language: en
 ---
 
 # Zed: A fast and modern open source editor

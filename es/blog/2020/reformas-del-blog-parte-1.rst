@@ -19,8 +19,8 @@ PageSpeed
 ---------
 
 Antes que nada esto surge porque estuve haciendo seguimiento a las métricas de
-la herramienta PageSpeed [ps_] que ofrece Google integrada a su plataforma de
-Analytics (puedes usar de forma local con Lighthouse [lh_]). El análisis
+la herramienta PageSpeed [ps]_ que ofrece Google integrada a su plataforma de
+Analytics (puedes usar de forma local con Lighthouse [lh]_). El análisis
 entrega no solo métricas sino también algunas recomendaciones y por ello
 procedí a ponerme en ello (dado que la mayor parte de mis lectores usan su
 celular).
@@ -34,14 +34,14 @@ la cantidad de comentarios durante su historia lo hace despreciable cuando
 contrasto con la penalización en el tiempo de carga que ha introducido el
 sistema de comentarios.
 
-Disqus [dqs_] es un sistema de comentarios importante, permite socializar y asocia un
+Disqus [dqs]_ es un sistema de comentarios importante, permite socializar y asocia un
 perfil de los lectores y los generadores de contenido, lo cual permite también
 generar tráfico, pero en mi caso tampoco representa una fuente de tráfico
 importante ni de una contribución que quiera considerar.
 
 Esto me llevó inicialmente a pensar en eliminar el sistema de comentarios,
 pero también cuando veo como las publicaciones pueden tener mayor impacto en
-redes sociales y que Facebook ofrece su sistema de comentarios [fb-comments_],
+redes sociales y que Facebook ofrece su sistema de comentarios [fb-comments]_,
 no veo descabellado cambiar. La mayor parte de mis lectores poseen Facebook y
 el tráfico a razón de Facebook hoy es el mayor entre las fuentes de tráfico
 sociales. Reduce el bloqueo de 800 ms a 400 ms.
@@ -61,13 +61,13 @@ El blog no ha tenido publicidad, pero hace un tiempo he venido revisando el
 tema de monetizar el blog. La idea es hacerlo de una forma no invasiva pero
 sin muchas complicaciones para mi también.
 
-Es así como Google AdSense [gads_] por sus procesos de validación y la
+Es así como Google AdSense [gads]_ por sus procesos de validación y la
 penalización que he sufrido en tiempo de carga por la adición en el código no
 me parece prudente. Adicional, no puedo asegurar que la publicidad mostrada
 sea realmente acorde al blog (así pueda serlo para el lector).
 
 Por ello, he decido probar las opciones estáticas del programa de asociados de
-Amazon [amz_]. No hay generación dinámica, ni selección de la posición óptima
+Amazon [amz]_. No hay generación dinámica, ni selección de la posición óptima
 de la publicidad, pero puedo decidir que promocionar en mis publicaciones,
 ubicarla donde considere que no afecta la lectura o que genere confusión y que
 además aporte realmente al lector que llega a mi publicación (por ejemplo,
@@ -91,16 +91,16 @@ Imágenes
 
 Con el fin de reducir la descarga y tiempo asociado a las imágenes, decidí
 respaldar imágenes en el repositorio y usar la opción de thumbnail de Nikola
-[thumb_]. Esto permite usar una versión de tamaño reducido para los artículos
+[thumb]_. Esto permite usar una versión de tamaño reducido para los artículos
 pero que vincula a la imagen original (la cual puedo optimizar también).
 
 Esto tiene una ventaja adicional, y es asegurar la existencia de las imágenes
 para el futuro sin depender de la fuente original (la cual, en la medida de lo
 posible mantendré referencia) y en un futuro puede permitir opciones de
-servido por CDN (una opción tentadora es Statically [cdn_]), imágenes
-optimizadas [opt_, tools_] como el uso del formato webp
-[webp_, caniuse_, fallback_], tamaños diferentes por dispositivo
-[picture-media_] y carga diferida [defer_, lazy_]. Este cambio permitió ver
+servido por CDN (una opción tentadora es Statically [cdn]_), imágenes
+optimizadas [opt]_, [tools]_ como el uso del formato webp
+[webp]_, [caniuse]_, [fallback]_), tamaños diferentes por dispositivo
+[picture-media]_ y carga diferida [defer]_, [lazy]_). Este cambio permitió ver
 en el artículo más crítico (:doc:`/es/blog/2013/cosmogonia-griega`) notar una reducción del
 tamaño de archivos descargados (se compara el tamaño potencial de reducción de
 las imágenes respecto a su peso en webp).

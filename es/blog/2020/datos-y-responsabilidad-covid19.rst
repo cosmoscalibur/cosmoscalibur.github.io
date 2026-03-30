@@ -86,7 +86,7 @@ prueba. ¿Y si eres asintomático? Pues ni siquiera vas a solicitar la prueba.
 
 ¿Y esto a nivel de datos qué representa? En el reporte de la Organización
 Mundial de la Salud, el 87.9% de los infectados confirmados presentó fiebre
-[who-report_], así que usando los criterios de pruebas tenemos un potencial
+[who-report]_, así que usando los criterios de pruebas tenemos un potencial
 12.1% de casos que tuvieron que esperar complicaciones o simplemente están
 como si nada. Pero también, hay otro porcentaje, que en el mismo reporte se
 considera bajo, pero que en una gran cantidad representa muchas personas, y
@@ -103,7 +103,7 @@ eventualmente una realidad más clara de la condición real, pues los casos
 confirmados son limitados por la capacidad de hacer pruebas.
 
 Tomo en consideración lo afirmado en la sección sobre las pruebas en *Our World
-in Data* [ourworldindata_]:
+in Data* [ourworldindata]_:
 
    8) What are the typical testing practices in the country?
    Having a sense of how often and when individuals are tested, can help the
@@ -161,24 +161,24 @@ No están considerando múltiples variables, las cuales describiré:
   hay otras afectaciones en el tiempo como la disminución o aumento de la
   capacidad de pruebas.
 
-   + 11 de marzo: Primer caso relacionado [covid-colombia_].
-   + 14 de marzo: Cierre de frontera con Venezuela [tt-duque_].
+   + 11 de marzo: Primer caso relacionado [covid-colombia]_.
+   + 14 de marzo: Cierre de frontera con Venezuela [tt-duque]_.
    + 16 de marzo: Se niega ingreso a extranjeros provenientes de Europa o Asia.
-     Colombianos tendrán aislamiento de 14 días [tt-duque_].
+     Colombianos tendrán aislamiento de 14 días [tt-duque]_.
    + 17 de marzo: Cierre de fronteras terrestres, marítimas y fluviales
-     [cnn-fronteras_].
-   + 20 de marzo: Simulacro de cuarentena en Bogotá [tiempo-simulacro_]. Otras
+     [cnn-fronteras]_.
+   + 20 de marzo: Simulacro de cuarentena en Bogotá [tiempo-simulacro]_. Otras
      localidades del país hacen medidas similares el fin de semana.
-   + 23 de marzo: Suspenden vuelos internacionales [tt-presidencia-int_]
-   + 23 de marzo: Primer caso de transmisión comunitaria [covid-colombia_].
-   + 25 de marzo: Inicia cuarentena [tiempo-cuarentena_].
-   + 25 de marzo: Suspenden vuelos nacionales [tt-presidencia-nal_].
-   + 27 de marzo: Daño en máquina del INS para procesar pruebas [tt-INS-daño_].
+   + 23 de marzo: Suspenden vuelos internacionales [tt-presidencia-int]_
+   + 23 de marzo: Primer caso de transmisión comunitaria [covid-colombia]_.
+   + 25 de marzo: Inicia cuarentena [tiempo-cuarentena]_.
+   + 25 de marzo: Suspenden vuelos nacionales [tt-presidencia-nal]_.
+   + 27 de marzo: Daño en máquina del INS para procesar pruebas [tt-INS-daño]_.
    + 4 de abril: Se anuncia por el gobierno nacional el uso obligatorio de
-     tapabocas en transporte masivo y público [minsalud-tapabocas_]. En
-     Medellín comenzará el 7 de abril [tt-quintero_].
+     tapabocas en transporte masivo y público [minsalud-tapabocas]_. En
+     Medellín comenzará el 7 de abril [tt-quintero]_.
    + (abril): INS anunció el 22 de marzo que se avalaran distintos laboratorios
-     en el país para hacer pruebas de covid19 [presidencia-covid_].
+     en el país para hacer pruebas de covid19 [presidencia-covid]_.
    + Distintas regiones han aplicado pico y cédula pero el inicio ha sido en
      fechas diferentes.
 
@@ -206,7 +206,7 @@ apreciables sobre el fin de semana.
 
 Vale recordar la afirmación de los expertos y compartida por el ministro de
 salud en entrevista el día de ayer por el canal Caracol, "Las cifras de hoy son
-de pacientes de hace 14 días" [tt-caracol_].
+de pacientes de hace 14 días" [tt-caracol]_.
 
 Conceptos
 ---------
@@ -221,24 +221,24 @@ número de personas con interacción directa e indirecta con el crecimiento
 exponencial (:math:`A\exp(r t)`, donde :math:`r` es la tasa de crecimiento y
 :math:`A` es la población inicial afectada).
 
-Las curvas gausianas [wiki-gausiana_] pueden describir los casos activos, es
+Las curvas gausianas [wiki-gausiana]_ pueden describir los casos activos, es
 decir, los casos actuales que se encuentran afectados actualizando respecto a
 los casos de recuperados y muertos que se descuentan de los infectados. Esta es
-la famosa curva que nos comunican que debemos aplanar [bbc-aplanar_] mediante
+la famosa curva que nos comunican que debemos aplanar [bbc-aplanar]_ mediante
 medidas como el distanciamiento social, el aislamiento
-[elcolombiano-distancia_] y el uso masivo de tapabocas [minsalud-tapabocas_].
+[elcolombiano-distancia]_ y el uso masivo de tapabocas [minsalud-tapabocas]_.
 
-Las curvas logísticas [wiki-logistica_] sirven para describir los casos
+Las curvas logísticas [wiki-logistica]_ sirven para describir los casos
 acumulados de registros nuevos (en el caso de infectados, así se recuperen o
 mueran no se reduce el conteo).
 
 Las menciones anteriores son solo resultados rápidos que se pueden usar de
-modelos más elaborados [wiki-modelling_] que dependen de resolver sistemas de
+modelos más elaborados [wiki-modelling]_ que dependen de resolver sistemas de
 ecuaciones diferenciales, pero aún así, estos modelos resultan ser muy simples
 comparando con la dinámica real que se debe capturar. Es por este motivo que se
 usan modelos estocásticos si hablamos de un modelo serio que permita reflejar
 incluso el comportamiento de las interacciones humanas en un mayor detalle y
-las medidas implementadas [wiki-stochastic_].
+las medidas implementadas [wiki-stochastic]_.
 
 Recomendaciones para saber más
 ------------------------------

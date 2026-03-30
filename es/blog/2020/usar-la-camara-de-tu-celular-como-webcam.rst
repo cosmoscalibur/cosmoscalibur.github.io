@@ -21,7 +21,7 @@ DroidCam
 
 Sin hacer muchos rodeos y comparaciones, en este asunto seré muy práctico.
 La primera aplicación que me cumplió con las características y que
-funcionó adecuadamente, es DroidCam [droidcam_]. Esta utilidad nos permite
+funcionó adecuadamente, es DroidCam [droidcam]_. Esta utilidad nos permite
 usar la cámara del celular para reemplazar los incorporados del equipo, y
 se puede hacer comunicación tanto por wifi como por el cable USB
 (instalando ADB).
@@ -30,7 +30,7 @@ Instalación en Linux
 ~~~~~~~~~~~~~~~~~~~~
 
 El procedimiento de instalación puede seguirse en la página web de
-DroidCam [linux_] pero lo lustraré para el caso de Linux Mint
+DroidCam [linux]_ pero lo lustraré para el caso de Linux Mint
 (aplicable para Debian y derivados). El aspecto dependiente de la
 distribución es la instalación de las 3 dependencias requeridas (GCC, Make
 y Linux Headers).
@@ -111,7 +111,7 @@ La última instrucción es solo para efectos de validación. Si sale
 Instalación en Android
 ~~~~~~~~~~~~~~~~~~~~~~
 
-Para instalar en Android, buscamos DroidCam en Google Play [android_].
+Para instalar en Android, buscamos DroidCam en Google Play [android]_.
 Encontrarán dos versiones, una gratuita y una paga. Podemos usar la
 gratuita para la funcionalidad requerida, siendo única limitación la
 resolución máxima a la que transmite.

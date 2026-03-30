@@ -2,6 +2,7 @@
 date: 2025-10-08
 tags: mastodon, fediverse, android, tusky, megalodon, moshidon
 category: technology, software
+language: en
 ---
 
 # Finding the Best Mastodon Client for Android
