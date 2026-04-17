@@ -1,4 +1,0 @@
-- Ablog. Definición del lenguaje debe cambiar etiqueta de lenguaje en html
-- Ablog. Si se usa valor por defecto de autor, no sale en el índice de autor.
-- Ablog etiquetas y categorías por idioma
-- Ablog noindex
