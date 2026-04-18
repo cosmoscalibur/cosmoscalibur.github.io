@@ -6,6 +6,13 @@ category: tecnología, linux
 
 # Configurar segundo teclado en Linux
 
+```{admonition} Actualizado el 2026-04-18
+---
+class: hint
+---
+Este artículo se publicó originalmente con instrucciones exclusivas para X11 usando `xinput` y `setxkbmap`. Se ha actualizado para incluir cómo hacerlo de forma nativa en Wayland (específicamente en KDE Plasma), el entorno gráfico por defecto en distribuciones modernas como Manjaro.
+```
+
 Si tienes un segundo teclado para conectar a tu equipo Linux, pero su
 distribución de lenguaje es diferente, te explico como configurar aquí.
 
@@ -22,9 +29,22 @@ Sí, soy caprichoso, y lo que yo buscaba era que, ante una eventualidad, si usab
 el teclado original, funcionara adecuadamente, pero como se aplicaba la
 distribución del teclado español no tenía el mapeo adecuado.
 
-Ahora, manos a la obra:
+## El método moderno: Wayland y KDE Plasma
 
-## Método de entrada
+Si estás utilizando un entorno de escritorio moderno bajo Wayland, como KDE Plasma (por defecto en Manjaro KDE), la configuración es mucho más sencilla y no requiere la terminal. Wayland gestiona los dispositivos de entrada de manera independiente por diseño.
+
+1. Abre las **Preferencias del sistema** (System Settings).
+2. Dirígete a la sección de **Dispositivos de entrada** (Input Devices) y luego a **Teclado** (Keyboard).
+3. En la pestaña de distribuciones (Layouts), notarás que puedes configurar un dispositivo específico.
+4. Simplemente selecciona tu segundo teclado USB de la lista, añade la distribución deseada (ej. Español) y asegúrate de que esté asignada a ese dispositivo.
+
+¡Y listo! Cada teclado funcionará con su propia distribución de manera nativa.
+
+## El método tradicional: X11 (xinput y setxkbmap)
+
+Si por el contrario sigues utilizando X11, o tienes un entorno que no expone esta configuración gráficamente, podemos usar la terminal. Ahora, manos a la obra:
+
+### Método de entrada
 
 Necesitamos conocer el método de entrada asociado, es decir, nuestros
 dispositivos conectados para ingresar información, como el teclado, el ratón o
