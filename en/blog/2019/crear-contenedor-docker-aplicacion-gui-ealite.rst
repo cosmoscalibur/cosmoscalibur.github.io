@@ -1,4 +1,4 @@
-:date: 2019-11-22
+:date: 2026-04-18
 :tags: container, docker, linux, wine, enterprise architect, ealite
 :category: technology
 :author: Edward Villegas-Pulgarin
@@ -155,3 +155,7 @@ References
 + `Installing Enterprise Architect under Linux <https://www.sparxsystems.com/enterprise_architect_user_guide/14.0/product_information/enterprise_architect_linux.html>`_.
 
 .. _DockerHub: https://hub.docker.com
+
+----
+
+*This article was originally published in Spanish on 2019-11-22.*

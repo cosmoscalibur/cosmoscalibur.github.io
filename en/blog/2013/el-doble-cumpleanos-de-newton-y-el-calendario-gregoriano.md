@@ -1,5 +1,5 @@
 ---
-date: 2013-01-04
+date: 2024-12-27
 tags: newton, calendar, history, christmas
 category: science
 language: en
@@ -70,3 +70,7 @@ consideration when interpreting dates from this era.
    Wikisources.
 7. [The calendar reform](http://www.luxinarcana.org/en/documenti/curiosita/la-riforma-del-calendario/).
    Lux in arcana - The Vatican Secret Archives reveals itself.
+
+----
+
+*This article was originally published in Spanish on 2013-01-04.*

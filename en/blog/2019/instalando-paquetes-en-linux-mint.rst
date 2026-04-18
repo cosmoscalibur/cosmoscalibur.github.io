@@ -1,4 +1,4 @@
-:date: 2019-10-22
+:date: 2025-01-13
 :tags: linux mint, snap, flatpak, appimage, apt, package manager, ubuntu
 :category: technology, linux
 :language: en
@@ -208,3 +208,7 @@ Referencias
 - `Snap <https://snapcraft.io/>`_.
 - `Gnome Software Center <https://wiki.gnome.org/Apps/Software>`_.
 - `Ubuntu APT <https://help.ubuntu.com/lts/serverguide/apt.html>`_.
+
+----
+
+*This article was originally published in Spanish on 2019-10-22.*

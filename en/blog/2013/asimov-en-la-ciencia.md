@@ -1,5 +1,5 @@
 ---
-date: 2013-01-18
+date: 2024-12-27
 tags: science fiction, asimov, literature, chemistry
 category: science
 language: en
@@ -58,3 +58,7 @@ literature.
    Biography True Story.
 4. [Isaac Asimov Biography](http://www.notablebiographies.com/An-Ba/Asimov-Isaac.html#ixzz2Hp8BaOVW).
    Notable Biographies.
+
+----
+
+*This article was originally published in Spanish on 2013-01-18.*

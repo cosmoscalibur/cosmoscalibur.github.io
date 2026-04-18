@@ -1,5 +1,5 @@
 ---
-date: 2024-06-30
+date: 2025-01-06
 tags: package manager, virtualenv manager, rust, python, uv, pip, venv
 category: technology, programming
 language: en
@@ -129,3 +129,7 @@ from a repository, and it involves using `"package @url_repo"` syntax. And
 especially if the package has credentials, consider the corresponding support as
 per
 [the instructions](https://github.com/astral-sh/uv?tab=readme-ov-file#git-authentication)
+
+----
+
+*This article was originally published in Spanish on 2024-06-30.*

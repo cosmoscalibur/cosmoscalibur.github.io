@@ -1,4 +1,4 @@
-:date: 2019-12-31
+:date: 2026-04-18
 :tags: git, anaconda python, git bash, software installation, package manager, conda
 :category: technology
 :author: Edward Villegas-Pulgarin
@@ -93,3 +93,7 @@ you used Miniconda). The third line updates the configuration in the current
 console session allowing Conda to be used immediately. For the next
 time you open Git Bash you will no longer have to configure anything, just start using
 Conda (there is still no activated environment).
+
+----
+
+*This article was originally published in Spanish on 2019-12-31.*

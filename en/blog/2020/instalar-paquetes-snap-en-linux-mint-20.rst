@@ -1,4 +1,4 @@
-:date: 2020-06-29
+:date: 2025-01-13
 :tags: linux mint, snap, apt
 :category: technology
 :language: en
@@ -50,7 +50,7 @@ Personally, I do not see this as problematic; in an ideal case, having package m
 that automatically install components from another manager would be preferable over me
 having to handle such tasks. However, the Mint team finds a lack of transparency with
 their users who are not warned about this and even consider it a security flaw
-[snap-mint]_.
+[snap-mint-en]_.
 
 The solution
 ------------
@@ -59,7 +59,7 @@ To solve this problem, simply remove or comment out the lines in a file
 ``/etc/apt/preferences.d/nosnap.pref``. In my case, I do not see any reason to keep it,
 so I proceed by removing it and then installing the snap manager. If you feel more
 comfortable, you can comment out the lines and then uncomment them after installing the
-snap manager [snap-install]_.
+snap manager [snap-install-en]_.
 
 .. code-block:: bash
 
@@ -73,10 +73,14 @@ article <en-instalando-paquetes-en-linux-mint#snap>`.
 References
 ----------
 
-.. [snap-mint] Snapping at Canonical's Snap: Linux Mint team says no to Ubuntu store
+.. [snap-mint-en] Snapping at Canonical's Snap: Linux Mint team says no to Ubuntu store
     'backdoor'. `The register, 2 Jun 2020
     <https://www.theregister.com/2020/06/02/linux_mint_team_snap/>`_.
 
-.. [snap-install] How To Enable Snap And Install Snap Packages On Linux Mint 20?
+.. [snap-install-en] How To Enable Snap And Install Snap Packages On Linux Mint 20?
     `fossbytes, June 12, 2020
     <https://fossbytes.com/how-to-enable-snap-and-install-snap-packages-on-linux-mint-20/>`_
+
+----
+
+*This article was originally published in Spanish on 2020-06-29.*

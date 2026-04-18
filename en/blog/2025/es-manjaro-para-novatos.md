@@ -1,5 +1,5 @@
 ---
-date: 2025-05-01
+date: 2026-04-18
 tags: manjaro, kde, pamac, flatpak, aur
 category: technology, linux
 language: en
@@ -37,3 +37,7 @@ I have already published on other occasions topics related to Manjaro, so I reco
 - [](/en/blog/2025/ecosistema-rust-para-la-terminal-linux.md)
 - [](/en/blog/2024/configurar-starship-en-manjaro-y-zsh.md)
 - [](/en/blog/2025/instalar-docker-en-manjaro.md)
+
+----
+
+*This article was originally published in Spanish on 2025-05-01.*

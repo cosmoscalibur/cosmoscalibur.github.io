@@ -1,4 +1,4 @@
-:date: 2011-04-13
+:date: 2026-04-18
 :tags: antimatter, antigravity, gravity, astrophysics, particle physics
 :category: science
 :author: Edward Villegas-Pulgarin
@@ -29,3 +29,7 @@ But this implies more than that... if observations of the presence of antimatter
 
 1. `Antimatter gravity could explain Universe's expansion <https://phys.org/news/2011-04-antimatter-gravity-universe-expansion.html>`_. Physorg. April 13, 2011.
 2. \ M. Villata. “CPT symmetry and antimatter gravity in general relativity.” EPL (Europhysics Letters), 94 (2011) 20001 (`arXiv:1103.4937 [gr-qc] <https://arxiv.org/abs/1103.4937>`_). **DOI**: `10.1209/0295-5075/94/20001 <http://iopscience.iop.org/article/10.1209/0295-5075/94/20001/meta>`_.
+
+----
+
+*This article was originally published in Spanish on 2011-04-13.*

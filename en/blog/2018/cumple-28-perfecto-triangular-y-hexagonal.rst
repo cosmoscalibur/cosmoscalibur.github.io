@@ -1,4 +1,4 @@
-:date: 2018-04-01
+:date: 2026-04-18
 :tags: numbers, perfect number, triangular number, hexagonal number, mathematics
 :category: science
 :author: Edward Villegas-Pulgarin
@@ -16,11 +16,6 @@ particular birthday message that my brother left me, which says:
     also hexagonal and triangular. It is true that it is the second perfect number,
     but it is also the last one you will celebrate. The next one is near 500.
     Could you find it?
-
-First of all, if you want to send congratulations like this, you can find
-original messages for ages from 1 year to 99 years in the Verne blog of 'El País' of Spain: `Cómo felicitar el cumpleaños con datos matemáticos
-hasta los 99
-<https://verne.elpais.com/verne/2016/12/30/articulo/1483109720_864015.html>`_.
 
 Numerical sequences
 -------------------
@@ -46,7 +41,7 @@ Perfect numbers
 
 Perfect numbers meet a rather particular property: a perfect number
 is that number whose positive proper divisors added together result in
-the mentioned number [oeis_perfect]_ [wiki_perfect]_.
+the mentioned number [oeis_perfect-en]_ [wiki_perfect-en]_.
 
 This is somewhat uncommon, and the first perfect number is 6 and the second is 28.
 As the message indicated at the beginning mentions, the next one is around
@@ -75,7 +70,7 @@ to this type. The same applies to the hexagonal number.
 
 I explain: it is about using points to build geometry, in this case,
 an equilateral triangle. Thus, the numbers obtained are: 0, 1, 3, 6, 10, 15, 21,
-28, and so on [wiki_tri]_.
+28, and so on [wiki_tri-en]_.
 
 Note that with 0 points we form a triangle whose sides have a length of 0
 points (yes, curiously the definition includes 0). With one point, we form a
@@ -95,7 +90,7 @@ interior point of the triangle since the previous triangle is accumulated).
 
 From the mathematical point of view, triangular numbers are the partial sums of
 the sequence of positive integers :math:`T_{n} = \sum\limits_{i=1}^{n}i`,
-or equivalently the Newton binomials of the form [wiki_tri]_ [oeis_tri]_
+or equivalently the Newton binomials of the form [wiki_tri-en]_ [oeis_tri-en]_
 
 .. math::
    T_{n} = \begin{pmatrix}n+1 \\ 2\end{pmatrix} = \frac{n(n+1)}{2}
@@ -111,7 +106,7 @@ generally called polygonal numbers). In this case the geometric arrangement
 corresponds to forming a regular hexagon with the points. Just like the
 triangular one, the points of the previous hexagon must be accumulated and reused
 (in this way there are two edges that share their points with the new hexagon)
-[wiki_hex]_.
+[wiki_hex-en]_.
 
 .. code::
 
@@ -122,7 +117,7 @@ triangular one, the points of the previous hexagon must be accumulated and reuse
                    ...
 
 Like the triangular ones, it also has a mathematical expression that
-can generate the sequence: :math:`n(2n-1)` [wiki_hex]_ [oeis_hex]_.
+can generate the sequence: :math:`n(2n-1)` [wiki_hex-en]_ [oeis_hex-en]_.
 
 What is the next one?
 ---------------------
@@ -134,16 +129,20 @@ take the opportunity to explain some things about Python such as generators.
 But what does programming have to do with it? Given the pattern exhibited by the
 numbers, it is not possible to simply substitute into an equation to find out
 the answer to the message's question (but it can be quickly checked in
-the OEIS [oeis]_), and it is necessary to make a code that verifies the condition for
+the OEIS [oeis-en]_), and it is necessary to make a code that verifies the condition for
 each number in an orderly manner.
 
 To learn more
 -------------
 
-.. [wiki_perfect] Wikipedia, `Perfect number <https://en.wikipedia.org/wiki/Perfect_number>`_.
-.. [oeis_perfect] The On-Line Encyclopedia of Integer Sequences, `Hexagonal numbers <http://oeis.org/A000384>`_.
-.. [wiki_tri] Wikipedia, `Triangular number <https://en.wikipedia.org/wiki/Triangular_number>`_.
-.. [oeis_tri] The On-Line Encyclopedia of Integer Sequences, `Triangular numbers <http://oeis.org/A000217>`_.
-.. [wiki_hex] Wikipedia, `Hexagonal number <https://en.wikipedia.org/wiki/Hexagonal_number>`_.
-.. [oeis_hex] The On-Line Encyclopedia of Integer Sequences, `Perfect numbers <http://oeis.org/A000396>`_.
-.. [oeis] `The On-Line Encyclopedia of Integer Sequences <http://oeis.org/wiki/Welcome>`_.
+.. [wiki_perfect-en] Wikipedia, `Perfect number <https://en.wikipedia.org/wiki/Perfect_number>`_.
+.. [oeis_perfect-en] The On-Line Encyclopedia of Integer Sequences, `Hexagonal numbers <http://oeis.org/A000384>`_.
+.. [wiki_tri-en] Wikipedia, `Triangular number <https://en.wikipedia.org/wiki/Triangular_number>`_.
+.. [oeis_tri-en] The On-Line Encyclopedia of Integer Sequences, `Triangular numbers <http://oeis.org/A000217>`_.
+.. [wiki_hex-en] Wikipedia, `Hexagonal number <https://en.wikipedia.org/wiki/Hexagonal_number>`_.
+.. [oeis_hex-en] The On-Line Encyclopedia of Integer Sequences, `Perfect numbers <http://oeis.org/A000396>`_.
+.. [oeis-en] `The On-Line Encyclopedia of Integer Sequences <http://oeis.org/wiki/Welcome>`_.
+
+----
+
+*This article was originally published in Spanish on 2018-04-01.*

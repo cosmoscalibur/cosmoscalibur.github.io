@@ -1,4 +1,4 @@
-:date: 2019-11-08
+:date: 2025-01-03
 :tags: gravity, newton
 :category: science, physics
 :language: en
@@ -137,3 +137,7 @@ References
 - `Newton's law of universal gravitation <https://en.wikipedia.org/wiki/Newton%27s_law_of_universal_gravitation>`_,
       Wikipedia.
 - `Friction <https://en.wikipedia.org/wiki/Friction>`_, Wikipedia.
+
+----
+
+*This article was originally published in Spanish on 2019-11-08.*

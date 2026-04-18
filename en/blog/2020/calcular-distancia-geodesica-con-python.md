@@ -1,5 +1,5 @@
 ---
-date: 2020-05-10
+date: 2025-01-03
 tags: python, geodesic, geopy
 category: technology
 language: en
@@ -199,3 +199,7 @@ distances over the road network).
 Thus, if exactness is required, I recommend the Karney approximation, but if
 only an initial approximation seeking less computation time is needed, the Great
 Circle method is recommended.
+
+----
+
+*This article was originally published in Spanish on 2020-05-10.*

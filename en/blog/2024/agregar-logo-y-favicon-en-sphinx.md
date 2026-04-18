@@ -1,5 +1,5 @@
 ---
-date: 2024-09-24
+date: 2025-01-04
 tags: blog, sphinx, favicon
 category: technology, blogging with sphinx
 language: en
@@ -96,3 +96,7 @@ height: 125px
 - [Sphinx - Configuration - HTML logo](https://www.sphinx-doc.org/en/master/usage/configuration.html#confval-html_logo).
 - [Sphinx - Configuration - HTML favicon](https://www.sphinx-doc.org/en/master/usage/configuration.html#confval-html_favicon).
 - [PyData Theme - Branding and logo](https://pydata-sphinx-theme.readthedocs.io/en/stable/user_guide/branding.html).
+
+----
+
+*This article was originally published in Spanish on 2024-09-24.*

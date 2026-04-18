@@ -1,4 +1,4 @@
-:date: 2010-12-21
+:date: 2026-04-18
 :tags: christmas, santa claus, quantum mechanics, physics
 :category: science, physics curiosities
 :author: Edward Villegas-Pulgarin
@@ -46,3 +46,7 @@ To see others, you can read
 `link that motivated me to write this note <http://www.latercera.com/noticia/como-podria-santa-claus-entregar-todos-los-regalos/>`_,
 which mentions other possibilities such as a relativistic cloud or a very
 technological Santa, with the latest in nanotechnology.
+
+----
+
+*This article was originally published in Spanish on 2010-12-21.*

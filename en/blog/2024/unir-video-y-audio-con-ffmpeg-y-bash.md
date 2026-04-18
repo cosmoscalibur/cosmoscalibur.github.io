@@ -1,5 +1,5 @@
 ---
-date: 2024-10-20
+date: 2025-01-13
 tags: ffmpeg, bash
 category: technology, linux
 language: en
@@ -117,7 +117,7 @@ invite you to replicate it in PowerShell or your favorite language).
 
 ```{code-block} bash
 ---
-name: bash-ffmpeg-unir
+name: en-bash-ffmpeg-unir
 caption: *Bash* code to merge a set of video and audio files with FFMPEG.
 linenos:
 ---
@@ -192,3 +192,7 @@ Here are three resources that I recommend for Bash:
   and [BASH Programming - Introduction HOW-TO](https://tldp.org/HOWTO/Bash-Prog-Intro-HOWTO.html):
   from The Linux Documentation Project, *TLDP*.
 ```
+
+----
+
+*This article was originally published in Spanish on 2024-10-20.*

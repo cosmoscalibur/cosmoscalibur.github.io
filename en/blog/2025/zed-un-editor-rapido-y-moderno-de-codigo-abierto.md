@@ -1,5 +1,5 @@
 ---
-date: 2025-03-27
+date: 2026-01-18
 tags: zed, linux, ide
 category: technology, programming
 language: en
@@ -280,3 +280,7 @@ For language or external tools that are structured with their already known
 configuration files, we find the `ruff.toml`, `pyproject.toml` or `Cargo.toml`
 file to give an example. I am not going to illustrate these because they are
 well known if you require these languages or *linters*.
+
+----
+
+*This article was originally published in Spanish on 2025-03-27.*

@@ -1,4 +1,4 @@
-:date: 2020-01-06
+:date: 2025-01-03
 :tags: python, sphinx, restructuredtext, documentation
 :category: technology
 :language: en
@@ -294,3 +294,7 @@ Now, you'll find the LaTeX files in the *build* directory, and one of them will
 be the PDF we want. You can also do HTML compilation (`make html`) and use it to
 publish as a `GitHub Pages <https://pages.github.com/>`_ or on `ReadTheDocs
 <https://docs.readthedocs.io/en/stable/intro/getting-started-with-sphinx.html>`_
+
+----
+
+*This article was originally published in Spanish on 2020-01-06.*

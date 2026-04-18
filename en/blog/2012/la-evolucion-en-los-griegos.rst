@@ -1,4 +1,4 @@
-:date: 2012-05-13
+:date: 2024-05-27
 :tags: cosmogony, mythology, history
 :category: science, astronomy
 :language: en
@@ -57,3 +57,7 @@ geological evolution from the observation of fossils.
 2. `Arche <http://en.wikipedia.org/wiki/Arche>`_. Wikipedia (english version).
 3. `History of evolution <http://www.iep.utm.edu/evolutio/>`_. Internet
    Encyclopedia of Phylosophy.
+
+----
+
+*This article was originally published in Spanish on 2012-05-13.*

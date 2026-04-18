@@ -1,5 +1,5 @@
 ---
-date: 2024-05-19
+date: 2026-04-18
 tags: linux, xinput, usb keyboard, setxkbmap, x11
 category: technology, linux
 language: en
@@ -85,3 +85,7 @@ setxkbmap -device 15 -layout es
 ```
 
 Once executed, our second keyboard will have the Spanish layout, while the main keyboard will remain in English.
+
+----
+
+*This article was originally published in Spanish on 2024-05-19.*

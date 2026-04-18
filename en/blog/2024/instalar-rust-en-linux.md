@@ -1,5 +1,5 @@
 ---
-date: 2024-06-15
+date: 2025-01-15
 tags: rustlang, vscode, notebook, evcxr, rust-analyzer
 category: technology
 language: en
@@ -153,3 +153,7 @@ height: 400px
 ---
    Basic example of a variable assignment in Rust in Notebook
 ```
+
+----
+
+*This article was originally published in Spanish on 2024-06-15.*

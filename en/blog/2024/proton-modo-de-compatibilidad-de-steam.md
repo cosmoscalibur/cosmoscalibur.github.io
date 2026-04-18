@@ -1,5 +1,5 @@
 ---
-date: 2024-06-04
+date: 2024-12-31
 tags: linux videogames, steam, wine, linux applications
 category: entertainment, videogames
 language: en
@@ -58,3 +58,7 @@ Brawlhalla, we'll see that the {guilabel}`Add to library` button is now enabled.
 After completing the installation and starting the game, we'll see a single
 error message, which doesn't require concern - we can simply ignore it and play
 without any issues.
+
+----
+
+*This article was originally published in Spanish on 2024-06-04.*

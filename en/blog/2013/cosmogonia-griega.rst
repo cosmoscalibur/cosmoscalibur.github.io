@@ -1,4 +1,4 @@
-:date: 2013-05-26
+:date: 2024-05-27
 :tags: greek, cosmogony, mythology, history
 :category: science, astronomy
 :language: en
@@ -78,3 +78,7 @@ fiery nature.
 
 `Myths & Legends <https://amzn.to/3d5Se1N>`_. Philip Wilkinson. Dorling
 Kindersley, London 2009.
+
+----
+
+*This article was originally published in Spanish on 2013-05-26.*

@@ -1,5 +1,5 @@
 ---
-date: 2024-12-07
+date: 2025-01-10
 tags: manjaro, ubuntu, wifi, linux, dmesg
 category: technology, linux
 language: en
@@ -98,3 +98,7 @@ and `rtw_8822ce`.
 sudo dmesg | grep r8169
 sudo dmesg | grep rtw_8822ce
 ```
+
+----
+
+*This article was originally published in Spanish on 2024-12-07.*

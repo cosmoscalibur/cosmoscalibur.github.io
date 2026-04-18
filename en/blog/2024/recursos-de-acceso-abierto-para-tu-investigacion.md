@@ -1,5 +1,5 @@
 ---
-date: 2024-06-02
+date: 2026-04-18
 tags: open access, preprints, articles
 category: science
 language: en
@@ -88,3 +88,7 @@ Undoubtedly, a collaborative network is an alternative. Official (such as proces
 - Library Genesis (libgen): Server for books, articles, comics and other resources. Currently I don't know a working link (the 3 main domains generate error 504).
 
 The two resources mentioned here have continuous legal disputes and have been blocked in different countries. I have not been able to access LibGen, but Sci-Hub is perfectly functional (from Colombia).
+
+----
+
+*This article was originally published in Spanish on 2024-06-02.*

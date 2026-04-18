@@ -1,4 +1,4 @@
-:date: 2010-12-17
+:date: 2026-04-18
 :tags: general relativity, physics, time, gravity
 :category: science, physics curiosities
 :author: Edward Villegas-Pulgarin
@@ -16,3 +16,7 @@ A rather peculiar case is that the cells in our nose age faster than the cells i
 **References**
 
 1. `Superaccurate Clocks Confirm Your Hair Is Aging Faster Than Your Toenails <http://www.sciencemag.org/news/2010/09/superaccurate-clocks-confirm-your-hair-aging-faster-your-toenails>`_. Published on September 23, 2010. Last accessed on July 12, 2017.
+
+----
+
+*This article was originally published in Spanish on 2010-12-17.*

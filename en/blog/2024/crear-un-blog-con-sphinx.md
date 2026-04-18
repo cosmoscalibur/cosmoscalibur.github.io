@@ -1,5 +1,5 @@
 ---
-date: 2024-05-16
+date: 2025-01-04
 tags: python, ablog, sphinx, static site generators
 category: technology, blogging with sphinx
 language: en
@@ -467,7 +467,7 @@ need to add directives but rather the front matter, such as:
 ```{code} md
 
 ---
-date: 2024-05-14
+date: 2025-01-04
 tags: blog, sphinx, python, ablog, pydata
 category: tecnología
 author: Edward Villegas-Pulgarin
@@ -537,3 +537,7 @@ As for me, here are some details I want to work on soon:
 - [Myst Parser](https://myst-parser.readthedocs.io/en/latest/)
 - [Migrating the website to Sphinx + ABlog](https://adriaanrol.com/posts/2023/sphinx_migration/)
 - [Migration to Cloudflare Pages](https://dailystuff.nl/blog/2021/migration-to-cloudflare-pages)
+
+----
+
+*This article was originally published in Spanish on 2024-05-16.*

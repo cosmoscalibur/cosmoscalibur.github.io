@@ -1,4 +1,4 @@
-:date: 2013-06-18
+:date: 2024-05-27
 :tags: greek, cosmogony, mythology, history
 :category: science, astronomy
 :language: en
@@ -73,3 +73,7 @@ impossible to detect parallax.
    2012.
 3. `Arche <http://en.wikipedia.org/wiki/Arche>`_. Wikipedia (english version).
    June 18, 2013.
+
+----
+
+*This article was originally published in Spanish on 2013-06-18.*

@@ -22,7 +22,9 @@ habilitarlo en Manjaro con {program}`zsh`, que aquí les cuento.
 ```{figure} /images/configurar-starship-en-manjaro-y-zsh/indicador-starship.png
 ---
 alt: Apariencia visual de mensajes del indicador starship en la terminal para git, python y batería baja.
-:align: center :width: 500px :height: 250px
+align: center
+width: 500px
+height: 250px
 ---
 
 Apariencia del indicador *Starship* en un directorio *git* con ambiente Python,

@@ -1,4 +1,4 @@
-:date: 2020-06-29
+:date: 2026-04-18
 :tags: python, anaconda python, software installation, package manager, conda
 :category: technology
 :author: Edward Villegas-Pulgarin
@@ -51,7 +51,7 @@ Command-line installation applies in the same way for both Mac
 and Linux, both using an installer based on bash code (regardless of
 whether it is Anaconda or Miniconda).
 
-For this case we will rely on silent installation [cmd]_ to avoid
+For this case we will rely on silent installation [cmd-en]_ to avoid
 interactive questions and thus not worry during the installation. We invoke
 the installer with Bash as follows (make sure to use the full and
 correct path of the :code:`sh` installer you will use).
@@ -80,7 +80,7 @@ add the line :code:`conda activate` to the :code:`.bashrc`.
 The version of *Anaconda Navigator* included in 2020.02 on Linux has a
 bug, so if when executing it you see the message
 :code:`UnboundLocalError: local variable 'DISTRO_NAME' referenced before assignment`
-it will be enough to update the package [navigator]_.
+it will be enough to update the package [navigator-en]_.
 
 .. code:: bash
 
@@ -89,7 +89,7 @@ it will be enough to update the package [navigator]_.
 Graphical installation
 ----------------------
 
-Installation on Windows with the graphical installer [gui]_ is simple. The
+Installation on Windows with the graphical installer [gui-en]_ is simple. The
 default options are exactly the recommended ones, so it is only
 necessary to click "*Next*" every time.
 
@@ -116,7 +116,11 @@ we execute :code:`conda list`. If we observe the list of packages, it works.
 References
 ----------
 
-.. [cmd] `Installing in silent mode <https://conda.io/projects/conda/en/latest/user-guide/install/linux.html#installing-in-silent-mode>`_.
+.. [cmd-en] `Installing in silent mode <https://conda.io/projects/conda/en/latest/user-guide/install/linux.html#installing-in-silent-mode>`_.
    conda.
-.. [navigator] `UnboundLocalError: local variable 'DISTRO_NAME' referenced before assignment <https://github.com/ContinuumIO/anaconda-issues/issues/11662>`_. Anaconda issues.
-.. [gui] `Installing on Windows <https://docs.anaconda.com/anaconda/install/windows/>`_. Anaconda.
+.. [navigator-en] `UnboundLocalError: local variable 'DISTRO_NAME' referenced before assignment <https://github.com/ContinuumIO/anaconda-issues/issues/11662>`_. Anaconda issues.
+.. [gui-en] `Installing on Windows <https://docs.anaconda.com/anaconda/install/windows/>`_. Anaconda.
+
+----
+
+*This article was originally published in Spanish on 2020-06-29.*

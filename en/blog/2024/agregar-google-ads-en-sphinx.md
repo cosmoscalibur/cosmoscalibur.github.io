@@ -1,5 +1,5 @@
 ---
-date: 2024-09-25
+date: 2025-01-03
 tags: google ads, sphinx
 category: technology, blogging with sphinx
 language: en
@@ -85,3 +85,7 @@ Ads display on site generated with Sphinx.
 - [Sphinx - Configuration - `html_extra_path`](https://www.sphinx-doc.org/en/master/usage/configuration.html#confval-html_extra_path).
 - [Sphinx - Configuration - `templates_path`](https://www.sphinx-doc.org/en/master/usage/configuration.html#confval-templates_path).
 - [Sphinx - HTML theme development - Templating](https://www.sphinx-doc.org/en/master/development/html_themes/templating.html).
+
+----
+
+*This article was originally published in Spanish on 2024-09-25.*

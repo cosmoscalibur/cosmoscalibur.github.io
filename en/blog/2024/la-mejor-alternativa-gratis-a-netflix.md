@@ -1,5 +1,5 @@
 ---
-date: 2024-10-21
+date: 2024-12-27
 tags: netflix, stremio, torrents, movies, series, linux applications, android applications, windows applications
 category: entertainment, movies and series
 language: en
@@ -99,3 +99,7 @@ but you'll find good free content in Latin American Spanish. If you create an
 account, you can opt for progress sync options.
 [Pluto TV](https://www.pluto.tv/welcome) is available on the web, Android, and
 iOS.
+
+----
+
+*This article was originally published in Spanish on 2024-10-21.*

@@ -1,5 +1,5 @@
 ---
-date: 2025-03-31
+date: 2026-04-18
 tags: rustlang
 category: technology, programming
 language: en
@@ -251,3 +251,7 @@ Along the way and given that in parallel I am starting a project in Rust that I 
 - [State of the Crates 2025](https://ohadravid.github.io/posts/2024-12-state-of-the-crates/).
 - [24daysofrust](https://zsiciarz.github.io/24daysofrust/)
 - [Making Python 100x faster with less than 100 lines of Rust](https://ohadravid.github.io/posts/2023-03-rusty-python/).
+
+----
+
+*This article was originally published in Spanish on 2025-03-31.*

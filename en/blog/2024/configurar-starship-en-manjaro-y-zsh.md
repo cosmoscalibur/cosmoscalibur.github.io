@@ -1,5 +1,5 @@
 ---
-date: 2024-12-15
+date: 2025-01-15
 tags: zsh, bash, ubuntu, manjaro, starship, shell, rust
 category: technology, linux
 language: en
@@ -151,3 +151,7 @@ You can consult other configuration options in
 - [Powerline in manjaro-zsh-config](https://forum.manjaro.org/t/powerline-in-manjaro-zsh-config/42941).
 - [Powerline](https://github.com/powerline/powerline).
 - [Powerlevel10k](https://github.com/romkatv/powerlevel10k).
+
+----
+
+*This article was originally published in Spanish on 2024-12-15.*

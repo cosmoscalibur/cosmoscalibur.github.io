@@ -1,4 +1,4 @@
-:date: 2021-12-14
+:date: 2024-12-27
 :tags: steam, retroarch, gaming, linux, emulators, linux videogames, linux
     applications
 :category: entertainment, videogames
@@ -55,3 +55,7 @@ Conclusion
 ----------
 
 Enjoy your retro gaming experience!
+
+----
+
+*This article was originally published in Spanish on 2021-12-14.*

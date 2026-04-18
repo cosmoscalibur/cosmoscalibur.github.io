@@ -1,4 +1,4 @@
-:date: 2019-11-11
+:date: 2026-04-18
 :tags: container, lxc, lxd, linux, wine, enterprise architect, ealite
 :category: technology
 :author: Edward Villegas-Pulgarin
@@ -282,3 +282,7 @@ References
 + `Installing Enterprise Architect under Linux <https://www.sparxsystems.com/enterprise_architect_user_guide/14.0/product_information/enterprise_architect_linux.html>`_
 + `Winetricks <https://wiki.winehq.org/Winetricks>`_.
 + `How do I export a lxc container? <https://stackoverflow.com/questions/31228191/how-do-i-export-a-lxc-container>`_
+
+----
+
+*This article was originally published in Spanish on 2019-11-11.*
