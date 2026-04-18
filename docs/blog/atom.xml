@@ -2,10 +2,397 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="es">
   <id>https://www.cosmoscalibur.com/</id>
   <title>Cosmoscalibur</title>
-  <updated>2026-03-30T01:40:43.668870+00:00</updated>
+  <updated>2026-04-18T11:39:18.687851+00:00</updated>
   <link href="https://www.cosmoscalibur.com/"/>
   <link href="https://www.cosmoscalibur.com/blog/atom.xml" rel="self"/>
   <generator uri="https://ablog.readthedocs.io/" version="0.11.12">ABlog</generator>
+  <entry>
+    <id>https://www.cosmoscalibur.com/en/blog/2026/gestores-de-paquetes-en-windows/</id>
+    <title>Package Managers on Windows</title>
+    <updated>2026-04-17T00:00:00-05:00</updated>
+    <author>
+      <name>Edward Villegas-Pulgarin</name>
+    </author>
+    <content type="html">&lt;section class="tex2jax_ignore mathjax_ignore" id="package-managers-on-windows"&gt;
+
+&lt;p&gt;Historically, Windows hasn’t been the most developer-friendly operating system
+when it comes to installing software quickly and centrally. For years, the
+default workflow was finding an &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;.exe&lt;/span&gt;&lt;/code&gt; or &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;.msi&lt;/span&gt;&lt;/code&gt; on a website, downloading it,
+and clicking through a setup wizard. Today, however, the ecosystem has matured.
+We now have solid options:
+&lt;a class="reference external" href="https://learn.microsoft.com/en-us/windows/package-manager/winget/"&gt;WinGet&lt;/a&gt;,
+Microsoft’s official package manager, and community-driven alternatives like
+&lt;a class="reference external" href="https://chocolatey.org/"&gt;Chocolatey&lt;/a&gt; and &lt;a class="reference external" href="https://scoop.sh/"&gt;Scoop&lt;/a&gt;.&lt;/p&gt;
+&lt;figure class="align-center" id="id1"&gt;
+&lt;img alt="PowerShell terminal installing packages with Scoop and WinGet" src="https://www.cosmoscalibur.com/_images/terminal-powershell-scoop-winget.webp" style="width: 800px;" /&gt;
+&lt;figcaption&gt;
+&lt;p&gt;&lt;span class="caption-text"&gt;Installing software on Windows from the terminal: Scoop and WinGet as primary
+package managers.&lt;/span&gt;&lt;/p&gt;
+&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;section id="comparison"&gt;
+&lt;h2&gt;Comparison&lt;/h2&gt;
+&lt;p&gt;To get the most out of these tools, it’s important to understand their key
+differences:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;Both WinGet and Chocolatey require administrator permissions, as they install
+software globally (for all users). Scoop, on the other hand, installs in user
+space (&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;~/scoop&lt;/span&gt;&lt;/code&gt;) and requires no elevated privileges.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Chocolatey and Scoop require enabling PowerShell script execution; WinGet does
+not, since it is native to the system.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;WinGet and Chocolatey include third-party software that may not be open source,
+while Scoop focuses exclusively on open-source software and development tools.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Scoop avoids popup interactions, enabling silent, unattended installation.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;section id="which-one-to-choose"&gt;
+&lt;h3&gt;Which one to choose?&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;WinGet:&lt;/strong&gt; Best for Microsoft software or anything that needs deep system
+integration (registry entries, Start Menu, file type associations).&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Chocolatey:&lt;/strong&gt; Suited for third-party software with a wide catalog:&lt;/p&gt;
+&lt;div class="highlight-powershell notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;choco&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;package&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;However, if most of your tools are open source or development-focused,
+Chocolatey adds little over Scoop—and still requires admin rights—so it
+falls outside my usual workflow.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Scoop:&lt;/strong&gt; The natural choice for open-source software and development tools.
+It will feel familiar if you are coming from Linux or macOS.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Most of the tools I use daily are open source and development-oriented, so
+&lt;strong&gt;Scoop&lt;/strong&gt; covers the vast majority. For the rest, I rely on &lt;strong&gt;WinGet&lt;/strong&gt;.&lt;/p&gt;
+&lt;/section&gt;
+&lt;/section&gt;
+&lt;section id="working-with-scoop"&gt;
+&lt;h2&gt;Working with Scoop&lt;/h2&gt;
+&lt;p&gt;To install Scoop, run the following in PowerShell:&lt;/p&gt;
+&lt;div class="highlight-powershell notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nb"&gt;Set-ExecutionPolicy&lt;/span&gt; &lt;span class="n"&gt;-ExecutionPolicy&lt;/span&gt; &lt;span class="n"&gt;RemoteSigned&lt;/span&gt; &lt;span class="n"&gt;-Scope&lt;/span&gt; &lt;span class="n"&gt;CurrentUser&lt;/span&gt;
+&lt;span class="nb"&gt;Invoke-RestMethod&lt;/span&gt; &lt;span class="n"&gt;-Uri&lt;/span&gt; &lt;span class="n"&gt;https&lt;/span&gt;&lt;span class="p"&gt;://&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;scoop&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sh&lt;/span&gt; &lt;span class="p"&gt;|&lt;/span&gt; &lt;span class="nb"&gt;Invoke-Expression&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Scoop organizes software into “buckets” (repositories). The main bucket is
+available right after installation, but you can add others as needed. Essential
+commands:&lt;/p&gt;
+&lt;div class="highlight-powershell notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c"&gt;# Install packages&lt;/span&gt;
+&lt;span class="n"&gt;scoop&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;7zip&lt;/span&gt; &lt;span class="n"&gt;git&lt;/span&gt;
+
+&lt;span class="c"&gt;# Search for a package&lt;/span&gt;
+&lt;span class="n"&gt;scoop&lt;/span&gt; &lt;span class="n"&gt;search&lt;/span&gt; &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+
+&lt;span class="c"&gt;# List installed apps and check update status&lt;/span&gt;
+&lt;span class="n"&gt;scoop&lt;/span&gt; &lt;span class="n"&gt;list&lt;/span&gt;
+&lt;span class="n"&gt;scoop&lt;/span&gt; &lt;span class="n"&gt;status&lt;/span&gt;
+
+&lt;span class="c"&gt;# Update everything&lt;/span&gt;
+&lt;span class="n"&gt;scoop&lt;/span&gt; &lt;span class="n"&gt;update&lt;/span&gt; &lt;span class="p"&gt;*&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/section&gt;
+&lt;section id="why-i-also-use-winget"&gt;
+&lt;h2&gt;Why I Also Use WinGet&lt;/h2&gt;
+&lt;p&gt;Even though Scoop is my primary tool, there are specific cases where WinGet is
+the right choice:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;LibreOffice:&lt;/strong&gt; WinGet registers it in the system as a file-type handler
+(&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;.odt&lt;/span&gt;&lt;/code&gt;, &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;.ods&lt;/span&gt;&lt;/code&gt;, etc.), which Scoop intentionally skips to avoid touching
+global registry entries.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Zed:&lt;/strong&gt; Zed’s built-in auto-update works correctly when installed via WinGet.
+Installed through Scoop, Zed updates itself to the system’s default path,
+ignoring Scoop’s directory structure, which removes the managed executable and
+makes the editor impossible to launch.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;zoxide:&lt;/strong&gt; The developer explicitly recommends installing it via WinGet on
+Windows.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;To update everything installed through WinGet:&lt;/p&gt;
+&lt;div class="highlight-powershell notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;winget&lt;/span&gt; &lt;span class="n"&gt;upgrade&lt;/span&gt; &lt;span class="p"&gt;-&lt;/span&gt;&lt;span class="n"&gt;-all&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/section&gt;
+&lt;section id="pinning-versions"&gt;
+&lt;h2&gt;Pinning Versions&lt;/h2&gt;
+&lt;p&gt;Some software is better left unpinned from automatic updates: Teams, OneDrive,
+Visual Studio Community, and Microsoft Visual C++ redistributables are typical
+examples, since their updates can break dependencies or work environments. In
+WinGet, use &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;pin&lt;/span&gt;&lt;/code&gt;:&lt;/p&gt;
+&lt;div class="highlight-powershell notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c"&gt;# List pinned packages&lt;/span&gt;
+&lt;span class="n"&gt;winget&lt;/span&gt; &lt;span class="n"&gt;pin&lt;/span&gt; &lt;span class="n"&gt;list&lt;/span&gt;
+
+&lt;span class="c"&gt;# Pin to the current version&lt;/span&gt;
+&lt;span class="n"&gt;winget&lt;/span&gt; &lt;span class="n"&gt;pin&lt;/span&gt; &lt;span class="n"&gt;add&lt;/span&gt; &lt;span class="p"&gt;-&lt;/span&gt;&lt;span class="n"&gt;-id&lt;/span&gt; &lt;span class="n"&gt;Microsoft&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Teams&lt;/span&gt;
+
+&lt;span class="c"&gt;# Pin to a specific version&lt;/span&gt;
+&lt;span class="n"&gt;winget&lt;/span&gt; &lt;span class="n"&gt;pin&lt;/span&gt; &lt;span class="n"&gt;add&lt;/span&gt; &lt;span class="p"&gt;-&lt;/span&gt;&lt;span class="n"&gt;-id&lt;/span&gt; &lt;span class="n"&gt;Microsoft&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Teams&lt;/span&gt; &lt;span class="p"&gt;-&lt;/span&gt;&lt;span class="n"&gt;-version&lt;/span&gt; &lt;span class="n"&gt;1&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;2&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;3&lt;/span&gt;
+
+&lt;span class="c"&gt;# Block all updates&lt;/span&gt;
+&lt;span class="n"&gt;winget&lt;/span&gt; &lt;span class="n"&gt;pin&lt;/span&gt; &lt;span class="n"&gt;add&lt;/span&gt; &lt;span class="p"&gt;-&lt;/span&gt;&lt;span class="n"&gt;-id&lt;/span&gt; &lt;span class="n"&gt;Microsoft&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Teams&lt;/span&gt; &lt;span class="p"&gt;-&lt;/span&gt;&lt;span class="n"&gt;-blocking&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="admonition note"&gt;
+&lt;p class="admonition-title"&gt;Nota&lt;/p&gt;
+&lt;p&gt;When running &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;winget&lt;/span&gt; &lt;span class="pre"&gt;upgrade&lt;/span&gt; &lt;span class="pre"&gt;--all&lt;/span&gt;&lt;/code&gt;, pinned packages are skipped. To explicitly
+include them, use &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;winget&lt;/span&gt; &lt;span class="pre"&gt;upgrade&lt;/span&gt; &lt;span class="pre"&gt;--all&lt;/span&gt; &lt;span class="pre"&gt;--include-pinned&lt;/span&gt;&lt;/code&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;In Scoop, the equivalent is &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;hold&lt;/span&gt;&lt;/code&gt;:&lt;/p&gt;
+&lt;div class="highlight-powershell notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;scoop&lt;/span&gt; &lt;span class="n"&gt;hold&lt;/span&gt; &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;app&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="n"&gt;scoop&lt;/span&gt; &lt;span class="n"&gt;unhold&lt;/span&gt; &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;app&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/section&gt;
+&lt;section id="tips-for-developers"&gt;
+&lt;h2&gt;Tips for Developers&lt;/h2&gt;
+&lt;section id="windows-developer-mode"&gt;
+&lt;h3&gt;Windows Developer Mode&lt;/h3&gt;
+&lt;p&gt;Enable it under &lt;em&gt;Settings &amp;gt; Privacy &amp;amp; security &amp;gt; For developers&lt;/em&gt;. This allows
+tools like Scoop to create symbolic links (&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;mklink&lt;/span&gt;&lt;/code&gt;) without administrator
+permissions, which is required for Scoop to manage its internal structure
+correctly.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="powershell-profiles"&gt;
+&lt;h3&gt;PowerShell Profiles&lt;/h3&gt;
+&lt;p&gt;The profile for Windows PowerShell (v5.1) and PowerShell Core (v7+) are located
+in different paths:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;Windows PowerShell (v5.1):
+&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;%USERPROFILE%\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1&lt;/span&gt;&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;PowerShell Core (v7+):
+&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;%USERPROFILE%\Documents\PowerShell\Microsoft.PowerShell_profile.ps1&lt;/span&gt;&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;If you customize aliases, functions, or initialize tools like zoxide, make sure
+to configure both profiles.&lt;/p&gt;
+&lt;/section&gt;
+&lt;/section&gt;
+&lt;section id="conclusion"&gt;
+&lt;h2&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;My usual workflow is: &lt;strong&gt;Scoop&lt;/strong&gt; for CLI tools and open-source software, and
+&lt;strong&gt;WinGet&lt;/strong&gt; for GUI applications that need system integration or when the project
+itself recommends it. Chocolatey stays out of the picture because Scoop already
+covers everything I need in that category—without the extra admin requirements.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="references"&gt;
+&lt;h2&gt;References&lt;/h2&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://learn.microsoft.com/en-us/windows/package-manager/winget/"&gt;WinGet Official Documentation&lt;/a&gt;. Microsoft.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://scoop.sh/"&gt;Scoop.sh&lt;/a&gt;. Community.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://chocolatey.org/"&gt;Chocolatey Software&lt;/a&gt;. Chocolatey Software, Inc.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://stackoverflow.com/questions/58038683/allow-mklink-for-a-non-admin-user"&gt;Allow mklink for a non-admin user&lt;/a&gt;. Stack Overflow.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/section&gt;
+&lt;/section&gt;
+</content>
+    <link href="https://www.cosmoscalibur.com/en/blog/2026/gestores-de-paquetes-en-windows/"/>
+    <summary>Historically, Windows hasn’t been the most developer-friendly operating system
+when it comes to installing software quickly and centrally. For years, the
+default workflow was finding an .exe or .msi on a website, downloading it,
+and clicking through a setup wizard. Today, however, the ecosystem has matured.
+We now have solid options:
+WinGet,
+Microsoft’s official package manager, and community-driven alternatives like
+Chocolatey and Scoop.PowerShell terminal installing packages with Scoop and WinGet</summary>
+    <category term="chocolatey" label="chocolatey"/>
+    <category term="scoop" label="scoop"/>
+    <category term="software" label="software"/>
+    <category term="windows" label="windows"/>
+    <category term="winget" label="winget"/>
+    <published>2026-04-17T00:00:00-05:00</published>
+  </entry>
+  <entry>
+    <id>https://www.cosmoscalibur.com/es/blog/2026/gestores-de-paquetes-en-windows/</id>
+    <title>Gestores de paquetes en Windows</title>
+    <updated>2026-04-17T00:00:00-05:00</updated>
+    <author>
+      <name>Edward Villegas-Pulgarin</name>
+    </author>
+    <content type="html">&lt;section class="tex2jax_ignore mathjax_ignore" id="gestores-de-paquetes-en-windows"&gt;
+
+&lt;p&gt;Windows no ha sido históricamente el sistema operativo más amigable para
+instalar paquetes de manera rápida y centralizada. Durante años, la norma fue
+buscar un instalador &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;.exe&lt;/span&gt;&lt;/code&gt; o &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;.msi&lt;/span&gt;&lt;/code&gt; en una página web, descargarlo y seguir un
+asistente de instalación. Hoy en día, sin embargo, el ecosistema ha evolucionado
+y contamos con opciones robustas:
+&lt;a class="reference external" href="https://learn.microsoft.com/es-es/windows/package-manager/winget/"&gt;WinGet&lt;/a&gt;, el
+gestor oficial de Microsoft, y alternativas de la comunidad como
+&lt;a class="reference external" href="https://chocolatey.org/"&gt;Chocolatey&lt;/a&gt; y &lt;a class="reference external" href="https://scoop.sh/"&gt;Scoop&lt;/a&gt;.&lt;/p&gt;
+&lt;figure class="align-center" id="id1"&gt;
+&lt;img alt="Terminal de PowerShell instalando paquetes con Scoop y WinGet" src="https://www.cosmoscalibur.com/_images/terminal-powershell-scoop-winget.webp" style="width: 800px;" /&gt;
+&lt;figcaption&gt;
+&lt;p&gt;&lt;span class="caption-text"&gt;Instalar &lt;em&gt;software&lt;/em&gt; en Windows desde la terminal: Scoop y WinGet como
+gestores principales.&lt;/span&gt;&lt;/p&gt;
+&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;section id="comparativa"&gt;
+&lt;h2&gt;Comparativa&lt;/h2&gt;
+&lt;p&gt;Para sacar el máximo partido a estas herramientas, es clave entender sus
+diferencias:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;Tanto WinGet como Chocolatey requieren permisos de administrador, pues
+instalan el &lt;em&gt;software&lt;/em&gt; de forma global (para todos los usuarios). Scoop, en
+cambio, instala en el espacio de usuario (&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;~/scoop&lt;/span&gt;&lt;/code&gt;) y no requiere privilegios
+elevados.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Chocolatey y Scoop requieren habilitar la ejecución de &lt;em&gt;scripts&lt;/em&gt; en
+PowerShell; WinGet no, al ser nativo del sistema.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;WinGet y Chocolatey incluyen &lt;em&gt;software&lt;/em&gt; de terceros que puede no ser de
+código abierto, mientras que Scoop se enfoca en &lt;em&gt;software&lt;/em&gt; de código abierto
+y herramientas de desarrollo.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Scoop evita la interacción con &lt;em&gt;popups&lt;/em&gt;, facilitando la instalación
+desatendida.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;section id="cual-elegir"&gt;
+&lt;h3&gt;¿Cuál elegir?&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;WinGet:&lt;/strong&gt; Para &lt;em&gt;software&lt;/em&gt; propio de Microsoft o que requiera la mejor
+integración con el sistema operativo (registros, menú de inicio, asociación
+de tipos de archivo).&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Chocolatey:&lt;/strong&gt; Para &lt;em&gt;software&lt;/em&gt; de terceros con amplia compatibilidad y
+catálogo:&lt;/p&gt;
+&lt;div class="highlight-powershell notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;choco&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;paquete&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Sin embargo, si la mayoría de tus herramientas son de código abierto o para
+desarrollo, Chocolatey añade poco valor frente a Scoop y queda fuera de mi
+flujo habitual.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Scoop:&lt;/strong&gt; Para &lt;em&gt;software&lt;/em&gt; de código abierto y herramientas de desarrollo. Se
+siente familiar si vienes de Linux o macOS.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Las herramientas que uso a diario son mayormente de código abierto y orientadas
+al desarrollo, por lo que &lt;strong&gt;Scoop&lt;/strong&gt; cubre la gran mayoría. Para el resto,
+recurro a &lt;strong&gt;WinGet&lt;/strong&gt;.&lt;/p&gt;
+&lt;/section&gt;
+&lt;/section&gt;
+&lt;section id="trabajando-con-scoop"&gt;
+&lt;h2&gt;Trabajando con Scoop&lt;/h2&gt;
+&lt;p&gt;Para instalar Scoop, ejecuta en PowerShell:&lt;/p&gt;
+&lt;div class="highlight-powershell notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nb"&gt;Set-ExecutionPolicy&lt;/span&gt; &lt;span class="n"&gt;-ExecutionPolicy&lt;/span&gt; &lt;span class="n"&gt;RemoteSigned&lt;/span&gt; &lt;span class="n"&gt;-Scope&lt;/span&gt; &lt;span class="n"&gt;CurrentUser&lt;/span&gt;
+&lt;span class="nb"&gt;Invoke-RestMethod&lt;/span&gt; &lt;span class="n"&gt;-Uri&lt;/span&gt; &lt;span class="n"&gt;https&lt;/span&gt;&lt;span class="p"&gt;://&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;scoop&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sh&lt;/span&gt; &lt;span class="p"&gt;|&lt;/span&gt; &lt;span class="nb"&gt;Invoke-Expression&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Scoop organiza el &lt;em&gt;software&lt;/em&gt; en “buckets” (repositorios). El bucket principal
+ya está disponible al instalar, pero puedes agregar otros según tus necesidades.
+Algunos comandos esenciales:&lt;/p&gt;
+&lt;div class="highlight-powershell notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c"&gt;# Instalar paquetes&lt;/span&gt;
+&lt;span class="n"&gt;scoop&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;7zip&lt;/span&gt; &lt;span class="n"&gt;git&lt;/span&gt;
+
+&lt;span class="c"&gt;# Buscar un paquete&lt;/span&gt;
+&lt;span class="n"&gt;scoop&lt;/span&gt; &lt;span class="n"&gt;search&lt;/span&gt; &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;nombre&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+
+&lt;span class="c"&gt;# Ver lo instalado y su estado de actualización&lt;/span&gt;
+&lt;span class="n"&gt;scoop&lt;/span&gt; &lt;span class="n"&gt;list&lt;/span&gt;
+&lt;span class="n"&gt;scoop&lt;/span&gt; &lt;span class="n"&gt;status&lt;/span&gt;
+
+&lt;span class="c"&gt;# Actualizar todo&lt;/span&gt;
+&lt;span class="n"&gt;scoop&lt;/span&gt; &lt;span class="n"&gt;update&lt;/span&gt; &lt;span class="p"&gt;*&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/section&gt;
+&lt;section id="la-razon-de-usar-winget-tambien"&gt;
+&lt;h2&gt;La razón de usar WinGet también&lt;/h2&gt;
+&lt;p&gt;Aunque Scoop es mi herramienta principal, hay casos puntuales donde WinGet es
+la opción correcta:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;LibreOffice:&lt;/strong&gt; WinGet lo registra en el sistema como alternativa para abrir
+tipos de archivo (&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;.odt&lt;/span&gt;&lt;/code&gt;, &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;.ods&lt;/span&gt;&lt;/code&gt;, etc.), algo que Scoop no hace al evitar
+modificar los registros globales.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Zed:&lt;/strong&gt; La auto-actualización integrada de Zed funciona correctamente cuando
+se instala con WinGet. Instalado con Scoop, Zed actualiza en la ruta habitual
+del sistema ignorando la estructura de Scoop, lo que elimina el ejecutable
+gestionado y deja el editor sin arrancar.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;zoxide:&lt;/strong&gt; El propio desarrollador recomienda instalarlo con WinGet en
+Windows.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Para actualizar todo lo instalado con WinGet:&lt;/p&gt;
+&lt;div class="highlight-powershell notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;winget&lt;/span&gt; &lt;span class="n"&gt;upgrade&lt;/span&gt; &lt;span class="p"&gt;-&lt;/span&gt;&lt;span class="n"&gt;-all&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/section&gt;
+&lt;section id="anclar-versiones-pinning"&gt;
+&lt;h2&gt;Anclar versiones (pinning)&lt;/h2&gt;
+&lt;p&gt;Hay &lt;em&gt;software&lt;/em&gt; que conviene no actualizar automáticamente: Teams, OneDrive,
+Visual Studio Community y los redistribuibles de Visual C++ son ejemplos
+típicos, pues sus actualizaciones pueden romper dependencias o entornos de
+trabajo. En WinGet se usa &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;pin&lt;/span&gt;&lt;/code&gt;:&lt;/p&gt;
+&lt;div class="highlight-powershell notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c"&gt;# Ver paquetes anclados&lt;/span&gt;
+&lt;span class="n"&gt;winget&lt;/span&gt; &lt;span class="n"&gt;pin&lt;/span&gt; &lt;span class="n"&gt;list&lt;/span&gt;
+
+&lt;span class="c"&gt;# Anclar a la versión actual&lt;/span&gt;
+&lt;span class="n"&gt;winget&lt;/span&gt; &lt;span class="n"&gt;pin&lt;/span&gt; &lt;span class="n"&gt;add&lt;/span&gt; &lt;span class="p"&gt;-&lt;/span&gt;&lt;span class="n"&gt;-id&lt;/span&gt; &lt;span class="n"&gt;Microsoft&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Teams&lt;/span&gt;
+
+&lt;span class="c"&gt;# Anclar a una versión específica&lt;/span&gt;
+&lt;span class="n"&gt;winget&lt;/span&gt; &lt;span class="n"&gt;pin&lt;/span&gt; &lt;span class="n"&gt;add&lt;/span&gt; &lt;span class="p"&gt;-&lt;/span&gt;&lt;span class="n"&gt;-id&lt;/span&gt; &lt;span class="n"&gt;Microsoft&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Teams&lt;/span&gt; &lt;span class="p"&gt;-&lt;/span&gt;&lt;span class="n"&gt;-version&lt;/span&gt; &lt;span class="n"&gt;1&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;2&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;3&lt;/span&gt;
+
+&lt;span class="c"&gt;# Bloquear cualquier actualización&lt;/span&gt;
+&lt;span class="n"&gt;winget&lt;/span&gt; &lt;span class="n"&gt;pin&lt;/span&gt; &lt;span class="n"&gt;add&lt;/span&gt; &lt;span class="p"&gt;-&lt;/span&gt;&lt;span class="n"&gt;-id&lt;/span&gt; &lt;span class="n"&gt;Microsoft&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Teams&lt;/span&gt; &lt;span class="p"&gt;-&lt;/span&gt;&lt;span class="n"&gt;-blocking&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="note admonition"&gt;
+&lt;p class="admonition-title"&gt;Nota sobre –include-pinned&lt;/p&gt;
+&lt;p&gt;Al ejecutar &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;winget&lt;/span&gt; &lt;span class="pre"&gt;upgrade&lt;/span&gt; &lt;span class="pre"&gt;--all&lt;/span&gt;&lt;/code&gt;, los paquetes anclados se omiten. Para
+incluirlos explícitamente, usa &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;winget&lt;/span&gt; &lt;span class="pre"&gt;upgrade&lt;/span&gt; &lt;span class="pre"&gt;--all&lt;/span&gt; &lt;span class="pre"&gt;--include-pinned&lt;/span&gt;&lt;/code&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;En Scoop, el equivalente es &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;hold&lt;/span&gt;&lt;/code&gt;:&lt;/p&gt;
+&lt;div class="highlight-powershell notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;scoop&lt;/span&gt; &lt;span class="n"&gt;hold&lt;/span&gt; &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;app&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="n"&gt;scoop&lt;/span&gt; &lt;span class="n"&gt;unhold&lt;/span&gt; &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;app&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/section&gt;
+&lt;section id="tips-para-desarrolladores"&gt;
+&lt;h2&gt;Tips para desarrolladores&lt;/h2&gt;
+&lt;section id="modo-desarrollador-de-windows"&gt;
+&lt;h3&gt;Modo Desarrollador de Windows&lt;/h3&gt;
+&lt;p&gt;Actívalo en &lt;em&gt;Configuración &amp;gt; Privacidad y seguridad &amp;gt; Para desarrolladores&lt;/em&gt;.
+Esto permite que herramientas como Scoop creen enlaces simbólicos (&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;mklink&lt;/span&gt;&lt;/code&gt;)
+sin requerir permisos de administrador, lo que es necesario para su correcto
+funcionamiento interno.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="perfiles-de-powershell"&gt;
+&lt;h3&gt;Perfiles de PowerShell&lt;/h3&gt;
+&lt;p&gt;El perfil de Windows PowerShell (v5.1) y el de PowerShell Core (v7+) se ubican
+en rutas distintas:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;Windows PowerShell (v5.1):
+&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;%USERPROFILE%\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1&lt;/span&gt;&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;PowerShell Core (v7+):
+&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;%USERPROFILE%\Documents\PowerShell\Microsoft.PowerShell_profile.ps1&lt;/span&gt;&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Si personalizas alias, funciones o la inicialización de herramientas como
+zoxide, asegúrate de configurar ambos perfiles.&lt;/p&gt;
+&lt;/section&gt;
+&lt;/section&gt;
+&lt;section id="conclusion"&gt;
+&lt;h2&gt;Conclusión&lt;/h2&gt;
+&lt;p&gt;Mi flujo habitual es: &lt;strong&gt;Scoop&lt;/strong&gt; para herramientas CLI y &lt;em&gt;software&lt;/em&gt; de código
+abierto, y &lt;strong&gt;WinGet&lt;/strong&gt; para aplicaciones GUI con integración de sistema o
+cuando el propio proyecto lo recomienda. Chocolatey queda fuera porque Scoop
+cubre todo lo que necesito en esa categoría sin los permisos adicionales que
+Chocolatey requiere.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="referencias"&gt;
+&lt;h2&gt;Referencias&lt;/h2&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://learn.microsoft.com/es-es/windows/package-manager/winget/"&gt;Documentación oficial de WinGet&lt;/a&gt;. Microsoft.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://scoop.sh/"&gt;Scoop.sh&lt;/a&gt;. Comunidad.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://chocolatey.org/"&gt;Chocolatey Software&lt;/a&gt;. Chocolatey Software, Inc.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://stackoverflow.com/questions/58038683/allow-mklink-for-a-non-admin-user"&gt;Allow mklink for a non-admin user&lt;/a&gt;. Stack Overflow.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/section&gt;
+&lt;/section&gt;
+</content>
+    <link href="https://www.cosmoscalibur.com/es/blog/2026/gestores-de-paquetes-en-windows/"/>
+    <summary>Windows no ha sido históricamente el sistema operativo más amigable para
+instalar paquetes de manera rápida y centralizada. Durante años, la norma fue
+buscar un instalador .exe o .msi en una página web, descargarlo y seguir un
+asistente de instalación. Hoy en día, sin embargo, el ecosistema ha evolucionado
+y contamos con opciones robustas:
+WinGet, el
+gestor oficial de Microsoft, y alternativas de la comunidad como
+Chocolatey y Scoop.Terminal de PowerShell instalando paquetes con Scoop y WinGet</summary>
+    <category term="chocolatey" label="chocolatey"/>
+    <category term="scoop" label="scoop"/>
+    <category term="software" label="software"/>
+    <category term="windows" label="windows"/>
+    <category term="winget" label="winget"/>
+    <published>2026-04-17T00:00:00-05:00</published>
+  </entry>
   <entry>
     <id>https://www.cosmoscalibur.com/en/blog/2025/ecosistema-rust-para-la-terminal-linux/</id>
     <title>Rust Ecosystem for the Linux terminal</title>
@@ -9661,12 +10048,12 @@ and video later, so I’ll explain how to do this using FFMPEG and Bash.</summar
 &lt;section id="solar-wind-velocity-profile"&gt;
 &lt;h2&gt;Solar Wind Velocity Profile&lt;/h2&gt;
 &lt;p&gt;In Parker’s work under conditions of isothermal expansion (&lt;span class="math notranslate nohighlight"&gt;\(\gamma = 1\)&lt;/span&gt;) of a neutral fluid (first approximation to the behavior of the solar wind), it leads to a non-linear first-order differential equation that relates the solar wind speed (&lt;span class="math notranslate nohighlight"&gt;\(u(r)\)&lt;/span&gt;) and the heliocentric distance (&lt;span class="math notranslate nohighlight"&gt;\(r\)&lt;/span&gt;). (Parker, 1958), (Kivelson, 1995)&lt;/p&gt;
-&lt;div class="amsmath math notranslate nohighlight" id="equation-e5d6bde1-d27d-4a35-9da0-26ec8d626156"&gt;
+&lt;div class="amsmath math notranslate nohighlight" id="equation-b025fe1f-a0ad-4e84-b661-a0289395cfc7"&gt;
 &lt;span class="eqno"&gt;(1)&lt;/span&gt;\[\begin{equation}
 \frac{du(r)}{dr} = \left(\frac{4kT}{mr} - \frac{GM}{r^2} \right)u(r)\left(u(r)^2 - \frac{2kT}{m} \right)^{-1}
 \end{equation}\]&lt;/div&gt;
 &lt;p&gt;In order to reduce the propagation of errors due to orders of magnitude of the variables involved, the differential equation is adimensionalized based on the radius and velocity at the critical point (sonic point) (Piso, 2008).&lt;/p&gt;
-&lt;div class="amsmath math notranslate nohighlight" id="equation-a34560e1-df39-4020-b1f2-3de89e66d1fa"&gt;
+&lt;div class="amsmath math notranslate nohighlight" id="equation-d57f0706-f0d6-44a7-b358-8d889a28e431"&gt;
 &lt;span class="eqno"&gt;(2)&lt;/span&gt;\[\begin{eqnarray}
 c_s^2 &amp;amp; = &amp;amp; \frac{2kT}{m}\\
 r_c &amp;amp;=&amp;amp; \frac{GM}{2c_s^2}\\
@@ -9674,7 +10061,7 @@ r_c &amp;amp;=&amp;amp; \frac{GM}{2c_s^2}\\
 \end{eqnarray}\]&lt;/div&gt;
 &lt;p&gt;Where &lt;span class="math notranslate nohighlight"&gt;\(v\)&lt;/span&gt; is the speed at sonic velocities (&lt;span class="math notranslate nohighlight"&gt;\(c_s\)&lt;/span&gt;) and &lt;span class="math notranslate nohighlight"&gt;\(R\)&lt;/span&gt; is the radius at sonic radii (&lt;span class="math notranslate nohighlight"&gt;\(r_c\)&lt;/span&gt;). We observe that around the sonic radius and speed, there is a critical point that must be satisfied to ensure the physical meaning of the solution. Also, we have to note that this equation represents a boundary value problem, and in this case, the boundary condition of the problem in adimensional units is &lt;span class="math notranslate nohighlight"&gt;\(v(R_{\text{sun}}) = v_0\)&lt;/span&gt;, where &lt;span class="math notranslate nohighlight"&gt;\(R_{\text{sun}}\)&lt;/span&gt; is the radius of the Sun, and it is the position from which the flow of particles begins to move with an initial speed &lt;span class="math notranslate nohighlight"&gt;\(v_0\)&lt;/span&gt; that depends on the density of particles and temperature.&lt;/p&gt;
 &lt;p&gt;The generation of the Parker spiral is due to the rotation of the Sun, so we apply the transformation of coordinates Lagrangian for rotating systems, leading to the differential equation:&lt;/p&gt;
-&lt;div class="amsmath math notranslate nohighlight" id="equation-d0cb7c80-0fbb-47e2-a05f-ae5fac58a957"&gt;
+&lt;div class="amsmath math notranslate nohighlight" id="equation-f57e2437-31de-4b5c-a8a1-31a9fb41e2c9"&gt;
 &lt;span class="eqno"&gt;(3)&lt;/span&gt;\[\begin{equation}
 \frac{d\varphi}{dR} = \frac{-\omega}{v(R)}
 \end{equation}\]&lt;/div&gt;
@@ -10006,12 +10393,12 @@ Min radii (adim): 0.173030
 &lt;section id="perfil-de-velocidad-del-viento-solar"&gt;
 &lt;h2&gt;Perfil de velocidad del viento solar&lt;/h2&gt;
 &lt;p&gt;En el trabajo de Parker bajo condiciones de expansión isotérmica (&lt;span class="math notranslate nohighlight"&gt;\(\gamma = 1\)&lt;/span&gt;) de un fluido neutro (primera aproximación al comportamiento del viendo solar), lleva a una ecuación diferencial no lineal de primer orden que relaciona la velocidad del viento solar (&lt;span class="math notranslate nohighlight"&gt;\(u(r)\)&lt;/span&gt;) y la distancia heliocéntrica (&lt;span class="math notranslate nohighlight"&gt;\(r\)&lt;/span&gt;) ((Parker, 1958), (Kivelson, 1995)).&lt;/p&gt;
-&lt;div class="amsmath math notranslate nohighlight" id="equation-36da09b2-acb7-4324-a717-0462c02cebec"&gt;
+&lt;div class="amsmath math notranslate nohighlight" id="equation-44a32c1b-7627-4d68-8bab-02de7e16e8a7"&gt;
 &lt;span class="eqno"&gt;(1)&lt;/span&gt;\[\begin{equation}
 \frac{du(r)}{dr} = \left(\frac{4kT}{mr} - \frac{GM}{r^2} \right)u(r)\left(u(r)^2 - \frac{2kT}{m} \right)^{-1}
 \end{equation}\]&lt;/div&gt;
 &lt;p&gt;Con el fin de reducir la propagación de error por los ordenes de magnitud de las variables involucradas, se procede a adimensionalizar la ecuación diferencial, con base al radio y velocidad en el punto crítico (punto sónico) (Piso, 2008).&lt;/p&gt;
-&lt;div class="amsmath math notranslate nohighlight" id="equation-9e785022-cf07-4310-af28-b18de0d9c84e"&gt;
+&lt;div class="amsmath math notranslate nohighlight" id="equation-9cff9807-59bb-44a6-b8a4-b88b555c0fc1"&gt;
 &lt;span class="eqno"&gt;(2)&lt;/span&gt;\[\begin{eqnarray}
 c_s^2 &amp;amp; = &amp;amp; \frac{2kT}{m}\\
 r_c &amp;amp;=&amp;amp; \frac{GM}{2c_s^2}\\
@@ -10019,7 +10406,7 @@ r_c &amp;amp;=&amp;amp; \frac{GM}{2c_s^2}\\
 \end{eqnarray}\]&lt;/div&gt;
 &lt;p&gt;Donde &lt;span class="math notranslate nohighlight"&gt;\(v\)&lt;/span&gt; es la velocidad en velocidades sónicas (&lt;span class="math notranslate nohighlight"&gt;\(c_s\)&lt;/span&gt;) y &lt;span class="math notranslate nohighlight"&gt;\(R\)&lt;/span&gt; es el radio en radios sónicos (&lt;span class="math notranslate nohighlight"&gt;\(r_c\)&lt;/span&gt;). Observamos que alrededor del radio sónico y de la velocidad sónica se presenta un punto crítico que debe satisfacerse para asegurar el sentido físico de la solución. También, tenemos que esta ecuación representa un problema de valores de frontera, y en este caso la condición de frontera del problema en unidades adimensionales es &lt;span class="math notranslate nohighlight"&gt;\(v(R_{sol}) = v_0\)&lt;/span&gt;, donde &lt;span class="math notranslate nohighlight"&gt;\(R_{sol}\)&lt;/span&gt; es el radio del Sol, y es la posición desde la cuál comienza a desplazarse el flujo de partículas con una velocidad inicial &lt;span class="math notranslate nohighlight"&gt;\(v_0\)&lt;/span&gt; que dependerá de la densidad de partículas y la temperatura.&lt;/p&gt;
 &lt;p&gt;La generación de la espiral de Parker es efecto de la rotación del sol, por lo cual se aplica la transformación de coordenadas lagrangianas para sistemas rotantes, llevando a la ecuación diferencial&lt;/p&gt;
-&lt;div class="amsmath math notranslate nohighlight" id="equation-18487903-35d9-489e-a64b-0c30198ea5c8"&gt;
+&lt;div class="amsmath math notranslate nohighlight" id="equation-415dbdfa-abe7-41fd-a440-064ae8d4317e"&gt;
 &lt;span class="eqno"&gt;(3)&lt;/span&gt;\[\begin{equation}
 \frac{d\varphi}{dR} = \frac{-\omega}{v(R)}
 \end{equation}\]&lt;/div&gt;
@@ -14589,11 +14976,6 @@ DroidCam &lt;a class="reference internal" href="../es/blog/2020/usar-la-camara-d
 (aplicable para Debian y derivados). El aspecto dependiente de la
 distribución es la instalación de las 3 dependencias requeridas (GCC, Make
 y Linux Headers).&lt;/p&gt;
-&lt;aside class="system-message"&gt;
-&lt;p class="system-message-title"&gt;System Message: INFO/1 (&lt;span class="docutils literal"&gt;/home/cosmoscalibur/Documentos/git/cosmoscalibur.github.io/es/blog/2020/usar-la-camara-de-tu-celular-como-webcam.rst&lt;/span&gt;, line 38)&lt;/p&gt;
-&lt;p&gt;No directive entry for «raw» in module «docutils.parsers.rst.languages.es».
-Using English fallback for directive «raw».&lt;/p&gt;
-&lt;/aside&gt;
 &lt;pre&gt;&lt;font color="#8AE234"&gt;&lt;b&gt;cosmoscalibur@edliviano&lt;/b&gt;&lt;/font&gt;:&lt;font color="#729FCF"&gt;&lt;b&gt;/tmp&lt;/b&gt;&lt;/font&gt;$  wget https://files.dev47apps.net/linux/droidcam_latest.zip
 --2020-05-12 19:03:30--  https://files.dev47apps.net/linux/droidcam_latest.zip
 Resolving files.dev47apps.net (files.dev47apps.net)... 104.28.5.185, 104.28.4.185, 2606:4700:3037::681c:4b9, ...
@@ -14662,11 +15044,6 @@ Done
 videodev              208896  5 v4l2_common,videobuf2_v4l2,&lt;font color="#EF2929"&gt;&lt;b&gt;v4l2loopback_dc&lt;/b&gt;&lt;/font&gt;,uvcvideo,videobuf2_common
 &lt;/pre&gt;&lt;p&gt;La última instrucción es solo para efectos de validación. Si sale
 &lt;code class="code docutils literal notranslate"&gt;&lt;span class="pre"&gt;v4l2loopback_dc&lt;/span&gt;&lt;/code&gt;, estamos bien.&lt;/p&gt;
-&lt;aside class="system-message"&gt;
-&lt;p class="system-message-title"&gt;System Message: INFO/1 (&lt;span class="docutils literal"&gt;/home/cosmoscalibur/Documentos/git/cosmoscalibur.github.io/es/blog/2020/usar-la-camara-de-tu-celular-como-webcam.rst&lt;/span&gt;, line 108)&lt;/p&gt;
-&lt;p&gt;No role entry for «code» in module «docutils.parsers.rst.languages.es».
-Using English fallback for role «code».&lt;/p&gt;
-&lt;/aside&gt;
 &lt;/section&gt;
 &lt;section id="instalacion-en-android"&gt;
 &lt;h3&gt;Instalación en Android&lt;/h3&gt;
@@ -15585,11 +15962,6 @@ y manteniendo el trazado de la interacción de estas, lleva a consolidar el
 número de personas con interacción directa e indirecta con el crecimiento
 exponencial (&lt;span class="math notranslate nohighlight"&gt;\(A\exp(r t)\)&lt;/span&gt;, donde &lt;span class="math notranslate nohighlight"&gt;\(r\)&lt;/span&gt; es la tasa de crecimiento y
 &lt;span class="math notranslate nohighlight"&gt;\(A\)&lt;/span&gt; es la población inicial afectada).&lt;/p&gt;
-&lt;aside class="system-message"&gt;
-&lt;p class="system-message-title"&gt;System Message: INFO/1 (&lt;span class="docutils literal"&gt;/home/cosmoscalibur/Documentos/git/cosmoscalibur.github.io/es/blog/2020/datos-y-responsabilidad-covid19.rst&lt;/span&gt;, line 218)&lt;/p&gt;
-&lt;p&gt;No role entry for «math» in module «docutils.parsers.rst.languages.es».
-Using English fallback for role «math».&lt;/p&gt;
-&lt;/aside&gt;
 &lt;p&gt;Las curvas gausianas &lt;a class="reference internal" href="../es/blog/2020/datos-y-responsabilidad-covid19/#wiki-gausiana" id="id17"&gt;&lt;span&gt;[wiki-gausiana]&lt;/span&gt;&lt;/a&gt; pueden describir los casos activos, es
 decir, los casos actuales que se encuentran afectados actualizando respecto a
 los casos de recuperados y muertos que se descuentan de los infectados. Esta es
