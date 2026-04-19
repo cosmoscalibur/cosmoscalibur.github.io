@@ -5,7 +5,6 @@ sudo dd bs=4M if=manjaro-kde-24.1.2-241104-linux610.iso of=/dev/sda status=progr
 (sin número, solo letra) lsblk/lsusb - mount
 
 - polars pandas
-- voidzero oxlint
 
 graphviz
 
@@ -33,19 +32,14 @@ http://docs.enthought.com/mayavi/mayavi/ ipyvolume
 https://ipyvolume.readthedocs.io/en/latest/ yt https://yt-project.org/ pyvista
 https://docs.pyvista.org/
 
-bevy pygame pymunk rapier matter.js
+
 
 vispy https://vispy.org/ holovyz https://holoviz.org/ holoviews
 https://holoviews.org/
 
-histcite
-https://support.clarivate.com/ScientificandAcademicResearch/s/article/HistCite-No-longer-in-active-development-or-officially-supported?language=en_US
-vosviewer https://www.vosviewer.com/
+
 
 matomo en vez de analytics https://matomo.org/plausible-vs-matomo/
-
-
-uv vs pixi
 
 python en la web pyodide pyscript jupyterlite
 
@@ -58,3 +52,7 @@ octave https://octave.org/ matlab
 yaak https://yaak.app/ postman
 
 winboat lanzar windows en linux en contenedor
+
+rlibphonenumber - rust para validación de estándar de números telefónicos
+
+lighpanda - navegador web para agentes de IA y automatización sin modo gráfico, en zig, y con mcp.

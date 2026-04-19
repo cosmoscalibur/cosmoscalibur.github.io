@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="es">
   <id>https://www.cosmoscalibur.com/</id>
   <title>Cosmoscalibur</title>
-  <updated>2026-04-18T22:57:06.074510+00:00</updated>
+  <updated>2026-04-19T03:19:11.584037+00:00</updated>
   <link href="https://www.cosmoscalibur.com/"/>
   <link href="https://www.cosmoscalibur.com/blog/atom.xml" rel="self"/>
   <generator uri="https://ablog.readthedocs.io/" version="0.11.12">ABlog</generator>
@@ -288,6 +288,191 @@ particular birthday message that my brother left me, which says:</summary>
     <category term="numbers" label="numbers"/>
     <category term="perfectnumber" label="perfect number"/>
     <category term="triangularnumber" label="triangular number"/>
+    <published>2026-04-18T00:00:00-05:00</published>
+  </entry>
+  <entry>
+    <id>https://www.cosmoscalibur.com/en/blog/2026/ecosistema-rust-en-python/</id>
+    <title>Rust Ecosystem in Python</title>
+    <updated>2026-04-18T00:00:00-05:00</updated>
+    <author>
+      <name>Edward Villegas-Pulgarin</name>
+    </author>
+    <content type="html">&lt;section class="tex2jax_ignore mathjax_ignore" id="rust-ecosystem-in-python"&gt;
+
+&lt;p&gt;For years, the Python ecosystem has grappled with the “two-language problem”: we
+write code in Python for its ergonomics, but when performance becomes critical,
+we drop down to C or C++. This transition has always been painful, introducing
+memory safety risks and considerable maintenance complexity. However, we are
+witnessing a paradigm shift. &lt;strong&gt;Rust has become the new standard for building
+Python infrastructure.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;This phenomenon is no accident. Rust offers what C++ never could: guaranteed
+memory safety at compile time and a concurrency model that allows us to safely
+bypass the dreaded &lt;em&gt;Global Interpreter Lock&lt;/em&gt; (GIL).&lt;/p&gt;
+&lt;section id="critical-infrastructure-the-invisible-engine"&gt;
+&lt;h2&gt;Critical Infrastructure: The Invisible Engine&lt;/h2&gt;
+&lt;p&gt;We often don’t realize it, but many of the libraries we use daily have been
+silently rebuilt in Rust to optimize critical processes.&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;&lt;strong class="program"&gt;pydantic-core&lt;/strong&gt;&lt;/strong&gt;: With the arrival of Pydantic V2, the validation
+engine was completely rewritten in Rust. The result is a performance
+improvement of between 5x and 50x. Since Pydantic is the foundation for
+frameworks like &lt;strong class="program"&gt;FastAPI&lt;/strong&gt;, this change has accelerated thousands of
+applications without developers having to change a single line of their
+models.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;&lt;strong class="program"&gt;cryptography&lt;/strong&gt;&lt;/strong&gt;: One of the most downloaded packages on PyPI now
+uses Rust for critical parts of its logic. This not only improves speed but
+drastically reduces the attack surface for memory errors in an area where
+security is paramount.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/section&gt;
+&lt;section id="development-and-management-tools-the-astral-era"&gt;
+&lt;h2&gt;Development and Management Tools: The Astral Era&lt;/h2&gt;
+&lt;p&gt;If one company exemplifies this revolution, it is &lt;em&gt;Astral&lt;/em&gt;. Their approach
+hasn’t just been “make it faster,” but to consolidate fragmented tools.&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;&lt;strong class="program"&gt;ruff&lt;/strong&gt;&lt;/strong&gt;: It has replaced &lt;em&gt;flake8&lt;/em&gt;, &lt;em&gt;isort&lt;/em&gt;, &lt;em&gt;black&lt;/em&gt;, and others
+in a single binary. The difference isn’t just marginal; it’s instantaneous even
+in monorepos with millions of lines.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;&lt;strong class="program"&gt;uv&lt;/strong&gt;&lt;/strong&gt;: It’s not just a package installer. It’s a complete
+management system for Python versions, virtual environments, and dependencies.
+As I shared in my &lt;a class="reference internal" href="../en/blog/2024/uv-alternativa-rapida-a-pip-y-venv/"&gt;&lt;span class="std std-doc"&gt;article on uv&lt;/span&gt;&lt;/a&gt;,
+its speed is due to intensive use of parallelism and extremely aggressive
+cache management.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;&lt;strong class="program"&gt;ty&lt;/strong&gt;&lt;/strong&gt;: The new type checker aiming to succeed &lt;em&gt;Mypy&lt;/em&gt; and
+&lt;em&gt;Pyright&lt;/em&gt;. By performing static analysis in Rust, it offers real-time feedback
+in the editor—something that was previously prohibitive in large projects.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/section&gt;
+&lt;section id="libraries-for-processing-and-services"&gt;
+&lt;h2&gt;Libraries for Processing and Services&lt;/h2&gt;
+&lt;p&gt;Beyond tooling, data processing has seen a quantitative leap thanks to modern
+standards and native optimization.&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;&lt;strong class="program"&gt;polars&lt;/strong&gt;&lt;/strong&gt;: Unlike &lt;em&gt;Pandas&lt;/em&gt;, &lt;strong class="program"&gt;polars&lt;/strong&gt; uses a fully
+vectorized and lazy execution engine written in Rust, based internally on the
+&lt;strong&gt;Apache Arrow&lt;/strong&gt; memory standard. This allows for efficient memory layout and
+&lt;em&gt;zero-copy&lt;/em&gt; operations that maximize modern hardware performance.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;&lt;strong class="program"&gt;connectorx&lt;/strong&gt;&lt;/strong&gt;: This is the fastest way to load data from SQL
+databases into DataFrames. Its native integration with &lt;strong class="program"&gt;polars&lt;/strong&gt;
+(via the &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;pl.read_database&lt;/span&gt;&lt;/code&gt; command with &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;engine=&amp;quot;connectorx&amp;quot;&lt;/span&gt;&lt;/code&gt;) allows for
+moving millions of rows into a DataFrame using parallel connections without the
+usual Python bottlenecks.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;&lt;strong class="program"&gt;tiktoken&lt;/strong&gt;&lt;/strong&gt;: OpenAI’s tokenization library. In the world of LLMs,
+converting text into tokens is a constant and heavy task; doing it in Rust
+allows processing thousands of documents per second without blocking Python’s
+main loop.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Regarding servers, while &lt;strong class="program"&gt;robyn&lt;/strong&gt; attempts to be a complete alternative
+to &lt;strong class="program"&gt;FastAPI&lt;/strong&gt;, projects like &lt;strong&gt;&lt;strong class="program"&gt;granian&lt;/strong&gt;&lt;/strong&gt; are proving that a
+high-performance HTTP server can be built in Rust that is more stable and
+faster than traditional &lt;em&gt;Uvicorn&lt;/em&gt;-based ones.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="specific-use-cases-and-utilities"&gt;
+&lt;h2&gt;Specific Use Cases and Utilities&lt;/h2&gt;
+&lt;p&gt;Even in more everyday tasks, Rust is gaining ground as a direct optimization
+tool:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;&lt;strong class="program"&gt;fastexcel&lt;/strong&gt;&lt;/strong&gt;: Based on the &lt;strong&gt;Calamine&lt;/strong&gt; Rust library, it is
+incredibly fast at reading heavy Excel files. In fact, it serves as the
+default and most efficient Excel reading engine for &lt;strong class="program"&gt;polars&lt;/strong&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;&lt;strong class="program"&gt;rensa&lt;/strong&gt;&lt;/strong&gt;: Positioned as a modern alternative to &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;datasketch&lt;/span&gt;&lt;/code&gt; or
+&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;pyminhash&lt;/span&gt;&lt;/code&gt; for text similarity tasks using &lt;em&gt;MinHash&lt;/em&gt;. In my experience, it has
+been fundamental for &lt;strong&gt;automatic conversation template detection&lt;/strong&gt;, allowing
+for almost instant deduplication of large datasets.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;&lt;strong class="program"&gt;orjson&lt;/strong&gt;&lt;/strong&gt;: It remains the gold standard for JSON serialization. It
+can be integrated as a serializer in &lt;strong&gt;Django&lt;/strong&gt; (for instance, through the
+&lt;em&gt;Django REST Framework&lt;/em&gt;) to drastically improve API response speeds.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/section&gt;
+&lt;section id="native-extension-development-pyo3-and-maturin"&gt;
+&lt;h2&gt;Native Extension Development: PyO3 and Maturin&lt;/h2&gt;
+&lt;p&gt;This surge would not be possible without the ecosystem for creating native
+extensions. &lt;strong&gt;&lt;strong class="program"&gt;PyO3&lt;/strong&gt;&lt;/strong&gt; is the framework that allows exposing Rust code
+to Python with minimal friction. It has displaced &lt;em&gt;Cython&lt;/em&gt; and direct C API
+usage from &lt;em&gt;CPython&lt;/em&gt; due to its ability to prevent segfaults and allow the use
+of modern abstractions like generics and traits.&lt;/p&gt;
+&lt;p&gt;Its greatest advantage is the &lt;strong&gt;automatic mapping of standard data types&lt;/strong&gt; (such
+as lists, dictionaries, and strings), which greatly reduces the manual work at
+the interface between both languages. However, for an extension to be truly
+effective and leverage Rust’s full potential, it is vital to follow recommended
+design practices:&lt;/p&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;GIL Management&lt;/strong&gt;: The true power of Rust is unleashed by using
+&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;py.allow_threads&lt;/span&gt;&lt;/code&gt; to release the &lt;em&gt;Global Interpreter Lock&lt;/em&gt; during intensive
+computations, enabling true parallelism.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Error Mapping&lt;/strong&gt;: It is essential to transform Rust &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;Result&lt;/span&gt;&lt;/code&gt; types into
+appropriate Python exceptions (&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;PyValueError&lt;/span&gt;&lt;/code&gt;, &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;PyTypeError&lt;/span&gt;&lt;/code&gt;) so that the
+end-user experience is consistent.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Decoupling&lt;/strong&gt;: A key practice is to keep the pure Rust logic in a crate
+separate from the Python bindings, which facilitates unit testing and code
+reuse.&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Finally, with &lt;strong&gt;&lt;strong class="program"&gt;maturin&lt;/strong&gt;&lt;/strong&gt;, distributing binaries (wheels) for
+multiple platforms is now a trivial process compared to the traditional
+complexities of &lt;em&gt;setuptools&lt;/em&gt;.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="rust-in-the-core-the-future-of-cpython"&gt;
+&lt;h2&gt;Rust in the Core: The Future of CPython&lt;/h2&gt;
+&lt;p&gt;Perhaps the most impactful news is that the relationship between both languages
+is no longer just “neighborly,” but one of deep integration. There is an official
+initiative, known as &lt;strong&gt;“Rust for CPython,”&lt;/strong&gt; which seeks to introduce Rust into
+the interpreter’s own source tree.&lt;/p&gt;
+&lt;p&gt;The goal is to allow critical parts of CPython—especially those that are
+difficult to maintain or error-prone in C—to be rewritten in Rust. It is expected
+that &lt;strong&gt;Python 3.16&lt;/strong&gt; will be the first version to officially include Rust
+components, marking the beginning of an era where the language core will be
+safer and easier to evolve.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="critical-review-is-it-always-the-solution"&gt;
+&lt;h2&gt;Critical Review: Is It Always the Solution?&lt;/h2&gt;
+&lt;p&gt;Despite the benefits, this “Rustification” comes at a cost. The contribution
+barrier is raised: a Python developer wanting to fix a bug in the core of
+&lt;strong class="program"&gt;ruff&lt;/strong&gt; must now know Rust. Additionally, binary compilation introduces
+a layer of complexity in CI/CD systems that isn’t always justified for small
+tools.&lt;/p&gt;
+&lt;p&gt;However, for core infrastructure, the verdict is clear: Python is the language
+of the interface, but Rust is, increasingly, the language of the engine.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="references"&gt;
+&lt;h2&gt;References&lt;/h2&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://discuss.python.org/t/rust-for-cpython/"&gt;Rust for CPython: Discussion and Roadmap&lt;/a&gt;. Python Discourse.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://rochacbruno.github.io/py2rs/index.html"&gt;Py2RS: Python to Rust guide&lt;/a&gt;. Bruno Rocha.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://ohadravid.github.io/posts/2023-03-rusty-python/"&gt;Rusty Python: How we use Rust to speed up Python&lt;/a&gt;. Ohad Ravid.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://medium.com/data-science/nine-rules-for-writing-python-extensions-in-rust-d35ea3a4ec29"&gt;Nine rules for writing Python extensions in Rust&lt;/a&gt;. Medium.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://pyo3.rs/"&gt;PyO3: Rust bindings for Python&lt;/a&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://www.maturin.rs/"&gt;Maturin: Build and publish crates with pyo3&lt;/a&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://github.com/pydantic/pydantic-core"&gt;Pydantic-core: The engine of Pydantic V2&lt;/a&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://pola.rs/"&gt;Polars: Blazingly fast DataFrames with Apache Arrow&lt;/a&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://github.com/sfu-db/connector-x"&gt;ConnectorX: Fast SQL to DataFrame library&lt;/a&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://github.com/ToucanToco/fastexcel"&gt;Fastexcel: Fast Excel reader based on Calamine&lt;/a&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://github.com/beowolx/rensa"&gt;Rensa: High-performance MinHash library&lt;/a&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://github.com/ijl/orjson"&gt;Orjson: Fast JSON library for Python&lt;/a&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://github.com/openai/tiktoken"&gt;Tiktoken: OpenAI’s fast tokenizer&lt;/a&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://robyn.tech/"&gt;Robyn: A high-performance web framework&lt;/a&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://github.com/emmett-framework/granian"&gt;Granian: A Rust HTTP server for Python&lt;/a&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://astral.sh/"&gt;Astral: The future of Python tooling&lt;/a&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/section&gt;
+&lt;/section&gt;
+</content>
+    <link href="https://www.cosmoscalibur.com/en/blog/2026/ecosistema-rust-en-python/"/>
+    <summary>For years, the Python ecosystem has grappled with the “two-language problem”: we
+write code in Python for its ergonomics, but when performance becomes critical,
+we drop down to C or C++. This transition has always been painful, introducing
+memory safety risks and considerable maintenance complexity. However, we are
+witnessing a paradigm shift. Rust has become the new standard for building
+Python infrastructure.</summary>
+    <category term="cpython" label="cpython"/>
+    <category term="maturin" label="maturin"/>
+    <category term="performance" label="performance"/>
+    <category term="polars" label="polars"/>
+    <category term="pydantic" label="pydantic"/>
+    <category term="pyo3" label="pyo3"/>
+    <category term="python" label="python"/>
+    <category term="ruff" label="ruff"/>
+    <category term="rust" label="rust"/>
+    <category term="uv" label="uv"/>
     <published>2026-04-18T00:00:00-05:00</published>
   </entry>
   <entry>
@@ -961,6 +1146,195 @@ dependencies, facilitating reproducibility and avoiding conflicts.</summary>
     <category term="packagemanager" label="package manager"/>
     <category term="python" label="python"/>
     <category term="softwareinstallation" label="software installation"/>
+    <published>2026-04-18T00:00:00-05:00</published>
+  </entry>
+  <entry>
+    <id>https://www.cosmoscalibur.com/es/blog/2026/ecosistema-rust-en-python/</id>
+    <title>Ecosistema Rust en Python</title>
+    <updated>2026-04-18T00:00:00-05:00</updated>
+    <author>
+      <name>Edward Villegas-Pulgarin</name>
+    </author>
+    <content type="html">&lt;section class="tex2jax_ignore mathjax_ignore" id="ecosistema-rust-en-python"&gt;
+
+&lt;p&gt;Durante años, el ecosistema de Python ha lidiado con el “problema de los dos
+lenguajes”: escribimos código en Python por su ergonomía, pero cuando el
+rendimiento es crítico, bajamos a C o C++. Esta transición siempre ha sido
+dolorosa, introduciendo riesgos de seguridad de memoria y una complejidad de
+mantenimiento considerable. Sin embargo, estamos presenciando un cambio de
+paradigma. &lt;strong&gt;Rust se ha convertido en el nuevo estándar para construir la
+infraestructura de Python.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Este fenómeno no es casualidad. Rust ofrece lo que C++ nunca pudo: seguridad de
+memoria garantizada en tiempo de compilación y un modelo de concurrencia que nos
+permite ignorar el temido &lt;em&gt;Global Interpreter Lock&lt;/em&gt; (GIL) de forma segura.&lt;/p&gt;
+&lt;section id="infraestructura-critica-el-motor-invisible"&gt;
+&lt;h2&gt;Infraestructura crítica: El motor invisible&lt;/h2&gt;
+&lt;p&gt;A menudo no nos damos cuenta, pero muchas de las bibliotecas que usamos a diario
+han sido reconstruidas silenciosamente en Rust para optimizar procesos críticos.&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;&lt;strong class="program"&gt;pydantic-core&lt;/strong&gt;&lt;/strong&gt;: Con la llegada de Pydantic V2, el motor de
+validación se reescribió totalmente en Rust. El resultado es una mejora de
+rendimiento de entre 5x y 50x. Dado que Pydantic es la base de frameworks como
+&lt;strong class="program"&gt;FastAPI&lt;/strong&gt;, este cambio ha acelerado miles de aplicaciones sin que los
+desarrolladores tuvieran que cambiar una sola línea de sus modelos.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;&lt;strong class="program"&gt;cryptography&lt;/strong&gt;&lt;/strong&gt;: Uno de los paquetes más descargados de PyPI
+ahora utiliza Rust para partes críticas de su lógica. Esto no solo mejora la
+velocidad, sino que reduce drásticamente la superficie de ataque para errores
+de memoria en un área donde la seguridad es primordial.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/section&gt;
+&lt;section id="herramientas-de-desarrollo-y-gestion-la-era-de-astral"&gt;
+&lt;h2&gt;Herramientas de desarrollo y gestión: La era de Astral&lt;/h2&gt;
+&lt;p&gt;Si hay una empresa que ejemplifica esta revolución es &lt;em&gt;Astral&lt;/em&gt;. Su enfoque no ha
+sido solo “hacerlo más rápido”, sino consolidar herramientas fragmentadas.&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;&lt;strong class="program"&gt;ruff&lt;/strong&gt;&lt;/strong&gt;: Ha reemplazado a &lt;em&gt;flake8&lt;/em&gt;, &lt;em&gt;isort&lt;/em&gt;, &lt;em&gt;black&lt;/em&gt; y otros en un
+solo binario. La diferencia no es solo marginal; es instantáneo incluso en
+monorepos de millones de líneas.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;&lt;strong class="program"&gt;uv&lt;/strong&gt;&lt;/strong&gt;: No es solo un instalador de paquetes. Es una gestión
+completa de Python, entornos virtuales y dependencias. Como ya les conté en mi
+&lt;a class="reference internal" href="../es/blog/2024/uv-alternativa-rapida-a-pip-y-venv/"&gt;&lt;span class="std std-doc"&gt;artículo sobre uv&lt;/span&gt;&lt;/a&gt;,
+su velocidad se debe al uso intensivo de paralelismo y una gestión de &lt;em&gt;cache&lt;/em&gt;
+extremadamente agresiva.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;&lt;strong class="program"&gt;ty&lt;/strong&gt;&lt;/strong&gt;: El nuevo comprobador de tipos que busca jubilar a &lt;em&gt;Mypy&lt;/em&gt; y
+&lt;em&gt;Pyright&lt;/em&gt;. Al realizar el análisis estático en Rust, ofrece &lt;em&gt;feedback&lt;/em&gt; en
+tiempo real en el editor, algo que antes era prohibitivo en proyectos grandes.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/section&gt;
+&lt;section id="bibliotecas-para-procesamiento-y-servicios"&gt;
+&lt;h2&gt;Bibliotecas para procesamiento y servicios&lt;/h2&gt;
+&lt;p&gt;Más allá de las herramientas, el procesamiento de datos ha visto un salto
+cuantitativo gracias a la adopción de estándares modernos y la optimización nativa.&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;&lt;strong class="program"&gt;polars&lt;/strong&gt;&lt;/strong&gt;: A diferencia de &lt;em&gt;Pandas&lt;/em&gt;, &lt;strong class="program"&gt;polars&lt;/strong&gt; utiliza un
+motor de ejecución totalmente vectorial y perezoso escrito en Rust, basado
+internamente en el estándar de memoria &lt;strong&gt;Apache Arrow&lt;/strong&gt;. Esto permite un
+diseño de memoria eficiente y operaciones &lt;em&gt;zero-copy&lt;/em&gt; que maximizan el
+rendimiento del hardware moderno.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;&lt;strong class="program"&gt;connectorx&lt;/strong&gt;&lt;/strong&gt;: Es la forma más rápida de cargar datos desde bases
+de datos SQL. Su integración nativa con &lt;strong class="program"&gt;polars&lt;/strong&gt; (vía el comando
+&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;pl.read_database&lt;/span&gt;&lt;/code&gt; usando &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;engine=&amp;quot;connectorx&amp;quot;&lt;/span&gt;&lt;/code&gt;) permite mover millones de
+filas desde la base de datos al DataFrame aprovechando conexiones paralelas
+sin los cuellos de botella habituales de Python.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;&lt;strong class="program"&gt;tiktoken&lt;/strong&gt;&lt;/strong&gt;: La biblioteca de &lt;em&gt;tokenización&lt;/em&gt; de OpenAI. En el
+mundo de los LLMs, convertir texto en tokens es una tarea constante y pesada;
+hacerlo en Rust permite procesar miles de documentos por segundo sin bloquear
+el bucle principal de Python.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;En cuanto a servidores, mientras &lt;strong class="program"&gt;robyn&lt;/strong&gt; intenta ser una alternativa
+completa a &lt;strong class="program"&gt;FastAPI&lt;/strong&gt;, proyectos como &lt;strong&gt;&lt;strong class="program"&gt;granian&lt;/strong&gt;&lt;/strong&gt; están
+demostrando que se puede construir un servidor HTTP de alto rendimiento en Rust
+que sea más estable y rápido que los tradicionales basados en &lt;em&gt;Uvicorn&lt;/em&gt;.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="casos-de-uso-y-utilidades-especificas"&gt;
+&lt;h2&gt;Casos de uso y utilidades específicas&lt;/h2&gt;
+&lt;p&gt;Incluso en tareas más cotidianas, Rust está ganando terreno como herramienta de
+optimización directa:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;&lt;strong class="program"&gt;fastexcel&lt;/strong&gt;&lt;/strong&gt;: Basado en la biblioteca &lt;strong&gt;Calamine&lt;/strong&gt; de Rust, es
+increíblemente veloz para leer archivos Excel pesados. De hecho, sirve como el
+motor de lectura de archivos Excel por defecto y más eficiente para
+&lt;strong class="program"&gt;polars&lt;/strong&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;&lt;strong class="program"&gt;rensa&lt;/strong&gt;&lt;/strong&gt;: Se posiciona como una alternativa moderna a
+&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;datasketch&lt;/span&gt;&lt;/code&gt; o &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;pyminhash&lt;/span&gt;&lt;/code&gt; para tareas de similitud de textos mediante
+&lt;em&gt;MinHash&lt;/em&gt;. En mi experiencia, ha sido fundamental para la &lt;strong&gt;detección
+automática de plantillas en conversaciones&lt;/strong&gt;, permitiendo deduplicar grandes
+conjuntos de datos de forma casi instantánea.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;&lt;strong class="program"&gt;orjson&lt;/strong&gt;&lt;/strong&gt;: Sigue siendo el estándar de oro para la serialización
+JSON. Es posible integrarlo como serializador en &lt;strong&gt;Django&lt;/strong&gt; (por ejemplo, a
+través de &lt;em&gt;Django REST Framework&lt;/em&gt;) para mejorar drásticamente la velocidad de
+respuesta de las APIs.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/section&gt;
+&lt;section id="desarrollo-de-extensiones-nativas-pyo3-y-maturin"&gt;
+&lt;h2&gt;Desarrollo de extensiones nativas: PyO3 y Maturin&lt;/h2&gt;
+&lt;p&gt;Este auge no sería posible sin el ecosistema de creación de extensiones nativas.
+&lt;strong&gt;&lt;strong class="program"&gt;PyO3&lt;/strong&gt;&lt;/strong&gt; es el &lt;em&gt;framework&lt;/em&gt; que permite exponer código Rust a Python
+con una fricción mínima. Ha desplazado a &lt;em&gt;Cython&lt;/em&gt; y al uso directo de la API de C
+de &lt;em&gt;CPython&lt;/em&gt; por su capacidad de prevenir &lt;em&gt;segfaults&lt;/em&gt; y permitir el uso de
+abstracciones modernas como &lt;em&gt;generics&lt;/em&gt; y &lt;em&gt;traits&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;Su gran ventaja es la &lt;strong&gt;conversión automática de tipos de datos estándar&lt;/strong&gt;, lo
+que reduce enormemente el trabajo manual en la interfaz entre ambos lenguajes.
+Sin embargo, para que una extensión sea realmente efectiva y aproveche todo el
+potencial de Rust, es vital seguir prácticas de diseño recomendadas:&lt;/p&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Gestión del GIL&lt;/strong&gt;: La verdadera potencia de Rust se libera al usar
+&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;py.allow_threads&lt;/span&gt;&lt;/code&gt; para liberar el &lt;em&gt;Global Interpreter Lock&lt;/em&gt; en cálculos
+intensivos, permitiendo paralelismo real.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Mapeo de errores&lt;/strong&gt;: Es fundamental transformar los &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;Result&lt;/span&gt;&lt;/code&gt; de Rust en
+excepciones de Python adecuadas (&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;PyValueError&lt;/span&gt;&lt;/code&gt;, &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;PyTypeError&lt;/span&gt;&lt;/code&gt;) para que la
+experiencia del usuario final sea consistente.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Desacoplamiento&lt;/strong&gt;: Una práctica clave es mantener la lógica pura de Rust
+en un &lt;em&gt;crate&lt;/em&gt; independiente de los &lt;em&gt;bindings&lt;/em&gt; de Python, lo que facilita las
+pruebas unitarias y la reutilización del código.&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Finalmente, con &lt;strong&gt;&lt;strong class="program"&gt;maturin&lt;/strong&gt;&lt;/strong&gt;, distribuir binarios (&lt;em&gt;wheels&lt;/em&gt;) para
+múltiples plataformas es ahora un proceso trivial en comparación con las
+complejidades tradicionales de &lt;em&gt;setuptools&lt;/em&gt;.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="rust-en-el-nucleo-el-futuro-de-cpython"&gt;
+&lt;h2&gt;Rust en el núcleo: El futuro de CPython&lt;/h2&gt;
+&lt;p&gt;Quizás la noticia más impactante es que la relación entre ambos lenguajes ya no
+es solo de “vecindad”, sino de integración profunda. Existe una iniciativa
+oficial, conocida como &lt;strong&gt;“Rust for CPython”&lt;/strong&gt;, que busca introducir Rust en el
+propio árbol de fuentes del intérprete.&lt;/p&gt;
+&lt;p&gt;El objetivo es permitir que partes críticas de CPython —especialmente aquellas
+difíciles de mantener o propensas a errores en C— puedan reescribirse en Rust. Se
+espera que &lt;strong&gt;Python 3.16&lt;/strong&gt; sea la primera versión que incluya componentes en
+Rust de forma oficial, marcando el inicio de una era donde el núcleo del
+lenguaje será más seguro y fácil de evolucionar.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="revision-critica-es-siempre-la-solucion"&gt;
+&lt;h2&gt;Revisión crítica: ¿Es siempre la solución?&lt;/h2&gt;
+&lt;p&gt;A pesar de los beneficios, esta “Rustificación” tiene un coste. La barrera de
+contribución se eleva: un desarrollador de Python que quiera arreglar un bug en
+el núcleo de &lt;strong class="program"&gt;ruff&lt;/strong&gt; ahora debe saber Rust. Además, la compilación de
+binarios introduce una capa de complejidad en sistemas de CI/CD que no siempre
+se justifica para herramientas pequeñas.&lt;/p&gt;
+&lt;p&gt;Sin embargo, para la infraestructura base, el veredicto es claro: Python es el
+lenguaje de la interfaz, pero Rust es, cada vez más, el lenguaje del motor.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="referencias"&gt;
+&lt;h2&gt;Referencias&lt;/h2&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://discuss.python.org/t/rust-for-cpython/"&gt;Rust for CPython: Discussion and Roadmap&lt;/a&gt;. Python Discourse.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://rochacbruno.github.io/py2rs/index.html"&gt;Py2RS: Guía de Python a Rust&lt;/a&gt;. Bruno Rocha.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://ohadravid.github.io/posts/2023-03-rusty-python/"&gt;Rusty Python: Cómo usamos Rust para acelerar Python&lt;/a&gt;. Ohad Ravid.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://medium.com/data-science/nine-rules-for-writing-python-extensions-in-rust-d35ea3a4ec29"&gt;Nueve reglas para escribir extensiones de Python en Rust&lt;/a&gt;. Medium.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://pyo3.rs/"&gt;PyO3: Rust bindings for Python&lt;/a&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://www.maturin.rs/"&gt;Maturin: Build and publish crates with pyo3&lt;/a&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://github.com/pydantic/pydantic-core"&gt;Pydantic-core: The engine of Pydantic V2&lt;/a&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://pola.rs/"&gt;Polars: Blazingly fast DataFrames with Apache Arrow&lt;/a&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://github.com/sfu-db/connector-x"&gt;ConnectorX: Fast SQL to DataFrame library&lt;/a&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://github.com/ToucanToco/fastexcel"&gt;Fastexcel: Fast Excel reader based on Calamine&lt;/a&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://github.com/beowolx/rensa"&gt;Rensa: High-performance MinHash library&lt;/a&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://github.com/ijl/orjson"&gt;Orjson: Fast JSON library for Python&lt;/a&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://github.com/openai/tiktoken"&gt;Tiktoken: OpenAI’s fast tokenizer&lt;/a&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://robyn.tech/"&gt;Robyn: A high-performance web framework&lt;/a&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://github.com/emmett-framework/granian"&gt;Granian: A Rust HTTP server for Python&lt;/a&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://astral.sh/"&gt;Astral: The future of Python tooling&lt;/a&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/section&gt;
+&lt;/section&gt;
+</content>
+    <link href="https://www.cosmoscalibur.com/es/blog/2026/ecosistema-rust-en-python/"/>
+    <summary>Durante años, el ecosistema de Python ha lidiado con el “problema de los dos
+lenguajes”: escribimos código en Python por su ergonomía, pero cuando el
+rendimiento es crítico, bajamos a C o C++. Esta transición siempre ha sido
+dolorosa, introduciendo riesgos de seguridad de memoria y una complejidad de
+mantenimiento considerable. Sin embargo, estamos presenciando un cambio de
+paradigma. Rust se ha convertido en el nuevo estándar para construir la
+infraestructura de Python.</summary>
+    <category term="cpython" label="cpython"/>
+    <category term="maturin" label="maturin"/>
+    <category term="polars" label="polars"/>
+    <category term="pydantic" label="pydantic"/>
+    <category term="pyo3" label="pyo3"/>
+    <category term="python" label="python"/>
+    <category term="rendimiento" label="rendimiento"/>
+    <category term="ruff" label="ruff"/>
+    <category term="rust" label="rust"/>
+    <category term="uv" label="uv"/>
     <published>2026-04-18T00:00:00-05:00</published>
   </entry>
   <entry>
