@@ -1,6 +1,6 @@
 :date: 2011-04-10
-:tags: amor, partículas, poesía, escritos, literatura
-:category: cultura y entretenimiento, la flecha temporal
+:tags: amor, escritos, literatura, partículas, poesía
+:category: La flecha temporal
 :author: Edward Villegas-Pulgarin
 :language: es
 

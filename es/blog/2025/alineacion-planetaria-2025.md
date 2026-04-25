@@ -1,8 +1,8 @@
 ---
 date: 2025-01-19
-tags: planetas, sistema solar, efemérides
-category: ciencia, astronomía
----
+tags: efemérides, planetas, sistema solar
+category: ciencia
+---------------
 
 # Alineación planetaria 2025
 

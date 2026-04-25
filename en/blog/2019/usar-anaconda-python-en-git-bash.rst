@@ -1,6 +1,6 @@
 :date: 2026-04-18
-:tags: git, anaconda python, git bash, software installation, package manager, conda
-:category: technology
+:tags: anaconda python, conda, git, git bash, package manager, software installation
+:category: linux, programming
 :author: Edward Villegas-Pulgarin
 :language: en
 

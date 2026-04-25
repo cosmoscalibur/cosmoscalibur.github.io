@@ -1,9 +1,9 @@
 ---
 date: 2026-04-17
-tags: windows, winget, scoop, chocolatey, software
-category: technology, software
+tags: chocolatey, scoop, software, windows, winget
+category: technology
 language: en
----
+---------------
 
 # Package Managers on Windows
 

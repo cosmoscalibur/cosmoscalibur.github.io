@@ -1,5 +1,5 @@
 :date: 2011-07-07
-:tags: materiales, piezoeléctricos, dispositivos móviles, energía
+:tags: dispositivos móviles, energía, materiales, piezoeléctricos
 :category: tecnología
 :author: Edward Villegas-Pulgarin
 :language: es

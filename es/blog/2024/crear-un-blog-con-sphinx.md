@@ -1,8 +1,9 @@
 ---
 date: 2024-05-16
-tags: sphinx, python, ablog, pydata, página web estática
-category: tecnología, blog con sphinx
----
+tags: ablog, blog con sphinx, pydata, python, sitio estático, sphinx, static site
+  generator
+category: tecnología
+---------------
 
 # Crear un blog con Sphinx
 
@@ -472,8 +473,8 @@ matter_, ejemplo:
 
 :redirect: blog/configurar-retroarch-en-steam
 :date: 2021-12-14
-:tags: steam, retroarch, libretro, gaming, linux, controles, videojuegos, emuladores
-:category: tecnología/videojuegos
+:tags: ablog, blog con sphinx, pydata, python, página web estática, sphinx, static site generators
+:category: tecnología
 :author: Edward Villegas-Pulgarin
 :language: es
 ```
@@ -484,7 +485,7 @@ matter_, ejemplo:
 
 ---
 date: 2024-05-14
-tags: blog, sphinx, python, ablog, pydata
+tags: ablog, blog con sphinx, pydata, python, página web estática, sphinx, static site generators
 category: tecnología
 author: Edward Villegas-Pulgarin
 language: es

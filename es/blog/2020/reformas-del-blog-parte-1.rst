@@ -1,5 +1,5 @@
 :date: 2020-05-26
-:tags: página web estática, blog con nikola, sistema de comentarios disqus, agregar google ads
+:tags: agregar google ads, blog con nikola, sistema de comentarios disqus, sitio estático
 :category: tecnología
 
 Reformas del blog: Parte 1

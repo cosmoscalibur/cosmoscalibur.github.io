@@ -1,6 +1,6 @@
 :date: 2012-06-22
-:tags: escritos, literatura, géminis, cumpleaños
-:category: cultura y entretenimiento, la flecha temporal
+:tags: cumpleaños, escritos, géminis, literatura
+:category: La flecha temporal
 :author: Edward Villegas-Pulgarin
 :language: es
 

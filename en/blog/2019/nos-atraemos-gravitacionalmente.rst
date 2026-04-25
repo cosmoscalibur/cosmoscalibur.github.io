@@ -1,6 +1,6 @@
 :date: 2025-01-03
 :tags: gravity, newton
-:category: science, physics
+:category: science
 :language: en
 
 Do we attract each other gravitationally?

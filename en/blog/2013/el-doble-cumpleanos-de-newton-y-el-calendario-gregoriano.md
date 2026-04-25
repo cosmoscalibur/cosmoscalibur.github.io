@@ -1,9 +1,9 @@
 ---
 date: 2024-12-27
-tags: newton, calendar, history, christmas
+tags: calendar, christmas, history, newton
 category: science
 language: en
----
+---------------
 
 # Newton's Double Birthday and the Gregorian Calendar
 

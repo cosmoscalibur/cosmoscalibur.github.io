@@ -1,8 +1,8 @@
 ---
 date: 2025-04-29
-tags: rustlang, terminal, manjaro, kde, aplicaciones para linux
-category: tecnología, linux
----
+tags: aplicaciones para linux, kde, manjaro, rust, terminal
+category: linux, programación
+---------------
 
 # Ecosistema Rust para la terminal Linux
 

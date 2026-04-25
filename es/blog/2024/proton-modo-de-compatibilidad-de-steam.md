@@ -1,8 +1,8 @@
 ---
 date: 2024-06-04
-tags: videojuegos para linux, steam, wine, aplicaciones para linux
-category: entretenimiento, videojuegos
----
+tags: aplicaciones para linux, entretenimiento, steam, videojuegos para linux, wine
+category: tecnología
+---------------
 
 # Proton: Modo de compatibilidad de Steam
 

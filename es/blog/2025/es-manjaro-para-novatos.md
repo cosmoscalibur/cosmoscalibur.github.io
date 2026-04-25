@@ -1,8 +1,8 @@
 ---
 date: 2025-05-01
-tags: manjaro, kde, pamac, flatpak, aur
-category: tecnología, linux
----
+tags: aur, flatpak, kde, manjaro, pamac
+category: linux
+---------------
 
 # ¿Es Manjaro para novatos?
 

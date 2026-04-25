@@ -1,9 +1,9 @@
 ---
 date: 2026-04-18
-tags: linux, xinput, usb keyboard, setxkbmap, x11
-category: technology, linux
+tags: setxkbmap, usb keyboard, x11, xinput
+category: linux
 language: en
----
+---------------
 
 # Configure a second keyboard in Linux
 

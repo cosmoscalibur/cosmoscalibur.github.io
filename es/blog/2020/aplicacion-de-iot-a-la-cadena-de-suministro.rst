@@ -1,6 +1,6 @@
 :date: 2020-04-09
-:tags: internet de las cosas, iot, transformación digital
-:category: opinión, mitpeonline transformación digital
+:tags: internet de las cosas, iot, opinión, transformación digital
+:category: tecnología
 :author: Edward Villegas-Pulgarin
 :language: es
 
@@ -26,7 +26,7 @@ escenarios y previsión de escenarios futuros, creando así una estrategia que
 asegure ventajas competitivas.
 
 .. postlist::
-   :category: mitpeonline transformación digital
+   :tags: transformación digital
 
 Role of Data Analytics in Internet of Things (IoT) https://www.fingent.com/blog/role-of-data-analytics-in-internet-of-things-iot
 

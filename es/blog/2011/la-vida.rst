@@ -1,6 +1,6 @@
 :date: 2011-07-02
-:tags: vida, muerte, autoconversación, escritos, literatura
-:category: cultura y entretenimiento, la flecha temporal
+:tags: autoconversación, escritos, literatura, muerte, vida
+:category: La flecha temporal
 :author: Edward Villegas-Pulgarin
 :language: es
 

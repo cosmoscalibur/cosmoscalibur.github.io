@@ -1,8 +1,8 @@
 ---
 date: 2024-05-26
-tags: factura electrónica
-category: opinión
----
+tags: factura electrónica, opinión
+category: tecnología
+---------------
 
 # Factura electrónica: ¿Qué hacer si te la niegan?
 

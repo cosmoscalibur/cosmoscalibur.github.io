@@ -1,5 +1,5 @@
 :date: 2020-05-17
-:tags: linux, android, webcam, cámara, droidcam, aplicaciones android
+:tags: android, aplicaciones android, cámara, droidcam, webcam
 :category: tecnología
 :author: Edward Villegas-Pulgarin
 :language: es

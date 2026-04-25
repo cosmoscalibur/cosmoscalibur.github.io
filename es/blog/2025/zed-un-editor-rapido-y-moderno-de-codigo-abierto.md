@@ -1,8 +1,8 @@
 ---
 date: 2025-03-27
-tags: zed, linux, ide
-category: tecnologia, programación
----
+tags: ide, zed
+category: linux, programación
+---------------------
 
 # Zed: un editor rápido y moderno de código abierto
 

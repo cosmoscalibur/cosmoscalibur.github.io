@@ -1,6 +1,6 @@
 :date: 2012-10-20
-:tags: shots, noche, escritos, literatura
-:category: cultura y entretenimiento, la flecha temporal
+:tags: escritos, literatura, noche, shots
+:category: La flecha temporal
 :author: Edward Villegas-Pulgarin
 :language: es
 

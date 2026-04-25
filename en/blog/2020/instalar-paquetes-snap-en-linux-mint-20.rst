@@ -1,6 +1,6 @@
 :date: 2025-01-13
-:tags: linux mint, snap, apt
-:category: technology
+:tags: apt, linux mint, snap
+:category: linux
 :language: en
 
 Install snap packages in Linux Mint 20

@@ -1,9 +1,9 @@
 ---
 date: 2025-01-03
-tags: python, geodesic, geopy
-category: technology
+tags: geodesic, geoide, geopy, método de karney, método de vincenty, python
+category: programming
 language: en
----
+------------------------
 
 # Computing Geodesic Distance with Python
 

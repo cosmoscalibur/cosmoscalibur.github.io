@@ -1,9 +1,9 @@
 ---
 date: 2025-01-10
-tags: manjaro, ubuntu, wifi, linux, dmesg
-category: technology, linux
+tags: dmesg, manjaro, ubuntu, wifi
+category: linux
 language: en
----
+---------------
 
 # Wi-Fi issues in Linux
 

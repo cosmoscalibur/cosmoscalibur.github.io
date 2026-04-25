@@ -1,6 +1,6 @@
 :date: 2010-10-26
-:tags: autoconversación, escritos, literatura, flecha temporal
-:category: cultura y entretenimiento, la flecha temporal
+:tags: autoconversación, escritos, flecha temporal, literatura
+:category: La flecha temporal
 :author: Edward Villegas-Pulgarin
 :language: es
 

@@ -1,5 +1,5 @@
 :date: 2011-07-06
-:tags: cerebro, antropología, fósil, cerebro
+:tags: antropología, cerebro, fósil
 :category: ciencia
 :author: Edward Villegas-Pulgarin
 :language: es

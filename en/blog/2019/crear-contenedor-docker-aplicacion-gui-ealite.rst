@@ -1,6 +1,6 @@
 :date: 2026-04-18
-:tags: container, docker, linux, wine, enterprise architect, ealite
-:category: technology
+:tags: container, docker, ealite, enterprise architect, wine
+:category: linux
 :author: Edward Villegas-Pulgarin
 :language: en
 

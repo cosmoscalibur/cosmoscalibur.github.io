@@ -1,9 +1,9 @@
 ---
 date: 2025-01-10
-tags: manjaro, ubuntu, linux, disk, mount, lsblk, dmesg
-category: technology, linux
+tags: dmesg, lsblk, manjaro, mount, ubuntu
+category: linux
 language: en
----
+---------------
 
 # Mounting a disk in Linux and dirty volume error
 

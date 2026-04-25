@@ -1,9 +1,10 @@
 ---
 date: 2026-02-23
-tags: artificial intelligence, language model, prompt engineering, context engineering
-category: opinion, technology
+tags: artificial intelligence, context engineering, language model, opinion, prompt
+  engineering
+category: technology
 language: en
----
+---------------
 
 # Prompt Engineering: Technical Skill or Scam?
 

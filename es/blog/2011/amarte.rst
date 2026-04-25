@@ -1,6 +1,6 @@
 :date: 2011-01-15
 :tags: amor, autoconversación, escritos, literatura
-:category: cultura y entretenimiento, la flecha temporal
+:category: La flecha temporal
 :author: Edward Villegas-Pulgarin
 :language: es
 

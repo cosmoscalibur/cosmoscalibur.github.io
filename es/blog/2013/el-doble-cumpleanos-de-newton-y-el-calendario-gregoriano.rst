@@ -1,5 +1,5 @@
 :date: 2013-01-04
-:tags: isaac newton, calendario, historia, navidad
+:tags: calendario, historia, isaac newton, navidad
 :category: ciencia
 :author: Edward Villegas-Pulgarin
 :language: es

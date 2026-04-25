@@ -1,6 +1,6 @@
 :date: 2012-11-29
-:tags: poesía, noche, escritos, literatura
-:category: cultura y entretenimiento, la flecha temporal
+:tags: escritos, literatura, noche, poesía
+:category: La flecha temporal
 :author: Edward Villegas-Pulgarin
 :language: es
 

@@ -1,6 +1,6 @@
 :date: 2020-04-09
-:tags: internet de las cosas, iot, transformación digital
-:category: opinión, mitpeonline transformación digital
+:tags: internet de las cosas, iot, opinión, transformación digital
+:category: tecnología
 :author: Edward Villegas-Pulgarin
 :language: es
 
@@ -24,7 +24,7 @@ atenuarse con una adecuada preparación de los protocolos usados, la continua
 actualización de software y la selección de las tecnologías.
 
 .. postlist::
-   :category: mitpeonline transformación digital
+   :tags: transformación digital
    :excerpts:
 
 IoT Vulnerabilities & Risk Mitigation. https://www.iotforall.com/mitigate-iot-security-risks/

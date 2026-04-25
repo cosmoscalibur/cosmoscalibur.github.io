@@ -1,9 +1,9 @@
 ---
 date: 2026-01-18
-tags: zed, linux, ide
-category: technology, programming
+tags: ide, zed
+category: linux, programming
 language: en
----
+---------------------
 
 # Zed: A fast and modern open source editor
 

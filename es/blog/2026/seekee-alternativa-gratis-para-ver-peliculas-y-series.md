@@ -1,8 +1,9 @@
 ---
 date: 2026-02-22
-tags: netflix, seekee, películas, series, aplicaciones para android, streaming
-category: entretenimiento, películas y series
----
+tags: aplicaciones para android, entretenimiento, netflix, películas, seekee, series,
+  streaming
+category: tecnología
+---------------
 
 # Seekee: alternativa gratis para ver películas y series
 

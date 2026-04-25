@@ -1,8 +1,8 @@
 ---
 date: 2025-10-08
-tags: mastodon, fediverso, android, tusky, megalodon, moshidon
-category: tecnología, software
----
+tags: android, fediverso, mastodon, megalodon, moshidon, software, tusky
+category: tecnología
+---------------
 
 # Buscando el mejor cliente de Mastodon para Android
 

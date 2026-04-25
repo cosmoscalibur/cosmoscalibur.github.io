@@ -1,9 +1,9 @@
 ---
 date: 2020-08-30
-tags: r language, bioinformatics, venn diagram
-category: technology
+tags: bioinformatics, r language, venn diagram
+category: programming
 language: en
----
+------------------------
 
 # Compute specific and intersection elements with R
 

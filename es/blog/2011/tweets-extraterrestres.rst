@@ -1,5 +1,5 @@
 :date: 2011-07-26
-:tags: nasa, twitter, iss, exploración espacial, internet
+:tags: exploración espacial, internet, iss, nasa, twitter
 :category: tecnología
 :author: Edward Villegas-Pulgarin
 :language: es

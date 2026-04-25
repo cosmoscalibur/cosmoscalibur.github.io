@@ -1,5 +1,5 @@
 :date: 2011-05-11
-:tags: ciencia 2.0, redes sociales, researchgate, internet
+:tags: ciencia 2.0, internet, redes sociales, researchgate
 :category: ciencia
 :author: Edward Villegas-Pulgarin
 :language: es

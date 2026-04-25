@@ -1,6 +1,6 @@
 :date: 2011-04-10
-:tags: linux, software libre
-:category: tecnología
+:tags: software libre
+:category: linux, tecnología
 :author: Edward Villegas-Pulgarin
 :language: es
 

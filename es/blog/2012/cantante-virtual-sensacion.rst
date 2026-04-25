@@ -1,5 +1,5 @@
 :date: 2012-09-25
-:tags: síntesis de voz, entretenimiento, manga, geek, software
+:tags: entretenimiento, geek, manga, síntesis de voz
 :category: tecnología
 :author: Edward Villegas-Pulgarin
 :language: es

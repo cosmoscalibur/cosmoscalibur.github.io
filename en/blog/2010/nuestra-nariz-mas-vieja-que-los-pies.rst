@@ -1,6 +1,6 @@
 :date: 2026-04-18
-:tags: general relativity, physics, time, gravity
-:category: science, physics curiosities
+:tags: general relativity, gravity, physics, time
+:category: science
 :author: Edward Villegas-Pulgarin
 :language: en
 

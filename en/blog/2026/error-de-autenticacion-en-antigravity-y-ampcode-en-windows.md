@@ -1,9 +1,9 @@
 ---
 date: 2026-02-21
-tags: antigravity, ampcode, windows, authentication, browser
-category: technology, programming
+tags: ampcode, antigravity, authentication, windows
+category: programming, technology
 language: en
----
+---------------
 
 # Authentication Error in Antigravity and AmpCode on Windows
 

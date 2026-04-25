@@ -1,8 +1,8 @@
 ---
 date: 2026-04-17
-tags: windows, winget, scoop, chocolatey, software
-category: tecnología, software
----
+tags: chocolatey, scoop, software, windows, winget
+category: tecnología
+---------------
 
 # Gestores de paquetes en Windows
 

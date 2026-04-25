@@ -1,9 +1,10 @@
 ---
 date: 2024-12-27
-tags: netflix, stremio, torrents, movies, series, linux applications, android applications, windows applications
-category: entertainment, movies and series
+tags: android applications, entertainment, linux applications, movies, netflix, series,
+  stremio, torrents, windows applications
+category: technology
 language: en
----
+---------------
 
 # Watch free movies with Stremio and Torrentio
 

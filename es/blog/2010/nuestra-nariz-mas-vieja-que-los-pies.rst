@@ -1,6 +1,6 @@
 :date: 2010-12-17
-:tags: relatividad general, física, tiempo, gravedad
-:category: ciencia, curiosidades físicas
+:tags: física, gravedad, relatividad general, tiempo
+:category: ciencia
 :author: Edward Villegas-Pulgarin
 :language: es
 

@@ -1,9 +1,9 @@
 ---
 date: 2025-01-06
-tags: package manager, virtualenv manager, rust, python, uv, pip, venv
-category: technology, programming
+tags: package manager, pip, python, rust, uv, venv, virtualenv manager
+category: programming
 language: en
----
+---------------------
 
 # UV: A Fast Alternative to PIP and VENV
 

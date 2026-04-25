@@ -1,9 +1,9 @@
 ---
 date: 2024-12-05
-tags: manjaro, ubuntu, kubuntu, kde, pamac, flatpak
-category: technology, linux
+tags: flatpak, kde, kubuntu, linux applications, manjaro, pamac, ubuntu
+category: linux
 language: en
----
+---------------
 
 # What to do after installing Manjaro KDE 24?
 

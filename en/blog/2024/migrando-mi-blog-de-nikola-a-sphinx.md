@@ -1,9 +1,9 @@
 ---
 date: 2024-05-24
-tags: sphinx, python, ablog, static site generator, blogging with sphinx
+tags: ablog, blogging with sphinx, pydata, python, sphinx, static site generator
 category: technology
 language: en
----
+---------------
 
 # Migrating my blog from Nikola to Sphinx
 

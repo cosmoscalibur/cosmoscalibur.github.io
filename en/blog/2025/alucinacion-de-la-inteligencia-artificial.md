@@ -1,9 +1,9 @@
 ---
 date: 2025-02-13
-tags: language model, artificial intelligence
+tags: artificial intelligence, language model
 category: technology
 language: en
----
+---------------
 
 # Hallucination in Artificial Intelligence
 

@@ -1,5 +1,5 @@
 :date: 2012-02-28
-:tags: afm, microscopía, nanotecnología, fuerza atómica, ibm
+:tags: afm, fuerza atómica, ibm, microscopía, nanotecnología
 :category: tecnología
 :author: Edward Villegas-Pulgarin
 :language: es

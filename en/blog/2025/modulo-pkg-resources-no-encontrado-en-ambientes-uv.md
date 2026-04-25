@@ -1,9 +1,9 @@
 ---
 date: 2025-01-26
-tags: python, uv, setuptools
-category: technology, programming
+tags: python, setuptools, uv
+category: programming
 language: en
----
+---------------------
 
 # No module named `pkg_resources` found in UV environment
 

@@ -1,6 +1,6 @@
 :date: 2011-03-15
-:tags: llorar, lágrimas, poesía, escritos, literatura
-:category: cultura y entretenimiento, la flecha temporal
+:tags: escritos, literatura, llorar, lágrimas, poesía
+:category: La flecha temporal
 :author: Edward Villegas-Pulgarin
 :language: es
 

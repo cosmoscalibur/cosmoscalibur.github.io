@@ -1,9 +1,9 @@
 ---
 date: 2024-12-31
-tags: linux videogames, steam, wine, linux applications
-category: entertainment, videogames
+tags: entertainment, linux applications, linux videogames, steam, wine
+category: technology
 language: en
----
+---------------
 
 # Proton: Compatibility Mode of Steam
 

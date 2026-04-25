@@ -1,8 +1,8 @@
 ---
 date: 2024-05-19
-tags: linux, xinput, teclado usb, setxkbmap, x11
-category: tecnología, linux
----
+tags: setxkbmap, teclado usb, x11, xinput
+category: linux
+---------------
 
 # Configurar segundo teclado en Linux
 

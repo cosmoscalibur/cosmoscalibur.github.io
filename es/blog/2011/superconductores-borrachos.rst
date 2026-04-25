@@ -1,5 +1,5 @@
 :date: 2011-01-11
-:tags: materiales, estado sólido, alcohol, superconductores
+:tags: alcohol, estado sólido, materiales, superconductores
 :category: ciencia
 :author: Edward Villegas-Pulgarin
 :language: es

@@ -1,9 +1,9 @@
 ---
 date: 2025-01-15
-tags: rustlang, vscode, notebook, evcxr, rust-analyzer
-category: technology
+tags: evcxr, notebook, rust, rust-analyzer, vscode
+category: linux, programming
 language: en
----
+------------------------
 
 # Install Rust on Linux
 

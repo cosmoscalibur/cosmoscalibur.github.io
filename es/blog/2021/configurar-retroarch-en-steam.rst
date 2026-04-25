@@ -1,7 +1,7 @@
 :date: 2021-12-14
-:tags: steam, retroarch, videojuegos para linux, emuladores de plataforma,
+:tags: , emuladores de plataforma, entretenimiento, retroarch, steam, videojuegos para linux
     aplicaciones para linux
-:category: entretenimiento, videojuegos
+:category: tecnología
 
 Configurar RetroArch en Steam
 =============================

@@ -1,8 +1,8 @@
 ---
 date: 2025-03-31
-tags: rustlang
-category: tecnologia, programación
----
+tags: rust
+category: programación
+------------------------
 
 # Aprendiendo Rust: Parte 1 - Uso básico de cargo, variables y flujos de control
 

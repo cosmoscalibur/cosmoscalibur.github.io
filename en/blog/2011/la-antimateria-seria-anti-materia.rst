@@ -1,5 +1,5 @@
 :date: 2026-04-18
-:tags: antimatter, antigravity, gravity, astrophysics, particle physics
+:tags: antigravity, antimatter, astrophysics, gravity, particle physics
 :category: science
 :author: Edward Villegas-Pulgarin
 :language: en

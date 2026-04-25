@@ -1,8 +1,8 @@
 ---
 date: 2025-01-26
-tags: python, uv, setuptools
-category: tecnología, programación
----
+tags: python, setuptools, uv
+category: programación
+---------------------
 
 # Módulo `pkg_resources` no encontrado en ambientes UV
 

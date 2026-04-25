@@ -1,8 +1,8 @@
 ---
 date: 2025-02-13
-tags: modelo de lenguaje, inteligencia artificial
+tags: inteligencia artificial, modelo de lenguaje
 category: tecnología
----
+---------------
 
 # Alucinación de la inteligencia artificial
 

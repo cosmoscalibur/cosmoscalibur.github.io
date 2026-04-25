@@ -1,6 +1,6 @@
 :date: 2012-11-29
-:tags: secreto, poesía, voz, escritos, literatura
-:category: cultura y entretenimiento, la flecha temporal
+:tags: escritos, literatura, poesía, secreto, voz
+:category: La flecha temporal
 :author: Edward Villegas-Pulgarin
 :language: es
 

@@ -1,8 +1,9 @@
 ---
 date: 2026-02-23
-tags: inteligencia artificial, modelo de lenguaje, ingeniería de prompt, ingeniería de contexto
-category: opinión, tecnología
----
+tags: ingeniería de contexto, ingeniería de prompt, inteligencia artificial, modelo
+  de lenguaje, opinión
+category: tecnología
+---------------
 
 # Ingeniería de *prompt*: ¿Habilidad técnica o estafa?
 

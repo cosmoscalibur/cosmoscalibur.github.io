@@ -1,8 +1,8 @@
 ---
 date: 2025
-tags: rustlang
-category: tecnologia, programación
----
+tags: rust
+category: programación, tecnología
+---------------
 
 # Aprendiendo Rust: Parte 2 -
 

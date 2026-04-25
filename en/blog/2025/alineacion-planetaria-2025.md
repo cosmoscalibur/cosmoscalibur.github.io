@@ -1,9 +1,9 @@
 ---
 date: 2025-01-19
-tags: planets, solar system, ephemeris
-category: science, astronomy
+tags: ephemeris, planets, solar system
+category: science
 language: en
----
+---------------
 
 # Planetary alignment 2025
 

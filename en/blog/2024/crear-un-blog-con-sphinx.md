@@ -1,9 +1,9 @@
 ---
 date: 2025-01-04
-tags: python, ablog, sphinx, static site generators
-category: technology, blogging with sphinx
+tags: ablog, blogging with sphinx, pydata, python, sphinx, static site generator
+category: technology
 language: en
----
+---------------
 
 # Creating a blog with Sphinx
 
@@ -456,8 +456,8 @@ need to add directives but rather the front matter, such as:
 
 :redirect: blog/configurar-retroarch-en-steam
 :date: 2021-12-14
-:tags: steam, retroarch, libretro, gaming, linux, controles, videojuegos, emuladores
-:category: tecnología/videojuegos
+:tags: ablog, blogging with sphinx, pydata, python, sphinx, static site generator, static site generators
+:category: technology
 :author: Edward Villegas-Pulgarin
 :language: es
 ```
@@ -468,8 +468,8 @@ need to add directives but rather the front matter, such as:
 
 ---
 date: 2025-01-04
-tags: blog, sphinx, python, ablog, pydata
-category: tecnología
+tags: ablog, blogging with sphinx, pydata, python, sphinx, static site generator, static site generators
+category: technology
 author: Edward Villegas-Pulgarin
 language: es
 ---

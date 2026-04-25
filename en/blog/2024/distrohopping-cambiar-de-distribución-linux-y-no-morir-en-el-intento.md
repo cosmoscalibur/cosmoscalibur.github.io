@@ -1,9 +1,9 @@
 ---
 date: 2024-12-03
-tags: linux, ubuntu, manjaro, kde
-category: technology, linux
+tags: kde, manjaro, ubuntu
+category: linux
 language: en
----
+---------------
 
 # "Distrohopping": Switching Linux Distributions Without Losing Your Mind
 

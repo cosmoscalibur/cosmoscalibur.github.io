@@ -1,6 +1,6 @@
 :date: 2011-01-30
-:tags: amor, dios, poesía, escritos, literatura
-:category: cultura y entretenimiento, la flecha temporal
+:tags: amor, dios, escritos, literatura, poesía
+:category: La flecha temporal
 :author: Edward Villegas-Pulgarin
 :language: es
 

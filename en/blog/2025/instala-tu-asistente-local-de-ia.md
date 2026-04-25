@@ -1,9 +1,9 @@
 ---
 date: 2025-02-02
-tags: language model, artificial intelligence, ollama
+tags: artificial intelligence, language model, ollama
 category: technology
 language: en
----
+---------------
 
 # Install Your Local AI Assistant
 

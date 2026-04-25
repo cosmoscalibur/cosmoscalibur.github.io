@@ -1,5 +1,5 @@
 :date: 2011-07-07
-:tags: astrofísica, relatividad general, gravedad
+:tags: astrofísica, gravedad, relatividad general
 :category: ciencia
 :author: Edward Villegas-Pulgarin
 :language: es

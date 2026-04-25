@@ -1,6 +1,6 @@
 :date: 2020-03-01
-:tags: criptomonedas, blockchain, monedas digitales, transformación digital
-:category: opinión, mitpeonline transformación digital
+:tags: blockchain, criptomonedas, monedas digitales, opinión, transformación digital
+:category: tecnología
 :author: Edward Villegas-Pulgarin
 :language: es
 
@@ -16,35 +16,35 @@ Debemos empezar por contextualizar que hoy ya vivimos en una sociedad
 marcadamente digital y ello incluye las transacciones que diariamente
 realizamos. Para el 2018, en Colombia las transacciones digitales ya
 representaban el 8.5% del PIB y entre 2013 y 2017 hubo un aumento de 4 puntos
-porcentuales [1_]. También hay que destacar iniciativas del sector bancario
+porcentuales [1]_. También hay que destacar iniciativas del sector bancario
 para promover el uso de la moneda digital, como es el caso de banco Davivienda
 en el municipio antioqueño de Concepción, logrando una alta tasa de utilización
-para transacciones cotidianas [2_]. Sin embargo, la moneda digital incluye la
+para transacciones cotidianas [2]_. Sin embargo, la moneda digital incluye la
 categoría de la cual es nuestro interés en esta oportunidad, que son las
 criptomonedas y su impacto puede tener consecuencias y requerir políticas muy
 diferentes a las contempladas para las monedas digitales que ya usamos (para
 las cuales, estamos preparados completamente).
 
 Si bien las criptomonedas presentan una serie de oportunidades de crecimiento
-para las economías en desarrollo y emergentes [3_, 4_], los gobiernos actuales
+para las economías en desarrollo y emergentes [3]_, [4]_, los gobiernos actuales
 deben contemplar marcos regulatorios para mantener bajo control algunos efectos
 no deseados de las criptomonedas, como sus usos para actividades ilegítimas,
 los cuales son dados con facilidad por las características de anonimato de la
-criptomoneda [4_, 5_] pero también su gran volatilidad por ser un mercado
-altamente especulativo [6_, 7_]. Pero esto no se trata solo de un asunto de
+criptomoneda [4]_, [5]_ pero también su gran volatilidad por ser un mercado
+altamente especulativo [6]_, [7]_. Pero esto no se trata solo de un asunto de
 voluntad y de esfuerzo para estos marcos regulatorios, es claro que la
 tecnología avanza a un ritmo sin precedente y que la legislación no puede
 seguir su marcha. Colombia es un claro ejemplo donde el paso de la tecnología
-ha puesto ciertas innovaciones a dar un paso atrás, como PayPal [8_] y Uber
-[9_]. Con este en momento, aún nos falta camino antes de estar preparados a una
+ha puesto ciertas innovaciones a dar un paso atrás, como PayPal [8]_ y Uber
+[9]_. Con este en momento, aún nos falta camino antes de estar preparados a una
 transición de monedas digitales tipo criptomonedas, pero esperemos que la
 presencia y acciones del Centro para la Cuarta Revolución Industrial como un
-habilitador [10_], tenga pronto resultados.
+habilitador [10]_, tenga pronto resultados.
 
 Otras publicaciones basadas en el curso de transformación digital:
 
 .. postlist::
-   :category: mitpeonline transformación digital
+   :tags: transformación digital
    :excerpts:
 
 .. [1] `Las transacciones digitales representaron 8,5% del PIB de Colombia para 2018 <https://www.larepublica.co/empresas/las-transacciones-digitales-representaron-85-del-pib-de-colombia-para-2018-2891715>`_.

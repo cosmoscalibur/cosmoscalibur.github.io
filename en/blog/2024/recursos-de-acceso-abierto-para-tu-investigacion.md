@@ -1,9 +1,9 @@
 ---
 date: 2026-04-18
-tags: open access, preprints, articles
+tags: open access, preprints
 category: science
 language: en
----
+---------------
 
 # Open access resources for your research
 

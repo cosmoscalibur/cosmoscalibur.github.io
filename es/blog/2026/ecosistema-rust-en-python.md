@@ -1,8 +1,8 @@
 ---
 date: 2026-04-18
-tags: python, rust, rendimiento, ruff, uv, polars, pyo3, maturin, pydantic, cpython
-category: programación, tecnología
----
+tags: cpython, maturin, polars, pydantic, pyo3, python, ruff, rust, uv
+category: programación
+------------------------
 
 # Ecosistema Rust en Python
 

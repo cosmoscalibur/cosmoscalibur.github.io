@@ -1,6 +1,6 @@
 :date: 2020-03-14
-:tags: computación en nube, xaas, transformación digital
-:category: opinión, mitpeonline transformación digital
+:tags: computación en nube, opinión, transformación digital, xaas
+:category: tecnología
 :author: Edward Villegas-Pulgarin
 :language: es
 
@@ -18,24 +18,24 @@ Considerando la evolución del mercado digital, las oportunidades de las
 infraestructuras en nube van en aumento y brindan una adecuada relación
 de costo beneficio para los emprendimientos, donde el modelo de negocio
 típico por uso o suscripción de periodos de tiempo cortos permite reducir
-los riesgos de inversión [1_].
+los riesgos de inversión [1]_.
 
 Este modelo de negocio de la infraestructura en nube o de en general,
-distintos elementos XaaS [2_], generan la flexibilidad necesaria a través del
-escalamiento horizontal [1_, 2_, 3_] pero posee un costo intrínseco en la
+distintos elementos XaaS [2]_, generan la flexibilidad necesaria a través del
+escalamiento horizontal [1]_, [2]_, [3]_ pero posee un costo intrínseco en la
 seguridad de la información. La exposición de la información en servidores
 externos bajo las políticas de seguridad de terceros puede corresponder a un
 riesgo que muchas compañías no asumen, pero puede ser más seguro que el
-almacenamiento en infraestructura propia [4_, 5_]. Ofrece igual ventajas en
+almacenamiento en infraestructura propia [4]_, [5]_. Ofrece igual ventajas en
 otros aspectos de la seguridad de la información como la capacidad de
 recuperación ante fallos y desastres gracias a los sistemas de copias de
 seguridad que ofrecen los servicios y una alta disponibilidad de la
-información mediante la red redundante del proveedor [3_, 5_].
+información mediante la red redundante del proveedor [3]_, [5]_.
 
 Otras publicaciones basadas en el curso de transformación digital:
 
 .. postlist::
-   :category: mitpeonline transformación digital
+   :tags: transformación digital
    :excerpts:
 
 .. [1] XaaS: create your own adventure. BBVA API Market. 14 de marzo de 2020.

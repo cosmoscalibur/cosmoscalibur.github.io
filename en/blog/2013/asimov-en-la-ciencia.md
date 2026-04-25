@@ -1,9 +1,9 @@
 ---
 date: 2024-12-27
-tags: science fiction, asimov, literature, chemistry
+tags: asimov, chemistry, literature, science fiction
 category: science
 language: en
----
+---------------
 
 # Asimov in Science
 

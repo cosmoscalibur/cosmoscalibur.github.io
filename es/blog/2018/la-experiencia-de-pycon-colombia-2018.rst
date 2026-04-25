@@ -1,5 +1,5 @@
 :date: 2018-02-18
-:tags: python, pycon colombia, conferencias, eventos
+:tags: conferencias, eventos, pycon colombia, python
 :category: tecnología
 :author: Edward Villegas-Pulgarin
 :language: es

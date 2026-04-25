@@ -1,7 +1,7 @@
 :date: 2024-12-27
-:tags: steam, retroarch, gaming, linux, emulators, linux videogames, linux
+:tags: emulators, entertainment, gaming, linux videogames, retroarch, steam
     applications
-:category: entertainment, videogames
+:category: technology
 :language: en
 
 Setting Up RetroArch on Steam

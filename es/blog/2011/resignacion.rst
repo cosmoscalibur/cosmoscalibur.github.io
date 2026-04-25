@@ -1,6 +1,6 @@
 :date: 2011-07-28
-:tags: amor, autoconversación, resignación, escritos, literatura
-:category: cultura y entretenimiento, la flecha temporal
+:tags: amor, autoconversación, escritos, literatura, resignación
+:category: La flecha temporal
 :author: Edward Villegas-Pulgarin
 :language: es
 

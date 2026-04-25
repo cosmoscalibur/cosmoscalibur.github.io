@@ -1,8 +1,8 @@
 ---
 date: 2025-01-10
-tags: manjaro, ubuntu, linux, disco, mount, lsblk, dmesg
-category: tecnología, linux
----
+tags: dmesg, lsblk, manjaro, mount, ubuntu
+category: linux
+---------------
 
 # Montar disco en Linux y error de volumen sucio
 

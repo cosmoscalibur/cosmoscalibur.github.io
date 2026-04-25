@@ -1,6 +1,6 @@
 :date: 2025-01-03
-:tags: python, sphinx, restructuredtext, documentation
-:category: technology
+:tags: documentation, python, restructuredtext, sphinx
+:category: programming
 :language: en
 
 Creating Documentation for a Python Project with Sphinx

@@ -1,5 +1,5 @@
 :date: 2010-12-12
-:tags: animación, célula, biología
+:tags: animación, biología, célula
 :category: ciencia
 :author: Edward Villegas-Pulgarin
 :language: es

@@ -1,8 +1,8 @@
 ---
 date: 2025-02-02
-tags: modelo de lenguaje, inteligencia artificial, ollama
+tags: inteligencia artificial, modelo de lenguaje, ollama
 category: tecnología
----
+---------------
 
 # Instala tu asistente local de IA
 

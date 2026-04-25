@@ -1,5 +1,5 @@
 :date: 2018-01-04
-:tags: android, motorola, celulares, smartphone, audio, moto g5
+:tags: android, audio, celulares, moto g5, motorola, smartphone
 :category: tecnología
 :author: Edward Villegas-Pulgarin
 :language: es

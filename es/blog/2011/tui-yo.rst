@@ -1,6 +1,6 @@
 :date: 2011-01-10
-:tags: amor, matemáticas, poesía, escritos, literatura
-:category: cultura y entretenimiento, la flecha temporal
+:tags: amor, escritos, literatura, matemáticas, poesía
+:category: La flecha temporal
 :author: Edward Villegas-Pulgarin
 :language: es
 

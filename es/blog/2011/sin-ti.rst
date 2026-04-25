@@ -1,6 +1,6 @@
 :date: 2011-07-28
-:tags: amor, soledad, poesía, escritos, literatura
-:category: cultura y entretenimiento, la flecha temporal
+:tags: amor, escritos, literatura, poesía, soledad
+:category: La flecha temporal
 :author: Edward Villegas-Pulgarin
 :language: es
 

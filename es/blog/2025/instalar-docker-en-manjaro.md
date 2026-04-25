@@ -1,8 +1,8 @@
 ---
 date: 2025-04-23
-tags: contenedor, docker, linux, manjaro
-category: tecnologia, programación
----
+tags: contenedor, docker, manjaro
+category: linux, programación
+---------------
 
 # Instalar Docker en Manjaro
 

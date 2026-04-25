@@ -1,8 +1,8 @@
 ---
 date: 2024-12-07
-tags: manjaro, ubuntu, wifi, linux, dmesg
-category: tecnología, linux
----
+tags: dmesg, manjaro, ubuntu, wifi
+category: linux
+---------------
 
 # Problemas de conexión wifi en Linux
 

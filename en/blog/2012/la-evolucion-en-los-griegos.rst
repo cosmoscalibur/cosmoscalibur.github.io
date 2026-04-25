@@ -1,6 +1,6 @@
 :date: 2024-05-27
-:tags: cosmogony, mythology, history
-:category: science, astronomy
+:tags: cosmogony, history, mythology
+:category: science
 :language: en
 
 Evolution in the Greeks

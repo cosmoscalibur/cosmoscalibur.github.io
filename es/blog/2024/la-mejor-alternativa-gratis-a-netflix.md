@@ -1,8 +1,9 @@
 ---
 date: 2024-10-21
-tags: netflix, stremio, torrents, películas, series, aplicaciones para linux, aplicaciones para android, aplicaciones para windows
-category: entretenimiento, películas y series
----
+tags: aplicaciones para android, aplicaciones para linux, aplicaciones para windows,
+  entretenimiento, netflix, películas, series, stremio, torrents
+category: tecnología
+---------------
 
 # Ver películas gratis con Stremio y Torrentio
 

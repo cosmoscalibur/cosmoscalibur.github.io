@@ -1,9 +1,9 @@
 ---
 date: 2026-04-18
-tags: manjaro, kde, pamac, flatpak, aur
-category: technology, linux
+tags: aur, flatpak, kde, manjaro, pamac
+category: linux
 language: en
----
+---------------
 
 # Is Manjaro for newbies?
 

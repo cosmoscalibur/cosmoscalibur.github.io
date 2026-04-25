@@ -1,10 +1,10 @@
 ---
 date: 2024-09-25
-tags: sphinx, google ads
-category: tecnología, blog con sphinx
+tags: blog con sphinx, google ads, sphinx
+category: tecnología
 author: Edward Villegas-Pulgarin
 language: es
----
+---------------
 
 # Agregar Google Ads en Sphinx
 

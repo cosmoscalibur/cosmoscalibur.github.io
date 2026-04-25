@@ -1,6 +1,6 @@
 :date: 2013-03-06
-:tags: amor, beso, poesía, escritos, literatura
-:category: cultura y entretenimiento, la flecha temporal
+:tags: amor, beso, escritos, literatura, poesía
+:category: La flecha temporal
 :author: Edward Villegas-Pulgarin
 :language: es
 

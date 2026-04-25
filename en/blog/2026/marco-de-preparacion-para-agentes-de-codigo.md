@@ -1,9 +1,10 @@
 ---
 date: 2026-03-07
-tags: artificial intelligence, coding agents, AGENTS.md, context engineering, antigravity, factory ai
-category: technology, programming
+tags: AGENTS.md, antigravity, artificial intelligence, coding agents, context engineering,
+  factory ai
+category: programming
 language: en
----
+---------------------
 
 # Agent Readiness Framework for Coding Projects
 

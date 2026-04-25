@@ -1,6 +1,6 @@
 :date: 2012-06-22
-:tags: poesía, nostalgía, escritos, literatura
-:category: cultura y entretenimiento, la flecha temporal
+:tags: escritos, literatura, nostalgía, poesía
+:category: La flecha temporal
 :author: Edward Villegas-Pulgarin
 :language: es
 

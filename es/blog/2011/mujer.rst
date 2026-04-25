@@ -1,6 +1,6 @@
 :date: 2011-03-08
-:tags: día de la mujer, mujer, poesía, escritos, literatura
-:category: cultura y entretenimiento, la flecha temporal
+:tags: día de la mujer, escritos, literatura, mujer, poesía
+:category: La flecha temporal
 :author: Edward Villegas-Pulgarin
 :language: es
 

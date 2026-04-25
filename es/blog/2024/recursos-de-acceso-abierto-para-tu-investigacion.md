@@ -1,8 +1,8 @@
 ---
 date: 2024-06-02
-tags: acceso abierto, open access, preprints, artículos
+tags: acceso abierto, open access, preprints
 category: ciencia
----
+---------------
 
 # Recursos de acceso abierto para tu investigación
 

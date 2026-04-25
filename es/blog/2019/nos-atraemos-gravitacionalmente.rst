@@ -1,5 +1,5 @@
 :date: 2019-11-08
-:tags: física, fuerza de gravedad, isaac newton
+:tags: fuerza de gravedad, física, isaac newton
 :category: ciencia
 
 ¿Nos atraemos gravitacionalmente?

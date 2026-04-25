@@ -1,8 +1,8 @@
 ---
 date: 2024-05-24
-tags: sphinx, python, ablog, pydata, página web estática
-category: tecnología, blog con sphinx
----
+tags: ablog, blog con sphinx, pydata, python, sitio estático, sphinx
+category: tecnología
+---------------
 
 # Migrando mi blog de Nikola a Sphinx
 

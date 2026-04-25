@@ -1,8 +1,8 @@
 ---
 date: 2024-12-05
-tags: manjaro, ubuntu, kubuntu, kde, pamac, flatpak, aplicaciones para linux
-category: tecnología, linux
----
+tags: aplicaciones para linux, flatpak, kde, kubuntu, manjaro, pamac, ubuntu
+category: linux
+---------------
 
 # ¿Qué hacer después de instalar Manjaro KDE?
 

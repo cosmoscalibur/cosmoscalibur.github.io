@@ -1,9 +1,9 @@
 ---
 date: 2026-04-18
-tags: rustlang
-category: technology, programming
+tags: rust
+category: programming
 language: en
----
+------------------------
 
 # Learning Rust: Part 1 - Basic use of cargo, variables and control flow
 

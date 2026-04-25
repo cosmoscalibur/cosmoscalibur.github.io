@@ -1,8 +1,8 @@
 ---
 date: 2024-06-30
-tags: gestor de paquetes, gestor de ambientes, rust, python, uv, pip, venv
-category: tecnología, programación
----
+tags: gestor de ambientes, gestor de paquetes, pip, python, rust, uv, venv
+category: programación
+---------------------
 
 # UV, alternativa rápida a PIP y VENV
 

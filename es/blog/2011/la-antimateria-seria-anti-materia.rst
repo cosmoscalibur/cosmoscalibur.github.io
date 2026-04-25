@@ -1,5 +1,5 @@
 :date: 2011-04-13
-:tags: antimateria, antigravedad, gravedad, astrofísica, física de partículas
+:tags: antigravedad, antimateria, astrofísica, física de partículas, gravedad
 :category: ciencia
 :author: Edward Villegas-Pulgarin
 :language: es

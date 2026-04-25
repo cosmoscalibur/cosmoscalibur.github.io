@@ -1,6 +1,6 @@
 :date: 2011-02-21
-:tags: amor, oscuridad, caos, poesía, escritos, literatura
-:category: cultura y entretenimiento, la flecha temporal
+:tags: amor, caos, escritos, literatura, oscuridad, poesía
+:category: La flecha temporal
 :author: Edward Villegas-Pulgarin
 :language: es
 

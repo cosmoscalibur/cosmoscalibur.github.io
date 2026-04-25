@@ -1,6 +1,6 @@
 :date: 2012-05-13
-:tags: amor, hechizo, poesía, escritos, literatura
-:category: cultura y entretenimiento, la flecha temporal
+:tags: amor, escritos, hechizo, literatura, poesía
+:category: La flecha temporal
 :author: Edward Villegas-Pulgarin
 :language: es
 

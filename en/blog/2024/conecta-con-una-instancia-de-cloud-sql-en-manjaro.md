@@ -1,9 +1,9 @@
 ---
 date: 2024-12-10
-tags: manjaro, ubuntu, google cloud sdk, cloud sql proxy, database
-category: technology, linux
+tags: cloud sql proxy, database, google cloud sdk, manjaro, ubuntu
+category: linux, programming
 language: en
----
+---------------------
 
 # Connecting to a Cloud SQL instance on Manjaro
 

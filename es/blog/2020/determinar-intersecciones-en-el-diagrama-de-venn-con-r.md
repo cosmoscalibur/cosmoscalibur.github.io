@@ -1,10 +1,10 @@
 ---
 date: 2020-06-13
-tags: lenguaje r, bioinformática, diagrama de Venn
-category: tecnología
+tags: bioinformática, diagrama de Venn, lenguaje r
+category: programación
 author: Edward Villegas-Pulgarin
 language: es
----
+------------------------
 
 # Determinar intersecciones en el diagrama de Venn con R
 

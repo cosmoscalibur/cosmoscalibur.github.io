@@ -1,9 +1,9 @@
 ---
 date: 2025-01-15
-tags: zsh, bash, ubuntu, manjaro, starship, shell, rust
-category: technology, linux
+tags: bash, manjaro, rust, shell, shell prompt, starship, ubuntu, zsh
+category: linux
 language: en
----
+---------------
 
 # Configuring *Starship* on Manjaro and Zsh
 

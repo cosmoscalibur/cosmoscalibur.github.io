@@ -1,6 +1,6 @@
 :date: 2020-03-01
-:tags: blockchain, transformación digital
-:category: opinión, mitpeonline transformación digital
+:tags: blockchain, opinión, transformación digital
+:category: tecnología
 :author: Edward Villegas-Pulgarin
 :language: es
 
@@ -18,29 +18,29 @@ Podemos ver en general el gran impacto que tendrá la tecnología blockchain en
 diversos sectores para mejorar la trazabilidad de las transacciones, conservar
 información protegida y la ejecución de contratos inteligentes que eliminen la
 intermediación. De hecho, como afirma Santiago Márquez (CTO de Clluc) “todo
-sector que se encuentre intermediado es susceptible de ser transformado” [1_].
+sector que se encuentre intermediado es susceptible de ser transformado” [1]_.
 
 El sector inmobiliario es un sector potencial para el blockchain, que mediante
 el uso de contratos inteligentes hoy se visualiza como un mecanismo para
-facilitar el mantenimiento de los edificios [2_].
+facilitar el mantenimiento de los edificios [2]_.
 
 La descentralización de la gestión a través de blockchain permite suponer un
-ahorro de tiempo dedicado y de espacio de almacenamiento [3_], que a su vez se
+ahorro de tiempo dedicado y de espacio de almacenamiento [3]_, que a su vez se
 traduce en la reducción del costo administrativo para los clientes del sector
 inmobiliario. En esto, España se ha convertido en un referente mundial, en la
 adopción que ha tenido el sector inmobiliario de la tecnología blockchain a sus
-procesos y la creación de nuevos modelos de negocio [3_, 4_].
+procesos y la creación de nuevos modelos de negocio [3]_, [4]_.
 
 La reforma que ha traído el blockchain implica una mejor experiencia al cliente
 a través de mecanismos de verificación de identidad más confiables y de una
 mejora en la seguridad de las transacciones, más que la eliminación de la
 intermediación actual en el sector inmobiliario (pero que un futuro con las
-reformas necesarias legales podría suceder) [3_].
+reformas necesarias legales podría suceder) [3]_.
 
 Otras publicaciones basadas en el curso de transformación digital:
 
 .. postlist::
-   :category: mitpeonline transformación digital
+   :tags: transformación digital
    :excerpts:
 
 .. [1] `¿Qué aporta el blockchain al sector inmobiliario? <https://www.pisos.com/aldia/que-aporta-el-blockchain-al-sector-inmobiliario/1628532/>`_.

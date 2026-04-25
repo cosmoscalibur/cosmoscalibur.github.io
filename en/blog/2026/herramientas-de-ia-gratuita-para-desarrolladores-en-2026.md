@@ -1,9 +1,10 @@
 ---
 date: 2026-01-18
-tags: ai, gemini, zed, antigravity, ollama, opencode, ampcode, claude
-category: technology, programming
+tags: ampcode, antigravity, artificial intelligence, claude, gemini, ollama, opencode,
+  zed
+category: programming
 language: en
----
+---------------------
 
 # Free AI Tools for Developers in 2026
 

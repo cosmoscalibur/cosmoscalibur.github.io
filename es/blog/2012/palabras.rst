@@ -1,6 +1,6 @@
 :date: 2012-12-13
-:tags: palabras, poesía, amor, escritos, literatura
-:category: cultura y entretenimiento, la flecha temporal
+:tags: amor, escritos, literatura, palabras, poesía
+:category: La flecha temporal
 :author: Edward Villegas-Pulgarin
 :language: es
 

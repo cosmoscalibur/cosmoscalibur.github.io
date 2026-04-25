@@ -1,9 +1,9 @@
 ---
 date: 2025-01-03
-tags: google ads, sphinx
-category: technology, blogging with sphinx
+tags: blogging with sphinx, google ads, sphinx
+category: technology
 language: en
----
+---------------
 
 # Adding Google Ads to Sphinx
 

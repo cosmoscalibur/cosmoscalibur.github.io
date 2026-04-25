@@ -1,6 +1,6 @@
 :date: 2011-01-03
-:tags: autoconversación,sueños,escritos,literatura
-:category: cultura y entretenimiento, la flecha temporal
+:tags: autoconversación, escritos, literatura, sueños
+:category: La flecha temporal
 :author: Edward Villegas-Pulgarin
 :language: es
 

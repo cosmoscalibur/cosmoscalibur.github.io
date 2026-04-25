@@ -1,10 +1,10 @@
 ---
 date: 2024-09-24
-tags: sphinx, pydata, favicon
-category: tecnología, blog con sphinx
+tags: blog con sphinx, favicon, pydata, sphinx
+category: tecnología
 author: Edward Villegas-Pulgarin
 language: es
----
+---------------
 
 # Agregar logo y favicon en Sphinx
 

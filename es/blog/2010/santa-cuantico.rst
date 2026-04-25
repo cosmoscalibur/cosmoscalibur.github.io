@@ -1,6 +1,6 @@
 :date: 2010-12-21
-:tags: navidad, santa claus, papá noel, mecánica cuántica, física
-:category: ciencia, curiosidades físicas
+:tags: física, mecánica cuántica, navidad, papá noel, santa claus
+:category: ciencia
 :author: Edward Villegas-Pulgarin
 :language: es
 

@@ -1,8 +1,8 @@
 ---
 date: 2024-12-03
-tags: linux, ubuntu, manjaro, kde
-category: tecnología, linux
----
+tags: kde, manjaro, ubuntu
+category: linux
+---------------
 
 # *Distrohopping*: Cambiar de distribución Linux y no morir en el intento
 

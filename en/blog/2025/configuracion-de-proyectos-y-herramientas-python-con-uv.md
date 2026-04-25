@@ -1,9 +1,9 @@
 ---
 date: 2025-01-06
-tags: package manager, virtualenv manager, pyproject, python, uv
-category: technology, blogging with sphinx, programming
+tags: blogging with sphinx, package manager, pyproject, python, uv, virtualenv manager
+category: programming
 language: en
----
+---------------------
 
 # Configuration of Python Projects and Tools with UV
 

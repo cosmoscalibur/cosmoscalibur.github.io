@@ -1,9 +1,9 @@
 ---
 date: 2026-04-18
-tags: manjaro, database, mysql, mariadb, python
-category: technology, linux, programming
+tags: database, manjaro, mariadb, mysql, python
+category: linux, programming
 language: en
----
+---------------------
 
 # MySQL Connector for Python on Manjaro
 

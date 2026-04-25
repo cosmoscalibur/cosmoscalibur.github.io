@@ -1,6 +1,6 @@
 :date: 2011-07-02
-:tags: padre, vida, muerte, poesía, escritos, literatura
-:category: cultura y entretenimiento, la flecha temporal
+:tags: escritos, literatura, muerte, padre, poesía, vida
+:category: La flecha temporal
 :author: Edward Villegas-Pulgarin
 :language: es
 

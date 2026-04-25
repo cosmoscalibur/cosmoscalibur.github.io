@@ -1,5 +1,5 @@
 :date: 2018-04-01
-:tags: números, número perfecto, número triangular, número hexagonal, matemáticas
+:tags: matemáticas, número hexagonal, número perfecto, número triangular, números
 :category: ciencia
 :author: Edward Villegas-Pulgarin
 :language: es

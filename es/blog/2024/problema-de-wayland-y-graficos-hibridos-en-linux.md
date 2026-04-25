@@ -1,8 +1,8 @@
 ---
 date: 2024-12-18
-tags: manjaro, wayland, zed, nvidia, gpu, linux, x11
-category: tecnología, linux
----
+tags: gpu, manjaro, nvidia, wayland, x11, zed
+category: linux
+---------------
 
 # Problema de Wayland y gráficos híbridos en Linux
 

@@ -1,6 +1,6 @@
 :date: 2024-05-27
-:tags: greek, cosmogony, mythology, history
-:category: science, astronomy
+:tags: cosmogony, greek, history, mythology
+:category: science
 :language: en
 
 Order and Origin of the Greek Cosmos

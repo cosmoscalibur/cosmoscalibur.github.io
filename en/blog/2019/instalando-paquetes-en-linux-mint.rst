@@ -1,6 +1,6 @@
 :date: 2025-01-13
-:tags: linux mint, snap, flatpak, appimage, apt, package manager, ubuntu
-:category: technology, linux
+:tags: appimage, apt, flatpak, linux mint, package manager, snap, ubuntu
+:category: linux
 :language: en
 
 Installing Packages in Linux (Mint)

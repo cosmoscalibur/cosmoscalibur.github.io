@@ -1,6 +1,6 @@
 :date: 2020-04-09
-:tags: transformación digital, datos
-:category: opinión, mitpeonline transformación digital
+:tags: datos, opinión, transformación digital
+:category: tecnología
 :author: Edward Villegas-Pulgarin
 :language: es
 
@@ -36,7 +36,7 @@ Estas medidas como se ha discutido en el curso no eliminan los riesgos, pero la
 toma de diversas medidas permite la reducción del riesgo.
 
 .. postlist::
-   :category: mitpeonline transformación digital
+   :tags: transformación digital
    :excerpts:
 
 9 Tips For Keeping Your Customer Data Secure https://www.decibelinsight.com/blog/9-privacy-tips-for-secure-customer-data

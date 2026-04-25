@@ -1,9 +1,9 @@
 ---
 date: 2025-01-04
-tags: blog, sphinx, favicon
-category: technology, blogging with sphinx
+tags: blogging with sphinx, favicon, sphinx
+category: technology
 language: en
----
+---------------
 
 # Adding Logo and Favicon to Sphinx
 

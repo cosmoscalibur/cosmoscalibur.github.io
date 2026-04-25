@@ -1,9 +1,9 @@
 ---
 date: 2026-02-22
-tags: netflix, seekee, movies, series, android applications, streaming
-category: entertainment, movies and series
+tags: android applications, entertainment, movies, netflix, seekee, series, streaming
+category: technology
 language: en
----
+---------------
 
 # Seekee: free alternative to watch movies and series
 

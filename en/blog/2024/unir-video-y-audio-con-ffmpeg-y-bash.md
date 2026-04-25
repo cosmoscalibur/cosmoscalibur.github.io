@@ -1,9 +1,9 @@
 ---
 date: 2025-01-13
-tags: ffmpeg, bash
-category: technology, linux
+tags: bash, chrome extensions, ffmpeg, linux applications, vimeo
+category: linux, programming
 language: en
----
+------------------------
 
 # Merging Video and Audio with FFmpeg and Bash
 

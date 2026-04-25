@@ -1,6 +1,6 @@
 :date: 2026-04-18
-:tags: python, anaconda python, software installation, package manager, conda
-:category: technology
+:tags: anaconda python, conda, package manager, python, software installation
+:category: linux, programming
 :author: Edward Villegas-Pulgarin
 :language: en
 

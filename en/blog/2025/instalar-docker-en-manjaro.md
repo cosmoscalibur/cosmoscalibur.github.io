@@ -1,9 +1,9 @@
 ---
 date: 2025-04-23
-tags: container, docker, linux, manjaro
-category: technology, programming
+tags: container, docker, manjaro
+category: linux, programming
 language: en
----
+---------------
 
 # Install Docker on Manjaro
 
