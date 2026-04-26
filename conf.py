@@ -36,8 +36,8 @@ blog_feed_fulltext = True
 ## categories, tagcloud, archives, postcard, recentposts, authors, languages, locations
 html_sidebars = {
     "index": ["ablog/recentposts.html"],
-    "blog": ["ablog/categories.html"],
-    "blog/**": ["ablog/categories.html"],
+    "blog": ["ablog/recentposts.html"],
+    "blog/**": ["ablog/recentposts.html"],
     "*/blog/**": [
         "ablog/postcard.html",
         "ablog/recentposts.html",

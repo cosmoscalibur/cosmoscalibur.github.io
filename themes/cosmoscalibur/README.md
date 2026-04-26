@@ -208,8 +208,27 @@ Single file: `js/main.js` (~3 KB, vanilla JS, no dependencies).
 
 | Template | Description |
 | --- | --- |
-| `collection.html` | Blog listing pages — renders posts as styled cards |
+| `collection.html` | Blog listing pages — renders posts as styled cards. Includes noindex policy (tags ≤2 articles, archive/language/author pages) and templated tag descriptions. |
 | `recentposts.html` | Sidebar widget — recent posts with "View all" link (excludes current page) |
+
+### Blog Customization (`extensions/ablog_category_suppress.py`)
+
+**Module:** `extensions/ablog_category_suppress.py`
+
+Monkey-patches ABlog's `generate_archive_pages` to suppress auto-generated
+category listing pages. The site maintains manual curated category pages
+under `es/blog/category/` and `en/blog/category/` with SEO-optimized
+descriptions, replacing ABlog's bare post listings.
+
+Applied at import time via `apply_patches()` in `extensions/__init__.py`.
+
+### Pending
+
+- **Tag description i18n**: The tag description template in
+  `ablog/collection.html` is currently hardcoded for Spanish (`es`) and
+  English (`en`). To support additional languages, the template text should
+  be extracted to a configurable mapping (e.g., via `html_theme_options` or
+  a dedicated config value) instead of inline conditionals.
 
 ## Dependencies
 

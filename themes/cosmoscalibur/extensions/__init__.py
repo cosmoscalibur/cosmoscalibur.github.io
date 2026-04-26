@@ -11,6 +11,8 @@ from typing import Any
 
 from sphinx.application import Sphinx
 
+from .ablog_category_suppress import setup as _setup_blog_customization
+
 from .context import (
     generate_pygments_css,
     inject_page_context,

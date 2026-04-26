@@ -12,6 +12,7 @@ from typing import Any
 from sphinx.application import Sphinx
 
 from .extensions import init_sitemap, page_context, post_build
+from .extensions import _setup_blog_customization
 
 
 def setup(app: Sphinx) -> dict[str, Any]:
@@ -45,6 +46,9 @@ def setup(app: Sphinx) -> dict[str, Any]:
     app.connect("builder-inited", init_sitemap)
     app.connect("html-page-context", page_context)
     app.connect("build-finished", post_build)
+
+    # Suppress ABlog's auto-generated category pages
+    _setup_blog_customization(app)
 
     return {
         "parallel_read_safe": True,

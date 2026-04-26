@@ -1,6 +1,6 @@
 :date: 2017-07-12
 :tags: colombia, opinión
-:category: ciencia
+:category: tecnología
 :author: Edward Villegas-Pulgarin
 :language: es
 

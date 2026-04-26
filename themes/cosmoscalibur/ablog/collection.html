@@ -1,12 +1,28 @@
 {# Custom collection template — clean card layout.
    Shows: image (centered), title, description, category, datetime.
    Removes: "Read more", tags, language, author from listing cards.
-   Tag pages get noindex to avoid thin content in search engines. #}
+
+   noindex policy:
+   - Tags with ≤2 articles: noindex (thin content)
+   - Tags with 3+ articles: indexed (with templated description)
+   - Archive, language, author, drafts: always noindex
+   - Catalog index pages: always noindex
+
+   Tag description template:
+   Currently hardcoded for es/en. See README.md for i18n extension pending. #}
 {%- extends "page.html" %}
-{% block metatags %}
+{% block extrahead %}
   {{ super() }}
-  {% if collection.catalog is defined and collection.catalog.name == "tags" %}
-  <meta name="robots" content="noindex, follow">
+  {% if collection is defined and collection.catalog is defined %}
+    {% if collection.catalog.name == "tags" %}
+      {% if collection|length <= 2 %}
+      <meta name="robots" content="noindex, follow">
+      {% endif %}
+    {% else %}
+      <meta name="robots" content="noindex, follow">
+    {% endif %}
+  {% elif catalog is defined %}
+    <meta name="robots" content="noindex, follow">
   {% endif %}
 {% endblock %}
 {% block body %}
@@ -29,6 +45,18 @@
       {% else %} {{ collection }} {% endif %}
     </span>
   </h1>
+
+  {% if collection.catalog is defined and collection.catalog.name == "tags" %}
+    {% if page_lang == "en" %}
+    <p class="collection-description">
+      Articles tagged with <strong>{{ collection.name }}</strong> on Cosmoscalibur.
+    </p>
+    {% else %}
+    <p class="collection-description">
+      Artículos etiquetados con <strong>{{ collection.name }}</strong> en Cosmoscalibur.
+    </p>
+    {% endif %}
+  {% endif %}
 
   {% if ablog.blog_archive_titles %}
     {# Archive-titles mode: compact date + title rows #}
@@ -75,3 +103,4 @@
   {% endif %}
 </div>
 {% endblock body %}
+
