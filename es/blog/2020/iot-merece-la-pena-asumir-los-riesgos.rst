@@ -1,5 +1,5 @@
 :date: 2020-04-09
-:tags: internet de las cosas, iot, opinión, transformación digital
+:tags: internet de las cosas, opinión, transformación digital
 :category: tecnología
 :author: Edward Villegas-Pulgarin
 :language: es

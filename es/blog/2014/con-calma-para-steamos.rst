@@ -1,5 +1,5 @@
 :date: 2014-04-20
-:tags: steam, steamos, videojuegos
+:tags: steam, videojuegos
 :category: linux
 :author: Edward Villegas-Pulgarin
 :language: es

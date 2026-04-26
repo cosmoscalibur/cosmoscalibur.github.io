@@ -1,6 +1,5 @@
 :date: 2011-02-22
-:tags: fotónica, puntos cuánticos
-:category: tecnología
+:tags: ciencia de materiales
 :author: Edward Villegas-Pulgarin
 :language: es
 

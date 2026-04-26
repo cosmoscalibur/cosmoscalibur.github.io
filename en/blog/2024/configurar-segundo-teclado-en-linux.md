@@ -1,6 +1,6 @@
 ---
 date: 2026-04-18
-tags: setxkbmap, usb keyboard, x11, xinput
+tags: keyboard
 category: linux
 language: en
 ---------------

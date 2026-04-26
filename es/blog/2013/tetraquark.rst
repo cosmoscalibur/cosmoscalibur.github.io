@@ -1,5 +1,5 @@
 :date: 2013-06-18
-:tags: física de partículas, tetracuark
+:tags: física de partículas
 :category: ciencia
 :author: Edward Villegas-Pulgarin
 :language: es

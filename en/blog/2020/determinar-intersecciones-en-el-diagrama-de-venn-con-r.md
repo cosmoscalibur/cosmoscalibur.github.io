@@ -1,6 +1,6 @@
 ---
 date: 2020-08-30
-tags: bioinformatics, r language, venn diagram
+tags: bioinformatics, r language
 category: programming
 language: en
 ------------------------

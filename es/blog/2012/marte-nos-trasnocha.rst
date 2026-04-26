@@ -1,5 +1,5 @@
 :date: 2012-08-06
-:tags: astronomía, exploración espacial, mars rover curiosity, marte, msl, nasa, planetas
+:tags: astronomía, exploración espacial, marte, planetas
 :category: ciencia
 :author: Edward Villegas-Pulgarin
 :language: es

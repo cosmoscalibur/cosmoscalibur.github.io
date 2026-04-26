@@ -1,5 +1,5 @@
 :date: 2026-04-18
-:tags: general relativity, gravity, physics, time
+:tags: physics, gravity, general relativity
 :category: science
 :author: Edward Villegas-Pulgarin
 :language: en

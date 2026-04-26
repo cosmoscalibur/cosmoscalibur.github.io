@@ -1,6 +1,6 @@
 ---
 date: 2025-01-06
-tags: blogging with sphinx, package manager, pyproject, python, uv, virtualenv manager
+tags: blog with sphinx, virtualenv manager, package manager, pyproject, python, uv
 category: programming
 language: en
 ---------------------

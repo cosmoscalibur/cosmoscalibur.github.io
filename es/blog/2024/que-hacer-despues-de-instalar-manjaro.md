@@ -1,6 +1,6 @@
 ---
 date: 2024-12-05
-tags: aplicaciones para linux, flatpak, kde, kubuntu, manjaro, pamac, ubuntu
+tags: manjaro, kde, ubuntu, aplicaciones para linux, pamac, aur
 category: linux
 ---------------
 

@@ -1,5 +1,5 @@
 :date: 2024-05-27
-:tags: cosmogony, greek, history, mythology
+:tags: archaeoastronomy, greek cosmogony, history of astronomy, greek mythology
 :category: science
 :language: en
 

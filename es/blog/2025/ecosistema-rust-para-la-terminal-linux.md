@@ -1,6 +1,6 @@
 ---
 date: 2025-04-29
-tags: aplicaciones para linux, kde, manjaro, rust, terminal
+tags: aplicaciones para linux, kde, manjaro, rust, terminal, software libre
 category: linux, programación
 ---------------
 

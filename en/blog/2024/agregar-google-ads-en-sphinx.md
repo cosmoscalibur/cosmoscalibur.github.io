@@ -1,6 +1,6 @@
 ---
 date: 2025-01-03
-tags: blogging with sphinx, google ads, sphinx
+tags: blog with sphinx, google ads, sphinx
 category: technology
 language: en
 ---------------

@@ -1,5 +1,5 @@
 :date: 2025-01-03
-:tags: gravity, newton
+:tags: physics, isaac newton
 :category: science
 :language: en
 

@@ -1,5 +1,5 @@
 :date: 2012-11-30
-:tags: escritos, fractal, literatura, poesía, tiempo
+:tags: poesía, metáfora científica, reflexión
 :category: La flecha temporal
 :author: Edward Villegas-Pulgarin
 :language: es

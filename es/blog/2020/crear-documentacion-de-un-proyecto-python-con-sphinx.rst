@@ -1,6 +1,5 @@
 :date: 2020-01-06
-:tags: documentación de software, python, restructuredtext, sphinx
-    estático
+:tags: documentación de software, python, restructuredtext, sphinx, sitio web estático
 :category: programación
 
 Crear documentación de un proyecto Python con Sphinx

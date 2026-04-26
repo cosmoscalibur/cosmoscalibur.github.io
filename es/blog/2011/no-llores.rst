@@ -1,5 +1,5 @@
 :date: 2011-03-15
-:tags: escritos, literatura, llorar, lágrimas, poesía
+:tags: poesía, pérdida y melancolía
 :category: La flecha temporal
 :author: Edward Villegas-Pulgarin
 :language: es

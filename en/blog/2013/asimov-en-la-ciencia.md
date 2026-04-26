@@ -1,6 +1,6 @@
 ---
 date: 2024-12-27
-tags: asimov, chemistry, literature, science fiction
+tags: science fiction, isaac asimov, literature, chemistry
 category: science
 language: en
 ---------------

@@ -1,6 +1,6 @@
 ---
 date: 2025-04-23
-tags: container, docker, manjaro
+tags: containers, docker, manjaro
 category: linux, programming
 language: en
 ---------------

@@ -1,5 +1,5 @@
 :date: 2019-11-11
-:tags: contenedor, ealite, enterprise architect, lxc, lxd, wine
+:tags: contenedores, enterprise architect, lxc, lxd, wine
 :category: linux
 :author: Edward Villegas-Pulgarin
 :language: es

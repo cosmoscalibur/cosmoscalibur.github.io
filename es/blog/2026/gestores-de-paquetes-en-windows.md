@@ -1,6 +1,6 @@
 ---
 date: 2026-04-17
-tags: chocolatey, scoop, software, windows, winget
+tags: scoop, windows, winget
 category: tecnología
 ---------------
 

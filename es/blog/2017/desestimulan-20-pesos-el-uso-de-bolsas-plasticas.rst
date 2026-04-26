@@ -1,5 +1,5 @@
 :date: 2017-07-12
-:tags: bolsas plásticas, colombia, impuesto verde, medio ambiente, opinión
+:tags: colombia, opinión
 :category: ciencia
 :author: Edward Villegas-Pulgarin
 :language: es

@@ -1,6 +1,6 @@
 ---
 date: 2024-12-15
-tags: bash, manjaro, rust, shell, shell prompt, starship, ubuntu, zsh
+tags: terminal, manjaro, ubuntu, starship, rust
 category: linux
 ---------------
 

@@ -1,6 +1,6 @@
 ---
 date: 2020-05-10
-tags: distancia geodésica, geoide, geopy, método de karney, método de vincenty, python
+tags: distancia geodésica, python
 category: programación
 ------------------------
 

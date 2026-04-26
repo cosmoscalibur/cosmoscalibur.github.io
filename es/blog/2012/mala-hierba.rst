@@ -1,5 +1,5 @@
 :date: 2012-10-03
-:tags: escritos, literatura, poesía
+:tags: poesía
 :category: La flecha temporal
 :author: Edward Villegas-Pulgarin
 :language: es

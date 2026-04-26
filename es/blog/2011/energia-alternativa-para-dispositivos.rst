@@ -1,5 +1,5 @@
 :date: 2011-07-07
-:tags: dispositivos móviles, energía, materiales, piezoeléctricos
+:tags: smartphones, ciencia de materiales
 :category: tecnología
 :author: Edward Villegas-Pulgarin
 :language: es

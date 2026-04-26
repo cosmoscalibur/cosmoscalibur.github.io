@@ -1,6 +1,6 @@
 ---
 date: 2026-04-18
-tags: cpython, maturin, polars, pydantic, pyo3, python, ruff, rust, uv
+tags: python, rust, uv
 category: programación
 ------------------------
 

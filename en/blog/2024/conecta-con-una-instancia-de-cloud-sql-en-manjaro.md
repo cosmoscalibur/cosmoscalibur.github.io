@@ -1,6 +1,6 @@
 ---
 date: 2024-12-10
-tags: cloud sql proxy, database, google cloud sdk, manjaro, ubuntu
+tags: database, cloud computing, google cloud sdk, manjaro, ubuntu
 category: linux, programming
 language: en
 ---------------------

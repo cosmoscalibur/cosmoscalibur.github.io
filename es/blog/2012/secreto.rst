@@ -1,5 +1,5 @@
 :date: 2012-11-29
-:tags: escritos, literatura, poesía, secreto, voz
+:tags: poesía, amor y deseo
 :category: La flecha temporal
 :author: Edward Villegas-Pulgarin
 :language: es

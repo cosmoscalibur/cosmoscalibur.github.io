@@ -1,6 +1,6 @@
 ---
 date: 2025-04-23
-tags: contenedor, docker, manjaro
+tags: contenedores, docker, manjaro
 category: linux, programación
 ---------------
 

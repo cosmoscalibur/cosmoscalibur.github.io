@@ -1,5 +1,5 @@
 :date: 2012-10-05
-:tags: amor, enfermedad, escritos, literatura, poesía
+:tags: poesía, amor y deseo, pérdida y melancolía
 :category: La flecha temporal
 :author: Edward Villegas-Pulgarin
 :language: es

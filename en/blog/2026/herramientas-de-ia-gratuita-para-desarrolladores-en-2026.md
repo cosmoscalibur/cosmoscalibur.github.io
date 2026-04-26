@@ -1,7 +1,6 @@
 ---
 date: 2026-01-18
-tags: ampcode, antigravity, artificial intelligence, claude, gemini, ollama, opencode,
-  zed
+tags: artificial intelligence, coding agents, zed, antigravity, ollama
 category: programming
 language: en
 ---------------------

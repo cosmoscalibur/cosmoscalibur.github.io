@@ -1,5 +1,5 @@
 :date: 2025-01-13
-:tags: apt, linux mint, snap
+:tags: linux mint
 :category: linux
 :language: en
 

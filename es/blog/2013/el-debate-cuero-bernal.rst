@@ -1,5 +1,5 @@
 :date: 2013-11-11
-:tags: bibliometría, colombia, opinión, raúl cuero, rodrigo bernal
+:tags: bibliometría, colombia, opinión
 :category: ciencia
 :author: Edward Villegas-Pulgarin
 :language: es

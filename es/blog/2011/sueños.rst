@@ -1,5 +1,5 @@
 :date: 2011-01-03
-:tags: autoconversación, escritos, literatura, sueños
+:tags: reflexión, poesía
 :category: La flecha temporal
 :author: Edward Villegas-Pulgarin
 :language: es

@@ -1,6 +1,6 @@
 ---
 date: 2026-01-18
-tags: ide, zed
+tags: ide, zed, open source
 category: linux, programming
 language: en
 ---------------------

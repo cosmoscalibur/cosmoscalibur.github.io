@@ -1,5 +1,5 @@
 :date: 2011-07-28
-:tags: amor, autoconversación, escritos, literatura, resignación
+:tags: amor y deseo, pérdida y melancolía, reflexión, poesía
 :category: La flecha temporal
 :author: Edward Villegas-Pulgarin
 :language: es

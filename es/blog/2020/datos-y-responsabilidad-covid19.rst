@@ -1,5 +1,5 @@
 :date: 2020-04-05
-:tags: colombia, coronavirus, covid19, datos, opinión, pandemia, responsabilidad
+:tags: opinión, colombia, pandemia, datos
 :category: ciencia
 :author: Edward Villegas-Pulgarin
 :language: es

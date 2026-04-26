@@ -1,6 +1,5 @@
 :date: 2024-12-27
-:tags: emulators, entertainment, gaming, linux videogames, retroarch, steam
-    applications
+:tags: console emulators, entertainment, steam, videogames, open source, linux applications
 :category: technology
 :language: en
 

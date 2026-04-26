@@ -1,6 +1,6 @@
 ---
 date: 2025-01-06
-tags: package manager, pip, python, rust, uv, venv, virtualenv manager
+tags: python, uv, package manager, virtualenv manager, rust
 category: programming
 language: en
 ---------------------

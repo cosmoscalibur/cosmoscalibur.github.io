@@ -1,6 +1,6 @@
 ---
 date: 2025-01-13
-tags: bash, chrome extensions, ffmpeg, linux applications, vimeo
+tags: linux applications, bash, ffmpeg, browsers
 category: linux, programming
 language: en
 ------------------------

@@ -1,5 +1,5 @@
 :date: 2019-11-22
-:tags: contenedor, docker, ealite, enterprise architect, wine
+:tags: contenedores, docker, enterprise architect, wine
 :category: linux
 :author: Edward Villegas-Pulgarin
 :language: es

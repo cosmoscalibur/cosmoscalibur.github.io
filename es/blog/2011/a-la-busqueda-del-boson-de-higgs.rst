@@ -1,5 +1,5 @@
 :date: 2011-02-21
-:tags: bosón de higgs, física de partículas, lhc, partícula de dios
+:tags: bosón de higgs, física de partículas, lhc
 :category: ciencia
 :author: Edward Villegas-Pulgarin
 :language: es

@@ -1,5 +1,5 @@
 :date: 2011-07-28
-:tags: amor, escritos, literatura, olvidar, poesía
+:tags: poesía, amor y deseo, pérdida y melancolía
 :category: La flecha temporal
 :author: Edward Villegas-Pulgarin
 :language: es

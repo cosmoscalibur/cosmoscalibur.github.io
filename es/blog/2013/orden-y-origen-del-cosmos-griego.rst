@@ -1,5 +1,5 @@
 :date: 2013-06-18
-:tags: arjé, arqueoastronomía, cosmogonía griega, cosmología, historia de la astronomía, mitología griega
+:tags: arqueoastronomía, cosmogonía griega, historia de la astronomía, mitología griega
 :category: ciencia
 :author: Edward Villegas-Pulgarin
 :language: es

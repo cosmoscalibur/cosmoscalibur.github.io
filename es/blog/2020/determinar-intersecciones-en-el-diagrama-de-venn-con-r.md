@@ -1,6 +1,6 @@
 ---
 date: 2020-06-13
-tags: bioinformática, diagrama de Venn, lenguaje r
+tags: bioinformática, lenguaje r
 category: programación
 author: Edward Villegas-Pulgarin
 language: es

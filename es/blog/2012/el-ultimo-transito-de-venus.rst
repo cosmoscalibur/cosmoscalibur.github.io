@@ -1,5 +1,5 @@
 :date: 2012-02-26
-:tags: astronomía, efemérides astronómicas, planetas, tránsito de venus
+:tags: astronomía, planetas
 :category: ciencia
 :author: Edward Villegas-Pulgarin
 :language: es

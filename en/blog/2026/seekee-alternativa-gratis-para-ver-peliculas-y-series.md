@@ -1,6 +1,6 @@
 ---
 date: 2026-02-22
-tags: android applications, entertainment, movies, netflix, seekee, series, streaming
+tags: entertainment, streaming, netflix, android applications
 category: technology
 language: en
 ---------------

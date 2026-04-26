@@ -1,6 +1,6 @@
 ---
 date: 2024-06-30
-tags: gestor de ambientes, gestor de paquetes, pip, python, rust, uv, venv
+tags: python, uv, gestor de paquetes, gestor de ambientes, rust
 category: programación
 ---------------------
 

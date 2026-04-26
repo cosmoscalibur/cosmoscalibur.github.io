@@ -1,5 +1,5 @@
 :date: 2010-12-10
-:tags: estado sólido, física, grafeno, materiales, mecánica cuántica
+:tags: ciencia de materiales, física, grafeno, mecánica cuántica
 :category: ciencia
 :author: Edward Villegas-Pulgarin
 :language: es

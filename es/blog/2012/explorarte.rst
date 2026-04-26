@@ -1,5 +1,5 @@
 :date: 2012-09-24
-:tags: amor, cuerpo, escritos, exploración, literatura, poesía
+:tags: poesía, amor y deseo
 :category: La flecha temporal
 :author: Edward Villegas-Pulgarin
 :language: es

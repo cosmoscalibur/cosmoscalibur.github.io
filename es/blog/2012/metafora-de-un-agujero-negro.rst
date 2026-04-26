@@ -1,5 +1,5 @@
 :date: 2012-10-20
-:tags: agujero negro, amor, escritos, literatura, poesía
+:tags: agujeros negros, poesía, amor y deseo, metáfora científica
 :category: La flecha temporal
 :author: Edward Villegas-Pulgarin
 :language: es

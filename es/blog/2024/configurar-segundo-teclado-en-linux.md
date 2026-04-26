@@ -1,6 +1,6 @@
 ---
 date: 2024-05-19
-tags: setxkbmap, teclado usb, x11, xinput
+tags: teclado
 category: linux
 ---------------
 

@@ -1,5 +1,5 @@
 :date: 2011-07-02
-:tags: autoconversación, escritos, literatura, muerte, vida
+:tags: pérdida y melancolía, reflexión, poesía
 :category: La flecha temporal
 :author: Edward Villegas-Pulgarin
 :language: es

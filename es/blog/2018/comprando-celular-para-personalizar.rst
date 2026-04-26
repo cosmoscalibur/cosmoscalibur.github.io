@@ -1,5 +1,5 @@
 :date: 2018-01-03
-:tags: android, celular, smartphone
+:tags: android, smartphones
 :category: tecnología
 :author: Edward Villegas-Pulgarin
 :language: es

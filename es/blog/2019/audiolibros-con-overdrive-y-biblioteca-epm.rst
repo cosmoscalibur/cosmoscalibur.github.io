@@ -1,5 +1,5 @@
 :date: 2019-05-17
-:tags: android, aplicaciones android, audiolibros, bibliotecas, entretenimiento, epm, overdrive
+:tags: entretenimiento, aplicaciones para android, audiolibros
 :category: tecnología
 :author: Edward Villegas-Pulgarin
 :language: es

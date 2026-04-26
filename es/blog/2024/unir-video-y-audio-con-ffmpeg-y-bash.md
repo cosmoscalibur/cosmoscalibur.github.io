@@ -1,6 +1,6 @@
 ---
 date: 2024-10-20
-tags: aplicaciones para linux, bash, extensiones de chrome, ffmpeg, vimeo
+tags: aplicaciones para linux, bash, ffmpeg, navegadores
 category: linux, programación
 ------------------------
 

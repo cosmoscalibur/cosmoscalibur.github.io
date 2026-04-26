@@ -1,6 +1,6 @@
 ---
 date: 2024-12-31
-tags: entertainment, linux applications, linux videogames, steam, wine
+tags: linux applications, entertainment, steam, videogames, wine
 category: technology
 language: en
 ---------------

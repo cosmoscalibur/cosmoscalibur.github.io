@@ -1,7 +1,6 @@
 ---
 date: 2026-02-23
-tags: artificial intelligence, context engineering, language model, opinion, prompt
-  engineering
+tags: context engineering, prompt engineering, artificial intelligence, language model, opinion
 category: technology
 language: en
 ---------------

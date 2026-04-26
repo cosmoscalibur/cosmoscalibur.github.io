@@ -1,5 +1,5 @@
 :date: 2026-04-18
-:tags: christmas, physics, quantum mechanics, santa claus
+:tags: physics, quantum mechanics, christmas
 :category: science
 :author: Edward Villegas-Pulgarin
 :language: en

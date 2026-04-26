@@ -1,5 +1,5 @@
 :date: 2019-10-21
-:tags: android, celulares, fastboot, flash, moto g5, motorola, smartphone, soft brick
+:tags: android, smartphones, motorola
 :category: linux, tecnología
 :author: Edward Villegas-Pulgarin
 :language: es

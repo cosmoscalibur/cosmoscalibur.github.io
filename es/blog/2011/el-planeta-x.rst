@@ -1,5 +1,5 @@
 :date: 2011-02-20
-:tags: astronomía, planeta x, planetas, sistema solar
+:tags: astronomía, planetas, sistema solar
 :category: ciencia
 :author: Edward Villegas-Pulgarin
 :language: es

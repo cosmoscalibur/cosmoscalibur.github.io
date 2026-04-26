@@ -1,5 +1,5 @@
 :date: 2011-09-18
-:tags: agua, astronomía, exploración espacial, marte, planetas
+:tags: astronomía, exploración espacial, marte, planetas
 :category: ciencia
 :author: Edward Villegas-Pulgarin
 :language: es

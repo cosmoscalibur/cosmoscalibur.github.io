@@ -1,5 +1,5 @@
 :date: 2013-06-02
-:tags: astronomía, exoplanetas, kepler-76b, planetas, relatividad especial
+:tags: astronomía, exoplanetas, planetas
 :category: ciencia
 :author: Edward Villegas-Pulgarin
 :language: es

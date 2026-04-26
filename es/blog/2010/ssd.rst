@@ -1,5 +1,5 @@
 :date: 2010-12-11
-:tags: disco duro, estado sólido, hardware, ssd
+:tags: ciencia de materiales
 :category: tecnología
 :author: Edward Villegas-Pulgarin
 :language: es

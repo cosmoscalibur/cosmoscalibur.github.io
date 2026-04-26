@@ -1,6 +1,6 @@
 ---
 date: 2025-01-03
-tags: geodesic, geoide, geopy, método de karney, método de vincenty, python
+tags: geodesic distance, python
 category: programming
 language: en
 ------------------------

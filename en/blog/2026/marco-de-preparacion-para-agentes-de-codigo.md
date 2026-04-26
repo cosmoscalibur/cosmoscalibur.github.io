@@ -1,7 +1,6 @@
 ---
 date: 2026-03-07
-tags: AGENTS.md, antigravity, artificial intelligence, coding agents, context engineering,
-  factory ai
+tags: coding agents, antigravity, context engineering, artificial intelligence
 category: programming
 language: en
 ---------------------

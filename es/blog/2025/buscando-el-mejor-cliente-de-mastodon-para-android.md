@@ -1,6 +1,6 @@
 ---
 date: 2025-10-08
-tags: android, fediverso, mastodon, megalodon, moshidon, software, tusky
+tags: aplicaciones para android, mastodon, software libre
 category: tecnología
 ---------------
 

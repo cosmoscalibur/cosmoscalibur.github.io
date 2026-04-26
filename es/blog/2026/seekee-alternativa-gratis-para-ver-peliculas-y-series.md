@@ -1,7 +1,6 @@
 ---
 date: 2026-02-22
-tags: aplicaciones para android, entretenimiento, netflix, películas, seekee, series,
-  streaming
+tags: entretenimiento, streaming, netflix, aplicaciones para android
 category: tecnología
 ---------------
 

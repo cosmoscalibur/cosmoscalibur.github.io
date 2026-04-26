@@ -1,6 +1,6 @@
 ---
 date: 2024-12-27
-tags: calendar, christmas, history, newton
+tags: isaac newton, christmas
 category: science
 language: en
 ---------------

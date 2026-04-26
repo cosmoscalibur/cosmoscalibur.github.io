@@ -1,5 +1,5 @@
 :date: 2011-03-13
-:tags: alerta nuclear, geofísica, geología, japón, terremoto
+:tags: geofísica
 :category: ciencia
 :author: Edward Villegas-Pulgarin
 :language: es

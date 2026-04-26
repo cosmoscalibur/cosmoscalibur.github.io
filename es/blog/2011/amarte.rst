@@ -1,5 +1,5 @@
 :date: 2011-01-15
-:tags: amor, autoconversación, escritos, literatura
+:tags: amor y deseo, reflexión, poesía
 :category: La flecha temporal
 :author: Edward Villegas-Pulgarin
 :language: es

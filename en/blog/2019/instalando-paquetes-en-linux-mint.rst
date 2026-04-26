@@ -1,5 +1,5 @@
 :date: 2025-01-13
-:tags: appimage, apt, flatpak, linux mint, package manager, snap, ubuntu
+:tags: flatpak, package manager, linux mint
 :category: linux
 :language: en
 

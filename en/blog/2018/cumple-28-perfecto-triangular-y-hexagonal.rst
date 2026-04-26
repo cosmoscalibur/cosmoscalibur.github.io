@@ -1,5 +1,5 @@
 :date: 2026-04-18
-:tags: hexagonal number, mathematics, numbers, perfect number, triangular number
+:tags: mathematics
 :category: science
 :author: Edward Villegas-Pulgarin
 :language: en

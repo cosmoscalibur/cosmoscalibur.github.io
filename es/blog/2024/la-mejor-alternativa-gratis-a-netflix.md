@@ -1,7 +1,6 @@
 ---
 date: 2024-10-21
-tags: aplicaciones para android, aplicaciones para linux, aplicaciones para windows,
-  entretenimiento, netflix, películas, series, stremio, torrents
+tags: entretenimiento, streaming, netflix, aplicaciones para linux, aplicaciones para android, aplicaciones para windows, stremio
 category: tecnología
 ---------------
 

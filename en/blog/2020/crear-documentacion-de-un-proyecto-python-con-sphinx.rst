@@ -1,5 +1,5 @@
 :date: 2025-01-03
-:tags: documentation, python, restructuredtext, sphinx
+:tags: software documentation, python, restructuredtext, sphinx, static website
 :category: programming
 :language: en
 

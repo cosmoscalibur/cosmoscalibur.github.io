@@ -1,5 +1,5 @@
 :date: 2020-06-29
-:tags: apt, linux mint, snap
+:tags: linux mint
 :category: linux
 
 Instalar paquetes snap en Linux Mint 20

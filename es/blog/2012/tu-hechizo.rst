@@ -1,5 +1,5 @@
 :date: 2012-05-13
-:tags: amor, escritos, hechizo, literatura, poesía
+:tags: poesía, amor y deseo
 :category: La flecha temporal
 :author: Edward Villegas-Pulgarin
 :language: es

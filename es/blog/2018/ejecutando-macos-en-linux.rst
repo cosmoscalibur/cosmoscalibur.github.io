@@ -1,5 +1,5 @@
 :date: 2018-01-18
-:tags: emulación, hackintosh, macos, máquina virtual
+:tags: macos, máquina virtual
 :category: linux
 :author: Edward Villegas-Pulgarin
 :language: es

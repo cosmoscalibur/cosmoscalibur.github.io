@@ -1,6 +1,5 @@
 :date: 2020-06-21
-:tags: aplicaciones android, extensiones de, transmisión de video, ver netflix
-    chrome
+:tags: aplicaciones para android, navegadores, streaming, netflix
 :category: tecnología
 :author: Edward Villegas-Pulgarin
 :language: es

@@ -1,6 +1,6 @@
 ---
 date: 2026-02-21
-tags: ampcode, antigravity, autenticación, windows
+tags: ampcode, antigravity, windows
 category: programación, tecnología
 ---------------
 

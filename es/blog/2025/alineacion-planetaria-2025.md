@@ -1,6 +1,6 @@
 ---
 date: 2025-01-19
-tags: efemérides, planetas, sistema solar
+tags: planetas, sistema solar
 category: ciencia
 ---------------
 

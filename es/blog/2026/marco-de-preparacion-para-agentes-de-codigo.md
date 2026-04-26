@@ -1,7 +1,6 @@
 ---
 date: 2026-03-07
-tags: AGENTS.md, agentes de código, antigravity, factory ai, ingeniería de contexto,
-  inteligencia artificial
+tags: agentes de código, antigravity, ingeniería de contexto, inteligencia artificial
 category: programación
 ---------------------
 

@@ -1,6 +1,6 @@
 ---
 date: 2025-01-15
-tags: evcxr, notebook, rust, rust-analyzer, vscode
+tags: notebook, rust
 category: linux, programming
 language: en
 ------------------------

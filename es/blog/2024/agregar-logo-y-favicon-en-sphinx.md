@@ -1,6 +1,6 @@
 ---
 date: 2024-09-24
-tags: blog con sphinx, favicon, pydata, sphinx
+tags: blog con sphinx, pydata, sphinx
 category: tecnología
 author: Edward Villegas-Pulgarin
 language: es

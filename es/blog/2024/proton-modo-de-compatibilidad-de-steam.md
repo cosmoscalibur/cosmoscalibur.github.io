@@ -1,6 +1,6 @@
 ---
 date: 2024-06-04
-tags: aplicaciones para linux, entretenimiento, steam, videojuegos para linux, wine
+tags: aplicaciones para linux, entretenimiento, steam, videojuegos, wine
 category: tecnología
 ---------------
 

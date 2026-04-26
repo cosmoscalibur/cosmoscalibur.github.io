@@ -1,5 +1,5 @@
 :date: 2017-07-11
-:tags: colombia, corrector de ortografía, diccionario, español, hunspell, rla-es, software libre, topónimos
+:tags: colombia, software libre, corrector de ortografía, español, hunspell
 :category: tecnología
 :author: Edward Villegas-Pulgarin
 :language: es

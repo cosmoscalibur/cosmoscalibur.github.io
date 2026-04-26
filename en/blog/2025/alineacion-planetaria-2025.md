@@ -1,6 +1,6 @@
 ---
 date: 2025-01-19
-tags: ephemeris, planets, solar system
+tags: planets, solar system
 category: science
 language: en
 ---------------

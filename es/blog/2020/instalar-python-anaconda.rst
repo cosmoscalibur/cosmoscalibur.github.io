@@ -1,5 +1,5 @@
 :date: 2020-06-29
-:tags: anaconda python, conda, gestor de paquetes, instalación de software, python
+:tags: anaconda, gestor de paquetes, python
 :category: linux, programación
 :author: Edward Villegas-Pulgarin
 :language: es

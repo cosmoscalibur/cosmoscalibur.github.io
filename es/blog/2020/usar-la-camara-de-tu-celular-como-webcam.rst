@@ -1,5 +1,5 @@
 :date: 2020-05-17
-:tags: android, aplicaciones android, cámara, droidcam, webcam
+:tags: android, aplicaciones para android, webcam
 :category: tecnología
 :author: Edward Villegas-Pulgarin
 :language: es

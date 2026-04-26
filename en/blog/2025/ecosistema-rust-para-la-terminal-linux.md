@@ -1,6 +1,6 @@
 ---
 date: 2026-03-23
-tags: kde, linux applications, manjaro, rust, terminal
+tags: linux applications, kde, manjaro, rust, terminal, open source
 category: linux, programming
 language: en
 ---------------

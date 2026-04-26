@@ -1,5 +1,5 @@
 :date: 2011-02-21
-:tags: amor, caos, escritos, literatura, oscuridad, poesía
+:tags: poesía, amor y deseo, pérdida y melancolía
 :category: La flecha temporal
 :author: Edward Villegas-Pulgarin
 :language: es

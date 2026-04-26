@@ -1,5 +1,5 @@
 :date: 2012-06-22
-:tags: escritos, literatura, nostalgía, poesía
+:tags: poesía, pérdida y melancolía
 :category: La flecha temporal
 :author: Edward Villegas-Pulgarin
 :language: es

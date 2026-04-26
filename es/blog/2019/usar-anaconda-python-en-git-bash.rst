@@ -1,5 +1,5 @@
 :date: 2019-12-31
-:tags: anaconda python, conda, gestor de paquetes, git, git bash, instalación de software
+:tags: anaconda, gestor de paquetes, git bash
 :category: linux, programación
 :author: Edward Villegas-Pulgarin
 :language: es

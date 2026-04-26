@@ -1,6 +1,6 @@
 ---
 date: 2025-01-10
-tags: dmesg, lsblk, manjaro, mount, ubuntu
+tags: dmesg, manjaro, ubuntu
 category: linux
 ---------------
 

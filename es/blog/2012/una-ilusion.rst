@@ -1,5 +1,5 @@
 :date: 2012-11-29
-:tags: escritos, ilusión, literatura, poesía
+:tags: poesía, reflexión
 :category: La flecha temporal
 :author: Edward Villegas-Pulgarin
 :language: es

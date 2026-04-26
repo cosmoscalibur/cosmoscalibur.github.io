@@ -1,5 +1,5 @@
 :date: 2011-01-15
-:tags: arn, biología, investigación, simulación, videojuegos
+:tags: biología, videojuegos
 :category: ciencia, tecnología
 :author: Edward Villegas-Pulgarin
 :language: es
