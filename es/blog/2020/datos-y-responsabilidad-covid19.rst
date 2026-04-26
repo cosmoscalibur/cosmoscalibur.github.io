@@ -1,7 +1,6 @@
 :date: 2020-04-05
 :tags: opinión, colombia, pandemia, datos
 :category: ciencia
-:author: Edward Villegas-Pulgarin
 :language: es
 
 

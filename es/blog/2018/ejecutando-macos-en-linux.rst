@@ -1,7 +1,6 @@
 :date: 2018-01-18
 :tags: macos, máquina virtual
 :category: linux
-:author: Edward Villegas-Pulgarin
 :language: es
 
 Ejecutando macOS en Linux

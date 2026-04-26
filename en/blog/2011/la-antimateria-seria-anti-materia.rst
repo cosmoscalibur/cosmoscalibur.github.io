@@ -1,7 +1,6 @@
 :date: 2026-04-18
 :tags: astrophysics, particle physics, gravity
 :category: science
-:author: Edward Villegas-Pulgarin
 :language: en
 
 Antimatter would be anti-matter

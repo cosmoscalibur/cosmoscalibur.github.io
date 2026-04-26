@@ -1,7 +1,6 @@
 :date: 2026-04-18
 :tags: containers, enterprise architect, lxc, wine
 :category: linux
-:author: Edward Villegas-Pulgarin
 :language: en
 
 Create LXC container for GUI application - EALite

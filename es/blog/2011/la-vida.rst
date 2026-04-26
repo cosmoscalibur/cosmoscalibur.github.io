@@ -1,7 +1,6 @@
 :date: 2011-07-02
 :tags: pérdida y melancolía, reflexión, poesía
 :category: La flecha temporal
-:author: Edward Villegas-Pulgarin
 :language: es
 
 La Vida

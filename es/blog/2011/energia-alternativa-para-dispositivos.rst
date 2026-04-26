@@ -1,7 +1,6 @@
 :date: 2011-07-07
 :tags: ciencia de materiales
 :category: tecnología
-:author: Edward Villegas-Pulgarin
 :language: es
 
 Energía alternativa para dispositivos móviles

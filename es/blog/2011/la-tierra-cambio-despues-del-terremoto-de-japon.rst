@@ -1,7 +1,6 @@
 :date: 2011-03-13
 :tags: geología, japón
 :category: ciencia
-:author: Edward Villegas-Pulgarin
 :language: es
 
 La Tierra cambio después del terremoto de Japón

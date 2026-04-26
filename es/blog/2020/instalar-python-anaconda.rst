@@ -1,7 +1,6 @@
 :date: 2020-06-29
 :tags: anaconda, gestor de paquetes, python
 :category: linux, programación
-:author: Edward Villegas-Pulgarin
 :language: es
 
 Instalar Anaconda Python

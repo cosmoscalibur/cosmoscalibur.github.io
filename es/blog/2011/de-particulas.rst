@@ -1,7 +1,6 @@
 :date: 2011-04-10
 :tags: física de partículas, poesía, amor y deseo, metáfora científica
 :category: La flecha temporal
-:author: Edward Villegas-Pulgarin
 :language: es
 
 De Partículas

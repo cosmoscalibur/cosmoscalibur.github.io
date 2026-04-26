@@ -1,7 +1,6 @@
 :date: 2011-01-03
 :tags: reflexión, poesía
 :category: La flecha temporal
-:author: Edward Villegas-Pulgarin
 :language: es
 
 Sueños

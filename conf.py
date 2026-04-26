@@ -36,14 +36,15 @@ blog_feed_fulltext = True
 ## categories, tagcloud, archives, postcard, recentposts, authors, languages, locations
 html_sidebars = {
     "index": ["ablog/recentposts.html"],
+    "*/index": ["ablog/recentposts.html"],
     "blog": ["ablog/recentposts.html"],
     "blog/**": ["ablog/recentposts.html"],
-    "*/blog/category/*": ["ablog/recentposts.html"],
-    "*/blog/*/*": [
+    "*/blog/20*/*": [
         "ablog/postcard.html",
         "ablog/relatedposts.html",
     ],
-    "*/blog/*": ["ablog/recentposts.html"],
+    "*/blog/category/*": ["ablog/recentposts.html"],
+    "*/blog/archiv*": ["ablog/recentposts.html"],
     "*/me/**": ["ablog/recentposts.html"],
 }
 ablog_website = "docs"

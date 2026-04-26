@@ -1,7 +1,6 @@
 :date: 2011-01-11
 :tags: ciencia de materiales, japón
 :category: ciencia
-:author: Edward Villegas-Pulgarin
 :language: es
 
 Superconductores borrachos

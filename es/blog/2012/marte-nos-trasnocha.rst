@@ -1,7 +1,6 @@
 :date: 2012-08-06
 :tags: astronomía, marte, planetas, geología
 :category: ciencia
-:author: Edward Villegas-Pulgarin
 :language: es
 
 Marte nos trasnocha

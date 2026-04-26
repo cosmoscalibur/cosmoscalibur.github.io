@@ -1,7 +1,6 @@
 :date: 2020-03-14
 :tags: cloud, opinión, transformación digital
 :category: tecnología
-:author: Edward Villegas-Pulgarin
 :language: es
 
 Seguridad vs flexibilidad del cómputo en nube

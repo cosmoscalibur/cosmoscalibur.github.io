@@ -1,7 +1,6 @@
 :date: 2012-10-20
 :tags: poesía
 :category: La flecha temporal
-:author: Edward Villegas-Pulgarin
 :language: es
 
 Noche de shots

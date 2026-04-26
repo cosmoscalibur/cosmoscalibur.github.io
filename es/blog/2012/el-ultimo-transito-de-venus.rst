@@ -1,7 +1,6 @@
 :date: 2012-02-26
 :tags: astronomía, planetas
 :category: ciencia
-:author: Edward Villegas-Pulgarin
 :language: es
 
 El último tránsito de Venus

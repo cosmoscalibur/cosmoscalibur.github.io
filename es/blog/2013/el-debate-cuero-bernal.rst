@@ -1,7 +1,6 @@
 :date: 2013-11-11
 :tags: colombia, opinión
 :category: ciencia
-:author: Edward Villegas-Pulgarin
 :language: es
 
 El debate Cuero - Bernal

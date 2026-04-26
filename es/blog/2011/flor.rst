@@ -1,7 +1,6 @@
 :date: 2011-07-28
 :tags: poesía, amor y deseo
 :category: La flecha temporal
-:author: Edward Villegas-Pulgarin
 :language: es
 
 Flor

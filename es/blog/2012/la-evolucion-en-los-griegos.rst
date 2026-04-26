@@ -1,7 +1,6 @@
 :date: 2012-05-13
 :tags: cosmogonía, mitología griega
 :category: ciencia
-:author: Edward Villegas-Pulgarin
 :language: es
 
 La evolución en los griegos

@@ -1,7 +1,6 @@
 :date: 2020-05-17
 :tags: android, aplicaciones para android, webcam
 :category: tecnología
-:author: Edward Villegas-Pulgarin
 :language: es
 
 Usar la cámara de tu celular como webcam

@@ -1,7 +1,6 @@
 :date: 2026-04-18
 :tags: mathematics
 :category: science
-:author: Edward Villegas-Pulgarin
 :language: en
 
 

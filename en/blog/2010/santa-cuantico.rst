@@ -1,7 +1,6 @@
 :date: 2026-04-18
 :tags: physics, quantum mechanics, christmas
 :category: science
-:author: Edward Villegas-Pulgarin
 :language: en
 
 Quantum Santa

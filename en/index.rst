@@ -10,7 +10,7 @@ technology and my own poems, but over time this may change
 following a pattern of curious items I want to share or personal
 notes that serve as reminders.
 
-About me, you can learn more at :doc:`/en/blog/me/index`
+About me, you can learn more at :doc:`/en/me/index`
 
 My latest posts are listed below, but you can see the full list
 at :ref:`blog-posts`.
@@ -24,5 +24,5 @@ at :ref:`blog-posts`.
 .. toctree::
    :hidden:
 
-   blog/me/index.md
+   me/index.md
 

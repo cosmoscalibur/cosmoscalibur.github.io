@@ -1,7 +1,6 @@
 :date: 2014-04-20
 :tags: steam, videojuegos
 :category: linux
-:author: Edward Villegas-Pulgarin
 :language: es
 
 Con calma para SteamOS

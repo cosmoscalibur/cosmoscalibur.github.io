@@ -1,7 +1,6 @@
 :date: 2026-04-18
 :tags: anaconda, package manager, python
 :category: linux, programming
-:author: Edward Villegas-Pulgarin
 :language: en
 
 Install Anaconda Python

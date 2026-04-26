@@ -1,7 +1,6 @@
 :date: 2011-01-10
 :tags: química
 :category: ciencia
-:author: Edward Villegas-Pulgarin
 :language: es
 
 2011: Año Internacional de la Química

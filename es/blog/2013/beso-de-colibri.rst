@@ -1,7 +1,6 @@
 :date: 2013-03-06
 :tags: poesía, amor y deseo
 :category: La flecha temporal
-:author: Edward Villegas-Pulgarin
 :language: es
 
 Beso de colibrí

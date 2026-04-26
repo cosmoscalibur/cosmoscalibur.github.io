@@ -1,7 +1,6 @@
 :date: 2010-12-12
 :tags: biología
 :category: ciencia
-:author: Edward Villegas-Pulgarin
 :language: es
 
 Recorrido por la célula

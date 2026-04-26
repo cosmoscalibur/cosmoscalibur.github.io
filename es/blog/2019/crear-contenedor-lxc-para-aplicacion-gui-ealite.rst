@@ -1,7 +1,6 @@
 :date: 2019-11-11
 :tags: contenedores, enterprise architect, lxc, wine
 :category: linux
-:author: Edward Villegas-Pulgarin
 :language: es
 
 Crear contenedor LXC para aplicación GUI - EALite

@@ -1,7 +1,6 @@
 :date: 2011-03-15
 :tags: poesía, pérdida y melancolía
 :category: La flecha temporal
-:author: Edward Villegas-Pulgarin
 :language: es
 
 No Llores

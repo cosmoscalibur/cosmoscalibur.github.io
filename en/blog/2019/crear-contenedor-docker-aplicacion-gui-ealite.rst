@@ -1,7 +1,6 @@
 :date: 2026-04-18
 :tags: containers, docker, enterprise architect, wine
 :category: linux
-:author: Edward Villegas-Pulgarin
 :language: en
 
 Create Docker container GUI application - EALite

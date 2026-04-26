@@ -1,7 +1,6 @@
 :date: 2010-12-22
 :tags: química
 :category: ciencia
-:author: Edward Villegas-Pulgarin
 :language: es
 
 Revisión a la tabla periódica

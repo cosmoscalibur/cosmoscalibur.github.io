@@ -1,7 +1,6 @@
 :date: 2012-12-13
 :tags: poesía, amor y deseo
 :category: La flecha temporal
-:author: Edward Villegas-Pulgarin
 :language: es
 
 Palabras

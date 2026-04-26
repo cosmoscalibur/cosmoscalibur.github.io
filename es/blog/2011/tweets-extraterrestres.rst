@@ -1,7 +1,6 @@
 :date: 2011-07-26
 :tags: redes sociales, astronomía
 :category: tecnología
-:author: Edward Villegas-Pulgarin
 :language: es
 
 Tweets extraterrestres

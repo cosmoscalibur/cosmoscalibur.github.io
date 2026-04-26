@@ -1,7 +1,6 @@
 :date: 2011-07-06
 :tags: biología
 :category: ciencia
-:author: Edward Villegas-Pulgarin
 :language: es
 
 Cerebro prehistórico

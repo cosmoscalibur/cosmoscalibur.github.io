@@ -1,7 +1,6 @@
 :date: 2019-12-31
 :tags: anaconda, gestor de paquetes, git, bash
 :category: linux, programación
-:author: Edward Villegas-Pulgarin
 :language: es
 
 Usar Anaconda Python en Git Bash

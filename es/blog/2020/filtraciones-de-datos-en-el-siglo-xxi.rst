@@ -1,7 +1,6 @@
 :date: 2020-04-09
 :tags: datos, opinión, transformación digital
 :category: tecnología
-:author: Edward Villegas-Pulgarin
 :language: es
 
 Filtraciones de datos en el siglo XXI

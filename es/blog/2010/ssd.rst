@@ -1,7 +1,6 @@
 :date: 2010-12-11
 :tags: ciencia de materiales
 :category: tecnología
-:author: Edward Villegas-Pulgarin
 :language: es
 
 SSD

@@ -1,7 +1,6 @@
 :date: 2020-03-01
 :tags: blockchain, opinión, transformación digital
 :category: tecnología
-:author: Edward Villegas-Pulgarin
 :language: es
 
 ¿Estamos preparados para un nuevo tipo de monedas, completamente digitales?

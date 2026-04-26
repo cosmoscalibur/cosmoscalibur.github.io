@@ -1,7 +1,6 @@
 :date: 2010-12-17
 :tags: física, gravedad, relatividad general
 :category: ciencia
-:author: Edward Villegas-Pulgarin
 :language: es
 
 Nuestra nariz más vieja que los pies

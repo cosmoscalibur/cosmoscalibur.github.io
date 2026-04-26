@@ -1,7 +1,6 @@
 :date: 2019-10-21
 :tags: android
 :category: linux, tecnología
-:author: Edward Villegas-Pulgarin
 :language: es
 
 Recuperar el arranque de tu Moto G5 en Linux

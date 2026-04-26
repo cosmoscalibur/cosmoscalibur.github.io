@@ -1,7 +1,6 @@
 :date: 2026-04-18
 :tags: physics, gravity, general relativity
 :category: science
-:author: Edward Villegas-Pulgarin
 :language: en
 
 Our nose is older than our feet

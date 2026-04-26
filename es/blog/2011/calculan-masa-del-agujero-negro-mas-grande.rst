@@ -1,7 +1,6 @@
 :date: 2011-01-30
 :tags: agujeros negros, astronomía
 :category: ciencia
-:author: Edward Villegas-Pulgarin
 :language: es
 
 Calculan masa del agujero negro más grande

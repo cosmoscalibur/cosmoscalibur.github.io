@@ -1,7 +1,6 @@
 :date: 2011-07-07
 :tags: astrofísica, gravedad, relatividad general
 :category: ciencia
-:author: Edward Villegas-Pulgarin
 :language: es
 
 Gravitomagnetismo y Gravity Probe B

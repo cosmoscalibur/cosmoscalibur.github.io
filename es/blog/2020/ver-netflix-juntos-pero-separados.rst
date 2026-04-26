@@ -1,7 +1,6 @@
 :date: 2020-06-21
 :tags: aplicaciones para android, navegadores, streaming
 :category: tecnología
-:author: Edward Villegas-Pulgarin
 :language: es
 
 Ver Netflix juntos pero separados

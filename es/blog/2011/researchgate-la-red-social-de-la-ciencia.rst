@@ -1,7 +1,6 @@
 :date: 2011-05-11
 :tags: redes sociales
 :category: ciencia
-:author: Edward Villegas-Pulgarin
 :language: es
 
 ResearchGate, la red social de la ciencia

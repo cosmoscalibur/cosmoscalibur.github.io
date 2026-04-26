@@ -5,9 +5,10 @@ Pygments dark-only CSS) and ``lang_switcher.py`` (hreflang alternate URLs)
 into a single module.
 """
 
+import functools
 import json
-import re
 from pathlib import Path
+import re
 from typing import Any
 
 from pygments.formatters import HtmlFormatter
@@ -28,21 +29,146 @@ _CATEGORY_RE = re.compile(r"^(es|en)/blog/category/[^/]+$")
 # Regex to extract :category: value from postlist directives in .md files
 _CATEGORY_DIRECTIVE_RE = re.compile(r":category:\s*(.+)")
 
-# Build-time cache for category name → manual page docname mapping
-# Keyed by (lang, docname) → ablog_category_name
-_category_map_cache: dict[str, dict[str, str]] | None = None
+
+# ---------------------------------------------------------------------------
+# Helpers — each handles a single concern for inject_page_context
+# ---------------------------------------------------------------------------
 
 
+def _resolve_archive_url(
+    page_lang: str,
+    app: Sphinx,
+    context: dict[str, Any],
+) -> None:
+    """Set ``archive_url`` to the language-specific archive page."""
+    archive_docname = f"{page_lang}/blog/archive"
+    if archive_docname in app.env.all_docs:
+        context["archive_url"] = context["pathto"](archive_docname)
+    else:
+        context["archive_url"] = context["pathto"]("blog")
+
+
+def _resolve_home_url(
+    page_lang: str,
+    default_lang: str,
+    context: dict[str, Any],
+) -> None:
+    """Set ``home_url`` to the root-relative language-specific index."""
+    if page_lang == default_lang:
+        context["home_url"] = "/"
+    else:
+        context["home_url"] = f"/{page_lang}/"
+
+
+def _resolve_hreflang(
+    pagename: str,
+    default_lang: str,
+    app: Sphinx,
+    context: dict[str, Any],
+) -> None:
+    """Set ``lang_alt_*`` and ``lang_current_*`` context variables.
+
+    Handles three cases:
+    - Pages under a language prefix (``es/…``, ``en/…``).
+    - Non-default language index → links to root index.
+    - Root index → links to non-default language index.
+    """
+
+    def _set(
+        alt_docname: str, current_lang: str, alt_lang: str, alt_label: str,
+    ) -> None:
+        context["lang_alt_url"] = context["pathto"](alt_docname)
+        context["lang_alt_label"] = alt_label
+        context["lang_alt_code"] = alt_lang
+        context["lang_current_code"] = current_lang
+
+        base_url = (app.config.html_baseurl or "").rstrip("/")
+        alt_uri = app.builder.get_target_uri(alt_docname)
+        cur_uri = app.builder.get_target_uri(pagename)
+        context["lang_alt_abs_url"] = f"{base_url}/{alt_uri}"
+        context["lang_current_abs_url"] = f"{base_url}/{cur_uri}"
+
+    parts = pagename.split("/")
+
+    if len(parts) > 1 and parts[0] in _LANG_MAP:
+        current_lang = parts[0]
+        rest = "/".join(parts[1:])
+
+        # Non-default lang index → alternate is root index
+        if rest == "index" and current_lang != default_lang:
+            alt_docname = "index"
+            alt_lang = default_lang
+            alt_label = _LANG_MAP[current_lang][1]
+        else:
+            alt_lang, alt_label = _LANG_MAP[current_lang]
+            alt_docname = alt_lang + "/" + rest
+
+        if alt_docname in app.env.all_docs:
+            _set(alt_docname, current_lang, alt_lang, alt_label)
+
+    elif pagename == "index":
+        # Root index → alternate is each non-default language index
+        blog_languages = app.config.blog_languages or {}
+        for lang_code in _KNOWN_LANGS:
+            if lang_code == default_lang:
+                continue
+            alt_docname = f"{lang_code}/index"
+            if alt_docname in app.env.all_docs:
+                lang_name = blog_languages.get(
+                    lang_code, (lang_code, None),
+                )[0]
+                _set(alt_docname, default_lang, lang_code, lang_name)
+                break  # only one alternate for now
+
+
+def _resolve_category_links(
+    page_lang: str,
+    app: Sphinx,
+    context: dict[str, Any],
+) -> None:
+    """Set ``category_links`` (navbar) and ``category_page_map`` (sidebar)."""
+    prefix = f"{page_lang}/blog/category/"
+    cat_links = []
+    for docname in app.env.all_docs:
+        if not _CATEGORY_RE.match(docname):
+            continue
+        if not docname.startswith(prefix):
+            continue
+        title_node = app.env.titles.get(docname)
+        if title_node is None:
+            continue
+        label = title_node.astext()
+        # Strip common prefixes/suffixes to show short category names
+        # e.g. "Artículos sobre ciencia" → "Ciencia", "Linux articles" → "Linux"
+        if label.startswith("Artículos sobre "):
+            label = label[len("Artículos sobre "):]
+        elif label.endswith(" articles"):
+            label = label[: -len(" articles")]
+        label = label[0].upper() + label[1:] if label else label
+        cat_links.append({
+            "url": context["pathto"](docname),
+            "label": label,
+        })
+    cat_links.sort(key=lambda c: c["label"])
+    context["category_links"] = cat_links
+
+    # Category page map (ABlog category name → URL)
+    cat_map = _build_category_page_map(app)
+    lang_map = cat_map.get(page_lang, {})
+    context["category_page_map"] = {
+        name: context["pathto"](docname)
+        for name, docname in lang_map.items()
+    }
+
+
+@functools.lru_cache(maxsize=1)
 def _build_category_page_map(app: Sphinx) -> dict[str, dict[str, str]]:
     """Build a mapping of {lang: {ablog_category_name: docname}}.
 
     Reads source files of manual category pages to extract the ``:category:``
-    value from ``postlist`` directives. Cached for the entire build.
+    value from ``postlist`` directives. Cached for the entire build via
+    ``lru_cache`` (the ``app`` reference is stable within a single build).
     """
-    global _category_map_cache
-    if _category_map_cache is not None:
-        return _category_map_cache
-
     result: dict[str, dict[str, str]] = {}
     srcdir = Path(app.srcdir)
 
@@ -64,8 +190,12 @@ def _build_category_page_map(app: Sphinx) -> dict[str, dict[str, str]]:
                     result.setdefault(lang, {})[cat_name] = docname
                 break
 
-    _category_map_cache = result
     return result
+
+
+# ---------------------------------------------------------------------------
+# Main entry points
+# ---------------------------------------------------------------------------
 
 
 def inject_page_context(
@@ -108,58 +238,11 @@ def inject_page_context(
     )
     context["page_lang"] = page_lang
 
-    # --- Hreflang alternate URLs ---
-    parts = pagename.split("/")
-    if len(parts) > 1 and parts[0] in _LANG_MAP:
-        current_lang = parts[0]
-        alt_lang, alt_label = _LANG_MAP[current_lang]
-        alt_docname = alt_lang + "/" + "/".join(parts[1:])
-
-        if alt_docname in app.env.all_docs:
-            context["lang_alt_url"] = context["pathto"](alt_docname)
-            context["lang_alt_label"] = alt_label
-            context["lang_alt_code"] = alt_lang
-            context["lang_current_code"] = current_lang
-
-            base_url = (app.config.html_baseurl or "").rstrip("/")
-            alt_uri = app.builder.get_target_uri(alt_docname)
-            cur_uri = app.builder.get_target_uri(pagename)
-            context["lang_alt_abs_url"] = f"{base_url}/{alt_uri}"
-            context["lang_current_abs_url"] = f"{base_url}/{cur_uri}"
-
-    # --- Category navigation links ---
-    prefix = f"{page_lang}/blog/category/"
-    cat_links = []
-    for docname in app.env.all_docs:
-        if not _CATEGORY_RE.match(docname):
-            continue
-        if not docname.startswith(prefix):
-            continue
-        title_node = app.env.titles.get(docname)
-        if title_node is None:
-            continue
-        label = title_node.astext()
-        # Strip common prefixes/suffixes to show short category names
-        # e.g. "Artículos sobre ciencia" → "Ciencia", "Linux articles" → "Linux"
-        if label.startswith("Artículos sobre "):
-            label = label[len("Artículos sobre "):]
-        elif label.endswith(" articles"):
-            label = label[: -len(" articles")]
-        label = label[0].upper() + label[1:] if label else label
-        cat_links.append({
-            "url": context["pathto"](docname),
-            "label": label,
-        })
-    cat_links.sort(key=lambda c: c["label"])
-    context["category_links"] = cat_links
-
-    # --- Category page map (ABlog category name → URL) ---
-    cat_map = _build_category_page_map(app)
-    lang_map = cat_map.get(page_lang, {})
-    context["category_page_map"] = {
-        name: context["pathto"](docname)
-        for name, docname in lang_map.items()
-    }
+    # --- Delegate to helpers ---
+    _resolve_archive_url(page_lang, app, context)
+    _resolve_home_url(page_lang, default_lang, context)
+    _resolve_hreflang(pagename, default_lang, app, context)
+    _resolve_category_links(page_lang, app, context)
 
 
 def generate_pygments_css(app: Sphinx) -> None:

@@ -1,7 +1,6 @@
 :date: 2011-01-10
 :tags: matemáticas, poesía, amor y deseo, metáfora científica
 :category: La flecha temporal
-:author: Edward Villegas-Pulgarin
 :language: es
 
 TuI+Yo

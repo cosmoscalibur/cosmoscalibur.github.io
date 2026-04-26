@@ -1,7 +1,6 @@
 :date: 2013-06-02
 :tags: astronomía, planetas
 :category: ciencia
-:author: Edward Villegas-Pulgarin
 :language: es
 
 El planeta de Einstein

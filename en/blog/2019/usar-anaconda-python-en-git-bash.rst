@@ -1,7 +1,6 @@
 :date: 2026-04-18
 :tags: anaconda, package manager, git, bash
 :category: linux, programming
-:author: Edward Villegas-Pulgarin
 :language: en
 
 Use Anaconda Python in Git Bash

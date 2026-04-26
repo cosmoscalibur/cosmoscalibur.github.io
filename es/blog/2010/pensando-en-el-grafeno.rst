@@ -1,7 +1,6 @@
 :date: 2010-12-10
 :tags: ciencia de materiales, física, mecánica cuántica
 :category: ciencia
-:author: Edward Villegas-Pulgarin
 :language: es
 
 Pensando en el grafeno

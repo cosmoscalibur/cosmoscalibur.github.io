@@ -1,7 +1,6 @@
 :date: 2020-04-09
 :tags: internet de las cosas, opinión, transformación digital
 :category: tecnología
-:author: Edward Villegas-Pulgarin
 :language: es
 
 IoT ¿Merece la pena asumir los riesgos?

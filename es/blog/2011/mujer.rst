@@ -1,7 +1,6 @@
 :date: 2011-03-08
 :tags: poesía, reflexión
 :category: La flecha temporal
-:author: Edward Villegas-Pulgarin
 :language: es
 
 Mujer

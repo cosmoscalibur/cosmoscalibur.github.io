@@ -1,7 +1,6 @@
 :date: 2018-01-04
 :tags: android
 :category: tecnología
-:author: Edward Villegas-Pulgarin
 :language: es
 
 Problemas de audio en Moto G5

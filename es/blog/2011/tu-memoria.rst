@@ -1,7 +1,6 @@
 :date: 2011-07-02
 :tags: poesía, pérdida y melancolía, reflexión
 :category: La flecha temporal
-:author: Edward Villegas-Pulgarin
 :language: es
 
 Tu memoria

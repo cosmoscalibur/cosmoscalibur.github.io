@@ -11,8 +11,7 @@ from typing import Any
 
 from sphinx.application import Sphinx
 
-from .ablog_category_suppress import setup as _setup_blog_customization
-
+from .ablog_category_suppress import setup as _setup_ablog_suppress
 from .context import (
     generate_pygments_css,
     inject_page_context,
@@ -27,6 +26,7 @@ from .sitemap import (
 )
 
 __all__ = [
+    "_setup_ablog_suppress",
     "init_sitemap",
     "page_context",
     "post_build",

@@ -1,7 +1,6 @@
 :date: 2011-07-28
 :tags: poesía, amor y deseo, pérdida y melancolía
 :category: La flecha temporal
-:author: Edward Villegas-Pulgarin
 :language: es
 
 Sin ti

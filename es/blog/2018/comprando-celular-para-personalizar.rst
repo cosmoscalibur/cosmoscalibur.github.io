@@ -1,7 +1,6 @@
 :date: 2018-01-03
 :tags: android
 :category: tecnología
-:author: Edward Villegas-Pulgarin
 :language: es
 
 Comprando celular para personalizar

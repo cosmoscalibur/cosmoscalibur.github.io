@@ -1,7 +1,6 @@
 :date: 2011-04-10
 :tags: software libre
 :category: linux, tecnología
-:author: Edward Villegas-Pulgarin
 :language: es
 
 20 años de Linux

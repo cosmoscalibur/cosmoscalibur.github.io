@@ -1,7 +1,6 @@
 :date: 2012-10-05
 :tags: poesía, amor y deseo, pérdida y melancolía
 :category: La flecha temporal
-:author: Edward Villegas-Pulgarin
 :language: es
 
 Enfermar de ti

@@ -1,7 +1,6 @@
 :date: 2011-04-13
 :tags: astrofísica, física de partículas, gravedad
 :category: ciencia
-:author: Edward Villegas-Pulgarin
 :language: es
 
 La antimateria sería anti-materia

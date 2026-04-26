@@ -1,7 +1,6 @@
 :date: 2012-09-25
 :tags: entretenimiento, japón
 :category: tecnología
-:author: Edward Villegas-Pulgarin
 :language: es
 
 Cantante virtual sensación

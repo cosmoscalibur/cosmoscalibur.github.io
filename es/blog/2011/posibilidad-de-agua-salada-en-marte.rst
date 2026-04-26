@@ -1,7 +1,6 @@
 :date: 2011-09-18
 :tags: astronomía, marte, planetas
 :category: ciencia
-:author: Edward Villegas-Pulgarin
 :language: es
 
 Posibilidad de Agua Salada en Marte

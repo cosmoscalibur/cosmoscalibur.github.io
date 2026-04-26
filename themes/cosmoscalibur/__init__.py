@@ -12,7 +12,7 @@ from typing import Any
 from sphinx.application import Sphinx
 
 from .extensions import init_sitemap, page_context, post_build
-from .extensions import _setup_blog_customization
+from .extensions import _setup_ablog_suppress
 
 
 def setup(app: Sphinx) -> dict[str, Any]:
@@ -48,7 +48,7 @@ def setup(app: Sphinx) -> dict[str, Any]:
     app.connect("build-finished", post_build)
 
     # Suppress ABlog's auto-generated category pages
-    _setup_blog_customization(app)
+    _setup_ablog_suppress(app)
 
     return {
         "parallel_read_safe": True,

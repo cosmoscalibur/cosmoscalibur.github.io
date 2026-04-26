@@ -1,7 +1,6 @@
 :date: 2010-10-26
 :tags: metáfora científica, reflexión, poesía
 :category: La flecha temporal
-:author: Edward Villegas-Pulgarin
 :language: es
 
 La flecha temporal

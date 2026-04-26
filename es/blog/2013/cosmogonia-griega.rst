@@ -1,7 +1,6 @@
 :date: 2013-05-26
 :tags: arqueoastronomía, cosmogonía, mitología griega
 :category: ciencia
-:author: Edward Villegas-Pulgarin
 :language: es
 
 Cosmogonía griega

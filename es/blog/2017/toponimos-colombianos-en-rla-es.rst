@@ -1,7 +1,6 @@
 :date: 2017-07-11
 :tags: colombia, software libre, corrector de ortografía
 :category: tecnología
-:author: Edward Villegas-Pulgarin
 :language: es
 
 Topónimos colombianos en RLA-ES

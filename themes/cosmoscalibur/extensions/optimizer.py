@@ -10,8 +10,8 @@ Post-processes built HTML to improve Core Web Vitals:
 6. Minifies all HTML, CSS, and JS files using ``minify-html``.
 """
 
-import re
 from pathlib import Path
+import re
 
 import minify_html
 from PIL import Image
@@ -56,6 +56,9 @@ _ALWAYS_REMOVE = {"pygments_dark.css"}
 # Image extensions eligible for WebP conversion
 _CONVERTIBLE_EXTS = {".png", ".jpg", ".jpeg"}
 
+# JPEG marker byte for image dimension parsing
+_JPEG_MARKER = 0xFF
+
 
 def post_process_html(app: Sphinx, exception: Exception | None) -> None:
     """Unified ``build-finished`` handler for all HTML optimizations.
@@ -76,80 +79,11 @@ def post_process_html(app: Sphinx, exception: Exception | None) -> None:
     # --- 1. Convert images to WebP ---
     webp_count, webp_saved = _convert_images_to_webp(outdir)
 
-    # --- 2–5. Post-process HTML files ---
+    # --- 2-5. Post-process HTML files ---
     html_files = list(outdir.rglob("*.html"))
-    lazy_count = 0
-    defer_count = 0
-    dim_count = 0
-    prune_count = 0
-    html_bytes_saved = 0
-
-    img_pattern = re.compile(
-        r"<img(?![^>]*loading=)([^>]*?)(/?)\>",
-        re.IGNORECASE,
+    lazy_count, defer_count, dim_count, prune_count, html_bytes_saved = (
+        _process_html_files(html_files, webp_count)
     )
-
-    for html_file in html_files:
-        content = html_file.read_text(encoding="utf-8")
-        original = content
-        original_size = len(content.encode("utf-8"))
-
-        # --- 2a. Lazy loading (skip logo and first content image) ---
-        skip_count = 0
-
-        def _lazy_replacer(match: re.Match[str]) -> str:
-            nonlocal skip_count
-            img_attrs = match.group(1)
-            closing = match.group(2)
-            if "cosmoscalibur_logo" in img_attrs:
-                return match.group(0)
-            if skip_count == 0:
-                skip_count += 1
-                return match.group(0)
-            return f'<img loading="lazy" decoding="async"{img_attrs}{closing}>'
-
-        content = img_pattern.sub(_lazy_replacer, content)
-
-        # --- 2b. Defer Sphinx scripts ---
-        new_content = _defer_sphinx_scripts(content)
-        if new_content != content:
-            defer_count += 1
-            content = new_content
-
-        # --- 2c. Add image dimensions ---
-        html_dir = html_file.parent
-        new_content = _add_image_dimensions(content, html_dir)
-        if new_content != content:
-            dim_count += 1
-            content = new_content
-
-        # --- 2d. Prune unused CSS/JS ---
-        new_content, pruned = _prune_unused_assets(content)
-        if pruned > 0:
-            prune_count += pruned
-            content = new_content
-
-        # --- 2e. Update image references to .webp ---
-        if webp_count > 0:
-            content = _update_image_references(content)
-
-        # --- 3. Minify HTML ---
-        try:
-            content = minify_html.minify(content, **_MINIFY_CFG)
-        except Exception:
-            logger.debug(
-                "optimizer: skipped HTML minification for %s",
-                html_file,
-                type="optimizer",
-                subtype="debug",
-            )
-
-        if content != original:
-            html_file.write_text(content, encoding="utf-8")
-            minified_size = len(content.encode("utf-8"))
-            html_bytes_saved += original_size - minified_size
-            if skip_count > 0:
-                lazy_count += 1
 
     # --- 4. Minify standalone CSS/JS files ---
     static_files, static_bytes = _minify_static_files(outdir)
@@ -172,6 +106,92 @@ def post_process_html(app: Sphinx, exception: Exception | None) -> None:
         type="optimizer",
         subtype="information",
     )
+
+
+def _process_html_files(
+    html_files: list[Path],
+    webp_count: int,
+) -> tuple[int, int, int, int, int]:
+    """Apply lazy loading, defer, dimensions, pruning, and minification.
+
+    Returns ``(lazy_count, defer_count, dim_count, prune_count, bytes_saved)``.
+    """
+    lazy_count = 0
+    defer_count = 0
+    dim_count = 0
+    prune_count = 0
+    html_bytes_saved = 0
+
+    for html_file in html_files:
+        content = html_file.read_text(encoding="utf-8")
+        original = content
+        original_size = len(content.encode("utf-8"))
+
+        content, had_lazy = _add_lazy_loading(content)
+
+        new_content = _defer_sphinx_scripts(content)
+        if new_content != content:
+            defer_count += 1
+            content = new_content
+
+        html_dir = html_file.parent
+        new_content = _add_image_dimensions(content, html_dir)
+        if new_content != content:
+            dim_count += 1
+            content = new_content
+
+        new_content, pruned = _prune_unused_assets(content)
+        if pruned > 0:
+            prune_count += pruned
+            content = new_content
+
+        if webp_count > 0:
+            content = _update_image_references(content)
+
+        try:
+            content = minify_html.minify(content, **_MINIFY_CFG)
+        except Exception:
+            logger.debug(
+                "optimizer: skipped HTML minification for %s",
+                html_file,
+                type="optimizer",
+                subtype="debug",
+            )
+
+        if content != original:
+            html_file.write_text(content, encoding="utf-8")
+            html_bytes_saved += original_size - len(content.encode("utf-8"))
+            if had_lazy:
+                lazy_count += 1
+
+    return lazy_count, defer_count, dim_count, prune_count, html_bytes_saved
+
+
+def _add_lazy_loading(content: str) -> tuple[str, bool]:
+    """Add ``loading="lazy"`` to below-the-fold images.
+
+    Skips the site logo and the first content image.
+    Returns ``(modified_content, had_lazy_images)``.
+    """
+    skip_count = 0
+    pattern = re.compile(
+        r"<img(?![^>]*loading=)([^>]*?)(/?)\/>",
+        re.IGNORECASE,
+    )
+
+    def _replacer(match: re.Match[str]) -> str:
+        nonlocal skip_count
+        img_attrs = match.group(1)
+        closing = match.group(2)
+        if "cosmoscalibur_logo" in img_attrs:
+            return match.group(0)
+        if skip_count == 0:
+            skip_count += 1
+            return match.group(0)
+        return f'<img loading="lazy" decoding="async"{img_attrs}{closing}>'
+
+    result = pattern.sub(_replacer, content)
+    return result, skip_count > 0
 
 
 # ── WebP conversion ──────────────────────────────────────────────────────
@@ -315,7 +335,7 @@ def _get_image_size(path: Path) -> tuple[int | None, int | None]:
     if data[:2] == b"\xff\xd8":
         i = 2
         while i < len(data) - 9:
-            if data[i] != 0xFF:
+            if data[i] != _JPEG_MARKER:
                 break
             marker = data[i + 1]
             if marker in (0xC0, 0xC1, 0xC2):

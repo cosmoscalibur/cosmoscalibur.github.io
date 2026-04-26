@@ -1,7 +1,6 @@
 :date: 2010-12-21
 :tags: física, mecánica cuántica, navidad
 :category: ciencia
-:author: Edward Villegas-Pulgarin
 :language: es
 
 Santa cuántico

@@ -1,7 +1,6 @@
 :date: 2013-06-18
 :tags: arqueoastronomía, cosmogonía, mitología griega
 :category: ciencia
-:author: Edward Villegas-Pulgarin
 :language: es
 
 Orden y origen del cosmos griego

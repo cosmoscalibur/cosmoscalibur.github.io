@@ -1,7 +1,6 @@
 :date: 2011-02-21
 :tags: bosón de higgs, física de partículas
 :category: ciencia
-:author: Edward Villegas-Pulgarin
 :language: es
 
 A la búsqueda del bosón de Higgs

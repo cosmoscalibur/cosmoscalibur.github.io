@@ -1,7 +1,6 @@
 :date: 2011-01-15
 :tags: biología, videojuegos
 :category: ciencia, tecnología
-:author: Edward Villegas-Pulgarin
 :language: es
 
 EteRNA
