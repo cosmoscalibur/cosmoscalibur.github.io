@@ -1,5 +1,5 @@
 :date: 2020-05-26
-:tags: agregar google ads, sitio web estático
+:tags: sitio web estático
 :category: tecnología
 
 Reformas del blog: Parte 1

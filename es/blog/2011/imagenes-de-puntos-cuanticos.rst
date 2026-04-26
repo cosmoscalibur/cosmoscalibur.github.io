@@ -1,5 +1,6 @@
 :date: 2011-02-22
 :tags: ciencia de materiales
+:category: ciencia
 :author: Edward Villegas-Pulgarin
 :language: es
 

@@ -1,5 +1,5 @@
 :date: 2020-03-14
-:tags: computación en nube, opinión, transformación digital
+:tags: cloud, opinión, transformación digital
 :category: tecnología
 :author: Edward Villegas-Pulgarin
 :language: es

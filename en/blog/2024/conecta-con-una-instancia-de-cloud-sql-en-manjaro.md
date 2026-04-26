@@ -1,6 +1,6 @@
 ---
 date: 2024-12-10
-tags: database, cloud computing, google cloud sdk, manjaro, ubuntu
+tags: database, cloud, google cloud sdk, manjaro, ubuntu
 category: linux, programming
 language: en
 ---------------------

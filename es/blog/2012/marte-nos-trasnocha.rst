@@ -1,5 +1,5 @@
 :date: 2012-08-06
-:tags: astronomía, exploración espacial, marte, planetas
+:tags: astronomía, marte, planetas, geología
 :category: ciencia
 :author: Edward Villegas-Pulgarin
 :language: es

@@ -1,6 +1,6 @@
 ---
 date: 2024-05-24
-tags: ablog, blog con sphinx, pydata, python, sitio web estático, sphinx
+tags: ablog, blog con sphinx, python, sitio web estático, sphinx
 category: tecnología
 ---------------
 

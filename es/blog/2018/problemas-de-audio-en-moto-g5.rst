@@ -1,5 +1,5 @@
 :date: 2018-01-04
-:tags: android, smartphones, moto g5, motorola
+:tags: android
 :category: tecnología
 :author: Edward Villegas-Pulgarin
 :language: es

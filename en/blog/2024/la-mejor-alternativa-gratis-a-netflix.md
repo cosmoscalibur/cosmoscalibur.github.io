@@ -1,6 +1,6 @@
 ---
 date: 2024-12-27
-tags: entertainment, streaming, netflix, linux applications, android applications, windows applications, stremio
+tags: entertainment, streaming, linux applications, android applications, windows applications, stremio
 category: technology
 language: en
 ---------------

@@ -1,5 +1,5 @@
 :date: 2019-10-21
-:tags: android, smartphones, motorola
+:tags: android
 :category: linux, tecnología
 :author: Edward Villegas-Pulgarin
 :language: es

@@ -1,6 +1,6 @@
 ---
 date: 2024-10-21
-tags: entretenimiento, streaming, netflix, aplicaciones para linux, aplicaciones para android, aplicaciones para windows, stremio
+tags: entretenimiento, streaming, aplicaciones para linux, aplicaciones para android, aplicaciones para windows, stremio
 category: tecnología
 ---------------
 

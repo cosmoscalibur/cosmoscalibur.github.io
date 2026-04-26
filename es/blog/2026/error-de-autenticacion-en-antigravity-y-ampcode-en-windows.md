@@ -1,6 +1,6 @@
 ---
 date: 2026-02-21
-tags: ampcode, antigravity, windows
+tags: antigravity, aplicaciones para windows, ide
 category: programación, tecnología
 ---------------
 

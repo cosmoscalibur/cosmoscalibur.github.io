@@ -1,6 +1,6 @@
 ---
 date: 2026-04-17
-tags: scoop, windows, winget
+tags: windows applications, package manager
 category: technology
 language: en
 ---------------

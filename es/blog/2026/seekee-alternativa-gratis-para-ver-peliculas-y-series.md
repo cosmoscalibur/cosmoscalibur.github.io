@@ -1,6 +1,6 @@
 ---
 date: 2026-02-22
-tags: entretenimiento, streaming, netflix, aplicaciones para android
+tags: entretenimiento, streaming, aplicaciones para android
 category: tecnología
 ---------------
 

@@ -1,6 +1,6 @@
 ---
 date: 2026-02-23
-tags: ingeniería de contexto, ingeniería de prompt, inteligencia artificial, modelo
+tags: ingeniería de contexto, ingeniería de prompt, inteligencia artificial, modelo de lenguaje, opinión
   de lenguaje, opinión
 category: tecnología
 ---------------

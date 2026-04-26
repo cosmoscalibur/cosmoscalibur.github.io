@@ -1,5 +1,5 @@
 :date: 2013-11-11
-:tags: bibliometría, colombia, opinión
+:tags: colombia, opinión
 :category: ciencia
 :author: Edward Villegas-Pulgarin
 :language: es

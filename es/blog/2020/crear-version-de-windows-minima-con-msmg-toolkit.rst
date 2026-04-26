@@ -1,5 +1,5 @@
 :date: 2020-07-09
-:tags: windows, msmg toolkit
+:tags: aplicaciones para windows
 :category: tecnología
 
 Crear versión de Windows mínima con MSMG Toolkit

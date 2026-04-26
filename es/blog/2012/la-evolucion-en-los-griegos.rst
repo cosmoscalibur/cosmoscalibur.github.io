@@ -1,5 +1,5 @@
 :date: 2012-05-13
-:tags: cosmogonía griega, historia de la astronomía, mitología griega
+:tags: cosmogonía, mitología griega
 :category: ciencia
 :author: Edward Villegas-Pulgarin
 :language: es

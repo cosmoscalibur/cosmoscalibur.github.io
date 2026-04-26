@@ -1,6 +1,6 @@
 ---
 date: 2026-01-18
-tags: inteligencia artificial, agentes de código, zed, antigravity, ollama
+tags: inteligencia artificial, agentes de código, zed, antigravity, ollama, ide
 category: programación
 ---------------------
 

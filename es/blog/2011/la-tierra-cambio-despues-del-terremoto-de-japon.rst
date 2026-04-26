@@ -1,5 +1,5 @@
 :date: 2011-03-13
-:tags: geofísica
+:tags: geología, japón
 :category: ciencia
 :author: Edward Villegas-Pulgarin
 :language: es

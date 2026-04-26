@@ -1,6 +1,6 @@
 ---
 date: 2025-03-27
-tags: ide, zed, software libre
+tags: zed, software libre, ide
 category: linux, programación
 ---------------------
 

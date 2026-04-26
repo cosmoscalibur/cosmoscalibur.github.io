@@ -1,7 +1,6 @@
 ---
 date: 2025-01-06
-tags: blog con sphinx, gestor de ambientes, gestor de paquetes, pyproject, python,
-  uv
+tags: blog con sphinx, gestor de ambientes, gestor de paquetes, pyproject, python, uv, sphinx
 category: programación
 ---------------------
 

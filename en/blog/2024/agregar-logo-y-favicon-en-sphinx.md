@@ -1,6 +1,6 @@
 ---
 date: 2025-01-04
-tags: blog with sphinx, pydata, sphinx
+tags: blog with sphinx, sphinx
 category: technology
 language: en
 ---------------

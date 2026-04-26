@@ -1,6 +1,6 @@
 ---
 date: 2024-12-10
-tags: base de datos, computación en nube, google cloud sdk, manjaro, ubuntu
+tags: base de datos, cloud, google cloud sdk, manjaro, ubuntu
 category: linux, programación
 ---------------------
 

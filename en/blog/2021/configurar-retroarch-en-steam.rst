@@ -1,5 +1,5 @@
 :date: 2024-12-27
-:tags: console emulators, entertainment, steam, videogames, open source, linux applications
+:tags: entertainment, steam, open source, linux applications, video games
 :category: technology
 :language: en
 

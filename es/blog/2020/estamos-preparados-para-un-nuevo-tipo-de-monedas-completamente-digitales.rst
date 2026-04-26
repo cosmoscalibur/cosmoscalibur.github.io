@@ -1,5 +1,5 @@
 :date: 2020-03-01
-:tags: blockchain, criptomonedas, opinión, transformación digital
+:tags: blockchain, opinión, transformación digital
 :category: tecnología
 :author: Edward Villegas-Pulgarin
 :language: es

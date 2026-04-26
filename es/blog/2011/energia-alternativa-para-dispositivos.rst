@@ -1,5 +1,5 @@
 :date: 2011-07-07
-:tags: smartphones, ciencia de materiales
+:tags: ciencia de materiales
 :category: tecnología
 :author: Edward Villegas-Pulgarin
 :language: es

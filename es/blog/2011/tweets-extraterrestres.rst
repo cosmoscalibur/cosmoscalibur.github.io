@@ -1,5 +1,5 @@
 :date: 2011-07-26
-:tags: exploración espacial, redes sociales
+:tags: redes sociales, astronomía
 :category: tecnología
 :author: Edward Villegas-Pulgarin
 :language: es

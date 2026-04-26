@@ -1,5 +1,5 @@
 :date: 2013-01-18
-:tags: ciencia ficción, isaac asimov, literatura, química
+:tags: ciencia ficción, isaac asimov, química
 :category: ciencia
 :author: Edward Villegas-Pulgarin
 :language: es

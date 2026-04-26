@@ -1,6 +1,6 @@
 ---
 date: 2026-02-22
-tags: entertainment, streaming, netflix, android applications
+tags: entertainment, streaming, android applications
 category: technology
 language: en
 ---------------
