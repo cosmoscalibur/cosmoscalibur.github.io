@@ -24,11 +24,11 @@
 
     {# Navigation links #}
     <div class="navbar__nav" id="navbar-nav" role="navigation">
-      {# Page navigation from toctree #}
-      {% if theme_navbar_links %}
+    {# Category navigation links (auto-populated from manual category pages) #}
+      {% if category_links %}
         <ul class="navbar__links" role="list">
-          {% for item in theme_navbar_links %}
-            <li><a class="nav-link" href="{{ item.url }}">{{ item.title }}</a></li>
+          {% for cat in category_links %}
+            <li><a class="nav-link" href="{{ cat.url }}">{{ cat.label }}</a></li>
           {% endfor %}
         </ul>
       {% endif %}

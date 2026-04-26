@@ -73,22 +73,17 @@ are translated.
 
 ### Categories Reference
 
-Spanish categories and their English equivalents:
+Spanish categories and their English equivalents (source of truth: manual pages
+in `{lang}/blog/category/`). Adding a new manual category page automatically
+adds it to the navbar menu.
 
 | Spanish              | English               |
 | -------------------- | --------------------- |
-| tecnología           | technology            |
-| programación         | programming           |
 | ciencia              | science               |
-| astronomía           | astronomy             |
-| física computacional | computational physics |
+| La flecha temporal   | *(no English page)*   |
 | linux                | linux                 |
-| opinión              | opinion               |
-| entretenimiento      | entertainment         |
-| videojuegos          | videogames            |
-| películas y series   | movies and series     |
-| software             | software              |
-| blog con sphinx      | blog with sphinx      |
+| programación         | programming           |
+| tecnología           | technology            |
 
 Tags are also translated between languages.
 

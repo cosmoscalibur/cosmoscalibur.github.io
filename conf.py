@@ -38,10 +38,12 @@ html_sidebars = {
     "index": ["ablog/recentposts.html"],
     "blog": ["ablog/recentposts.html"],
     "blog/**": ["ablog/recentposts.html"],
-    "*/blog/**": [
+    "*/blog/category/*": ["ablog/recentposts.html"],
+    "*/blog/*/*": [
         "ablog/postcard.html",
-        "ablog/recentposts.html",
+        "ablog/relatedposts.html",
     ],
+    "*/blog/*": ["ablog/recentposts.html"],
     "*/me/**": ["ablog/recentposts.html"],
 }
 ablog_website = "docs"
