@@ -65,7 +65,6 @@ extensions = [
     "sphinxcontrib.youtube",
     "ablog",
     "sphinx_copybutton",
-    "sphinxext.rediraffe",
     "cosmoscalibur",
 ]
 
@@ -98,16 +97,6 @@ myst_heading_anchors = 3
 
 nb_execution_mode = "off"
 nb_render_markdown_format = "myst"
-
-# Redirect
-# Inspired by https://chrisholdgraf.com/blog/2022/sphinx-redirects-folder
-rediraffe_redirects = {}
-base_redirect = Path("es/blog")
-years_redirect = [2010, 2011, 2012, 2013, 2014, 2017, 2018, 2019, 2020, 2021]
-for year in years_redirect:
-    for newpath in (base_redirect / str(year)).glob("*"):
-        oldpath = "blog/" + newpath.parts[-1]
-        rediraffe_redirects[oldpath] = str(newpath)
 
 # General information about the project.
 project = "Cosmoscalibur"
