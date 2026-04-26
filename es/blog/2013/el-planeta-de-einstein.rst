@@ -1,5 +1,5 @@
 :date: 2013-06-02
-:tags: astronomía, exoplanetas, planetas
+:tags: astronomía, planetas
 :category: ciencia
 :author: Edward Villegas-Pulgarin
 :language: es

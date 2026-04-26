@@ -1,5 +1,5 @@
 :date: 2011-01-11
-:tags: ciencia de materiales, superconductores
+:tags: ciencia de materiales
 :category: ciencia
 :author: Edward Villegas-Pulgarin
 :language: es

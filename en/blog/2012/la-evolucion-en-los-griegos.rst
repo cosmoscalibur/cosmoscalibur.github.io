@@ -1,5 +1,5 @@
 :date: 2024-05-27
-:tags: greek cosmogony, evolution, history of astronomy, greek mythology
+:tags: greek cosmogony, history of astronomy, greek mythology
 :category: science
 :language: en
 

@@ -1,5 +1,5 @@
 :date: 2012-02-28
-:tags: nanotecnología
+:tags: ciencia de materiales
 :category: tecnología
 :author: Edward Villegas-Pulgarin
 :language: es

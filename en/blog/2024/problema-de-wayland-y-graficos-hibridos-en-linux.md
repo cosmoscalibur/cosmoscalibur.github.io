@@ -1,6 +1,6 @@
 ---
 date: 2024-12-18
-tags: gpu, manjaro, nvidia, wayland, zed
+tags: manjaro, wayland, zed
 category: linux
 language: en
 ---------------

@@ -1,6 +1,6 @@
 ---
 date: 2025-05-04
-tags: base de datos, manjaro, mariadb, mysql, python
+tags: base de datos, manjaro, mysql, python
 category: linux, programación
 ---------------------
 

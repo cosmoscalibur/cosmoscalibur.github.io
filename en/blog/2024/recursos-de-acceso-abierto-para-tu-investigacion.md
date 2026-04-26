@@ -1,6 +1,6 @@
 ---
 date: 2026-04-18
-tags: open access, preprints
+tags: open access
 category: science
 language: en
 ---------------

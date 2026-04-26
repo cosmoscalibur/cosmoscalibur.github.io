@@ -1,7 +1,14 @@
 {# Custom collection template — clean card layout.
    Shows: image (centered), title, description, category, datetime.
-   Removes: "Read more", tags, language, author from listing cards. #}
+   Removes: "Read more", tags, language, author from listing cards.
+   Tag pages get noindex to avoid thin content in search engines. #}
 {%- extends "page.html" %}
+{% block metatags %}
+  {{ super() }}
+  {% if collection.catalog is defined and collection.catalog.name == "tags" %}
+  <meta name="robots" content="noindex, follow">
+  {% endif %}
+{% endblock %}
 {% block body %}
 {% macro postlink(post) -%}
   {% if post.external_link -%} {{- post.external_link -}}

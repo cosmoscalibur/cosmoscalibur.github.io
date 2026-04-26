@@ -1,5 +1,5 @@
 :date: 2010-12-22
-:tags: química, tabla periódica
+:tags: química
 :category: ciencia
 :author: Edward Villegas-Pulgarin
 :language: es

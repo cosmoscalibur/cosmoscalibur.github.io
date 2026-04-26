@@ -1,6 +1,6 @@
 ---
 date: 2026-04-18
-tags: database, manjaro, mariadb, mysql, python
+tags: database, manjaro, mysql, python
 category: linux, programming
 language: en
 ---------------------
