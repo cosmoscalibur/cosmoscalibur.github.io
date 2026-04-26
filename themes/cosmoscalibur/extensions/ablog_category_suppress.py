@@ -1,22 +1,28 @@
-"""Customizations for ABlog blog generation.
+"""Allowlist filter for ABlog auto-generated pages.
 
-ABlog auto-generates several types of listing pages that are suppressed
-because the site uses manual, language-specific alternatives:
+ABlog's ``generate_archive_pages`` handler produces listing pages for
+every catalog (tags, categories, authors, languages, yearly archives,
+drafts) plus a global "All Posts" index. This site uses manual,
+language-prefixed alternatives for most of them, so only a small subset
+is allowed through:
 
-- **Category pages** (``blog/category/{slug}/``): Suppressed in favor of
-  manual category pages with curated descriptions under
-  ``es/blog/category/`` and ``en/blog/category/``.
-- **"All Posts" page** (``blog/``): Suppressed in favor of
-  language-specific archive pages at ``es/blog/archive/`` and
-  ``en/blog/archive/``.
-- **Archive pages** (``blog/archive/``): Same reason as above.
-- **Author pages** (``blog/author/``): Suppressed because the blog has a
-  single author configured via ``blog_default_author`` and these pages
-  add no navigational or SEO value.
+- **Tag pages** (``blog/tag/*``): Per-tag listing pages used for
+  cross-language tag navigation.
+- **Post redirects**: Legacy URL redirects emitted before catalog pages
+  (these don't start with ``blog/``).
+
+Everything else under ``blog/`` is suppressed:
+
+- ``blog/`` (all posts index)
+- ``blog/archive/YYYY/`` (yearly archives)
+- ``blog/category/*``
+- ``blog/author/*``
+- ``blog/language/*``
+- ``blog/drafts/``
 
 The suppression works by disconnecting ABlog's ``html-collect-pages``
-handler for ``generate_archive_pages`` and replacing it with a filtered
-version that skips the unwanted pages.
+handler and replacing it with a filtered version that only yields
+pages matching the allowlist.
 """
 
 from collections.abc import Generator
@@ -24,45 +30,40 @@ from typing import Any
 
 from sphinx.application import Sphinx
 
-# Prefixes and docname patterns to suppress from ABlog's auto-generated
-# archive pages.
-_SUPPRESSED_PREFIXES = (
-    "blog/category/",
-    "blog/category",
-    "blog/archive/",
-    "blog/archive",
-    "blog/author/",
-    "blog/author",
+# Only pages starting with these prefixes pass through the filter.
+# Everything else produced by ABlog's generate_archive_pages is dropped.
+_ALLOWED_PREFIXES = (
+    "blog/tag/",
 )
 
 
 def _filtered_archive_pages(
     app: Sphinx,
 ) -> Generator[tuple[str, dict[str, Any], str], None, None]:
-    """Generate archive pages, skipping suppressed pages.
+    """Yield only allowed ABlog pages, suppressing all others.
 
     Imports ABlog's original generator lazily to avoid import-order issues.
+    Post redirects (which don't start with ``blog/``) are always allowed.
     """
     from ablog.post import generate_archive_pages  # noqa: PLC0415
 
-    blog_docname = getattr(app, "_ablog_blog_docname", None)
-    if blog_docname is None:
+    blog_path = getattr(app, "_ablog_blog_path", None)
+    if blog_path is None:
         from ablog.blog import Blog  # noqa: PLC0415
-        blog_docname = Blog(app).posts.docname
-        app._ablog_blog_docname = blog_docname
+        blog_path = Blog(app).blog_path
+        app._ablog_blog_path = blog_path
 
     for page_data in generate_archive_pages(app):
         docname = page_data[0]
-        # Suppress the "All Posts" page (blog/ or blog/blog/)
-        if docname == blog_docname:
+
+        # Always allow pages outside blog/ (e.g. post redirects)
+        if not docname.startswith(blog_path):
+            yield page_data
             continue
-        # Suppress category, archive, and author pages
-        if any(
-            docname.startswith(p) or docname == p.rstrip("/")
-            for p in _SUPPRESSED_PREFIXES
-        ):
-            continue
-        yield page_data
+
+        # Inside blog/: only allow explicitly listed prefixes
+        if any(docname.startswith(p) for p in _ALLOWED_PREFIXES):
+            yield page_data
 
 
 def setup(app: Sphinx) -> None:

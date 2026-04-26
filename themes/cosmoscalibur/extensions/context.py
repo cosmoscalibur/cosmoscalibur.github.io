@@ -244,6 +244,15 @@ def inject_page_context(
     _resolve_hreflang(pagename, default_lang, app, context)
     _resolve_category_links(page_lang, app, context)
 
+    # --- Copyright split for linked author name ---
+    copyright_str = app.config.copyright or ""
+    if ", " in copyright_str:
+        year_part, author_part = copyright_str.split(", ", maxsplit=1)
+    else:
+        year_part, author_part = copyright_str, ""
+    context["copyright_year"] = year_part
+    context["copyright_author"] = author_part
+
 
 def generate_pygments_css(app: Sphinx) -> None:
     """Overwrite pygments.css with dark-only Pygments styles.

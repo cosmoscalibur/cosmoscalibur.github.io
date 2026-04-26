@@ -13,7 +13,7 @@ notes that serve as reminders.
 About me, you can learn more at :doc:`/en/me/index`
 
 My latest posts are listed below, but you can see the full list
-at :ref:`blog-posts`.
+at :doc:`/en/blog/archive`.
 
 .. postlist:: 5
    :date: %Y-%m-%d

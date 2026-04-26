@@ -45,20 +45,5 @@
       {% endif %}
     {% endfor %}
   </ul>
-  {# Links to all category index pages of the current post #}
-  {% if current_cats and category_page_map %}
-  <p class="ablog-sidebar-archive-link">
-    {% if lang == "en" %}
-      See more in:
-    {% else %}
-      Ver más en:
-    {% endif %}
-    {% for cat in current_cats %}
-      {% if cat.name in category_page_map %}
-      <a href="{{ category_page_map[cat.name] }}">{{ cat.name }}</a>{% if not loop.last %} · {% endif %}
-      {% endif %}
-    {% endfor %}
-  </p>
-  {% endif %}
 </div>
 {% endif %}
