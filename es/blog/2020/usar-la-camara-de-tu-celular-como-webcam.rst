@@ -29,7 +29,7 @@ Instalación en Linux
 ~~~~~~~~~~~~~~~~~~~~
 
 El procedimiento de instalación puede seguirse en la página web de
-DroidCam [linux]_ pero lo lustraré para el caso de Linux Mint
+DroidCam [droidcam-linux]_ pero lo lustraré para el caso de Linux Mint
 (aplicable para Debian y derivados). El aspecto dependiente de la
 distribución es la instalación de las 3 dependencias requeridas (GCC, Make
 y Linux Headers).
@@ -187,5 +187,5 @@ Referencias
 -----------
 
 .. [droidcam] DroidCam Wireless Webcam https://www.dev47apps.com/ .
-.. [linux] DroidCam Linux Install https://www.dev47apps.com/droidcam/linuxx/ .
+.. [droidcam-linux] DroidCam Linux Install https://www.dev47apps.com/droidcam/linuxx/ .
 .. [android] DroidCam Wireless Webcam (Android) https://play.google.com/store/apps/details?id=com.dev47apps.droidcam
