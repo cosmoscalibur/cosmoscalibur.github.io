@@ -6,10 +6,7 @@ category: linux
 
 # Configurar segundo teclado en Linux
 
-```{admonition} Actualizado el 2026-04-18
----
-class: hint
----
+```{update} 2026-04-18
 Este artículo se publicó originalmente con instrucciones exclusivas para X11 usando `xinput` y `setxkbmap`. Se ha actualizado para incluir cómo hacerlo de forma nativa en Wayland (específicamente en KDE Plasma), el entorno gráfico por defecto en distribuciones modernas como Manjaro.
 ```
 

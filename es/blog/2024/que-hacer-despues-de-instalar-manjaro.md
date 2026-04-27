@@ -6,10 +6,7 @@ category: linux
 
 # ¿Qué hacer después de instalar Manjaro KDE?
 
-```{admonition} Actualizado el 2026-03-23
----
-class: hint
----
+```{update} 2026-03-23
 Se han actualizado las recomendaciones de kernel, se ha desaconsejado el uso directo de `sudo` en instalaciones (esperando el _prompt_ interactivo) y se hicieron ajustes en algunos comandos.
 ```
 

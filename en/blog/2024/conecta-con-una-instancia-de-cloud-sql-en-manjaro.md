@@ -9,6 +9,7 @@ language: en
 
 ```{update} 2026-03-23
 Dependencies for Google Cloud SDK have been updated (now divided into three packages), commands adjusted to not require interactive confirmation or `sudo`, and SQL client recommendations updated.
+
 ```
 
 Since I'm currently in a full system installation process following

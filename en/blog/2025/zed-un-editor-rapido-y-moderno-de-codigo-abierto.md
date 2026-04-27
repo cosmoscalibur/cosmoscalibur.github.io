@@ -9,6 +9,7 @@ language: en
 
 ```{update} 2026-03-23
 The official installation script instructions were verified and documented.
+
 ```
 
 {program}`zed` is an open-source code and text editor, designed to be fast and

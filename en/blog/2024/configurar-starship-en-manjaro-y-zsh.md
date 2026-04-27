@@ -9,6 +9,7 @@ language: en
 
 ```{update} 2026-03-23
 The use of `sudo` has been removed from pamac installation commands following best practices.
+
 ```
 
 Recently, I've been switching multiple tools in my daily work, including changes

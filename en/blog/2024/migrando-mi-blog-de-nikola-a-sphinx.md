@@ -98,8 +98,8 @@ with context information.
 ```{code} md
 
 ```{update} 2011-12-15
-
 Extra info added
+
 ```
 ```
 ````

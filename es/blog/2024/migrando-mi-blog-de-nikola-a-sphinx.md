@@ -98,7 +98,6 @@ anotación con marca de tiempo, pero con información de contexto.
 ```{code} md
 
 ```{update} 2011-12-15
-
 Se añade info extra
 ```
 ```

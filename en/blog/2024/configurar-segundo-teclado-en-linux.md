@@ -9,6 +9,7 @@ language: en
 
 ```{update} 2026-04-18
 This article was originally published with instructions exclusively for X11 using `xinput` and `setxkbmap`. It has been updated to include how to do it natively in Wayland (specifically in KDE Plasma), the default graphical environment in modern distributions like Manjaro.
+
 ```
 
 If you have a second keyboard to connect to your Linux machine, but its language layout is different, I explain how to configure it here.

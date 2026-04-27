@@ -6,10 +6,7 @@ category: linux, programación
 
 # Ecosistema Rust para la terminal Linux
 
-```{admonition} Actualizado el 2026-03-23
----
-class: hint
----
+```{update} 2026-03-23
 Se corrigió la instalación de utilidades con pamac, se añadieron detalles para la configuración de Alacritty y Zellij (modo "unlock first"), y se indicó cómo configurar Helix como editor predeterminado en la consola.
 ```
 

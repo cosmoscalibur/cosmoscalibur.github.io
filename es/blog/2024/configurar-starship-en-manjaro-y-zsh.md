@@ -6,10 +6,7 @@ category: linux
 
 # Configurar *Starship* en Manjaro y Zsh
 
-```{admonition} Actualizado el 2026-03-23
----
-class: hint
----
+```{update} 2026-03-23
 Se removió el uso de `sudo` en los comandos de instalación de pamac por recomendación de buenas prácticas.
 ```
 

@@ -6,10 +6,7 @@ category: linux, programación
 
 # Zed: un editor rápido y moderno de código abierto
 
-```{admonition} Actualizado el 2026-03-23
----
-class: hint
----
+```{update} 2026-03-23
 Se agrega ejecución de script oficial de instalación.
 ```
 

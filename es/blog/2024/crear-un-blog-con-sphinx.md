@@ -552,7 +552,6 @@ De mi parte, algunos detalles que quiero próximamente
 - [Migration to Cloudflare Pages](https://dailystuff.nl/blog/2021/migration-to-cloudflare-pages)
 
 ```{update} 2024-05-25
-
 - Se agrega información extra sobre open graph para incluir marca de creador.
 - Se incluye información sobre todas las extensiones de Myst Parser a la fecha.
 - Se incluye extensión VSCode de Font Awesome Gallery.
@@ -561,7 +560,6 @@ De mi parte, algunos detalles que quiero próximamente
 ```
 
 ```{update} 2024-10-20
-
 - No hago uso recurrente de Font Awesome, por lo cual lo retiro. Dejo
   anotación de su impacto.
 ```

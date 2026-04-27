@@ -9,6 +9,7 @@ language: en
 
 ```{update} 2026-03-23
 Kernel recommendations have been updated, the explicit use of `sudo` in package managers has been discouraged and removed, Krita was removed, and installation commands were adjusted.
+
 ```
 
 I recently decided to switch to Manjaro KDE (24.1) and I'm very happy with the

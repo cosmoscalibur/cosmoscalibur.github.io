@@ -6,10 +6,7 @@ category: linux, programación
 
 # Conecta con una instancia de Cloud SQL en Manjaro
 
-```{admonition} Actualizado el 2026-03-23
----
-class: hint
----
+```{update} 2026-03-23
 Se han actualizado las dependencias del Google Cloud SDK (ahora dividido en tres paquetes), se ajustaron comandos para no requerir confirmación interactiva ni uso de `sudo`, y se actualizaron las recomendaciones de clientes SQL.
 ```
 
