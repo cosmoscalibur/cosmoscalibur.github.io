@@ -38,6 +38,13 @@
   <link rel="alternate" hreflang="{{ lang_alt_code }}" href="{{ lang_alt_abs_url }}" />
   <link rel="alternate" hreflang="{{ lang_current_code }}" href="{{ lang_current_abs_url }}" />
   {% endif %}
+
+  {# JSON-LD Structured Data #}
+  {% if json_ld %}
+  <script type="application/ld+json">
+    {{ json_ld | safe }}
+  </script>
+  {% endif %}
 {% endblock %}
 
 {# ──── Suppress basic theme relbar/sidebar ──── #}

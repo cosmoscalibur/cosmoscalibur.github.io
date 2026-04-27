@@ -3,7 +3,7 @@ orphan: true
 nosearch: true
 ---
 
-# Artículos sobre ciencia
+# Ciencia
 
 Artículos de divulgación científica sobre astronomía, física de partículas, ciencia de materiales, biología y geología. Explicaciones accesibles de los descubrimientos que transforman nuestra comprensión del universo.
 

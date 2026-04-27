@@ -78,7 +78,7 @@ def add_html_link(
     _context: dict[str, Any],
     _doctree: object,
 ) -> None:
-    """Collect page URL for sitemap during ``html-page-context``.
+    """Collect page URL and lastmod for sitemap during ``html-page-context``.
 
     Called by the unified ``page_context`` handler in ``__init__.py``.
     """
@@ -95,10 +95,26 @@ def add_html_link(
     else:
         sitemap_link = pagename + file_suffix
 
+    # Filter links: Include root pages, blog posts, and categories.
+    # Exclude tags, global indexes (blog/index, blog/archive), and technical pages.
+    excluded_prefixes = ("blog/tag/", "blog/index", "blog/archive", "genindex", "search")
+    
     if sitemap_link not in app.builder.config.sitemap_excludes and (
         sitemap_link.startswith(("es/", "en/", "blog/category/"))
-    ):
-        env.app.sitemap_links.put(sitemap_link)  # type: ignore[attr-defined]
+    ) and not sitemap_link.startswith(excluded_prefixes):
+        
+        # Capture lastmod from ABlog post if available
+        lastmod = None
+        if hasattr(env, "ablog_posts") and pagename in env.ablog_posts:
+            posts = env.ablog_posts[pagename]
+            if posts:
+                # ABlog already picks the max of published and update dates
+                # into the 'update' field.
+                lastmod_dt = posts[0].get("update")
+                if lastmod_dt:
+                    lastmod = lastmod_dt.strftime("%Y-%m-%d")
+        
+        env.app.sitemap_links.put((sitemap_link, lastmod))  # type: ignore[attr-defined]
 
 
 def create_sitemap(app: Sphinx, exception: Exception | None) -> None:
@@ -139,28 +155,34 @@ def create_sitemap(app: Sphinx, exception: Exception | None) -> None:
     locales = get_locales(app)
     language = app.builder.config.language or ""
 
-    pages: dict[str, dict[str, str]] = defaultdict(dict)
+    # Structure: pages[canonical_path] = {locale: (link, lastmod)}
+    pages: dict[str, dict[str, tuple[str, str | None]]] = defaultdict(dict)
 
     while True:
         try:
-            link = app.env.app.sitemap_links.get_nowait()  # type: ignore[attr-defined]
+            link, lastmod = app.env.app.sitemap_links.get_nowait()  # type: ignore[attr-defined]
         except queue.Empty:
             break
 
         lang_page = link.removesuffix("/").split("/")
         if (lang := lang_page[0]) in locales:
-            pages["/".join(lang_page[1:])].update({lang: link})
+            pages["/".join(lang_page[1:])].update({lang: (link, lastmod)})
         else:
-            pages[link].update({language: link})
+            pages[link].update({language: (link, lastmod)})
 
     for lang_page in pages.values():
         url = ElementTree.SubElement(root, "url")
-        ElementTree.SubElement(url, "loc").text = site_url + (
-            lang_page[language]
-            if language in lang_page
-            else next(iter(lang_page.keys()))
-        )
-        for lang, link in lang_page.items():
+        
+        # Pick the link and lastmod from the primary language if available, else first found
+        primary = lang_page.get(language) or next(iter(lang_page.values()))
+        link, lastmod = primary
+        
+        ElementTree.SubElement(url, "loc").text = site_url + link
+        
+        if lastmod:
+            ElementTree.SubElement(url, "lastmod").text = lastmod
+
+        for lang, (link, _) in lang_page.items():
             ElementTree.SubElement(
                 url,
                 "{http://www.w3.org/1999/xhtml}link",

@@ -138,13 +138,6 @@ def _resolve_category_links(
         if title_node is None:
             continue
         label = title_node.astext()
-        # Strip common prefixes/suffixes to show short category names
-        # e.g. "Artículos sobre ciencia" → "Ciencia", "Linux articles" → "Linux"
-        if label.startswith("Artículos sobre "):
-            label = label[len("Artículos sobre "):]
-        elif label.endswith(" articles"):
-            label = label[: -len(" articles")]
-        label = label[0].upper() + label[1:] if label else label
         cat_links.append({
             "url": context["pathto"](docname),
             "label": label,
@@ -198,6 +191,130 @@ def _build_category_page_map(app: Sphinx) -> dict[str, dict[str, str]]:
 # ---------------------------------------------------------------------------
 
 
+def _resolve_json_ld(
+    pagename: str,
+    page_lang: str,
+    app: Sphinx,
+    context: dict[str, Any],
+) -> None:
+    """Inject JSON-LD structured data into the page context."""
+    base_url = (app.config.html_baseurl or "").rstrip("/")
+    if not base_url:
+        return
+
+    page_url = f"{base_url}/{app.builder.get_target_uri(pagename)}"
+    schemas = []
+
+    # 1. BreadcrumbList
+    crumbs = []
+    # Home
+    home_label = "Inicio" if page_lang == "es" else "Home"
+    home_url = f"{base_url}/" if page_lang == "es" else f"{base_url}/en/"
+    crumbs.append({"name": home_label, "item": home_url})
+
+    # Middle crumbs (Category)
+    post = None
+    if hasattr(app.env, "ablog_posts") and pagename in app.env.ablog_posts:
+        posts = app.env.ablog_posts[pagename]
+        if posts:
+            post = posts[0]
+            categories = post.get("category", [])
+            if categories:
+                # Use first category for breadcrumb
+                cat = categories[0]
+                cat_doc = f"{page_lang}/blog/category/{cat}"
+                if cat_doc in app.env.all_docs:
+                    cat_name = app.env.titles[cat_doc].astext()
+                    cat_url = f"{base_url}/{app.builder.get_target_uri(cat_doc)}"
+                    crumbs.append({"name": cat_name, "item": cat_url})
+
+    # Current page
+    crumbs.append({"name": context.get("title", ""), "item": page_url})
+
+    schemas.append({
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": i + 1,
+                "name": c["name"],
+                "item": c["item"]
+            } for i, c in enumerate(crumbs)
+        ]
+    })
+
+    # 2. Article (only for blog posts)
+    if post:
+        # Get dates
+        pub_date = post.get("date")
+        # ABlog's 'update' is the max of pub and all update directives
+        mod_date = post.get("update") or pub_date
+        
+        # Site-wide defaults (no hardcoded fallbacks per user request)
+        site_author = app.config.author
+        site_project = app.config.project
+        
+        # Resolve specific author (falls back to site author)
+        author_name = site_author
+        if author := post.get("author"):
+            if isinstance(author, list) and author:
+                author_name = author[0]
+            elif isinstance(author, str):
+                author_name = author
+
+        # Logo resolution from configuration
+        logo_rel_path = app.config.html_logo
+        if not logo_rel_path:
+            # Skip logo if not configured, or let the rest of the logic handle it
+            logo_url = None
+        else:
+            logo_filename = Path(logo_rel_path).name
+            logo_url = f"{base_url}/_static/{logo_filename}"
+
+        publisher = {
+            # Preferring Organization for the publisher establishes the 
+            # blog as a formal entity/brand, improving E-E-A-T signals.
+            "@type": "Organization",
+            "name": site_project,
+        }
+        if logo_url:
+            publisher["logo"] = {
+                "@type": "ImageObject",
+                "url": logo_url
+            }
+
+        article = {
+            "@context": "https://schema.org",
+            "@type": "BlogPosting",
+            "headline": context.get("title", ""),
+            "datePublished": pub_date.isoformat() if pub_date else None,
+            "dateModified": mod_date.isoformat() if mod_date else None,
+            "author": {
+                "@type": "Person",
+                "name": author_name,
+                "url": f"{base_url}/me/" if page_lang == "es" else f"{base_url}/en/me/"
+            },
+            "mainEntityOfPage": {
+                "@type": "WebPage",
+                "@id": page_url
+            },
+            "publisher": publisher
+        }
+        
+        # Add description if available
+        if desc := context.get("description"):
+            article["description"] = desc
+            
+        # Add image if available (OpenGraph image is a good candidate)
+        if og_image := context.get("og_image"):
+            article["image"] = og_image
+
+        schemas.append(article)
+
+    context["json_ld"] = json.dumps(schemas, ensure_ascii=False)
+
+
 def inject_page_context(
     app: Sphinx,
     pagename: str,
@@ -218,6 +335,7 @@ def inject_page_context(
        ``env.titles`` for the navbar navigation.
     4. **Category page map**: Maps ABlog category names to manual category
        page URLs for the related posts sidebar links.
+    5. **JSON-LD**: Injects structured data for SEO (Articles, Breadcrumbs).
     """
     opts = app.config.html_theme_options
 
@@ -243,6 +361,9 @@ def inject_page_context(
     _resolve_home_url(page_lang, default_lang, context)
     _resolve_hreflang(pagename, default_lang, app, context)
     _resolve_category_links(page_lang, app, context)
+    _resolve_json_ld(pagename, page_lang, app, context)
+
+    # --- Copyright split for linked author name ---
 
     # --- Copyright split for linked author name ---
     copyright_str = app.config.copyright or ""

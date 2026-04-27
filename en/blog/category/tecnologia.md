@@ -3,7 +3,7 @@ orphan: true
 nosearch: true
 ---
 
-# Technology articles
+# Technology
 
 Tech trends analysis, app reviews, streaming tutorials, blockchain, IoT and digital transformation. Informed opinions on how technology impacts everyday life.
 
