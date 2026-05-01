@@ -1,18 +1,41 @@
-{# Search form — WCAG compliant with label #}
-<form class="search-form" action="{{ pathto('search') }}" method="get" role="search" aria-label="{{ _('Search') }}">
-  <label for="search-input" class="visually-hidden">{{ _('Search') }}</label>
-  <input
-    id="search-input"
-    class="search-form__input"
-    type="search"
-    name="q"
-    placeholder="{{ _('Search…') }}"
-    autocomplete="off"
-    aria-label="{{ _('Search the docs') }}"
-  />
-  <button class="search-form__btn" type="submit" aria-label="{{ _('Submit search') }}">
-    <svg class="icon" width="16" height="16" aria-hidden="true">
+{# Search — full bar on desktop, icon + overlay on mobile. WCAG compliant. #}
+<div class="search-wrapper">
+  {# Icon trigger — visible on mobile only (CSS) #}
+  <button
+    class="search-trigger"
+    type="button"
+    aria-label="{{ _('Open search') }}"
+    aria-expanded="false"
+    aria-controls="search-overlay"
+  >
+    <svg class="icon" width="18" height="18" aria-hidden="true">
       <use href="#icon-search"></use>
     </svg>
   </button>
-</form>
+
+  {# Full form — always visible on desktop, overlay on mobile #}
+  <form
+    class="search-form"
+    id="search-overlay"
+    action="{{ pathto('search') }}"
+    method="get"
+    role="search"
+    aria-label="{{ _('Search') }}"
+  >
+    <label for="search-input" class="visually-hidden">{{ _('Search') }}</label>
+    <input
+      id="search-input"
+      class="search-form__input"
+      type="search"
+      name="q"
+      placeholder="{{ _('Search…') }}"
+      autocomplete="off"
+      aria-label="{{ _('Search the docs') }}"
+    />
+    <button class="search-form__btn" type="submit" aria-label="{{ _('Submit search') }}">
+      <svg class="icon" width="16" height="16" aria-hidden="true">
+        <use href="#icon-search"></use>
+      </svg>
+    </button>
+  </form>
+</div>

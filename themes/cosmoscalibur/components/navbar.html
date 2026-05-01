@@ -1,44 +1,64 @@
-{# Navbar — responsive, WCAG 2.1 AA compliant #}
+{# Navbar — two-tier, responsive, WCAG 2.1 AA compliant.
+   Tier 1: brand + actions (lang, social, search).
+   Tier 2: category navigation (desktop only).
+   Mobile: compact top bar (🌐 🔍 ☰) + dropdown for categories. #}
 <header class="navbar" role="banner">
-  <nav class="navbar__inner" aria-label="{{ _('Main navigation') }}">
-    {# Logo #}
-    <a class="navbar__logo" href="{{ home_url }}" aria-label="{{ _('Home') }}">
-      {% if logo_url %}
-        <img src="{{ logo_url }}" alt="" class="navbar__logo-img" aria-hidden="true" />
-      {% endif %}
-      <span class="navbar__title">{{ project }}</span>
-    </a>
+  {# ── Tier 1: Brand + Actions ── #}
+  <div class="navbar__tier1">
+    <nav class="navbar__inner" aria-label="{{ _('Main navigation') }}">
+      {# Logo #}
+      <a class="navbar__logo" href="{{ home_url }}" aria-label="{{ _('Home') }}">
+        {% if logo_url %}
+          <img src="{{ logo_url }}" alt="" class="navbar__logo-img" aria-hidden="true" />
+        {% endif %}
+        <span class="navbar__title">{{ project }}</span>
+      </a>
 
-    {# Mobile toggle — WCAG: button with aria-expanded #}
-    <button
-      class="navbar__toggle"
-      type="button"
-      aria-controls="navbar-nav"
-      aria-expanded="false"
-      aria-label="{{ _('Toggle navigation') }}"
-    >
-      <svg class="icon" width="24" height="24" aria-hidden="true">
-        <use href="#icon-bars"></use>
-      </svg>
-    </button>
-
-    {# Navigation links #}
-    <div class="navbar__nav" id="navbar-nav" role="navigation">
-    {# Category navigation links (auto-populated from manual category pages) #}
-      {% if category_links %}
-        <ul class="navbar__links" role="list">
-          {% for cat in category_links %}
-            <li><a class="nav-link" href="{{ cat.url }}">{{ cat.label }}</a></li>
-          {% endfor %}
-        </ul>
-      {% endif %}
-
-      {# Right section: lang switcher, icon links, search #}
-      <div class="navbar__actions">
+      {# Desktop actions: lang + social + full search (hidden on mobile) #}
+      <div class="navbar__actions navbar__actions--desktop">
         {% include "components/lang-switcher.html" %}
         {% include "components/icon-links.html" %}
         {% include "components/search-form.html" %}
       </div>
-    </div>
-  </nav>
+
+      {# Mobile actions: 🌐 + 🔍 + ☰ (hidden on desktop) #}
+      <div class="navbar__actions navbar__actions--mobile">
+        {% include "components/lang-switcher.html" %}
+        {% include "components/search-form.html" %}
+        <button
+          class="navbar__toggle"
+          type="button"
+          aria-controls="navbar-mobile-menu"
+          aria-expanded="false"
+          aria-label="{{ _('Toggle navigation') }}"
+        >
+          <svg class="icon" width="24" height="24" aria-hidden="true">
+            <use href="#icon-bars"></use>
+          </svg>
+        </button>
+      </div>
+    </nav>
+  </div>
+
+  {# ── Tier 2: Category navigation (desktop only) ── #}
+  {% if category_links %}
+  <div class="navbar__tier2">
+    <ul class="navbar__links" role="list">
+      {% for cat in category_links %}
+        <li><a class="nav-link" href="{{ cat.url }}">{{ cat.label }}</a></li>
+      {% endfor %}
+    </ul>
+  </div>
+  {% endif %}
+
+  {# ── Mobile dropdown (categories only) ── #}
+  <div class="navbar__mobile-menu" id="navbar-mobile-menu">
+    {% if category_links %}
+      <ul class="navbar__links" role="list">
+        {% for cat in category_links %}
+          <li><a class="nav-link" href="{{ cat.url }}">{{ cat.label }}</a></li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+  </div>
 </header>

@@ -71,9 +71,20 @@
   </aside>
 
   <main class="content" id="main-content" aria-label="{{ _('Main content') }}">
+    {# Post byline (date + author) — JS moves this after the <h1> title #}
+    {% include "components/post-byline.html" %}
+
     {% block document %}
       {% block body %}{% endblock %}
     {% endblock %}
+
+    {# Post tags — end-of-article discovery zone #}
+    {% include "components/post-tags.html" %}
+
+    {# Related posts — mobile only (sidebar has them on desktop) #}
+    <div class="content__related-mobile">
+      {% include "ablog/relatedposts.html" %}
+    </div>
   </main>
 
   {% include "components/toc-sidebar.html" %}
@@ -82,7 +93,6 @@
 
 {% block footer %}
   {% include "components/footer.html" %}
-  {% include "components/back-to-top.html" %}
   {# SVG sprite — hidden, loaded once, referenced by all icons #}
   {% include "components/svg-sprite.html" %}
 {% endblock %}

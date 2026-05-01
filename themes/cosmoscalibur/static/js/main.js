@@ -10,7 +10,7 @@
   document.addEventListener("DOMContentLoaded", function () {
     /* ── Mobile nav toggle ── */
     var navToggle = document.querySelector(".navbar__toggle");
-    var navMenu = document.getElementById("navbar-nav");
+    var navMenu = document.getElementById("navbar-mobile-menu");
     if (navToggle && navMenu) {
       navToggle.addEventListener("click", function () {
         var expanded = navToggle.getAttribute("aria-expanded") === "true";
@@ -19,22 +19,60 @@
       });
     }
 
-    /* ── Back to top ── */
-    var backBtn = document.querySelector("[data-back-to-top]");
-    if (backBtn) {
-      var SCROLL_THRESHOLD = 300;
-      window.addEventListener(
-        "scroll",
-        function () {
-          if (window.scrollY > SCROLL_THRESHOLD) {
-            backBtn.removeAttribute("hidden");
-          } else {
-            backBtn.setAttribute("hidden", "");
-          }
-        },
-        { passive: true }
-      );
+    /* ── Post byline: move after <h1> title ── */
+    var byline = document.querySelector(".post-byline");
+    var h1 = document.querySelector(".content section > h1");
+    if (byline && h1) {
+      h1.after(byline);
+      byline.classList.add("is-placed");
     }
+
+    /* ── Search overlay toggle (mobile) ── */
+    var searchTriggers = document.querySelectorAll(".search-trigger");
+    for (var st = 0; st < searchTriggers.length; st++) {
+      (function (trigger) {
+        var wrapper = trigger.closest(".search-wrapper");
+        if (!wrapper) return;
+        var form = wrapper.querySelector(".search-form");
+        if (!form) return;
+
+        trigger.addEventListener("click", function () {
+          var isOpen = form.classList.contains("search-form--overlay");
+          if (isOpen) {
+            form.classList.remove("search-form--overlay");
+            form.style.display = "none";
+            trigger.setAttribute("aria-expanded", "false");
+          } else {
+            form.classList.add("search-form--overlay");
+            form.style.display = "flex";
+            trigger.setAttribute("aria-expanded", "true");
+            var input = form.querySelector("input");
+            if (input) input.focus();
+          }
+        });
+
+        /* Close on click outside */
+        document.addEventListener("click", function (e) {
+          if (form.classList.contains("search-form--overlay") &&
+              !e.target.closest(".search-wrapper")) {
+            form.classList.remove("search-form--overlay");
+            form.style.display = "none";
+            trigger.setAttribute("aria-expanded", "false");
+          }
+        });
+
+        /* Close on Escape */
+        document.addEventListener("keydown", function (e) {
+          if (e.key === "Escape" && form.classList.contains("search-form--overlay")) {
+            form.classList.remove("search-form--overlay");
+            form.style.display = "none";
+            trigger.setAttribute("aria-expanded", "false");
+            trigger.focus();
+          }
+        });
+      })(searchTriggers[st]);
+    }
+
 
     /* ── TOC scroll-spy: highlight current section ──
        Uses scroll listener with requestAnimationFrame.
@@ -60,9 +98,13 @@
         var rootFontSize = parseFloat(getComputedStyle(document.documentElement).fontSize);
         var navbarRem = parseFloat(
           getComputedStyle(document.documentElement)
-            .getPropertyValue("--navbar-height")
+            .getPropertyValue("--navbar-tier1-height")
         ) || 3.5;
-        var offset = navbarRem * rootFontSize + 24;
+        var tier2Rem = parseFloat(
+          getComputedStyle(document.documentElement)
+            .getPropertyValue("--navbar-tier2-height")
+        ) || 2.25;
+        var offset = (navbarRem + tier2Rem) * rootFontSize + 24;
 
         function setActive(id) {
           if (id === activeId) return;

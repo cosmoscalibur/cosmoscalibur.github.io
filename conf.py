@@ -40,7 +40,6 @@ html_sidebars = {
     "blog": ["ablog/recentposts.html"],
     "blog/**": ["ablog/recentposts.html"],
     "*/blog/20*/*": [
-        "ablog/postcard.html",
         "ablog/relatedposts.html",
     ],
     "*/blog/category/*": ["ablog/recentposts.html"],
