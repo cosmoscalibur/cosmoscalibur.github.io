@@ -18,8 +18,9 @@ en/blog/{year}/{slug}.md      # English version
 images/{slug}/                 # Images directory (if needed)
 ```
 
-- The **slug** is always in Spanish, lowercase, with hyphens. Used for both
-  `es/` and `en/` paths.
+- The **slug** is always in Spanish (see
+  [Title & Slug Strategy](#title--slug-strategy) for derivation rules). Used
+  for both `es/` and `en/` paths.
 - The **year** is the publication year (use today's date).
 - For code-heavy posts with executable examples, use Jupyter Notebooks
   (`.ipynb`) instead of `.md`.
@@ -131,6 +132,139 @@ Tags are also translated between languages.
 - Comparisons and personal recommendations.
 - Example: `es/blog/2024/la-mejor-alternativa-gratis-a-netflix.md`
 
+## Title & Slug Strategy
+
+### Title principles
+
+- **Concise and topic-specific.** The title must tell the reader exactly what the
+  post is about. Avoid clickbait, expectative, viral, or vague titles.
+- **Include the main topic and at least one primary tag** in the title itself.
+  This serves both the reader and search engines.
+- **Avoid filler words** in the title when possible (e.g., prefer
+  "Configurar Starship en Manjaro y Zsh" over "Cómo puedes configurar el
+  prompt Starship en tu terminal Manjaro con Zsh").
+- **Use the post's language** for the title — Spanish for `es/`, English for
+  `en/`.
+
+#### Good vs. bad title examples
+
+| ✅ Good | ❌ Bad | Why |
+|---------|-------|-----|
+| Montar disco en Linux y error de volumen sucio | ¡No vas a creer lo que pasó con mi disco! | Clickbait, no topic info |
+| Herramientas de IA gratuita para desarrolladores en 2026 | Las mejores herramientas que todo dev necesita | Vague, no keywords |
+| Alineación planetaria 2025 | Algo increíble está pasando en el cielo | Expectative, unspecific |
+| Configurar Starship en Manjaro y Zsh | Mi nuevo prompt favorito | Missing topic/tags |
+
+### Slug derivation rules
+
+The slug is derived from the **Spanish title** following these transformations,
+in order:
+
+1. Convert to lowercase.
+2. Normalize accented/special characters to their ASCII equivalents
+   (`á` → `a`, `ñ` → `n`, `ü` → `u`, etc.).
+3. Replace spaces and non-alphanumeric characters with hyphens (`-`).
+4. Collapse consecutive hyphens into one.
+5. Remove leading/trailing hyphens.
+6. Aim for **8 words max**, but this is not rigid — clarity takes priority over
+   strict length. Drop articles and prepositions only if the result remains
+   clear.
+
+#### Slug derivation examples
+
+| Spanish title | Slug |
+|---------------|------|
+| Montar disco en Linux y error de volumen sucio | `montar-disco-en-linux-y-error-de-volumen-sucio` |
+| Alineación planetaria 2025 | `alineacion-planetaria-2025` |
+| Ingeniería de *prompt*: ¿Habilidad técnica o estafa? | `ingenieria-de-prompt-habilidad-o-estafa` |
+| Configurar *Starship* en Manjaro y Zsh | `configurar-starship-en-manjaro-y-zsh` |
+
+The slug is used identically for both `es/` and `en/` paths and for the images
+directory.
+
+## SEO & Ads Optimization
+
+These guidelines ensure posts are discoverable by search engines and aligned with
+ad-monetization keywords, **without sacrificing the blog's personal, authentic
+writing style**.
+
+### Headings must include tags
+
+- The **H1 title** must contain at least the primary tag or its synonym.
+- **H2 and H3 section headings** should incorporate relevant tags naturally.
+  Treat them as sub-queries a reader might search for.
+- Prefer question-format headings for H2/H3 when it fits naturally (e.g.,
+  "¿Qué es Seekee?" rather than "Descripción"), as they match search intent.
+
+#### Heading examples from existing posts
+
+| Tag(s) in frontmatter | Heading | Tags reflected? |
+|------------------------|---------|:---------------:|
+| `planetas, sistema solar` | `## ¿Qué planetas se pueden ver en la alineación?` | ✅ `planetas` |
+| `starship, manjaro, zsh` | `# Configurar Starship en Manjaro y Zsh` | ✅ all three |
+| `streaming` | `## ¿Qué es Seekee?` | ⚠️ could add "streaming" context |
+
+### Opening paragraph strategy
+
+The **first paragraph** (immediately after H1) is critical for both SEO and ad
+targeting. It must:
+
+1. **State the main topic explicitly** — name the technology, concept, or problem
+   directly. Don't rely on context or pronouns.
+2. **Include at least 2–3 primary tags** as natural mentions within the first
+   2–3 sentences.
+3. **Include one high-value keyword phrase** relevant to the topic's ad niche
+   when possible. Explore potential high-impact keywords at writing time based
+   on the specific topic.
+4. **Maintain the personal narrative hook** — the keyword integration must feel
+   natural within the author's storytelling style, not like SEO filler.
+
+#### Opening paragraph template (mental model, not rigid)
+
+> [Personal context sentence connecting to the topic].
+> [Direct statement naming the main topic/tool/concept and why it matters].
+> [Sentence that naturally includes 1–2 additional tags and a high-value keyword
+> phrase].
+
+#### Example analysis — existing post
+
+**Post:** *Herramientas de IA gratuita para desarrolladores en 2026*
+**Tags:** `inteligencia artificial, agentes de código, zed, antigravity, ollama, ide`
+
+> Estamos en 2026 y la **inteligencia artificial** ya no es una novedad, es el
+> estándar. Sin embargo, el cuello de botella sigue siendo el mismo para muchos
+> **desarrolladores** independientes y estudiantes: el costo de las suscripciones.
+
+✅ Mentions "inteligencia artificial" (tag) + "desarrolladores" (audience keyword)
+in the first two sentences.
+
+### Keyword integration rules
+
+- **DO** weave tags into headings and the first paragraph naturally.
+- **DO** use long-tail keyword phrases that match real search queries.
+- **DO** keep the personal, first-person narrative voice intact.
+- **DON'T** stuff keywords unnaturally or repeat them excessively.
+- **DON'T** add generic SEO phrases that feel out of place ("en esta guía
+  completa aprenderás...").
+- **DON'T** sacrifice readability for keyword density.
+
+### High-value keyword awareness
+
+When writing about a topic, explore which related terms carry higher advertising
+value and incorporate them naturally. Use this as minimal guidance — research
+specific high-impact keywords at writing time based on the post's topic:
+
+| Topic area | Example high-value terms |
+|------------|------------------------|
+| Linux/DevOps | configuración, solución de errores, herramientas de desarrollo |
+| AI/ML | inteligencia artificial, modelo de lenguaje, automatización |
+| Programming | framework, desarrollo de software, API, arquitectura |
+| Streaming/Apps | alternativa gratuita, mejor aplicación, comparativa |
+| Science | observación astronómica, divulgación científica |
+
+These are **starting points, not exhaustive lists**. Always explore topic-specific
+keywords when drafting a new post.
+
 ## MyST Markdown Conventions
 
 ### Code blocks
@@ -184,18 +318,14 @@ Contenido de la amonestación.
 `` `
 ````
 
-**Update admonitions** follow the same rule:
+**Update admonitions** follow the rule:
 
-- **English:** use `{update}` directly (renders "Updated on YYYY-MM-DD").
-- **Spanish:** use `{admonition}` with `class: hint`:
+- Use `{update}` directly (renders "Updated on YYYY-MM-DD").
 
 ````markdown
-```{admonition} Actualizado el YYYY-MM-DD
----
-class: hint
----
+```{update} YYYY-MM-DD
 Descripción de la actualización.
-`` `
+```
 ````
 
 ### Keyboard shortcuts
