@@ -194,13 +194,14 @@ Single file: `js/main.js` (~3 KB, vanilla JS, no dependencies).
 
 | Template | Description |
 |---|---|
-| `navbar.html` | Sticky glassmorphism navbar with logo, nav links, hamburger toggle |
-| `icon-links.html` | Social icon links (auto-generated from `*_url` options) |
-| `lang-switcher.html` | Language toggle link (ES ↔ EN) |
+| `navbar.html` | Sticky glassmorphism navbar with logo, lang badge, search, hamburger toggle |
+| `icon-links.html` | Social icon links (auto-generated from `*_url` options, rendered in footer) |
+| `lang-switcher.html` | Language toggle badge (2-letter code: ES/EN, derived from `lang_alt_code`) |
 | `search-form.html` | Sphinx search input + button |
 | `toc-sidebar.html` | Right-side table of contents |
-| `footer.html` | Copyright + "Built with Sphinx and ABlog" |
-| `back-to-top.html` | Fixed scroll-to-top button |
+| `post-byline.html` | Date-only byline (single-author: no author display) |
+| `post-discovery.html` | Unified discovery zone: tags + related posts (sidebar on desktop, inline on mobile) |
+| `footer.html` | Copyright + social links + "Built with Sphinx and ABlog" |
 | `analytics.html` | Conditional GA / Plausible / PostHog / Ads scripts |
 | `svg-sprite.html` | Hidden SVG sprite with all icon definitions |
 

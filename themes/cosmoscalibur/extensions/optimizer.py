@@ -44,14 +44,11 @@ _MINIFY_CFG = {
 _PRUNABLE_ASSETS = {
     "mystnb.": {"cell_input", "cell_output", "nb-cell", "cell tag_"},
     "sphinx-design.min.css": {"sd-tab-set", "sd-card", "sd-dropdown", "sd-col"},
-    "copybutton.css": {'class="highlight'},
-    "copybutton.js": {'class="highlight'},
-    "clipboard.min.js": {'class="highlight'},
     "pygments.css": {'class="highlight'},
 }
 
 # CSS files to always remove (redundant with theme dark-only pygments.css)
-_ALWAYS_REMOVE = {"pygments_dark.css"}
+_ALWAYS_REMOVE = {"pygments_dark.css", "basic.css"}
 
 # Image extensions eligible for WebP conversion
 _CONVERTIBLE_EXTS = {".png", ".jpg", ".jpeg"}
@@ -106,6 +103,37 @@ def post_process_html(app: Sphinx, exception: Exception | None) -> None:
         type="optimizer",
         subtype="information",
     )
+
+    # --- 5. Copy 404/index.html → 404.html for GitHub Pages ---
+    # The dirhtml builder outputs 404/index.html, but GitHub Pages
+    # requires 404.html at the site root to serve custom 404 pages.
+    _copy_404_page(outdir)
+
+    # --- 6. Delete always-removed CSS files from _static ---
+    for filename in _ALWAYS_REMOVE:
+        dead = outdir / "_static" / filename
+        if dead.exists():
+            dead.unlink()
+
+
+def _copy_404_page(outdir: Path) -> None:
+    """Copy ``404/index.html`` to ``404.html`` at the output root.
+
+    The ``dirhtml`` builder generates ``404/index.html``, but GitHub Pages
+    requires ``404.html`` at the site root to serve custom error pages.
+    This copies the file after all optimizations have been applied.
+    """
+    import shutil
+
+    src = outdir / "404" / "index.html"
+    dst = outdir / "404.html"
+    if src.is_file():
+        shutil.copy2(src, dst)
+        logger.info(
+            "optimizer: copied 404/index.html → 404.html",
+            type="optimizer",
+            subtype="information",
+        )
 
 
 def _process_html_files(

@@ -47,23 +47,11 @@ def init_sitemap(app: Sphinx) -> None:
 
 
 def get_locales(app: Sphinx) -> list[str]:
-    """Get configured or autodetected locales for sitemap alternate links."""
-    sitemap_locales: list[str] | None = app.builder.config.sitemap_locales
-    if sitemap_locales:
-        if sitemap_locales == [None]:
-            return []
-        return list(sitemap_locales)
-
-    locales = []
-    for locale_dir_name in app.builder.config.locale_dirs:
-        locale_path = Path(app.confdir) / locale_dir_name
-        if locale_path.is_dir():
-            locales.extend(
-                entry.name
-                for entry in locale_path.iterdir()
-                if entry.is_dir()
-            )
-    return locales
+    """Get locales from ``blog_languages`` for sitemap alternate links."""
+    blog_languages = getattr(app.builder.config, "blog_languages", None)
+    if blog_languages:
+        return list(blog_languages.keys())
+    return []
 
 
 def hreflang_formatter(lang: str) -> str:
@@ -125,7 +113,7 @@ def create_sitemap(app: Sphinx, exception: Exception | None) -> None:
     if exception:
         return
 
-    site_url = app.builder.config.site_url or app.builder.config.html_baseurl
+    site_url = app.builder.config.html_baseurl
     if site_url:
         site_url = site_url.rstrip("/") + "/"
     else:
@@ -139,8 +127,7 @@ def create_sitemap(app: Sphinx, exception: Exception | None) -> None:
 
     if app.env.app.sitemap_links.empty():  # type: ignore[attr-defined]
         logger.info(
-            "sitemap: No pages generated for %s",
-            app.config.sitemap_filename,
+            "sitemap: No pages generated for sitemap.xml",
             type="sitemap",
             subtype="information",
         )
@@ -191,14 +178,13 @@ def create_sitemap(app: Sphinx, exception: Exception | None) -> None:
                 href=site_url + link,
             )
 
-    filename = Path(app.outdir) / app.config.sitemap_filename
+    filename = Path(app.outdir) / "sitemap.xml"
     ElementTree.ElementTree(root).write(
         filename, xml_declaration=True, encoding="utf-8", method="xml"
     )
 
     logger.info(
-        "sitemap: %s generated for %s in %s",
-        app.config.sitemap_filename,
+        "sitemap: sitemap.xml generated for %s in %s",
         site_url,
         filename,
         type="sitemap",

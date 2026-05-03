@@ -135,17 +135,21 @@
   display: none;
 }
 
-/* ── Language switcher ── */
+/* ── Language switcher — compact code badge ── */
 .lang-switcher {
   display: flex;
   align-items: center;
+  justify-content: center;
   text-decoration: none;
   font-size: var(--font-size-sm);
-  font-weight: 500;
+  font-weight: 700;
   color: var(--color-text-secondary);
-  padding: 0.375rem 0.5rem;
-  height: 2rem;
+  padding: 0.25rem 0.5rem;
+  min-width: 2rem;
+  height: 1.75rem;
   border-radius: var(--radius);
+  border: 1px solid var(--color-border);
+  letter-spacing: 0.04em;
   transition: color var(--transition), background var(--transition);
 }
 
@@ -162,15 +166,15 @@
   list-style: none;
   padding: 0;
   margin: 0;
-  height: 2rem;
+  height: 2.75rem;
   gap: 0.125rem;
 }
 
 .icon-link {
   color: var(--color-text-secondary);
   padding: 0;
-  width: 2rem;
-  height: 2rem;
+  width: 2.75rem;
+  height: 2.75rem;
   border-radius: var(--radius);
   display: flex;
   align-items: center;
@@ -326,33 +330,18 @@
   content: none;
 }
 
-.post-byline a {
-  color: var(--color-text-secondary);
-  text-decoration: underline;
-  text-decoration-color: rgba(139, 148, 158, 0.3);
-  text-decoration-thickness: 1px;
-  text-underline-offset: 3px;
-}
-
-.post-byline a:hover {
-  color: var(--color-accent);
-  text-decoration-color: var(--color-accent);
-}
-
-/* ── Post tags (end of article) ── */
-.post-tags {
-  margin-top: 2rem;
-  padding-top: 1.5rem;
-  border-top: 1px solid var(--color-border);
+/* ── Discovery zone (tags + related posts) ── */
+/* Shared styles for both sidebar and inline instances */
+.post-discovery {
   font-size: var(--font-size-sm);
   color: var(--color-text-secondary);
 }
 
-.post-tags__label {
+.post-discovery__label {
   margin-right: 0.25rem;
 }
 
-.post-tags__link {
+.post-discovery__tag {
   color: var(--color-text-secondary);
   text-decoration: underline;
   text-decoration-color: rgba(139, 148, 158, 0.3);
@@ -361,14 +350,58 @@
   transition: color var(--transition);
 }
 
-.post-tags__link:hover {
+.post-discovery__tag:hover {
   color: var(--color-accent);
   text-decoration-color: var(--color-accent);
 }
 
-/* ── Mobile-only related posts (after article content) ── */
-.content__related-mobile {
+.post-discovery__related {
+  margin-top: 1.25rem;
+}
+
+.post-discovery__heading {
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-text-secondary);
+  margin-bottom: 0.75rem;
+}
+
+.post-discovery__related ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.post-discovery__related li {
+  margin-bottom: 0.35rem;
+}
+
+.post-discovery__related a {
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  transition: color var(--transition);
+}
+
+.post-discovery__related a:hover {
+  color: var(--color-accent);
+}
+
+/* Visibility: sidebar instance visible by default, inline hidden */
+.post-discovery--sidebar {
+  display: block;
+}
+
+.post-discovery--inline {
   display: none;
+}
+
+/* Inline instance: add separator styling when visible */
+.post-discovery--inline .post-discovery {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--color-border);
 }
 
 /* ── Site container (CSS Grid) ── */
@@ -499,7 +532,7 @@
 }
 
 .site-footer__social {
-  display: none;
+  display: block;
 }
 
 /* ============================================================
@@ -536,17 +569,15 @@
     display: none;
   }
 
-  /* Lang switcher: hide label, keep globe */
-  .lang-switcher__label {
+
+
+  /* Swap discovery block: hide sidebar instance, show inline */
+  .post-discovery--sidebar {
     display: none;
   }
 
-  /* Show mobile-only related posts */
-  .content__related-mobile {
+  .post-discovery--inline {
     display: block;
-    margin-top: 1.5rem;
-    padding-top: 1.5rem;
-    border-top: 1px solid var(--color-border);
   }
 }
 
@@ -607,12 +638,7 @@
     display: none;
   }
 
-  /* Footer: show social, stack layout */
-  .site-footer__social {
-    display: block;
-    width: 100%;
-  }
-
+  /* Footer: center social icons on mobile */
   .site-footer__social .icon-links {
     justify-content: center;
     padding: 0.5rem 0;
@@ -624,3 +650,35 @@
     align-items: center;
   }
 }
+
+/* ── Code block copy button ── */
+.copy-btn {
+  position: absolute;
+  top: 0.4rem;
+  right: 0.4rem;
+  background: var(--color-surface-raised, rgba(255, 255, 255, 0.08));
+  border: 1px solid var(--color-border, rgba(255, 255, 255, 0.1));
+  border-radius: 0.375rem;
+  color: var(--color-text-muted, #848d97);
+  cursor: pointer;
+  font-size: 0.85rem;
+  line-height: 1;
+  min-width: 2rem;
+  min-height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  z-index: 1;
+}
+
+.highlight:hover .copy-btn,
+.copy-btn:focus {
+  opacity: 1;
+}
+
+.copy-btn:hover {
+  background: var(--color-surface-raised, rgba(255, 255, 255, 0.15));
+}
+

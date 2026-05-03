@@ -18,6 +18,11 @@
 
 {# ──── Extrahead: analytics + ads + hreflang ──── #}
 {% block extrahead %}
+  {# Fix relative asset paths on 404 page (served from any URL depth) #}
+  {% if pagename == '404' %}
+  <base href="/">
+  {% endif %}
+
   {% include "components/analytics.html" %}
 
   {% set adsense_id = theme_google_adsense_id | default("") %}
@@ -67,23 +72,27 @@
           {% include sidebar %}
         {% endfor %}
       {% endif %}
+
+      {# Discovery zone — sidebar instance (visible on desktop/tablet) #}
+      <div class="post-discovery--sidebar">
+        {% include "components/post-discovery.html" %}
+      </div>
     {% endblock %}
   </aside>
 
   <main class="content" id="main-content" aria-label="{{ _('Main content') }}">
-    {# Post byline (date + author) — JS moves this after the <h1> title #}
+    {# Post byline (date) — JS moves this after the <h1> title #}
     {% include "components/post-byline.html" %}
 
+    <article class="post-article">
     {% block document %}
       {% block body %}{% endblock %}
     {% endblock %}
+    </article>
 
-    {# Post tags — end-of-article discovery zone #}
-    {% include "components/post-tags.html" %}
-
-    {# Related posts — mobile only (sidebar has them on desktop) #}
-    <div class="content__related-mobile">
-      {% include "ablog/relatedposts.html" %}
+    {# Discovery zone — inline instance (visible on mobile only) #}
+    <div class="post-discovery--inline">
+      {% include "components/post-discovery.html" %}
     </div>
   </main>
 

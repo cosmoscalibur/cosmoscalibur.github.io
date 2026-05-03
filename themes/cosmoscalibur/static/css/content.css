@@ -104,51 +104,7 @@ pre code {
   user-select: none;
 }
 
-/* Copy button (sphinx-copybutton) — dark theme overrides */
-button.copybtn {
-  position: absolute;
-  top: 0.5rem;
-  right: 0.5rem;
-  opacity: 0;
-  transition: opacity var(--transition), background var(--transition);
-  background: transparent;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  color: var(--color-text-muted);
-  /* Explicit size + flex centering prevents SVG squashing */
-  width: 2.25rem;
-  height: 2.25rem;
-  padding: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
 
-/* Default sphinx-copybutton uses stroke="#000000" (invisible on dark)
-   and width/height="44" (oversized). Override both.
-   The SVG has class="icon" which inherits fill:currentColor from main.css,
-   causing filled squares instead of outlines. Force fill:none. */
-button.copybtn svg {
-  stroke: currentColor;
-  fill: none;
-  width: 1.4rem;
-  height: 1.4rem;
-}
-
-button.copybtn:hover {
-  background: var(--color-bg-secondary);
-  color: var(--color-text);
-}
-
-button.copybtn.success {
-  color: var(--color-tip);
-}
-
-.highlight:hover button.copybtn,
-button.copybtn:focus-visible {
-  opacity: 1;
-}
 
 /* ── Notebook cells (MyST-NB) ── */
 /* Remove the white border from cell containers */
@@ -798,3 +754,21 @@ details[open] > .sd-summary-title .sd-summary-state-marker {
   line-height: 1.65;
 }
 
+/* ── Search term highlighting (replaces basic.css) ── */
+.highlighted {
+  background: rgba(255, 200, 50, 0.2);
+  border-radius: 2px;
+  padding: 0 2px;
+}
+
+#search-results h2 {
+  font-size: 1.25rem;
+  margin: 1.5rem 0 0.75rem;
+  color: var(--color-text-secondary);
+}
+
+#search-results p.search-summary {
+  color: var(--color-text-muted);
+  font-style: italic;
+  font-size: var(--font-size-sm);
+}

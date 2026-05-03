@@ -8,18 +8,5 @@
     📅 {{ post.date.strftime(ablog.post_date_format) }}
   </span>
   {% endif %}
-  {% if post.author %}
-  <span class="post-byline__item">
-    👤
-    {% for author in post.author %}
-      {% if author|length %}
-        <a href="{{ pathto(author.docname) }}">{{ author }}</a>
-      {% else %}
-        {{ author }}
-      {% endif %}
-      {%- if not loop.last %}, {% endif %}
-    {% endfor %}
-  </span>
-  {% endif %}
 </div>
 {% endif %}

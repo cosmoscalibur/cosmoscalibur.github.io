@@ -199,5 +199,38 @@
     if (typeof Search !== "undefined" && document.getElementById("search-results")) {
       Search.init();
     }
+
+    /* ── Code block copy button (replaces sphinx_copybutton) ── */
+    var codeBlocks = document.querySelectorAll(".highlight pre");
+    for (var cb = 0; cb < codeBlocks.length; cb++) {
+      (function (pre) {
+        var btn = document.createElement("button");
+        btn.className = "copy-btn";
+        btn.setAttribute("aria-label", "Copy code");
+        btn.setAttribute("title", "Copy");
+        btn.textContent = "📋";
+
+        btn.addEventListener("click", function () {
+          var code = pre.textContent || pre.innerText;
+          // Strip leading $ or >>> prompts (common in shell/Python examples)
+          code = code.replace(/^\s*(\$|>>>)\s?/gm, "");
+          navigator.clipboard.writeText(code).then(function () {
+            btn.textContent = "✅";
+            btn.setAttribute("aria-label", "Copied!");
+            setTimeout(function () {
+              btn.textContent = "📋";
+              btn.setAttribute("aria-label", "Copy code");
+            }, 2000);
+          });
+        });
+
+        // Wrap pre in relative container for button positioning
+        var wrapper = pre.parentNode;
+        if (wrapper && wrapper.classList.contains("highlight")) {
+          wrapper.style.position = "relative";
+          wrapper.appendChild(btn);
+        }
+      })(codeBlocks[cb]);
+    }
   });
 })();
