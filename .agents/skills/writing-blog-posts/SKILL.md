@@ -392,7 +392,8 @@ listing sources:
 ## Social Media Posts
 
 After creating blog posts, create X (Twitter) proposed posts to
-`social-posts.md` at the project root.
+`social-posts.md` at the project root. 280 characters maximum. Possible alternative
+for more long messages in Mastodon.
 
 ### Format
 
