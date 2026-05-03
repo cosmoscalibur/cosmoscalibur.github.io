@@ -1,14 +1,10 @@
 {# Recent posts — filtered by current page language, with archive link.
-   Uses page_lang from theme_context.py for reliable language detection. #}
+   Uses page_lang from context.py for reliable language detection. #}
 {% if ablog %}
-{% set lang = page_lang | default("es") %}
+{% set lang = page_lang %}
 <div class="ablog-sidebar-item ablog__recentposts">
   <h3>
-    {% if lang == "en" %}
-      <a href="{{ archive_url }}">Recent Posts</a>
-    {% else %}
-      <a href="{{ archive_url }}">Entradas recientes</a>
-    {% endif %}
+    <a href="{{ archive_url }}">{{ t("recent_posts") }}</a>
   </h3>
   <ul>
     {% set ns = namespace(count=0) %}
@@ -27,11 +23,7 @@
     {% endfor %}
   </ul>
   <p class="ablog-sidebar-archive-link">
-    {% if lang == "en" %}
-      <a href="{{ archive_url }}">See all posts →</a>
-    {% else %}
-      <a href="{{ archive_url }}">Ver todas las entradas →</a>
-    {% endif %}
+    <a href="{{ archive_url }}">{{ t("see_all_posts") }}</a>
   </p>
 </div>
 {% endif %}

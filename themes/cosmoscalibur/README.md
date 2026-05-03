@@ -218,18 +218,97 @@ Single file: `js/main.js` (~3 KB, vanilla JS, no dependencies).
 
 Monkey-patches ABlog's `generate_archive_pages` to suppress auto-generated
 category listing pages. The site maintains manual curated category pages
-under `es/blog/category/` and `en/blog/category/` with SEO-optimized
+under `{lang}/blog/category/` directories with SEO-optimized
 descriptions, replacing ABlog's bare post listings.
 
 Applied at import time via `apply_patches()` in `extensions/__init__.py`.
 
-### Pending
+### Internationalization (i18n)
 
-- **Tag description i18n**: The tag description template in
-  `ablog/collection.html` is currently hardcoded for Spanish (`es`) and
-  English (`en`). To support additional languages, the template text should
-  be extracted to a configurable mapping (e.g., via `html_theme_options` or
-  a dedicated config value) instead of inline conditionals.
+**Module:** `extensions/i18n.py`
+
+All UI strings and admonition titles are translated via JSON locale files.
+No language codes are hardcoded in the theme — all language support is
+derived dynamically from `blog_languages` in `conf.py`.
+
+#### Locale Files
+
+Translations are stored in `locale/{lang}.json`:
+
+```
+themes/cosmoscalibur/
+├── locale/
+│   ├── es.json          # Built-in Spanish (theme core)
+│   └── en.json          # Built-in English (theme core)
+```
+
+Each JSON file contains two sections:
+
+1. **UI strings** (top-level keys): Used by the `t()` template helper
+   in Jinja2 templates (`{{ t("home") }}`).
+2. **Admonitions** (`"admonitions"` key): Maps admonition titles from
+   the build output to the correct title for that language. This handles
+   both Sphinx standard admonitions (Note, Warning, etc.) and ABlog's
+   `update` directive.
+
+#### Adding a Custom Language
+
+1. Create `{confdir}/locale/{lang}.json` (user override) or
+   `themes/cosmoscalibur/locale/{lang}.json`:
+
+   ```json
+   {
+     "home": "Accueil",
+     "on_this_page": "Sur cette page",
+     "recent_posts": "Articles récents",
+     "see_all_posts": "Voir tous les articles →",
+     "related_posts": "Articles connexes",
+     "built_with": "Construit avec {sphinx} et {ablog}",
+     "tagged_with": "Articles étiquetés <strong>{tag}</strong> sur {site}.",
+     "draft": "Brouillon",
+     "admonitions": {
+       "Nota": "Remarque",
+       "Advertencia": "Avertissement"
+     }
+   }
+   ```
+
+2. Register the language in `conf.py`:
+
+   ```python
+   blog_languages = {
+       "es": ("Español", None),
+       "en": ("English", None),
+       "fr": ("Français", None),
+   }
+   ```
+
+3. Create content under `fr/` directory.
+
+User-override files at `{confdir}/locale/` take priority over built-in
+theme locale files.
+
+#### Template Translation
+
+The `t()` function is injected into every page's Jinja2 context by
+`extensions/context.py`. It supports format variables:
+
+```html
+{{ t("built_with", sphinx='<a href="...">Sphinx</a>',
+     ablog='<a href="...">ABlog</a>') | safe }}
+```
+
+#### Admonition Translation
+
+The optimizer post-processes built HTML to fix admonition titles per
+page language. This solves two problems:
+
+- **Standard admonitions** (Note, Warning, etc.): Sphinx translates
+  these using the global `language` setting, but in a multi-language
+  site, non-default language pages get the wrong titles.
+- **ABlog update directive**: ABlog's `update` directive has a fuzzy
+  translation flag in some locales, so it may output English titles
+  even in a Spanish build.
 
 ## Dependencies
 

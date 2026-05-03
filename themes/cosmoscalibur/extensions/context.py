@@ -3,6 +3,9 @@
 Merges logic from ``theme_context.py`` (page_lang, icon_links, analytics,
 Pygments dark-only CSS) and ``lang_switcher.py`` (hreflang alternate URLs)
 into a single module.
+
+Language support is fully dynamic: all language codes are derived from
+``blog_languages`` in ``conf.py`` — nothing is hardcoded in the theme.
 """
 
 import functools
@@ -14,20 +17,19 @@ from typing import Any
 from pygments.formatters import HtmlFormatter
 from sphinx.application import Sphinx
 
+from .i18n import get_known_langs, get_translation
+
 # Pygments style — a11y-dark for accessible dark background syntax highlighting
 _PYGMENTS_DARK = "a11y-dark"
 
-# Supported site languages for path-prefix detection
-_KNOWN_LANGS = {"es", "en"}
-
-# Language mapping for hreflang alternate computation
-_LANG_MAP = {"es": ("en", "English"), "en": ("es", "Español")}
-
-# Pattern to match manual category pages: {lang}/blog/category/{slug}
-_CATEGORY_RE = re.compile(r"^(es|en)/blog/category/[^/]+$")
-
 # Regex to extract :category: value from postlist directives in .md files
 _CATEGORY_DIRECTIVE_RE = re.compile(r":category:\s*(.+)")
+
+
+def _category_re(app: Sphinx) -> re.Pattern[str]:
+    """Build a regex matching ``{lang}/blog/category/{slug}`` for all known languages."""
+    langs = "|".join(re.escape(lang) for lang in get_known_langs(app))
+    return re.compile(rf"^({langs})/blog/category/[^/]+$")
 
 
 # ---------------------------------------------------------------------------
@@ -66,59 +68,78 @@ def _resolve_hreflang(
     app: Sphinx,
     context: dict[str, Any],
 ) -> None:
-    """Set ``lang_alt_*`` and ``lang_current_*`` context variables.
+    """Set ``lang_alternates`` list and legacy ``lang_alt_*`` context variables.
 
-    Handles three cases:
-    - Pages under a language prefix (``es/…``, ``en/…``).
-    - Non-default language index → links to root index.
-    - Root index → links to non-default language index.
+    Emits **all** available alternates (Google recommends listing every
+    language variant).  Each entry is a dict with keys:
+    ``code``, ``label``, ``url``, ``abs_url``.
+
+    Also sets legacy variables (``lang_alt_url``, ``lang_alt_label``,
+    ``lang_alt_code``, ``lang_current_code``, ``lang_alt_abs_url``,
+    ``lang_current_abs_url``) for backward compatibility with the
+    lang-switcher template — populated from the *first* alternate.
     """
+    blog_languages = getattr(app.config, "blog_languages", {}) or {}
+    known_langs = set(blog_languages.keys())
+    base_url = (app.config.html_baseurl or "").rstrip("/")
 
-    def _set(
-        alt_docname: str, current_lang: str, alt_lang: str, alt_label: str,
-    ) -> None:
-        context["lang_alt_url"] = context["pathto"](alt_docname)
-        context["lang_alt_label"] = alt_label
-        context["lang_alt_code"] = alt_lang
-        context["lang_current_code"] = current_lang
-
-        base_url = (app.config.html_baseurl or "").rstrip("/")
-        alt_uri = app.builder.get_target_uri(alt_docname)
-        cur_uri = app.builder.get_target_uri(pagename)
-        context["lang_alt_abs_url"] = f"{base_url}/{alt_uri}"
-        context["lang_current_abs_url"] = f"{base_url}/{cur_uri}"
-
+    alternates: list[dict[str, str]] = []
     parts = pagename.split("/")
 
-    if len(parts) > 1 and parts[0] in _LANG_MAP:
+    def _add_alternate(
+        alt_docname: str,
+        current_lang: str,
+        alt_lang: str,
+        alt_label: str,
+    ) -> None:
+        alt_uri = app.builder.get_target_uri(alt_docname)
+        alternates.append({
+            "code": alt_lang,
+            "label": alt_label,
+            "url": context["pathto"](alt_docname),
+            "abs_url": f"{base_url}/{alt_uri}",
+        })
+
+    if len(parts) > 1 and parts[0] in known_langs:
         current_lang = parts[0]
         rest = "/".join(parts[1:])
 
-        # Non-default lang index → alternate is root index
-        if rest == "index" and current_lang != default_lang:
-            alt_docname = "index"
-            alt_lang = default_lang
-            alt_label = _LANG_MAP[current_lang][1]
-        else:
-            alt_lang, alt_label = _LANG_MAP[current_lang]
-            alt_docname = alt_lang + "/" + rest
+        for alt_lang, (alt_label, _) in blog_languages.items():
+            if alt_lang == current_lang:
+                continue
 
-        if alt_docname in app.env.all_docs:
-            _set(alt_docname, current_lang, alt_lang, alt_label)
+            # Non-default lang index → alternate is root index
+            if rest == "index" and current_lang != default_lang and alt_lang == default_lang:
+                alt_docname = "index"
+            else:
+                alt_docname = f"{alt_lang}/{rest}"
+
+            if alt_docname in app.env.all_docs:
+                _add_alternate(alt_docname, current_lang, alt_lang, alt_label)
 
     elif pagename == "index":
         # Root index → alternate is each non-default language index
-        blog_languages = app.config.blog_languages or {}
-        for lang_code in _KNOWN_LANGS:
+        for lang_code, (lang_name, _) in blog_languages.items():
             if lang_code == default_lang:
                 continue
             alt_docname = f"{lang_code}/index"
             if alt_docname in app.env.all_docs:
-                lang_name = blog_languages.get(
-                    lang_code, (lang_code, None),
-                )[0]
-                _set(alt_docname, default_lang, lang_code, lang_name)
-                break  # only one alternate for now
+                _add_alternate(alt_docname, default_lang, lang_code, lang_name)
+
+    context["lang_alternates"] = alternates
+
+    # Legacy variables — first alternate (backward compat for lang-switcher)
+    if alternates:
+        first = alternates[0]
+        context["lang_alt_url"] = first["url"]
+        context["lang_alt_label"] = first["label"]
+        context["lang_alt_code"] = first["code"]
+        context["lang_current_code"] = (
+            parts[0] if len(parts) > 1 and parts[0] in known_langs else default_lang
+        )
+        cur_uri = app.builder.get_target_uri(pagename)
+        context["lang_alt_abs_url"] = first["abs_url"]
+        context["lang_current_abs_url"] = f"{base_url}/{cur_uri}"
 
 
 def _resolve_category_links(
@@ -127,10 +148,11 @@ def _resolve_category_links(
     context: dict[str, Any],
 ) -> None:
     """Set ``category_links`` (navbar) and ``category_page_map`` (sidebar)."""
+    cat_re = _category_re(app)
     prefix = f"{page_lang}/blog/category/"
     cat_links = []
     for docname in app.env.all_docs:
-        if not _CATEGORY_RE.match(docname):
+        if not cat_re.match(docname):
             continue
         if not docname.startswith(prefix):
             continue
@@ -162,11 +184,12 @@ def _build_category_page_map(app: Sphinx) -> dict[str, dict[str, str]]:
     value from ``postlist`` directives. Cached for the entire build via
     ``lru_cache`` (the ``app`` reference is stable within a single build).
     """
+    cat_re = _category_re(app)
     result: dict[str, dict[str, str]] = {}
     srcdir = Path(app.srcdir)
 
     for docname in app.env.all_docs:
-        if not _CATEGORY_RE.match(docname):
+        if not cat_re.match(docname):
             continue
         lang = docname.split("/", maxsplit=1)[0]
         # Try to read the source file (.md or .rst)
@@ -194,6 +217,7 @@ def _build_category_page_map(app: Sphinx) -> dict[str, dict[str, str]]:
 def _resolve_json_ld(
     pagename: str,
     page_lang: str,
+    default_lang: str,
     app: Sphinx,
     context: dict[str, Any],
 ) -> None:
@@ -202,14 +226,18 @@ def _resolve_json_ld(
     if not base_url:
         return
 
+    confdir = str(app.confdir)
     page_url = f"{base_url}/{app.builder.get_target_uri(pagename)}"
     schemas = []
 
     # 1. BreadcrumbList
     crumbs = []
     # Home
-    home_label = "Inicio" if page_lang == "es" else "Home"
-    home_url = f"{base_url}/" if page_lang == "es" else f"{base_url}/en/"
+    home_label = get_translation(page_lang, "home", confdir)
+    if page_lang == default_lang:
+        home_url = f"{base_url}/"
+    else:
+        home_url = f"{base_url}/{page_lang}/"
     crumbs.append({"name": home_label, "item": home_url})
 
     # Middle crumbs (Category)
@@ -284,6 +312,12 @@ def _resolve_json_ld(
                 "url": logo_url
             }
 
+        # Author URL — use default lang root or lang-prefixed path
+        if page_lang == default_lang:
+            author_url = f"{base_url}/me/"
+        else:
+            author_url = f"{base_url}/{page_lang}/me/"
+
         article = {
             "@context": "https://schema.org",
             "@type": "BlogPosting",
@@ -293,7 +327,7 @@ def _resolve_json_ld(
             "author": {
                 "@type": "Person",
                 "name": author_name,
-                "url": f"{base_url}/me/" if page_lang == "es" else f"{base_url}/en/me/"
+                "url": author_url
             },
             "mainEntityOfPage": {
                 "@type": "WebPage",
@@ -336,6 +370,7 @@ def inject_page_context(
     4. **Category page map**: Maps ABlog category names to manual category
        page URLs for the related posts sidebar links.
     5. **JSON-LD**: Injects structured data for SEO (Articles, Breadcrumbs).
+    6. **Translation helper**: Injects ``t()`` function for Jinja2 templates.
     """
     opts = app.config.html_theme_options
 
@@ -351,19 +386,24 @@ def inject_page_context(
     # --- Per-page language from path prefix ---
     first_segment = pagename.split("/", maxsplit=1)[0]
     default_lang = app.config.language or "es"
+    known_langs = get_known_langs(app)
     page_lang = (
-        first_segment if first_segment in _KNOWN_LANGS else default_lang
+        first_segment if first_segment in known_langs else default_lang
     )
     context["page_lang"] = page_lang
+
+    # --- Translation helper for Jinja2 templates ---
+    confdir = str(app.confdir)
+    context["t"] = lambda key, **kw: get_translation(
+        page_lang, key, confdir, **kw
+    )
 
     # --- Delegate to helpers ---
     _resolve_archive_url(page_lang, app, context)
     _resolve_home_url(page_lang, default_lang, context)
     _resolve_hreflang(pagename, default_lang, app, context)
     _resolve_category_links(page_lang, app, context)
-    _resolve_json_ld(pagename, page_lang, app, context)
-
-    # --- Copyright split for linked author name ---
+    _resolve_json_ld(pagename, page_lang, default_lang, app, context)
 
     # --- Copyright split for linked author name ---
     copyright_str = app.config.copyright or ""

@@ -38,10 +38,12 @@
   crossorigin="anonymous"></script>
   {% endif %}
 
-  {# Hreflang alternate links for multilingual SEO #}
-  {% if lang_alt_abs_url is defined and lang_alt_abs_url %}
-  <link rel="alternate" hreflang="{{ lang_alt_code }}" href="{{ lang_alt_abs_url }}" />
+  {# Hreflang alternate links for multilingual SEO — emit all alternates #}
+  {% if lang_alternates is defined and lang_alternates %}
   <link rel="alternate" hreflang="{{ lang_current_code }}" href="{{ lang_current_abs_url }}" />
+  {% for alt in lang_alternates %}
+  <link rel="alternate" hreflang="{{ alt.code }}" href="{{ alt.abs_url }}" />
+  {% endfor %}
   {% endif %}
 
   {# JSON-LD Structured Data #}

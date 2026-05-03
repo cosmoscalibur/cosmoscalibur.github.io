@@ -18,6 +18,8 @@ from PIL import Image
 from sphinx.application import Sphinx
 from sphinx.util.logging import getLogger
 
+from .i18n import get_admonition_map, get_known_langs
+
 logger = getLogger(__name__)
 
 # Sphinx scripts that load synchronously in <head> and can be safely deferred
@@ -79,7 +81,7 @@ def post_process_html(app: Sphinx, exception: Exception | None) -> None:
     # --- 2-5. Post-process HTML files ---
     html_files = list(outdir.rglob("*.html"))
     lazy_count, defer_count, dim_count, prune_count, html_bytes_saved = (
-        _process_html_files(html_files, webp_count)
+        _process_html_files(html_files, webp_count, app)
     )
 
     # --- 4. Minify standalone CSS/JS files ---
@@ -139,8 +141,9 @@ def _copy_404_page(outdir: Path) -> None:
 def _process_html_files(
     html_files: list[Path],
     webp_count: int,
+    app: Sphinx,
 ) -> tuple[int, int, int, int, int]:
-    """Apply lazy loading, defer, dimensions, pruning, and minification.
+    """Apply lazy loading, defer, dimensions, pruning, admonition i18n, and minification.
 
     Returns ``(lazy_count, defer_count, dim_count, prune_count, bytes_saved)``.
     """
@@ -149,6 +152,19 @@ def _process_html_files(
     dim_count = 0
     prune_count = 0
     html_bytes_saved = 0
+
+    # Pre-compute admonition maps for all languages.
+    # Even the default language may need fixes (e.g., ABlog's 'Updated on'
+    # has a fuzzy flag in es.po, so it outputs English in a Spanish build).
+    default_lang = app.config.language or "es"
+    confdir = str(app.confdir)
+    outdir = Path(app.outdir)
+    known_langs = get_known_langs(app)
+    admonition_maps: dict[str, dict[str, str]] = {}
+    for lang in known_langs:
+        amap = get_admonition_map(lang, confdir)
+        if amap:
+            admonition_maps[lang] = amap
 
     for html_file in html_files:
         content = html_file.read_text(encoding="utf-8")
@@ -176,6 +192,16 @@ def _process_html_files(
         if webp_count > 0:
             content = _update_image_references(content)
 
+        # Translate admonition titles for the page's language
+        if admonition_maps:
+            page_lang = _detect_page_lang(
+                html_file, outdir, known_langs, default_lang,
+            )
+            if page_lang in admonition_maps:
+                content = _translate_admonitions(
+                    content, admonition_maps[page_lang],
+                )
+
         try:
             content = minify_html.minify(content, **_MINIFY_CFG)
         except Exception:
@@ -193,6 +219,57 @@ def _process_html_files(
                 lazy_count += 1
 
     return lazy_count, defer_count, dim_count, prune_count, html_bytes_saved
+
+
+def _detect_page_lang(
+    html_file: Path,
+    outdir: Path,
+    known_langs: set[str],
+    default_lang: str,
+) -> str:
+    """Detect a page's language from its path relative to outdir.
+
+    Returns the language code if the file is under a known language
+    directory, otherwise returns *default_lang*.
+    """
+    try:
+        rel = html_file.relative_to(outdir)
+        first_part = rel.parts[0] if rel.parts else ""
+        if first_part in known_langs:
+            return first_part
+    except ValueError:
+        pass
+    return default_lang
+
+
+def _translate_admonitions(
+    content: str,
+    admonition_map: dict[str, str],
+) -> str:
+    """Replace admonition titles in HTML for non-default language pages.
+
+    Matches ``<p class="admonition-title">Title</p>`` and replaces
+    the title text.  Also handles ABlog's ``Updated on {date}``
+    admonitions which include a date suffix after the translatable prefix.
+    """
+    for src_title, dst_title in admonition_map.items():
+        # Exact match (standard admonitions: Note, Warning, etc.)
+        content = content.replace(
+            f'<p class="admonition-title">{src_title}</p>',
+            f'<p class="admonition-title">{dst_title}</p>',
+        )
+        # Prefix match (ABlog update: "Actualizado el 2024-01-01")
+        # Only apply if the source is a prefix pattern (ends with space)
+        if src_title.endswith(" "):
+            pattern = re.compile(
+                rf'(<p class="admonition-title">){re.escape(src_title)}'
+                r'([^<]+</p>)',
+            )
+            content = pattern.sub(
+                rf'\g<1>{dst_title}\2',
+                content,
+            )
+    return content
 
 
 def _add_lazy_loading(content: str) -> tuple[str, bool]:
