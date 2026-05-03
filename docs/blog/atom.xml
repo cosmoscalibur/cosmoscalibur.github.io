@@ -2,10 +2,409 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="es">
   <id>https://www.cosmoscalibur.com/</id>
   <title>Cosmoscalibur</title>
-  <updated>2026-05-03T02:19:44.871455+00:00</updated>
+  <updated>2026-05-03T02:55:35.548704+00:00</updated>
   <link href="https://www.cosmoscalibur.com/"/>
   <link href="https://www.cosmoscalibur.com/blog/atom.xml" rel="self"/>
   <generator uri="https://ablog.readthedocs.io/" version="0.11.12">ABlog</generator>
+  <entry>
+    <id>https://www.cosmoscalibur.com/es/blog/2026/guia-de-comportamiento-para-agentes-de-codigo/</id>
+    <title>Guía de comportamiento para agentes de código</title>
+    <updated>2026-05-02T00:00:00-05:00</updated>
+    <author>
+      <name>Edward Villegas-Pulgarin</name>
+    </author>
+    <content type="html">&lt;section class="tex2jax_ignore mathjax_ignore" id="guia-de-comportamiento-para-agentes-de-codigo"&gt;
+
+&lt;p&gt;En mi artículo sobre el
+&lt;a class="reference internal" href="../es/blog/2026/marco-de-preparacion-para-agentes-de-codigo/"&gt;&lt;span class="std std-doc"&gt;marco de preparación para agentes&lt;/span&gt;&lt;/a&gt;
+expliqué cómo evaluar y mejorar un repositorio para que los agentes de
+inteligencia artificial trabajen de forma efectiva. Pero preparar el
+entorno es solo la mitad del problema. La otra mitad es &lt;strong&gt;decirle al
+agente &lt;em&gt;cómo&lt;/em&gt; comportarse&lt;/strong&gt; dentro de ese entorno.&lt;/p&gt;
+&lt;p&gt;Después de meses usando agentes de código —Antigravity, AmpCode,
+Opencode— he notado patrones recurrentes de error que ningún &lt;em&gt;linter&lt;/em&gt;
+atrapa: sobreingeniería silenciosa, cambios cosméticos no solicitados,
+suposiciones ocultas que explotan tres &lt;em&gt;commits&lt;/em&gt; después. Resulta que
+no soy el único. Andrej Karpathy
+&lt;a class="reference external" href="https://x.com/karpathy/status/2015883857489522876"&gt;documentó exactamente estos problemas&lt;/a&gt;
+y la comunidad los convirtió en un conjunto de directrices con más de
+100.000 estrellas en GitHub.&lt;/p&gt;
+&lt;p&gt;He integrado esas directrices en mi
+&lt;a class="reference external" href="https://github.com/cosmoscalibur/template"&gt;repositorio de plantilla&lt;/a&gt;
+como parte del archivo &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;AGENTS.md&lt;/span&gt;&lt;/code&gt;, adaptándolas a un formato genérico
+que funciona con cualquier agente. Este artículo explica el porqué de
+cada principio y cómo aplicarlo en la práctica.&lt;/p&gt;
+&lt;section id="por-que-los-agentes-necesitan-guias-de-comportamiento"&gt;
+&lt;h2&gt;¿Por qué los agentes necesitan guías de comportamiento?&lt;/h2&gt;
+&lt;p&gt;Los modelos de lenguaje son herramientas poderosas para generar código,
+pero tienen sesgos sistemáticos que afectan la calidad del resultado:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Asumen en silencio.&lt;/strong&gt; Cuando una instrucción es ambigua, el modelo
+elige una interpretación y avanza sin preguntar. No gestiona su propia
+confusión ni presenta las alternativas.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Sobreingenieran.&lt;/strong&gt; Prefieren abstracciones, capas de configuración
+y manejo de errores para escenarios imposibles. Donde 50 líneas
+bastarían, escriben 200.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Tocan código adyacente.&lt;/strong&gt; Mientras implementan lo que pediste,
+“mejoran” comentarios, reformatean funciones cercanas o eliminan
+código que no entienden del todo.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Estos comportamientos no son errores del modelo —son su naturaleza. Los
+LLM están entrenados para ser útiles y exhaustivos, lo que en código se
+traduce en hacer &lt;em&gt;más de lo necesario&lt;/em&gt;. Una guía de comportamiento es
+el contrapeso: un conjunto de reglas que fuerzan precisión sobre
+entusiasmo.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="los-cuatro-principios-de-karpathy"&gt;
+&lt;h2&gt;Los cuatro principios de Karpathy&lt;/h2&gt;
+&lt;p&gt;Las directrices que integré en la plantilla se basan en las
+observaciones de Karpathy, sistematizadas por el proyecto
+&lt;a class="reference external" href="https://github.com/forrestchang/andrej-karpathy-skills"&gt;andrej-karpathy-skills&lt;/a&gt;.
+Se resumen en cuatro principios.&lt;/p&gt;
+&lt;section id="pensar-antes-de-codificar"&gt;
+&lt;h3&gt;1. Pensar antes de codificar&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;div&gt;&lt;p&gt;Declara tus suposiciones explícitamente. Si existen múltiples
+interpretaciones, preséntalas —no elijas en silencio. Si algo no está
+claro, detente y pregunta.&lt;/p&gt;
+&lt;/div&gt;&lt;/blockquote&gt;
+&lt;p&gt;Este principio ataca el problema más costoso: el agente que arranca a
+implementar sobre una suposición incorrecta. Cuando el agente verbaliza
+lo que asume, tú puedes corregirlo antes de que escriba una sola línea
+de código.&lt;/p&gt;
+&lt;p&gt;En la práctica, esto significa que tu &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;AGENTS.md&lt;/span&gt;&lt;/code&gt; debe instruir al
+agente a explicitar sus interpretaciones al inicio de cada tarea, no
+después de que ya implementó algo.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="simplicidad-primero"&gt;
+&lt;h3&gt;2. Simplicidad primero&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;div&gt;&lt;p&gt;Nada de funcionalidades más allá de lo pedido. Nada de abstracciones
+para código de uso único. Nada de manejo de errores para escenarios
+imposibles. Si escribes 200 líneas y podrían ser 50, reescribe.
+Pregúntate: “¿Un ingeniero &lt;em&gt;senior&lt;/em&gt; diría que esto está
+sobrecomplicado?” Si la respuesta es sí, simplifica.&lt;/p&gt;
+&lt;/div&gt;&lt;/blockquote&gt;
+&lt;p&gt;La sobreingeniería es el pecado favorito de los LLM. Este principio
+establece un test concreto: ¿un &lt;em&gt;senior&lt;/em&gt; lo consideraría excesivo?
+Es un filtro sorprendentemente efectivo porque obliga al modelo a
+evaluar su propia salida contra el estándar de un profesional
+experimentado.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="cambios-quirurgicos"&gt;
+&lt;h3&gt;3. Cambios quirúrgicos&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;div&gt;&lt;p&gt;No “mejores” código adyacente, comentarios o formato. No refactorices
+lo que no está roto. Sigue el estilo existente. Elimina solo
+importaciones, variables o funciones que TUS cambios dejaron sin uso.
+Cada línea cambiada debe rastrearse directamente a la solicitud del
+usuario.&lt;/p&gt;
+&lt;/div&gt;&lt;/blockquote&gt;
+&lt;p&gt;Este principio protege la base de código de la entropía. Sin él, cada
+tarea del agente deja un rastro de cambios no solicitados que
+contaminan los &lt;em&gt;diffs&lt;/em&gt;, dificultan la revisión de código y
+potencialmente introducen regresiones.&lt;/p&gt;
+&lt;p&gt;La regla de rastreo directo (“cada línea cambiada debe rastrearse a la
+solicitud”) es particularmente valiosa en equipos: si un &lt;em&gt;pull request&lt;/em&gt;
+contiene cambios que nadie pidió, algo falló.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="ejecucion-orientada-a-metas"&gt;
+&lt;h3&gt;4. Ejecución orientada a metas&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;div&gt;&lt;p&gt;Transforma las tareas en metas verificables:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;“Añade validación” → “Escribe pruebas para entradas inválidas,
+luego haz que pasen”&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;“Corrige el &lt;em&gt;bug&lt;/em&gt;” → “Escribe una prueba que lo reproduzca, luego
+haz que pase”&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;“Refactoriza X” → “Asegura que las pruebas pasen antes y después”&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;&lt;/blockquote&gt;
+&lt;p&gt;Como señaló Karpathy: “Los LLM son excepcionalmente buenos iterando
+hasta alcanzar metas específicas. No les digas qué hacer, dales
+criterios de éxito y observa cómo los cumplen.” Este principio
+aprovecha esa fortaleza: en lugar de instrucciones imperativas, le das
+criterios de verificación que el agente puede evaluar por sí mismo.&lt;/p&gt;
+&lt;/section&gt;
+&lt;/section&gt;
+&lt;section id="como-integrar-las-guias-en-tu-proyecto"&gt;
+&lt;h2&gt;Cómo integrar las guías en tu proyecto&lt;/h2&gt;
+&lt;p&gt;Las directrices están integradas directamente en el &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;AGENTS.md&lt;/span&gt;&lt;/code&gt; del
+&lt;a class="reference external" href="https://github.com/cosmoscalibur/template"&gt;repositorio de plantilla&lt;/a&gt;.
+Si usas la plantilla como base para nuevos proyectos, las obtienes
+automáticamente.&lt;/p&gt;
+&lt;p&gt;Si ya tienes un proyecto existente, la integración es sencilla.
+Añade una sección &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;##&lt;/span&gt; &lt;span class="pre"&gt;Behavioral&lt;/span&gt; &lt;span class="pre"&gt;Guidelines&lt;/span&gt;&lt;/code&gt; a tu &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;AGENTS.md&lt;/span&gt;&lt;/code&gt; (o
+al archivo de instrucciones equivalente de tu agente) con las cuatro
+reglas:&lt;/p&gt;
+&lt;div class="highlight-markdown notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gu"&gt;## Behavioral Guidelines&lt;/span&gt;
+
+&lt;span class="k"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="gs"&gt;**Think before coding.**&lt;/span&gt; State assumptions explicitly. If multiple
+  interpretations exist, present them — don&amp;#39;t pick silently.
+&lt;span class="k"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="gs"&gt;**Simplicity first.**&lt;/span&gt; No features beyond what was asked. No
+  abstractions for single-use code.
+&lt;span class="k"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="gs"&gt;**Surgical changes.**&lt;/span&gt; Don&amp;#39;t &amp;quot;improve&amp;quot; adjacent code. Match existing
+  style. Every changed line should trace to the user&amp;#39;s request.
+&lt;span class="k"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="gs"&gt;**Goal-driven execution.**&lt;/span&gt; Transform tasks into verifiable goals
+  with tests as success criteria.
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Dado que todos los agentes principales —incluyendo Antigravity desde
+marzo de 2026— soportan &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;AGENTS.md&lt;/span&gt;&lt;/code&gt; de forma nativa, estas directrices
+funcionan de manera uniforme independientemente de la herramienta que
+uses.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="la-nota-sobre-el-equilibrio"&gt;
+&lt;h2&gt;La nota sobre el equilibrio&lt;/h2&gt;
+&lt;p&gt;Un punto importante del proyecto original que conservé en la plantilla:
+estas directrices sesgan hacia la cautela sobre la velocidad. Para
+tareas triviales —correcciones de &lt;em&gt;typos&lt;/em&gt;, cambios obvios de una
+línea— el agente debería usar su juicio y no aplicar toda la
+rigurosidad.&lt;/p&gt;
+&lt;p&gt;La meta es reducir errores costosos en trabajo no trivial, no
+ralentizar las tareas simples.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="conclusion"&gt;
+&lt;h2&gt;Conclusión&lt;/h2&gt;
+&lt;p&gt;Preparar un repositorio para agentes de código requiere dos capas
+complementarias: la &lt;strong&gt;infraestructura&lt;/strong&gt; (documentación, pruebas,
+&lt;em&gt;linting&lt;/em&gt;, CI —cubierta por el
+&lt;a class="reference internal" href="../es/blog/2026/marco-de-preparacion-para-agentes-de-codigo/"&gt;&lt;span class="std std-doc"&gt;marco de preparación&lt;/span&gt;&lt;/a&gt;)
+y el &lt;strong&gt;comportamiento&lt;/strong&gt; (cómo el agente decide qué hacer y qué no
+hacer). Las directrices de Karpathy cubren esta segunda capa con
+cuatro principios simples que atacan los problemas más frecuentes de
+los LLM en generación de código.&lt;/p&gt;
+&lt;p&gt;Si ya evaluaste tu repositorio con la
+&lt;a class="reference external" href="https://github.com/cosmoscalibur/template/tree/main/.agents/skills/agent-readiness"&gt;habilidad de &lt;em&gt;agent readiness&lt;/em&gt;&lt;/a&gt;
+y llegaste al nivel 2 o superior, añadir estas directrices de
+comportamiento es el siguiente paso natural. El repositorio
+&lt;a class="reference external" href="https://github.com/cosmoscalibur/template"&gt;cosmoscalibur/template&lt;/a&gt;
+las incluye listas para usar.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="referencias"&gt;
+&lt;h2&gt;Referencias&lt;/h2&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://x.com/karpathy/status/2015883857489522876"&gt;Andrej Karpathy sobre errores de LLM en código&lt;/a&gt;.
+Andrej Karpathy, X.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://github.com/forrestchang/andrej-karpathy-skills"&gt;andrej-karpathy-skills&lt;/a&gt;.
+Forrest Chang. GitHub.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://github.com/cosmoscalibur/template"&gt;Agent-Ready Repository Template&lt;/a&gt;.
+Cosmoscalibur. GitHub.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference internal" href="../es/blog/2026/marco-de-preparacion-para-agentes-de-codigo/"&gt;&lt;span class="std std-doc"&gt;Marco de preparación para agentes de código&lt;/span&gt;&lt;/a&gt;.
+Cosmoscalibur.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/section&gt;
+&lt;/section&gt;
+</content>
+    <link href="https://www.cosmoscalibur.com/es/blog/2026/guia-de-comportamiento-para-agentes-de-codigo/"/>
+    <summary>En mi artículo sobre el
+marco de preparación para agentes
+expliqué cómo evaluar y mejorar un repositorio para que los agentes de
+inteligencia artificial trabajen de forma efectiva. Pero preparar el
+entorno es solo la mitad del problema. La otra mitad es decirle al
+agente cómo comportarse dentro de ese entorno.</summary>
+    <category term="agentesdecódigo" label="agentes de código"/>
+    <category term="antigravity" label="antigravity"/>
+    <category term="ingenieríadecontexto" label="ingeniería de contexto"/>
+    <category term="inteligenciaartificial" label="inteligencia artificial"/>
+    <published>2026-05-02T00:00:00-05:00</published>
+  </entry>
+  <entry>
+    <id>https://www.cosmoscalibur.com/en/blog/2026/guia-de-comportamiento-para-agentes-de-codigo/</id>
+    <title>Behavioral Guidelines for Coding Agents</title>
+    <updated>2026-05-02T00:00:00-05:00</updated>
+    <author>
+      <name>Edward Villegas-Pulgarin</name>
+    </author>
+    <content type="html">&lt;section class="tex2jax_ignore mathjax_ignore" id="behavioral-guidelines-for-coding-agents"&gt;
+
+&lt;p&gt;In my article on the
+&lt;a class="reference internal" href="../en/blog/2026/marco-de-preparacion-para-agentes-de-codigo/"&gt;&lt;span class="std std-doc"&gt;agent readiness framework&lt;/span&gt;&lt;/a&gt;
+I explained how to evaluate and improve a repository so AI agents can
+work effectively. But preparing the environment is only half the
+problem. The other half is &lt;strong&gt;telling the agent &lt;em&gt;how&lt;/em&gt; to behave&lt;/strong&gt; inside
+that environment.&lt;/p&gt;
+&lt;p&gt;After months of using coding agents —Antigravity, AmpCode, Opencode— I
+have noticed recurring error patterns that no linter catches: silent
+overengineering, unsolicited cosmetic changes, hidden assumptions that
+blow up three commits later. It turns out I am not the only one. Andrej
+Karpathy
+&lt;a class="reference external" href="https://x.com/karpathy/status/2015883857489522876"&gt;documented exactly these problems&lt;/a&gt;
+and the community turned them into a set of guidelines with over 100,000
+stars on GitHub.&lt;/p&gt;
+&lt;p&gt;I have integrated those guidelines into my
+&lt;a class="reference external" href="https://github.com/cosmoscalibur/template"&gt;template repository&lt;/a&gt; as
+part of the &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;AGENTS.md&lt;/span&gt;&lt;/code&gt; file, adapting them into a generic format that
+works with any agent. This article explains the rationale behind each
+principle and how to apply it in practice.&lt;/p&gt;
+&lt;section id="why-do-agents-need-behavioral-guidelines"&gt;
+&lt;h2&gt;Why do agents need behavioral guidelines?&lt;/h2&gt;
+&lt;p&gt;Language models are powerful tools for generating code, but they have
+systematic biases that affect output quality:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;They assume silently.&lt;/strong&gt; When an instruction is ambiguous, the model
+picks an interpretation and moves forward without asking. It does not
+manage its own confusion or present alternatives.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;They overengineer.&lt;/strong&gt; They favor abstractions, configuration layers,
+and error handling for impossible scenarios. Where 50 lines would
+suffice, they write 200.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;They touch adjacent code.&lt;/strong&gt; While implementing what you asked, they
+“improve” comments, reformat nearby functions, or remove code they do
+not fully understand.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;These behaviors are not model bugs — they are its nature. LLMs are
+trained to be helpful and thorough, which in code translates to doing
+&lt;em&gt;more than necessary&lt;/em&gt;. A behavioral guide is the counterweight: a set
+of rules that enforce precision over enthusiasm.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="karpathys-four-principles"&gt;
+&lt;h2&gt;Karpathy’s four principles&lt;/h2&gt;
+&lt;p&gt;The guidelines I integrated into the template are based on Karpathy’s
+observations, systematized by the
+&lt;a class="reference external" href="https://github.com/forrestchang/andrej-karpathy-skills"&gt;andrej-karpathy-skills&lt;/a&gt;
+project. They boil down to four principles.&lt;/p&gt;
+&lt;section id="think-before-coding"&gt;
+&lt;h3&gt;1. Think before coding&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;div&gt;&lt;p&gt;State your assumptions explicitly. If multiple interpretations exist,
+present them — don’t pick silently. If something is unclear, stop and
+ask.&lt;/p&gt;
+&lt;/div&gt;&lt;/blockquote&gt;
+&lt;p&gt;This principle attacks the most expensive problem: the agent that
+starts implementing based on an incorrect assumption. When the agent
+verbalizes what it assumes, you can correct it before it writes a
+single line of code.&lt;/p&gt;
+&lt;p&gt;In practice, this means your &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;AGENTS.md&lt;/span&gt;&lt;/code&gt; should instruct the agent to
+make its interpretations explicit at the start of each task, not after
+it has already implemented something.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="simplicity-first"&gt;
+&lt;h3&gt;2. Simplicity first&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;div&gt;&lt;p&gt;No features beyond what was asked. No abstractions for single-use
+code. No error handling for impossible scenarios. If you write 200
+lines and it could be 50, rewrite it. Ask yourself: “Would a senior
+engineer say this is overcomplicated?” If yes, simplify.&lt;/p&gt;
+&lt;/div&gt;&lt;/blockquote&gt;
+&lt;p&gt;Overengineering is the favorite sin of LLMs. This principle establishes
+a concrete test: would a senior consider it excessive? It is a
+surprisingly effective filter because it forces the model to evaluate
+its own output against the standard of an experienced professional.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="surgical-changes"&gt;
+&lt;h3&gt;3. Surgical changes&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;div&gt;&lt;p&gt;Don’t “improve” adjacent code, comments, or formatting. Don’t
+refactor things that aren’t broken. Match existing style. Remove only
+imports, variables, or functions that YOUR changes made unused. Every
+changed line should trace directly to the user’s request.&lt;/p&gt;
+&lt;/div&gt;&lt;/blockquote&gt;
+&lt;p&gt;This principle protects the codebase from entropy. Without it, every
+agent task leaves a trail of unsolicited changes that pollute diffs,
+complicate code review, and potentially introduce regressions.&lt;/p&gt;
+&lt;p&gt;The direct-tracing rule (“every changed line should trace to the
+request”) is particularly valuable in teams: if a pull request contains
+changes nobody asked for, something went wrong.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="goal-driven-execution"&gt;
+&lt;h3&gt;4. Goal-driven execution&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;div&gt;&lt;p&gt;Transform tasks into verifiable goals:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;“Add validation” → “Write tests for invalid inputs, then make them
+pass”&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;“Fix the bug” → “Write a test that reproduces it, then make it
+pass”&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;“Refactor X” → “Ensure tests pass before and after”&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;&lt;/blockquote&gt;
+&lt;p&gt;As Karpathy noted: “LLMs are exceptionally good at looping until they
+meet specific goals. Don’t tell it what to do, give it success criteria
+and watch it go.” This principle leverages that strength: instead of
+imperative instructions, you give verification criteria the agent can
+evaluate on its own.&lt;/p&gt;
+&lt;/section&gt;
+&lt;/section&gt;
+&lt;section id="how-to-integrate-the-guidelines-into-your-project"&gt;
+&lt;h2&gt;How to integrate the guidelines into your project&lt;/h2&gt;
+&lt;p&gt;The guidelines are integrated directly into the &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;AGENTS.md&lt;/span&gt;&lt;/code&gt; of the
+&lt;a class="reference external" href="https://github.com/cosmoscalibur/template"&gt;template repository&lt;/a&gt;. If
+you use the template as a base for new projects, you get them
+automatically.&lt;/p&gt;
+&lt;p&gt;If you already have an existing project, integration is
+straightforward. Add a &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;##&lt;/span&gt; &lt;span class="pre"&gt;Behavioral&lt;/span&gt; &lt;span class="pre"&gt;Guidelines&lt;/span&gt;&lt;/code&gt; section to your
+&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;AGENTS.md&lt;/span&gt;&lt;/code&gt; (or your agent’s equivalent instruction file) with the
+four rules:&lt;/p&gt;
+&lt;div class="highlight-markdown notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gu"&gt;## Behavioral Guidelines&lt;/span&gt;
+
+&lt;span class="k"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="gs"&gt;**Think before coding.**&lt;/span&gt; State assumptions explicitly. If multiple
+  interpretations exist, present them — don&amp;#39;t pick silently.
+&lt;span class="k"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="gs"&gt;**Simplicity first.**&lt;/span&gt; No features beyond what was asked. No
+  abstractions for single-use code.
+&lt;span class="k"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="gs"&gt;**Surgical changes.**&lt;/span&gt; Don&amp;#39;t &amp;quot;improve&amp;quot; adjacent code. Match existing
+  style. Every changed line should trace to the user&amp;#39;s request.
+&lt;span class="k"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="gs"&gt;**Goal-driven execution.**&lt;/span&gt; Transform tasks into verifiable goals
+  with tests as success criteria.
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Since all major agents —including Antigravity since March 2026—
+support &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;AGENTS.md&lt;/span&gt;&lt;/code&gt; natively, these guidelines work uniformly
+regardless of which tool you use.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="a-note-on-balance"&gt;
+&lt;h2&gt;A note on balance&lt;/h2&gt;
+&lt;p&gt;An important point from the original project that I preserved in the
+template: these guidelines bias toward caution over speed. For trivial
+tasks — typo fixes, obvious one-liners — the agent should use judgment
+and not apply full rigor.&lt;/p&gt;
+&lt;p&gt;The goal is reducing costly mistakes on non-trivial work, not slowing
+down simple tasks.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="conclusion"&gt;
+&lt;h2&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;Preparing a repository for coding agents requires two complementary
+layers: the &lt;strong&gt;infrastructure&lt;/strong&gt; (documentation, tests, linting, CI —
+covered by the
+&lt;a class="reference internal" href="../en/blog/2026/marco-de-preparacion-para-agentes-de-codigo/"&gt;&lt;span class="std std-doc"&gt;readiness framework&lt;/span&gt;&lt;/a&gt;)
+and the &lt;strong&gt;behavior&lt;/strong&gt; (how the agent decides what to do and what not to
+do). Karpathy’s guidelines cover this second layer with four simple
+principles that address the most frequent LLM problems in code
+generation.&lt;/p&gt;
+&lt;p&gt;If you have already evaluated your repository with the
+&lt;a class="reference external" href="https://github.com/cosmoscalibur/template/tree/main/.agents/skills/agent-readiness"&gt;agent readiness skill&lt;/a&gt;
+and reached Level 2 or above, adding these behavioral guidelines is
+the natural next step. The
+&lt;a class="reference external" href="https://github.com/cosmoscalibur/template"&gt;cosmoscalibur/template&lt;/a&gt;
+repository includes them ready to use.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="references"&gt;
+&lt;h2&gt;References&lt;/h2&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://x.com/karpathy/status/2015883857489522876"&gt;Andrej Karpathy on LLM coding pitfalls&lt;/a&gt;.
+Andrej Karpathy, X.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://github.com/forrestchang/andrej-karpathy-skills"&gt;andrej-karpathy-skills&lt;/a&gt;.
+Forrest Chang. GitHub.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://github.com/cosmoscalibur/template"&gt;Agent-Ready Repository Template&lt;/a&gt;.
+Cosmoscalibur. GitHub.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference internal" href="../en/blog/2026/marco-de-preparacion-para-agentes-de-codigo/"&gt;&lt;span class="std std-doc"&gt;Agent Readiness Framework for Coding Projects&lt;/span&gt;&lt;/a&gt;.
+Cosmoscalibur.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/section&gt;
+&lt;/section&gt;
+</content>
+    <link href="https://www.cosmoscalibur.com/en/blog/2026/guia-de-comportamiento-para-agentes-de-codigo/"/>
+    <summary>In my article on the
+agent readiness framework
+I explained how to evaluate and improve a repository so AI agents can
+work effectively. But preparing the environment is only half the
+problem. The other half is telling the agent how to behave inside
+that environment.</summary>
+    <category term="antigravity" label="antigravity"/>
+    <category term="artificialintelligence" label="artificial intelligence"/>
+    <category term="codingagents" label="coding agents"/>
+    <category term="contextengineering" label="context engineering"/>
+    <published>2026-05-02T00:00:00-05:00</published>
+  </entry>
   <entry>
     <id>https://www.cosmoscalibur.com/en/blog/2019/usar-anaconda-python-en-git-bash/</id>
     <title>Use Anaconda Python in Git Bash</title>
@@ -2431,12 +2830,19 @@ which is my main development language).</summary>
   <entry>
     <id>https://www.cosmoscalibur.com/es/blog/2026/marco-de-preparacion-para-agentes-de-codigo/</id>
     <title>Marco de preparación para agentes de código</title>
-    <updated>2026-03-07T00:00:00-05:00</updated>
+    <updated>2026-05-02T00:00:00-05:00</updated>
     <author>
       <name>Edward Villegas-Pulgarin</name>
     </author>
     <content type="html">&lt;section class="tex2jax_ignore mathjax_ignore" id="marco-de-preparacion-para-agentes-de-codigo"&gt;
 
+&lt;div class="note update admonition"&gt;
+&lt;p class="admonition-title"&gt;Updated on 2026-05-02&lt;/p&gt;
+&lt;p&gt;Desde marzo de 2026, Antigravity soporta &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;AGENTS.md&lt;/span&gt;&lt;/code&gt; y el directorio
+&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;.agents/&lt;/span&gt;&lt;/code&gt; de forma nativa, lo que permite una gestión uniforme de
+agentes entre herramientas. La sección sobre la particularidad de
+Antigravity ha sido actualizada para reflejar este cambio.&lt;/p&gt;
+&lt;/div&gt;
 &lt;p&gt;Los agentes de código están aquí, y no van a irse. Pero después de meses
 usándolos —Antigravity, AmpCode, Opencode, el agente de Zed— he llegado a
 una conclusión incómoda: &lt;strong&gt;el problema no suele ser el agente, sino el
@@ -2452,8 +2858,7 @@ agentes (y los humanos) puedan trabajar de forma efectiva.&lt;/p&gt;
 &lt;a class="reference external" href="https://factory.ai/news/agent-readiness"&gt;Factory AI&lt;/a&gt;, que propone cinco
 niveles de madurez y nueve pilares técnicos para evaluar qué tan preparado
 está un repositorio para el desarrollo autónomo. Lo adapto aquí con mi
-experiencia práctica y con una consideración especial para quienes usan
-Antigravity, cuyo sistema de contexto difiere del estándar &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;AGENTS.md&lt;/span&gt;&lt;/code&gt;.&lt;/p&gt;
+experiencia práctica.&lt;/p&gt;
 &lt;section id="que-es-el-marco-de-preparacion-para-agentes"&gt;
 &lt;h2&gt;¿Qué es el marco de preparación para agentes?&lt;/h2&gt;
 &lt;p&gt;Es un modelo de madurez que mide qué tan listo está tu repositorio para que
@@ -2595,34 +3000,26 @@ son inamovibles.&lt;/p&gt;&lt;/li&gt;
 &lt;p&gt;&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;CLAUDE.md&lt;/span&gt;&lt;/code&gt; fue el precursor creado por Anthropic para Claude Code, y
 &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;AGENTS.md&lt;/span&gt;&lt;/code&gt; es su evolución estandarizada que funciona con la mayoría de
 agentes: GitHub Copilot, AmpCode, Cursor, Opencode, Zed, y otros.&lt;/p&gt;
-&lt;section id="particularidad-de-antigravity"&gt;
-&lt;h3&gt;Particularidad de Antigravity&lt;/h3&gt;
-&lt;p&gt;Si usas Antigravity como IDE principal (como es mi caso), hay un detalle
-importante: &lt;strong&gt;Antigravity no lee &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;AGENTS.md&lt;/span&gt;&lt;/code&gt; ni &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;CLAUDE.md&lt;/span&gt;&lt;/code&gt;
-automáticamente&lt;/strong&gt;. Su sistema de contexto utiliza
-&lt;code class="file docutils literal notranslate"&gt;&lt;span class="pre"&gt;.agent/rules/&lt;/span&gt;&lt;/code&gt; para reglas del espacio de trabajo y
-&lt;code class="file docutils literal notranslate"&gt;&lt;span class="pre"&gt;~/.gemini/GEMINI.md&lt;/span&gt;&lt;/code&gt; para la configuración global.&lt;/p&gt;
-&lt;p&gt;Esto no invalida el marco —los cinco niveles y nueve pilares aplican
-igual—, pero requiere una adaptación en cómo proporcionas el contexto al
-agente:&lt;/p&gt;
-&lt;ol class="arabic simple"&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;Mantener la documentación en &lt;code class="file docutils literal notranslate"&gt;&lt;span class="pre"&gt;README.md&lt;/span&gt;&lt;/code&gt; y &lt;code class="file docutils literal notranslate"&gt;&lt;span class="pre"&gt;docs/&lt;/span&gt;&lt;/code&gt;&lt;/strong&gt;, como
-fuente de verdad compartida entre humanos y agentes.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;Crear una regla de agente&lt;/strong&gt; en &lt;code class="file docutils literal notranslate"&gt;&lt;span class="pre"&gt;.agent/rules/&lt;/span&gt;&lt;/code&gt; que instruya
-explícitamente al agente a leer esa documentación antes de actuar.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;Opcionalmente, mantener &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;AGENTS.md&lt;/span&gt;&lt;/code&gt;&lt;/strong&gt; para las herramientas que lo
-soporten. La fuente de verdad sigue siendo tu documentación.&lt;/p&gt;&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;Un ejemplo de regla en &lt;code class="file docutils literal notranslate"&gt;&lt;span class="pre"&gt;.agent/rules/documentation-first.md&lt;/span&gt;&lt;/code&gt;:&lt;/p&gt;
-&lt;div class="highlight-markdown notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;Before starting any task in this project, read the following files:
-&lt;span class="k"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;README.md for project overview and setup
-&lt;span class="k"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;docs/architecture.md for system architecture
-&lt;span class="k"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;docs/conventions.md for coding conventions
-Follow the guidelines in these documents for all code generation.
-&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;p&gt;De esta forma, un solo conjunto de documentación sirve para todos los
-agentes y para cualquier desarrollador humano.&lt;/p&gt;
+&lt;section id="antigravity-y-agents-md"&gt;
+&lt;h3&gt;Antigravity y &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;AGENTS.md&lt;/span&gt;&lt;/code&gt;&lt;/h3&gt;
+&lt;p&gt;Cuando escribí este artículo originalmente, Antigravity no leía
+&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;AGENTS.md&lt;/span&gt;&lt;/code&gt; ni &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;CLAUDE.md&lt;/span&gt;&lt;/code&gt; automáticamente, y su sistema de contexto
+usaba exclusivamente &lt;code class="file docutils literal notranslate"&gt;&lt;span class="pre"&gt;.agent/rules/&lt;/span&gt;&lt;/code&gt; y
+&lt;code class="file docutils literal notranslate"&gt;&lt;span class="pre"&gt;~/.gemini/GEMINI.md&lt;/span&gt;&lt;/code&gt;. Eso hacía necesario un &lt;em&gt;workaround&lt;/em&gt;:
+crear reglas que redirigieran al agente a la documentación del
+proyecto.&lt;/p&gt;
+&lt;p&gt;Desde marzo de 2026, &lt;strong&gt;Antigravity soporta &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;AGENTS.md&lt;/span&gt;&lt;/code&gt; y el directorio
+&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;.agents/&lt;/span&gt;&lt;/code&gt; de forma nativa&lt;/strong&gt;. Esto significa que ya no necesitas
+adaptaciones especiales: un solo archivo &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;AGENTS.md&lt;/span&gt;&lt;/code&gt; en la raíz del
+proyecto funciona con Antigravity, GitHub Copilot, AmpCode, Cursor,
+Opencode, Zed y cualquier otro agente compatible con el estándar.&lt;/p&gt;
+&lt;p&gt;El directorio &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;.agents/&lt;/span&gt;&lt;/code&gt; también es reconocido, lo que permite
+organizar habilidades de agente (&lt;em&gt;agent skills&lt;/em&gt;) como la de
+&lt;a class="reference external" href="https://github.com/cosmoscalibur/template/tree/main/.agents/skills/agent-readiness"&gt;evaluación de &lt;em&gt;agent readiness&lt;/em&gt;&lt;/a&gt;
+directamente en el repositorio.&lt;/p&gt;
+&lt;p&gt;Esta unificación simplifica enormemente el nivel 2 del marco: un solo
+conjunto de documentación y un solo sistema de instrucciones sirve
+para todos los agentes y para cualquier desarrollador humano.&lt;/p&gt;
 &lt;/section&gt;
 &lt;/section&gt;
 &lt;section id="evalua-tu-repositorio"&gt;
@@ -2686,11 +3083,10 @@ Cosmoscalibur.&lt;/p&gt;&lt;/li&gt;
 &lt;/section&gt;
 </content>
     <link href="https://www.cosmoscalibur.com/es/blog/2026/marco-de-preparacion-para-agentes-de-codigo/"/>
-    <summary>Los agentes de código están aquí, y no van a irse. Pero después de meses
-usándolos —Antigravity, AmpCode, Opencode, el agente de Zed— he llegado a
-una conclusión incómoda: el problema no suele ser el agente, sino el
-proyecto. Un repositorio mal preparado derrota a cualquier agente, sin
-importar qué tan avanzado sea el modelo que tenga detrás.</summary>
+    <summary>Desde marzo de 2026, Antigravity soporta AGENTS.md y el directorio
+.agents/ de forma nativa, lo que permite una gestión uniforme de
+agentes entre herramientas. La sección sobre la particularidad de
+Antigravity ha sido actualizada para reflejar este cambio.</summary>
     <category term="agentesdecódigo" label="agentes de código"/>
     <category term="antigravity" label="antigravity"/>
     <category term="ingenieríadecontexto" label="ingeniería de contexto"/>
@@ -2700,12 +3096,18 @@ importar qué tan avanzado sea el modelo que tenga detrás.</summary>
   <entry>
     <id>https://www.cosmoscalibur.com/en/blog/2026/marco-de-preparacion-para-agentes-de-codigo/</id>
     <title>Agent Readiness Framework for Coding Projects</title>
-    <updated>2026-03-07T00:00:00-05:00</updated>
+    <updated>2026-05-02T00:00:00-05:00</updated>
     <author>
       <name>Edward Villegas-Pulgarin</name>
     </author>
     <content type="html">&lt;section class="tex2jax_ignore mathjax_ignore" id="agent-readiness-framework-for-coding-projects"&gt;
 
+&lt;div class="note update admonition"&gt;
+&lt;p class="admonition-title"&gt;Updated on 2026-05-02&lt;/p&gt;
+&lt;p&gt;Since March 2026, Antigravity supports &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;AGENTS.md&lt;/span&gt;&lt;/code&gt; and the &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;.agents/&lt;/span&gt;&lt;/code&gt;
+directory natively, enabling uniform agent management across tools.
+The section about Antigravity has been updated to reflect this change.&lt;/p&gt;
+&lt;/div&gt;
 &lt;p&gt;Coding agents are here, and they are not going away. But after months of
 using them —Antigravity, AmpCode, Opencode, Zed’s built-in agent— I have
 reached an uncomfortable conclusion: &lt;strong&gt;the problem is usually not the
@@ -2721,8 +3123,7 @@ is king, your repository needs to be a kingdom worth exploring.&lt;/p&gt;
 &lt;a class="reference external" href="https://factory.ai/news/agent-readiness"&gt;Factory AI&lt;/a&gt;, which defines five
 maturity levels and nine technical pillars for evaluating how ready a
 repository is for autonomous development. I adapt it with my practical
-experience and a note for Antigravity users, whose context system differs
-from the &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;AGENTS.md&lt;/span&gt;&lt;/code&gt; standard.&lt;/p&gt;
+experience.&lt;/p&gt;
 &lt;section id="what-is-the-agent-readiness-framework"&gt;
 &lt;h2&gt;What is the agent readiness framework?&lt;/h2&gt;
 &lt;p&gt;It is a maturity model that measures how prepared your repository is for
@@ -2858,33 +3259,25 @@ decisions are non-negotiable.&lt;/p&gt;&lt;/li&gt;
 &lt;p&gt;&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;CLAUDE.md&lt;/span&gt;&lt;/code&gt; was the predecessor created by Anthropic for Claude Code, and
 &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;AGENTS.md&lt;/span&gt;&lt;/code&gt; is its standardized evolution that works with most agents:
 GitHub Copilot, AmpCode, Cursor, Opencode, Zed, and others.&lt;/p&gt;
-&lt;section id="a-note-for-antigravity-users"&gt;
-&lt;h3&gt;A note for Antigravity users&lt;/h3&gt;
-&lt;p&gt;If you use Antigravity as your primary IDE (as I do), there is an
-important detail: &lt;strong&gt;Antigravity does not read &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;AGENTS.md&lt;/span&gt;&lt;/code&gt; or &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;CLAUDE.md&lt;/span&gt;&lt;/code&gt;
-automatically&lt;/strong&gt;. Its context system uses &lt;code class="file docutils literal notranslate"&gt;&lt;span class="pre"&gt;.agent/rules/&lt;/span&gt;&lt;/code&gt; for
-workspace rules and &lt;code class="file docutils literal notranslate"&gt;&lt;span class="pre"&gt;~/.gemini/GEMINI.md&lt;/span&gt;&lt;/code&gt; for global configuration.&lt;/p&gt;
-&lt;p&gt;This does not invalidate the framework —the five levels and nine pillars
-apply regardless— but it requires an adaptation in how you provide
-context to the agent:&lt;/p&gt;
-&lt;ol class="arabic simple"&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;Maintain documentation in &lt;code class="file docutils literal notranslate"&gt;&lt;span class="pre"&gt;README.md&lt;/span&gt;&lt;/code&gt; and &lt;code class="file docutils literal notranslate"&gt;&lt;span class="pre"&gt;docs/&lt;/span&gt;&lt;/code&gt;&lt;/strong&gt; as
-the shared source of truth for humans and agents alike.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;Create an agent rule&lt;/strong&gt; in &lt;code class="file docutils literal notranslate"&gt;&lt;span class="pre"&gt;.agent/rules/&lt;/span&gt;&lt;/code&gt; that explicitly
-instructs the agent to read that documentation before acting.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;Optionally, keep &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;AGENTS.md&lt;/span&gt;&lt;/code&gt;&lt;/strong&gt; for tools that support it. The source
-of truth remains your documentation.&lt;/p&gt;&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;An example rule at &lt;code class="file docutils literal notranslate"&gt;&lt;span class="pre"&gt;.agent/rules/documentation-first.md&lt;/span&gt;&lt;/code&gt;:&lt;/p&gt;
-&lt;div class="highlight-markdown notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;Before starting any task in this project, read the following files:
-&lt;span class="k"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;README.md for project overview and setup
-&lt;span class="k"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;docs/architecture.md for system architecture
-&lt;span class="k"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;docs/conventions.md for coding conventions
-Follow the guidelines in these documents for all code generation.
-&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;p&gt;This way, a single set of documentation serves all agents and every
-human developer.&lt;/p&gt;
+&lt;section id="antigravity-and-agents-md"&gt;
+&lt;h3&gt;Antigravity and &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;AGENTS.md&lt;/span&gt;&lt;/code&gt;&lt;/h3&gt;
+&lt;p&gt;When I originally wrote this article, Antigravity did not read
+&lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;AGENTS.md&lt;/span&gt;&lt;/code&gt; or &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;CLAUDE.md&lt;/span&gt;&lt;/code&gt; automatically. Its context system relied
+exclusively on &lt;code class="file docutils literal notranslate"&gt;&lt;span class="pre"&gt;.agent/rules/&lt;/span&gt;&lt;/code&gt; and
+&lt;code class="file docutils literal notranslate"&gt;&lt;span class="pre"&gt;~/.gemini/GEMINI.md&lt;/span&gt;&lt;/code&gt;, which required a workaround: creating
+rules that redirected the agent to the project’s documentation.&lt;/p&gt;
+&lt;p&gt;Since March 2026, &lt;strong&gt;Antigravity supports &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;AGENTS.md&lt;/span&gt;&lt;/code&gt; and the &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;.agents/&lt;/span&gt;&lt;/code&gt;
+directory natively&lt;/strong&gt;. This means you no longer need special adaptations:
+a single &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;AGENTS.md&lt;/span&gt;&lt;/code&gt; file at the project root works with Antigravity,
+GitHub Copilot, AmpCode, Cursor, Opencode, Zed, and any other agent
+that supports the standard.&lt;/p&gt;
+&lt;p&gt;The &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;.agents/&lt;/span&gt;&lt;/code&gt; directory is also recognized, allowing you to organize
+agent skills such as the
+&lt;a class="reference external" href="https://github.com/cosmoscalibur/template/tree/main/.agents/skills/agent-readiness"&gt;agent readiness evaluation&lt;/a&gt;
+directly in the repository.&lt;/p&gt;
+&lt;p&gt;This unification greatly simplifies Level 2 of the framework: a single
+set of documentation and a single instruction system serves all agents
+and every human developer.&lt;/p&gt;
 &lt;/section&gt;
 &lt;/section&gt;
 &lt;section id="evaluate-your-repository"&gt;
@@ -2946,11 +3339,9 @@ Cosmoscalibur.&lt;/p&gt;&lt;/li&gt;
 &lt;/section&gt;
 </content>
     <link href="https://www.cosmoscalibur.com/en/blog/2026/marco-de-preparacion-para-agentes-de-codigo/"/>
-    <summary>Coding agents are here, and they are not going away. But after months of
-using them —Antigravity, AmpCode, Opencode, Zed’s built-in agent— I have
-reached an uncomfortable conclusion: the problem is usually not the
-agent, it is the project. A poorly prepared repository will defeat any
-agent, regardless of how advanced its underlying model is.</summary>
+    <summary>Since March 2026, Antigravity supports AGENTS.md and the .agents/
+directory natively, enabling uniform agent management across tools.
+The section about Antigravity has been updated to reflect this change.</summary>
     <category term="antigravity" label="antigravity"/>
     <category term="artificialintelligence" label="artificial intelligence"/>
     <category term="codingagents" label="coding agents"/>
@@ -13942,12 +14333,12 @@ audio y el video, así que les contaré como hacerlo con FFMPEG y Bash.</summary
 &lt;section id="solar-wind-velocity-profile"&gt;
 &lt;h2&gt;Solar Wind Velocity Profile&lt;/h2&gt;
 &lt;p&gt;In Parker’s work under conditions of isothermal expansion (&lt;span class="math notranslate nohighlight"&gt;\(\gamma = 1\)&lt;/span&gt;) of a neutral fluid (first approximation to the behavior of the solar wind), it leads to a non-linear first-order differential equation that relates the solar wind speed (&lt;span class="math notranslate nohighlight"&gt;\(u(r)\)&lt;/span&gt;) and the heliocentric distance (&lt;span class="math notranslate nohighlight"&gt;\(r\)&lt;/span&gt;). (Parker, 1958), (Kivelson, 1995)&lt;/p&gt;
-&lt;div class="amsmath math notranslate nohighlight" id="equation-3cbe4880-68a2-4e5d-a283-ff36e4a3c77c"&gt;
+&lt;div class="amsmath math notranslate nohighlight" id="equation-2757b2af-2c17-4216-8208-e24ea6f3ec1f"&gt;
 &lt;span class="eqno"&gt;(1)&lt;/span&gt;\[\begin{equation}
 \frac{du(r)}{dr} = \left(\frac{4kT}{mr} - \frac{GM}{r^2} \right)u(r)\left(u(r)^2 - \frac{2kT}{m} \right)^{-1}
 \end{equation}\]&lt;/div&gt;
 &lt;p&gt;In order to reduce the propagation of errors due to orders of magnitude of the variables involved, the differential equation is adimensionalized based on the radius and velocity at the critical point (sonic point) (Piso, 2008).&lt;/p&gt;
-&lt;div class="amsmath math notranslate nohighlight" id="equation-8f08dfee-0ecf-4896-a12a-61b31ed024b3"&gt;
+&lt;div class="amsmath math notranslate nohighlight" id="equation-ede93a2f-77eb-42da-ade7-e4d2faa8a496"&gt;
 &lt;span class="eqno"&gt;(2)&lt;/span&gt;\[\begin{eqnarray}
 c_s^2 &amp;amp; = &amp;amp; \frac{2kT}{m}\\
 r_c &amp;amp;=&amp;amp; \frac{GM}{2c_s^2}\\
@@ -13955,7 +14346,7 @@ r_c &amp;amp;=&amp;amp; \frac{GM}{2c_s^2}\\
 \end{eqnarray}\]&lt;/div&gt;
 &lt;p&gt;Where &lt;span class="math notranslate nohighlight"&gt;\(v\)&lt;/span&gt; is the speed at sonic velocities (&lt;span class="math notranslate nohighlight"&gt;\(c_s\)&lt;/span&gt;) and &lt;span class="math notranslate nohighlight"&gt;\(R\)&lt;/span&gt; is the radius at sonic radii (&lt;span class="math notranslate nohighlight"&gt;\(r_c\)&lt;/span&gt;). We observe that around the sonic radius and speed, there is a critical point that must be satisfied to ensure the physical meaning of the solution. Also, we have to note that this equation represents a boundary value problem, and in this case, the boundary condition of the problem in adimensional units is &lt;span class="math notranslate nohighlight"&gt;\(v(R_{\text{sun}}) = v_0\)&lt;/span&gt;, where &lt;span class="math notranslate nohighlight"&gt;\(R_{\text{sun}}\)&lt;/span&gt; is the radius of the Sun, and it is the position from which the flow of particles begins to move with an initial speed &lt;span class="math notranslate nohighlight"&gt;\(v_0\)&lt;/span&gt; that depends on the density of particles and temperature.&lt;/p&gt;
 &lt;p&gt;The generation of the Parker spiral is due to the rotation of the Sun, so we apply the transformation of coordinates Lagrangian for rotating systems, leading to the differential equation:&lt;/p&gt;
-&lt;div class="amsmath math notranslate nohighlight" id="equation-3f7ba517-9934-472a-a033-b7c78d658b25"&gt;
+&lt;div class="amsmath math notranslate nohighlight" id="equation-bf3840a6-06a7-4688-891a-fb047d61bebf"&gt;
 &lt;span class="eqno"&gt;(3)&lt;/span&gt;\[\begin{equation}
 \frac{d\varphi}{dR} = \frac{-\omega}{v(R)}
 \end{equation}\]&lt;/div&gt;
@@ -14284,12 +14675,12 @@ Min radii (adim): 0.173030
 &lt;section id="perfil-de-velocidad-del-viento-solar"&gt;
 &lt;h2&gt;Perfil de velocidad del viento solar&lt;/h2&gt;
 &lt;p&gt;En el trabajo de Parker bajo condiciones de expansión isotérmica (&lt;span class="math notranslate nohighlight"&gt;\(\gamma = 1\)&lt;/span&gt;) de un fluido neutro (primera aproximación al comportamiento del viendo solar), lleva a una ecuación diferencial no lineal de primer orden que relaciona la velocidad del viento solar (&lt;span class="math notranslate nohighlight"&gt;\(u(r)\)&lt;/span&gt;) y la distancia heliocéntrica (&lt;span class="math notranslate nohighlight"&gt;\(r\)&lt;/span&gt;) ((Parker, 1958), (Kivelson, 1995)).&lt;/p&gt;
-&lt;div class="amsmath math notranslate nohighlight" id="equation-42a7eb89-3b08-482a-85e6-acc2333a7a54"&gt;
+&lt;div class="amsmath math notranslate nohighlight" id="equation-9a55a7e3-ec4e-4a10-95f1-1a5decfb6792"&gt;
 &lt;span class="eqno"&gt;(1)&lt;/span&gt;\[\begin{equation}
 \frac{du(r)}{dr} = \left(\frac{4kT}{mr} - \frac{GM}{r^2} \right)u(r)\left(u(r)^2 - \frac{2kT}{m} \right)^{-1}
 \end{equation}\]&lt;/div&gt;
 &lt;p&gt;Con el fin de reducir la propagación de error por los ordenes de magnitud de las variables involucradas, se procede a adimensionalizar la ecuación diferencial, con base al radio y velocidad en el punto crítico (punto sónico) (Piso, 2008).&lt;/p&gt;
-&lt;div class="amsmath math notranslate nohighlight" id="equation-3caebf95-9192-4401-b3ee-5282cd97c71f"&gt;
+&lt;div class="amsmath math notranslate nohighlight" id="equation-fb38ad1b-89f2-4a85-98cc-4add150e12d4"&gt;
 &lt;span class="eqno"&gt;(2)&lt;/span&gt;\[\begin{eqnarray}
 c_s^2 &amp;amp; = &amp;amp; \frac{2kT}{m}\\
 r_c &amp;amp;=&amp;amp; \frac{GM}{2c_s^2}\\
@@ -14297,7 +14688,7 @@ r_c &amp;amp;=&amp;amp; \frac{GM}{2c_s^2}\\
 \end{eqnarray}\]&lt;/div&gt;
 &lt;p&gt;Donde &lt;span class="math notranslate nohighlight"&gt;\(v\)&lt;/span&gt; es la velocidad en velocidades sónicas (&lt;span class="math notranslate nohighlight"&gt;\(c_s\)&lt;/span&gt;) y &lt;span class="math notranslate nohighlight"&gt;\(R\)&lt;/span&gt; es el radio en radios sónicos (&lt;span class="math notranslate nohighlight"&gt;\(r_c\)&lt;/span&gt;). Observamos que alrededor del radio sónico y de la velocidad sónica se presenta un punto crítico que debe satisfacerse para asegurar el sentido físico de la solución. También, tenemos que esta ecuación representa un problema de valores de frontera, y en este caso la condición de frontera del problema en unidades adimensionales es &lt;span class="math notranslate nohighlight"&gt;\(v(R_{sol}) = v_0\)&lt;/span&gt;, donde &lt;span class="math notranslate nohighlight"&gt;\(R_{sol}\)&lt;/span&gt; es el radio del Sol, y es la posición desde la cuál comienza a desplazarse el flujo de partículas con una velocidad inicial &lt;span class="math notranslate nohighlight"&gt;\(v_0\)&lt;/span&gt; que dependerá de la densidad de partículas y la temperatura.&lt;/p&gt;
 &lt;p&gt;La generación de la espiral de Parker es efecto de la rotación del sol, por lo cual se aplica la transformación de coordenadas lagrangianas para sistemas rotantes, llevando a la ecuación diferencial&lt;/p&gt;
-&lt;div class="amsmath math notranslate nohighlight" id="equation-e6c3afb6-72f5-411b-a11a-d54ce4a0f6ea"&gt;
+&lt;div class="amsmath math notranslate nohighlight" id="equation-d0ee4939-382a-4475-9ad2-5e494b33bbbd"&gt;
 &lt;span class="eqno"&gt;(3)&lt;/span&gt;\[\begin{equation}
 \frac{d\varphi}{dR} = \frac{-\omega}{v(R)}
 \end{equation}\]&lt;/div&gt;

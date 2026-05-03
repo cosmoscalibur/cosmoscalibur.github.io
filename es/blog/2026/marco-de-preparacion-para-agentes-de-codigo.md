@@ -6,6 +6,13 @@ category: programación
 
 # Marco de preparación para agentes de código
 
+```{update} 2026-05-02
+Desde marzo de 2026, Antigravity soporta `AGENTS.md` y el directorio
+`.agents/` de forma nativa, lo que permite una gestión uniforme de
+agentes entre herramientas. La sección sobre la particularidad de
+Antigravity ha sido actualizada para reflejar este cambio.
+```
+
 Los agentes de código están aquí, y no van a irse. Pero después de meses
 usándolos —Antigravity, AmpCode, Opencode, el agente de Zed— he llegado a
 una conclusión incómoda: **el problema no suele ser el agente, sino el
@@ -23,8 +30,7 @@ El marco que presento se basa en el *Agent Readiness Model* de
 [Factory AI](https://factory.ai/news/agent-readiness), que propone cinco
 niveles de madurez y nueve pilares técnicos para evaluar qué tan preparado
 está un repositorio para el desarrollo autónomo. Lo adapto aquí con mi
-experiencia práctica y con una consideración especial para quienes usan
-Antigravity, cuyo sistema de contexto difiere del estándar `AGENTS.md`.
+experiencia práctica.
 
 ## ¿Qué es el marco de preparación para agentes?
 
@@ -178,37 +184,29 @@ Un buen `AGENTS.md` incluye:
 `AGENTS.md` es su evolución estandarizada que funciona con la mayoría de
 agentes: GitHub Copilot, AmpCode, Cursor, Opencode, Zed, y otros.
 
-### Particularidad de Antigravity
+### Antigravity y `AGENTS.md`
 
-Si usas Antigravity como IDE principal (como es mi caso), hay un detalle
-importante: **Antigravity no lee `AGENTS.md` ni `CLAUDE.md`
-automáticamente**. Su sistema de contexto utiliza
-{file}`.agent/rules/` para reglas del espacio de trabajo y
-{file}`~/.gemini/GEMINI.md` para la configuración global.
+Cuando escribí este artículo originalmente, Antigravity no leía
+`AGENTS.md` ni `CLAUDE.md` automáticamente, y su sistema de contexto
+usaba exclusivamente {file}`.agent/rules/` y
+{file}`~/.gemini/GEMINI.md`. Eso hacía necesario un *workaround*:
+crear reglas que redirigieran al agente a la documentación del
+proyecto.
 
-Esto no invalida el marco —los cinco niveles y nueve pilares aplican
-igual—, pero requiere una adaptación en cómo proporcionas el contexto al
-agente:
+Desde marzo de 2026, **Antigravity soporta `AGENTS.md` y el directorio
+`.agents/` de forma nativa**. Esto significa que ya no necesitas
+adaptaciones especiales: un solo archivo `AGENTS.md` en la raíz del
+proyecto funciona con Antigravity, GitHub Copilot, AmpCode, Cursor,
+Opencode, Zed y cualquier otro agente compatible con el estándar.
 
-1. **Mantener la documentación en {file}`README.md` y {file}`docs/`**, como
-   fuente de verdad compartida entre humanos y agentes.
-2. **Crear una regla de agente** en {file}`.agent/rules/` que instruya
-   explícitamente al agente a leer esa documentación antes de actuar.
-3. **Opcionalmente, mantener `AGENTS.md`** para las herramientas que lo
-   soporten. La fuente de verdad sigue siendo tu documentación.
+El directorio `.agents/` también es reconocido, lo que permite
+organizar habilidades de agente (*agent skills*) como la de
+[evaluación de *agent readiness*](https://github.com/cosmoscalibur/template/tree/main/.agents/skills/agent-readiness)
+directamente en el repositorio.
 
-Un ejemplo de regla en {file}`.agent/rules/documentation-first.md`:
-
-```{code} markdown
-Before starting any task in this project, read the following files:
-- README.md for project overview and setup
-- docs/architecture.md for system architecture
-- docs/conventions.md for coding conventions
-Follow the guidelines in these documents for all code generation.
-```
-
-De esta forma, un solo conjunto de documentación sirve para todos los
-agentes y para cualquier desarrollador humano.
+Esta unificación simplifica enormemente el nivel 2 del marco: un solo
+conjunto de documentación y un solo sistema de instrucciones sirve
+para todos los agentes y para cualquier desarrollador humano.
 
 ## Evalúa tu repositorio
 
