@@ -369,6 +369,54 @@ listing sources:
 - [Title](URL). Source.
 ```
 
+## Planning & Approval Workflow
+
+**Before writing any content**, the agent must present a structured plan to the
+user and obtain explicit approval. No blog post, social media draft, or file
+should be created until the plan is approved. This ensures editorial alignment on
+focus, strategy, and scope.
+
+### Plan structure
+
+Present the following plan as an artifact for user review:
+
+1. **Topic & Angle** — One-paragraph summary of what the post will cover and the
+   specific angle or thesis. Explain *why* this angle was chosen over
+   alternatives.
+2. **Target Audience** — Who is this post for? What level of expertise is
+   assumed?
+3. **Post Type** — One of: Technology/Troubleshooting, Science, Opinion,
+   Culture/Entertainment (see [Writing Style](#writing-style)).
+4. **Proposed Title** (Spanish & English) — Following the
+   [Title & Slug Strategy](#title--slug-strategy). Include the derived slug.
+5. **Tags & Categories** — Proposed tags (Spanish & English) and categories.
+   Justify tag choices: why these tags serve discoverability and ad relevance.
+6. **Section Outline** — Numbered list of H2/H3 sections with a one-sentence
+   description of each section's content. This defines the post's structure and
+   flow.
+7. **Focus & Strategy Review** — Editorial assessment covering:
+   - **SEO focus**: Primary keyword phrase and 2–3 secondary keywords targeted.
+   - **Ad alignment**: Which high-value keyword areas does this post tap into?
+   - **Content gap**: What makes this post distinct from existing content on the
+     blog or competing sources?
+   - **Bilingual decision**: Should this post be bilingual? Justify using the
+     criteria in [When to create both versions](#when-to-create-both-versions).
+8. **Social Media Drafts** — Draft posts for both X and Mastodon (Spanish &
+   English). These are reviewed as part of the plan, not after the post is
+   written. See [Social Media Posts](#social-media-posts) for format and
+   character limits.
+
+### Approval rules
+
+- The user must **explicitly approve** the plan before writing begins.
+- The user may request changes to any section of the plan. Iterate until
+  approved.
+- If the user provides a very specific brief (e.g., "write about X with these
+  tags"), still present the plan for confirmation — do not skip the approval
+  step.
+- After approval, follow the plan faithfully. Deviations discovered during
+  writing should be flagged to the user for re-approval.
+
 ## Bilingual Workflow
 
 1. Write the **Spanish version first** (primary language of the blog).
@@ -391,33 +439,67 @@ listing sources:
 
 ## Social Media Posts
 
-After creating blog posts, create X (Twitter) proposed posts to
-`social-posts.md` at the project root. 280 characters maximum. Possible alternative
-for more long messages in Mastodon.
+After creating blog posts, create proposed social media posts to
+`social-posts.md` at the project root. Create **separate posts** for each
+platform:
+
+- **X (Twitter)**: **280 characters maximum** (including URL and hashtags).
+- **Mastodon**: **500 characters maximum** (including URL and hashtags). Use the
+  extra space for a more detailed or nuanced message — not just a padded version
+  of the X post.
+
+Character counts must be verified before finalizing. The URL
+(`https://www.cosmoscalibur.com/...`) and hashtags count toward the limit.
 
 ### Format
 
 ```markdown
 ## {slug}
 
-### Español
+### X
 
-{emoji} {Engaging summary of the post in 1-2 sentences. Include the key takeaway.}
+#### Español
+
+{emoji} {Concise engaging summary — fits within 280 chars total with URL and hashtags.}
 
 https://www.cosmoscalibur.com/es/blog/{year}/{slug}
 
 #{Tag1} #{Tag2} #{Tag3}
 
-### English
+#### English
 
-{emoji} {Engaging summary of the post in 1-2 sentences. Include the key takeaway.}
+{emoji} {Concise engaging summary — fits within 280 chars total with URL and hashtags.}
 
 https://www.cosmoscalibur.com/en/blog/{year}/{slug}
 
 #{Tag1} #{Tag2} #{Tag3}
+
+### Mastodon
+
+#### Español
+
+{emoji} {More detailed summary — up to 500 chars total. Add context, a key insight, or a question to spark discussion.}
+
+https://www.cosmoscalibur.com/es/blog/{year}/{slug}
+
+#{Tag1} #{Tag2} #{Tag3} #{Tag4}
+
+#### English
+
+{emoji} {More detailed summary — up to 500 chars total. Add context, a key insight, or a question to spark discussion.}
+
+https://www.cosmoscalibur.com/en/blog/{year}/{slug}
+
+#{Tag1} #{Tag2} #{Tag3} #{Tag4}
 ```
 
-- Keep within X character limits (~280 chars per post).
+### Social media guidelines
+
+- **X posts**: Keep within 280 characters. Be punchy and direct.
+- **Mastodon posts**: Up to 500 characters. Use the space to add nuance, a
+  thought-provoking question, or additional context that wouldn't fit on X.
 - Use a relevant emoji at the start.
-- Include 3-4 hashtags derived from post tags.
+- Include 3–4 hashtags derived from post tags.
 - Link to the corresponding language version.
+- Mastodon posts should feel like a distinct, richer version — not just the X
+  post with filler added.
