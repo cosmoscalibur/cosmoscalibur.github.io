@@ -154,9 +154,9 @@ def _process_html_files(
     html_bytes_saved = 0
 
     # Pre-compute admonition maps for all languages.
-    # Even the default language may need fixes (e.g., ABlog's 'Updated on'
-    # has a fuzzy flag in es.po, so it outputs English in a Spanish build).
-    default_lang = app.config.language or "es"
+    # Sphinx builds in English internally (overridden by theme); non-English
+    # pages need admonition titles translated (e.g., "Note" → "Nota").
+    default_lang = app.config.blog_default_language
     confdir = str(app.confdir)
     outdir = Path(app.outdir)
     known_langs = get_known_langs(app)

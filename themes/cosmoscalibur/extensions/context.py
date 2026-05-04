@@ -385,7 +385,7 @@ def inject_page_context(
 
     # --- Per-page language from path prefix ---
     first_segment = pagename.split("/", maxsplit=1)[0]
-    default_lang = app.config.language or "es"
+    default_lang = app.config.blog_default_language
     known_langs = get_known_langs(app)
     page_lang = (
         first_segment if first_segment in known_langs else default_lang
@@ -413,6 +413,12 @@ def inject_page_context(
         year_part, author_part = copyright_str, ""
     context["copyright_year"] = year_part
     context["copyright_author"] = author_part
+
+    # --- Search domain for Google site: operator ---
+    base_url = (app.config.html_baseurl or "").rstrip("/")
+    # Strip protocol to get bare domain (e.g., "www.cosmoscalibur.com")
+    domain = base_url.replace("https://", "").replace("http://", "")
+    context["search_site_domain"] = domain
 
 
 def generate_pygments_css(app: Sphinx) -> None:
