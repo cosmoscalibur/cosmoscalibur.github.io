@@ -318,6 +318,13 @@ A trailing space in a key signals **prefix-match** mode. ABlog's
 `"Updated on "` matches any date suffix (e.g., `"Updated on 2024-01-01"
 → "Actualizado el 2024-01-01"`).
 
+> **Note:** `en.json` intentionally omits the `"admonitions"` section.
+> Since the theme forces Sphinx to build in English, English admonition
+> titles are already correct and need no translation. When adding a new
+> language locale file, you **must** include an `"admonitions"` section
+> that maps the English titles to the target language — otherwise
+> admonition titles on those pages will remain in English.
+
 ## Dependencies
 
 The theme requires these Python packages (already in `pyproject.toml`):

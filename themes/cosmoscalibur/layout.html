@@ -40,9 +40,12 @@
   crossorigin="anonymous"></script>
   {% endif %}
 
-  {# Hreflang alternate links for multilingual SEO — emit all alternates #}
-  {% if lang_alternates is defined and lang_alternates %}
+  {# Hreflang — self-referential link (always emitted for language-prefixed pages) #}
+  {% if lang_current_code is defined and lang_current_abs_url is defined %}
   <link rel="alternate" hreflang="{{ lang_current_code }}" href="{{ lang_current_abs_url }}" />
+  {% endif %}
+  {# Hreflang alternate links for multilingual SEO #}
+  {% if lang_alternates is defined and lang_alternates %}
   {% for alt in lang_alternates %}
   <link rel="alternate" hreflang="{{ alt.code }}" href="{{ alt.abs_url }}" />
   {% endfor %}

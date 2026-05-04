@@ -162,6 +162,8 @@ def _process_html_files(
     known_langs = get_known_langs(app)
     admonition_maps: dict[str, dict[str, str]] = {}
     for lang in known_langs:
+        if lang == default_lang:
+            continue  # Build language needs no admonition translation
         amap = get_admonition_map(lang, confdir)
         if amap:
             admonition_maps[lang] = amap
@@ -248,22 +250,33 @@ def _translate_admonitions(
 ) -> str:
     """Replace admonition titles in HTML for non-default language pages.
 
-    Matches ``<p class="admonition-title">Title</p>`` and replaces
-    the title text.  Also handles ABlog's ``Updated on {date}``
-    admonitions which include a date suffix after the translatable prefix.
+    Anchors replacements to ``<div class="admonition ...">`` containers
+    to avoid false matches in code blocks or quoted HTML examples.
+    Also handles ABlog's ``Updated on {date}`` admonitions which include
+    a date suffix after the translatable prefix.
     """
     for src_title, dst_title in admonition_map.items():
-        # Exact match (standard admonitions: Note, Warning, etc.)
-        content = content.replace(
-            f'<p class="admonition-title">{src_title}</p>',
-            f'<p class="admonition-title">{dst_title}</p>',
-        )
-        # Prefix match (ABlog update: "Actualizado el 2024-01-01")
-        # Only apply if the source is a prefix pattern (ends with space)
         if src_title.endswith(" "):
+            # Prefix match (ABlog update: "Updated on 2024-01-01")
             pattern = re.compile(
-                rf'(<p class="admonition-title">){re.escape(src_title)}'
-                r'([^<]+</p>)',
+                r'(<div\s+class="admonition\b[^"]*">\s*'
+                r'<p\s+class="admonition-title">)'
+                + re.escape(src_title)
+                + r'([^<]+</p>)',
+                re.DOTALL,
+            )
+            content = pattern.sub(
+                rf'\g<1>{dst_title}\2',
+                content,
+            )
+        else:
+            # Exact match (standard admonitions: Note, Warning, etc.)
+            pattern = re.compile(
+                r'(<div\s+class="admonition\b[^"]*">\s*'
+                r'<p\s+class="admonition-title">)'
+                + re.escape(src_title)
+                + r'(</p>)',
+                re.DOTALL,
             )
             content = pattern.sub(
                 rf'\g<1>{dst_title}\2',

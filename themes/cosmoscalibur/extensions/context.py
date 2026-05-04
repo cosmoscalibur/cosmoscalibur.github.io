@@ -26,10 +26,16 @@ _PYGMENTS_DARK = "a11y-dark"
 _CATEGORY_DIRECTIVE_RE = re.compile(r":category:\s*(.+)")
 
 
+@functools.lru_cache(maxsize=4)
+def _category_re_cached(langs_key: frozenset[str]) -> re.Pattern[str]:
+    """Compile and cache the category regex for a given set of languages."""
+    langs = "|".join(re.escape(lang) for lang in sorted(langs_key))
+    return re.compile(rf"^({langs})/blog/category/[^/]+$")
+
+
 def _category_re(app: Sphinx) -> re.Pattern[str]:
     """Build a regex matching ``{lang}/blog/category/{slug}`` for all known languages."""
-    langs = "|".join(re.escape(lang) for lang in get_known_langs(app))
-    return re.compile(rf"^({langs})/blog/category/[^/]+$")
+    return _category_re_cached(frozenset(get_known_langs(app)))
 
 
 # ---------------------------------------------------------------------------
@@ -128,18 +134,24 @@ def _resolve_hreflang(
 
     context["lang_alternates"] = alternates
 
+    # Current page's language info — needed for self-referential hreflang
+    # even when no alternates are found (signals language intent to crawlers).
+    if len(parts) > 1 and parts[0] in known_langs:
+        context["lang_current_code"] = parts[0]
+        cur_uri = app.builder.get_target_uri(pagename)
+        context["lang_current_abs_url"] = f"{base_url}/{cur_uri}"
+    elif pagename == "index":
+        context["lang_current_code"] = default_lang
+        cur_uri = app.builder.get_target_uri(pagename)
+        context["lang_current_abs_url"] = f"{base_url}/{cur_uri}"
+
     # Legacy variables — first alternate (backward compat for lang-switcher)
     if alternates:
         first = alternates[0]
         context["lang_alt_url"] = first["url"]
         context["lang_alt_label"] = first["label"]
         context["lang_alt_code"] = first["code"]
-        context["lang_current_code"] = (
-            parts[0] if len(parts) > 1 and parts[0] in known_langs else default_lang
-        )
-        cur_uri = app.builder.get_target_uri(pagename)
         context["lang_alt_abs_url"] = first["abs_url"]
-        context["lang_current_abs_url"] = f"{base_url}/{cur_uri}"
 
 
 def _resolve_category_links(
@@ -322,8 +334,6 @@ def _resolve_json_ld(
             "@context": "https://schema.org",
             "@type": "BlogPosting",
             "headline": context.get("title", ""),
-            "datePublished": pub_date.isoformat() if pub_date else None,
-            "dateModified": mod_date.isoformat() if mod_date else None,
             "author": {
                 "@type": "Person",
                 "name": author_name,
@@ -335,6 +345,13 @@ def _resolve_json_ld(
             },
             "publisher": publisher
         }
+
+        # Dates: always present for published posts; omitted for drafts
+        # (avoids null values that Google's validator rejects).
+        if pub_date:
+            article["datePublished"] = pub_date.isoformat()
+            article["dateModified"] = (mod_date or pub_date).isoformat()
+
         
         # Add description if available
         if desc := context.get("description"):
