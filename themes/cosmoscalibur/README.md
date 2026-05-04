@@ -300,15 +300,23 @@ The `t()` function is injected into every page's Jinja2 context by
 
 #### Admonition Translation
 
-The optimizer post-processes built HTML to fix admonition titles per
-page language. This solves two problems:
+The theme overrides Sphinx's `language` to `"en"` internally (in
+`_sync_config`) so all admonition titles come out in English — the
+standard i18n base language. The user's actual language (from
+`conf.py`) is saved as `blog_default_language` for theme logic.
 
-- **Standard admonitions** (Note, Warning, etc.): Sphinx translates
-  these using the global `language` setting, but in a multi-language
-  site, non-default language pages get the wrong titles.
-- **ABlog update directive**: ABlog's `update` directive has a fuzzy
-  translation flag in some locales, so it may output English titles
-  even in a Spanish build.
+The `<html lang>` attribute is fixed per-page via `{% set language =
+page_lang %}` in `layout.html`, ensuring correct language metadata
+for search engines and browsers.
+
+The optimizer post-processes built HTML to translate admonition titles
+for non-English pages. Each locale file's `"admonitions"` section maps
+English titles to the target language (e.g., `"Note" → "Nota"`).
+
+A trailing space in a key signals **prefix-match** mode. ABlog's
+`update` directive generates titles as `_("Updated on ") + date`, so
+`"Updated on "` matches any date suffix (e.g., `"Updated on 2024-01-01"
+→ "Actualizado el 2024-01-01"`).
 
 ## Dependencies
 
