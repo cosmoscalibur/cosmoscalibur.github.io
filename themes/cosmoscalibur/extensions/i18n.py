@@ -41,12 +41,21 @@ def _load_translations(lang: str, confdir: str) -> dict[str, Any]:
     theme_file = _THEME_LOCALE_DIR / f"{lang}.json"
     fallback_file = _THEME_LOCALE_DIR / "en.json"
 
-    if user_file.exists():
-        data = json.loads(user_file.read_text(encoding="utf-8"))
-    elif theme_file.exists():
-        data = json.loads(theme_file.read_text(encoding="utf-8"))
-    else:
+    # Always start from the English fallback so missing keys degrade gracefully
+    try:
         data = json.loads(fallback_file.read_text(encoding="utf-8"))
+    except (FileNotFoundError, json.JSONDecodeError) as exc:
+        raise RuntimeError(
+            f"Theme i18n: fallback locale file missing or corrupted: {fallback_file}"
+        ) from exc
+
+    if theme_file.exists() and theme_file != fallback_file:
+        override = json.loads(theme_file.read_text(encoding="utf-8"))
+        data.update(override)
+
+    if user_file.exists():
+        override = json.loads(user_file.read_text(encoding="utf-8"))
+        data.update(override)
 
     return data
 
@@ -102,4 +111,4 @@ def get_known_langs(app: Sphinx) -> set[str]:
     blog_languages = getattr(app.config, "blog_languages", None) or {}
     if blog_languages:
         return set(blog_languages.keys())
-    return {app.config.language or "es"}
+    return {app.config.blog_default_language}
