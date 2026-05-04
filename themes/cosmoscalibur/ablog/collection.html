@@ -45,7 +45,7 @@
 
   {% if collection.catalog is defined and collection.catalog.name == "tags" %}
     <p class="collection-description">
-      {{ t("tagged_with", tag=collection.name, site=project) | safe }}
+      {{ t("tagged_with", tag=collection.name|e, site=project|e) | safe }}
     </p>
   {% endif %}
 
