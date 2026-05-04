@@ -1,4 +1,6 @@
 {# Cosmoscalibur theme — layout extending Sphinx basic/layout.html #}
+{# Override Sphinx's global language with per-page language for <html lang> #}
+{% set language = page_lang %}
 {% extends "basic/layout.html" %}
 
 {# ──── CSS ──── #}
@@ -38,10 +40,15 @@
   crossorigin="anonymous"></script>
   {% endif %}
 
-  {# Hreflang alternate links for multilingual SEO #}
-  {% if lang_alt_abs_url is defined and lang_alt_abs_url %}
-  <link rel="alternate" hreflang="{{ lang_alt_code }}" href="{{ lang_alt_abs_url }}" />
+  {# Hreflang — self-referential link (always emitted for language-prefixed pages) #}
+  {% if lang_current_code is defined and lang_current_abs_url is defined %}
   <link rel="alternate" hreflang="{{ lang_current_code }}" href="{{ lang_current_abs_url }}" />
+  {% endif %}
+  {# Hreflang alternate links for multilingual SEO #}
+  {% if lang_alternates is defined and lang_alternates %}
+  {% for alt in lang_alternates %}
+  <link rel="alternate" hreflang="{{ alt.code }}" href="{{ alt.abs_url }}" />
+  {% endfor %}
   {% endif %}
 
   {# JSON-LD Structured Data #}

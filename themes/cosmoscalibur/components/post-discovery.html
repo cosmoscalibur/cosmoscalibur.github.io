@@ -3,7 +3,7 @@
    CSS controls which instance is visible per viewport. #}
 {% if ablog and pagename in ablog %}
 {% set post = ablog[pagename] %}
-{% set lang = page_lang | default("es") %}
+{% set lang = page_lang %}
 
 <div class="post-discovery" aria-label="{{ _('Discover more') }}">
   {# ── Tags ── #}
@@ -46,7 +46,7 @@
   {% if ns_posts.items %}
   <div class="post-discovery__related">
     <h3 class="post-discovery__heading">
-      {% if lang == "en" %}Related Posts{% else %}Artículos relacionados{% endif %}
+      {{ t("related_posts") }}
     </h3>
     <ul>
       {% for item in ns_posts.items %}

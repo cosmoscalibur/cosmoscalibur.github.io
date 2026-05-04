@@ -119,6 +119,12 @@ def _sync_config(app: Sphinx) -> None:
     if not getattr(cfg, "blog_default_language", None) and cfg.language:
         cfg.blog_default_language = cfg.language
 
+    # Force Sphinx to build with English internally so admonitions
+    # come out in English (standard i18n base).  The theme fixes
+    # <html lang> per-page and handles all translations via t()
+    # and admonition post-processing.
+    cfg.language = "en"
+
     # copyright = "{first_post_year}-{current_year}, {author}"
     if not cfg.copyright and cfg.author:
         confdir = Path(app.confdir)

@@ -12,13 +12,9 @@
     </div>
 
     <p class="site-footer__powered">
-      {% if page_lang == 'es' %}
-        Creado con <a href="https://www.sphinx-doc.org/">Sphinx</a> y
-        <a href="https://ablog.readthedocs.io/">ABlog</a>
-      {% else %}
-        Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> and
-        <a href="https://ablog.readthedocs.io/">ABlog</a>
-      {% endif %}
+      {{ t("built_with",
+           sphinx='<a href="https://www.sphinx-doc.org/">Sphinx</a>',
+           ablog='<a href="https://ablog.readthedocs.io/">ABlog</a>') | safe }}
     </p>
   </div>
 </footer>

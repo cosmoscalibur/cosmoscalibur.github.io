@@ -1,5 +1,7 @@
-{# Override Sphinx search page — hide the redundant inline search form.
-   The navbar search is always available, so the in-page form is unnecessary. #}
-{% extends "basic/search.html" %}
+{# Search is handled by Google redirect — this page is no longer used.
+   Sphinx still generates it, so we provide a minimal stub. #}
+{% extends "layout.html" %}
 
-{% block searchbox %}{% endblock %}
+{% block body %}
+<p>{{ t("search_redirect") }}</p>
+{% endblock %}

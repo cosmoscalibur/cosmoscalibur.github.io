@@ -27,6 +27,8 @@ from xml.etree import ElementTree
 from sphinx.application import Sphinx
 from sphinx.util.logging import getLogger
 
+from .i18n import get_known_langs
+
 __version__ = "2.6.0"
 
 logger = getLogger(__name__)
@@ -87,8 +89,11 @@ def add_html_link(
     # Exclude tags, global indexes (blog/index, blog/archive), and technical pages.
     excluded_prefixes = ("blog/tag/", "blog/index", "blog/archive", "genindex", "search")
     
+    # Build dynamic language prefixes from blog_languages config
+    known_prefixes = tuple(f"{lang}/" for lang in get_known_langs(app))
+
     if sitemap_link not in app.builder.config.sitemap_excludes and (
-        sitemap_link.startswith(("es/", "en/", "blog/category/"))
+        sitemap_link.startswith(known_prefixes + ("blog/category/",))
     ) and not sitemap_link.startswith(excluded_prefixes):
         
         # Capture lastmod from ABlog post if available
