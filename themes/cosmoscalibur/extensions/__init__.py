@@ -7,6 +7,7 @@ Exports the three Sphinx event handlers that ``__init__.py`` connects:
 * ``post_build``    — ``build-finished`` (all post-processing)
 """
 
+from pathlib import Path
 from typing import Any
 
 from sphinx.application import Sphinx
@@ -67,3 +68,12 @@ def post_build(app: Sphinx, exception: Exception | None) -> None:
     generate_pygments_css(app)
     create_sitemap(app, exception)
     post_process_html(app, exception)
+
+    # Remove Sphinx search files (search is handled by Google redirect)
+    outdir = Path(app.outdir)
+    for search_file in ("searchindex.js",
+                        "_static/searchtools.js",
+                        "_static/language_data.js"):
+        path = outdir / search_file
+        if path.exists():
+            path.unlink()
