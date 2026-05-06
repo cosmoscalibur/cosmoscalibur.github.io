@@ -3,29 +3,26 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path("themes").resolve()))
+sys.path.insert(0, str(Path(".").resolve()))
 
-## --- Ablog ---
+## --- Cosmoblog ---
+# All optional — defaults shown. Languages inferred from directory structure.
 blog_path = "blog"
 blog_post_pattern = "*/blog/*/*"
-blog_languages = {
-    "es": ("Español", None),
-    "en": ("English", None),
-}
 blog_feed_fulltext = True
 
 ## categories, tagcloud, archives, postcard, recentposts, authors, languages, locations
 html_sidebars = {
-    "index": ["ablog/recentposts.html"],
-    "*/index": ["ablog/recentposts.html"],
-    "blog": ["ablog/recentposts.html"],
-    "blog/**": ["ablog/recentposts.html"],
+    "index": ["cosmoscalibur/recentposts.html"],
+    "*/index": ["cosmoscalibur/recentposts.html"],
+    "blog": ["cosmoscalibur/recentposts.html"],
+    "blog/**": ["cosmoscalibur/recentposts.html"],
     "*/blog/20*/*": [],
     "*/blog/category/*": [],
     "*/blog/archive": [],
-    "*/me/**": ["ablog/recentposts.html"],
+    "*/me/**": ["cosmoscalibur/recentposts.html"],
     "404": [],
 }
-ablog_website = "docs"
 
 
 # --- Sphinx Options ---
@@ -33,7 +30,7 @@ extensions = [
     "myst_nb",
     "sphinx_design",
     "sphinxext.opengraph",
-    "ablog",
+    "cosmoblog",
     "cosmoscalibur",
 ]
 
@@ -106,4 +103,5 @@ exclude_patterns = [
     "**/draft/*",
     "**/skills/*",
     "social-posts.md",
+    "cosmoblog",
 ]

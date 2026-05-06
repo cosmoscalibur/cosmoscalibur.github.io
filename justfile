@@ -22,18 +22,18 @@ restore-social:
 
 # Eliminar archivos generados (preserva social previews)
 clean: backup-social
-    uv run -- ablog clean
+    rm -rf docs .doctrees
     just restore-social
 
 # Generar con entorno local
 build $DEPLOY_LOCAL="1": clean
-    uv run -- ablog build
+    uv run -- sphinx-build . docs
 
 # Generar con entorno final
 deploy: clean
-    uv run -- ablog build
+    uv run -- sphinx-build . docs
 
 # Iniciar servidor con entorno local
 serve: build
     -kill $(lsof -ti:8000) 2>/dev/null
-    uv run -- ablog serve
+    uv run -- python -m http.server -d docs
