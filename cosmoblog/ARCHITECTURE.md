@@ -130,3 +130,58 @@ Extracting the first image URI during registration restores visual parity.
 excerpt as a `<a class="image-reference"><img></a>` wrapper, matching
 ABlog's production HTML structure so the existing CSS applies unchanged.
 
+---
+
+## 9. Doctree Post-Transforms over HTML Regex
+
+**Decision:** Move lazy-loading and image dimension injection from
+post-build HTML regex processing into Sphinx `SphinxPostTransform`
+subclasses that operate on the doctree before rendering.
+
+**Context:** The original optimizer used regex patterns on rendered HTML
+to add `loading="lazy"` and `width`/`height` attributes.  This is
+fragile (regexes can mismatch minified HTML) and doesn't apply to
+nodes generated at write-time (e.g., postlist card images).
+Post-transforms run at write time (after `doctree-resolved`), so they
+see the fully resolved doctree including dynamically generated nodes.
+
+**Transforms:**
+- `LazyImageTransform` (priority 800): Sets `loading="lazy"` on all
+  images except the first (assumed above-the-fold / LCP candidate).
+- `ImageDimensionsTransform` (priority 810): Reads source image files
+  (header-only, no Pillow) to inject `width`/`height` attributes,
+  preventing Cumulative Layout Shift (CLS).
+
+---
+
+## 10. WebP Conversion in Post-Build (Output Only)
+
+**Decision:** Convert images to WebP and rewrite HTML references as
+post-build processing in the theme optimizer, operating exclusively
+on the output directory (`_images/`).
+
+**Context:** Two alternative approaches were evaluated and rejected:
+
+1. **Read-phase transform** — Creating `.webp` in the source tree
+   before `ImageCollector` runs.  Pollutes the source tree with build
+   artifacts and conflicts with legitimately committed WebP source
+   files.
+
+2. **Post-transform URI rewrite** — Changing `node['uri']` from
+   `.png` to `.webp` at write time, so HTML is generated correctly.
+   Not feasible because Sphinx's per-document write flow is:
+
+       apply_post_transforms()  →  post_process_images()  →  write_doc()
+
+   `post_process_images()` populates `builder.images[uri] = basename`
+   using the node URI.  `write_doc()` looks up `builder.images[uri]`
+   to resolve the output path.  There is no hook between these two
+   steps, so rewriting the URI in a post-transform (which runs
+   before `post_process_images`) breaks the lookup.
+
+**Approach:** The optimizer converts PNG/JPEG in `_images/` after
+Sphinx finishes writing, then rewrites `_images/*.png|jpg` references
+in HTML via a targeted regex.  This keeps the source tree clean and
+handles images from all sources (blog posts, jupyter outputs, etc.)
+uniformly.
+

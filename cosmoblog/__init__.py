@@ -19,6 +19,7 @@ from sphinx.application import Sphinx
 
 from .directives import PostListDirective, UpdateDirective, UpdateNode
 from .engine import BlogEngine
+from .transforms import register_transforms
 
 __version__ = "0.1.0"
 
@@ -46,6 +47,9 @@ def setup(app: Sphinx) -> dict[str, Any]:
             lambda s, n: s.depart_admonition(n),
         ),
     )
+
+    # --- Doctree transforms ---
+    register_transforms(app)
 
     # --- Event hooks ---
     app.connect("config-inited", _config_inited)
