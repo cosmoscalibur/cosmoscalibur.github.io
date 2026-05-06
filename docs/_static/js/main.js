@@ -7,7 +7,7 @@
 /* ── Mobile nav toggle ── */
 var navToggle=document.querySelector(`.navbar__toggle`),navMenu=document.getElementById(`navbar-mobile-menu`);navToggle&&navMenu&&navToggle.addEventListener(`click`,function(){var expanded=navToggle.getAttribute(`aria-expanded`)===`true`;navToggle.setAttribute(`aria-expanded`,String(!expanded)),navMenu.classList.toggle(`is-open`)});
 /* ── Post byline: move after <h1> title ── */
-var byline=document.querySelector(`.post-byline`),h1=document.querySelector(`.content section > h1`);byline&&h1&&(h1.after(byline),byline.classList.add(`is-placed`));
+var moveByline=function(){var byline=document.querySelector(`.post-byline`),h1=document.querySelector(`.content section > h1`);byline&&h1&&(h1.after(byline),byline.classList.add(`is-placed`))};window.requestIdleCallback?window.requestIdleCallback(moveByline):window.requestAnimationFrame(moveByline);
 /* ── Site-scoped Google search (replaces inline script) ── */
 var searchForm=document.getElementById(`search-overlay`);searchForm&&searchForm.addEventListener(`submit`,function(){var input=document.getElementById(`search-input`),hidden=document.getElementById(`search-q`);if(input&&hidden){var domain=document.documentElement.dataset.searchDomain||``;hidden.value=(domain?`site:`+domain+` `:``)+input.value}});
 /* ── Search overlay toggle (mobile) ── */
