@@ -37,7 +37,7 @@ the installation is to indicate that it is only for the current user and that th
 :code:`PATH` is not associated. Following this advice will avoid headaches in the
 future.
 
-.. update:: 2020-07-02 12:00:00
+.. update:: 2020-07-02
 
    To know more details about the installation process you can consult my
    post :doc:`/en/blog/2020/instalar-python-anaconda`.

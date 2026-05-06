@@ -129,7 +129,7 @@ directamente con el nombre (``code``) o por el menú.
 
 Puedes buscar más paquetes en `snapcraf <https://snapcraft.io/store>`_.
 
-.. update:: 2020-07-02 12:00:00
+.. update:: 2020-07-02
 
     A partir de Linux Mint 20 debes primero configurar APT para poder instalar
     Snap. Puedes revisar mi publicación

@@ -49,7 +49,7 @@ que la metodología de puntuación tenga la mayor rigurosidad posible).
 Los dejo para que participen un poco de esto,
 `aquí <http://www.eternagame.org/web/>`_.
 
-.. update:: 2020-10-10 12:00:00
+.. update:: 2020-10-10
 
    Eterna se ha unido a la búsqueda de la vacuna contra la COVID-19, mediante
    la búsqueda por simulación de vacunas mRNA estables. El
