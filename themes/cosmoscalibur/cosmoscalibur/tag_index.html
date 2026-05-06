@@ -1,0 +1,32 @@
+{# Tag index — lists all tags with post counts.
+   Always noindex (thin index page). #}
+{%- extends "page.html" %}
+{% block extrahead %}
+  {{ super() }}
+  <meta name="robots" content="noindex, follow">
+{% endblock %}
+{% block body %}
+<div class="section cosmoblog__catalog">
+  <h1>{{ title }}</h1>
+  {% for tag_name, docnames in tags.items()|sort %}
+  {% set posts = engine.by_tag(tag_name) %}
+  {% if posts %}
+  <div class="section cosmoblog__catalog_header">
+    <h2>{{ tag_name }} ({{ posts|length }})</h2>
+    {% for post in posts %}
+    <div class="section cosmoblog__catalog_post">
+      <p>
+        {% if post.published and post.date %}
+        <span>{{ post.date.strftime(engine.date_format) }}</span>
+        {% else %}
+        <span>Draft</span>
+        {% endif %} -
+        <a href="{{ pathto(post.docname) }}">{{ post.title }}</a>
+      </p>
+    </div>
+    {% endfor %}
+  </div>
+  {% endif %}
+  {% endfor %}
+</div>
+{% endblock body %}

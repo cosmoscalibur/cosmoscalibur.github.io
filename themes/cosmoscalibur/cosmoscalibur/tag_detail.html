@@ -1,0 +1,49 @@
+{# Tag detail page — shows posts tagged with a specific tag.
+   noindex policy:
+   - Tags with ≤2 articles: noindex (thin content)
+   - Tags with 3+ articles: indexed (with templated description) #}
+{%- extends "page.html" %}
+{% block extrahead %}
+  {{ super() }}
+  {% if collection_posts is defined and collection_posts|length <= 2 %}
+  <meta name="robots" content="noindex, follow">
+  {% endif %}
+{% endblock %}
+{% block body %}
+<div class="section cosmoblog__collection">
+  <h1>
+    <span>{{ header }}
+      {{ tag_name }}
+    </span>
+  </h1>
+
+  {% if collection_posts %}
+  <p class="collection-description">
+    {{ t("tagged_with", tag=tag_name|e, site=project|e) | safe }}
+  </p>
+  {% endif %}
+
+  {% for post in collection_posts %}
+  <article class="section cosmoblog-post cosmoblog-post-card">
+    <a href="{{ pathto(post.docname) }}" class="cosmoblog-post-card__link">
+      <h2 class="cosmoblog-post-title">{{ post.title }}</h2>
+    </a>
+    <div class="cosmoblog-post-card__meta">
+      {% if post.published and post.date %}
+      <span class="cosmoblog-post-card__date">{{ post.date.strftime(engine.date_format_short) }}</span>
+      {% else %}
+      <span class="cosmoblog-post-card__date">Draft</span>
+      {% endif %}
+      {% if post.category %}
+      <span class="cosmoblog-post-card__sep">·</span>
+      <span class="cosmoblog-post-card__category">
+        {% for cat in post.category %}
+          {{ cat }}{% if not loop.last %}, {% endif %}
+        {% endfor %}
+      </span>
+      {% endif %}
+    </div>
+  </article>
+  {% endfor %}
+</div>
+{% endblock body %}

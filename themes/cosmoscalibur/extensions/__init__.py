@@ -4,7 +4,7 @@ Exports the three Sphinx event handlers that ``__init__.py`` connects:
 
 * ``init_sitemap``  — ``builder-inited`` (one-time setup)
 * ``page_context``  — ``html-page-context`` (per-page context injection)
-* ``post_build``    — ``build-finished`` (all post-processing)
+* ``post_build``    — ``build-finished`` (all post-build operations)
 """
 
 from pathlib import Path
@@ -12,7 +12,6 @@ from typing import Any
 
 from sphinx.application import Sphinx
 
-from .ablog_category_suppress import setup as _setup_ablog_suppress
 from .context import (
     generate_pygments_css,
     inject_page_context,
@@ -27,7 +26,6 @@ from .sitemap import (
 )
 
 __all__ = [
-    "_setup_ablog_suppress",
     "init_sitemap",
     "page_context",
     "post_build",
@@ -55,7 +53,7 @@ def page_context(
 def post_build(app: Sphinx, exception: Exception | None) -> None:
     """Unified ``build-finished`` handler.
 
-    Executes all post-processing in optimal order:
+    Executes all post-build operations in optimal order:
     1. Generate Pygments CSS (must precede minification).
     2. Generate sitemap.xml.
     3. Convert images to WebP + update HTML references.

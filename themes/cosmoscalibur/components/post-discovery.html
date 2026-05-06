@@ -1,8 +1,8 @@
 {# Discovery zone — tags + related posts.
    Included in both sidebar and main content.
    CSS controls which instance is visible per viewport. #}
-{% if ablog and pagename in ablog %}
-{% set post = ablog[pagename] %}
+{% if cosmoblog_post %}
+{% set post = cosmoblog_post %}
 {% set lang = page_lang %}
 
 <div class="post-discovery" aria-label="{{ _('Discover more') }}">
@@ -11,7 +11,7 @@
   <div class="post-discovery__tags">
     <span class="post-discovery__label">🏷️</span>
     {% for tag in post.tags %}
-      <a class="post-discovery__tag" href="{{ pathto(tag.docname) }}">{{ tag }}</a>
+      <span class="post-discovery__tag">{{ tag }}</span>
       {%- if not loop.last %}, {% endif %}
     {% endfor %}
   </div>
@@ -19,26 +19,19 @@
 
   {# ── Related posts ── #}
   {% set current_cats = post.category %}
-  {% set ns = namespace(cat_names=[]) %}
-  {% for cat in current_cats %}
-    {% set ns.cat_names = ns.cat_names + [cat.name] %}
-  {% endfor %}
 
   {% set ns_posts = namespace(count=0, items=[]) %}
-  {% for recent in ablog.recent(none, pagename) %}
+  {% for recent in cosmoblog.recent(none, post.docname, lang) %}
     {% if ns_posts.count < 5 %}
-      {% set post_lang = recent.docname.split("/")[0] %}
-      {% if post_lang == lang %}
-        {% set ns_match = namespace(found=false) %}
-        {% for rcat in recent.category %}
-          {% if rcat.name in ns.cat_names %}
-            {% set ns_match.found = true %}
-          {% endif %}
-        {% endfor %}
-        {% if ns_match.found %}
-          {% set ns_posts.count = ns_posts.count + 1 %}
-          {% set ns_posts.items = ns_posts.items + [recent] %}
+      {% set ns_match = namespace(found=false) %}
+      {% for rcat in recent.category %}
+        {% if rcat in current_cats %}
+          {% set ns_match.found = true %}
         {% endif %}
+      {% endfor %}
+      {% if ns_match.found %}
+        {% set ns_posts.count = ns_posts.count + 1 %}
+        {% set ns_posts.items = ns_posts.items + [recent] %}
       {% endif %}
     {% endif %}
   {% endfor %}
@@ -51,8 +44,8 @@
     <ul>
       {% for item in ns_posts.items %}
       <li>
-        <a href="{{ pathto(item.docname) }}{{ anchor(item) }}">
-          {{ item.date.strftime(ablog.post_date_format_short) + " - " + item.title }}
+        <a href="{{ pathto(item.docname) }}">
+          {{ item.date.strftime(cosmoblog.date_format_short) + " - " + item.title }}
         </a>
       </li>
       {% endfor %}

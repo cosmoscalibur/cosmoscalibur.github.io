@@ -1,11 +1,11 @@
 {# Post byline — date + author, rendered below title via JS DOM move.
    Hidden initially (CSS visibility:hidden), JS moves it after <h1> and reveals it. #}
-{% if ablog and pagename in ablog %}
-{% set post = ablog[pagename] %}
+{% if cosmoblog_post %}
+{% set post = cosmoblog_post %}
 <div class="post-byline" aria-label="{{ _('Post information') }}">
   {% if post.date %}
   <span class="post-byline__item">
-    📅 {{ post.date.strftime(ablog.post_date_format) }}
+    📅 {{ post.date.strftime(cosmoblog.date_format) }}
   </span>
   {% endif %}
 </div>

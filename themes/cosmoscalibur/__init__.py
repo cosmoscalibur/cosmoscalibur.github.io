@@ -1,7 +1,7 @@
 """Cosmoscalibur Sphinx theme - minimal, fast, WCAG 2.1 AA accessible.
 
 Self-contained theme package. Registers the theme and connects all
-custom extension hooks (context injection, sitemap, performance optimizer)
+custom extension hooks (context injection, sitemap, build pipeline)
 from a single ``setup()`` entry point.
 """
 
@@ -15,7 +15,6 @@ from urllib.parse import urlparse
 from sphinx.application import Sphinx
 
 from .extensions import init_sitemap, page_context, post_build
-from .extensions import _setup_ablog_suppress
 from .extensions.youtube import setup as _setup_youtube
 
 
@@ -31,8 +30,6 @@ def setup(app: Sphinx) -> dict[str, Any]:
     app.config.fontawesome_included = False
     app.config.html_show_sourcelink = False
     app.config.html_copy_source = False
-    # ABlog
-    app.config.post_show_prev_next = False
 
     # Sitemap (only user-configurable value)
     app.add_config_value("sitemap_excludes", default=[], rebuild="")
@@ -45,9 +42,6 @@ def setup(app: Sphinx) -> dict[str, Any]:
     app.connect("builder-inited", init_sitemap)
     app.connect("html-page-context", page_context)
     app.connect("build-finished", post_build)
-
-    # Suppress ABlog's auto-generated category pages
-    _setup_ablog_suppress(app)
 
     # Built-in YouTube directive (replaces sphinxcontrib-youtube)
     _setup_youtube(app)
@@ -67,24 +61,12 @@ def _sync_config(app: Sphinx) -> None:
     Identity (single-author focus):
     - ``html_title`` ← ``project``
     - ``blog_title`` ← ``html_title``
-    - ``blog_authors`` ← ``{author.split()[0]: (author, None)}``
-    - ``blog_default_author`` ← first key in ``blog_authors``
     - ``blog_default_language`` ← ``language``
     - ``copyright`` ← first post year + current year + ``author``
 
     URL / sitemap / OGP:
-    - ``blog_baseurl`` ← ``html_baseurl``
     - ``ogp_site_url`` ← ``html_baseurl.rstrip("/")``
     - ``ogp_custom_meta_tags`` ← ``x_url`` + ``mastodon_url``
-
-    Opinionated ABlog/MyST defaults:
-    - ``post_date_format`` = ``"%Y-%m-%d"``
-    - ``post_date_format_short`` = ``"%Y-%m-%d"``
-    - ``post_auto_excerpt`` = ``1``
-    - ``post_auto_image`` = ``1``
-    - ``myst_heading_anchors`` = ``3``
-    - ``nb_execution_mode`` = ``"off"``
-    - ``nb_render_markdown_format`` = ``"myst"``
 
     Project paths:
     - ``html_theme_path`` = ``["themes"]``
@@ -99,25 +81,10 @@ def _sync_config(app: Sphinx) -> None:
     if cfg.project:
         cfg.html_title = cfg.project
 
-    # blog_title = project (override ABlog's default "Blog")
-    if cfg.project:
-        cfg.blog_title = cfg.project
-
-    # blog_authors from author (single-author shortcut)
-    if not getattr(cfg, "blog_authors", None) and cfg.author:
-        name = cfg.author
-        short = name.split()[0] if name else "Author"
-        cfg.blog_authors = {short: (name, None)}
-        if not getattr(cfg, "blog_default_author", None):
-            cfg.blog_default_author = short
-    elif getattr(cfg, "blog_authors", None) and not getattr(
-        cfg, "blog_default_author", None
-    ):
-        cfg.blog_default_author = next(iter(cfg.blog_authors))
-
-    # blog_default_language = language
-    if not getattr(cfg, "blog_default_language", None) and cfg.language:
-        cfg.blog_default_language = cfg.language
+    # blog_default_language = language (original, before we force English)
+    original_lang = cfg.language or "es"
+    if not getattr(cfg, "blog_default_language", None):
+        cfg.blog_default_language = original_lang
 
     # Force Sphinx to build with English internally so admonitions
     # come out in English (standard i18n base).  The theme fixes
@@ -139,10 +106,6 @@ def _sync_config(app: Sphinx) -> None:
             cfg.copyright = f"{start}-{now}, {cfg.author}"
 
     # ── URL / sitemap / OGP ───────────────────────────────────────
-
-    # blog_baseurl = html_baseurl
-    if not getattr(cfg, "blog_baseurl", None) and cfg.html_baseurl:
-        cfg.blog_baseurl = cfg.html_baseurl
 
     # ogp_site_url = html_baseurl (without trailing slash)
     if not getattr(cfg, "ogp_site_url", None) and cfg.html_baseurl:
@@ -166,15 +129,6 @@ def _sync_config(app: Sphinx) -> None:
             )
         if tags:
             cfg.ogp_custom_meta_tags = tags
-
-    # ── Opinionated ABlog defaults ────────────────────────────────
-
-    cfg.post_date_format = "%Y-%m-%d"
-    cfg.post_date_format_short = "%Y-%m-%d"
-    cfg.post_auto_excerpt = 1
-    cfg.post_auto_image = 1
-
-
 
     # ── Project paths ─────────────────────────────────────────────
 
