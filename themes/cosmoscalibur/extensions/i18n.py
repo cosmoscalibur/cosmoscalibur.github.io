@@ -15,7 +15,7 @@ Usage in Python::
 Usage in Jinja2 templates (via ``t()`` injected by ``context.py``)::
 
     {{ t("home") }}
-    {{ t("built_with", sphinx="...", ablog="...") }}
+    {{ t("built_with", sphinx="...", cosmoblog="...") }}
 """
 
 import json

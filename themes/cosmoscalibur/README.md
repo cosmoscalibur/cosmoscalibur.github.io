@@ -86,7 +86,7 @@ No separate `extensions` entry is needed in `conf.py`.
 Based on `sphinx-sitemap`. Collects page URLs during build and generates
 `sitemap.xml` with `<xhtml:link rel="alternate">` entries for each language.
 
-Configured via standard Sphinx/ABlog config values:
+Configured via standard Sphinx config values:
 
 - `html_baseurl` — Required. Base URL for sitemap entries.
 - `sitemap_locales` — List of locale codes (e.g., `["es", "en"]`).
@@ -115,7 +115,7 @@ Four stylesheets, loaded in order:
 | File | Scope |
 |---|---|
 | `css/main.css` | CSS custom properties, reset, typography, utilities, reduced-motion |
-| `css/content.css` | Sphinx/MyST content (admonitions, code blocks, tables, ABlog cards, sphinx-design, search results) |
+| `css/content.css` | Sphinx/MyST content (admonitions, code blocks, tables, Cosmoblog cards, sphinx-design, search results) |
 | `css/components.css` | Navbar, sidebar, TOC, footer, back-to-top, CSS Grid layout, responsive breakpoints |
 | `css/print.css` | Print stylesheet (`@media print`) — hides chrome, black-on-white |
 
@@ -201,27 +201,15 @@ Single file: `js/main.js` (~3 KB, vanilla JS, no dependencies).
 | `toc-sidebar.html` | Right-side table of contents |
 | `post-byline.html` | Date-only byline (single-author: no author display) |
 | `post-discovery.html` | Unified discovery zone: tags + related posts (sidebar on desktop, inline on mobile) |
-| `footer.html` | Copyright + social links + "Built with Sphinx and ABlog" |
+| `footer.html` | Copyright + social links + "Built with Sphinx and Cosmoblog" |
 | `analytics.html` | Conditional GA / Plausible / PostHog / Ads scripts |
 | `svg-sprite.html` | Hidden SVG sprite with all icon definitions |
 
-### ABlog Overrides (`ablog/`)
+### Blog Sidebar (`cosmoscalibur/recentposts.html`)
 
-| Template | Description |
-| --- | --- |
-| `collection.html` | Blog listing pages — renders posts as styled cards. Includes noindex policy (tags ≤2 articles, archive/language/author pages) and templated tag descriptions. |
-| `recentposts.html` | Sidebar widget — recent posts with "View all" link (excludes current page) |
-
-### Blog Customization (`extensions/ablog_category_suppress.py`)
-
-**Module:** `extensions/ablog_category_suppress.py`
-
-Monkey-patches ABlog's `generate_archive_pages` to suppress auto-generated
-category listing pages. The site maintains manual curated category pages
-under `{lang}/blog/category/` directories with SEO-optimized
-descriptions, replacing ABlog's bare post listings.
-
-Applied at import time via `apply_patches()` in `extensions/__init__.py`.
+Recent posts sidebar widget — shows the 5 most recent posts filtered
+by current page language, with a "View all" link to the archive.
+Uses `cosmoblog-sidebar-item` class names.
 
 ### Internationalization (i18n)
 
@@ -248,7 +236,7 @@ Each JSON file contains two sections:
    in Jinja2 templates (`{{ t("home") }}`).
 2. **Admonitions** (`"admonitions"` key): Maps admonition titles from
    the build output to the correct title for that language. This handles
-   both Sphinx standard admonitions (Note, Warning, etc.) and ABlog's
+   both Sphinx standard admonitions (Note, Warning, etc.) and Cosmoblog's
    `update` directive.
 
 #### Adding a Custom Language
@@ -263,7 +251,7 @@ Each JSON file contains two sections:
      "recent_posts": "Articles récents",
      "see_all_posts": "Voir tous les articles →",
      "related_posts": "Articles connexes",
-     "built_with": "Construit avec {sphinx} et {ablog}",
+     "built_with": "Construit avec {sphinx} et {cosmoblog}",
      "tagged_with": "Articles étiquetés <strong>{tag}</strong> sur {site}.",
      "draft": "Brouillon",
      "admonitions": {
@@ -295,7 +283,7 @@ The `t()` function is injected into every page's Jinja2 context by
 
 ```html
 {{ t("built_with", sphinx='<a href="...">Sphinx</a>',
-     ablog='<a href="...">ABlog</a>') | safe }}
+     cosmoblog='<a href="...">Cosmoblog</a>') | safe }}
 ```
 
 #### Admonition Translation
@@ -313,7 +301,7 @@ The optimizer post-processes built HTML to translate admonition titles
 for non-English pages. Each locale file's `"admonitions"` section maps
 English titles to the target language (e.g., `"Note" → "Nota"`).
 
-A trailing space in a key signals **prefix-match** mode. ABlog's
+A trailing space in a key signals **prefix-match** mode. Cosmoblog's
 `update` directive generates titles as `_("Updated on ") + date`, so
 `"Updated on "` matches any date suffix (e.g., `"Updated on 2024-01-01"
 → "Actualizado el 2024-01-01"`).

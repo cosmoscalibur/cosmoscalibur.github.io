@@ -175,7 +175,7 @@ def _render_post_list(
 
     for post in posts:
         bli = nodes.list_item()
-        bli.attributes["classes"].append("ablog-post")
+        bli.attributes["classes"].append("cosmoblog-post")
         bl.append(bli)
 
         par = nodes.paragraph()
@@ -201,7 +201,7 @@ def _render_post_list(
                 ref["classes"] = []
                 ref["names"] = []
                 ref.append(nodes.Text(post.title))
-                par.attributes["classes"].append("ablog-post-title")
+                par.attributes["classes"].append("cosmoblog-post-title")
                 par.append(ref)
             elif key == "category":
                 for i, cat in enumerate(post.category, start=1):
@@ -216,7 +216,7 @@ def _render_post_list(
 
         if excerpts and post.excerpt:
             epar = nodes.paragraph()
-            epar.attributes["classes"].append("ablog-post-excerpt")
+            epar.attributes["classes"].append("cosmoblog-post-excerpt")
             epar.append(nodes.Text(post.excerpt))
             bli.append(epar)
 
@@ -232,7 +232,7 @@ def _render_post_list(
                 img_ref["backrefs"] = []
                 img_ref["dupnames"] = []
                 img_ref["classes"] = [
-                    "ablog-post-excerpt",
+                    "cosmoblog-post-excerpt",
                     "reference",
                     "internal",
                     "image-reference",
@@ -241,7 +241,7 @@ def _render_post_list(
                 img_node = nodes.image()
                 img_node["uri"] = post.image
                 img_node["alt"] = post.image_alt or post.title
-                img_node["classes"] = ["ablog-post-excerpt"]
+                img_node["classes"] = ["cosmoblog-post-excerpt"]
                 img_node["candidates"] = {"?": post.image}
                 img_ref.append(img_node)
                 bli.append(img_ref)
@@ -251,7 +251,7 @@ def _render_post_list(
                     docname, post.docname
                 )
                 expand_par = nodes.paragraph()
-                expand_par.attributes["classes"].append("ablog-post-expand")
+                expand_par.attributes["classes"].append("cosmoblog-post-expand")
                 refnode = nodes.reference(
                     "", "", internal=True, refuri=ref_uri
                 )

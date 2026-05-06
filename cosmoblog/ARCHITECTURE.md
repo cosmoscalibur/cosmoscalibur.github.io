@@ -69,21 +69,16 @@ auto-discovery when needed.
 
 ---
 
-## 5. CSS Class Compatibility (`ablog-*`)
+## 5. CSS Class Naming (`cosmoblog-*`)
 
-**Decision:** Emit `ablog-post`, `ablog-post-title`, `ablog-post-excerpt`,
-and `ablog-sidebar-item` CSS class names in generated HTML, matching the
-existing theme CSS selectors.
+**Decision:** Emit `cosmoblog-post`, `cosmoblog-post-title`,
+`cosmoblog-post-excerpt`, and `cosmoblog-sidebar-item` CSS class names
+in generated HTML.
 
-**Context:** The theme's `content.css` already contains ~200 lines of
-polished CSS targeting `ablog-*` class names (cards, sidebar, hover
-effects). Rewriting all CSS selectors to `cosmoblog-*` would be
-pure churn with no functional benefit. Using the existing class names
-ensures visual parity with zero CSS changes.
-
-**Note:** These are *output* class names only. All Python code uses
-`cosmoblog` naming internally (e.g., `env.cosmoblog`, `BlogEngine`,
-`PostInfo`).
+**History:** During initial migration, `ablog-*` class names were kept
+to avoid CSS churn while the engine was unstable. Once the engine
+stabilised (Phase 2 complete), all CSS selectors and Python emitters
+were renamed to `cosmoblog-*` atomically to eliminate naming confusion.
 
 ---
 
