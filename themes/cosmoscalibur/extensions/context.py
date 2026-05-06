@@ -109,7 +109,11 @@ def _resolve_hreflang(
                 continue
 
             # Non-default lang index → alternate is root index
-            if rest == "index" and current_lang != default_lang and alt_lang == default_lang:
+            if (
+                rest == "index"
+                and current_lang != default_lang
+                and alt_lang == default_lang
+            ):
                 alt_docname = "index"
             else:
                 alt_docname = f"{alt_lang}/{rest}"
@@ -125,6 +129,20 @@ def _resolve_hreflang(
             alt_docname = f"{lang_code}/index"
             if alt_docname in app.env.all_docs:
                 _add_alternate(alt_docname, lang_code)
+        
+        # Root index is the x-default target
+        _add_alternate("index", "x-default")
+
+    # Add x-default for non-root pages if default language version exists
+    if alternates and pagename != "index":
+        for alt in alternates:
+            if alt["code"] == default_lang:
+                alternates.append({
+                    "code": "x-default",
+                    "url": alt["url"],
+                    "abs_url": alt["abs_url"],
+                })
+                break
 
     context["lang_alternates"] = alternates
 
@@ -139,9 +157,10 @@ def _resolve_hreflang(
         cur_uri = app.builder.get_target_uri(pagename)
         context["lang_current_abs_url"] = f"{base_url}/{cur_uri}"
 
-    # Lang-switcher variables — first alternate
-    if alternates:
-        first = alternates[0]
+    # Lang-switcher variables — first REAL alternate (not x-default)
+    real_alts = [a for a in alternates if a["code"] != "x-default"]
+    if real_alts:
+        first = real_alts[0]
         context["lang_alt_url"] = first["url"]
         context["lang_alt_code"] = first["code"]
         context["lang_alt_abs_url"] = first["abs_url"]

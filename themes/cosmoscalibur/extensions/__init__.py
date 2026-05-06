@@ -7,8 +7,8 @@ Exports the three Sphinx event handlers that ``__init__.py`` connects:
 * ``post_build``    — ``build-finished`` (all post-build operations)
 """
 
-import shutil
 from pathlib import Path
+import shutil
 from typing import Any
 
 from sphinx.application import Sphinx

@@ -23,8 +23,12 @@ cannot be intercepted at the doctree level:
    is handled at the doctree level by ``cosmoblog.transforms``.
 """
 
-import os
+import base64
 from concurrent.futures import ThreadPoolExecutor
+import hashlib
+import io
+import mimetypes
+import os
 from pathlib import Path
 import re
 
@@ -43,6 +47,7 @@ _DEFERRABLE_SCRIPTS = {
     "doctools.js",
     "sphinx_highlight.js",
     "translations.js",
+    "design-tabs.js",
 }
 
 # Conservative minify-html configuration — safe for all browsers
@@ -87,13 +92,16 @@ def post_process_html(app: Sphinx, exception: Exception | None) -> None:
     # --- 1. Convert images to WebP ---
     webp_count, webp_saved = _convert_images_to_webp(outdir)
 
-    # --- 2. Post-process HTML files ---
+    # --- 2. Bundle theme CSS files ---
+    _bundle_theme_css(outdir)
+
+    # --- 3. Post-process HTML files ---
     html_files = list(outdir.rglob("*.html"))
     defer_count, prune_count, html_bytes_saved = (
         _process_html_files(html_files, webp_count, app)
     )
 
-    # --- 3. Minify standalone CSS/JS files ---
+    # --- 4. Minify standalone CSS/JS files ---
     static_files, static_bytes = _minify_static_files(outdir)
 
     total_saved = html_bytes_saved + static_bytes + webp_saved
@@ -164,9 +172,22 @@ def _process_html_files(
             prune_count += pruned
             content = new_content
 
+        # Bundle CSS: replace individual links with theme.bundle.css
+        content = _update_css_links(content)
+
+        # Deduplicate viewport meta tags (Sphinx basic emits one,
+        # sphinxext-opengraph may inject another via metatags).
+        content = _dedup_viewport_meta(content)
+
         # Rewrite image references to WebP
         if webp_count > 0:
             content = _update_image_references(content)
+
+        # Extract base64 images from excerpts
+        content = _extract_base64_excerpts(content, outdir, html_file)
+
+        # Fix excerpt images that point to source paths instead of _images/
+        content = _fix_excerpt_image_paths(content)
 
         # Translate admonition titles for the page's language
         if admonition_maps:
@@ -348,6 +369,29 @@ def _update_image_references(content: str) -> str:
     )
 
 
+# ── Viewport deduplication ────────────────────────────────────────────────
+
+
+def _dedup_viewport_meta(content: str) -> str:
+    """Keep only the first ``<meta name="viewport" ...>`` tag.
+
+    Sphinx basic/layout.html hardcodes one viewport meta, and
+    sphinxext-opengraph may inject a second via the ``metatags``
+    context variable.  Only the first occurrence is kept.
+    """
+    matches = list(re.finditer(
+        r'<meta[^>]*name=["\']?viewport["\']?[^>]*/?>',
+        content,
+        re.IGNORECASE,
+    ))
+    if len(matches) <= 1:
+        return content
+    # Remove all but the first
+    for m in reversed(matches[1:]):
+        content = content[:m.start()] + content[m.end():]
+    return content
+
+
 # ── Defer, pruning ───────────────────────────────────────────────────────
 
 
@@ -367,8 +411,9 @@ def _prune_unused_assets(content: str) -> tuple[str, int]:
     pruned = 0
 
     for filename in _ALWAYS_REMOVE:
+        # Robust regex: handles single/double/no quotes and query parameters
         pattern = re.compile(
-            rf'<link[^>]*href="[^"]*{re.escape(filename)}[^"]*"[^>]*/?>',
+            rf'<link[^>]*href=["\']?[^"\' >]*{re.escape(filename)}[^"\' >]*["\']?[^>]*>',
             re.IGNORECASE,
         )
         new_content = pattern.sub("", content)
@@ -380,13 +425,13 @@ def _prune_unused_assets(content: str) -> tuple[str, int]:
         page_uses_asset = any(marker in content for marker in markers)
         if not page_uses_asset:
             css_pattern = re.compile(
-                rf'<link[^>]*href="[^"]*{re.escape(filename_substr)}[^"]*"[^>]*/?>',
+                rf'<link[^>]*href=["\']?[^"\' >]*{re.escape(filename_substr)}[^"\' >]*["\']?[^>]*>',
                 re.IGNORECASE,
             )
             new_content = css_pattern.sub("", content)
 
             js_pattern = re.compile(
-                rf'<script[^>]*src="[^"]*{re.escape(filename_substr)}[^"]*"[^>]*>'
+                rf'<script[^>]*src=["\']?[^"\' >]*{re.escape(filename_substr)}[^"\' >]*["\']?[^>]*>'
                 r"</script>",
                 re.IGNORECASE,
             )
@@ -453,3 +498,112 @@ def _minify_static_files(outdir: Path) -> tuple[int, int]:
             )
 
     return files_minified, bytes_saved
+
+
+# ── CSS Bundling ─────────────────────────────────────────────────────────
+
+
+def _bundle_theme_css(outdir: Path) -> None:
+    """Combine main.css, content.css, and components.css into theme.bundle.css."""
+    static_dir = outdir / "_static" / "css"
+    if not static_dir.is_dir():
+        return
+
+    bundle_path = static_dir / "theme.bundle.css"
+    
+    # Order matters: main -> content -> components
+    files = ["main.css", "content.css", "components.css"]
+    combined = []
+    
+    for f in files:
+        fpath = static_dir / f
+        if fpath.is_file():
+            content = fpath.read_text(encoding="utf-8")
+            combined.append(f"/* bundle:{f} */\n" + content)
+            
+    if combined:
+        bundle_path.write_text("\n".join(combined), encoding="utf-8")
+        logger.info("optimizer: created CSS bundle theme.bundle.css")
+
+
+def _update_css_links(content: str) -> str:
+    """Replace individual theme CSS links with a single bundle link."""
+    # Remove content.css and components.css
+    for css in ["content.css", "components.css"]:
+        pattern = re.compile(
+            rf'<link[^>]*href=["\']?[^"\' >]*{re.escape(css)}[^"\' >]*["\']?[^>]*>',
+            re.IGNORECASE,
+        )
+        content = pattern.sub("", content)
+        
+    # Replace main.css with theme.bundle.css
+    pattern = re.compile(
+        r'(<link[^>]*href=["\']?[^"\' >]*)main\.css([^"\' >]*["\']?[^>]*>)',
+        re.IGNORECASE,
+    )
+    return pattern.sub(r"\1theme.bundle.css\2", content)
+
+
+def _extract_base64_excerpts(content: str, outdir: Path, html_file: Path) -> str:
+    """Find base64 images in excerpts, save to files, and update src."""
+    excerpts_dir = outdir / "_images" / "excerpts"
+    
+    # Supports quoted or unquoted attributes (common after minification).
+    pattern = re.compile(
+        r'(<img[^>]*class=["\']?cosmoblog-post-excerpt["\']?[^>]*src=["\'])'
+        r'(data:image/[^"\' >]+)(["\'][^>]*>)',
+        re.IGNORECASE,
+    )
+    
+    def replacer(match: re.Match) -> str:
+        prefix, src, suffix = match.groups()
+        if not src.startswith("data:image/"):
+            return match.group(0)
+            
+        try:
+            if "," not in src:
+                return match.group(0)
+                
+            _header, encoded = src.split(",", 1)
+            data = base64.b64decode(encoded)
+            
+            img = Image.open(io.BytesIO(data))
+            sha = hashlib.sha256(data).hexdigest()[:12]
+            filename = f"{sha}.webp"
+            if not excerpts_dir.exists():
+                excerpts_dir.mkdir(parents=True, exist_ok=True)
+            filepath = excerpts_dir / filename
+            if not filepath.exists():
+                # Save as WebP with 85% quality for optimal balance
+                img.save(filepath, "WEBP", quality=85)
+                logger.info(
+                    "optimizer: [%s] extracted base64 image to excerpts/%s",
+                    html_file.name,
+                    filename,
+                )
+            # Use root-relative path for the excerpt image
+            return f"{prefix}/_images/excerpts/{filename}{suffix}"
+        except Exception as e:
+            logger.warning("optimizer: failed to extract base64 image: %s", e)
+            return match.group(0)
+            
+    return pattern.sub(replacer, content)
+
+
+def _fix_excerpt_image_paths(content: str) -> str:
+    """Fix excerpt images pointing to source paths to point to /_images/."""
+    # Pattern matches images in excerpts that don't point to _images/
+    pattern = re.compile(
+        r'(<img[^>]*class=["\']?cosmoblog-post-excerpt["\']?[^>]*src=["\']?)'
+        r'(/(?:es|en|images)/[^"\' >]+)(\.[a-z0-9]+)(["\']?[^>]*>)',
+        re.IGNORECASE,
+    )
+
+    def replacer(match: re.Match) -> str:
+        prefix, path, ext, suffix = match.groups()
+        # Extract basename
+        basename = Path(path).name
+        # We assume all post images are moved to _images/
+        return f"{prefix}/_images/{basename}{ext}{suffix}"
+
+    return pattern.sub(replacer, content)

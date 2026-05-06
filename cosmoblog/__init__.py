@@ -9,10 +9,10 @@ Registers itself as a Sphinx extension via ``setup()``.
 
 from __future__ import annotations
 
-import os
-import re
 from glob import glob
+import os
 from pathlib import Path, PurePath
+import re
 from typing import Any
 
 from sphinx.application import Sphinx

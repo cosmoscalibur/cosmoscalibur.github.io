@@ -241,6 +241,10 @@ def _render_post_list(
                 img_node = nodes.image()
                 img_node["uri"] = post.image
                 img_node["alt"] = post.image_alt or post.title
+                if post.image_width:
+                    img_node["width"] = post.image_width
+                if post.image_height:
+                    img_node["height"] = post.image_height
                 img_node["classes"] = ["cosmoblog-post-excerpt"]
                 img_node["candidates"] = {"?": post.image}
                 img_ref.append(img_node)

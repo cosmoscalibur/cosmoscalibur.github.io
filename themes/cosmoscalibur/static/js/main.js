@@ -20,57 +20,73 @@
     }
 
     /* ── Post byline: move after <h1> title ── */
-    var byline = document.querySelector(".post-byline");
-    var h1 = document.querySelector(".content section > h1");
-    if (byline && h1) {
-      h1.after(byline);
-      byline.classList.add("is-placed");
+    var moveByline = function () {
+      var byline = document.querySelector(".post-byline");
+      var h1 = document.querySelector(".content section > h1");
+      if (byline && h1) {
+        h1.after(byline);
+        byline.classList.add("is-placed");
+      }
+    };
+    if (window.requestIdleCallback) {
+      window.requestIdleCallback(moveByline);
+    } else {
+      window.requestAnimationFrame(moveByline);
+    }
+
+    /* ── Site-scoped Google search (replaces inline script) ── */
+    var searchForm = document.getElementById("search-overlay");
+    if (searchForm) {
+      searchForm.addEventListener("submit", function () {
+        var input = document.getElementById("search-input");
+        var hidden = document.getElementById("search-q");
+        if (input && hidden) {
+          var domain = document.documentElement.dataset.searchDomain || "";
+          hidden.value = (domain ? "site:" + domain + " " : "") + input.value;
+        }
+      });
     }
 
     /* ── Search overlay toggle (mobile) ── */
-    var searchTriggers = document.querySelectorAll(".search-trigger");
-    for (var st = 0; st < searchTriggers.length; st++) {
-      (function (trigger) {
-        var wrapper = trigger.closest(".search-wrapper");
-        if (!wrapper) return;
-        var form = wrapper.querySelector(".search-form");
-        if (!form) return;
+    var searchTrigger = document.querySelector(
+      ".navbar__actions--mobile .search-trigger"
+    );
+    if (searchTrigger && searchForm) {
+      searchTrigger.addEventListener("click", function () {
+        var isOpen = searchForm.classList.contains("search-form--overlay");
+        if (isOpen) {
+          searchForm.classList.remove("search-form--overlay");
+          searchForm.style.display = "";
+          searchTrigger.setAttribute("aria-expanded", "false");
+        } else {
+          searchForm.classList.add("search-form--overlay");
+          searchForm.style.display = "flex";
+          searchTrigger.setAttribute("aria-expanded", "true");
+          var input = searchForm.querySelector("input[type='search']");
+          if (input) input.focus();
+        }
+      });
 
-        trigger.addEventListener("click", function () {
-          var isOpen = form.classList.contains("search-form--overlay");
-          if (isOpen) {
-            form.classList.remove("search-form--overlay");
-            form.style.display = "none";
-            trigger.setAttribute("aria-expanded", "false");
-          } else {
-            form.classList.add("search-form--overlay");
-            form.style.display = "flex";
-            trigger.setAttribute("aria-expanded", "true");
-            var input = form.querySelector("input");
-            if (input) input.focus();
-          }
-        });
+      /* Close on click outside */
+      document.addEventListener("click", function (e) {
+        if (searchForm.classList.contains("search-form--overlay") &&
+            !e.target.closest(".search-wrapper") &&
+            !e.target.closest(".search-trigger")) {
+          searchForm.classList.remove("search-form--overlay");
+          searchForm.style.display = "";
+          searchTrigger.setAttribute("aria-expanded", "false");
+        }
+      });
 
-        /* Close on click outside */
-        document.addEventListener("click", function (e) {
-          if (form.classList.contains("search-form--overlay") &&
-              !e.target.closest(".search-wrapper")) {
-            form.classList.remove("search-form--overlay");
-            form.style.display = "none";
-            trigger.setAttribute("aria-expanded", "false");
-          }
-        });
-
-        /* Close on Escape */
-        document.addEventListener("keydown", function (e) {
-          if (e.key === "Escape" && form.classList.contains("search-form--overlay")) {
-            form.classList.remove("search-form--overlay");
-            form.style.display = "none";
-            trigger.setAttribute("aria-expanded", "false");
-            trigger.focus();
-          }
-        });
-      })(searchTriggers[st]);
+      /* Close on Escape */
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape" && searchForm.classList.contains("search-form--overlay")) {
+          searchForm.classList.remove("search-form--overlay");
+          searchForm.style.display = "";
+          searchTrigger.setAttribute("aria-expanded", "false");
+          searchTrigger.focus();
+        }
+      });
     }
 
 
