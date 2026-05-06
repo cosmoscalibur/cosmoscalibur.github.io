@@ -37,7 +37,7 @@ la instalación es indicar que sea solo para el usuario actual y que no se
 asocie el :code:`PATH`. Seguir este consejo les evitará dolores de cabeza en el
 futuro.
 
-.. update:: 2020-07-02 12:00:00
+.. update:: 2020-07-02
 
    Para saber mayor detalle del proceso de instalación puedes consultar mi
    publicación :doc:`/es/blog/2020/instalar-python-anaconda`.

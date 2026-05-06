@@ -15,6 +15,6 @@ Desde la investigación mas teórica, un punto interesante es los comportamiento
 
 Si desean seguir noticias relacionadas con este tema, pueden hacerlo en `Graphene Times <http://graphenetimes.com/>`_.
 
-.. update:: 2011-12-15 12:00:00
+.. update:: 2011-12-15
 
    Para quienes estén interesados en el documento generado como trabajo de grado, pueden consultar `Modelización y Simulación Numérica de Efectos de Confinamiento en el Grafeno <https://www.researchgate.net/publication/258566488_Modelizacion_y_Simulacion_Numerica_de_Efectos_de_Confinamiento_en_el_Grafeno>`_.

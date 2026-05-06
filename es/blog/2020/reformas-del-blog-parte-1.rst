@@ -46,7 +46,7 @@ no veo descabellado cambiar. La mayor parte de mis lectores poseen Facebook y
 el tráfico a razón de Facebook hoy es el mayor entre las fuentes de tráfico
 sociales. Reduce el bloqueo de 800 ms a 400 ms.
 
-.. update:: 2020-06-29 12:00:00
+.. update:: 2020-06-29
 
    Por alguna razón el *plugin* de comentarios de Facebook dejó de funcionar y además observo una caída abrupta en
    la analítica de visitas de Facebook que no se verifica con Google. Me da mala espina Facebook y retorno a Disqus.
@@ -78,7 +78,7 @@ asociados también tiene unos tiempos máximos permitiendo publicidad sin
 generar conversiones. Con este cambio, el bloqueo por la presentación de
 publicidad pasó de 350 ms a menos de 40 ms.
 
-.. update:: 2020-06-29 12:00:00
+.. update:: 2020-06-29
 
    Al no ser de generación dinámica resulta de difícil mantenimiento generar recomendaciones
    de publicidad acorde al lector que llega a una publicación. El trabajo manual de usar producto

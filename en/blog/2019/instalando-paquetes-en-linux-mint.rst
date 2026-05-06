@@ -125,7 +125,7 @@ after installation. After the first execution or after opening a new terminal or
 rebooting the system, the package will be recognized and can be run directly by
 name (`code`) or from the menu.
 
-.. update:: 2020-07-02 12:00:00
+.. update:: 2020-07-02
 
     Starting with Linux Mint 20, you need to first configure APT to be able to install Snap. You can review my publication for more details.
     :doc:`/en/blog/2020/instalar-paquetes-snap-en-linux-mint-20`.

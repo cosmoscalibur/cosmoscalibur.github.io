@@ -1,9 +1,8 @@
 # Cosmoscalibur — Custom Sphinx Theme
 
 Minimal, fast, dark-only Sphinx theme with WCAG 2.1/2.2 AA compliance.
-Built for [cosmoscalibur.com](https://www.cosmoscalibur.com), designed to
-replace `pydata-sphinx-theme` with zero Bootstrap dependency and full control
-over performance and accessibility.
+Built for [cosmoscalibur.com](https://www.cosmoscalibur.com). Zero Bootstrap
+dependency, full control over performance and accessibility.
 
 ## Theme Options (`html_theme_options`)
 
@@ -56,13 +55,12 @@ The theme enforces these Sphinx options regardless of `conf.py` values:
 | Option | Value | Rationale |
 |---|---|---|
 | `fontawesome_included` | `False` | SVG sprite used instead of FA JS |
-| `post_show_prev_next` | `False` | Cleaner post layout |
 | `html_show_sourcelink` | `False` | Disabled for public sites |
 | `html_copy_source` | `False` | No source files in output |
 
 ## Bundled Extensions
 
-Three Sphinx event hooks are registered by the theme's `setup()` function.
+Four Sphinx event hooks are registered by the theme's `setup()` function.
 No separate `extensions` entry is needed in `conf.py`.
 
 ### Context Injection (`html-page-context`)
@@ -83,15 +81,13 @@ No separate `extensions` entry is needed in `conf.py`.
 
 **Module:** `extensions/sitemap.py`
 
-Based on `sphinx-sitemap`. Collects page URLs during build and generates
-`sitemap.xml` with `<xhtml:link rel="alternate">` entries for each language.
+Collects page URLs during build and generates `sitemap.xml` with
+`<xhtml:link rel="alternate">` entries for each language.
 
-Configured via standard Sphinx/ABlog config values:
+Languages are inferred from the directory structure (`{lang}/blog/`),
+and pages are included by explicit prefix match — no exclude lists needed.
 
-- `html_baseurl` — Required. Base URL for sitemap entries.
-- `sitemap_locales` — List of locale codes (e.g., `["es", "en"]`).
-- `sitemap_excludes` — URL patterns to exclude.
-- `sitemap_filename` — Output filename (default: `sitemap.xml`).
+Requires only `html_baseurl` in `conf.py`.
 
 ### Performance Optimizer (`build-finished`)
 
@@ -101,12 +97,14 @@ Post-processes the built HTML to improve Core Web Vitals:
 
 | Optimization | Description |
 |---|---|
-| **WebP conversion** | Converts PNG/JPEG images to WebP (Pillow). Lossless for PNG, quality 85 for JPEG. |
-| **Lazy loading** | Adds `loading="lazy"` and `decoding="async"` to below-the-fold images (skips logo and first image). |
+| **WebP conversion** | Converts PNG/JPEG to WebP via threaded Pillow (`method=4`). Lossless for PNG, quality 85 for JPEG. |
 | **Script deferral** | Adds `defer` to synchronous Sphinx scripts (`doctools.js`, `sphinx_highlight.js`, etc.). |
-| **Image dimensions** | Injects `width`/`height` attributes from file headers (PNG, JPEG, WebP) to prevent layout shifts. |
 | **Asset pruning** | Removes `<link>`/`<script>` for CSS/JS not used by the page (e.g., `pygments.css` on pages without code blocks). |
-| **HTML/CSS/JS minification** | Minifies all output files using `minify-html`. |
+| **Admonition i18n** | Translates admonition titles for non-English pages using locale JSON maps. |
+| **HTML/CSS/JS minification** | Minifies all output files using `minify-html` (Rust-backed). |
+
+Lazy loading and image dimensions are handled at the doctree level by
+`cosmoblog.transforms` (not by the optimizer).
 
 ## CSS Architecture
 
@@ -115,7 +113,7 @@ Four stylesheets, loaded in order:
 | File | Scope |
 |---|---|
 | `css/main.css` | CSS custom properties, reset, typography, utilities, reduced-motion |
-| `css/content.css` | Sphinx/MyST content (admonitions, code blocks, tables, ABlog cards, sphinx-design, search results) |
+| `css/content.css` | Sphinx/MyST content (admonitions, code blocks, tables, Cosmoblog cards, sphinx-design, search results) |
 | `css/components.css` | Navbar, sidebar, TOC, footer, back-to-top, CSS Grid layout, responsive breakpoints |
 | `css/print.css` | Print stylesheet (`@media print`) — hides chrome, black-on-white |
 
@@ -139,8 +137,7 @@ CSS Grid layout with three responsive breakpoints (in `components.css`):
 | `993px – 1200px` | sidebar + content | Right TOC hidden |
 | `≤ 992px` | content only | Single column, sidebar/TOC hidden, hamburger menu |
 
-Breakpoints align with Bootstrap `lg` (992px) / `xl` (1200px), matching
-`pydata-sphinx-theme` defaults.
+Breakpoints use standard `lg` (992px) / `xl` (1200px) thresholds.
 
 Key responsive properties:
 
@@ -154,8 +151,8 @@ Key responsive properties:
 - **Skip link** (WCAG 2.4.1): `<a class="skip-link">` before navbar.
 - **Focus indicators** (WCAG 2.4.7): 2px accent-colored outline on all
   interactive elements.
-- **Semantic HTML5**: `<header>`, `<main>`, `<aside>`, `<nav>`, `<footer>`
-  with ARIA roles and labels.
+- **Semantic HTML5**: `<header>`, `<main>`, `<article>`, `<aside>`, `<nav>`,
+  `<footer>` with ARIA roles and labels.
 - **Color contrast**: All text ≥ 4.5:1, large text ≥ 3:1.
 - **Reduced motion**: Respects `prefers-reduced-motion`.
 - **Keyboard navigation**: Hamburger menu toggle with `aria-expanded`.
@@ -169,7 +166,7 @@ Single file: `js/main.js` (~3 KB, vanilla JS, no dependencies).
 | Mobile nav toggle | `aria-expanded` hamburger menu |
 | Back-to-top button | Shows after 300px scroll, uses `hidden` attribute |
 | TOC scroll-spy | Highlights the current section in the right TOC with anchor-lock support |
-| Sphinx search init | Calls `Search.init()` if the search results container exists |
+| Google search | Prepends `site:` domain to query and redirects to Google |
 
 ## Jinja2 Templates
 
@@ -188,7 +185,7 @@ Single file: `js/main.js` (~3 KB, vanilla JS, no dependencies).
 
 | Template | Description |
 | --- | --- |
-| `search.html` | Extends `basic/search.html`, empties `{% block searchbox %}` to remove the redundant inline search form (navbar search is always available) |
+| `search.html` | Minimal stub — search is handled by Google redirect, Sphinx search page unused |
 
 ### Components (`components/`)
 
@@ -197,31 +194,19 @@ Single file: `js/main.js` (~3 KB, vanilla JS, no dependencies).
 | `navbar.html` | Sticky glassmorphism navbar with logo, lang badge, search, hamburger toggle |
 | `icon-links.html` | Social icon links (auto-generated from `*_url` options, rendered in footer) |
 | `lang-switcher.html` | Language toggle badge (2-letter code: ES/EN, derived from `lang_alt_code`) |
-| `search-form.html` | Sphinx search input + button |
+| `search-form.html` | Google site-scoped search form (redirects to `google.com/search?q=site:...`) |
 | `toc-sidebar.html` | Right-side table of contents |
 | `post-byline.html` | Date-only byline (single-author: no author display) |
 | `post-discovery.html` | Unified discovery zone: tags + related posts (sidebar on desktop, inline on mobile) |
-| `footer.html` | Copyright + social links + "Built with Sphinx and ABlog" |
+| `footer.html` | Copyright + social links + "Built with Sphinx and Cosmoblog" |
 | `analytics.html` | Conditional GA / Plausible / PostHog / Ads scripts |
 | `svg-sprite.html` | Hidden SVG sprite with all icon definitions |
 
-### ABlog Overrides (`ablog/`)
+### Blog Sidebar (`cosmoscalibur/recentposts.html`)
 
-| Template | Description |
-| --- | --- |
-| `collection.html` | Blog listing pages — renders posts as styled cards. Includes noindex policy (tags ≤2 articles, archive/language/author pages) and templated tag descriptions. |
-| `recentposts.html` | Sidebar widget — recent posts with "View all" link (excludes current page) |
-
-### Blog Customization (`extensions/ablog_category_suppress.py`)
-
-**Module:** `extensions/ablog_category_suppress.py`
-
-Monkey-patches ABlog's `generate_archive_pages` to suppress auto-generated
-category listing pages. The site maintains manual curated category pages
-under `{lang}/blog/category/` directories with SEO-optimized
-descriptions, replacing ABlog's bare post listings.
-
-Applied at import time via `apply_patches()` in `extensions/__init__.py`.
+Recent posts sidebar widget — shows the 5 most recent posts filtered
+by current page language, with a "View all" link to the archive.
+Uses `cosmoblog-sidebar-item` class names.
 
 ### Internationalization (i18n)
 
@@ -248,7 +233,7 @@ Each JSON file contains two sections:
    in Jinja2 templates (`{{ t("home") }}`).
 2. **Admonitions** (`"admonitions"` key): Maps admonition titles from
    the build output to the correct title for that language. This handles
-   both Sphinx standard admonitions (Note, Warning, etc.) and ABlog's
+   both Sphinx standard admonitions (Note, Warning, etc.) and Cosmoblog's
    `update` directive.
 
 #### Adding a Custom Language
@@ -263,7 +248,7 @@ Each JSON file contains two sections:
      "recent_posts": "Articles récents",
      "see_all_posts": "Voir tous les articles →",
      "related_posts": "Articles connexes",
-     "built_with": "Construit avec {sphinx} et {ablog}",
+     "built_with": "Construit avec {sphinx} et {cosmoblog}",
      "tagged_with": "Articles étiquetés <strong>{tag}</strong> sur {site}.",
      "draft": "Brouillon",
      "admonitions": {
@@ -273,17 +258,8 @@ Each JSON file contains two sections:
    }
    ```
 
-2. Register the language in `conf.py`:
-
-   ```python
-   blog_languages = {
-       "es": ("Español", None),
-       "en": ("English", None),
-       "fr": ("Français", None),
-   }
-   ```
-
-3. Create content under `fr/` directory.
+2. Create content under `fr/` directory. Languages are auto-discovered
+   from `{srcdir}/*/blog/` directories — no explicit registration needed.
 
 User-override files at `{confdir}/locale/` take priority over built-in
 theme locale files.
@@ -295,7 +271,7 @@ The `t()` function is injected into every page's Jinja2 context by
 
 ```html
 {{ t("built_with", sphinx='<a href="...">Sphinx</a>',
-     ablog='<a href="...">ABlog</a>') | safe }}
+     cosmoblog='<a href="...">Cosmoblog</a>') | safe }}
 ```
 
 #### Admonition Translation
@@ -313,7 +289,7 @@ The optimizer post-processes built HTML to translate admonition titles
 for non-English pages. Each locale file's `"admonitions"` section maps
 English titles to the target language (e.g., `"Note" → "Nota"`).
 
-A trailing space in a key signals **prefix-match** mode. ABlog's
+A trailing space in a key signals **prefix-match** mode. Cosmoblog's
 `update` directive generates titles as `_("Updated on ") + date`, so
 `"Updated on "` matches any date suffix (e.g., `"Updated on 2024-01-01"
 → "Actualizado el 2024-01-01"`).

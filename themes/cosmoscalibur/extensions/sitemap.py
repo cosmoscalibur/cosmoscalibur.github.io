@@ -49,10 +49,10 @@ def init_sitemap(app: Sphinx) -> None:
 
 
 def get_locales(app: Sphinx) -> list[str]:
-    """Get locales from ``blog_languages`` for sitemap alternate links."""
-    blog_languages = getattr(app.builder.config, "blog_languages", None)
-    if blog_languages:
-        return list(blog_languages.keys())
+    """Get locales from cosmoblog's directory discovery for sitemap alternate links."""
+    engine = getattr(app.builder.env, "cosmoblog", None)
+    if engine and engine.languages:
+        return sorted(engine.languages)
     return []
 
 
@@ -89,23 +89,21 @@ def add_html_link(
     # Exclude tags, global indexes (blog/index, blog/archive), and technical pages.
     excluded_prefixes = ("blog/tag/", "blog/index", "blog/archive", "genindex", "search")
     
-    # Build dynamic language prefixes from blog_languages config
+    # Build dynamic language prefixes from cosmoblog
     known_prefixes = tuple(f"{lang}/" for lang in get_known_langs(app))
 
     if sitemap_link not in app.builder.config.sitemap_excludes and (
         sitemap_link.startswith(known_prefixes + ("blog/category/",))
     ) and not sitemap_link.startswith(excluded_prefixes):
         
-        # Capture lastmod from ABlog post if available
+        # Capture lastmod from cosmoblog post if available
         lastmod = None
-        if hasattr(env, "ablog_posts") and pagename in env.ablog_posts:
-            posts = env.ablog_posts[pagename]
-            if posts:
-                # ABlog already picks the max of published and update dates
-                # into the 'update' field.
-                lastmod_dt = posts[0].get("update")
-                if lastmod_dt:
-                    lastmod = lastmod_dt.strftime("%Y-%m-%d")
+        engine = getattr(env, "cosmoblog", None)
+        if engine and pagename in engine.posts:
+            post = engine.posts[pagename]
+            lastmod_dt = post.update or post.date
+            if lastmod_dt:
+                lastmod = lastmod_dt.strftime("%Y-%m-%d")
         
         env.app.sitemap_links.put((sitemap_link, lastmod))  # type: ignore[attr-defined]
 

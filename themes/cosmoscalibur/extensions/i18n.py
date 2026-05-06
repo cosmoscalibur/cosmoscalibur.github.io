@@ -15,7 +15,7 @@ Usage in Python::
 Usage in Jinja2 templates (via ``t()`` injected by ``context.py``)::
 
     {{ t("home") }}
-    {{ t("built_with", sphinx="...", ablog="...") }}
+    {{ t("built_with", sphinx="...", cosmoblog="...") }}
 """
 
 import json
@@ -104,11 +104,16 @@ def get_admonition_map(lang: str, confdir: str) -> dict[str, str]:
 
 
 def get_known_langs(app: Sphinx) -> set[str]:
-    """Derive known languages from ``blog_languages`` in ``conf.py``.
+    """Derive known languages from cosmoblog's directory discovery.
 
-    Falls back to ``{language}`` if ``blog_languages`` is not set.
+    Falls back to ``{language}`` if cosmoblog hasn't discovered any.
     """
-    blog_languages = getattr(app.config, "blog_languages", None) or {}
-    if blog_languages:
-        return set(blog_languages.keys())
-    return {app.config.blog_default_language}
+    engine = getattr(app.env, "cosmoblog", None)
+    if engine and engine.languages:
+        return engine.languages
+    # Fallback: use cosmoblog config or default language
+    langs = getattr(app.config, "cosmoblog_languages", None)
+    if langs:
+        return langs
+    default = getattr(app.config, "blog_default_language", None) or app.config.language
+    return {default}

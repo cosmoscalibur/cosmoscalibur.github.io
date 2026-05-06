@@ -16,7 +16,7 @@ En el LHC hay dos detectores encargados de la función de detección del bosón 
 
 .. _LHC: http://home.cern/topics/large-hadron-collider
 
-.. update:: 2012-11-28 12:00:00
+.. update:: 2012-11-28
 
    El 4 de julio de 2012 se reportó oficialmente el descubrimiento del bosón de Higgs. Vea la nota :doc:`/es/blog/2012/pos-higgsteria`.
 

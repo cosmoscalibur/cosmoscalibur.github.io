@@ -4,8 +4,8 @@ Merges logic from ``theme_context.py`` (page_lang, icon_links, analytics,
 Pygments dark-only CSS) and ``lang_switcher.py`` (hreflang alternate URLs)
 into a single module.
 
-Language support is fully dynamic: all language codes are derived from
-``blog_languages`` in ``conf.py`` — nothing is hardcoded in the theme.
+Language support is fully dynamic: all language codes are discovered
+from the directory structure by cosmoblog — nothing is hardcoded.
 """
 
 import functools
@@ -74,19 +74,16 @@ def _resolve_hreflang(
     app: Sphinx,
     context: dict[str, Any],
 ) -> None:
-    """Set ``lang_alternates`` list and legacy ``lang_alt_*`` context variables.
+    """Set ``lang_alternates`` list and ``lang_alt_*`` context variables.
 
     Emits **all** available alternates (Google recommends listing every
     language variant).  Each entry is a dict with keys:
-    ``code``, ``label``, ``url``, ``abs_url``.
+    ``code``, ``url``, ``abs_url``.
 
-    Also sets legacy variables (``lang_alt_url``, ``lang_alt_label``,
-    ``lang_alt_code``, ``lang_current_code``, ``lang_alt_abs_url``,
-    ``lang_current_abs_url``) for backward compatibility with the
-    lang-switcher template — populated from the *first* alternate.
+    Languages are discovered from the directory structure by cosmoblog.
+    No ``blog_languages`` config dict is needed.
     """
-    blog_languages = getattr(app.config, "blog_languages", {}) or {}
-    known_langs = set(blog_languages.keys())
+    known_langs = get_known_langs(app)
     base_url = (app.config.html_baseurl or "").rstrip("/")
 
     alternates: list[dict[str, str]] = []
@@ -94,14 +91,11 @@ def _resolve_hreflang(
 
     def _add_alternate(
         alt_docname: str,
-        current_lang: str,
         alt_lang: str,
-        alt_label: str,
     ) -> None:
         alt_uri = app.builder.get_target_uri(alt_docname)
         alternates.append({
             "code": alt_lang,
-            "label": alt_label,
             "url": context["pathto"](alt_docname),
             "abs_url": f"{base_url}/{alt_uri}",
         })
@@ -110,7 +104,7 @@ def _resolve_hreflang(
         current_lang = parts[0]
         rest = "/".join(parts[1:])
 
-        for alt_lang, (alt_label, _) in blog_languages.items():
+        for alt_lang in sorted(known_langs):
             if alt_lang == current_lang:
                 continue
 
@@ -121,16 +115,16 @@ def _resolve_hreflang(
                 alt_docname = f"{alt_lang}/{rest}"
 
             if alt_docname in app.env.all_docs:
-                _add_alternate(alt_docname, current_lang, alt_lang, alt_label)
+                _add_alternate(alt_docname, alt_lang)
 
     elif pagename == "index":
         # Root index → alternate is each non-default language index
-        for lang_code, (lang_name, _) in blog_languages.items():
+        for lang_code in sorted(known_langs):
             if lang_code == default_lang:
                 continue
             alt_docname = f"{lang_code}/index"
             if alt_docname in app.env.all_docs:
-                _add_alternate(alt_docname, default_lang, lang_code, lang_name)
+                _add_alternate(alt_docname, lang_code)
 
     context["lang_alternates"] = alternates
 
@@ -145,11 +139,10 @@ def _resolve_hreflang(
         cur_uri = app.builder.get_target_uri(pagename)
         context["lang_current_abs_url"] = f"{base_url}/{cur_uri}"
 
-    # Legacy variables — first alternate (backward compat for lang-switcher)
+    # Lang-switcher variables — first alternate
     if alternates:
         first = alternates[0]
         context["lang_alt_url"] = first["url"]
-        context["lang_alt_label"] = first["label"]
         context["lang_alt_code"] = first["code"]
         context["lang_alt_abs_url"] = first["abs_url"]
 
@@ -179,7 +172,7 @@ def _resolve_category_links(
     cat_links.sort(key=lambda c: c["label"])
     context["category_links"] = cat_links
 
-    # Category page map (ABlog category name → URL)
+    # Category page map (category name → URL)
     cat_map = _build_category_page_map(app)
     lang_map = cat_map.get(page_lang, {})
     context["category_page_map"] = {
@@ -190,7 +183,7 @@ def _resolve_category_links(
 
 @functools.lru_cache(maxsize=1)
 def _build_category_page_map(app: Sphinx) -> dict[str, dict[str, str]]:
-    """Build a mapping of {lang: {ablog_category_name: docname}}.
+    """Build a mapping of {lang: {category_name: docname}}.
 
     Reads source files of manual category pages to extract the ``:category:``
     value from ``postlist`` directives. Cached for the entire build via
@@ -254,19 +247,27 @@ def _resolve_json_ld(
 
     # Middle crumbs (Category)
     post = None
-    if hasattr(app.env, "ablog_posts") and pagename in app.env.ablog_posts:
-        posts = app.env.ablog_posts[pagename]
-        if posts:
-            post = posts[0]
-            categories = post.get("category", [])
-            if categories:
-                # Use first category for breadcrumb
-                cat = categories[0]
-                cat_doc = f"{page_lang}/blog/category/{cat}"
-                if cat_doc in app.env.all_docs:
-                    cat_name = app.env.titles[cat_doc].astext()
-                    cat_url = f"{base_url}/{app.builder.get_target_uri(cat_doc)}"
-                    crumbs.append({"name": cat_name, "item": cat_url})
+    engine = getattr(app.env, "cosmoblog", None)
+    if engine and pagename in engine.posts:
+        post_info = engine.posts[pagename]
+        post = {
+            "date": post_info.date,
+            "update": post_info.update,
+            "title": post_info.title,
+            "tags": post_info.tags,
+            "category": post_info.category,
+            "language": post_info.language,
+            "author": app.config.author,
+        }
+        categories = post.get("category", [])
+        if categories:
+            # Use first category for breadcrumb
+            cat = categories[0]
+            cat_doc = f"{page_lang}/blog/category/{cat}"
+            if cat_doc in app.env.all_docs:
+                cat_name = app.env.titles[cat_doc].astext()
+                cat_url = f"{base_url}/{app.builder.get_target_uri(cat_doc)}"
+                crumbs.append({"name": cat_name, "item": cat_url})
 
     # Current page
     crumbs.append({"name": context.get("title", ""), "item": page_url})
@@ -288,7 +289,7 @@ def _resolve_json_ld(
     if post:
         # Get dates
         pub_date = post.get("date")
-        # ABlog's 'update' is the max of pub and all update directives
+        # Cosmoblog picks the max of pub and all update directives
         mod_date = post.get("update") or pub_date
         
         # Site-wide defaults (no hardcoded fallbacks per user request)
@@ -384,7 +385,7 @@ def inject_page_context(
     3. **Category links**: Scans ``all_docs`` for manual category pages
        matching the current language and reads their titles from
        ``env.titles`` for the navbar navigation.
-    4. **Category page map**: Maps ABlog category names to manual category
+    4. **Category page map**: Maps category names to manual category
        page URLs for the related posts sidebar links.
     5. **JSON-LD**: Injects structured data for SEO (Articles, Breadcrumbs).
     6. **Translation helper**: Injects ``t()`` function for Jinja2 templates.

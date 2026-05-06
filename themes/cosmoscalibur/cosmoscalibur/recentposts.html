@@ -1,0 +1,22 @@
+{# Recent posts — filtered by current page language, with archive link.
+   Uses page_lang from context.py for reliable language detection. #}
+{% if cosmoblog %}
+{% set lang = page_lang %}
+<div class="cosmoblog-sidebar-item cosmoblog__recentposts">
+  <h3>
+    <a href="{{ archive_url }}">{{ t("recent_posts") }}</a>
+  </h3>
+  <ul>
+    {% for recent in cosmoblog.recent(5, pagename, lang) %}
+    <li>
+      <a href="{{ pathto(recent.docname) }}">
+        {{ recent.date.strftime(cosmoblog.date_format_short) + " - " + recent.title }}
+      </a>
+    </li>
+    {% endfor %}
+  </ul>
+  <p class="cosmoblog-sidebar-archive-link">
+    <a href="{{ archive_url }}">{{ t("see_all_posts") }}</a>
+  </p>
+</div>
+{% endif %}
