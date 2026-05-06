@@ -111,6 +111,33 @@ class ImageDimensionsTransform(SphinxPostTransform):
 
 
 # ---------------------------------------------------------------------------
+# Post-transform: table wrapper
+# ---------------------------------------------------------------------------
+
+
+class TableWrapperTransform(SphinxPostTransform):
+    """Wrap tables in a scrollable div.
+
+    Prevents layout overflow on small screens without using
+    'display: block' on the table element itself.
+    """
+
+    default_priority = 820
+    formats = ("html",)
+
+    def run(self, **kwargs: Any) -> None:
+        for node in self.document.findall(nodes.table):
+            # Create a wrapper div
+            wrapper = nodes.container()
+            wrapper.attributes["classes"].append("table-wrapper")
+
+            # Replace the table node with the wrapper
+            node.replace_self(wrapper)
+            # Add the table to the wrapper
+            wrapper.append(node)
+
+
+# ---------------------------------------------------------------------------
 # Image size reader (zero-dependency, header-only)
 # ---------------------------------------------------------------------------
 
@@ -180,3 +207,4 @@ def register_transforms(app: Sphinx) -> None:
     """
     app.add_post_transform(LazyImageTransform)
     app.add_post_transform(ImageDimensionsTransform)
+    app.add_post_transform(TableWrapperTransform)

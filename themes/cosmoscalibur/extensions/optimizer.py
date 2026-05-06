@@ -395,8 +395,9 @@ def _prune_unused_assets(content: str) -> tuple[str, int]:
     pruned = 0
 
     for filename in _ALWAYS_REMOVE:
+        # Robust regex: handles single/double/no quotes and query parameters
         pattern = re.compile(
-            rf'<link[^>]*href="[^"]*{re.escape(filename)}[^"]*"[^>]*/?>',
+            rf'<link[^>]*href=["\']?[^"\' >]*{re.escape(filename)}[^"\' >]*["\']?[^>]*>',
             re.IGNORECASE,
         )
         new_content = pattern.sub("", content)
@@ -408,13 +409,13 @@ def _prune_unused_assets(content: str) -> tuple[str, int]:
         page_uses_asset = any(marker in content for marker in markers)
         if not page_uses_asset:
             css_pattern = re.compile(
-                rf'<link[^>]*href="[^"]*{re.escape(filename_substr)}[^"]*"[^>]*/?>',
+                rf'<link[^>]*href=["\']?[^"\' >]*{re.escape(filename_substr)}[^"\' >]*["\']?[^>]*>',
                 re.IGNORECASE,
             )
             new_content = css_pattern.sub("", content)
 
             js_pattern = re.compile(
-                rf'<script[^>]*src="[^"]*{re.escape(filename_substr)}[^"]*"[^>]*>'
+                rf'<script[^>]*src=["\']?[^"\' >]*{re.escape(filename_substr)}[^"\' >]*["\']?[^>]*>'
                 r"</script>",
                 re.IGNORECASE,
             )

@@ -322,10 +322,14 @@ def register_post(app: Sphinx, doctree: Any) -> None:
         break
 
     # First image in post (URI + alt text, for postlist cards)
+    # Defensively skip data: URIs (base64) to avoid massive payloads on listing pages.
     image_uri = ""
     image_alt = ""
     for img_node in section.findall(nodes.image):
-        image_uri = img_node.get("uri", "")
+        uri = img_node.get("uri", "")
+        if uri.startswith("data:"):
+            continue
+        image_uri = uri
         image_alt = img_node.get("alt", "")
         break
 

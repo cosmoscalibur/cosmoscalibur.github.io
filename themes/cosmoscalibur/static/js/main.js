@@ -20,11 +20,18 @@
     }
 
     /* ── Post byline: move after <h1> title ── */
-    var byline = document.querySelector(".post-byline");
-    var h1 = document.querySelector(".content section > h1");
-    if (byline && h1) {
-      h1.after(byline);
-      byline.classList.add("is-placed");
+    var moveByline = function () {
+      var byline = document.querySelector(".post-byline");
+      var h1 = document.querySelector(".content section > h1");
+      if (byline && h1) {
+        h1.after(byline);
+        byline.classList.add("is-placed");
+      }
+    };
+    if (window.requestIdleCallback) {
+      window.requestIdleCallback(moveByline);
+    } else {
+      window.requestAnimationFrame(moveByline);
     }
 
     /* ── Site-scoped Google search (replaces inline script) ── */
