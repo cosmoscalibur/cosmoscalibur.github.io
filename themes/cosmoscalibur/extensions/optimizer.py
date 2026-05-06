@@ -23,6 +23,8 @@ cannot be intercepted at the doctree level:
    is handled at the doctree level by ``cosmoblog.transforms``.
 """
 
+import os
+from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 import re
 
@@ -245,13 +247,69 @@ def _translate_admonitions(
 
 # ── WebP conversion ──────────────────────────────────────────────────────
 
+# Compression effort 4 is the sweet spot: method=6 costs 2x time for only
+# 1.3% smaller output (benchmarked: 13.6s vs 7.4s for 62 KB difference).
+_WEBP_METHOD = 4
+_WEBP_QUALITY = 85
+
+# Pillow releases the GIL during C-level libwebp encoding, so threads
+# provide real parallelism.  Cap at 4 to limit memory pressure.
+_WEBP_WORKERS = min(os.cpu_count() or 2, 4)
+
+
+def _convert_single_image(img_path: Path) -> tuple[int, int]:
+    """Convert a single image to WebP.  Thread-safe.
+
+    Returns ``(1, bytes_saved)`` on success, ``(0, 0)`` on skip/error.
+    """
+    webp_path = img_path.with_suffix(".webp")
+
+    # Reuse already-converted files (from previous build)
+    if (
+        webp_path.exists()
+        and webp_path.stat().st_mtime >= img_path.stat().st_mtime
+    ):
+        saved = img_path.stat().st_size - webp_path.stat().st_size
+        img_path.unlink()
+        return 1, saved
+
+    original_size = img_path.stat().st_size
+    is_lossless = img_path.suffix.lower() == ".png"
+
+    try:
+        with Image.open(img_path) as img:
+            if img.mode in ("RGBA", "P"):
+                save_img = img.convert("RGBA")
+            else:
+                save_img = img.convert("RGB")
+
+            save_img.save(
+                webp_path,
+                "WEBP",
+                lossless=is_lossless,
+                quality=_WEBP_QUALITY,
+                method=_WEBP_METHOD,
+            )
+
+        saved = original_size - webp_path.stat().st_size
+        img_path.unlink()
+        return 1, saved
+    except Exception:
+        logger.debug(
+            "optimizer: skipped WebP conversion for %s",
+            img_path,
+            type="optimizer",
+            subtype="debug",
+        )
+        return 0, 0
+
 
 def _convert_images_to_webp(outdir: Path) -> tuple[int, int]:
     """Convert PNG/JPEG images in ``_images/`` to WebP.
 
     Only operates on the output directory — source tree is untouched.
-    Reuses existing conversions when a ``.webp`` file already exists
-    and is at least as recent as the source.
+    Uses a thread pool for parallel encoding (Pillow releases the GIL
+    during C-level libwebp calls).
 
     Returns a tuple of (files_converted, bytes_saved).
     """
@@ -259,56 +317,18 @@ def _convert_images_to_webp(outdir: Path) -> tuple[int, int]:
     if not images_dir.is_dir():
         return 0, 0
 
-    converted = 0
-    bytes_saved = 0
+    candidates = [
+        p for p in images_dir.iterdir()
+        if p.suffix.lower() in _CONVERTIBLE_EXTS
+    ]
+    if not candidates:
+        return 0, 0
 
-    for img_path in list(images_dir.iterdir()):
-        if img_path.suffix.lower() not in _CONVERTIBLE_EXTS:
-            continue
+    with ThreadPoolExecutor(max_workers=_WEBP_WORKERS) as pool:
+        results = list(pool.map(_convert_single_image, candidates))
 
-        webp_path = img_path.with_suffix(".webp")
-
-        # Reuse already-converted files (from previous build)
-        if (
-            webp_path.exists()
-            and webp_path.stat().st_mtime >= img_path.stat().st_mtime
-        ):
-            original_size = img_path.stat().st_size
-            bytes_saved += original_size - webp_path.stat().st_size
-            img_path.unlink()
-            converted += 1
-            continue
-
-        original_size = img_path.stat().st_size
-        is_lossless = img_path.suffix.lower() == ".png"
-
-        try:
-            with Image.open(img_path) as img:
-                if img.mode in ("RGBA", "P"):
-                    save_img = img.convert("RGBA")
-                else:
-                    save_img = img.convert("RGB")
-
-                save_img.save(
-                    webp_path,
-                    "WEBP",
-                    lossless=is_lossless,
-                    quality=85,
-                    method=6,
-                )
-
-            webp_size = webp_path.stat().st_size
-            bytes_saved += original_size - webp_size
-            converted += 1
-            img_path.unlink()
-        except Exception:
-            logger.debug(
-                "optimizer: skipped WebP conversion for %s",
-                img_path,
-                type="optimizer",
-                subtype="debug",
-            )
-
+    converted = sum(r[0] for r in results)
+    bytes_saved = sum(r[1] for r in results)
     return converted, bytes_saved
 
 
