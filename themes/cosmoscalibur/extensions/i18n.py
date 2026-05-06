@@ -18,8 +18,8 @@ Usage in Jinja2 templates (via ``t()`` injected by ``context.py``)::
     {{ t("built_with", sphinx="...", cosmoblog="...") }}
 """
 
-import json
 import functools
+import json
 from pathlib import Path
 from typing import Any
 

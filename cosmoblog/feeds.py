@@ -5,8 +5,8 @@ Generates one Atom feed per discovered language, plus a combined feed.
 
 from __future__ import annotations
 
-import os
 from datetime import date, datetime, timezone
+import os
 from typing import TYPE_CHECKING, Any
 
 from feedgen.feed import FeedGenerator

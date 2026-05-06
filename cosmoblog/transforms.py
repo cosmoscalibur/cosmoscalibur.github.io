@@ -98,6 +98,14 @@ class ImageDimensionsTransform(SphinxPostTransform):
             # Resolve relative to source directory.
             # RST absolute refs start with "/" — strip it.
             img_path = srcdir / uri.lstrip("/")
+            
+            # Fallback for excerpt images or nested paths that might be incorrectly resolved
+            if not img_path.is_file() and "images/" in uri:
+                # Try finding it relative to root images/ directly
+                parts = uri.split("images/")
+                if len(parts) > 1:
+                    img_path = srcdir / "images" / parts[-1]
+
             if not img_path.is_file():
                 continue
 
