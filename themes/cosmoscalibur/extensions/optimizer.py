@@ -43,6 +43,7 @@ _DEFERRABLE_SCRIPTS = {
     "doctools.js",
     "sphinx_highlight.js",
     "translations.js",
+    "design-tabs.js",
 }
 
 # Conservative minify-html configuration — safe for all browsers
@@ -163,6 +164,10 @@ def _process_html_files(
         if pruned > 0:
             prune_count += pruned
             content = new_content
+
+        # Deduplicate viewport meta tags (Sphinx basic emits one,
+        # sphinxext-opengraph may inject another via metatags).
+        content = _dedup_viewport_meta(content)
 
         # Rewrite image references to WebP
         if webp_count > 0:
@@ -346,6 +351,29 @@ def _update_image_references(content: str) -> str:
         r"\1.webp",
         content,
     )
+
+
+# ── Viewport deduplication ────────────────────────────────────────────────
+
+
+def _dedup_viewport_meta(content: str) -> str:
+    """Keep only the first ``<meta name="viewport" ...>`` tag.
+
+    Sphinx basic/layout.html hardcodes one viewport meta, and
+    sphinxext-opengraph may inject a second via the ``metatags``
+    context variable.  Only the first occurrence is kept.
+    """
+    matches = list(re.finditer(
+        r'<meta[^>]*name=["\']?viewport["\']?[^>]*/?>',
+        content,
+        re.IGNORECASE,
+    ))
+    if len(matches) <= 1:
+        return content
+    # Remove all but the first
+    for m in reversed(matches[1:]):
+        content = content[:m.start()] + content[m.end():]
+    return content
 
 
 # ── Defer, pruning ───────────────────────────────────────────────────────

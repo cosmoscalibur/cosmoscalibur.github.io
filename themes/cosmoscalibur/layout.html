@@ -4,9 +4,12 @@
 {% extends "basic/layout.html" %}
 
 {# ──── CSS ──── #}
+{# Sphinx basic theme injects main.css via {{ css() }} from theme.conf
+   stylesheet declaration.  We call {{ super() }} to get that plus any
+   extension-injected CSS (pygments, sphinx-design, etc.), then add
+   only the *additional* theme CSS that Sphinx doesn't know about. #}
 {% block css %}
   {{ super() }}
-  <link rel="stylesheet" href="{{ pathto('_static/css/main.css', 1) }}" />
   <link rel="stylesheet" href="{{ pathto('_static/css/content.css', 1) }}" />
   <link rel="stylesheet" href="{{ pathto('_static/css/components.css', 1) }}" />
   <link rel="stylesheet" media="print" href="{{ pathto('_static/css/print.css', 1) }}" />
@@ -18,8 +21,10 @@
   <script defer src="{{ pathto('_static/js/main.js', 1) }}"></script>
 {% endblock %}
 
-{# ──── Extrahead: analytics + ads + hreflang ──── #}
+{# ──── Extrahead: analytics + ads + hreflang + search domain ──── #}
 {% block extrahead %}
+  {# Pass search domain to JS via data attribute (avoids inline script) #}
+  <script>document.documentElement.dataset.searchDomain="{{ search_site_domain }}";</script>
   {# Fix relative asset paths on 404 page (served from any URL depth) #}
   {% if pagename == '404' %}
   <base href="/">

@@ -1,20 +1,8 @@
-{# Search — full bar on desktop, icon + overlay on mobile. WCAG compliant. #}
-{# Redirects to Google with site: operator for scoped results. #}
+{# Search — single DOM instance. Desktop: inline form. Mobile: overlay.
+   WCAG compliant. Redirects to Google with site: operator for scoped results.
+   The trigger button lives in navbar.html (mobile actions only).
+   The site: prefix logic is in main.js (no inline script). #}
 <div class="search-wrapper">
-  {# Icon trigger — visible on mobile only (CSS) #}
-  <button
-    class="search-trigger"
-    type="button"
-    aria-label="{{ _('Open search') }}"
-    aria-expanded="false"
-    aria-controls="search-overlay"
-  >
-    <svg class="icon" width="18" height="18" aria-hidden="true">
-      <use href="#icon-search"></use>
-    </svg>
-  </button>
-
-  {# Full form — always visible on desktop, overlay on mobile #}
   <form
     class="search-form"
     id="search-overlay"
@@ -42,13 +30,3 @@
     </button>
   </form>
 </div>
-<script>
-(function() {
-  var form = document.getElementById('search-overlay');
-  form.addEventListener('submit', function(e) {
-    var input = document.getElementById('search-input');
-    var hidden = document.getElementById('search-q');
-    hidden.value = 'site:{{ search_site_domain }} ' + input.value;
-  });
-})();
-</script>
