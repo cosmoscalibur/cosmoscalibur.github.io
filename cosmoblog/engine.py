@@ -8,19 +8,30 @@ pages with ``{postlist}`` directives.
 
 from __future__ import annotations
 
-import logging
+import os
 import re
 from dataclasses import dataclass, field
 from datetime import date as date_cls, datetime
+from pathlib import Path
 from typing import TYPE_CHECKING, Any
 from unicodedata import normalize
 
+try:
+    import base64
+    import hashlib
+    import io
+    from PIL import Image
+    HAS_PILLOW = True
+except ImportError:
+    HAS_PILLOW = False
+
 from docutils import nodes
+from sphinx.util.logging import getLogger
 
 if TYPE_CHECKING:
     from sphinx.application import Sphinx
 
-logger = logging.getLogger(__name__)
+logger = getLogger(__name__)
 
 # Date format used for parsing frontmatter dates
 _DATE_FORMAT = "%Y-%m-%d"
@@ -48,6 +59,8 @@ class PostInfo:
     published: bool
     image: str = ""  # URI of the first image in the post (if any)
     image_alt: str = ""  # Alt text for the first image
+    image_width: str = ""  # Width of the first image
+    image_height: str = ""  # Height of the first image
     section: str = ""
 
     def __lt__(self, other: PostInfo) -> bool:
@@ -322,15 +335,98 @@ def register_post(app: Sphinx, doctree: Any) -> None:
         break
 
     # First image in post (URI + alt text, for postlist cards)
-    # Defensively skip data: URIs (base64) to avoid massive payloads on listing pages.
     image_uri = ""
     image_alt = ""
+    image_width = ""
+    image_height = ""
     for img_node in section.findall(nodes.image):
         uri = img_node.get("uri", "")
+        # Normalize URI to be source-absolute (leading /)
         if uri.startswith("data:"):
-            continue
-        image_uri = uri
+            # Extract and convert to WebP at the source
+            if not HAS_PILLOW:
+                logger.warning("cosmoblog: skipped base64 extraction from %s (Pillow not installed)", docname)
+                image_uri = uri
+            else:
+                try:
+                    header, encoded = uri.split(",", 1)
+                    data = base64.b64decode(encoded)
+                    img = Image.open(io.BytesIO(data))
+
+                    sha = hashlib.sha256(data).hexdigest()[:12]
+                    filename = f"{sha}.webp"
+
+                    # Save to build directory
+                    out_dir = Path(app.outdir) / "_images" / "excerpts"
+                    out_dir.mkdir(parents=True, exist_ok=True)
+
+                    filepath = out_dir / filename
+                    if not filepath.exists():
+                        # Save as WebP with 85% quality for optimal balance
+                        img.save(filepath, "WEBP", quality=85)
+                        logger.info(
+                            "cosmoblog: [%s] extracted base64 to %s", docname, filename
+                        )
+
+                    image_uri = f"/_images/excerpts/{filename}"
+                except Exception as e:
+                    logger.warning(
+                        "cosmoblog: failed to extract base64 from %s: %s",
+                        docname,
+                        str(e),
+                    )
+                    image_uri = uri
+        elif not uri.startswith(("/", "http://", "https://", "//")):
+            srcdir = Path(app.srcdir)
+            doc_dir = str(Path(docname).parent)
+            
+            # Try to find where the file actually is in the source tree
+            potential_paths = [
+                srcdir / doc_dir / uri,
+                srcdir / uri.lstrip("/"),
+            ]
+            found = False
+            for p in potential_paths:
+                if p.is_file():
+                    # Convert to root-relative path with leading slash
+                    rel_p = p.relative_to(srcdir)
+                    image_uri = "/" + str(rel_p)
+                    found = True
+                    break
+            if not found:
+                # Fallback to original URI
+                image_uri = uri
+        else:
+            image_uri = uri
+
         image_alt = img_node.get("alt", "")
+        
+        # Extract dimensions directly for PostInfo
+        image_width = img_node.get("width", "")
+        image_height = img_node.get("height", "")
+        if not (image_width and image_height) and not uri.startswith("data:"):
+            # Try finding the file to get dimensions
+            from .transforms import _get_image_size
+            srcdir = Path(app.srcdir)
+            doc_dir = str(Path(docname).parent)
+            # Try several paths (absolute, relative, root-relative)
+            paths_to_try = [
+                srcdir / uri.lstrip("/"),
+                srcdir / doc_dir / uri,
+            ]
+            if "images/" in uri:
+                paths_to_try.append(srcdir / "images" / uri.split("images/")[-1])
+            
+            for p in paths_to_try:
+                if p.is_file():
+                    try:
+                        w, h = _get_image_size(p)
+                        if w and h:
+                            image_width = str(w)
+                            image_height = str(h)
+                            break
+                    except Exception:
+                        pass
         break
 
     # Published if has a date and date is not in the future
@@ -352,6 +448,8 @@ def register_post(app: Sphinx, doctree: Any) -> None:
         published=published,
         image=image_uri,
         image_alt=image_alt,
+        image_width=image_width,
+        image_height=image_height,
     )
     engine.register(post)
 

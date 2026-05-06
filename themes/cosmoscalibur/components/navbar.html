@@ -19,41 +19,43 @@
         <span class="navbar__title">{{ project }}</span>
       </a>
 
-      {# Desktop actions: lang (search form is a sibling, not inside) #}
-      <div class="navbar__actions navbar__actions--desktop">
-        {% include "components/lang-switcher.html" %}
-      </div>
+      {# Actions group: groups lang + search for right-aligned layout #}
+      <div class="navbar__actions-group">
+        <div class="navbar__actions navbar__actions--desktop">
+          {% include "components/lang-switcher.html" %}
+        </div>
 
-      {# Mobile actions: 🌐 + 🔍 trigger + ☰ (hidden on desktop) #}
-      <div class="navbar__actions navbar__actions--mobile">
-        {% include "components/lang-switcher.html" %}
-        {# Search trigger (icon only) — the form itself lives outside #}
-        <button
-          class="search-trigger"
-          type="button"
-          aria-label="{{ _('Open search') }}"
-          aria-expanded="false"
-          aria-controls="search-overlay"
-        >
-          <svg class="icon" width="18" height="18" aria-hidden="true">
-            <use href="#icon-search"></use>
-          </svg>
-        </button>
-        <button
-          class="navbar__toggle"
-          type="button"
-          aria-controls="navbar-mobile-menu"
-          aria-expanded="false"
-          aria-label="{{ _('Toggle navigation') }}"
-        >
-          <svg class="icon" width="24" height="24" aria-hidden="true">
-            <use href="#icon-bars"></use>
-          </svg>
-        </button>
-      </div>
+        {# Mobile actions: 🌐 + 🔍 trigger + ☰ (hidden on desktop) #}
+        <div class="navbar__actions navbar__actions--mobile">
+          {% include "components/lang-switcher.html" %}
+          {# Search trigger (icon only) — the form itself lives outside #}
+          <button
+            class="search-trigger"
+            type="button"
+            aria-label="{{ _('Open search') }}"
+            aria-expanded="false"
+            aria-controls="search-overlay"
+          >
+            <svg class="icon" width="18" height="18" aria-hidden="true">
+              <use href="#icon-search"></use>
+            </svg>
+          </button>
+          <button
+            class="navbar__toggle"
+            type="button"
+            aria-controls="navbar-mobile-menu"
+            aria-expanded="false"
+            aria-label="{{ _('Toggle navigation') }}"
+          >
+            <svg class="icon" width="24" height="24" aria-hidden="true">
+              <use href="#icon-bars"></use>
+            </svg>
+          </button>
+        </div>
 
-      {# Search form — single DOM instance, positioned via CSS #}
-      {% include "components/search-form.html" %}
+        {# Search form — single DOM instance, positioned via CSS #}
+        {% include "components/search-form.html" %}
+      </div>
     </nav>
   </div>
 
