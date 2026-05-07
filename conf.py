@@ -73,6 +73,7 @@ html_theme_options = {
     "facebook_url": "https://www.facebook.com/cosmoscalibur",
     "youtube_url": "https://www.youtube.com/c/CosmoscaliburCo",
     "linkedin_url": "https://www.linkedin.com/in/cosmoscalibur/",
+    "posthog_api_key": "phc_DohK6STAPe2d7fv33DgsHz2HZ5cpkHQjKVPhEyLEuMLe",
 }
 
 if not os.getenv("DEPLOY_LOCAL"):
