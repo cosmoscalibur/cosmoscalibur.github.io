@@ -68,7 +68,7 @@ _PRUNABLE_ASSETS = {
 }
 
 # CSS files to always remove (redundant with theme dark-only pygments.css)
-_ALWAYS_REMOVE = {"pygments_dark.css", "basic.css"}
+_ALWAYS_REMOVE = {"pygments_dark.css", "basic.css", "translations.js"}
 
 # Image extensions eligible for WebP conversion
 _CONVERTIBLE_EXTS = {".png", ".jpg", ".jpeg"}
@@ -175,19 +175,23 @@ def _process_html_files(
         # Bundle CSS: replace individual links with theme.bundle.css
         content = _update_css_links(content)
 
+        # Inject preload hints for CSS files that survived pruning
+        content = _inject_css_preloads(content)
+
         # Deduplicate viewport meta tags (Sphinx basic emits one,
         # sphinxext-opengraph may inject another via metatags).
         content = _dedup_viewport_meta(content)
-
-        # Rewrite image references to WebP
-        if webp_count > 0:
-            content = _update_image_references(content)
 
         # Extract base64 images from excerpts
         content = _extract_base64_excerpts(content, outdir, html_file)
 
         # Fix excerpt images that point to source paths instead of _images/
         content = _fix_excerpt_image_paths(content)
+
+        # Rewrite image references to WebP (runs AFTER _fix_excerpt_image_paths
+        # so that path corrections are also converted to .webp)
+        if webp_count > 0:
+            content = _update_image_references(content)
 
         # Translate admonition titles for the page's language
         if admonition_maps:
@@ -357,13 +361,13 @@ def _convert_images_to_webp(outdir: Path) -> tuple[int, int]:
 
 
 def _update_image_references(content: str) -> str:
-    """Replace image file extensions in HTML for converted ``_images/`` files.
+    """Replace image file extensions in HTML for converted image files.
 
-    Only rewrites paths containing ``_images/`` to avoid breaking
-    references to logos, favicons, and other static assets.
+    Rewrites paths containing ``_images/`` or ``jupyter_execute/`` to
+    avoid breaking references to logos, favicons, and other static assets.
     """
     return re.sub(
-        r'(_images/[^"]*)\.(?:png|jpe?g)',
+        r'((?:_images|jupyter_execute)/[^"]*)\.(?:png|jpe?g)',
         r"\1.webp",
         content,
     )
@@ -412,11 +416,19 @@ def _prune_unused_assets(content: str) -> tuple[str, int]:
 
     for filename in _ALWAYS_REMOVE:
         # Robust regex: handles single/double/no quotes and query parameters
-        pattern = re.compile(
+        # Match <link> tags (CSS)
+        link_pattern = re.compile(
             rf'<link[^>]*href=["\']?[^"\' >]*{re.escape(filename)}[^"\' >]*["\']?[^>]*>',
             re.IGNORECASE,
         )
-        new_content = pattern.sub("", content)
+        new_content = link_pattern.sub("", content)
+        # Match <script> tags (JS)
+        script_pattern = re.compile(
+            rf'<script[^>]*src=["\']?[^"\' >]*{re.escape(filename)}[^"\' >]*["\']?[^>]*>'
+            r"</script>",
+            re.IGNORECASE,
+        )
+        new_content = script_pattern.sub("", new_content)
         if new_content != content:
             pruned += 1
             content = new_content
@@ -442,6 +454,57 @@ def _prune_unused_assets(content: str) -> tuple[str, int]:
                 content = new_content
 
     return content, pruned
+
+
+# CSS files eligible for preload hints when they remain on the page.
+# These are small, render-blocking CSS files that Sphinx emits as separate
+# <link> tags.  Adding <link rel="preload"> lets the browser start downloading
+# them in parallel with the main theme.bundle.css instead of sequentially.
+_PRELOADABLE_CSS = {"mystnb.", "pygments.css"}
+
+
+def _inject_css_preloads(content: str) -> str:
+    """Add ``<link rel="preload">`` hints for small CSS files that survived pruning.
+
+    The browser discovers these files only after parsing the HTML far
+    enough to reach their ``<link rel="stylesheet">`` tag, which creates
+    a sequential critical chain.  Preload hints near the top of ``<head>``
+    tell the browser to start fetching them immediately, in parallel.
+    """
+    preloads: list[str] = []
+
+    for css_substr in _PRELOADABLE_CSS:
+        # Check if this CSS file is still linked on the page
+        pattern = re.compile(
+            rf'<link[^>]*href=["\']?([^"\' >]*{re.escape(css_substr)}[^"\' >]*)["\']?[^>]*>',
+            re.IGNORECASE,
+        )
+        match = pattern.search(content)
+        if match:
+            href = match.group(1)
+            preloads.append(
+                f'<link rel="preload" href="{href}" as="style">'
+            )
+
+    if not preloads:
+        return content
+
+    # Inject preload hints right after <meta charset>
+    preload_block = "\n".join(preloads)
+    charset_pattern = re.compile(r'(<meta\s+charset=[^>]*>)', re.IGNORECASE)
+    charset_match = charset_pattern.search(content)
+    if charset_match:
+        insert_pos = charset_match.end()
+        content = content[:insert_pos] + "\n" + preload_block + content[insert_pos:]
+    else:
+        # Fallback: insert right after <head>
+        head_pattern = re.compile(r'(<head[^>]*>)', re.IGNORECASE)
+        head_match = head_pattern.search(content)
+        if head_match:
+            insert_pos = head_match.end()
+            content = content[:insert_pos] + "\n" + preload_block + content[insert_pos:]
+
+    return content
 
 
 # ── Static file minification ─────────────────────────────────────────────
@@ -595,7 +658,7 @@ def _fix_excerpt_image_paths(content: str) -> str:
     # Pattern matches images in excerpts that don't point to _images/
     pattern = re.compile(
         r'(<img[^>]*class=["\']?cosmoblog-post-excerpt["\']?[^>]*src=["\']?)'
-        r'(/(?:es|en|images)/[^"\' >]+)(\.[a-z0-9]+)(["\']?[^>]*>)',
+        r'(/(?:es|en|images|jupyter_execute)/[^"\' >]+)(\.[a-z0-9]+)(["\']?[^>]*>)',
         re.IGNORECASE,
     )
 

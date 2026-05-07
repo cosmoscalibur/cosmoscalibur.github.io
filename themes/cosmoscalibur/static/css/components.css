@@ -308,10 +308,8 @@
   to   { opacity: 1; transform: translateY(0); }
 }
 
-/* ── Post byline (date + author) — hidden until JS moves after h1 ── */
+/* ── Post byline (date + author) — rendered above article, no JS move ── */
 .post-byline {
-  visibility: hidden;
-  position: absolute;
   font-size: var(--font-size-sm);
   color: var(--color-text-secondary);
   display: flex;
@@ -320,11 +318,6 @@
   margin-bottom: 1.5rem;
   padding-bottom: 1rem;
   border-bottom: 1px solid var(--color-border);
-}
-
-.post-byline.is-placed {
-  visibility: visible;
-  position: static;
 }
 
 .post-byline__item::before {
@@ -635,12 +628,12 @@
     width: 100%;
   }
 
-  /* Search: show trigger, hide form until toggle */
+  /* Search: show trigger, hide the standalone form (overlay only via JS) */
   .navbar__actions--mobile .search-trigger {
     display: flex;
   }
 
-  .navbar__actions--mobile .search-form {
+  .search-wrapper {
     display: none;
   }
 

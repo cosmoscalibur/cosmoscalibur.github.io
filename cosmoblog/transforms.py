@@ -12,12 +12,22 @@ on output files only (``_images/``), keeping the source tree clean.
 
 from __future__ import annotations
 
+import base64
+import hashlib
+import io
 import logging
 from pathlib import Path
 from typing import TYPE_CHECKING, Any
 
 from docutils import nodes
 from sphinx.transforms.post_transforms import SphinxPostTransform
+
+try:
+    from PIL import Image
+
+    _HAS_PILLOW = True
+except ImportError:  # pragma: no cover
+    _HAS_PILLOW = False
 
 if TYPE_CHECKING:
     from sphinx.application import Sphinx
@@ -27,6 +37,82 @@ logger = logging.getLogger(__name__)
 
 # JPEG marker byte for dimension parsing
 _JPEG_MARKER = 0xFF
+
+
+# ---------------------------------------------------------------------------
+# Post-transform: base64 image extraction
+# ---------------------------------------------------------------------------
+
+
+class Base64ImageTransform(SphinxPostTransform):
+    """Extract inline ``data:`` images, convert to WebP, and rewrite URIs.
+
+    Notebook cells may embed screenshots or output plots as base64 data
+    URIs.  This transform decodes them, saves as WebP files in the
+    output ``_images/nb_inline/`` directory, and rewrites the node URI.
+
+    .. note::
+
+       We intentionally do **not** set ``node["width"]`` or
+       ``node["height"]`` because Sphinx's HTML5 writer converts them
+       to inline CSS ``style="width:Xpx; height:Ypx"`` which overrides
+       ``max-width: 100%; height: auto`` and breaks the aspect ratio on
+       narrow viewports.  The browser computes aspect ratio from the
+       image file's intrinsic dimensions automatically.
+
+    Runs before ``LazyImageTransform`` so that the rewritten URI is
+    available for lazy-loading decisions.
+    """
+
+    default_priority = 795  # Before LazyImageTransform (800)
+    formats = ("html",)
+
+    def run(self, **kwargs: Any) -> None:
+        if not _HAS_PILLOW:
+            return
+
+        outdir = Path(self.app.outdir)
+        nb_inline_dir = outdir / "_images" / "nb_inline"
+
+        for node in self.document.findall(nodes.image):
+            uri = node.get("uri", "")
+            if not uri.startswith("data:"):
+                continue
+
+            if "," not in uri:
+                continue
+
+            try:
+                _header, encoded = uri.split(",", 1)
+                data = base64.b64decode(encoded)
+                img = Image.open(io.BytesIO(data))
+
+                # Save as WebP
+                sha = hashlib.sha256(data).hexdigest()[:12]
+                filename = f"{sha}.webp"
+                nb_inline_dir.mkdir(parents=True, exist_ok=True)
+                filepath = nb_inline_dir / filename
+
+                if not filepath.exists():
+                    if img.mode in ("RGBA", "P"):
+                        save_img = img.convert("RGBA")
+                    else:
+                        save_img = img.convert("RGB")
+
+                    save_img.save(filepath, "WEBP", quality=85)
+                    logger.info(
+                        "transforms: extracted base64 image to %s",
+                        filename,
+                    )
+
+                # Rewrite URI to the saved file
+                node["uri"] = f"/_images/nb_inline/{filename}"
+
+            except Exception:
+                logger.debug(
+                    "transforms: skipped base64 extraction for %s",
+                    self.env.docname,
+                )
 
 
 # ---------------------------------------------------------------------------
@@ -213,6 +299,7 @@ def register_transforms(app: Sphinx) -> None:
     for image attribute injection since the doctree is fully resolved
     and images are registered in the builder.
     """
+    app.add_post_transform(Base64ImageTransform)
     app.add_post_transform(LazyImageTransform)
     app.add_post_transform(ImageDimensionsTransform)
     app.add_post_transform(TableWrapperTransform)

@@ -37,6 +37,36 @@ logger = getLogger(__name__)
 _DATE_FORMAT = "%Y-%m-%d"
 
 
+def _is_notebook_equation_render(img_node: nodes.image) -> bool:
+    """Detect if a notebook image is a rendered equation (SymPy/LaTeX).
+
+    Walks up the doctree to the myst-nb ``mime_bundle`` container and
+    checks if a sibling container has ``mime_type: 'text/latex'``.
+    Equation renders always have a ``text/latex`` MIME alternative
+    alongside the ``image/png``; plot outputs (matplotlib, etc.) do not.
+    """
+    # Walk up to find the mime_bundle container
+    node = img_node
+    mime_bundle = None
+    for _ in range(4):  # image → container → container → mime_bundle
+        node = node.parent
+        if node is None:
+            return False
+        if hasattr(node, "get") and node.get("nb_element") == "mime_bundle":
+            mime_bundle = node
+            break
+
+    if mime_bundle is None:
+        return False
+
+    # Check siblings for a text/latex MIME container
+    for child in mime_bundle.children:
+        if hasattr(child, "get") and child.get("mime_type") == "text/latex":
+            return True
+
+    return False
+
+
 def slugify(text: str) -> str:
     """Convert text to a URL-friendly slug."""
     text = normalize("NFKD", str(text))
@@ -334,13 +364,25 @@ def register_post(app: Sphinx, doctree: Any) -> None:
         excerpt = para.astext()
         break
 
-    # First image in post (URI + alt text, for postlist cards)
+    # First image in post (URI + alt text, for postlist cards).
+    # For notebook posts, skip equation renders (SymPy/LaTeX) and prefer
+    # the first actual plot output (matplotlib, etc.).
     image_uri = ""
     image_alt = ""
     image_width = ""
     image_height = ""
+    first_img_node = None  # Fallback if all images are equations
     for img_node in section.findall(nodes.image):
         uri = img_node.get("uri", "")
+
+        # For notebook images, skip equation renders.
+        # Equations are identified by a text/latex sibling in the
+        # myst-nb mime_bundle container (doctree structure).
+        if "jupyter_execute" in uri and _is_notebook_equation_render(img_node):
+            if first_img_node is None:
+                first_img_node = img_node
+            continue
+
         # Normalize URI to be source-absolute (leading /)
         if uri.startswith("data:"):
             # Extract and convert to WebP at the source
@@ -428,6 +470,12 @@ def register_post(app: Sphinx, doctree: Any) -> None:
                     except Exception:
                         pass
         break
+
+    # Fallback: if all notebook images were equations, use the first one
+    if not image_uri and first_img_node is not None:
+        uri = first_img_node.get("uri", "")
+        image_uri = uri if uri.startswith("/") else "/" + uri
+        image_alt = first_img_node.get("alt", "")
 
     # Published if has a date and date is not in the future
     published = date is not None and date <= date_cls.today()

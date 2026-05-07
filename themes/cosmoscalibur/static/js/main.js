@@ -19,20 +19,6 @@
       });
     }
 
-    /* ── Post byline: move after <h1> title ── */
-    var moveByline = function () {
-      var byline = document.querySelector(".post-byline");
-      var h1 = document.querySelector(".content section > h1");
-      if (byline && h1) {
-        h1.after(byline);
-        byline.classList.add("is-placed");
-      }
-    };
-    if (window.requestIdleCallback) {
-      window.requestIdleCallback(moveByline);
-    } else {
-      window.requestAnimationFrame(moveByline);
-    }
 
     /* ── Site-scoped Google search (replaces inline script) ── */
     var searchForm = document.getElementById("search-overlay");
@@ -51,14 +37,17 @@
     var searchTrigger = document.querySelector(
       ".navbar__actions--mobile .search-trigger"
     );
+    var searchWrapper = searchForm ? searchForm.closest(".search-wrapper") : null;
     if (searchTrigger && searchForm) {
       searchTrigger.addEventListener("click", function () {
         var isOpen = searchForm.classList.contains("search-form--overlay");
         if (isOpen) {
           searchForm.classList.remove("search-form--overlay");
           searchForm.style.display = "";
+          if (searchWrapper) searchWrapper.style.display = "";
           searchTrigger.setAttribute("aria-expanded", "false");
         } else {
+          if (searchWrapper) searchWrapper.style.display = "block";
           searchForm.classList.add("search-form--overlay");
           searchForm.style.display = "flex";
           searchTrigger.setAttribute("aria-expanded", "true");
@@ -74,6 +63,7 @@
             !e.target.closest(".search-trigger")) {
           searchForm.classList.remove("search-form--overlay");
           searchForm.style.display = "";
+          if (searchWrapper) searchWrapper.style.display = "";
           searchTrigger.setAttribute("aria-expanded", "false");
         }
       });
@@ -83,6 +73,7 @@
         if (e.key === "Escape" && searchForm.classList.contains("search-form--overlay")) {
           searchForm.classList.remove("search-form--overlay");
           searchForm.style.display = "";
+          if (searchWrapper) searchWrapper.style.display = "";
           searchTrigger.setAttribute("aria-expanded", "false");
           searchTrigger.focus();
         }
