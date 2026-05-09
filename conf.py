@@ -73,10 +73,11 @@ html_theme_options = {
     "facebook_url": "https://www.facebook.com/cosmoscalibur",
     "youtube_url": "https://www.youtube.com/c/CosmoscaliburCo",
     "linkedin_url": "https://www.linkedin.com/in/cosmoscalibur/",
-    "posthog_api_key": "phc_DohK6STAPe2d7fv33DgsHz2HZ5cpkHQjKVPhEyLEuMLe",
 }
 
-if not os.getenv("DEPLOY_LOCAL"):
+if os.getenv("DEPLOY_LOCAL"):
+    html_theme_options["posthog_api_key"] = "phc_DohK6STAPe2d7fv33DgsHz2HZ5cpkHQjKVPhEyLEuMLe"
+else:
     html_theme_options["analytics_id"] = "G-4YFQBC69LB"
     html_theme_options["google_adsense_id"] = "ca-pub-0356238418278924"
 
