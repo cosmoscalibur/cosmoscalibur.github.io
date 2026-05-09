@@ -16,14 +16,8 @@ from pathlib import Path
 from typing import TYPE_CHECKING, Any
 from unicodedata import normalize
 
-try:
-    import base64
-    import hashlib
-    import io
-    from PIL import Image
-    HAS_PILLOW = True
-except ImportError:
-    HAS_PILLOW = False
+import base64
+import hashlib
 
 from docutils import nodes
 from sphinx.util.logging import getLogger
@@ -385,39 +379,15 @@ def register_post(app: Sphinx, doctree: Any) -> None:
 
         # Normalize URI to be source-absolute (leading /)
         if uri.startswith("data:"):
-            # Extract and convert to WebP at the source
-            if not HAS_PILLOW:
-                logger.warning("cosmoblog: skipped base64 extraction from %s (Pillow not installed)", docname)
+            # Predict the URI that Base64ImageTransform will produce.
+            # Avoid full extraction here; the post-transform handles disk I/O.
+            try:
+                _header, encoded = uri.split(",", 1)
+                data = base64.b64decode(encoded)
+                sha = hashlib.sha256(data).hexdigest()[:12]
+                image_uri = f"/_images/nb_inline/{sha}.webp"
+            except Exception:
                 image_uri = uri
-            else:
-                try:
-                    header, encoded = uri.split(",", 1)
-                    data = base64.b64decode(encoded)
-                    img = Image.open(io.BytesIO(data))
-
-                    sha = hashlib.sha256(data).hexdigest()[:12]
-                    filename = f"{sha}.webp"
-
-                    # Save to build directory
-                    out_dir = Path(app.outdir) / "_images" / "excerpts"
-                    out_dir.mkdir(parents=True, exist_ok=True)
-
-                    filepath = out_dir / filename
-                    if not filepath.exists():
-                        # Save as WebP with 85% quality for optimal balance
-                        img.save(filepath, "WEBP", quality=85)
-                        logger.info(
-                            "cosmoblog: [%s] extracted base64 to %s", docname, filename
-                        )
-
-                    image_uri = f"/_images/excerpts/{filename}"
-                except Exception as e:
-                    logger.warning(
-                        "cosmoblog: failed to extract base64 from %s: %s",
-                        docname,
-                        str(e),
-                    )
-                    image_uri = uri
         elif not uri.startswith(("/", "http://", "https://", "//")):
             srcdir = Path(app.srcdir)
             doc_dir = str(Path(docname).parent)
