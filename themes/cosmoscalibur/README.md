@@ -31,6 +31,9 @@ html_theme_options = {
     # Google Analytics (gtag.js)
     "analytics_id": "G-XXXXXXXXXX",
 
+    # Google Custom Search Engine (embedded results)
+    "google_cse_id": "YOUR_CX_ID",   # omit for external Google fallback
+
     # Google AdSense
     "google_adsense_id": "ca-pub-XXXXXXXXXXXXXXXX",
 
@@ -166,7 +169,7 @@ Single file: `js/main.js` (~3 KB, vanilla JS, no dependencies).
 | Mobile nav toggle | `aria-expanded` hamburger menu |
 | Back-to-top button | Shows after 300px scroll, uses `hidden` attribute |
 | TOC scroll-spy | Highlights the current section in the right TOC with anchor-lock support |
-| Google search | Prepends `site:` domain to query and redirects to Google |
+| Google search | Dual-mode: if `google_cse_id` set → navigates to `/search/` (embedded PSE); else → external Google with `site:` scope |
 
 ## Jinja2 Templates
 
@@ -185,7 +188,7 @@ Single file: `js/main.js` (~3 KB, vanilla JS, no dependencies).
 
 | Template | Description |
 | --- | --- |
-| `search.html` | Minimal stub — search is handled by Google redirect, Sphinx search page unused |
+| `search.html` | Embeds Google PSE results when `google_cse_id` is configured; otherwise shows a fallback message |
 
 ### Components (`components/`)
 
@@ -194,7 +197,7 @@ Single file: `js/main.js` (~3 KB, vanilla JS, no dependencies).
 | `navbar.html` | Sticky glassmorphism navbar with logo, lang badge, search, hamburger toggle |
 | `icon-links.html` | Social icon links (auto-generated from `*_url` options, rendered in footer) |
 | `lang-switcher.html` | Language toggle badge (2-letter code: ES/EN, derived from `lang_alt_code`) |
-| `search-form.html` | Google site-scoped search form (redirects to `google.com/search?q=site:...`) |
+| `search-form.html` | Search form with `data-cse-id` for JS dual-mode (internal PSE or external Google fallback) |
 | `toc-sidebar.html` | Right-side table of contents |
 | `post-byline.html` | Date-only byline (single-author: no author display) |
 | `post-discovery.html` | Unified discovery zone: tags + related posts (sidebar on desktop, inline on mobile) |

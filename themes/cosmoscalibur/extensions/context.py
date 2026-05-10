@@ -14,6 +14,8 @@ from pathlib import Path
 import re
 from typing import Any
 
+from docutils.nodes import make_id as _slugify
+
 from pygments.formatters import HtmlFormatter
 from sphinx.application import Sphinx
 
@@ -450,6 +452,9 @@ def inject_page_context(
         year_part, author_part = copyright_str, ""
     context["copyright_year"] = year_part
     context["copyright_author"] = author_part
+
+    # --- Slugify filter for tag→URL conversion in templates ---
+    context["slugify"] = _slugify
 
     # --- Search domain for Google site: operator ---
     base_url = (app.config.html_baseurl or "").rstrip("/")

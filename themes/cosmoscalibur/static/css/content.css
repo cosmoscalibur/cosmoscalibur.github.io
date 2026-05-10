@@ -787,3 +787,133 @@ details[open] > .sd-summary-title .sd-summary-state-marker {
   font-style: italic;
   font-size: var(--font-size-sm);
 }
+
+/* ============================================================
+   Google Programmable Search Engine — Dark theme override
+   Forces Google CSE results to match the blog's dark palette.
+   ============================================================ */
+
+/* Main container — transparent bg, inherit font */
+.gsc-control-cse {
+  background-color: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+  font-family: var(--font-body) !important;
+}
+
+/* Results area */
+.gsc-results-wrapper-overlay,
+.gsc-results-wrapper-nooverlay {
+  background: transparent !important;
+}
+
+.gsc-above-wrapper-area {
+  border-bottom-color: var(--color-border) !important;
+  padding-bottom: 0.5rem !important;
+}
+
+/* Result count and sort */
+.gsc-result-info,
+.gsc-orderby-label {
+  color: var(--color-text-secondary) !important;
+  font-size: var(--font-size-sm) !important;
+}
+
+/* Individual result cards */
+.gsc-webResult.gsc-result {
+  background: var(--color-bg-secondary) !important;
+  border: 1px solid var(--color-border) !important;
+  border-radius: var(--radius-lg) !important;
+  padding: 1.25rem 1.5rem !important;
+  margin-bottom: 1rem !important;
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+.gsc-webResult.gsc-result:hover {
+  border-color: var(--color-accent) !important;
+  box-shadow: var(--shadow-sm) !important;
+}
+
+/* Result title links */
+.gs-title,
+.gs-title a,
+.gs-title a.gs-title b {
+  color: var(--color-accent) !important;
+  text-decoration: none !important;
+  font-size: 1.1rem !important;
+  font-weight: 600 !important;
+}
+
+.gs-title a:hover,
+.gs-title a:hover b {
+  color: var(--color-accent-hover) !important;
+}
+
+/* Result URL/breadcrumb */
+.gs-visibleUrl,
+.gs-visibleUrl-short,
+.gs-visibleUrl-long {
+  color: var(--color-text-muted) !important;
+  font-size: var(--font-size-sm) !important;
+}
+
+/* Result snippet */
+.gs-snippet {
+  color: var(--color-text-secondary) !important;
+  font-size: var(--font-size-base) !important;
+  line-height: 1.65 !important;
+}
+
+/* Bold terms in snippets */
+.gs-snippet b {
+  color: var(--color-text) !important;
+}
+
+/* Pagination */
+.gsc-cursor-box {
+  margin-top: 1.5rem !important;
+  text-align: center !important;
+}
+
+.gsc-cursor-page {
+  color: var(--color-accent) !important;
+  background: var(--color-bg-secondary) !important;
+  border: 1px solid var(--color-border) !important;
+  border-radius: var(--radius) !important;
+  padding: 0.4rem 0.75rem !important;
+  margin: 0 0.15rem !important;
+  cursor: pointer !important;
+  text-decoration: none !important;
+}
+
+.gsc-cursor-current-page {
+  background: var(--color-accent) !important;
+  color: var(--color-bg) !important;
+  font-weight: 700 !important;
+  border-color: var(--color-accent) !important;
+}
+
+/* Remove Google branding bar background */
+.gcsc-find-more-on-google,
+.gsc-results .gsc-imageResult {
+  background: transparent !important;
+}
+
+/* Table layout reset — prevent Google's table layout from breaking */
+.gsc-table-result,
+.gsc-thumbnail-inside,
+.gsc-url-top {
+  padding: 0 !important;
+}
+
+.gsc-table-cell-thumbnail {
+  display: none !important;  /* Hide thumbnail column */
+}
+
+/* "No results" message */
+.gs-no-results-result .gs-snippet {
+  color: var(--color-text-secondary) !important;
+  background: transparent !important;
+  border: none !important;
+}
+

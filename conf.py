@@ -22,6 +22,7 @@ html_sidebars = {
     "*/blog/archive": [],
     "*/me/**": ["cosmoscalibur/recentposts.html"],
     "404": [],
+    "search": [],
 }
 
 
@@ -80,6 +81,8 @@ if os.getenv("DEPLOY_LOCAL"):
 else:
     html_theme_options["analytics_id"] = "G-4YFQBC69LB"
     html_theme_options["google_adsense_id"] = "ca-pub-0356238418278924"
+
+html_theme_options["google_cse_id"] = "505da71e2c7c24955"
 
 
 # The name of an image file (relative to this directory) to place at the top

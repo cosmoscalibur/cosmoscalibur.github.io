@@ -11,7 +11,7 @@
   <div class="post-discovery__tags">
     <span class="post-discovery__label">🏷️</span>
     {% for tag in post.tags %}
-      <span class="post-discovery__tag">{{ tag }}</span>
+      <a href="{{ pathto('blog/tag/' + slugify(tag)) }}" class="post-discovery__tag">{{ tag }}</a>
       {%- if not loop.last %}, {% endif %}
     {% endfor %}
   </div>

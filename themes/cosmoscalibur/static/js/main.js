@@ -20,15 +20,27 @@
     }
 
 
-    /* ── Site-scoped Google search (replaces inline script) ── */
+    /* ── Site-scoped search (internal PSE or external Google fallback) ── */
     var searchForm = document.getElementById("search-overlay");
     if (searchForm) {
-      searchForm.addEventListener("submit", function () {
+      searchForm.addEventListener("submit", function (e) {
+        e.preventDefault();
         var input = document.getElementById("search-input");
-        var hidden = document.getElementById("search-q");
-        if (input && hidden) {
+        if (!input || !input.value.trim()) return;
+        var query = input.value.trim();
+        var cseId = searchForm.dataset.cseId;
+
+        if (cseId) {
+          /* Internal: navigate to embedded search page */
+          window.location.href = "/search/?q=" + encodeURIComponent(query);
+        } else {
+          /* Fallback: external Google with site: scope */
           var domain = document.documentElement.dataset.searchDomain || "";
-          hidden.value = (domain ? "site:" + domain + " " : "") + input.value;
+          var q = (domain ? "site:" + domain + " " : "") + query;
+          window.open(
+            "https://www.google.com/search?q=" + encodeURIComponent(q),
+            "_blank"
+          );
         }
       });
     }

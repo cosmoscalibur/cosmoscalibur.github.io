@@ -1,7 +1,23 @@
-{# Search is handled by Google redirect — this page is no longer used.
-   Sphinx still generates it, so we provide a minimal stub. #}
+{# Search page — embeds Google PSE when configured, otherwise shows fallback message.
+   Sphinx generates this page automatically; no search.md source needed.
+   noindex: search results are dynamic, not indexable content. #}
 {% extends "layout.html" %}
+{% set title = t("search_title") %}
+
+{% block extrahead %}
+  {{ super() }}
+  <meta name="robots" content="noindex, follow">
+  <meta name="description" content="{{ t('search_description') }}">
+{% endblock %}
 
 {% block body %}
+<h1>{{ title }}</h1>
+{% if theme_google_cse_id %}
+<div role="search" aria-label="{{ title }}">
+  <div class="gcse-searchresults-only" data-queryParameterName="q"></div>
+</div>
+<script async src="https://cse.google.com/cse.js?cx={{ theme_google_cse_id }}"></script>
+{% else %}
 <p>{{ t("search_redirect") }}</p>
+{% endif %}
 {% endblock %}

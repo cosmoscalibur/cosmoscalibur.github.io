@@ -1,16 +1,17 @@
 {# Search — single DOM instance. Desktop: inline form. Mobile: overlay.
-   WCAG compliant. Redirects to Google with site: operator for scoped results.
+   WCAG compliant. When google_cse_id is set, JS navigates to /search/?q=...
+   Otherwise, falls back to external Google with site: operator.
    The trigger button lives in navbar.html (mobile actions only).
    The site: prefix logic is in main.js (no inline script). #}
 <div class="search-wrapper">
   <form
     class="search-form"
     id="search-overlay"
-    action="https://www.google.com/search"
-    method="get"
-    target="_blank"
     role="search"
     aria-label="{{ _('Search') }}"
+    {% if theme_google_cse_id %}
+    data-cse-id="{{ theme_google_cse_id }}"
+    {% endif %}
   >
     <label for="search-input" class="visually-hidden">{{ _('Search') }}</label>
     <input
@@ -21,7 +22,7 @@
       autocomplete="off"
       aria-label="{{ _('Search the docs') }}"
     />
-    {# Hidden field concatenated with user input via JS for site-scoped Google search #}
+    {# Hidden field for external Google fallback (site-scoped) #}
     <input type="hidden" name="q" id="search-q" />
     <button class="search-form__btn" type="submit" aria-label="{{ _('Submit search') }}">
       <svg class="icon" width="16" height="16" aria-hidden="true">
