@@ -27,7 +27,6 @@ import base64
 from concurrent.futures import ThreadPoolExecutor
 import hashlib
 import io
-import mimetypes
 import os
 from pathlib import Path
 import re
@@ -157,67 +156,107 @@ def _process_html_files(
         if amap:
             admonition_maps[lang] = amap
 
+    lang_ctx = {
+        "known_langs": known_langs,
+        "default_lang": default_lang,
+        "admonition_maps": admonition_maps,
+    }
+
     for html_file in html_files:
-        content = html_file.read_text(encoding="utf-8")
-        original = content
-        original_size = len(content.encode("utf-8"))
-
-        new_content = _defer_sphinx_scripts(content)
-        if new_content != content:
-            defer_count += 1
-            content = new_content
-
-        new_content, pruned = _prune_unused_assets(content)
-        if pruned > 0:
-            prune_count += pruned
-            content = new_content
-
-        # Bundle CSS: replace individual links with theme.bundle.css
-        content = _update_css_links(content)
-
-        # Inject preload hints for CSS files that survived pruning
-        content = _inject_css_preloads(content)
-
-        # Deduplicate viewport meta tags (Sphinx basic emits one,
-        # sphinxext-opengraph may inject another via metatags).
-        content = _dedup_viewport_meta(content)
-
-        # Extract base64 images from excerpts
-        content = _extract_base64_excerpts(content, outdir, html_file)
-
-        # Fix excerpt images that point to source paths instead of _images/
-        content = _fix_excerpt_image_paths(content)
-
-        # Rewrite image references to WebP (runs AFTER _fix_excerpt_image_paths
-        # so that path corrections are also converted to .webp)
-        if webp_count > 0:
-            content = _update_image_references(content)
-
-        # Translate admonition titles for the page's language
-        if admonition_maps:
-            page_lang = _detect_page_lang(
-                html_file, outdir, known_langs, default_lang,
-            )
-            if page_lang in admonition_maps:
-                content = _translate_admonitions(
-                    content, admonition_maps[page_lang],
-                )
-
-        try:
-            content = minify_html.minify(content, **_MINIFY_CFG)
-        except Exception:
-            logger.debug(
-                "optimizer: skipped HTML minification for %s",
-                html_file,
-                type="optimizer",
-                subtype="debug",
-            )
-
-        if content != original:
-            html_file.write_text(content, encoding="utf-8")
-            html_bytes_saved += original_size - len(content.encode("utf-8"))
+        deferred, pruned, saved = _process_single_html(
+            html_file, webp_count, outdir, lang_ctx,
+        )
+        defer_count += deferred
+        prune_count += pruned
+        html_bytes_saved += saved
 
     return defer_count, prune_count, html_bytes_saved
+
+
+def _process_single_html(
+    html_file: Path,
+    webp_count: int,
+    outdir: Path,
+    lang_ctx: dict,
+) -> tuple[int, int, int]:
+    """Process a single HTML file through all optimization passes.
+
+    Args:
+        html_file: Path to the HTML file to process.
+        webp_count: Number of images converted to WebP.
+        outdir: Sphinx output directory root.
+        lang_ctx: Dict with keys ``known_langs``, ``default_lang``,
+            ``admonition_maps``.
+
+    Returns ``(defer_count, prune_count, bytes_saved)``.
+    """
+    known_langs = lang_ctx["known_langs"]
+    default_lang = lang_ctx["default_lang"]
+    admonition_maps = lang_ctx["admonition_maps"]
+
+    content = html_file.read_text(encoding="utf-8")
+    original = content
+    original_size = len(content.encode("utf-8"))
+    defer_count = 0
+    prune_count = 0
+
+    new_content = _defer_sphinx_scripts(content)
+    if new_content != content:
+        defer_count = 1
+        content = new_content
+
+    new_content, pruned = _prune_unused_assets(content)
+    if pruned > 0:
+        prune_count = pruned
+        content = new_content
+
+    # Bundle CSS: replace individual links with theme.bundle.css
+    content = _update_css_links(content)
+
+    # Inject preload hints for CSS files that survived pruning
+    content = _inject_css_preloads(content)
+
+    # Deduplicate viewport meta tags (Sphinx basic emits one,
+    # sphinxext-opengraph may inject another via metatags).
+    content = _dedup_viewport_meta(content)
+
+    # Extract base64 images from excerpts
+    content = _extract_base64_excerpts(content, outdir, html_file)
+
+    # Fix excerpt images that point to source paths instead of _images/
+    content = _fix_excerpt_image_paths(content)
+
+    # Rewrite image references to WebP (runs AFTER _fix_excerpt_image_paths
+    # so that path corrections are also converted to .webp)
+    if webp_count > 0:
+        content = _update_image_references(content)
+
+    # Translate admonition titles for the page's language
+    if admonition_maps:
+        page_lang = _detect_page_lang(
+            html_file, outdir, known_langs, default_lang,
+        )
+        if page_lang in admonition_maps:
+            content = _translate_admonitions(
+                content, admonition_maps[page_lang],
+            )
+
+    try:
+        content = minify_html.minify(content, **_MINIFY_CFG)
+    except Exception:
+        logger.debug(
+            "optimizer: skipped HTML minification for %s",
+            html_file,
+            type="optimizer",
+            subtype="debug",
+        )
+
+    bytes_saved = 0
+    if content != original:
+        html_file.write_text(content, encoding="utf-8")
+        bytes_saved = original_size - len(content.encode("utf-8"))
+
+    return defer_count, prune_count, bytes_saved
 
 
 def _detect_page_lang(
@@ -318,7 +357,6 @@ def _convert_single_image(img_path: Path) -> tuple[int, int]:
 
         saved = original_size - webp_path.stat().st_size
         img_path.unlink()
-        return 1, saved
     except Exception:
         logger.debug(
             "optimizer: skipped WebP conversion for %s",
@@ -327,6 +365,8 @@ def _convert_single_image(img_path: Path) -> tuple[int, int]:
             subtype="debug",
         )
         return 0, 0
+    else:
+        return 1, saved
 
 
 def _convert_images_to_webp(outdir: Path) -> tuple[int, int]:
@@ -365,9 +405,11 @@ def _update_image_references(content: str) -> str:
 
     Rewrites paths containing ``_images/`` or ``jupyter_execute/`` to
     avoid breaking references to logos, favicons, and other static assets.
+    Excludes ``social_previews/`` since those PNGs are not converted to WebP
+    (social crawlers expect the original format).
     """
     return re.sub(
-        r'((?:_images|jupyter_execute)/[^"]*)\.(?:png|jpe?g)',
+        r'((?:_images|jupyter_execute)/(?!social_previews/)[^"]*)\.(?:png|jpe?g)',
         r"\1.webp",
         content,
     )
@@ -410,24 +452,61 @@ def _defer_sphinx_scripts(content: str) -> str:
     return content
 
 
+
+def _link_re(name: str) -> re.Pattern[str]:
+    """Regex matching ``<link>`` whose ``href`` contains *name*.
+
+    Returns a compiled case-insensitive pattern.
+    """
+    esc = re.escape(name)
+    return re.compile(
+        r'<link[^>]*href=["\']?[^"\'  >]*'
+        + esc
+        + r'[^"\'  >]*["\']?[^>]*>',
+        re.IGNORECASE,
+    )
+
+
+def _script_re(name: str) -> re.Pattern[str]:
+    """Regex matching ``<script>`` whose ``src`` contains *name*.
+
+    Returns a compiled case-insensitive pattern.
+    """
+    esc = re.escape(name)
+    return re.compile(
+        r'<script[^>]*src=["\']?[^"\'  >]*'
+        + esc
+        + r'[^"\'  >]*["\']?[^>]*>'
+        r"</script>",
+        re.IGNORECASE,
+    )
+
+
+def _link_href_re(name: str) -> re.Pattern[str]:
+    """Capturing regex for ``href`` in ``<link>`` containing *name*.
+
+    Returns a compiled case-insensitive pattern.
+    """
+    esc = re.escape(name)
+    return re.compile(
+        r'<link[^>]*href=["\']?([^"\'  >]*'
+        + esc
+        + r'[^"\'  >]*)["\']?[^>]*>',
+        re.IGNORECASE,
+    )
+
+
 def _prune_unused_assets(content: str) -> tuple[str, int]:
     """Remove ``<link>``/``<script>`` for CSS/JS not used by the page."""
     pruned = 0
 
     for filename in _ALWAYS_REMOVE:
         # Robust regex: handles single/double/no quotes and query parameters
-        # Match <link> tags (CSS)
-        link_pattern = re.compile(
-            rf'<link[^>]*href=["\']?[^"\' >]*{re.escape(filename)}[^"\' >]*["\']?[^>]*>',
-            re.IGNORECASE,
-        )
+        # Link tags (CSS)
+        link_pattern = _link_re(filename)
         new_content = link_pattern.sub("", content)
-        # Match <script> tags (JS)
-        script_pattern = re.compile(
-            rf'<script[^>]*src=["\']?[^"\' >]*{re.escape(filename)}[^"\' >]*["\']?[^>]*>'
-            r"</script>",
-            re.IGNORECASE,
-        )
+        # Script tags (JS)
+        script_pattern = _script_re(filename)
         new_content = script_pattern.sub("", new_content)
         if new_content != content:
             pruned += 1
@@ -436,17 +515,10 @@ def _prune_unused_assets(content: str) -> tuple[str, int]:
     for filename_substr, markers in _PRUNABLE_ASSETS.items():
         page_uses_asset = any(marker in content for marker in markers)
         if not page_uses_asset:
-            css_pattern = re.compile(
-                rf'<link[^>]*href=["\']?[^"\' >]*{re.escape(filename_substr)}[^"\' >]*["\']?[^>]*>',
-                re.IGNORECASE,
-            )
+            css_pattern = _link_re(filename_substr)
             new_content = css_pattern.sub("", content)
 
-            js_pattern = re.compile(
-                rf'<script[^>]*src=["\']?[^"\' >]*{re.escape(filename_substr)}[^"\' >]*["\']?[^>]*>'
-                r"</script>",
-                re.IGNORECASE,
-            )
+            js_pattern = _script_re(filename_substr)
             new_content = js_pattern.sub("", new_content)
 
             if new_content != content:
@@ -475,10 +547,7 @@ def _inject_css_preloads(content: str) -> str:
 
     for css_substr in _PRELOADABLE_CSS:
         # Check if this CSS file is still linked on the page
-        pattern = re.compile(
-            rf'<link[^>]*href=["\']?([^"\' >]*{re.escape(css_substr)}[^"\' >]*)["\']?[^>]*>',
-            re.IGNORECASE,
-        )
+        pattern = _link_href_re(css_substr)
         match = pattern.search(content)
         if match:
             href = match.group(1)
@@ -573,17 +642,17 @@ def _bundle_theme_css(outdir: Path) -> None:
         return
 
     bundle_path = static_dir / "theme.bundle.css"
-    
+
     # Order matters: main -> content -> components
     files = ["main.css", "content.css", "components.css"]
     combined = []
-    
+
     for f in files:
         fpath = static_dir / f
         if fpath.is_file():
             content = fpath.read_text(encoding="utf-8")
             combined.append(f"/* bundle:{f} */\n" + content)
-            
+
     if combined:
         bundle_path.write_text("\n".join(combined), encoding="utf-8")
         logger.info("optimizer: created CSS bundle theme.bundle.css")
@@ -598,7 +667,7 @@ def _update_css_links(content: str) -> str:
             re.IGNORECASE,
         )
         content = pattern.sub("", content)
-        
+
     # Replace main.css with theme.bundle.css
     pattern = re.compile(
         r'(<link[^>]*href=["\']?[^"\' >]*)main\.css([^"\' >]*["\']?[^>]*>)',
@@ -610,26 +679,26 @@ def _update_css_links(content: str) -> str:
 def _extract_base64_excerpts(content: str, outdir: Path, html_file: Path) -> str:
     """Find base64 images in excerpts, save to files, and update src."""
     excerpts_dir = outdir / "_images" / "excerpts"
-    
+
     # Supports quoted or unquoted attributes (common after minification).
     pattern = re.compile(
         r'(<img[^>]*class=["\']?cosmoblog-post-excerpt["\']?[^>]*src=["\'])'
         r'(data:image/[^"\' >]+)(["\'][^>]*>)',
         re.IGNORECASE,
     )
-    
+
     def replacer(match: re.Match) -> str:
         prefix, src, suffix = match.groups()
         if not src.startswith("data:image/"):
             return match.group(0)
-            
+
         try:
             if "," not in src:
                 return match.group(0)
-                
+
             _header, encoded = src.split(",", 1)
             data = base64.b64decode(encoded)
-            
+
             img = Image.open(io.BytesIO(data))
             sha = hashlib.sha256(data).hexdigest()[:12]
             filename = f"{sha}.webp"
@@ -645,11 +714,12 @@ def _extract_base64_excerpts(content: str, outdir: Path, html_file: Path) -> str
                     filename,
                 )
             # Use root-relative path for the excerpt image
-            return f"{prefix}/_images/excerpts/{filename}{suffix}"
         except Exception as e:
             logger.warning("optimizer: failed to extract base64 image: %s", e)
             return match.group(0)
-            
+        else:
+            return f"{prefix}/_images/excerpts/{filename}{suffix}"
+
     return pattern.sub(replacer, content)
 
 
