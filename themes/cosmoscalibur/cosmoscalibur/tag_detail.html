@@ -8,6 +8,7 @@
   {% if collection_posts is defined and collection_posts|length <= 2 %}
   <meta name="robots" content="noindex, follow">
   {% endif %}
+  <meta name="description" content="{{ t('tag_meta_description', tag=tag_name|e, count=collection_posts|length, site=project|e) }}">
 {% endblock %}
 {% block body %}
 <div class="section cosmoblog__collection">
