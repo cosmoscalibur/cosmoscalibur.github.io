@@ -94,6 +94,23 @@ Tags are also translated between languages.
 
 - First person, personal narrative tone. The author shares experiences and
   opinions.
+- **Never invent experiential specifics.** Personal narrative details — how
+  or when the author learned something, what tool/channel surfaced it, their
+  circumstances or reactions — must come from the author's brief, not be
+  fabricated for color. If the post's opening or a transition calls for a
+  personal-context detail the user hasn't provided, ask the user for it
+  instead of writing a plausible-sounding invented one (e.g., don't assume
+  "no advance notice" when the author never said that — ask how they
+  actually found out). This is a personal, authentic blog; an invented lived
+  experience breaks that authenticity even if the surrounding facts are
+  correct.
+- **Direct, no expectation-building teasers in body text.** The
+  "avoid clickbait, expectative, viral" rule for titles (see
+  [Title principles](#title-principles)) applies to prose too. Don't write
+  curiosity-gap phrases like "and what I found while digging into it..." or
+  "you won't believe what happened next" that promise a payoff instead of
+  stating it. If a sentence sets up a reveal, deliver the reveal in the same
+  sentence or the next one — the author's style is direct, not teased.
 - Accessible but technically accurate.
 - Short paragraphs, with line wraps at ~80 characters in the source.
 - Foreign words relative to the post's language must be italicized (e.g.,
@@ -145,6 +162,22 @@ Tags are also translated between languages.
   prompt Starship en tu terminal Manjaro con Zsh").
 - **Use the post's language** for the title — Spanish for `es/`, English for
   `en/`.
+- **Titles are descriptive noun/gerund phrases about the topic or change, not
+  first-person narrative sentences.** The existing corpus never titles a post
+  as a story beat ("Cuando X pasó, hice Y"); it names the topic directly:
+  "Migrando mi blog de Nikola a Sphinx", "Buscando el mejor cliente de
+  Mastodon para Android", "Alucinación de la inteligencia artificial". Prefer
+  "Migrando a Claude Code como alternativa al modo consumo en Antigravity
+  GCP" over "Cuando Antigravity corporativo pasó a consumo, migré a Claude
+  Code" — same content, but the first reads like the rest of the blog and the
+  second reads like a diary entry.
+- **A colon introduces a subtitle or a question, never a cause → consequence
+  formula.** Existing titles use the colon as "topic: descriptive appositive"
+  (e.g., "Proton: Modo de compatibilidad de Steam") or "topic: rhetorical
+  question" (e.g., "Factura electrónica: ¿Qué hacer si te la niegan?"). Don't
+  use it to mechanically join a trigger and a decision/result (e.g.,
+  "Antigravity pasa a consumo: por qué migro a Claude Code") — that reads as
+  a formula, not a title.
 
 #### Good vs. bad title examples
 
@@ -154,6 +187,7 @@ Tags are also translated between languages.
 | Herramientas de IA gratuita para desarrolladores en 2026 | Las mejores herramientas que todo dev necesita | Vague, no keywords |
 | Alineación planetaria 2025 | Algo increíble está pasando en el cielo | Expectative, unspecific |
 | Configurar Starship en Manjaro y Zsh | Mi nuevo prompt favorito | Missing topic/tags |
+| Migrando a Claude Code como alternativa al modo consumo en Antigravity GCP | Cuando Antigravity corporativo pasó a consumo, migré a Claude Code | Narrative sentence instead of a descriptive noun phrase matching the blog's title pattern |
 
 ### Slug derivation rules
 
@@ -195,6 +229,14 @@ writing style**.
   Treat them as sub-queries a reader might search for.
 - Prefer question-format headings for H2/H3 when it fits naturally (e.g.,
   "¿Qué es Seekee?" rather than "Descripción"), as they match search intent.
+- **Headings must be concise (aim 4-8 words) and name the section's lead
+  idea — not an enumeration of every sub-point it covers.** If a section
+  merges several related sub-points (see
+  [Section granularity](#section-granularity)), title it after the
+  overarching argument, not a comma-joined list of its parts: prefer "El
+  modo consumo: más factura y sin Claude" over "Facturación, ausencia de
+  Claude en modo consumo y la aclaración de fondo" for a section covering
+  all three of those points.
 
 #### Heading examples from existing posts
 
@@ -369,6 +411,15 @@ listing sources:
 - [Title](URL). Source.
 ```
 
+### Cite specific claims inline, not only in References
+
+When the post states a specific, checkable external fact — a product change,
+a policy update, a dated announcement — link to the source **inline, at the
+point the claim is made**, in addition to listing it in References. Don't
+make the reader guess which entry in References backs which sentence. A
+generic product page ("what's new") doesn't substitute for the actual
+announcement being described; find and link the specific source.
+
 ## Planning & Approval Workflow
 
 **Before writing any content**, the agent must present a structured plan to the
@@ -382,7 +433,10 @@ Present the following plan as an artifact for user review:
 
 1. **Topic & Angle** — One-paragraph summary of what the post will cover and the
    specific angle or thesis. Explain *why* this angle was chosen over
-   alternatives.
+   alternatives. If the angle relies on a personal-experience detail the user
+   hasn't stated (how they found out, their specific circumstances), ask
+   before including it — don't invent one (see
+   [Writing Style](#writing-style)).
 2. **Target Audience** — Who is this post for? What level of expertise is
    assumed?
 3. **Post Type** — One of: Technology/Troubleshooting, Science, Opinion,
@@ -391,9 +445,30 @@ Present the following plan as an artifact for user review:
    [Title & Slug Strategy](#title--slug-strategy). Include the derived slug.
 5. **Tags & Categories** — Proposed tags (Spanish & English) and categories.
    Justify tag choices: why these tags serve discoverability and ad relevance.
+   **Every tag must correspond to a topic the post actually covers in its
+   own sections** — not a topic merely adjacent to it or implied by the
+   broader subject area. Before finalizing tags (both at planning time and
+   again after the draft is written), check each one against the section
+   outline: if no section substantively discusses it, drop the tag. Example:
+   a post about a product's billing and model-availability change doesn't
+   automatically earn a `modelo de lenguaje`/`language model` tag just
+   because it mentions specific model names in passing — that tag belongs
+   on posts that actually discuss language models as a subject.
 6. **Section Outline** — Numbered list of H2/H3 sections with a one-sentence
    description of each section's content. This defines the post's structure and
    flow.
+
+   #### Section granularity
+
+   Group sub-points that build toward the same argument under one H2 instead
+   of giving each its own section — but keep genuinely distinct arguments or
+   phases (e.g., "the problem" vs. "the decision") as separate sections. As a
+   rule of thumb, target **4-7 H2 sections** for a standard post: enough to
+   keep each section atomic (one clear idea), without fragmenting into a
+   section per sentence. Resolve grouping at outline review, not after the
+   draft is written — merging sections after the fact tends to produce
+   comma-joined heading titles (see
+   [Headings must include tags](#headings-must-include-tags)).
 7. **Focus & Strategy Review** — Editorial assessment covering:
    - **SEO focus**: Primary keyword phrase and 2–3 secondary keywords targeted.
    - **Ad alignment**: Which high-value keyword areas does this post tap into?
