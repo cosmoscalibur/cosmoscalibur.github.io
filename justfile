@@ -37,3 +37,9 @@ deploy: clean
 serve: build
     -kill $(lsof -ti:8000) 2>/dev/null
     uv run -- python -m http.server -d docs
+
+# Confirmar, comitear y publicar tras aprobación del mensaje de commit
+publish message: deploy
+    git add -A
+    git commit -m "{{ message }}"
+    git push

@@ -17,10 +17,10 @@ prioridad.
 
 ## Desarrollado con
 
-El sitio es generado con [Sphinx](https://www.sphinx-doc.org/),
-[Ablog](https://ablog.readthedocs.io/en/stable/) y un
-[tema propio](themes/cosmoscalibur/README.md) (dark-only, WCAG 2.1 AA,
-optimizado para Core Web Vitals).
+El sitio es generado con [Sphinx](https://www.sphinx-doc.org/), un
+[motor de blog propio](cosmoblog/ARCHITECTURE.md) (`cosmoblog`, reemplazo de
+Ablog) y un [tema propio](themes/cosmoscalibur/README.md) (dark-only,
+WCAG 2.1 AA, optimizado para Core Web Vitals).
 El sitio está alojado en GitHub, servido a través de GitHub Pages, y el código
 fuente de las publicaciones es ReStructuredText y MarkDown/Myst (incluyendo
 Notebook), el cual puede consultar libremente.
@@ -58,7 +58,7 @@ Por lo pronto los veo en las redes sociales:
 - GitHub [cosmoscalibur](https://github.com/cosmoscalibur).
 - Mastodon [@cosmoscalibur@col.social](https://col.social/@cosmoscalibur).
 - Youtube [cosmoscalibur](https://www.youtube.com/c/CosmoscaliburCo).
-- X (Twitter) [@cosmoscalibur](http://www.twitter.com/cosmoscalibur).
+- X (Twitter) [@cosmoscalibur](http://www.x.com/cosmoscalibur).
 - Facebook [cosmoscalibur](http://www.facebook.com/cosmoscalibur).
 - Instagram [blogcosmoscalibur](https://www.instagram.com/cosmoscalibur/).
 - LinkedIn [cosmoscalibur](https://co.linkedin.com/in/cosmoscalibur).

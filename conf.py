@@ -99,6 +99,8 @@ exclude_patterns = [
     "Pipfile",
     "LICENSE",
     "README.md",
+    "CONTRIBUTING.md",
+    "CLAUDE.md",
     "requirements*.txt",
     ".vscode",
     ".venv",
