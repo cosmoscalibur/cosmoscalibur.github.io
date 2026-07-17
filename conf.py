@@ -1,15 +1,19 @@
 import os
-import sys
 from pathlib import Path
+import sys
 
 sys.path.insert(0, str(Path("themes").resolve()))
-sys.path.insert(0, str(Path(".").resolve()))
+sys.path.insert(0, str(Path().resolve()))
 
 ## --- Cosmoblog ---
 # All optional — defaults shown. Languages inferred from directory structure.
 blog_path = "blog"
 blog_post_pattern = "*/blog/*/*"
 blog_feed_fulltext = True
+# Default language for root-level pages with no language prefix in their
+# path (e.g. the homepage, 404). Unrelated to Sphinx's own i18n language,
+# which cosmoblog always keeps at English regardless of this setting.
+blog_default_language = "es"
 
 ## categories, tagcloud, archives, postcard, recentposts, authors, languages, locations
 html_sidebars = {
@@ -62,7 +66,6 @@ nb_render_markdown_format = "myst"
 # General information about the project.
 project = "Cosmoscalibur"
 author = "Edward Villegas-Pulgarin"
-language = "es"
 
 # -- Options for HTML output ----------------------------------------------
 html_theme = "cosmoscalibur"
@@ -76,9 +79,11 @@ html_theme_options = {
     "linkedin_url": "https://www.linkedin.com/in/cosmoscalibur/",
 }
 
-if os.getenv("DEPLOY_LOCAL"):
-    html_theme_options["posthog_api_key"] = "phc_DohK6STAPe2d7fv33DgsHz2HZ5cpkHQjKVPhEyLEuMLe"
-else:
+
+if not os.getenv("DEPLOY_LOCAL"):
+    html_theme_options["posthog_api_key"] = (
+        "phc_DohK6STAPe2d7fv33DgsHz2HZ5cpkHQjKVPhEyLEuMLe"
+    )
     html_theme_options["analytics_id"] = "G-4YFQBC69LB"
     html_theme_options["google_adsense_id"] = "ca-pub-0356238418278924"
 

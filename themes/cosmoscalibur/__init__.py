@@ -6,9 +6,9 @@ from a single ``setup()`` entry point.
 """
 
 import contextlib
-import re
 from datetime import UTC, datetime
 from pathlib import Path
+import re
 from typing import Any
 from urllib.parse import urlparse
 
@@ -61,7 +61,8 @@ def _sync_config(app: Sphinx) -> None:
     Identity (single-author focus):
     - ``html_title`` ← ``project``
     - ``blog_title`` ← ``html_title``
-    - ``blog_default_language`` ← ``language``
+    - ``blog_default_language`` ← ``language`` (routing fallback only —
+      unrelated to Sphinx's own i18n language, always English)
     - ``copyright`` ← first post year + current year + ``author``
 
     URL / sitemap / OGP:
@@ -81,16 +82,11 @@ def _sync_config(app: Sphinx) -> None:
     if cfg.project:
         cfg.html_title = cfg.project
 
-    # blog_default_language = language (original, before we force English)
-    original_lang = cfg.language or "es"
+    # blog_default_language: routing fallback for root-level pages with no
+    # language prefix in their path — unrelated to Sphinx's own i18n
+    # language, which cosmoblog leaves at its default (English) always.
     if not getattr(cfg, "blog_default_language", None):
-        cfg.blog_default_language = original_lang
-
-    # Force Sphinx to build with English internally so admonitions
-    # come out in English (standard i18n base).  The theme fixes
-    # <html lang> per-page and handles all translations via t()
-    # and admonition post-processing.
-    cfg.language = "en"
+        cfg.blog_default_language = cfg.language or "en"
 
     # copyright = "{first_post_year}-{current_year}, {author}"
     if not cfg.copyright and cfg.author:
@@ -124,9 +120,7 @@ def _sync_config(app: Sphinx) -> None:
             parsed = urlparse(mastodon_url)
             user = parsed.path.lstrip("/@")
             fedi = f"@{user}@{parsed.hostname}"
-            tags.append(
-                f'<meta name="fediverse:creator" content="{fedi}" />'
-            )
+            tags.append(f'<meta name="fediverse:creator" content="{fedi}" />')
         if tags:
             cfg.ogp_custom_meta_tags = tags
 

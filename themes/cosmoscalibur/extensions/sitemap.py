@@ -87,15 +87,22 @@ def add_html_link(
 
     # Filter links: Include root pages, blog posts, and categories.
     # Exclude tags, global indexes (blog/index, blog/archive), and technical pages.
-    excluded_prefixes = ("blog/tag/", "blog/index", "blog/archive", "genindex", "search")
-    
+    excluded_prefixes = (
+        "blog/tag/",
+        "blog/index",
+        "blog/archive",
+        "genindex",
+        "search",
+    )
+
     # Build dynamic language prefixes from cosmoblog
     known_prefixes = tuple(f"{lang}/" for lang in get_known_langs(app))
 
-    if sitemap_link not in app.builder.config.sitemap_excludes and (
-        sitemap_link.startswith(known_prefixes + ("blog/category/",))
-    ) and not sitemap_link.startswith(excluded_prefixes):
-        
+    if (
+        sitemap_link not in app.builder.config.sitemap_excludes
+        and (sitemap_link.startswith(known_prefixes + ("blog/category/",)))
+        and not sitemap_link.startswith(excluded_prefixes)
+    ):
         # Capture lastmod from cosmoblog post if available
         lastmod = None
         engine = getattr(env, "cosmoblog", None)
@@ -104,7 +111,7 @@ def add_html_link(
             lastmod_dt = post.update or post.date
             if lastmod_dt:
                 lastmod = lastmod_dt.strftime("%Y-%m-%d")
-        
+
         env.app.sitemap_links.put((sitemap_link, lastmod))  # type: ignore[attr-defined]
 
 
@@ -121,8 +128,7 @@ def create_sitemap(app: Sphinx, exception: Exception | None) -> None:
         site_url = site_url.rstrip("/") + "/"
     else:
         logger.warning(
-            "sitemap: html_baseurl is required in conf.py. "
-            "Sitemap not built.",
+            "sitemap: html_baseurl is required in conf.py. Sitemap not built.",
             type="sitemap",
             subtype="configuration",
         )
@@ -143,7 +149,7 @@ def create_sitemap(app: Sphinx, exception: Exception | None) -> None:
     )
 
     locales = get_locales(app)
-    language = app.builder.config.language or ""
+    language = app.builder.config.blog_default_language or ""
 
     # Structure: pages[canonical_path] = {locale: (link, lastmod)}
     pages: dict[str, dict[str, tuple[str, str | None]]] = defaultdict(dict)
@@ -162,13 +168,13 @@ def create_sitemap(app: Sphinx, exception: Exception | None) -> None:
 
     for lang_page in pages.values():
         url = ElementTree.SubElement(root, "url")
-        
+
         # Pick the link and lastmod from the primary language if available, else first found
         primary = lang_page.get(language) or next(iter(lang_page.values()))
         link, lastmod = primary
-        
+
         ElementTree.SubElement(url, "loc").text = site_url + link
-        
+
         if lastmod:
             ElementTree.SubElement(url, "lastmod").text = lastmod
 

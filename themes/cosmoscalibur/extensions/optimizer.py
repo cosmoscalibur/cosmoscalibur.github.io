@@ -16,6 +16,11 @@ cannot be intercepted at the doctree level:
    HTML writer (the admonition *type* is a doctree concept, but the
    displayed title comes from the writer).
 5. **Minification** -- Minifies all HTML, CSS, and JS.
+6. **Social preview pruning** -- Deletes ``_images/social_previews/*.png``
+   files no page references anymore (stale post, or sphinxext-opengraph
+   regenerated one under a new content hash). Also prunes the
+   ``.cache/social_previews/`` backup ``just clean`` preserves across
+   builds, so an orphan doesn't silently come back on the next build.
 
 .. note::
 
@@ -36,7 +41,7 @@ from PIL import Image
 from sphinx.application import Sphinx
 from sphinx.util.logging import getLogger
 
-from .i18n import get_admonition_map, get_known_langs
+from .i18n import REFERENCE_LANG, get_admonition_map, get_known_langs
 
 logger = getLogger(__name__)
 
@@ -62,7 +67,12 @@ _MINIFY_CFG = {
 # Each entry maps a filename substring to HTML markers that indicate usage.
 _PRUNABLE_ASSETS = {
     "mystnb.": {"cell_input", "cell_output", "nb-cell", "cell tag_"},
-    "sphinx-design.min.css": {"sd-tab-set", "sd-card", "sd-dropdown", "sd-col"},
+    "sphinx-design.min.css": {
+        "sd-tab-set",
+        "sd-card",
+        "sd-dropdown",
+        "sd-col",
+    },
     "pygments.css": {'class="highlight'},
 }
 
@@ -96,22 +106,28 @@ def post_process_html(app: Sphinx, exception: Exception | None) -> None:
 
     # --- 3. Post-process HTML files ---
     html_files = list(outdir.rglob("*.html"))
-    defer_count, prune_count, html_bytes_saved = (
+    defer_count, prune_count, html_bytes_saved, referenced_previews = (
         _process_html_files(html_files, webp_count, app)
     )
 
     # --- 4. Minify standalone CSS/JS files ---
     static_files, static_bytes = _minify_static_files(outdir)
 
+    # --- 5. Prune orphaned social preview images ---
+    orphan_count = _prune_orphaned_social_previews(
+        outdir, Path(app.confdir), referenced_previews
+    )
+
     total_saved = html_bytes_saved + static_bytes + webp_saved
     logger.info(
         "optimizer: defer=%d, pruned=%d refs, "
-        "minified=%d static, webp=%d images, "
+        "minified=%d static, webp=%d images, orphan_previews=%d, "
         "saved=%.1f KB (html=%.1f, static=%.1f, webp=%.1f)",
         defer_count,
         prune_count,
         static_files,
         webp_count,
+        orphan_count,
         total_saved / 1024,
         html_bytes_saved / 1024,
         static_bytes / 1024,
@@ -131,17 +147,20 @@ def _process_html_files(
     html_files: list[Path],
     webp_count: int,
     app: Sphinx,
-) -> tuple[int, int, int]:
+) -> tuple[int, int, int, set[str]]:
     """Apply defer, WebP URI rewriting, pruning, admonition i18n, minification.
 
     Lazy loading and image dimensions are handled by cosmoblog doctree
     post-transforms before rendering.
 
-    Returns ``(defer_count, prune_count, bytes_saved)``.
+    Returns ``(defer_count, prune_count, bytes_saved, referenced_previews)``,
+    where ``referenced_previews`` is the set of social-preview filenames
+    still in use across all processed pages.
     """
     defer_count = 0
     prune_count = 0
     html_bytes_saved = 0
+    referenced_previews: set[str] = set()
 
     # Pre-compute admonition maps for all languages.
     default_lang = app.config.blog_default_language
@@ -150,7 +169,7 @@ def _process_html_files(
     known_langs = get_known_langs(app)
     admonition_maps: dict[str, dict[str, str]] = {}
     for lang in known_langs:
-        if lang == default_lang:
+        if lang == REFERENCE_LANG:
             continue
         amap = get_admonition_map(lang, confdir)
         if amap:
@@ -163,14 +182,18 @@ def _process_html_files(
     }
 
     for html_file in html_files:
-        deferred, pruned, saved = _process_single_html(
-            html_file, webp_count, outdir, lang_ctx,
+        deferred, pruned, saved, previews = _process_single_html(
+            html_file,
+            webp_count,
+            outdir,
+            lang_ctx,
         )
         defer_count += deferred
         prune_count += pruned
         html_bytes_saved += saved
+        referenced_previews |= previews
 
-    return defer_count, prune_count, html_bytes_saved
+    return defer_count, prune_count, html_bytes_saved, referenced_previews
 
 
 def _process_single_html(
@@ -178,7 +201,7 @@ def _process_single_html(
     webp_count: int,
     outdir: Path,
     lang_ctx: dict,
-) -> tuple[int, int, int]:
+) -> tuple[int, int, int, set[str]]:
     """Process a single HTML file through all optimization passes.
 
     Args:
@@ -188,7 +211,7 @@ def _process_single_html(
         lang_ctx: Dict with keys ``known_langs``, ``default_lang``,
             ``admonition_maps``.
 
-    Returns ``(defer_count, prune_count, bytes_saved)``.
+    Returns ``(defer_count, prune_count, bytes_saved, referenced_previews)``.
     """
     known_langs = lang_ctx["known_langs"]
     default_lang = lang_ctx["default_lang"]
@@ -234,12 +257,20 @@ def _process_single_html(
     # Translate admonition titles for the page's language
     if admonition_maps:
         page_lang = _detect_page_lang(
-            html_file, outdir, known_langs, default_lang,
+            html_file,
+            outdir,
+            known_langs,
+            default_lang,
         )
         if page_lang in admonition_maps:
             content = _translate_admonitions(
-                content, admonition_maps[page_lang],
+                content,
+                admonition_maps[page_lang],
             )
+
+    referenced_previews = set(
+        re.findall(r"_images/social_previews/([^\"'>\s]+\.png)", content)
+    )
 
     try:
         content = minify_html.minify(content, **_MINIFY_CFG)
@@ -256,7 +287,7 @@ def _process_single_html(
         html_file.write_text(content, encoding="utf-8")
         bytes_saved = original_size - len(content.encode("utf-8"))
 
-    return defer_count, prune_count, bytes_saved
+    return defer_count, prune_count, bytes_saved, referenced_previews
 
 
 def _detect_page_lang(
@@ -281,29 +312,34 @@ def _translate_admonitions(
     admonition_map: dict[str, str],
 ) -> str:
     """Replace admonition titles in HTML for non-default language pages."""
+    # "admonition" can appear anywhere among the div's classes, not only
+    # first — Sphinx appends it after node["classes"] for directives (like
+    # cosmoblog's {update}) that render via the generic admonition visitor
+    # with pre-populated classes, unlike standard {note}/{important}/...
+    # where it comes first.
     for src_title, dst_title in admonition_map.items():
         if src_title.endswith(" "):
             pattern = re.compile(
-                r'(<div\s+class="admonition\b[^"]*">\s*'
+                r'(<div\s+class="[^"]*\badmonition\b[^"]*">\s*'
                 r'<p\s+class="admonition-title">)'
                 + re.escape(src_title)
-                + r'([^<]+</p>)',
+                + r"([^<]+</p>)",
                 re.DOTALL,
             )
             content = pattern.sub(
-                rf'\g<1>{dst_title}\2',
+                rf"\g<1>{dst_title}\2",
                 content,
             )
         else:
             pattern = re.compile(
-                r'(<div\s+class="admonition\b[^"]*">\s*'
+                r'(<div\s+class="[^"]*\badmonition\b[^"]*">\s*'
                 r'<p\s+class="admonition-title">)'
                 + re.escape(src_title)
-                + r'(</p>)',
+                + r"(</p>)",
                 re.DOTALL,
             )
             content = pattern.sub(
-                rf'\g<1>{dst_title}\2',
+                rf"\g<1>{dst_title}\2",
                 content,
             )
     return content
@@ -383,7 +419,8 @@ def _convert_images_to_webp(outdir: Path) -> tuple[int, int]:
         return 0, 0
 
     candidates = [
-        p for p in images_dir.iterdir()
+        p
+        for p in images_dir.iterdir()
         if p.suffix.lower() in _CONVERTIBLE_EXTS
     ]
     if not candidates:
@@ -425,16 +462,18 @@ def _dedup_viewport_meta(content: str) -> str:
     sphinxext-opengraph may inject a second via the ``metatags``
     context variable.  Only the first occurrence is kept.
     """
-    matches = list(re.finditer(
-        r'<meta[^>]*name=["\']?viewport["\']?[^>]*/?>',
-        content,
-        re.IGNORECASE,
-    ))
+    matches = list(
+        re.finditer(
+            r'<meta[^>]*name=["\']?viewport["\']?[^>]*/?>',
+            content,
+            re.IGNORECASE,
+        )
+    )
     if len(matches) <= 1:
         return content
     # Remove all but the first
     for m in reversed(matches[1:]):
-        content = content[:m.start()] + content[m.end():]
+        content = content[: m.start()] + content[m.end() :]
     return content
 
 
@@ -452,7 +491,6 @@ def _defer_sphinx_scripts(content: str) -> str:
     return content
 
 
-
 def _link_re(name: str) -> re.Pattern[str]:
     """Regex matching ``<link>`` whose ``href`` contains *name*.
 
@@ -460,9 +498,7 @@ def _link_re(name: str) -> re.Pattern[str]:
     """
     esc = re.escape(name)
     return re.compile(
-        r'<link[^>]*href=["\']?[^"\'  >]*'
-        + esc
-        + r'[^"\'  >]*["\']?[^>]*>',
+        r'<link[^>]*href=["\']?[^"\'  >]*' + esc + r'[^"\'  >]*["\']?[^>]*>',
         re.IGNORECASE,
     )
 
@@ -474,9 +510,7 @@ def _script_re(name: str) -> re.Pattern[str]:
     """
     esc = re.escape(name)
     return re.compile(
-        r'<script[^>]*src=["\']?[^"\'  >]*'
-        + esc
-        + r'[^"\'  >]*["\']?[^>]*>'
+        r'<script[^>]*src=["\']?[^"\'  >]*' + esc + r'[^"\'  >]*["\']?[^>]*>'
         r"</script>",
         re.IGNORECASE,
     )
@@ -489,9 +523,7 @@ def _link_href_re(name: str) -> re.Pattern[str]:
     """
     esc = re.escape(name)
     return re.compile(
-        r'<link[^>]*href=["\']?([^"\'  >]*'
-        + esc
-        + r'[^"\'  >]*)["\']?[^>]*>',
+        r'<link[^>]*href=["\']?([^"\'  >]*' + esc + r'[^"\'  >]*)["\']?[^>]*>',
         re.IGNORECASE,
     )
 
@@ -551,27 +583,32 @@ def _inject_css_preloads(content: str) -> str:
         match = pattern.search(content)
         if match:
             href = match.group(1)
-            preloads.append(
-                f'<link rel="preload" href="{href}" as="style">'
-            )
+            preloads.append(f'<link rel="preload" href="{href}" as="style">')
 
     if not preloads:
         return content
 
     # Inject preload hints right after <meta charset>
     preload_block = "\n".join(preloads)
-    charset_pattern = re.compile(r'(<meta\s+charset=[^>]*>)', re.IGNORECASE)
+    charset_pattern = re.compile(r"(<meta\s+charset=[^>]*>)", re.IGNORECASE)
     charset_match = charset_pattern.search(content)
     if charset_match:
         insert_pos = charset_match.end()
-        content = content[:insert_pos] + "\n" + preload_block + content[insert_pos:]
+        content = (
+            content[:insert_pos] + "\n" + preload_block + content[insert_pos:]
+        )
     else:
         # Fallback: insert right after <head>
-        head_pattern = re.compile(r'(<head[^>]*>)', re.IGNORECASE)
+        head_pattern = re.compile(r"(<head[^>]*>)", re.IGNORECASE)
         head_match = head_pattern.search(content)
         if head_match:
             insert_pos = head_match.end()
-            content = content[:insert_pos] + "\n" + preload_block + content[insert_pos:]
+            content = (
+                content[:insert_pos]
+                + "\n"
+                + preload_block
+                + content[insert_pos:]
+            )
 
     return content
 
@@ -676,7 +713,9 @@ def _update_css_links(content: str) -> str:
     return pattern.sub(r"\1theme.bundle.css\2", content)
 
 
-def _extract_base64_excerpts(content: str, outdir: Path, html_file: Path) -> str:
+def _extract_base64_excerpts(
+    content: str, outdir: Path, html_file: Path
+) -> str:
     """Find base64 images in excerpts, save to files, and update src."""
     excerpts_dir = outdir / "_images" / "excerpts"
 
@@ -740,3 +779,36 @@ def _fix_excerpt_image_paths(content: str) -> str:
         return f"{prefix}/_images/{basename}{ext}{suffix}"
 
     return pattern.sub(replacer, content)
+
+
+def _prune_orphaned_social_previews(
+    outdir: Path,
+    confdir: Path,
+    referenced: set[str],
+) -> int:
+    """Delete social preview PNGs no longer referenced by any built page.
+
+    sphinxext-opengraph names each preview after a content hash and never
+    removes a stale one when the hash changes (or the source page is
+    deleted) -- this is the pruning pass it doesn't do itself. Mirrors the
+    deletion into ``.cache/social_previews/`` too, since ``just clean``
+    backs that directory up and restores it on every build, which would
+    otherwise bring the orphan straight back.
+
+    Returns the number of files removed.
+    """
+    previews_dir = outdir / "_images" / "social_previews"
+    if not previews_dir.is_dir():
+        return 0
+
+    cache_dir = confdir / ".cache" / "social_previews"
+    removed = 0
+    for png in previews_dir.glob("*.png"):
+        if png.name in referenced:
+            continue
+        png.unlink()
+        cached = cache_dir / png.name
+        if cached.exists():
+            cached.unlink()
+        removed += 1
+    return removed

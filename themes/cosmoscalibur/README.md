@@ -279,10 +279,13 @@ The `t()` function is injected into every page's Jinja2 context by
 
 #### Admonition Translation
 
-The theme overrides Sphinx's `language` to `"en"` internally (in
-`_sync_config`) so all admonition titles come out in English — the
-standard i18n base language. The user's actual language (from
-`conf.py`) is saved as `blog_default_language` for theme logic.
+Cosmoblog leaves Sphinx's `language` at its default (English) — the
+project's `conf.py` should not set it, so admonition titles always come
+out in English, the fixed i18n reference language (`REFERENCE_LANG` in
+`extensions/i18n.py`). The site's actual content language (from
+`blog_default_language` in `conf.py`) is a separate, unrelated setting
+used only to route root-level pages that have no language prefix in
+their path.
 
 The `<html lang>` attribute is fixed per-page via `{% set language =
 page_lang %}` in `layout.html`, ensuring correct language metadata

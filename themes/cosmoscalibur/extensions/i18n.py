@@ -14,8 +14,8 @@ Usage in Python::
 
 Usage in Jinja2 templates (via ``t()`` injected by ``context.py``)::
 
-    {{ t("home") }}
-    {{ t("built_with", sphinx="...", cosmoblog="...") }}
+    {{t("home")}}
+    {{t("built_with", sphinx="...", cosmoblog="...")}}
 """
 
 import functools
@@ -26,6 +26,12 @@ from typing import Any
 from sphinx.application import Sphinx
 
 _THEME_LOCALE_DIR = Path(__file__).parent.parent / "locale"
+
+# Cosmoblog's fixed i18n reference language. Sphinx's own admonition
+# labels ("Note", "Important", ...) are always generated in this language
+# — it is a package convention, not a site-configurable setting, so it is
+# a constant rather than derived from any config value.
+REFERENCE_LANG = "en"
 
 
 @functools.lru_cache(maxsize=None)
@@ -115,5 +121,8 @@ def get_known_langs(app: Sphinx) -> set[str]:
     langs = getattr(app.config, "cosmoblog_languages", None)
     if langs:
         return langs
-    default = getattr(app.config, "blog_default_language", None) or app.config.language
+    default = (
+        getattr(app.config, "blog_default_language", None)
+        or app.config.language
+    )
     return {default}

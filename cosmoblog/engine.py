@@ -8,16 +8,16 @@ pages with ``{postlist}`` directives.
 
 from __future__ import annotations
 
-import os
-import re
+import base64
 from dataclasses import dataclass, field
-from datetime import date as date_cls, datetime
+from datetime import date as date_cls
+from datetime import datetime
+import hashlib
+import os
 from pathlib import Path
+import re
 from typing import TYPE_CHECKING, Any
 from unicodedata import normalize
-
-import base64
-import hashlib
 
 from docutils import nodes
 from sphinx.util.logging import getLogger
@@ -153,7 +153,8 @@ class BlogEngine:
             Filter by language.
         """
         posts = [
-            p for p in self.posts.values()
+            p
+            for p in self.posts.values()
             if p.published and p.docname != exclude
         ]
         if lang:
@@ -167,7 +168,8 @@ class BlogEngine:
         """Return all published posts with a given tag, newest first."""
         docnames = self.tags.get(tag, [])
         posts = [
-            self.posts[d] for d in docnames
+            self.posts[d]
+            for d in docnames
             if d in self.posts and self.posts[d].published
         ]
         posts.sort(reverse=True)
@@ -178,7 +180,8 @@ class BlogEngine:
     ) -> list[PostInfo]:
         """Return published posts in a category, newest first."""
         posts = [
-            p for p in self.posts.values()
+            p
+            for p in self.posts.values()
             if p.published and category in p.category
         ]
         if lang:
@@ -189,7 +192,8 @@ class BlogEngine:
     def by_language(self, lang: str) -> list[PostInfo]:
         """Return all published posts for a language, newest first."""
         posts = [
-            p for p in self.posts.values()
+            p
+            for p in self.posts.values()
             if p.published and p.language == lang
         ]
         posts.sort(reverse=True)
@@ -254,9 +258,7 @@ def _infer_language(
     return default_lang
 
 
-def _get_update_dates(
-    section: nodes.Node, docname: str
-) -> list[date_cls]:
+def _get_update_dates(section: nodes.Node, docname: str) -> list[date_cls]:
     """Extract dates from {update} directives and set their titles."""
     from .directives import UpdateNode
 
@@ -332,7 +334,8 @@ def register_post(app: Sphinx, doctree: Any) -> None:
 
     # Language: always inferred from path
     default_lang = getattr(app.config, "language", "en") or "en"
-    # Use the original default language, not the forced "en"
+    # blog_default_language is the site's content-routing default (e.g.
+    # "es"), independent of Sphinx's own i18n language above.
     blog_default_lang = getattr(app.config, "blog_default_language", None)
     if blog_default_lang:
         default_lang = blog_default_lang
@@ -391,7 +394,7 @@ def register_post(app: Sphinx, doctree: Any) -> None:
         elif not uri.startswith(("/", "http://", "https://", "//")):
             srcdir = Path(app.srcdir)
             doc_dir = str(Path(docname).parent)
-            
+
             # Try to find where the file actually is in the source tree
             potential_paths = [
                 srcdir / doc_dir / uri,
@@ -412,13 +415,14 @@ def register_post(app: Sphinx, doctree: Any) -> None:
             image_uri = uri
 
         image_alt = img_node.get("alt", "")
-        
+
         # Extract dimensions directly for PostInfo
         image_width = img_node.get("width", "")
         image_height = img_node.get("height", "")
         if not (image_width and image_height) and not uri.startswith("data:"):
             # Try finding the file to get dimensions
             from .transforms import _get_image_size
+
             srcdir = Path(app.srcdir)
             doc_dir = str(Path(docname).parent)
             # Try several paths (absolute, relative, root-relative)
@@ -427,8 +431,10 @@ def register_post(app: Sphinx, doctree: Any) -> None:
                 srcdir / doc_dir / uri,
             ]
             if "images/" in uri:
-                paths_to_try.append(srcdir / "images" / uri.split("images/")[-1])
-            
+                paths_to_try.append(
+                    srcdir / "images" / uri.split("images/")[-1]
+                )
+
             for p in paths_to_try:
                 if p.is_file():
                     try:
@@ -451,7 +457,14 @@ def register_post(app: Sphinx, doctree: Any) -> None:
     published = date is not None and date <= date_cls.today()
 
     # Make orphan to suppress toctree warnings
-    env.metadata.setdefault(docname, {})["orphan"] = True
+    post_metadata = env.metadata.setdefault(docname, {})
+    post_metadata["orphan"] = True
+
+    # Use the post's own first image as its Open Graph preview when it has
+    # one — sphinxext-opengraph skips its synthetic card generator for any
+    # page carrying a per-document "og:image" override.
+    if image_uri:
+        post_metadata["og:image"] = image_uri
 
     # Create and register the post
     post = PostInfo(
