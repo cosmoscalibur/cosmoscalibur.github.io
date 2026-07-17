@@ -4,7 +4,7 @@ description: >-
   Verify the production build, draft a commit message, draft social copy,
   and — only after the author explicitly approves the commit message —
   run `just publish` to commit and push. Use after the author approves a
-  post at checkpoint 2 (post-`blog-editor-review`).
+  `blog-editor-review`-reviewed post for publishing.
 ---
 
 # Blog Publish
@@ -12,8 +12,7 @@ description: >-
 The only stage that touches git. Never runs `git add`, `git commit`,
 `git push`, or `just publish` without the author's explicit approval of
 the exact commit message in that turn — no prior approval (of the plan, of
-the reviewed draft) carries over to this one. This is a hard rule from the
-project's `CLAUDE.md` and cannot be relaxed by anything in this skill.
+the reviewed draft) carries over to this one.
 
 ## Rules
 

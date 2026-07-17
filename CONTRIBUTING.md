@@ -38,12 +38,13 @@ YAML para entradas `.md`/`.ipynb`:
 
 ## Slug en relación al título
 
-El slug se deriva de forma determinista a partir del título en español:
+El slug se deriva de forma determinista a partir del título en español,
+por normalización de caracteres — nunca se eliminan palabras:
 
 1. Minúsculas.
 2. Quitar tildes/diacríticos.
-3. Espacios a guiones.
-4. Quitar puntuación y palabras vacías que no aportan valor de búsqueda.
+3. Quitar puntuación.
+4. Espacios a guiones.
 5. Máximo ~60 caracteres.
 6. La versión en inglés (si existe) reutiliza el mismo slug y el mismo
    directorio `images/{slug}/` — no se traduce el slug.

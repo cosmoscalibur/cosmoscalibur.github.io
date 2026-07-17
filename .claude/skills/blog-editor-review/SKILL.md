@@ -1,10 +1,11 @@
 ---
 name: blog-editor-review
 description: >-
-  Review a drafted post for factual accuracy, citation quality, per-category
-  style adherence, accessibility, and generic-LLM tells, then verify it
-  renders correctly with `just build`. Use after `blog-writing` completes,
-  before presenting the draft to the author for approval.
+  Review a drafted post for fidelity to the approved plan, factual
+  accuracy, citation quality, per-category style adherence, accessibility,
+  and generic-LLM tells, then verify it renders correctly with
+  `just build`. Use after `blog-writing` completes, before presenting the
+  draft to the author for approval.
 ---
 
 # Blog Editor Review
@@ -12,6 +13,35 @@ description: >-
 Read-only pass over a drafted post (and its English version, if
 bilingual). Reports findings; doesn't rewrite prose itself unless the
 author asks for the fixes to be applied after reviewing the findings.
+
+## Plan fidelity
+
+Compare the draft against the approved `blog-planning` plan directly —
+this is the one check that catches a draft technically well-written but
+quietly different from what was approved.
+
+- Every H2/H3 in the draft matches the plan's literal header text,
+  verbatim. Flag any header reworded, reformatted (e.g. into question-form
+  when the plan wrote it plain), or reordered without the plan changing.
+- Every section delivers the substance its plan-approved focus statement
+  promised — flag a section that substitutes something easier to write
+  for what was promised (e.g. citing a source's own generic example
+  instead of applying the source's method to the post's actual subject,
+  when the plan called for the latter).
+- Any author-supplied experiential or motivational detail recorded in the
+  dossier/plan (what they saw, where, why they care) appears in the draft
+  preserved as given — flag if it was generalized into an impersonal
+  claim, or dropped.
+- If the plan called for a figure/image, it's present, sourced the way
+  the plan specified, and placed where the plan said.
+- If any of the above is missing or drifted, that's a plan-fidelity gap,
+  not a style nit — surface it as its own finding, separate from
+  fact-check or tell-checklist findings below.
+- If a finding here (or elsewhere in this review) looks like a symptom of
+  a skill's rules being incomplete or contradictory — not just an isolated
+  content mistake in this one draft — say so explicitly and recommend the
+  author invoke `blog-skill-feedback` separately. Don't fix the content
+  and let the pattern go unremarked.
 
 ## Fact-check and citations
 
@@ -44,11 +74,9 @@ author asks for the fixes to be applied after reviewing the findings.
   first-person narrative sentence standing in for a title. A colon
   subtitle must be an appositive or rhetorical question, never a
   "trigger: result" formula.
-- **Headers**: match the post type set in the plan — question-format for
-  Science/Opinion, plain topical (often code-ticked) for
-  Programming/Technology, none at all for Poetry. A post with the wrong
-  header register for its type reads off-voice even if each header is
-  individually fine.
+- **Headers**: covered under Plan fidelity above (must match the plan
+  verbatim) — Poetry is the one type where the rule is absolute regardless
+  of any plan text: no headers at all.
 - **Body focus**: flag hedge-everything phrasing, false-balance padding
   ("on one hand... on the other hand..." where there's a clear practical
   answer), and "there are many ways to do X" throat-clearing that delays
@@ -105,8 +133,6 @@ author asks for the fixes to be applied after reviewing the findings.
 
 ## Handoff
 
-Report findings to the author for **checkpoint 2** approval. Only after
-explicit approval does the post proceed to `blog-publish`. If findings
-reveal the outline itself doesn't hold up (not just a wording fix), send
-it back to `blog-planning` for re-approval rather than patching around it
-here.
+Report findings to the author. If findings reveal the outline itself
+doesn't hold up (not just a wording fix), send it back to `blog-planning`
+rather than patching around it here.

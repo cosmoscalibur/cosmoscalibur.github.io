@@ -21,25 +21,44 @@ here.
 
 ## Voice, by post type (set in the approved plan)
 
-Never invent experiential specifics — personal anecdotes, what-was-tried,
-observed results, opinions. If the plan or dossier didn't supply one and
-the post type needs it, ask the author rather than fabricate it.
+Title and every header (H2/H3, any level) are `blog-planning`'s decision,
+never `blog-writing`'s — in every post type, with no exception. The plan
+gives verbatim title and heading text; use it exactly as approved. Never
+reformat, reword, or "correct" a title or header to match a type's usual
+pattern (e.g. converting a plain topical header into question-form
+because the post is Science, or adding inline code to a Programming
+header the plan wrote in plain text) — the per-type notes below describe
+tone and structure only, not header form, precisely because that decision
+doesn't belong here.
 
-- **Science/divulgación**: question-format H2 headers (`## ¿Qué es...?`).
-  Explains the phenomenon, uses `{figure}`/`{important}`/`{hint}` for
-  concrete detail. Ends on `## Referencias` — no summary paragraph, no
-  CTA. The post just stops once the sources are listed.
-- **Programming/notes**: plain topical headers, often with inline code
-  (`` `cargo` ``) — not questions. Opens with a direct, undisclaimed
-  framing of what's covered; write with the confidence appropriate to what
-  was actually verified, not more. Ends on `## Referencias`, sources may
+`blog-writing` operates strictly on what `blog-research` and
+`blog-planning` already handed it. It does not go find new facts,
+sources, or images, or compute an estimate on its own: if the plan's
+outline calls for applying a source's method to the post's specific
+subject and the brief doesn't include the subject-specific data or figure
+that requires, stop and ask the author — that gap belongs to
+`blog-research`/`blog-planning`, not to this stage.
+
+MyST structural elements — `{figure}`, admonitions (`{note}`,
+`{important}`, `{hint}`, `{warning}`, or `{admonition}` with `class:` in
+Spanish), tables — are available in every post type, not just Science.
+Use them wherever the plan's outline calls for concrete detail
+(a warning in a Linux post, a hint in a Programming one), regardless of
+category.
+
+- **Science/divulgación**: explains the phenomenon. Ends on
+  `## Referencias` — no summary paragraph, no CTA. The post just stops
+  once the sources are listed.
+- **Programming/notes**: opens with a direct, undisclaimed framing of
+  what's covered; write with the confidence appropriate to what was
+  actually verified, not more. Ends on `## Referencias`, sources may
   carry a one-line progress/relevance note.
 - **Technology/practical**: commits to the solution that was actually
   used — explains *why* it works, not an exhaustive survey of every
   alternative. Minimal hedging. Ends on `## Referencias`.
-- **Opinion**: colon+rhetorical-question headers, named concrete anecdotes,
-  earns a real closing stance (this is the one type where a closing
-  paragraph belongs) before `## Referencias`.
+- **Opinion**: named concrete anecdotes, earns a real closing stance
+  (this is the one type where a closing paragraph belongs) before
+  `## Referencias`.
 - **Poetry (`La flecha temporal`, ES only)**: the poem itself, no headers,
   no References section. A companion `{youtube}` embed is a common,
   optional closing element — never a summary paragraph.

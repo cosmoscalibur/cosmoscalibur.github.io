@@ -18,9 +18,12 @@ blog-editor-review → [checkpoint 2] → blog-publish
 - A new post request always starts at `blog-research`, even for a brief
   specific enough that it feels like planning could start directly — the
   redundancy check and source-gathering still need to happen first.
-- `blog-research` → `blog-planning`: no checkpoint between these two; the
-  dossier's quality is validated implicitly by whether the resulting plan
-  holds up.
+- `blog-research` → `blog-planning`: no checkpoint between these two.
+  `blog-planning` actively validates the dossier against what its outline
+  needs and can loop back to `blog-research` for a narrow, specific gap
+  before presenting the plan — the author only sees the outcome (a
+  complete plan, or an explicit open question if the gap couldn't be
+  filled).
 - **Checkpoint 1**: the author must explicitly approve `blog-planning`'s
   plan before `blog-writing` starts. No post file is created before this
   approval.
@@ -33,7 +36,21 @@ blog-editor-review → [checkpoint 2] → blog-publish
   editor-review finds the outline doesn't work), that goes back to the
   relevant checkpoint for re-approval — never patched around silently.
 
-## 2. Git safety (non-negotiable)
+## 2. Factuality
+
+- Never invent a factual, physical, experiential, or personal claim that
+  wasn't supplied by the author, found in a verified source, or already
+  documented — in any stage, not just drafting. Diluting an
+  author-supplied detail into something generic (turning a specific
+  platform, date, or motivation into a vague, impersonal claim) is its
+  own form of fabrication, not a safe simplification.
+- If something is missing to satisfy an approved angle or a section's
+  content requirement, don't fill the gap with a plausible-sounding
+  invention. Ask the author directly, or hand the gap to the stage
+  responsible for supplying it (`blog-research` for facts and sources,
+  the author directly for personal/experiential/motivational detail).
+
+## 3. Git safety (non-negotiable)
 
 - Only `blog-publish` touches git, and only after the author's explicit
   approval of the exact commit message in that turn. Checkpoint 1 and
@@ -45,7 +62,7 @@ blog-editor-review → [checkpoint 2] → blog-publish
 - `just build` / `just deploy` (local rendering) are not git operations
   and don't require this approval gate — only the actual git actions do.
 
-## 3. Scope
+## 4. Scope
 
 - Social copy (`blog-publish`) is draft-only, written to `social-posts.md`.
   Nothing in this pipeline posts to any platform via API.
